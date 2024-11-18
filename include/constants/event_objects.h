@@ -251,11 +251,13 @@
 #define OBJ_EVENT_GFX_CROBAT_SHADOWS_GRUNT_M     247
 #define OBJ_EVENT_GFX_CROBAT_SHADOWS_GRUNT_F     248
 #define OBJ_EVENT_GFX_MONK                       249
+#define OBJ_EVENT_GFX_SAMURAI                    250
+#define OBJ_EVENT_GFX_ELDER2                     251
 
 // NOTE: The maximum amount of object events has been expanded from 255 to 65535.
 // Since dynamic graphics ids still require at least 16 free values, the actual limit
 // is 65519, but even considering follower Pokémon, this should be more than enough :)
-#define NUM_OBJ_EVENT_GFX                        250
+#define NUM_OBJ_EVENT_GFX                        252
 
 
 // These are dynamic object gfx ids.
@@ -395,7 +397,7 @@
 #define OBJ_EVENT_PAL_TAG_FAT_MAN                 0x1129
 #define OBJ_EVENT_PAL_TAG_ARTIST                  0x112A
 #define OBJ_EVENT_PAL_TAG_NINJA_BOY               0x112B
-#define OBJ_EVENT_PAL_TAG_WOMAN_2                 0x112C
+#define OBJ_EVENT_PAL_TAG_UNUSED                  0x112C
 #define OBJ_EVENT_PAL_TAG_FARMER                  0x112D
 #define OBJ_EVENT_PAL_TAG_BUG_CATCHER             0x112E
 #define OBJ_EVENT_PAL_TAG_BOY_1                   0x112F
@@ -428,6 +430,7 @@
 #define OBJ_EVENT_PAL_TAG_NATSUKI                 0x114A
 #define OBJ_EVENT_PAL_TAG_CROBAT_SHADOWS          0x114B
 #define OBJ_EVENT_PAL_TAG_MONK                    0x114C
+#define OBJ_EVENT_PAL_TAG_SAMURAI                 0x114D
 
 #if OW_FOLLOWERS_POKEBALLS
 // Vanilla

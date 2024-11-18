@@ -418,7 +418,7 @@ const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Man1 = {
 
 const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Woman2 = {
     .tileTag = TAG_NONE,
-    .paletteTag = OBJ_EVENT_PAL_TAG_WOMAN_2,
+    .paletteTag = OBJ_EVENT_PAL_TAG_TWINS,
     .reflectionPaletteTag = OBJ_EVENT_PAL_TAG_NONE,
     .size = 512,
     .width = 32,
@@ -703,7 +703,7 @@ const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Man2 = {
 
 const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Woman3 = {
     .tileTag = TAG_NONE,
-    .paletteTag = OBJ_EVENT_PAL_TAG_SHAMISEN_BLUE,
+    .paletteTag = OBJ_EVENT_PAL_TAG_FAT_MAN,
     .reflectionPaletteTag = OBJ_EVENT_PAL_TAG_NONE,
     .size = 512,
     .width = 32,
@@ -1477,6 +1477,25 @@ const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Kaba = {
     .subspriteTables = sOamTables_32x32,
     .anims = sAnimTable_Standard,
     .images = sPicTable_Kaba,
+    .affineAnims = gDummySpriteAffineAnimTable,
+};
+
+const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Elder2 = {
+    .tileTag = TAG_NONE,
+    .paletteTag = OBJ_EVENT_PAL_TAG_KABA,
+    .reflectionPaletteTag = OBJ_EVENT_PAL_TAG_NONE,
+    .size = 512,
+    .width = 32,
+    .height = 32,
+    .paletteSlot = PALSLOT_NPC_3,
+    .shadowSize = SHADOW_SIZE_M,
+    .inanimate = FALSE,
+    .compressed = FALSE,
+    .tracks = TRACKS_FOOT,
+    .oam = &gObjectEventBaseOam_32x32,
+    .subspriteTables = sOamTables_32x32,
+    .anims = sAnimTable_Standard,
+    .images = sPicTable_Elder2,
     .affineAnims = gDummySpriteAffineAnimTable,
 };
 
@@ -2541,6 +2560,25 @@ const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_CrobatShadowsGrunt
     .subspriteTables = sOamTables_32x32,
     .anims = sAnimTable_CrobatShadow,
     .images = sPicTable_CrobatShadowsGruntF,
+    .affineAnims = gDummySpriteAffineAnimTable,
+};
+
+const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Samurai = {
+    .tileTag = TAG_NONE,
+    .paletteTag = OBJ_EVENT_PAL_TAG_SAMURAI,
+    .reflectionPaletteTag = OBJ_EVENT_PAL_TAG_NONE,
+    .size = 512,
+    .width = 32,
+    .height = 32,
+    .paletteSlot = PALSLOT_NPC_2,
+    .shadowSize = SHADOW_SIZE_M,
+    .inanimate = FALSE,
+    .compressed = FALSE,
+    .tracks = TRACKS_FOOT,
+    .oam = &gObjectEventBaseOam_32x32,
+    .subspriteTables = sOamTables_32x32,
+    .anims = sAnimTable_Standard,
+    .images = sPicTable_Samurai,
     .affineAnims = gDummySpriteAffineAnimTable,
 };
 

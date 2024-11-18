@@ -280,3 +280,9 @@ const u16 gMetatileAttributes_OpenSea[] = INCBIN_U16("data/tilesets/secondary/op
 
 const u16 gMetatiles_Coral[] = INCBIN_U16("data/tilesets/secondary/coral/metatiles.bin");
 const u16 gMetatileAttributes_Coral[] = INCBIN_U16("data/tilesets/secondary/coral/metatile_attributes.bin");
+
+const u16 gMetatiles_HarvestShrine[] = INCBIN_U16("data/tilesets/secondary/harvest_shrine/metatiles.bin");
+const u16 gMetatileAttributes_HarvestShrine[] = INCBIN_U16("data/tilesets/secondary/harvest_shrine/metatile_attributes.bin");
+
+const u16 gMetatiles_Gate[] = INCBIN_U16("data/tilesets/secondary/gate/metatiles.bin");
+const u16 gMetatileAttributes_Gate[] = INCBIN_U16("data/tilesets/secondary/gate/metatile_attributes.bin");

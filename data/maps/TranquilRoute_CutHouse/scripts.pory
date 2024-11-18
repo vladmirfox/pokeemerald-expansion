@@ -103,7 +103,7 @@ script TranquilRoute_CutHouse_EventScript_CutMaster {
 script TranquilRoute_CutHouse_EventScript_RandomCryGuy {
 	lock
 	faceplayer
-	if(flag(FLAG_MON_CRY_NPC_GIVE_ITEM))
+	if(flag(FLAG_DAILY_MON_CRY_RIDDLE))
 	{
 		msgbox("you already got it right\ncome back tomorrow dingus")
 		release
@@ -142,7 +142,7 @@ script TranquilRoute_CutHouse_EventScript_RandomCryGuy {
 	{
 		msgbox("correct dingus, here take this")
 		giveitem(ITEM_MEWTWONITE_X)
-		setflag(FLAG_MON_CRY_NPC_GIVE_ITEM)
+		setflag(FLAG_DAILY_MON_CRY_RIDDLE)
 		msgbox("come back tomorrow")
 	}
 	else
@@ -154,45 +154,3 @@ script TranquilRoute_CutHouse_EventScript_RandomCryGuy {
 	end
 }
 
-
-
-script TranquilRoute_CutHouse_EventScript_RandomDexGuy {
-	lock
-	faceplayer
-	if(flag(FLAG_DEX_RIDDLE_NPC_GIVE_ITEM))
-	{
-		msgbox("you already got it right\ncome back tomorrow dingus")
-		release
-		end
-	}
-
-	if(flag(FLAG_DEX_RIDDLE_NPC))
-	{
-		msgbox("you guessed wrong\ncome back tomorrow dingus")
-		release
-		end
-	}
-
-	msgbox("alright dingus, ima give you a dex\ndescription, you give me the mon\pand remember, you only get to see\nthis once because im lazy")
-	closemessage
-	randomdexmsgbox
-	msgbox("now whomst was that about")
-	special(EnterDexRiddleGuess)
-	waitstate
-	special(GetDexRiddleFeedback)
-
-	if(var(VAR_RESULT) == 1)
-	{
-		msgbox("correct dingus, here take this")
-		giveitem(ITEM_MEWTWONITE_Y)
-		setflag(FLAG_DEX_RIDDLE_NPC_GIVE_ITEM)
-		msgbox("come back tomorrow")
-	}
-	else
-	{
-		msgbox("wrong dingus, try again tomorrow")
-	}
-	setflag(FLAG_DEX_RIDDLE_NPC)
-	release
-	end
-}

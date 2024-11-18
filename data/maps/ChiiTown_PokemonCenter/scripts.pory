@@ -32,14 +32,6 @@ mapscripts ChiiTown_PokemonCenter_MapScripts {
 	}
 }
 
-script ChiiTown_PokemonCenter_EventScript_PcGuy {
-	lock
-	faceplayer
-	call(Common_EventScript_PcGuy)
-	release
-	end
-}
-
 script ChiiTown_PokemonCenter_EventScript_Nurse {
 	setvar(VAR_0x800B, LOCALID_NURSE)
 	call(Common_EventScript_PkmnCenterNurse_CutTheBullshit)
@@ -176,11 +168,11 @@ script ChiiTown_PokemonCenter_EventScript_RefugePresentation {
 
 	switch(var(VAR_FACING)) {
 		case DIR_NORTH:
-			applymovement(LOCALID_MAN, ChiiTown_PokemonCenter_Movement_LeaveWhenFromBottom)
+			applymovement(LOCALID_MAN, moves(walk_right, walk_down * 6))
 		case DIR_WEST:
-			applymovement(LOCALID_MAN, ChiiTown_PokemonCenter_Movement_Leave)
+			applymovement(LOCALID_MAN, moves(walk_down * 6))
 		case DIR_EAST:
-			applymovement(LOCALID_MAN, ChiiTown_PokemonCenter_Movement_Leave)
+			applymovement(LOCALID_MAN, moves(walk_down * 6))
 	}
 	waitmovement(0)
 	removeobject(LOCALID_MAN)

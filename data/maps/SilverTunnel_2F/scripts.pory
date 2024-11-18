@@ -1,0 +1,27 @@
+mapscripts SilverTunnel_2F_MapScripts {
+	
+}
+
+script SilverTunnel_2F_EventScript_Trainer1 {
+	trainerbattle_single(
+		TRAINER_DUMMY,
+		format("Let's fight"),
+		format("Oh no I lost"),
+		BeachboundRoute_EventScript_Karu_PostBattle
+	)
+	speakername("TODO")
+	msgbox(format("Now I'm sad"), MSGBOX_AUTOCLOSE)
+	end
+}
+
+script SilverTunnel_2F_EventScript_Trainer2 {
+	trainerbattle_single(
+		TRAINER_DUMMY,
+		format("Let's fight"),
+		format("Oh no I lost"),
+		BeachboundRoute_EventScript_Karu_PostBattle
+	)
+	speakername("TODO")
+	msgbox(format("Now I'm sad"), MSGBOX_AUTOCLOSE)
+	end
+}

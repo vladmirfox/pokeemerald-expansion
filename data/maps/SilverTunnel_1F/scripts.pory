@@ -2,10 +2,34 @@ mapscripts SilverTunnel_1F_MapScripts {
 	
 }
 
+script SilverTunnel_1F_EventScript_Trainer1 {
+	trainerbattle_single(
+		TRAINER_DUMMY,
+		format("Let's fight"),
+		format("Oh no I lost"),
+		BeachboundRoute_EventScript_Karu_PostBattle
+	)
+	speakername("TODO")
+	msgbox(format("Now I'm sad"), MSGBOX_AUTOCLOSE)
+	end
+}
+
+script SilverTunnel_1F_EventScript_Trainer2 {
+	trainerbattle_single(
+		TRAINER_DUMMY,
+		format("Let's fight"),
+		format("Oh no I lost"),
+		BeachboundRoute_EventScript_Karu_PostBattle
+	)
+	speakername("TODO")
+	msgbox(format("Now I'm sad"), MSGBOX_AUTOCLOSE)
+	end
+}
+
 script SilverTunnel_1F_TrainerTips {
 	msgbox(format(
 		"Warning!\p"
-		"There are a lot more wild Pokémon in sandy areas!\p"
+		"Wild Pokémon burrow in the sand!\p"
 		"Cross at your own risk!"
 		), MSGBOX_SIGN)
 }

@@ -5296,9 +5296,9 @@
     {
       "id": "LAYOUT_SUNRISE_VILLAGE",
       "name": "SunriseVillage_Layout",
-      "width": 33,
-      "height": 35,
-      "border_width": 2,
+      "width": 30,
+      "height": 34,
+      "border_width": 6,
       "border_height": 2,
       "primary_tileset": "gTileset_PorytilesPrimaryTutorial",
       "secondary_tileset": "gTileset_SunriseVillage",
@@ -5370,7 +5370,7 @@
       "name": "SakuTown_Layout",
       "width": 50,
       "height": 48,
-      "border_width": 2,
+      "border_width": 6,
       "border_height": 2,
       "primary_tileset": "gTileset_PorytilesPrimaryTutorial",
       "secondary_tileset": "gTileset_SakuKura",
@@ -5382,7 +5382,7 @@
       "name": "KuraTown_Layout",
       "width": 56,
       "height": 31,
-      "border_width": 2,
+      "border_width": 6,
       "border_height": 2,
       "primary_tileset": "gTileset_PorytilesPrimaryTutorial",
       "secondary_tileset": "gTileset_SakuKura",
@@ -5392,9 +5392,9 @@
     {
       "id": "LAYOUT_BEACHBOUND_ROUTE",
       "name": "BeachboundRoute_Layout",
-      "width": 65,
+      "width": 82,
       "height": 34,
-      "border_width": 2,
+      "border_width": 6,
       "border_height": 2,
       "primary_tileset": "gTileset_PorytilesPrimaryTutorial",
       "secondary_tileset": "gTileset_SakuKura",
@@ -5404,7 +5404,7 @@
     {
       "id": "LAYOUT_MAGURO_HARBOR",
       "name": "MaguroHarbor_Layout",
-      "width": 48,
+      "width": 55,
       "height": 34,
       "border_width": 2,
       "border_height": 2,
@@ -5541,7 +5541,7 @@
       "border_width": 2,
       "border_height": 2,
       "primary_tileset": "gTileset_Building_Generic",
-      "secondary_tileset": "gTileset_House",
+      "secondary_tileset": "gTileset_HouseStone",
       "border_filepath": "data/layouts/Silveridge_EldersHouse/border.bin",
       "blockdata_filepath": "data/layouts/Silveridge_EldersHouse/map.bin"
     },
@@ -5697,7 +5697,7 @@
       "border_width": 2,
       "border_height": 2,
       "primary_tileset": "gTileset_PorytilesPrimaryTutorial",
-      "secondary_tileset": "gTileset_SakuKura",
+      "secondary_tileset": "gTileset_HarvestShrine",
       "border_filepath": "data/layouts/HarvestShrine/border.bin",
       "blockdata_filepath": "data/layouts/HarvestShrine/map.bin"
     },
@@ -5728,7 +5728,7 @@
     {
       "id": "LAYOUT_BEACHBOUND_ROUTE_DECAY",
       "name": "Beachbound_Route_Decay_Layout",
-      "width": 65,
+      "width": 82,
       "height": 34,
       "border_width": 2,
       "border_height": 2,
@@ -5752,8 +5752,8 @@
     {
       "id": "LAYOUT_COREEF_ISLE",
       "name": "CoreefIsle_Layout",
-      "width": 42,
-      "height": 36,
+      "width": 50,
+      "height": 40,
       "border_width": 2,
       "border_height": 2,
       "primary_tileset": "gTileset_PorytilesPrimaryTutorial",
@@ -6024,6 +6024,30 @@
       "secondary_tileset": "gTileset_UumeForest",
       "border_filepath": "data/layouts/UumeForest/border.bin",
       "blockdata_filepath": "data/layouts/UumeForest/map.bin"
+    },
+    {
+      "id": "LAYOUT_BEACHBOUND_MAGURO_GATE",
+      "name": "Beachbound_Maguro_Gate_Layout",
+      "width": 13,
+      "height": 9,
+      "border_width": 2,
+      "border_height": 2,
+      "primary_tileset": "gTileset_Building_Generic",
+      "secondary_tileset": "gTileset_Gate",
+      "border_filepath": "data/layouts/Beachbound_Maguro_Gate/border.bin",
+      "blockdata_filepath": "data/layouts/Beachbound_Maguro_Gate/map.bin"
+    },
+    {
+      "id": "LAYOUT_KURA_BEACHBOUND_GATE",
+      "name": "Kura_Beachbound_Gate_Layout",
+      "width": 13,
+      "height": 9,
+      "border_width": 2,
+      "border_height": 2,
+      "primary_tileset": "gTileset_Building_Generic",
+      "secondary_tileset": "gTileset_Gate",
+      "border_filepath": "data/layouts/Kura_Beachbound_Gate/border.bin",
+      "blockdata_filepath": "data/layouts/Kura_Beachbound_Gate/map.bin"
     }
   ]
 }

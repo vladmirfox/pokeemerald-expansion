@@ -187,14 +187,22 @@ ChiiTown_Mart:
 	.2byte ITEM_REPEL
 	.2byte ITEM_NONE
 
-ChiiTown_EventScript_TownSign::
+ChiiTown_EventScript_Samurai::
 # 107 "data/maps/ChiiTown/scripts.pory"
+	speakername ChiiTown_EventScript_Samurai_Text_0
+# 108 "data/maps/ChiiTown/scripts.pory"
+	msgbox ChiiTown_EventScript_Samurai_Text_1, MSGBOX_NPC
+	return
+
+
+ChiiTown_EventScript_TownSign::
+# 114 "data/maps/ChiiTown/scripts.pory"
 	msgbox ChiiTown_EventScript_TownSign_Text_0, MSGBOX_SIGN
 	return
 
 
 ChiiTown_EventScript_SetTrespassVar::
-# 111 "data/maps/ChiiTown/scripts.pory"
+# 118 "data/maps/ChiiTown/scripts.pory"
 	setvar VAR_CHII_TOWN_OLD_MAN_TRESPASS_STATE, 1
 	return
 
@@ -244,8 +252,19 @@ ChiiTown_EventScript_Mart_Text_1:
 	.string "Welcome to Chii Town's market! How may\n"
 	.string "I help you?$"
 
-ChiiTown_EventScript_TownSign_Text_0:
+ChiiTown_EventScript_Samurai_Text_0:
 # 107 "data/maps/ChiiTown/scripts.pory"
+	.string "Samurai$"
+
+ChiiTown_EventScript_Samurai_Text_1:
+# 109 "data/maps/ChiiTown/scripts.pory"
+	.string "There's been reports of some shady\n"
+	.string "men dressed in blue loitering around\l"
+	.string "the area.\p"
+	.string "Be careful when traveling!$"
+
+ChiiTown_EventScript_TownSign_Text_0:
+# 114 "data/maps/ChiiTown/scripts.pory"
 	.string "Chii Town\n"
 	.string "“The smallest town, with the biggest\l"
 	.string "heart.”$"

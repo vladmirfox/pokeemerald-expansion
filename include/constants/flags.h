@@ -65,7 +65,9 @@
 #define FLAG_HIDE_CROBAT_SHADOWS_BEACHBOUND_RT 0x2F
 #define FLAG_HIDE_BEAN_GINKO_WOODS 0x30
 #define FLAG_SMART_GLASSES   0x31
-#define FLAG_UNUSED_0x032    0x32 // Unused Flag
+// Lets the player be invisible when warping into a new map
+// (useful for cutscenes)
+#define FLAG_SPAWN_INVISIBLE 0x32
 #define FLAG_UNUSED_0x033    0x33 // Unused Flag
 #define FLAG_UNUSED_0x034    0x34 // Unused Flag
 #define FLAG_UNUSED_0x035    0x35 // Unused Flag
@@ -660,8 +662,7 @@
 #define FLAG_HIDE_SUNRISE_BEACH_RIVAL 0x265 // True if talked to rival on the beach in intro sequence
 #define FLAG_RECEIVED_STARTER  0x266 // True if player has received their starter
 #define FLAG_HIDE_SUNRISE_VILLAGE_STANDARD_NPC_POSITIONS  0x267 // True if all the Sunrise Village NPC's should be removed from their usual spot
-// True if the mysterious samurai on Tranquil Route has been talked to
-#define FLAG_MYSTERIOUS_SAMURAI_TRANQUIL_ROUTE  0x268
+#define FLAG_MET_TRAVELING_MERCHANT  0x268
 // True if the Pokémon refuge presentation speech has been given
 #define FLAG_POKEMON_REFUGE_PRESENTATION  0x269
 #define FLAG_UNUSED_0x26A  0x26A // Unused Flag
@@ -1575,10 +1576,10 @@
 #define FLAG_MON_CRY_NPC                            (DAILY_FLAGS_START + 0x0)
 #define FLAG_DAILY_CONTEST_LOBBY_RECEIVED_BERRY     (DAILY_FLAGS_START + 0x1)
 #define FLAG_DAILY_SECRET_BASE                      (DAILY_FLAGS_START + 0x2)
-#define FLAG_DAILY_SHUCKLE_BERRY_JUICE (DAILY_FLAGS_START + 0x3)
-#define FLAG_MON_CRY_NPC_GIVE_ITEM                  (DAILY_FLAGS_START + 0x4)
-#define FLAG_DEX_RIDDLE_NPC                         (DAILY_FLAGS_START + 0x5)
-#define FLAG_DEX_RIDDLE_NPC_GIVE_ITEM               (DAILY_FLAGS_START + 0x6)
+#define FLAG_DAILY_SHUCKLE_BERRY_JUICE              (DAILY_FLAGS_START + 0x3)
+#define FLAG_DAILY_MON_CRY_RIDDLE                   (DAILY_FLAGS_START + 0x4)
+#define FLAG_DAILY_MON_DEX_RIDDLE                   (DAILY_FLAGS_START + 0x5)
+#define FLAG_UNUSED_0x926                           (DAILY_FLAGS_START + 0x6)
 #define FLAG_UNUSED_0x927                           (DAILY_FLAGS_START + 0x7)  // Unused Flag
 #define FLAG_UNUSED_0x928                           (DAILY_FLAGS_START + 0x8)  // Unused Flag
 #define FLAG_UNUSED_0x929                           (DAILY_FLAGS_START + 0x9)  // Unused Flag

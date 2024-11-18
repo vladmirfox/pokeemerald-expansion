@@ -1,10 +1,11 @@
 const LOCALID_BERRYWOMAN = 5
-const LOCALID_MYSTERIOUS_SAMURAI = 9
+const LOCALID_SAMURAI = 21
 const LOCALID_CUT_MASTER = 22
 const LOCALID_CROBAT_SHADOW_BOSS = 25
 const LOCALID_CROBAT_SHADOW_GRUNT_TOP = 23
 const LOCALID_CROBAT_SHADOW_GRUNT_RIGHT = 26
 const LOCALID_CROBAT_SHADOW_GRUNT_LEFT = 24
+const LOCALID_KECLEON = 27
 const FLAG_HIDE_CUT_MASTER = FLAG_TEMP_1
 const VAR_DO_CUT_MASTER_CUTSCENE = VAR_TEMP_0
 const VAR_HOUR_OF_DAY = VAR_0x8000
@@ -37,8 +38,8 @@ script TranquilRoute_EventScript_SpawnBirds {
 script TranquilRoute_EventScript_GrassCutscene {
 	lock
 	// They walk to the center of the garden
-	applymovement(LOCALID_CUT_MASTER, TranquilRoute_CutMasterGoesSeeGarden)
-	applymovement(OBJ_EVENT_ID_PLAYER, TranquilRoute_PlayerGoesSeeGarden)
+	applymovement(LOCALID_CUT_MASTER, moves(walk_left * 5, walk_up * 3, face_up))
+	applymovement(OBJ_EVENT_ID_PLAYER, moves(walk_left * 6, walk_up * 2))
 	waitmovement(LOCALID_CUT_MASTER)
 	waitmovement(OBJ_EVENT_ID_PLAYER)
 
@@ -196,10 +197,6 @@ script TranquilRoute_EventScript_CutGrass {
 	return
 }
 
-script TODOEVA {
-	givemon(SPECIES_SPHEAL, 100, move1=MOVE_TACKLE, move2=MOVE_POUND, move3=MOVE_WATER_GUN, move4=MOVE_FLIPPER_SPLASH)
-}
-
 script TranquilRoute_EventScript_Chikao {
 	trainerbattle_single(
 		TRAINER_CHIKAO,
@@ -251,28 +248,6 @@ script TranquilRoute_EventScript_Kenji {
 	end
 }
 
-// Evil team member
-script TranquilRoute_EventScript_MysteriousSamurai {
-	lock
-	// TODO EVA
-	speakername("Mystery man")
-	msgbox(format(
-		"So you are one of those new Pokémon wielders, right?\p"
-		"You say Pokémon have been restless, lately?\p"
-		"Interesting.\p"
-		"I have the feeling we're going to meet again soon.\p"
-		"Until then, farewell."
-	))
-	closemessage
-
-	applymovement(LOCALID_MYSTERIOUS_SAMURAI, TranquilRoute_Movement_MysteriousSamuraiWalksAway)
-	removeobject(LOCALID_MYSTERIOUS_SAMURAI)
-
-	setflag(FLAG_MYSTERIOUS_SAMURAI_TRANQUIL_ROUTE)
-	release
-	end
-}
-
 movement TranquilRoute_Movement_MysteriousSamuraiWalksAway {
 	walk_right * 6
 }
@@ -282,9 +257,19 @@ script TranquilRoute_EventScript_Girl {
 	msgbox(format("What? Oh, I don't fight.\pMy Pokémon and I are just strolling."), MSGBOX_NPC)
 }
 
-script TranquilRoute_EventScript_WhiteslateRoadblockGuard {
-	speakername("Man")
-	msgbox(format("Sorry, you can't go through."), MSGBOX_NPC)
+script TranquilRoute_EventScript_WhiteslateRoadblock {
+	lock
+	applymovement(LOCALID_SAMURAI, Common_Movement_WalkInPlaceFasterRight)
+	waitmovement(0)
+
+	speakername("Samurai")
+	msgbox(format("Sorry, you can't go through. The road ahead is blocked."))
+	closemessage
+
+	applymovement(OBJ_EVENT_ID_PLAYER, moves(walk_left))
+	waitmovement(0)
+
+	release
 }
 
 script TranquilRoute_EventScript_Shellos {
@@ -398,10 +383,10 @@ script TranquilRoute_TrainerTips1 {
 script TranquilRoute_EventScript_CrobatShadows_Camera {
 	lock
 	special(SpawnCameraObject)
-	applymovement(OBJ_EVENT_ID_CAMERA, TranquilRoute_Movement_FocusOnCrobatShadows)
+	applymovement(OBJ_EVENT_ID_CAMERA, moves(walk_up * 2))
 	waitmovement(0)
 	call(TranquilRoute_EventScript_CrobatShadows_Cutscene)
-	applymovement(OBJ_EVENT_ID_CAMERA, TranquilRoute_Movement_FocusOnPlayer)
+	applymovement(OBJ_EVENT_ID_CAMERA, moves(walk_down * 2))
 	waitmovement(0)
 	special(RemoveCameraObject)
 	release
@@ -435,8 +420,8 @@ script TranquilRoute_EventScript_CrobatShadows_Cutscene {
 	))
 	closemessage
 
-	applymovement(LOCALID_CROBAT_SHADOW_GRUNT_RIGHT, TranquilRoute_Movement_GruntAligns)
-	applymovement(LOCALID_CROBAT_SHADOW_GRUNT_LEFT, TranquilRoute_Movement_GruntAligns)
+	applymovement(LOCALID_CROBAT_SHADOW_GRUNT_RIGHT, moves(walk_up, face_down))
+	applymovement(LOCALID_CROBAT_SHADOW_GRUNT_LEFT, moves(walk_up, face_down))
 	waitmovement(LOCALID_CROBAT_SHADOW_GRUNT_TOP)
 	waitmovement(LOCALID_CROBAT_SHADOW_GRUNT_RIGHT)
 
@@ -444,9 +429,9 @@ script TranquilRoute_EventScript_CrobatShadows_Cutscene {
 	//   o
 	// TODO EVA: Zubats aligning anim
 	playse(SE_LEDGE)
-	applymovement(LOCALID_CROBAT_SHADOW_GRUNT_LEFT, TranquilRoute_Movement_GruntAlign)
-	applymovement(LOCALID_CROBAT_SHADOW_GRUNT_TOP, TranquilRoute_Movement_GruntAlign)
-	applymovement(LOCALID_CROBAT_SHADOW_GRUNT_RIGHT, TranquilRoute_Movement_GruntAlign)
+	applymovement(LOCALID_CROBAT_SHADOW_GRUNT_LEFT, moves(face_down, zubats_align, delay_16, delay_16))
+	applymovement(LOCALID_CROBAT_SHADOW_GRUNT_TOP, moves(face_down, zubats_align, delay_16, delay_16))
+	applymovement(LOCALID_CROBAT_SHADOW_GRUNT_RIGHT, moves(face_down, zubats_align, delay_16, delay_16))
 	waitmovement(LOCALID_CROBAT_SHADOW_GRUNT_LEFT)
 	waitmovement(LOCALID_CROBAT_SHADOW_GRUNT_TOP)
 	waitmovement(LOCALID_CROBAT_SHADOW_GRUNT_RIGHT)
@@ -455,10 +440,10 @@ script TranquilRoute_EventScript_CrobatShadows_Cutscene {
 	//
 	// oooo
 	//
-	applymovement(LOCALID_CROBAT_SHADOW_GRUNT_TOP, TranquilRoute_Movement_GruntsWalksAway)
-	applymovement(LOCALID_CROBAT_SHADOW_GRUNT_LEFT, TranquilRoute_Movement_GruntsWalksAway)
-	applymovement(LOCALID_CROBAT_SHADOW_GRUNT_RIGHT, TranquilRoute_Movement_GruntsWalksAway)
-	applymovement(LOCALID_CROBAT_SHADOW_BOSS, TranquilRoute_Movement_BossWalksAway)
+	applymovement(LOCALID_CROBAT_SHADOW_GRUNT_TOP, moves(walk_left * 5, delay_16))
+	applymovement(LOCALID_CROBAT_SHADOW_GRUNT_LEFT, moves(walk_left * 5, delay_16))
+	applymovement(LOCALID_CROBAT_SHADOW_GRUNT_RIGHT, moves(walk_left * 5, delay_16))
+	applymovement(LOCALID_CROBAT_SHADOW_BOSS, moves(walk_up * 2, walk_left * 5))
 	waitmovement(LOCALID_CROBAT_SHADOW_GRUNT_TOP)
 	waitmovement(LOCALID_CROBAT_SHADOW_GRUNT_LEFT)
 	waitmovement(LOCALID_CROBAT_SHADOW_GRUNT_RIGHT)
@@ -471,34 +456,74 @@ script TranquilRoute_EventScript_CrobatShadows_Cutscene {
 	setflag(FLAG_HIDE_CROBAT_SHADOWS_TRANQUIL_RT)
 }
 
-movement TranquilRoute_Movement_GruntAlign {
-	face_down
-	zubats_align
-	delay_16
-	delay_16
+script TranquilRoute_EventScript_TravelingMerchantFirstTime {
+	lock
+	speakername("Man")
+	msgbox(format(
+		"Mumble mumble… Should restock on ointment… Damn, where did I put my purse?…"
+	))
+	closemessage
+
+	delay(24)
+	playse(SE_PIN)
+	applymovement(VAR_LAST_TALKED, Common_Movement_ExclamationMark)
+	waitse
+	waitmovement(0)
+	delay(48)
+
+	faceplayer
+
+	speakername("Man")
+	msgbox(format(
+		"Oh, hello! Sorry, shop's closed at the moment!\p"
+		"… …Oh, sorry, we haven't met, have we? I'm not good with faces…\p"
+		"I'm Okada, the traveling merchant! I travel through all of Toku on foot, selling useful goods and rare finds!\p"
+		"I'm sold out on, well, pretty much everything right now… But you're definitely going to see me around!\p"
+		"What's your name? {PLAYER}? It's nice to meet you, {PLAYER}!"
+		"I see you're a young wielder, eh? Maybe we can even have a friendly battle next time!\p"
+		"Now if you'll excuse me, I'm running late! See you around, {PLAYER}!"
+	))
+	closemessage
+
+	turnobject(VAR_LAST_TALKED, DIR_EAST)
+
+	speakername("Man")
+	msgbox(format(
+		"Come on, Keke."
+	))
+	closemessage
+
+	specialvar(VAR_RESULT, GetPlayerFacingDirection)
+	if (var(VAR_RESULT) == DIR_EAST) {
+		applymovement(VAR_LAST_TALKED, moves(walk_up, walk_left * 4, walk_up * 6))
+		applymovement(LOCALID_KECLEON, moves(walk_left, walk_up, walk_left * 5, walk_up * 5))
+	} else {
+		applymovement(VAR_LAST_TALKED, moves(walk_left * 4, walk_up * 7))
+		applymovement(LOCALID_KECLEON, moves(walk_left * 5, walk_up * 6))
+	}
+	waitmovement(VAR_LAST_TALKED)
+	waitmovement(LOCALID_KECLEON)
+
+	removeobject(VAR_LAST_TALKED)
+	removeobject(LOCALID_KECLEON)
+
+	setflag(FLAG_MET_TRAVELING_MERCHANT)
+	release
 }
 
-movement TranquilRoute_Movement_BossWalksAway {
-	walk_up * 2
-	walk_left * 5
-}
+script TranquilRoute_EventScript_Kecleon {
+	lock
+	faceplayer
 
-movement TranquilRoute_Movement_GruntsWalksAway {
-	walk_left * 5
-	delay_16
-}
+	playmoncry(SPECIES_KECLEON, CRY_MODE_NORMAL)
+	speakername("Kecleon")
+	msgbox(format(
+		"Keckecke!"
+	))
+	waitmoncry
+	closemessage
 
-movement TranquilRoute_Movement_FocusOnCrobatShadows {
-	walk_up * 2
-}
-
-movement TranquilRoute_Movement_FocusOnPlayer {
-	walk_down * 2
-}
-
-movement TranquilRoute_Movement_GruntAligns {
-	walk_up
-	face_down
+	release
 }
 
 script TranquilRoute_TrainerTips2 {
@@ -527,17 +552,6 @@ script TranquilRoute_DirectionSign {
 			"{UP_ARROW} Saku and Kura Villages"
 		), MSGBOX_SIGN)
 	}
-}
-
-movement TranquilRoute_CutMasterGoesSeeGarden {
-	walk_left * 5
-	walk_up * 3
-	face_up
-}
-
-movement TranquilRoute_PlayerGoesSeeGarden {
-	walk_left * 6
-	walk_up * 2
 }
 
 movement TranquilRoute_CutMasterWalkLeft {

@@ -135,19 +135,6 @@
       "flag": "0"
     },
     {
-      "graphics_id": "OBJ_EVENT_GFX_MAGMA_MEMBER_M",
-      "x": 80,
-      "y": 12,
-      "elevation": 0,
-      "movement_type": "MOVEMENT_TYPE_FACE_LEFT",
-      "movement_range_x": 0,
-      "movement_range_y": 0,
-      "trainer_type": "TRAINER_TYPE_NONE",
-      "trainer_sight_or_berry_tree_id": "0",
-      "script": "TranquilRoute_EventScript_MysteriousSamurai",
-      "flag": "FLAG_MYSTERIOUS_SAMURAI_TRANQUIL_ROUTE"
-    },
-    {
       "graphics_id": "OBJ_EVENT_GFX_CUTTABLE_TREE",
       "x": 32,
       "y": 9,
@@ -304,8 +291,8 @@
       "flag": "FLAG_TEMP_2"
     },
     {
-      "graphics_id": "OBJ_EVENT_GFX_MAN_1",
-      "x": 8,
+      "graphics_id": "OBJ_EVENT_GFX_SAMURAI",
+      "x": 4,
       "y": 53,
       "elevation": 0,
       "movement_type": "MOVEMENT_TYPE_FACE_RIGHT",
@@ -313,7 +300,7 @@
       "movement_range_y": 0,
       "trainer_type": "TRAINER_TYPE_NONE",
       "trainer_sight_or_berry_tree_id": "0",
-      "script": "TranquilRoute_EventScript_WhiteslateRoadblockGuard",
+      "script": "NULL",
       "flag": "0"
     },
     {
@@ -367,6 +354,32 @@
       "trainer_sight_or_berry_tree_id": "0",
       "script": "NULL",
       "flag": "FLAG_HIDE_CROBAT_SHADOWS_TRANQUIL_RT"
+    },
+    {
+      "graphics_id": "OBJ_EVENT_GFX_TRAVELING_MERCHANT",
+      "x": 25,
+      "y": 66,
+      "elevation": 0,
+      "movement_type": "MOVEMENT_TYPE_LOOK_AROUND",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "TranquilRoute_EventScript_TravelingMerchantFirstTime",
+      "flag": "FLAG_MET_TRAVELING_MERCHANT"
+    },
+    {
+      "graphics_id": "OBJ_EVENT_GFX_SPECIES_SHINY(KECLEON)",
+      "x": 26,
+      "y": 66,
+      "elevation": 0,
+      "movement_type": "MOVEMENT_TYPE_LOOK_AROUND",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "TranquilRoute_EventScript_Kecleon",
+      "flag": "FLAG_MET_TRAVELING_MERCHANT"
     }
   ],
   "warp_events": [
@@ -450,6 +463,51 @@
       "var": "VAR_CROBAT_SHADOWS_FIRST_ENCOUNTERS_STATE",
       "var_value": "0",
       "script": "TranquilRoute_EventScript_CrobatShadows_Camera"
+    },
+    {
+      "type": "trigger",
+      "x": 7,
+      "y": 52,
+      "elevation": 0,
+      "var": "VAR_TEMP_0",
+      "var_value": "0",
+      "script": "TranquilRoute_EventScript_WhiteslateRoadblock"
+    },
+    {
+      "type": "trigger",
+      "x": 7,
+      "y": 53,
+      "elevation": 0,
+      "var": "VAR_TEMP_0",
+      "var_value": "0",
+      "script": "TranquilRoute_EventScript_WhiteslateRoadblock"
+    },
+    {
+      "type": "trigger",
+      "x": 7,
+      "y": 54,
+      "elevation": 0,
+      "var": "VAR_TEMP_0",
+      "var_value": "0",
+      "script": "TranquilRoute_EventScript_WhiteslateRoadblock"
+    },
+    {
+      "type": "trigger",
+      "x": 7,
+      "y": 55,
+      "elevation": 0,
+      "var": "VAR_TEMP_0",
+      "var_value": "0",
+      "script": "TranquilRoute_EventScript_WhiteslateRoadblock"
+    },
+    {
+      "type": "trigger",
+      "x": 7,
+      "y": 56,
+      "elevation": 0,
+      "var": "VAR_TEMP_0",
+      "var_value": "0",
+      "script": "TranquilRoute_EventScript_WhiteslateRoadblock"
     }
   ],
   "bg_events": [

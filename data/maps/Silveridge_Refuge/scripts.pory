@@ -1,0 +1,11 @@
+mapscripts Silveridge_Refuge_MapScripts {
+	
+}
+
+script Silveridge_Refuge_EventScript_ImWorried {
+	speakername("Woman")
+	msgbox(format(
+		"The whole town trembles from the Volcano's quakes…\p"
+		"I'm so worried…"
+	), MSGBOX_NPC)
+}

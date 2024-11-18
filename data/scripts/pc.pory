@@ -1,4 +1,6 @@
 script Common_EventScript_PcGuy {
+	lock
+	faceplayer
 	if (flag(FLAG_PC_EXPLAINED)) {
 		msgbox(format(
 			"Need me to carry some Pokémon around for you? Sure thing!"
@@ -41,6 +43,8 @@ script Common_EventScript_PcGuy {
 
 		setflag(FLAG_PC_EXPLAINED)
 	}
+
+	release
 	end
 }
 

@@ -1,0 +1,116 @@
+const LOCALID_BEAN = 8
+
+mapscripts Beachbound_Route_Decay_MapScripts {
+	MAP_SCRIPT_ON_FRAME_TABLE [
+        VAR_DECAY_BEACHBOUND_ROUTE, 1: Beachbound_Route_Decay_SeeDecay
+    ]
+}
+
+script Beachbound_Route_Decay_SeeDecay {
+	lock
+	setvar(VAR_DECAY_BEACHBOUND_ROUTE, 2)
+
+	special(SpawnCameraObject)
+	applymovement(OBJ_EVENT_ID_CAMERA, moves(walk_left * 20))
+	waitmovement(0)
+	special(RemoveCameraObject)
+
+	warpsilent(MAP_BEACHBOUND_ROUTE_DECAY, 59, 16)
+
+	release
+}
+
+script BeachboundRoute_Decay_EventScript_Shepherd {
+	speakername("Shepherd")
+	msgbox(format(
+		"Why are all the plants rotting?"
+	), MSGBOX_NPC)
+}
+
+script BeachboundRoute_Decay_EventScript_Karu {
+	speakername("Girl")
+	msgbox(format(
+		"I'm scared…"
+	), MSGBOX_NPC)
+}
+
+script BeachboundRoute_Decay_EventScript_Kin {
+	speakername("Girl")
+	msgbox(format(
+		"What's happening?"
+	), MSGBOX_NPC)
+}
+
+script BeachboundRoute_Decay_EventScript_BeanTrigger {
+	lock
+
+	setvar(VAR_DECAY_BEACHBOUND_ROUTE, 4)
+
+	playse(SE_PIN)
+	applymovement(LOCALID_BEAN, Common_Movement_ExclamationMark)
+	waitse
+	waitmovement(0)
+	delay(48)
+	faceplayer
+
+	speakername("Hariko")
+	msgbox(format(
+		"Oh! Hello.\n{PLAYER}, right?\p"
+		"I am Hariko, remember me? We had a chat in the Ginko Woods.\p"
+		"What do you think is happening here? It looks like there is some sort of {COLOR RED}decay{COLOR DARK_GRAY} affecting this whole spot.\p"
+		"The Samurai over there told me there are reports of this phenomenon hitting several areas over the last few days.\p"
+		"That coincides with the start of the Volcano's rumbling spells, so both seem to be related.\p"
+		"I want to learn as much as I can about this {COLOR RED}decay{COLOR DARK_GRAY}, which is why I am here."
+	))
+	closemessage
+
+	applymovement(LOCALID_BEAN, Common_Movement_FaceOriginalDirection)
+	waitmovement(0)
+
+	release
+}
+
+script BeachboundRoute_Decay_EventScript_Bean {
+	lock
+
+	speakername("Hariko")
+	msgbox(format(
+		"… …"
+	))
+	closemessage
+
+	release
+}
+
+script BeachboundRoute_Decay_EventScript_SamuraiBeCarefulTrigger {
+	lock
+	setvar(VAR_DECAY_BEACHBOUND_ROUTE, 3)
+	speakername("Samurai")
+	msgbox(format(
+		"Please be careful if you're crossing over the {COLOR RED}decayed{COLOR DARK_GRAY} area.\p"
+		"We don't want anyone getting hurt!"
+	))
+	closemessage
+	release
+}
+
+script BeachboundRoute_Decay_EventScript_SamuraiBeCareful {
+	speakername("Samurai")
+	msgbox(format(
+		"Please be careful!"
+	), MSGBOX_NPC)
+}
+
+script BeachboundRoute_Decay_EventScript_Samurai {
+	speakername("Samurai")
+	msgbox(format(
+		"Don't panic!\nDon't touch the {COLOR RED}decay{COLOR DARK_GRAY}!"
+	), MSGBOX_NPC)
+}
+
+script BeachboundRoute_Decay_EventScript_SamuraiWhatCouldBe {
+	speakername("Samurai")
+	msgbox(format(
+		"What could be the cause of this?!"
+	), MSGBOX_NPC)
+}

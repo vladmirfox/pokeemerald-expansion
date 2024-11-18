@@ -140,7 +140,7 @@ TranquilRoute_CutHouse_EventScript_RandomCryGuy::
 # 105 "data/maps/TranquilRoute_CutHouse/scripts.pory"
 	faceplayer
 # 106 "data/maps/TranquilRoute_CutHouse/scripts.pory"
-	goto_if_set FLAG_MON_CRY_NPC_GIVE_ITEM, TranquilRoute_CutHouse_EventScript_RandomCryGuy_2
+	goto_if_set FLAG_DAILY_MON_CRY_RIDDLE, TranquilRoute_CutHouse_EventScript_RandomCryGuy_2
 # 113 "data/maps/TranquilRoute_CutHouse/scripts.pory"
 	goto_if_set FLAG_MON_CRY_NPC, TranquilRoute_CutHouse_EventScript_RandomCryGuy_5
 # 120 "data/maps/TranquilRoute_CutHouse/scripts.pory"
@@ -205,71 +205,10 @@ TranquilRoute_CutHouse_EventScript_RandomCryGuy_8:
 # 144 "data/maps/TranquilRoute_CutHouse/scripts.pory"
 	giveitem ITEM_MEWTWONITE_X
 # 145 "data/maps/TranquilRoute_CutHouse/scripts.pory"
-	setflag FLAG_MON_CRY_NPC_GIVE_ITEM
+	setflag FLAG_DAILY_MON_CRY_RIDDLE
 # 146 "data/maps/TranquilRoute_CutHouse/scripts.pory"
 	msgbox TranquilRoute_CutHouse_EventScript_RandomCryGuy_Text_6
 	goto TranquilRoute_CutHouse_EventScript_RandomCryGuy_7
-
-
-TranquilRoute_CutHouse_EventScript_RandomDexGuy::
-# 160 "data/maps/TranquilRoute_CutHouse/scripts.pory"
-	lock
-# 161 "data/maps/TranquilRoute_CutHouse/scripts.pory"
-	faceplayer
-# 162 "data/maps/TranquilRoute_CutHouse/scripts.pory"
-	goto_if_set FLAG_DEX_RIDDLE_NPC_GIVE_ITEM, TranquilRoute_CutHouse_EventScript_RandomDexGuy_2
-# 169 "data/maps/TranquilRoute_CutHouse/scripts.pory"
-	goto_if_set FLAG_DEX_RIDDLE_NPC, TranquilRoute_CutHouse_EventScript_RandomDexGuy_5
-# 176 "data/maps/TranquilRoute_CutHouse/scripts.pory"
-	msgbox TranquilRoute_CutHouse_EventScript_RandomDexGuy_Text_0
-# 177 "data/maps/TranquilRoute_CutHouse/scripts.pory"
-	closemessage
-# 178 "data/maps/TranquilRoute_CutHouse/scripts.pory"
-	randomdexmsgbox
-# 179 "data/maps/TranquilRoute_CutHouse/scripts.pory"
-	msgbox TranquilRoute_CutHouse_EventScript_RandomDexGuy_Text_1
-# 180 "data/maps/TranquilRoute_CutHouse/scripts.pory"
-	special EnterDexRiddleGuess
-# 181 "data/maps/TranquilRoute_CutHouse/scripts.pory"
-	waitstate
-# 182 "data/maps/TranquilRoute_CutHouse/scripts.pory"
-	special GetDexRiddleFeedback
-# 184 "data/maps/TranquilRoute_CutHouse/scripts.pory"
-	compare VAR_RESULT, 1
-	goto_if_eq TranquilRoute_CutHouse_EventScript_RandomDexGuy_8
-# 193 "data/maps/TranquilRoute_CutHouse/scripts.pory"
-	msgbox TranquilRoute_CutHouse_EventScript_RandomCryGuy_Text_7
-TranquilRoute_CutHouse_EventScript_RandomDexGuy_7:
-# 195 "data/maps/TranquilRoute_CutHouse/scripts.pory"
-	setflag FLAG_DEX_RIDDLE_NPC
-# 196 "data/maps/TranquilRoute_CutHouse/scripts.pory"
-	release
-	end
-
-TranquilRoute_CutHouse_EventScript_RandomDexGuy_2:
-# 164 "data/maps/TranquilRoute_CutHouse/scripts.pory"
-	msgbox TranquilRoute_CutHouse_EventScript_RandomCryGuy_Text_0
-# 165 "data/maps/TranquilRoute_CutHouse/scripts.pory"
-	release
-	end
-
-TranquilRoute_CutHouse_EventScript_RandomDexGuy_5:
-# 171 "data/maps/TranquilRoute_CutHouse/scripts.pory"
-	msgbox TranquilRoute_CutHouse_EventScript_RandomCryGuy_Text_1
-# 172 "data/maps/TranquilRoute_CutHouse/scripts.pory"
-	release
-	end
-
-TranquilRoute_CutHouse_EventScript_RandomDexGuy_8:
-# 186 "data/maps/TranquilRoute_CutHouse/scripts.pory"
-	msgbox TranquilRoute_CutHouse_EventScript_RandomCryGuy_Text_5
-# 187 "data/maps/TranquilRoute_CutHouse/scripts.pory"
-	giveitem ITEM_MEWTWONITE_Y
-# 188 "data/maps/TranquilRoute_CutHouse/scripts.pory"
-	setflag FLAG_DEX_RIDDLE_NPC_GIVE_ITEM
-# 189 "data/maps/TranquilRoute_CutHouse/scripts.pory"
-	msgbox TranquilRoute_CutHouse_EventScript_RandomCryGuy_Text_6
-	goto TranquilRoute_CutHouse_EventScript_RandomDexGuy_7
 
 
 TranquilRoute_CutHouse_EventScript_CutGrassCutscene_Text_0:
@@ -352,11 +291,3 @@ TranquilRoute_CutHouse_EventScript_RandomCryGuy_Text_6:
 TranquilRoute_CutHouse_EventScript_RandomCryGuy_Text_7:
 # 150 "data/maps/TranquilRoute_CutHouse/scripts.pory"
 	.string "wrong dingus, try again tomorrow$"
-
-TranquilRoute_CutHouse_EventScript_RandomDexGuy_Text_0:
-# 176 "data/maps/TranquilRoute_CutHouse/scripts.pory"
-	.string "alright dingus, ima give you a dex\ndescription, you give me the mon\pand remember, you only get to see\nthis once because im lazy$"
-
-TranquilRoute_CutHouse_EventScript_RandomDexGuy_Text_1:
-# 179 "data/maps/TranquilRoute_CutHouse/scripts.pory"
-	.string "now whomst was that about$"

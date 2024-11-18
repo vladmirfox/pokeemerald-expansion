@@ -1089,3 +1089,25 @@ const struct Tileset gTileset_Coral =
     .metatileAttributes = gMetatileAttributes_Coral,
     .callback = NULL,
 };
+
+const struct Tileset gTileset_HarvestShrine =
+{
+    .isCompressed = TRUE,
+    .isSecondary = TRUE,
+    .tiles = gTilesetTiles_HarvestShrine,
+    .palettes = gTilesetPalettes_HarvestShrine,
+    .metatiles = gMetatiles_HarvestShrine,
+    .metatileAttributes = gMetatileAttributes_HarvestShrine,
+    .callback = NULL,
+};
+
+const struct Tileset gTileset_Gate =
+{
+    .isCompressed = TRUE,
+    .isSecondary = TRUE,
+    .tiles = gTilesetTiles_Gate,
+    .palettes = gTilesetPalettes_Gate,
+    .metatiles = gMetatiles_Gate,
+    .metatileAttributes = gMetatileAttributes_Gate,
+    .callback = NULL,
+};

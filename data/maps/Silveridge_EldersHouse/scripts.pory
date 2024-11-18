@@ -32,6 +32,9 @@ script Silveridge_EldersHouse_EventScript_Elder {
 			"I am convinced that by gathering these Tablets of Power, we will find the answer to why the Pokémon are attacking us.\p"
 		))
 		closemessage
+
+		clearflag(FLAG_KURA_DOJO_CLOSED)
+		setflag(FLAG_HIDE_BONSAI_SHOP_OWNER)
 	}
 	release
 }

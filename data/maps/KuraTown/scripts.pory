@@ -80,15 +80,41 @@ script KuraTown_EventScript_DojoChallenger {
 	release
 }
 
-script KuraTown_EventScript_SingingFarmer {
+script KuraTown_EventScript_Farmer {
 	lock
 	faceplayer
+	speakername("Farmer")
 	msgbox(
 		format(
-			"Doo doo… Just waterin' the crops… Yeah, waterin' the crops… Doo doo doo…"
+			"Why do we hate the Saku Village folks, y'ask?\p"
+			"To be honest, I don't quite rememb'r. But who needs a reas'n, right?"
 		),
 		MSGBOX_DEFAULT
 	)
+	release
+}
+
+script KuraTown_EventScript_FarmerScyther {
+	lock
+	faceplayer
+	speakername("Farmer")
+	msgbox(
+		format(
+			"Our Scyther harvest the crops once they've grown."
+		),
+		MSGBOX_DEFAULT
+	)
+	release
+}
+
+script KuraTown_EventScript_Scyther {
+	lock
+	faceplayer
+	playmoncry(SPECIES_SCYTHER, CRY_MODE_NORMAL)
+	speakername("Scyther")
+	msgbox(format("Gyooo!"))
+	waitmoncry
+	closemessage
 	release
 }
 
@@ -139,4 +165,3 @@ script KuraTown_EventScript_GymSign {
 	)
 }
 
- 

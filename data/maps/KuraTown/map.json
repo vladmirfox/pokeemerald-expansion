@@ -35,12 +35,12 @@
       "x": 9,
       "y": 18,
       "elevation": 0,
-      "movement_type": "MOVEMENT_TYPE_WANDER_DOWN_AND_UP",
+      "movement_type": "MOVEMENT_TYPE_LOOK_AROUND",
       "movement_range_x": 3,
       "movement_range_y": 3,
       "trainer_type": "TRAINER_TYPE_NONE",
       "trainer_sight_or_berry_tree_id": "0",
-      "script": "KuraTown_EventScript_SingingFarmer",
+      "script": "KuraTown_EventScript_Farmer",
       "flag": "0"
     },
     {
@@ -68,6 +68,45 @@
       "trainer_sight_or_berry_tree_id": "0",
       "script": "KuraTown_EventScript_DojoChallenger",
       "flag": "0"
+    },
+    {
+      "graphics_id": "OBJ_EVENT_GFX_SPECIES(SCYTHER)",
+      "x": 22,
+      "y": 11,
+      "elevation": 0,
+      "movement_type": "MOVEMENT_TYPE_WANDER_LEFT_AND_RIGHT",
+      "movement_range_x": 3,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "KuraTown_EventScript_Scyther",
+      "flag": "0"
+    },
+    {
+      "graphics_id": "OBJ_EVENT_GFX_SPECIES(SCYTHER)",
+      "x": 11,
+      "y": 13,
+      "elevation": 0,
+      "movement_type": "MOVEMENT_TYPE_WANDER_LEFT_AND_RIGHT",
+      "movement_range_x": 3,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "KuraTown_EventScript_Scyther",
+      "flag": "0"
+    },
+    {
+      "graphics_id": "OBJ_EVENT_GFX_FARMER",
+      "x": 10,
+      "y": 11,
+      "elevation": 0,
+      "movement_type": "MOVEMENT_TYPE_WANDER_LEFT_AND_RIGHT",
+      "movement_range_x": 3,
+      "movement_range_y": 3,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "KuraTown_EventScript_FarmerScyther",
+      "flag": "0"
     }
   ],
   "warp_events": [
@@ -79,8 +118,8 @@
       "dest_warp_id": "0"
     },
     {
-      "x": 34,
-      "y": 20,
+      "x": 43,
+      "y": 23,
       "elevation": 0,
       "dest_map": "MAP_KURA_TOWN_HOUSE2",
       "dest_warp_id": "0"

@@ -22,6 +22,11 @@
       "map": "MAP_ORCHARD_PATH",
       "offset": 14,
       "direction": "left"
+    },
+    {
+      "map": "MAP_SEASTROLL_CHANNEL",
+      "offset": 21,
+      "direction": "right"
     }
   ],
   "object_events": [

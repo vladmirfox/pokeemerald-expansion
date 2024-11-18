@@ -356,8 +356,7 @@ SakuTown_BonsaiShop_EventScript_LittleSister_Text_6:
 
 SakuTown_BonsaiShop_EventScript_LittleSister_Text_7:
 # 120 "data/maps/SakuTown_BonsaiShop/scripts.pory"
-	.string "This scroll contains the move\n"
-	.string "Acrobatics.\p"
+	.string "This scroll contains Acrobatics.\p"
 	.string "Your Pokémon will strike harder if he\n"
 	.string "isn't holding an item.\p"
 	.string "Sounds like a good match for a\n"
