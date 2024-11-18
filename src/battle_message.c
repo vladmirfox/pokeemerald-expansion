@@ -871,6 +871,7 @@ static const u8 sText_TidyingUpComplete[] = _("Tidying up complete!");
 static const u8 sText_FickleBeamDoubled[] = _("{B_ATK_NAME_WITH_PREFIX} is going all out for this attack!");
 static const u8 sText_WagglingAFinger[] = _("Waggling a finger let it use {B_CURRENT_MOVE}!");
 
+//  Remove these when done testing
 static const u8 sTest_TempTestText1[] = _("This is a text for testing stuff.");
 static const u8 sTest_TempTestText2[] = _("This is a text for testing stuff that should be two lines.");
 static const u8 sTest_TempTestText3[] = _("This is a text for testing stuff that should be three lines so it has to have some extra text.");
@@ -3810,6 +3811,7 @@ u32 BattleStringExpandPlaceholders(const u8 *src, u8 *dst, u32 dstSize)
     dstID++;
 
     //  Remove this when done testing
+    /*
     const u8 *textToPrint = sTest_TempTestText3;
     u32 currChar = 0;
     while (textToPrint[currChar] != EOS)
@@ -3819,6 +3821,7 @@ u32 BattleStringExpandPlaceholders(const u8 *src, u8 *dst, u32 dstSize)
     }
     dst[currChar] = EOS;
     BreakStringKnuth(dst, BATTLE_MSG_MAX_WIDTH, 2, fontId);
+    */
     return dstID;
 }
 

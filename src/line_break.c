@@ -3,6 +3,17 @@
 #include "text.h"
 #include "malloc.h"
 
+void StripLineBreaks(u8 *src)
+{
+    u32 currIndex = 0;
+    while (src[currIndex] != EOS)
+    {
+        if (src[currIndex] == 0xFA || src[currIndex] == 0xFE)
+            src[currIndex] = 0;
+        currIndex++;
+    }
+}
+
 void BreakStringKnuth(u8 *src, u32 maxWidth, u32 screenLines, u8 fontId)
 {
     u32 currIndex = 0;

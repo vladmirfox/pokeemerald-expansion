@@ -26,6 +26,7 @@ struct StringLine {
     u8 extraSpaceWidth;
 };
 
+void StripLineBreaks(u8 *src);
 void BreakStringKnuth(u8 *src, u32 maxWidth, u32 screenLines, u8 fontId);
 void BreakSubStringKnuth(u8 *src, u32 maxWidth, u32 screenLines, u8 fontId);
 
