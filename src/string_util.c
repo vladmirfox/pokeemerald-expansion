@@ -820,9 +820,9 @@ u8 *StringCopyUppercase(u8 *dest, const u8 *src)
     return dest;
 }
 
-void BreakStringKnuth(u8 *src, u32 maxWidth, u8 screenLines, u8 fontId)
+void BreakStringKnuth(u8 *src, u32 maxWidth, u32 screenLines, u8 fontId)
 {
-    u16 currIndex = 0;
+    u32 currIndex = 0;
     u8 *currSrc = src;
     while (src[currIndex] != EOS)
     {
@@ -839,15 +839,15 @@ void BreakStringKnuth(u8 *src, u32 maxWidth, u8 screenLines, u8 fontId)
     BreakSubStringKnuth(currSrc, maxWidth, screenLines, fontId);
 }
 
-void BreakSubStringKnuth(u8 *src, u32 maxWidth, u8 screenLines, u8 fontId)
+void BreakSubStringKnuth(u8 *src, u32 maxWidth, u32 screenLines, u8 fontId)
 {
     //  If the string already has line breaks, don't interfere with them
     if (StringHasManualBreaks(src))
         return;
-    u16 numChars = 1;
-    u16 numWords = 1;
-    u16 currWordIndex = 0;
-    u8 currWordLength = 1;
+    u32 numChars = 1;
+    u32 numWords = 1;
+    u32 currWordIndex = 0;
+    u32 currWordLength = 1;
     //  Sanity check
     if (src[0] == EOS)
         return;
@@ -856,7 +856,7 @@ void BreakSubStringKnuth(u8 *src, u32 maxWidth, u8 screenLines, u8 fontId)
     //  Get numbers of chars in string and count words
     while (src[numChars] != EOS)
     {
-        isCurrCharSplitting = IsWordSplittingChar(src, &numChars);
+        isCurrCharSplitting = IsWordSplittingChar(src, numChars);
         if (isCurrCharSplitting == TRUE && isPrevCharSplitting == FALSE)
             numWords++;
         isPrevCharSplitting = isCurrCharSplitting;
@@ -869,9 +869,9 @@ void BreakSubStringKnuth(u8 *src, u32 maxWidth, u8 screenLines, u8 fontId)
     allWords[currWordIndex].width = 0;
     isPrevCharSplitting = FALSE;
     //  Fill in word begin index and lengths
-    for (u16 i = 1; i < numChars; i++)
+    for (u32 i = 1; i < numChars; i++)
     {
-        isCurrCharSplitting = IsWordSplittingChar(src, &i);
+        isCurrCharSplitting = IsWordSplittingChar(src, i);
         if (isCurrCharSplitting == TRUE && isPrevCharSplitting == FALSE)
         {
             allWords[currWordIndex].length = currWordLength;
@@ -910,8 +910,8 @@ void BreakSubStringKnuth(u8 *src, u32 maxWidth, u8 screenLines, u8 fontId)
     if (totalWidth > maxWidth)
     {
         //  Figure out how many lines are needed with naive method
-        u16 currLineWidth = 0;
-        u16 totalLines = 1;
+        u32 currLineWidth = 0;
+        u32 totalLines = 1;
         bool8 shouldTryAgain;
         for (currWordIndex = 0; currWordIndex < numWords; currWordIndex++)
         {
@@ -997,9 +997,9 @@ void BreakSubStringKnuth(u8 *src, u32 maxWidth, u8 screenLines, u8 fontId)
 }
 
 //  Only allow word splitting on allowed chars
-bool32 IsWordSplittingChar(const u8 *src, u16 *index)
+bool32 IsWordSplittingChar(const u8 *src, u32 index)
 {
-    switch (src[*index])
+    switch (src[index])
     {
         case 0:             //  " "
             return TRUE;
@@ -1013,11 +1013,11 @@ bool32 IsWordSplittingChar(const u8 *src, u16 *index)
 //  jagged lines scales by the square
 //  runts scale linearly
 //  numbers not final
-u32 GetStringBadness(struct StringLine *stringLines, u16 numLines, u16 maxWidth)
+u32 GetStringBadness(struct StringLine *stringLines, u32 numLines, u32 maxWidth)
 {
     u32 badness = 0;
-    u16 *lineWidths = Alloc(numLines*2);
-    u16 widestWidth = 0;
+    u32 *lineWidths = Alloc(numLines*4);
+    u32 widestWidth = 0;
     for (u32 i = 0; i < numLines; i++)
     {
         lineWidths[i] = 0;
@@ -1050,28 +1050,9 @@ u32 GetStringBadness(struct StringLine *stringLines, u16 numLines, u16 maxWidth)
 }
 
 //  Build the new string from the data stored in the StringLine structs
-void BuildNewString(struct StringLine *stringLines, u16 numLines, u16 maxLines, u8 *str)
+void BuildNewString(struct StringLine *stringLines, u32 numLines, u32 maxLines, u8 *str)
 {
-    //  Most of this function is useless right now
-    //u16 numCharsNeeded = 1;
     u16 newStrIndex = 0;
-    /*
-    for (u32 i = 0; i < numLines; i++)
-    {
-        //  Words
-        for (u32 j = 0; j < stringLines[i].numWords; j++)
-            numCharsNeeded += stringLines[i].words[j].length;
-        //  Spaces
-        //if (stringLines[i].extraSpaceWidth == 0)
-        //    numCharsNeeded += stringLines[i].numWords - 1;
-        //else
-        //    numCharsNeeded += (stringLines[i].numWords - 1) * 4;
-        numCharsNeeded += stringLines[i].numWords - 1;
-        //  Line breaks
-        numCharsNeeded++;
-    }
-    */
-    //u8 *newStr = Alloc(numCharsNeeded);
     for (u32 lineIndex = 0; lineIndex < numLines; lineIndex++)
     {
         for (u32 wordIndex = 0; wordIndex < stringLines[lineIndex].numWords; wordIndex++)
@@ -1079,24 +1060,18 @@ void BuildNewString(struct StringLine *stringLines, u16 numLines, u16 maxLines, 
             //  Add space if not first word
             if (wordIndex != 0)
             {
-                //newStr[newStrIndex] = 0;
                 newStrIndex++;
                 //  Widen space if needed
                 //  current SHIFT_RIGHT doesn't seem to work
                 /*
                 if (stringLines[lineIndex].extraSpaceWidth != 0)
                 {
-                    newStr[newStrIndex] = 0xFC;
-                    newStr[newStrIndex + 1] = 0x0D;
-                    newStr[newStrIndex + 2] = stringLines[lineIndex].extraSpaceWidth;
-                    newStrIndex += 3;
                 }
                 */
             }
             //  Add word characters
             for (u32 charIndex = 0; charIndex < stringLines[lineIndex].words[wordIndex].length; charIndex++)
             {
-                //newStr[newStrIndex] = str[stringLines[lineIndex].words[wordIndex].startIndex + charIndex];
                 newStrIndex++;
             }
         }
@@ -1105,20 +1080,16 @@ void BuildNewString(struct StringLine *stringLines, u16 numLines, u16 maxLines, 
             if (lineIndex >= maxLines-1 && numLines > maxLines)
             {
                 //  Add scroll if past maxlines and there are more lines
-                //newStr[newStrIndex] = 0xFA;
                 str[newStrIndex] = 0xFA;
             }
             else
             {
                 //  Otherwise just add a newline
-                //newStr[newStrIndex] = 0xFE;
                 str[newStrIndex] = 0xFE;
             }
             newStrIndex++;
         }
     }
-    //newStr[newStrIndex] = EOS;
-    //Free(newStr);
 }
 
 bool32 StringHasManualBreaks(u8 *src)
