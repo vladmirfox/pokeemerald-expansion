@@ -182,6 +182,18 @@ bool8 MetatileBehavior_IsJumpSouth(u8 metatileBehavior)
         return FALSE;
 }
 
+bool8 MetatileBehavior_IsJumpOmnidirectional(u8 metatileBehavior)
+{
+    // This MB is for rocks and nympheas you can jump on, but only from land
+    if (gPlayerAvatar.flags & PLAYER_AVATAR_FLAG_SURFING)
+        return FALSE;
+
+    if (metatileBehavior == MB_JUMP_OMNIDIRECTIONAL)
+        return TRUE;
+    else
+        return FALSE;
+}
+
 bool8 MetatileBehavior_IsPokeGrass(u8 metatileBehavior)
 {
     if (metatileBehavior == MB_TALL_GRASS || metatileBehavior == MB_LONG_GRASS)

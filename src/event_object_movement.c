@@ -9722,7 +9722,10 @@ u8 GetLedgeJumpDirection(s16 x, s16 y, u8 direction)
     }
     collision = GetCollisionAtCoords(&gObjectEvents[gPlayerAvatar.objectEventId], x2, y2, direction);
 
-    if (ledgeBehaviorFuncs[index](behavior) == TRUE && collision == COLLISION_NONE) {
+    if (
+        (ledgeBehaviorFuncs[index](behavior) == TRUE || MetatileBehavior_IsJumpOmnidirectional(behavior))
+        && collision == COLLISION_NONE
+    ) {
         return index + 1;
     }
 
