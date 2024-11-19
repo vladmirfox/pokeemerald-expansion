@@ -89,7 +89,7 @@ script TranquilRoute_CutHouse_EventScript_CutMaster {
 			"If you have a Pokémon capable of learning this move, it will be able to cut tall grass as well as little trees that block your path.\p"
 			"In fact, now that you have read the scroll, you don't even need to teach them the actual move!\p"
 			"Don't ask me how this works, it just does!\p"
-			"Oh, you will need at least one official dojo badge to be able to cut trees and grass, though."
+			"Oh, you will need at least one official Dojo Token to be able to cut trees and grass, though."
 		))
 		closemessage
 	}

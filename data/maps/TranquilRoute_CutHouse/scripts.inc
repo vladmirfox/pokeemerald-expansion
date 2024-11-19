@@ -257,7 +257,7 @@ TranquilRoute_CutHouse_EventScript_CutMaster_Text_3:
 	.string "Don't ask me how this works, it just\n"
 	.string "does!\p"
 	.string "Oh, you will need at least one official\n"
-	.string "dojo badge to be able to cut trees\l"
+	.string "Dojo Token to be able to cut trees\l"
 	.string "and grass, though.$"
 
 TranquilRoute_CutHouse_EventScript_RandomCryGuy_Text_0:
