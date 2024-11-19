@@ -107,4 +107,22 @@ DOUBLE_BATTLE_TEST("Matcha Gatcha will faint the pokemon if Liquid Ooze drain de
     }
 }
 
+SINGLE_BATTLE_TEST("Draining Kiss recovers 75% of the damage dealt")
+{
+    s16 damage;
+    s16 healed;
+    GIVEN {
+        PLAYER(SPECIES_WOBBUFFET) { HP(1); }
+        OPPONENT(SPECIES_WOBBUFFET);
+    } WHEN {
+        TURN { MOVE(player, MOVE_DRAINING_KISS); }
+    } SCENE {
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_DRAINING_KISS, player);
+        HP_BAR(opponent, captureDamage: &damage);
+        HP_BAR(player, captureDamage: &healed);
+    } THEN {
+        EXPECT_MUL_EQ(damage, Q_4_12(-0.75), healed);
+    }
+}
+
 TO_DO_BATTLE_TEST("Absorb recovers 50% of the damage dealt to a Substitute");
