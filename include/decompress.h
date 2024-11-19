@@ -43,13 +43,13 @@ void DecompressDataWram(const u32 *src, void *dest);
 
 void SmolDecompressData(struct CompressionHeader *header, const u32 *data, void *dest);
 
-void BuildDecompressionTable(u32 *freqs, struct DecodeYK *ykTable, u8 *symbolTable);
+void BuildDecompressionTable(const u32 *freqs, struct DecodeYK *ykTable, u8 *symbolTable);
 
-void DecodeLOtANS(const u32 *data, u32 *readIndex, u32 *bitIndex, struct DecodeYK *ykTable, u8 *symbolTable, u8 *resultVec, u32 *state, u32 count);
+void DecodeLOtANS(const u32 *data, u32 *readIndex, u32 *bitIndex, const u32 *pFreqs, u8 *resultVec, u32 *state, u32 count);
 
-void DecodeSymtANS(const u32 *data, u32 *readIndex, u32 *bitIndex, struct DecodeYK *ykTable, u8 *symbolTable, u16 *resultVec, u32 *state, u32 count);
+void DecodeSymtANS(const u32 *data, u32 *readIndex, u32 *bitIndex, const u32 *pFreqs, u16 *resultVec, u32 *state, u32 count);
 
-void DecodeSymDeltatANS(const u32 *data, u32 *readIndex, u32 *bitIndex, struct DecodeYK *ykTable, u8 *symbolTable, u16 *resultVec, u32 *state, u32 count);
+void DecodeSymDeltatANS(const u32 *data, u32 *readIndex, u32 *bitIndex, const u32 *pFreqs, u16 *resultVec, u32 *state, u32 count);
 
 void DecodeInstructions(struct CompressionHeader *header, u8 *loVec, u16 *symVec, void *dest);
 
