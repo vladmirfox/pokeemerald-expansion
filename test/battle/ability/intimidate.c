@@ -256,9 +256,9 @@ SINGLE_BATTLE_TEST("Intimidate activates when it's no longer effected by Neutral
         TURN { SWITCH(player, 1); }
     } SCENE {
         ABILITY_POPUP(player, ABILITY_NEUTRALIZING_GAS);
-        MESSAGE("Neutralizing gas filled the area!");
+        MESSAGE("Neutralizing Gas filled the area!");
         SWITCH_OUT_MESSAGE("Weezing");
-        MESSAGE("The effects of the neutralizing gas wore off!");
+        MESSAGE("The effects of Neutralizing Gas wore off!");
         ABILITY_POPUP(opponent, ABILITY_INTIMIDATE);
         SEND_IN_MESSAGE("Wobbuffet");
     }
@@ -278,8 +278,8 @@ SINGLE_BATTLE_TEST("Intimidate activates when it's no longer effected by Neutral
         TURN { MOVE(player, move); SEND_OUT(player, 1); }
     } SCENE {
         ABILITY_POPUP(player, ABILITY_NEUTRALIZING_GAS);
-        MESSAGE("Neutralizing gas filled the area!");
-        MESSAGE("The effects of the neutralizing gas wore off!");
+        MESSAGE("Neutralizing Gas filled the area!");
+        MESSAGE("The effects of Neutralizing Gas wore off!");
         ABILITY_POPUP(opponent, ABILITY_INTIMIDATE);
         SEND_IN_MESSAGE("Wobbuffet");
     } THEN {
@@ -307,8 +307,8 @@ SINGLE_BATTLE_TEST("Intimidate activates when it's no longer effected by Neutral
         }
     } SCENE {
         ABILITY_POPUP(player, ABILITY_NEUTRALIZING_GAS);
-        MESSAGE("Neutralizing gas filled the area!");
-        MESSAGE("The effects of the neutralizing gas wore off!");
+        MESSAGE("Neutralizing Gas filled the area!");
+        MESSAGE("The effects of Neutralizing Gas wore off!");
         ABILITY_POPUP(opponent, ABILITY_INTIMIDATE);
         if (item != ITEM_NONE) {
             SEND_IN_MESSAGE("Wobbuffet");
@@ -328,8 +328,8 @@ SINGLE_BATTLE_TEST("Intimidate activates when it's no longer effected by Neutral
         TURN { MOVE(opponent, MOVE_FELL_STINGER); SEND_OUT(player, 1); }
     } SCENE {
         ABILITY_POPUP(player, ABILITY_NEUTRALIZING_GAS);
-        MESSAGE("Neutralizing gas filled the area!");
-        MESSAGE("The effects of the neutralizing gas wore off!");
+        MESSAGE("Neutralizing Gas filled the area!");
+        MESSAGE("The effects of Neutralizing Gas wore off!");
         ABILITY_POPUP(opponent, ABILITY_INTIMIDATE);
         MESSAGE("The opposing Arbok's Attack drastically rose!");
         SEND_IN_MESSAGE("Wobbuffet");
