@@ -8,8 +8,8 @@ void StripLineBreaks(u8 *src)
     u32 currIndex = 0;
     while (src[currIndex] != EOS)
     {
-        if (src[currIndex] == 0xFA || src[currIndex] == 0xFE)
-            src[currIndex] = 0;
+        if (src[currIndex] == CHAR_PROMPT_SCROLL || src[currIndex] == CHAR_NEWLINE)
+            src[currIndex] = CHAR_SPACE;
         currIndex++;
     }
 }
