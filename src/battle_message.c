@@ -2800,9 +2800,22 @@ u32 BattleStringExpandPlaceholders(const u8 *src, u8 *dst, u32 dstSize)
                 break;
             case B_TXT_TRAINER1_NAME_WITH_CLASS: // trainer1 name with trainer class
                 toCpy = textStart;
-                textStart = StringCopy(textStart, BattleStringGetOpponentClassByTrainerId(gTrainerBattleOpponent_A));
-                textStart = StringAppend(textStart, gText_Space2);
-                textStart = StringAppend(textStart, BattleStringGetOpponentNameByTrainerId(gTrainerBattleOpponent_A, textStart, multiplayerId, GetBattlerAtPosition(B_POSITION_OPPONENT_LEFT)));
+                const u8 *classString = BattleStringGetOpponentClassByTrainerId(gTrainerBattleOpponent_A);
+                u32 classLength = 0;
+                u32 nameLength = 0;
+                while (classString[classLength] != EOS)
+                    classLength++;
+                const u8 *nameString = BattleStringGetOpponentNameByTrainerId(gTrainerBattleOpponent_A, &textStart[classLength + 1], multiplayerId, GetBattlerAtPosition(B_POSITION_OPPONENT_LEFT));
+                while (nameString[nameLength] != EOS)
+                    nameLength++;
+                for (u32 i = 0; i < classLength; i++)
+                {
+                    *textStart = classString[i];
+                    textStart++;
+                }
+                *textStart = CHAR_SPACE;
+                textStart += 1 + nameLength;
+                *textStart = EOS;
                 break;
             case B_TXT_LINK_PLAYER_NAME: // link player name
                 toCpy = gLinkPlayers[multiplayerId].name;
@@ -3119,6 +3132,7 @@ u32 BattleStringExpandPlaceholders(const u8 *src, u8 *dst, u32 dstSize)
     dst[dstID] = *src;
     dstID++;
 
+    MgbaPrintf(MGBA_LOG_WARN, "Finished expanding");
     return dstID;
 }
 
