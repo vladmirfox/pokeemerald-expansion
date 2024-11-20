@@ -72,7 +72,7 @@ void BreakSubStringKnuth(u8 *src, u32 maxWidth, u32 screenLines, u8 fontId)
             currWordIndex++;
             currWordLength = 0;
         }
-        else if (isCurrCharSplitting == FALSE && isPrevCharSplitting == TRUE)
+        else if (!isCurrCharSplitting && isPrevCharSplitting)
         {
             allWords[currWordIndex].startIndex = i;
             allWords[currWordIndex].width = 0;
