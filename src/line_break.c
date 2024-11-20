@@ -88,8 +88,10 @@ void BreakSubStringKnuth(u8 *src, u32 maxWidth, u32 screenLines, u8 fontId)
 
     //  Fill in individual word widths
     for (u32 i = 0; i < numWords; i++)
+    {
         for (u32 j = 0; j < allWords[i].length; j++)
             allWords[i].width += GetGlyphWidth(src[allWords[i].startIndex + j], FALSE, fontId);
+    }
 
     //  Step 1: Does it all fit one one line? Then no break
     //  Step 2: Try to split across minimum number of lines
