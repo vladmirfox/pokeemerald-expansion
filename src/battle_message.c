@@ -3812,7 +3812,7 @@ u32 BattleStringExpandPlaceholders(const u8 *src, u8 *dst, u32 dstSize)
 
     //  Remove this when done testing
     //StripLineBreaks(dst);
-    //BreakStringKnuth(dst, BATTLE_MSG_MAX_WIDTH, 2, fontId);
+    //BreakStringAutomatic(dst, BATTLE_MSG_MAX_WIDTH, 2, fontId);
 
     /*
     const u8 *textToPrint = sTest_TempTestText3;
@@ -3823,7 +3823,7 @@ u32 BattleStringExpandPlaceholders(const u8 *src, u8 *dst, u32 dstSize)
         currChar++;
     }
     dst[currChar] = EOS;
-    BreakStringKnuth(dst, BATTLE_MSG_MAX_WIDTH, 2, fontId);
+    BreakStringAutomatic(dst, BATTLE_MSG_MAX_WIDTH, 2, fontId);
     */
     return dstID;
 }

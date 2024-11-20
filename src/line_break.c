@@ -14,7 +14,7 @@ void StripLineBreaks(u8 *src)
     }
 }
 
-void BreakStringKnuth(u8 *src, u32 maxWidth, u32 screenLines, u8 fontId)
+void BreakStringAutomatic(u8 *src, u32 maxWidth, u32 screenLines, u8 fontId)
 {
     u32 currIndex = 0;
     u8 *currSrc = src;
@@ -24,27 +24,27 @@ void BreakStringKnuth(u8 *src, u32 maxWidth, u32 screenLines, u8 fontId)
         {
             u8 replacedChar = src[currIndex + 1];
             src[currIndex + 1] = EOS;
-            BreakSubStringKnuth(currSrc, maxWidth, screenLines, fontId);
+            BreakSubStringAutomatic(currSrc, maxWidth, screenLines, fontId);
             src[currIndex + 1] = replacedChar;
             currSrc = &src[currIndex + 1];
         }
         currIndex++;
     }
-    BreakSubStringKnuth(currSrc, maxWidth, screenLines, fontId);
+    BreakSubStringAutomatic(currSrc, maxWidth, screenLines, fontId);
 }
 
-void BreakSubStringKnuth(u8 *src, u32 maxWidth, u32 screenLines, u8 fontId)
+void BreakSubStringAutomatic(u8 *src, u32 maxWidth, u32 screenLines, u8 fontId)
 {
     //  If the string already has line breaks, don't interfere with them
     if (StringHasManualBreaks(src))
+        return;
+    //  Sanity check
+    if (src[0] == EOS)
         return;
     u32 numChars = 1;
     u32 numWords = 1;
     u32 currWordIndex = 0;
     u32 currWordLength = 1;
-    //  Sanity check
-    if (src[0] == EOS)
-        return;
     bool32 isPrevCharSplitting = FALSE;
     bool32 isCurrCharSplitting;
     //  Get numbers of chars in string and count words

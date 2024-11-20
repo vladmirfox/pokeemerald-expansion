@@ -22,8 +22,8 @@ struct StringLine {
 };
 
 void StripLineBreaks(u8 *src);
-void BreakStringKnuth(u8 *src, u32 maxWidth, u32 screenLines, u8 fontId);
-void BreakSubStringKnuth(u8 *src, u32 maxWidth, u32 screenLines, u8 fontId);
+void BreakStringAutomatic(u8 *src, u32 maxWidth, u32 screenLines, u8 fontId);
+void BreakSubStringAutomatic(u8 *src, u32 maxWidth, u32 screenLines, u8 fontId);
 
 bool32 IsWordSplittingChar(const u8 *src, u32 index);
 u32 GetStringBadness(struct StringLine *stringLines, u32 numLines, u32 maxWidth);
