@@ -66,7 +66,7 @@ void BreakSubStringKnuth(u8 *src, u32 maxWidth, u32 screenLines, u8 fontId)
     for (u32 i = 1; i < numChars; i++)
     {
         isCurrCharSplitting = IsWordSplittingChar(src, i);
-        if (isCurrCharSplitting == TRUE && isPrevCharSplitting == FALSE)
+        if (isCurrCharSplitting && !isPrevCharSplitting)
         {
             allWords[currWordIndex].length = currWordLength;
             currWordIndex++;
