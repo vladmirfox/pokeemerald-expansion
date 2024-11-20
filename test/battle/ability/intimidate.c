@@ -271,6 +271,9 @@ SINGLE_BATTLE_TEST("Intimidate activates when it's no longer affected by Neutral
     PARAMETRIZE { move = MOVE_HEALING_WISH; }
     PARAMETRIZE { move = MOVE_BATON_PASS; }
     GIVEN {
+        ASSUME(gMovesInfo[MOVE_U_TURN].effect == EFFECT_HIT_ESCAPE);
+        ASSUME(gMovesInfo[MOVE_HEALING_WISH].effect == EFFECT_HEALING_WISH);
+        ASSUME(gMovesInfo[MOVE_BATON_PASS].effect == EFFECT_BATON_PASS);
         PLAYER(SPECIES_WEEZING) { Ability(ABILITY_NEUTRALIZING_GAS); }
         PLAYER(SPECIES_WOBBUFFET) { HP(1); }
         OPPONENT(SPECIES_ARBOK) { Ability(ABILITY_INTIMIDATE); }
@@ -279,6 +282,7 @@ SINGLE_BATTLE_TEST("Intimidate activates when it's no longer affected by Neutral
     } SCENE {
         ABILITY_POPUP(player, ABILITY_NEUTRALIZING_GAS);
         MESSAGE("Neutralizing Gas filled the area!");
+        ANIMATION(ANIM_TYPE_MOVE, move, player);
         MESSAGE("The effects of Neutralizing Gas wore off!");
         ABILITY_POPUP(opponent, ABILITY_INTIMIDATE);
         SEND_IN_MESSAGE("Wobbuffet");
@@ -296,6 +300,10 @@ SINGLE_BATTLE_TEST("Intimidate activates when it's no longer affected by Neutral
     PARAMETRIZE { move = MOVE_ROAR; item = ITEM_NONE; }
     PARAMETRIZE { move = MOVE_DRAGON_TAIL; item = ITEM_NONE; }
     GIVEN {
+        ASSUME(gItemsInfo[ITEM_EJECT_BUTTON].holdEffect == HOLD_EFFECT_EJECT_BUTTON);
+        ASSUME(gItemsInfo[ITEM_EJECT_PACK].holdEffect == HOLD_EFFECT_EJECT_PACK);
+        ASSUME(gMovesInfo[MOVE_ROAR].effect == EFFECT_ROAR);
+        ASSUME(gMovesInfo[MOVE_DRAGON_TAIL].effect == EFFECT_HIT_SWITCH_TARGET);
         PLAYER(SPECIES_WEEZING) { Ability(ABILITY_NEUTRALIZING_GAS); Item(item); }
         PLAYER(SPECIES_WOBBUFFET);
         OPPONENT(SPECIES_ARBOK) { Ability(ABILITY_INTIMIDATE); }
@@ -308,6 +316,9 @@ SINGLE_BATTLE_TEST("Intimidate activates when it's no longer affected by Neutral
     } SCENE {
         ABILITY_POPUP(player, ABILITY_NEUTRALIZING_GAS);
         MESSAGE("Neutralizing Gas filled the area!");
+        ANIMATION(ANIM_TYPE_MOVE, move, opponent);
+        if (item != ITEM_NONE)
+            ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_HELD_ITEM_EFFECT, player);
         MESSAGE("The effects of Neutralizing Gas wore off!");
         ABILITY_POPUP(opponent, ABILITY_INTIMIDATE);
         if (item != ITEM_NONE) {
@@ -321,6 +332,7 @@ SINGLE_BATTLE_TEST("Intimidate activates when it's no longer affected by Neutral
 SINGLE_BATTLE_TEST("Intimidate activates when it's no longer affected by Neutralizing Gas - fainted")
 {
     GIVEN {
+        ASSUME(gMovesInfo[MOVE_FELL_STINGER].effect == EFFECT_FELL_STINGER);
         PLAYER(SPECIES_WEEZING) { Ability(ABILITY_NEUTRALIZING_GAS); HP(1); }
         PLAYER(SPECIES_WOBBUFFET);
         OPPONENT(SPECIES_ARBOK) { Ability(ABILITY_INTIMIDATE); }
@@ -329,8 +341,10 @@ SINGLE_BATTLE_TEST("Intimidate activates when it's no longer affected by Neutral
     } SCENE {
         ABILITY_POPUP(player, ABILITY_NEUTRALIZING_GAS);
         MESSAGE("Neutralizing Gas filled the area!");
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_FELL_STINGER, opponent);
         MESSAGE("The effects of Neutralizing Gas wore off!");
         ABILITY_POPUP(opponent, ABILITY_INTIMIDATE);
+        MESSAGE("Weezing fainted!");
         ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_STATS_CHANGE, opponent);
         SEND_IN_MESSAGE("Wobbuffet");
     }
