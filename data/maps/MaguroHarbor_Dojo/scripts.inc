@@ -6,190 +6,232 @@ MaguroHarbor_Dojo_EventScript_Koishi::
 # 8 "data/maps/MaguroHarbor_Dojo/scripts.pory"
 	trainerbattle_single TRAINER_KOISHI_1, MaguroHarbor_Dojo_EventScript_Koishi_Text_0, MaguroHarbor_Dojo_EventScript_Koishi_Text_1, MaguroHarbor_Dojo_EventScript_KoishiDefeated, NO_MUSIC
 # 24 "data/maps/MaguroHarbor_Dojo/scripts.pory"
-	msgbox MaguroHarbor_Dojo_EventScript_Koishi_Text_2, MSGBOX_DEFAULT
+	msgbox MaguroHarbor_Dojo_EventScript_Koishi_Text_2
 	end
 
 
 MaguroHarbor_Dojo_EventScript_KoishiDefeated::
-# 34 "data/maps/MaguroHarbor_Dojo/scripts.pory"
+# 31 "data/maps/MaguroHarbor_Dojo/scripts.pory"
 	message MaguroHarbor_Dojo_EventScript_KoishiDefeated_Text_0
-# 38 "data/maps/MaguroHarbor_Dojo/scripts.pory"
+# 34 "data/maps/MaguroHarbor_Dojo/scripts.pory"
 	waitmessage
-# 39 "data/maps/MaguroHarbor_Dojo/scripts.pory"
+# 35 "data/maps/MaguroHarbor_Dojo/scripts.pory"
 	call Common_EventScript_PlayGymBadgeFanfare
-# 40 "data/maps/MaguroHarbor_Dojo/scripts.pory"
+# 36 "data/maps/MaguroHarbor_Dojo/scripts.pory"
 	msgbox MaguroHarbor_Dojo_EventScript_KoishiDefeated_Text_1, MSGBOX_DEFAULT
-# 49 "data/maps/MaguroHarbor_Dojo/scripts.pory"
+# 45 "data/maps/MaguroHarbor_Dojo/scripts.pory"
 	giveitem ITEM_TM_WATER_PULSE
-# 51 "data/maps/MaguroHarbor_Dojo/scripts.pory"
+# 47 "data/maps/MaguroHarbor_Dojo/scripts.pory"
 	msgbox MaguroHarbor_Dojo_EventScript_KoishiDefeated_Text_2, MSGBOX_DEFAULT
+# 55 "data/maps/MaguroHarbor_Dojo/scripts.pory"
+	closemessage
+# 57 "data/maps/MaguroHarbor_Dojo/scripts.pory"
+	setflag FLAG_BADGE01_GET
+# 58 "data/maps/MaguroHarbor_Dojo/scripts.pory"
+	setvar VAR_0x8008, 1
 # 59 "data/maps/MaguroHarbor_Dojo/scripts.pory"
-	closemessage
-# 61 "data/maps/MaguroHarbor_Dojo/scripts.pory"
-	setflag FLAG_BADGE02_GET
-# 62 "data/maps/MaguroHarbor_Dojo/scripts.pory"
+	call Common_EventScript_SetGymTrainers
+# 60 "data/maps/MaguroHarbor_Dojo/scripts.pory"
 	addvar VAR_PLAYER_REPUTATION, 5
-# 64 "data/maps/MaguroHarbor_Dojo/scripts.pory"
+# 62 "data/maps/MaguroHarbor_Dojo/scripts.pory"
 	setvar VAR_DECAY_BEACHBOUND_ROUTE, 1
-# 66 "data/maps/MaguroHarbor_Dojo/scripts.pory"
+# 64 "data/maps/MaguroHarbor_Dojo/scripts.pory"
 	setflag FLAG_KURA_DOJO_CLOSED
-# 68 "data/maps/MaguroHarbor_Dojo/scripts.pory"
+# 66 "data/maps/MaguroHarbor_Dojo/scripts.pory"
 	clearflag FLAG_HIDE_BONSAI_SHOP_OWNER
-# 77 "data/maps/MaguroHarbor_Dojo/scripts.pory"
+# 75 "data/maps/MaguroHarbor_Dojo/scripts.pory"
 	delay 48
-# 80 "data/maps/MaguroHarbor_Dojo/scripts.pory"
+# 78 "data/maps/MaguroHarbor_Dojo/scripts.pory"
 	setvar VAR_0x8004, 1
-# 81 "data/maps/MaguroHarbor_Dojo/scripts.pory"
+# 79 "data/maps/MaguroHarbor_Dojo/scripts.pory"
 	setvar VAR_0x8005, 2
-# 82 "data/maps/MaguroHarbor_Dojo/scripts.pory"
-	setvar VAR_0x8006, 20
-# 83 "data/maps/MaguroHarbor_Dojo/scripts.pory"
+# 80 "data/maps/MaguroHarbor_Dojo/scripts.pory"
+	setvar VAR_0x8006, 40
+# 81 "data/maps/MaguroHarbor_Dojo/scripts.pory"
 	setvar VAR_0x8007, 4
-# 84 "data/maps/MaguroHarbor_Dojo/scripts.pory"
+# 82 "data/maps/MaguroHarbor_Dojo/scripts.pory"
 	special ShakeCamera
+# 83 "data/maps/MaguroHarbor_Dojo/scripts.pory"
+	delay 16
+# 84 "data/maps/MaguroHarbor_Dojo/scripts.pory"
+	playse SE_PIN
 # 85 "data/maps/MaguroHarbor_Dojo/scripts.pory"
-	delay 16
-# 86 "data/maps/MaguroHarbor_Dojo/scripts.pory"
-	playse SE_PIN
-# 87 "data/maps/MaguroHarbor_Dojo/scripts.pory"
 	applymovement OBJ_EVENT_ID_PLAYER, Common_Movement_ExclamationMark
-# 88 "data/maps/MaguroHarbor_Dojo/scripts.pory"
+# 86 "data/maps/MaguroHarbor_Dojo/scripts.pory"
 	delay 16
-# 89 "data/maps/MaguroHarbor_Dojo/scripts.pory"
+# 87 "data/maps/MaguroHarbor_Dojo/scripts.pory"
 	playse SE_PIN
-# 90 "data/maps/MaguroHarbor_Dojo/scripts.pory"
+# 88 "data/maps/MaguroHarbor_Dojo/scripts.pory"
 	applymovement 4, Common_Movement_ExclamationMark
-# 91 "data/maps/MaguroHarbor_Dojo/scripts.pory"
+# 89 "data/maps/MaguroHarbor_Dojo/scripts.pory"
 	waitstate
-# 92 "data/maps/MaguroHarbor_Dojo/scripts.pory"
+# 90 "data/maps/MaguroHarbor_Dojo/scripts.pory"
 	waitmovement OBJ_EVENT_ID_PLAYER
-# 93 "data/maps/MaguroHarbor_Dojo/scripts.pory"
+# 91 "data/maps/MaguroHarbor_Dojo/scripts.pory"
 	waitmovement 4
+# 92 "data/maps/MaguroHarbor_Dojo/scripts.pory"
+	delay 60
 # 94 "data/maps/MaguroHarbor_Dojo/scripts.pory"
-	delay 48
-# 96 "data/maps/MaguroHarbor_Dojo/scripts.pory"
 	speakername MaguroHarbor_Dojo_EventScript_KoishiDefeated_Text_3
-# 97 "data/maps/MaguroHarbor_Dojo/scripts.pory"
+# 95 "data/maps/MaguroHarbor_Dojo/scripts.pory"
 	msgbox MaguroHarbor_Dojo_EventScript_KoishiDefeated_Text_4
-# 101 "data/maps/MaguroHarbor_Dojo/scripts.pory"
+# 99 "data/maps/MaguroHarbor_Dojo/scripts.pory"
 	closemessage
-# 103 "data/maps/MaguroHarbor_Dojo/scripts.pory"
+# 101 "data/maps/MaguroHarbor_Dojo/scripts.pory"
 	specialvar VAR_RESULT, GetPlayerFacingDirection
-# 104 "data/maps/MaguroHarbor_Dojo/scripts.pory"
+# 102 "data/maps/MaguroHarbor_Dojo/scripts.pory"
 	compare VAR_RESULT, DIR_WEST
 	goto_if_eq MaguroHarbor_Dojo_EventScript_KoishiDefeated_2
-# 107 "data/maps/MaguroHarbor_Dojo/scripts.pory"
+# 105 "data/maps/MaguroHarbor_Dojo/scripts.pory"
 	applymovement 4, MaguroHarbor_Dojo_EventScript_KoishiDefeated_Movement_1
 MaguroHarbor_Dojo_EventScript_KoishiDefeated_1:
-# 109 "data/maps/MaguroHarbor_Dojo/scripts.pory"
+# 107 "data/maps/MaguroHarbor_Dojo/scripts.pory"
 	waitmovement 4
-# 111 "data/maps/MaguroHarbor_Dojo/scripts.pory"
+# 109 "data/maps/MaguroHarbor_Dojo/scripts.pory"
 	release
 	end
 
 MaguroHarbor_Dojo_EventScript_KoishiDefeated_2:
-# 105 "data/maps/MaguroHarbor_Dojo/scripts.pory"
+# 103 "data/maps/MaguroHarbor_Dojo/scripts.pory"
 	applymovement 4, MaguroHarbor_Dojo_EventScript_KoishiDefeated_Movement_0
 	goto MaguroHarbor_Dojo_EventScript_KoishiDefeated_1
 
 
 MaguroHarbor_Dojo_EventScript_Izumi::
-# 118 "data/maps/MaguroHarbor_Dojo/scripts.pory"
+# 116 "data/maps/MaguroHarbor_Dojo/scripts.pory"
 	trainerbattle_single TRAINER_IZUMI, MaguroHarbor_Dojo_EventScript_Izumi_Text_0, MaguroHarbor_Dojo_EventScript_Izumi_Text_1
-# 123 "data/maps/MaguroHarbor_Dojo/scripts.pory"
+# 121 "data/maps/MaguroHarbor_Dojo/scripts.pory"
 	msgbox MaguroHarbor_Dojo_EventScript_Izumi_Text_2, MSGBOX_AUTOCLOSE
 	return
 
 
 MaguroHarbor_Dojo_EventScript_Ren::
-# 129 "data/maps/MaguroHarbor_Dojo/scripts.pory"
+# 127 "data/maps/MaguroHarbor_Dojo/scripts.pory"
 	trainerbattle_single TRAINER_REN, MaguroHarbor_Dojo_EventScript_Ren_Text_0, MaguroHarbor_Dojo_EventScript_Ren_Text_1
-# 134 "data/maps/MaguroHarbor_Dojo/scripts.pory"
+# 132 "data/maps/MaguroHarbor_Dojo/scripts.pory"
 	msgbox MaguroHarbor_Dojo_EventScript_Ren_Text_2, MSGBOX_AUTOCLOSE
 	return
 
 
 MaguroHarbor_Dojo_EventScript_Mizu::
-# 140 "data/maps/MaguroHarbor_Dojo/scripts.pory"
+# 138 "data/maps/MaguroHarbor_Dojo/scripts.pory"
 	trainerbattle_single TRAINER_MIZU, MaguroHarbor_Dojo_EventScript_Mizu_Text_0, MaguroHarbor_Dojo_EventScript_Mizu_Text_1
-# 145 "data/maps/MaguroHarbor_Dojo/scripts.pory"
+# 143 "data/maps/MaguroHarbor_Dojo/scripts.pory"
 	msgbox MaguroHarbor_Dojo_EventScript_Mizu_Text_2, MSGBOX_AUTOCLOSE
 	return
 
 
-# 105 "data/maps/MaguroHarbor_Dojo/scripts.pory"
+MaguroHarbor_Dojo_EventScript_Advice::
+# 150 "data/maps/MaguroHarbor_Dojo/scripts.pory"
+	lock
+# 151 "data/maps/MaguroHarbor_Dojo/scripts.pory"
+	faceplayer
+# 152 "data/maps/MaguroHarbor_Dojo/scripts.pory"
+	goto_if_set FLAG_BADGE01_GET, MaguroHarbor_Dojo_EventScript_Advice_2
+# 157 "data/maps/MaguroHarbor_Dojo/scripts.pory"
+	msgbox MaguroHarbor_Dojo_EventScript_Advice_Text_1
+MaguroHarbor_Dojo_EventScript_Advice_1:
+# 165 "data/maps/MaguroHarbor_Dojo/scripts.pory"
+	release
+	return
+
+MaguroHarbor_Dojo_EventScript_Advice_2:
+# 153 "data/maps/MaguroHarbor_Dojo/scripts.pory"
+	msgbox MaguroHarbor_Dojo_EventScript_Advice_Text_0
+	goto MaguroHarbor_Dojo_EventScript_Advice_1
+
+
+MaguroHarbor_Dojo_EventScript_DojoStatue::
+# 169 "data/maps/MaguroHarbor_Dojo/scripts.pory"
+	lockall
+# 170 "data/maps/MaguroHarbor_Dojo/scripts.pory"
+	goto_if_set FLAG_BADGE01_GET, MaguroHarbor_Dojo_EventScript_DojoStatue_2
+# 179 "data/maps/MaguroHarbor_Dojo/scripts.pory"
+	msgbox MaguroHarbor_Dojo_EventScript_DojoStatue_Text_1, MSGBOX_SIGN
+MaguroHarbor_Dojo_EventScript_DojoStatue_1:
+# 186 "data/maps/MaguroHarbor_Dojo/scripts.pory"
+	releaseall
+	return
+
+MaguroHarbor_Dojo_EventScript_DojoStatue_2:
+# 171 "data/maps/MaguroHarbor_Dojo/scripts.pory"
+	msgbox MaguroHarbor_Dojo_EventScript_DojoStatue_Text_0, MSGBOX_SIGN
+	goto MaguroHarbor_Dojo_EventScript_DojoStatue_1
+
+
+# 103 "data/maps/MaguroHarbor_Dojo/scripts.pory"
 MaguroHarbor_Dojo_EventScript_KoishiDefeated_Movement_0:
-# 105 "data/maps/MaguroHarbor_Dojo/scripts.pory"
+# 103 "data/maps/MaguroHarbor_Dojo/scripts.pory"
+	walk_down
+# 103 "data/maps/MaguroHarbor_Dojo/scripts.pory"
 	walk_right
-# 105 "data/maps/MaguroHarbor_Dojo/scripts.pory"
+# 103 "data/maps/MaguroHarbor_Dojo/scripts.pory"
 	walk_right
-# 105 "data/maps/MaguroHarbor_Dojo/scripts.pory"
+# 103 "data/maps/MaguroHarbor_Dojo/scripts.pory"
 	walk_right
-# 105 "data/maps/MaguroHarbor_Dojo/scripts.pory"
+# 103 "data/maps/MaguroHarbor_Dojo/scripts.pory"
 	walk_down
-# 105 "data/maps/MaguroHarbor_Dojo/scripts.pory"
+# 103 "data/maps/MaguroHarbor_Dojo/scripts.pory"
 	walk_down
-# 105 "data/maps/MaguroHarbor_Dojo/scripts.pory"
+# 103 "data/maps/MaguroHarbor_Dojo/scripts.pory"
 	walk_down
-# 105 "data/maps/MaguroHarbor_Dojo/scripts.pory"
+# 103 "data/maps/MaguroHarbor_Dojo/scripts.pory"
 	walk_down
-# 105 "data/maps/MaguroHarbor_Dojo/scripts.pory"
+# 103 "data/maps/MaguroHarbor_Dojo/scripts.pory"
 	walk_down
-# 105 "data/maps/MaguroHarbor_Dojo/scripts.pory"
-	walk_down
-# 105 "data/maps/MaguroHarbor_Dojo/scripts.pory"
+# 103 "data/maps/MaguroHarbor_Dojo/scripts.pory"
 	walk_left
-# 105 "data/maps/MaguroHarbor_Dojo/scripts.pory"
+# 103 "data/maps/MaguroHarbor_Dojo/scripts.pory"
 	walk_left
-# 105 "data/maps/MaguroHarbor_Dojo/scripts.pory"
+# 103 "data/maps/MaguroHarbor_Dojo/scripts.pory"
 	walk_left
-# 105 "data/maps/MaguroHarbor_Dojo/scripts.pory"
+# 103 "data/maps/MaguroHarbor_Dojo/scripts.pory"
 	walk_left
-# 105 "data/maps/MaguroHarbor_Dojo/scripts.pory"
+# 103 "data/maps/MaguroHarbor_Dojo/scripts.pory"
 	walk_left
-# 105 "data/maps/MaguroHarbor_Dojo/scripts.pory"
+# 103 "data/maps/MaguroHarbor_Dojo/scripts.pory"
 	walk_down
-# 105 "data/maps/MaguroHarbor_Dojo/scripts.pory"
+# 103 "data/maps/MaguroHarbor_Dojo/scripts.pory"
 	walk_down
-# 105 "data/maps/MaguroHarbor_Dojo/scripts.pory"
+# 103 "data/maps/MaguroHarbor_Dojo/scripts.pory"
 	walk_down
 	step_end
 
-# 107 "data/maps/MaguroHarbor_Dojo/scripts.pory"
+# 105 "data/maps/MaguroHarbor_Dojo/scripts.pory"
 MaguroHarbor_Dojo_EventScript_KoishiDefeated_Movement_1:
-# 107 "data/maps/MaguroHarbor_Dojo/scripts.pory"
-	walk_down
-# 107 "data/maps/MaguroHarbor_Dojo/scripts.pory"
+# 105 "data/maps/MaguroHarbor_Dojo/scripts.pory"
 	walk_right
-# 107 "data/maps/MaguroHarbor_Dojo/scripts.pory"
+# 105 "data/maps/MaguroHarbor_Dojo/scripts.pory"
 	walk_right
-# 107 "data/maps/MaguroHarbor_Dojo/scripts.pory"
+# 105 "data/maps/MaguroHarbor_Dojo/scripts.pory"
 	walk_right
-# 107 "data/maps/MaguroHarbor_Dojo/scripts.pory"
+# 105 "data/maps/MaguroHarbor_Dojo/scripts.pory"
 	walk_down
-# 107 "data/maps/MaguroHarbor_Dojo/scripts.pory"
+# 105 "data/maps/MaguroHarbor_Dojo/scripts.pory"
 	walk_down
-# 107 "data/maps/MaguroHarbor_Dojo/scripts.pory"
+# 105 "data/maps/MaguroHarbor_Dojo/scripts.pory"
 	walk_down
-# 107 "data/maps/MaguroHarbor_Dojo/scripts.pory"
+# 105 "data/maps/MaguroHarbor_Dojo/scripts.pory"
 	walk_down
-# 107 "data/maps/MaguroHarbor_Dojo/scripts.pory"
+# 105 "data/maps/MaguroHarbor_Dojo/scripts.pory"
 	walk_down
-# 107 "data/maps/MaguroHarbor_Dojo/scripts.pory"
+# 105 "data/maps/MaguroHarbor_Dojo/scripts.pory"
+	walk_down
+# 105 "data/maps/MaguroHarbor_Dojo/scripts.pory"
 	walk_left
-# 107 "data/maps/MaguroHarbor_Dojo/scripts.pory"
+# 105 "data/maps/MaguroHarbor_Dojo/scripts.pory"
 	walk_left
-# 107 "data/maps/MaguroHarbor_Dojo/scripts.pory"
+# 105 "data/maps/MaguroHarbor_Dojo/scripts.pory"
 	walk_left
-# 107 "data/maps/MaguroHarbor_Dojo/scripts.pory"
+# 105 "data/maps/MaguroHarbor_Dojo/scripts.pory"
 	walk_left
-# 107 "data/maps/MaguroHarbor_Dojo/scripts.pory"
+# 105 "data/maps/MaguroHarbor_Dojo/scripts.pory"
 	walk_left
-# 107 "data/maps/MaguroHarbor_Dojo/scripts.pory"
+# 105 "data/maps/MaguroHarbor_Dojo/scripts.pory"
 	walk_down
-# 107 "data/maps/MaguroHarbor_Dojo/scripts.pory"
+# 105 "data/maps/MaguroHarbor_Dojo/scripts.pory"
 	walk_down
-# 107 "data/maps/MaguroHarbor_Dojo/scripts.pory"
+# 105 "data/maps/MaguroHarbor_Dojo/scripts.pory"
 	walk_down
 	step_end
 
@@ -217,18 +259,17 @@ MaguroHarbor_Dojo_EventScript_Koishi_Text_1:
 	.string "I see…$"
 
 MaguroHarbor_Dojo_EventScript_Koishi_Text_2:
-# 26 "data/maps/MaguroHarbor_Dojo/scripts.pory"
+# 25 "data/maps/MaguroHarbor_Dojo/scripts.pory"
 	.string "You shall achieve great things. I hope\n"
 	.string "we meet again.$"
 
 MaguroHarbor_Dojo_EventScript_KoishiDefeated_Text_0:
-# 35 "data/maps/MaguroHarbor_Dojo/scripts.pory"
+# 32 "data/maps/MaguroHarbor_Dojo/scripts.pory"
 	.string "{PLAYER} received the Flowing\n"
-	.string "Token\n"
-	.string "from Koishi.$"
+	.string "Token from Koishi.$"
 
 MaguroHarbor_Dojo_EventScript_KoishiDefeated_Text_1:
-# 42 "data/maps/MaguroHarbor_Dojo/scripts.pory"
+# 38 "data/maps/MaguroHarbor_Dojo/scripts.pory"
 	.string "I applaud your skill. You are still a\n"
 	.string "child, yet you obviously have a\l"
 	.string "natural aptitude for battle.\p"
@@ -239,7 +280,7 @@ MaguroHarbor_Dojo_EventScript_KoishiDefeated_Text_1:
 	.string "I am also supposed to give you this.$"
 
 MaguroHarbor_Dojo_EventScript_KoishiDefeated_Text_2:
-# 53 "data/maps/MaguroHarbor_Dojo/scripts.pory"
+# 49 "data/maps/MaguroHarbor_Dojo/scripts.pory"
 	.string "This scroll contains Water Pulse, a\n"
 	.string "water-type move that can confuse\l"
 	.string "your foes.\p"
@@ -250,48 +291,79 @@ MaguroHarbor_Dojo_EventScript_KoishiDefeated_Text_2:
 	.string "Good luck, {PLAYER}.$"
 
 MaguroHarbor_Dojo_EventScript_KoishiDefeated_Text_3:
-# 96 "data/maps/MaguroHarbor_Dojo/scripts.pory"
+# 94 "data/maps/MaguroHarbor_Dojo/scripts.pory"
 	.string "Koishi$"
 
 MaguroHarbor_Dojo_EventScript_KoishiDefeated_Text_4:
-# 98 "data/maps/MaguroHarbor_Dojo/scripts.pory"
+# 96 "data/maps/MaguroHarbor_Dojo/scripts.pory"
 	.string "That… That was a big one!…\p"
 	.string "I'm going outside to make sure\n"
 	.string "everyone's alright.$"
 
 MaguroHarbor_Dojo_EventScript_Izumi_Text_0:
-# 120 "data/maps/MaguroHarbor_Dojo/scripts.pory"
+# 118 "data/maps/MaguroHarbor_Dojo/scripts.pory"
 	.string "My Pokémon is the daintiest there is!$"
 
 MaguroHarbor_Dojo_EventScript_Izumi_Text_1:
-# 121 "data/maps/MaguroHarbor_Dojo/scripts.pory"
+# 119 "data/maps/MaguroHarbor_Dojo/scripts.pory"
 	.string "My poor Goldeen!$"
 
 MaguroHarbor_Dojo_EventScript_Izumi_Text_2:
-# 124 "data/maps/MaguroHarbor_Dojo/scripts.pory"
+# 122 "data/maps/MaguroHarbor_Dojo/scripts.pory"
 	.string "You'll go far. I can tell.$"
 
 MaguroHarbor_Dojo_EventScript_Ren_Text_0:
-# 131 "data/maps/MaguroHarbor_Dojo/scripts.pory"
+# 129 "data/maps/MaguroHarbor_Dojo/scripts.pory"
 	.string "Come in! The water's nice and toasty!$"
 
 MaguroHarbor_Dojo_EventScript_Ren_Text_1:
-# 132 "data/maps/MaguroHarbor_Dojo/scripts.pory"
+# 130 "data/maps/MaguroHarbor_Dojo/scripts.pory"
 	.string "Nooo!$"
 
 MaguroHarbor_Dojo_EventScript_Ren_Text_2:
-# 135 "data/maps/MaguroHarbor_Dojo/scripts.pory"
+# 133 "data/maps/MaguroHarbor_Dojo/scripts.pory"
 	.string "I l-lied. I'm f-f-freezing in h-here.$"
 
 MaguroHarbor_Dojo_EventScript_Mizu_Text_0:
-# 142 "data/maps/MaguroHarbor_Dojo/scripts.pory"
+# 140 "data/maps/MaguroHarbor_Dojo/scripts.pory"
 	.string "Do not disturb the koi pond!$"
 
 MaguroHarbor_Dojo_EventScript_Mizu_Text_1:
-# 143 "data/maps/MaguroHarbor_Dojo/scripts.pory"
+# 141 "data/maps/MaguroHarbor_Dojo/scripts.pory"
 	.string "Stop making so much noise!$"
 
 MaguroHarbor_Dojo_EventScript_Mizu_Text_2:
-# 147 "data/maps/MaguroHarbor_Dojo/scripts.pory"
+# 145 "data/maps/MaguroHarbor_Dojo/scripts.pory"
 	.string "These are sophisticated fish. They\n"
 	.string "need peace and quiet to thrive.$"
+
+MaguroHarbor_Dojo_EventScript_Advice_Text_0:
+# 154 "data/maps/MaguroHarbor_Dojo/scripts.pory"
+	.string "You swept me away with that battle!$"
+
+MaguroHarbor_Dojo_EventScript_Advice_Text_1:
+# 158 "data/maps/MaguroHarbor_Dojo/scripts.pory"
+	.string "Hello, young challenger! Are you going\n"
+	.string "to be fighting for your first Token?\p"
+	.string "Welcome to the Koi Pond Dojo!\p"
+	.string "Koishi, the Master of this place,\n"
+	.string "favors water-type moves. Her\l"
+	.string "battling style is strong, yet\l"
+	.string "graceful… Sigh…\p"
+	.string "I am her biggest fan! It's true! Maybe\n"
+	.string "one day, I'll become your biggest fan,\l"
+	.string "who knows?\p"
+	.string "Go get 'em!$"
+
+MaguroHarbor_Dojo_EventScript_DojoStatue_Text_0:
+# 172 "data/maps/MaguroHarbor_Dojo/scripts.pory"
+	.string "Dojo of Maguro Harbor\p"
+	.string "Certified wielders:\n"
+	.string "Natsuki,"
+	.string "{PLAYER}$"
+
+MaguroHarbor_Dojo_EventScript_DojoStatue_Text_1:
+# 180 "data/maps/MaguroHarbor_Dojo/scripts.pory"
+	.string "Dojo of Maguro Harbor\p"
+	.string "Certified wielders:\n"
+	.string "Natsuki$"

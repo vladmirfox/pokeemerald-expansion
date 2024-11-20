@@ -7,7 +7,7 @@ mapscripts KuraTown_MapScripts {
 	MAP_SCRIPT_ON_LOAD {
 		// Barricading dojo
 		if (flag(FLAG_KURA_DOJO_CLOSED)) {
-			setmetatile(23, 18, METATILE_SakuKura_ClosedDojoDoor, TRUE)
+			setmetatile(40, 16, METATILE_SakuKura_ClosedDojoDoor, TRUE)
 		}
 	}
 }

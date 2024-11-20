@@ -38,7 +38,7 @@ Text_EmptyBasket:
 	.string "A woven basket.$"
 	
 Text_BasketRyss:
-	.string "A basket filled with Ryss berries.$"
+	.string "A basket filled with Mifan berries.$"
 	
 Text_Bonsai:
 	.string "It's a bonsai.\n"

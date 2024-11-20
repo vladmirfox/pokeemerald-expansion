@@ -1,4 +1,6 @@
 const LOCALID_BEAN = 8
+const LOCALID_SAMURAI = 10
+const LOCALID_KOISHI = 12
 
 mapscripts Beachbound_Route_Decay_MapScripts {
 	MAP_SCRIPT_ON_FRAME_TABLE [
@@ -10,10 +12,18 @@ script Beachbound_Route_Decay_SeeDecay {
 	lock
 	setvar(VAR_DECAY_BEACHBOUND_ROUTE, 2)
 
-	special(SpawnCameraObject)
-	applymovement(OBJ_EVENT_ID_CAMERA, moves(walk_left * 20))
+	playse(SE_PIN)
+	applymovement(OBJ_EVENT_ID_PLAYER, Common_Movement_ExclamationMark)
+	waitse
 	waitmovement(0)
+	delay(48)
+
+	special(SpawnCameraObject)
+	applymovement(OBJ_EVENT_ID_CAMERA, moves(walk_left * 20, delay_16 * 5))
+	waitmovement(0)
+	fadescreen(FADE_TO_BLACK)
 	special(RemoveCameraObject)
+	fadescreen(FADE_TO_BLACK)
 
 	warpsilent(MAP_BEACHBOUND_ROUTE_DECAY, 59, 16)
 
@@ -23,7 +33,7 @@ script Beachbound_Route_Decay_SeeDecay {
 script BeachboundRoute_Decay_EventScript_Shepherd {
 	speakername("Shepherd")
 	msgbox(format(
-		"Why are all the plants rotting?"
+		"What's goin' on? Why are all the plants rotting?"
 	), MSGBOX_NPC)
 }
 
@@ -41,18 +51,8 @@ script BeachboundRoute_Decay_EventScript_Kin {
 	), MSGBOX_NPC)
 }
 
-script BeachboundRoute_Decay_EventScript_BeanTrigger {
-	lock
-
+script BeachboundRoute_Decay_EventScript_BeanDialogue {
 	setvar(VAR_DECAY_BEACHBOUND_ROUTE, 4)
-
-	playse(SE_PIN)
-	applymovement(LOCALID_BEAN, Common_Movement_ExclamationMark)
-	waitse
-	waitmovement(0)
-	delay(48)
-	faceplayer
-
 	speakername("Hariko")
 	msgbox(format(
 		"Oh! Hello.\n{PLAYER}, right?\p"
@@ -60,14 +60,99 @@ script BeachboundRoute_Decay_EventScript_BeanTrigger {
 		"What do you think is happening here? It looks like there is some sort of {COLOR RED}decay{COLOR DARK_GRAY} affecting this whole spot.\p"
 		"The Samurai over there told me there are reports of this phenomenon hitting several areas over the last few days.\p"
 		"That coincides with the start of the Volcano's rumbling spells, so both seem to be related.\p"
-		"I want to learn as much as I can about this {COLOR RED}decay{COLOR DARK_GRAY}, which is why I am here."
+		"Whatever it is, it is not good. I want to learn as much as I can about this {COLOR RED}decay{COLOR DARK_GRAY}, which is why I am here.\p"
+		"Did you also come here to investigate, {PLAYER}? We should team up!"
 	))
 	closemessage
 
-	applymovement(LOCALID_BEAN, Common_Movement_FaceOriginalDirection)
+	applymovement(LOCALID_KOISHI, moves(walk_down))
 	waitmovement(0)
 
+	applymovement(LOCALID_BEAN, Common_Movement_FaceUp)
+	waitmovement(0)
+	applymovement(OBJ_EVENT_ID_PLAYER, Common_Movement_FaceUp)
+	waitmovement(0)
+
+	delay(48)
+
+	speakername("Koishi")
+	msgbox(format(
+		"I couldn't help but overhear your conversation. You two are way too young and inexperienced to be getting involved in this!\p"
+		"We know nothing about this {COLOR RED}decay{COLOR DARK_GRAY} yet. We only know that it's dangerous.\p"
+		"The Pokémon touched by the {COLOR RED}decay{COLOR DARK_GRAY}… They act strangely, like they are corrupted by it.\p"
+		"We don't want to have to rescue you, so please let the adults handle the issue."
+	))
+	closemessage
+
+	applymovement(LOCALID_KOISHI, moves(walk_up))
+	waitmovement(0)
+
+	delay(48)
+
+	applymovement(LOCALID_BEAN, Common_Movement_FaceRight)
+	applymovement(OBJ_EVENT_ID_PLAYER, Common_Movement_FaceLeft)
+	waitmovement(LOCALID_BEAN)
+	waitmovement(OBJ_EVENT_ID_PLAYER)
+
+	speakername("Hariko")
+	msgbox(format(
+		"This is unfair! How are we supposed to investigate if we're not allowed to?\p"
+		"Well, I am going to stay here for a while, and hopefully glean some interesting stuff.\p"
+		"I will catch up with you later, {PLAYER}."
+	))
+	closemessage
+
 	release
+}
+
+script BeachboundRoute_Decay_EventScript_BeanTrigger2StepsAway {
+	lock
+	
+	playse(SE_PIN)
+	applymovement(LOCALID_BEAN, Common_Movement_ExclamationMark)
+	waitse
+	waitmovement(0)
+	delay(48)
+	applymovement(LOCALID_BEAN, Common_Movement_FaceRight)
+	waitmovement(0)
+	
+	applymovement(OBJ_EVENT_ID_PLAYER, moves(walk_left * 2))
+	waitmovement(0)
+
+	call(BeachboundRoute_Decay_EventScript_BeanDialogue)
+}
+
+script BeachboundRoute_Decay_EventScript_BeanTrigger1StepAway {
+	lock
+	
+	playse(SE_PIN)
+	applymovement(LOCALID_BEAN, Common_Movement_ExclamationMark)
+	waitse
+	waitmovement(0)
+	delay(48)
+	applymovement(LOCALID_BEAN, Common_Movement_FaceRight)
+	waitmovement(0)
+	
+	applymovement(OBJ_EVENT_ID_PLAYER, moves(walk_left))
+	waitmovement(0)
+
+	call(BeachboundRoute_Decay_EventScript_BeanDialogue)
+}
+
+script BeachboundRoute_Decay_EventScript_BeanTrigger {
+	lock
+
+	playse(SE_PIN)
+	applymovement(LOCALID_BEAN, Common_Movement_ExclamationMark)
+	waitse
+	waitmovement(0)
+	delay(48)
+	applymovement(LOCALID_BEAN, Common_Movement_FaceRight)
+	applymovement(OBJ_EVENT_ID_PLAYER, Common_Movement_FaceLeft)
+	waitmovement(LOCALID_BEAN)
+	waitmovement(OBJ_EVENT_ID_PLAYER)
+
+	call(BeachboundRoute_Decay_EventScript_BeanDialogue)
 }
 
 script BeachboundRoute_Decay_EventScript_Bean {
@@ -82,9 +167,28 @@ script BeachboundRoute_Decay_EventScript_Bean {
 	release
 }
 
+script BeachboundRoute_Decay_EventScript_Koishi {
+	lock
+
+	speakername("Koishi")
+	msgbox(format(
+		"The situation is dire…\p"
+		"Please move along, and I repeat, do NOT get into trouble!"
+	))
+	closemessage
+
+	release
+}
+
 script BeachboundRoute_Decay_EventScript_SamuraiBeCarefulTrigger {
 	lock
 	setvar(VAR_DECAY_BEACHBOUND_ROUTE, 3)
+
+	applymovement(LOCALID_SAMURAI, Common_Movement_WalkInPlaceFasterDown)
+	applymovement(OBJ_EVENT_ID_PLAYER, Common_Movement_WalkInPlaceFasterUp)
+	waitmovement(LOCALID_SAMURAI)
+	waitmovement(OBJ_EVENT_ID_PLAYER)
+
 	speakername("Samurai")
 	msgbox(format(
 		"Please be careful if you're crossing over the {COLOR RED}decayed{COLOR DARK_GRAY} area.\p"

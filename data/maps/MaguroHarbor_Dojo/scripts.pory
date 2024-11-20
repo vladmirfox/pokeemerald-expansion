@@ -54,7 +54,9 @@ script MaguroHarbor_Dojo_EventScript_KoishiDefeated {
 	)
 	closemessage
 
-	setflag(FLAG_BADGE02_GET)
+	setflag(FLAG_BADGE01_GET)
+	setvar(VAR_0x8008, 1)
+	call(Common_EventScript_SetGymTrainers)
 	addvar(VAR_PLAYER_REPUTATION, 5)
 	// Beachbound route is now decaying
 	setvar(VAR_DECAY_BEACHBOUND_ROUTE, 1)
@@ -75,7 +77,7 @@ script MaguroHarbor_Dojo_EventScript_KoishiDefeated {
 	// Volcano quake!
 	setvar(VAR_0x8004, 1)  // vertical pan
 	setvar(VAR_0x8005, 2)  // horizontal pan
-	setvar(VAR_0x8006, 20) // num shakes
+	setvar(VAR_0x8006, 40) // num shakes
 	setvar(VAR_0x8007, 4)  // shake delay
 	special(ShakeCamera)
 	delay(16)
@@ -98,17 +100,19 @@ script MaguroHarbor_Dojo_EventScript_KoishiDefeated {
 
 	specialvar(VAR_RESULT, GetPlayerFacingDirection)
 	if (var(VAR_RESULT) == DIR_WEST) {
-		applymovement(LOCALID_LEADER, moves(walk_right * 3, walk_down * 6, walk_left * 5, walk_down * 3))
-	} else {
 		applymovement(LOCALID_LEADER, moves(walk_down, walk_right * 3, walk_down * 5, walk_left * 5, walk_down * 3))
+	} else {
+		applymovement(LOCALID_LEADER, moves(walk_right * 3, walk_down * 6, walk_left * 5, walk_down * 3))
 	}
 	waitmovement(LOCALID_LEADER)
+	removeobject(LOCALID_LEADER)
+	setflag(FLAG_HIDE_KOISHI)
 
 	release
 	end
 }
 
-// Random trainers
+// Trainers
 
 script MaguroHarbor_Dojo_EventScript_Izumi {
 	trainerbattle_single(
@@ -142,4 +146,44 @@ script MaguroHarbor_Dojo_EventScript_Mizu {
 		// TODO EVA put some actual fish in the pond ffs
 		"These are sophisticated fish. They need peace and quiet to thrive."
 	), MSGBOX_AUTOCLOSE)
+}
+
+script MaguroHarbor_Dojo_EventScript_Advice {
+	lock
+	faceplayer
+	if (flag(FLAG_BADGE01_GET)) {
+		msgbox(format(
+			"You swept me away with that battle!"
+		))
+	} else {
+		msgbox(format(
+			"Hello, young challenger! Are you going to be fighting for your first Token?\p"
+			"Welcome to the Koi Pond Dojo!\p"
+			"Koishi, the Master of this place, favors water-type moves. Her battling style is strong, yet graceful… Sigh…\p"
+			"I am her biggest fan! It's true! Maybe one day, I'll become your biggest fan, who knows?\p"
+			"Go get 'em!"
+		))
+	}
+	release
+}
+
+script MaguroHarbor_Dojo_EventScript_DojoStatue {
+	lockall
+	if (flag(FLAG_BADGE01_GET)) {
+		msgbox(
+			"Dojo of Maguro Harbor\p"
+			"Certified wielders:\n"
+			"Natsuki,"
+			"{PLAYER}",
+			MSGBOX_SIGN
+		)
+	} else {
+		msgbox(
+			"Dojo of Maguro Harbor\p"
+			"Certified wielders:\n"
+			"Natsuki",
+			MSGBOX_SIGN
+		)
+	}
+	releaseall
 }

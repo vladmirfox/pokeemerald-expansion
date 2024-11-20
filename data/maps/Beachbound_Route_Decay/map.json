@@ -20,7 +20,7 @@
     },
     {
       "map": "MAP_HARVEST_SHRINE",
-      "offset": 27,
+      "offset": 34,
       "direction": "up"
     }
   ],
@@ -35,7 +35,7 @@
       "movement_range_y": 7,
       "trainer_type": "TRAINER_TYPE_NORMAL",
       "trainer_sight_or_berry_tree_id": "0",
-      "script": "BeachboundRoute_EventScript_Kin",
+      "script": "BeachboundRoute_Decay_EventScript_Kin",
       "flag": "TRAINER_TYPE_NONE"
     },
     {
@@ -48,7 +48,7 @@
       "movement_range_y": 0,
       "trainer_type": "TRAINER_TYPE_NONE",
       "trainer_sight_or_berry_tree_id": "0",
-      "script": "BeachboundRoute_EventScript_Karu",
+      "script": "BeachboundRoute_Decay_EventScript_Karu",
       "flag": "0"
     },
     {
@@ -147,7 +147,7 @@
       "x": 66,
       "y": 15,
       "elevation": 0,
-      "movement_type": "MOVEMENT_TYPE_FACE_DOWN_AND_RIGHT",
+      "movement_type": "MOVEMENT_TYPE_FACE_DOWN_LEFT_AND_RIGHT",
       "movement_range_x": 0,
       "movement_range_y": 0,
       "trainer_type": "TRAINER_TYPE_NONE",
@@ -166,6 +166,19 @@
       "trainer_type": "TRAINER_TYPE_NONE",
       "trainer_sight_or_berry_tree_id": "0",
       "script": "BeachboundRoute_Decay_EventScript_SamuraiWhatCouldBe",
+      "flag": "0"
+    },
+    {
+      "graphics_id": "OBJ_EVENT_GFX_KOISHI",
+      "x": 39,
+      "y": 16,
+      "elevation": 0,
+      "movement_type": "MOVEMENT_TYPE_FACE_UP_AND_LEFT",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "BeachboundRoute_Decay_EventScript_Koishi",
       "flag": "0"
     }
   ],
@@ -238,7 +251,7 @@
       "elevation": 0,
       "var": "VAR_DECAY_BEACHBOUND_ROUTE",
       "var_value": "3",
-      "script": "BeachboundRoute_Decay_EventScript_BeanTrigger"
+      "script": "BeachboundRoute_Decay_EventScript_BeanTrigger1StepAway"
     },
     {
       "type": "trigger",
@@ -247,7 +260,7 @@
       "elevation": 0,
       "var": "VAR_DECAY_BEACHBOUND_ROUTE",
       "var_value": "3",
-      "script": "BeachboundRoute_Decay_EventScript_BeanTrigger"
+      "script": "BeachboundRoute_Decay_EventScript_BeanTrigger2StepsAway"
     }
   ],
   "bg_events": [

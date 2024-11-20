@@ -15,7 +15,7 @@
   "connections": [
     {
       "map": "MAP_BEACHBOUND_ROUTE",
-      "offset": -27,
+      "offset": -34,
       "direction": "down"
     }
   ],

@@ -15,12 +15,12 @@
   "connections": [
     {
       "map": "MAP_HAVEN_ISLE",
-      "offset": -5,
+      "offset": 0,
       "direction": "left"
     },
     {
       "map": "MAP_HANABI_CITY",
-      "offset": 0,
+      "offset": -10,
       "direction": "right"
     }
   ],

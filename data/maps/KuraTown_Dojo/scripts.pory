@@ -104,17 +104,14 @@ script KuraTown_Dojo_EventScript_Hana {
 	)
 	// specialvar(VAR_RESULT, ShouldTryRematchBattle)
 	// goto_if_eq(VAR_RESULT, TRUE, KuraTown_Dojo_EventScript_HanaRematch)
-	if (!flag(FLAG_RECEIVED_TM_BONSAI_DOJO)) {
-		addvar(VAR_PLAYER_REPUTATION, 5)
-		call(KuraTown_Dojo_EventScript_GiveBulldoze)
-	} else {
-		msgbox(
-			format(
-				"The slow-growing tree becomes the sturdiest. Take your time on your journey, {PLAYER}."
-			),
-			MSGBOX_DEFAULT
-		)
-	}
+
+	msgbox(
+		format(
+			"The slow-growing tree becomes the sturdiest. Take your time on your journey, {PLAYER}."
+		),
+		MSGBOX_DEFAULT
+	)
+
 	release
 	end
 }
@@ -161,7 +158,6 @@ script KuraTown_Dojo_EventScript_GiveBulldoze {
 		),
 		MSGBOX_DEFAULT
 	)
-	setflag(FLAG_RECEIVED_TM_BONSAI_DOJO)
 	return
 }
 

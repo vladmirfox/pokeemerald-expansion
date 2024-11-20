@@ -27,6 +27,11 @@
       "map": "MAP_WINDSWEPT_ROUTE",
       "offset": 16,
       "direction": "up"
+    },
+    {
+      "map": "MAP_BEACHBOUND_ROUTE",
+      "offset": 0,
+      "direction": "right"
     }
   ],
   "object_events": [

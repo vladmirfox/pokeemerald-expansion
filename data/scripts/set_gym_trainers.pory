@@ -1,0 +1,101 @@
+script Common_EventScript_SetGymTrainers {
+	switch(var(VAR_0x8008)) {
+		case 1: call(KoiPond_Dojo_SetGymTrainers)
+		case 2: call(Bonsai_Dojo_SetGymTrainers)
+		case 3: call(MauvilleCity_Gym_SetGymTrainers)
+		case 4: call(LavaridgeTown_Gym_SetGymTrainers)
+		case 5: call(PetalburgCity_Gym_SetGymTrainers)
+		case 6: call(FortreeCity_Gym_SetGymTrainers)
+		case 7: call(MossdeepCity_Gym_SetGymTrainers)
+		case 8: call(SootopolisCity_Gym_SetGymTrainers)
+	}
+}
+
+script KoiPond_Dojo_SetGymTrainers {
+	settrainerflag(TRAINER_IZUMI)
+	settrainerflag(TRAINER_REN)
+	settrainerflag(TRAINER_MIZU)
+	return
+}
+
+script Bonsai_Dojo_SetGymTrainers {
+	settrainerflag(TRAINER_TAKAO)
+	settrainerflag(TRAINER_JOCELYN)
+	settrainerflag(TRAINER_LAURA)
+	settrainerflag(TRAINER_BRENDEN)
+	settrainerflag(TRAINER_CRISTIAN)
+	settrainerflag(TRAINER_LILITH)
+	return
+}
+
+script MauvilleCity_Gym_SetGymTrainers {
+	settrainerflag(TRAINER_KIRK)
+	settrainerflag(TRAINER_SHAWN)
+	settrainerflag(TRAINER_BEN)
+	settrainerflag(TRAINER_VIVIAN)
+	settrainerflag(TRAINER_ANGELO)
+	return
+}
+
+script LavaridgeTown_Gym_SetGymTrainers {
+	settrainerflag(TRAINER_COLE)
+	settrainerflag(TRAINER_AXLE)
+	settrainerflag(TRAINER_KEEGAN)
+	settrainerflag(TRAINER_GERALD)
+	settrainerflag(TRAINER_DANIELLE)
+	settrainerflag(TRAINER_JACE)
+	settrainerflag(TRAINER_JEFF)
+	settrainerflag(TRAINER_ELI)
+	return
+}
+
+script PetalburgCity_Gym_SetGymTrainers {
+	settrainerflag(TRAINER_RANDALL)
+	settrainerflag(TRAINER_PARKER)
+	settrainerflag(TRAINER_GEORGE)
+	settrainerflag(TRAINER_BERKE)
+	settrainerflag(TRAINER_MARY)
+	settrainerflag(TRAINER_ALEXIA)
+	settrainerflag(TRAINER_JODY)
+	return
+}
+
+script FortreeCity_Gym_SetGymTrainers {
+	settrainerflag(TRAINER_JARED)
+	settrainerflag(TRAINER_FLINT)
+	settrainerflag(TRAINER_ASHLEY)
+	settrainerflag(TRAINER_EDWARDO)
+	settrainerflag(TRAINER_HUMBERTO)
+	settrainerflag(TRAINER_DARIUS)
+	return
+}
+
+script MossdeepCity_Gym_SetGymTrainers {
+	settrainerflag(TRAINER_PRESTON)
+	settrainerflag(TRAINER_VIRGIL)
+	settrainerflag(TRAINER_BLAKE)
+	settrainerflag(TRAINER_HANNAH)
+	settrainerflag(TRAINER_SAMANTHA)
+	settrainerflag(TRAINER_MAURA)
+	settrainerflag(TRAINER_SYLVIA)
+	settrainerflag(TRAINER_NATE)
+	settrainerflag(TRAINER_KATHLEEN)
+	settrainerflag(TRAINER_CLIFFORD)
+	settrainerflag(TRAINER_MACEY)
+	settrainerflag(TRAINER_NICHOLAS)
+	return
+}
+
+script SootopolisCity_Gym_SetGymTrainers {
+	settrainerflag(TRAINER_ANDREA)
+	settrainerflag(TRAINER_CRISSY)
+	settrainerflag(TRAINER_BRIANNA)
+	settrainerflag(TRAINER_CONNIE)
+	settrainerflag(TRAINER_BRIDGET)
+	settrainerflag(TRAINER_OLIVIA)
+	settrainerflag(TRAINER_TIFFANY)
+	settrainerflag(TRAINER_BETHANY)
+	settrainerflag(TRAINER_ANNIKA)
+	settrainerflag(TRAINER_DAPHNE)
+	return
+}
