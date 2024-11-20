@@ -237,8 +237,8 @@ u32 GetStringBadness(struct StringLine *stringLines, u32 numLines, u32 maxWidth)
                 extraSpaceWidth++;
             lineWidths[i] += extraSpaceWidth*(stringLines[i].numWords-1);
         }
-        badness += (maxWidth - lineWidths[i])*BADNESS_UNFILLED;
-        u32 baseBadness = (widestWidth - lineWidths[i])*BADNESS_JAGGED;
+        badness += (maxWidth - lineWidths[i]) * BADNESS_UNFILLED;
+        u32 baseBadness = (widestWidth - lineWidths[i]) * BADNESS_JAGGED;
         badness += baseBadness*baseBadness;
         stringLines[i].extraSpaceWidth = extraSpaceWidth;
     }
