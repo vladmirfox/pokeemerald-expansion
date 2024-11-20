@@ -233,7 +233,7 @@ u32 GetStringBadness(struct StringLine *stringLines, u32 numLines, u32 maxWidth)
         {
             //  Not the best way to do this, ideally a line should be allowed to get longer than current widest
             //  line. But then the widest line has to be recalculated.
-            while (lineWidths[i] + (extraSpaceWidth + 1)*(stringLines[i].numWords-1) < widestWidth && extraSpaceWidth < MAX_SPACE_WIDTH)
+            while (lineWidths[i] + (extraSpaceWidth + 1) * (stringLines[i].numWords - 1) < widestWidth && extraSpaceWidth < MAX_SPACE_WIDTH)
                 extraSpaceWidth++;
             lineWidths[i] += extraSpaceWidth*(stringLines[i].numWords-1);
         }
