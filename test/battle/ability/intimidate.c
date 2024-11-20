@@ -246,7 +246,7 @@ DOUBLE_BATTLE_TEST("Intimidate is not going to trigger if a mon switches out thr
     }
 }
 
-SINGLE_BATTLE_TEST("Intimidate activates when it's no longer effected by Neutralizing Gas")
+SINGLE_BATTLE_TEST("Intimidate activates when it's no longer effected by Neutralizing Gas - switching out")
 {
     GIVEN {
         PLAYER(SPECIES_WEEZING) { Ability(ABILITY_NEUTRALIZING_GAS); }
@@ -256,10 +256,83 @@ SINGLE_BATTLE_TEST("Intimidate activates when it's no longer effected by Neutral
         TURN { SWITCH(player, 1); }
     } SCENE {
         ABILITY_POPUP(player, ABILITY_NEUTRALIZING_GAS);
-        MESSAGE("Neutralizing Gas filled the area!");
+        MESSAGE("Neutralizing gas filled the area!");
         SWITCH_OUT_MESSAGE("Weezing");
-        MESSAGE("The effects of Neutralizing Gas wore off!");
+        MESSAGE("The effects of the neutralizing gas wore off!");
         ABILITY_POPUP(opponent, ABILITY_INTIMIDATE);
         SEND_IN_MESSAGE("Wobbuffet");
     }
 }
+
+SINGLE_BATTLE_TEST("Intimidate activates when it's no longer effected by Neutralizing Gas - switching moves")
+{
+    u32 move;
+    PARAMETRIZE { move = MOVE_U_TURN; }
+    PARAMETRIZE { move = MOVE_HEALING_WISH; }
+    PARAMETRIZE { move = MOVE_BATON_PASS; }
+    GIVEN {
+        PLAYER(SPECIES_WEEZING) { Ability(ABILITY_NEUTRALIZING_GAS); }
+        PLAYER(SPECIES_WOBBUFFET) { HP(1); }
+        OPPONENT(SPECIES_ARBOK) { Ability(ABILITY_INTIMIDATE); }
+    } WHEN {
+        TURN { MOVE(player, move); SEND_OUT(player, 1); }
+    } SCENE {
+        ABILITY_POPUP(player, ABILITY_NEUTRALIZING_GAS);
+        MESSAGE("Neutralizing gas filled the area!");
+        MESSAGE("The effects of the neutralizing gas wore off!");
+        ABILITY_POPUP(opponent, ABILITY_INTIMIDATE);
+        SEND_IN_MESSAGE("Wobbuffet");
+    } THEN {
+        if (move == MOVE_HEALING_WISH)
+            EXPECT_EQ(player->hp, player->maxHP);
+    }
+}
+
+SINGLE_BATTLE_TEST("Intimidate activates when it's no longer effected by Neutralizing Gas - opponent caused switches")
+{
+    u32 move, item;
+    PARAMETRIZE { move = MOVE_TACKLE; item = ITEM_EJECT_BUTTON; }
+    PARAMETRIZE { move = MOVE_GROWL; item = ITEM_EJECT_PACK; }
+    PARAMETRIZE { move = MOVE_ROAR; item = ITEM_NONE; }
+    PARAMETRIZE { move = MOVE_DRAGON_TAIL; item = ITEM_NONE }
+    GIVEN {
+        PLAYER(SPECIES_WEEZING) { Ability(ABILITY_NEUTRALIZING_GAS); Item(ITEM_EJECT_BUTTON); }
+        PLAYER(SPECIES_WOBBUFFET);
+        OPPONENT(SPECIES_ARBOK) { Ability(ABILITY_INTIMIDATE); }
+    } WHEN {
+        if (item != ITEM_NONE) {
+            TURN { MOVE(opponent, move); SEND_OUT(player, 1); }
+        } else {
+            TURN { MOVE(opponent, move); }
+        }
+    } SCENE {
+        ABILITY_POPUP(player, ABILITY_NEUTRALIZING_GAS);
+        MESSAGE("Neutralizing gas filled the area!");
+        MESSAGE("The effects of the neutralizing gas wore off!");
+        ABILITY_POPUP(opponent, ABILITY_INTIMIDATE);
+        if (item != ITEM_NONE) {
+            SEND_IN_MESSAGE("Wobbuffet");
+        } else {
+            MESSAGE("Wobbuffet was dragged out!");
+        }
+    }
+}
+
+SINGLE_BATTLE_TEST("Intimidate activates when it's no longer effected by Neutralizing Gas - fainted")
+{
+    GIVEN {
+        PLAYER(SPECIES_WEEZING) { Ability(ABILITY_NEUTRALIZING_GAS); HP(1); }
+        PLAYER(SPECIES_WOBBUFFET);
+        OPPONENT(SPECIES_ARBOK) { Ability(ABILITY_INTIMIDATE); }
+    } WHEN {
+        TURN { MOVE(opponent, MOVE_FELL_STINGER); SEND_OUT(player, 1); }
+    } SCENE {
+        ABILITY_POPUP(player, ABILITY_NEUTRALIZING_GAS);
+        MESSAGE("Neutralizing gas filled the area!");
+        MESSAGE("The effects of the neutralizing gas wore off!");
+        ABILITY_POPUP(opponent, ABILITY_INTIMIDATE);
+        MESSAGE("The opposing Arbok's Attack drastically rose!");
+        SEND_IN_MESSAGE("Wobbuffet");
+    }
+}
+
