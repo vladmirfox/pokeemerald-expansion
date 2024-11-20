@@ -20,7 +20,7 @@ void BreakStringKnuth(u8 *src, u32 maxWidth, u32 screenLines, u8 fontId)
     u8 *currSrc = src;
     while (src[currIndex] != EOS)
     {
-        if (src[currIndex] == 0xFB)
+        if (src[currIndex] == CHAR_PROMPT_CLEAR)
         {
             u8 replacedChar = src[currIndex + 1];
             src[currIndex + 1] = EOS;
@@ -260,9 +260,9 @@ void BuildNewString(struct StringLine *stringLines, u32 numLines, u32 maxLines, 
         {
             //  Add the appropriate line break depending on line number
             if (lineIndex >= maxLines - 1 && numLines > maxLines)
-                str[srcCharIndex] = 0xFA;
+                str[srcCharIndex] = CHAR_PROMPT_SCROLL;
             else
-                str[srcCharIndex] = 0xFE;
+                str[srcCharIndex] = CHAR_NEWLINE;
             srcCharIndex++;
         }
     }
@@ -273,7 +273,7 @@ bool32 StringHasManualBreaks(u8 *src)
     u32 charIndex = 0;
     while (src[charIndex] != EOS)
     {
-        if (src[charIndex] == 0xFA || src[charIndex] == 0xFE)
+        if (src[charIndex] == CHAR_PROMPT_SCROLL || src[charIndex] == CHAR_NEWLINE)
             return TRUE;
         charIndex++;
     }
