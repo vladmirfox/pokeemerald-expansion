@@ -264,7 +264,7 @@ SINGLE_BATTLE_TEST("Intimidate activates when it's no longer effected by Neutral
     }
 }
 
-SINGLE_BATTLE_TEST("Intimidate activates when it's no longer effected by Neutralizing Gas - switching moves")
+SINGLE_BATTLE_TEST("Intimidate activates when it's no longer affected by Neutralizing Gas - switching moves")
 {
     u32 move;
     PARAMETRIZE { move = MOVE_U_TURN; }
@@ -288,7 +288,7 @@ SINGLE_BATTLE_TEST("Intimidate activates when it's no longer effected by Neutral
     }
 }
 
-SINGLE_BATTLE_TEST("Intimidate activates when it's no longer effected by Neutralizing Gas - opponent caused switches")
+SINGLE_BATTLE_TEST("Intimidate activates when it's no longer affected by Neutralizing Gas - opponent caused switches")
 {
     u32 move, item;
     PARAMETRIZE { move = MOVE_TACKLE; item = ITEM_EJECT_BUTTON; }
@@ -318,7 +318,7 @@ SINGLE_BATTLE_TEST("Intimidate activates when it's no longer effected by Neutral
     }
 }
 
-SINGLE_BATTLE_TEST("Intimidate activates when it's no longer effected by Neutralizing Gas - fainted")
+SINGLE_BATTLE_TEST("Intimidate activates when it's no longer affected by Neutralizing Gas - fainted")
 {
     GIVEN {
         PLAYER(SPECIES_WEEZING) { Ability(ABILITY_NEUTRALIZING_GAS); HP(1); }
@@ -331,7 +331,7 @@ SINGLE_BATTLE_TEST("Intimidate activates when it's no longer effected by Neutral
         MESSAGE("Neutralizing Gas filled the area!");
         MESSAGE("The effects of Neutralizing Gas wore off!");
         ABILITY_POPUP(opponent, ABILITY_INTIMIDATE);
-        MESSAGE("The opposing Arbok's Attack drastically rose!");
+        ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_STATS_CHANGE, opponent);
         SEND_IN_MESSAGE("Wobbuffet");
     }
 }
