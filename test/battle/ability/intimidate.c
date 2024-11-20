@@ -294,9 +294,9 @@ SINGLE_BATTLE_TEST("Intimidate activates when it's no longer effected by Neutral
     PARAMETRIZE { move = MOVE_TACKLE; item = ITEM_EJECT_BUTTON; }
     PARAMETRIZE { move = MOVE_GROWL; item = ITEM_EJECT_PACK; }
     PARAMETRIZE { move = MOVE_ROAR; item = ITEM_NONE; }
-    PARAMETRIZE { move = MOVE_DRAGON_TAIL; item = ITEM_NONE }
+    PARAMETRIZE { move = MOVE_DRAGON_TAIL; item = ITEM_NONE; }
     GIVEN {
-        PLAYER(SPECIES_WEEZING) { Ability(ABILITY_NEUTRALIZING_GAS); Item(ITEM_EJECT_BUTTON); }
+        PLAYER(SPECIES_WEEZING) { Ability(ABILITY_NEUTRALIZING_GAS); Item(item); }
         PLAYER(SPECIES_WOBBUFFET);
         OPPONENT(SPECIES_ARBOK) { Ability(ABILITY_INTIMIDATE); }
     } WHEN {
