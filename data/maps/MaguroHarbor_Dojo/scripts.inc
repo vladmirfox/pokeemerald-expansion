@@ -87,7 +87,11 @@ MaguroHarbor_Dojo_EventScript_KoishiDefeated::
 MaguroHarbor_Dojo_EventScript_KoishiDefeated_1:
 # 107 "data/maps/MaguroHarbor_Dojo/scripts.pory"
 	waitmovement 4
+# 108 "data/maps/MaguroHarbor_Dojo/scripts.pory"
+	removeobject 4
 # 109 "data/maps/MaguroHarbor_Dojo/scripts.pory"
+	setflag FLAG_HIDE_KOISHI
+# 111 "data/maps/MaguroHarbor_Dojo/scripts.pory"
 	release
 	end
 
@@ -98,63 +102,63 @@ MaguroHarbor_Dojo_EventScript_KoishiDefeated_2:
 
 
 MaguroHarbor_Dojo_EventScript_Izumi::
-# 116 "data/maps/MaguroHarbor_Dojo/scripts.pory"
+# 118 "data/maps/MaguroHarbor_Dojo/scripts.pory"
 	trainerbattle_single TRAINER_IZUMI, MaguroHarbor_Dojo_EventScript_Izumi_Text_0, MaguroHarbor_Dojo_EventScript_Izumi_Text_1
-# 121 "data/maps/MaguroHarbor_Dojo/scripts.pory"
+# 123 "data/maps/MaguroHarbor_Dojo/scripts.pory"
 	msgbox MaguroHarbor_Dojo_EventScript_Izumi_Text_2, MSGBOX_AUTOCLOSE
 	return
 
 
 MaguroHarbor_Dojo_EventScript_Ren::
-# 127 "data/maps/MaguroHarbor_Dojo/scripts.pory"
+# 129 "data/maps/MaguroHarbor_Dojo/scripts.pory"
 	trainerbattle_single TRAINER_REN, MaguroHarbor_Dojo_EventScript_Ren_Text_0, MaguroHarbor_Dojo_EventScript_Ren_Text_1
-# 132 "data/maps/MaguroHarbor_Dojo/scripts.pory"
+# 134 "data/maps/MaguroHarbor_Dojo/scripts.pory"
 	msgbox MaguroHarbor_Dojo_EventScript_Ren_Text_2, MSGBOX_AUTOCLOSE
 	return
 
 
 MaguroHarbor_Dojo_EventScript_Mizu::
-# 138 "data/maps/MaguroHarbor_Dojo/scripts.pory"
+# 140 "data/maps/MaguroHarbor_Dojo/scripts.pory"
 	trainerbattle_single TRAINER_MIZU, MaguroHarbor_Dojo_EventScript_Mizu_Text_0, MaguroHarbor_Dojo_EventScript_Mizu_Text_1
-# 143 "data/maps/MaguroHarbor_Dojo/scripts.pory"
+# 145 "data/maps/MaguroHarbor_Dojo/scripts.pory"
 	msgbox MaguroHarbor_Dojo_EventScript_Mizu_Text_2, MSGBOX_AUTOCLOSE
 	return
 
 
 MaguroHarbor_Dojo_EventScript_Advice::
-# 150 "data/maps/MaguroHarbor_Dojo/scripts.pory"
-	lock
-# 151 "data/maps/MaguroHarbor_Dojo/scripts.pory"
-	faceplayer
 # 152 "data/maps/MaguroHarbor_Dojo/scripts.pory"
+	lock
+# 153 "data/maps/MaguroHarbor_Dojo/scripts.pory"
+	faceplayer
+# 154 "data/maps/MaguroHarbor_Dojo/scripts.pory"
 	goto_if_set FLAG_BADGE01_GET, MaguroHarbor_Dojo_EventScript_Advice_2
-# 157 "data/maps/MaguroHarbor_Dojo/scripts.pory"
+# 159 "data/maps/MaguroHarbor_Dojo/scripts.pory"
 	msgbox MaguroHarbor_Dojo_EventScript_Advice_Text_1
 MaguroHarbor_Dojo_EventScript_Advice_1:
-# 165 "data/maps/MaguroHarbor_Dojo/scripts.pory"
+# 167 "data/maps/MaguroHarbor_Dojo/scripts.pory"
 	release
 	return
 
 MaguroHarbor_Dojo_EventScript_Advice_2:
-# 153 "data/maps/MaguroHarbor_Dojo/scripts.pory"
+# 155 "data/maps/MaguroHarbor_Dojo/scripts.pory"
 	msgbox MaguroHarbor_Dojo_EventScript_Advice_Text_0
 	goto MaguroHarbor_Dojo_EventScript_Advice_1
 
 
 MaguroHarbor_Dojo_EventScript_DojoStatue::
-# 169 "data/maps/MaguroHarbor_Dojo/scripts.pory"
+# 171 "data/maps/MaguroHarbor_Dojo/scripts.pory"
 	lockall
-# 170 "data/maps/MaguroHarbor_Dojo/scripts.pory"
+# 172 "data/maps/MaguroHarbor_Dojo/scripts.pory"
 	goto_if_set FLAG_BADGE01_GET, MaguroHarbor_Dojo_EventScript_DojoStatue_2
-# 179 "data/maps/MaguroHarbor_Dojo/scripts.pory"
+# 181 "data/maps/MaguroHarbor_Dojo/scripts.pory"
 	msgbox MaguroHarbor_Dojo_EventScript_DojoStatue_Text_1, MSGBOX_SIGN
 MaguroHarbor_Dojo_EventScript_DojoStatue_1:
-# 186 "data/maps/MaguroHarbor_Dojo/scripts.pory"
+# 188 "data/maps/MaguroHarbor_Dojo/scripts.pory"
 	releaseall
 	return
 
 MaguroHarbor_Dojo_EventScript_DojoStatue_2:
-# 171 "data/maps/MaguroHarbor_Dojo/scripts.pory"
+# 173 "data/maps/MaguroHarbor_Dojo/scripts.pory"
 	msgbox MaguroHarbor_Dojo_EventScript_DojoStatue_Text_0, MSGBOX_SIGN
 	goto MaguroHarbor_Dojo_EventScript_DojoStatue_1
 
@@ -301,48 +305,48 @@ MaguroHarbor_Dojo_EventScript_KoishiDefeated_Text_4:
 	.string "everyone's alright.$"
 
 MaguroHarbor_Dojo_EventScript_Izumi_Text_0:
-# 118 "data/maps/MaguroHarbor_Dojo/scripts.pory"
+# 120 "data/maps/MaguroHarbor_Dojo/scripts.pory"
 	.string "My Pokémon is the daintiest there is!$"
 
 MaguroHarbor_Dojo_EventScript_Izumi_Text_1:
-# 119 "data/maps/MaguroHarbor_Dojo/scripts.pory"
+# 121 "data/maps/MaguroHarbor_Dojo/scripts.pory"
 	.string "My poor Goldeen!$"
 
 MaguroHarbor_Dojo_EventScript_Izumi_Text_2:
-# 122 "data/maps/MaguroHarbor_Dojo/scripts.pory"
+# 124 "data/maps/MaguroHarbor_Dojo/scripts.pory"
 	.string "You'll go far. I can tell.$"
 
 MaguroHarbor_Dojo_EventScript_Ren_Text_0:
-# 129 "data/maps/MaguroHarbor_Dojo/scripts.pory"
+# 131 "data/maps/MaguroHarbor_Dojo/scripts.pory"
 	.string "Come in! The water's nice and toasty!$"
 
 MaguroHarbor_Dojo_EventScript_Ren_Text_1:
-# 130 "data/maps/MaguroHarbor_Dojo/scripts.pory"
+# 132 "data/maps/MaguroHarbor_Dojo/scripts.pory"
 	.string "Nooo!$"
 
 MaguroHarbor_Dojo_EventScript_Ren_Text_2:
-# 133 "data/maps/MaguroHarbor_Dojo/scripts.pory"
+# 135 "data/maps/MaguroHarbor_Dojo/scripts.pory"
 	.string "I l-lied. I'm f-f-freezing in h-here.$"
 
 MaguroHarbor_Dojo_EventScript_Mizu_Text_0:
-# 140 "data/maps/MaguroHarbor_Dojo/scripts.pory"
+# 142 "data/maps/MaguroHarbor_Dojo/scripts.pory"
 	.string "Do not disturb the koi pond!$"
 
 MaguroHarbor_Dojo_EventScript_Mizu_Text_1:
-# 141 "data/maps/MaguroHarbor_Dojo/scripts.pory"
+# 143 "data/maps/MaguroHarbor_Dojo/scripts.pory"
 	.string "Stop making so much noise!$"
 
 MaguroHarbor_Dojo_EventScript_Mizu_Text_2:
-# 145 "data/maps/MaguroHarbor_Dojo/scripts.pory"
+# 147 "data/maps/MaguroHarbor_Dojo/scripts.pory"
 	.string "These are sophisticated fish. They\n"
 	.string "need peace and quiet to thrive.$"
 
 MaguroHarbor_Dojo_EventScript_Advice_Text_0:
-# 154 "data/maps/MaguroHarbor_Dojo/scripts.pory"
+# 156 "data/maps/MaguroHarbor_Dojo/scripts.pory"
 	.string "You swept me away with that battle!$"
 
 MaguroHarbor_Dojo_EventScript_Advice_Text_1:
-# 158 "data/maps/MaguroHarbor_Dojo/scripts.pory"
+# 160 "data/maps/MaguroHarbor_Dojo/scripts.pory"
 	.string "Hello, young challenger! Are you going\n"
 	.string "to be fighting for your first Token?\p"
 	.string "Welcome to the Koi Pond Dojo!\p"
@@ -356,14 +360,14 @@ MaguroHarbor_Dojo_EventScript_Advice_Text_1:
 	.string "Go get 'em!$"
 
 MaguroHarbor_Dojo_EventScript_DojoStatue_Text_0:
-# 172 "data/maps/MaguroHarbor_Dojo/scripts.pory"
+# 174 "data/maps/MaguroHarbor_Dojo/scripts.pory"
 	.string "Dojo of Maguro Harbor\p"
 	.string "Certified wielders:\n"
 	.string "Natsuki,"
 	.string "{PLAYER}$"
 
 MaguroHarbor_Dojo_EventScript_DojoStatue_Text_1:
-# 180 "data/maps/MaguroHarbor_Dojo/scripts.pory"
+# 182 "data/maps/MaguroHarbor_Dojo/scripts.pory"
 	.string "Dojo of Maguro Harbor\p"
 	.string "Certified wielders:\n"
 	.string "Natsuki$"

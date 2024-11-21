@@ -1,6 +1,8 @@
 const LOCALID_KARATEKA = 6
 const LOCALID_GUARD = 8
 const LOCALID_RIVAL = 10
+const LOCALID_MAMA = 1
+const LOCALID_KUKU = 2
 
 mapscripts SakuTown_MapScripts {
 	MAP_SCRIPT_ON_TRANSITION {

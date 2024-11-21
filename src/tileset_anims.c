@@ -1234,42 +1234,6 @@ const u16 gTilesetAnims_PorytilesPrimaryTutorial_Sea_Frame5[] = INCBIN_U16("data
 const u16 gTilesetAnims_PorytilesPrimaryTutorial_Sea_Frame6[] = INCBIN_U16("data/tilesets/primary/porytiles_primary_tutorial/anim/sea/06.4bpp");
 const u16 gTilesetAnims_PorytilesPrimaryTutorial_Sea_Frame7[] = INCBIN_U16("data/tilesets/primary/porytiles_primary_tutorial/anim/sea/07.4bpp");
 
-const u16 gTilesetAnims_PorytilesPrimaryTutorial_SeaDark_Frame0[] = INCBIN_U16("data/tilesets/primary/porytiles_primary_tutorial/anim/sea_dark/00.4bpp");
-const u16 gTilesetAnims_PorytilesPrimaryTutorial_SeaDark_Frame1[] = INCBIN_U16("data/tilesets/primary/porytiles_primary_tutorial/anim/sea_dark/01.4bpp");
-const u16 gTilesetAnims_PorytilesPrimaryTutorial_SeaDark_Frame2[] = INCBIN_U16("data/tilesets/primary/porytiles_primary_tutorial/anim/sea_dark/02.4bpp");
-const u16 gTilesetAnims_PorytilesPrimaryTutorial_SeaDark_Frame3[] = INCBIN_U16("data/tilesets/primary/porytiles_primary_tutorial/anim/sea_dark/03.4bpp");
-const u16 gTilesetAnims_PorytilesPrimaryTutorial_SeaDark_Frame4[] = INCBIN_U16("data/tilesets/primary/porytiles_primary_tutorial/anim/sea_dark/04.4bpp");
-const u16 gTilesetAnims_PorytilesPrimaryTutorial_SeaDark_Frame5[] = INCBIN_U16("data/tilesets/primary/porytiles_primary_tutorial/anim/sea_dark/05.4bpp");
-const u16 gTilesetAnims_PorytilesPrimaryTutorial_SeaDark_Frame6[] = INCBIN_U16("data/tilesets/primary/porytiles_primary_tutorial/anim/sea_dark/06.4bpp");
-const u16 gTilesetAnims_PorytilesPrimaryTutorial_SeaDark_Frame7[] = INCBIN_U16("data/tilesets/primary/porytiles_primary_tutorial/anim/sea_dark/07.4bpp");
-
-const u16 gTilesetAnims_PorytilesPrimaryTutorial_SeaDarkCorner_Frame0[] = INCBIN_U16("data/tilesets/primary/porytiles_primary_tutorial/anim/sea_dark_light/00.4bpp");
-const u16 gTilesetAnims_PorytilesPrimaryTutorial_SeaDarkCorner_Frame1[] = INCBIN_U16("data/tilesets/primary/porytiles_primary_tutorial/anim/sea_dark_light/01.4bpp");
-const u16 gTilesetAnims_PorytilesPrimaryTutorial_SeaDarkCorner_Frame2[] = INCBIN_U16("data/tilesets/primary/porytiles_primary_tutorial/anim/sea_dark_light/02.4bpp");
-const u16 gTilesetAnims_PorytilesPrimaryTutorial_SeaDarkCorner_Frame3[] = INCBIN_U16("data/tilesets/primary/porytiles_primary_tutorial/anim/sea_dark_light/03.4bpp");
-const u16 gTilesetAnims_PorytilesPrimaryTutorial_SeaDarkCorner_Frame4[] = INCBIN_U16("data/tilesets/primary/porytiles_primary_tutorial/anim/sea_dark_light/04.4bpp");
-const u16 gTilesetAnims_PorytilesPrimaryTutorial_SeaDarkCorner_Frame5[] = INCBIN_U16("data/tilesets/primary/porytiles_primary_tutorial/anim/sea_dark_light/05.4bpp");
-const u16 gTilesetAnims_PorytilesPrimaryTutorial_SeaDarkCorner_Frame6[] = INCBIN_U16("data/tilesets/primary/porytiles_primary_tutorial/anim/sea_dark_light/06.4bpp");
-const u16 gTilesetAnims_PorytilesPrimaryTutorial_SeaDarkCorner_Frame7[] = INCBIN_U16("data/tilesets/primary/porytiles_primary_tutorial/anim/sea_dark_light/07.4bpp");
-
-const u16 gTilesetAnims_PorytilesPrimaryTutorial_Beach_Frame0[] = INCBIN_U16("data/tilesets/primary/porytiles_primary_tutorial/anim/beach/00.4bpp");
-const u16 gTilesetAnims_PorytilesPrimaryTutorial_Beach_Frame1[] = INCBIN_U16("data/tilesets/primary/porytiles_primary_tutorial/anim/beach/01.4bpp");
-const u16 gTilesetAnims_PorytilesPrimaryTutorial_Beach_Frame2[] = INCBIN_U16("data/tilesets/primary/porytiles_primary_tutorial/anim/beach/02.4bpp");
-const u16 gTilesetAnims_PorytilesPrimaryTutorial_Beach_Frame3[] = INCBIN_U16("data/tilesets/primary/porytiles_primary_tutorial/anim/beach/03.4bpp");
-const u16 gTilesetAnims_PorytilesPrimaryTutorial_Beach_Frame4[] = INCBIN_U16("data/tilesets/primary/porytiles_primary_tutorial/anim/beach/04.4bpp");
-const u16 gTilesetAnims_PorytilesPrimaryTutorial_Beach_Frame5[] = INCBIN_U16("data/tilesets/primary/porytiles_primary_tutorial/anim/beach/05.4bpp");
-const u16 gTilesetAnims_PorytilesPrimaryTutorial_Beach_Frame6[] = INCBIN_U16("data/tilesets/primary/porytiles_primary_tutorial/anim/beach/06.4bpp");
-const u16 gTilesetAnims_PorytilesPrimaryTutorial_Beach_Frame7[] = INCBIN_U16("data/tilesets/primary/porytiles_primary_tutorial/anim/beach/07.4bpp");
-
-const u16 gTilesetAnims_PorytilesPrimaryTutorial_SeaRock_Frame0[] = INCBIN_U16("data/tilesets/primary/porytiles_primary_tutorial/anim/sea_rock/00.4bpp");
-const u16 gTilesetAnims_PorytilesPrimaryTutorial_SeaRock_Frame1[] = INCBIN_U16("data/tilesets/primary/porytiles_primary_tutorial/anim/sea_rock/01.4bpp");
-const u16 gTilesetAnims_PorytilesPrimaryTutorial_SeaRock_Frame2[] = INCBIN_U16("data/tilesets/primary/porytiles_primary_tutorial/anim/sea_rock/02.4bpp");
-const u16 gTilesetAnims_PorytilesPrimaryTutorial_SeaRock_Frame3[] = INCBIN_U16("data/tilesets/primary/porytiles_primary_tutorial/anim/sea_rock/03.4bpp");
-const u16 gTilesetAnims_PorytilesPrimaryTutorial_SeaRock_Frame4[] = INCBIN_U16("data/tilesets/primary/porytiles_primary_tutorial/anim/sea_rock/04.4bpp");
-const u16 gTilesetAnims_PorytilesPrimaryTutorial_SeaRock_Frame5[] = INCBIN_U16("data/tilesets/primary/porytiles_primary_tutorial/anim/sea_rock/05.4bpp");
-const u16 gTilesetAnims_PorytilesPrimaryTutorial_SeaRock_Frame6[] = INCBIN_U16("data/tilesets/primary/porytiles_primary_tutorial/anim/sea_rock/06.4bpp");
-const u16 gTilesetAnims_PorytilesPrimaryTutorial_SeaRock_Frame7[] = INCBIN_U16("data/tilesets/primary/porytiles_primary_tutorial/anim/sea_rock/07.4bpp");
-
 const u16 gTilesetAnims_PorytilesPrimaryTutorial_FlowerDandelionWhite_Frame0[] = INCBIN_U16("data/tilesets/primary/porytiles_primary_tutorial/anim/flower_dandelion_white/00.4bpp");
 const u16 gTilesetAnims_PorytilesPrimaryTutorial_FlowerDandelionWhite_Frame1[] = INCBIN_U16("data/tilesets/primary/porytiles_primary_tutorial/anim/flower_dandelion_white/01.4bpp");
 const u16 gTilesetAnims_PorytilesPrimaryTutorial_FlowerDandelionWhite_Frame2[] = INCBIN_U16("data/tilesets/primary/porytiles_primary_tutorial/anim/flower_dandelion_white/02.4bpp");
@@ -1296,50 +1260,6 @@ const u16 *const gTilesetAnims_PorytilesPrimaryTutorial_Sea[] = {
     gTilesetAnims_PorytilesPrimaryTutorial_Sea_Frame7,
 };
 
-const u16 *const gTilesetAnims_PorytilesPrimaryTutorial_SeaDark[] = {
-    gTilesetAnims_PorytilesPrimaryTutorial_SeaDark_Frame0,
-    gTilesetAnims_PorytilesPrimaryTutorial_SeaDark_Frame1,
-    gTilesetAnims_PorytilesPrimaryTutorial_SeaDark_Frame2,
-    gTilesetAnims_PorytilesPrimaryTutorial_SeaDark_Frame3,
-    gTilesetAnims_PorytilesPrimaryTutorial_SeaDark_Frame4,
-    gTilesetAnims_PorytilesPrimaryTutorial_SeaDark_Frame5,
-    gTilesetAnims_PorytilesPrimaryTutorial_SeaDark_Frame6,
-    gTilesetAnims_PorytilesPrimaryTutorial_SeaDark_Frame7,
-};
-
-const u16 *const gTilesetAnims_PorytilesPrimaryTutorial_SeaDarkCorner[] = {
-    gTilesetAnims_PorytilesPrimaryTutorial_SeaDarkCorner_Frame0,
-    gTilesetAnims_PorytilesPrimaryTutorial_SeaDarkCorner_Frame1,
-    gTilesetAnims_PorytilesPrimaryTutorial_SeaDarkCorner_Frame2,
-    gTilesetAnims_PorytilesPrimaryTutorial_SeaDarkCorner_Frame3,
-    gTilesetAnims_PorytilesPrimaryTutorial_SeaDarkCorner_Frame4,
-    gTilesetAnims_PorytilesPrimaryTutorial_SeaDarkCorner_Frame5,
-    gTilesetAnims_PorytilesPrimaryTutorial_SeaDarkCorner_Frame6,
-    gTilesetAnims_PorytilesPrimaryTutorial_SeaDarkCorner_Frame7,
-};
-
-const u16 *const gTilesetAnims_PorytilesPrimaryTutorial_Beach[] = {
-    gTilesetAnims_PorytilesPrimaryTutorial_Beach_Frame0,
-    gTilesetAnims_PorytilesPrimaryTutorial_Beach_Frame1,
-    gTilesetAnims_PorytilesPrimaryTutorial_Beach_Frame2,
-    gTilesetAnims_PorytilesPrimaryTutorial_Beach_Frame3,
-    gTilesetAnims_PorytilesPrimaryTutorial_Beach_Frame4,
-    gTilesetAnims_PorytilesPrimaryTutorial_Beach_Frame5,
-    gTilesetAnims_PorytilesPrimaryTutorial_Beach_Frame6,
-    gTilesetAnims_PorytilesPrimaryTutorial_Beach_Frame7,
-};
-
-const u16 *const gTilesetAnims_PorytilesPrimaryTutorial_SeaRock[] = {
-    gTilesetAnims_PorytilesPrimaryTutorial_SeaRock_Frame0,
-    gTilesetAnims_PorytilesPrimaryTutorial_SeaRock_Frame1,
-    gTilesetAnims_PorytilesPrimaryTutorial_SeaRock_Frame2,
-    gTilesetAnims_PorytilesPrimaryTutorial_SeaRock_Frame3,
-    gTilesetAnims_PorytilesPrimaryTutorial_SeaRock_Frame4,
-    gTilesetAnims_PorytilesPrimaryTutorial_SeaRock_Frame5,
-    gTilesetAnims_PorytilesPrimaryTutorial_SeaRock_Frame6,
-    gTilesetAnims_PorytilesPrimaryTutorial_SeaRock_Frame7,
-};
-
 const u16 *const gTilesetAnims_PorytilesPrimaryTutorial_FlowerDandelionWhite[] = {
     gTilesetAnims_PorytilesPrimaryTutorial_FlowerDandelionWhite_Frame0,
     gTilesetAnims_PorytilesPrimaryTutorial_FlowerDandelionWhite_Frame1,
@@ -1361,29 +1281,15 @@ const u16 *const gTilesetAnims_PorytilesPrimaryTutorial_Waterfall[] = {
     gTilesetAnims_PorytilesPrimaryTutorial_Waterfall_Frame3,
 };
 
-#define NB_TILES_BEACH 4
 #define NB_TILES_FLOWER_DANDELION_WHITE 4
 #define NB_TILES_FLOWER_DANDELION_YELLOW 4
-#define NB_TILES_SEA 4
-#define NB_TILES_SEA_DARK 4
-#define NB_TILES_SEA_DARK_CORNER 4
-#define NB_TILES_SEA_ROCK 4
+#define NB_TILES_SEA 40
 #define NB_TILES_WATERFALL 6
 
-#define STARTING_TILE_BEACH 1
-#define STARTING_TILE_FLOWER_DANDELION_WHITE (STARTING_TILE_BEACH + NB_TILES_BEACH)
+#define STARTING_TILE_FLOWER_DANDELION_WHITE 1
 #define STARTING_TILE_FLOWER_DANDELION_YELLOW (STARTING_TILE_FLOWER_DANDELION_WHITE + NB_TILES_FLOWER_DANDELION_WHITE)
 #define STARTING_TILE_SEA (STARTING_TILE_FLOWER_DANDELION_YELLOW + NB_TILES_FLOWER_DANDELION_YELLOW)
-#define STARTING_TILE_SEA_DARK (STARTING_TILE_SEA + NB_TILES_SEA)
-#define STARTING_TILE_SEA_DARK_CORNER (STARTING_TILE_SEA_DARK + NB_TILES_SEA_DARK)
-#define STARTING_TILE_SEA_ROCK (STARTING_TILE_SEA_DARK_CORNER + NB_TILES_SEA_DARK_CORNER)
-#define STARTING_TILE_WATERFALL (STARTING_TILE_SEA_ROCK + NB_TILES_SEA_ROCK)
-
-static void QueueAnimTiles_ExteriorGeneric_Beach(u16 timer)
-{
-    u16 i = timer % ARRAY_COUNT(gTilesetAnims_PorytilesPrimaryTutorial_Beach);
-    AppendTilesetAnimToBuffer(gTilesetAnims_PorytilesPrimaryTutorial_Beach[i], STARTING_TILE_BEACH, NB_TILES_BEACH * TILE_SIZE_4BPP);
-}
+#define STARTING_TILE_WATERFALL (STARTING_TILE_SEA + NB_TILES_SEA)
 
 static void QueueAnimTiles_ExteriorGeneric_FlowerDandelionWhite(u16 timer)
 {
@@ -1403,24 +1309,6 @@ static void QueueAnimTiles_ExteriorGeneric_Sea(u16 timer)
     AppendTilesetAnimToBuffer(gTilesetAnims_PorytilesPrimaryTutorial_Sea[i], STARTING_TILE_SEA, NB_TILES_SEA * TILE_SIZE_4BPP);
 }
 
-static void QueueAnimTiles_ExteriorGeneric_SeaDark(u16 timer)
-{
-    u16 i = timer % ARRAY_COUNT(gTilesetAnims_PorytilesPrimaryTutorial_SeaDark);
-    AppendTilesetAnimToBuffer(gTilesetAnims_PorytilesPrimaryTutorial_SeaDark[i], STARTING_TILE_SEA_DARK, NB_TILES_SEA_DARK * TILE_SIZE_4BPP);
-}
-
-static void QueueAnimTiles_ExteriorGeneric_SeaDarkCorner(u16 timer)
-{
-    u16 i = timer % ARRAY_COUNT(gTilesetAnims_PorytilesPrimaryTutorial_SeaDarkCorner);
-    AppendTilesetAnimToBuffer(gTilesetAnims_PorytilesPrimaryTutorial_SeaDarkCorner[i], STARTING_TILE_SEA_DARK_CORNER, NB_TILES_SEA_DARK_CORNER * TILE_SIZE_4BPP);
-}
-
-static void QueueAnimTiles_ExteriorGeneric_SeaRock(u16 timer)
-{
-    u16 i = timer % ARRAY_COUNT(gTilesetAnims_PorytilesPrimaryTutorial_SeaRock);
-    AppendTilesetAnimToBuffer(gTilesetAnims_PorytilesPrimaryTutorial_SeaRock[i], STARTING_TILE_SEA_ROCK, NB_TILES_SEA_ROCK * TILE_SIZE_4BPP);
-}
-
 static void QueueAnimTiles_ExteriorGeneric_Waterfall(u16 timer)
 {
     u16 i = timer % ARRAY_COUNT(gTilesetAnims_PorytilesPrimaryTutorial_Waterfall);
@@ -1431,10 +1319,6 @@ static void TilesetAnim_ExteriorGeneric(u16 timer)
 {
     if (timer % 16 == 0) {
         QueueAnimTiles_ExteriorGeneric_Sea(timer / 16);
-        QueueAnimTiles_ExteriorGeneric_SeaDark(timer / 16);
-        QueueAnimTiles_ExteriorGeneric_SeaDarkCorner(timer / 16);
-        QueueAnimTiles_ExteriorGeneric_Beach(timer / 16);
-        QueueAnimTiles_ExteriorGeneric_SeaRock(timer / 16);
 
         QueueAnimTiles_ExteriorGeneric_FlowerDandelionWhite(timer / 16);
         QueueAnimTiles_ExteriorGeneric_FlowerDandelionYellow(timer / 16);

@@ -1,375 +1,387 @@
 Beachbound_Route_Decay_MapScripts::
-# 5 "data/maps/Beachbound_Route_Decay/scripts.pory"
+# 6 "data/maps/Beachbound_Route_Decay/scripts.pory"
 	map_script MAP_SCRIPT_ON_FRAME_TABLE, Beachbound_Route_Decay_MapScripts_MAP_SCRIPT_ON_FRAME_TABLE
 	.byte 0
 
 Beachbound_Route_Decay_MapScripts_MAP_SCRIPT_ON_FRAME_TABLE:
-# 6 "data/maps/Beachbound_Route_Decay/scripts.pory"
+# 7 "data/maps/Beachbound_Route_Decay/scripts.pory"
 	map_script_2 VAR_DECAY_BEACHBOUND_ROUTE, 1, Beachbound_Route_Decay_SeeDecay
 	.2byte 0
 
 
 Beachbound_Route_Decay_SeeDecay::
-# 11 "data/maps/Beachbound_Route_Decay/scripts.pory"
-	lock
 # 12 "data/maps/Beachbound_Route_Decay/scripts.pory"
+	lock
+# 13 "data/maps/Beachbound_Route_Decay/scripts.pory"
 	setvar VAR_DECAY_BEACHBOUND_ROUTE, 2
-# 14 "data/maps/Beachbound_Route_Decay/scripts.pory"
-	playse SE_PIN
 # 15 "data/maps/Beachbound_Route_Decay/scripts.pory"
-	applymovement OBJ_EVENT_ID_PLAYER, Common_Movement_ExclamationMark
+	playse SE_PIN
 # 16 "data/maps/Beachbound_Route_Decay/scripts.pory"
-	waitse
+	applymovement OBJ_EVENT_ID_PLAYER, Common_Movement_ExclamationMark
 # 17 "data/maps/Beachbound_Route_Decay/scripts.pory"
-	waitmovement 0
+	waitse
 # 18 "data/maps/Beachbound_Route_Decay/scripts.pory"
-	delay 48
-# 20 "data/maps/Beachbound_Route_Decay/scripts.pory"
-	special SpawnCameraObject
-# 21 "data/maps/Beachbound_Route_Decay/scripts.pory"
-	applymovement OBJ_EVENT_ID_CAMERA, Beachbound_Route_Decay_SeeDecay_Movement_0
-# 22 "data/maps/Beachbound_Route_Decay/scripts.pory"
 	waitmovement 0
+# 19 "data/maps/Beachbound_Route_Decay/scripts.pory"
+	delay 48
+# 21 "data/maps/Beachbound_Route_Decay/scripts.pory"
+	special SpawnCameraObject
+# 22 "data/maps/Beachbound_Route_Decay/scripts.pory"
+	applymovement OBJ_EVENT_ID_CAMERA, Beachbound_Route_Decay_SeeDecay_Movement_0
 # 23 "data/maps/Beachbound_Route_Decay/scripts.pory"
-	fadescreen FADE_TO_BLACK
+	waitmovement 0
 # 24 "data/maps/Beachbound_Route_Decay/scripts.pory"
-	special RemoveCameraObject
-# 25 "data/maps/Beachbound_Route_Decay/scripts.pory"
 	fadescreen FADE_TO_BLACK
-# 27 "data/maps/Beachbound_Route_Decay/scripts.pory"
+# 25 "data/maps/Beachbound_Route_Decay/scripts.pory"
+	special RemoveCameraObject
+# 26 "data/maps/Beachbound_Route_Decay/scripts.pory"
+	fadescreen FADE_TO_BLACK
+# 28 "data/maps/Beachbound_Route_Decay/scripts.pory"
 	warpsilent MAP_BEACHBOUND_ROUTE_DECAY, 59, 16
-# 29 "data/maps/Beachbound_Route_Decay/scripts.pory"
+# 30 "data/maps/Beachbound_Route_Decay/scripts.pory"
 	release
 	return
 
 
 BeachboundRoute_Decay_EventScript_Shepherd::
-# 33 "data/maps/Beachbound_Route_Decay/scripts.pory"
-	speakername BeachboundRoute_Decay_EventScript_Shepherd_Text_0
 # 34 "data/maps/Beachbound_Route_Decay/scripts.pory"
+	speakername BeachboundRoute_Decay_EventScript_Shepherd_Text_0
+# 35 "data/maps/Beachbound_Route_Decay/scripts.pory"
 	msgbox BeachboundRoute_Decay_EventScript_Shepherd_Text_1, MSGBOX_NPC
 	return
 
 
 BeachboundRoute_Decay_EventScript_Karu::
-# 40 "data/maps/Beachbound_Route_Decay/scripts.pory"
-	speakername BeachboundRoute_Decay_EventScript_Karu_Text_0
 # 41 "data/maps/Beachbound_Route_Decay/scripts.pory"
+	speakername BeachboundRoute_Decay_EventScript_Karu_Text_0
+# 42 "data/maps/Beachbound_Route_Decay/scripts.pory"
 	msgbox BeachboundRoute_Decay_EventScript_Karu_Text_1, MSGBOX_NPC
 	return
 
 
 BeachboundRoute_Decay_EventScript_Kin::
-# 47 "data/maps/Beachbound_Route_Decay/scripts.pory"
-	speakername BeachboundRoute_Decay_EventScript_Karu_Text_0
 # 48 "data/maps/Beachbound_Route_Decay/scripts.pory"
+	speakername BeachboundRoute_Decay_EventScript_Karu_Text_0
+# 49 "data/maps/Beachbound_Route_Decay/scripts.pory"
 	msgbox BeachboundRoute_Decay_EventScript_Kin_Text_0, MSGBOX_NPC
 	return
 
 
 BeachboundRoute_Decay_EventScript_BeanDialogue::
-# 54 "data/maps/Beachbound_Route_Decay/scripts.pory"
-	setvar VAR_DECAY_BEACHBOUND_ROUTE, 4
 # 55 "data/maps/Beachbound_Route_Decay/scripts.pory"
-	speakername BeachboundRoute_Decay_EventScript_BeanDialogue_Text_0
+	setvar VAR_DECAY_BEACHBOUND_ROUTE, 4
 # 56 "data/maps/Beachbound_Route_Decay/scripts.pory"
-	msgbox BeachboundRoute_Decay_EventScript_BeanDialogue_Text_1
-# 65 "data/maps/Beachbound_Route_Decay/scripts.pory"
-	closemessage
-# 67 "data/maps/Beachbound_Route_Decay/scripts.pory"
-	applymovement 12, BeachboundRoute_Decay_EventScript_BeanDialogue_Movement_0
-# 68 "data/maps/Beachbound_Route_Decay/scripts.pory"
-	waitmovement 0
-# 70 "data/maps/Beachbound_Route_Decay/scripts.pory"
-	applymovement 8, Common_Movement_FaceUp
-# 71 "data/maps/Beachbound_Route_Decay/scripts.pory"
-	waitmovement 0
-# 72 "data/maps/Beachbound_Route_Decay/scripts.pory"
-	applymovement OBJ_EVENT_ID_PLAYER, Common_Movement_FaceUp
-# 73 "data/maps/Beachbound_Route_Decay/scripts.pory"
-	waitmovement 0
-# 75 "data/maps/Beachbound_Route_Decay/scripts.pory"
-	delay 48
-# 77 "data/maps/Beachbound_Route_Decay/scripts.pory"
-	speakername BeachboundRoute_Decay_EventScript_BeanDialogue_Text_2
-# 78 "data/maps/Beachbound_Route_Decay/scripts.pory"
-	msgbox BeachboundRoute_Decay_EventScript_BeanDialogue_Text_3
-# 84 "data/maps/Beachbound_Route_Decay/scripts.pory"
-	closemessage
-# 86 "data/maps/Beachbound_Route_Decay/scripts.pory"
-	applymovement 12, BeachboundRoute_Decay_EventScript_BeanDialogue_Movement_1
-# 87 "data/maps/Beachbound_Route_Decay/scripts.pory"
-	waitmovement 0
-# 89 "data/maps/Beachbound_Route_Decay/scripts.pory"
-	delay 48
-# 91 "data/maps/Beachbound_Route_Decay/scripts.pory"
-	applymovement 8, Common_Movement_FaceRight
-# 92 "data/maps/Beachbound_Route_Decay/scripts.pory"
-	waitmovement 0
-# 94 "data/maps/Beachbound_Route_Decay/scripts.pory"
 	speakername BeachboundRoute_Decay_EventScript_BeanDialogue_Text_0
-# 95 "data/maps/Beachbound_Route_Decay/scripts.pory"
-	msgbox BeachboundRoute_Decay_EventScript_BeanDialogue_Text_4
-# 100 "data/maps/Beachbound_Route_Decay/scripts.pory"
+# 57 "data/maps/Beachbound_Route_Decay/scripts.pory"
+	msgbox BeachboundRoute_Decay_EventScript_BeanDialogue_Text_1
+# 66 "data/maps/Beachbound_Route_Decay/scripts.pory"
 	closemessage
-# 102 "data/maps/Beachbound_Route_Decay/scripts.pory"
+# 68 "data/maps/Beachbound_Route_Decay/scripts.pory"
+	applymovement 12, BeachboundRoute_Decay_EventScript_BeanDialogue_Movement_0
+# 69 "data/maps/Beachbound_Route_Decay/scripts.pory"
+	waitmovement 0
+# 71 "data/maps/Beachbound_Route_Decay/scripts.pory"
+	applymovement 8, Common_Movement_FaceUp
+# 72 "data/maps/Beachbound_Route_Decay/scripts.pory"
+	waitmovement 0
+# 73 "data/maps/Beachbound_Route_Decay/scripts.pory"
+	applymovement OBJ_EVENT_ID_PLAYER, Common_Movement_FaceUp
+# 74 "data/maps/Beachbound_Route_Decay/scripts.pory"
+	waitmovement 0
+# 76 "data/maps/Beachbound_Route_Decay/scripts.pory"
+	delay 48
+# 78 "data/maps/Beachbound_Route_Decay/scripts.pory"
+	speakername BeachboundRoute_Decay_EventScript_BeanDialogue_Text_2
+# 79 "data/maps/Beachbound_Route_Decay/scripts.pory"
+	msgbox BeachboundRoute_Decay_EventScript_BeanDialogue_Text_3
+# 85 "data/maps/Beachbound_Route_Decay/scripts.pory"
+	closemessage
+# 87 "data/maps/Beachbound_Route_Decay/scripts.pory"
+	applymovement 12, BeachboundRoute_Decay_EventScript_BeanDialogue_Movement_1
+# 88 "data/maps/Beachbound_Route_Decay/scripts.pory"
+	waitmovement 0
+# 90 "data/maps/Beachbound_Route_Decay/scripts.pory"
+	delay 48
+# 92 "data/maps/Beachbound_Route_Decay/scripts.pory"
+	applymovement 8, Common_Movement_FaceRight
+# 93 "data/maps/Beachbound_Route_Decay/scripts.pory"
+	applymovement OBJ_EVENT_ID_PLAYER, Common_Movement_FaceLeft
+# 94 "data/maps/Beachbound_Route_Decay/scripts.pory"
+	waitmovement 8
+# 95 "data/maps/Beachbound_Route_Decay/scripts.pory"
+	waitmovement OBJ_EVENT_ID_PLAYER
+# 97 "data/maps/Beachbound_Route_Decay/scripts.pory"
+	speakername BeachboundRoute_Decay_EventScript_BeanDialogue_Text_0
+# 98 "data/maps/Beachbound_Route_Decay/scripts.pory"
+	msgbox BeachboundRoute_Decay_EventScript_BeanDialogue_Text_4
+# 103 "data/maps/Beachbound_Route_Decay/scripts.pory"
+	closemessage
+# 105 "data/maps/Beachbound_Route_Decay/scripts.pory"
 	release
 	return
 
 
 BeachboundRoute_Decay_EventScript_BeanTrigger2StepsAway::
-# 106 "data/maps/Beachbound_Route_Decay/scripts.pory"
-	lock
-# 108 "data/maps/Beachbound_Route_Decay/scripts.pory"
-	playse SE_PIN
 # 109 "data/maps/Beachbound_Route_Decay/scripts.pory"
-	applymovement 8, Common_Movement_ExclamationMark
-# 110 "data/maps/Beachbound_Route_Decay/scripts.pory"
-	waitse
+	lock
 # 111 "data/maps/Beachbound_Route_Decay/scripts.pory"
-	waitmovement 0
+	playse SE_PIN
 # 112 "data/maps/Beachbound_Route_Decay/scripts.pory"
-	delay 48
+	applymovement 8, Common_Movement_ExclamationMark
 # 113 "data/maps/Beachbound_Route_Decay/scripts.pory"
-	applymovement 8, Common_Movement_FaceRight
+	waitse
 # 114 "data/maps/Beachbound_Route_Decay/scripts.pory"
 	waitmovement 0
+# 115 "data/maps/Beachbound_Route_Decay/scripts.pory"
+	delay 48
 # 116 "data/maps/Beachbound_Route_Decay/scripts.pory"
-	applymovement OBJ_EVENT_ID_PLAYER, BeachboundRoute_Decay_EventScript_BeanTrigger2StepsAway_Movement_0
+	applymovement 8, Common_Movement_FaceRight
 # 117 "data/maps/Beachbound_Route_Decay/scripts.pory"
 	waitmovement 0
 # 119 "data/maps/Beachbound_Route_Decay/scripts.pory"
+	applymovement OBJ_EVENT_ID_PLAYER, BeachboundRoute_Decay_EventScript_BeanTrigger2StepsAway_Movement_0
+# 120 "data/maps/Beachbound_Route_Decay/scripts.pory"
+	waitmovement 0
+# 122 "data/maps/Beachbound_Route_Decay/scripts.pory"
 	call BeachboundRoute_Decay_EventScript_BeanDialogue
 	return
 
 
 BeachboundRoute_Decay_EventScript_BeanTrigger1StepAway::
-# 123 "data/maps/Beachbound_Route_Decay/scripts.pory"
-	lock
-# 125 "data/maps/Beachbound_Route_Decay/scripts.pory"
-	playse SE_PIN
 # 126 "data/maps/Beachbound_Route_Decay/scripts.pory"
-	applymovement 8, Common_Movement_ExclamationMark
-# 127 "data/maps/Beachbound_Route_Decay/scripts.pory"
-	waitse
+	lock
 # 128 "data/maps/Beachbound_Route_Decay/scripts.pory"
-	waitmovement 0
+	playse SE_PIN
 # 129 "data/maps/Beachbound_Route_Decay/scripts.pory"
-	delay 48
+	applymovement 8, Common_Movement_ExclamationMark
 # 130 "data/maps/Beachbound_Route_Decay/scripts.pory"
-	applymovement 8, Common_Movement_FaceRight
+	waitse
 # 131 "data/maps/Beachbound_Route_Decay/scripts.pory"
 	waitmovement 0
+# 132 "data/maps/Beachbound_Route_Decay/scripts.pory"
+	delay 48
 # 133 "data/maps/Beachbound_Route_Decay/scripts.pory"
-	applymovement OBJ_EVENT_ID_PLAYER, BeachboundRoute_Decay_EventScript_BeanTrigger1StepAway_Movement_0
+	applymovement 8, Common_Movement_FaceRight
 # 134 "data/maps/Beachbound_Route_Decay/scripts.pory"
 	waitmovement 0
 # 136 "data/maps/Beachbound_Route_Decay/scripts.pory"
+	applymovement OBJ_EVENT_ID_PLAYER, BeachboundRoute_Decay_EventScript_BeanTrigger1StepAway_Movement_0
+# 137 "data/maps/Beachbound_Route_Decay/scripts.pory"
+	waitmovement 0
+# 139 "data/maps/Beachbound_Route_Decay/scripts.pory"
 	call BeachboundRoute_Decay_EventScript_BeanDialogue
 	return
 
 
 BeachboundRoute_Decay_EventScript_BeanTrigger::
-# 140 "data/maps/Beachbound_Route_Decay/scripts.pory"
-	lock
-# 142 "data/maps/Beachbound_Route_Decay/scripts.pory"
-	playse SE_PIN
 # 143 "data/maps/Beachbound_Route_Decay/scripts.pory"
-	applymovement 8, Common_Movement_ExclamationMark
-# 144 "data/maps/Beachbound_Route_Decay/scripts.pory"
-	waitse
+	lock
 # 145 "data/maps/Beachbound_Route_Decay/scripts.pory"
-	waitmovement 0
+	playse SE_PIN
 # 146 "data/maps/Beachbound_Route_Decay/scripts.pory"
-	delay 48
+	applymovement 8, Common_Movement_ExclamationMark
 # 147 "data/maps/Beachbound_Route_Decay/scripts.pory"
-	applymovement 8, Common_Movement_FaceRight
+	waitse
 # 148 "data/maps/Beachbound_Route_Decay/scripts.pory"
-	applymovement OBJ_EVENT_ID_PLAYER, Common_Movement_FaceLeft
+	waitmovement 0
 # 149 "data/maps/Beachbound_Route_Decay/scripts.pory"
-	waitmovement 8
+	delay 48
 # 150 "data/maps/Beachbound_Route_Decay/scripts.pory"
-	waitmovement OBJ_EVENT_ID_PLAYER
+	applymovement 8, Common_Movement_FaceRight
+# 151 "data/maps/Beachbound_Route_Decay/scripts.pory"
+	applymovement OBJ_EVENT_ID_PLAYER, Common_Movement_FaceLeft
 # 152 "data/maps/Beachbound_Route_Decay/scripts.pory"
+	waitmovement 8
+# 153 "data/maps/Beachbound_Route_Decay/scripts.pory"
+	waitmovement OBJ_EVENT_ID_PLAYER
+# 155 "data/maps/Beachbound_Route_Decay/scripts.pory"
 	call BeachboundRoute_Decay_EventScript_BeanDialogue
 	return
 
 
 BeachboundRoute_Decay_EventScript_Bean::
-# 156 "data/maps/Beachbound_Route_Decay/scripts.pory"
-	lock
-# 158 "data/maps/Beachbound_Route_Decay/scripts.pory"
-	speakername BeachboundRoute_Decay_EventScript_BeanDialogue_Text_0
 # 159 "data/maps/Beachbound_Route_Decay/scripts.pory"
-	msgbox BeachboundRoute_Decay_EventScript_Bean_Text_0
+	lock
+# 161 "data/maps/Beachbound_Route_Decay/scripts.pory"
+	speakername BeachboundRoute_Decay_EventScript_BeanDialogue_Text_0
 # 162 "data/maps/Beachbound_Route_Decay/scripts.pory"
+	msgbox BeachboundRoute_Decay_EventScript_Bean_Text_0
+# 165 "data/maps/Beachbound_Route_Decay/scripts.pory"
 	closemessage
-# 164 "data/maps/Beachbound_Route_Decay/scripts.pory"
+# 167 "data/maps/Beachbound_Route_Decay/scripts.pory"
 	release
 	return
 
 
 BeachboundRoute_Decay_EventScript_Koishi::
-# 168 "data/maps/Beachbound_Route_Decay/scripts.pory"
-	lock
-# 170 "data/maps/Beachbound_Route_Decay/scripts.pory"
-	speakername BeachboundRoute_Decay_EventScript_BeanDialogue_Text_2
 # 171 "data/maps/Beachbound_Route_Decay/scripts.pory"
+	lock
+# 173 "data/maps/Beachbound_Route_Decay/scripts.pory"
+	speakername BeachboundRoute_Decay_EventScript_BeanDialogue_Text_2
+# 174 "data/maps/Beachbound_Route_Decay/scripts.pory"
 	msgbox BeachboundRoute_Decay_EventScript_Koishi_Text_0
-# 175 "data/maps/Beachbound_Route_Decay/scripts.pory"
+# 178 "data/maps/Beachbound_Route_Decay/scripts.pory"
 	closemessage
-# 177 "data/maps/Beachbound_Route_Decay/scripts.pory"
+# 180 "data/maps/Beachbound_Route_Decay/scripts.pory"
 	release
 	return
 
 
 BeachboundRoute_Decay_EventScript_SamuraiBeCarefulTrigger::
-# 181 "data/maps/Beachbound_Route_Decay/scripts.pory"
-	lock
-# 182 "data/maps/Beachbound_Route_Decay/scripts.pory"
-	setvar VAR_DECAY_BEACHBOUND_ROUTE, 3
-# 183 "data/maps/Beachbound_Route_Decay/scripts.pory"
-	speakername BeachboundRoute_Decay_EventScript_SamuraiBeCarefulTrigger_Text_0
 # 184 "data/maps/Beachbound_Route_Decay/scripts.pory"
-	msgbox BeachboundRoute_Decay_EventScript_SamuraiBeCarefulTrigger_Text_1
+	lock
+# 185 "data/maps/Beachbound_Route_Decay/scripts.pory"
+	setvar VAR_DECAY_BEACHBOUND_ROUTE, 3
+# 187 "data/maps/Beachbound_Route_Decay/scripts.pory"
+	applymovement 10, Common_Movement_WalkInPlaceFasterDown
 # 188 "data/maps/Beachbound_Route_Decay/scripts.pory"
-	closemessage
+	applymovement OBJ_EVENT_ID_PLAYER, Common_Movement_WalkInPlaceFasterUp
 # 189 "data/maps/Beachbound_Route_Decay/scripts.pory"
+	waitmovement 10
+# 190 "data/maps/Beachbound_Route_Decay/scripts.pory"
+	waitmovement OBJ_EVENT_ID_PLAYER
+# 192 "data/maps/Beachbound_Route_Decay/scripts.pory"
+	speakername BeachboundRoute_Decay_EventScript_SamuraiBeCarefulTrigger_Text_0
+# 193 "data/maps/Beachbound_Route_Decay/scripts.pory"
+	msgbox BeachboundRoute_Decay_EventScript_SamuraiBeCarefulTrigger_Text_1
+# 197 "data/maps/Beachbound_Route_Decay/scripts.pory"
+	closemessage
+# 198 "data/maps/Beachbound_Route_Decay/scripts.pory"
 	release
 	return
 
 
 BeachboundRoute_Decay_EventScript_SamuraiBeCareful::
-# 193 "data/maps/Beachbound_Route_Decay/scripts.pory"
+# 202 "data/maps/Beachbound_Route_Decay/scripts.pory"
 	speakername BeachboundRoute_Decay_EventScript_SamuraiBeCarefulTrigger_Text_0
-# 194 "data/maps/Beachbound_Route_Decay/scripts.pory"
+# 203 "data/maps/Beachbound_Route_Decay/scripts.pory"
 	msgbox BeachboundRoute_Decay_EventScript_SamuraiBeCareful_Text_0, MSGBOX_NPC
 	return
 
 
 BeachboundRoute_Decay_EventScript_Samurai::
-# 200 "data/maps/Beachbound_Route_Decay/scripts.pory"
+# 209 "data/maps/Beachbound_Route_Decay/scripts.pory"
 	speakername BeachboundRoute_Decay_EventScript_SamuraiBeCarefulTrigger_Text_0
-# 201 "data/maps/Beachbound_Route_Decay/scripts.pory"
+# 210 "data/maps/Beachbound_Route_Decay/scripts.pory"
 	msgbox BeachboundRoute_Decay_EventScript_Samurai_Text_0, MSGBOX_NPC
 	return
 
 
 BeachboundRoute_Decay_EventScript_SamuraiWhatCouldBe::
-# 207 "data/maps/Beachbound_Route_Decay/scripts.pory"
+# 216 "data/maps/Beachbound_Route_Decay/scripts.pory"
 	speakername BeachboundRoute_Decay_EventScript_SamuraiBeCarefulTrigger_Text_0
-# 208 "data/maps/Beachbound_Route_Decay/scripts.pory"
+# 217 "data/maps/Beachbound_Route_Decay/scripts.pory"
 	msgbox BeachboundRoute_Decay_EventScript_SamuraiWhatCouldBe_Text_0, MSGBOX_NPC
 	return
 
 
-# 21 "data/maps/Beachbound_Route_Decay/scripts.pory"
+# 22 "data/maps/Beachbound_Route_Decay/scripts.pory"
 Beachbound_Route_Decay_SeeDecay_Movement_0:
-# 21 "data/maps/Beachbound_Route_Decay/scripts.pory"
+# 22 "data/maps/Beachbound_Route_Decay/scripts.pory"
 	walk_left
-# 21 "data/maps/Beachbound_Route_Decay/scripts.pory"
+# 22 "data/maps/Beachbound_Route_Decay/scripts.pory"
 	walk_left
-# 21 "data/maps/Beachbound_Route_Decay/scripts.pory"
+# 22 "data/maps/Beachbound_Route_Decay/scripts.pory"
 	walk_left
-# 21 "data/maps/Beachbound_Route_Decay/scripts.pory"
+# 22 "data/maps/Beachbound_Route_Decay/scripts.pory"
 	walk_left
-# 21 "data/maps/Beachbound_Route_Decay/scripts.pory"
+# 22 "data/maps/Beachbound_Route_Decay/scripts.pory"
 	walk_left
-# 21 "data/maps/Beachbound_Route_Decay/scripts.pory"
+# 22 "data/maps/Beachbound_Route_Decay/scripts.pory"
 	walk_left
-# 21 "data/maps/Beachbound_Route_Decay/scripts.pory"
+# 22 "data/maps/Beachbound_Route_Decay/scripts.pory"
 	walk_left
-# 21 "data/maps/Beachbound_Route_Decay/scripts.pory"
+# 22 "data/maps/Beachbound_Route_Decay/scripts.pory"
 	walk_left
-# 21 "data/maps/Beachbound_Route_Decay/scripts.pory"
+# 22 "data/maps/Beachbound_Route_Decay/scripts.pory"
 	walk_left
-# 21 "data/maps/Beachbound_Route_Decay/scripts.pory"
+# 22 "data/maps/Beachbound_Route_Decay/scripts.pory"
 	walk_left
-# 21 "data/maps/Beachbound_Route_Decay/scripts.pory"
+# 22 "data/maps/Beachbound_Route_Decay/scripts.pory"
 	walk_left
-# 21 "data/maps/Beachbound_Route_Decay/scripts.pory"
+# 22 "data/maps/Beachbound_Route_Decay/scripts.pory"
 	walk_left
-# 21 "data/maps/Beachbound_Route_Decay/scripts.pory"
+# 22 "data/maps/Beachbound_Route_Decay/scripts.pory"
 	walk_left
-# 21 "data/maps/Beachbound_Route_Decay/scripts.pory"
+# 22 "data/maps/Beachbound_Route_Decay/scripts.pory"
 	walk_left
-# 21 "data/maps/Beachbound_Route_Decay/scripts.pory"
+# 22 "data/maps/Beachbound_Route_Decay/scripts.pory"
 	walk_left
-# 21 "data/maps/Beachbound_Route_Decay/scripts.pory"
+# 22 "data/maps/Beachbound_Route_Decay/scripts.pory"
 	walk_left
-# 21 "data/maps/Beachbound_Route_Decay/scripts.pory"
+# 22 "data/maps/Beachbound_Route_Decay/scripts.pory"
 	walk_left
-# 21 "data/maps/Beachbound_Route_Decay/scripts.pory"
+# 22 "data/maps/Beachbound_Route_Decay/scripts.pory"
 	walk_left
-# 21 "data/maps/Beachbound_Route_Decay/scripts.pory"
+# 22 "data/maps/Beachbound_Route_Decay/scripts.pory"
 	walk_left
-# 21 "data/maps/Beachbound_Route_Decay/scripts.pory"
+# 22 "data/maps/Beachbound_Route_Decay/scripts.pory"
 	walk_left
-# 21 "data/maps/Beachbound_Route_Decay/scripts.pory"
+# 22 "data/maps/Beachbound_Route_Decay/scripts.pory"
 	delay_16
-# 21 "data/maps/Beachbound_Route_Decay/scripts.pory"
+# 22 "data/maps/Beachbound_Route_Decay/scripts.pory"
 	delay_16
-# 21 "data/maps/Beachbound_Route_Decay/scripts.pory"
+# 22 "data/maps/Beachbound_Route_Decay/scripts.pory"
 	delay_16
-# 21 "data/maps/Beachbound_Route_Decay/scripts.pory"
+# 22 "data/maps/Beachbound_Route_Decay/scripts.pory"
 	delay_16
-# 21 "data/maps/Beachbound_Route_Decay/scripts.pory"
+# 22 "data/maps/Beachbound_Route_Decay/scripts.pory"
 	delay_16
 	step_end
 
-# 67 "data/maps/Beachbound_Route_Decay/scripts.pory"
+# 68 "data/maps/Beachbound_Route_Decay/scripts.pory"
 BeachboundRoute_Decay_EventScript_BeanDialogue_Movement_0:
-# 67 "data/maps/Beachbound_Route_Decay/scripts.pory"
+# 68 "data/maps/Beachbound_Route_Decay/scripts.pory"
 	walk_down
 	step_end
 
-# 86 "data/maps/Beachbound_Route_Decay/scripts.pory"
+# 87 "data/maps/Beachbound_Route_Decay/scripts.pory"
 BeachboundRoute_Decay_EventScript_BeanDialogue_Movement_1:
-# 86 "data/maps/Beachbound_Route_Decay/scripts.pory"
+# 87 "data/maps/Beachbound_Route_Decay/scripts.pory"
 	walk_up
 	step_end
 
-# 116 "data/maps/Beachbound_Route_Decay/scripts.pory"
+# 119 "data/maps/Beachbound_Route_Decay/scripts.pory"
 BeachboundRoute_Decay_EventScript_BeanTrigger2StepsAway_Movement_0:
-# 116 "data/maps/Beachbound_Route_Decay/scripts.pory"
+# 119 "data/maps/Beachbound_Route_Decay/scripts.pory"
 	walk_left
-# 116 "data/maps/Beachbound_Route_Decay/scripts.pory"
+# 119 "data/maps/Beachbound_Route_Decay/scripts.pory"
 	walk_left
 	step_end
 
-# 133 "data/maps/Beachbound_Route_Decay/scripts.pory"
+# 136 "data/maps/Beachbound_Route_Decay/scripts.pory"
 BeachboundRoute_Decay_EventScript_BeanTrigger1StepAway_Movement_0:
-# 133 "data/maps/Beachbound_Route_Decay/scripts.pory"
+# 136 "data/maps/Beachbound_Route_Decay/scripts.pory"
 	walk_left
 	step_end
 
 BeachboundRoute_Decay_EventScript_Shepherd_Text_0:
-# 33 "data/maps/Beachbound_Route_Decay/scripts.pory"
+# 34 "data/maps/Beachbound_Route_Decay/scripts.pory"
 	.string "Shepherd$"
 
 BeachboundRoute_Decay_EventScript_Shepherd_Text_1:
-# 35 "data/maps/Beachbound_Route_Decay/scripts.pory"
+# 36 "data/maps/Beachbound_Route_Decay/scripts.pory"
 	.string "What's goin' on? Why are all the plants\n"
 	.string "rotting?$"
 
 BeachboundRoute_Decay_EventScript_Karu_Text_0:
-# 40 "data/maps/Beachbound_Route_Decay/scripts.pory"
+# 41 "data/maps/Beachbound_Route_Decay/scripts.pory"
 	.string "Girl$"
 
 BeachboundRoute_Decay_EventScript_Karu_Text_1:
-# 42 "data/maps/Beachbound_Route_Decay/scripts.pory"
+# 43 "data/maps/Beachbound_Route_Decay/scripts.pory"
 	.string "I'm scared…$"
 
 BeachboundRoute_Decay_EventScript_Kin_Text_0:
-# 49 "data/maps/Beachbound_Route_Decay/scripts.pory"
+# 50 "data/maps/Beachbound_Route_Decay/scripts.pory"
 	.string "What's happening?$"
 
 BeachboundRoute_Decay_EventScript_BeanDialogue_Text_0:
-# 55 "data/maps/Beachbound_Route_Decay/scripts.pory"
+# 56 "data/maps/Beachbound_Route_Decay/scripts.pory"
 	.string "Hariko$"
 
 BeachboundRoute_Decay_EventScript_BeanDialogue_Text_1:
-# 57 "data/maps/Beachbound_Route_Decay/scripts.pory"
+# 58 "data/maps/Beachbound_Route_Decay/scripts.pory"
 	.string "Oh! Hello.\n"
 	.string "{PLAYER}, right?\p"
 	.string "I am Hariko, remember me? We had a\n"
@@ -391,11 +403,11 @@ BeachboundRoute_Decay_EventScript_BeanDialogue_Text_1:
 	.string "{PLAYER}? We should team up!$"
 
 BeachboundRoute_Decay_EventScript_BeanDialogue_Text_2:
-# 77 "data/maps/Beachbound_Route_Decay/scripts.pory"
+# 78 "data/maps/Beachbound_Route_Decay/scripts.pory"
 	.string "Koishi$"
 
 BeachboundRoute_Decay_EventScript_BeanDialogue_Text_3:
-# 79 "data/maps/Beachbound_Route_Decay/scripts.pory"
+# 80 "data/maps/Beachbound_Route_Decay/scripts.pory"
 	.string "I couldn't help but overhear your\n"
 	.string "conversation. You two are way too\l"
 	.string "young and inexperienced to be\l"
@@ -410,7 +422,7 @@ BeachboundRoute_Decay_EventScript_BeanDialogue_Text_3:
 	.string "issue.$"
 
 BeachboundRoute_Decay_EventScript_BeanDialogue_Text_4:
-# 96 "data/maps/Beachbound_Route_Decay/scripts.pory"
+# 99 "data/maps/Beachbound_Route_Decay/scripts.pory"
 	.string "This is unfair! How are we supposed to\n"
 	.string "investigate if we're not allowed to?\p"
 	.string "Well, I am going to stay here for a\n"
@@ -420,34 +432,34 @@ BeachboundRoute_Decay_EventScript_BeanDialogue_Text_4:
 	.string "{PLAYER}.$"
 
 BeachboundRoute_Decay_EventScript_Bean_Text_0:
-# 160 "data/maps/Beachbound_Route_Decay/scripts.pory"
+# 163 "data/maps/Beachbound_Route_Decay/scripts.pory"
 	.string "… …$"
 
 BeachboundRoute_Decay_EventScript_Koishi_Text_0:
-# 172 "data/maps/Beachbound_Route_Decay/scripts.pory"
+# 175 "data/maps/Beachbound_Route_Decay/scripts.pory"
 	.string "The situation is dire…\p"
 	.string "Please move along, and I repeat, do\n"
 	.string "NOT get into trouble!$"
 
 BeachboundRoute_Decay_EventScript_SamuraiBeCarefulTrigger_Text_0:
-# 183 "data/maps/Beachbound_Route_Decay/scripts.pory"
+# 192 "data/maps/Beachbound_Route_Decay/scripts.pory"
 	.string "Samurai$"
 
 BeachboundRoute_Decay_EventScript_SamuraiBeCarefulTrigger_Text_1:
-# 185 "data/maps/Beachbound_Route_Decay/scripts.pory"
+# 194 "data/maps/Beachbound_Route_Decay/scripts.pory"
 	.string "Please be careful if you're crossing\n"
 	.string "over the {COLOR RED}decayed{COLOR DARK_GRAY} area.\p"
 	.string "We don't want anyone getting hurt!$"
 
 BeachboundRoute_Decay_EventScript_SamuraiBeCareful_Text_0:
-# 195 "data/maps/Beachbound_Route_Decay/scripts.pory"
+# 204 "data/maps/Beachbound_Route_Decay/scripts.pory"
 	.string "Please be careful!$"
 
 BeachboundRoute_Decay_EventScript_Samurai_Text_0:
-# 202 "data/maps/Beachbound_Route_Decay/scripts.pory"
+# 211 "data/maps/Beachbound_Route_Decay/scripts.pory"
 	.string "Don't panic!\n"
 	.string "Don't touch the {COLOR RED}decay{COLOR DARK_GRAY}!$"
 
 BeachboundRoute_Decay_EventScript_SamuraiWhatCouldBe_Text_0:
-# 209 "data/maps/Beachbound_Route_Decay/scripts.pory"
+# 218 "data/maps/Beachbound_Route_Decay/scripts.pory"
 	.string "What could be the cause of this?!$"

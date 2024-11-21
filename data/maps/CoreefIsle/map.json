@@ -15,12 +15,12 @@
   "connections": [
     {
       "map": "MAP_SABERSIDE_CHANNEL",
-      "offset": 0,
+      "offset": 3,
       "direction": "right"
     },
     {
       "map": "MAP_SABERSIDE_CHANNEL",
-      "offset": 0,
+      "offset": 3,
       "direction": "right"
     },
     {
