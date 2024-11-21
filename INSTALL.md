@@ -1,7 +1,7 @@
 # Instructions
 Install instructions for each supported operating system can be found in their respective directories under `docs/install/`.
 This file only contains a short introduction to each supported system.
-If you run into trouble, ask for help on Discord or IRC (see [README.md](README.md)).
+If you run into trouble, ask for help on Discord (see [README.md](README.md)).
 
 After completing the install instructions for your OS, proceed to [Building pokeemerald-expansion](#building-pokeemerald-expansion).
 
