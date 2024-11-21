@@ -34,6 +34,8 @@ SINGLE_BATTLE_TEST("Leech Seeded targets lose 1/8 of its max HP every turn and g
         TURN {}
     } SCENE {
         ANIMATION(ANIM_TYPE_MOVE, MOVE_LEECH_SEED, player);
+        HP_BAR(opponent);
+        HP_BAR(player);
         HP_BAR(opponent, captureDamage: &damage);
         HP_BAR(player, captureDamage: &healed);
     } THEN {
