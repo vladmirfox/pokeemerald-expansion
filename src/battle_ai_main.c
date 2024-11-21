@@ -4401,9 +4401,9 @@ static u32 AI_CalcMoveEffectScore(u32 battlerAtk, u32 battlerDef, u32 move)
         if (GetFirstFaintedPartyIndex(battlerAtk) != PARTY_SIZE)
         {
             ADJUST_SCORE(DECENT_EFFECT);
-            if (AI_DATA->shouldSwitch & battlerAtk) // Bad matchup
+            if (AI_DATA->shouldSwitch & (1u << battlerAtk)) // Bad matchup
                 ADJUST_SCORE(DECENT_EFFECT);
-            if (AI_DATA->mostSuitableMonId != PARTY_SIZE) // Good mon to send in after
+            if (AI_DATA->mostSuitableMonId[battlerAtk] != PARTY_SIZE) // Good mon to send in after
                 ADJUST_SCORE(DECENT_EFFECT);
         }
         break;
