@@ -738,7 +738,8 @@ static void Mailbox_ProcessInput(u8 taskId)
 
 static void Mailbox_PrintWhatToDoWithPlayerMailText(u8 taskId)
 {
-    StringCopy(gStringVar1, gSaveBlock1Ptr->mail[gPlayerPCItemPageInfo.itemsAbove + PARTY_SIZE + gPlayerPCItemPageInfo.cursorPos].playerName);
+    StringCopy(gStringVar1, gSaveBlock1Ptr->mail[0].playerName);
+    // StringCopy(gStringVar1, gSaveBlock1Ptr->mail[gPlayerPCItemPageInfo.itemsAbove + PARTY_SIZE + gPlayerPCItemPageInfo.cursorPos].playerName);
     ConvertInternationalPlayerNameStripChar(gStringVar1, CHAR_SPACE);
     StringExpandPlaceholders(gStringVar4, gText_WhatToDoWithVar1sMail);
     DisplayItemMessageOnField(taskId, gStringVar4, Mailbox_PrintMailOptions);
@@ -796,7 +797,8 @@ static void Mailbox_FadeAndReadMail(u8 taskId)
     {
         MailboxMenu_Free();
         CleanupOverworldWindowsAndTilemaps();
-        ReadMail(&gSaveBlock1Ptr->mail[gPlayerPCItemPageInfo.itemsAbove + PARTY_SIZE + gPlayerPCItemPageInfo.cursorPos], Mailbox_ReturnToFieldFromReadMail, TRUE);
+        ReadMail(&gSaveBlock1Ptr->mail[0], Mailbox_ReturnToFieldFromReadMail, TRUE);
+        // ReadMail(&gSaveBlock1Ptr->mail[gPlayerPCItemPageInfo.itemsAbove + PARTY_SIZE + gPlayerPCItemPageInfo.cursorPos], Mailbox_ReturnToFieldFromReadMail, TRUE);
         DestroyTask(taskId);
     }
 }
@@ -857,7 +859,8 @@ static void Mailbox_HandleConfirmMoveToBag(u8 taskId)
 
 static void Mailbox_DoMailMoveToBag(u8 taskId)
 {
-    struct Mail *mail = &gSaveBlock1Ptr->mail[gPlayerPCItemPageInfo.itemsAbove + PARTY_SIZE + gPlayerPCItemPageInfo.cursorPos];
+    struct Mail *mail = &gSaveBlock1Ptr->mail[0];
+    // struct Mail *mail = &gSaveBlock1Ptr->mail[gPlayerPCItemPageInfo.itemsAbove + PARTY_SIZE + gPlayerPCItemPageInfo.cursorPos];
     if (!AddBagItem(mail->itemId, 1))
     {
         DisplayItemMessageOnField(taskId, gText_BagIsFull, Mailbox_Cancel);

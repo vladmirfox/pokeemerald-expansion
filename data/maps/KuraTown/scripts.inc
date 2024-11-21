@@ -12,7 +12,7 @@ KuraTown_MapScripts_MAP_SCRIPT_ON_LOAD:
 
 KuraTown_MapScripts_MAP_SCRIPT_ON_LOAD_1:
 # 10 "data/maps/KuraTown/scripts.pory"
-	setmetatile 23, 18, METATILE_SakuKura_ClosedDojoDoor, TRUE
+	setmetatile 40, 16, METATILE_SakuKura_ClosedDojoDoor, TRUE
 	return
 
 KuraTown_MapScripts_MAP_SCRIPT_ON_FRAME_TABLE:

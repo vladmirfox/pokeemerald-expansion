@@ -1,3 +1,5 @@
+const LOCALID_LEADER = 4
+
 mapscripts MaguroHarbor_Dojo_MapScripts {
 	
 }
@@ -9,7 +11,7 @@ script MaguroHarbor_Dojo_EventScript_Koishi {
 			"Welcome to Maguro's Koi Pond Dojo, one of the eight Dojos officially appointed by the Toku Council.\p"
 			"We Dojo Masters fight wielders that have taken on the Pokémon Council's challenge.\p"
 			"We each give out a different Token to anyone who succeeds in defeating us.\p"
-			"I am Koishi. I have raised elegant, graceful Pokémon since I was way younger than you.\p"
+			"I am Koishi. I began raising elegant, graceful Pokémon when I was even younger than you are now.\p"
 			"I may behave and speak in a soft manner, but do not for one second mistake soft-spokenness for weakness.\p"
 			"Now… Shall we battle?"
 		),
@@ -19,43 +21,15 @@ script MaguroHarbor_Dojo_EventScript_Koishi {
 	)
 	// specialvar(VAR_RESULT, ShouldTryRematchBattle)
 	// goto_if_eq(VAR_RESULT, TRUE, MaguroHarbor_Dojo_EventScript_KoishiRematch)
-	if (!flag(FLAG_RECEIVED_TM_KOI_DOJO)) {
-		addvar(VAR_PLAYER_REPUTATION, 5)
-		setflag(FLAG_KURA_DOJO_CLOSED)
-		clearflag(FLAG_HIDE_BONSAI_SHOP_OWNER)
-		setvar(VAR_DECAY_BEACHBOUND_ROUTE, 1)
-		call(MaguroHarbor_Dojo_EventScript_GiveReward)
-	} else {
-		msgbox(
-			format(
-				"You shall achieve great things. I hope we meet again."
-			),
-			MSGBOX_DEFAULT
-		)
-	}
-	release
+	msgbox(format(
+		"You shall achieve great things. I hope we meet again."
+	))
 	end
-}
-
-script MaguroHarbor_Dojo_EventScript_GiveReward {
-	giveitem(ITEM_TM_WATER_PULSE)
-	goto_if_eq(VAR_RESULT, 0, Common_EventScript_BagIsFull)
-	msgbox(
-		format(
-			"This scroll contains Water Pulse, a water-type move that can confuse your foes.\p"
-			"Going through the Toku Council's challenge is not an easy undertaking, but I can feel your spirit overflowing with determination.\p"
-			"Good luck, {PLAYER}."
-		),
-		MSGBOX_DEFAULT
-	)
-	setflag(FLAG_RECEIVED_TM_BONSAI_DOJO)
-	return
 }
 
 script MaguroHarbor_Dojo_EventScript_KoishiDefeated {
 	message(format(
-		"{PLAYER} received the Flowing Token\n"
-		"from Koishi."
+		"{PLAYER} received the Flowing Token from Koishi."
 	))
 	waitmessage
 	call(Common_EventScript_PlayGymBadgeFanfare)
@@ -67,20 +41,78 @@ script MaguroHarbor_Dojo_EventScript_KoishiDefeated {
 		),
 		MSGBOX_DEFAULT
 	)
-	setflag(FLAG_BADGE02_GET)
-	call(MaguroHarbor_Dojo_EventScript_GiveReward)
+	
+	giveitem(ITEM_TM_WATER_PULSE)
+
+	msgbox(
+		format(
+			"This scroll contains Water Pulse, a water-type move that can confuse your foes.\p"
+			"Going through the Toku Council's challenge is no easy undertaking, but I can feel your spirit overflowing with determination.\p"
+			"Good luck, {PLAYER}."
+		),
+		MSGBOX_DEFAULT
+	)
 	closemessage
+
+	setflag(FLAG_BADGE01_GET)
+	setvar(VAR_0x8008, 1)
+	call(Common_EventScript_SetGymTrainers)
+	addvar(VAR_PLAYER_REPUTATION, 5)
+	// Beachbound route is now decaying
+	setvar(VAR_DECAY_BEACHBOUND_ROUTE, 1)
+	// Kura dojo is closed
+	setflag(FLAG_KURA_DOJO_CLOSED)
+	// because the leader is at her bonsai shop
+	clearflag(FLAG_HIDE_BONSAI_SHOP_OWNER)
+
 	// TODO rematch
 	// delay(30)
 	// playfanfare(MUS_REGISTER_MATCH_CALL)
 	// msgbox(format("Registered Hana\nin the address log."), MSGBOX_DEFAULT)
 	// waitfanfare
 	// closemessage
+
+	delay(48)
+
+	// Volcano quake!
+	setvar(VAR_0x8004, 1)  // vertical pan
+	setvar(VAR_0x8005, 2)  // horizontal pan
+	setvar(VAR_0x8006, 40) // num shakes
+	setvar(VAR_0x8007, 4)  // shake delay
+	special(ShakeCamera)
+	delay(16)
+	playse(SE_PIN)
+	applymovement(OBJ_EVENT_ID_PLAYER, Common_Movement_ExclamationMark)
+	delay(16)
+	playse(SE_PIN)
+	applymovement(LOCALID_LEADER, Common_Movement_ExclamationMark)
+	waitstate
+	waitmovement(OBJ_EVENT_ID_PLAYER)
+	waitmovement(LOCALID_LEADER)
+	delay(60)
+
+	speakername("Koishi")
+	msgbox(format(
+		"That… That was a big one!…\p"
+		"I'm going outside to make sure everyone's alright."
+	))
+	closemessage
+
+	specialvar(VAR_RESULT, GetPlayerFacingDirection)
+	if (var(VAR_RESULT) == DIR_WEST) {
+		applymovement(LOCALID_LEADER, moves(walk_down, walk_right * 3, walk_down * 5, walk_left * 5, walk_down * 3))
+	} else {
+		applymovement(LOCALID_LEADER, moves(walk_right * 3, walk_down * 6, walk_left * 5, walk_down * 3))
+	}
+	waitmovement(LOCALID_LEADER)
+	removeobject(LOCALID_LEADER)
+	setflag(FLAG_HIDE_KOISHI)
+
 	release
 	end
 }
 
-// Random trainers
+// Trainers
 
 script MaguroHarbor_Dojo_EventScript_Izumi {
 	trainerbattle_single(
@@ -111,6 +143,47 @@ script MaguroHarbor_Dojo_EventScript_Mizu {
 		format("Stop making so much noise!")
 	)
 	msgbox(format(
+		// TODO EVA put some actual fish in the pond ffs
 		"These are sophisticated fish. They need peace and quiet to thrive."
 	), MSGBOX_AUTOCLOSE)
+}
+
+script MaguroHarbor_Dojo_EventScript_Advice {
+	lock
+	faceplayer
+	if (flag(FLAG_BADGE01_GET)) {
+		msgbox(format(
+			"You swept me away with that battle!"
+		))
+	} else {
+		msgbox(format(
+			"Hello, young challenger! Are you going to be fighting for your first Token?\p"
+			"Welcome to the Koi Pond Dojo!\p"
+			"Koishi, the Master of this place, favors water-type moves. Her battling style is strong, yet graceful… Sigh…\p"
+			"I am her biggest fan! It's true! Maybe one day, I'll become your biggest fan, who knows?\p"
+			"Go get 'em!"
+		))
+	}
+	release
+}
+
+script MaguroHarbor_Dojo_EventScript_DojoStatue {
+	lockall
+	if (flag(FLAG_BADGE01_GET)) {
+		msgbox(
+			"Dojo of Maguro Harbor\p"
+			"Certified wielders:\n"
+			"Natsuki,"
+			"{PLAYER}",
+			MSGBOX_SIGN
+		)
+	} else {
+		msgbox(
+			"Dojo of Maguro Harbor\p"
+			"Certified wielders:\n"
+			"Natsuki",
+			MSGBOX_SIGN
+		)
+	}
+	releaseall
 }

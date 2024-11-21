@@ -190,8 +190,8 @@
 #define FLAG_SMART_PAINTING_MADE             0xA3
 #define FLAG_TOUGH_PAINTING_MADE             0xA4
 #define FLAG_RECEIVED_TM_ROCK_TOMB           0xA5
-#define FLAG_RECEIVED_TM_BONSAI_DOJO             0xA6
-#define FLAG_RECEIVED_TM_KOI_DOJO            0xA7
+#define FLAG_HIDE_OLD_MEN_ELDERS_HOUSE_SILVERIDGE 0xA6
+#define FLAG_HIDE_KOISHI                     0xA7
 #define FLAG_RECEIVED_TM_OVERHEAT            0xA8
 #define FLAG_RECEIVED_TM_FACADE              0xA9
 #define FLAG_RECEIVED_TM_AERIAL_ACE          0xAA
@@ -260,7 +260,7 @@
 #define FLAG_RECEIVED_TM_ROAR                0xE7
 #define FLAG_RECEIVED_TM_GIGA_DRAIN          0xE8
 
-#define FLAG_UNUSED_0x0E9                    0xE9 // Unused Flag
+#define FLAG_DUMMY                           0xE9
 
 #define FLAG_RECEIVED_TM_REST                0xEA
 #define FLAG_RECEIVED_TM_ATTRACT             0xEB

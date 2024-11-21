@@ -1,6 +1,8 @@
 const LOCALID_KARATEKA = 6
 const LOCALID_GUARD = 8
 const LOCALID_RIVAL = 10
+const LOCALID_MAMA = 1
+const LOCALID_KUKU = 2
 
 mapscripts SakuTown_MapScripts {
 	MAP_SCRIPT_ON_TRANSITION {
@@ -124,7 +126,7 @@ script SakuTown_EventScript_Farmer {
 	faceplayer
 	speakername("Farmer")
 	msgbox(format(
-		"We're cultivatin' Ryss berries. Saku Village exports its berries to many towns."
+		"We're cultivatin' Mifan berries. Saku Village exports its berries to many towns."
 	))
 	release
 }
@@ -144,7 +146,7 @@ script SakuTown_EventScript_Woman {
 	faceplayer
 	speakername("Woman")
 	msgbox(format(
-		"Those thugs in Kura Village may have their own dojo, but their town is nothing but an ugly pile of rocks!\p"
+		"Those thugs in Kura Village may have their own Dojo, but their town is nothing but an ugly pile of rocks!\p"
 		"They don't even have a Pokémon refuge!"
 	))
 	release
@@ -165,6 +167,21 @@ script SakuTown_EventScript_Karateka {
 		"Come on, Mama, Kuku! Daddy loves you!!"
 	))
 	closemessage
+
+	applymovement(LOCALID_MAMA, Common_Movement_FaceDown)
+	applymovement(LOCALID_KUKU, Common_Movement_FaceDown)
+	waitmovement(LOCALID_MAMA)
+	waitmovement(LOCALID_KUKU)
+
+	delay(24)
+
+	playmoncry(SPECIES_MAKUHITA, CRY_MODE_NORMAL)
+	applymovement(LOCALID_MAMA, moves(jump_in_place_down))
+	waitmovement(LOCALID_MAMA)
+	playmoncry(SPECIES_MAKUHITA, CRY_MODE_NORMAL)
+	applymovement(LOCALID_KUKU, moves(jump_in_place_down))
+	waitmovement(LOCALID_KUKU)
+
 	release
 }
 

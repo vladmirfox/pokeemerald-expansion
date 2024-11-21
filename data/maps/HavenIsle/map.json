@@ -25,7 +25,7 @@
     },
     {
       "map": "MAP_SEA_TURF_ROUTE",
-      "offset": 5,
+      "offset": 0,
       "direction": "right"
     }
   ],

@@ -1,5 +1,102 @@
+const LOCALID_ELDER = 1
+const LOCALID_OLD_MAN = 2
+const LOCALID_OLD_WOMAN = 3
+
 mapscripts Silveridge_EldersHouse_MapScripts {
-	
+	MAP_SCRIPT_ON_FRAME_TABLE [
+        VAR_DECAY_BEACHBOUND_ROUTE, 1: Silveridge_EldersHouse_EventScript_Conversation
+    ]
+}
+
+script Silveridge_EldersHouse_EventScript_Conversation {
+	lock
+
+	applymovement(LOCALID_OLD_MAN, Common_Movement_WalkInPlaceFasterRight)
+	waitmovement(0)
+
+	speakername("Old man")
+	msgbox(format(
+		"Yet another area is decaying on Beachbound Route…"
+	))
+	closemessage
+
+	applymovement(LOCALID_OLD_WOMAN, Common_Movement_WalkInPlaceFasterUp)
+	waitmovement(0)
+
+	speakername("Old woman")
+	msgbox(format(
+		"We have yet to receive tidings from the Elder in Sunrise Village…"
+	))
+	closemessage
+
+	applymovement(LOCALID_ELDER, Common_Movement_WalkInPlaceFasterDown)
+	waitmovement(0)
+
+	speakername("Elder Iwa")
+	msgbox(format(
+		"Let us not surrender to panic."
+	))
+	closemessage
+
+	playse(SE_PIN)
+	applymovement(LOCALID_ELDER, Common_Movement_ExclamationMark)
+	waitse
+	waitmovement(0)
+
+	speakername("Elder Iwa")
+	msgbox(format(
+		"Excuse me… Can I help you?"
+	))
+	closemessage
+
+	applymovement(LOCALID_OLD_WOMAN, Common_Movement_FaceDown)
+	applymovement(LOCALID_OLD_MAN, Common_Movement_FaceDown)
+	waitmovement(LOCALID_OLD_WOMAN)
+	waitmovement(LOCALID_OLD_MAN)
+	delay(48)
+
+	delay(48)
+	applymovement(LOCALID_OLD_WOMAN, moves(walk_down * 2))
+	applymovement(LOCALID_OLD_MAN, moves(walk_right, walk_down * 3))
+	waitmovement(LOCALID_OLD_WOMAN)
+	removeobject(LOCALID_OLD_WOMAN)
+	playse(SE_EXIT)
+	waitmovement(LOCALID_OLD_MAN)
+	playse(SE_EXIT)
+	waitse
+	setflag(FLAG_HIDE_OLD_MEN_ELDERS_HOUSE_SILVERIDGE)
+
+	delay(48)
+
+	applymovement(OBJ_EVENT_ID_PLAYER, moves(walk_up * 2, walk_right, face_up))
+	waitmovement(OBJ_EVENT_ID_PLAYER)
+
+	speakername("Elder Iwa")
+	msgbox(format(
+		"Yes?"
+	))
+
+	dynmultichoice(
+		0,
+		0,
+		TRUE,
+		10,
+		0,
+		DYN_MULTICHOICE_CB_NONE,
+		"Give the letter"
+	)
+	closemessage
+
+	applymovement(OBJ_EVENT_ID_PLAYER, moves(walk_up, delay_16, walk_down, face_up))
+	waitmovement(OBJ_EVENT_ID_PLAYER)
+
+	speakername("Elder Iwa")
+	msgbox(format(
+		"… … … … … …\n… … … … … …\p"
+		"I see…"
+	))
+
+	release
 }
 
 // TODO EVA dialog
@@ -9,12 +106,14 @@ script Silveridge_EldersHouse_EventScript_Elder {
 
 	checkitem(ITEM_SKY_PLATE)
 	if (var(VAR_RESULT)) {
-		 msgbox(format(
+		speakername("Elder Iwa")
+		msgbox(format(
 			"Go forth, my child."
 		))
 		closemessage
 	}
 	else {
+		speakername("Elder Iwa")
 		msgbox(format(
 			"Hello, child. I am Iwa, the elder of Silveridge. What brings you to me?\p"
 			"……………\p"
@@ -24,8 +123,11 @@ script Silveridge_EldersHouse_EventScript_Elder {
 			"That is, unless you have this in your posession."
 		))
 		closemessage
+
 		// TODO EVA tablets
 		giveitem(ITEM_SKY_PLATE)
+
+		speakername("Elder Iwa")
 		msgbox(format(
 			"This is a copy of one of the very ancient Tablets of Power. It is said that to possess all the Tablets of Power grants one with absolute power over Pokémon.\p"
 			"I am entrusting this one to you. It should grant you enough power to be able to battle a TODO EVA.\p"

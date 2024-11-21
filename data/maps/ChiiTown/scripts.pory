@@ -16,7 +16,8 @@ mapscripts ChiiTown_MapScripts {
 script ChiiTown_EventScript_MomWaiting {
 	speakername("Woman")
 	msgbox(format(
-		"I'm waiting to pick up my children after school."
+		"I'm waiting to pick up my children after school.\p"
+		"With all the recent Pokémon attacks, I will not let them leave my sight!"
 	), MSGBOX_NPC)
 }
 
@@ -54,7 +55,8 @@ script ChiiTown_EventScript_SpawnBirds {
 script ChiiTown_EventScript_Shopper {
 	speakername("Woman")
 	msgbox(format(
-		"The lady who keeps the town's market has started selling Pokémon medicine and Pokéballs!"
+		"The lady who keeps the town's market has started selling Pokémon medicine and Pokéballs!\p"
+		"Be careful, though: the ointments she sells can't be used in the middle of a battle."
 	), MSGBOX_NPC)
 }
 

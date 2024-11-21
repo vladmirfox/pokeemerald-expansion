@@ -110,6 +110,7 @@
 // 2: Seen the decay once
 // 3: "be careful!"
 // 4: Talked to Hariko about decay
+// 5: Delivered letter to elder in Silveridge
 #define VAR_DECAY_BEACHBOUND_ROUTE                       0x4052
 #define VAR_LAVARIDGE_TOWN_STATE                         0x4053
 #define VAR_CURRENT_SECRET_BASE                          0x4054 // was probably allocated for VAR_FALLARBOR_TOWN_STATE at one point
