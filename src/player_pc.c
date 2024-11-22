@@ -181,20 +181,30 @@ static EWRAM_DATA u8 sTopMenuNumOptions = 0;
 EWRAM_DATA struct PlayerPCItemPageStruct gPlayerPCItemPageInfo = {};
 static EWRAM_DATA struct ItemStorageMenu *sItemStorageMenu = NULL;
 
+static const u8 gText_WithdrawItem[] = _("WITHDRAW ITEM");
+static const u8 gText_DepositItem[] = _("DEPOSIT ITEM");
+static const u8 gText_TossItem[] = _("TOSS ITEM");
+static const u8 gText_Mailbox[] = _("MAILBOX");
+
+static const u8 gText_WithdrawHowManyItems[] = _("Withdraw how many\n{STR_VAR_1}?");
+static const u8 gText_WithdrawXItems[] = _("Withdrew {STR_VAR_2}\n{STR_VAR_1}.");
+static const u8 gText_NoRoomInBag[] = _("There is no more\nroom in the BAG.");
+static const u8 gText_TooImportantToToss[] = _("That's much too\nimportant to toss\nout!");
+
 static const u8 *const sItemStorage_OptionDescriptions[] =
 {
-    [MENU_WITHDRAW] = gText_TakeOutItemsFromPC,
-    [MENU_DEPOSIT]  = gText_StoreItemsInPC,
-    [MENU_TOSS]     = gText_ThrowAwayItemsInPC,
+    [MENU_WITHDRAW] = COMPOUND_STRING("Take out items from the PC."),
+    [MENU_DEPOSIT]  = COMPOUND_STRING("Store items in the PC."),
+    [MENU_TOSS]     = COMPOUND_STRING("Throw away items stored in the PC."),
     [MENU_EXIT]     = gText_GoBackPrevMenu,
 };
 
 static const struct MenuAction sPlayerPCMenuActions[] =
 {
-    [MENU_ITEMSTORAGE] = { gText_ItemStorage, {PlayerPC_ItemStorage} },
-    [MENU_MAILBOX]     = { gText_Mailbox,     {PlayerPC_Mailbox} },
-    [MENU_DECORATION]  = { gText_Decoration,  {PlayerPC_Decoration} },
-    [MENU_TURNOFF]     = { gText_TurnOff,     {PlayerPC_TurnOff} }
+    [MENU_ITEMSTORAGE] = { COMPOUND_STRING("ITEM STORAGE"), {PlayerPC_ItemStorage} },
+    [MENU_MAILBOX]     = { gText_Mailbox,                   {PlayerPC_Mailbox} },
+    [MENU_DECORATION]  = { COMPOUND_STRING("DECORATION"),   {PlayerPC_Decoration} },
+    [MENU_TURNOFF]     = { COMPOUND_STRING("TURN OFF"),     {PlayerPC_TurnOff} }
 };
 
 static const u8 sBedroomPC_OptionOrder[] =
@@ -230,10 +240,10 @@ static const u16 sNewGamePCItems[][2] =
 
 const struct MenuAction gMailboxMailOptions[] =
 {
-    { gText_Read,      {Mailbox_DoMailRead} },
-    { gText_MoveToBag, {Mailbox_MoveToBag} },
-    { gText_Give2,     {Mailbox_Give} },
-    { gText_Cancel2,   {Mailbox_Cancel} }
+    { COMPOUND_STRING("READ"),        {Mailbox_DoMailRead} },
+    { COMPOUND_STRING("MOVE TO BAG"), {Mailbox_MoveToBag} },
+    { COMPOUND_STRING("GIVE"),        {Mailbox_Give} },
+    { gText_Cancel2,                  {Mailbox_Cancel} }
 };
 
 static const struct WindowTemplate sWindowTemplates_MainMenus[] =
