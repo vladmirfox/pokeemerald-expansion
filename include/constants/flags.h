@@ -47,12 +47,12 @@
 #define FLAG_STOLE_GOODY_BAG                0x21 // Unused Flag
 #define FLAG_HIDE_ROUTE_102_MAGMA_GUARD     0x22 // Unused Flag
 #define FLAG_HIDE_ROUTE_A_GRUNT_1           0x23 // Unused Flag
-#define FLAG_UNUSED_0x024    0x24 // Unused Flag
-#define FLAG_UNUSED_0x025    0x25 // Unused Flag
-#define FLAG_UNUSED_0x026    0x26 // Unused Flag
-#define FLAG_UNUSED_0x027    0x27 // Unused Flag
-#define FLAG_UNUSED_0x028    0x28 // Unused Flag
-#define FLAG_UNUSED_0x029    0x29 // Unused Flag
+#define FLAG_DEWFORD_GYM_ROCK_1             0x24 // Dewford gym rocks
+#define FLAG_DEWFORD_GYM_ROCK_2             0x25 // Unused Flag
+#define FLAG_DEWFORD_GYM_ROCK_3             0x26 // Unused Flag
+#define FLAG_DEWFORD_GYM_ROCK_4             0x27 // Unused Flag
+#define FLAG_DEWFORD_GYM_ROCK_5             0x28 // Unused Flag
+#define FLAG_DEWFORD_GYM_ROCK_6             0x29 // Unused Flag
 #define FLAG_UNUSED_0x02A    0x2A // Unused Flag
 #define FLAG_UNUSED_0x02B    0x2B // Unused Flag
 #define FLAG_UNUSED_0x02C    0x2C // Unused Flag
@@ -447,7 +447,7 @@
 #define FLAG_REGISTERED_KIRA_AND_DAN         (TRAINER_REGISTERED_FLAGS_START + REMATCH_KIRA_AND_DAN)
 #define FLAG_REGISTERED_WALLY                (TRAINER_REGISTERED_FLAGS_START + REMATCH_WALLY)
 #define FLAG_REGISTERED_ROXANNE              (TRAINER_REGISTERED_FLAGS_START + REMATCH_ROXANNE)
-#define FLAG_REGISTERED_BRAWLY               (TRAINER_REGISTERED_FLAGS_START + REMATCH_BRAWLY)
+#define FLAG_REGISTERED_CHUCK                (TRAINER_REGISTERED_FLAGS_START + REMATCH_CHUCK)
 #define FLAG_REGISTERED_WATTSON              (TRAINER_REGISTERED_FLAGS_START + REMATCH_WATTSON)
 #define FLAG_REGISTERED_FLANNERY             (TRAINER_REGISTERED_FLAGS_START + REMATCH_FLANNERY)
 #define FLAG_REGISTERED_NORMAN               (TRAINER_REGISTERED_FLAGS_START + REMATCH_NORMAN)
@@ -503,7 +503,7 @@
 #define FLAG_SCOTT_GIVES_BATTLE_POINTS       0x1D1
 #define FLAG_COLLECTED_ALL_GOLD_SYMBOLS      0x1D2
 #define FLAG_ENABLE_ROXANNE_MATCH_CALL       0x1D3
-#define FLAG_ENABLE_BRAWLY_MATCH_CALL        0x1D4
+#define FLAG_ENABLE_CHUCK_MATCH_CALL         0x1D4
 #define FLAG_ENABLE_WATTSON_MATCH_CALL       0x1D5
 #define FLAG_ENABLE_FLANNERY_MATCH_CALL      0x1D6
 #define FLAG_ENABLE_WINONA_MATCH_CALL        0x1D7

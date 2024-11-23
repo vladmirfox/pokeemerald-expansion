@@ -1079,12 +1079,13 @@ cLittlerootTown_EventScript_PickupGoodyBag::
 	msgbox cLittlerootTown_Text_PickupGoodyBag
 	msgbox cLittlerootTown_Text_FoundRustyOldBadges
 	giveitem ITEM_MASTER_BALL, 50
-	giveitem ITEM_CARBOS, 10
-	giveitem ITEM_PROTEIN, 10
-	giveitem ITEM_ADAMANT_MUSHROOM, 10
+	@ giveitem ITEM_CARBOS, 10
+	@ giveitem ITEM_PROTEIN, 10
+	@ giveitem ITEM_ADAMANT_MUSHROOM, 10
 	call LittlerootTown_Script_SkipBirchEncounter
 	call LittlerootTown_Script_GiveStartingMons
 	call LittlerootTown_Script_GiveBadges
+	call LittlerootTown_Script_SetFlyFlags
 	removeobject LOCALID_GOODY_BAG
 	setflag FLAG_STOLE_GOODY_BAG
 	setflag FLAG_HIDE_ROUTE_102_MAGMA_GUARD
@@ -1113,7 +1114,9 @@ LittlerootTown_Script_GiveStartingMons::
 	getpartysize
 	compare VAR_RESULT, 6
 	goto_if_eq Script_PlayerHasFullParty
-	givemon SPECIES_VAPOREON, 65, item=ITEM_LEFTOVERS, ball=ITEM_MASTER_BALL, nature=NATURE_MODEST, abilityNum=1, gender=MON_FEMALE, hpEv=252, atkEv=0, defEv=0, speedEv=4, spAtkEv=252, spDefEv=0, hpIv=31, atkIv=31, defIv=31, speedIv=31, spAtkIv=31, spDefIv=31, move1=MOVE_SURF, move2=MOVE_FLAMETHROWER, move3=MOVE_ICE_BEAM, move4=MOVE_SPLASH, isShiny=TRUE;
+	givemon SPECIES_VAPOREON, 65, item=ITEM_LEFTOVERS, move1=MOVE_SURF, move2=MOVE_POUND, move3=MOVE_TAKE_DOWN, move4=MOVE_SPLASH, isShiny=TRUE;
+	givemon SPECIES_UMBREON, 65, move1=MOVE_ROCK_CANNON, move2=MOVE_ICE_PUNCH, move3=MOVE_DAZZLING_GLEAM, move4=MOVE_BRILLIANT_PUNCH, isShiny=TRUE;
+	givemon SPECIES_SUDOWOODO, 45
 	@ givemon SPECIES_SHEDINJA_DELTA, 65, item=ITEM_LEFTOVERS, ball=ITEM_MASTER_BALL, nature=NATURE_MODEST, abilityNum=1, gender=MON_FEMALE, hpEv=252, atkEv=0, defEv=0, speedEv=4, spAtkEv=252, spDefEv=0, hpIv=31, atkIv=31, defIv=31, speedIv=31, spAtkIv=31, spDefIv=31, move1=MOVE_POISON_STING, move2=MOVE_EARTHQUAKE, move3=MOVE_GIGA_DRAIN, move4=MOVE_SPLASH, isShiny=TRUE;
 	@ givemon SPECIES_DUSTOX_DELTA, 60
 	return
@@ -1128,6 +1131,25 @@ LittlerootTown_Script_GiveBadges::
 	setflag FLAG_BADGE06_GET
 	setflag FLAG_BADGE07_GET
 	setflag FLAG_BADGE08_GET
+	return
+
+LittlerootTown_Script_SetFlyFlags::
+	setflag FLAG_VISITED_LITTLEROOT_TOWN
+	setflag FLAG_VISITED_OLDALE_TOWN
+	setflag FLAG_VISITED_DEWFORD_TOWN
+	setflag FLAG_VISITED_LAVARIDGE_TOWN
+	setflag FLAG_VISITED_FALLARBOR_TOWN
+	setflag FLAG_VISITED_VERDANTURF_TOWN
+	setflag FLAG_VISITED_PACIFIDLOG_TOWN
+	setflag FLAG_VISITED_PETALBURG_CITY
+	setflag FLAG_VISITED_SLATEPORT_CITY
+	setflag FLAG_VISITED_MAUVILLE_CITY
+	setflag FLAG_VISITED_RUSTBORO_CITY
+	setflag FLAG_VISITED_FORTREE_CITY
+	setflag FLAG_VISITED_LILYCOVE_CITY
+	setflag FLAG_VISITED_MOSSDEEP_CITY
+	setflag FLAG_VISITED_SOOTOPOLIS_CITY
+	setflag FLAG_VISITED_EVER_GRANDE_CITY
 	return
 
 cLittlerootTown_Text_PickupGoodyBag:

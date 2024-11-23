@@ -4845,11 +4845,19 @@ IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
 - Rock Throw
 - Rock Tomb
 
-Geodude
-Level: 12
+Cranidos
+Level: 14
 IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
-- Tackle
-- Defense Curl
+- Headbutt
+- Leer
+- Rock Smash
+- Rock Tomb
+
+Sudowoodo
+Level: 14
+IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
+- Slam
+- Low Kick
 - Rock Throw
 - Rock Tomb
 
@@ -4861,39 +4869,47 @@ IVs: 24 HP / 24 Atk / 24 Def / 24 SpA / 24 SpD / 24 Spe
 - Tackle
 - Rock Tomb
 
-=== TRAINER_BRAWLY_1 ===
-Name: BRAWLY
+=== TRAINER_CHUCK_1 ===
+Name: CHUCK
 Class: Leader
-Pic: Leader Brawly
+Pic: Leader Chuck
 Gender: Male
 Music: Male
 Items: Super Potion / Super Potion
 Double Battle: No
 AI: Check Bad Move / Try To Faint / Check Viability
 
-Machop
-Level: 16
+Mankey
+Level: 18
 IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
 - Karate Chop
 - Low Kick
 - Seismic Toss
 - Bulk Up
 
-Meditite
-Level: 16
+Tyrogue
+Level: 18
 IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
-- Focus Punch
-- Light Screen
+- Bullet Punch
+- Fake Out
 - Reflect
-- Bulk Up
+- Focus Punch
 
-Makuhita @ Sitrus Berry
-Level: 19
+Primeape
+Level: 22
+IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
+- Seismic Toss
+- Swagger
+- Cross Chop
+- Focus Punch
+
+Poliwrath @ Sitrus Berry
+Level: 24
 IVs: 24 HP / 24 Atk / 24 Def / 24 SpA / 24 SpD / 24 Spe
 - Arm Thrust
 - Vital Throw
 - Reversal
-- Bulk Up
+- Focus Punch
 
 === TRAINER_WATTSON_1 ===
 Name: WATTSON
@@ -6022,6 +6038,8 @@ Geodude
 Level: 10
 IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
 - Tackle
+- Defense Curl
+- Rollout
 
 === TRAINER_TOMMY ===
 Name: TOMMY
@@ -6036,8 +6054,8 @@ Geodude
 Level: 8
 IVs: 13 HP / 13 Atk / 13 Def / 13 SpA / 13 SpD / 13 Spe
 
-Geodude
-Level: 8
+Rhyhorn
+Level: 10
 IVs: 14 HP / 14 Atk / 14 Def / 14 SpA / 14 SpD / 14 Spe
 
 === TRAINER_JOEY ===
@@ -10600,11 +10618,11 @@ Double Battle: No
 AI: Check Bad Move
 
 Geodude
-Level: 8
+Level: 9
 IVs: 14 HP / 14 Atk / 14 Def / 14 SpA / 14 SpD / 14 Spe
 
-Geodude
-Level: 8
+Shieldon
+Level: 11
 IVs: 15 HP / 15 Atk / 15 Def / 15 SpA / 15 SpD / 15 Spe
 
 === TRAINER_BRENDEN ===
@@ -14401,9 +14419,9 @@ IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 - Rock Slide
 
 === TRAINER_BRAWLY_2 ===
-Name: BRAWLY
+Name: CHUCK
 Class: Leader
-Pic: Leader Brawly
+Pic: Leader Chuck
 Gender: Male
 Music: Male
 Items: Full Restore / Full Restore / Full Restore
@@ -14418,23 +14436,23 @@ IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 - Focus Punch
 - Bulk Up
 
-Meditite
+Hitmonchan
 Level: 33
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-- Psychic
-- Light Screen
-- Reflect
+- Mach Punch
+- Thunder Punch
+- Ice Punch
 - Focus Punch
 
-Hitmontop
+Hitmonlee
 Level: 35
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 - Pursuit
 - Counter
 - Protect
-- Triple Kick
+- High Jump Kick
 
-Hariyama @ Sitrus Berry
+Hariyama
 Level: 37
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 - Fake Out
@@ -14442,10 +14460,26 @@ IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 - Belly Drum
 - Earthquake
 
+Primeape
+Level: 36
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+- Cross Chop
+- Assurance
+- Cross Chop
+- Rage Fist
+
+Poliwrath @ Sitrus Berry
+Level: 40
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+- Double-Edge
+- Brick Break
+- Liquidation
+- Focus Punch
+
 === TRAINER_BRAWLY_3 ===
-Name: BRAWLY
+Name: CHUCK
 Class: Leader
-Pic: Leader Brawly
+Pic: Leader Chuck
 Gender: Male
 Music: Male
 Items: Full Restore / Full Restore / Full Restore

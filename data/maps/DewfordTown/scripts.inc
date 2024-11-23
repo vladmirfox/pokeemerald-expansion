@@ -69,6 +69,10 @@ DewfordTown_EventScript_Woman::
 	msgbox DewfordTown_Text_TinyIslandCommunity, MSGBOX_NPC
 	end
 
+DewfordTown_EventScript_ConfusedBoy::
+	msgbox DewfordTown_Text_AlwaysHere, MSGBOX_NPC
+	end
+
 DewfordTown_EventScript_TownSign::
 	msgbox DewfordTown_Text_TownSign, MSGBOX_SIGN
 	end
@@ -79,6 +83,10 @@ DewfordTown_EventScript_GymSign::
 
 DewfordTown_EventScript_HallSign::
 	msgbox DewfordTown_Text_HallSign, MSGBOX_SIGN
+	end
+
+DewfordTown_EventScript_PetrasHouse::
+	msgbox DewfordTown_Text_PetrasHouse, MSGBOX_SIGN
 	end
 
 DewfordTown_EventScript_OldRodFisherman::
@@ -644,18 +652,25 @@ DewfordTown_Text_TinyIslandCommunity:
 	.string "If something gets trendy here,\l"
 	.string "everyone picks up on it right away.$"
 
+DewfordTown_Text_AlwaysHere:
+	.string "Wait a second, was this grass\n"
+	.string "always here?$"
+
 DewfordTown_Text_TownSign:
 	.string "DEWFORD TOWN\n"
 	.string "“A tiny island in the blue sea.”$"
 
 DewfordTown_Text_GymSign:
 	.string "DEWFORD TOWN POKéMON GYM\n"
-	.string "LEADER: BRAWLY\l"
-	.string "“A big wave in fighting!”$"
+	.string "LEADER: CHUCK\l"
+	.string "“The strongest guy around!”$"
 
 DewfordTown_Text_HallSign:
 	.string "DEWFORD HALL\n"
 	.string "“Everyone's information exchange!”$"
+
+DewfordTown_Text_PetrasHouse:
+	.string "PETRA'S HOUSE$"
 
 Route104_Text_LandedInDewfordDeliverLetter:
 	.string "MR. BRINEY: Ahoy!\n"

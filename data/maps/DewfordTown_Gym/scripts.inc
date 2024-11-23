@@ -1,113 +1,54 @@
+.set LOCALID_ROCK_1, 8
+.set LOCALID_ROCK_2, 9
+.set LOCALID_ROCK_3, 10
+.set LOCALID_ROCK_4, 11
+.set LOCALID_ROCK_5, 12
+.set LOCALID_ROCK_6, 13
+
+
 DewfordTown_Gym_MapScripts::
-	map_script MAP_SCRIPT_ON_TRANSITION, DewfordTown_Gym_OnTransition
 	.byte 0
 
-DewfordTown_Gym_OnTransition:
-	call DewfordTown_Gym_EventScript_SetFlashLevel
-	end
-
-DewfordTown_Gym_EventScript_SetFlashLevel::
-	goto_if_defeated TRAINER_BRAWLY_1, DewfordTown_Gym_EventScript_SetLightsOn
-	call DewfordTown_Gym_EventScript_CountTrainersDefeated
-	copyvar VAR_0x8001, VAR_0x8000
-	goto_if_eq VAR_0x8000, 0, DewfordTown_Gym_EventScript_SetFlashLevel7
-	goto_if_eq VAR_0x8000, 1, DewfordTown_Gym_EventScript_SetFlashLevel6
-	goto_if_eq VAR_0x8000, 2, DewfordTown_Gym_EventScript_SetFlashLevel5
-	goto_if_eq VAR_0x8000, 3, DewfordTown_Gym_EventScript_SetFlashLevel4
-	goto_if_eq VAR_0x8000, 4, DewfordTown_Gym_EventScript_SetFlashLevel3
-	goto_if_eq VAR_0x8000, 5, DewfordTown_Gym_EventScript_SetFlashLevel2
-	goto DewfordTown_Gym_EventScript_SetFlashLevel1
-
-DewfordTown_Gym_EventScript_SetLightsOn::
-	setflashlevel 0
+DewfordTown_Gym_EventScript_BreakRock1::
+	applymovement LOCALID_ROCK_1, Movement_SmashRock
+	waitmovement 0
+	removeobject LOCALID_ROCK_1
+	setflag FLAG_DEWFORD_GYM_ROCK_1
 	return
 
-@ Brightest
-DewfordTown_Gym_EventScript_SetFlashLevel1::
-	setflashlevel 1
+DewfordTown_Gym_EventScript_BreakRock2::
+	applymovement LOCALID_ROCK_2, Movement_SmashRock
+	waitmovement 0
+	removeobject LOCALID_ROCK_2
+	setflag FLAG_DEWFORD_GYM_ROCK_2
 	return
 
-DewfordTown_Gym_EventScript_SetFlashLevel2::
-	setflashlevel 2
+DewfordTown_Gym_EventScript_BreakRock3::
+	applymovement LOCALID_ROCK_3, Movement_SmashRock
+	waitmovement 0
+	removeobject LOCALID_ROCK_3
+	setflag FLAG_DEWFORD_GYM_ROCK_3
 	return
 
-DewfordTown_Gym_EventScript_SetFlashLevel3::
-	setflashlevel 3
+DewfordTown_Gym_EventScript_BreakRock4::
+	applymovement LOCALID_ROCK_4, Movement_SmashRock
+	waitmovement 0
+	removeobject LOCALID_ROCK_4
+	setflag FLAG_DEWFORD_GYM_ROCK_4
 	return
 
-DewfordTown_Gym_EventScript_SetFlashLevel4::
-	setflashlevel 4
+DewfordTown_Gym_EventScript_BreakRock5::
+	applymovement LOCALID_ROCK_5, Movement_SmashRock
+	waitmovement 0
+	removeobject LOCALID_ROCK_5
+	setflag FLAG_DEWFORD_GYM_ROCK_5
 	return
 
-DewfordTown_Gym_EventScript_SetFlashLevel5::
-	setflashlevel 5
-	return
-
-DewfordTown_Gym_EventScript_SetFlashLevel6::
-	setflashlevel 6
-	return
-
-@ Darkest
-DewfordTown_Gym_EventScript_SetFlashLevel7::
-	setflashlevel 7
-	return
-
-DewfordTown_Gym_EventScript_BrightenRoom::
-	call DewfordTown_Gym_EventScript_CountTrainersDefeated
-	nop1
-	goto_if_eq VAR_0x8000, VAR_0x8001, DewfordTown_Gym_EventScript_NoLightChange
-	copyvar VAR_0x8001, VAR_0x8000
-	goto_if_eq VAR_0x8000, 1, DewfordTown_Gym_EventScript_AnimateFlash1Trainer
-	goto_if_eq VAR_0x8000, 2, DewfordTown_Gym_EventScript_AnimateFlash2Trainers
-	goto_if_eq VAR_0x8000, 3, DewfordTown_Gym_EventScript_AnimateFlash3Trainers
-	goto_if_eq VAR_0x8000, 4, DewfordTown_Gym_EventScript_AnimateFlash4Trainers
-	goto_if_eq VAR_0x8000, 5, DewfordTown_Gym_EventScript_AnimateFlash5Trainers
-	goto_if_eq VAR_0x8000, 6, DewfordTown_Gym_EventScript_AnimateFlash6Trainers
-
-DewfordTown_Gym_EventScript_NoLightChange::
-	return
-
-@ NOTE: A little confusingly, a larger animateflash param value is a smaller flash radius
-DewfordTown_Gym_EventScript_AnimateFlash1Trainer::
-	playse SE_SWITCH
-	animateflash 6
-	call DewfordTown_Gym_EventScript_SetFlashLevel
-	return
-
-DewfordTown_Gym_EventScript_AnimateFlash2Trainers::
-	playse SE_SWITCH
-	animateflash 5
-	call DewfordTown_Gym_EventScript_SetFlashLevel
-	return
-
-DewfordTown_Gym_EventScript_AnimateFlash3Trainers::
-	playse SE_SWITCH
-	animateflash 4
-	call DewfordTown_Gym_EventScript_SetFlashLevel
-	return
-
-DewfordTown_Gym_EventScript_AnimateFlash4Trainers::
-	playse SE_SWITCH
-	animateflash 3
-	call DewfordTown_Gym_EventScript_SetFlashLevel
-	return
-
-DewfordTown_Gym_EventScript_AnimateFlash5Trainers::
-	playse SE_SWITCH
-	animateflash 2
-	call DewfordTown_Gym_EventScript_SetFlashLevel
-	return
-
-DewfordTown_Gym_EventScript_AnimateFlash6Trainers::
-	playse SE_SWITCH
-	animateflash 1
-	call DewfordTown_Gym_EventScript_SetFlashLevel
-	return
-
-DewfordTown_Gym_EventScript_AnimateFlashFullBrightness::
-	playse SE_SWITCH
-	animateflash 0
-	call DewfordTown_Gym_EventScript_SetFlashLevel
+DewfordTown_Gym_EventScript_BreakRock6::
+	applymovement LOCALID_ROCK_6, Movement_SmashRock
+	waitmovement 0
+	removeobject LOCALID_ROCK_6
+	setflag FLAG_DEWFORD_GYM_ROCK_6
 	return
 
 DewfordTown_Gym_EventScript_CountTrainersDefeated::
@@ -132,17 +73,16 @@ DewfordTown_Gym_EventScript_CheckLilith::
 DewfordTown_Gym_EventScript_StopCountingTrainers::
 	return
 
-DewfordTown_Gym_EventScript_Brawly::
-	trainerbattle_single TRAINER_BRAWLY_1, DewfordTown_Gym_Text_BrawlyIntro, DewfordTown_Gym_Text_BrawlyDefeat, DewfordTown_Gym_EventScript_BrawlyDefeated, NO_MUSIC
+DewfordTown_Gym_EventScript_Chuck::
+	trainerbattle_single TRAINER_CHUCK_1, DewfordTown_Gym_Text_ChuckIntro, DewfordTown_Gym_Text_ChuckDefeat, DewfordTown_Gym_EventScript_ChuckDefeated, NO_MUSIC
 	specialvar VAR_RESULT, ShouldTryRematchBattle
-	goto_if_eq VAR_RESULT, TRUE, DewfordTown_Gym_EventScript_BrawlyRematch
+	goto_if_eq VAR_RESULT, TRUE, DewfordTown_Gym_EventScript_ChuckRematch
 	goto_if_unset FLAG_RECEIVED_TM_BULK_UP, DewfordTown_Gym_EventScript_GiveBulkUp2
-	msgbox DewfordTown_Gym_Text_BrawlyPostBattle, MSGBOX_DEFAULT
+	msgbox DewfordTown_Gym_Text_ChuckPostBattle, MSGBOX_DEFAULT
 	release
 	end
 
-DewfordTown_Gym_EventScript_BrawlyDefeated::
-	call DewfordTown_Gym_EventScript_AnimateFlashFullBrightness
+DewfordTown_Gym_EventScript_ChuckDefeated::
 	message DewfordTown_Gym_Text_ReceivedKnuckleBadge
 	waitmessage
 	call Common_EventScript_PlayGymBadgeFanfare
@@ -157,11 +97,11 @@ DewfordTown_Gym_EventScript_BrawlyDefeated::
 	closemessage
 	delay 30
 	playfanfare MUS_REGISTER_MATCH_CALL
-	msgbox DewfordTown_Gym_Text_RegisteredBrawly, MSGBOX_DEFAULT
+	msgbox DewfordTown_Gym_Text_RegisteredChuck, MSGBOX_DEFAULT
 	waitfanfare
 	closemessage
 	delay 30
-	setflag FLAG_ENABLE_BRAWLY_MATCH_CALL
+	setflag FLAG_ENABLE_CHUCK_MATCH_CALL
 	setvar VAR_ROXANNE_CALL_STEP_COUNTER, 0
 	setflag FLAG_ENABLE_ROXANNE_FIRST_CALL
 	release
@@ -182,69 +122,39 @@ DewfordTown_Gym_EventScript_GiveBulkUp2:
 	release
 	end
 
-DewfordTown_Gym_EventScript_BrawlyRematch::
-	trainerbattle_rematch_double TRAINER_BRAWLY_1, DewfordTown_Gym_Text_BrawlyPreRematch, DewfordTown_Gym_Text_BrawlyRematchDefeat, DewfordTown_Gym_Text_BrawlyRematchNeedTwoMons
-	msgbox DewfordTown_Gym_Text_BrawlyPostRematch, MSGBOX_AUTOCLOSE
+DewfordTown_Gym_EventScript_ChuckRematch::
+	trainerbattle_rematch_double TRAINER_CHUCK_1, DewfordTown_Gym_Text_ChuckPreRematch, DewfordTown_Gym_Text_ChuckRematchDefeat, DewfordTown_Gym_Text_ChuckRematchNeedTwoMons
+	msgbox DewfordTown_Gym_Text_ChuckPostRematch, MSGBOX_AUTOCLOSE
 	end
 
 DewfordTown_Gym_EventScript_Takao::
-	trainerbattle_single TRAINER_TAKAO, DewfordTown_Gym_Text_TakaoIntro, DewfordTown_Gym_Text_TakaoDefeat, DewfordTown_Gym_EventScript_TakaoBrightenRoom
+	trainerbattle_single TRAINER_TAKAO, DewfordTown_Gym_Text_TakaoIntro, DewfordTown_Gym_Text_TakaoDefeat, DewfordTown_Gym_EventScript_BreakRock2
 	msgbox DewfordTown_Gym_Text_TakaoPostBattle, MSGBOX_AUTOCLOSE
 	end
 
-DewfordTown_Gym_EventScript_TakaoBrightenRoom::
-	call DewfordTown_Gym_EventScript_BrightenRoom
-	release
-	end
-
 DewfordTown_Gym_EventScript_Jocelyn::
-	trainerbattle_single TRAINER_JOCELYN, DewfordTown_Gym_Text_JocelynIntro, DewfordTown_Gym_Text_JocelynDefeat, DewfordTown_Gym_EventScript_JocelynBrightenRoom
+	trainerbattle_single TRAINER_JOCELYN, DewfordTown_Gym_Text_JocelynIntro, DewfordTown_Gym_Text_JocelynDefeat, DewfordTown_Gym_EventScript_BreakRock6
 	msgbox DewfordTown_Gym_Text_JocelynPostBattle, MSGBOX_AUTOCLOSE
 	end
 
-DewfordTown_Gym_EventScript_JocelynBrightenRoom::
-	call DewfordTown_Gym_EventScript_BrightenRoom
-	release
-	end
-
 DewfordTown_Gym_EventScript_Laura::
-	trainerbattle_single TRAINER_LAURA, DewfordTown_Gym_Text_LauraIntro, DewfordTown_Gym_Text_LauraDefeat, DewfordTown_Gym_EventScript_LauraBrightenRoom
+	trainerbattle_single TRAINER_LAURA, DewfordTown_Gym_Text_LauraIntro, DewfordTown_Gym_Text_LauraDefeat, DewfordTown_Gym_EventScript_BreakRock5
 	msgbox DewfordTown_Gym_Text_LauraPostBattle, MSGBOX_AUTOCLOSE
 	end
 
-DewfordTown_Gym_EventScript_LauraBrightenRoom::
-	call DewfordTown_Gym_EventScript_BrightenRoom
-	release
-	end
-
 DewfordTown_Gym_EventScript_Brenden::
-	trainerbattle_single TRAINER_BRENDEN, DewfordTown_Gym_Text_BrendenIntro, DewfordTown_Gym_Text_BrendenDefeat, DewfordTown_Gym_EventScript_BrendenBrightenRoom
+	trainerbattle_single TRAINER_BRENDEN, DewfordTown_Gym_Text_BrendenIntro, DewfordTown_Gym_Text_BrendenDefeat, DewfordTown_Gym_EventScript_BreakRock4
 	msgbox DewfordTown_Gym_Text_BrendenPostBattle, MSGBOX_AUTOCLOSE
 	end
 
-DewfordTown_Gym_EventScript_BrendenBrightenRoom::
-	call DewfordTown_Gym_EventScript_BrightenRoom
-	release
-	end
-
 DewfordTown_Gym_EventScript_Cristian::
-	trainerbattle_single TRAINER_CRISTIAN, DewfordTown_Gym_Text_CristianIntro, DewfordTown_Gym_Text_CristianDefeat, DewfordTown_Gym_EventScript_CristianBrightenRoom
+	trainerbattle_single TRAINER_CRISTIAN, DewfordTown_Gym_Text_CristianIntro, DewfordTown_Gym_Text_CristianDefeat, DewfordTown_Gym_EventScript_BreakRock3
 	msgbox DewfordTown_Gym_Text_CristianPostBattle, MSGBOX_AUTOCLOSE
 	end
 
-DewfordTown_Gym_EventScript_CristianBrightenRoom::
-	call DewfordTown_Gym_EventScript_BrightenRoom
-	release
-	end
-
 DewfordTown_Gym_EventScript_Lilith::
-	trainerbattle_single TRAINER_LILITH, DewfordTown_Gym_Text_LilithIntro, DewfordTown_Gym_Text_LilithDefeat, DewfordTown_Gym_EventScript_LilithBrightenRoom
+	trainerbattle_single TRAINER_LILITH, DewfordTown_Gym_Text_LilithIntro, DewfordTown_Gym_Text_LilithDefeat, DewfordTown_Gym_EventScript_BreakRock1
 	msgbox DewfordTown_Gym_Text_LilithPostBattle, MSGBOX_AUTOCLOSE
-	end
-
-DewfordTown_Gym_EventScript_LilithBrightenRoom::
-	call DewfordTown_Gym_EventScript_BrightenRoom
-	release
 	end
 
 DewfordTown_Gym_EventScript_GymGuide::
@@ -285,22 +195,20 @@ DewfordTown_Gym_EventScript_GymStatue::
 DewfordTown_Gym_Text_GymGuideAdvice:
 	.string "Hey, how's it going, CHAMPION-\n"
 	.string "bound {PLAYER}?\p"
-	.string "DEWFORD's GYM LEADER BRAWLY commands\n"
+	.string "DEWFORD's GYM LEADER CHUCK commands\n"
 	.string "FIGHTING-type POKéMON.\p"
 	.string "Going against him with NORMAL-type\n"
 	.string "POKéMON is asking for trouble.\p"
 	.string "FIGHTING POKéMON will lay a serious\n"
 	.string "smack down on NORMAL POKéMON,\l"
 	.string "so be careful!\p"
-	.string "What's worse, the GYM is as dark as\n"
-	.string "the ocean floor.\p"
-	.string "But it will get brighter after defeating\n"
-	.string "the TRAINERS in your way.\p"
-	.string "Hey, okay, go for it!$"
+	.string "As you defeat the TRAINERS in your way\n"
+	.string "the breakable rocks will clear and\p"
+	.string "open your path to victory!\n"
+	.string "the TRAINERS in your way.$"
 
 DewfordTown_Gym_Text_GymGuidePostVictory:
-	.string "Whoah! It's turned too bright in here!\p"
-	.string "Your future is bright, too!$"
+	.string "Your future is looking bright!$"
 
 DewfordTown_Gym_Text_TakaoIntro:
 	.string "Might is right!\n"
@@ -314,7 +222,7 @@ DewfordTown_Gym_Text_TakaoPostBattle:
 	.string "Your technique is commendable!$"
 
 DewfordTown_Gym_Text_JocelynIntro:
-	.string "There's no need for BRAWLY to be\n"
+	.string "There's no need for CHUCK to be\n"
 	.string "involved!\p"
 	.string "I'll crush you!$"
 
@@ -338,22 +246,19 @@ DewfordTown_Gym_Text_LauraDefeat:
 	.string "I lost!$"
 
 DewfordTown_Gym_Text_LauraPostBattle:
-	.string "I battle in the dark to make my heart\n"
-	.string "stronger.\p"
-	.string "But because it's so dark, I can never\n"
-	.string "see BRAWLY's face…$"
+	.string "I can't let CHUCK down!$"
 
 DewfordTown_Gym_Text_LilithIntro:
 	.string "Ufufu…\n"
-	.string "Are you stumbling around in the dark?$"
+	.string "Are you ready for this?$"
 
 DewfordTown_Gym_Text_LilithDefeat:
 	.string "Oh, you…\n"
 	.string "I don't want to know you!$"
 
 DewfordTown_Gym_Text_LilithPostBattle:
-	.string "You deserve to stay lost and end up\n"
-	.string "back at the entrance again!$"
+	.string "You deserve to get demolished\n"
+	.string "by CHUCK!$"
 
 DewfordTown_Gym_Text_BrendenIntro:
 	.string "I'll show you the gumption of\n"
@@ -379,25 +284,23 @@ DewfordTown_Gym_Text_CristianPostBattle:
 	.string "You win!\n"
 	.string "Go after that BADGE!$"
 
-DewfordTown_Gym_Text_BrawlyIntro:
-	.string "I'm BRAWLY!\n"
+DewfordTown_Gym_Text_ChuckIntro:
+	.string "I'm CHUCK!\n"
 	.string "DEWFORD's GYM LEADER!\p"
-	.string "I've been churned in the rough waves\n"
-	.string "of these parts, and I've grown tough\l"
-	.string "in the pitch-black cave!\p"
+	.string "The old LEADER BRAWLY was such a skinny\n"
+	.string "weakling, I crushed him into dust!\p"
 	.string "So you wanted to challenge me?\n"
 	.string "Let me see what you're made of!$"
 
-DewfordTown_Gym_Text_BrawlyDefeat:
-	.string "Whoah, wow! You made a much bigger\n"
-	.string "splash than I expected!\p"
-	.string "You swamped me!\p"
-	.string "Okay, you've got me.\n"
+DewfordTown_Gym_Text_ChuckDefeat:
+	.string "Whoah, wow! You are way tougher than\n"
+	.string "I expected!\p"
+	.string "Here, this is for you.\n"
 	.string "Take this GYM BADGE!$"
 
 DewfordTown_Gym_Text_ReceivedKnuckleBadge:
 	.string "{PLAYER} received the KNUCKLE BADGE\n"
-	.string "from BRAWLY.$"
+	.string "from CHUCK.$"
 
 DewfordTown_Gym_Text_KnuckleBadgeInfoTakeThis:
 	.string "The KNUCKLE BADGE makes all POKéMON\n"
@@ -414,45 +317,38 @@ DewfordTown_Gym_Text_ExplainBulkUp:
 	.string "and DEFENSE stats.\p"
 	.string "… … … … … …$"
 
-DewfordTown_Gym_Text_RegisteredBrawly:
-	.string "Registered GYM LEADER BRAWLY\n"
+DewfordTown_Gym_Text_RegisteredChuck:
+	.string "Registered GYM LEADER CHUCK\n"
 	.string "in the POKéNAV.$"
 
-DewfordTown_Gym_Text_BrawlyPostBattle:
-	.string "I can see your talent becoming a giant\n"
-	.string "wave to cause a storm of astonishment\l"
-	.string "among TRAINERS one day!$"
+DewfordTown_Gym_Text_ChuckPostBattle:
+	.string "You've got a lot of talent, I'll be\n"
+	.string "watching you kid!$"
 
 DewfordTown_Gym_Text_GymStatue:
 	.string "DEWFORD TOWN POKéMON GYM$"
 
 DewfordTown_Gym_Text_GymStatueCertified:
 	.string "DEWFORD TOWN POKéMON GYM\p"
-	.string "BRAWLY'S CERTIFIED TRAINERS:\n"
+	.string "CHUCK'S CERTIFIED TRAINERS:\n"
 	.string "{PLAYER}$"
 
-DewfordTown_Gym_Text_BrawlyPreRematch:
-	.string "BRAWLY: A wave may draw back, but it\n"
-	.string "always returns to the shore.\p"
-	.string "A giant wave of a talent like you…\n"
-	.string "I knew you would return!\p"
-	.string "Show me how much higher\n"
-	.string "you've gone!$"
+DewfordTown_Gym_Text_ChuckPreRematch:
+	.string "CHUCK: I knew you would return!\p"
+	.string "I've been bulking up so don't\n"
+	.string "expect this to be easy!$"
 
-DewfordTown_Gym_Text_BrawlyRematchDefeat:
+DewfordTown_Gym_Text_ChuckRematchDefeat:
 	.string "Wow!\n"
-	.string "Swamped again!$"
+	.string "Crushed again!$"
 
-DewfordTown_Gym_Text_BrawlyPostRematch:
-	.string "BRAWLY: Battling is vast and it's deep.\n"
-	.string "You can't see the bottom.\l"
-	.string "It's just like the sea of HOENN!$"
+DewfordTown_Gym_Text_ChuckPostRematch:
+	.string "CHUCK: Battling is all about raw power!$"
 
-DewfordTown_Gym_Text_BrawlyRematchNeedTwoMons:
-	.string "BRAWLY: A wave may draw back, but it\n"
-	.string "always returns to the shore.\p"
-	.string "A giant wave of a talent like you…\n"
-	.string "I knew you would return!\p"
+DewfordTown_Gym_Text_ChuckRematchNeedTwoMons:
+	.string "CHUCK: I knew you would return!\p"
+	.string "I've been bulking up so don't\n"
+	.string "expect this to be easy!p"
 	.string "Oh? You only have one POKéMON\n"
 	.string "that can battle.\p"
 	.string "I'm sorry, but I'd like you to come back\n"
