@@ -43,6 +43,7 @@
 #define TEMP_FLAGS_END   FLAG_TEMP_1F
 #define NUM_TEMP_FLAGS   (TEMP_FLAGS_END - TEMP_FLAGS_START + 1)
 
+// CUSTOM
 #define FLAG_BIRCH_SKIP                     0x20 // LittlerootTown Vaporeon
 #define FLAG_STOLE_GOODY_BAG                0x21 // Unused Flag
 #define FLAG_HIDE_ROUTE_102_MAGMA_GUARD     0x22 // Unused Flag
@@ -53,7 +54,7 @@
 #define FLAG_DEWFORD_GYM_ROCK_4             0x27 // Unused Flag
 #define FLAG_DEWFORD_GYM_ROCK_5             0x28 // Unused Flag
 #define FLAG_DEWFORD_GYM_ROCK_6             0x29 // Unused Flag
-#define FLAG_UNUSED_0x02A    0x2A // Unused Flag
+#define FLAG_HIDE_DEWFORD_TOWN_BRAWLY_1     0x2A // Brawly outside gym
 #define FLAG_UNUSED_0x02B    0x2B // Unused Flag
 #define FLAG_UNUSED_0x02C    0x2C // Unused Flag
 #define FLAG_UNUSED_0x02D    0x2D // Unused Flag

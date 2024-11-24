@@ -90,6 +90,9 @@ DewfordTown_Gym_EventScript_ChuckDefeated::
 	setflag FLAG_DEFEATED_DEWFORD_GYM
 	setflag FLAG_BADGE02_GET
 	addvar VAR_PETALBURG_GYM_STATE, 1
+	@ Custom state, have Brawly greet outside
+	setvar VAR_DEWFORD_TOWN_STATE, 1
+	clearflag FLAG_HIDE_DEWFORD_TOWN_BRAWLY_1
 	call_if_eq VAR_PETALBURG_GYM_STATE, 6, Common_EventScript_ReadyPetalburgGymForBattle
 	setvar VAR_0x8008, 2
 	call Common_EventScript_SetGymTrainers

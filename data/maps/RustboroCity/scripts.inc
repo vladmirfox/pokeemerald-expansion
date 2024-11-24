@@ -593,6 +593,7 @@ RustboroCity_EventScript_ReturnGoodsTrigger3::
 	goto RustboroCity_EventScript_ReturnGoods
 	end
 
+@ 
 RustboroCity_EventScript_ReturnGoods::
 	call_if_eq VAR_TEMP_1, 0, RustboroCity_EventScript_EmployeeFacePlayerUp2
 	call_if_eq VAR_TEMP_1, 1, RustboroCity_EventScript_EmployeeFacePlayerLeft2

@@ -10,8 +10,11 @@
 .equ LOCALID_BOAT_R104, 7
 .equ LOCALID_BRINEY_R104, 8
 
+.set LOCALID_BRAWLY, 7
+
 DewfordTown_MapScripts::
 	map_script MAP_SCRIPT_ON_TRANSITION, DewfordTown_OnTransition
+	map_script MAP_SCRIPT_ON_FRAME_TABLE, DewfordTown_OnFrameTable
 	.byte 0
 
 DewfordTown_OnTransition:
@@ -816,3 +819,153 @@ DewfordTown_Text_YeahDefinitionOfInRightNow:
 	.string "Yeah, absolutely right!\p"
 	.string "“{STR_VAR_1}” is the\n"
 	.string "definition of “in” right now.$"
+
+@ CUSTOM SCRIPTS
+DewfordTown_OnFrameTable:
+	map_script_2 VAR_DEWFORD_TOWN_STATE, 1, DewfordTown_EventScript_MeetBrawly
+	.2byte 0
+
+DewfordTown_EventScript_MeetBrawly::
+	lockall
+	applymovement LOCALID_BRAWLY, Common_Movement_ExclamationMark
+	waitmovement 0
+	msgbox DewfordTown_Text_BrawlyHey, MSGBOX_DEFAULT
+	closemessage
+	turnobject OBJ_EVENT_ID_PLAYER, DIR_EAST
+	applymovement LOCALID_BRAWLY, DewfordTown_Movement_BrawlyMeetPlayer
+	waitmovement 0
+
+	msgbox DewfordTown_Text_BrawlyIntro, MSGBOX_DEFAULT
+	closemessage
+
+	applymovement LOCALID_BRAWLY, DewfordTown_Movement_LeadPlayerToShore
+	applymovement OBJ_EVENT_ID_PLAYER, DewfordTown_Movement_PlayerFollowToShore
+	waitmovement 0
+	msgbox DewfordTown_Text_BrawlyIslandIntro, MSGBOX_DEFAULT
+	closemessage
+	turnobject LOCALID_BRAWLY, DIR_WEST
+	turnobject OBJ_EVENT_ID_PLAYER, DIR_EAST
+	msgbox DewfordTown_Text_BrawlyStolenEquipment, MSGBOX_DEFAULT
+	closemessage
+	applymovement LOCALID_BRAWLY, Common_Movement_ExclamationMark
+	waitmovement 0
+	msgbox DewfordTown_Text_BrawlyOutro, MSGBOX_DEFAULT
+	closemessage
+	applymovement LOCALID_BRAWLY, DewfordTown_Movement_BrawlyLeave
+	waitmovement 0
+	removeobject LOCALID_BRAWLY
+	setvar VAR_DEWFORD_TOWN_STATE, 2
+	setflag FLAG_HIDE_DEWFORD_TOWN_BRAWLY_1
+	releaseall
+	end
+
+DewfordTown_Movement_BrawlyMeetPlayer:
+	walk_fast_left
+	walk_fast_left
+	walk_fast_down
+	walk_fast_down
+	walk_fast_left
+	walk_fast_left
+	walk_fast_left
+	step_end
+
+DewfordTown_Movement_LeadPlayerToShore:
+	walk_fast_right
+	walk_fast_right
+	walk_fast_right
+	walk_fast_up
+	walk_fast_up
+	walk_fast_up
+	walk_fast_up
+	walk_fast_up
+	walk_fast_up
+	walk_fast_up
+	walk_fast_right
+	walk_fast_right
+	walk_fast_right
+	walk_fast_up
+	walk_fast_right
+	walk_fast_right
+	walk_fast_right
+	walk_in_place_faster_up
+	step_end
+
+DewfordTown_Movement_PlayerFollowToShore:
+	walk_fast_right
+	walk_fast_right
+	walk_fast_right
+	walk_fast_right
+	walk_fast_up
+	walk_fast_up
+	walk_fast_up
+	walk_fast_up
+	walk_fast_up
+	walk_fast_up
+	walk_fast_up
+	walk_fast_right
+	walk_fast_right
+	walk_fast_right
+	walk_fast_up
+	walk_fast_right
+	walk_fast_right
+	walk_in_place_faster_up
+	step_end
+
+DewfordTown_Movement_BrawlyLeave:
+	walk_fast_down
+	walk_fast_left
+	walk_fast_left
+	walk_fast_left
+	walk_fast_left
+	walk_fast_left
+	walk_fast_left
+	walk_fast_left
+	walk_fast_left
+	walk_fast_left
+	step_end
+
+DewfordTown_Text_BrawlyHey:
+	.string "???: Hey!!!$"
+
+DewfordTown_Text_BrawlyIntro:
+	.string "???: I heard you just beat CHUCK!\n"
+	.string "He's a tough guy, I would know!\p"
+	.string "…\n"
+	.string "Oh sorry, let me introduce myself!\p"
+	.string "I'm BRAWLY, I used to be the gym\n"
+	.string "leader here until CHUCK showed up.\p"
+	.string "Anyway, since I know you're a strong\n"
+	.string "trainer maybe you could help me out\n"
+	.string "with something. Come with me.$"
+
+DewfordTown_Text_BrawlyIslandIntro:
+	.string "BRAWLY: See that island over there?\n"
+	.string "I've been using my FIGHTING-type\p"
+	.string "POKéMON to help excavate the\n"
+	.string "DIG SITE there.\p"
+	.string "We've found lots of unique and\n"
+	.string "strange fossils using our new\l"
+	.string "high-tech machinery.$"
+
+DewfordTown_Text_BrawlyStolenEquipment:
+	.string "BRAWLY: But last night someone came\n"
+	.string "and stole our equipment!\p"
+	.string "I heard from my colleague APRIL\n"
+	.string "that you helped her defeat those\l"
+	.string "goons interfering with the DELTA\l"
+	.string "PROJECT in PETALBURG CITY.\p"
+	.string "I have my suspicions that they might\n"
+	.string "be the same people who interrupted\l"
+	.string "our work here.\p"
+	.string "We have another DIG SITE south of\n"
+	.string "MAUVILLE CITY, do you think you\l"
+	.string "could keep an eye out for trouble?\p"
+	.string "I know you'll be heading that way\n"
+	.string "soon for your next GYM BADGE.$"
+
+DewfordTown_Text_BrawlyOutro:
+	.string "BRAWLY: Oh my, sorry for talking\n"
+	.string "your head off!\p"
+	.string "I have to get going but I'll\n"
+	.string "be in touch!\p"
+	.string "Goodluck with your next BADGE!$"

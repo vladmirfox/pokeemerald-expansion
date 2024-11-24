@@ -122,5 +122,5 @@ Route102_EventScript_MagmaRouteAGuard::
 
 Route102_Text_MagmaGuard:
 	.string "You're too weak to help with\n"
-	.string "our experiments...$"
+	.string "our experiments…$"
 

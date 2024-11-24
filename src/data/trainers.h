@@ -14,9 +14,9 @@
 #line 79
         .trainerName = _("GRUNT"),
 #line 80
-        .trainerClass = TRAINER_CLASS_TEAM_MAGMA,
+        .trainerClass = TRAINER_CLASS_TEAM_ARCO,
 #line 81
-        .trainerPic = TRAINER_PIC_MAGMA_GRUNT_M,
+        .trainerPic = TRAINER_PIC_ARCO_MEMBER_R,
         .encounterMusic_gender = 
 #line 83
             TRAINER_ENCOUNTER_MUSIC_MAGMA,

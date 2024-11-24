@@ -43,11 +43,11 @@ RouteA_Text_Grunt1Intro:
 	.string "Hey! What happened to our guard!$"
 
 RouteA_Text_Grunt1Defeated:
-	.string "Crap...$"
+	.string "Crap…$"
 
 RouteA_Text_Grunt1PostBattle:
-	.string "...\n"
-	.string "...\n"
+	.string "…\n"
+	.string …\n"
 	.string "Gotta go tell the boss.$"
 
 RouteA_Text_Scientist1Intro:

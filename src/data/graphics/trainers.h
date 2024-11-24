@@ -82,6 +82,12 @@ const u32 gTrainerPalette_Pokemaniac[] = INCBIN_U32("graphics/trainers/front_pic
 const u32 gTrainerFrontPic_MagmaGruntF[] = INCBIN_U32("graphics/trainers/front_pics/magma_grunt_f.4bpp.lz");
 const u32 gTrainerPalette_MagmaGruntF[] = INCBIN_U32("graphics/trainers/front_pics/magma_grunt_f.gbapal.lz");
 
+const u32 gTrainerFrontPic_ArcoMemberB[] = INCBIN_U32("graphics/trainers/front_pics/arco_member_b.4bpp.lz");
+const u32 gTrainerPalette_ArcoMemberB[] = INCBIN_U32("graphics/trainers/front_pics/arco_member_b.gbapal.lz");
+
+const u32 gTrainerFrontPic_ArcoMemberR[] = INCBIN_U32("graphics/trainers/front_pics/arco_member_r.4bpp.lz");
+const u32 gTrainerPalette_ArcoMemberR[] = INCBIN_U32("graphics/trainers/front_pics/arco_member_r.gbapal.lz");
+
 const u32 gTrainerFrontPic_Guitarist[] = INCBIN_U32("graphics/trainers/front_pics/guitarist.4bpp.lz");
 const u32 gTrainerPalette_Guitarist[] = INCBIN_U32("graphics/trainers/front_pics/guitarist.gbapal.lz");
 
@@ -405,6 +411,8 @@ const struct TrainerSprite gTrainerSprites[] =
     TRAINER_SPRITE(LEAF, Leaf),
     TRAINER_SPRITE(RS_BRENDAN, RubySapphireBrendan),
     TRAINER_SPRITE(RS_MAY, RubySapphireMay),
+    TRAINER_SPRITE(ARCO_MEMBER_B, ArcoMemberB),
+    TRAINER_SPRITE(ARCO_MEMBER_R, ArcoMemberR),
 };
 
 static const union AnimCmd sAnimCmd_Hoenn[] =
