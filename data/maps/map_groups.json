@@ -98,7 +98,8 @@
     "ZoneAlpha",
     "DigSite1",
     "RouteB",
-    "ZoneB"
+    "ZoneB",
+    "DigSite2"
   ],
   "gMapGroup_IndoorZoneA": [
     "ZoneA_Warehouse_1F",
@@ -446,7 +447,8 @@
     "BleakisleCave_2R",
     "BleakisleCave_3R",
     "BleakisleCave_B1F_1R",
-    "BleakisleCave_B1F_2R"
+    "BleakisleCave_B1F_2R",
+    "MauvilleTunnel"
   ],
   "gMapGroup_IndoorDynamic": [
     "SecretBase_RedCave1",

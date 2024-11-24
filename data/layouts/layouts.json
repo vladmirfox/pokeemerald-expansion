@@ -4550,6 +4550,26 @@
       "secondary_tileset": "gTileset_Cave",
       "border_filepath": "data/layouts/BleakisleCave_B1F_2R/border.bin",
       "blockdata_filepath": "data/layouts/BleakisleCave_B1F_2R/map.bin"
+    },
+    {
+      "id": "LAYOUT_MAUVILLE_TUNNEL",
+      "name": "MauvilleTunnel_Layout",
+      "width": 30,
+      "height": 20,
+      "primary_tileset": "gTileset_General",
+      "secondary_tileset": "gTileset_Cave",
+      "border_filepath": "data/layouts/MauvilleTunnel/border.bin",
+      "blockdata_filepath": "data/layouts/MauvilleTunnel/map.bin"
+    },
+    {
+      "id": "LAYOUT_DIG_SITE2",
+      "name": "DigSite2_Layout",
+      "width": 40,
+      "height": 20,
+      "primary_tileset": "gTileset_General",
+      "secondary_tileset": "gTileset_Dewford",
+      "border_filepath": "data/layouts/DigSite2/border.bin",
+      "blockdata_filepath": "data/layouts/DigSite2/map.bin"
     }
   ]
 }

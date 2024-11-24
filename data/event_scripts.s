@@ -1102,3 +1102,7 @@ EventScript_VsSeekerChargingDone::
 	.include "data/maps/BleakisleCave_B1F_1R/scripts.inc"
 
 	.include "data/maps/BleakisleCave_B1F_2R/scripts.inc"
+
+	.include "data/maps/MauvilleTunnel/scripts.inc"
+
+	.include "data/maps/DigSite2/scripts.inc"

@@ -957,7 +957,7 @@ DewfordTown_Text_BrawlyStolenEquipment:
 	.string "I have my suspicions that they might\n"
 	.string "be the same people who interrupted\l"
 	.string "our work here.\p"
-	.string "We have another DIG SITE south of\n"
+	.string "We have another DIG SITE north of\n"
 	.string "MAUVILLE CITY, do you think you\l"
 	.string "could keep an eye out for trouble?\p"
 	.string "I know you'll be heading that way\n"
