@@ -1912,8 +1912,143 @@ void CustomTrainerPartyAssignMoves(struct Pokemon *mon, const struct TrainerMon 
     }
 }
 
+#include "data/battle_pool_rules.h"
+
+EWRAM_INIT struct PoolRules poolRules = defaultPoolRules;
+
+void SetDefaultPoolRules() {poolRules = defaultPoolRules;}
+
+static bool32 IsPoolLegal(const struct Trainer *trainer, u32 battleTypeFlags)
+{
+    //  Verify that the trainer has a valid pool
+    if (B_POOL_SETTING_FAST_VERIFICATION)
+        return TRUE;
+    return TRUE;
+}
+
+static u32 PickMonFromPool(const struct Trainer *trainer, u8 *poolIndexArray, u32 partyIndex, u32 battleTypeFlags)
+{
+    u32 arrayIndex = 0;
+    u32 monIndex = 255;
+    if (partyIndex == 0
+     && poolRules.tagLead != POOL_TAG_DISABLED)
+    {
+        //  Find a mon with a POOL_TAG_LEAD if it exists
+        for (u32 currIndex = 0; currIndex < trainer->poolSize; currIndex++)
+        {
+        }
+    }
+    if (poolRules.tagLead != POOL_TAG_UNIQUE
+     && poolRules.tagLead != POOL_TAG_DISABLED
+     && partyIndex == 1
+     && battleTypeFlags & BATTLE_TYPE_DOUBLE)
+    {
+        //  Find a mon with a POOL_TAG_LEAD if it exists
+    }
+    //  If no other rule is required, pick first available
+    if (monIndex == 255)
+    {
+        for (u32 i = 0; i < trainer->poolSize; i++)
+        {
+            if (poolIndexArray[i] != 255)
+            {
+                arrayIndex = i;
+                break;
+            }
+        }
+    }
+    monIndex = poolIndexArray[arrayIndex];
+    //  Disable indices according to rules
+    if (B_POOL_SETTING_DISABLE_PICKED)
+        poolIndexArray[arrayIndex] = POOL_SLOT_DISABLED;
+    u32 chosenSpecies = trainer->party[monIndex].species;
+    for (u32 i = 0; i < trainer->poolSize; i++)
+    {
+        if (poolIndexArray[i] == 255)
+            continue;
+        u32 currSpecies = trainer->party[poolIndexArray[i]].species;
+        //  Species rules
+        if (poolRules.speciesClause)
+        {
+            //  Are the same species + form
+            if (currSpecies == chosenSpecies)
+            {
+                poolIndexArray[i] = 255;
+                continue;
+            }
+            if (!poolRules.excludeForms && gSpeciesInfo[chosenSpecies].natDexNum == gSpeciesInfo[currSpecies].natDexNum)
+            {
+                poolIndexArray[i] = 255;
+                continue;
+            }
+        }
+        //  Item rules
+        if (poolRules.itemClause)
+        {
+            u16 chosenItem = trainer->party[monIndex].heldItem;
+            u32 itemExcludeListIndex = 0;
+            while (poolItemClauseExclusions[itemExcludeListIndex] != ITEM_NONE)
+            {
+                if (poolItemClauseExclusions[itemExcludeListIndex] == chosenItem)
+                    chosenItem = ITEM_NONE;
+                itemExcludeListIndex++;
+            }
+            if (chosenItem != ITEM_NONE)
+            {
+                if (chosenItem == trainer->party[poolIndexArray[i]].heldItem)
+                {
+                    poolIndexArray[i] = 255;
+                    continue;
+                }
+            }
+        }
+    }
+    return monIndex;
+}
+
+static void RandomizePoolIndices(const struct Trainer *trainer, u8 *poolIndexArray)
+{
+    //  Basically the modern (Durstenfield's) Fisher-Yates shuffle
+    //  Reducing the amount of calls to random needed by only using as many bits as needed per shuffle
+    u32 poolSize = trainer->poolSize;
+    for (u32 i = 0; i < poolSize; i++)
+        poolIndexArray[i] = i;
+    u32 rnd = Random32();
+    u32 usedBits = 0;
+    for (u32 i = 0; i < poolSize - 1; i++)
+    {
+        u32 numBits = 1;
+        if (poolSize - i > 127)
+            numBits = 8;
+        else if (poolSize - i > 63)
+            numBits = 7;
+        else if (poolSize - i > 31)
+            numBits = 6;
+        else if (poolSize - i > 15)
+            numBits = 5;
+        else if (poolSize - i > 7)
+            numBits = 4;
+        else if (poolSize - i > 3)
+            numBits = 3;
+        else if (poolSize - i > 1)
+            numBits = 2;
+        if (usedBits + numBits > 32)
+        {
+            rnd = Random32();
+            usedBits = 0;
+        }
+        u32 currIndex = (rnd & ((1 << numBits) - 1)) % (poolSize - i);
+        rnd = rnd >> numBits;
+        usedBits += numBits;
+        u32 tempValue = poolIndexArray[poolSize - 1 - i];
+        poolIndexArray[poolSize - 1 - i] = poolIndexArray[currIndex];
+        poolIndexArray[currIndex] = tempValue;
+    }
+}
+
 u8 CreateNPCTrainerPartyFromTrainer(struct Pokemon *party, const struct Trainer *trainer, bool32 firstTrainer, u32 battleTypeFlags)
 {
+
     u32 personalityValue;
     s32 i;
     u8 monsCount;
@@ -1936,8 +2071,21 @@ u8 CreateNPCTrainerPartyFromTrainer(struct Pokemon *party, const struct Trainer 
             monsCount = trainer->partySize;
         }
 
+        bool32 usingPool = FALSE;
+        u8 *poolIndexArray;
+        if (trainer->poolSize != 0 && IsPoolLegal(trainer, battleTypeFlags))
+        {
+            usingPool = TRUE;
+            poolIndexArray = Alloc(trainer->poolSize);
+            RandomizePoolIndices(trainer, poolIndexArray);
+        }
+
         for (i = 0; i < monsCount; i++)
         {
+            //  Pick mon from pool here if using pool
+            u32 monIndex = i;
+            if (usingPool)
+                monIndex = PickMonFromPool(trainer, poolIndexArray, i, battleTypeFlags);
             s32 ball = -1;
             u32 personalityHash = GeneratePartyHash(trainer, i);
             const struct TrainerMon *partyData = trainer->party;
@@ -1953,39 +2101,39 @@ u8 CreateNPCTrainerPartyFromTrainer(struct Pokemon *party, const struct Trainer 
                 personalityValue = 0x88; // Use personality more likely to result in a male Pokémon
 
             personalityValue += personalityHash << 8;
-            if (partyData[i].gender == TRAINER_MON_MALE)
-                personalityValue = (personalityValue & 0xFFFFFF00) | GeneratePersonalityForGender(MON_MALE, partyData[i].species);
-            else if (partyData[i].gender == TRAINER_MON_FEMALE)
-                personalityValue = (personalityValue & 0xFFFFFF00) | GeneratePersonalityForGender(MON_FEMALE, partyData[i].species);
-            else if (partyData[i].gender == TRAINER_MON_RANDOM_GENDER)
-                personalityValue = (personalityValue & 0xFFFFFF00) | GeneratePersonalityForGender(Random() & 1 ? MON_MALE : MON_FEMALE, partyData[i].species);
-            ModifyPersonalityForNature(&personalityValue, partyData[i].nature);
-            if (partyData[i].isShiny)
+            if (partyData[monIndex].gender == TRAINER_MON_MALE)
+                personalityValue = (personalityValue & 0xFFFFFF00) | GeneratePersonalityForGender(MON_MALE, partyData[monIndex].species);
+            else if (partyData[monIndex].gender == TRAINER_MON_FEMALE)
+                personalityValue = (personalityValue & 0xFFFFFF00) | GeneratePersonalityForGender(MON_FEMALE, partyData[monIndex].species);
+            else if (partyData[monIndex].gender == TRAINER_MON_RANDOM_GENDER)
+                personalityValue = (personalityValue & 0xFFFFFF00) | GeneratePersonalityForGender(Random() & 1 ? MON_MALE : MON_FEMALE, partyData[monIndex].species);
+            ModifyPersonalityForNature(&personalityValue, partyData[monIndex].nature);
+            if (partyData[monIndex].isShiny)
             {
                 otIdType = OT_ID_PRESET;
                 fixedOtId = HIHALF(personalityValue) ^ LOHALF(personalityValue);
             }
-            CreateMon(&party[i], partyData[i].species, partyData[i].lvl, 0, TRUE, personalityValue, otIdType, fixedOtId);
-            SetMonData(&party[i], MON_DATA_HELD_ITEM, &partyData[i].heldItem);
+            CreateMon(&party[i], partyData[monIndex].species, partyData[monIndex].lvl, 0, TRUE, personalityValue, otIdType, fixedOtId);
+            SetMonData(&party[i], MON_DATA_HELD_ITEM, &partyData[monIndex].heldItem);
 
-            CustomTrainerPartyAssignMoves(&party[i], &partyData[i]);
-            SetMonData(&party[i], MON_DATA_IVS, &(partyData[i].iv));
-            if (partyData[i].ev != NULL)
+            CustomTrainerPartyAssignMoves(&party[i], &partyData[monIndex]);
+            SetMonData(&party[i], MON_DATA_IVS, &(partyData[monIndex].iv));
+            if (partyData[monIndex].ev != NULL)
             {
-                SetMonData(&party[i], MON_DATA_HP_EV, &(partyData[i].ev[0]));
-                SetMonData(&party[i], MON_DATA_ATK_EV, &(partyData[i].ev[1]));
-                SetMonData(&party[i], MON_DATA_DEF_EV, &(partyData[i].ev[2]));
-                SetMonData(&party[i], MON_DATA_SPATK_EV, &(partyData[i].ev[3]));
-                SetMonData(&party[i], MON_DATA_SPDEF_EV, &(partyData[i].ev[4]));
-                SetMonData(&party[i], MON_DATA_SPEED_EV, &(partyData[i].ev[5]));
+                SetMonData(&party[i], MON_DATA_HP_EV, &(partyData[monIndex].ev[0]));
+                SetMonData(&party[i], MON_DATA_ATK_EV, &(partyData[monIndex].ev[1]));
+                SetMonData(&party[i], MON_DATA_DEF_EV, &(partyData[monIndex].ev[2]));
+                SetMonData(&party[i], MON_DATA_SPATK_EV, &(partyData[monIndex].ev[3]));
+                SetMonData(&party[i], MON_DATA_SPDEF_EV, &(partyData[monIndex].ev[4]));
+                SetMonData(&party[i], MON_DATA_SPEED_EV, &(partyData[monIndex].ev[5]));
             }
             if (partyData[i].ability != ABILITY_NONE)
             {
-                const struct SpeciesInfo *speciesInfo = &gSpeciesInfo[partyData[i].species];
+                const struct SpeciesInfo *speciesInfo = &gSpeciesInfo[partyData[monIndex].species];
                 u32 maxAbilities = ARRAY_COUNT(speciesInfo->abilities);
                 for (ability = 0; ability < maxAbilities; ++ability)
                 {
-                    if (speciesInfo->abilities[ability] == partyData[i].ability)
+                    if (speciesInfo->abilities[ability] == partyData[monIndex].ability)
                         break;
                 }
                 if (ability >= maxAbilities)
@@ -1993,7 +2141,7 @@ u8 CreateNPCTrainerPartyFromTrainer(struct Pokemon *party, const struct Trainer 
             }
             else if (B_TRAINER_MON_RANDOM_ABILITY)
             {
-                const struct SpeciesInfo *speciesInfo = &gSpeciesInfo[partyData[i].species];
+                const struct SpeciesInfo *speciesInfo = &gSpeciesInfo[partyData[monIndex].species];
                 ability = personalityHash % 3;
                 while (speciesInfo->abilities[ability] == ABILITY_NONE)
                 {
@@ -2001,34 +2149,34 @@ u8 CreateNPCTrainerPartyFromTrainer(struct Pokemon *party, const struct Trainer 
                 }
             }
             SetMonData(&party[i], MON_DATA_ABILITY_NUM, &ability);
-            SetMonData(&party[i], MON_DATA_FRIENDSHIP, &(partyData[i].friendship));
+            SetMonData(&party[i], MON_DATA_FRIENDSHIP, &(partyData[monIndex].friendship));
             if (partyData[i].ball != ITEM_NONE)
             {
-                ball = partyData[i].ball;
+                ball = partyData[monIndex].ball;
                 SetMonData(&party[i], MON_DATA_POKEBALL, &ball);
             }
             if (partyData[i].nickname != NULL)
             {
-                SetMonData(&party[i], MON_DATA_NICKNAME, partyData[i].nickname);
+                SetMonData(&party[i], MON_DATA_NICKNAME, partyData[monIndex].nickname);
             }
-            if (partyData[i].isShiny)
+            if (partyData[monIndex].isShiny)
             {
                 u32 data = TRUE;
                 SetMonData(&party[i], MON_DATA_IS_SHINY, &data);
             }
-            if (partyData[i].dynamaxLevel > 0)
+            if (partyData[monIndex].dynamaxLevel > 0)
             {
-                u32 data = partyData[i].dynamaxLevel;
+                u32 data = partyData[monIndex].dynamaxLevel;
                 SetMonData(&party[i], MON_DATA_DYNAMAX_LEVEL, &data);
             }
-            if (partyData[i].gigantamaxFactor)
+            if (partyData[monIndex].gigantamaxFactor)
             {
-                u32 data = partyData[i].gigantamaxFactor;
+                u32 data = partyData[monIndex].gigantamaxFactor;
                 SetMonData(&party[i], MON_DATA_GIGANTAMAX_FACTOR, &data);
             }
-            if (partyData[i].teraType > 0)
+            if (partyData[monIndex].teraType > 0)
             {
-                u32 data = partyData[i].teraType;
+                u32 data = partyData[monIndex].teraType;
                 SetMonData(&party[i], MON_DATA_TERA_TYPE, &data);
             }
             CalculateMonStats(&party[i]);
@@ -2038,6 +2186,12 @@ u8 CreateNPCTrainerPartyFromTrainer(struct Pokemon *party, const struct Trainer 
                 ball = gTrainerClasses[trainer->trainerClass].ball ?: ITEM_POKE_BALL;
                 SetMonData(&party[i], MON_DATA_POKEBALL, &ball);
             }
+        }
+
+        if (usingPool)
+        {
+            Free(poolIndexArray);
+            poolRules = defaultPoolRules;
         }
     }
 
