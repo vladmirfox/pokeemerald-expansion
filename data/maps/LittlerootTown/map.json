@@ -200,6 +200,13 @@
       "elevation": 0,
       "dest_map": "MAP_ZONE_B",
       "dest_warp_id": "0"
+    },
+    {
+      "x": 37,
+      "y": 14,
+      "elevation": 0,
+      "dest_map": "MAP_ZONE_A",
+      "dest_warp_id": "0"
     }
   ],
   "coord_events": [
