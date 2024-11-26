@@ -1106,3 +1106,9 @@ EventScript_VsSeekerChargingDone::
 	.include "data/maps/MauvilleTunnel/scripts.inc"
 
 	.include "data/maps/DigSite2/scripts.inc"
+
+	.include "data/maps/PetalburgWoods2/scripts.inc"
+
+	.include "data/maps/PetalburgClub_1F/scripts.inc"
+
+	.include "data/maps/PetalburgClub_2F/scripts.inc"

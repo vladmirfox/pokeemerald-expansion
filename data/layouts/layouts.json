@@ -4570,6 +4570,36 @@
       "secondary_tileset": "gTileset_Dewford",
       "border_filepath": "data/layouts/DigSite2/border.bin",
       "blockdata_filepath": "data/layouts/DigSite2/map.bin"
+    },
+    {
+      "id": "LAYOUT_PETALBURG_WOODS2",
+      "name": "PetalburgWoods2_Layout",
+      "width": 30,
+      "height": 30,
+      "primary_tileset": "gTileset_General",
+      "secondary_tileset": "gTileset_Rustboro",
+      "border_filepath": "data/layouts/PetalburgWoods2/border.bin",
+      "blockdata_filepath": "data/layouts/PetalburgWoods2/map.bin"
+    },
+    {
+      "id": "LAYOUT_PETALBURG_CLUB_1F",
+      "name": "PetalburgClub_1F_Layout",
+      "width": 12,
+      "height": 10,
+      "primary_tileset": "gTileset_Building",
+      "secondary_tileset": "gTileset_GenericBuilding",
+      "border_filepath": "data/layouts/PetalburgClub_1F/border.bin",
+      "blockdata_filepath": "data/layouts/PetalburgClub_1F/map.bin"
+    },
+    {
+      "id": "LAYOUT_PETALBURG_CLUB_2F",
+      "name": "PetalburgClub_2F_Layout",
+      "width": 11,
+      "height": 9,
+      "primary_tileset": "gTileset_Building",
+      "secondary_tileset": "gTileset_GenericBuilding",
+      "border_filepath": "data/layouts/PetalburgClub_2F/border.bin",
+      "blockdata_filepath": "data/layouts/PetalburgClub_2F/map.bin"
     }
   ]
 }

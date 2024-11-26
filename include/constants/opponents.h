@@ -859,13 +859,17 @@
 #define TRAINER_BRENDAN_PLACEHOLDER         853
 #define TRAINER_MAY_PLACEHOLDER             854
 #define TRAINER_GRUNT_ROUTE_A_1             855
-#define TRAINER_SCIENTIST_ROUTE_A_1         856
+#define TRAINER_GRUNT_ROUTE_A_2             856
+#define TRAINER_GRUNT_ZONE_ALPHA_1          857
+#define TRAINER_GRUNT_ZONE_ALPHA_2          858
+#define TRAINER_GRUNT_ROUTE_A_2             859
+#define TRAINER_SCIENTIST_ROUTE_A_1         850
 
 // NOTE: Because each Trainer uses a flag to determine when they are defeated, there is only space for 9 additional trainers before trainer flag space overflows
 //       More space can be made by shifting flags around in constants/flags.h or changing how trainer flags are handled
 //       MAX_TRAINERS_COUNT can be increased but will take up additional saveblock space
 
-#define TRAINERS_COUNT                      857
+#define TRAINERS_COUNT                      861
 #define MAX_TRAINERS_COUNT                  1024
 #define TRAINER_PARTNER(partner)           (MAX_TRAINERS_COUNT + partner)
 

@@ -448,7 +448,8 @@
     "BleakisleCave_3R",
     "BleakisleCave_B1F_1R",
     "BleakisleCave_B1F_2R",
-    "MauvilleTunnel"
+    "MauvilleTunnel",
+    "PetalburgWoods2"
   ],
   "gMapGroup_IndoorDynamic": [
     "SecretBase_RedCave1",
@@ -602,7 +603,9 @@
     "NavelRock_Down10",
     "NavelRock_Down11",
     "NavelRock_Bottom",
-    "TrainerHill_Elevator"
+    "TrainerHill_Elevator",
+    "PetalburgClub_1F",
+    "PetalburgClub_2F"
   ],
   "gMapGroup_IndoorRoute104Prototype": [
     "Route104_Prototype",
