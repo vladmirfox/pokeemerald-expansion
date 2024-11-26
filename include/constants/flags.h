@@ -45,9 +45,9 @@
 
 // CUSTOM
 #define FLAG_BIRCH_SKIP                     0x20 // LittlerootTown Vaporeon
-#define FLAG_STOLE_GOODY_BAG                0x21 // Unused Flag
-#define FLAG_HIDE_ROUTE_102_MAGMA_GUARD     0x22 // Unused Flag
-#define FLAG_HIDE_ROUTE_A_GRUNT_1           0x23 // Unused Flag
+#define FLAG_STOLE_GOODY_BAG                0x21
+#define FLAG_HIDE_ROUTE_102_ARCO_GUARD      0x22
+#define FLAG_HIDE_ROUTE_A_GRUNT_1           0x23
 #define FLAG_DEWFORD_GYM_ROCK_1             0x24 // Dewford gym rocks
 #define FLAG_DEWFORD_GYM_ROCK_2             0x25 // Unused Flag
 #define FLAG_DEWFORD_GYM_ROCK_3             0x26 // Unused Flag
@@ -55,7 +55,7 @@
 #define FLAG_DEWFORD_GYM_ROCK_5             0x28 // Unused Flag
 #define FLAG_DEWFORD_GYM_ROCK_6             0x29 // Unused Flag
 #define FLAG_HIDE_DEWFORD_TOWN_BRAWLY_1     0x2A // Brawly outside gym
-#define FLAG_UNUSED_0x02B    0x2B // Unused Flag
+#define FLAG_HIDE_TEAM_ARCO_ZONE_A          0x2B // Unused Flag
 #define FLAG_UNUSED_0x02C    0x2C // Unused Flag
 #define FLAG_UNUSED_0x02D    0x2D // Unused Flag
 #define FLAG_UNUSED_0x02E    0x2E // Unused Flag

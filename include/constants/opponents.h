@@ -862,14 +862,17 @@
 #define TRAINER_GRUNT_ROUTE_A_2             856
 #define TRAINER_GRUNT_ZONE_ALPHA_1          857
 #define TRAINER_GRUNT_ZONE_ALPHA_2          858
-#define TRAINER_GRUNT_ROUTE_A_2             859
-#define TRAINER_SCIENTIST_ROUTE_A_1         850
+#define TRAINER_GRUNT_WAREHOUSE_A_1         859
+#define TRAINER_GRUNT_WAREHOUSE_A_2         860
+#define TRAINER_GRUNT_WAREHOUSE_A_3         861
+#define TRAINER_GRUNT_WAREHOUSE_A_4         862
+#define TRAINER_ADMIN_WAREHOUSE_A           863
 
 // NOTE: Because each Trainer uses a flag to determine when they are defeated, there is only space for 9 additional trainers before trainer flag space overflows
 //       More space can be made by shifting flags around in constants/flags.h or changing how trainer flags are handled
 //       MAX_TRAINERS_COUNT can be increased but will take up additional saveblock space
 
-#define TRAINERS_COUNT                      861
+#define TRAINERS_COUNT                      864
 #define MAX_TRAINERS_COUNT                  1024
 #define TRAINER_PARTNER(partner)           (MAX_TRAINERS_COUNT + partner)
 

@@ -73,7 +73,10 @@ Comments can be added as C comment blocks
 /*Comments can also be on a single line*/
 
 
-/* CUSTOM TRAINERS */
+/* ======================= */
+/* === CUSTOM TRAINERS === */
+/* ======================= */
+
 
 === TRAINER_GRUNT_ROUTE_A_1 ===
 Name: GRUNT
@@ -86,7 +89,7 @@ AI: Check Bad Move
 
 SPECIES_DUSTOX_DELTA
 Level: 18
-IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
 
 === TRAINER_GRUNT_ROUTE_A_2 ===
 Name: GRUNT
@@ -99,30 +102,131 @@ AI: Check Bad Move
 
 SPECIES_BUTTERFREE_DELTA
 Level: 18
-IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
 
-=== TRAINER_SCIENTIST_ROUTE_A_1 ===
-Name: SCIENTIST
-Class: Team Magma
-Pic: Magma Grunt M
+=== TRAINER_GRUNT_ZONE_ALPHA_1 ===
+Name: GRUNT
+Class: Team Arco
+Pic: Arco Member R
 Gender: Male
 Music: Magma
 Double Battle: No
 AI: Check Bad Move
 
-SPECIES_SHEDINJA_DELTA
-Level: 14
-IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
-
-SPECIES_NINCADA_DELTA
-Level: 14
-IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+SPECIES_SILCOON_DELTA
+Level: 15
+IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
 
 SPECIES_DUSTOX_DELTA
-Level: 14
-IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+Level: 17
+IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
 
-/* END CUSTOM TRAINERS */
+=== TRAINER_GRUNT_ZONE_ALPHA_2 ===
+Name: GRUNT
+Class: Team Arco
+Pic: Arco Member R
+Gender: Male
+Music: Magma
+Double Battle: No
+AI: Check Bad Move
+
+SPECIES_SILCOON_DELTA
+Level: 15
+IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
+
+SPECIES_GOLBAT_DELTA
+Level: 17
+IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
+
+=== TRAINER_GRUNT_WAREHOUSE_A_1 ===
+Name: GRUNT
+Class: Team Arco
+Pic: Arco Member R
+Gender: Male
+Music: Magma
+Double Battle: No
+AI: Check Bad Move
+
+SPECIES_SILCOON_DELTA
+Level: 15
+IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
+
+SPECIES_GOLBAT_DELTA
+Level: 17
+IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
+
+=== TRAINER_GRUNT_WAREHOUSE_A_2 ===
+Name: GRUNT
+Class: Team Arco
+Pic: Arco Member R
+Gender: Male
+Music: Magma
+Double Battle: No
+AI: Check Bad Move
+
+SPECIES_GOLBAT_DELTA
+Level: 17
+IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
+
+=== TRAINER_GRUNT_WAREHOUSE_A_3 ===
+Name: GRUNT
+Class: Team Arco
+Pic: Arco Member R
+Gender: Male
+Music: Magma
+Double Battle: No
+AI: Check Bad Move
+
+SPECIES_SILCOON_DELTA
+Level: 15
+IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
+
+SPECIES_GOLBAT_DELTA
+Level: 17
+IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
+
+=== TRAINER_GRUNT_WAREHOUSE_A_4 ===
+Name: GRUNT
+Class: Team Arco
+Pic: Arco Member R
+Gender: Male
+Music: Magma
+Double Battle: No
+AI: Check Bad Move
+
+SPECIES_SILCOON_DELTA
+Level: 15
+IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
+
+SPECIES_GOLBAT_DELTA
+Level: 17
+IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
+
+=== TRAINER_ADMIN_WAREHOUSE_A ===
+Name: GRUNT
+Class: Team Arco
+Pic: Arco Member B
+Gender: Male
+Music: Magma
+Double Battle: No
+AI: Check Bad Move
+
+SPECIES_GLIGAR
+Level: 16
+IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
+
+SPECIES_SANDSLASH_DELTA
+Level: 17
+IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
+
+SPECIES_SHEDINJA_DELTA
+Level: 17
+IVs: 24 HP / 24 Atk / 24 Def / 24 SpA / 24 SpD / 24 Spe
+
+
+/* =========================== */
+/* === END CUSTOM TRAINERS === */
+/* =========================== */
 
 
 === TRAINER_NONE ===

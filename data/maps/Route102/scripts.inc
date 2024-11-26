@@ -116,11 +116,10 @@ Route102_Text_RouteSignPetalburg:
 	@ FLAG_STOLE_GOODY_BAG
 	@ end
 
-Route102_EventScript_MagmaRouteAGuard::
-	msgbox Route102_Text_MagmaGuard, MSGBOX_NPC
+Route102_EventScript_ArcoRouteAGuard::
+	msgbox Route102_Text_ArcoGuard, MSGBOX_NPC
 	end
 
-Route102_Text_MagmaGuard:
-	.string "You're too weak to help with\n"
-	.string "our experiments…$"
+Route102_Text_ArcoGuard:
+	.string "What're you looking at?$"
 

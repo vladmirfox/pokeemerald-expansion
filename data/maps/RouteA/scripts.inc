@@ -32,7 +32,7 @@ RouteA_Movement_Grunt1RunAway:
 
 RouteA_EventScript_Scientist1::
 	trainerbattle_single TRAINER_SCIENTIST_ROUTE_A_1, RouteA_Text_Scientist1Intro, RouteA_Text_Scientist1Defeated
-	goto RouteA_Text_Scientist1PostBattle
+	msgbox RouteA_Text_Scientist1PostBattle, MSGBOX_AUTOCLOSE
 	end
 
 RouteA_EventScript_Scientist2::

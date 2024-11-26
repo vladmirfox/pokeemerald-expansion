@@ -70,3 +70,19 @@ ZoneA_Warehouse_1F_Text_ConfirmDeltaConversion:
 
 ZoneA_Warehouse_1F_Text_WhichMonShouldConvert:
 	.string "Which pokemon should I convert?$"
+
+@ ARCO MEMBERS
+ZoneA_Warehouse_1F_EventScript_Grunt1::
+	trainerbattle_single TRAINER_GRUNT_WAREHOUSE_A_1, ZoneA_Warehouse_1F_Text_SilentTreatment, ZoneA_Warehouse_1F_Text_SilentTreatment
+	msgbox ZoneA_Warehouse_1F_Text_SilentTreatment, MSGBOX_AUTOCLOSE
+	end
+
+ZoneA_Warehouse_1F_EventScript_Grunt2::
+	trainerbattle_single TRAINER_GRUNT_WAREHOUSE_A_2, ZoneA_Warehouse_1F_Text_SilentTreatment, ZoneA_Warehouse_1F_Text_SilentTreatment
+	msgbox ZoneA_Warehouse_1F_Text_SilentTreatment, MSGBOX_AUTOCLOSE
+	end
+
+@ ZoneAlpha_Text_
+
+ZoneA_Warehouse_1F_Text_SilentTreatment:
+	.string "…$"

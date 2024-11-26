@@ -30,13 +30,13 @@ RouteA_Movement_Grunt1RunAway:
 	walk_fast_up
 	step_end
 
-RouteA_EventScript_Scientist1::
-	trainerbattle_single TRAINER_SCIENTIST_ROUTE_A_1, RouteA_Text_Scientist1Intro, RouteA_Text_Scientist1Defeated
-	goto RouteA_Text_Scientist1PostBattle
+RouteA_EventScript_Grunt2::
+	trainerbattle_single TRAINER_GRUNT_ROUTE_A_2, RouteA_Text_Grunt2Intro, RouteA_Text_SilentTreatment
+	goto RouteA_Text_SilentTreatment
 	end
 
-RouteA_EventScript_Scientist2::
-	msgbox RouteA_Text_SoManyBoxes, MSGBOX_AUTOCLOSE
+RouteA_EventScript_Grunt3::
+	msgbox RouteA_Text_SilentTreatment, MSGBOX_AUTOCLOSE
 	end
 
 RouteA_Text_Grunt1Intro:
@@ -50,15 +50,8 @@ RouteA_Text_Grunt1PostBattle:
 	.string "…\n"
 	.string "Gotta go tell the boss.$"
 
-RouteA_Text_Scientist1Intro:
-	.string "Our project is coming along nicely.$"
+RouteA_Text_Grunt2Intro:
+	.string "Our work is coming along nicely.$"
 
-RouteA_Text_Scientist1Defeated:
-	.string "A miscalculation.$"
-
-RouteA_Text_Scientist1PostBattle:
-	.string "Maybe we're not as far along"
-	.string "as I thought.$"
-
-RouteA_Text_SoManyBoxes:
-	.string "So many boxes.$"
+RouteA_Text_SilentTreatment:
+	.string "…$"

@@ -45,6 +45,7 @@ const u32 gMonPalette_GolbatDelta[] = INCBIN_U32("graphics/pokemon/golbat/delta.
 const u32 gMonPalette_ShedinjaDelta[] = INCBIN_U32("graphics/pokemon/shedinja/delta.gbapal.lz");
 
 const u32 gMonPalette_BeedrillDelta[] = INCBIN_U32("graphics/pokemon/beedrill/delta.gbapal.lz");
+const u32 gMonPalette_ButterfreeDelta[] = INCBIN_U32("graphics/pokemon/butterfree/delta.gbapal.lz");
 
 const u32 gMonFrontPic_Igneousaur[] = INCBIN_U32("graphics/pokemon/igneousaur/anim_front.4bpp.lz");
 const u32 gMonPalette_Igneousaur[] = INCBIN_U32("graphics/pokemon/igneousaur/normal.gbapal.lz");
