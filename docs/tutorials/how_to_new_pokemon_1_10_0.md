@@ -1,10 +1,11 @@
-<!--1.9.x-->
+<!--1.10.x-->
 This is a modified version of [the original tutorial about adding new Pokémon species available in Pokeemerald's wiki](https://github.com/pret/pokeemerald/wiki/How-to-add-a-new-Pokémon-species).
 
 Despite the persistent rumors about an incredibly strong third form of Mew hiding somewhere, it actually wasn't possible to catch it... OR WAS IT?
 In this tutorial, we will add a new Pokémon species to the game.
 
-## IMPORTANT: This tutorial applies to 1.9.x versions.
+## IMPORTANT: This tutorial applies to 1.10.x versions.
+- [Version 1.9.x](how_to_new_pokemon_1_9_0.md)
 - [Version 1.8.x](how_to_new_pokemon_1_8_0.md)
 - [Version 1.7.x](how_to_new_pokemon_1_7_0.md)
 - [Version 1.6.x](how_to_new_pokemon_1_6_0.md)
@@ -62,6 +63,7 @@ Edit [include/constants/species.h](https://github.com/rh-hideout/pokeemerald-exp
  #define SPECIES_BULBASAUR                               1
  ...
  #define SPECIES_MIMIKYU_BUSTED_TOTEM                    1523
+ #define SPECIES_MIMIKYU_TOTEM_BUSTED                    SPECIES_MIMIKYU_BUSTED_TOTEM
 +#define SPECIES_MEWTHREE                                1524
 
 -#define SPECIES_EGG                                     (SPECIES_MIMIKYU_BUSTED_TOTEM + 1)
@@ -161,7 +163,7 @@ Now, to better understand Mewthree, we also need to understand Mew. Let's look a
 ```
 
 That's a lot of stuff! But don't worry, we'll go through it step by step throughout the tutorial
-(and miles better than having this same data through 20+ files like it used to be).
+(and it's miles better than having this same data through 20+ files like it used to be).
 
 We'll start by adding the self-explanatory data that's also present in pret's vanilla structure:
 
@@ -515,7 +517,13 @@ Edit [src/data/graphics/pokemon.h](https://github.com/rh-hideout/pokeemerald-exp
 #if OW_PKMN_OBJECTS_SHARE_PALETTES == FALSE
     const u32 gOverworldPalette_Pecharunt[] = INCBIN_U32("graphics/pokemon/pecharunt/overworld_normal.gbapal.lz");
     const u32 gShinyOverworldPalette_Pecharunt[] = INCBIN_U32("graphics/pokemon/pecharunt/overworld_shiny.gbapal.lz");
+#endif //OW_PKMN_OBJECTS_SHARE_PALETTES
+#endif //OW_POKEMON_OBJECT_EVENTS
 #endif //P_FAMILY_PECHARUNT
+
+    const u32 gMonFrontPic_Egg[] = INCBIN_U32("graphics/pokemon/egg/anim_front.4bpp.lz");
+    const u32 gMonPalette_Egg[] = INCBIN_U32("graphics/pokemon/egg/normal.gbapal.lz");
+    const u8 gMonIcon_Egg[] = INCBIN_U8("graphics/pokemon/egg/icon.4bpp");
 
 +   const u32 gMonFrontPic_Mewthree[] = INCBIN_U32("graphics/pokemon/mewthree/anim_front.4bpp.lz");
 +   const u32 gMonBackPic_Mewthree[] = INCBIN_U32("graphics/pokemon/mewthree/back.4bpp.lz");
@@ -663,7 +671,7 @@ We're almost there just a bit left!
         .abilities = { ABILITY_INSOMNIA, ABILITY_NONE, ABILITY_NONE },
         .bodyColor = BODY_COLOR_PURPLE,
 +       .isLegendary = TRUE,
-+       .parfectIVCount = LEGENDARY_PERFECT_IV_COUNT,
++       .perfectIVCount = LEGENDARY_PERFECT_IV_COUNT,
     },
  };
 ```
