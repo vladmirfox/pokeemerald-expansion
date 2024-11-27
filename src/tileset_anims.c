@@ -1376,9 +1376,8 @@ static void TilesetAnim_SakuKura(u16 timer)
     if (timer % 8 == 0) {
         QueueAnimTiles_SakuKura_WaterRunning(timer / 8);
     }
-    if (timer % 80 == 0) {
-        // TODO pas 80
-        QueueAnimTiles_SakuKura_Sprout(timer / 80);
+    if (timer % 60 == 0) {
+        QueueAnimTiles_SakuKura_Sprout(timer / 60);
     }
 }
 

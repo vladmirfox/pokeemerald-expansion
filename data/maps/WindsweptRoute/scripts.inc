@@ -22,6 +22,66 @@ WindsweptRoute_EventScript_OvergrownTrees_2:
 	goto WindsweptRoute_EventScript_OvergrownTrees_1
 
 
+WindsweptRoute_EventScript_Trainer1::
+# 23 "data/maps/WindsweptRoute/scripts.pory"
+	trainerbattle_single TRAINER_MUSASHI_1, WindsweptRoute_EventScript_Trainer1_Text_0, WindsweptRoute_EventScript_Trainer1_Text_1
+# 28 "data/maps/WindsweptRoute/scripts.pory"
+	speakername WindsweptRoute_EventScript_Trainer1_Text_2
+# 29 "data/maps/WindsweptRoute/scripts.pory"
+	msgbox WindsweptRoute_EventScript_Trainer1_Text_3, MSGBOX_AUTOCLOSE
+	end
+
+
+WindsweptRoute_EventScript_Trainer2::
+# 34 "data/maps/WindsweptRoute/scripts.pory"
+	trainerbattle_single TRAINER_ITAMAE, WindsweptRoute_EventScript_Trainer2_Text_0, WindsweptRoute_EventScript_Trainer2_Text_1
+# 39 "data/maps/WindsweptRoute/scripts.pory"
+	speakername WindsweptRoute_EventScript_Trainer2_Text_2
+# 40 "data/maps/WindsweptRoute/scripts.pory"
+	msgbox WindsweptRoute_EventScript_Trainer2_Text_3, MSGBOX_AUTOCLOSE
+	end
+
+
+WindsweptRoute_EventScript_Trainer3::
+# 45 "data/maps/WindsweptRoute/scripts.pory"
+	trainerbattle_single TRAINER_MAKOTO_1, WindsweptRoute_EventScript_Trainer3_Text_0, WindsweptRoute_EventScript_Trainer3_Text_1
+# 50 "data/maps/WindsweptRoute/scripts.pory"
+	speakername WindsweptRoute_EventScript_Trainer3_Text_2
+# 51 "data/maps/WindsweptRoute/scripts.pory"
+	msgbox WindsweptRoute_EventScript_Trainer3_Text_3, MSGBOX_AUTOCLOSE
+	end
+
+
+WindsweptRoute_EventScript_Trainer4::
+# 56 "data/maps/WindsweptRoute/scripts.pory"
+	trainerbattle_single TRAINER_MUSASHI_1, WindsweptRoute_EventScript_Trainer1_Text_0, WindsweptRoute_EventScript_Trainer1_Text_1
+# 61 "data/maps/WindsweptRoute/scripts.pory"
+	speakername WindsweptRoute_EventScript_Trainer1_Text_2
+# 62 "data/maps/WindsweptRoute/scripts.pory"
+	msgbox WindsweptRoute_EventScript_Trainer1_Text_3, MSGBOX_AUTOCLOSE
+	end
+
+
+WindsweptRoute_EventScript_Trainer5::
+# 67 "data/maps/WindsweptRoute/scripts.pory"
+	trainerbattle_single TRAINER_MUSASHI_1, WindsweptRoute_EventScript_Trainer1_Text_0, WindsweptRoute_EventScript_Trainer1_Text_1
+# 72 "data/maps/WindsweptRoute/scripts.pory"
+	speakername WindsweptRoute_EventScript_Trainer1_Text_2
+# 73 "data/maps/WindsweptRoute/scripts.pory"
+	msgbox WindsweptRoute_EventScript_Trainer1_Text_3, MSGBOX_AUTOCLOSE
+	end
+
+
+WindsweptRoute_EventScript_Trainer6::
+# 78 "data/maps/WindsweptRoute/scripts.pory"
+	trainerbattle_single TRAINER_MUSASHI_1, WindsweptRoute_EventScript_Trainer1_Text_0, WindsweptRoute_EventScript_Trainer1_Text_1
+# 83 "data/maps/WindsweptRoute/scripts.pory"
+	speakername WindsweptRoute_EventScript_Trainer1_Text_2
+# 84 "data/maps/WindsweptRoute/scripts.pory"
+	msgbox WindsweptRoute_EventScript_Trainer1_Text_3, MSGBOX_AUTOCLOSE
+	end
+
+
 WindsweptRoute_EventScript_OvergrownTrees_Text_0:
 # 11 "data/maps/WindsweptRoute/scripts.pory"
 	.string "Thank you for cutting down that\n"
@@ -36,3 +96,60 @@ WindsweptRoute_EventScript_OvergrownTrees_Text_1:
 	.string "Someone'll eventually have to ask for\n"
 	.string "help from the old Cut master on\l"
 	.string "Tranquil route…$"
+
+WindsweptRoute_EventScript_Trainer1_Text_0:
+# 25 "data/maps/WindsweptRoute/scripts.pory"
+	.string "These winds blow as strong as my will\n"
+	.string "to win!$"
+
+WindsweptRoute_EventScript_Trainer1_Text_1:
+# 26 "data/maps/WindsweptRoute/scripts.pory"
+	.string "You blew us away!$"
+
+WindsweptRoute_EventScript_Trainer1_Text_2:
+# 28 "data/maps/WindsweptRoute/scripts.pory"
+	.string "Musashi$"
+
+WindsweptRoute_EventScript_Trainer1_Text_3:
+# 29 "data/maps/WindsweptRoute/scripts.pory"
+	.string "I come here to train my Pokémon. The\n"
+	.string "harsh weather helps us give the best\l"
+	.string "of ourselves.$"
+
+WindsweptRoute_EventScript_Trainer2_Text_0:
+# 36 "data/maps/WindsweptRoute/scripts.pory"
+	.string "I'm scouring this salty grass for the\n"
+	.string "tastiest ingredients!$"
+
+WindsweptRoute_EventScript_Trainer2_Text_1:
+# 37 "data/maps/WindsweptRoute/scripts.pory"
+	.string "Bitter is the taste of defeat…$"
+
+WindsweptRoute_EventScript_Trainer2_Text_2:
+# 39 "data/maps/WindsweptRoute/scripts.pory"
+	.string "Itamae$"
+
+WindsweptRoute_EventScript_Trainer2_Text_3:
+# 40 "data/maps/WindsweptRoute/scripts.pory"
+	.string "This place is an inspiration for my\n"
+	.string "innovative cuisine.\p"
+	.string "The rocks are salty, the plants are\n"
+	.string "salty… To an extent, even the air is\l"
+	.string "salty.$"
+
+WindsweptRoute_EventScript_Trainer3_Text_0:
+# 47 "data/maps/WindsweptRoute/scripts.pory"
+	.string "These cliffs are so damn tall! Good\n"
+	.string "thing I have a damn long fishing rod.$"
+
+WindsweptRoute_EventScript_Trainer3_Text_1:
+# 48 "data/maps/WindsweptRoute/scripts.pory"
+	.string "My rod didn't keep me from losing…$"
+
+WindsweptRoute_EventScript_Trainer3_Text_2:
+# 50 "data/maps/WindsweptRoute/scripts.pory"
+	.string "Makoto$"
+
+WindsweptRoute_EventScript_Trainer3_Text_3:
+# 51 "data/maps/WindsweptRoute/scripts.pory"
+	.string "TODO EVA$"

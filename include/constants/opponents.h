@@ -430,7 +430,7 @@
 #define TRAINER_LAO_5                       424
 #define TRAINER_JOCELYN                     425
 #define TRAINER_LAURA                       426
-#define TRAINER_CYNDY_1                     427
+#define TRAINER_MAKOTO_1                     427
 #define TRAINER_CORA                        428
 #define TRAINER_PAULA                       429
 #define TRAINER_CYNDY_2                     430
@@ -486,7 +486,7 @@
 #define TRAINER_DIANA_5                     480
 #define TRAINER_AMY_AND_LIV_1               481
 #define TRAINER_AMY_AND_LIV_2               482
-#define TRAINER_GINA_AND_MIA              483
+#define TRAINER_ITAMAE              483
 #define TRAINER_MIU_AND_YUKI                484
 #define TRAINER_AMY_AND_LIV_3               485
 #define TRAINER_GINA_AND_MIA_2              486
@@ -607,7 +607,7 @@
 #define TRAINER_MAXIE_MAGMA_HIDEOUT         601
 #define TRAINER_MAXIE_MT_CHIMNEY            602
 #define TRAINER_CHIKAO                       603
-#define TRAINER_HALEY_1                     604
+#define TRAINER_MUSASHI_1                     604
 #define TRAINER_JANICE                      605
 #define TRAINER_VIVI                        606
 #define TRAINER_HALEY_2                     607

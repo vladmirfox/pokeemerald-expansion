@@ -90,14 +90,13 @@ script SunriseVillage_PlayersHouse_LR_EventScript_BigSis {
 
 		giveitem(ITEM_POKE_BALL, 5)
 
-		bufferspeciesname(STR_VAR_2, VAR_STARTER_MON)
 		speakername("Big sis")
 		msgbox(format(
-			"Oh, and rest here a while before you go! Your {STR_VAR_2} looks tired."
+			"Oh, and I'm sure you're going to get lost, so I'll lend you my map of Toku!"
 		))
 		closemessage
 
-		call(Common_EventScript_OutOfCenterPartyHeal)
+		giveitem(ITEM_TOWN_MAP)
 
 		special(GetPlayerBrotherSisterString)
 		speakername("Big sis")
