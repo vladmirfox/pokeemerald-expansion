@@ -84,7 +84,7 @@ Oh, I know! We need to add the rest of the data! Normally, the vanilla game woul
 Now, let's see what needs to be done.
 
 ## 2. `SpeciesInfo`'s structure
-Now, to better understand Mewtwo, we also need to understand Mew. Let's look at its data.
+Now, to better understand Mewthree, we also need to understand Mew. Let's look at its data.
 ```diff
     [SPECIES_MEW] =
     {
@@ -160,7 +160,7 @@ Now, to better understand Mewtwo, we also need to understand Mew. Let's look at 
     },
 ```
 
-That's a lot of stuff! But don't worry, we'll go through it step by step throught the tutorial
+That's a lot of stuff! But don't worry, we'll go through it step by step throughout the tutorial
 (and miles better than having this same data through 20+ files like it used to be).
 
 We'll start by adding the self-explanatory data that's also present in pret's vanilla structure:
@@ -212,13 +212,14 @@ The `.` is the structure reference operator in C to refer to the member object o
 
 - `baseHP`, `baseAttack`, `baseDefense`, `baseSpeed`, `baseSpAttack` and `baseSpDefense` are the base stats. They can't go higher than 255.
 - `types` is using the macro `MON_TYPES` as a helper function for formatting so that only one type has to be input for species with a single type.
+    - To add a species with 2 types, use the format `MON_TYPES(TYPE_PSYCHIC, TYPE_NORMAL)`.
 - `catchRate` is how likely it is to catch a Pokémon, the lower the value, the harder it is to catch. Legendaries generally have a catch rate of 3, so we put that here.
 - `expYield` is the base amount of experience that a Pokémon gives when defeated/caught. In vanilla, this value caps at 255, but we've increased it to a maximum of 65535 accomodate later gen's higher experience yields. (The highest official value is Blissey's with 608, so going beyond this point may cause exponential gains that could break the system 😱)
     - If you noticed, Mew's had some `#if`s, `#elif`s and `#endif` around it. This is because its yield has changed over time, and we let you choose which ones you want. This is not relevant to our Mewthree however, so we can just put a single `.expYield = 255,` line here.
 - `evYield_HP`, `evYield_Attack`, `evYield_Defense`, `evYield_Speed`, `evYield_SpAttack` and `evYield_SpDefense` are how many EVs does the Pokémon give when they're caught. Each of these fields can have a value of 3 at most. Officially, no Pokémon give out more than 3 EVs total, with them being determined by their evolution stage (eg, Pichu, Pikachu and Raichu give 1, 2 and 3 Speed EVs respectively), and they tend to be associated with its higher stats. Since our Mewthree is a Special Attack monster, we'll be consistent and make it give out 3 Special Attack EVs, but you're always free to assign whatever you feel like :)
     - Notice that the other `evYield` fields are not there. In C, numbers in a struct default to 0, so if we don't specify them, they'll be 0 all around! Less lines to worry about :D
 - `itemCommon` and `itemRare` are used to determine what items is the Pokémon holding when encountering it in the wild.
-    - 50% for `itemCommon` and 5% for `itemRare` (boosted to 60%/20% when the first mon in the party has Compound Grass or Super Luck)
+    - 50% for `itemCommon` and 5% for `itemRare` (boosted to 60%/20% when the first mon in the party has Compound Eyes or Super Luck)
     - If they're both set as the same item, the item has a 100% chance of appearing.
 - `genderRatio` is a fun one.
     - There are 4 ways of handling this
@@ -489,7 +490,9 @@ __Make sure that you are using the indexed mode and you have limited yourself to
 
 Put the RGB values of your colors into `normal.pal` between the first and the last color and the RGB values for the shiny version into `shiny.pal`.
 Edit `footprint.png` using two colors in indexed mode, black and white.
-Finally, edit `icon.png`. **Note**: the icon will use one of 6 predefined palettes instead of `normal.pal`.
+Finally, edit `icon.png`.
+**Note**: the icon will use one of 6 predefined palettes instead of `normal.pal`.
+Open an icon sprite and load one of the palettes to find out which palette suits your icon sprite best.
 
 ## 2. Add the sprites to the rom
 Sadly, just putting the image files into the graphics folder is not enough. To use the sprites we have to register them, which is kind of tedious.
@@ -633,10 +636,7 @@ Let's explain each of these:
 - `iconSprite`:
     - Used to reference the icon sprite, so in this case, we call for `gMonIcon_Mewthree`.
 - `iconPalIndex`:
-- `ICON`
     - Here, you can choose between the six icon palettes; 0, 1, 2, 3, 4 and 5. All of them located in `graphics/pokemon/icon_palettes`.
-
-        Open an icon sprite and load one of the palettes to find out which palette suits your icon sprite best.
 - `FOOTPRINT`
     - We made this single field into a macro so that they can be ignored when `P_FOOTPRINTS` is set to false. It's also why we don't have an "," after calling it like the other macros (we add it as part of the macro itself).
         ```c
@@ -709,6 +709,7 @@ Each species flag provides properties to the species:
 Let's begin with the moves that can be learned by leveling up.
 
 Append to [src/data/pokemon/level_up_learnsets/gen_9.h](https://github.com/rh-hideout/pokeemerald-expansion/blob/master/src/data/pokemon/level_up_learnsets/gen_9.h):
+**NOTE**: You can ignore the warning at the top of the file if you're just adding moves to Pokemon.
 
 ```diff
 #if P_FAMILY_PECHARUNT
@@ -756,9 +757,10 @@ Again, we need to register the learnset in `gSpeciesInfo`:
      [SPECIES_MEWTHREE] =
      {
         ...
-        PALETTES(Mewthree),
-        ICON(Mewthree, 2),
-        FOOTPRINT(Mewthree)
+        .palette = gMonPalette_Mewthree,
+        .shinyPalette = gMonShinyPalette_Mewthree,
+        .iconSprite = gMonIcon_Mewthree,
+        .iconPalIndex = 2,
 +       .levelUpLearnset = sMewthreeLevelUpLearnset,
     },
  };
