@@ -289,7 +289,6 @@
                                               // Currently Gen4+ shadows don't properly work with Trainerslides
 
 #define B_POOL_SETTING_FAST_VERIFICATION    FALSE // Skips the pool verification for Trainer Party Pools, relies on the user creating valid pools for all trainers
-#define B_POOL_SETTING_DISABLE_PICKED       TRUE  // Choice picked from the pool can't be picked again
 #define B_POOL_RULE_SPECIES_CLAUSE          TRUE  // Only pick a single pokemon of a unique NatDex number
 #define B_POOL_RULE_EXCLUDE_FORMS           TRUE  // Exclude different forms from the Species Clause
 #define B_POOL_RULE_ITEM_CLAUSE             TRUE  // Only allow each item to be picked once

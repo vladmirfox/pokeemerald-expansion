@@ -1959,8 +1959,6 @@ static u32 PickMonFromPool(const struct Trainer *trainer, u8 *poolIndexArray, u3
     }
     monIndex = poolIndexArray[arrayIndex];
     //  Disable indices according to rules
-    if (B_POOL_SETTING_DISABLE_PICKED)
-        poolIndexArray[arrayIndex] = POOL_SLOT_DISABLED;
     u32 chosenSpecies = trainer->party[monIndex].species;
     for (u32 i = 0; i < trainer->poolSize; i++)
     {
