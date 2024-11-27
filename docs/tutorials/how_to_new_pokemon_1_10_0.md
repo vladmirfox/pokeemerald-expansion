@@ -62,6 +62,7 @@ Edit [include/constants/species.h](https://github.com/rh-hideout/pokeemerald-exp
  #define SPECIES_BULBASAUR                               1
  ...
  #define SPECIES_MIMIKYU_BUSTED_TOTEM                    1523
+ #define SPECIES_MIMIKYU_TOTEM_BUSTED                    SPECIES_MIMIKYU_BUSTED_TOTEM
 +#define SPECIES_MEWTHREE                                1524
 
 -#define SPECIES_EGG                                     (SPECIES_MIMIKYU_BUSTED_TOTEM + 1)
