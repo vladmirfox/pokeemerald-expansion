@@ -162,7 +162,7 @@ Now, to better understand Mewtwo, we also need to understand Mew. Let's look at 
 ```
 
 That's a lot of stuff! But don't worry, we'll go through it step by step throught the tutorial
-(and miles better than having this same data through 20+ files like it used to be).
+(and it's miles better than having this same data through 20+ files like it used to be).
 
 We'll start by adding the self-explanatory data that's also present in pret's vanilla structure:
 
