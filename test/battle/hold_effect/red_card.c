@@ -470,6 +470,7 @@ SINGLE_BATTLE_TEST("Red Card prevents Emergency Exit activation when triggered")
 SINGLE_BATTLE_TEST("Red Card activates before Eject Pack")
 {
     GIVEN {
+        ASSUME(MoveHasAdditionalEffectSelf(MOVE_OVERHEAT, MOVE_EFFECT_SP_ATK_MINUS_2) == TRUE);
         PLAYER(SPECIES_WOBBUFFET) { Item(ITEM_EJECT_PACK); }
         PLAYER(SPECIES_WYNAUT);
         OPPONENT(SPECIES_WOBBUFFET) { Item(ITEM_RED_CARD); }
