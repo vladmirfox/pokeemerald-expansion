@@ -1035,8 +1035,8 @@ const struct SpeciesInfo gSpeciesInfoGen9[] =
         .height = 3,
         .weight = 25,
         .description = COMPOUND_STRING(
-            "The pads of its paws are electricity-\n"
-            "discharging organs. Pawmi fires\n"
+            "The pads of its paws are\n"
+            "electricity-discharging organs. Pawmi fires\n"
             "electricity from its forepaws while\n"
             "standing unsteadily on its hind legs."),
         .pokemonScale = 356,
@@ -2619,7 +2619,7 @@ const struct SpeciesInfo gSpeciesInfoGen9[] =
         .trainerOffset = 0,
         .frontPic = gMonFrontPic_Maschiff,
         .frontPicSize = MON_COORDS_SIZE(64, 64),
-        .frontPicYOffset = 11,
+        .frontPicYOffset = 8,
         .frontAnimFrames = sAnims_Maschiff,
         //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         .backPic = gMonBackPic_Maschiff,
@@ -4002,8 +4002,8 @@ const struct SpeciesInfo gSpeciesInfoGen9[] =
         .height = 13,
         .weight = 602,
         .description = COMPOUND_STRING(
-            "This Pokémon changes its appearance\n"
-            "if it hears its allies calling for\n"
+            "This Pokémon changes its\n"
+            "appearance if it hears its allies calling for\n"
             "help. Palafin will never show\n"
             "anybody its moment of transformation."),
         .pokemonScale = 356,
@@ -4066,8 +4066,8 @@ const struct SpeciesInfo gSpeciesInfoGen9[] =
         .weight = 974,
         .description = COMPOUND_STRING(
             "This Pokémon's ancient genes have\n"
-            "awakened. It is now so extraordinarily\n"
-            "strong that it can easily lift a\n"
+            "awakened. It is now so\n"
+            "extraordinarily strong that it can easily lift a\n"
             "cruise ship with one fin."),
         .pokemonScale = 356,
         .pokemonOffset = 17,
@@ -7341,12 +7341,12 @@ const struct SpeciesInfo gSpeciesInfoGen9[] =
         .trainerOffset = 0,
         .frontPic = gMonFrontPic_Fezandipiti,
         .frontPicSize = MON_COORDS_SIZE(64, 64),
-        .frontPicYOffset = 1,
+        .frontPicYOffset = 2,
         .frontAnimFrames = sAnims_Fezandipiti,
         //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         .backPic = gMonBackPic_Fezandipiti,
         .backPicSize = MON_COORDS_SIZE(64, 64),
-        .backPicYOffset = 0,
+        .backPicYOffset = 4,
         //.backAnimId = BACK_ANIM_NONE,
         .palette = gMonPalette_Fezandipiti,
         .shinyPalette = gMonShinyPalette_Fezandipiti,

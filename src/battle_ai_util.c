@@ -50,6 +50,9 @@ bool32 AI_IsFaster(u32 battlerAi, u32 battlerDef, u32 move)
     return (AI_WhoStrikesFirst(battlerAi, battlerDef, move) == AI_IS_FASTER);
 }
 
+/**
+ * Determines if the AI-controlled battler is slower than the target battler for the specified move.
+ */
 bool32 AI_IsSlower(u32 battlerAi, u32 battlerDef, u32 move)
 {
     return (AI_WhoStrikesFirst(battlerAi, battlerDef, move) == AI_IS_SLOWER);
@@ -72,6 +75,12 @@ bool32 IsAiVsAiBattle(void)
     return (B_FLAG_AI_VS_AI_BATTLE && FlagGet(B_FLAG_AI_VS_AI_BATTLE));
 }
 
+/**
+ * Determines if a given battler has AI control based on their battle position.
+ *
+ * @param battlerId - The ID of the battler to check.
+ * @return TRUE if the battler is controlled by AI, FALSE otherwise.
+ */
 bool32 BattlerHasAi(u32 battlerId)
 {
     switch (GetBattlerPosition(battlerId))

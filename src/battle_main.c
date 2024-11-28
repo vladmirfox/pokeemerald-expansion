@@ -71,6 +71,7 @@
 #include "constants/trainers.h"
 #include "constants/weather.h"
 #include "cable_club.h"
+#include "dns.h"
 
 extern const struct BgTemplate gBattleBgTemplates[];
 extern const struct WindowTemplate *const gBattleWindowTemplates[];
@@ -238,13 +239,13 @@ EWRAM_DATA u8 gPartyCriticalHits[PARTY_SIZE] = {0};
 EWRAM_DATA static u8 sTriedEvolving = 0;
 EWRAM_DATA u8 gCategoryIconSpriteId = 0;
 
-COMMON_DATA void (*gPreBattleCallback1)(void) = NULL;
-COMMON_DATA void (*gBattleMainFunc)(void) = NULL;
-COMMON_DATA struct BattleResults gBattleResults = {0};
-COMMON_DATA u8 gLeveledUpInBattle = 0;
-COMMON_DATA u8 gHealthboxSpriteIds[MAX_BATTLERS_COUNT] = {0};
-COMMON_DATA u8 gMultiUsePlayerCursor = 0;
-COMMON_DATA u8 gNumberOfMovesToChoose = 0;
+void (*gPreBattleCallback1)(void);
+void (*gBattleMainFunc)(void);
+struct BattleResults gBattleResults;
+u8 gLeveledUpInBattle;
+u8 gHealthboxSpriteIds[MAX_BATTLERS_COUNT];
+u8 gMultiUsePlayerCursor;
+u8 gNumberOfMovesToChoose;
 
 static const struct ScanlineEffectParams sIntroScanlineParams16Bit =
 {
@@ -373,6 +374,11 @@ const struct TrainerClass gTrainerClasses[TRAINER_CLASS_COUNT] =
     [TRAINER_CLASS_PIKE_QUEEN] = { _("PIKE QUEEN") },
     [TRAINER_CLASS_PYRAMID_KING] = { _("PYRAMID KING") },
     [TRAINER_CLASS_RS_PROTAG] = { _("{PKMN} TRAINER") },
+    [TRAINER_CLASS_SPARK_SYNDICATE] = { _("SPARK") },
+    [TRAINER_CLASS_SPARK_ADMIN] = { _("SPARK ADMIN"),20 },
+    [TRAINER_CLASS_SPARK_LEADER] = { _("SPARK LEADER"),50 },
+    [TRAINER_CLASS_SHADOW_SLAYER] = { _("SHADOW"), 20 },
+
 };
 
 static void (* const sTurnActionsFuncsTable[])(void) =
@@ -1732,6 +1738,7 @@ void BattleMainCB2(void)
     RunTextPrinters();
     UpdatePaletteFade();
     RunTasks();
+    DnsApplyFilters();
 
     if (JOY_HELD(B_BUTTON) && gBattleTypeFlags & BATTLE_TYPE_RECORDED && RecordedBattle_CanStopPlayback())
     {
@@ -1764,20 +1771,7 @@ void CB2_QuitRecordedBattle(void)
         m4aMPlayStop(&gMPlayInfo_SE1);
         m4aMPlayStop(&gMPlayInfo_SE2);
         if (gTestRunnerEnabled)
-        {
-            // Clean up potentially-leaking tasks.
-            // I think these leak when the battle ends soon after a
-            // battler is fainted.
-            u8 taskId;
-            taskId = FindTaskIdByFunc(Task_PlayerController_RestoreBgmAfterCry);
-            if (taskId != TASK_NONE)
-                DestroyTask(taskId);
-            taskId = FindTaskIdByFunc(Task_DuckBGMForPokemonCry);
-            if (taskId != TASK_NONE)
-                DestroyTask(taskId);
-
             TestRunner_Battle_AfterLastTurn();
-        }
         FreeRestoreBattleData();
         FreeAllWindowBuffers();
         SetMainCallback2(gMain.savedCallback);
@@ -3758,6 +3752,7 @@ static void DoBattleIntro(void)
             gBattleStruct->eventsBeforeFirstTurnState = 0;
             gBattleStruct->switchInBattlerCounter = 0;
             gBattleStruct->overworldWeatherDone = FALSE;
+            SetAiLogicDataForTurn(AI_DATA); // get assumed abilities, hold effects, etc of all battlers
             Ai_InitPartyStruct(); // Save mons party counts, and first 2/4 mons on the battlefield.
 
             // Try to set a status to start the battle with
@@ -5434,6 +5429,10 @@ static void HandleEndTurn_BattleWon(void)
         case TRAINER_CLASS_AQUA_LEADER:
         case TRAINER_CLASS_MAGMA_ADMIN:
         case TRAINER_CLASS_MAGMA_LEADER:
+        case TRAINER_CLASS_SPARK_SYNDICATE:
+        case TRAINER_CLASS_SPARK_ADMIN:
+        case TRAINER_CLASS_SPARK_LEADER:
+        case TRAINER_CLASS_SHADOW_SLAYER:
             PlayBGM(MUS_VICTORY_AQUA_MAGMA);
             break;
         case TRAINER_CLASS_LEADER:
@@ -5745,6 +5744,12 @@ static void ReturnFromBattleToOverworld(void)
 
     m4aSongNumStop(SE_LOW_HEALTH);
     SetMainCallback2(gMain.savedCallback);
+
+    // if you experience the follower de-syncing with the player after battle, set POST_BATTLE_FOLLOWER_FIX to TRUE in include/constants/global.h
+    #if POST_BATTLE_FOLLOWER_FIX
+        FollowMe_WarpSetEnd();
+        gObjectEvents[GetFollowerObjectId()].invisible = TRUE;
+    #endif
 }
 
 void RunBattleScriptCommands_PopCallbacksStack(void)

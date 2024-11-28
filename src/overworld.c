@@ -2,6 +2,8 @@
 #include "overworld.h"
 #include "battle_pyramid.h"
 #include "battle_setup.h"
+#include "battle_pike.h"
+#include "battle_pyramid_bag.h"
 #include "berry.h"
 #include "bg.h"
 #include "cable_club.h"
@@ -21,6 +23,7 @@
 #include "field_weather.h"
 #include "fieldmap.h"
 #include "fldeff.h"
+#include "follow_me.h"
 #include "gpu_regs.h"
 #include "heal_location.h"
 #include "io_reg.h"
@@ -65,12 +68,16 @@
 #include "vs_seeker.h"
 #include "frontier_util.h"
 #include "constants/abilities.h"
+#include "constants/event_object_movement.h"
 #include "constants/layouts.h"
 #include "constants/map_types.h"
 #include "constants/region_map_sections.h"
 #include "constants/songs.h"
 #include "constants/trainer_hill.h"
 #include "constants/weather.h"
+#include "dns.h"
+#include "ui_startmenu_full.h"
+
 
 struct CableClubPlayer
 {
@@ -185,14 +192,14 @@ static u16 (*sPlayerKeyInterceptCallback)(u32);
 static bool8 sReceivingFromLink;
 static u8 sRfuKeepAliveTimer;
 
-COMMON_DATA u16 *gOverworldTilemapBuffer_Bg2 = NULL;
-COMMON_DATA u16 *gOverworldTilemapBuffer_Bg1 = NULL;
-COMMON_DATA u16 *gOverworldTilemapBuffer_Bg3 = NULL;
-COMMON_DATA u16 gHeldKeyCodeToSend = 0;
-COMMON_DATA void (*gFieldCallback)(void) = NULL;
-COMMON_DATA bool8 (*gFieldCallback2)(void) = NULL;
-COMMON_DATA u8 gLocalLinkPlayerId = 0; // This is our player id in a multiplayer mode.
-COMMON_DATA u8 gFieldLinkPlayerCount = 0;
+u16 *gOverworldTilemapBuffer_Bg2;
+u16 *gOverworldTilemapBuffer_Bg1;
+u16 *gOverworldTilemapBuffer_Bg3;
+u16 gHeldKeyCodeToSend;
+void (*gFieldCallback)(void);
+bool8 (*gFieldCallback2)(void);
+u8 gLocalLinkPlayerId; // This is our player id in a multiplayer mode.
+u8 gFieldLinkPlayerCount;
 
 EWRAM_DATA static u8 sObjectEventLoadFlag = 0;
 EWRAM_DATA struct WarpData gLastUsedWarp = {0};
@@ -446,6 +453,7 @@ static void Overworld_ResetStateAfterWhiteOut(void)
         VarSet(VAR_SHOULD_END_ABNORMAL_WEATHER, 0);
         VarSet(VAR_ABNORMAL_WEATHER_LOCATION, ABNORMAL_WEATHER_NONE);
     }
+    FollowMe_TryRemoveFollowerOnWhiteOut();
 }
 
 static void UpdateMiscOverworldStates(void)
@@ -947,10 +955,8 @@ void StoreInitialPlayerAvatarState(void)
 {
     sInitialPlayerAvatarState.direction = GetPlayerFacingDirection();
 
-    if (TestPlayerAvatarFlags(PLAYER_AVATAR_FLAG_MACH_BIKE))
-        sInitialPlayerAvatarState.transitionFlags = PLAYER_AVATAR_FLAG_MACH_BIKE;
-    else if (TestPlayerAvatarFlags(PLAYER_AVATAR_FLAG_ACRO_BIKE))
-        sInitialPlayerAvatarState.transitionFlags = PLAYER_AVATAR_FLAG_ACRO_BIKE;
+    if (TestPlayerAvatarFlags(PLAYER_AVATAR_FLAG_BIKE))
+        sInitialPlayerAvatarState.transitionFlags = PLAYER_AVATAR_FLAG_BIKE;
     else if (TestPlayerAvatarFlags(PLAYER_AVATAR_FLAG_SURFING))
         sInitialPlayerAvatarState.transitionFlags = PLAYER_AVATAR_FLAG_SURFING;
     else if (TestPlayerAvatarFlags(PLAYER_AVATAR_FLAG_UNDERWATER))
@@ -981,12 +987,10 @@ static u8 GetAdjustedInitialTransitionFlags(struct InitialPlayerAvatarState *pla
         return PLAYER_AVATAR_FLAG_SURFING;
     else if (Overworld_IsBikingAllowed() != TRUE)
         return PLAYER_AVATAR_FLAG_ON_FOOT;
-    else if (playerStruct->transitionFlags == PLAYER_AVATAR_FLAG_MACH_BIKE)
-        return PLAYER_AVATAR_FLAG_MACH_BIKE;
-    else if (playerStruct->transitionFlags != PLAYER_AVATAR_FLAG_ACRO_BIKE)
-        return PLAYER_AVATAR_FLAG_ON_FOOT;
+    else if (playerStruct->transitionFlags == PLAYER_AVATAR_FLAG_BIKE)
+        return PLAYER_AVATAR_FLAG_BIKE;
     else
-        return PLAYER_AVATAR_FLAG_ACRO_BIKE;
+        return PLAYER_AVATAR_FLAG_ON_FOOT;
 }
 
 static u8 GetAdjustedInitialDirection(struct InitialPlayerAvatarState *playerStruct, u8 transitionFlags, u16 metatileBehavior, u8 mapType)
@@ -1217,8 +1221,16 @@ void Overworld_PlaySpecialMapMusic(void)
         else if (GetCurrentMapType() == MAP_TYPE_UNDERWATER)
             music = MUS_UNDERWATER;
         else if (TestPlayerAvatarFlags(PLAYER_AVATAR_FLAG_SURFING))
-            music = MUS_SURF;
+            music = MUS_SURF;   
     }
+    if (FlagGet(FLAG_AFTERTRAGEDY_MUSIC)){
+      if (GetCurrentMapType() == MAP_TYPE_INDOOR)
+          music = MUS_ABNORMAL_WEATHER;
+      else if (GetCurrentMapType() == MAP_TYPE_TOWN)
+          music = MUS_DUMMY;
+      else if (GetCurrentMapType() == MAP_TYPE_CITY)
+          music = MUS_DUMMY;
+  }
 
     if (music != GetCurrentMapMusic())
         PlayNewMapMusic(music);
@@ -1249,7 +1261,7 @@ static void TransitionMapMusic(void)
         }
         if (newMusic != currentMusic)
         {
-            if (TestPlayerAvatarFlags(PLAYER_AVATAR_FLAG_MACH_BIKE | PLAYER_AVATAR_FLAG_ACRO_BIKE))
+            if (TestPlayerAvatarFlags(PLAYER_AVATAR_FLAG_BIKE))
                 FadeOutAndFadeInNewMapMusic(newMusic, 4, 4);
             else
                 FadeOutAndPlayNewMapMusic(newMusic, 8);
@@ -1522,6 +1534,10 @@ static void DoCB1_Overworld(u16 newKeys, u16 heldKeys)
             PlayerStep(inputStruct.dpadDirection, newKeys, heldKeys);
         }
     }
+    
+    // if stop running but keep holding B -> fix follower frame
+    if (PlayerHasFollower() && IsPlayerOnFoot() && IsPlayerStandingStill())
+        ObjectEventSetHeldMovement(&gObjectEvents[GetFollowerObjectId()], GetFaceDirectionAnimNum(gObjectEvents[GetFollowerObjectId()].facingDirection));
 }
 
 void CB1_Overworld(void)
@@ -1532,6 +1548,7 @@ void CB1_Overworld(void)
 
 static void OverworldBasic(void)
 {
+    DnsApplyFilters();
     ScriptContext_RunScript();
     RunTasks();
     AnimateSprites();
@@ -1610,7 +1627,7 @@ void CB2_NewGame(void)
     PlayTimeCounter_Start();
     ScriptContext_Init();
     UnlockPlayerFieldControls();
-    gFieldCallback = ExecuteTruckSequence;
+ //   gFieldCallback = ExecuteTruckSequence;
     gFieldCallback2 = NULL;
     DoMapLoadLoop(&gMain.state);
     SetFieldVBlankCallback();
@@ -2036,6 +2053,7 @@ static bool32 LoadMapInStepsLocal(u8 *state, bool32 a2)
 
 static bool32 ReturnToFieldLocal(u8 *state)
 {
+    struct ObjectEvent *player = &gObjectEvents[gPlayerAvatar.objectEventId];
     switch (*state)
     {
     case 0:
@@ -2043,6 +2061,8 @@ static bool32 ReturnToFieldLocal(u8 *state)
         ResetScreenForMapLoad();
         ResumeMap(FALSE);
         InitObjectEventsReturnToField();
+        ObjectEventSetGraphicsId(player, GetPlayerAvatarGraphicsIdByCurrentState());
+        ObjectEventTurn(player, player->movementDirection);
         if (gFieldCallback == FieldCallback_UseFly)
             RemoveFollowingPokemon();
         else
@@ -2053,6 +2073,7 @@ static bool32 ReturnToFieldLocal(u8 *state)
     case 1:
         InitViewGraphics();
         TryLoadTrainerHillEReaderPalette();
+        FollowMe_BindToSurbBlobOnReloadScreen();
         (*state)++;
         break;
     case 2:
@@ -2068,6 +2089,7 @@ static bool32 ReturnToFieldLocal(u8 *state)
 
 static bool32 ReturnToFieldLink(u8 *state)
 {
+    struct ObjectEvent *player = &gObjectEvents[gPlayerAvatar.objectEventId];
     switch (*state)
     {
     case 0:
@@ -2083,6 +2105,8 @@ static bool32 ReturnToFieldLink(u8 *state)
     case 2:
         CreateLinkPlayerSprites();
         InitObjectEventsReturnToField();
+        ObjectEventSetGraphicsId(player, GetPlayerAvatarGraphicsIdByCurrentState());
+        ObjectEventTurn(player, player->movementDirection);
         SetCameraToTrackGuestPlayer_2();
         (*state)++;
         break;
@@ -2247,12 +2271,13 @@ static void InitObjectEventsLocal(void)
     ResetObjectEvents();
     GetCameraFocusCoords(&x, &y);
     player = GetInitialPlayerAvatarState();
-    InitPlayerAvatar(x, y, player->direction, gSaveBlock2Ptr->playerGender);
+    InitPlayerAvatar(x, y, player->direction);
     SetPlayerAvatarTransitionFlags(player->transitionFlags);
     ResetInitialPlayerAvatarState();
     TrySpawnObjectEvents(0, 0);
     UpdateFollowingPokemon();
     TryRunOnWarpIntoMapScript();
+    FollowMe_HandleSprite();
 }
 
 static void InitObjectEventsReturnToField(void)
@@ -3270,7 +3295,10 @@ static void CreateLinkPlayerSprite(u8 linkPlayerId, u8 gameVersion)
             objEvent->spriteId = CreateObjectGraphicsSprite(GetRSAvatarGraphicsIdByGender(linkGender(objEvent)), SpriteCB_LinkPlayer, 0, 0, 0);
             break;
         case VERSION_EMERALD:
-            objEvent->spriteId = CreateObjectGraphicsSprite(GetRivalAvatarGraphicsIdByStateIdAndGender(PLAYER_AVATAR_STATE_NORMAL, linkGender(objEvent)), SpriteCB_LinkPlayer, 0, 0, 0);
+        {
+            u16 gfxId = GetLinkPlayerAvatarGraphicsIdByStateIdLinkIdAndGender(PLAYER_AVATAR_STATE_NORMAL, linkPlayerId, linkGender(objEvent));
+            objEvent->spriteId = CreateObjectGraphicsSprite(gfxId, SpriteCB_LinkPlayer, 0, 0, 0);
+        }
             break;
         }
 
@@ -3506,3 +3534,15 @@ void ScriptHideItemDescription(struct ScriptContext *ctx)
 #endif // OW_SHOW_ITEM_DESCRIPTIONS
 
 
+void CB2_ReturnToFullScreenStartMenu(void)
+{
+    FieldClearVBlankHBlankCallbacks();
+
+    if (GetSafariZoneFlag() || InBattlePyramid() || InBattlePike() || InUnionRoom() || InMultiPartnerRoom())
+    {
+        SetMainCallback2(CB2_ReturnToFieldWithOpenMenu);
+        return;
+    }
+
+	StartMenuFull_Init(CB2_ReturnToField);
+}

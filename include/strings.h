@@ -291,9 +291,10 @@ extern const u8 gText_Birch_WhatsYourName[];
 extern const u8 gText_Birch_SoItsPlayer[];
 extern const u8 gText_Birch_YourePlayer[];
 extern const u8 gText_Birch_AreYouReady[];
-
 extern const u8 gText_BirchInTrouble[];
 extern const u8 gText_ConfirmStarterChoice[];
+extern const u8 gText_DefaultMaleName[];
+extern const u8 gText_DefaultFemaleName[];
 
 // mystery event menu text
 extern const u8 gText_EventSafelyLoaded[];
@@ -907,9 +908,11 @@ extern const u8 gText_Var1CertainlyHowMany2[];
 extern const u8 gText_Var1CertainlyHowMany[];
 extern const u8 gText_Var1IsItThatllBeVar2[];
 extern const u8 gText_YouWantedVar1ThatllBeVar2[];
+extern const u8 gText_YouWantedVar1OutfitThatllBeVar2[];
 extern const u8 gText_InBagVar1[];
 extern const u8 gText_Var1AndYouWantedVar2[];
 extern const u8 gText_HereYouGoThankYou[];
+extern const u8 gText_HereIsTheOutfitThankYou[];
 extern const u8 gText_NoMoreRoomForThis[];
 extern const u8 gText_ThankYouIllSendItHome[];
 extern const u8 gText_ThanksIllSendItHome[];

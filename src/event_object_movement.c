@@ -18,6 +18,7 @@
 #include "field_player_avatar.h"
 #include "field_weather.h"
 #include "fieldmap.h"
+#include "follow_me.h"
 #include "follower_helper.h"
 #include "gpu_regs.h"
 #include "graphics.h"
@@ -45,6 +46,7 @@
 #include "constants/items.h"
 #include "constants/map_types.h"
 #include "constants/mauville_old_man.h"
+#include "constants/metatile_behaviors.h"
 #include "constants/rgb.h"
 #include "constants/region_map_sections.h"
 #include "constants/songs.h"
@@ -167,7 +169,7 @@ static u16 GetObjectEventFlagIdByObjectEventId(u8);
 static void UpdateObjectEventVisibility(struct ObjectEvent *, struct Sprite *);
 static void MakeSpriteTemplateFromObjectEventTemplate(const struct ObjectEventTemplate *, struct SpriteTemplate *, const struct SubspriteTable **);
 static void GetObjectEventMovingCameraOffset(s16 *, s16 *);
-static const struct ObjectEventTemplate *GetObjectEventTemplateByLocalIdAndMap(u8, u8, u8);
+const struct ObjectEventTemplate *GetObjectEventTemplateByLocalIdAndMap(u8 localId, u8 mapNum, u8 mapGroup);
 static void RemoveObjectEventIfOutsideView(struct ObjectEvent *);
 static void SpawnObjectEventOnReturnToField(u8, s16, s16);
 static void SetPlayerAvatarObjectEventIdAndObjectId(u8, u8);
@@ -507,6 +509,45 @@ static const struct SpritePalette sObjectEventSpritePalettes[] = {
     {gObjectEventPal_Lugia,                 OBJ_EVENT_PAL_TAG_LUGIA},
     {gObjectEventPal_RubySapphireBrendan,   OBJ_EVENT_PAL_TAG_RS_BRENDAN},
     {gObjectEventPal_RubySapphireMay,       OBJ_EVENT_PAL_TAG_RS_MAY},
+    {gObjectEventPalette_Father,            OBJ_EVENT_PAL_TAG_FATHER},
+    {gObjectEventPalette_Mom,                OBJ_EVENT_PAL_TAG_MOM},
+    {gObjectEventPalette_Spy,                OBJ_EVENT_PAL_TAG_SPY},
+    {gObjectEventPal_Acef,                  OBJ_EVENT_PAL_TAG_ACEF},
+    {gObjectEventPal_Acem,                 OBJ_EVENT_PAL_TAG_ACEM},
+    {gObjectEventPal_Actorf,                OBJ_EVENT_PAL_TAG_ACTORF},
+    {gObjectEventPal_Actorm,                OBJ_EVENT_PAL_TAG_ACTORM},
+    {gObjectEventPal_Aroma,                OBJ_EVENT_PAL_TAG_AROMA},
+    {gObjectEventPal_Baby,                 OBJ_EVENT_PAL_TAG_BABY},
+    {gObjectEventPal_Baller,                OBJ_EVENT_PAL_TAG_BALLER},
+    {gObjectEventPal_Beauty,                OBJ_EVENT_PAL_TAG_BEAUTY},
+    {gObjectEventPal_Biker,                OBJ_EVENT_PAL_TAG_BIKER},
+    {gObjectEventPal_Burglar,                OBJ_EVENT_PAL_TAG_BURGLAR},
+    {gObjectEventPal_Camper,                OBJ_EVENT_PAL_TAG_CAMPER},
+    {gObjectEventPal_Clown,                OBJ_EVENT_PAL_TAG_CLOWN},
+    {gObjectEventPal_Cook,                OBJ_EVENT_PAL_TAG_COOK},
+    {gObjectEventPal_Cyclist,                OBJ_EVENT_PAL_TAG_CYCLIST},
+    {gObjectEventPal_Doctor,                OBJ_EVENT_PAL_TAG_DOCTOR},
+    {gObjectEventPal_Dragon,                OBJ_EVENT_PAL_TAG_DRAGON},
+    {gObjectEventPal_Engineer,                OBJ_EVENT_PAL_TAG_ENGINEER},
+    {gObjectEventPal_Farmer,                OBJ_EVENT_PAL_TAG_FARMER},
+    {gObjectEventPal_Firebreather,                OBJ_EVENT_PAL_TAG_FIREBREATHER},
+    {gObjectEventPal_Hex,                    OBJ_EVENT_PAL_TAG_HEX},
+    {gObjectEventPal_Lass,                OBJ_EVENT_PAL_TAG_LASS},
+    {gObjectEventPal_Line,                OBJ_EVENT_PAL_TAG_LINE},
+    {gObjectEventPal_Nurse,                OBJ_EVENT_PAL_TAG_NURSE},
+    {gObjectEventPal_Old,                OBJ_EVENT_PAL_TAG_OLD},
+    {gObjectEventPal_Painter,                OBJ_EVENT_PAL_TAG_PAINTER},
+    {gObjectEventPal_Parasol,                OBJ_EVENT_PAL_TAG_PARASOL},
+    {gObjectEventPal_Rapper,                OBJ_EVENT_PAL_TAG_RAPPER},
+    {gObjectEventPal_Reporter,                OBJ_EVENT_PAL_TAG_REPORTER},
+    {gObjectEventPal_Steven,                OBJ_EVENT_PAL_TAG_STEVEN},
+    {gObjectEventPal_Teenagerf,                OBJ_EVENT_PAL_TAG_TEENAGERF},
+    {gObjectEventPal_Violinist,                OBJ_EVENT_PAL_TAG_VIOLINIST},
+    {gObjectEventPal_Union,                OBJ_EVENT_PAL_TAG_UNION},
+    {gObjectEventPal_Spark,                OBJ_EVENT_PAL_TAG_SPARK},
+    {gObjectEventPal_Portal,                OBJ_EVENT_PAL_TAG_PORTAL},
+    {gObjectEventPal_Fire,                OBJ_EVENT_PAL_TAG_FIRE},
+
 #if OW_FOLLOWERS_POKEBALLS
     {gObjectEventPal_MasterBall,            OBJ_EVENT_PAL_TAG_BALL_MASTER},
     {gObjectEventPal_UltraBall,             OBJ_EVENT_PAL_TAG_BALL_ULTRA},
@@ -1336,7 +1377,9 @@ u8 GetFirstInactiveObjectEventId(void)
 
 u8 GetObjectEventIdByLocalIdAndMap(u8 localId, u8 mapNum, u8 mapGroupId)
 {
-    if (localId < OBJ_EVENT_ID_FOLLOWER)
+    if (localId == OBJ_EVENT_ID_FOLLOWER)
+        return GetFollowerObjectId();
+    else if (localId < OBJ_EVENT_ID_PLAYER)
         return GetObjectEventIdByLocalIdAndMapInternal(localId, mapNum, mapGroupId);
 
     return GetObjectEventIdByLocalId(localId);
@@ -1490,7 +1533,7 @@ static bool8 GetAvailableObjectEventId(u16 localId, u8 mapNum, u8 mapGroup, u8 *
     return FALSE;
 }
 
-static void RemoveObjectEvent(struct ObjectEvent *objectEvent)
+void RemoveObjectEvent(struct ObjectEvent *objectEvent)
 {
     objectEvent->active = FALSE;
     RemoveObjectEventInternal(objectEvent);
@@ -1720,7 +1763,7 @@ static u8 TrySetupObjectEventSprite(const struct ObjectEventTemplate *objectEven
     return objectEventId;
 }
 
-static u8 TrySpawnObjectEventTemplate(const struct ObjectEventTemplate *objectEventTemplate, u8 mapNum, u8 mapGroup, s16 cameraX, s16 cameraY)
+u8 TrySpawnObjectEventTemplate(const struct ObjectEventTemplate *objectEventTemplate, u8 mapNum, u8 mapGroup, s16 cameraX, s16 cameraY)
 {
     u8 objectEventId;
     u16 graphicsId = objectEventTemplate->graphicsId;
@@ -2215,12 +2258,14 @@ void UpdateFollowingPokemon(void)
     // 1. GetFollowerInfo returns FALSE
     // 2. Map is indoors and gfx is larger than 32x32
     // 3. flag is set
+    // 4. a Follow Me follower is present
     if (OW_POKEMON_OBJECT_EVENTS == FALSE
      || OW_FOLLOWERS_ENABLED == FALSE
      || !GetFollowerInfo(&species, &form, &shiny)
      || SpeciesToGraphicsInfo(species, form) == NULL
      || (gMapHeader.mapType == MAP_TYPE_INDOOR && SpeciesToGraphicsInfo(species, form)->oam->size > ST_OAM_SIZE_2)
-     || FlagGet(FLAG_TEMP_HIDE_FOLLOWER))
+     || FlagGet(FLAG_TEMP_HIDE_FOLLOWER)
+     || gSaveBlock2Ptr->follower.inProgress)
     {
         RemoveFollowingPokemon();
         return;
@@ -2259,6 +2304,29 @@ void UpdateFollowingPokemon(void)
         objEvent->invisible = TRUE;
     }
     sprite->data[6] = 0; // set animation data
+}
+
+void ReturnFollowingMonToBall(void)
+{
+    struct ObjectEvent *objectEvent = GetFollowerObject();
+    struct Sprite *sprite = &gSprites[objectEvent->spriteId];
+    u16 species;
+    bool8 shiny;
+    u8 form;
+
+    if (OW_POKEMON_OBJECT_EVENTS == FALSE
+     || OW_FOLLOWERS_ENABLED == FALSE
+     || !GetFollowerInfo(&species, &form, &shiny)
+     || SpeciesToGraphicsInfo(species, form) == NULL
+     || (gMapHeader.mapType == MAP_TYPE_INDOOR && SpeciesToGraphicsInfo(species, form)->oam->size > ST_OAM_SIZE_2)
+     || FlagGet(FLAG_TEMP_HIDE_FOLLOWER))
+    {
+        RemoveFollowingPokemon();
+        return;
+    }
+
+    ClearObjectEventMovement(objectEvent, sprite);
+    ObjectEventSetHeldMovement(objectEvent, MOVEMENT_ACTION_ENTER_POKEBALL);
 }
 
 // Remove follower object. Idempotent.
@@ -2481,18 +2549,18 @@ void GetFollowerAction(struct ScriptContext *ctx) // Essentially a big switch fo
         case MAPSEC_PEWTER_CITY:
             multi = TYPE_ROCK;
             break;
-        case MAPSEC_DEWFORD_TOWN:
+        case MAPSEC_SPARK:
             multi = TYPE_FIGHTING;
             break;
         case MAPSEC_MAUVILLE_CITY:
         case MAPSEC_VERMILION_CITY:
             multi = TYPE_ELECTRIC;
             break;
-        case MAPSEC_LAVARIDGE_TOWN:
+        case MAPSEC_LUXURA_VEILWOOD:
         case MAPSEC_CINNABAR_ISLAND:
             multi = TYPE_FIRE;
             break;
-        case MAPSEC_PETALBURG_CITY:
+        case MAPSEC_ASTRALIS_ACADEMY:
             multi = TYPE_NORMAL;
             break;
         case MAPSEC_FORTREE_CITY:
@@ -2753,7 +2821,6 @@ static void SetPlayerAvatarObjectEventIdAndObjectId(u8 objectEventId, u8 spriteI
 {
     gPlayerAvatar.objectEventId = objectEventId;
     gPlayerAvatar.spriteId = spriteId;
-    gPlayerAvatar.gender = GetPlayerAvatarGenderByGraphicsId(gObjectEvents[objectEventId].graphicsId);
     SetPlayerAvatarExtraStateTransition(gObjectEvents[objectEventId].graphicsId, PLAYER_AVATAR_FLAG_CONTROLLABLE);
 }
 
@@ -3422,7 +3489,7 @@ u8 GetObjectEventBerryTreeId(u8 objectEventId)
     return gObjectEvents[objectEventId].trainerRange_berryTreeId;
 }
 
-static const struct ObjectEventTemplate *GetObjectEventTemplateByLocalIdAndMap(u8 localId, u8 mapNum, u8 mapGroup)
+const struct ObjectEventTemplate *GetObjectEventTemplateByLocalIdAndMap(u8 localId, u8 mapNum, u8 mapGroup)
 {
     const struct ObjectEventTemplate *templates;
     const struct MapHeader *mapHeader;
@@ -6273,7 +6340,7 @@ static bool8 DoesObjectCollideWithObjectAt(struct ObjectEvent *objectEvent, s16 
     for (i = 0; i < OBJECT_EVENTS_COUNT; i++)
     {
         curObject = &gObjectEvents[i];
-        if (curObject->active && (curObject->movementType != MOVEMENT_TYPE_FOLLOW_PLAYER || objectEvent != &gObjectEvents[gPlayerAvatar.objectEventId]) && curObject != objectEvent)
+        if (curObject->active && (curObject->movementType != MOVEMENT_TYPE_FOLLOW_PLAYER || objectEvent != &gObjectEvents[gPlayerAvatar.objectEventId]) && curObject != objectEvent && !FollowMe_IsCollisionExempt(curObject, objectEvent))
         {
             // check for collision if curObject is active, not the object in question, and not exempt from collisions
             if ((curObject->currentCoords.x == x && curObject->currentCoords.y == y) || (curObject->previousCoords.x == x && curObject->previousCoords.y == y))
@@ -6447,6 +6514,7 @@ bool8 ObjectEventSetHeldMovement(struct ObjectEvent *objectEvent, u8 movementAct
     objectEvent->heldMovementActive = TRUE;
     objectEvent->heldMovementFinished = FALSE;
     gSprites[objectEvent->spriteId].sActionFuncId = 0;
+    FollowMe(objectEvent, movementActionId, FALSE);
     return FALSE;
 }
 
@@ -10987,6 +11055,38 @@ bool8 MovementAction_EmoteDoubleExclamationMark_Step0(struct ObjectEvent *object
     return TRUE;
 }
 
+u16 GetMiniStepCount(u8 speed)
+{
+    return (u16)sStepTimes[speed];
+}
+
+void RunMiniStep(struct Sprite *sprite, u8 speed, u8 currentFrame)
+{
+    sNpcStepFuncTables[speed][currentFrame](sprite, sprite->data[3]);
+}
+
+bool8 PlayerIsUnderWaterfall(struct ObjectEvent *objectEvent)
+{
+    s16 x;
+    s16 y;
+
+    x = objectEvent->currentCoords.x;
+    y = objectEvent->currentCoords.y;
+    MoveCoordsInDirection(DIR_NORTH, &x, &y, 0, 1);
+    if (MetatileBehavior_IsWaterfall(MapGridGetMetatileBehaviorAt(x, y)))
+        return TRUE;
+
+    return FALSE;
+}
+const struct SpritePalette *GetObjectEventPaletteFromTag(u16 tag)
+{
+    u32 i = FindObjectEventPaletteIndexByTag(tag);
+    if (i == 0xFF)
+        i = 0; 
+
+    return &sObjectEventSpritePalettes[i];
+}
+
 // Get gfx data from daycare pokemon and store it in vars
 void GetDaycareGraphics(struct ScriptContext *ctx)
 {
@@ -11055,4 +11155,19 @@ bool8 MovementActionFunc_RunSlow_Step1(struct ObjectEvent *objectEvent, struct S
         return TRUE;
     }
     return FALSE;
+}
+bool8 MovementAction_EmoteHappy_Step0(struct ObjectEvent *objectEvent, struct Sprite *sprite)
+{
+    ObjectEventGetLocalIdAndMap(objectEvent, &gFieldEffectArguments[0], &gFieldEffectArguments[1], &gFieldEffectArguments[2]);
+    FieldEffectStart(FLDEFF_HAPPY_ICON);
+    sprite->sActionFuncId = 1;
+    return TRUE;
+}
+
+bool8 MovementAction_EmoteUpset_Step0(struct ObjectEvent *objectEvent, struct Sprite *sprite)
+{
+    ObjectEventGetLocalIdAndMap(objectEvent, &gFieldEffectArguments[0], &gFieldEffectArguments[1], &gFieldEffectArguments[2]);
+    FieldEffectStart(FLDEFF_UPSET_ICON);
+    sprite->sActionFuncId = 1;
+    return TRUE;
 }

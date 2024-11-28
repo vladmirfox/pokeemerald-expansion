@@ -404,7 +404,6 @@ extern const u8 EventScript_FailSweetScent[];
 extern const u8 EventScript_UseFlash[];
 extern const u8 EventScript_UseCut[];
 extern const u8 EventScript_UseRockSmash[];
-extern const u8 EventScript_UseDig[];
 
 //player pc
 extern const u8 LittlerootTown_BrendansHouse_2F_EventScript_TurnOffPlayerPC[];
@@ -556,6 +555,8 @@ extern const u8 EventScript_RegionMap[];
 extern const u8 EventScript_RunningShoesManual[];
 extern const u8 EventScript_PictureBookShelf[];
 extern const u8 EventScript_BookShelf[];
+extern const u8 EventScript_Blood[];
+extern const u8 EventScript_M_Grave[];
 extern const u8 EventScript_PokemonCenterBookShelf[];
 extern const u8 EventScript_Vase[];
 extern const u8 EventScript_EmptyTrashCan[];

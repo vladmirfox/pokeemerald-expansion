@@ -29,6 +29,7 @@
 #include "constants/field_tasks.h"
 #include "constants/field_weather.h"
 #include "constants/flags.h"
+#include "constants/follow_me.h"
 #include "constants/frontier_util.h"
 #include "constants/game_stat.h"
 #include "constants/item.h"
@@ -57,6 +58,8 @@
 #include "constants/union_room.h"
 #include "constants/vars.h"
 #include "constants/weather.h"
+#include "constants/mugshots.h"
+#include "constants/outfits.h"
 	.include "asm/macros.inc"
 	.include "asm/macros/event.inc"
 	.include "constants/constants.inc"
@@ -105,7 +108,7 @@ gStdScripts::
 	.4byte Std_MsgboxPokenav           @ MSGBOX_POKENAV
 gStdScripts_End::
 
-	.include "data/maps/PetalburgCity/scripts.inc"
+	.include "data/maps/AstralisAcademy/scripts.inc"
 	.include "data/maps/SlateportCity/scripts.inc"
 	.include "data/maps/MauvilleCity/scripts.inc"
 	.include "data/maps/RustboroCity/scripts.inc"
@@ -209,13 +212,13 @@ gStdScripts_End::
 	.include "data/maps/PacifidlogTown_House3/scripts.inc"
 	.include "data/maps/PacifidlogTown_House4/scripts.inc"
 	.include "data/maps/PacifidlogTown_House5/scripts.inc"
-	.include "data/maps/PetalburgCity_WallysHouse/scripts.inc"
-	.include "data/maps/PetalburgCity_Gym/scripts.inc"
-	.include "data/maps/PetalburgCity_House1/scripts.inc"
-	.include "data/maps/PetalburgCity_House2/scripts.inc"
-	.include "data/maps/PetalburgCity_PokemonCenter_1F/scripts.inc"
-	.include "data/maps/PetalburgCity_PokemonCenter_2F/scripts.inc"
-	.include "data/maps/PetalburgCity_Mart/scripts.inc"
+	.include "data/maps/AstralisAcademy_WallysHouse/scripts.inc"
+	.include "data/maps/AstralisAcademy_Gym/scripts.inc"
+	.include "data/maps/AstralisAcademy_House1/scripts.inc"
+	.include "data/maps/AstralisAcademy_House2/scripts.inc"
+	.include "data/maps/AstralisAcademy_PokemonCenter_1F/scripts.inc"
+	.include "data/maps/AstralisAcademy_PokemonCenter_2F/scripts.inc"
+	.include "data/maps/AstralisAcademy_Mart/scripts.inc"
 	.include "data/maps/SlateportCity_SternsShipyard_1F/scripts.inc"
 	.include "data/maps/SlateportCity_SternsShipyard_2F/scripts.inc"
 	.include "data/maps/SlateportCity_BattleTentLobby/scripts.inc"
@@ -566,8 +569,8 @@ gStdScripts_End::
 	.include "data/maps/Route110_TrickHousePuzzle6/scripts.inc"
 	.include "data/maps/Route110_TrickHousePuzzle7/scripts.inc"
 	.include "data/maps/Route110_TrickHousePuzzle8/scripts.inc"
-	.include "data/maps/Route110_SeasideCyclingRoadSouthEntrance/scripts.inc"
 	.include "data/maps/Route110_SeasideCyclingRoadNorthEntrance/scripts.inc"
+	.include "data/maps/Route110_SeasideCyclingRoadSouthEntrance/scripts.inc"
 	.include "data/maps/Route113_GlassWorkshop/scripts.inc"
 	.include "data/maps/Route123_BerryMastersHouse/scripts.inc"
 	.include "data/maps/Route119_WeatherInstitute_1F/scripts.inc"
@@ -1151,3 +1154,42 @@ EventScript_VsSeekerChargingDone::
 	.include "data/scripts/follower.inc"
 	.include "data/text/save.inc"
 	.include "data/text/birch_speech.inc"
+
+	.include "data/maps/LuxuraIsland/scripts.inc"
+
+	.include "data/maps/LuxuraIndoor/scripts.inc"
+
+	.include "data/maps/Luxuraliving/scripts.inc"
+
+	.include "data/maps/Luxuradining/scripts.inc"
+
+	.include "data/maps/luxurakitchen/scripts.inc"
+
+	.include "data/maps/Luxuralib/scripts.inc"
+
+	.include "data/maps/Luxurawork/scripts.inc"
+
+
+	.include "data/maps/Luxuraupstair/scripts.inc"
+
+	.include "data/maps/NewMap1/scripts.inc"
+
+	.include "data/maps/Parentroom/scripts.inc"
+
+	.include "data/maps/Playerroom/scripts.inc"
+
+	.include "data/maps/guest/scripts.inc"
+
+	.include "data/maps/LuxuraIsland1/scripts.inc"
+
+	.include "data/maps/Luxurawoods/scripts.inc"
+
+	.include "data/maps/Hospital/scripts.inc"
+
+	.include "data/maps/Servantquarter/scripts.inc"
+
+	.include "data/maps/Sparkbase/scripts.inc"
+
+	.include "data/maps/Newmap11/scripts.inc"
+
+	.include "data/maps/newhouse/scripts.inc"

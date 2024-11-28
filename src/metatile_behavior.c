@@ -36,7 +36,8 @@ static const u8 sTileBitAttributes[NUM_METATILE_BEHAVIORS] =
     [MB_ICE]                                = TILE_FLAG_UNUSED,
     [MB_SAND]                               = TILE_FLAG_UNUSED,
     [MB_SEAWEED]                            = TILE_FLAG_UNUSED | TILE_FLAG_SURFABLE | TILE_FLAG_HAS_ENCOUNTERS,
-    [MB_UNUSED_23]                          = TILE_FLAG_UNUSED,
+    [MB_FOREST]                           = TILE_FLAG_UNUSED | TILE_FLAG_HAS_ENCOUNTERS,
+    [MB_CAVEDARK]                         = TILE_FLAG_UNUSED | TILE_FLAG_HAS_ENCOUNTERS,
     [MB_ASHGRASS]                           = TILE_FLAG_UNUSED | TILE_FLAG_HAS_ENCOUNTERS,
     [MB_FOOTPRINTS]                         = TILE_FLAG_UNUSED | TILE_FLAG_HAS_ENCOUNTERS,
     [MB_THIN_ICE]                           = TILE_FLAG_UNUSED,
@@ -182,7 +183,7 @@ bool8 MetatileBehavior_IsJumpSouth(u8 metatileBehavior)
 
 bool8 MetatileBehavior_IsPokeGrass(u8 metatileBehavior)
 {
-    if (metatileBehavior == MB_TALL_GRASS || metatileBehavior == MB_LONG_GRASS)
+    if (metatileBehavior == MB_TALL_GRASS || metatileBehavior == MB_LONG_GRASS  || metatileBehavior == MB_FOREST)
         return TRUE;
     else
         return FALSE;
@@ -607,6 +608,22 @@ bool8 MetatileBehavior_IsSecretBaseDecorationBase(u8 metatileBehavior)
 bool8 MetatileBehavior_IsSecretBasePoster(u8 metatileBehavior)
 {
     if (metatileBehavior == MB_SECRET_BASE_POSTER)
+        return TRUE;
+    else
+        return FALSE;
+}
+
+bool8 MetatileBehavior_IsCavedark(u8 metatileBehavior)
+{
+    if (metatileBehavior == MB_CAVEDARK)
+        return TRUE;
+    else
+        return FALSE;
+}
+
+bool8 MetatileBehavior_IsForest(u8 metatileBehavior)
+{
+    if (metatileBehavior == MB_FOREST)
         return TRUE;
     else
         return FALSE;
@@ -1296,6 +1313,22 @@ bool8 MetatileBehavior_IsRunningShoesManual(u8 metatileBehavior)
 bool8 MetatileBehavior_IsPictureBookShelf(u8 metatileBehavior)
 {
     if (metatileBehavior == MB_PICTURE_BOOK_SHELF)
+        return TRUE;
+    else
+        return FALSE;
+}
+
+bool8 MetatileBehavior_IsBlood(u8 metatileBehavior)
+{
+    if (metatileBehavior == MB_BLOOD)
+        return TRUE;
+    else
+        return FALSE;
+}
+
+bool8 MetatileBehavior_IsM_Grave(u8 metatileBehavior)
+{
+    if (metatileBehavior == MB_M_GRAVE)
         return TRUE;
     else
         return FALSE;

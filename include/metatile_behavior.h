@@ -136,6 +136,8 @@ bool8 MetatileBehavior_IsCuttableGrass(u8);
 bool8 MetatileBehavior_IsRunningShoesManual(u8);
 bool8 MetatileBehavior_IsPictureBookShelf(u8);
 bool8 MetatileBehavior_IsBookShelf(u8);
+bool8 MetatileBehavior_IsBlood(u8);
+bool8 MetatileBehavior_IsM_Grave(u8);
 bool8 MetatileBehavior_IsPokeCenterBookShelf(u8);
 bool8 MetatileBehavior_IsVase(u8);
 bool8 MetatileBehavior_IsTrashCan(u8);
@@ -165,5 +167,7 @@ bool8 MetatileBehavior_IsSidewaysStairsRightSideBottom(u8 metatileBehavior);
 bool8 MetatileBehavior_IsSidewaysStairsLeftSideBottom(u8 metatileBehavior);
 bool8 MetatileBehavior_IsSidewaysStairsRightSideAny(u8 metatileBehavior);
 bool8 MetatileBehavior_IsSidewaysStairsLeftSideAny(u8 metatileBehavior);
+bool8 MetatileBehavior_IsForest(u8);
+bool8 MetatileBehavior_IsCavedark(u8);
 
 #endif // GUARD_METATILE_BEHAVIOR_H

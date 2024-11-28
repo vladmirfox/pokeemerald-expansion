@@ -251,6 +251,8 @@
 #define MOVEMENT_ACTION_RUN_UP_SLOW                     0xA3
 #define MOVEMENT_ACTION_RUN_LEFT_SLOW                   0xA4
 #define MOVEMENT_ACTION_RUN_RIGHT_SLOW                  0xA5
+#define MOVEMENT_ACTION_EMOTE_HAPPY                     0xA6
+#define MOVEMENT_ACTION_EMOTE_UPSET                     0xA7
 
 #define MOVEMENT_ACTION_STEP_END 0xFE
 #define MOVEMENT_ACTION_NONE     0xFF

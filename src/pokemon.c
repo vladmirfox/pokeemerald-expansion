@@ -11,6 +11,7 @@
 #include "battle_setup.h"
 #include "battle_tower.h"
 #include "battle_z_move.h"
+#include "bw_summary_screen.h"
 #include "data.h"
 #include "event_data.h"
 #include "event_object_movement.h"
@@ -56,12 +57,13 @@
 #include "constants/layouts.h"
 #include "constants/moves.h"
 #include "constants/songs.h"
+#include "constants/species.h"
 #include "constants/trainers.h"
 #include "constants/union_room.h"
 #include "constants/weather.h"
 #include "wild_encounter.h"
 
-#define FRIENDSHIP_EVO_THRESHOLD ((P_FRIENDSHIP_EVO_THRESHOLD >= GEN_8) ? 160 : 220)
+#define FRIENDSHIP_EVO_THRESHOLD ((P_FRIENDSHIP_EVO_THRESHOLD >= GEN_9) ? 160 : 220)
 
 struct SpeciesItem
 {
@@ -3693,12 +3695,10 @@ void PokemonToBattleMon(struct Pokemon *src, struct BattlePokemon *dst)
     dst->status2 = 0;
 }
 
-void CopyPartyMonToBattleData(u32 battlerId, u32 partyIndex)
+void CopyPlayerPartyMonToBattleData(u8 battlerId, u8 partyIndex)
 {
-    u32 side = GetBattlerSide(battlerId);
-    struct Pokemon *party = GetSideParty(side);
-    PokemonToBattleMon(&party[partyIndex], &gBattleMons[battlerId]);
-    gBattleStruct->hpOnSwitchout[side] = gBattleMons[battlerId].hp;
+    PokemonToBattleMon(&gPlayerParty[partyIndex], &gBattleMons[battlerId]);
+    gBattleStruct->hpOnSwitchout[GetBattlerSide(battlerId)] = gBattleMons[battlerId].hp;
     UpdateSentPokesToOpponentValue(battlerId);
     ClearTemporarySpeciesSpriteData(battlerId, FALSE);
 }
@@ -5766,7 +5766,122 @@ u16 GetBattleBGM(void)
         }
     }
     else
-        return MUS_VS_WILD;
+    {
+        switch (GetMonData(&gEnemyParty[0], MON_DATA_SPECIES, NULL))
+        {
+        case SPECIES_ARTICUNO:
+        case SPECIES_ZAPDOS:
+        case SPECIES_MOLTRES:
+        #ifdef POKEMON_EXPANSION
+        case SPECIES_ARTICUNO_GALAR:
+        case SPECIES_ZAPDOS_GALAR:
+        case SPECIES_MOLTRES_GALAR:
+        #endif
+            return MUS_RG_VS_LEGEND;
+        case SPECIES_MEWTWO:
+        #ifdef POKEMON_EXPANSION
+        case SPECIES_MEWTWO_MEGA_X:
+        case SPECIES_MEWTWO_MEGA_Y:
+        #endif
+            return MUS_RG_VS_MEWTWO;
+        case SPECIES_MEW:
+            return MUS_VS_MEW;
+        case SPECIES_RAIKOU:
+            return MUS_HG_VS_RAIKOU;
+        case SPECIES_ENTEI:
+            return MUS_HG_VS_ENTEI;
+        case SPECIES_SUICUNE:
+            return MUS_HG_VS_SUICUNE;
+        case SPECIES_LUGIA:
+            return MUS_HG_VS_LUGIA;
+        case SPECIES_HO_OH:
+            return MUS_HG_VS_HO_OH;
+        case SPECIES_CELEBI:
+            return MUS_HG_VS_WILD;
+        case SPECIES_REGIROCK:
+        case SPECIES_REGICE:
+        case SPECIES_REGISTEEL:
+        #ifdef POKEMON_EXPANSION
+        case SPECIES_REGIGIGAS:
+        case SPECIES_REGIELEKI:
+        case SPECIES_REGIDRAGO:
+        #endif
+            return MUS_VS_REGI;
+        case SPECIES_LATIAS:
+        case SPECIES_LATIOS:
+        #ifdef POKEMON_EXPANSION
+        case SPECIES_LATIAS_MEGA:
+        case SPECIES_LATIOS_MEGA:
+        #endif
+            return MUS_VS_WILD;
+        case SPECIES_GROUDON:
+        case SPECIES_KYOGRE:
+        case SPECIES_RAYQUAZA:
+        #ifdef POKEMON_EXPANSION
+        case SPECIES_RAYQUAZA_MEGA:
+        case SPECIES_KYOGRE_PRIMAL:
+        case SPECIES_GROUDON_PRIMAL:
+        #endif
+            return MUS_VS_KYOGRE_GROUDON;
+        case SPECIES_JIRACHI:
+            return MUS_VS_WILD;
+        case SPECIES_DEOXYS:
+        #ifdef POKEMON_EXPANSION
+        case SPECIES_DEOXYS_ATTACK:
+        case SPECIES_DEOXYS_DEFENSE:
+        case SPECIES_DEOXYS_SPEED:
+        #endif
+            return MUS_RG_VS_DEOXYS;
+        #ifdef POKEMON_EXPANSION
+        case SPECIES_UXIE:
+        case SPECIES_MESPRIT:
+        case SPECIES_AZELF:
+            return MUS_DP_VS_UXIE_MESPRIT_AZELF;
+        case SPECIES_DIALGA:
+        case SPECIES_PALKIA:
+            return MUS_DP_VS_DIALGA_PALKIA;
+        case SPECIES_ROTOM:
+        case SPECIES_ROTOM_HEAT:
+        case SPECIES_ROTOM_WASH:
+        case SPECIES_ROTOM_FROST:
+        case SPECIES_ROTOM_FAN:
+        case SPECIES_ROTOM_MOW:
+        case SPECIES_HEATRAN:
+        case SPECIES_MANAPHY:
+        case SPECIES_DARKRAI:
+            return MUS_DP_VS_LEGEND;
+        case SPECIES_GIRATINA:
+        case SPECIES_GIRATINA_ORIGIN:
+            return MUS_PL_VS_GIRATINA;
+        case SPECIES_CRESSELIA:
+        case SPECIES_PHIONE:
+        case SPECIES_SHAYMIN:
+        case SPECIES_SHAYMIN_SKY:
+            return MUS_DP_VS_WILD;
+        case SPECIES_ARCEUS:
+        case SPECIES_ARCEUS_FIGHTING:
+        case SPECIES_ARCEUS_FLYING:
+        case SPECIES_ARCEUS_POISON:
+        case SPECIES_ARCEUS_GROUND:
+        case SPECIES_ARCEUS_ROCK:
+        case SPECIES_ARCEUS_BUG:
+        case SPECIES_ARCEUS_GHOST:
+        case SPECIES_ARCEUS_STEEL:
+        case SPECIES_ARCEUS_FIRE:
+        case SPECIES_ARCEUS_WATER:
+        case SPECIES_ARCEUS_GRASS:
+        case SPECIES_ARCEUS_ELECTRIC:
+        case SPECIES_ARCEUS_PSYCHIC:
+        case SPECIES_ARCEUS_ICE:
+        case SPECIES_ARCEUS_DRAGON:
+        case SPECIES_ARCEUS_DARK:
+        case SPECIES_ARCEUS_FAIRY:
+            return MUS_DP_VS_ARCEUS;
+        #endif
+        default:
+            return MUS_VS_WILD;
+        }
+    }
 }
 
 void PlayBattleBGM(void)
@@ -6086,12 +6201,18 @@ static void Task_AnimateAfterDelay(u8 taskId)
     }
 }
 
+#define tIsShadow data[4]
+
 static void Task_PokemonSummaryAnimateAfterDelay(u8 taskId)
 {
     if (--gTasks[taskId].sAnimDelay == 0)
     {
         StartMonSummaryAnimation(READ_PTR_FROM_TASK(taskId, 0), gTasks[taskId].sAnimId);
-        SummaryScreen_SetAnimDelayTaskId(TASK_NONE);
+        if (gTasks[taskId].tIsShadow)
+            SummaryScreen_SetShadowAnimDelayTaskId_BW(TASK_NONE); // needed to track anim delay task for mon shadow in BW summary screen
+        else
+            SummaryScreen_SetAnimDelayTaskId(TASK_NONE);
+
         DestroyTask(taskId);
     }
 }
@@ -6151,7 +6272,7 @@ void DoMonFrontSpriteAnimation(struct Sprite *sprite, u16 species, bool8 noCry, 
     }
 }
 
-void PokemonSummaryDoMonAnimation(struct Sprite *sprite, u16 species, bool8 oneFrame)
+void PokemonSummaryDoMonAnimation(struct Sprite *sprite, u16 species, bool8 oneFrame, bool32 isShadow)
 {
     if (!oneFrame && HasTwoFramesAnimation(species))
         StartSpriteAnim(sprite, 1);
@@ -6162,7 +6283,13 @@ void PokemonSummaryDoMonAnimation(struct Sprite *sprite, u16 species, bool8 oneF
         STORE_PTR_IN_TASK(sprite, taskId, 0);
         gTasks[taskId].sAnimId = gSpeciesInfo[species].frontAnimId;
         gTasks[taskId].sAnimDelay = gSpeciesInfo[species].frontAnimDelay;
-        SummaryScreen_SetAnimDelayTaskId(taskId);
+        gTasks[taskId].tIsShadow = isShadow;  // needed to track anim delay task for mon shadow in BW summary screen
+
+        if (isShadow)
+            SummaryScreen_SetShadowAnimDelayTaskId_BW(taskId);
+        else
+            SummaryScreen_SetAnimDelayTaskId(taskId);
+
         SetSpriteCB_MonAnimDummy(sprite);
     }
     else
@@ -6171,6 +6298,8 @@ void PokemonSummaryDoMonAnimation(struct Sprite *sprite, u16 species, bool8 oneF
         StartMonSummaryAnimation(sprite, gSpeciesInfo[species].frontAnimId);
     }
 }
+
+#define tIsShadow data[4]
 
 void StopPokemonAnimationDelayTask(void)
 {
