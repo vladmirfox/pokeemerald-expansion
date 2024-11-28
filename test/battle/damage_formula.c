@@ -150,3 +150,44 @@ DOUBLE_BATTLE_TEST("A spread move will do correct damage to the second mon if th
         EXPECT_EQ(damage[4], damage[5]);
     }
 }
+
+SINGLE_BATTLE_TEST("Punching Glove vs Muscle Band Damage calculation")
+{
+    s16 dmgPlayer, dmgOpponent;
+    s16 expectedDamagePlayer, expectedDamageOpponent;
+    PARAMETRIZE { expectedDamagePlayer = 204, expectedDamageOpponent = 201; }
+    PARAMETRIZE { expectedDamagePlayer = 201, expectedDamageOpponent = 198; }
+    PARAMETRIZE { expectedDamagePlayer = 199, expectedDamageOpponent = 196; }
+    PARAMETRIZE { expectedDamagePlayer = 196, expectedDamageOpponent = 193; }
+    PARAMETRIZE { expectedDamagePlayer = 195, expectedDamageOpponent = 192; }
+    PARAMETRIZE { expectedDamagePlayer = 193, expectedDamageOpponent = 190; }
+    PARAMETRIZE { expectedDamagePlayer = 190, expectedDamageOpponent = 187; }
+    PARAMETRIZE { expectedDamagePlayer = 189, expectedDamageOpponent = 186; }
+    PARAMETRIZE { expectedDamagePlayer = 187, expectedDamageOpponent = 184; }
+    PARAMETRIZE { expectedDamagePlayer = 184, expectedDamageOpponent = 181; }
+    PARAMETRIZE { expectedDamagePlayer = 183, expectedDamageOpponent = 180; }
+    PARAMETRIZE { expectedDamagePlayer = 181, expectedDamageOpponent = 178; }
+    PARAMETRIZE { expectedDamagePlayer = 178, expectedDamageOpponent = 175; }
+    PARAMETRIZE { expectedDamagePlayer = 177, expectedDamageOpponent = 174; }
+    PARAMETRIZE { expectedDamagePlayer = 174, expectedDamageOpponent = 172; }
+    PARAMETRIZE { expectedDamagePlayer = 172, expectedDamageOpponent = 169; }
+    GIVEN {
+        PLAYER(SPECIES_MAKUHITA) { Item(ITEM_PUNCHING_GLOVE); }
+        OPPONENT(SPECIES_MAKUHITA) { Item(ITEM_MUSCLE_BAND); }
+    } WHEN {
+        TURN {
+            MOVE(player, MOVE_DRAIN_PUNCH, WITH_RNG(RNG_DAMAGE_MODIFIER, i));
+            MOVE(opponent, MOVE_DRAIN_PUNCH, WITH_RNG(RNG_DAMAGE_MODIFIER, i));
+        }
+    }
+    SCENE {
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_DRAIN_PUNCH, player);
+        HP_BAR(opponent, captureDamage: &dmgPlayer);
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_DRAIN_PUNCH, opponent);
+        HP_BAR(player, captureDamage: &dmgOpponent);
+    }
+    THEN {
+        EXPECT_EQ(expectedDamagePlayer, dmgPlayer);
+        EXPECT_EQ(expectedDamageOpponent, dmgOpponent);
+    }
+}
