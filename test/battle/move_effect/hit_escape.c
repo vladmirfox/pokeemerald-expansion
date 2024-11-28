@@ -179,3 +179,4 @@ SINGLE_BATTLE_TEST("Electric Seed boost is received by the right pokemon after U
         EXPECT_EQ(player->statStages[STAT_DEF], DEFAULT_STAT_STAGE + 1);
     }
 }
+
