@@ -26,6 +26,16 @@ struct MultiPartnerMenuPokemon
 #define POOL_TAG_2_MAX      0x4
 #define POOL_TAG_REQUIRED   0x8
 
+#define POOL_TAG_LEAD           1 << 0
+#define POOL_TAG_ACE            1 << 1
+#define POOL_TAG_WEATHER_SETTER 1 << 2
+#define POOL_TAG_WEATHER_ABUSER 1 << 3
+#define POOL_TAG_SUPPORT        1 << 4
+#define POOL_TAG_6              1 << 5
+#define POOL_TAG_7              1 << 6
+#define POOL_TAG_8              1 << 7
+#define NUM_TAGS                8
+
 struct PoolRules
 {
     bool8 speciesClause;
@@ -110,6 +120,9 @@ u8 CreateNPCTrainerPartyFromTrainer(struct Pokemon *party, const struct Trainer 
 void ModifyPersonalityForNature(u32 *personality, u32 newNature);
 u32 GeneratePersonalityForGender(u32 gender, u32 species);
 void CustomTrainerPartyAssignMoves(struct Pokemon *mon, const struct TrainerMon *partyEntry);
+
+void UseDoublesPoolRules(void);
+void SetDefaultPoolRules(void);
 
 extern struct MultiPartnerMenuPokemon gMultiPartnerParty[MULTI_PARTY_SIZE];
 

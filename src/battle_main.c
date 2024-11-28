@@ -1916,7 +1916,7 @@ void CustomTrainerPartyAssignMoves(struct Pokemon *mon, const struct TrainerMon 
 
 EWRAM_INIT struct PoolRules poolRules = defaultPoolRules;
 
-void SetDefaultPoolRules() {poolRules = defaultPoolRules;}
+void SetDefaultPoolRules(void) {poolRules = defaultPoolRules;}
 
 static bool32 IsPoolLegal(const struct Trainer *trainer, u32 battleTypeFlags)
 {
@@ -1926,38 +1926,121 @@ static bool32 IsPoolLegal(const struct Trainer *trainer, u32 battleTypeFlags)
     return TRUE;
 }
 
+void UseDoublesPoolRules(void) {poolRules = doublesPoolRules;}
+
 static u32 PickMonFromPool(const struct Trainer *trainer, u8 *poolIndexArray, u32 partyIndex, u32 battleTypeFlags)
 {
     u32 arrayIndex = 0;
+    //  monIndex is set to 255 if nothing has been chosen yet, this gives an upper limit on pool size of 255
     u32 monIndex = 255;
-    if (partyIndex == 0
-     && poolRules.tagLead != POOL_TAG_DISABLED)
+    if ((partyIndex == 0
+      && poolRules.tagLead != POOL_TAG_DISABLED)
+     || (partyIndex == 1
+      && poolRules.tagLead != POOL_TAG_DISABLED
+      && poolRules.tagLead != POOL_TAG_UNIQUE
+      && battleTypeFlags & BATTLE_TYPE_DOUBLE))
     {
         //  Find a mon with a POOL_TAG_LEAD if it exists
+        //  Need to look for combined lead and required flags
+        u32 tempMonIndex = 255;
         for (u32 currIndex = 0; currIndex < trainer->poolSize; currIndex++)
         {
+            bool32 foundRequired = FALSE;
+            if (trainer->party[poolIndexArray[currIndex]].tags & POOL_TAG_LEAD)
+                tempMonIndex = poolIndexArray[currIndex];
+            else
+                continue;
+            for (u32 currTag = 0; currTag < NUM_TAGS; currTag++)
+            {
+                switch (1 << currTag)
+                {
+                    case (POOL_TAG_LEAD):
+                        continue;
+                    case (POOL_TAG_ACE):
+                        continue;
+                    case (POOL_TAG_WEATHER_SETTER):
+                        if (poolRules.tagWeatherSetter & POOL_TAG_REQUIRED
+                         && trainer->party[monIndex].tags & POOL_TAG_WEATHER_SETTER)
+                        {
+                            monIndex = tempMonIndex;
+                            foundRequired = TRUE;
+                        }
+                        break;
+                    case (POOL_TAG_WEATHER_ABUSER):
+                        if (poolRules.tagWeatherAbuser & POOL_TAG_REQUIRED
+                         && trainer->party[monIndex].tags & POOL_TAG_WEATHER_ABUSER)
+                            monIndex = tempMonIndex;
+                        break;
+                    case (POOL_TAG_SUPPORT):
+                        if (poolRules.tagSupport & POOL_TAG_REQUIRED
+                         && trainer->party[monIndex].tags & POOL_TAG_SUPPORT)
+                        {
+                            monIndex = tempMonIndex;
+                            foundRequired = TRUE;
+                        }
+                        break;
+                    case (POOL_TAG_6):
+                        if (poolRules.tag6 & POOL_TAG_REQUIRED
+                         && trainer->party[monIndex].tags & POOL_TAG_6)
+                        {
+                            monIndex = tempMonIndex;
+                            foundRequired = TRUE;
+                        }
+                        break;
+                    case (POOL_TAG_7):
+                        if (poolRules.tag7 & POOL_TAG_REQUIRED
+                         && trainer->party[monIndex].tags & POOL_TAG_7)
+                        {
+                            monIndex = tempMonIndex;
+                            foundRequired = TRUE;
+                        }
+                        break;
+                    case (POOL_TAG_8):
+                        if (poolRules.tag8 & POOL_TAG_REQUIRED
+                         && trainer->party[monIndex].tags & POOL_TAG_8)
+                        {
+                            monIndex = tempMonIndex;
+                            foundRequired = TRUE;
+                        }
+                        break;
+                }
+                if (foundRequired)
+                    break;
+            }
+            if (foundRequired)
+                break;
+            monIndex = tempMonIndex;
         }
     }
-    if (poolRules.tagLead != POOL_TAG_UNIQUE
-     && poolRules.tagLead != POOL_TAG_DISABLED
-     && partyIndex == 1
-     && battleTypeFlags & BATTLE_TYPE_DOUBLE)
-    {
-        //  Find a mon with a POOL_TAG_LEAD if it exists
-    }
-    //  If no other rule is required, pick first available
-    if (monIndex == 255)
+    //  Find Ace if last party index
+    if (partyIndex == trainer->partySize-1)
     {
         for (u32 i = 0; i < trainer->poolSize; i++)
         {
-            if (poolIndexArray[i] != 255)
+             if (trainer->party[poolIndexArray[i]].tags & POOL_TAG_ACE)
             {
                 arrayIndex = i;
                 break;
             }
         }
+        monIndex = poolIndexArray[arrayIndex];
     }
-    monIndex = poolIndexArray[arrayIndex];
+    //  Find other required rules
+
+    //  If no other rule is required, pick first available that's not an Ace
+    if (monIndex == 255)
+    {
+        for (u32 i = 0; i < trainer->poolSize; i++)
+        {
+            if (poolIndexArray[i] != 255
+             && !(trainer->party[poolIndexArray[i]].tags & POOL_TAG_ACE))
+            {
+                arrayIndex = i;
+                break;
+            }
+        }
+        monIndex = poolIndexArray[arrayIndex];
+    }
     //  Disable indices according to rules
     u32 chosenSpecies = trainer->party[monIndex].species;
     for (u32 i = 0; i < trainer->poolSize; i++)
