@@ -191,3 +191,41 @@ SINGLE_BATTLE_TEST("Punching Glove vs Muscle Band Damage calculation")
         EXPECT_EQ(expectedDamageOpponent, dmgOpponent);
     }
 }
+
+SINGLE_BATTLE_TEST("Gem boosted Damage calculation")
+{
+    KNOWN_FAILING; // Round error
+    s16 dmg;
+    s16 expectedDamage;
+    PARAMETRIZE { expectedDamage = 240; }
+    PARAMETRIZE { expectedDamage = 237; }
+    PARAMETRIZE { expectedDamage = 234; }
+    PARAMETRIZE { expectedDamage = 232; }
+    PARAMETRIZE { expectedDamage = 229; }
+    PARAMETRIZE { expectedDamage = 228; }
+    PARAMETRIZE { expectedDamage = 225; }
+    PARAMETRIZE { expectedDamage = 222; }
+    PARAMETRIZE { expectedDamage = 220; }
+    PARAMETRIZE { expectedDamage = 217; }
+    PARAMETRIZE { expectedDamage = 216; }
+    PARAMETRIZE { expectedDamage = 213; }
+    PARAMETRIZE { expectedDamage = 210; }
+    PARAMETRIZE { expectedDamage = 208; }
+    PARAMETRIZE { expectedDamage = 205; }
+    PARAMETRIZE { expectedDamage = 204; }
+    GIVEN {
+        PLAYER(SPECIES_MAKUHITA) { Item(ITEM_FIGHTING_GEM); }
+        OPPONENT(SPECIES_MAKUHITA);
+    } WHEN {
+        TURN {
+            MOVE(player, MOVE_DRAIN_PUNCH, WITH_RNG(RNG_DAMAGE_MODIFIER, i));
+        }
+    }
+    SCENE {
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_DRAIN_PUNCH, player);
+        HP_BAR(opponent, captureDamage: &dmg);
+    }
+    THEN {
+        EXPECT_EQ(expectedDamage, dmg);
+    }
+}
