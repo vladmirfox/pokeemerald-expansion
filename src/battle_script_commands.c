@@ -1410,7 +1410,7 @@ static void Cmd_attackcanceler(void)
 
     if (gSpecialStatuses[gBattlerTarget].lightningRodRedirected)
     {
-        gMoveResultFlags |= MOVE_RESULT_DOESNT_AFFECT_FOE;
+        gMoveResultFlags |= MOVE_RESULT_ABSORBED;
         gSpecialStatuses[gBattlerTarget].lightningRodRedirected = FALSE;
         gLastUsedAbility = ABILITY_LIGHTNING_ROD;
         BattleScriptPushCursor();
@@ -1419,7 +1419,7 @@ static void Cmd_attackcanceler(void)
     }
     else if (gSpecialStatuses[gBattlerTarget].stormDrainRedirected)
     {
-        gMoveResultFlags |= MOVE_RESULT_DOESNT_AFFECT_FOE;
+        gMoveResultFlags |= MOVE_RESULT_ABSORBED;
         gSpecialStatuses[gBattlerTarget].stormDrainRedirected = FALSE;
         gLastUsedAbility = ABILITY_STORM_DRAIN;
         BattleScriptPushCursor();
@@ -1473,7 +1473,7 @@ static bool32 JumpIfMoveFailed(u8 adder, u16 move)
         TrySetDestinyBondToHappen();
         if (AbilityBattleEffects(ABILITYEFFECT_ABSORBING, gBattlerTarget, 0, 0, move))
         {
-            gMoveResultFlags |= MOVE_RESULT_DOESNT_AFFECT_FOE;
+            gMoveResultFlags |= MOVE_RESULT_ABSORBED;
             return TRUE;
         }
     }
@@ -5598,7 +5598,7 @@ static void Cmd_moveend(void)
                 break;
             }
             else if (gMovesInfo[gCurrentMove].effect == EFFECT_RECOIL_IF_MISS
-                  && gMoveResultFlags & (MOVE_RESULT_NO_EFFECT)
+                  && gMoveResultFlags & (MOVE_RESULT_NO_EFFECT | MOVE_RESULT_ABSORBED)
                   && !gBattleStruct->noTargetPresent
                   && IsBattlerAlive(gBattlerAttacker))
             {
