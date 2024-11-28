@@ -9396,7 +9396,7 @@ static inline u32 CalcMoveBasePowerAfterModifiers(u32 move, u32 battlerAtk, u32 
         break;
     case HOLD_EFFECT_PUNCHING_GLOVE:
         if (gMovesInfo[move].punchingMove)
-           modifier = uq4_12_multiply(modifier, 4506);
+           modifier = uq4_12_multiply(modifier, UQ_4_12_ROUNDED(1.1));
         break;
     case HOLD_EFFECT_OGERPON_MASK:
         if (GET_BASE_SPECIES_ID(gBattleMons[battlerAtk].species) == SPECIES_OGERPON)

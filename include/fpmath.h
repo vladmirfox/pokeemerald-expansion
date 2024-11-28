@@ -30,6 +30,7 @@ typedef u32 uq4_12_t;
 // Rounding value for Q4.12 fixed-point format
 #define Q_4_12_ROUND ((1) << (Q_4_12_SHIFT - 1))
 #define UQ_4_12_ROUND ((1) << (UQ_4_12_SHIFT - 1))
+#define UQ_4_12_ROUNDED(n) ((uq4_12_t)((n) * 4096 + 0.5))
 
 // Basic arithmetic for fixed point number formats
 // Consumers should use encapsulated functions where possible
