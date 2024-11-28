@@ -5616,7 +5616,7 @@ static void Cmd_moveend(void)
                 gBattlescriptCurrInstr = BattleScript_MoveEffectRecoilIfMiss;
                 effect = TRUE;
             }
-            else if (gMovesInfo[gCurrentMove].effect == EFFECT_RECOIL
+            else if (gMovesInfo[gCurrentMove].recoil > 0
                   && !(gMoveResultFlags & MOVE_RESULT_NO_EFFECT)
                   && IsBattlerAlive(gBattlerAttacker)
                   && gBattleScripting.savedDmg != 0) // Some checks may be redundant alongside this one
