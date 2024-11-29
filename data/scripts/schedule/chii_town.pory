@@ -1,0 +1,68 @@
+const TIME_DEAD_NIGHT	=	0    
+const TIME_EARLY		=	1
+const TIME_MORNING		=	2
+const TIME_LUNCHTIME	= 	3
+const TIME_AFTERNOON	=	4
+const TIME_EVENING		=	5
+const TIME_NIGHT		=	6
+
+const VAR_HOUR_OF_DAY = VAR_0x8000
+
+const VAR_DAY = VAR_0x8000
+const VAR_MONTH = VAR_0x8001
+const VAR_YEAR = VAR_0x8002
+
+///////////////////////////////////////////
+////////////CHII TOWN SCHEDULES////////////
+///////////////////////////////////////////
+
+const CHII_TOWN_LITTLE_GIRL = 3
+const CHII_TOWN_LITTLE_GIRL_FLAG = FLAG_TEMP_5
+const CHII_TOWN_MOM = 11
+const CHII_TOWN_MOM_FLAG = FLAG_TEMP_6
+
+script ChiiTown_NPCSchedules{
+	setflag(CHII_TOWN_LITTLE_GIRL_FLAG)
+    setflag(CHII_TOWN_MOM_FLAG)
+    gettimeofday
+	switch(var(VAR_HOUR_OF_DAY)){
+        case TIME_DEAD_NIGHT:
+            call(ChiiTown_DeadNightSchedules)
+        case TIME_EARLY:
+            call(ChiiTown_EarlySchedules)
+        case TIME_MORNING:
+            call(ChiiTown_MorningSchedules)
+        case TIME_LUNCHTIME:
+            call(ChiiTown_LunchtimeSchedules)
+        case TIME_AFTERNOON:
+            call(ChiiTown_AfternoonSchedules)
+        case TIME_EVENING:
+            call(ChiiTown_EveningSchedules)
+        case TIME_NIGHT:
+            call(ChiiTown_NightSchedules)
+    }
+}
+
+script(local) ChiiTown_DeadNightSchedules{
+
+}
+
+script(local) ChiiTown_EarlySchedules{
+
+}
+
+script(local) ChiiTown_MorningSchedules{
+
+}
+script(local) ChiiTown_LunchtimeSchedules{
+    clearflag(CHII_TOWN_LITTLE_GIRL_FLAG)
+}
+script(local) ChiiTown_AfternoonSchedules{
+
+}
+script(local) ChiiTown_EveningSchedules{
+
+}
+script(local) ChiiTown_NightSchedules{
+
+}

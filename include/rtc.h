@@ -18,6 +18,7 @@
 #define RTC_ERR_FLAG_MASK      0x0FF0
 
 //Morning and evening don't exist in Gen 3
+/*
 #if OW_TIMES_OF_DAY == GEN_3
     #define MORNING_HOUR_BEGIN 0
     #define MORNING_HOUR_END   0
@@ -81,6 +82,28 @@
 
     #define NIGHT_HOUR_BEGIN   20
     #define NIGHT_HOUR_END     6
+*/
+#if OW_TIMES_OF_DAY == RTC_CUSTOM
+    #define DEAD_NIGHT_HOUR_BEGIN   0
+    #define DEAD_NIGHT_HOUR_END     5
+    
+    #define EARLY_HOUR_BEGIN        5
+    #define EARLY_HOUR_END          8
+
+    #define MORNING_HOUR_BEGIN      8
+    #define MORNING_HOUR_END        12
+
+    #define LUNCHTIME_HOUR_BEGIN    12
+    #define LUNCHTIME_HOUR_END      14
+
+    #define AFTERNOON_HOUR_BEGIN    14
+    #define AFTERNOON_HOUR_END      18
+
+    #define EVENING_HOUR_BEGIN      18
+    #define EVENING_HOUR_END        22
+
+    #define NIGHT_HOUR_BEGIN        22
+    #define NIGHT_HOUR_END          0
 #endif
 
 extern struct Time gLocalTime;

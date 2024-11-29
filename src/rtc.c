@@ -359,14 +359,23 @@ bool8 IsBetweenHours(s32 hours, s32 begin, s32 end)
 
 u8 GetTimeOfDay(void)
 {
-    RtcCalcLocalTime();
-    if (IsBetweenHours(gLocalTime.hours, MORNING_HOUR_BEGIN, MORNING_HOUR_END))
+    u32 hour = GetHour();
+
+    if (IsBetweenHours(hour, DEAD_NIGHT_HOUR_BEGIN, DEAD_NIGHT_HOUR_END))
+        return TIME_DEAD_NIGHT;
+    else if (IsBetweenHours(hour, EARLY_HOUR_BEGIN, EARLY_HOUR_END))
+        return TIME_EARLY;
+    else if (IsBetweenHours(hour, MORNING_HOUR_BEGIN, MORNING_HOUR_END))
         return TIME_MORNING;
-    else if (IsBetweenHours(gLocalTime.hours, EVENING_HOUR_BEGIN, EVENING_HOUR_END))
+    else if (IsBetweenHours(hour, LUNCHTIME_HOUR_BEGIN, LUNCHTIME_HOUR_END))
+        return TIME_LUNCHTIME;
+    else if (IsBetweenHours(hour, AFTERNOON_HOUR_BEGIN, AFTERNOON_HOUR_END))
+        return TIME_AFTERNOON;
+    else if (IsBetweenHours(hour, EVENING_HOUR_BEGIN, EVENING_HOUR_END))
         return TIME_EVENING;
-    else if (IsBetweenHours(gLocalTime.hours, NIGHT_HOUR_BEGIN, NIGHT_HOUR_END))
+    else if (IsBetweenHours(hour, NIGHT_HOUR_BEGIN, NIGHT_HOUR_END))
         return TIME_NIGHT;
-    return TIME_DAY;
+    return NULL;
 }
 
 void RtcInitLocalTimeOffset(s32 years, s32 months, s32 days, s32 hours, s32 minutes, s32 seconds)

@@ -1157,7 +1157,7 @@ EventScript_VsSeekerChargingDone::
 	.include "data/text/birch_speech.inc"
 	.include "data/scripts/time_menu.inc"
 
-	.include "data/scripts/days/sunday.inc"
+	.include "data/scripts/schedule/chii_town.inc"
 
 	.include "data/maps/SunriseVillage/scripts.inc"
 

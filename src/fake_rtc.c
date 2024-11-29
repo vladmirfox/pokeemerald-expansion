@@ -4,6 +4,7 @@
 #include "text.h"
 #include "siirtc.h"
 #include "rtc.h"
+#include "constants/rtc.h"
 #include "fake_rtc.h"
 #include "event_data.h"
 #include "script.h"

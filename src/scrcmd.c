@@ -56,6 +56,8 @@
 #include "malloc.h"
 #include "constants/event_objects.h"
 
+#include "gba/gba.h"
+
 typedef u16 (*SpecialFunc)(void);
 typedef void (*NativeFunc)(struct ScriptContext *ctx);
 
@@ -715,6 +717,7 @@ bool8 ScrCmd_dotimebasedevents(struct ScriptContext *ctx)
 bool8 ScrCmd_gettimeofday(struct ScriptContext *ctx)
 {
     gSpecialVar_0x8000 = GetTimeOfDay();
+    MgbaPrintf(MGBA_LOG_WARN, "Time: %u", VarGet(gSpecialVar_0x8000));
     return FALSE;
 }
 
@@ -724,9 +727,19 @@ bool8 ScrCmd_gettime(struct ScriptContext *ctx)
     gSpecialVar_0x8000 = time->hours;
     gSpecialVar_0x8001 = time->minutes;
     gSpecialVar_0x8002 = time->seconds;
-    gSpecialVar_0x8003 = time->dayOfWeek;
-    gSpecialVar_0x8004 = time->months;
-    gSpecialVar_0x8005 = time->years;
+
+    StringCopy(gStringVar1, gMonthNameStringsTable[time->months]);
+    ConvertIntToDecimalStringN(gStringVar2, time->days, STR_CONV_MODE_LEADING_ZEROS, 2);
+    ConvertIntToDecimalStringN(gStringVar3, time->years, STR_CONV_MODE_RIGHT_ALIGN, 2);
+    return FALSE;
+}
+
+bool8 ScrCmd_getdate(struct ScriptContext *ctx)
+{
+    struct Time *time = FakeRtc_GetCurrentTime();
+    gSpecialVar_0x8000 = time->years;
+    gSpecialVar_0x8001 = time->months;
+    gSpecialVar_0x8002 = time->days;
 
     StringCopy(gStringVar1, gMonthNameStringsTable[time->months]);
     ConvertIntToDecimalStringN(gStringVar2, time->days, STR_CONV_MODE_LEADING_ZEROS, 2);

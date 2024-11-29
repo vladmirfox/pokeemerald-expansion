@@ -224,7 +224,7 @@ void NewGameInitData(void)
     ResetItemFlags();
 
     // Custom
-    FakeRtc_ManuallySetTime(0, 0, 0, 8, 0, 0);
+    SetNewIngameTime();
     InitTimeBasedEvents();
 }
 
