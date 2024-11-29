@@ -273,6 +273,7 @@ static void DisplayPartyPokemonDataForMultiBattle(u8);
 static void LoadPartyBoxPalette(struct PartyMenuBox *, u8);
 static void DrawEmptySlot(u8 windowId);
 static void DisplayPartyPokemonDataForRelearner(u8);
+static void DisplayPartyPokemonDataForDeltaMachine(u8);
 static void DisplayPartyPokemonDataForContest(u8);
 static void DisplayPartyPokemonDataForChooseHalf(u8);
 static void DisplayPartyPokemonDataForWirelessMinigame(u8);
@@ -468,6 +469,7 @@ static void Task_ChooseContestMon(u8 taskId);
 static void CB2_ChooseContestMon(void);
 static void Task_ChoosePartyMon(u8 taskId);
 static void Task_ChooseMonForMoveRelearner(u8);
+static void Task_ChoosePartyMonForDeltaMachine(u8);
 static void CB2_ChooseMonForMoveRelearner(void);
 static void Task_BattlePyramidChooseMonHeldItems(u8);
 static void ShiftMoveSlot(struct Pokemon *, u8, u8);
@@ -1002,6 +1004,8 @@ static void RenderPartyMenuBox(u8 slot)
                 DisplayPartyPokemonDataForChooseHalf(slot);
             else if (gPartyMenu.menuType == PARTY_MENU_TYPE_MINIGAME)
                 DisplayPartyPokemonDataForWirelessMinigame(slot);
+            else if (gPartyMenu.menuType == PARTY_MENU_TYPE_DELTA_MACHINE)
+                DisplayPartyPokemonDataForDeltaMachine(slot);
             else if (gPartyMenu.menuType == PARTY_MENU_TYPE_STORE_PYRAMID_HELD_ITEMS)
                 DisplayPartyPokemonDataForBattlePyramidHeldItem(slot);
             else if (!DisplayPartyPokemonDataForMoveTutorOrEvolutionItem(slot))
@@ -1099,6 +1103,14 @@ static void DisplayPartyPokemonDataForRelearner(u8 slot)
         DisplayPartyPokemonDescriptionData(slot, PARTYBOX_DESC_NOT_ABLE_2);
     else
         DisplayPartyPokemonDescriptionData(slot, PARTYBOX_DESC_ABLE_2);
+}
+
+static void DisplayPartyPokemonDataForDeltaMachine(u8 slot)
+{
+    if (GetMonDeltaVersion(&gPlayerParty[slot]) != SPECIES_NONE)
+        DisplayPartyPokemonDescriptionData(slot, PARTYBOX_DESC_ABLE_2);
+    else
+        DisplayPartyPokemonDescriptionData(slot, PARTYBOX_DESC_NOT_ABLE_2);
 }
 
 static void DisplayPartyPokemonDataForWirelessMinigame(u8 slot)
@@ -7618,6 +7630,23 @@ static void Task_ChoosePartyMon(u8 taskId)
     }
 }
 
+void ChoosePartyMonForDeltaMachine(void)
+{
+    LockPlayerFieldControls();
+    FadeScreen(FADE_TO_BLACK, 0);
+    CreateTask(Task_ChoosePartyMonForDeltaMachine, 10);
+}
+
+static void Task_ChoosePartyMonForDeltaMachine(u8 taskId)
+{
+    if (!gPaletteFade.active)
+    {
+        CleanupOverworldWindowsAndTilemaps();
+        InitPartyMenu(PARTY_MENU_TYPE_DELTA_MACHINE, PARTY_LAYOUT_SINGLE, PARTY_ACTION_CHOOSE_AND_CLOSE, FALSE, PARTY_MSG_CHOOSE_MON, Task_HandleChooseMonInput, BufferMonSelection);
+        DestroyTask(taskId);
+    }
+}
+
 void ChooseMonForMoveRelearner(void)
 {
     LockPlayerFieldControls();
@@ -7686,6 +7715,7 @@ void MoveDeleterChooseMoveToForget(void)
     gFieldCallback = FieldCB_ContinueScriptHandleMusic;
 }
 
+// NOTE
 void UpgradeToDeltaSpecies(void)
 {
     struct Pokemon *mon = &gPlayerParty[gSpecialVar_0x8004];
@@ -7695,34 +7725,7 @@ void UpgradeToDeltaSpecies(void)
     StringGet_Nickname(nickname);
     u16 deltaSpecies;
 
-    switch (species) {
-        case SPECIES_WURMPLE: deltaSpecies = SPECIES_WURMPLE_DELTA;
-            break;
-        case SPECIES_SILCOON: deltaSpecies = SPECIES_SILCOON_DELTA;
-            break;
-        case SPECIES_DUSTOX: deltaSpecies = SPECIES_DUSTOX_DELTA;
-            break;
-        case SPECIES_NINCADA: deltaSpecies = SPECIES_NINCADA_DELTA;
-            break;
-        case SPECIES_NINJASK: deltaSpecies = SPECIES_NINJASK_DELTA;
-            break;
-        case SPECIES_SHEDINJA: deltaSpecies = SPECIES_SHEDINJA_DELTA;
-            break;
-        case SPECIES_SANDSHREW: deltaSpecies = SPECIES_SANDSHREW_DELTA;
-            break;
-        case SPECIES_SANDSLASH: deltaSpecies = SPECIES_SANDSLASH_DELTA;
-            break;
-        case SPECIES_VENONAT: deltaSpecies = SPECIES_VENONAT_DELTA;
-            break;
-        case SPECIES_VENOMOTH: deltaSpecies = SPECIES_VENOMOTH_DELTA;
-            break;
-        case SPECIES_GOLBAT: deltaSpecies = SPECIES_GOLBAT_DELTA;
-            break;
-        case SPECIES_BEEDRILL: deltaSpecies = SPECIES_BEEDRILL_DELTA;
-            break;
-        // default: deltaSpecies = SPECIES_NONE;
-        default: deltaSpecies = SPECIES_BEEDRILL_DELTA;
-    }
+    deltaSpecies = GetMonDeltaVersion(mon);
 
     if (deltaSpecies != SPECIES_NONE)
     {
@@ -7763,6 +7766,45 @@ void UpgradeToDeltaSpecies(void)
         }
 
     }
+}
+
+u16 GetMonDeltaVersion(struct Pokemon *mon)
+{
+    u16 deltaSpecies;
+    u16 species = GetMonData(mon, MON_DATA_SPECIES_OR_EGG, 0);
+    u16 labStateA = VarGet(VAR_WAREHOUSE_A_STATE);
+
+    switch (species) {
+        case SPECIES_WURMPLE: deltaSpecies = SPECIES_WURMPLE_DELTA;
+            break;
+        case SPECIES_SILCOON: deltaSpecies = SPECIES_SILCOON_DELTA;
+            break;
+        case SPECIES_DUSTOX: deltaSpecies = SPECIES_DUSTOX_DELTA;
+            break;
+        case SPECIES_NINCADA: deltaSpecies = SPECIES_NINCADA_DELTA;
+            break;
+        case SPECIES_NINJASK: deltaSpecies = SPECIES_NINJASK_DELTA;
+            break;
+        case SPECIES_SHEDINJA: deltaSpecies = SPECIES_SHEDINJA_DELTA;
+            break;
+        case SPECIES_SANDSHREW: deltaSpecies = SPECIES_SANDSHREW_DELTA;
+            break;
+        case SPECIES_SANDSLASH: deltaSpecies = SPECIES_SANDSLASH_DELTA;
+            break;
+        case SPECIES_VENONAT: deltaSpecies = SPECIES_VENONAT_DELTA;
+            break;
+        case SPECIES_VENOMOTH: deltaSpecies = SPECIES_VENOMOTH_DELTA;
+            break;
+        case SPECIES_GOLBAT: deltaSpecies = SPECIES_GOLBAT_DELTA;
+            break;
+        case SPECIES_BEEDRILL: deltaSpecies = SPECIES_BEEDRILL_DELTA;
+            break;
+        default: deltaSpecies = SPECIES_NONE;
+    }
+
+    // TODO: Filter by lab states
+
+    return deltaSpecies;
 }
 
 void GetNumMovesSelectedMonHas(void)

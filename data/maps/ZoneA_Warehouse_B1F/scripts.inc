@@ -55,16 +55,22 @@ ZoneA_Warehouse_B1F_EventScript_AdminDefeated::
 	msgbox ZoneA_Warehouse_B1F_Text_AdminDefeated, MSGBOX_AUTOCLOSE
 	fadescreen FADE_TO_BLACK
 	setflag FLAG_HIDE_TEAM_ARCO_ZONE_A
+	setflag FLAG_HIDE_ROUTE_A_GRUNT_1
+	clearflag FLAG_HIDE_NORMAL_SCIENTISTS_ZONE_A
 	removeobject LOCALID_GRUNT1
 	removeobject LOCALID_GRUNT2
 	removeobject LOCALID_ADMIN
 	lockall
 	turnobject LOCALID_SCIENTIST1, DIR_NORTH
 	turnobject LOCALID_SCIENTIST2, DIR_NORTH
+	setvar VAR_WAREHOUSE_A_STATE, 1
 	fadescreen FADE_FROM_BLACK
 	call_if_eq VAR_0x8008, 0, ZoneA_Warehouse_B1F_EventScript_ScientistApproachPlayer0
 	call_if_eq VAR_0x8008, 1, ZoneA_Warehouse_B1F_EventScript_ScientistApproachPlayer1
 	msgbox ZoneA_Warehouse_B1F_Text_ScientistsSaved, MSGBOX_AUTOCLOSE
+	warp MAP_ZONE_A_WAREHOUSE_1F, 15, 3
+	waitstate
+	releaseall
 	return
 
 ZoneA_Warehouse_B1F_EventScript_ScientistApproachPlayer0::

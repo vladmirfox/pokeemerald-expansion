@@ -1114,8 +1114,9 @@ LittlerootTown_Script_GiveStartingMons::
 	getpartysize
 	compare VAR_RESULT, 6
 	goto_if_eq Script_PlayerHasFullParty
-	givemon SPECIES_VAPOREON, 65, item=ITEM_LEFTOVERS, move1=MOVE_AERIAL_ACE, move2=MOVE_SURF, move3=MOVE_TAKE_DOWN, move4=MOVE_SPLASH, isShiny=TRUE;
+	givemon SPECIES_VAPOREON, 65, item=ITEM_LEFTOVERS, move1=MOVE_AERIAL_ACE, move2=MOVE_SURF, move3=MOVE_SLUDGE_BOMB, move4=MOVE_SPLASH, isShiny=TRUE;
 	givemon SPECIES_BEEDRILL_DELTA, 65, move1=MOVE_ROCK_CANNON, move2=MOVE_ICE_PUNCH, move3=MOVE_POISON_JAB, move4=MOVE_BRILLIANT_PUNCH, isShiny=TRUE;
+	givemon SPECIES_BEEDRILL, 40
 	givemon SPECIES_SUDOWOODO, 45, move1=MOVE_ROCK_CLIMB, move2=MOVE_JAGGED_BLOW, move3=MOVE_WATERFALL, move4=MOVE_BRILLIANT_PUNCH
 	@ givemon SPECIES_SHEDINJA_DELTA, 65, item=ITEM_LEFTOVERS, ball=ITEM_MASTER_BALL, nature=NATURE_MODEST, abilityNum=1, gender=MON_FEMALE, hpEv=252, atkEv=0, defEv=0, speedEv=4, spAtkEv=252, spDefEv=0, hpIv=31, atkIv=31, defIv=31, speedIv=31, spAtkIv=31, spDefIv=31, move1=MOVE_POISON_STING, move2=MOVE_EARTHQUAKE, move3=MOVE_GIGA_DRAIN, move4=MOVE_SPLASH, isShiny=TRUE;
 	@ givemon SPECIES_DUSTOX_DELTA, 60

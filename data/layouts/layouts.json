@@ -4427,7 +4427,7 @@
       "width": 20,
       "height": 20,
       "primary_tileset": "gTileset_General",
-      "secondary_tileset": "gTileset_Slateport",
+      "secondary_tileset": "gTileset_MountainTop",
       "border_filepath": "data/layouts/ZoneAlpha/border.bin",
       "blockdata_filepath": "data/layouts/ZoneAlpha/map.bin"
     },

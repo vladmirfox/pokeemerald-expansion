@@ -223,12 +223,7 @@
 #define MAPSEC_ROUTE_135                    0xDA
 #define MAPSEC_ROUTE_136                    0xDB
 #define MAPSEC_NONE                         0xDC
-// #define MAPSEC_ROUTE_BETTA                  0xD6
-// #define MAPSEC_ROUTE_GAMMA                  0xD8
-// #define MAPSEC_ROUTE_DELTA                  0xD9
-// #define MAPSEC_ZONE_BETTA                   0xDB
-// #define MAPSEC_ZONE_GAMMA                   0xDC
-// #define MAPSEC_ZONE_DELTA                   0xDD
+#define MAPSEC_DELTA_LAB_A                  0xDD
 // #define MAPSEC_CUSTOM                       0xDE
 // #define MAPSEC_CUSTOM                       0xDF
 // #define MAPSEC_CUSTOM                       0xE0

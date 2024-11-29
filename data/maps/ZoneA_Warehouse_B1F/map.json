@@ -51,7 +51,7 @@
       "trainer_type": "TRAINER_TYPE_NONE",
       "trainer_sight_or_berry_tree_id": "0",
       "script": "NULL",
-      "flag": "0"
+      "flag": "FLAG_HIDE_TEAM_ARCO_ZONE_A"
     },
     {
       "graphics_id": "OBJ_EVENT_GFX_POKE_BALL",
@@ -99,7 +99,20 @@
       "elevation": 0,
       "movement_type": "MOVEMENT_TYPE_WALK_UP_AND_DOWN",
       "movement_range_x": 0,
-      "movement_range_y": 2,
+      "movement_range_y": 1,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "NULL",
+      "flag": "FLAG_HIDE_TEAM_ARCO_ZONE_A"
+    },
+    {
+      "graphics_id": "OBJ_EVENT_GFX_SCIENTIST_2",
+      "x": 4,
+      "y": 11,
+      "elevation": 0,
+      "movement_type": "MOVEMENT_TYPE_LOOK_AROUND",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
       "trainer_type": "TRAINER_TYPE_NONE",
       "trainer_sight_or_berry_tree_id": "0",
       "script": "NULL",
@@ -121,7 +134,7 @@
       "x": 10,
       "y": 6,
       "elevation": 0,
-      "var": "VAR_TEMP_0",
+      "var": "VAR_WAREHOUSE_A_STATE",
       "var_value": "0",
       "script": "ZoneA_Warehouse_B1F_EventScript_AdminBattle0"
     },
@@ -130,7 +143,7 @@
       "x": 10,
       "y": 7,
       "elevation": 0,
-      "var": "VAR_TEMP_0",
+      "var": "VAR_WAREHOUSE_A_STATE",
       "var_value": "0",
       "script": "ZoneA_Warehouse_B1F_EventScript_AdminBattle1"
     }

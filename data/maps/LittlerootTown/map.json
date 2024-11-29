@@ -184,8 +184,8 @@
       "x": 37,
       "y": 11,
       "elevation": 0,
-      "dest_map": "MAP_ZONE_A_WAREHOUSE_B1F",
-      "dest_warp_id": "0"
+      "dest_map": "MAP_ZONE_A_WAREHOUSE_1F",
+      "dest_warp_id": "2"
     },
     {
       "x": 39,

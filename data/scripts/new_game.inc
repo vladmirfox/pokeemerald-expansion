@@ -275,5 +275,7 @@ EventScript_ResetAllMapFlags::
 
 	@ Custom flags
 	setflag FLAG_HIDE_DEWFORD_TOWN_BRAWLY_1
+	setflag FLAG_HIDE_NORMAL_SCIENTISTS_ZONE_A
+
 	call EventScript_ResetAllBerries
 	end
