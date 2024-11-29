@@ -2,6 +2,7 @@ raw `
 Luxuradining_MapScripts::
 	map_script MAP_SCRIPT_ON_FRAME_TABLE, Luxuradining_MapScripts_MAP_SCRIPT_ON_FRAME_TABLE
 	map_script MAP_SCRIPT_ON_LOAD, Luxuradining_MapScripts_MAP_SCRIPT_ON_LOAD
+	map_script MAP_SCRIPT_ON_RESUME, outfit
 	.byte 0
 Luxuradining_MapScripts_MAP_SCRIPT_ON_FRAME_TABLE:
 	map_script_2 LUXURA_TRAGEDY, 3, Youwake

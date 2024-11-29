@@ -90,7 +90,7 @@ script ran{
     applymovement(4,fals)
     waitmovement(0)
     namebox(name4)
-    msgbox(format("{COLOR RED}{SHADOW LIGHT_GRAY}Hahahaha\pYou wanted to help me, didn't you?\pNow we're both in this together!"))
+    msgbox(format("{COLOR RED}{SHADOW LIGHT_GRAY}Hahahaha!\pYou wanted to help me, didn't you?\pNow we're both in this together!"))
     hidenamebox
     fadescreen(FADE_TO_BLACK)
     removeobject(3)
@@ -498,7 +498,8 @@ script signend{
     release
 }
 script outfit {
-    if(flag(FLAG_SYS_B_DASH)){
+    
+    if(flag(FLAG_UNUSED_0x49E)){
     iswearingoutfit(OUTFIT_USUAL_GREEN)
     if (var(VAR_RESULT)==TRUE){
     setflag(FLAG_SYS_B_DASH)

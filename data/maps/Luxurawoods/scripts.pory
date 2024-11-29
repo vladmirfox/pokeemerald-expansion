@@ -1,5 +1,6 @@
 mapscripts Luxurawoods_MapScripts {
 	MAP_SCRIPT_ON_LOAD: mewtwofind
+	MAP_SCRIPT_ON_RESUME: outfit
 }
 script mewtwofind {
 if(var(LUXURA_TRAGEDY)==14){

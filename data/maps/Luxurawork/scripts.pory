@@ -2,6 +2,8 @@ raw `
 Luxurawork_MapScripts::
 map_script MAP_SCRIPT_ON_LOAD, Luxurawork_MapScripts_MAP_SCRIPT_ON_LOAD
 map_script MAP_SCRIPT_ON_FRAME_TABLE, Luxurawork_MapScripts_MAP_SCRIPT_ON_FRAME_TABLE
+map_script MAP_SCRIPT_ON_RESUME, outfit
+
 	.byte 0
 Luxurawork_MapScripts_MAP_SCRIPT_ON_FRAME_TABLE:
 map_script_2 LUXURA_TRAGEDY, 11, trage

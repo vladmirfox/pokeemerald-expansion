@@ -1,6 +1,7 @@
 raw `
 luxurakitchen_MapScripts::
 	map_script MAP_SCRIPT_ON_LOAD, luxurakitchen_MapScripts_MAP_SCRIPT_ON_LOAD
+    map_script MAP_SCRIPT_ON_RESUME, outfit
 	.byte 0
 `
 script luxurakitchen_MapScripts_MAP_SCRIPT_ON_LOAD {
@@ -82,7 +83,7 @@ script momm {
 		lockall
 		faceplayer
 		namebox(name2)
-		msgbox(format("{COLOR RED}{SHADOW LIGHT_GRAY}Xylar,Can you call Felicia for me?\pShe must be in the Library."))
+		msgbox(format("{COLOR RED}{SHADOW LIGHT_GRAY}Xylar, Can you call Felicia for me?\pShe must be in the Library."))
 		hidenamebox
 		releaseall
 		setflag(FLAG_UNUSED_0x49E)

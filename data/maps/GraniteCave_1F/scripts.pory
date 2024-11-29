@@ -3,6 +3,8 @@ GraniteCave_1F_MapScripts::
 map_script MAP_SCRIPT_ON_FRAME_TABLE, Luxurawoodsmewtwo_MapScripts_MAP_SCRIPT_ON_FRAME_TABLE
 map_script MAP_SCRIPT_ON_LOAD, Mewtworecover
 map_script MAP_SCRIPT_ON_TRANSITION,newheal
+map_script MAP_SCRIPT_ON_RESUME, outfit
+
 	.byte 0
 Luxurawoodsmewtwo_MapScripts_MAP_SCRIPT_ON_FRAME_TABLE:
 map_script_2 LUXURA_TRAGEDY, 15, herb

@@ -1,6 +1,8 @@
 mapscripts Servantquarter_MapScripts{
 MAP_SCRIPT_ON_LOAD: trag
 MAP_SCRIPT_ON_TRANSITION: newheal1
+MAP_SCRIPT_ON_RESUME: outfit
+
 }
 script newheal1 {
 	setrespawn(HEAL_LOCATION_NURSEMET)

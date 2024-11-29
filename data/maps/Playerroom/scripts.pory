@@ -1,6 +1,8 @@
 raw `
 Playerroom_MapScripts::
 	map_script MAP_SCRIPT_ON_FRAME_TABLE, Playerroom_MapScripts_MAP_SCRIPT_ON_FRAME_TABLE
+	map_script MAP_SCRIPT_ON_RESUME, outfit
+
 	.byte 0
 	Playerroom_MapScripts_MAP_SCRIPT_ON_FRAME_TABLE:
      map_script_2 LUXURA_TRAGEDY, 1, mira

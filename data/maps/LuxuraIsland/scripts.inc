@@ -1163,22 +1163,22 @@ signend::
 
 
 outfit::
-# 501 "data/maps/LuxuraIsland/scripts.pory"
-	goto_if_set FLAG_SYS_B_DASH, outfit_1
+# 502 "data/maps/LuxuraIsland/scripts.pory"
+	goto_if_set FLAG_UNUSED_0x49E, outfit_1
 	end
 
 outfit_1:
-# 502 "data/maps/LuxuraIsland/scripts.pory"
-	iswearingoutfit OUTFIT_USUAL_GREEN
 # 503 "data/maps/LuxuraIsland/scripts.pory"
+	iswearingoutfit OUTFIT_USUAL_GREEN
+# 504 "data/maps/LuxuraIsland/scripts.pory"
 	compare VAR_RESULT, TRUE
 	goto_if_eq outfit_4
-# 507 "data/maps/LuxuraIsland/scripts.pory"
+# 508 "data/maps/LuxuraIsland/scripts.pory"
 	clearflag FLAG_SYS_B_DASH
 	return
 
 outfit_4:
-# 504 "data/maps/LuxuraIsland/scripts.pory"
+# 505 "data/maps/LuxuraIsland/scripts.pory"
 	setflag FLAG_SYS_B_DASH
 	return
 
@@ -1259,7 +1259,7 @@ ran_Text_15:
 
 ran_Text_16:
 # 93 "data/maps/LuxuraIsland/scripts.pory"
-	.string "{COLOR RED}{SHADOW LIGHT_GRAY}Hahahaha\p"
+	.string "{COLOR RED}{SHADOW LIGHT_GRAY}Hahahaha!\p"
 	.string "You wanted to help me, didn't you?\p"
 	.string "Now we're both in this together!$"
 

@@ -2,6 +2,7 @@ raw`
 Hospital_MapScripts::
 # 2 "data/maps/Hospital/scripts.pory"
 	map_script MAP_SCRIPT_ON_FRAME_TABLE, Hospital_MapScripts_MAP_SCRIPT_ON_FRAME_TABLE
+	map_script MAP_SCRIPT_ON_RESUME, outfit
 	.byte 0
 
 Hospital_MapScripts_MAP_SCRIPT_ON_FRAME_TABLE:

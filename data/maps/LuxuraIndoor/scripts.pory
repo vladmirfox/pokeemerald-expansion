@@ -1,9 +1,8 @@
 mapscripts LuxuraIndoor_MapScripts{
 MAP_SCRIPT_ON_LOAD: tragedy
 MAP_SCRIPT_ON_FRAME_TABLE[
-	LUXURA_TRAGEDY,5:indoor
-
-]
+	LUXURA_TRAGEDY,5:indoor]
+MAP_SCRIPT_ON_RESUME: outfit
 }
 script MaidZ{
 	if(!flag(FLAG_UNUSED_0x4A2)){
@@ -26,7 +25,7 @@ script MaidZ{
 	fadescreen(FADE_TO_BLACK)
 	fadescreen(FADE_FROM_BLACK)
 	namebox ("Maid")
-	msgbox(format("{COLOR RED}{SHADOW LIGHT_GRAY}Here you go"))
+	msgbox(format("{COLOR RED}{SHADOW LIGHT_GRAY}Here you go!"))
 	hidenamebox
 	setflag(FLAG_SYS_B_DASH)
 	playfanfare(FANFARE_OBTAIN_ITEM)
@@ -78,7 +77,7 @@ script MaidM{
 	lockall
 	faceplayer
 	namebox ("Maid")
-	msgbox(format("{COLOR RED}{SHADOW LIGHT_GRAY} With Minccino around, cleaning is a breeze,its Swift Swipes keep everything spotless and organized in no time."))
+	msgbox(format("{COLOR RED}{SHADOW LIGHT_GRAY} With Minccino around, cleaning is a breeze, its Swift Swipes keep everything spotless and organized in no time."))
 	hidenamebox
 	releaseall
 }
@@ -140,9 +139,9 @@ script Grumpig{
 	namebox ("Grumpig")
 	playmoncry(SPECIES_GRUMPIG,CRY_MODE_NORMAL)
 	msgbox(format("{COLOR RED}{SHADOW LIGHT_GRAY} Pii, pii! Grrum, grrum!"))
+	hidenamebox
 	giveitem(ITEM_TWISTED_SPOON,1)
 	setflag(FLAG_UNUSED_0x493)
-    hidenamebox
 	waitmoncry
 	releaseall}
 	else
@@ -380,8 +379,8 @@ script tragedy{
 		setmetatile(1,36,0x0E1,1)
 		setmetatile(0,37,0x0E8,1)
 		setmetatile(1,37,0x0E9,1)
-		setmetatile(2,36,0x2B2,0)
-		setmetatile(2,37,0x2BA,0)
+		setmetatile(2,36,0x340,0)
+		setmetatile(2,37,0x348,0)
 }
 }
 script caprun {
@@ -391,10 +390,10 @@ script caprun {
 	msgbox(format("{COLOR RED}{SHADOW LIGHT_GRAY}Come on, Master Xylar we have to go quickly."))
 	hidenamebox
 	namebox(Xylar)
-	msgbox(format("{COLOR BLUE}{SHADOW LIGHT_GRAY}But what about Mom?and Dad, he's hurt! I can't leave them behind."))
+	msgbox(format("{COLOR BLUE}{SHADOW LIGHT_GRAY}But what about Mom? and Dad, he's hurt! I can't leave them behind."))
 	hidenamebox
 	namebox(name4)
-	msgbox(format("{COLOR RED}{SHADOW LIGHT_GRAY}We don't have time Master Xylar.\pYour Mom and Dad...\pthey're strong.They'll be okay.\pBut you need to live!For them!"))
+	msgbox(format("{COLOR RED}{SHADOW LIGHT_GRAY}We don't have time Master Xylar.\pYour Mom and Dad...\pthey're strong.They'll be okay.\pBut you need to live! For them!"))
 	hidenamebox
 	namebox(Xylar)
 	msgbox(format("{COLOR BLUE}{SHADOW LIGHT_GRAY}No! I can't leave Mom and Dad. I can't.."),MSGBOX_AUTOCLOSE)
