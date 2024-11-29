@@ -52,6 +52,11 @@ struct PoolRules
     u32 tag8:4;
 };
 
+union PoolRuleAccess {
+    u32 ruleAccess[2];
+    struct PoolRules poolRules;
+};
+
 // defines for the 'DoBounceEffect' function
 #define BOUNCE_MON          0x0
 #define BOUNCE_HEALTHBOX    0x1

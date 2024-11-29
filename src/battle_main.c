@@ -2043,6 +2043,7 @@ static u32 PickMonFromPool(const struct Trainer *trainer, u8 *poolIndexArray, u3
     }
     //  Disable indices according to rules
     u32 chosenSpecies = trainer->party[monIndex].species;
+    u32 chosenTags = trainer->party[monIndex].tags;
     for (u32 i = 0; i < trainer->poolSize; i++)
     {
         if (poolIndexArray[i] == 255)
@@ -2082,6 +2083,65 @@ static u32 PickMonFromPool(const struct Trainer *trainer, u8 *poolIndexArray, u3
                     continue;
                 }
             }
+        }
+        //  Tag Rules
+        u32 currTags = trainer->party[poolIndexArray[i]].tags;
+        //u32 poolTagRules = *((u32 *)&poolRules + 1);
+        union PoolRuleAccess ruleAccess;
+        ruleAccess.poolRules = poolRules;
+        for (u32 currTag = 0; currTag < NUM_TAGS; currTag++)
+        {
+            u32 ruleTag = (ruleAccess.ruleAccess[1] >> (currTag*4)) & 0xF;
+            if (currTags >> currTag & 0x1
+             && chosenTags >> currTag & 0x1
+             && ruleTag & POOL_TAG_UNIQUE)
+            {
+                poolIndexArray[i] = 255;
+            }
+        }
+    }
+    //  Set Tag rules for the pool
+    if (trainer->party[monIndex].tags & POOL_TAG_LEAD)
+    {
+        if (poolRules.tagLead & POOL_TAG_UNIQUE)
+        {
+            poolRules.tagLead ^= POOL_TAG_UNIQUE;
+            poolRules.tagLead |= POOL_TAG_DISABLED;
+        }
+        else if (poolRules.tagLead & POOL_TAG_2_MAX)
+        {
+            poolRules.tagLead ^= POOL_TAG_2_MAX;
+            poolRules.tagLead |= POOL_TAG_UNIQUE;
+        }
+    }
+    if (trainer->party[monIndex].tags & POOL_TAG_ACE)
+    {
+        //  This isn't really required, since Ace is only used for the last slot
+    }
+    if (trainer->party[monIndex].tags & POOL_TAG_WEATHER_SETTER)
+    {
+        if (poolRules.tagWeatherSetter & POOL_TAG_UNIQUE)
+        {
+            poolRules.tagWeatherSetter ^= POOL_TAG_UNIQUE;
+            poolRules.tagLead |= POOL_TAG_DISABLED;
+        }
+        else if (poolRules.tagWeatherSetter & POOL_TAG_2_MAX)
+        {
+            poolRules.tagWeatherSetter ^= POOL_TAG_2_MAX;
+            poolRules.tagWeatherSetter |= POOL_TAG_UNIQUE;
+        }
+    }
+    if (trainer->party[monIndex].tags & POOL_TAG_WEATHER_ABUSER)
+    {
+        if (poolRules.tagWeatherAbuser & POOL_TAG_UNIQUE)
+        {
+            poolRules.tagWeatherAbuser ^= POOL_TAG_UNIQUE;
+            poolRules.tagLead |= POOL_TAG_DISABLED;
+        }
+        else if (poolRules.tagWeatherAbuser & POOL_TAG_2_MAX)
+        {
+            poolRules.tagWeatherAbuser ^= POOL_TAG_2_MAX;
+            poolRules.tagWeatherAbuser |= POOL_TAG_UNIQUE;
         }
     }
     return monIndex;
@@ -2208,7 +2268,7 @@ u8 CreateNPCTrainerPartyFromTrainer(struct Pokemon *party, const struct Trainer 
                 SetMonData(&party[i], MON_DATA_SPDEF_EV, &(partyData[monIndex].ev[4]));
                 SetMonData(&party[i], MON_DATA_SPEED_EV, &(partyData[monIndex].ev[5]));
             }
-            if (partyData[i].ability != ABILITY_NONE)
+            if (partyData[monIndex].ability != ABILITY_NONE)
             {
                 const struct SpeciesInfo *speciesInfo = &gSpeciesInfo[partyData[monIndex].species];
                 u32 maxAbilities = ARRAY_COUNT(speciesInfo->abilities);
@@ -2231,12 +2291,12 @@ u8 CreateNPCTrainerPartyFromTrainer(struct Pokemon *party, const struct Trainer 
             }
             SetMonData(&party[i], MON_DATA_ABILITY_NUM, &ability);
             SetMonData(&party[i], MON_DATA_FRIENDSHIP, &(partyData[monIndex].friendship));
-            if (partyData[i].ball != ITEM_NONE)
+            if (partyData[monIndex].ball != ITEM_NONE)
             {
                 ball = partyData[monIndex].ball;
                 SetMonData(&party[i], MON_DATA_POKEBALL, &ball);
             }
-            if (partyData[i].nickname != NULL)
+            if (partyData[monIndex].nickname != NULL)
             {
                 SetMonData(&party[i], MON_DATA_NICKNAME, partyData[monIndex].nickname);
             }
