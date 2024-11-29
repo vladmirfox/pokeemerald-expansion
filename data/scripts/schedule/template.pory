@@ -8,7 +8,7 @@ const TIME_NIGHT		=	6
 const VAR_HOUR_OF_DAY = VAR_0x8000
 
 
-script _NPCSchedules{
+script  _NPCSchedules{
 	setflag(flags)
     gettimeofday
 	switch(var(VAR_HOUR_OF_DAY)){
@@ -29,26 +29,26 @@ script _NPCSchedules{
     }
 }
 
-script(local) _DeadNightSchedules{
+script(local)  _DeadNightSchedules{
 
 }
 
-script(local) _EarlySchedules{
+script(local)  _EarlySchedules{
 
 }
 
-script(local) _MorningSchedules{
+script(local)  _MorningSchedules{
 
 }
-script(local) _LunchtimeSchedules{
+script(local)  _LunchtimeSchedules{
 
 }
-script(local) _AfternoonSchedules{
+script(local)  _AfternoonSchedules{
 
 }
-script(local) _EveningSchedules{
+script(local)  _EveningSchedules{
 
 }
-script(local) _NightSchedules{
+script(local)  _NightSchedules{
 
 }
