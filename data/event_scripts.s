@@ -1112,3 +1112,11 @@ EventScript_VsSeekerChargingDone::
 	.include "data/maps/PetalburgClub_1F/scripts.inc"
 
 	.include "data/maps/PetalburgClub_2F/scripts.inc"
+
+	.include "data/maps/VerdanturfRavine/scripts.inc"
+
+	.include "data/maps/MountKiri_1F/scripts.inc"
+
+	.include "data/maps/MountKiri_Exterior/scripts.inc"
+
+	.include "data/maps/BleakisleTown/scripts.inc"

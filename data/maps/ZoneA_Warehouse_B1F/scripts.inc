@@ -13,6 +13,18 @@ ZoneA_Warehouse_B1F_EventScript_Grunt1::
 	msgbox ZoneA_Warehouse_B1F_Text_SilentTreatment, MSGBOX_AUTOCLOSE
 	end
 
+ZoneA_Warehouse_B1F_EventScript_AdminBattle0::
+	lock
+	setvar VAR_0x8008, 0
+	goto ZoneA_Warehouse_B1F_EventScript_AdminBattle
+	end
+
+ZoneA_Warehouse_B1F_EventScript_AdminBattle1::
+	lock
+	setvar VAR_0x8008, 1
+	goto ZoneA_Warehouse_B1F_EventScript_AdminBattle
+	end
+
 ZoneA_Warehouse_B1F_EventScript_AdminBattle::
 	lock
 	turnobject OBJ_EVENT_ID_PLAYER, DIR_WEST
@@ -20,7 +32,7 @@ ZoneA_Warehouse_B1F_EventScript_AdminBattle::
 	waitmovement 0
 	@ check for loss?
 	call ZoneA_Warehouse_B1F_EventScript_Grunt2
-	release
+	releaseall
 	end
 
 ZoneA_Warehouse_B1F_EventScript_Grunt2::
@@ -46,7 +58,23 @@ ZoneA_Warehouse_B1F_EventScript_AdminDefeated::
 	removeobject LOCALID_GRUNT1
 	removeobject LOCALID_GRUNT2
 	removeobject LOCALID_ADMIN
+	lockall
+	turnobject LOCALID_SCIENTIST1, DIR_NORTH
+	turnobject LOCALID_SCIENTIST2, DIR_NORTH
 	fadescreen FADE_FROM_BLACK
+	call_if_eq VAR_0x8008, 0, ZoneA_Warehouse_B1F_EventScript_ScientistApproachPlayer0
+	call_if_eq VAR_0x8008, 1, ZoneA_Warehouse_B1F_EventScript_ScientistApproachPlayer1
+	msgbox ZoneA_Warehouse_B1F_Text_ScientistsSaved, MSGBOX_AUTOCLOSE
+	return
+
+ZoneA_Warehouse_B1F_EventScript_ScientistApproachPlayer0::
+	applymovement LOCALID_SCIENTIST1, ZoneA_Warehouse_B1F_Movement_ScientistApproach0
+	waitmovement 0
+	return
+
+ZoneA_Warehouse_B1F_EventScript_ScientistApproachPlayer1::
+	applymovement LOCALID_SCIENTIST1, ZoneA_Warehouse_B1F_Movement_ScientistApproach1
+	waitmovement 0
 	return
 
 ZoneA_Warehouse_B1F_Movement_StepForward:
@@ -57,6 +85,23 @@ ZoneA_Warehouse_B1F_Movement_StepBackward:
 	lock_facing_direction
 	face_right
 	walk_left
+	step_end
+
+ZoneA_Warehouse_B1F_Movement_ScientistApproach0:
+	walk_up
+	walk_right
+	walk_up
+	walk_up
+	walk_right
+	walk_right
+	step_end
+
+ZoneA_Warehouse_B1F_Movement_ScientistApproach1:
+	walk_up
+	walk_right
+	walk_up
+	walk_right
+	walk_right
 	step_end
 
 ZoneA_Warehouse_B1F_Text_Stop:
@@ -71,3 +116,7 @@ ZoneA_Warehouse_B1F_Text_AdminDefeated:
 
 ZoneA_Warehouse_B1F_Text_SilentTreatment:
 	.string "…$"
+
+ZoneA_Warehouse_B1F_Text_ScientistsSaved:
+	.string "Oh thank goodness you saved us!\n"
+	.string "Please, follow me upstairs.$"

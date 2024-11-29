@@ -56,7 +56,7 @@
 #define FLAG_DEWFORD_GYM_ROCK_6             0x29 // Unused Flag
 #define FLAG_HIDE_DEWFORD_TOWN_BRAWLY_1     0x2A // Brawly outside gym
 #define FLAG_HIDE_TEAM_ARCO_ZONE_A          0x2B // Unused Flag
-#define FLAG_UNUSED_0x02C    0x2C // Unused Flag
+#define FLAG_UNUSED_0x02C         0x2C // Unused Flag
 #define FLAG_UNUSED_0x02D    0x2D // Unused Flag
 #define FLAG_UNUSED_0x02E    0x2E // Unused Flag
 #define FLAG_UNUSED_0x02F    0x2F // Unused Flag
@@ -85,7 +85,9 @@
 #define FLAG_UNUSED_0x046    0x46 // Unused Flag
 #define FLAG_UNUSED_0x047    0x47 // Unused Flag
 #define FLAG_UNUSED_0x048    0x48 // Unused Flag
-#define FLAG_UNUSED_0x049    0x49 // Unused Flag
+// Custom fly flags
+// Must be consecutive to properly color on region map
+#define FLAG_VISITED_BLEAKISLE_TOWN    0x49
 #define FLAG_UNUSED_0x04A    0x4A // Unused Flag
 #define FLAG_UNUSED_0x04B    0x4B // Unused Flag
 #define FLAG_UNUSED_0x04C    0x4C // Unused Flag

@@ -123,7 +123,7 @@
       "elevation": 0,
       "var": "VAR_TEMP_0",
       "var_value": "0",
-      "script": "ZoneA_Warehouse_B1F_EventScript_AdminBattle"
+      "script": "ZoneA_Warehouse_B1F_EventScript_AdminBattle0"
     },
     {
       "type": "trigger",
@@ -132,7 +132,7 @@
       "elevation": 0,
       "var": "VAR_TEMP_0",
       "var_value": "0",
-      "script": "ZoneA_Warehouse_B1F_EventScript_AdminBattle"
+      "script": "ZoneA_Warehouse_B1F_EventScript_AdminBattle1"
     }
   ],
   "bg_events": [

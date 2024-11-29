@@ -17,6 +17,11 @@
       "map": "MAP_ROUTE_B",
       "offset": 0,
       "direction": "up"
+    },
+    {
+      "map": "MAP_BLEAKISLE_TOWN",
+      "offset": 50,
+      "direction": "left"
     }
   ],
   "object_events": [

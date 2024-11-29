@@ -18,11 +18,18 @@
   ],
   "warp_events": [
     {
-      "x": 33,
-      "y": 6,
+      "x": 35,
+      "y": 10,
       "elevation": 0,
       "dest_map": "MAP_MAUVILLE_TUNNEL",
       "dest_warp_id": "1"
+    },
+    {
+      "x": 13,
+      "y": 1,
+      "elevation": 0,
+      "dest_map": "MAP_MOUNT_KIRI_1F",
+      "dest_warp_id": "0"
     }
   ],
   "coord_events": [
@@ -31,16 +38,16 @@
   "bg_events": [
     {
       "type": "hidden_item",
-      "x": 7,
-      "y": 2,
+      "x": 9,
+      "y": 6,
       "elevation": 0,
       "item": "ITEM_NONE",
       "flag": "FLAG_TEMP_1"
     },
     {
       "type": "hidden_item",
-      "x": 29,
-      "y": 9,
+      "x": 31,
+      "y": 13,
       "elevation": 0,
       "item": "ITEM_NONE",
       "flag": "FLAG_TEMP_1"

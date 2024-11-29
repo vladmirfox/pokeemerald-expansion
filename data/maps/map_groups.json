@@ -28,6 +28,7 @@
     "gMapGroup_Dungeons",
     "gMapGroup_IndoorDynamic",
     "gMapGroup_SpecialArea",
+    "gMapGroup_MountKiri",
     "gMapGroup_IndoorRoute104Prototype",
     "gMapGroup_IndoorRoute109",
     "gMapGroup_IndoorRoute110",
@@ -99,7 +100,9 @@
     "DigSite1",
     "RouteB",
     "ZoneB",
-    "DigSite2"
+    "DigSite2",
+    "VerdanturfRavine",
+    "BleakisleTown"
   ],
   "gMapGroup_IndoorZoneA": [
     "ZoneA_Warehouse_1F",
@@ -606,6 +609,10 @@
     "TrainerHill_Elevator",
     "PetalburgClub_1F",
     "PetalburgClub_2F"
+  ],
+  "gMapGroup_MountKiri": [
+    "MountKiri_1F",
+    "MountKiri_Exterior"
   ],
   "gMapGroup_IndoorRoute104Prototype": [
     "Route104_Prototype",

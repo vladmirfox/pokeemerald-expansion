@@ -4436,7 +4436,7 @@
       "name": "ZoneA_Warehouse_1F_Layout",
       "width": 24,
       "height": 20,
-      "primary_tileset": "gTileset_General",
+      "primary_tileset": "gTileset_Building",
       "secondary_tileset": "gTileset_Facility",
       "border_filepath": "data/layouts/ZoneA_Warehouse_1F/border.bin",
       "blockdata_filepath": "data/layouts/ZoneA_Warehouse_1F/map.bin"
@@ -4564,8 +4564,8 @@
     {
       "id": "LAYOUT_DIG_SITE2",
       "name": "DigSite2_Layout",
-      "width": 40,
-      "height": 20,
+      "width": 44,
+      "height": 24,
       "primary_tileset": "gTileset_General",
       "secondary_tileset": "gTileset_Dewford",
       "border_filepath": "data/layouts/DigSite2/border.bin",
@@ -4600,6 +4600,46 @@
       "secondary_tileset": "gTileset_GenericBuilding",
       "border_filepath": "data/layouts/PetalburgClub_2F/border.bin",
       "blockdata_filepath": "data/layouts/PetalburgClub_2F/map.bin"
+    },
+    {
+      "id": "LAYOUT_VERDANTURF_RAVINE",
+      "name": "VerdanturfRavine_Layout",
+      "width": 20,
+      "height": 40,
+      "primary_tileset": "gTileset_General",
+      "secondary_tileset": "gTileset_EverGrande",
+      "border_filepath": "data/layouts/VerdanturfRavine/border.bin",
+      "blockdata_filepath": "data/layouts/VerdanturfRavine/map.bin"
+    },
+    {
+      "id": "LAYOUT_MOUNT_KIRI_1F",
+      "name": "MountKiri_1F_Layout",
+      "width": 36,
+      "height": 30,
+      "primary_tileset": "gTileset_General",
+      "secondary_tileset": "gTileset_Cave",
+      "border_filepath": "data/layouts/MountKiri_1F/border.bin",
+      "blockdata_filepath": "data/layouts/MountKiri_1F/map.bin"
+    },
+    {
+      "id": "LAYOUT_MOUNT_KIRI_EXTERIOR",
+      "name": "MountKiri_Exterior_Layout",
+      "width": 40,
+      "height": 40,
+      "primary_tileset": "gTileset_General",
+      "secondary_tileset": "gTileset_MountainTop",
+      "border_filepath": "data/layouts/MountKiri_Exterior/border.bin",
+      "blockdata_filepath": "data/layouts/MountKiri_Exterior/map.bin"
+    },
+    {
+      "id": "LAYOUT_BLEAKISLE_TOWN",
+      "name": "BleakisleTown_Layout",
+      "width": 30,
+      "height": 20,
+      "primary_tileset": "gTileset_General",
+      "secondary_tileset": "gTileset_Petalburg",
+      "border_filepath": "data/layouts/BleakisleTown/border.bin",
+      "blockdata_filepath": "data/layouts/BleakisleTown/map.bin"
     }
   ]
 }

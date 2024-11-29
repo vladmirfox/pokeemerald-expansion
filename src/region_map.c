@@ -338,6 +338,7 @@ static const u8 sMapHealLocations[][3] =
     [MAPSEC_ROUTE_132] = {MAP_GROUP(ROUTE132), MAP_NUM(ROUTE132), HEAL_LOCATION_NONE},
     [MAPSEC_ROUTE_133] = {MAP_GROUP(ROUTE133), MAP_NUM(ROUTE133), HEAL_LOCATION_NONE},
     [MAPSEC_ROUTE_134] = {MAP_GROUP(ROUTE134), MAP_NUM(ROUTE134), HEAL_LOCATION_NONE},
+    [MAPSEC_BLEAKISLE_TOWN] = {MAP_GROUP(BLEAKISLE_TOWN), MAP_NUM(BLEAKISLE_TOWN), HEAL_LOCATION_BLEAKISLE_TOWN},
 };
 
 static const u8 *const sEverGrandeCityNames[] =
@@ -1214,6 +1215,8 @@ static u8 GetMapsecType(u16 mapSecId)
         return FlagGet(FLAG_LANDMARK_BATTLE_FRONTIER) ? MAPSECTYPE_BATTLE_FRONTIER : MAPSECTYPE_NONE;
     case MAPSEC_SOUTHERN_ISLAND:
         return FlagGet(FLAG_LANDMARK_SOUTHERN_ISLAND) ? MAPSECTYPE_ROUTE : MAPSECTYPE_NONE;
+    case MAPSEC_BLEAKISLE_TOWN:
+        return FlagGet(FLAG_VISITED_BLEAKISLE_TOWN) ? MAPSECTYPE_CITY_CANFLY : MAPSECTYPE_CITY_CANTFLY;
     default:
         return MAPSECTYPE_ROUTE;
     }
@@ -1849,6 +1852,36 @@ static void CreateFlyDestIcons(void)
 
     canFlyFlag = FLAG_VISITED_LITTLEROOT_TOWN;
     for (mapSecId = MAPSEC_LITTLEROOT_TOWN; mapSecId <= MAPSEC_EVER_GRANDE_CITY; mapSecId++)
+    {
+        GetMapSecDimensions(mapSecId, &x, &y, &width, &height);
+        x = (x + MAPCURSOR_X_MIN) * 8 + 4;
+        y = (y + MAPCURSOR_Y_MIN) * 8 + 4;
+
+        if (width == 2)
+            shape = SPRITE_SHAPE(16x8);
+        else if (height == 2)
+            shape = SPRITE_SHAPE(8x16);
+        else
+            shape = SPRITE_SHAPE(8x8);
+
+        spriteId = CreateSprite(&sFlyDestIconSpriteTemplate, x, y, 10);
+        if (spriteId != MAX_SPRITES)
+        {
+            gSprites[spriteId].oam.shape = shape;
+
+            if (FlagGet(canFlyFlag))
+                gSprites[spriteId].callback = SpriteCB_FlyDestIcon;
+            else
+                shape += 3;
+
+            StartSpriteAnim(&gSprites[spriteId], shape);
+            gSprites[spriteId].sIconMapSec = mapSecId;
+        }
+        canFlyFlag++;
+    }
+
+    canFlyFlag = FLAG_VISITED_BLEAKISLE_TOWN;
+    for (mapSecId = MAPSEC_BLEAKISLE_TOWN; mapSecId <= MAPSEC_BLEAKISLE_TOWN; mapSecId++)
     {
         GetMapSecDimensions(mapSecId, &x, &y, &width, &height);
         x = (x + MAPCURSOR_X_MIN) * 8 + 4;

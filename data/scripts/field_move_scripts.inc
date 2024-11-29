@@ -430,8 +430,8 @@ EventScript_EndRockClimb:: @ 8290A8C
 	releaseall
 	end
 Text_WantToRockClimb:
-    .string "The cliff is steep.\nWould you like to use Rock Climb?$"
+    .string "The cliff is steep.\nWould you like to use ROCK CLIMB?$"
 Text_MonUsedRockClimb:
-    .string "{STR_VAR_1} used Rock Climb!$"
+    .string "{STR_VAR_1} used ROCK CLIMB!$"
 Text_CantRockClimb:
-    .string "The cliff is steep.\nA Pokémon may be able to climb it.$"
+    .string "The cliff is steep.\nA POKéMON may be able to climb it.$"
