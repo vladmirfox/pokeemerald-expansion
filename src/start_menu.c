@@ -299,6 +299,7 @@ static void RemoveSaveInfoWindow(void);
 static void HideStartMenuWindow(void);
 static void HideStartMenuDebug(void);
 static void ShowTimeWindow(void);
+static void UpdateClockDisplay(void);
 
 void SetDexPokemonPokenavFlags(void) // unused
 {
@@ -486,24 +487,6 @@ static void ShowPyramidFloorWindow(void)
 // If you want to shorten the dates to Sat., Sun., etc., change this to 70
 #define CLOCK_WINDOW_WIDTH 104
 
-const u8 gText_Saturday[] = _("Saturday,");
-const u8 gText_Sunday[] = _("Sunday,");
-const u8 gText_Monday[] = _("Monday,");
-const u8 gText_Tuesday[] = _("Tuesday,");
-const u8 gText_Wednesday[] = _("Wednesday,");
-const u8 gText_Thursday[] = _("Thursday,");
-const u8 gText_Friday[] = _("Friday,");
-
-const u8 *const gDayNameStringsTable[7] = {
-    gText_Saturday,
-    gText_Sunday,
-    gText_Monday,
-    gText_Tuesday,
-    gText_Wednesday,
-    gText_Thursday,
-    gText_Friday,
-};
-
 static void ShowTimeWindow(void)
 {
     const u8 *suffix;
@@ -621,7 +604,7 @@ static bool32 InitStartMenuStep(void)
         sInitStartMenuData[0]++;
         break;
     case 3:
-        ShowCurrentTimeWindow();
+        ShowTimeWindow();
         if (GetSafariZoneFlag())
             ShowSafariBallsWindow();
         else if (InBattlePyramid())
@@ -766,47 +749,6 @@ static bool8 HandleStartMenuInput(void)
     RemoveExtraStartMenuWindows();
     ShowTimeWindow();
     return FALSE;
-}
-
-static void ShowCurrentTimeWindow(void)
-{
-    u8 timeInHours;
-    RtcCalcLocalTime();
-    sCurrentTimeWindowId = AddWindow(&sCurrentTimeWindowTemplate);
-    PutWindowTilemap(sCurrentTimeWindowId);
-    DrawStdWindowFrame(sCurrentTimeWindowId, FALSE);
-    FlagSet(FLAG_TEMP_5);
-    if (GetHour() < 12)
-    {
-        if (GetHour() == 0)
-            timeInHours = 12;
-        else
-            timeInHours = GetHour();
-    }
-    else if (GetHour() == 12)
-    {
-        timeInHours = 12;
-    }
-    else
-    {
-        timeInHours = GetHour() - 12;
-    }
-    ConvertIntToDecimalStringN(gStringVar1, timeInHours, STR_CONV_MODE_LEADING_ZEROS, 2);
-    ConvertIntToDecimalStringN(gStringVar2, GetMinute(), STR_CONV_MODE_LEADING_ZEROS, 2);
-    if (GetHour() < 12)
-        StringExpandPlaceholders(gStringVar4, gText_CurrentTimeAM);
-    else
-
-    StringExpandPlaceholders(gStringVar4, gText_CurrentTimePM);
-    AddTextPrinterParameterized(sCurrentTimeWindowId, 1, gStringVar4, 0, 1, 0xFF, NULL);
-    StringCopy(gStringVar4, gDayNameStringsTable[GetDayOfWeek()]);    
-    AddTextPrinterParameterized(sCurrentTimeWindowId, 1, gStringVar4, 0, 16, 0xFF, NULL);
-    StringCopy(gStringVar1, gMonthNameStringsTable[GetMonth()]);
-    ConvertIntToDecimalStringN(gStringVar2, GetDay(), STR_CONV_MODE_RIGHT_ALIGN, 2);
-    ConvertIntToDecimalStringN(gStringVar3, GetYear(), STR_CONV_MODE_LEFT_ALIGN, 4);
-    StringExpandPlaceholders(gStringVar4, gText_Date);
-    AddTextPrinterParameterized(sCurrentTimeWindowId, 1, gStringVar4, 0, 32, 0xFF, NULL);
-    CopyWindowToVram(sCurrentTimeWindowId, 2);
 }
 
 void UpdateClockDisplay(void)

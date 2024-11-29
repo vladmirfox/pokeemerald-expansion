@@ -2471,13 +2471,6 @@
 	callnative Script_ToggleFakeRtc
 	.endm
 
-	.macro advancefakertcby hours:req, minutes:req, seconds:req
-	callnative Script_AdvanceTimeBy
-	.2byte \hours
-	.2byte \minutes
-	.2byte \seconds
-	.endm
-
 	@ ============================ @
 	@ ITEM DESCRIPTION HEADER MACROS
 	@ Used with OW_SHOW_ITEM_DESCRIPTIONS config

@@ -193,14 +193,6 @@ void Script_ToggleFakeRtc(void)
     FlagToggle(OW_FLAG_PAUSE_TIME);
 }
 
-
-void Script_AdvanceTimeBy(struct ScriptContext *ctx)
-{
-    u32 hours = VarGet(ScriptReadHalfword(ctx));
-    u32 minutes = VarGet(ScriptReadHalfword(ctx));
-    u32 seconds = VarGet(ScriptReadHalfword(ctx));
-    FakeRtc_AdvanceTimeBy(hours, minutes, seconds);
-}
 //These are the scripts which control the time macros in event.inc
 
 bool8 RtcCmd_addtime(struct ScriptContext *ctx)
