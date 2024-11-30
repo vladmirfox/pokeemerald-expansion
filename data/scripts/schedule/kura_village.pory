@@ -53,24 +53,31 @@ script(local) KuraVillage_NightSchedules{
 script KuraVillage_DrawMetatiles{
     switch(var(VAR_HOUR_OF_DAY)){
         case TIME_DEAD_NIGHT:
+            setmetatile(18, 7, METATILE_SakuKura_ClosedDojoDoor, TRUE)
             setmetatile(34, 25, METATILE_SakuKura_ClosedDojoDoor, TRUE)
             setmetatile(43, 23, METATILE_SakuKura_ClosedDojoDoor, TRUE)
         case TIME_EARLY:
+            setmetatile(18, 7, METATILE_PorytilesPrimaryTutorial_OpenDoor, FALSE)
             setmetatile(34, 25, METATILE_PorytilesPrimaryTutorial_OpenDoor, FALSE)
             setmetatile(43, 23, METATILE_PorytilesPrimaryTutorial_OpenDoor, FALSE)
         case TIME_MORNING:
+            setmetatile(18, 7, METATILE_PorytilesPrimaryTutorial_OpenDoor, FALSE)
             setmetatile(34, 25, METATILE_PorytilesPrimaryTutorial_OpenDoor, FALSE)
             setmetatile(43, 23, METATILE_PorytilesPrimaryTutorial_OpenDoor, FALSE)
         case TIME_LUNCHTIME:
+            setmetatile(18, 7, METATILE_PorytilesPrimaryTutorial_OpenDoor, FALSE)
             setmetatile(34, 25, METATILE_PorytilesPrimaryTutorial_OpenDoor, FALSE)
             setmetatile(43, 23, METATILE_PorytilesPrimaryTutorial_OpenDoor, FALSE)
         case TIME_AFTERNOON:
+            setmetatile(18, 7, METATILE_PorytilesPrimaryTutorial_OpenDoor, FALSE)
             setmetatile(34, 25, METATILE_PorytilesPrimaryTutorial_OpenDoor, FALSE)
             setmetatile(43, 23, METATILE_PorytilesPrimaryTutorial_OpenDoor, FALSE)
         case TIME_EVENING:
+            setmetatile(18, 7, METATILE_PorytilesPrimaryTutorial_OpenDoor, FALSE)
             setmetatile(34, 25, METATILE_PorytilesPrimaryTutorial_OpenDoor, FALSE)
             setmetatile(43, 23, METATILE_PorytilesPrimaryTutorial_OpenDoor, FALSE)
         case TIME_NIGHT:
+            setmetatile(18, 7, METATILE_PorytilesPrimaryTutorial_OpenDoor, FALSE)
             setmetatile(34, 25, METATILE_PorytilesPrimaryTutorial_OpenDoor, FALSE)
             setmetatile(43, 23, METATILE_PorytilesPrimaryTutorial_OpenDoor, FALSE)
     }
