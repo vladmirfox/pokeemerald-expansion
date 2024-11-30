@@ -3220,7 +3220,8 @@ void SetAtkCancellerForCalledMove(void)
 
 u8 AtkCanceller_UnableToUseMove(u32 moveType)
 {
-    u8 effect = 0;
+    u32 effect = 0;
+    u32 obedienceResult
     do
     {
         switch (gBattleStruct->atkCancellerTracker)
@@ -3305,7 +3306,7 @@ u8 AtkCanceller_UnableToUseMove(u32 moveType)
             gBattleStruct->atkCancellerTracker++;
             break;
         case CANCELLER_OBEDIENCE:
-            u32 obedienceResult = GetAttackerObedienceForAction();
+            obedienceResult = GetAttackerObedienceForAction();
             if (obedienceResult != OBEYS
              && !(gHitMarker & HITMARKER_NO_PPDEDUCT) // Don't check obedience after first hit of multi target move or multi hit moves
              && !(gBattleMons[gBattlerAttacker].status2 & STATUS2_MULTIPLETURNS))
