@@ -41,3 +41,4 @@ prefabs.json
 src/data/map_group_count.h
 convert_inc.sh
 tools/trainerproc/trainerproc
+*.mp4
