@@ -11,7 +11,7 @@ const VAR_HOUR_OF_DAY = VAR_0x8000
 ////////////SAKU VILLAGE////////////
 ////////////////////////////////////
 const FLAG_HIDE_FARMERS_WORK = FLAG_TEMP_1
-const HIDE_FARMERS_FLAG_LUNCH = FLAG_TEMP_2
+const FLAG_HIDE_FARMERS_LUNCH = FLAG_TEMP_2
 
 script SakuVillage_NPCSchedules{
 	setflag(FLAG_HIDE_FARMERS_WORK)
@@ -47,7 +47,7 @@ script(local) SakuVillage_MorningSchedules{
     clearflag(FLAG_HIDE_FARMERS_WORK)
 }
 script(local) SakuVillage_LunchtimeSchedules{
-    clearflag(HIDE_FARMERS_FLAG_LUNCH)
+    clearflag(FLAG_HIDE_FARMERS_LUNCH)
 }
 script(local) SakuVillage_AfternoonSchedules{
     clearflag(FLAG_HIDE_FARMERS_WORK)

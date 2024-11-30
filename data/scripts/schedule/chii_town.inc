@@ -1,60 +1,60 @@
 ChiiTown_NPCSchedules::
-# 25 "data/scripts/schedule/chii_town.pory"
+# 23 "data/scripts/schedule/chii_town.pory"
 	setflag FLAG_TEMP_5
-# 26 "data/scripts/schedule/chii_town.pory"
+# 24 "data/scripts/schedule/chii_town.pory"
 	setflag FLAG_TEMP_6
-# 27 "data/scripts/schedule/chii_town.pory"
+# 25 "data/scripts/schedule/chii_town.pory"
 	gettimeofday
-# 28 "data/scripts/schedule/chii_town.pory"
+# 26 "data/scripts/schedule/chii_town.pory"
 	switch VAR_0x8000
-# 29 "data/scripts/schedule/chii_town.pory"
+# 27 "data/scripts/schedule/chii_town.pory"
 	case 0, ChiiTown_NPCSchedules_2
-# 31 "data/scripts/schedule/chii_town.pory"
+# 29 "data/scripts/schedule/chii_town.pory"
 	case 1, ChiiTown_NPCSchedules_3
-# 33 "data/scripts/schedule/chii_town.pory"
+# 31 "data/scripts/schedule/chii_town.pory"
 	case 2, ChiiTown_NPCSchedules_4
-# 35 "data/scripts/schedule/chii_town.pory"
+# 33 "data/scripts/schedule/chii_town.pory"
 	case 3, ChiiTown_NPCSchedules_5
-# 37 "data/scripts/schedule/chii_town.pory"
+# 35 "data/scripts/schedule/chii_town.pory"
 	case 4, ChiiTown_NPCSchedules_6
-# 39 "data/scripts/schedule/chii_town.pory"
+# 37 "data/scripts/schedule/chii_town.pory"
 	case 5, ChiiTown_NPCSchedules_7
-# 41 "data/scripts/schedule/chii_town.pory"
+# 39 "data/scripts/schedule/chii_town.pory"
 	case 6, ChiiTown_NPCSchedules_8
 	return
 
 ChiiTown_NPCSchedules_2:
-# 30 "data/scripts/schedule/chii_town.pory"
+# 28 "data/scripts/schedule/chii_town.pory"
 	call ChiiTown_DeadNightSchedules
 	return
 
 ChiiTown_NPCSchedules_3:
-# 32 "data/scripts/schedule/chii_town.pory"
+# 30 "data/scripts/schedule/chii_town.pory"
 	call ChiiTown_EarlySchedules
 	return
 
 ChiiTown_NPCSchedules_4:
-# 34 "data/scripts/schedule/chii_town.pory"
+# 32 "data/scripts/schedule/chii_town.pory"
 	call ChiiTown_MorningSchedules
 	return
 
 ChiiTown_NPCSchedules_5:
-# 36 "data/scripts/schedule/chii_town.pory"
+# 34 "data/scripts/schedule/chii_town.pory"
 	call ChiiTown_LunchtimeSchedules
 	return
 
 ChiiTown_NPCSchedules_6:
-# 38 "data/scripts/schedule/chii_town.pory"
+# 36 "data/scripts/schedule/chii_town.pory"
 	call ChiiTown_AfternoonSchedules
 	return
 
 ChiiTown_NPCSchedules_7:
-# 40 "data/scripts/schedule/chii_town.pory"
+# 38 "data/scripts/schedule/chii_town.pory"
 	call ChiiTown_EveningSchedules
 	return
 
 ChiiTown_NPCSchedules_8:
-# 42 "data/scripts/schedule/chii_town.pory"
+# 40 "data/scripts/schedule/chii_town.pory"
 	call ChiiTown_NightSchedules
 	return
 
@@ -72,7 +72,7 @@ ChiiTown_MorningSchedules:
 
 
 ChiiTown_LunchtimeSchedules:
-# 58 "data/scripts/schedule/chii_town.pory"
+# 56 "data/scripts/schedule/chii_town.pory"
 	clearflag FLAG_TEMP_5
 	return
 
@@ -86,5 +86,98 @@ ChiiTown_EveningSchedules:
 
 
 ChiiTown_NightSchedules:
+	return
+
+
+ChiiTownSchool_NPCSchedules::
+# 74 "data/scripts/schedule/chii_town.pory"
+	setflag FLAG_TEMP_1
+# 75 "data/scripts/schedule/chii_town.pory"
+	gettimeofday
+# 76 "data/scripts/schedule/chii_town.pory"
+	switch VAR_0x8000
+# 77 "data/scripts/schedule/chii_town.pory"
+	case 0, ChiiTownSchool_NPCSchedules_2
+# 79 "data/scripts/schedule/chii_town.pory"
+	case 1, ChiiTownSchool_NPCSchedules_3
+# 81 "data/scripts/schedule/chii_town.pory"
+	case 2, ChiiTownSchool_NPCSchedules_4
+# 83 "data/scripts/schedule/chii_town.pory"
+	case 3, ChiiTownSchool_NPCSchedules_5
+# 85 "data/scripts/schedule/chii_town.pory"
+	case 4, ChiiTownSchool_NPCSchedules_6
+# 87 "data/scripts/schedule/chii_town.pory"
+	case 5, ChiiTownSchool_NPCSchedules_7
+# 89 "data/scripts/schedule/chii_town.pory"
+	case 6, ChiiTownSchool_NPCSchedules_8
+	return
+
+ChiiTownSchool_NPCSchedules_2:
+# 78 "data/scripts/schedule/chii_town.pory"
+	call ChiiTownSchool_DeadNightSchedules
+	return
+
+ChiiTownSchool_NPCSchedules_3:
+# 80 "data/scripts/schedule/chii_town.pory"
+	call ChiiTownSchool_EarlySchedules
+	return
+
+ChiiTownSchool_NPCSchedules_4:
+# 82 "data/scripts/schedule/chii_town.pory"
+	call ChiiTownSchool_MorningSchedules
+	return
+
+ChiiTownSchool_NPCSchedules_5:
+# 84 "data/scripts/schedule/chii_town.pory"
+	call ChiiTownSchool_LunchtimeSchedules
+	return
+
+ChiiTownSchool_NPCSchedules_6:
+# 86 "data/scripts/schedule/chii_town.pory"
+	call ChiiTownSchool_AfternoonSchedules
+	return
+
+ChiiTownSchool_NPCSchedules_7:
+# 88 "data/scripts/schedule/chii_town.pory"
+	call ChiiTownSchool_EveningSchedules
+	return
+
+ChiiTownSchool_NPCSchedules_8:
+# 90 "data/scripts/schedule/chii_town.pory"
+	call ChiiTownSchool_NightSchedules
+	return
+
+
+ChiiTownSchool_DeadNightSchedules:
+	return
+
+
+ChiiTownSchool_EarlySchedules:
+# 99 "data/scripts/schedule/chii_town.pory"
+	clearflag FLAG_TEMP_1
+	return
+
+
+ChiiTownSchool_MorningSchedules:
+# 103 "data/scripts/schedule/chii_town.pory"
+	clearflag FLAG_TEMP_1
+	return
+
+
+ChiiTownSchool_LunchtimeSchedules:
+	return
+
+
+ChiiTownSchool_AfternoonSchedules:
+# 109 "data/scripts/schedule/chii_town.pory"
+	clearflag FLAG_TEMP_1
+	return
+
+
+ChiiTownSchool_EveningSchedules:
+	return
+
+
+ChiiTownSchool_NightSchedules:
 	return
 

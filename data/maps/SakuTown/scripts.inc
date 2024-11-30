@@ -6,6 +6,8 @@ SakuTown_MapScripts::
 SakuTown_MapScripts_MAP_SCRIPT_ON_TRANSITION:
 # 9 "data/maps/SakuTown/scripts.pory"
 	call Common_EventScript_SetupRivalGfxId
+# 10 "data/maps/SakuTown/scripts.pory"
+	call SakuVillage_NPCSchedules
 # 11 "data/maps/SakuTown/scripts.pory"
 	goto_if_set FLAG_SAKU_KURA_REUNITED, SakuTown_MapScripts_MAP_SCRIPT_ON_TRANSITION_1
 	return
