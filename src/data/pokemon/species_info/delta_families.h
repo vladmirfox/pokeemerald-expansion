@@ -133,7 +133,7 @@
         .tmIlliterate = TRUE,
         .levelUpLearnset = sWurmpleDeltaLevelUpLearnset,
         .teachableLearnset = sWurmpleTeachableLearnset,
-        .evolutions = EVOLUTION({EVO_LEVEL, 7, SPECIES_SILCOON_DELTA}),
+        // .evolutions = EVOLUTION({EVO_LEVEL, 7, SPECIES_SILCOON_DELTA}),
     },
 
     [SPECIES_SILCOON_DELTA] =
@@ -195,7 +195,7 @@
         .tmIlliterate = TRUE,
         .levelUpLearnset = sSilcoonDeltaLevelUpLearnset,
         .teachableLearnset = sSilcoonTeachableLearnset,
-        .evolutions = EVOLUTION({EVO_LEVEL, 10, SPECIES_BEAUTIFLY}),
+        // .evolutions = EVOLUTION({EVO_LEVEL, 10, SPECIES_BEAUTIFLY}),
     },
 
     [SPECIES_DUSTOX_DELTA] =
@@ -336,8 +336,8 @@
     .levelUpLearnset = sNincadaLevelUpLearnset,
     .teachableLearnset = sNincadaTeachableLearnset,
     .eggMoveLearnset = sNincadaEggMoveLearnset,
-    .evolutions = EVOLUTION({EVO_LEVEL_NINJASK, 20, SPECIES_NINJASK_DELTA},
-                            {EVO_LEVEL_SHEDINJA, 20, SPECIES_SHEDINJA_DELTA}),
+    // .evolutions = EVOLUTION({EVO_LEVEL_NINJASK, 20, SPECIES_NINJASK_DELTA},
+    //                         {EVO_LEVEL_SHEDINJA, 20, SPECIES_SHEDINJA_DELTA}),
 },
 
 [SPECIES_NINJASK_DELTA] =
@@ -525,7 +525,7 @@
         .teachableLearnset = sSandshrewTeachableLearnset,
         .eggMoveLearnset = sSandshrewEggMoveLearnset,
         .formSpeciesIdTable = sSandshrewFormSpeciesIdTable,
-        .evolutions = EVOLUTION({EVO_LEVEL, 22, SPECIES_SANDSLASH_DELTA}),
+        // .evolutions = EVOLUTION({EVO_LEVEL, 22, SPECIES_SANDSLASH_DELTA}),
     },
 
     [SPECIES_SANDSLASH_DELTA] =
@@ -656,7 +656,7 @@
         .levelUpLearnset = sVenonatDeltaLevelUpLearnset,
         .teachableLearnset = sVenonatTeachableLearnset,
         .eggMoveLearnset = sVenonatEggMoveLearnset,
-        .evolutions = EVOLUTION({EVO_LEVEL, 31, SPECIES_VENOMOTH_DELTA}),
+        // .evolutions = EVOLUTION({EVO_LEVEL, 31, SPECIES_VENOMOTH_DELTA}),
     },
 
     [SPECIES_VENOMOTH_DELTA] =

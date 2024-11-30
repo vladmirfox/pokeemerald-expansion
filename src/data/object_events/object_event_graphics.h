@@ -147,6 +147,7 @@ const u32 gObjectEventPic_Drake[] = INCBIN_U32("graphics/object_events/pics/peop
 const u32 gObjectEventPic_Roxanne[] = INCBIN_U32("graphics/object_events/pics/people/gym_leaders/roxanne.4bpp");
 const u32 gObjectEventPic_Brawly[] = INCBIN_U32("graphics/object_events/pics/people/gym_leaders/brawly.4bpp");
 const u32 gObjectEventPic_Chuck[] = INCBIN_U32("graphics/object_events/pics/people/gym_leaders/chuck.4bpp");
+const u32 gObjectEventPic_Aaron[] = INCBIN_U32("graphics/object_events/pics/people/aaron.4bpp");
 const u32 gObjectEventPic_Wattson[] = INCBIN_U32("graphics/object_events/pics/people/gym_leaders/wattson.4bpp");
 const u32 gObjectEventPic_Flannery[] = INCBIN_U32("graphics/object_events/pics/people/gym_leaders/flannery.4bpp");
 const u32 gObjectEventPic_Norman[] = INCBIN_U32("graphics/object_events/pics/people/gym_leaders/norman.4bpp");

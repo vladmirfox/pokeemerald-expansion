@@ -87,8 +87,12 @@ Music: Magma
 Double Battle: No
 AI: Check Bad Move
 
+SPECIES_ABRA
+Level: 13
+IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+
 SPECIES_DUSTOX_DELTA
-Level: 18
+Level: 15
 IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
 
 === TRAINER_GRUNT_ROUTE_A_2 ===
@@ -100,8 +104,12 @@ Music: Magma
 Double Battle: No
 AI: Check Bad Move
 
+SPECIES_GROWLITHE
+Level: 13
+IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+
 SPECIES_BUTTERFREE_DELTA
-Level: 18
+Level: 15
 IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
 
 === TRAINER_GRUNT_ZONE_ALPHA_1 ===
@@ -114,11 +122,11 @@ Double Battle: No
 AI: Check Bad Move
 
 SPECIES_SILCOON_DELTA
-Level: 15
+Level: 11
 IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
 
 SPECIES_DUSTOX_DELTA
-Level: 17
+Level: 14
 IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
 
 === TRAINER_GRUNT_ZONE_ALPHA_2 ===
@@ -131,11 +139,11 @@ Double Battle: No
 AI: Check Bad Move
 
 SPECIES_SILCOON_DELTA
-Level: 15
+Level: 12
 IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
 
 SPECIES_GOLBAT_DELTA
-Level: 17
+Level: 14
 IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
 
 === TRAINER_GRUNT_WAREHOUSE_A_1 ===
@@ -148,11 +156,11 @@ Double Battle: No
 AI: Check Bad Move
 
 SPECIES_SILCOON_DELTA
-Level: 15
+Level: 13
 IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
 
 SPECIES_GOLBAT_DELTA
-Level: 17
+Level: 13
 IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
 
 === TRAINER_GRUNT_WAREHOUSE_A_2 ===
@@ -164,8 +172,8 @@ Music: Magma
 Double Battle: No
 AI: Check Bad Move
 
-SPECIES_GOLBAT_DELTA
-Level: 17
+SPECIES_GOLBAT
+Level: 15
 IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
 
 === TRAINER_GRUNT_WAREHOUSE_A_3 ===

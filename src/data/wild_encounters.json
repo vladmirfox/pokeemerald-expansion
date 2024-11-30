@@ -11564,64 +11564,64 @@
             "encounter_rate": 10,
             "mons": [
               {
-                "min_level": 5,
-                "max_level": 5,
-                "species": "SPECIES_FEAROW"
+                "min_level": 8,
+                "max_level": 8,
+                "species": "SPECIES_ZIGZAGOON_GALARIAN"
               },
               {
-                "min_level": 5,
-                "max_level": 5,
-                "species": "SPECIES_FEAROW"
+                "min_level": 8,
+                "max_level": 8,
+                "species": "SPECIES_BIDOOF"
               },
               {
-                "min_level": 5,
-                "max_level": 5,
-                "species": "SPECIES_NONE"
+                "min_level": 9,
+                "max_level": 9,
+                "species": "SPECIES_ZIGZAGOON_GALARIAN"
               },
               {
-                "min_level": 5,
-                "max_level": 5,
-                "species": "SPECIES_NONE"
+                "min_level": 9,
+                "max_level": 9,
+                "species": "SPECIES_BIDOOF"
               },
               {
-                "min_level": 5,
-                "max_level": 5,
-                "species": "SPECIES_NONE"
+                "min_level": 7,
+                "max_level": 9,
+                "species": "SPECIES_SEEDOT"
               },
               {
-                "min_level": 5,
-                "max_level": 5,
-                "species": "SPECIES_NONE"
+                "min_level": 7,
+                "max_level": 9,
+                "species": "SPECIES_SEEDOT"
               },
               {
-                "min_level": 5,
-                "max_level": 5,
-                "species": "SPECIES_NONE"
+                "min_level": 8,
+                "max_level": 8,
+                "species": "SPECIES_BUDEW"
               },
               {
-                "min_level": 5,
-                "max_level": 5,
-                "species": "SPECIES_NONE"
+                "min_level": 9,
+                "max_level": 9,
+                "species": "SPECIES_BUDEW"
               },
               {
-                "min_level": 5,
-                "max_level": 5,
-                "species": "SPECIES_NONE"
+                "min_level": 6,
+                "max_level": 8,
+                "species": "SPECIES_STARLY"
               },
               {
-                "min_level": 5,
-                "max_level": 5,
-                "species": "SPECIES_NONE"
+                "min_level": 6,
+                "max_level": 8,
+                "species": "SPECIES_STARLY"
               },
               {
-                "min_level": 5,
-                "max_level": 5,
-                "species": "SPECIES_NONE"
+                "min_level": 8,
+                "max_level": 8,
+                "species": "SPECIES_VENONAT_DELTA"
               },
               {
-                "min_level": 5,
-                "max_level": 5,
-                "species": "SPECIES_NONE"
+                "min_level": 10,
+                "max_level": 10,
+                "species": "SPECIES_DUSTOX_DELTA"
               }
             ]
           },
@@ -11718,63 +11718,63 @@
             "encounter_rate": 10,
             "mons": [
               {
-                "min_level": 20,
-                "max_level": 20,
+                "min_level": 8,
+                "max_level": 8,
                 "species": "SPECIES_POOCHYENA"
               },
               {
-                "min_level": 30,
-                "max_level": 30,
+                "min_level": 8,
+                "max_level": 8,
                 "species": "SPECIES_BIDOOF"
               },
               {
-                "min_level": 32,
-                "max_level": 32,
+                "min_level": 9,
+                "max_level": 9,
                 "species": "SPECIES_POOCHYENA"
               },
               {
-                "min_level": 36,
-                "max_level": 36,
+                "min_level": 9,
+                "max_level": 9,
                 "species": "SPECIES_BIDOOF"
               },
               {
-                "min_level": 30,
-                "max_level": 30,
+                "min_level": 7,
+                "max_level": 10,
                 "species": "SPECIES_BUDEW"
               },
               {
-                "min_level": 28,
-                "max_level": 34,
+                "min_level": 7,
+                "max_level": 10,
                 "species": "SPECIES_BUDEW"
               },
               {
-                "min_level": 25,
-                "max_level": 30,
+                "min_level": 8,
+                "max_level": 9,
                 "species": "SPECIES_BURMY"
               },
               {
-                "min_level": 32,
-                "max_level": 32,
+                "min_level": 8,
+                "max_level": 9,
                 "species": "SPECIES_BURMY"
               },
               {
-                "min_level": 33,
-                "max_level": 33,
+                "min_level": 7,
+                "max_level": 9,
                 "species": "SPECIES_VENONAT_DELTA"
               },
               {
-                "min_level": 35,
-                "max_level": 35,
+                "min_level": 8,
+                "max_level": 10,
                 "species": "SPECIES_DUSTOX_DELTA"
               },
               {
-                "min_level": 26,
-                "max_level": 33,
+                "min_level": 10,
+                "max_level": 12,
                 "species": "SPECIES_BEEDRILL_DELTA"
               },
               {
-                "min_level": 25,
-                "max_level": 25,
+                "min_level": 10,
+                "max_level": 12,
                 "species": "SPECIES_BUTTERFREE_DELTA"
               }
             ]
