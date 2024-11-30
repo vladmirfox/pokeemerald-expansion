@@ -3221,7 +3221,7 @@ void SetAtkCancellerForCalledMove(void)
 u8 AtkCanceller_UnableToUseMove(u32 moveType)
 {
     u32 effect = 0;
-    u32 obedienceResult
+    u32 obedienceResult;
     do
     {
         switch (gBattleStruct->atkCancellerTracker)
