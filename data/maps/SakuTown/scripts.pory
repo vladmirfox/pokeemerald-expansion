@@ -14,6 +14,9 @@ mapscripts SakuTown_MapScripts {
 			setobjectmovementtype(LOCALID_GUARD, MOVEMENT_TYPE_FACE_RIGHT)
 		}
 	}
+	MAP_SCRIPT_ON_TRANSITION {
+		call(SakuVillage_NPCSchedules)
+	}
 }
 
 // Rival encounter right before the Saku wall

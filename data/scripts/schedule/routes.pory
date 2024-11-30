@@ -6,6 +6,7 @@ const TIME_AFTERNOON	=	4
 const TIME_EVENING	    =	5
 const TIME_NIGHT		=	6
 const VAR_HOUR_OF_DAY   =   VAR_0x8000
+
 //////////////////////////////////////////
 /////////////BEACHBOUND ROUTE/////////////
 //////////////////////////////////////////
@@ -44,15 +45,12 @@ script(local) BeachboundRoute_EarlySchedules{
 
 script(local) BeachboundRoute_MorningSchedules{
     clearflag(FLAG_HIDE_SHEPHERD)
-    clearflag(FLAG_HIDE_KIDS)
 }
 script(local) BeachboundRoute_LunchtimeSchedules{
     clearflag(FLAG_HIDE_SHEPHERD)
-    clearflag(FLAG_HIDE_KIDS)
 }
 script(local) BeachboundRoute_AfternoonSchedules{
     clearflag(FLAG_HIDE_SHEPHERD)
-    clearflag(FLAG_HIDE_KIDS)
 }
 script(local) BeachboundRoute_EveningSchedules{
     clearflag(FLAG_HIDE_SHEPHERD)

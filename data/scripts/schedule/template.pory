@@ -52,3 +52,7 @@ script(local)  _EveningSchedules{
 script(local)  _NightSchedules{
 
 }
+
+script  _DrawMetatiles{
+    
+}

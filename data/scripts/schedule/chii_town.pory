@@ -68,12 +68,10 @@ script(local) ChiiTown_NightSchedules{
 //////////////////////////////////////
 ///////////CHII TOWN SCHOOL///////////
 //////////////////////////////////////
-const FLAG_HIDE_TEACHER = FLAG_TEMP_1
-const FLAG_HIDE_SCHOOLCHILDREN = FLAG_TEMP_2
+const FLAG_HIDE_SCHOOLERS = FLAG_TEMP_1
 
 script ChiiTownSchool_NPCSchedules{
 	setflag(FLAG_TEMP_1)
-    setflag(FLAG_TEMP_2)
     gettimeofday
 	switch(var(VAR_HOUR_OF_DAY)){
         case TIME_DEAD_NIGHT:
@@ -98,20 +96,17 @@ script(local) ChiiTownSchool_DeadNightSchedules{
 }
 
 script(local) ChiiTownSchool_EarlySchedules{
-    clearflag(FLAG_HIDE_TEACHER)
-    clearflag(FLAG_HIDE_SCHOOLCHILDREN)
+    clearflag(FLAG_HIDE_SCHOOLERS)
 }
 
 script(local) ChiiTownSchool_MorningSchedules{
-    clearflag(FLAG_HIDE_TEACHER)
-    clearflag(FLAG_HIDE_SCHOOLCHILDREN)
+    clearflag(FLAG_HIDE_SCHOOLERS)
 }
 script(local) ChiiTownSchool_LunchtimeSchedules{
 
 }
 script(local) ChiiTownSchool_AfternoonSchedules{
-    clearflag(FLAG_HIDE_TEACHER)
-    clearflag(FLAG_HIDE_SCHOOLCHILDREN)
+    clearflag(FLAG_HIDE_SCHOOLERS)
 }
 script(local) ChiiTownSchool_EveningSchedules{
 

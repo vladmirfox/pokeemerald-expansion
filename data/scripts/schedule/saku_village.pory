@@ -15,6 +15,7 @@ const HIDE_FARMERS_FLAG_LUNCH = FLAG_TEMP_2
 
 script SakuVillage_NPCSchedules{
 	setflag(FLAG_HIDE_FARMERS_WORK)
+    setflag(FLAG_HIDE_FARMERS_LUNCH)
     gettimeofday
 	switch(var(VAR_HOUR_OF_DAY)){
         case TIME_DEAD_NIGHT:
@@ -56,4 +57,8 @@ script(local) SakuVillage_EveningSchedules{
 }
 script(local) SakuVillage_NightSchedules{
 
+}
+
+script SakuVillage_DrawMetatiles{
+    
 }
