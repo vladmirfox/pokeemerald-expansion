@@ -324,7 +324,7 @@
 	.byte 0x2e
 	.endm
 
-	@ Sets the values of variables VAR_0x8000, VAR_0x8001, and VAR_0x8002 to the current day, months, and year.
+	@ Sets the values of variables VAR_0x8000, VAR_0x8001, and VAKR_0x8002 to the current day, months, and year.
 	.macro getdate
 	callnative ScrCmd_getdate
 	.endm

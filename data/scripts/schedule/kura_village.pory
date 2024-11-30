@@ -1,12 +1,3 @@
-const TIME_DEAD_NIGHT	=	0    
-const TIME_EARLY		=	1
-const TIME_MORNING		=	2
-const TIME_LUNCHTIME	= 	3
-const TIME_AFTERNOON	=	4
-const TIME_EVENING		=	5
-const TIME_NIGHT		=	6
-const VAR_HOUR_OF_DAY = VAR_0x8000
-
 //////////////////////////////////////
 /////////////KURA VILLAGE/////////////
 //////////////////////////////////////
@@ -57,4 +48,30 @@ script(local) KuraVillage_EveningSchedules{
 }
 script(local) KuraVillage_NightSchedules{
 
+}
+
+script KuraVillage_DrawMetatiles{
+    switch(var(VAR_HOUR_OF_DAY)){
+        case TIME_DEAD_NIGHT:
+            setmetatile(34, 25, METATILE_SakuKura_ClosedDojoDoor, TRUE)
+            setmetatile(43, 23, METATILE_SakuKura_ClosedDojoDoor, TRUE)
+        case TIME_EARLY:
+            setmetatile(34, 25, METATILE_PorytilesPrimaryTutorial_OpenDoor, FALSE)
+            setmetatile(43, 23, METATILE_PorytilesPrimaryTutorial_OpenDoor, FALSE)
+        case TIME_MORNING:
+            setmetatile(34, 25, METATILE_PorytilesPrimaryTutorial_OpenDoor, FALSE)
+            setmetatile(43, 23, METATILE_PorytilesPrimaryTutorial_OpenDoor, FALSE)
+        case TIME_LUNCHTIME:
+            setmetatile(34, 25, METATILE_PorytilesPrimaryTutorial_OpenDoor, FALSE)
+            setmetatile(43, 23, METATILE_PorytilesPrimaryTutorial_OpenDoor, FALSE)
+        case TIME_AFTERNOON:
+            setmetatile(34, 25, METATILE_PorytilesPrimaryTutorial_OpenDoor, FALSE)
+            setmetatile(43, 23, METATILE_PorytilesPrimaryTutorial_OpenDoor, FALSE)
+        case TIME_EVENING:
+            setmetatile(34, 25, METATILE_PorytilesPrimaryTutorial_OpenDoor, FALSE)
+            setmetatile(43, 23, METATILE_PorytilesPrimaryTutorial_OpenDoor, FALSE)
+        case TIME_NIGHT:
+            setmetatile(34, 25, METATILE_PorytilesPrimaryTutorial_OpenDoor, FALSE)
+            setmetatile(43, 23, METATILE_PorytilesPrimaryTutorial_OpenDoor, FALSE)
+    }
 }
