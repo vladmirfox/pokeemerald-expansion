@@ -1237,8 +1237,6 @@ const u16 gTilesetAnims_PorytilesPrimaryTutorial_Sea_Frame7[] = INCBIN_U16("data
 const u16 gTilesetAnims_PorytilesPrimaryTutorial_FlowerDandelionWhite_Frame0[] = INCBIN_U16("data/tilesets/primary/porytiles_primary_tutorial/anim/flower_dandelion_white/00.4bpp");
 const u16 gTilesetAnims_PorytilesPrimaryTutorial_FlowerDandelionWhite_Frame1[] = INCBIN_U16("data/tilesets/primary/porytiles_primary_tutorial/anim/flower_dandelion_white/01.4bpp");
 const u16 gTilesetAnims_PorytilesPrimaryTutorial_FlowerDandelionWhite_Frame2[] = INCBIN_U16("data/tilesets/primary/porytiles_primary_tutorial/anim/flower_dandelion_white/02.4bpp");
-const u16 gTilesetAnims_PorytilesPrimaryTutorial_FlowerDandelionWhite_Frame3[] = INCBIN_U16("data/tilesets/primary/porytiles_primary_tutorial/anim/flower_dandelion_white/03.4bpp");
-const u16 gTilesetAnims_PorytilesPrimaryTutorial_FlowerDandelionWhite_Frame4[] = INCBIN_U16("data/tilesets/primary/porytiles_primary_tutorial/anim/flower_dandelion_white/04.4bpp");
 
 const u16 gTilesetAnims_PorytilesPrimaryTutorial_FlowerDandelionYellow_Frame0[] = INCBIN_U16("data/tilesets/primary/porytiles_primary_tutorial/anim/flower_dandelion_yellow/00.4bpp");
 const u16 gTilesetAnims_PorytilesPrimaryTutorial_FlowerDandelionYellow_Frame1[] = INCBIN_U16("data/tilesets/primary/porytiles_primary_tutorial/anim/flower_dandelion_yellow/01.4bpp");
@@ -1264,7 +1262,7 @@ const u16 *const gTilesetAnims_PorytilesPrimaryTutorial_FlowerDandelionWhite[] =
     gTilesetAnims_PorytilesPrimaryTutorial_FlowerDandelionWhite_Frame0,
     gTilesetAnims_PorytilesPrimaryTutorial_FlowerDandelionWhite_Frame1,
     gTilesetAnims_PorytilesPrimaryTutorial_FlowerDandelionWhite_Frame0,
-    gTilesetAnims_PorytilesPrimaryTutorial_FlowerDandelionWhite_Frame3,
+    gTilesetAnims_PorytilesPrimaryTutorial_FlowerDandelionWhite_Frame2,
 };
 
 const u16 *const gTilesetAnims_PorytilesPrimaryTutorial_FlowerDandelionYellow[] = {
