@@ -375,7 +375,7 @@ u8 GetTimeOfDay(void)
         return TIME_EVENING;
     else if (IsBetweenHours(hour, NIGHT_HOUR_BEGIN, NIGHT_HOUR_END))
         return TIME_NIGHT;
-    return NULL;
+    return 0;
 }
 
 void RtcInitLocalTimeOffset(s32 years, s32 months, s32 days, s32 hours, s32 minutes, s32 seconds)
