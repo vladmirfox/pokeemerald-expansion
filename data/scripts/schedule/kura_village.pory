@@ -8,6 +8,7 @@ const FLAG_HIDE_YOUNG_COUPLE_BOY = FLAG_TEMP_3
 script KuraVillage_NPCSchedules{
 	setflag(FLAG_TEMP_1)
     setflag(FLAG_TEMP_2)
+    setflag(FLAG_TEMP_3)
     gettimeofday
 	switch(var(VAR_TIME_OF_DAY)){
         case TIME_DEAD_NIGHT:
@@ -28,7 +29,7 @@ script KuraVillage_NPCSchedules{
 }
 
 script(local) KuraVillage_DeadNightSchedules{
-
+    clearflag(FLAG_HIDE_YOUNG_COUPLE_BOY)
 }
 
 script(local) KuraVillage_EarlySchedules{
