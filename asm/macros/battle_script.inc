@@ -798,9 +798,7 @@
 	2:
 	.endm
 
-	.macro setmultihitcounter value:req
-	.byte 0x8d
-	.byte \value
+	.macro unused_0x8d
 	.endm
 
 	.macro initmultihitstring
@@ -1104,7 +1102,7 @@
 	.byte 0xcc
 	.endm
 
-	.macro cureifburnedparalysedorpoisoned failInstr:req
+	.macro curestatuswithmove failInstr:req
 	.byte 0xcd
 	.4byte \failInstr
 	.endm
