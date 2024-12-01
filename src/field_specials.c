@@ -86,8 +86,8 @@ static EWRAM_DATA u32 sBikeCyclingTimer = 0;
 static EWRAM_DATA u8 sSlidingDoorNextFrameCounter = 0;
 static EWRAM_DATA u8 sSlidingDoorFrame = 0;
 static EWRAM_DATA u8 sTutorMoveAndElevatorWindowId = 0;
-static EWRAM_DATA u16 sLilycoveDeptStore_NeverRead = 0;
-static EWRAM_DATA u16 sLilycoveDeptStore_DefaultFloorChoice = 0;
+//static EWRAM_DATA u16 sLilycoveDeptStore_NeverRead = 0;
+//static EWRAM_DATA u16 sLilycoveDeptStore_DefaultFloorChoice = 0;
 static EWRAM_DATA struct ListMenuItem *sScrollableMultichoice_ListMenuItem = NULL;
 
 static EWRAM_DATA u16 sFrontierExchangeCorner_NeverRead = 0;
@@ -1799,7 +1799,7 @@ static const u16 sElevatorWindowTiles_Descending[ELEVATOR_WINDOW_HEIGHT][ELEVATO
         METATILE_BattleFrontier_Elevator_Bottom1
     },
 };
-
+/*
 void SetDeptStoreFloor(void)
 {
     u8 deptStoreFloor;
@@ -1864,7 +1864,7 @@ u16 GetDeptStoreDefaultFloorChoice(void)
 
     return sLilycoveDeptStore_DefaultFloorChoice;
 }
-
+*/
 // Task data for Task_MoveElevator
 #define tTimer       data[1]
 #define tMoveCounter data[2]

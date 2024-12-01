@@ -5,7 +5,7 @@ BeachboundRoute_MapScripts::
 
 BeachboundRoute_MapScripts_MAP_SCRIPT_ON_LOAD:
 # 14 "data/maps/BeachboundRoute/scripts.pory"
-	call BeachboundRoute_EventScript_TimeBasedEvents
+	call BeachboundRoute_NPCSchedule
 	return
 
 
