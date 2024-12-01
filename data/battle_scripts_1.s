@@ -2401,7 +2401,6 @@ BattleScript_EffectHealingWish::
 	storehealingwish BS_ATTACKER
 .if B_HEALING_WISH_SWITCH <= GEN_4
 	openpartyscreen BS_ATTACKER, BattleScript_EffectHealingWishEnd
-	switchoutabilities BS_ATTACKER
 	waitstate
 	switchhandleorder BS_ATTACKER, 2
 	returnatktoball
@@ -3013,30 +3012,17 @@ BattleScript_CantMakeAsleep::
 	orhalfword gMoveResultFlags, MOVE_RESULT_FAILED
 	goto BattleScript_MoveEnd
 
-BattleScript_EffectAbsorb::
-	call BattleScript_EffectHit_Ret
-	jumpifstatus3 BS_ATTACKER, STATUS3_HEAL_BLOCK, BattleScript_AbsorbHealBlock
-	setdrainedhp
-	manipulatedamage DMG_BIG_ROOT
-	orword gHitMarker, HITMARKER_IGNORE_SUBSTITUTE | HITMARKER_IGNORE_DISGUISE
-	jumpifability BS_TARGET, ABILITY_LIQUID_OOZE, BattleScript_AbsorbLiquidOoze
-	setbyte cMULTISTRING_CHOOSER, B_MSG_ABSORB
-	goto BattleScript_AbsorbUpdateHp
-BattleScript_AbsorbLiquidOoze::
+BattleScript_EffectAbsorbLiquidOoze::
 	call BattleScript_AbilityPopUpTarget
-	manipulatedamage DMG_CHANGE_SIGN
-	setbyte cMULTISTRING_CHOOSER, B_MSG_ABSORB_OOZE
-BattleScript_AbsorbUpdateHp::
+	goto BattleScript_EffectAbsorb
+
+BattleScript_EffectAbsorb::
 	healthbarupdate BS_ATTACKER
 	datahpupdate BS_ATTACKER
-	jumpifmovehadnoeffect BattleScript_AbsorbTryFainting
 	printfromtable gAbsorbDrainStringIds
 	waitmessage B_WAIT_TIME_LONG
-BattleScript_AbsorbTryFainting::
 	tryfaintmon BS_ATTACKER
-BattleScript_AbsorbHealBlock::
-	tryfaintmon BS_TARGET
-	goto BattleScript_MoveEnd
+	return
 
 BattleScript_EffectExplosion::
 	attackcanceler
@@ -4161,6 +4147,7 @@ BattleScript_EffectMinimize::
 BattleScript_EffectCurse::
 	jumpiftype BS_ATTACKER, TYPE_GHOST, BattleScript_GhostCurse
 	attackcanceler
+	jumpiftype BS_ATTACKER, TYPE_GHOST, BattleScript_DoGhostCurse
 	attackstring
 	ppreduce
 	jumpifstat BS_ATTACKER, CMP_GREATER_THAN, STAT_SPEED, MIN_STAT_STAGE, BattleScript_CurseTrySpeed
@@ -5769,7 +5756,6 @@ BattleScript_PrintFullBox::
 
 BattleScript_ActionSwitch::
 	hpthresholds2 BS_ATTACKER
-	saveattacker
 	printstring STRINGID_RETURNMON
 	jumpifbattletype BATTLE_TYPE_DOUBLE, BattleScript_PursuitSwitchDmgSetMultihit
 	setmultihit 1
@@ -5787,7 +5773,6 @@ BattleScript_DoSwitchOut::
 	switchoutabilities BS_ATTACKER
 	updatedynamax
 	waitstate
-	restoreattacker
 	returnatktoball
 	waitstate
 	drawpartystatussummary BS_ATTACKER
@@ -6046,33 +6031,34 @@ BattleScript_SafeguardEnds::
 	waitmessage B_WAIT_TIME_LONG
 	end2
 
-BattleScript_LeechSeedTurnDrain::
-	playanimation BS_ATTACKER, B_ANIM_LEECH_SEED_DRAIN, sB_ANIM_ARG1
-	orword gHitMarker, HITMARKER_IGNORE_SUBSTITUTE | HITMARKER_PASSIVE_DAMAGE
-	healthbarupdate BS_ATTACKER
-	datahpupdate BS_ATTACKER
-	copyword gBattleMoveDamage, gHpDealt
-	jumpifability BS_ATTACKER, ABILITY_LIQUID_OOZE, BattleScript_LeechSeedTurnPrintLiquidOoze
-	setbyte cMULTISTRING_CHOOSER, B_MSG_LEECH_SEED_DRAIN
-	jumpifstatus3 BS_TARGET, STATUS3_HEAL_BLOCK, BattleScript_LeechSeedHealBlock
-	manipulatedamage DMG_BIG_ROOT
-	goto BattleScript_LeechSeedTurnPrintAndUpdateHp
-BattleScript_LeechSeedTurnPrintLiquidOoze::
+BattleScript_LeechSeedTurnDrainLiquidOoze::
+	call BattleScript_LeechSeedTurnDrain
+	manipulatedamage DMG_CHANGE_SIGN
 	copybyte gBattlerAbility, gBattlerAttacker
 	call BattleScript_AbilityPopUp
-	setbyte cMULTISTRING_CHOOSER, B_MSG_LEECH_SEED_OOZE
-BattleScript_LeechSeedTurnPrintAndUpdateHp::
-	orword gHitMarker, HITMARKER_IGNORE_SUBSTITUTE | HITMARKER_PASSIVE_DAMAGE
+	goto BattleScript_LeechSeedTurnDrainGainHp
+
+BattleScript_LeechSeedTurnDrainHealBlock::
+	call BattleScript_LeechSeedTurnDrain
+	end2
+
+BattleScript_LeechSeedTurnDrainRecovery::
+	call BattleScript_LeechSeedTurnDrain
+BattleScript_LeechSeedTurnDrainGainHp:
+	manipulatedamage DMG_BIG_ROOT
 	healthbarupdate BS_TARGET
 	datahpupdate BS_TARGET
 	printfromtable gLeechSeedStringIds
 	waitmessage B_WAIT_TIME_LONG
-	tryfaintmon BS_ATTACKER
 	tryfaintmon BS_TARGET
 	end2
-BattleScript_LeechSeedHealBlock:
-	setword gBattleMoveDamage, 0
-	goto BattleScript_LeechSeedTurnPrintAndUpdateHp
+
+BattleScript_LeechSeedTurnDrain:
+	playanimation BS_ATTACKER, B_ANIM_LEECH_SEED_DRAIN, sB_ANIM_ARG1
+	healthbarupdate BS_ATTACKER
+	datahpupdate BS_ATTACKER
+	tryfaintmon BS_ATTACKER
+	return
 
 BattleScript_BideStoringEnergy::
 	printstring STRINGID_PKMNSTORINGENERGY
@@ -6990,26 +6976,17 @@ BattleScript_WishMegaEvolution::
 	goto BattleScript_MegaEvolutionAfterString
 
 BattleScript_PrimalReversion::
-	call BattleScript_PrimalReversionRet
-	end3
-
-BattleScript_PrimalReversionRestoreAttacker::
-	call BattleScript_PrimalReversionRet
-	copybyte gBattlerAttacker, sSAVED_BATTLER
-	end3
-
-BattleScript_PrimalReversionRet::
 	flushtextbox
 	setbyte gIsCriticalHit, 0
-	handleprimalreversion BS_ATTACKER, 0
-	handleprimalreversion BS_ATTACKER, 1
-	playanimation BS_ATTACKER, B_ANIM_PRIMAL_REVERSION
+	handleprimalreversion BS_SCRIPTING, 0
+	handleprimalreversion BS_SCRIPTING, 1
+	playanimation BS_SCRIPTING, B_ANIM_PRIMAL_REVERSION
 	waitanimation
-	handleprimalreversion BS_ATTACKER, 2
+	handleprimalreversion BS_SCRIPTING, 2
 	printstring STRINGID_PKMNREVERTEDTOPRIMAL
 	waitmessage B_WAIT_TIME_LONG
-	switchinabilities BS_ATTACKER
-	return
+	switchinabilities BS_SCRIPTING
+	end3
 
 BattleScript_UltraBurst::
 	flushtextbox
@@ -9655,7 +9632,9 @@ BattleScript_EjectButtonActivates::
 	removeitem BS_SCRIPTING
 	makeinvisible BS_SCRIPTING
 	openpartyscreen BS_SCRIPTING, BattleScript_EjectButtonEnd
+	copybyte sSAVED_BATTLER, sBATTLER
 	switchoutabilities BS_SCRIPTING
+	copybyte sBATTLER, sSAVED_BATTLER
 	waitstate
 	switchhandleorder BS_SCRIPTING 0x2
 	returntoball BS_SCRIPTING, FALSE
@@ -9752,6 +9731,7 @@ BattleScript_PastelVeilEnd:
 	end3
 
 BattleScript_NeutralizingGasExits::
+	saveattacker
 	savetarget
 	pause B_WAIT_TIME_SHORT
 	printstring STRINGID_NEUTRALIZINGGASOVER
@@ -9761,6 +9741,7 @@ BattleScript_NeutralizingGasExitsLoop:
 	switchinabilities BS_TARGET
 	addbyte gBattlerTarget, 1
 	jumpifbytenotequal gBattlerTarget, gBattlersCount, BattleScript_NeutralizingGasExitsLoop
+	restoreattacker
 	restoretarget
 	return
 
