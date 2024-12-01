@@ -415,6 +415,7 @@ const struct TrainerSprite gTrainerSprites[] =
     TRAINER_SPRITE(TRAINER_PIC_NATSUKI, gTrainerFrontPic_Natsuki, gTrainerPalette_Natsuki),
     TRAINER_SPRITE(TRAINER_PIC_ONSEN_F, gTrainerFrontPic_OnsenF, gTrainerPalette_OnsenF),
     TRAINER_SPRITE(TRAINER_PIC_ONSEN_M, gTrainerFrontPic_OnsenM, gTrainerPalette_OnsenM),
+    TRAINER_SPRITE(TRAINER_PIC_COOK, gTrainerFrontPic_SushiChef, gTrainerPalette_SushiChef),
     // TODO random color
     TRAINER_SPRITE(TRAINER_PIC_SHAMISEN, gTrainerFrontPic_Shamisen, gTrainerPalette_ShamisenBlue),
     TRAINER_SPRITE(TRAINER_PIC_SAILOR, gTrainerFrontPic_Sailor, gTrainerPalette_Sailor),

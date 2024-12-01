@@ -7832,20 +7832,20 @@ Meditite
 Level: 13
 IVs: 18 HP / 18 Atk / 18 Def / 18 SpA / 18 SpD / 18 Spe
 
-=== TRAINER_CYNDY_1 ===
-Name: CYNDY
-Class: Battle Girl
-Pic: Battle Girl
-Gender: Female
-Music: Intense
+=== TRAINER_MAKOTO_1 ===
+Name: Makoto
+Class: Fisherman
+Pic: Fisherman
+Gender: Male
+Music: Hiker
 Double Battle: No
 AI: Check Bad Move
 
-Meditite
+Cramorant
 Level: 18
 IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
 
-Makuhita
+Krabby
 Level: 18
 IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
 
@@ -8772,21 +8772,21 @@ Minun
 Level: 27
 IVs: 1 HP / 1 Atk / 1 Def / 1 SpA / 1 SpD / 1 Spe
 
-=== TRAINER_GINA_AND_MIA ===
-Name: GINA & MIA
-Class: Twins
-Pic: Twins
+=== TRAINER_ITAMAE ===
+Name: Itamae
+Class: Cook
+Pic: Cook
 Gender: Male
-Music: Twins
-Double Battle: Yes
+Music: Hiker
+Double Battle: No
 AI: Check Bad Move
 
-Seedot
-Level: 6
+Nacli
+Level: 16
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
-Lotad
-Level: 6
+Dwebble
+Level: 16
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
 === TRAINER_MIU_AND_YUKI ===
@@ -11042,21 +11042,21 @@ Lotad
 Level: 2
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
-=== TRAINER_HALEY_1 ===
-Name: HALEY
-Class: Lass
-Pic: Lass
+=== TRAINER_MUSASHI_1 ===
+Name: Musashi
+Class: Battle Girl
+Pic: Battle Girl
 Gender: Female
-Music: Female
+Music: Intense
 Double Battle: No
 AI: Check Bad Move
 
-Lotad
-Level: 6
+Makuhita
+Level: 16
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
 Shroomish
-Level: 6
+Level: 16
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
 === TRAINER_JANICE ===
