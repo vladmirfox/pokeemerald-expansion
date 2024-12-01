@@ -3459,7 +3459,7 @@ static u32 AI_CalcMoveEffectScore(u32 battlerAtk, u32 battlerDef, u32 move)
         }
         break;
     case EFFECT_REST:
-        if (!(CanBeSleptOrDrowsy(battlerAtk, aiData->abilities[battlerAtk])))
+        if (!CanBeSleptOrDrowsy(battlerAtk, aiData->abilities[battlerAtk]))
         {
             break;
         }

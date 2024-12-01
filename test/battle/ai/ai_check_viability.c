@@ -55,6 +55,7 @@ AI_SINGLE_BATTLE_TEST("AI sees increased base power of Wake Up Slap")
 
     PARAMETRIZE { status1 = STATUS1_NONE; expectedMove = MOVE_BODY_SLAM; }
     PARAMETRIZE { status1 = STATUS1_SLEEP; expectedMove = MOVE_WAKE_UP_SLAP; }
+
     GIVEN {
         ASSUME(B_UPDATED_MOVE_DATA >= GEN_6);
         ASSUME(gMovesInfo[MOVE_WAKE_UP_SLAP].effect == EFFECT_DOUBLE_POWER_ON_ARG_STATUS);
