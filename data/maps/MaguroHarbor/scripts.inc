@@ -245,7 +245,7 @@ MaguroHarbor_EventScript_FishermanOldRod_Text_1:
 	.string "dyin' to try it fer yerself!\p"
 	.string "Now, I can't be givin' ye me loyal\n"
 	.string "Cramorant here…\p"
-	.string "But I can give ye this old rud!$"
+	.string "But I can give ye this ol' rud o' mine!$"
 
 MaguroHarbor_EventScript_FishermanOldRod_Text_2:
 # 93 "data/maps/MaguroHarbor/scripts.pory"
