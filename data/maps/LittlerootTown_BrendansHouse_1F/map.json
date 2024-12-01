@@ -132,7 +132,7 @@
   "coord_events": [
     {
       "type": "trigger",
-      "x": 7,
+      "x": 8,
       "y": 8,
       "elevation": 0,
       "var": "VAR_LITTLEROOT_INTRO_STATE",

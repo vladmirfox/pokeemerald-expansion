@@ -102,7 +102,8 @@
     "ZoneB",
     "DigSite2",
     "VerdanturfRavine",
-    "BleakisleTown"
+    "BleakisleTown",
+    "CherryGarden"
   ],
   "gMapGroup_IndoorZoneA": [
     "ZoneA_Warehouse_1F",
@@ -113,7 +114,8 @@
     "LittlerootTown_BrendansHouse_2F",
     "LittlerootTown_MaysHouse_1F",
     "LittlerootTown_MaysHouse_2F",
-    "LittlerootTown_ProfessorBirchsLab"
+    "LittlerootTown_ProfessorBirchsLab",
+    "Route101_NormansLab"
   ],
   "gMapGroup_IndoorOldale": [
     "OldaleTown_House1",

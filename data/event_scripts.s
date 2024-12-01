@@ -1120,3 +1120,7 @@ EventScript_VsSeekerChargingDone::
 	.include "data/maps/MountKiri_Exterior/scripts.inc"
 
 	.include "data/maps/BleakisleTown/scripts.inc"
+
+	.include "data/maps/Route101_NormansLab/scripts.inc"
+
+	.include "data/maps/CherryGarden/scripts.inc"

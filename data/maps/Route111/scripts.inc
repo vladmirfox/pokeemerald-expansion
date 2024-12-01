@@ -93,7 +93,8 @@ Route111_EventScript_SetWinstratesNotDefeated::
 	end
 
 Route111_EventScript_SetLayoutNoMirageTower::
-	setmaplayoutindex LAYOUT_ROUTE111_NO_MIRAGE_TOWER
+	@ Hiding mirage tower will also remove Mauville Tunnel access
+	@ setmaplayoutindex LAYOUT_ROUTE111_NO_MIRAGE_TOWER
 	return
 
 Route111_EventScript_SetMirageTowerGone::

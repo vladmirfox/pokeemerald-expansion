@@ -64,6 +64,10 @@ ZoneA_Warehouse_B1F_EventScript_AdminDefeated::
 	turnobject LOCALID_SCIENTIST1, DIR_NORTH
 	turnobject LOCALID_SCIENTIST2, DIR_NORTH
 	setvar VAR_WAREHOUSE_A_STATE, 1
+	@ Unlock traveling to Dewford with Briney
+	clearflag FLAG_HIDE_BRINEYS_HOUSE_MR_BRINEY
+	clearflag FLAG_HIDE_BRINEYS_HOUSE_PEEKO
+	setvar VAR_BRINEY_LOCATION, 1
 	fadescreen FADE_FROM_BLACK
 	call_if_eq VAR_0x8008, 0, ZoneA_Warehouse_B1F_EventScript_ScientistApproachPlayer0
 	call_if_eq VAR_0x8008, 1, ZoneA_Warehouse_B1F_EventScript_ScientistApproachPlayer1

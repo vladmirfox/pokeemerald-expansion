@@ -7772,7 +7772,7 @@ u16 GetMonDeltaVersion(struct Pokemon *mon)
 {
     u16 deltaSpecies;
     u16 species = GetMonData(mon, MON_DATA_SPECIES_OR_EGG, 0);
-    u16 labStateA = VarGet(VAR_WAREHOUSE_A_STATE);
+    // u16 labStateA = VarGet(VAR_WAREHOUSE_A_STATE);
 
     switch (species) {
         case SPECIES_WURMPLE: deltaSpecies = SPECIES_WURMPLE_DELTA;

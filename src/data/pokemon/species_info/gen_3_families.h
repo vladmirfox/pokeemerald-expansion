@@ -7358,10 +7358,10 @@ const struct SpeciesInfo gSpeciesInfoGen3[] =
 #if P_FAMILY_LILEEP
     [SPECIES_LILEEP] =
     {
-        .baseHP        = 66,
-        .baseAttack    = 41,
+        .baseHP        = 76,
+        .baseAttack    = 61,
         .baseDefense   = 77,
-        .baseSpeed     = 23,
+        .baseSpeed     = 33,
         .baseSpAttack  = 61,
         .baseSpDefense = 87,
         .types = MON_TYPES(TYPE_ROCK, TYPE_GRASS),
@@ -7422,17 +7422,17 @@ const struct SpeciesInfo gSpeciesInfoGen3[] =
         .levelUpLearnset = sLileepLevelUpLearnset,
         .teachableLearnset = sLileepTeachableLearnset,
         .eggMoveLearnset = sLileepEggMoveLearnset,
-        .evolutions = EVOLUTION({EVO_LEVEL, 40, SPECIES_CRADILY}),
+        .evolutions = EVOLUTION({EVO_LEVEL, 32, SPECIES_CRADILY}),
     },
 
     [SPECIES_CRADILY] =
     {
-        .baseHP        = 86,
-        .baseAttack    = 81,
+        .baseHP        = 101,
+        .baseAttack    = 96,
         .baseDefense   = 97,
-        .baseSpeed     = 43,
+        .baseSpeed     = 58,
         .baseSpAttack  = 81,
-        .baseSpDefense = 107,
+        .baseSpDefense = 102,
         .types = MON_TYPES(TYPE_ROCK, TYPE_GRASS),
         .catchRate = 45,
     #if P_UPDATED_EXP_YIELDS >= GEN_5

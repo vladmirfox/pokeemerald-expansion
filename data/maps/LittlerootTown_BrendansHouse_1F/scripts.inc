@@ -1,5 +1,6 @@
 .set LOCALID_MOM, 1
 .set LOCALID_RIVAL_MOM, 4
+.set LOCALID_DAD, 5
 .set LOCALID_RIVAL, 7
 
 LittlerootTown_BrendansHouse_1F_MapScripts::
@@ -30,6 +31,7 @@ LittlerootTown_BrendansHouse_1F_EventScript_ShowRunningShoesManual::
 LittlerootTown_BrendansHouse_1F_OnTransition:
 	call_if_eq VAR_LITTLEROOT_INTRO_STATE, 3, LittlerootTown_BrendansHouse_1F_EventScript_MoveMomToDoor
 	call_if_eq VAR_LITTLEROOT_INTRO_STATE, 5, LittlerootTown_BrendansHouse_1F_EventScript_MoveMomToStairs
+	@ State 6 modified, leave mom at table and add dad invisible at door
 	call_if_eq VAR_LITTLEROOT_INTRO_STATE, 6, LittlerootTown_BrendansHouse_1F_EventScript_MoveMomToTV
 	end
 
@@ -39,8 +41,14 @@ LittlerootTown_BrendansHouse_1F_EventScript_MoveMomToStairs::
 	return
 
 LittlerootTown_BrendansHouse_1F_EventScript_MoveMomToTV::
-	setobjectxyperm LOCALID_MOM, 4, 5
-	setobjectmovementtype LOCALID_MOM, MOVEMENT_TYPE_FACE_UP
+	@ setobjectxyperm LOCALID_MOM, 4, 5
+	@ setobjectmovementtype LOCALID_MOM, MOVEMENT_TYPE_FACE_UP
+	clearflag FLAG_HIDE_PLAYERS_HOUSE_DAD
+	@ addobject LOCALID_DAD
+	setobjectxyperm LOCALID_DAD, 8, 8
+	setobjectmovementtype LOCALID_DAD, MOVEMENT_TYPE_FACE_UP
+	@ applymovement LOCALID_DAD, LittlerootTown_BrendansHouse_1F_Movement_SetInvisible
+	@ waitmovement 0
 	return
 
 LittlerootTown_BrendansHouse_1F_EventScript_MoveMomToDoor::
@@ -53,6 +61,7 @@ LittlerootTown_BrendansHouse_1F_EventScript_MoveMomToDoor::
 LittlerootTown_BrendansHouse_1F_OnFrame:
 	map_script_2 VAR_LITTLEROOT_INTRO_STATE, 3, LittlerootTown_BrendansHouse_1F_EventScript_EnterHouseMovingIn
 	map_script_2 VAR_LITTLEROOT_INTRO_STATE, 5, LittlerootTown_BrendansHouse_1F_EventScript_GoUpstairsToSetClock
+	@ State 6 modified, dad takes you to his lab to give starter
 	map_script_2 VAR_LITTLEROOT_INTRO_STATE, 6, LittlerootTown_BrendansHouse_1F_EventScript_PetalburgGymReport
 	map_script_2 VAR_LITTLEROOT_HOUSES_STATE_MAY, 1, LittlerootTown_BrendansHouse_1F_EventScript_YoureNewNeighbor
 	map_script_2 VAR_LITTLEROOT_HOUSES_STATE_MAY, 3, PlayersHouse_1F_EventScript_GetSSTicketAndSeeLatiTV
@@ -83,10 +92,39 @@ LittlerootTown_BrendansHouse_1F_EventScript_EnterHouseMovingIn::
 
 LittlerootTown_BrendansHouse_1F_EventScript_PetalburgGymReport::
 	lockall
-	setvar VAR_0x8004, MALE
-	setvar VAR_0x8005, LOCALID_MOM
-	goto PlayersHouse_1F_EventScript_PetalburgGymReportMale
+	setvar VAR_LITTLEROOT_INTRO_STATE, 7
+	call LittlerootTown_BrendansHouse_1F_EventScript_DadTakesYouToLab
 	end
+
+LittlerootTown_BrendansHouse_1F_EventScript_DadTakesYouToLab::
+	applymovement LOCALID_DAD, Common_Movement_ExclamationMark
+	waitmovement 0
+	delay 10
+	applymovement LOCALID_DAD, LittlerootTown_BrendansHouse_1F_Movement_DadWalksUp
+	waitmovement 0
+	msgbox LittlerootTown_BrendansHouse_1F_Text_DadTakesPlayerToLab, MSGBOX_DEFAULT
+	setflag FLAG_HIDE_PLAYERS_HOUSE_DAD
+	warpsilent MAP_ROUTE101_NORMANS_LAB, 5, 7
+	waitstate
+	releaseall
+	end
+
+LittlerootTown_BrendansHouse_1F_Movement_DadWalksUp:
+	walk_up
+	walk_up
+	walk_up
+	walk_up
+	step_end
+
+LittlerootTown_BrendansHouse_1F_Text_DadTakesPlayerToLab:
+	.string "DAD: Oh hi {PLAYER}!\n"
+	.string "Glad to see you made it!\p"
+	.string "Your MOM called and let me know you\n"
+	.string "had arrived!\p"
+	.string "Sorry I wasn't here to greet you,\n"
+	.string "I was busy at my lab.\p"
+	.string "Why don't you follow me back there now?\n"
+	.string "I have something to give you!$"
 
 LittlerootTown_BrendansHouse_1F_EventScript_YoureNewNeighbor::
 	lockall

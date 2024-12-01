@@ -4289,11 +4289,11 @@ static const struct LevelUpMove sPorygonZLevelUpLearnset[] = {
 
 #if P_FAMILY_OMANYTE
 static const struct LevelUpMove sOmanyteLevelUpLearnset[] = {
-    LEVEL_UP_MOVE( 1, MOVE_BIND),
+    LEVEL_UP_MOVE( 1, MOVE_WATER_GUN),
     LEVEL_UP_MOVE( 1, MOVE_WITHDRAW),
     LEVEL_UP_MOVE( 5, MOVE_ROLLOUT),
     LEVEL_UP_MOVE(10, MOVE_SAND_ATTACK),
-    LEVEL_UP_MOVE(15, MOVE_WATER_GUN),
+    LEVEL_UP_MOVE(15, MOVE_BUBBLE_BEAM),
     LEVEL_UP_MOVE(20, MOVE_LEER),
     LEVEL_UP_MOVE(25, MOVE_MUD_SHOT),
     LEVEL_UP_MOVE(30, MOVE_ANCIENT_POWER),
@@ -4313,7 +4313,7 @@ static const struct LevelUpMove sOmastarLevelUpLearnset[] = {
     LEVEL_UP_MOVE( 1, MOVE_WITHDRAW),
     LEVEL_UP_MOVE( 1, MOVE_ROLLOUT),
     LEVEL_UP_MOVE( 1, MOVE_SAND_ATTACK),
-    LEVEL_UP_MOVE(15, MOVE_WATER_GUN),
+    LEVEL_UP_MOVE(15, MOVE_BUBBLE_BEAM),
     LEVEL_UP_MOVE(20, MOVE_LEER),
     LEVEL_UP_MOVE(25, MOVE_MUD_SHOT),
     LEVEL_UP_MOVE(30, MOVE_ANCIENT_POWER),
@@ -8938,7 +8938,7 @@ static const struct LevelUpMove sClaydolLevelUpLearnset[] = {
 
 #if P_FAMILY_LILEEP
 static const struct LevelUpMove sLileepLevelUpLearnset[] = {
-    LEVEL_UP_MOVE( 1, MOVE_WRAP),
+    LEVEL_UP_MOVE( 1, MOVE_LEAFAGE),
     LEVEL_UP_MOVE( 1, MOVE_ASTONISH),
     LEVEL_UP_MOVE( 4, MOVE_ACID),
     LEVEL_UP_MOVE( 8, MOVE_CONFUSE_RAY),
