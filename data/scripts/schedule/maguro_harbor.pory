@@ -84,3 +84,49 @@ script(local) MaguroHarbor_NightSchedules{
     }
     else{}
 }
+
+script MaguroHarbor_DrawMetatiles{
+    switch(var(VAR_TIME_OF_DAY)){
+        case TIME_DEAD_NIGHT:
+            setmetatile(20, 13, METATILE_Maguro_HouseDoorClosed, TRUE)
+            setmetatile(37, 20, METATILE_Maguro_HouseDoorClosed, TRUE)
+        case TIME_EARLY:
+            setmetatile(20, 13, METATILE_Maguro_HouseDoorOpen, FALSE)
+            setmetatile(37, 20, METATILE_Maguro_HouseDoorOpen, FALSE)
+        case TIME_MORNING:
+            setmetatile(20, 13, METATILE_Maguro_HouseDoorOpen, FALSE)
+            setmetatile(37, 20, METATILE_Maguro_HouseDoorOpen, FALSE)
+        case TIME_LUNCHTIME:
+            setmetatile(20, 13, METATILE_Maguro_HouseDoorOpen, FALSE)
+            setmetatile(37, 20, METATILE_Maguro_HouseDoorOpen, FALSE)
+        case TIME_AFTERNOON:
+            setmetatile(20, 13, METATILE_Maguro_HouseDoorOpen, FALSE)
+            setmetatile(37, 20, METATILE_Maguro_HouseDoorOpen, FALSE)
+        case TIME_EVENING:
+            setmetatile(20, 13, METATILE_Maguro_HouseDoorOpen, FALSE)
+            setmetatile(37, 20, METATILE_Maguro_HouseDoorOpen, FALSE)
+        case TIME_NIGHT:
+            setmetatile(20, 13, METATILE_Maguro_HouseDoorOpen, FALSE)
+            setmetatile(37, 20, METATILE_Maguro_HouseDoorOpen, FALSE)
+    }
+}
+
+/////////////////////////////////
+//////////MAGURO HOUSES//////////
+/////////////////////////////////
+
+//Young girl's house
+const FLAG_HIDE_YOUNG_COUPLE_GIRL_HOUSE = FLAG_TEMP_1
+const FLAG_HIDE_FISHERMAN_HOUSE = FLAG_TEMP_2
+script YoungGirlsHouse_NPCSchedules{
+	setflag(FLAG_TEMP_1)
+    setflag(FLAG_TEMP_2)
+    setflag(FLAG_TEMP_3)
+    gettimeofday
+	if(var(VAR_TIME_OF_DAY) == TIME_EARLY){
+        clearflag(FLAG_TEMP_1)
+    }
+    if(var(VAR_TIME_OF_DAY) == TIME_EVENING || var(VAR_TIME_OF_DAY) == TIME_NIGHT){
+        clearflag(FLAG_TEMP_2)
+    }
+}

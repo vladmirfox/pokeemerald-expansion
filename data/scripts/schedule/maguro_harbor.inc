@@ -206,3 +206,104 @@ MaguroHarbor_NightSchedules_1:
 	clearflag FLAG_TEMP_2
 	return
 
+
+MaguroHarbor_DrawMetatiles::
+# 89 "data/scripts/schedule/maguro_harbor.pory"
+	switch VAR_TIME_OF_DAY
+# 90 "data/scripts/schedule/maguro_harbor.pory"
+	case TIME_DEAD_NIGHT, MaguroHarbor_DrawMetatiles_2
+# 93 "data/scripts/schedule/maguro_harbor.pory"
+	case TIME_EARLY, MaguroHarbor_DrawMetatiles_3
+# 96 "data/scripts/schedule/maguro_harbor.pory"
+	case TIME_MORNING, MaguroHarbor_DrawMetatiles_4
+# 99 "data/scripts/schedule/maguro_harbor.pory"
+	case TIME_LUNCHTIME, MaguroHarbor_DrawMetatiles_5
+# 102 "data/scripts/schedule/maguro_harbor.pory"
+	case TIME_AFTERNOON, MaguroHarbor_DrawMetatiles_6
+# 105 "data/scripts/schedule/maguro_harbor.pory"
+	case TIME_EVENING, MaguroHarbor_DrawMetatiles_7
+# 108 "data/scripts/schedule/maguro_harbor.pory"
+	case TIME_NIGHT, MaguroHarbor_DrawMetatiles_8
+	return
+
+MaguroHarbor_DrawMetatiles_2:
+# 91 "data/scripts/schedule/maguro_harbor.pory"
+	setmetatile 20, 13, METATILE_Maguro_HouseDoorClosed, TRUE
+# 92 "data/scripts/schedule/maguro_harbor.pory"
+	setmetatile 37, 20, METATILE_Maguro_HouseDoorClosed, TRUE
+	return
+
+MaguroHarbor_DrawMetatiles_3:
+# 94 "data/scripts/schedule/maguro_harbor.pory"
+	setmetatile 20, 13, METATILE_Maguro_HouseDoorOpen, FALSE
+# 95 "data/scripts/schedule/maguro_harbor.pory"
+	setmetatile 37, 20, METATILE_Maguro_HouseDoorOpen, FALSE
+	return
+
+MaguroHarbor_DrawMetatiles_4:
+# 97 "data/scripts/schedule/maguro_harbor.pory"
+	setmetatile 20, 13, METATILE_Maguro_HouseDoorOpen, FALSE
+# 98 "data/scripts/schedule/maguro_harbor.pory"
+	setmetatile 37, 20, METATILE_Maguro_HouseDoorOpen, FALSE
+	return
+
+MaguroHarbor_DrawMetatiles_5:
+# 100 "data/scripts/schedule/maguro_harbor.pory"
+	setmetatile 20, 13, METATILE_Maguro_HouseDoorOpen, FALSE
+# 101 "data/scripts/schedule/maguro_harbor.pory"
+	setmetatile 37, 20, METATILE_Maguro_HouseDoorOpen, FALSE
+	return
+
+MaguroHarbor_DrawMetatiles_6:
+# 103 "data/scripts/schedule/maguro_harbor.pory"
+	setmetatile 20, 13, METATILE_Maguro_HouseDoorOpen, FALSE
+# 104 "data/scripts/schedule/maguro_harbor.pory"
+	setmetatile 37, 20, METATILE_Maguro_HouseDoorOpen, FALSE
+	return
+
+MaguroHarbor_DrawMetatiles_7:
+# 106 "data/scripts/schedule/maguro_harbor.pory"
+	setmetatile 20, 13, METATILE_Maguro_HouseDoorOpen, FALSE
+# 107 "data/scripts/schedule/maguro_harbor.pory"
+	setmetatile 37, 20, METATILE_Maguro_HouseDoorOpen, FALSE
+	return
+
+MaguroHarbor_DrawMetatiles_8:
+# 109 "data/scripts/schedule/maguro_harbor.pory"
+	setmetatile 20, 13, METATILE_Maguro_HouseDoorOpen, FALSE
+# 110 "data/scripts/schedule/maguro_harbor.pory"
+	setmetatile 37, 20, METATILE_Maguro_HouseDoorOpen, FALSE
+	return
+
+
+YoungGirlsHouse_NPCSchedules::
+# 122 "data/scripts/schedule/maguro_harbor.pory"
+	setflag FLAG_TEMP_1
+# 123 "data/scripts/schedule/maguro_harbor.pory"
+	setflag FLAG_TEMP_2
+# 124 "data/scripts/schedule/maguro_harbor.pory"
+	setflag FLAG_TEMP_3
+# 125 "data/scripts/schedule/maguro_harbor.pory"
+	gettimeofday
+# 126 "data/scripts/schedule/maguro_harbor.pory"
+	compare VAR_TIME_OF_DAY, TIME_EARLY
+	goto_if_eq YoungGirlsHouse_NPCSchedules_2
+YoungGirlsHouse_NPCSchedules_1:
+# 129 "data/scripts/schedule/maguro_harbor.pory"
+	compare VAR_TIME_OF_DAY, TIME_EVENING
+	goto_if_eq YoungGirlsHouse_NPCSchedules_4
+# 129 "data/scripts/schedule/maguro_harbor.pory"
+	compare VAR_TIME_OF_DAY, TIME_NIGHT
+	goto_if_eq YoungGirlsHouse_NPCSchedules_4
+	return
+
+YoungGirlsHouse_NPCSchedules_2:
+# 127 "data/scripts/schedule/maguro_harbor.pory"
+	clearflag FLAG_TEMP_1
+	goto YoungGirlsHouse_NPCSchedules_1
+
+YoungGirlsHouse_NPCSchedules_4:
+# 130 "data/scripts/schedule/maguro_harbor.pory"
+	clearflag FLAG_TEMP_2
+	return
+

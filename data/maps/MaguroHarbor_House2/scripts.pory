@@ -1,3 +1,38 @@
 mapscripts MaguroHarbor_House2_MapScripts {
-	
+    MAP_SCRIPT_ON_TRANSITION {
+        call(YoungGirlsHouse_NPCSchedules)
+    }
+}
+
+script MaguroHarbor_House2_EventScript_YoungGirl{
+    lock
+	faceplayer
+    speakername("Young girl")
+    msgbox(format(
+		"I can't wait to see my love again…"
+	))
+    closemessage
+	release
+}
+
+script MaguroHarbor_House2_EventScript_Fisherman{
+    lock
+	faceplayer
+    speakername("Fisherman")
+    msgbox(format(
+		"My daughter is currently at the Beachbound Route with her partner. She stays out late, but I'm not worried since she's not alone. She's a smart girl too."
+	))
+    closemessage
+	release
+}
+
+script MaguroHarbor_EventScript_MartMom{
+    lock
+	faceplayer
+    speakername("Merchant")
+    msgbox(format(
+		"It's hard selling at the market."
+	))
+    closemessage
+	release
 }
