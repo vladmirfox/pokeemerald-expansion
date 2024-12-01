@@ -81,4 +81,4 @@ SINGLE_BATTLE_TEST("Stance Change doesn't change Aegislash to Shield if King's S
     }
 }
 
-SINGLE_BATTLE_TEST("Stance Change doesn't change Aegislash to Shield if King's Shield is called by a different move - Me First");
+TO_DO_BATTLE_TEST("Stance Change doesn't change Aegislash to Shield if King's Shield is called by a different move - Me First");
