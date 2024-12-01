@@ -1181,6 +1181,7 @@ EventScript_VsSeekerChargingDone::
 	.include "data/maps/BeachboundRoute/scripts.inc"
 
 	.include "data/maps/MaguroHarbor/scripts.inc"
+	.include "data/scripts/schedule/maguro_harbor.inc"
 
 	.include "data/maps/WindsweptRoute/scripts.inc"
 

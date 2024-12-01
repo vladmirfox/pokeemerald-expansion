@@ -9,7 +9,7 @@ script ChiiTown_NPCSchedules{
 	setflag(CHII_TOWN_LITTLE_GIRL_FLAG)
     setflag(CHII_TOWN_MOM_FLAG)
     gettimeofday
-	switch(var(VAR_HOUR_OF_DAY)){
+	switch(var(VAR_TIME_OF_DAY)){
         case TIME_DEAD_NIGHT:
             call(ChiiTown_DeadNightSchedules)
         case TIME_EARLY:
@@ -59,7 +59,7 @@ const FLAG_HIDE_SCHOOLERS = FLAG_TEMP_1
 script ChiiTownSchool_NPCSchedules{
 	setflag(FLAG_TEMP_1)
     gettimeofday
-	switch(var(VAR_HOUR_OF_DAY)){
+	switch(var(VAR_TIME_OF_DAY)){
         case TIME_DEAD_NIGHT:
             call(ChiiTownSchool_DeadNightSchedules)
         case TIME_EARLY:

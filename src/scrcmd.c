@@ -717,7 +717,12 @@ bool8 ScrCmd_dotimebasedevents(struct ScriptContext *ctx)
 bool8 ScrCmd_gettimeofday(struct ScriptContext *ctx)
 {
     gSpecialVar_0x8000 = GetTimeOfDay();
-    MgbaPrintf(MGBA_LOG_WARN, "Time: %u", VarGet(gSpecialVar_0x8000));
+    return FALSE;
+}
+
+bool8 ScrCmd_getweekday(struct ScriptContext *ctx)
+{
+    gSpecialVar_0x8000 = GetDayOfWeek();
     return FALSE;
 }
 

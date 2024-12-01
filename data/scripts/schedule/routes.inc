@@ -1,60 +1,60 @@
 BeachboundRoute_NPCSchedule::
-# 17 "data/scripts/schedule/routes.pory"
+# 9 "data/scripts/schedule/routes.pory"
 	setflag FLAG_TEMP_6
-# 18 "data/scripts/schedule/routes.pory"
+# 10 "data/scripts/schedule/routes.pory"
 	setflag FLAG_TEMP_7
-# 19 "data/scripts/schedule/routes.pory"
+# 11 "data/scripts/schedule/routes.pory"
 	gettimeofday
-# 20 "data/scripts/schedule/routes.pory"
-	switch VAR_0x8000
+# 12 "data/scripts/schedule/routes.pory"
+	switch VAR_TIME_OF_DAY
+# 13 "data/scripts/schedule/routes.pory"
+	case TIME_DEAD_NIGHT, BeachboundRoute_NPCSchedule_2
+# 15 "data/scripts/schedule/routes.pory"
+	case TIME_EARLY, BeachboundRoute_NPCSchedule_3
+# 17 "data/scripts/schedule/routes.pory"
+	case TIME_MORNING, BeachboundRoute_NPCSchedule_4
+# 19 "data/scripts/schedule/routes.pory"
+	case TIME_LUNCHTIME, BeachboundRoute_NPCSchedule_5
 # 21 "data/scripts/schedule/routes.pory"
-	case 0, BeachboundRoute_NPCSchedule_2
+	case TIME_AFTERNOON, BeachboundRoute_NPCSchedule_6
 # 23 "data/scripts/schedule/routes.pory"
-	case 1, BeachboundRoute_NPCSchedule_3
+	case TIME_EVENING, BeachboundRoute_NPCSchedule_7
 # 25 "data/scripts/schedule/routes.pory"
-	case 2, BeachboundRoute_NPCSchedule_4
-# 27 "data/scripts/schedule/routes.pory"
-	case 3, BeachboundRoute_NPCSchedule_5
-# 29 "data/scripts/schedule/routes.pory"
-	case 4, BeachboundRoute_NPCSchedule_6
-# 31 "data/scripts/schedule/routes.pory"
-	case 5, BeachboundRoute_NPCSchedule_7
-# 33 "data/scripts/schedule/routes.pory"
-	case 6, BeachboundRoute_NPCSchedule_8
+	case TIME_NIGHT, BeachboundRoute_NPCSchedule_8
 	return
 
 BeachboundRoute_NPCSchedule_2:
-# 22 "data/scripts/schedule/routes.pory"
+# 14 "data/scripts/schedule/routes.pory"
 	call BeachboundRoute_DeadNightSchedules
 	return
 
 BeachboundRoute_NPCSchedule_3:
-# 24 "data/scripts/schedule/routes.pory"
+# 16 "data/scripts/schedule/routes.pory"
 	call BeachboundRoute_EarlySchedules
 	return
 
 BeachboundRoute_NPCSchedule_4:
-# 26 "data/scripts/schedule/routes.pory"
+# 18 "data/scripts/schedule/routes.pory"
 	call BeachboundRoute_MorningSchedules
 	return
 
 BeachboundRoute_NPCSchedule_5:
-# 28 "data/scripts/schedule/routes.pory"
+# 20 "data/scripts/schedule/routes.pory"
 	call BeachboundRoute_LunchtimeSchedules
 	return
 
 BeachboundRoute_NPCSchedule_6:
-# 30 "data/scripts/schedule/routes.pory"
+# 22 "data/scripts/schedule/routes.pory"
 	call BeachboundRoute_AfternoonSchedules
 	return
 
 BeachboundRoute_NPCSchedule_7:
-# 32 "data/scripts/schedule/routes.pory"
+# 24 "data/scripts/schedule/routes.pory"
 	call BeachboundRoute_EveningSchedules
 	return
 
 BeachboundRoute_NPCSchedule_8:
-# 34 "data/scripts/schedule/routes.pory"
+# 26 "data/scripts/schedule/routes.pory"
 	call BeachboundRoute_NightSchedules
 	return
 
@@ -64,37 +64,41 @@ BeachboundRoute_DeadNightSchedules:
 
 
 BeachboundRoute_EarlySchedules:
-# 43 "data/scripts/schedule/routes.pory"
+# 35 "data/scripts/schedule/routes.pory"
 	clearflag FLAG_TEMP_6
 	return
 
 
 BeachboundRoute_MorningSchedules:
-# 47 "data/scripts/schedule/routes.pory"
+# 39 "data/scripts/schedule/routes.pory"
 	clearflag FLAG_TEMP_6
 	return
 
 
 BeachboundRoute_LunchtimeSchedules:
-# 50 "data/scripts/schedule/routes.pory"
+# 42 "data/scripts/schedule/routes.pory"
 	clearflag FLAG_TEMP_6
 	return
 
 
 BeachboundRoute_AfternoonSchedules:
-# 53 "data/scripts/schedule/routes.pory"
+# 45 "data/scripts/schedule/routes.pory"
 	clearflag FLAG_TEMP_6
 	return
 
 
 BeachboundRoute_EveningSchedules:
-# 56 "data/scripts/schedule/routes.pory"
+# 48 "data/scripts/schedule/routes.pory"
 	clearflag FLAG_TEMP_6
-# 57 "data/scripts/schedule/routes.pory"
+# 49 "data/scripts/schedule/routes.pory"
 	clearflag FLAG_TEMP_7
+# 50 "data/scripts/schedule/routes.pory"
+	clearflag FLAG_TEMP_5
 	return
 
 
 BeachboundRoute_NightSchedules:
+# 53 "data/scripts/schedule/routes.pory"
+	clearflag FLAG_TEMP_5
 	return
 

@@ -8,7 +8,7 @@ const LOCALID_CROBAT_SHADOW_GRUNT_LEFT = 24
 const LOCALID_KECLEON = 27
 const FLAG_HIDE_CUT_MASTER = FLAG_TEMP_1
 const VAR_DO_CUT_MASTER_CUTSCENE = VAR_TEMP_0
-const VAR_HOUR_OF_DAY = VAR_0x8000
+const VAR_TIME_OF_DAY = VAR_0x8000
 const FLAG_HIDE_FLETCHLING = FLAG_TEMP_2
 
 mapscripts TranquilRoute_MapScripts {
@@ -29,7 +29,7 @@ script TranquilRoute_EventScript_SpawnBirds {
 
 	gettime
 	// Day
-	if (var(VAR_HOUR_OF_DAY) >= 9 && var(VAR_HOUR_OF_DAY) <= 17) {
+	if (var(VAR_TIME_OF_DAY) >= 9 && var(VAR_TIME_OF_DAY) <= 17) {
 		clearflag(FLAG_HIDE_FLETCHLING)
 	}
 }
@@ -107,7 +107,7 @@ script TranquilRoute_EventScript_SetupCutGrassCutscene {
 		}
 	} else {
 		gettime
-		if (var(VAR_HOUR_OF_DAY) < 7 || var(VAR_HOUR_OF_DAY) > 19) {
+		if (var(VAR_TIME_OF_DAY) < 7 || var(VAR_TIME_OF_DAY) > 19) {
 			setflag(FLAG_HIDE_CUT_MASTER)
 		}
 	}

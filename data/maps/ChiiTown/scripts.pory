@@ -3,7 +3,7 @@ const FLAG_TAILLOW_2 = FLAG_TEMP_2
 const FLAG_FLETCHLING_1 = FLAG_TEMP_3
 const FLAG_FLETCHLING_2 = FLAG_TEMP_4
 
-const VAR_HOUR_OF_DAY = VAR_0x8000
+const VAR_TIME_OF_DAY = VAR_0x8000
 
 const VAR_DAY = VAR_0x8000
 const VAR_MONTH = VAR_0x8001
@@ -43,7 +43,7 @@ script ChiiTown_EventScript_SpawnBirds {
 
 	gettime
 	// Morning
-	if (var(VAR_HOUR_OF_DAY) >= 5 && var(VAR_HOUR_OF_DAY) <= 8) {
+	if (var(VAR_TIME_OF_DAY) >= 5 && var(VAR_TIME_OF_DAY) <= 8) {
 		random(2)
 		switch(var(VAR_RESULT)) {
 			case 0:
@@ -52,7 +52,7 @@ script ChiiTown_EventScript_SpawnBirds {
 				clearflag(FLAG_TAILLOW_2)
 		}
 		// Day
-	} elif (var(VAR_HOUR_OF_DAY) >= 9 && var(VAR_HOUR_OF_DAY) <= 17) {
+	} elif (var(VAR_TIME_OF_DAY) >= 9 && var(VAR_TIME_OF_DAY) <= 17) {
 		random(2)
 		switch(var(VAR_RESULT)) {
 			case 0:

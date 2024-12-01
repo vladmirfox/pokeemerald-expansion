@@ -6,7 +6,7 @@ KuraVillage_NPCSchedules::
 # 10 "data/scripts/schedule/kura_village.pory"
 	gettimeofday
 # 11 "data/scripts/schedule/kura_village.pory"
-	switch VAR_HOUR_OF_DAY
+	switch VAR_TIME_OF_DAY
 # 12 "data/scripts/schedule/kura_village.pory"
 	case TIME_DEAD_NIGHT, KuraVillage_NPCSchedules_2
 # 14 "data/scripts/schedule/kura_village.pory"
@@ -97,69 +97,83 @@ KuraVillage_NightSchedules:
 
 KuraVillage_DrawMetatiles::
 # 54 "data/scripts/schedule/kura_village.pory"
-	switch VAR_HOUR_OF_DAY
+	switch VAR_TIME_OF_DAY
 # 55 "data/scripts/schedule/kura_village.pory"
 	case TIME_DEAD_NIGHT, KuraVillage_DrawMetatiles_2
-# 58 "data/scripts/schedule/kura_village.pory"
+# 59 "data/scripts/schedule/kura_village.pory"
 	case TIME_EARLY, KuraVillage_DrawMetatiles_3
-# 61 "data/scripts/schedule/kura_village.pory"
+# 63 "data/scripts/schedule/kura_village.pory"
 	case TIME_MORNING, KuraVillage_DrawMetatiles_4
-# 64 "data/scripts/schedule/kura_village.pory"
-	case TIME_LUNCHTIME, KuraVillage_DrawMetatiles_5
 # 67 "data/scripts/schedule/kura_village.pory"
+	case TIME_LUNCHTIME, KuraVillage_DrawMetatiles_5
+# 71 "data/scripts/schedule/kura_village.pory"
 	case TIME_AFTERNOON, KuraVillage_DrawMetatiles_6
-# 70 "data/scripts/schedule/kura_village.pory"
+# 75 "data/scripts/schedule/kura_village.pory"
 	case TIME_EVENING, KuraVillage_DrawMetatiles_7
-# 73 "data/scripts/schedule/kura_village.pory"
+# 79 "data/scripts/schedule/kura_village.pory"
 	case TIME_NIGHT, KuraVillage_DrawMetatiles_8
 	return
 
 KuraVillage_DrawMetatiles_2:
 # 56 "data/scripts/schedule/kura_village.pory"
-	setmetatile 34, 25, METATILE_SakuKura_ClosedDojoDoor, TRUE
+	setmetatile 18, 7, METATILE_SakuKura_ClosedDojoDoor, TRUE
 # 57 "data/scripts/schedule/kura_village.pory"
+	setmetatile 34, 25, METATILE_SakuKura_ClosedDojoDoor, TRUE
+# 58 "data/scripts/schedule/kura_village.pory"
 	setmetatile 43, 23, METATILE_SakuKura_ClosedDojoDoor, TRUE
 	return
 
 KuraVillage_DrawMetatiles_3:
-# 59 "data/scripts/schedule/kura_village.pory"
-	setmetatile 34, 25, METATILE_PorytilesPrimaryTutorial_OpenDoor, FALSE
 # 60 "data/scripts/schedule/kura_village.pory"
+	setmetatile 18, 7, METATILE_PorytilesPrimaryTutorial_OpenDoor, FALSE
+# 61 "data/scripts/schedule/kura_village.pory"
+	setmetatile 34, 25, METATILE_PorytilesPrimaryTutorial_OpenDoor, FALSE
+# 62 "data/scripts/schedule/kura_village.pory"
 	setmetatile 43, 23, METATILE_PorytilesPrimaryTutorial_OpenDoor, FALSE
 	return
 
 KuraVillage_DrawMetatiles_4:
-# 62 "data/scripts/schedule/kura_village.pory"
-	setmetatile 34, 25, METATILE_PorytilesPrimaryTutorial_OpenDoor, FALSE
-# 63 "data/scripts/schedule/kura_village.pory"
-	setmetatile 43, 23, METATILE_PorytilesPrimaryTutorial_OpenDoor, FALSE
-	return
-
-KuraVillage_DrawMetatiles_5:
+# 64 "data/scripts/schedule/kura_village.pory"
+	setmetatile 18, 7, METATILE_PorytilesPrimaryTutorial_OpenDoor, FALSE
 # 65 "data/scripts/schedule/kura_village.pory"
 	setmetatile 34, 25, METATILE_PorytilesPrimaryTutorial_OpenDoor, FALSE
 # 66 "data/scripts/schedule/kura_village.pory"
 	setmetatile 43, 23, METATILE_PorytilesPrimaryTutorial_OpenDoor, FALSE
 	return
 
-KuraVillage_DrawMetatiles_6:
+KuraVillage_DrawMetatiles_5:
 # 68 "data/scripts/schedule/kura_village.pory"
-	setmetatile 34, 25, METATILE_PorytilesPrimaryTutorial_OpenDoor, FALSE
+	setmetatile 18, 7, METATILE_PorytilesPrimaryTutorial_OpenDoor, FALSE
 # 69 "data/scripts/schedule/kura_village.pory"
+	setmetatile 34, 25, METATILE_PorytilesPrimaryTutorial_OpenDoor, FALSE
+# 70 "data/scripts/schedule/kura_village.pory"
+	setmetatile 43, 23, METATILE_PorytilesPrimaryTutorial_OpenDoor, FALSE
+	return
+
+KuraVillage_DrawMetatiles_6:
+# 72 "data/scripts/schedule/kura_village.pory"
+	setmetatile 18, 7, METATILE_PorytilesPrimaryTutorial_OpenDoor, FALSE
+# 73 "data/scripts/schedule/kura_village.pory"
+	setmetatile 34, 25, METATILE_PorytilesPrimaryTutorial_OpenDoor, FALSE
+# 74 "data/scripts/schedule/kura_village.pory"
 	setmetatile 43, 23, METATILE_PorytilesPrimaryTutorial_OpenDoor, FALSE
 	return
 
 KuraVillage_DrawMetatiles_7:
-# 71 "data/scripts/schedule/kura_village.pory"
+# 76 "data/scripts/schedule/kura_village.pory"
+	setmetatile 18, 7, METATILE_PorytilesPrimaryTutorial_OpenDoor, FALSE
+# 77 "data/scripts/schedule/kura_village.pory"
 	setmetatile 34, 25, METATILE_PorytilesPrimaryTutorial_OpenDoor, FALSE
-# 72 "data/scripts/schedule/kura_village.pory"
+# 78 "data/scripts/schedule/kura_village.pory"
 	setmetatile 43, 23, METATILE_PorytilesPrimaryTutorial_OpenDoor, FALSE
 	return
 
 KuraVillage_DrawMetatiles_8:
-# 74 "data/scripts/schedule/kura_village.pory"
+# 80 "data/scripts/schedule/kura_village.pory"
+	setmetatile 18, 7, METATILE_PorytilesPrimaryTutorial_OpenDoor, FALSE
+# 81 "data/scripts/schedule/kura_village.pory"
 	setmetatile 34, 25, METATILE_PorytilesPrimaryTutorial_OpenDoor, FALSE
-# 75 "data/scripts/schedule/kura_village.pory"
+# 82 "data/scripts/schedule/kura_village.pory"
 	setmetatile 43, 23, METATILE_PorytilesPrimaryTutorial_OpenDoor, FALSE
 	return
 

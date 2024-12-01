@@ -1,0 +1,86 @@
+/////////////////////////////////
+//////////MAGURO HARBOR//////////
+/////////////////////////////////
+const FLAG_HIDE_MERCHANTS_SELLING = FLAG_TEMP_1
+const FLAG_HIDE_MERCHANTS_SETTING = FLAG_TEMP_2
+const FLAG_HIDE_YOUNG_COUPLE_GIRL = FLAG_TEMP_3
+const FLAG_HIDE_FISHERMAN = FLAG_TEMP_4
+
+script MaguroHarbor_NPCSchedules{
+	setflag(FLAG_HIDE_MERCHANTS_SETTING)
+    setflag(FLAG_HIDE_MERCHANTS_SELLING)
+    setflag(FLAG_HIDE_YOUNG_COUPLE_GIRL)
+    setflag(FLAG_HIDE_FISHERMAN)
+    gettimeofday
+	switch(var(VAR_TIME_OF_DAY)){
+        case TIME_DEAD_NIGHT:
+            call(MaguroHarbor_DeadNightSchedules)
+        case TIME_EARLY:
+            call(MaguroHarbor_EarlySchedules)
+        case TIME_MORNING:
+            call(MaguroHarbor_MorningSchedules)
+        case TIME_LUNCHTIME:
+            call(MaguroHarbor_LunchtimeSchedules)
+        case TIME_AFTERNOON:
+            call(MaguroHarbor_AfternoonSchedules)
+        case TIME_EVENING:
+            call(MaguroHarbor_EveningSchedules)
+        case TIME_NIGHT:
+            call(MaguroHarbor_NightSchedules)
+    }
+}
+
+script(local) MaguroHarbor_DeadNightSchedules{
+    clearflag(FLAG_HIDE_YOUNG_COUPLE_GIRL)
+}
+
+script(local) MaguroHarbor_EarlySchedules{
+    getweekday
+    if(var(VAR_DAY_OF_WEEK) == DAY_WEDNESDAY || var(VAR_DAY_OF_WEEK) == DAY_SATURDAY || var(VAR_DAY_OF_WEEK) == DAY_SUNDAY){
+        clearflag(FLAG_HIDE_MERCHANTS_SETTING)
+    }
+    else{}
+    clearflag(FLAG_HIDE_FISHERMAN)
+}
+
+script(local) MaguroHarbor_MorningSchedules{
+    getweekday
+    if(var(VAR_DAY_OF_WEEK) == DAY_WEDNESDAY || var(VAR_DAY_OF_WEEK) == DAY_SATURDAY || var(VAR_DAY_OF_WEEK) == DAY_SUNDAY){
+        clearflag(FLAG_HIDE_MERCHANTS_SELLING)
+    }
+    else{}
+    clearflag(FLAG_HIDE_YOUNG_COUPLE_GIRL)
+    clearflag(FLAG_HIDE_FISHERMAN)
+}
+script(local) MaguroHarbor_LunchtimeSchedules{
+    getweekday
+    if(var(VAR_DAY_OF_WEEK) == DAY_WEDNESDAY || var(VAR_DAY_OF_WEEK) == DAY_SATURDAY || var(VAR_DAY_OF_WEEK) == DAY_SUNDAY){
+        clearflag(FLAG_HIDE_MERCHANTS_SELLING)
+    }
+    else{}
+    clearflag(FLAG_HIDE_YOUNG_COUPLE_GIRL)
+    clearflag(FLAG_HIDE_FISHERMAN)
+}
+script(local) MaguroHarbor_AfternoonSchedules{
+    getweekday
+    if(var(VAR_DAY_OF_WEEK) == DAY_WEDNESDAY || var(VAR_DAY_OF_WEEK) == DAY_SATURDAY || var(VAR_DAY_OF_WEEK) == DAY_SUNDAY){
+        clearflag(FLAG_HIDE_MERCHANTS_SELLING)
+    }
+    else{}
+    clearflag(FLAG_HIDE_YOUNG_COUPLE_GIRL)
+    clearflag(FLAG_HIDE_FISHERMAN)
+}
+script(local) MaguroHarbor_EveningSchedules{
+    getweekday
+    if(var(VAR_DAY_OF_WEEK) == DAY_WEDNESDAY || var(VAR_DAY_OF_WEEK) == DAY_SATURDAY || var(VAR_DAY_OF_WEEK) == DAY_SUNDAY){
+        clearflag(FLAG_HIDE_MERCHANTS_SELLING)
+    }
+    else{}
+}
+script(local) MaguroHarbor_NightSchedules{
+    getweekday
+    if(var(VAR_DAY_OF_WEEK) == DAY_WEDNESDAY || var(VAR_DAY_OF_WEEK) == DAY_SATURDAY || var(VAR_DAY_OF_WEEK) == DAY_SUNDAY){
+        clearflag(FLAG_HIDE_MERCHANTS_SETTING)
+    }
+    else{}
+}

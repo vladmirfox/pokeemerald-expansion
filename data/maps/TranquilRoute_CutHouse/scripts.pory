@@ -1,5 +1,5 @@
 const LOCALID_CUTMASTER = 1
-const VAR_HOUR_OF_DAY = VAR_0x8000
+const VAR_TIME_OF_DAY = VAR_0x8000
 const FLAG_HIDE_CUT_MASTER = FLAG_TEMP_1
 
 mapscripts TranquilRoute_CutHouse_MapScripts {
@@ -7,7 +7,7 @@ mapscripts TranquilRoute_CutHouse_MapScripts {
 	MAP_SCRIPT_ON_TRANSITION {
 		if (flag(FLAG_CUT_QUEST_COMPLETED)) {
 			gettime
-			if (var(VAR_HOUR_OF_DAY) >= 7 && var(VAR_HOUR_OF_DAY) <= 19) {
+			if (var(VAR_TIME_OF_DAY) >= 7 && var(VAR_TIME_OF_DAY) <= 19) {
 				setflag(FLAG_HIDE_CUT_MASTER)
 			}
 		}

@@ -1,10 +1,7 @@
-const VAR_HOUR_OF_DAY = VAR_0x8000
-
-
 script  _NPCSchedules{
 	setflag(flags)
     gettimeofday
-	switch(var(VAR_HOUR_OF_DAY)){
+	switch(var(VAR_TIME_OF_DAY)){
         case TIME_DEAD_NIGHT:
             call( _DeadNightSchedules)
         case TIME_EARLY:
@@ -47,7 +44,7 @@ script(local)  _NightSchedules{
 }
 
 script  _DrawMetatiles{
-    switch(var(VAR_HOUR_OF_DAY)){
+    switch(var(VAR_TIME_OF_DAY)){
         case TIME_DEAD_NIGHT:
             setmetatile()
         case TIME_EARLY:

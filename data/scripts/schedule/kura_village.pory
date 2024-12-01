@@ -1,14 +1,15 @@
 //////////////////////////////////////
 /////////////KURA VILLAGE/////////////
 //////////////////////////////////////
-const HIDE_FARMERS_FLAG_WORK = FLAG_TEMP_1
-const HIDE_FARMERS_FLAG_LUNCH = FLAG_TEMP_2
+const FLAG_HIDE_FARMERS_FLAG_WORK = FLAG_TEMP_1
+const FLAG_HIDE_FARMERS_FLAG_LUNCH = FLAG_TEMP_2
+const FLAG_HIDE_YOUNG_COUPLE_BOY = FLAG_TEMP_3
 
 script KuraVillage_NPCSchedules{
 	setflag(FLAG_TEMP_1)
     setflag(FLAG_TEMP_2)
     gettimeofday
-	switch(var(VAR_HOUR_OF_DAY)){
+	switch(var(VAR_TIME_OF_DAY)){
         case TIME_DEAD_NIGHT:
             call(KuraVillage_DeadNightSchedules)
         case TIME_EARLY:
@@ -31,17 +32,20 @@ script(local) KuraVillage_DeadNightSchedules{
 }
 
 script(local) KuraVillage_EarlySchedules{
-    clearflag(HIDE_FARMERS_FLAG_WORK)
+    clearflag(FLAG_HIDE_FARMERS_FLAG_WORK)
 }
 
 script(local) KuraVillage_MorningSchedules{
-    clearflag(HIDE_FARMERS_FLAG_WORK)
+    clearflag(FLAG_HIDE_FARMERS_FLAG_WORK)
+    clearflag(FLAG_HIDE_YOUNG_COUPLE_BOY)
 }
 script(local) KuraVillage_LunchtimeSchedules{
-    clearflag(HIDE_FARMERS_FLAG_LUNCH)
+    clearflag(FLAG_HIDE_FARMERS_FLAG_LUNCH)
+    clearflag(FLAG_HIDE_YOUNG_COUPLE_BOY)
 }
 script(local) KuraVillage_AfternoonSchedules{
-    clearflag(HIDE_FARMERS_FLAG_WORK)
+    clearflag(FLAG_HIDE_FARMERS_FLAG_WORK)
+    clearflag(FLAG_HIDE_YOUNG_COUPLE_BOY)
 }
 script(local) KuraVillage_EveningSchedules{
 
@@ -51,7 +55,7 @@ script(local) KuraVillage_NightSchedules{
 }
 
 script KuraVillage_DrawMetatiles{
-    switch(var(VAR_HOUR_OF_DAY)){
+    switch(var(VAR_TIME_OF_DAY)){
         case TIME_DEAD_NIGHT:
             setmetatile(18, 7, METATILE_SakuKura_ClosedDojoDoor, TRUE)
             setmetatile(34, 25, METATILE_SakuKura_ClosedDojoDoor, TRUE)

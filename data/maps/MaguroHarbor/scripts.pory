@@ -1,5 +1,7 @@
 mapscripts MaguroHarbor_MapScripts {
-	
+	MAP_SCRIPT_ON_TRANSITION {
+		call(MaguroHarbor_NPCSchedules)
+	}
 }
 
 script MaguroHarbor_EventScript_TownSign {
@@ -11,12 +13,23 @@ script MaguroHarbor_EventScript_FishcakeSalesman {
 	faceplayer
 	
 	speakername("Old woman")
-	msgbox(format(
-		"Hello dear, want to try a fishcake?\p"
-		"They're the town's specialty!"
-	), MSGBOX_DEFAULT)
-	
-	giveitem(ITEM_FISHCAKE)
+	gettimeofday
+	switch(var(VAR_TIME_OF_DAY)){
+		case TIME_EARLY:
+			msgbox(format(
+				"Oh dear, I haven't finished setting up yet!"
+			), MSGBOX_DEFAULT)		
+		case TIME_NIGHT:
+			msgbox(format(
+				"Oh dear, We're closed! I'm sorry."
+			), MSGBOX_DEFAULT)
+		default:
+			msgbox(format(
+				"Hello dear, want to try a fishcake?\p"
+				"They're the town's specialty!"
+			), MSGBOX_DEFAULT)
+			giveitem(ITEM_FISHCAKE)
+	}
 
 	closemessage
 	release
@@ -26,9 +39,22 @@ script MaguroHarbor_EventScript_FishPokemonSalesman {
 	lock
 	faceplayer
 	speakername("Salesman")
-	msgbox(format(
-		"Fresh fish! Come get yer fish!"
-	), MSGBOX_DEFAULT)
+	gettimeofday
+	switch(var(VAR_TIME_OF_DAY)){
+		case TIME_EARLY:
+		case TIME_NIGHT:
+		default:
+	}
+	if(var(VAR_TIME_OF_DAY) == TIME_EARLY){
+		msgbox(format(
+			"Oop! We're not open yet. Come back later!"
+		), MSGBOX_DEFAULT)
+	}
+	else{
+		msgbox(format(
+			"Fresh fish! Come get yer fish!"
+		), MSGBOX_DEFAULT)
+	}
 	// TODO EVA fish mons
 	closemessage
 	release
@@ -118,14 +144,45 @@ script MaguroHarbor_EventScript_Man {
 	release
 }
 
+script MaguroHarbor_EventScript_CoupleGirl{
+	lock
+	faceplayer
+	speakername("Young girl")
+	gettimeofday
+	if(var(VAR_TIME_OF_DAY) == TIME_DEAD_NIGHT){
+		msgbox(format(
+		"I can't wait to see my love again…"
+	))
+	}
+	else{
+		msgbox(format(
+		"I can't wait to see my love soon…"
+	))
+	}
+	closemessage
+	release
+}
+
 script MaguroHarbor_EventScript_Mart {
 	lock
 	faceplayer
 	speakername("Clerk")
-	message(gText_HowMayIServeYou)
-	waitmessage
-	pokemart(MaguroHarbor_Mart)
-	msgbox(gText_PleaseComeAgain, MSGBOX_DEFAULT)
+	gettimeofday
+	switch(var(VAR_TIME_OF_DAY)){
+		case TIME_EARLY:
+			msgbox(format(
+				"Oop! We're not open yet. Come back later!"
+			), MSGBOX_DEFAULT)
+		case TIME_NIGHT:
+			msgbox(format(
+				"Oop! We're closed. Come back another time!"
+			), MSGBOX_DEFAULT)
+		default:
+			message(gText_HowMayIServeYou)
+			waitmessage
+			pokemart(MaguroHarbor_Mart)
+			msgbox(gText_PleaseComeAgain, MSGBOX_DEFAULT)
+	}
 	release
 }
 

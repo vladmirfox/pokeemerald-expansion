@@ -334,6 +334,11 @@
 	.byte 0xe8
 	.endm
 
+	@ Sets the value of variable VAR_0x8000 to the current day of the week.
+	.macro getweekday
+	callnative ScrCmd_getweekday
+	.endm
+
 	@ Plays the specified sound. Only one sound may play at a time, with newer ones interrupting older ones.
 	.macro playse song:req
 	.byte 0x2f

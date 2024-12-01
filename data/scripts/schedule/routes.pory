@@ -9,7 +9,7 @@ script BeachboundRoute_NPCSchedule{
 	setflag(FLAG_HIDE_SHEPHERD)
 	setflag(FLAG_HIDE_KIDS)
 	gettimeofday
-    switch(var(VAR_HOUR_OF_DAY)){
+    switch(var(VAR_TIME_OF_DAY)){
         case TIME_DEAD_NIGHT:
             call(BeachboundRoute_DeadNightSchedules)
         case TIME_EARLY:
