@@ -1671,7 +1671,6 @@
 
 	.macro jumpifsleepclause battler:req, jumpInstr:req
 	callnative BS_JumpIfSleepClause
-	.byte \battler
 	.4byte \jumpInstr
 	.endm
 

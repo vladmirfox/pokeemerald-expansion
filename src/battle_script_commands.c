@@ -10167,7 +10167,7 @@ static void Cmd_various(void)
     }
     case VARIOUS_PSYCHO_SHIFT:
         {
-            VARIOUS_ARGS(const u8 *failInstr, const u8 * sleepClauseFailInstr);
+            VARIOUS_ARGS(const u8 *failInstr, const u8 *sleepClauseFailInstr);
             u32 targetAbility = GetBattlerAbility(gBattlerTarget);
             // Psycho shift works
             if ((gBattleMons[gBattlerAttacker].status1 & STATUS1_POISON) && CanBePoisoned(gBattlerAttacker, gBattlerTarget, targetAbility))
@@ -17296,8 +17296,7 @@ void BS_DamageToQuarterTargetHP(void)
 
 void BS_JumpIfSleepClause(void)
 {
-    NATIVE_ARGS(u8 battler, const u8 *jumpInstr);
-    u8 battler = GetBattlerForBattleScript(cmd->battler);
+    NATIVE_ARGS(const u8 *jumpInstr);
 
     // Can freely sleep own partner
     if (IsDoubleBattle() && B_FLAG_SLEEP_CLAUSE && GetBattlerSide(gBattlerAttacker) == GetBattlerSide(gBattlerTarget))
@@ -17308,7 +17307,7 @@ void BS_JumpIfSleepClause(void)
     }
     gBattleStruct->sleepClauseEffectExempt &= ~(1u << gBattlerTarget);
     // Can't sleep if clause is active otherwise
-    if (IsSleepClauseActiveForSide(GetBattlerSide(battler)))
+    if (IsSleepClauseActiveForSide(GetBattlerSide(gBattlerTarget)))
         gBattlescriptCurrInstr = cmd->jumpInstr;
     else
         gBattlescriptCurrInstr = cmd->nextInstr;
