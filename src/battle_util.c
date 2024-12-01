@@ -10848,12 +10848,12 @@ u16 GetBattleFormChangeTargetSpecies(u32 battler, u16 method)
                     if (GetBattlerTeraType(battler) == formChanges[i].param1)
                         targetSpecies = formChanges[i].targetSpecies;
                     break;
-                case FORM_CHANGE_BATTLE_MOVE:
+                case FORM_CHANGE_BATTLE_BEFORE_MOVE:
                     if (formChanges[i].param1 == gCurrentMove
                      && (formChanges[i].param2 == ABILITY_NONE || formChanges[i].param2 == GetBattlerAbility(battler)))
                         targetSpecies = formChanges[i].targetSpecies;
                     break;
-                case FORM_CHANGE_BATTLE_MOVE_CATEGORY:
+                case FORM_CHANGE_BATTLE_BEFORE_MOVE_CATEGORY:
                     if (formChanges[i].param1 == GetBattleMoveCategory(gCurrentMove)
                      && (formChanges[i].param2 == ABILITY_NONE || formChanges[i].param2 == GetBattlerAbility(battler)))
                         targetSpecies = formChanges[i].targetSpecies;
