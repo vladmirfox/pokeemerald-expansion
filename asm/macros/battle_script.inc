@@ -1667,7 +1667,7 @@
 	callnative BS_DamageToQuarterTargetHP
 	.endm
 
-	.macro jumpifsleepclause battler:req, jumpInstr:req
+	.macro jumpifsleepclause jumpInstr:req
 	callnative BS_JumpIfSleepClause
 	.4byte \jumpInstr
 	.endm
