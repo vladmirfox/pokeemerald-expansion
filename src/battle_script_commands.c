@@ -3232,6 +3232,11 @@ void SetMoveEffect(bool32 primary, bool32 certain)
 
                 TryActivateSleepClause(gEffectBattler, gBattlerPartyIndexes[gEffectBattler]);
             }
+            else if (sStatusFlagsForMoveEffects[gBattleScripting.moveEffect] == STATUS1_DROWSY) 
+            {
+                gBattleMons[gBattlerTarget].status1 |= STATUS1_DROWSY;
+                TryActivateSleepClause(gEffectBattler, gBattlerPartyIndexes[gEffectBattler]);
+            }
             else
             {
                 gBattleMons[gEffectBattler].status1 |= sStatusFlagsForMoveEffects[gBattleScripting.moveEffect];
