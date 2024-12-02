@@ -2391,6 +2391,7 @@ bool32 IsMoveSleepClauseTrigger(u32 move)
         {
         case MAX_EFFECT_EFFECT_SPORE_FOES:
         case MAX_EFFECT_YAWN_FOE:
+            return TRUE;
         }
     }
     return FALSE;
