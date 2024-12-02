@@ -113,13 +113,13 @@
     "Silveridge_House1",
     "Silveridge_Refuge"
   ],
-  "gMapGroup_Dungeons":[
+  "gMapGroup_Dungeons": [
     "GinkoWoods",
     "SilverTunnel_1F",
     "SilverTunnel_2F",
     "UumeForest"
   ],
-  "gMapGroup_VanillaMaps1":[
+  "gMapGroup_VanillaMaps1": [
     "PetalburgCity",
     "SlateportCity",
     "MauvilleCity",
@@ -374,7 +374,7 @@
     "MtPyre_4F",
     "MtPyre_5F"
   ],
-  "gMapGroup_VanillaMaps2":[
+  "gMapGroup_VanillaMaps2": [
     "MtPyre_6F",
     "MtPyre_Exterior",
     "MtPyre_Summit",
@@ -631,7 +631,7 @@
     "Route110_SeasideCyclingRoadSouthEntrance",
     "Route113_GlassWorkshop"
   ],
-  "gMapGroup_VanillaMaps3":[
+  "gMapGroup_VanillaMaps3": [
     "Route123_BerryMastersHouse",
     "Route119_WeatherInstitute_1F",
     "Route119_WeatherInstitute_2F",
