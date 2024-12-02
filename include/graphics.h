@@ -2,6 +2,7 @@
 #define GUARD_GRAPHICS_H
 
 // overworld
+extern const u32 gSignpostWindow_Gfx[];
 extern const u32 gMessageBox_Gfx[];
 extern const u16 gMessageBox_Pal[];
 
@@ -2886,6 +2887,8 @@ extern const u32 gBattleAnimSpritePal_IvyCudgelGrass[];
 extern const u32 gBattleAnimSpritePal_IvyCudgelFire[];
 extern const u32 gBattleAnimSpritePal_IvyCudgelRock[];
 extern const u32 gBattleAnimSpritePal_IvyCudgelWater[];
+extern const u32 gBattleAnimSpriteGfx_PinkVioletOrb[];
+extern const u32 gBattleAnimSpritePal_PinkVioletOrb[];
 
 extern const u32 gBattleAnimBgImage_Dark[];
 extern const u32 gBattleAnimBgImage_Ghost[];
