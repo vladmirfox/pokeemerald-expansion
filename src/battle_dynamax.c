@@ -881,7 +881,7 @@ void BS_TrySetStatus1(void)
             }
             break;
         case STATUS1_DROWSY:
-            if (CanBeSleptOrDrowsy(gBattlerTarget, GetBattlerAbility(gBattlerTarget)))
+            if (CanBeSleptOrDrowsy(gBattlerTarget, GetBattlerAbility(gBattlerTarget), TRUE))
             {
                 gBattleMons[gBattlerTarget].status1 |= STATUS1_DROWSY;
                 gBattleCommunication[MULTISTRING_CHOOSER] = 6;

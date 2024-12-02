@@ -2961,7 +2961,7 @@ bool32 AI_CanParalyze(u32 battlerAtk, u32 battlerDef, u32 defAbility, u32 move, 
 
 bool32 AI_CanGiveDrowsy(u32 battlerAtk, u32 battlerDef, u32 defAbility, u32 move, u32 partnerMove)
 {
-    if (!CanBeSleptOrDrowsy(battlerDef, defAbility)
+    if (!CanBeSleptOrDrowsy(battlerDef, defAbility, TRUE)
       || DoesSubstituteBlockMove(battlerAtk, battlerDef, move)
       || PartnerMoveEffectIsStatusSameTarget(BATTLE_PARTNER(battlerAtk), battlerDef, partnerMove))
         return FALSE;

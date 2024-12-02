@@ -3213,7 +3213,7 @@ void SetMoveEffect(bool32 primary, bool32 certain)
 
             if (i != gBattlersCount)
                 break;
-            if (!CanBeSleptOrDrowsy(gEffectBattler, GetBattlerAbility(gEffectBattler)))
+            if (!CanBeSleptOrDrowsy(gEffectBattler, GetBattlerAbility(gEffectBattler), TRUE) && !(gBattleStruct->sleepClauseEffectExempt & (1u << gEffectBattler)))
                 break;
 
             statusChanged = TRUE;
