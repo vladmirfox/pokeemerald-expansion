@@ -16,7 +16,7 @@ SINGLE_BATTLE_TEST("Liquid Ooze causes leech seedee to faint before seeder")
         // Drain at end of turn
         ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_LEECH_SEED_DRAIN, opponent);
         if (ability != ABILITY_LIQUID_OOZE) {
-            MESSAGE("Foe Tentacool's health is sapped by Leech Seed!");
+            MESSAGE("Foe Tentacool's health is sapped by LEECH SEED!");
             MESSAGE("Foe Tentacool fainted!");
         } else {
             ABILITY_POPUP(opponent, ABILITY_LIQUID_OOZE);
