@@ -950,7 +950,7 @@ DewfordTown_Text_BrawlyIslandIntro:
 DewfordTown_Text_BrawlyStolenEquipment:
 	.string "BRAWLY: But last night someone came\n"
 	.string "and stole our equipment!\p"
-	.string "I heard from my friend AARON\n"
+	.string "I heard from my friend WALLY\n"
 	.string "that you helped him defeat those\l"
 	.string "goons interfering with the DELTA\l"
 	.string "PROJECT in PETALBURG CITY.\p"

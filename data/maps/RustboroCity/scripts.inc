@@ -157,6 +157,8 @@ RustboroCity_EventScript_DevonEmployee2::
 	end
 
 RustboroCity_EventScript_Woman::
+	setvar VAR_RUSTBORO_CITY_STATE, 7
+	clearflag FLAG_HIDE_RUSTBORO_CITY_RIVAL
 	msgbox RustboroCity_Text_GymLeaderIsntEasyWithFire, MSGBOX_NPC
 	end
 
@@ -683,7 +685,17 @@ RustboroCity_EventScript_Rival::
 	call_if_unset FLAG_MET_RIVAL_RUSTBORO, RustboroCity_EventScript_PlayRivalMusic
 	applymovement LOCALID_RIVAL, Common_Movement_FacePlayer
 	waitmovement 0
+	call_if_eq VAR_FACING, DIR_NORTH, RustboroCity_EventScript_SetRivalExitLeft
+	call_if_ne VAR_FACING, DIR_NORTH, RustboroCity_EventScript_SetRivalExitStraightDown
 	goto RustboroCity_EventScript_RivalEncounter
+
+RustboroCity_EventScript_SetRivalExitStraightDown::
+	setvar VAR_0x8004, 2
+	return
+
+RustboroCity_EventScript_SetRivalExitLeft::
+	setvar VAR_0x8004, 1
+	return
 
 RustboroCity_EventScript_PlayRivalMusic::
 	checkplayergender
@@ -713,6 +725,7 @@ RustboroCity_EventScript_RivalTrigger0::
 	waitmovement 0
 	applymovement OBJ_EVENT_ID_PLAYER, Common_Movement_WalkInPlaceFasterUp
 	waitmovement 0
+	setvar VAR_0x8004, 0
 	goto RustboroCity_EventScript_RivalEncounter
 
 RustboroCity_EventScript_RivalTrigger1::
@@ -729,6 +742,7 @@ RustboroCity_EventScript_RivalTrigger1::
 	waitmovement 0
 	applymovement OBJ_EVENT_ID_PLAYER, Common_Movement_WalkInPlaceFasterUp
 	waitmovement 0
+	setvar VAR_0x8004, 1
 	goto RustboroCity_EventScript_RivalEncounter
 
 RustboroCity_EventScript_RivalTrigger2::
@@ -745,6 +759,7 @@ RustboroCity_EventScript_RivalTrigger2::
 	waitmovement 0
 	applymovement OBJ_EVENT_ID_PLAYER, Common_Movement_WalkInPlaceFasterUp
 	waitmovement 0
+	setvar VAR_0x8004, 0
 	goto RustboroCity_EventScript_RivalEncounter
 
 RustboroCity_EventScript_RivalTrigger3::
@@ -761,6 +776,7 @@ RustboroCity_EventScript_RivalTrigger3::
 	waitmovement 0
 	applymovement OBJ_EVENT_ID_PLAYER, Common_Movement_WalkInPlaceFasterUp
 	waitmovement 0
+	setvar VAR_0x8004, 0
 	goto RustboroCity_EventScript_RivalEncounter
 
 RustboroCity_EventScript_RivalTrigger4::
@@ -777,6 +793,7 @@ RustboroCity_EventScript_RivalTrigger4::
 	waitmovement 0
 	applymovement OBJ_EVENT_ID_PLAYER, Common_Movement_WalkInPlaceFasterUp
 	waitmovement 0
+	setvar VAR_0x8004, 1
 	goto RustboroCity_EventScript_RivalEncounter
 
 RustboroCity_EventScript_RivalTrigger5::
@@ -793,6 +810,7 @@ RustboroCity_EventScript_RivalTrigger5::
 	waitmovement 0
 	applymovement OBJ_EVENT_ID_PLAYER, Common_Movement_WalkInPlaceFasterUp
 	waitmovement 0
+	setvar VAR_0x8004, 1
 	goto RustboroCity_EventScript_RivalEncounter
 
 RustboroCity_EventScript_RivalTrigger6::
@@ -809,6 +827,7 @@ RustboroCity_EventScript_RivalTrigger6::
 	waitmovement 0
 	applymovement OBJ_EVENT_ID_PLAYER, Common_Movement_WalkInPlaceFasterUp
 	waitmovement 0
+	setvar VAR_0x8004, 0
 	goto RustboroCity_EventScript_RivalEncounter
 
 RustboroCity_EventScript_RivalTrigger7::
@@ -825,6 +844,7 @@ RustboroCity_EventScript_RivalTrigger7::
 	waitmovement 0
 	applymovement OBJ_EVENT_ID_PLAYER, Common_Movement_WalkInPlaceFasterUp
 	waitmovement 0
+	setvar VAR_0x8004, 1
 	goto RustboroCity_EventScript_RivalEncounter
 
 RustboroCity_EventScript_RivalEncounter::
@@ -874,9 +894,71 @@ RustboroCity_EventScript_BattleMay::
 
 RustboroCity_EventScript_MayBrineyHint::
 	msgbox RustboroCity_Text_MayPostBattle, MSGBOX_DEFAULT
+	applymovement LOCALID_RIVAL, Common_Movement_FaceAwayPlayer
+	waitmovement 0
+	msgbox RustboroCity_Text_MayOnPokenav, MSGBOX_DEFAULT
+	applymovement LOCALID_RIVAL, Common_Movement_FacePlayer
+	waitmovement 0
+	msgbox RustboroCity_Text_MayGoHelpWally, MSGBOX_DEFAULT
+	closemessage
+	call_if_eq VAR_0x8004, 0, RustboroCity_EventScript_MayLeaveRight
+	call_if_eq VAR_0x8004, 1, RustboroCity_EventScript_MayLeaveLeft
+	call_if_eq VAR_0x8004, 2, RustboroCity_EventScript_MayLeaveDown
 	call_if_eq VAR_0x8008, 0, RustboroCity_EventScript_RestoreBgm
+	removeobject LOCALID_RIVAL
+	setflag FLAG_HIDE_RUSTBORO_CITY_RIVAL
+	clearflag FLAG_HIDE_PETALBURG_CITY_MAY
+	clearflag FLAG_HIDE_PETALBURG_CITY_WALLY
+	setvar VAR_PETALBURG_CITY_STATE, 1
 	releaseall
 	end
+
+RustboroCity_EventScript_MayLeaveRight::
+	applymovement LOCALID_RIVAL, RustboroCity_Movement_MayLeaveRight
+	waitmovement 0
+	return
+
+RustboroCity_EventScript_MayLeaveLeft::
+	applymovement LOCALID_RIVAL, RustboroCity_Movement_MayLeaveLeft
+	waitmovement 0
+	return
+
+RustboroCity_EventScript_MayLeaveDown::
+	applymovement LOCALID_RIVAL, RustboroCity_Movement_MayLeaveDown
+	waitmovement 0
+	return
+
+RustboroCity_Movement_MayLeaveRight:
+	walk_fast_right
+	walk_fast_down
+	walk_fast_down
+	walk_fast_down
+	walk_fast_down
+	walk_fast_down
+	walk_fast_down
+	walk_fast_down
+	step_end
+
+RustboroCity_Movement_MayLeaveLeft:
+	walk_fast_left
+	walk_fast_down
+	walk_fast_down
+	walk_fast_down
+	walk_fast_down
+	walk_fast_down
+	walk_fast_down
+	walk_fast_down
+	step_end
+
+RustboroCity_Movement_MayLeaveDown:
+	walk_fast_down
+	walk_fast_down
+	walk_fast_down
+	walk_fast_down
+	walk_fast_down
+	walk_fast_down
+	walk_fast_down
+	step_end
 
 RustboroCity_EventScript_RestoreBgm::
 	savebgm MUS_DUMMY
@@ -1193,7 +1275,7 @@ RustboroCity_Text_MayOnPokenav:
 RustboroCity_Text_MayGoHelpWally:
 	.string "Sorry about that {PLAYER}.\n"
 	.string "That was my friend WALLY, he needs\l"
-	.string "our help in PETALBURG CITY,\l"
+	.string "our help in PETALBURG CITY.\p"
 	.string "We should head over there quickly!$"
 
 RustboroCity_Text_BrendanHiLetsRegister:

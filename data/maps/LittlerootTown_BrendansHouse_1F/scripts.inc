@@ -99,7 +99,8 @@ LittlerootTown_BrendansHouse_1F_EventScript_PetalburgGymReport::
 LittlerootTown_BrendansHouse_1F_EventScript_DadTakesYouToLab::
 	applymovement LOCALID_DAD, Common_Movement_ExclamationMark
 	waitmovement 0
-	delay 10
+	applymovement LOCALID_DAD, Common_Movement_Delay48
+	waitmovement 0
 	applymovement LOCALID_DAD, LittlerootTown_BrendansHouse_1F_Movement_DadWalksUp
 	waitmovement 0
 	msgbox LittlerootTown_BrendansHouse_1F_Text_DadTakesPlayerToLab, MSGBOX_DEFAULT

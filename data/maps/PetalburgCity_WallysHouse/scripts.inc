@@ -33,9 +33,7 @@ PetalburgCity_WallysHouse_EventScript_WallysDad::
 	faceplayer
 	goto_if_set FLAG_DEFEATED_WALLY_VICTORY_ROAD, PetalburgCity_WallysHouse_EventScript_DefeatedWallyInVictoryRoad
 	goto_if_set FLAG_RECEIVED_HM_SURF, PetalburgCity_WallysHouse_EventScript_ReceievedHMSurf
-	goto_if_set FLAG_THANKED_FOR_PLAYING_WITH_WALLY, PetalburgCity_WallysHouse_EventScript_PlayedWithWally
-	msgbox PetalburgCity_WallysHouse_Text_ThanksForPlayingWithWally, MSGBOX_DEFAULT
-	setflag FLAG_THANKED_FOR_PLAYING_WITH_WALLY
+	msgbox PetalburgCity_WallysHouse_Text_ProudOfWally, MSGBOX_DEFAULT
 	release
 	end
 
@@ -49,42 +47,17 @@ PetalburgCity_WallysHouse_EventScript_DefeatedWallyInVictoryRoad::
 	release
 	end
 
-PetalburgCity_WallysHouse_EventScript_PlayedWithWally::
-	msgbox PetalburgCity_WallysHouse_Text_WonderHowWallyIsDoing, MSGBOX_DEFAULT
-	release
-	end
-
 PetalburgCity_WallysHouse_EventScript_WallysMom::
 	lock
 	faceplayer
-	goto_if_set FLAG_RECEIVED_HM_SURF, PetalburgCity_WallysHouse_EventScript_ReceivedHMSurf
 	msgbox PetalburgCity_WallysHouse_Text_WallyWasReallyHappy, MSGBOX_DEFAULT
 	release
 	end
 
-PetalburgCity_WallysHouse_EventScript_ReceivedHMSurf::
-	msgbox PetalburgCity_WallysHouse_Text_WallyLeftWithoutTelling, MSGBOX_DEFAULT
-	release
-	end
-
-PetalburgCity_WallysHouse_Text_ThanksForPlayingWithWally:
-	.string "You're…\n"
-	.string "Ah, you must be {PLAYER}{KUN}, right?\p"
-	.string "Thank you for playing with WALLY a\n"
-	.string "little while ago.\p"
-	.string "He's been frail and sickly ever\n"
-	.string "since he was a baby.\p"
-	.string "We've sent him to stay with my relatives\n"
-	.string "in VERDANTURF TOWN for a while.\p"
-	.string "The air is a lot cleaner there\n"
-	.string "than it is here.\p"
-	.string "What's that? Where's WALLY?\n"
-	.string "He's already left, our WALLY.\p"
-	.string "I wonder where he could have\n"
-	.string "gotten by now?$"
-
-PetalburgCity_WallysHouse_Text_WonderHowWallyIsDoing:
-	.string "I wonder how our WALLY is doing?$"
+PetalburgCity_WallysHouse_Text_ProudOfWally:
+	.string "I'm so proud of my son WALLY.\p"
+	.string "He used to be a sickly kid but now\n"
+	.string "he's a strong GYM LEADER!$"
 
 PetalburgCity_WallysHouse_Text_PleaseExcuseUs:
 	.string "{PLAYER}{KUN}! Please excuse us for\n"
@@ -120,18 +93,6 @@ PetalburgCity_WallysHouse_Text_YouMetWallyInEverGrandeCity:
 	.string "that all by himself.$"
 
 PetalburgCity_WallysHouse_Text_WallyWasReallyHappy:
-	.string "WALLY was really happy when he told\n"
-	.string "us that he caught a POKéMON.\p"
-	.string "It's been ages since I've seen him\n"
-	.string "smile like that.$"
-
-PetalburgCity_WallysHouse_Text_WallyLeftWithoutTelling:
-	.string "I want you to keep this a secret\n"
-	.string "from my husband…\p"
-	.string "But our WALLY left VERDANTURF TOWN\n"
-	.string "without telling anyone.\p"
-	.string "You know, WALLY is frail, but\n"
-	.string "he's surprisingly strong-willed.\p"
-	.string "I'm sure that he'll come back safe\n"
-	.string "and sound one day!$"
-
+	.string "I still remember how happy WALLY was\n"
+	.string "when he caught his first POKéMON.\p"
+	.string "And now look at him!$"

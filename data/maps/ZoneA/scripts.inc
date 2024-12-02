@@ -32,7 +32,7 @@ RouteA_Movement_Grunt1RunAway:
 
 RouteA_EventScript_Grunt2::
 	trainerbattle_single TRAINER_GRUNT_ROUTE_A_2, RouteA_Text_Grunt2Intro, RouteA_Text_SilentTreatment
-	goto RouteA_Text_SilentTreatment
+	goto RouteA_EventScript_Grunt3
 	end
 
 RouteA_EventScript_Grunt3::
