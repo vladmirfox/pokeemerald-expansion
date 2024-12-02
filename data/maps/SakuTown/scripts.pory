@@ -85,7 +85,7 @@ script SakuTown_EventScript_RivalAtSakuWall {
 	release
 }
 
-// TODO EVA
+// TODO EVAA
 script blabla {
 	lock
 	setvar(VAR_RIVAL_ENCOUNTER_STATE, 0)
