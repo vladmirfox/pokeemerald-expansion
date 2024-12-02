@@ -7002,7 +7002,7 @@ static void Cmd_openpartyscreen(void)
         else if (IsDoubleBattle())
         {
             bool32 hasReplacement;
-            
+
             hitmarkerFaintBits = gHitMarker >> 28;
             for (i = 0; i < gBattlersCount; i++)
             {
@@ -7010,7 +7010,7 @@ static void Cmd_openpartyscreen(void)
                 {
                     if (i > 1 && ((1u << BATTLE_PARTNER(i)) & hitmarkerFaintBits))
                         continue;
-                    
+
                     battler = i;
                     if (HasNoMonsToSwitch(battler, PARTY_SIZE, PARTY_SIZE))
                     {
@@ -7032,7 +7032,7 @@ static void Cmd_openpartyscreen(void)
                     }
                 }
             }
-            
+
             for (i = 0; i < NUM_BATTLE_SIDES; i++)
             {
                 if (!(gSpecialStatuses[i].faintedHasReplacement))
@@ -7582,23 +7582,19 @@ static void LearnCombinedNewMoves(u32 monId, u16 *learnMove)
 {
     CMD_ARGS(const u8 *learnedMovePtr, const u8 *nothingToLearnPtr, bool8 isFirstMove);
 
-    bool32 isFirst = cmd->isFirstMove;
-    u32 targetLvl = gBattleResources->beforeLvlUp->level;
     u32 currLvl = GetMonData(&gPlayerParty[monId], MON_DATA_LEVEL);
 
-    while (currLvl > targetLvl)
+    while (gBattleResources->beforeLvlUp->level <= currLvl)
     {
-        *learnMove = MonTryLearningNewMoveAtLevel(&gPlayerParty[monId], isFirst, targetLvl);
-
-        isFirst = FALSE;
+        *learnMove = MonTryLearningNewMoveAtLevel(&gPlayerParty[monId], cmd->isFirstMove, gBattleResources->beforeLvlUp->level);
 
         while (*learnMove == MON_ALREADY_KNOWS_MOVE)
-            *learnMove = MonTryLearningNewMoveAtLevel(&gPlayerParty[monId], isFirst, targetLvl);
+            *learnMove = MonTryLearningNewMoveAtLevel(&gPlayerParty[monId], FALSE, gBattleResources->beforeLvlUp->level);
 
-        if (*learnMove == MOVE_NONE)
-            targetLvl++;
-        else
+        if (*learnMove != MOVE_NONE)
             break;
+
+        gBattleResources->beforeLvlUp->level++;
     }
 }
 
@@ -7606,7 +7602,7 @@ static void Cmd_handlelearnnewmove(void)
 {
     CMD_ARGS(const u8 *learnedMovePtr, const u8 *nothingToLearnPtr, bool8 isFirstMove);
 
-    u16 learnMove;
+    u16 learnMove = MOVE_NONE;
     u32 monId = gBattleStruct->expGetterMonId;
 
     if (B_LEVEL_UP_NOTIFICATION >= GEN_9)
@@ -8891,7 +8887,7 @@ u32 GetHighestStatId(u32 battler)
     }
     if (gBattleMons[battler].speed > highestStat)
         highestId = STAT_SPEED;
-    
+
     return highestId;
 }
 
