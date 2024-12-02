@@ -106,7 +106,7 @@ script MaguroHarbor_EventScript_FishermanOldRod {
 		"Yer eyes… They be sparklin' with passion… Are ye by any chance an aspirin' fisherm'n?\p"
 		"Ye are! I can feel it! I can see ye be dyin' to try it fer yerself!\p"
 		"Now, I can't be givin' ye me loyal Cramorant here…\p"
-		"But I can give ye this old rud!"
+		"But I can give ye this ol' rud o' mine!"
 	))
 	closemessage
 
