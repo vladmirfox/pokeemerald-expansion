@@ -724,15 +724,16 @@
 #define STRINGID_ELECTRICCURRENTISRUNNING             722
 #define STRINGID_SEEMSWEIRD                           723
 #define STRINGID_WAGGLINGAFINGER                      724
-#define STRINGID_PKMNGOTFROSTBITEFROM                 725
-#define STRINGID_PKMNGREWDROWSY                       726
-#define STRINGID_PKMNGREWDROWSYFROM                   727
-#define STRINGID_PKMNISTOODROWSY                      728
-#define STRINGID_PKMNSITEMFOUGHTOFFDROWSINESS         729
-#define STRINGID_PKMNFOUGHTOFFDROWSINESS              730
-#define STRINGID_PKMNISALREADYDROWSY                  731
+#define STRINGID_BLOCKEDBYSLEEPCLAUSE                 725
+#define STRINGID_PKMNGOTFROSTBITEFROM                 726
+#define STRINGID_PKMNGREWDROWSY                       727
+#define STRINGID_PKMNGREWDROWSYFROM                   728
+#define STRINGID_PKMNISTOODROWSY                      729
+#define STRINGID_PKMNSITEMFOUGHTOFFDROWSINESS         730
+#define STRINGID_PKMNFOUGHTOFFDROWSINESS              731
+#define STRINGID_PKMNISALREADYDROWSY                  732
 
-#define BATTLESTRINGS_COUNT                           732
+#define BATTLESTRINGS_COUNT                           733
 
 // This is the string id that gBattleStringsTable starts with.
 // String ids before this (e.g. STRINGID_INTROMSG) are not in the table,
