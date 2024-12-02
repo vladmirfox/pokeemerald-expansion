@@ -884,6 +884,7 @@ void BS_TrySetStatus1(void)
             if (CanBeSleptOrDrowsy(gBattlerTarget, GetBattlerAbility(gBattlerTarget), TRUE))
             {
                 gBattleMons[gBattlerTarget].status1 |= STATUS1_DROWSY;
+                TryActivateSleepClause(gBattlerTarget, gBattlerPartyIndexes[gBattlerTarget]);    
                 gBattleCommunication[MULTISTRING_CHOOSER] = 6;
                 effect++;
             }
