@@ -798,9 +798,7 @@
 	2:
 	.endm
 
-	.macro setmultihitcounter value:req
-	.byte 0x8d
-	.byte \value
+	.macro unused_0x8d
 	.endm
 
 	.macro initmultihitstring
@@ -1105,7 +1103,7 @@
 	.byte 0xcc
 	.endm
 
-	.macro cureifburnedparalysedorpoisoned failInstr:req
+	.macro curestatuswithmove failInstr:req
 	.byte 0xcd
 	.4byte \failInstr
 	.endm
@@ -1670,6 +1668,11 @@
 	callnative BS_DamageToQuarterTargetHP
 	.endm
 
+	.macro jumpifsleepclause jumpInstr:req
+	callnative BS_JumpIfSleepClause
+	.4byte \jumpInstr
+	.endm
+
 	.macro ficklebeamdamagecalculation
 	callnative BS_FickleBeamDamageCalculation
 	.endm
@@ -2007,9 +2010,10 @@
 	.4byte \jumpInstr
 	.endm
 
-	.macro trypsychoshift failInstr:req
+	.macro trypsychoshift failInstr:req sleepClauseFailInstr:req
 	various BS_ATTACKER, VARIOUS_PSYCHO_SHIFT
 	.4byte \failInstr
+	.4byte \sleepClauseFailInstr
 	.endm
 
 	.macro curestatus battler:req
