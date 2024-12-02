@@ -51,28 +51,6 @@ DewfordTown_Gym_EventScript_BreakRock6::
 	setflag FLAG_DEWFORD_GYM_ROCK_6
 	return
 
-DewfordTown_Gym_EventScript_CountTrainersDefeated::
-	setvar VAR_0x8000, 0
-	goto_if_not_defeated TRAINER_TAKAO, DewfordTown_Gym_EventScript_CheckJocelyn
-	addvar VAR_0x8000, 1
-DewfordTown_Gym_EventScript_CheckJocelyn::
-	goto_if_not_defeated TRAINER_JOCELYN, DewfordTown_Gym_EventScript_CheckLaura
-	addvar VAR_0x8000, 1
-DewfordTown_Gym_EventScript_CheckLaura::
-	goto_if_not_defeated TRAINER_LAURA, DewfordTown_Gym_EventScript_CheckBrenden
-	addvar VAR_0x8000, 1
-DewfordTown_Gym_EventScript_CheckBrenden::
-	goto_if_not_defeated TRAINER_BRENDEN, DewfordTown_Gym_EventScript_CheckCristian
-	addvar VAR_0x8000, 1
-DewfordTown_Gym_EventScript_CheckCristian::
-	goto_if_not_defeated TRAINER_CRISTIAN, DewfordTown_Gym_EventScript_CheckLilith
-	addvar VAR_0x8000, 1
-DewfordTown_Gym_EventScript_CheckLilith::
-	goto_if_not_defeated TRAINER_LILITH, DewfordTown_Gym_EventScript_StopCountingTrainers
-	addvar VAR_0x8000, 1
-DewfordTown_Gym_EventScript_StopCountingTrainers::
-	return
-
 DewfordTown_Gym_EventScript_Chuck::
 	trainerbattle_single TRAINER_CHUCK_1, DewfordTown_Gym_Text_ChuckIntro, DewfordTown_Gym_Text_ChuckDefeat, DewfordTown_Gym_EventScript_ChuckDefeated, NO_MUSIC
 	specialvar VAR_RESULT, ShouldTryRematchBattle

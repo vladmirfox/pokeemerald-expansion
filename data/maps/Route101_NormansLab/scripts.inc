@@ -13,7 +13,7 @@ Route101_NormansLab_OnTransition:
 	end
 
 Route101_NormansLab_EventScript_MoveDadToPokeballs::
-	setobjectxyperm LOCALID_DAD, 6, 7
+	setobjectxyperm LOCALID_DAD, 6, 6
 	setobjectmovementtype LOCALID_DAD, MOVEMENT_TYPE_NONE
 	end
 

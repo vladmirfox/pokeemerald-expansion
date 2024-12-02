@@ -873,7 +873,7 @@ RustboroCity_EventScript_BattleMay::
 	end
 
 RustboroCity_EventScript_MayBrineyHint::
-	msgbox RustboroCity_Text_MayMrBrineyHint, MSGBOX_DEFAULT
+	msgbox RustboroCity_Text_MayPostBattle, MSGBOX_DEFAULT
 	call_if_eq VAR_0x8008, 0, RustboroCity_EventScript_RestoreBgm
 	releaseall
 	end
@@ -1175,12 +1175,26 @@ RustboroCity_Text_MayDefeat:
 	.string "Yikes!\n"
 	.string "You're better than I expected!$"
 
-RustboroCity_Text_MayMrBrineyHint:
-	.string "MAY: Oh, by the way, MR. BRINEY, who\n"
-	.string "I just passed…\p"
-	.string "{PLAYER}{KUN}, you just moved here so you\n"
-	.string "might not know this, but MR. BRINEY\l"
-	.string "was once a revered seafarer.$"
+RustboroCity_Text_MayPostBattle:
+	.string "MAY: Wow, that was fun!\p"
+	.string "You're really keeping up with your\n"
+	.string "training!\p"
+	.string "Oh, hang on, I'm getting a call\n"
+	.string "on my POKéNAV…$"
+
+RustboroCity_Text_MayOnPokenav:
+	.string "MAY: Hello?\n"
+	.string "… … …\l"
+	.string "Okay…\l"
+	.string "… … …\l"
+	.string "Yes, of course!\l"
+	.string "See you soon!$"
+
+RustboroCity_Text_MayGoHelpWally:
+	.string "Sorry about that {PLAYER}.\n"
+	.string "That was my friend WALLY, he needs\l"
+	.string "our help in PETALBURG CITY,\l"
+	.string "We should head over there quickly!$"
 
 RustboroCity_Text_BrendanHiLetsRegister:
 	.string "BRENDAN: Oh, hey, {PLAYER}!\p"

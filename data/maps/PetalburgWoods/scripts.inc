@@ -1,8 +1,14 @@
 .set LOCALID_GRUNT, 3
 .set LOCALID_DEVON_EMPLOYEE, 4
+.set LOCALID_AARON, 14
 
 PetalburgWoods_MapScripts::
+	map_script MAP_SCRIPT_ON_TRANSITION, PetalburgWoods_OnTransition
 	.byte 0
+
+PetalburgWoods_OnTransition:
+	call_if_eq VAR_AARON_STATE, 1, PetalburgWoods_EventScript_CountTrainersDefeated
+	end
 
 PetalburgWoods_EventScript_DevonResearcherLeft::
 	lockall
@@ -240,10 +246,6 @@ PetalburgWoods_Movement_AquaApproachPlayer:
 	walk_down
 	step_end
 
-PetalburgWoods_EventScript_Boy1::
-	msgbox PetalburgWoods_Text_StayOutOfTallGrass, MSGBOX_NPC
-	end
-
 PetalburgWoods_EventScript_Boy2::
 	msgbox PetalburgWoods_Text_HiddenItemsExplanation, MSGBOX_NPC
 	end
@@ -273,8 +275,13 @@ PetalburgWoods_EventScript_Sign2::
 	end
 
 PetalburgWoods_EventScript_Lyle::
-	trainerbattle_single TRAINER_LYLE, PetalburgWoods_Text_GoBugPokemonTeam, PetalburgWoods_Text_ICouldntWin
+	trainerbattle_single TRAINER_LYLE, PetalburgWoods_Text_GoBugPokemonTeam, PetalburgWoods_Text_ICouldntWin, PetalburgWoods_EventScript_CountTrainersDefeated
 	msgbox PetalburgWoods_Text_ImOutOfPokeBalls, MSGBOX_AUTOCLOSE
+	end
+
+PetalburgWoods_EventScript_Dustin::
+	trainerbattle_single TRAINER_DUSTIN, PetalburgWoods_Text_AwesomeBugPokemon, PetalburgWoods_Text_NotAwesomeEnough, PetalburgWoods_EventScript_CountTrainersDefeated
+	msgbox PetalburgWoods_Text_StayOutOfTallGrass, MSGBOX_AUTOCLOSE
 	end
 
 PetalburgWoods_EventScript_James::
@@ -289,6 +296,7 @@ PetalburgWoods_EventScript_James::
 	end
 
 PetalburgWoods_EventScript_TryRegisterJames::
+	call PetalburgWoods_EventScript_CountTrainersDefeated
 	special PlayerFaceTrainerAfterBattle
 	waitmovement 0
 	goto_if_set FLAG_HAS_MATCH_CALL, PetalburgWoods_EventScript_RegisterJames
@@ -388,6 +396,12 @@ PetalburgWoods_Text_GoBugPokemonTeam:
 	.string "Go, go, go!\n"
 	.string "My BUG POKéMON team!$"
 
+PetalburgWoods_Text_AwesomeBugPokemon:
+	.string "Check out my awesome BUG POKéMON!$"
+
+PetalburgWoods_Text_NotAwesomeEnough:
+	.string "Not awesome enough!$"
+
 PetalburgWoods_Text_ICouldntWin:
 	.string "I have all these POKéMON,\n"
 	.string "but I couldn't win…$"
@@ -474,3 +488,150 @@ PetalburgWoods_Text_TrainerTipsPP:
 	.string "If a POKéMON runs out of PP, it must be\n"
 	.string "taken to a POKéMON CENTER.$"
 
+PetalburgWoods_EventScript_Aaron::
+	lockall
+	faceplayer
+	call_if_eq VAR_AARON_STATE, 1, PetalburgWoods_EventScript_HealYourPokemon
+	call_if_eq VAR_AARON_STATE, 2, PetalburgWoods_EventScript_GiveReward
+	call_if_eq VAR_AARON_STATE, 3, PetalburgWoods_EventScript_ComeBackSoon
+	releaseall
+	end
+
+PetalburgWoods_EventScript_HealYourPokemon::
+	msgbox PetalburgWoods_Text_WouldYouLikeHeal, MSGBOX_YESNO
+	goto_if_eq VAR_RESULT, YES, PetalburgWoods_EventScript_Healed
+	release
+	end
+
+PetalburgWoods_EventScript_Healed::
+	playfanfare MUS_HEAL
+	waitfanfare
+	special HealPlayerParty
+	callnative UpdateFollowingPokemon
+	msgbox PetalburgWoods_Text_Healed, MSGBOX_AUTOCLOSE
+	release
+	end
+
+PetalburgWoods_EventScript_MeetAaronLeft::
+	lock
+	applymovement LOCALID_AARON, Common_Movement_ExclamationMark
+	waitmovement 0
+	applymovement LOCALID_AARON, PetalburgWoods_Movement_AaronWalkOverLeft
+	waitmovement 0
+	msgbox PetalburgWoods_Text_AaronIntro, MSGBOX_AUTOCLOSE
+	applymovement LOCALID_AARON, PetaburgWoods_Movement_AaronWalkBackLeft
+	waitmovement 0
+	setvar VAR_AARON_STATE, 1
+	end
+
+PetalburgWoods_EventScript_MeetAaronRight::
+	lock
+	applymovement LOCALID_AARON, Common_Movement_ExclamationMark
+	waitmovement 0
+	applymovement LOCALID_AARON, PetalburgWoods_Movement_AaronWalkOverRight
+	waitmovement 0
+	msgbox PetalburgWoods_Text_AaronIntro, MSGBOX_AUTOCLOSE
+	applymovement LOCALID_AARON, PetaburgWoods_Movement_AaronWalkBackRight
+	waitmovement 0
+	setvar VAR_AARON_STATE, 1
+	end
+
+PetalburgWoods_EventScript_CountTrainersDefeated::
+	setvar VAR_0x8000, 0
+	goto_if_not_defeated TRAINER_LYLE, PetalburgWoods_EventScript_CheckDustin
+	addvar VAR_0x8000, 1
+PetalburgWoods_EventScript_CheckDustin::
+	goto_if_not_defeated TRAINER_DUSTIN, PetalburgWoods_EventScript_CheckJames
+	addvar VAR_0x8000, 1
+PetalburgWoods_EventScript_CheckJames::
+	goto_if_not_defeated TRAINER_JAMES_1, PetalburgWoods_EventScript_StopCountingTrainers
+	addvar VAR_0x8000, 1
+PetalburgWoods_EventScript_StopCountingTrainers::
+	call_if_eq VAR_0x8000, 3, PetalburgWoods_EventScript_MoveAaronToExit
+	return
+
+PetalburgWoods_EventScript_MoveAaronToExit::
+	setflag FLAG_HIDE_PETALBURG_AARON_SOUTH
+	clearflag FLAG_HIDE_PETALBURG_AARON_NORTH
+	setvar VAR_AARON_STATE, 2
+	return
+
+PetalburgWoods_EventScript_GiveReward::
+	msgbox PetalburgWoods_Text_GiveReward, MSGBOX_AUTOCLOSE
+	giveitem ITEM_SILVER_POWDER
+	goto_if_eq VAR_RESULT, FALSE, PetalburgWoods_EventScript_NoRoomForReward
+	playfanfare MUS_OBTAIN_ITEM
+	waitfanfare
+	call PetalburgWoods_EventScript_ComeBackSoon
+	setvar VAR_AARON_STATE, 3
+	releaseall
+	end
+
+PetalburgWoods_EventScript_ComeBackSoon::
+	msgbox PetalburgWoods_Text_ComeBackSoon, MSGBOX_AUTOCLOSE
+	return
+
+PetalburgWoods_EventScript_NoRoomForReward::
+	msgbox PetalburgWoods_Text_NoRoomForReward, MSGBOX_AUTOCLOSE
+	release
+	end	
+
+PetalburgWoods_Movement_AaronWalkOverLeft:
+	walk_left
+	walk_left
+	walk_left
+	walk_in_place_faster_down
+	step_end
+
+PetaburgWoods_Movement_AaronWalkBackLeft:
+	walk_right
+	walk_right
+	walk_right
+	walk_in_place_faster_left
+	step_end
+
+PetalburgWoods_Movement_AaronWalkOverRight:
+	walk_left
+	walk_left
+	walk_in_place_faster_down
+	step_end
+
+PetaburgWoods_Movement_AaronWalkBackRight:
+	walk_right
+	walk_right
+	walk_in_place_faster_left
+	step_end
+
+PetalburgWoods_Text_AaronIntro:
+	.string "???: Hello TRAINER!\p"
+	.string "My name is AARON, BUG-type\n"
+	.string "extraordinaire!\p"
+	.string "I'm running a challenge for new\n"
+	.string "TRAINERS, defeat all three BUG \l"
+	.string "CATCHERS on your way through the\l"
+	.string "forest and I'll give you a\l"
+	.string "fabulous prize!\p"
+	.string "Come back to me at any time and\n"
+	.string "I can heal your pokemon for you.\p"
+	.string "Best of luck!$"
+
+PetalburgWoods_Text_WouldYouLikeHeal:
+	.string "AARON: How is the challenge going?\n"
+	.string "Do you need me to heal your\l"
+	.string "POKéMON?$"
+
+PetalburgWoods_Text_Healed:
+	.string "AARON: All healed up, go get 'em!$"
+
+PetalburgWoods_Text_GiveReward:
+	.string "AARON: Congratulations!\n"
+	.string "You beat all of my TRAINERS!\p"
+	.string "As promised, here's your reward!$"
+
+PetalburgWoods_Text_NoRoomForReward:
+	.string "AARON: Oh, you don't have enough\n"
+	.string "room.$"
+
+PetalburgWoods_Text_ComeBackSoon:
+	.string "AARON: Come back soon and I'll\n"
+	.string "have another challenge for you!$"

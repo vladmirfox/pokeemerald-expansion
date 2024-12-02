@@ -55,10 +55,10 @@
 #define FLAG_DEWFORD_GYM_ROCK_5             0x28 // Unused Flag
 #define FLAG_DEWFORD_GYM_ROCK_6             0x29 // Unused Flag
 #define FLAG_HIDE_DEWFORD_TOWN_BRAWLY_1     0x2A // Brawly outside gym
-#define FLAG_HIDE_TEAM_ARCO_ZONE_A          0x2B // Unused Flag
-#define FLAG_HIDE_NORMAL_SCIENTISTS_ZONE_A  0x2C // Unused Flag
-#define FLAG_UNUSED_0x02D    0x2D // Unused Flag
-#define FLAG_UNUSED_0x02E    0x2E // Unused Flag
+#define FLAG_HIDE_TEAM_ARCO_ZONE_A          0x2B
+#define FLAG_HIDE_NORMAL_SCIENTISTS_ZONE_A  0x2C
+#define FLAG_HIDE_PETALBURG_AARON_NORTH     0x2D
+#define FLAG_HIDE_PETALBURG_AARON_SOUTH     0x2E
 #define FLAG_UNUSED_0x02F    0x2F // Unused Flag
 #define FLAG_UNUSED_0x030    0x30 // Unused Flag
 #define FLAG_UNUSED_0x031    0x31 // Unused Flag

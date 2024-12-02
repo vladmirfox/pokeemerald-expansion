@@ -104,7 +104,7 @@ LittlerootTown_BrendansHouse_1F_EventScript_DadTakesYouToLab::
 	waitmovement 0
 	msgbox LittlerootTown_BrendansHouse_1F_Text_DadTakesPlayerToLab, MSGBOX_DEFAULT
 	setflag FLAG_HIDE_PLAYERS_HOUSE_DAD
-	warpsilent MAP_ROUTE101_NORMANS_LAB, 5, 7
+	warpsilent MAP_ROUTE101_NORMANS_LAB, 5, 6
 	waitstate
 	releaseall
 	end
