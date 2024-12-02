@@ -2371,7 +2371,7 @@ bool32 IsSwitchOutEffect(u32 effect)
     }
 }
 
-bool32 IsMoveSleepClauseTrigger(u32 move)
+static inline bool32 IsMoveSleepClauseTrigger(u32 move)
 {
     u32 i, effect = gMovesInfo[move].effect;
 
