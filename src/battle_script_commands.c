@@ -5950,6 +5950,7 @@ static void Cmd_moveend(void)
                         gBattlescriptCurrInstr = BattleScript_TargetWokeUp;
                         break;
                     case STATUS1_DROWSY:
+                        TryDeactivateSleepClause(GetBattlerSide(gBattlerTarget), gBattlerPartyIndexes[gBattlerTarget]);
                         gBattlescriptCurrInstr = BattleScript_TargetFoughtOffDrowsiness;
                         break;
                     case STATUS1_BURN:
@@ -10229,7 +10230,7 @@ static void Cmd_various(void)
     {
         VARIOUS_ARGS();
 
-        if (gBattleMons[battler].status1 & STATUS1_SLEEP)
+        if (gBattleMons[battler].status1 & (STATUS1_SLEEP | STATUS1_DROWSY))
             TryDeactivateSleepClause(GetBattlerSide(battler), gBattlerPartyIndexes[battler]);
 
         gBattleMons[battler].status1 = 0;
@@ -14173,7 +14174,7 @@ static void Cmd_curestatuswithmove(void)
 
     if (shouldHeal)
     {
-        if (gBattleMons[gBattlerAttacker].status1 & STATUS1_SLEEP)
+        if (gBattleMons[gBattlerAttacker].status1 & (STATUS1_SLEEP | STATUS1_DROWSY))
             TryDeactivateSleepClause(GetBattlerSide(gBattlerAttacker), gBattlerPartyIndexes[gBattlerAttacker]);
             
         gBattleMons[gBattlerAttacker].status1 = 0;
@@ -14784,7 +14785,7 @@ static void Cmd_switchoutabilities(void)
         switch (GetBattlerAbility(battler))
         {
         case ABILITY_NATURAL_CURE:
-            if (gBattleMons[battler].status1 & STATUS1_SLEEP)
+            if (gBattleMons[battler].status1 & (STATUS1_SLEEP | STATUS1_DROWSY))
                 TryDeactivateSleepClause(GetBattlerSide(battler), gBattlerPartyIndexes[battler]);
             
             gBattleMons[battler].status1 = 0;

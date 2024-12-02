@@ -4202,7 +4202,7 @@ bool8 HealStatusConditions(struct Pokemon *mon, u32 healMask, u8 battlerId)
         if (gMain.inBattle && battlerId != MAX_BATTLERS_COUNT)
         {
             gBattleMons[battlerId].status1 &= ~healMask;
-            if((healMask & STATUS1_SLEEP))
+            if((healMask & (STATUS1_SLEEP | STATUS1_DROWSY)))
             {
                 u32 i = 0;
                 u32 battlerSide = GetBattlerSide(battlerId);
