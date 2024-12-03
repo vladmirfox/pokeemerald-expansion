@@ -8919,10 +8919,10 @@ const struct SpeciesInfo gSpeciesInfoGen3[] =
     [SPECIES_GLALIE] =
     {
         .baseHP        = 80,
-        .baseAttack    = 80,
+        .baseAttack    = 110,
         .baseDefense   = 80,
         .baseSpeed     = 80,
-        .baseSpAttack  = 80,
+        .baseSpAttack  = 70,
         .baseSpDefense = 80,
         .types = MON_TYPES(TYPE_ICE),
         .catchRate = 75,
@@ -9044,10 +9044,10 @@ const struct SpeciesInfo gSpeciesInfoGen3[] =
     [SPECIES_FROSLASS] =
     {
         .baseHP        = 70,
-        .baseAttack    = 80,
+        .baseAttack    = 90,
         .baseDefense   = 70,
         .baseSpeed     = 110,
-        .baseSpAttack  = 80,
+        .baseSpAttack  = 90,
         .baseSpDefense = 70,
         .types = MON_TYPES(TYPE_ICE, TYPE_GHOST),
         .catchRate = 75,

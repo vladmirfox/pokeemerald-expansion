@@ -933,6 +933,7 @@
     },
 // END CATERPIE FAMILY
 
+// FOSSIL FAMILIES
     [SPECIES_IGNEOUSAUR] =
     {
         .baseHP        = 90,
@@ -969,7 +970,7 @@
         .trainerOffset = 4,
         .frontPic = gMonFrontPic_Igneousaur,
         .frontPicSize = MON_COORDS_SIZE(64, 64),
-        .frontPicYOffset = 4,
+        .frontPicYOffset = 0,
         .frontAnimFrames = sAnims_Aerodactyl,
         .frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         .backPic = gMonBackPic_Igneousaur,
@@ -1055,3 +1056,185 @@
         .levelUpLearnset = sAurorusLevelUpLearnset,
         .teachableLearnset = sAurorusTeachableLearnset,
     },
+
+    [SPECIES_VOLTREX] =
+    {
+        .baseHP        = 45,
+        .baseAttack    = 75,
+        .baseDefense   = 40,
+        .baseSpeed     = 75,
+        .baseSpAttack  = 55,
+        .baseSpDefense = 40,
+        .types = MON_TYPES(TYPE_ROCK, TYPE_ELECTRIC),
+        .catchRate = 45,
+        .expYield = 104,
+        .evYield_HP = 2,
+        .genderRatio = PERCENT_FEMALE(12.5),
+        .eggCycles = 30,
+        .friendship = STANDARD_FRIENDSHIP,
+        .growthRate = GROWTH_MEDIUM_FAST,
+        .eggGroups = MON_EGG_GROUPS(EGG_GROUP_MONSTER),
+        .abilities = { ABILITY_LIGHTNING_ROD, ABILITY_MOTOR_DRIVE, ABILITY_NONE },
+        .bodyColor = BODY_COLOR_BLUE,
+        .speciesName = _("Voltrex"),
+        .cryId = CRY_TYRUNT,
+        .natDexNum = NATIONAL_DEX_AURORUS,
+        .categoryName = _("Thunder-Rex"),
+        .height = 27,
+        .weight = 2250,
+        .description = COMPOUND_STRING(
+            "When they're young they play by shocking\n"
+            "each other. Their bright feet leave\n"
+            "electrically-charged footprints in\n"
+            "their wake."),
+        .pokemonScale = 275,
+        .pokemonOffset = 7,
+        .trainerScale = 256,
+        .trainerOffset = 0,
+        .frontPic = gMonFrontPic_Voltrex,
+        .frontPicSize = MON_COORDS_SIZE(64, 64),
+        .frontPicYOffset = 0,
+        .frontAnimFrames = sAnims_Aurorus,
+        .frontAnimId = ANIM_GROW_VIBRATE,
+        .backPic = gMonBackPic_Voltrex,
+        .backPicSize = MON_COORDS_SIZE(64, 64),
+        .backPicYOffset = 9,
+        .backAnimId = BACK_ANIM_SHRINK_GROW_VIBRATE,
+        .palette = gMonPalette_Voltrex,
+        .shinyPalette = gMonPalette_Voltrex,
+        .iconSprite = gMonIcon_Voltrex,
+        .iconPalIndex = 0,
+        FOOTPRINT(Tyrunt)
+        OVERWORLD(
+            sPicTable_Aurorus,
+            SIZE_32x32,
+            SHADOW_SIZE_M,
+            TRACKS_FOOT,
+            gOverworldPalette_Aurorus,
+            gShinyOverworldPalette_Aurorus
+        )
+        .levelUpLearnset = sVoltrexLevelUpLearnset,
+        .teachableLearnset = sAurorusTeachableLearnset,
+        .evolutions = EVOLUTION({EVO_LEVEL, 32, SPECIES_ELECTROSAUR}),
+    },
+
+    [SPECIES_ELECTROSAUR] =
+    {
+        .baseHP        = 65,
+        .baseAttack    = 105,
+        .baseDefense   = 60,
+        .baseSpeed     = 105,
+        .baseSpAttack  = 85,
+        .baseSpDefense = 60,
+        .types = MON_TYPES(TYPE_ROCK, TYPE_ELECTRIC),
+        .catchRate = 45,
+        .expYield = 104,
+        .evYield_HP = 2,
+        .genderRatio = PERCENT_FEMALE(12.5),
+        .eggCycles = 30,
+        .friendship = STANDARD_FRIENDSHIP,
+        .growthRate = GROWTH_MEDIUM_FAST,
+        .eggGroups = MON_EGG_GROUPS(EGG_GROUP_MONSTER),
+        .abilities = { ABILITY_LIGHTNING_ROD, ABILITY_MOTOR_DRIVE, ABILITY_NONE },
+        .bodyColor = BODY_COLOR_BLUE,
+        .speciesName = _("Electrosaur"),
+        .cryId = CRY_TYRANTRUM,
+        .natDexNum = NATIONAL_DEX_AURORUS,
+        .categoryName = _("Thunder-Rex"),
+        .height = 27,
+        .weight = 2250,
+        .description = COMPOUND_STRING(
+            "When they're young they play by shocking\n"
+            "each other. Their bright feet leave\n"
+            "electrically-charged footprints in\n"
+            "their wake."),
+        .pokemonScale = 275,
+        .pokemonOffset = 7,
+        .trainerScale = 256,
+        .trainerOffset = 0,
+        .frontPic = gMonFrontPic_Electrosaur,
+        .frontPicSize = MON_COORDS_SIZE(64, 64),
+        .frontPicYOffset = 0,
+        .frontAnimFrames = sAnims_Aurorus,
+        .frontAnimId = ANIM_GROW_VIBRATE,
+        .backPic = gMonBackPic_Electrosaur,
+        .backPicSize = MON_COORDS_SIZE(64, 64),
+        .backPicYOffset = 6,
+        .backAnimId = BACK_ANIM_SHRINK_GROW_VIBRATE,
+        .palette = gMonPalette_Electrosaur,
+        .shinyPalette = gMonPalette_Electrosaur,
+        .iconSprite = gMonIcon_Electrosaur,
+        .iconPalIndex = 0,
+        FOOTPRINT(Tyrantrum)
+        OVERWORLD(
+            sPicTable_Aurorus,
+            SIZE_32x32,
+            SHADOW_SIZE_M,
+            TRACKS_FOOT,
+            gOverworldPalette_Aurorus,
+            gShinyOverworldPalette_Aurorus
+        )
+        .levelUpLearnset = sElectrosaurLevelUpLearnset,
+        .teachableLearnset = sAurorusTeachableLearnset,
+    },
+
+    [SPECIES_TRICERACHOP] =
+    {
+        .baseHP        = 65,
+        .baseAttack    = 105,
+        .baseDefense   = 60,
+        .baseSpeed     = 105,
+        .baseSpAttack  = 85,
+        .baseSpDefense = 60,
+        .types = MON_TYPES(TYPE_ROCK, TYPE_FIGHTING),
+        .catchRate = 45,
+        .expYield = 104,
+        .evYield_HP = 2,
+        .genderRatio = PERCENT_FEMALE(45),
+        .eggCycles = 30,
+        .friendship = STANDARD_FRIENDSHIP,
+        .growthRate = GROWTH_MEDIUM_FAST,
+        .eggGroups = MON_EGG_GROUPS(EGG_GROUP_MONSTER),
+        .abilities = { ABILITY_LIGHTNING_ROD, ABILITY_MOTOR_DRIVE, ABILITY_NONE },
+        .bodyColor = BODY_COLOR_BLUE,
+        .speciesName = _("Tricerachop"),
+        .cryId = CRY_TYRANTRUM,
+        .natDexNum = NATIONAL_DEX_AURORUS,
+        .categoryName = _("Axe"),
+        .height = 27,
+        .weight = 2250,
+        .description = COMPOUND_STRING(
+            "When they're young they play by shocking\n"
+            "each other. Their bright feet leave\n"
+            "electrically-charged footprints in\n"
+            "their wake."),
+        .pokemonScale = 275,
+        .pokemonOffset = 7,
+        .trainerScale = 256,
+        .trainerOffset = 0,
+        .frontPic = gMonFrontPic_Tricerachop,
+        .frontPicSize = MON_COORDS_SIZE(64, 64),
+        .frontPicYOffset = 0,
+        .frontAnimFrames = sAnims_Aurorus,
+        .frontAnimId = ANIM_GROW_VIBRATE,
+        .backPic = gMonBackPic_Tricerachop,
+        .backPicSize = MON_COORDS_SIZE(64, 64),
+        .backPicYOffset = 4,
+        .backAnimId = BACK_ANIM_SHRINK_GROW_VIBRATE,
+        .palette = gMonPalette_Tricerachop,
+        .shinyPalette = gMonPalette_Tricerachop,
+        .iconSprite = gMonIcon_Electrosaur,
+        .iconPalIndex = 0,
+        FOOTPRINT(Tyrantrum)
+        OVERWORLD(
+            sPicTable_Aurorus,
+            SIZE_32x32,
+            SHADOW_SIZE_M,
+            TRACKS_FOOT,
+            gOverworldPalette_Aurorus,
+            gShinyOverworldPalette_Aurorus
+        )
+        .levelUpLearnset = sElectrosaurLevelUpLearnset,
+        .teachableLearnset = sAurorusTeachableLearnset,
+    },
+// END FOSSIL FAMILIES

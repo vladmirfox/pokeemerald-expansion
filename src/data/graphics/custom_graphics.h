@@ -59,3 +59,18 @@ const u32 gMonBackPic_Polaris[] = INCBIN_U32("graphics/pokemon/polaris/back.4bpp
 const u32 gMonShinyPalette_Polaris[] = INCBIN_U32("graphics/pokemon/polaris/normal.gbapal.lz");
 const u8 gMonFootprint_Polaris[] = INCBIN_U8("graphics/pokemon/polaris/footprint.1bpp");
 const u8 gMonIcon_Polaris[] = INCBIN_U8("graphics/pokemon/polaris/icon.4bpp");
+
+const u32 gMonFrontPic_Voltrex[] = INCBIN_U32("graphics/pokemon/electrosaur/voltrex.4bpp.lz");
+const u32 gMonPalette_Voltrex[] = INCBIN_U32("graphics/pokemon/electrosaur/voltrex.gbapal.lz");
+const u32 gMonBackPic_Voltrex[] = INCBIN_U32("graphics/pokemon/electrosaur/back_voltrex.4bpp.lz");
+const u8 gMonIcon_Voltrex[] = INCBIN_U8("graphics/pokemon/electrosaur/icon_voltrex.4bpp");
+
+const u32 gMonFrontPic_Electrosaur[] = INCBIN_U32("graphics/pokemon/electrosaur/electrosaur.4bpp.lz");
+const u32 gMonPalette_Electrosaur[] = INCBIN_U32("graphics/pokemon/electrosaur/electrosaur.gbapal.lz");
+const u32 gMonBackPic_Electrosaur[] = INCBIN_U32("graphics/pokemon/electrosaur/back_electrosaur.4bpp.lz");
+const u8 gMonIcon_Electrosaur[] = INCBIN_U8("graphics/pokemon/electrosaur/icon_electrosaur.4bpp");
+
+const u32 gMonFrontPic_Tricerachop[] = INCBIN_U32("graphics/pokemon/tricerachop/anim_front_tricerachop.4bpp.lz");
+const u32 gMonPalette_Tricerachop[] = INCBIN_U32("graphics/pokemon/tricerachop/tricerachop.gbapal.lz");
+const u32 gMonBackPic_Tricerachop[] = INCBIN_U32("graphics/pokemon/tricerachop/back_tricerachop.4bpp.lz");
+// const u8 gMonIcon_Tricerachop[] = INCBIN_U8("graphics/pokemon/tricerachop/icon_electrosaur.4bpp");

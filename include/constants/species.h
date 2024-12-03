@@ -1646,8 +1646,12 @@
 #define SPECIES_BUTTERFREE_DELTA                        1538
 #define SPECIES_IGNEOUSAUR                              1539
 #define SPECIES_POLARIS                                 1540
+#define SPECIES_VOLTREX                                 1541
+#define SPECIES_ELECTROSAUR                             1542
+#define SPECIES_TRICERACHOP                             1543
+#define SPECIES_TOMAHTRI                                1544
 
-#define SPECIES_EGG (SPECIES_POLARIS + 1)
+#define SPECIES_EGG (SPECIES_TOMAHTRI + 1)
 
 #define NUM_SPECIES SPECIES_EGG
 
