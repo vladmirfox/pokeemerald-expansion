@@ -124,13 +124,18 @@ SINGLE_BATTLE_TEST("Pursuit ignores accuracy checks when attacking a switching t
         TURN { MOVE(player, MOVE_SAND_ATTACK); MOVE(opponent, MOVE_HAIL); }
         TURN { SWITCH(player, 1); MOVE(opponent, MOVE_PURSUIT); }
     } SCENE {
-        HP_BAR(player);
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_SAND_ATTACK, player);
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_HAIL, opponent);
+        SWITCH_OUT_MESSAGE("Glaceon");
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_PURSUIT, opponent);
+        SEND_IN_MESSAGE("Zigzagoon");
     }
 }
 
-DOUBLE_BATTLE_TEST("Pursuit attacks switching foes even if not targetting them")
+DOUBLE_BATTLE_TEST("Pursuit attacks switching foes even if not targetting them (Gen 4+)")
 {
     GIVEN {
+        ASSUME(B_PURSUIT_TARGET >= GEN_4);
         PLAYER(SPECIES_WOBBUFFET);
         PLAYER(SPECIES_ZIGZAGOON);
         PLAYER(SPECIES_GRIMER);
@@ -190,7 +195,7 @@ DOUBLE_BATTLE_TEST("Pursuit attacks a switching foe but not switching allies")
         OPPONENT(SPECIES_LINOONE);
         OPPONENT(SPECIES_ABRA);
     } WHEN {
-        TURN { SWITCH(playerLeft, 2); SWITCH(opponentRight, 2); MOVE(playerRight, MOVE_PURSUIT, target: opponentLeft); MOVE(opponentLeft, MOVE_PURSUIT, target: playerLeft); }
+        TURN { SWITCH(playerLeft, 2); SWITCH(opponentRight, 2); MOVE(playerRight, MOVE_PURSUIT, target: opponentRight); MOVE(opponentLeft, MOVE_PURSUIT, target: playerLeft); }
     } SCENE {
         SWITCH_OUT_MESSAGE("Wobbuffet");
         NOT ANIMATION(ANIM_TYPE_MOVE, MOVE_PURSUIT, playerRight);
@@ -204,6 +209,7 @@ DOUBLE_BATTLE_TEST("Pursuit attacks a switching foe but not switching allies")
 
 DOUBLE_BATTLE_TEST("Pursuit only attacks the first switching foe")
 {
+    // This test does not make sense for B_PURSUIT_TARGET < GEN_4
     GIVEN {
         PLAYER(SPECIES_WOBBUFFET);
         PLAYER(SPECIES_ZIGZAGOON);
@@ -241,7 +247,7 @@ DOUBLE_BATTLE_TEST("Pursuit only attacks a switching foe if foe is alive")
         OPPONENT(SPECIES_WYNAUT);
         OPPONENT(SPECIES_LINOONE);
     } WHEN {
-        TURN { SWITCH(playerLeft, 2); SWITCH(playerRight, 3); MOVE(opponentLeft, MOVE_PURSUIT, target: playerLeft); MOVE(opponentRight, MOVE_PURSUIT, target: playerLeft); SEND_OUT(playerLeft, 2); }
+        TURN { SWITCH(playerLeft, 2); SWITCH(playerRight, 3); MOVE(opponentLeft, MOVE_PURSUIT, target: playerLeft); MOVE(opponentRight, MOVE_PURSUIT, target: playerRight); SEND_OUT(playerLeft, 2); }
     } SCENE {
         SWITCH_OUT_MESSAGE("Wobbuffet");
         ANIMATION(ANIM_TYPE_MOVE, MOVE_PURSUIT, opponentLeft);
@@ -317,7 +323,7 @@ DOUBLE_BATTLE_TEST("Pursuit attacks a switching foe but isn't affected by Follow
         OPPONENT(SPECIES_WYNAUT);
         OPPONENT(SPECIES_LINOONE);
     } WHEN {
-        TURN { MOVE(playerRight, MOVE_FOLLOW_ME); MOVE(playerLeft, MOVE_VOLT_SWITCH, target: opponentLeft); MOVE(opponentLeft, MOVE_PURSUIT, target: playerRight); SEND_OUT(playerLeft, 2); }
+        TURN { MOVE(playerRight, MOVE_FOLLOW_ME); MOVE(playerLeft, MOVE_VOLT_SWITCH, target: opponentLeft); MOVE(opponentLeft, MOVE_PURSUIT, target: playerLeft); SEND_OUT(playerLeft, 2); }
     } SCENE {
         ANIMATION(ANIM_TYPE_MOVE, MOVE_FOLLOW_ME, playerRight);
         ANIMATION(ANIM_TYPE_MOVE, MOVE_VOLT_SWITCH, playerLeft);
@@ -354,7 +360,7 @@ DOUBLE_BATTLE_TEST("Pursuit affected by Electrify fails against immune target")
         OPPONENT(SPECIES_WYNAUT);
         OPPONENT(SPECIES_LINOONE);
     } WHEN {
-        TURN { MOVE(playerRight, MOVE_ELECTRIFY, target: opponentLeft); MOVE(playerLeft, MOVE_VOLT_SWITCH, target: opponentLeft); MOVE(opponentLeft, MOVE_PURSUIT, target: playerRight); SEND_OUT(playerLeft, 2); }
+        TURN { MOVE(playerRight, MOVE_ELECTRIFY, target: opponentLeft); MOVE(playerLeft, MOVE_VOLT_SWITCH, target: opponentLeft); MOVE(opponentLeft, MOVE_PURSUIT, target: playerLeft); SEND_OUT(playerLeft, 2); }
     } SCENE {
         ANIMATION(ANIM_TYPE_MOVE, MOVE_ELECTRIFY, playerRight);
         ANIMATION(ANIM_TYPE_MOVE, MOVE_VOLT_SWITCH, playerLeft);
@@ -373,7 +379,7 @@ DOUBLE_BATTLE_TEST("Pursuit affected by Electrify fails against target with Volt
         OPPONENT(SPECIES_WYNAUT);
         OPPONENT(SPECIES_LINOONE);
     } WHEN {
-        TURN { MOVE(playerRight, MOVE_ELECTRIFY, target: opponentLeft); MOVE(playerLeft, MOVE_VOLT_SWITCH, target: opponentLeft); MOVE(opponentLeft, MOVE_PURSUIT, target: playerRight); SEND_OUT(playerLeft, 2); }
+        TURN { MOVE(playerRight, MOVE_ELECTRIFY, target: opponentLeft); MOVE(playerLeft, MOVE_VOLT_SWITCH, target: opponentLeft); MOVE(opponentLeft, MOVE_PURSUIT, target: playerLeft); SEND_OUT(playerLeft, 2); }
     } SCENE {
         ANIMATION(ANIM_TYPE_MOVE, MOVE_ELECTRIFY, playerRight);
         ANIMATION(ANIM_TYPE_MOVE, MOVE_VOLT_SWITCH, playerLeft);
