@@ -1650,8 +1650,14 @@
 #define SPECIES_ELECTROSAUR                             1542
 #define SPECIES_TRICERACHOP                             1543
 #define SPECIES_TOMAHTRI                                1544
+#define SPECIES_LILEEP_DELTA                            1545
+#define SPECIES_CRADILY_DELTA                           1546
+#define SPECIES_ABYSSILILY                              1547
+#define SPECIES_ANORITH_DELTA                           1548
+#define SPECIES_ARMALDO_DELTA                           1549
+#define SPECIES_ARMOUNTAN                               1550
 
-#define SPECIES_EGG (SPECIES_TOMAHTRI + 1)
+#define SPECIES_EGG (SPECIES_ARMOUNTAN + 1)
 
 #define NUM_SPECIES SPECIES_EGG
 

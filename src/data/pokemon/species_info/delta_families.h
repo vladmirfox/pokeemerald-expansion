@@ -1237,4 +1237,398 @@
         .levelUpLearnset = sElectrosaurLevelUpLearnset,
         .teachableLearnset = sAurorusTeachableLearnset,
     },
+
+    [SPECIES_LILEEP_DELTA] =
+    {
+        .baseHP        = 76,
+        .baseAttack    = 56,
+        .baseDefense   = 77,
+        .baseSpeed     = 33,
+        .baseSpAttack  = 66,
+        .baseSpDefense = 87,
+        .types = MON_TYPES(TYPE_GRASS, TYPE_WATER),
+        .catchRate = 45,
+    #if P_UPDATED_EXP_YIELDS >= GEN_5
+        .expYield = 71,
+    #elif P_UPDATED_EXP_YIELDS >= GEN_4
+        .expYield = 99,
+    #else
+        .expYield = 121,
+    #endif
+        .evYield_SpDefense = 1,
+        .itemRare = ITEM_BIG_ROOT,
+        .genderRatio = PERCENT_FEMALE(12.5),
+        .eggCycles = 30,
+        .friendship = STANDARD_FRIENDSHIP,
+        .growthRate = GROWTH_ERRATIC,
+        .eggGroups = MON_EGG_GROUPS(EGG_GROUP_WATER_3),
+        .abilities = { ABILITY_SUCTION_CUPS, ABILITY_NONE, ABILITY_STORM_DRAIN },
+        .bodyColor = BODY_COLOR_PURPLE,
+        .speciesName = _("Lileep"),
+        .cryId = CRY_LILEEP,
+        .natDexNum = NATIONAL_DEX_LILEEP,
+        .categoryName = _("Sea Lily"),
+        .height = 10,
+        .weight = 238,
+        .description = COMPOUND_STRING(
+            "It disguises itself as seaweed by making\n"
+            "its tentacles sway. Unsuspecting prey\n"
+            "that come too close are swallowed whole.\n"
+            "It became extinct 100 million years ago."),
+        .pokemonScale = 305,
+        .pokemonOffset = 8,
+        .trainerScale = 256,
+        .trainerOffset = 0,
+        .frontPic = gMonFrontPic_Lileep,
+        .frontPicSize = MON_COORDS_SIZE(48, 56),
+        .frontPicYOffset = 7,
+        .frontAnimFrames = sAnims_Lileep,
+        .frontAnimId = ANIM_V_STRETCH,
+        .backPic = gMonBackPic_Lileep,
+        .backPicSize = MON_COORDS_SIZE(48, 48),
+        .backPicYOffset = 8,
+        .backAnimId = BACK_ANIM_H_STRETCH,
+        .palette = gMonPalette_Lileep,
+        .shinyPalette = gMonShinyPalette_Lileep,
+        .iconSprite = gMonIcon_Lileep,
+        .iconPalIndex = 2,
+        FOOTPRINT(Lileep)
+        OVERWORLD(
+            sPicTable_Lileep,
+            SIZE_32x32,
+            SHADOW_SIZE_M,
+            TRACKS_SLITHER,
+            gOverworldPalette_Lileep,
+            gShinyOverworldPalette_Lileep
+        )
+        .levelUpLearnset = sLileepLevelUpLearnset,
+        .teachableLearnset = sLileepTeachableLearnset,
+        .eggMoveLearnset = sLileepEggMoveLearnset,
+        .evolutions = EVOLUTION({EVO_LEVEL, 30, SPECIES_CRADILY_DELTA}),
+    },
+
+    [SPECIES_CRADILY_DELTA] =
+    {
+        .baseHP        = 101,
+        .baseAttack    = 81,
+        .baseDefense   = 97,
+        .baseSpeed     = 58,
+        .baseSpAttack  = 96,
+        .baseSpDefense = 102,
+        .types = MON_TYPES(TYPE_GRASS, TYPE_WATER),
+        .catchRate = 45,
+    #if P_UPDATED_EXP_YIELDS >= GEN_5
+        .expYield = 173,
+    #elif P_UPDATED_EXP_YIELDS >= GEN_4
+        .expYield = 199,
+    #else
+        .expYield = 201,
+    #endif
+        .evYield_SpDefense = 2,
+        .itemRare = ITEM_BIG_ROOT,
+        .genderRatio = PERCENT_FEMALE(12.5),
+        .eggCycles = 30,
+        .friendship = STANDARD_FRIENDSHIP,
+        .growthRate = GROWTH_ERRATIC,
+        .eggGroups = MON_EGG_GROUPS(EGG_GROUP_WATER_3),
+        .abilities = { ABILITY_SUCTION_CUPS, ABILITY_NONE, ABILITY_STORM_DRAIN },
+        .bodyColor = BODY_COLOR_GREEN,
+        .speciesName = _("Cradily"),
+        .cryId = CRY_CRADILY,
+        .natDexNum = NATIONAL_DEX_CRADILY,
+        .categoryName = _("Barnacle"),
+        .height = 15,
+        .weight = 604,
+        .description = COMPOUND_STRING(
+            "It drags its heavy body along the\n"
+            "seafloor. It makes its nest in the shallows\n"
+            "of warm seas. Cradily can be seen on\n"
+            "beaches when the tide goes out."),
+        .pokemonScale = 267,
+        .pokemonOffset = 0,
+        .trainerScale = 256,
+        .trainerOffset = 0,
+        .frontPic = gMonFrontPic_Cradily,
+        .frontPicSize = MON_COORDS_SIZE(56, 64),
+        .frontPicYOffset = 0,
+        .frontAnimFrames = sAnims_Cradily,
+        .frontAnimId = ANIM_V_SHAKE_TWICE,
+        .backPic = gMonBackPic_Cradily,
+        .backPicSize = MON_COORDS_SIZE(56, 64),
+        .backPicYOffset = 0,
+        .backAnimId = BACK_ANIM_V_STRETCH,
+        .palette = gMonPalette_Cradily,
+        .shinyPalette = gMonShinyPalette_Cradily,
+        .iconSprite = gMonIcon_Cradily,
+        .iconPalIndex = 1,
+        FOOTPRINT(Cradily)
+        OVERWORLD(
+            sPicTable_Cradily,
+            SIZE_32x32,
+            SHADOW_SIZE_M,
+            TRACKS_SLITHER,
+            gOverworldPalette_Cradily,
+            gShinyOverworldPalette_Cradily
+        )
+        .levelUpLearnset = sCradilyLevelUpLearnset,
+        .teachableLearnset = sCradilyTeachableLearnset,
+        .evolutions = EVOLUTION({EVO_LEVEL, 42, SPECIES_ABYSSILILY}),
+    },
+
+    [SPECIES_ABYSSILILY] =
+    {
+        .baseHP        = 106,
+        .baseAttack    = 81,
+        .baseDefense   = 102,
+        .baseSpeed     = 60,
+        .baseSpAttack  = 114,
+        .baseSpDefense = 112,
+        .types = MON_TYPES(TYPE_GRASS, TYPE_DARK),
+        .catchRate = 35,
+        .expYield = 201,
+        .evYield_SpAttack = 3,
+        .itemRare = ITEM_BIG_ROOT,
+        .genderRatio = PERCENT_FEMALE(12.5),
+        .eggCycles = 30,
+        .friendship = STANDARD_FRIENDSHIP,
+        .growthRate = GROWTH_ERRATIC,
+        .eggGroups = MON_EGG_GROUPS(EGG_GROUP_WATER_3),
+        .abilities = { ABILITY_SUCTION_CUPS, ABILITY_STORM_DRAIN, ABILITY_POISON_HEAL },
+        .bodyColor = BODY_COLOR_GREEN,
+        .speciesName = _("Abyssilily"),
+        .cryId = CRY_CRADILY,
+        .natDexNum = NATIONAL_DEX_CRADILY,
+        .categoryName = _("Dark Abyss"),
+        .height = 20,
+        .weight = 810,
+        .description = COMPOUND_STRING(
+            "It drags its heavy body along the\n"
+            "seafloor. It makes its nest in the shallows\n"
+            "of warm seas. Abyssilily can be seen on\n"
+            "beaches when the tide goes out."),
+        .pokemonScale = 267,
+        .pokemonOffset = 0,
+        .trainerScale = 256,
+        .trainerOffset = 0,
+        .frontPic = gMonFrontPic_Abyssilily,
+        .frontPicSize = MON_COORDS_SIZE(64, 64),
+        .frontPicYOffset = 0,
+        .frontAnimFrames = sAnims_Cradily,
+        .frontAnimId = ANIM_V_SHAKE_TWICE,
+        .backPic = gMonBackPic_Abyssilily,
+        .backPicSize = MON_COORDS_SIZE(64, 64),
+        .backPicYOffset = 0,
+        .backAnimId = BACK_ANIM_GROW,
+        .palette = gMonPalette_Abyssilily,
+        .shinyPalette = gMonShinyPalette_Abyssilily,
+        .iconSprite = gMonIcon_Abyssilily,
+        .iconPalIndex = 1,
+        FOOTPRINT(Cradily)
+        OVERWORLD(
+            sPicTable_Cradily,
+            SIZE_32x32,
+            SHADOW_SIZE_M,
+            TRACKS_SLITHER,
+            gOverworldPalette_Cradily,
+            gShinyOverworldPalette_Cradily
+        )
+        .levelUpLearnset = sCradilyLevelUpLearnset,
+        .teachableLearnset = sCradilyTeachableLearnset,
+    },
+
+    [SPECIES_ANORITH_DELTA] =
+    {
+        .baseHP        = 55,
+        .baseAttack    = 95,
+        .baseDefense   = 60,
+        .baseSpeed     = 80,
+        .baseSpAttack  = 50,
+        .baseSpDefense = 60,
+        .types = MON_TYPES(TYPE_BUG, TYPE_WATER),
+        .catchRate = 45,
+    #if P_UPDATED_EXP_YIELDS >= GEN_5
+        .expYield = 71,
+    #elif P_UPDATED_EXP_YIELDS >= GEN_4
+        .expYield = 99,
+    #else
+        .expYield = 119,
+    #endif
+        .evYield_Attack = 1,
+        .genderRatio = PERCENT_FEMALE(12.5),
+        .eggCycles = 30,
+        .friendship = STANDARD_FRIENDSHIP,
+        .growthRate = GROWTH_ERRATIC,
+        .eggGroups = MON_EGG_GROUPS(EGG_GROUP_WATER_3),
+        .abilities = { ABILITY_BATTLE_ARMOR, ABILITY_NONE, ABILITY_SWIFT_SWIM },
+        .bodyColor = BODY_COLOR_GRAY,
+        .speciesName = _("Anorith"),
+        .cryId = CRY_ANORITH,
+        .natDexNum = NATIONAL_DEX_ANORITH,
+        .categoryName = _("Old Shrimp"),
+        .height = 7,
+        .weight = 125,
+        .description = COMPOUND_STRING(
+            "It was resurrected from a fossil using the\n"
+            "power of science. It swims by undulating\n"
+            "the eight wings at its sides. They were\n"
+            "feet that adapted to life in the sea."),
+        .pokemonScale = 296,
+        .pokemonOffset = 4,
+        .trainerScale = 256,
+        .trainerOffset = 0,
+        .frontPic = gMonFrontPic_Anorith,
+        .frontPicSize = MON_COORDS_SIZE(48, 56),
+        .frontPicYOffset = 7,
+        .frontAnimFrames = sAnims_Anorith,
+        .frontAnimId = ANIM_TWIST,
+        .backPic = gMonBackPic_Anorith,
+        .backPicSize = MON_COORDS_SIZE(56, 32),
+        .backPicYOffset = 19,
+        .backAnimId = BACK_ANIM_TRIANGLE_DOWN,
+        .palette = gMonPalette_Anorith,
+        .shinyPalette = gMonShinyPalette_Anorith,
+        .iconSprite = gMonIcon_Anorith,
+        .iconPalIndex = 0,
+        FOOTPRINT(Anorith)
+        OVERWORLD(
+            sPicTable_Anorith,
+            SIZE_32x32,
+            SHADOW_SIZE_M,
+            TRACKS_BUG,
+            gOverworldPalette_Anorith,
+            gShinyOverworldPalette_Anorith
+        )
+        .levelUpLearnset = sAnorithLevelUpLearnset,
+        .teachableLearnset = sAnorithTeachableLearnset,
+        .eggMoveLearnset = sAnorithEggMoveLearnset,
+        .evolutions = EVOLUTION({EVO_LEVEL, 30, SPECIES_ARMALDO_DELTA}),
+    },
+
+    [SPECIES_ARMALDO_DELTA] =
+    {
+        .baseHP        = 85,
+        .baseAttack    = 128,
+        .baseDefense   = 102,
+        .baseSpeed     = 55,
+        .baseSpAttack  = 75,
+        .baseSpDefense = 90,
+        .types = MON_TYPES(TYPE_BUG, TYPE_WATER),
+        .catchRate = 20,
+    #if P_UPDATED_EXP_YIELDS >= GEN_5
+        .expYield = 173,
+    #elif P_UPDATED_EXP_YIELDS >= GEN_4
+        .expYield = 199,
+    #else
+        .expYield = 200,
+    #endif
+        .evYield_Attack = 2,
+        .genderRatio = PERCENT_FEMALE(12.5),
+        .eggCycles = 30,
+        .friendship = STANDARD_FRIENDSHIP,
+        .growthRate = GROWTH_ERRATIC,
+        .eggGroups = MON_EGG_GROUPS(EGG_GROUP_WATER_3),
+        .abilities = { ABILITY_MOXIE, ABILITY_TECHNICIAN, ABILITY_SWIFT_SWIM },
+        .bodyColor = BODY_COLOR_GRAY,
+        .speciesName = _("Armaldo"),
+        .cryId = CRY_ARMALDO,
+        .natDexNum = NATIONAL_DEX_ARMALDO,
+        .categoryName = _("Plate"),
+        .height = 15,
+        .weight = 682,
+        .description = COMPOUND_STRING(
+            "Armaldo usually lives on land. However,\n"
+            "when it hunts for prey, it dives beneath\n"
+            "the ocean. It swims around using its two\n"
+            "large wings."),
+        .pokemonScale = 312,
+        .pokemonOffset = 3,
+        .trainerScale = 271,
+        .trainerOffset = 0,
+        .frontPic = gMonFrontPic_Armaldo,
+        .frontPicSize = MON_COORDS_SIZE(64, 64),
+        .frontPicYOffset = 2,
+        .frontAnimFrames = sAnims_Armaldo,
+        .frontAnimId = ANIM_V_SHAKE,
+        .backPic = gMonBackPic_Armaldo,
+        .backPicSize = MON_COORDS_SIZE(64, 64),
+        .backPicYOffset = 0,
+        .backAnimId = BACK_ANIM_V_SHAKE,
+        .palette = gMonPalette_Armaldo,
+        .shinyPalette = gMonShinyPalette_Armaldo,
+        .iconSprite = gMonIcon_Armaldo,
+        .iconPalIndex = 2,
+        FOOTPRINT(Armaldo)
+        OVERWORLD(
+            sPicTable_Armaldo,
+            SIZE_32x32,
+            SHADOW_SIZE_M,
+            TRACKS_FOOT,
+            gOverworldPalette_Armaldo,
+            gShinyOverworldPalette_Armaldo
+        )
+        .levelUpLearnset = sArmaldoLevelUpLearnset,
+        .teachableLearnset = sArmaldoTeachableLearnset,
+        .evolutions = EVOLUTION({EVO_LEVEL, 42, SPECIES_ARMOUNTAN}),
+    },
+
+    [SPECIES_ARMOUNTAN] =
+    {
+        .baseHP        = 100,
+        .baseAttack    = 133,
+        .baseDefense   = 102,
+        .baseSpeed     = 80,
+        .baseSpAttack  = 75,
+        .baseSpDefense = 95,
+        .types = MON_TYPES(TYPE_BUG, TYPE_GROUND),
+        .catchRate = 20,
+        .expYield = 210,
+        .evYield_Attack = 3,
+        .genderRatio = PERCENT_FEMALE(12.5),
+        .eggCycles = 30,
+        .friendship = STANDARD_FRIENDSHIP,
+        .growthRate = GROWTH_ERRATIC,
+        .eggGroups = MON_EGG_GROUPS(EGG_GROUP_WATER_3),
+        .abilities = { ABILITY_MOXIE, ABILITY_TECHNICIAN, ABILITY_SWIFT_SWIM },
+        .bodyColor = BODY_COLOR_GRAY,
+        .speciesName = _("Armountan"),
+        .cryId = CRY_ARMALDO,
+        .natDexNum = NATIONAL_DEX_ARMALDO,
+        .categoryName = _("Plate"),
+        .height = 17,
+        .weight = 914,
+        .description = COMPOUND_STRING(
+            "Armaldo usually lives on land. However,\n"
+            "when it hunts for prey, it dives beneath\n"
+            "the ocean. It swims around using its two\n"
+            "large wings."),
+        .pokemonScale = 344,
+        .pokemonOffset = 3,
+        .trainerScale = 271,
+        .trainerOffset = 0,
+        .frontPic = gMonFrontPic_Armountan,
+        .frontPicSize = MON_COORDS_SIZE(64, 64),
+        .frontPicYOffset = 2,
+        .frontAnimFrames = sAnims_Armaldo,
+        .frontAnimId = ANIM_V_SHAKE,
+        .backPic = gMonBackPic_Armountan,
+        .backPicSize = MON_COORDS_SIZE(64, 64),
+        .backPicYOffset = 0,
+        .backAnimId = BACK_ANIM_V_SHAKE,
+        .palette = gMonPalette_Armountan,
+        .shinyPalette = gMonShinyPalette_Armountan,
+        .iconSprite = gMonIcon_Armountan,
+        .iconPalIndex = 2,
+        FOOTPRINT(Armaldo)
+        OVERWORLD(
+            sPicTable_Armaldo,
+            SIZE_32x32,
+            SHADOW_SIZE_M,
+            TRACKS_FOOT,
+            gOverworldPalette_Armaldo,
+            gShinyOverworldPalette_Armaldo
+        )
+        .levelUpLearnset = sArmaldoLevelUpLearnset,
+        .teachableLearnset = sArmaldoTeachableLearnset,
+    },
+
 // END FOSSIL FAMILIES

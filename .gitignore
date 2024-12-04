@@ -45,3 +45,4 @@ tools/trainerproc/trainerproc
 
 **/_base/*
 *.xcf
+*.aseprite

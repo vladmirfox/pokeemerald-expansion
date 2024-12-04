@@ -1,5 +1,5 @@
 .set LOCALID_DAD, 1
-.set LOCALID_OMANYTE_BALL, 2
+.set LOCALID_ANORITH_BALL, 2
 .set LOCALID_LILEEP_BALL, 3
 
 Route101_NormansLab_MapScripts::
@@ -56,20 +56,20 @@ Route101_NormansLab_EventScript_GoodLuck::
 	release
 	end
 
-Route101_NormansLab_EventScript_PokeballOmanyte::
+Route101_NormansLab_EventScript_PokeballAnorith::
 	lock
-	msgbox Route101_NormansLab_Text_PickOmanyte, MSGBOX_YESNO
-	goto_if_eq VAR_RESULT, YES, Route101_NormansLab_EventScript_TakeOmanyte
+	msgbox Route101_NormansLab_Text_PickAnorith, MSGBOX_YESNO
+	goto_if_eq VAR_RESULT, YES, Route101_NormansLab_EventScript_TakeAnorith
 	release
 	end
 
-Route101_NormansLab_EventScript_TakeOmanyte::
-	givemon SPECIES_OMANYTE, 5, item=ITEM_ORAN_BERRY, isShiny=TRUE
-	msgbox Route101_NormansLab_Text_ReceivedOmanyte, MSGBOX_DEFAULT
+Route101_NormansLab_EventScript_TakeAnorith::
+	givemon SPECIES_ANORITH_DELTA, 5, item=ITEM_ORAN_BERRY, isShiny=TRUE
+	msgbox Route101_NormansLab_Text_ReceivedAnorith, MSGBOX_DEFAULT
 	closemessage
 	playfanfare MUS_OBTAIN_ITEM
 	waitfanfare
-	removeobject LOCALID_OMANYTE_BALL
+	removeobject LOCALID_ANORITH_BALL
 	call Route101_NormansLab_EventScript_TookStarter
 	return
 
@@ -81,7 +81,7 @@ Route101_NormansLab_EventScript_PokeballLileep::
 	end
 
 Route101_NormansLab_EventScript_TakeLileep::
-	givemon SPECIES_LILEEP, 5, item=ITEM_ORAN_BERRY, isShiny=TRUE
+	givemon SPECIES_LILEEP_DELTA, 5, item=ITEM_ORAN_BERRY, isShiny=TRUE
 	msgbox Route101_NormansLab_Text_ReceivedLileep, MSGBOX_DEFAULT
 	closemessage
 	playfanfare MUS_OBTAIN_ITEM
@@ -110,7 +110,7 @@ Route101_NormansLab_EventScript_TookStarter::
 	msgbox Route101_NormansLab_Text_Excellent, MSGBOX_AUTOCLOSE
 	applymovement LOCALID_DAD, Route101_NormansLab_Movement_WalkInPlaceLeft
 	waitmovement 0
-	removeobject LOCALID_OMANYTE_BALL
+	removeobject LOCALID_ANORITH_BALL
 	removeobject LOCALID_LILEEP_BALL
 
 	@ Nickname code from Birch's Lab
@@ -189,14 +189,14 @@ Route101_NormansLab_Text_PickOne:
 	.string "DAD: Go ahead and pick whichever\n"
 	.string "one you would like!$"
 
-Route101_NormansLab_Text_PickOmanyte:
-	.string "Pick OMANYTE?$"
+Route101_NormansLab_Text_PickAnorith:
+	.string "Pick ANORITH?$"
 
 Route101_NormansLab_Text_PickLileep:
 	.string "Pick LILEEP?$"
 
-Route101_NormansLab_Text_ReceivedOmanyte:
-	.string "{PLAYER} received an OMANYTE!$"
+Route101_NormansLab_Text_ReceivedAnorith:
+	.string "{PLAYER} received an ANORITH!$"
 
 Route101_NormansLab_Text_ReceivedLileep:
 	.string "{PLAYER} received an LILEEP!$"

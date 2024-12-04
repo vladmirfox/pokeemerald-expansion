@@ -7422,7 +7422,7 @@ const struct SpeciesInfo gSpeciesInfoGen3[] =
         .levelUpLearnset = sLileepLevelUpLearnset,
         .teachableLearnset = sLileepTeachableLearnset,
         .eggMoveLearnset = sLileepEggMoveLearnset,
-        .evolutions = EVOLUTION({EVO_LEVEL, 32, SPECIES_CRADILY}),
+        .evolutions = EVOLUTION({EVO_LEVEL, 30, SPECIES_CRADILY}),
     },
 
     [SPECIES_CRADILY] =
@@ -7559,18 +7559,18 @@ const struct SpeciesInfo gSpeciesInfoGen3[] =
         .levelUpLearnset = sAnorithLevelUpLearnset,
         .teachableLearnset = sAnorithTeachableLearnset,
         .eggMoveLearnset = sAnorithEggMoveLearnset,
-        .evolutions = EVOLUTION({EVO_LEVEL, 40, SPECIES_ARMALDO}),
+        .evolutions = EVOLUTION({EVO_LEVEL, 30, SPECIES_ARMALDO}),
     },
 
     [SPECIES_ARMALDO] =
     {
         .baseHP        = 85,
-        .baseAttack    = 125,
-        .baseDefense   = 87,
-        .baseSpeed     = 98,
-        .baseSpAttack  = 60,
-        .baseSpDefense = 80,
-        .types = MON_TYPES(TYPE_WATER, TYPE_BUG),
+        .baseAttack    = 128,
+        .baseDefense   = 102,
+        .baseSpeed     = 55,
+        .baseSpAttack  = 75,
+        .baseSpDefense = 90,
+        .types = MON_TYPES(TYPE_ROCK, TYPE_BUG),
         .catchRate = 20,
     #if P_UPDATED_EXP_YIELDS >= GEN_5
         .expYield = 173,

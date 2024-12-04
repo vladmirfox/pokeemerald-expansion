@@ -74,3 +74,15 @@ const u32 gMonFrontPic_Tricerachop[] = INCBIN_U32("graphics/pokemon/tricerachop/
 const u32 gMonPalette_Tricerachop[] = INCBIN_U32("graphics/pokemon/tricerachop/tricerachop.gbapal.lz");
 const u32 gMonBackPic_Tricerachop[] = INCBIN_U32("graphics/pokemon/tricerachop/back_tricerachop.4bpp.lz");
 // const u8 gMonIcon_Tricerachop[] = INCBIN_U8("graphics/pokemon/tricerachop/icon_electrosaur.4bpp");
+
+const u32 gMonFrontPic_Abyssilily[] = INCBIN_U32("graphics/pokemon/cradily/anim_front_mega.4bpp.lz");
+const u32 gMonPalette_Abyssilily[] = INCBIN_U32("graphics/pokemon/cradily/mega.gbapal.lz");
+const u32 gMonShinyPalette_Abyssilily[] = INCBIN_U32("graphics/pokemon/cradily/shiny_mega.gbapal.lz");
+const u32 gMonBackPic_Abyssilily[] = INCBIN_U32("graphics/pokemon/cradily/back_mega.4bpp.lz");
+const u8 gMonIcon_Abyssilily[] = INCBIN_U8("graphics/pokemon/cradily/mega/icon.4bpp");
+
+const u32 gMonFrontPic_Armountan[] = INCBIN_U32("graphics/pokemon/armaldo/mega/anim_front.4bpp.lz");
+const u32 gMonPalette_Armountan[] = INCBIN_U32("graphics/pokemon/armaldo/mega/normal.gbapal.lz");
+const u32 gMonShinyPalette_Armountan[] = INCBIN_U32("graphics/pokemon/armaldo/mega/shiny.gbapal.lz");
+const u32 gMonBackPic_Armountan[] = INCBIN_U32("graphics/pokemon/armaldo/mega/back.4bpp.lz");
+const u8 gMonIcon_Armountan[] = INCBIN_U8("graphics/pokemon/armaldo/mega/icon.4bpp");
