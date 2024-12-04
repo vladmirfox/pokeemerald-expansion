@@ -52,32 +52,48 @@ WindsweptRoute_EventScript_Trainer3::
 	end
 
 
-WindsweptRoute_EventScript_Trainer4::
+WindsweptRoute_EventScript_Fisherman_ShortRod::
 # 56 "data/maps/WindsweptRoute/scripts.pory"
+	lock
+# 57 "data/maps/WindsweptRoute/scripts.pory"
+	faceplayer
+# 58 "data/maps/WindsweptRoute/scripts.pory"
+	speakername WindsweptRoute_EventScript_Fisherman_ShortRod_Text_0
+# 59 "data/maps/WindsweptRoute/scripts.pory"
+	msgbox WindsweptRoute_EventScript_Fisherman_ShortRod_Text_1
+# 63 "data/maps/WindsweptRoute/scripts.pory"
+	closemessage
+# 64 "data/maps/WindsweptRoute/scripts.pory"
+	release
+	return
+
+
+WindsweptRoute_EventScript_Trainer4::
+# 68 "data/maps/WindsweptRoute/scripts.pory"
 	trainerbattle_single TRAINER_MUSASHI_1, WindsweptRoute_EventScript_Trainer1_Text_0, WindsweptRoute_EventScript_Trainer1_Text_1
-# 61 "data/maps/WindsweptRoute/scripts.pory"
+# 73 "data/maps/WindsweptRoute/scripts.pory"
 	speakername WindsweptRoute_EventScript_Trainer1_Text_2
-# 62 "data/maps/WindsweptRoute/scripts.pory"
+# 74 "data/maps/WindsweptRoute/scripts.pory"
 	msgbox WindsweptRoute_EventScript_Trainer1_Text_3, MSGBOX_AUTOCLOSE
 	end
 
 
 WindsweptRoute_EventScript_Trainer5::
-# 67 "data/maps/WindsweptRoute/scripts.pory"
+# 79 "data/maps/WindsweptRoute/scripts.pory"
 	trainerbattle_single TRAINER_MUSASHI_1, WindsweptRoute_EventScript_Trainer1_Text_0, WindsweptRoute_EventScript_Trainer1_Text_1
-# 72 "data/maps/WindsweptRoute/scripts.pory"
+# 84 "data/maps/WindsweptRoute/scripts.pory"
 	speakername WindsweptRoute_EventScript_Trainer1_Text_2
-# 73 "data/maps/WindsweptRoute/scripts.pory"
+# 85 "data/maps/WindsweptRoute/scripts.pory"
 	msgbox WindsweptRoute_EventScript_Trainer1_Text_3, MSGBOX_AUTOCLOSE
 	end
 
 
 WindsweptRoute_EventScript_Trainer6::
-# 78 "data/maps/WindsweptRoute/scripts.pory"
+# 90 "data/maps/WindsweptRoute/scripts.pory"
 	trainerbattle_single TRAINER_MUSASHI_1, WindsweptRoute_EventScript_Trainer1_Text_0, WindsweptRoute_EventScript_Trainer1_Text_1
-# 83 "data/maps/WindsweptRoute/scripts.pory"
+# 95 "data/maps/WindsweptRoute/scripts.pory"
 	speakername WindsweptRoute_EventScript_Trainer1_Text_2
-# 84 "data/maps/WindsweptRoute/scripts.pory"
+# 96 "data/maps/WindsweptRoute/scripts.pory"
 	msgbox WindsweptRoute_EventScript_Trainer1_Text_3, MSGBOX_AUTOCLOSE
 	end
 
@@ -152,4 +168,18 @@ WindsweptRoute_EventScript_Trainer3_Text_2:
 
 WindsweptRoute_EventScript_Trainer3_Text_3:
 # 51 "data/maps/WindsweptRoute/scripts.pory"
-	.string "TODO EVA$"
+	.string "Look at that poor sod over there! His\n"
+	.string "rod is so short, I can't help but\l"
+	.string "laugh!$"
+
+WindsweptRoute_EventScript_Fisherman_ShortRod_Text_0:
+# 58 "data/maps/WindsweptRoute/scripts.pory"
+	.string "Fisherman$"
+
+WindsweptRoute_EventScript_Fisherman_ShortRod_Text_1:
+# 60 "data/maps/WindsweptRoute/scripts.pory"
+	.string "That guy over there keeps bragging\n"
+	.string "about having a long rod.\p"
+	.string "Little does he realize that I, with my\n"
+	.string "much shorter rod, catch only the\l"
+	.string "highest-jumping fish!$"
