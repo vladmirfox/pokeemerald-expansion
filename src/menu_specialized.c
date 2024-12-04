@@ -75,8 +75,6 @@ static const u8 sPlayerNameTextColors[] =
     TEXT_COLOR_WHITE, TEXT_COLOR_DARK_GRAY, TEXT_COLOR_LIGHT_GRAY
 };
 
-static const u8 sEmptyItemName[] = _("");
-
 static const struct ScanlineEffectParams sConditionGraphScanline =
 {
     .dmaDest = &REG_WIN0H,
@@ -262,7 +260,7 @@ u8 MailboxMenu_CreateList(struct PlayerPCItemPageStruct *page)
     u16 i;
     for (i = 0; i < page->count; i++)
     {
-        sMailboxList[i].name = sEmptyItemName;
+        sMailboxList[i].name = gText_EmptyString;
         sMailboxList[i].id = i;
     }
 

@@ -1394,7 +1394,7 @@ static u8 *AppendGenderSymbol(u8 *name, u8 gender)
             return StringAppend(name, gText_FemaleSymbol4);
     }
 
-    return StringAppend(name, gText_GenderlessSymbol);
+    return StringAppend(name, gText_EmptyString); // genderless
 }
 
 static u8 *AppendMonGenderSymbol(u8 *name, struct BoxPokemon *boxMon)

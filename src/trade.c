@@ -1969,7 +1969,7 @@ static void BufferMovesString(u8 *str, u8 whichParty, u8 partyIdx)
                 moves[i] = GetMonData(&gEnemyParty[partyIdx], i + MON_DATA_MOVE1, NULL);
         }
 
-        StringCopy(str, sText_EmptyString);
+        StringCopy(str, gText_EmptyString);
 
         for (i = 0; i < MAX_MON_MOVES; i++)
         {
@@ -1981,7 +1981,7 @@ static void BufferMovesString(u8 *str, u8 whichParty, u8 partyIdx)
     }
     else
     {
-        StringCopy(str, sText_EmptyString);
+        StringCopy(str, gText_EmptyString);
         StringAppend(str, sText_FourQuestionMarks);
     }
 }

@@ -33,7 +33,6 @@ const u8 gGiftRibbonDescriptionPart1_PokemonCenterOsaka[] = _("POKéMON CENTER O
 const u8 gGiftRibbonDescriptionPart1_PokemonCenterNagoya[] = _("POKéMON CENTER NAGOYA");
 const u8 gGiftRibbonDescriptionPart1_PokemonCenterNY[] = _("POKéMON CENTER NY");
 const u8 gGiftRibbonDescriptionPart1_SummerHolidays[] = _("Summer Holidays RIBBON");
-const u8 gGiftRibbonDescriptionPart2_EmptyString[] = _("");
 const u8 gGiftRibbonDescriptionPart1_WinterHolidays[] = _("Winter Holidays RIBBON");
 const u8 gGiftRibbonDescriptionPart1_SpringHolidays[] = _("Spring Holidays RIBBON");
 const u8 gGiftRibbonDescriptionPart1_Evergreen[] = _("Evergreen RIBBON");
@@ -102,14 +101,14 @@ const u8 *const gGiftRibbonDescriptionPointers[MAX_GIFT_RIBBON][2] =
     {gGiftRibbonDescriptionPart1_PokemonCenterOsaka,    gGiftRibbonDescriptionPart2_Commemorative},
     {gGiftRibbonDescriptionPart1_PokemonCenterNagoya,   gGiftRibbonDescriptionPart2_Commemorative},
     {gGiftRibbonDescriptionPart1_PokemonCenterNY,       gGiftRibbonDescriptionPart2_Commemorative},
-    {gGiftRibbonDescriptionPart1_SummerHolidays,        gGiftRibbonDescriptionPart2_EmptyString},
-    {gGiftRibbonDescriptionPart1_WinterHolidays,        gGiftRibbonDescriptionPart2_EmptyString},
-    {gGiftRibbonDescriptionPart1_SpringHolidays,        gGiftRibbonDescriptionPart2_EmptyString},
-    {gGiftRibbonDescriptionPart1_Evergreen,             gGiftRibbonDescriptionPart2_EmptyString},
-    {gGiftRibbonDescriptionPart1_SpecialHoliday,        gGiftRibbonDescriptionPart2_EmptyString},
-    {gGiftRibbonDescriptionPart1_HardWorker,            gGiftRibbonDescriptionPart2_EmptyString},
-    {gGiftRibbonDescriptionPart1_LotsOfFriends,         gGiftRibbonDescriptionPart2_EmptyString},
-    {gGiftRibbonDescriptionPart1_FullOfEnergy,          gGiftRibbonDescriptionPart2_EmptyString},
+    {gGiftRibbonDescriptionPart1_SummerHolidays,        gText_EmptyString},
+    {gGiftRibbonDescriptionPart1_WinterHolidays,        gText_EmptyString},
+    {gGiftRibbonDescriptionPart1_SpringHolidays,        gText_EmptyString},
+    {gGiftRibbonDescriptionPart1_Evergreen,             gText_EmptyString},
+    {gGiftRibbonDescriptionPart1_SpecialHoliday,        gText_EmptyString},
+    {gGiftRibbonDescriptionPart1_HardWorker,            gText_EmptyString},
+    {gGiftRibbonDescriptionPart1_LotsOfFriends,         gText_EmptyString},
+    {gGiftRibbonDescriptionPart1_FullOfEnergy,          gText_EmptyString},
     {gGiftRibbonDescriptionPart1_LovedPokemon,          gGiftRibbonDescriptionPart2_LovedPokemon},
     {gGiftRibbonDescriptionPart1_LoveForPokemon,        gGiftRibbonDescriptionPart2_LoveForPokemon}
 };

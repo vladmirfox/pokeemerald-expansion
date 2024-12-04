@@ -272,7 +272,7 @@ bool32 MoveSelectionDisplayZMove(u16 zmove, u32 battler)
         for (i = 0; i < MAX_MON_MOVES; ++i)
         {
             MoveSelectionDestroyCursorAt(i);
-            StringCopy(gDisplayedStringBattle, gText_EmptyString2);
+            StringCopy(gDisplayedStringBattle, gText_EmptyString);
             BattlePutTextOnWindow(gDisplayedStringBattle, i + 3);
         }
 
