@@ -5,6 +5,7 @@
 #include "palette.h"
 #include "sound.h"
 #include "constants/songs.h"
+#include "strings.h"
 #include "string_util.h"
 #include "window.h"
 #include "text.h"
