@@ -1072,7 +1072,7 @@ static void CreateStartMenuForPokenavTutorial(void)
     u8 windowId = CreateWindowFromRect(21, 0, 7, 18);
     SetStandardWindowBorderStyle(windowId, FALSE);
     AddTextPrinterParameterized(windowId, FONT_NORMAL, gText_MenuOptionPokedex, 8, 9, TEXT_SKIP_DRAW, NULL);
-    AddTextPrinterParameterized(windowId, FONT_NORMAL, gText_MenuOptionPokemon, 8, 25, TEXT_SKIP_DRAW, NULL);
+    AddTextPrinterParameterized(windowId, FONT_NORMAL, gText_Pokemon, 8, 25, TEXT_SKIP_DRAW, NULL);
     AddTextPrinterParameterized(windowId, FONT_NORMAL, gText_MenuOptionBag, 8, 41, TEXT_SKIP_DRAW, NULL);
     AddTextPrinterParameterized(windowId, FONT_NORMAL, gText_MenuOptionPokenav, 8, 57, TEXT_SKIP_DRAW, NULL);
     AddTextPrinterParameterized(windowId, FONT_NORMAL, gSaveBlock2Ptr->playerName, 8, 73, TEXT_SKIP_DRAW, NULL);

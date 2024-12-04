@@ -642,10 +642,10 @@ static const u8 *const sActionStringTable[] =
     [PARTY_MSG_ALREADY_SURFING]        = gText_AlreadySurfing,
     [PARTY_MSG_CURRENT_TOO_FAST]       = gText_CurrentIsTooFast,
     [PARTY_MSG_ENJOY_CYCLING]          = gText_EnjoyCycling,
-    [PARTY_MSG_ALREADY_IN_USE]         = gText_InUseAlready_PM,
+    [PARTY_MSG_ALREADY_IN_USE]         = gText_InUseAlready,
     [PARTY_MSG_CANT_USE_HERE]          = gText_CantUseHere,
     [PARTY_MSG_NO_MON_FOR_BATTLE]      = gText_NoPokemonForBattle,
-    [PARTY_MSG_CHOOSE_MON_2]           = gText_ChoosePokemon2,
+    [PARTY_MSG_CHOOSE_MON_2]           = gText_ChoosePokemon,
     [PARTY_MSG_NOT_ENOUGH_HP]          = gText_NotEnoughHp,
     [PARTY_MSG_X_MONS_ARE_NEEDED]      = gText_PokemonAreNeeded,
     [PARTY_MSG_MONS_CANT_BE_SAME]      = gText_PokemonCantBeSame,
@@ -669,7 +669,7 @@ static const u8 *const sDescriptionStringTable[] =
     [PARTYBOX_DESC_SECOND]     = gText_Second_PM,
     [PARTYBOX_DESC_THIRD]      = gText_Third_PM,
     [PARTYBOX_DESC_FOURTH]     = gText_Fourth,
-    [PARTYBOX_DESC_ABLE]       = gText_Able2,
+    [PARTYBOX_DESC_ABLE]       = gText_Able,
     [PARTYBOX_DESC_NOT_ABLE]   = gText_NotAble,
     [PARTYBOX_DESC_ABLE_2]     = gText_Able3,
     [PARTYBOX_DESC_NOT_ABLE_2] = gText_NotAble2,
@@ -695,15 +695,15 @@ struct
 } static const sCursorOptions[MENU_FIELD_MOVES] =
 {
     [MENU_SUMMARY] = {COMPOUND_STRING("SUMMARY"), CursorCb_Summary},
-    [MENU_SWITCH] = {COMPOUND_STRING("SWITCH"), CursorCb_Switch},
-    [MENU_CANCEL1] = {gText_Cancel2, CursorCb_Cancel1},
+    [MENU_SWITCH] = {gText_Switch, CursorCb_Switch},
+    [MENU_CANCEL1] = {gText_Cancel, CursorCb_Cancel1},
     [MENU_ITEM] = {COMPOUND_STRING("ITEM"), CursorCb_Item},
     [MENU_GIVE] = {gMenuText_Give, CursorCb_Give},
     [MENU_TAKE_ITEM] = {COMPOUND_STRING("TAKE"), CursorCb_TakeItem},
     [MENU_MAIL] = {COMPOUND_STRING("MAIL"), CursorCb_Mail},
     [MENU_TAKE_MAIL] = {COMPOUND_STRING("TAKE"), CursorCb_TakeMail},
     [MENU_READ] = {COMPOUND_STRING("READ"), CursorCb_Read},
-    [MENU_CANCEL2] = {gText_Cancel2, CursorCb_Cancel2},
+    [MENU_CANCEL2] = {gText_Cancel, CursorCb_Cancel2},
     [MENU_SHIFT] = {COMPOUND_STRING("SHIFT"), CursorCb_SendMon},
     [MENU_SEND_OUT] = {COMPOUND_STRING("SEND OUT"), CursorCb_SendMon},
     [MENU_ENTER] = {COMPOUND_STRING("ENTER"), CursorCb_Enter},
@@ -1134,12 +1134,12 @@ const struct SpriteTemplate gSpriteTemplate_StatusIcons =
 
 static const u8 *const sUnused_StatStrings[] =
 {
-    gText_HP4,
-    gText_Attack3,
-    gText_Defense3,
-    gText_SpAtk4,
+    gText_HP,
+    gText_Attack,
+    gText_Defense,
+    gText_SpAtk,
     gText_SpDef4,
-    gText_Speed2
+    gText_Speed
 };
 
 #define ROTOM_BASE_MOVE  MOVE_THUNDER_SHOCK

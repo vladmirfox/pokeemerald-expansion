@@ -1,3 +1,5 @@
+#include "strings.h"
+
 #define GFXTAG_MENU_TEXT       200 // Used as a base tag in CB2_CreateTradeMenu and CB2_ReturnToTradeMenu
 #define GFXTAG_CURSOR          300
 #define GFXTAG_LINK_MON_GLOW   5550
@@ -29,17 +31,10 @@ static const u16 sTradePartyBoxTilemap[] = INCBIN_U16("graphics/trade/party_box_
 static const u8 sTradeStripesBG2Tilemap[] = INCBIN_U8("graphics/trade/stripes_bg2_map.bin");
 static const u8 sTradeStripesBG3Tilemap[] = INCBIN_U8("graphics/trade/stripes_bg3_map.bin");
 static const u8 sText_UnusedTextFormat[] = _("{COLOR WHITE}{HIGHLIGHT TRANSPARENT}{SHADOW DARK_GRAY}");
-const u8 gText_MaleSymbol4[] = _("♂");
-const u8 gText_FemaleSymbol4[] = _("♀");
 static const u8 sText_SpaceMove[] = _(" MOVE"); // unused
 static const u8 sText_NewLine[] = _("\n");
-static const u8 sText_Slash[] = _("/");
-static const u8 sText_Lv[] = _("Lv. ");
-static const u8 sText_ThreeDashes[] = _("---");
 static const u8 sText_FourQuestionMarks[] = _("????");
 static const u8 sText_IsThisTradeOkay[] = _("Is this trade okay?");
-static const u8 sText_Cancel[] = _("CANCEL");
-static const u8 sText_ChooseAPkmn[] = _("Choose a POKéMON.");
 static const u8 sText_Summary[] = _("SUMMARY");
 static const u8 sText_Trade[] = _("TRADE");
 static const u8 sText_CancelTrade[] = _("Cancel trade?");
@@ -359,8 +354,8 @@ static const u8 sUnusedCoords[][2] =
 
 static const u8 *const sActionTexts[] =
 {
-    [TEXT_CANCEL]       = sText_Cancel,
-    [TEXT_CHOOSE_MON]   = sText_ChooseAPkmn,
+    [TEXT_CANCEL]       = gText_Cancel,
+    [TEXT_CHOOSE_MON]   = gText_ChoosePokemon,
     [TEXT_SUMMARY]      = sText_Summary,
     [TEXT_TRADE]        = sText_Trade,
     [TEXT_CANCEL_TRADE] = sText_CancelTrade,

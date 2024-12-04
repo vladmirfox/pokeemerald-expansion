@@ -126,7 +126,6 @@ static const u8 sText_ExclamationMark2[] = _("!");
 static const u8 sText_ExclamationMark3[] = _("!");
 static const u8 sText_ExclamationMark4[] = _("!");
 static const u8 sText_ExclamationMark5[] = _("!");
-static const u8 sText_HP[] = _("HP");
 static const u8 sText_Attack[] = _("Attack");
 static const u8 sText_Defense[] = _("Defense");
 static const u8 sText_Speed[] = _("Speed");
@@ -137,7 +136,7 @@ static const u8 sText_Evasiveness[] = _("evasiveness");
 
 const u8 *const gStatNamesTable[NUM_BATTLE_STATS] =
 {
-    sText_HP, sText_Attack, sText_Defense,
+    gText_HP, sText_Attack, sText_Defense,
     sText_Speed, sText_SpAttack, sText_SpDefense,
     sText_Accuracy, sText_Evasiveness
 };
@@ -1407,7 +1406,6 @@ const u8 gText_LinkStandby[] = _("{PAUSE 16}Link standby…");
 const u8 gText_BattleMenu[] = _("Battle{CLEAR_TO 56}Bag\nPokémon{CLEAR_TO 56}Run");
 const u8 gText_SafariZoneMenu[] = _("Ball{CLEAR_TO 56}{POKEBLOCK}\nGo Near{CLEAR_TO 56}Run");
 const u8 gText_MoveInterfacePP[] = _("PP ");
-const u8 gText_MoveInterfaceType[] = _("TYPE/");
 const u8 gText_MoveInterfacePpType[] = _("{PALETTE 5}{COLOR_HIGHLIGHT_SHADOW DYNAMIC_COLOR4 DYNAMIC_COLOR5 DYNAMIC_COLOR6}PP\nTYPE/");
 const u8 gText_MoveInterfaceDynamicColors[] = _("{PALETTE 5}{COLOR_HIGHLIGHT_SHADOW DYNAMIC_COLOR4 DYNAMIC_COLOR5 DYNAMIC_COLOR6}");
 const u8 gText_WhichMoveToForget4[] = _("{PALETTE 5}{COLOR_HIGHLIGHT_SHADOW DYNAMIC_COLOR4 DYNAMIC_COLOR5 DYNAMIC_COLOR6}Which move should\nbe forgotten?");
@@ -1416,7 +1414,6 @@ const u8 gText_BattleSwitchWhich[] = _("{PALETTE 5}{COLOR_HIGHLIGHT_SHADOW DYNAM
 const u8 gText_BattleSwitchWhich2[] = _("{PALETTE 5}{COLOR_HIGHLIGHT_SHADOW DYNAMIC_COLOR4 DYNAMIC_COLOR5 DYNAMIC_COLOR6}");
 const u8 gText_BattleSwitchWhich3[] = _("{UP_ARROW}");
 const u8 gText_BattleSwitchWhich4[] = _("{ESCAPE 4}");
-const u8 gText_BattleSwitchWhich5[] = _("-");
 const u8 gText_SafariBalls[] = _("{HIGHLIGHT DARK_GRAY}Safari Balls");
 const u8 gText_SafariBallLeft[] = _("{HIGHLIGHT DARK_GRAY}Left: $" "{HIGHLIGHT DARK_GRAY}");
 const u8 gText_Sleep[] = _("sleep");
@@ -1428,7 +1425,6 @@ const u8 gText_Confusion[] = _("confusion");
 const u8 gText_Love[] = _("love");
 const u8 gText_SpaceAndSpace[] = _(" and ");
 const u8 gText_CommaSpace[] = _(", ");
-const u8 gText_Space2[] = _(" ");
 const u8 gText_LineBreak[] = _("\l");
 const u8 gText_NewLine[] = _("\n");
 const u8 gText_Are[] = _("are");

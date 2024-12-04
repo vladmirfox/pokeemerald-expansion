@@ -273,7 +273,6 @@ static const u8 gText_MysteryGiftCantUse[] = _("MYSTERY GIFT can't be used while
 static const u8 gText_MysteryEventsCantUse[] = _("MYSTERY EVENTS can't be used while\nthe Wireless Adapter is attached.");
 
 static const u8 gText_ContinueMenuPlayer[] = _("PLAYER");
-static const u8 gText_ContinueMenuTime[] = _("TIME");
 static const u8 gText_ContinueMenuPokedex[] = _("POKéDEX");
 static const u8 gText_ContinueMenuBadges[] = _("BADGES");
 
@@ -2168,7 +2167,7 @@ static void MainMenu_FormatSavegameTime(void)
     u8 str[0x20];
     u8 *ptr;
 
-    StringExpandPlaceholders(gStringVar4, gText_ContinueMenuTime);
+    StringExpandPlaceholders(gStringVar4, gText_Time);
     AddTextPrinterParameterized3(2, FONT_NORMAL, 0x6C, 17, sTextColor_MenuInfo, TEXT_SKIP_DRAW, gStringVar4);
     ptr = ConvertIntToDecimalStringN(str, gSaveBlock2Ptr->playTimeHours, STR_CONV_MODE_LEFT_ALIGN, 3);
     *ptr = 0xF0;

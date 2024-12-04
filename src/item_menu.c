@@ -276,7 +276,7 @@ static const struct MenuAction sItemMenuActions[] = {
     [ACTION_TOSS]              = {gMenuText_Toss,               {ItemMenu_Toss}},
     [ACTION_REGISTER]          = {gMenuText_Register,           {ItemMenu_Register}},
     [ACTION_GIVE]              = {gMenuText_Give,               {ItemMenu_Give}},
-    [ACTION_CANCEL]            = {gText_Cancel2,                {ItemMenu_Cancel}},
+    [ACTION_CANCEL]            = {gText_Cancel,                 {ItemMenu_Cancel}},
     [ACTION_BATTLE_USE]        = {gMenuText_Use,                {ItemMenu_UseInBattle}},
     [ACTION_CHECK]             = {COMPOUND_STRING("CHECK"),     {ItemMenu_UseOutOfBattle}},
     [ACTION_WALK]              = {COMPOUND_STRING("WALK"),      {ItemMenu_UseOutOfBattle}},
@@ -284,7 +284,7 @@ static const struct MenuAction sItemMenuActions[] = {
     [ACTION_CHECK_TAG]         = {COMPOUND_STRING("DESELECT"),  {ItemMenu_CheckTag}},
     [ACTION_CONFIRM]           = {gMenuText_Confirm,            {Task_FadeAndCloseBagMenu}},
     [ACTION_SHOW]              = {COMPOUND_STRING("SHOW"),      {ItemMenu_Show}},
-    [ACTION_GIVE_FAVOR_LADY]   = {gMenuText_Give2,              {ItemMenu_GiveFavorLady}},
+    [ACTION_GIVE_FAVOR_LADY]   = {gMenuText_Give,               {ItemMenu_GiveFavorLady}},
     [ACTION_CONFIRM_QUIZ_LADY] = {gMenuText_Confirm,            {ItemMenu_ConfirmQuizLady}},
     [ACTION_DUMMY]             = {gText_EmptyString, {NULL}}
 };
@@ -1032,7 +1032,7 @@ static void BagMenu_PrintCursorAtPos(u8 y, u8 colorIndex)
     if (colorIndex == COLORID_NONE)
         FillWindowPixelRect(WIN_ITEM_LIST, PIXEL_FILL(0), 0, y, GetMenuCursorDimensionByFont(FONT_NORMAL, 0), GetMenuCursorDimensionByFont(FONT_NORMAL, 1));
     else
-        BagMenu_Print(WIN_ITEM_LIST, FONT_NORMAL, gText_SelectorArrow2, 0, y, 0, 0, 0, colorIndex);
+        BagMenu_Print(WIN_ITEM_LIST, FONT_NORMAL, gText_SelectorArrow, 0, y, 0, 0, 0, colorIndex);
 
 }
 

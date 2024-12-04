@@ -9,7 +9,7 @@ static const struct MenuAction MultichoiceList_BrineyOnDewford[] =
 static const struct MenuAction MultichoiceList_EnterInfo[] =
 {
     {COMPOUND_STRING("ENTER")},
-    {gText_Info2},
+    {gText_Info},
     {gText_Exit},
 };
 
@@ -18,7 +18,7 @@ static const struct MenuAction MultichoiceList_ContestInfo[] =
     {COMPOUND_STRING("What's a CONTEST?")},
     {COMPOUND_STRING("Types of CONTESTS")},
     {COMPOUND_STRING("Ranks")},
-    {gText_Cancel2},
+    {gText_Cancel},
 };
 
 static const struct MenuAction MultichoiceList_ContestType[] =
@@ -33,7 +33,7 @@ static const struct MenuAction MultichoiceList_ContestType[] =
 
 static const struct MenuAction MultichoiceList_BasePCWithRegistry[] =
 {
-    {gText_Decoration2},
+    {gText_Decoration},
     {gText_PackUp},
     {gText_Registry},
     {gText_Exit},
@@ -41,7 +41,7 @@ static const struct MenuAction MultichoiceList_BasePCWithRegistry[] =
 
 static const struct MenuAction MultichoiceList_BasePCNoRegistry[] =
 {
-    {gText_Decoration2},
+    {gText_Decoration},
     {gText_PackUp},
     {gText_Exit},
 };
@@ -51,7 +51,7 @@ static const struct MenuAction MultichoiceList_RegisterMenu[] =
     {gMenuText_Register},
     {gText_Registry},
     {gText_Information},
-    {gText_Cancel2},
+    {gText_Cancel},
 };
 
 static const struct MenuAction MultichoiceList_Bike[] =
@@ -86,13 +86,13 @@ static const struct MenuAction MultichoiceList_YesNoInfo2[] =
 {
     {gText_Yes},
     {gText_No},
-    {gText_Info2},
+    {gText_Info},
 };
 
 static const struct MenuAction MultichoiceList_ChallengeInfo[] =
 {
     {COMPOUND_STRING("CHALLENGE")},
-    {COMPOUND_STRING("INFO")},
+    {gText_Info},
     {gText_Exit},
 };
 
@@ -254,7 +254,7 @@ static const struct MenuAction MultichoiceList_UnusedAshVendor[] =
     {COMPOUND_STRING("BLACK FLUTE")},
     {COMPOUND_STRING("GLASS CHAIR")},
     {COMPOUND_STRING("GLASS DESK")},
-    {gText_Cancel2},
+    {gText_Cancel},
 };
 
 static const struct MenuAction MultichoiceList_GameCornerDolls[] =
@@ -468,7 +468,7 @@ static const struct MenuAction MultichoiceList_YesNoInfo[] =
 {
     {gText_Yes},
     {gText_No},
-    {gText_Info2},
+    {gText_Info},
 };
 
 static const struct MenuAction MultichoiceList_BattleMode[] =
@@ -476,7 +476,7 @@ static const struct MenuAction MultichoiceList_BattleMode[] =
     {COMPOUND_STRING("SINGLE BATTLE")},
     {COMPOUND_STRING("DOUBLE BATTLE")},
     {COMPOUND_STRING("MULTI BATTLE")},
-    {gText_Info2},
+    {gText_Info},
     {gText_Exit},
 };
 
@@ -539,7 +539,7 @@ static const struct MenuAction MultichoiceList_LinkContestInfo[] =
     {COMPOUND_STRING("LINK CONTEST")},
     {COMPOUND_STRING("ABOUT E-MODE")},
     {COMPOUND_STRING("ABOUT G-MODE")},
-    {gText_Cancel2},
+    {gText_Cancel},
 };
 
 static const struct MenuAction MultichoiceList_LinkContestMode[] =
@@ -552,7 +552,7 @@ static const struct MenuAction MultichoiceList_LinkContestMode[] =
 static const struct MenuAction MultichoiceList_ForcedStartMenu[] =
 {
     {gText_MenuOptionPokedex},
-    {gText_MenuOptionPokemon},
+    {gText_Pokemon},
     {gText_MenuOptionBag},
     {gText_MenuOptionPokenav},
     {gText_EmptyString}, // blank because it's filled by the player's name
@@ -608,14 +608,14 @@ static const struct MenuAction MultichoiceList_Fossil[] =
 static const struct MenuAction MultichoiceList_YesNo[] =
 {
     {gText_Yes},
-    {COMPOUND_STRING("NO")},
+    {gText_No},
 };
 
 static const struct MenuAction MultichoiceList_FrontierRules[] =
 {
     {COMPOUND_STRING("TWO STYLES")},
-    {COMPOUND_STRING("LV. 50")},
-    {COMPOUND_STRING("OPEN LEVEL")},
+    {gText_Lv50},
+    {gText_OpenLevel},
     {COMPOUND_STRING("{PKMN} TYPE & NO.")},
     {COMPOUND_STRING("HOLD ITEMS")},
     {gText_Exit},
@@ -661,7 +661,7 @@ static const struct MenuAction MultichoiceList_BattleFactoryRules[] =
     {gText_SwapPartners},
     {gText_SwapNumber},
     {gText_SwapNotes},
-    {COMPOUND_STRING("OPEN LEVEL")},
+    {gText_OpenLevel},
     {gText_Exit},
 };
 
@@ -919,7 +919,7 @@ const u8 *const gStdStrings[] =
     [STDSTRING_SUPER] = gText_Super,
     [STDSTRING_HYPER] = gText_Hyper,
     [STDSTRING_MASTER] = gText_Master,
-    [STDSTRING_COOL2] = gText_Cool2,
+    [STDSTRING_COOL2] = gText_Cool,
     [STDSTRING_BEAUTY2] = gText_Beauty2,
     [STDSTRING_CUTE2] = gText_Cute2,
     [STDSTRING_SMART2] = gText_Smart2,

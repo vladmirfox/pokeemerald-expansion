@@ -417,7 +417,7 @@ static void ZMoveSelectionDisplayMoveType(u16 zMove, u32 battler)
     u8 *txtPtr, *end;
     u32 zMoveType = GetMoveType(zMove);
 
-    txtPtr = StringCopy(gDisplayedStringBattle, gText_MoveInterfaceType);
+    txtPtr = StringCopy(gDisplayedStringBattle, gText_TypeSlash);
     *(txtPtr)++ = EXT_CTRL_CODE_BEGIN;
     *(txtPtr)++ = EXT_CTRL_CODE_FONT;
     *(txtPtr)++ = FONT_NORMAL;

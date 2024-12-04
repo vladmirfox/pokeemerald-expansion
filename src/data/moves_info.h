@@ -112,7 +112,7 @@ const struct MoveInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
 {
     [MOVE_NONE] =
     {
-        .name = COMPOUND_STRING("-"),
+        .name = gText_OneDash,
         .description = gText_EmptyString,
         .effect = EFFECT_HIT,
         .power = 0,
@@ -20117,7 +20117,7 @@ const struct MoveInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
     [MOVE_BLAZING_TORQUE] =
     {
         .name = COMPOUND_STRING("Blazing Torque"),
-        .description = COMPOUND_STRING("---"),
+        .description = gText_ThreeDashes,
         .effect = EFFECT_HIT,
         .power = 80,
         .type = TYPE_FIRE,
@@ -20146,7 +20146,7 @@ const struct MoveInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
     [MOVE_WICKED_TORQUE] =
     {
         .name = COMPOUND_STRING("Wicked Torque"),
-        .description = COMPOUND_STRING("---"),
+        .description = gText_ThreeDashes,
         .effect = EFFECT_HIT,
         .power = 80,
         .type = TYPE_DARK,
@@ -20175,7 +20175,7 @@ const struct MoveInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
     [MOVE_NOXIOUS_TORQUE] =
     {
         .name = COMPOUND_STRING("Noxious Torque"),
-        .description = COMPOUND_STRING("---"),
+        .description = gText_ThreeDashes,
         .effect = EFFECT_HIT,
         .power = 100,
         .type = TYPE_POISON,
@@ -20204,7 +20204,7 @@ const struct MoveInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
     [MOVE_COMBAT_TORQUE] =
     {
         .name = COMPOUND_STRING("Combat Torque"),
-        .description = COMPOUND_STRING("---"),
+        .description = gText_ThreeDashes,
         .effect = EFFECT_HIT,
         .power = 100,
         .type = TYPE_FIGHTING,
@@ -20233,7 +20233,7 @@ const struct MoveInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
     [MOVE_MAGICAL_TORQUE] =
     {
         .name = COMPOUND_STRING("Magical Torque"),
-        .description = COMPOUND_STRING("---"),
+        .description = gText_ThreeDashes,
         .effect = EFFECT_HIT,
         .power = 100,
         .type = TYPE_FAIRY,

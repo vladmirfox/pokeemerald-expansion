@@ -1386,12 +1386,12 @@ static u8 *AppendGenderSymbol(u8 *name, u8 gender)
     if (gender == MON_MALE)
     {
         if (!NameHasGenderSymbol(name, MON_MALE))
-            return StringAppend(name, gText_MaleSymbol4);
+            return StringAppend(name, gText_MaleSymbol);
     }
     else if (gender == MON_FEMALE)
     {
         if (!NameHasGenderSymbol(name, MON_FEMALE))
-            return StringAppend(name, gText_FemaleSymbol4);
+            return StringAppend(name, gText_FemaleSymbol);
     }
 
     return StringAppend(name, gText_EmptyString); // genderless

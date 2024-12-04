@@ -264,7 +264,7 @@ u8 MailboxMenu_CreateList(struct PlayerPCItemPageStruct *page)
         sMailboxList[i].id = i;
     }
 
-    sMailboxList[i].name = gText_Cancel2;
+    sMailboxList[i].name = gText_Cancel;
     sMailboxList[i].id = LIST_CANCEL;
 
     gMultiuseListMenuTemplate.items = sMailboxList;
@@ -758,7 +758,7 @@ static void MoveRelearnerLoadBattleMoveDescription(u32 chosenMove)
         MoveRelearnerShowHideCategoryIcon(chosenMove);
 
     FillWindowPixelBuffer(RELEARNERWIN_DESC_BATTLE, PIXEL_FILL(1));
-    str = gText_MoveRelearnerBattleMoves;
+    str = gText_BattleMoves;
     x = GetStringCenterAlignXOffset(FONT_NORMAL, str, 128);
     AddTextPrinterParameterized(RELEARNERWIN_DESC_BATTLE, FONT_NORMAL, str, x, 1, TEXT_SKIP_DRAW, NULL);
 
@@ -824,15 +824,15 @@ static void MoveRelearnerMenuLoadContestMoveDescription(u32 chosenMove)
 
     MoveRelearnerShowHideHearts(chosenMove);
     FillWindowPixelBuffer(RELEARNERWIN_DESC_CONTEST, PIXEL_FILL(1));
-    str = gText_MoveRelearnerContestMovesTitle;
+    str = gText_ContestMoves;
     x = GetStringCenterAlignXOffset(FONT_NORMAL, str, 128);
     AddTextPrinterParameterized(RELEARNERWIN_DESC_CONTEST, FONT_NORMAL, str, x, 1, TEXT_SKIP_DRAW, NULL);
 
-    str = gText_MoveRelearnerAppeal;
+    str = gText_Appeal;
     x = GetStringRightAlignXOffset(FONT_NORMAL, str, 92);
     AddTextPrinterParameterized(RELEARNERWIN_DESC_CONTEST, FONT_NORMAL, str, x, 25, TEXT_SKIP_DRAW, NULL);
 
-    str = gText_MoveRelearnerJam;
+    str = gText_Jam;
     x = GetStringRightAlignXOffset(FONT_NORMAL, str, 92);
     AddTextPrinterParameterized(RELEARNERWIN_DESC_CONTEST, FONT_NORMAL, str, x, 41, TEXT_SKIP_DRAW, NULL);
 
@@ -1546,7 +1546,7 @@ void DrawLevelUpWindowPg1(u16 windowId, u16 *statsBefore, u16 *statsAfter, u8 bg
                                      TEXT_SKIP_DRAW,
                                      sLvlUpStatStrings[i]);
 
-        StringCopy(text, (statsDiff[i] >= 0) ? gText_Plus : gText_Dash);
+        StringCopy(text, (statsDiff[i] >= 0) ? gText_Plus : gText_OneDash);
         AddTextPrinterParameterized3(windowId,
                                      FONT_NORMAL,
                                      56,

@@ -1019,7 +1019,7 @@ static void PrintIdOnCard(void)
     u8 *txtPtr;
     s32 xPos;
     u32 top;
-    txtPtr = StringCopy(buffer, gText_TrainerCardIDNo);
+    txtPtr = StringCopy(buffer, gText_IDNumber);
     ConvertIntToDecimalStringN(txtPtr, sData->trainerCard.trainerId, STR_CONV_MODE_LEADING_ZEROS, 5);
     if (sData->cardType == CARD_TYPE_FRLG)
     {
@@ -1103,9 +1103,9 @@ static void PrintTimeOnCard(void)
     u32 x, y, totalWidth;
 
     if (!sData->isHoenn)
-        AddTextPrinterParameterized3(WIN_CARD_TEXT, FONT_NORMAL, 20, 88, sTrainerCardTextColors, TEXT_SKIP_DRAW, gText_TrainerCardTime);
+        AddTextPrinterParameterized3(WIN_CARD_TEXT, FONT_NORMAL, 20, 88, sTrainerCardTextColors, TEXT_SKIP_DRAW, gText_Time);
     else
-        AddTextPrinterParameterized3(WIN_CARD_TEXT, FONT_NORMAL, 16, 89, sTrainerCardTextColors, TEXT_SKIP_DRAW, gText_TrainerCardTime);
+        AddTextPrinterParameterized3(WIN_CARD_TEXT, FONT_NORMAL, 16, 89, sTrainerCardTextColors, TEXT_SKIP_DRAW, gText_Time);
 
     if (sData->isLink)
     {

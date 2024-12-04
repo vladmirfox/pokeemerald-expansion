@@ -187,7 +187,7 @@ static const u8 sText_MenuDebug[] = _("DEBUG");
 static const struct MenuAction sStartMenuItems[] =
 {
     [MENU_ACTION_POKEDEX]         = {gText_MenuPokedex, {.u8_void = StartMenuPokedexCallback}},
-    [MENU_ACTION_POKEMON]         = {gText_MenuPokemon, {.u8_void = StartMenuPokemonCallback}},
+    [MENU_ACTION_POKEMON]         = {gText_Pokemon, {.u8_void = StartMenuPokemonCallback}},
     [MENU_ACTION_BAG]             = {gText_MenuBag,     {.u8_void = StartMenuBagCallback}},
     [MENU_ACTION_POKENAV]         = {gText_MenuPokenav, {.u8_void = StartMenuPokeNavCallback}},
     [MENU_ACTION_PLAYER]          = {gText_MenuPlayer,  {.u8_void = StartMenuPlayerNameCallback}},
@@ -1432,7 +1432,7 @@ static void ShowSaveInfoWindow(void)
 
     // Print play time
     yOffset += 16;
-    AddTextPrinterParameterized(sSaveInfoWindowId, FONT_NORMAL, gText_SavingTime, 0, yOffset, TEXT_SKIP_DRAW, NULL);
+    AddTextPrinterParameterized(sSaveInfoWindowId, FONT_NORMAL, gText_Time, 0, yOffset, TEXT_SKIP_DRAW, NULL);
     BufferSaveMenuText(SAVE_MENU_PLAY_TIME, gStringVar4, color);
     xOffset = GetStringRightAlignXOffset(FONT_NORMAL, gStringVar4, 0x70);
     AddTextPrinterParameterized(sSaveInfoWindowId, FONT_NORMAL, gStringVar4, xOffset, yOffset, TEXT_SKIP_DRAW, NULL);

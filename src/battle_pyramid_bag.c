@@ -177,7 +177,7 @@ static const struct MenuAction sMenuActions[] =
     [ACTION_USE_FIELD] =    { gMenuText_Use, {BagAction_UseOnField} },
     [ACTION_TOSS] =         { gMenuText_Toss, {BagAction_Toss} },
     [ACTION_GIVE] =         { gMenuText_Give, {BagAction_Give} },
-    [ACTION_CANCEL] =       { gText_Cancel2, {BagAction_Cancel} },
+    [ACTION_CANCEL] =       { gText_Cancel, {BagAction_Cancel} },
     [ACTION_USE_BATTLE] =   { gMenuText_Use, {BagAction_UseInBattle} },
     [ACTION_DUMMY] =        { gText_EmptyString, {NULL} },
 };
@@ -863,7 +863,7 @@ static void PrintSelectorArrowAtPos(u8 y, u8 colorId)
     if (colorId == COLORID_NONE) // If 'no color', erase arrow
         FillWindowPixelRect(WIN_LIST, PIXEL_FILL(0), 0, y, GetMenuCursorDimensionByFont(FONT_NORMAL, 0), GetMenuCursorDimensionByFont(FONT_NORMAL, 1));
     else
-        PyramidBagPrint(WIN_LIST, gText_SelectorArrow2, 0, y, 0, 0, 0, colorId);
+        PyramidBagPrint(WIN_LIST, gText_SelectorArrow, 0, y, 0, 0, 0, colorId);
 }
 
 void CloseBattlePyramidBag(u8 taskId)
