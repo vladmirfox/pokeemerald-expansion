@@ -290,7 +290,7 @@ ALIGNED(4) const u8 gFontShortNarrowLatinGlyphWidths[] = {
 
 ALIGNED(4) const u16 gFontShortNarrowerLatinGlyphs[] = INCBIN_U16("graphics/fonts/short_narrower.latfont");
 ALIGNED(4) const u8 gFontShortNarrowerLatinGlyphWidths[] = {
-    3,  4,  4,  4,  4,  4,  4,  4,  4,  4,  3,  4,  4,  4,  4,  4,
+    1,  4,  4,  4,  4,  4,  4,  4,  4,  4,  3,  4,  4,  4,  4,  4,
     8,  4,  4,  4,  5,  5,  4,  4,  3,  4,  4,  4,  4,  4,  4,  3,
     4,  4,  4,  4,  4,  6,  4,  4,  4,  5,  4,  5,  8,  6,  6,  3,
     3,  3,  3,  3,  8,  8,  3,  5,  5,  3,  3,  3,  3,  3,  3,  3,
