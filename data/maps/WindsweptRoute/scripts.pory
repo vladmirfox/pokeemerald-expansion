@@ -48,8 +48,20 @@ script WindsweptRoute_EventScript_Trainer3 {
 		format("My rod didn't keep me from losing…")
 	)
 	speakername("Makoto")
-	msgbox(format("TODO EVA"), MSGBOX_AUTOCLOSE)
+	msgbox(format("Look at that poor sod over there! His rod is so short, I can't help but laugh!"), MSGBOX_AUTOCLOSE)
 	end
+}
+
+script WindsweptRoute_EventScript_Fisherman_ShortRod {
+	lock
+	faceplayer
+	speakername("Fisherman")
+	msgbox(format(
+		"That guy over there keeps bragging about having a long rod.\p"
+		"Little does he realize that I, with my much shorter rod, catch only the highest-jumping fish!"
+	))
+	closemessage
+	release
 }
 
 script WindsweptRoute_EventScript_Trainer4 {

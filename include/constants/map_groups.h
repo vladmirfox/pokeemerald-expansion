@@ -103,6 +103,7 @@
 #define MAP_SILVERIDGE_ELDERS_HOUSE    (1 | (8 << 8))
 #define MAP_SILVERIDGE_HOUSE1          (2 | (8 << 8))
 #define MAP_SILVERIDGE_REFUGE          (3 | (8 << 8))
+#define MAP_SILVERIDGE_HOUSE2          (4 | (8 << 8))
 
 // gMapGroup_Dungeons
 #define MAP_GINKO_WOODS      (0 | (9 << 8))

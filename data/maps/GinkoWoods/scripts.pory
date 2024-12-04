@@ -106,7 +106,7 @@ script GinkoWoods_EventScript_Bean {
 	switch(var(VAR_RESULT)) {
 		case 0:
 			msgbox(format(
-				"Right! I am glad you share my interest for Pokémon habitat.\p"
+				"Right! I am glad you share my interest in Pokémon habitat.\p"
 				"I am Hariko. And what is your name?\p"
 				"{PLAYER}. It has been nice chatting with you. I will see you around, then.\p"
 				"Okay, bye!"

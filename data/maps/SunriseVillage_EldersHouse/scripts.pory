@@ -8,14 +8,18 @@ const LOCALID_TRAPINCH = 8
 const LOCALID_RIVAL = 2
 
 const FLAG_HIDE_STARTERS = FLAG_TEMP_1
+const FLAG_HIDE_BALLS = FLAG_TEMP_2
 
 mapscripts SunriseVillage_EldersHouse_MapScripts {
 	MAP_SCRIPT_ON_FRAME_TABLE [
         VAR_SUNRISE_VILLAGE_INTRO_STATE, 4: SunriseVillage_EldersHouse_EventScript_DistributionCutscene
     ]
 	MAP_SCRIPT_ON_TRANSITION {
-		if (var(VAR_SUNRISE_VILLAGE_INTRO_STATE) < 7) {
+		if (var(VAR_SUNRISE_VILLAGE_INTRO_STATE) > 4) {
 			setflag(FLAG_HIDE_STARTERS)
+		}
+		if (var(VAR_SUNRISE_VILLAGE_INTRO_STATE) >= 7) {
+			setflag(FLAG_HIDE_BALLS)
 		}
 	}
 	// MAP_SCRIPT_ON_WARP_INTO_MAP_TABLE [
@@ -53,7 +57,7 @@ script SunriseVillage_EldersHouse_EventScript_DistributionCutscene {
 		"Which is why!\p"
 		"The Toku council has decided that,\nfor the time being, the best way to\lhandle this is to use the Pokémon\lthemselves as a means of protection!\p"
 		"There were very few experienced\nPokémon wielders in Toku until now.\l"
-		"This is about  change.\p"
+		"This is about to change.\p"
 		"With a trained Pokémon by your side,\nyou'll be able to defend yourselves\lon your own.\p"
 		"Without further ado, please carefully\nchoose your new companion!"
 	))
@@ -385,7 +389,7 @@ script SunriseVillage_EldersHouse_Event_Common_Pokeball_Starter {
 
 	speakername("Elder Kaba")
 	msgbox(format(
-		"I call this the “Pokédex”.\nIt is an encyclopedia containing\lvital information about Pokémon\lfrom the whole region!\p"
+		"I call this the “PokéDex”.\nIt is an encyclopedia containing\lvital information about Pokémon\lfrom the whole region!\p"
 		"Except it's, well, empty.\nThat's where you come in!\p"
 		"Explore Toku and fill its pages with\nyour findings!\p"
 		"You can start by going all the way to\nSilveridge, north of here in the\lmountains.\p"

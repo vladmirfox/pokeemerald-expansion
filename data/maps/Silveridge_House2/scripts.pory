@@ -1,0 +1,14 @@
+mapscripts Silveridge_House2_MapScripts {
+	
+}
+
+script Silveridge_House2_EventScript_Woman {
+    lock
+    faceplayer
+    speakername("Woman")
+    msgbox(format(
+        "TODO EVA"
+    ))
+    closemessage
+    release
+}

@@ -9,3 +9,11 @@ script Silveridge_Refuge_EventScript_ImWorried {
 		"I'm so worried…"
 	), MSGBOX_NPC)
 }
+
+script Silveridge_Refuge_EventScript_Firebringer {
+	speakername("Firebringer")
+	msgbox(format(
+		"I'm bringin' down some Slugma today, freshly caught on Burnfoot Pass this mornin'.\p"
+		"Tomorrow I'll be back up there, catching some more of 'em."
+	), MSGBOX_NPC)
+}
