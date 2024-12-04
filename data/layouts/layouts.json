@@ -4654,7 +4654,7 @@
     {
       "id": "LAYOUT_CHERRY_GARDEN",
       "name": "CherryGarden_Layout",
-      "width": 12,
+      "width": 16,
       "height": 12,
       "primary_tileset": "gTileset_General",
       "secondary_tileset": "gTileset_Rustboro",

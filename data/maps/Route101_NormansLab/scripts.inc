@@ -87,6 +87,7 @@ Route101_NormansLab_EventScript_TakeLileep::
 	playfanfare MUS_OBTAIN_ITEM
 	waitfanfare
 	removeobject LOCALID_LILEEP_BALL
+	setflag FLAG_PICKED_LILEEP
 	call Route101_NormansLab_EventScript_TookStarter
 	return
 

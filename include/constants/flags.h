@@ -59,7 +59,7 @@
 #define FLAG_HIDE_NORMAL_SCIENTISTS_ZONE_A  0x2C
 #define FLAG_HIDE_PETALBURG_AARON_NORTH     0x2D
 #define FLAG_HIDE_PETALBURG_AARON_SOUTH     0x2E
-#define FLAG_UNUSED_0x02F    0x2F // Unused Flag
+#define FLAG_PICKED_LILEEP                  0x2F // STARTER
 #define FLAG_UNUSED_0x030    0x30 // Unused Flag
 #define FLAG_UNUSED_0x031    0x31 // Unused Flag
 #define FLAG_UNUSED_0x032    0x32 // Unused Flag

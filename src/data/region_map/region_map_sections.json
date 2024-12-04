@@ -1762,9 +1762,49 @@
     },
     {
       "map_section": "MAPSEC_DELTA_LAB_A",
-      "name": "δ LAB: A",
+      "name": "DELTA LAB: A",
+      "x": 2,
+      "y": 7,
+      "width": 1,
+      "height": 1
+    },
+    {
+      "map_section": "MAPSEC_CHERRY_GARDEN",
+      "name": "CHERRY GARDEN",
       "x": 0,
-      "y": 0,
+      "y": 7,
+      "width": 1,
+      "height": 1
+    },
+    {
+      "map_section": "MAPSEC_VERDANTURF_RAVINE",
+      "name": "VERDANTURF RAVINE",
+      "x": 3,
+      "y": 4,
+      "width": 1,
+      "height": 1
+    },
+    {
+      "map_section": "MAPSEC_DIG_SITE_2",
+      "name": "DIG SITE 2",
+      "x": 6,
+      "y": 5,
+      "width": 1,
+      "height": 1
+    },
+    {
+      "map_section": "MAPSEC_MAUVILLE_TUNNEL",
+      "name": "MAUVILLE TUNNEL",
+      "x": 7,
+      "y": 5,
+      "width": 1,
+      "height": 1
+    },
+    {
+      "map_section": "MAPSEC_MT_KIRI",
+      "name": "MT. KIRI",
+      "x": 5,
+      "y": 4,
       "width": 1,
       "height": 1
     }

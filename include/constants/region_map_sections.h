@@ -89,7 +89,7 @@
 #define MAPSEC_SKY_PILLAR                   0x55
 #define MAPSEC_SECRET_BASE                  0x56
 #define MAPSEC_DYNAMIC                      0x57
-#define MAPSEC_PALLET_TOWN                  0x58
+#define MAPSEC_PALLET_TOWN                  0x58 // Not used
 #define MAPSEC_VIRIDIAN_CITY                0x59
 #define MAPSEC_PEWTER_CITY                  0x5A
 #define MAPSEC_CERULEAN_CITY                0x5B
@@ -222,11 +222,13 @@
 #define MAPSEC_BLEAKISLE_TOWN               0xD9
 #define MAPSEC_ROUTE_135                    0xDA
 #define MAPSEC_ROUTE_136                    0xDB
-#define MAPSEC_NONE                         0xDC
-#define MAPSEC_DELTA_LAB_A                  0xDD
-// #define MAPSEC_CUSTOM                       0xDE
-// #define MAPSEC_CUSTOM                       0xDF
-// #define MAPSEC_CUSTOM                       0xE0
+#define MAPSEC_DELTA_LAB_A                  0xDC
+#define MAPSEC_CHERRY_GARDEN                0xDD
+#define MAPSEC_VERDANTURF_RAVINE            0xDE
+#define MAPSEC_DIG_SITE_2                   0xDF
+#define MAPSEC_MAUVILLE_TUNNEL              0xE0
+#define MAPSEC_MT_KIRI                      0xE1
+#define MAPSEC_NONE                         0xE2
 // #define MAPSEC_CUSTOM                       0xE1
 // #define MAPSEC_CUSTOM                       0xE2
 // #define MAPSEC_CUSTOM                       0xE3
