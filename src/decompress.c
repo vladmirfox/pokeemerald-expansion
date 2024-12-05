@@ -331,7 +331,7 @@ void BuildDecompressionTable(const u32 *packedFreqs, struct DecodeYK *table, u32
     {
         if (freqs[i] != 0)
         {
-            memcpy(&table[currCol], &ykTemplate[freqs[i]], freqs[i]*sizeof(struct DecodeYK));
+            DmaCopy16(3, &ykTemplate[freqs[i]], &table[currCol], freqs[i]*sizeof(struct DecodeYK));
             //  Setting 8-bit array elements to a single symbol, IMPROVEMENT POSSIBLE
             //  Or it's not possible? Using CpuFill with 16-bit variables was worse
             for (u32 j = 0; j < freqs[i]; j++)
@@ -541,19 +541,19 @@ void DecodeInstructions(const struct CompressionHeader *header, u8 *loVec, u16 *
             dest = (void *)(dest + 2);
             if (currOffset == 1)
             {
-                CpuFill16(symVec[symIndex], dest, 2*currLength);
+                DmaFill16(3, symVec[symIndex], dest, 2*currLength);
                 dest = (void *)(dest + currLength*2);
             }
             else
             {
-                CpuCopy16((void *)(dest - currOffset*2), dest, currLength*2);
+                DmaCopy16(3, (void *)(dest - currOffset*2), dest, currLength*2);
                 dest = (void *)(dest + currLength*2);
             }
             symIndex++;
         }
         else
         {
-            CpuCopy16(&symVec[symIndex], dest, currOffset*2);
+            DmaCopy16(3, &symVec[symIndex], dest, currOffset*2);
             symIndex += currOffset;
             dest = (void *)(dest + currOffset*2);
         }
@@ -613,7 +613,7 @@ void SmolDecompressData(const struct CompressionHeader *header, const u32 *data,
 
     if (symEncoded == FALSE)
     {
-        memcpy(symVec, leftoverPos, header->symSize*2);
+        CpuCopy16(leftoverPos, symVec, header->symSize*2);
         leftoverPos += header->symSize*2;
     }
 
