@@ -297,7 +297,7 @@ GinkoWoods_EventScript_Bean_Text_6:
 GinkoWoods_EventScript_Bean_Text_7:
 # 109 "data/maps/GinkoWoods/scripts.pory"
 	.string "Right! I am glad you share my interest\n"
-	.string "for Pokémon habitat.\p"
+	.string "in Pokémon habitat.\p"
 	.string "I am Hariko. And what is your name?\p"
 	.string "{PLAYER}. It has been nice chatting\n"
 	.string "with you. I will see you around, then.\p"
