@@ -259,17 +259,25 @@ void HandleLoadSpecialPokePic(bool32 isFrontPic, void *dest, s32 species, u32 pe
     LoadSpecialPokePic(dest, species, personality, isFrontPic);
 }
 
+static inline void UnpackFrequenciesLoop(const u32 *packedFreqs, u8 *freqs, u32 i)
+{
+    // Loop unpack
+    freqs[i*5 + 0] = (packedFreqs[i] >> (6*0)) & PACKED_FREQ_MASK;
+    freqs[i*5 + 1] = (packedFreqs[i] >> (6*1)) & PACKED_FREQ_MASK;
+    freqs[i*5 + 2] = (packedFreqs[i] >> (6*2)) & PACKED_FREQ_MASK;
+    freqs[i*5 + 3] = (packedFreqs[i] >> (6*3)) & PACKED_FREQ_MASK;
+    freqs[i*5 + 4] = (packedFreqs[i] >> (6*4)) & PACKED_FREQ_MASK;
+
+    freqs[15] += (packedFreqs[i] & PARTIAL_FREQ_MASK) >> (30 - 2*i);
+}
+
 void UnpackFrequencies(const u32 *packedFreqs, u8 *freqs)
 {
     freqs[15] = 0;
-    for (u32 i = 0; i < 3; i++)
-    {
-        for (u32 j = 0; j < 5; j++)
-        {
-            freqs[i*5 + j] = (packedFreqs[i] >> (6*j)) & PACKED_FREQ_MASK;
-        }
-        freqs[15] += (packedFreqs[i] & PARTIAL_FREQ_MASK) >> (30 - 2*i);
-    }
+
+    UnpackFrequenciesLoop(packedFreqs, freqs, 0);
+    UnpackFrequenciesLoop(packedFreqs, freqs, 1);
+    UnpackFrequenciesLoop(packedFreqs, freqs, 2);
 }
 
 void DecompressDataVram(const u32 *src, void *dest)
@@ -312,18 +320,18 @@ void DecompressSubFrame(const u32 *src, void *dest, u32 frameId)
 
 void BuildDecompressionTable(const u32 *packedFreqs, struct DecodeYK *table, u8 *symbolTable)
 {
-    u8 *freqs = Alloc(16);
+    u8 freqs[16];
     u32 currCol = 0;
     //CycleCountStart();
     UnpackFrequencies(packedFreqs, freqs);
     //u32 timeTaken = CycleCountEnd();
     //MgbaPrintf(MGBA_LOG_WARN, "Unpacking: %u", timeTaken);
     //CycleCountStart();
-    for (u32 i = 0; i < 16; i++)
-    {
+
+    for (u32 i = 0; i < 16; i++) {
         if (freqs[i] != 0)
         {
-            CpuCopy16(&ykTemplate[freqs[i]], &table[currCol], freqs[i]*sizeof(struct DecodeYK));
+            memcpy(&table[currCol], &ykTemplate[freqs[i]], freqs[i]*sizeof(struct DecodeYK));
             //  Setting 8-bit array elements to a single symbol, IMPROVEMENT POSSIBLE
             //  Or it's not possible? Using CpuFill with 16-bit variables was worse
             for (u32 j = 0; j < freqs[i]; j++)
@@ -331,9 +339,10 @@ void BuildDecompressionTable(const u32 *packedFreqs, struct DecodeYK *table, u8 
             currCol += freqs[i];
         }
     }
+
+
     //timeTaken = CycleCountEnd();
     //MgbaPrintf(MGBA_LOG_WARN, "Building: %u", timeTaken);
-    Free(freqs);
 }
 
 void DecodeLOtANS(const u32 *data, u32 *readIndex, u32 *bitIndex, const u32 *pFreqs, u8 *resultVec, u32 *state, u32 count)
@@ -355,12 +364,12 @@ void DecodeLOtANS(const u32 *data, u32 *readIndex, u32 *bitIndex, const u32 *pFr
     */
     for (u32 currSym = 0; currSym < count; currSym++)
     {
-        u8 symbol = 0;
+        u32 symbol = 0;
         for (u32 currNibble = 0; currNibble < 2; currNibble++)
         {
             symbol += symbolTable[*state] << (currNibble*4);
-            u16 currK = ykTable[*state].kVal;
-            u16 nextState = ykTable[*state].yVal;
+            u32 currK = ykTable[*state].kVal;
+            u32 nextState = ykTable[*state].yVal;
             nextState += (currBits >> *bitIndex) & (0xff >> (8-currK));
             //nextState += (currBits >> *bitIndex) & maskTable[currK];
             if (*bitIndex + currK < 32)
@@ -406,12 +415,12 @@ void DecodeSymtANS(const u32 *data, u32 *readIndex, u32 *bitIndex, const u32 *pF
     */
     for (u32 currSym = 0; currSym < count; currSym++)
     {
-        u16 symbol = 0;
+        u32 symbol = 0;
         for (u32 currNibble = 0; currNibble < 4; currNibble++)
         {
             symbol += symbolTable[*state] << (currNibble*4);
-            u16 currK = ykTable[*state].kVal;
-            u16 nextState = ykTable[*state].yVal;
+            u32 currK = ykTable[*state].kVal;
+            u32 nextState = ykTable[*state].yVal;
             nextState += (currBits >> *bitIndex) & (0xff >> (8-currK));
             //nextState += (currBits >> *bitIndex) & maskTable[currK];
             if (*bitIndex + currK < 32)
@@ -444,7 +453,7 @@ void DecodeSymDeltatANS(const u32 *data, u32 *readIndex, u32 *bitIndex, const u3
     u8 *symbolTable = Alloc(TANS_TABLE_SIZE);
     BuildDecompressionTable(pFreqs, ykTable, symbolTable);
     u32 currBits = data[*readIndex];
-    u16 prevSymbol = 0;
+    u32 prevSymbol = 0;
     /*
     u8 maskTable[7] = {
         0,
@@ -458,14 +467,14 @@ void DecodeSymDeltatANS(const u32 *data, u32 *readIndex, u32 *bitIndex, const u3
     */
     for (u32 currSym = 0; currSym < count; currSym++)
     {
-        u16 symbol = 0;
+        u32 symbol = 0;
         for (u32 currNibble = 0; currNibble < 4; currNibble++)
         {
-            u16 currSymbol = (prevSymbol + symbolTable[*state]) & 0xf;
+            u32 currSymbol = (prevSymbol + symbolTable[*state]) & 0xf;
             prevSymbol = currSymbol;
             symbol += currSymbol << (currNibble*4);
-            u16 currK = ykTable[*state].kVal;
-            u16 nextState = ykTable[*state].yVal;
+            u32 currK = ykTable[*state].kVal;
+            u32 nextState = ykTable[*state].yVal;
             nextState += (currBits >> *bitIndex) & (0xff >> (8-currK));
             //nextState += (currBits >> *bitIndex) & maskTable[currK];
             if (*bitIndex + currK < 32)
@@ -598,7 +607,7 @@ void SmolDecompressData(struct CompressionHeader *header, const u32 *data, void 
 
     if (symEncoded == FALSE)
     {
-        CpuCopy16(leftoverPos, symVec, header->symSize*2);
+        memcpy(symVec, leftoverPos, header->symSize*2);
         leftoverPos += header->symSize*2;
     }
 
