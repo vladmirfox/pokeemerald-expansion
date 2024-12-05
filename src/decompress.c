@@ -512,7 +512,8 @@ void DecodeInstructions(const struct CompressionHeader *header, u8 *loVec, u16 *
     u32 loIndex = 0;
     u32 symIndex = 0;
     u32 totalInstructions = 0;
-    while (loIndex < header->loSize)
+    u32 loSize = header->loSize;
+    while (loIndex < loSize)
     {
         totalInstructions++;
         u32 currLength = loVec[loIndex] & 0x7f;
@@ -537,7 +538,8 @@ void DecodeInstructions(const struct CompressionHeader *header, u8 *loVec, u16 *
         }
         if (currLength != 0)
         {
-            memcpy(dest, &symVec[symIndex], 2);
+            u16 *destU16 = dest;
+            *destU16 = symVec[symIndex];
             dest = (void *)(dest + 2);
             if (currOffset == 1)
             {
