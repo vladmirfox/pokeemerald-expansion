@@ -14,11 +14,6 @@
   "battle_scene": "MAP_BATTLE_SCENE_NORMAL",
   "connections": [
     {
-      "map": "MAP_YIFU_CITY",
-      "offset": -14,
-      "direction": "right"
-    },
-    {
       "map": "MAP_SOULKEEP",
       "offset": -20,
       "direction": "left"
@@ -27,6 +22,11 @@
       "map": "MAP_PUDDLE_PATH",
       "offset": 0,
       "direction": "up"
+    },
+    {
+      "map": "MAP_YIFU_CITY2",
+      "offset": -18,
+      "direction": "right"
     }
   ],
   "object_events": [

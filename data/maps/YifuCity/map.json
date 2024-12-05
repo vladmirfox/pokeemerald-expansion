@@ -12,23 +12,7 @@
   "allow_running": true,
   "show_map_name": true,
   "battle_scene": "MAP_BATTLE_SCENE_NORMAL",
-  "connections": [
-    {
-      "map": "MAP_WHITESLATE_ROUTE",
-      "offset": 19,
-      "direction": "up"
-    },
-    {
-      "map": "MAP_ORCHARD_PATH",
-      "offset": 14,
-      "direction": "left"
-    },
-    {
-      "map": "MAP_SEASTROLL_CHANNEL",
-      "offset": 21,
-      "direction": "right"
-    }
-  ],
+  "connections": 0,
   "object_events": [
     {
       "graphics_id": "OBJ_EVENT_GFX_HOT_SPRINGS_OLD_WOMAN",

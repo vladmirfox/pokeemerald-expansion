@@ -53,6 +53,7 @@
 #define MAP_SHOGUNATE                             (44 | (0 << 8))
 #define MAP_SCENIC_ROUTE_SABERSIDE                (45 | (0 << 8))
 #define MAP_WINDY_CAPE2                           (46 | (0 << 8))
+#define MAP_YIFU_CITY2                            (47 | (0 << 8))
 
 // gMapGroup_IndoorSunriseVillage
 #define MAP_LITTLEROOT_TOWN_BRENDANS_HOUSE_1F             (0 | (1 << 8))
