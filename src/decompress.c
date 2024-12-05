@@ -259,7 +259,7 @@ void HandleLoadSpecialPokePic(bool32 isFrontPic, void *dest, s32 species, u32 pe
     LoadSpecialPokePic(dest, species, personality, isFrontPic);
 }
 
-static inline void UnpackFrequenciesLoop(const u32 *packedFreqs, u8 *freqs, u32 i)
+static inline void UnpackFrequenciesLoop(const u32 *packedFreqs, u32 *freqs, u32 i)
 {
     // Loop unpack
     freqs[i*5 + 0] = (packedFreqs[i] >> (6*0)) & PACKED_FREQ_MASK;
@@ -271,7 +271,7 @@ static inline void UnpackFrequenciesLoop(const u32 *packedFreqs, u8 *freqs, u32 
     freqs[15] += (packedFreqs[i] & PARTIAL_FREQ_MASK) >> (30 - 2*i);
 }
 
-void UnpackFrequencies(const u32 *packedFreqs, u8 *freqs)
+void UnpackFrequencies(const u32 *packedFreqs, u32 *freqs)
 {
     freqs[15] = 0;
 
@@ -320,7 +320,7 @@ void DecompressSubFrame(const u32 *src, void *dest, u32 frameId)
 
 void BuildDecompressionTable(const u32 *packedFreqs, struct DecodeYK *table, u32 *symbolTable)
 {
-    u8 freqs[16];
+    u32 freqs[16];
     u32 currCol = 0;
     //CycleCountStart();
     UnpackFrequencies(packedFreqs, freqs);
@@ -345,17 +345,18 @@ void BuildDecompressionTable(const u32 *packedFreqs, struct DecodeYK *table, u32
     //MgbaPrintf(MGBA_LOG_WARN, "Building: %u", timeTaken);
 }
 
+static EWRAM_DATA u8 sBitIndex = 0;
 static EWRAM_DATA u32 sReadIndex = 0;
-static EWRAM_DATA u32 sBitIndex = 0;
+static EWRAM_DATA u32 sCurrState = 0;
 
-void DecodeLOtANS(const u32 *data, const u32 *pFreqs, u8 *resultVec, u32 *state, u32 count)
+void DecodeLOtANS(const u32 *data, const u32 *pFreqs, u8 *resultVec, u32 count)
 {
     struct DecodeYK *ykTable = Alloc(TANS_TABLE_SIZE*sizeof(struct DecodeYK));
     u32 *symbolTable = Alloc(TANS_TABLE_SIZE * 4);
     BuildDecompressionTable(pFreqs, ykTable, symbolTable);
     u32 currBits = data[sReadIndex];
-    /*
-    u8 maskTable[7] = {
+
+    static const u8 maskTable[7] = {
         0,
         1,
         3,
@@ -364,17 +365,17 @@ void DecodeLOtANS(const u32 *data, const u32 *pFreqs, u8 *resultVec, u32 *state,
         31,
         63
     };
-    */
+
     for (u32 currSym = 0; currSym < count; currSym++)
     {
         u32 symbol = 0;
         for (u32 currNibble = 0; currNibble < 2; currNibble++)
         {
-            symbol += symbolTable[*state] << (currNibble*4);
-            u32 currK = ykTable[*state].kVal;
-            u32 nextState = ykTable[*state].yVal;
-            nextState += (currBits >> sBitIndex) & (0xff >> (8-currK));
-            //nextState += (currBits >> sBitIndex) & maskTable[currK];
+            symbol += symbolTable[sCurrState] << (currNibble*4);
+            u32 currK = ykTable[sCurrState].kVal;
+            u32 nextState = ykTable[sCurrState].yVal;
+            //nextState += (currBits >> sBitIndex) & (0xff >> (8-currK));
+            nextState += (currBits >> sBitIndex) & maskTable[currK];
             if (sBitIndex + currK < 32)
             {
                 sBitIndex += currK;
@@ -393,7 +394,7 @@ void DecodeLOtANS(const u32 *data, const u32 *pFreqs, u8 *resultVec, u32 *state,
                 nextState += (data[sReadIndex] & ((1u << remainder) - 1)) << (currK - remainder);
                 sBitIndex = remainder;
             }
-            *state = nextState-64;
+            sCurrState = nextState-64;
         }
         resultVec[currSym] = symbol;
     }
@@ -401,7 +402,7 @@ void DecodeLOtANS(const u32 *data, const u32 *pFreqs, u8 *resultVec, u32 *state,
     Free(symbolTable);
 }
 
-void DecodeSymtANS(const u32 *data, const u32 *pFreqs, u16 *resultVec, u32 *state, u32 count)
+void DecodeSymtANS(const u32 *data, const u32 *pFreqs, u16 *resultVec, u32 count)
 {
     struct DecodeYK ykTable[64];
     u32 symbolTable[64];
@@ -423,9 +424,9 @@ void DecodeSymtANS(const u32 *data, const u32 *pFreqs, u16 *resultVec, u32 *stat
         u32 symbol = 0;
         for (u32 currNibble = 0; currNibble < 4; currNibble++)
         {
-            symbol += symbolTable[*state] << (currNibble*4);
-            u32 currK = ykTable[*state].kVal;
-            u32 nextState = ykTable[*state].yVal;
+            symbol += symbolTable[sCurrState] << (currNibble*4);
+            u32 currK = ykTable[sCurrState].kVal;
+            u32 nextState = ykTable[sCurrState].yVal;
             nextState += (currBits >> sBitIndex) & (0xff >> (8-currK));
             //nextState += (currBits >> sBitIndex) & maskTable[currK];
             if (sBitIndex + currK < 32)
@@ -446,13 +447,13 @@ void DecodeSymtANS(const u32 *data, const u32 *pFreqs, u16 *resultVec, u32 *stat
                 nextState += (currBits & ((1u << remainder) - 1)) << (currK - remainder);
                 sBitIndex = remainder;
             }
-            *state = nextState - 64;
+            sCurrState = nextState - 64;
         }
         resultVec[currSym] = symbol;
     }
 }
 
-void DecodeSymDeltatANS(const u32 *data, const u32 *pFreqs, u16 *resultVec, u32 *state, u32 count)
+void DecodeSymDeltatANS(const u32 *data, const u32 *pFreqs, u16 *resultVec, u32 count)
 {
     struct DecodeYK *ykTable = Alloc(TANS_TABLE_SIZE*sizeof(struct DecodeYK));
     u32 *symbolTable = Alloc(TANS_TABLE_SIZE * 4);
@@ -475,11 +476,11 @@ void DecodeSymDeltatANS(const u32 *data, const u32 *pFreqs, u16 *resultVec, u32 
         u32 symbol = 0;
         for (u32 currNibble = 0; currNibble < 4; currNibble++)
         {
-            u32 currSymbol = (prevSymbol + symbolTable[*state]) & 0xf;
+            u32 currSymbol = (prevSymbol + symbolTable[sCurrState]) & 0xf;
             prevSymbol = currSymbol;
             symbol += currSymbol << (currNibble*4);
-            u32 currK = ykTable[*state].kVal;
-            u32 nextState = ykTable[*state].yVal;
+            u32 currK = ykTable[sCurrState].kVal;
+            u32 nextState = ykTable[sCurrState].yVal;
             nextState += (currBits >> sBitIndex) & (0xff >> (8-currK));
             //nextState += (currBits >> sBitIndex) & maskTable[currK];
             if (sBitIndex + currK < 32)
@@ -500,7 +501,7 @@ void DecodeSymDeltatANS(const u32 *data, const u32 *pFreqs, u16 *resultVec, u32 
                 nextState += (currBits & ((1u << remainder) - 1)) << (currK - remainder);
                 sBitIndex = remainder;
             }
-            *state = nextState - 64;
+            sCurrState = nextState - 64;
         }
         resultVec[currSym] = symbol;
     }
@@ -508,7 +509,7 @@ void DecodeSymDeltatANS(const u32 *data, const u32 *pFreqs, u16 *resultVec, u32 
     Free(symbolTable);
 }
 
-void DecodeInstructions(struct CompressionHeader *header, u8 *loVec, u16 *symVec, void *dest)
+void DecodeInstructions(const struct CompressionHeader *header, u8 *loVec, u16 *symVec, void *dest)
 {
     u32 loIndex = 0;
     u32 symIndex = 0;
@@ -561,16 +562,16 @@ void DecodeInstructions(struct CompressionHeader *header, u8 *loVec, u16 *symVec
     }
 }
 
-void SmolDecompressData(struct CompressionHeader *header, const u32 *data, void *dest)
+void SmolDecompressData(const struct CompressionHeader *header, const u32 *data, void *dest)
 {
     sReadIndex = 0;
 
-    u32 currState = header->initialState;
+    sCurrState = header->initialState;
     u8 *loVec = Alloc(header->loSize);
     u16 *symVec = Alloc(header->symSize*2);
-    bool8 loEncoded = isModeLoEncoded(header->mode);
-    bool8 symEncoded = isModeSymEncoded(header->mode);
-    bool8 symDelta = isModeSymDelta(header->mode);
+    bool32 loEncoded = isModeLoEncoded(header->mode);
+    bool32 symEncoded = isModeSymEncoded(header->mode);
+    bool32 symDelta = isModeSymDelta(header->mode);
     u8 *leftoverPos = (u8 *)data;
 
     const u32 *pLoFreqs;
@@ -599,14 +600,14 @@ void SmolDecompressData(struct CompressionHeader *header, const u32 *data, void 
     sBitIndex = 0;
     if (loEncoded == TRUE)
     {
-        DecodeLOtANS(data, pLoFreqs, loVec, &currState, header->loSize);
+        DecodeLOtANS(data, pLoFreqs, loVec, header->loSize);
     }
     if (symEncoded == TRUE)
     {
         if (symDelta)
-            DecodeSymDeltatANS(data, pSymFreqs, symVec, &currState, header->symSize);
+            DecodeSymDeltatANS(data, pSymFreqs, symVec, header->symSize);
         else
-            DecodeSymtANS(data, pSymFreqs, symVec, &currState, header->symSize);
+            DecodeSymtANS(data, pSymFreqs, symVec, header->symSize);
     }
 
     if (loEncoded || symEncoded)
