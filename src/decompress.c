@@ -452,7 +452,6 @@ void DecodeSymDeltatANS(const u32 *data, u32 *readIndex, u32 *bitIndex, const u3
         63
     };
     */
-    CycleCountStart();
     for (u32 currSym = 0; currSym < count; currSym++)
     {
         u16 symbol = 0;
@@ -487,8 +486,6 @@ void DecodeSymDeltatANS(const u32 *data, u32 *readIndex, u32 *bitIndex, const u3
         }
         resultVec[currSym] = symbol;
     }
-    u32 totalTime = CycleCountEnd();
-    MgbaPrintf(MGBA_LOG_WARN, "Time per nibble: %u", totalTime/(count*4));
     Free(ykTable);
     Free(symbolTable);
 }
@@ -543,21 +540,14 @@ void DecodeInstructions(struct CompressionHeader *header, u8 *loVec, u16 *symVec
             dest = (void *)(dest + currOffset*2);
         }
     }
-    MgbaPrintf(MGBA_LOG_WARN, "Instruction number: %u", totalInstructions);
 }
 
 void SmolDecompressData(struct CompressionHeader *header, const u32 *data, void *dest)
 {
     u32 currState = header->initialState;
     u32 readIndex = 0;
-    //struct DecodeYK *loTable;
-    //u8 *loSymbols;
-    //struct DecodeYK *symTable;
-    //u8 *symSymbols;
     u8 *loVec = Alloc(header->loSize);
     u16 *symVec = Alloc(header->symSize*2);
-    //u32 packedLoFreqs[3];
-    //u32 packedSymFreqs[3];
     bool8 loEncoded = isModeLoEncoded(header->mode);
     bool8 symEncoded = isModeSymEncoded(header->mode);
     bool8 symDelta = isModeSymDelta(header->mode);
@@ -585,65 +575,20 @@ void SmolDecompressData(struct CompressionHeader *header, const u32 *data, void 
             break;
     }
 
-    u32 cycleCountTotal = 0;
 
-    //MgbaPrintf(MGBA_LOG_WARN, "Mode: %u", header->mode);
-    //MgbaPrintf(MGBA_LOG_WARN, "Bitsteam size: %u", header->bitstreamSize);
-    //CycleCountStart();
-    //  Move the actual table creation into the tANS decoding functions
-    //  since the tables aren't needed outside of them
-    /*
-    if (loEncoded == TRUE)
-    {
-        for (u32 i = 0; i < 3; i++)
-            packedLoFreqs[i] = data[readIndex + i];
-        readIndex += 3;
-        leftoverPos += 3*4;
-        loTable = Alloc(64*sizeof(struct DecodeYK));
-        loSymbols = Alloc(64);
-        BuildDecompressionTable(packedLoFreqs, loTable, loSymbols);
-    }
-    if (symEncoded == TRUE)
-    {
-        for (u32 i = 0; i < 3; i++)
-            packedSymFreqs[i] = data[readIndex + i];
-        readIndex += 3;
-        leftoverPos += 3*4;
-        symTable = Alloc(64*sizeof(struct DecodeYK));
-        symSymbols = Alloc(64);
-        BuildDecompressionTable(packedSymFreqs, symTable, symSymbols);
-    }
-    */
-    u32 subCycleCount = 0;//CycleCountEnd();
-    //MgbaPrintf(MGBA_LOG_WARN, "tANS table build time: %u", subCycleCount);
-    //cycleCountTotal = subCycleCount;
-
-    //CycleCountStart();
     u32 bitIndex = 0;
     if (loEncoded == TRUE)
     {
         DecodeLOtANS(data, &readIndex, &bitIndex, pLoFreqs, loVec, &currState, header->loSize);
-        //Free(loTable);
-        //Free(loSymbols);
     }
-    //subCycleCount = CycleCountEnd();
-    //MgbaPrintf(MGBA_LOG_WARN, "LO decoding time: %u", subCycleCount);
-    //cycleCountTotal += subCycleCount;
-    //CycleCountStart();
     if (symEncoded == TRUE)
     {
         if (symDelta)
             DecodeSymDeltatANS(data, &readIndex, &bitIndex, pSymFreqs, symVec, &currState, header->symSize);
         else
             DecodeSymtANS(data, &readIndex, &bitIndex, pSymFreqs, symVec, &currState, header->symSize);
-        //Free(symTable);
-        //Free(symSymbols);
     }
-    //subCycleCount = CycleCountEnd();
-    //MgbaPrintf(MGBA_LOG_WARN, "Sym decoding time: %u", subCycleCount);
-    //cycleCountTotal += subCycleCount;
 
-    //CycleCountStart();
     if (loEncoded || symEncoded)
         leftoverPos += 4*header->bitstreamSize;
 
@@ -657,25 +602,8 @@ void SmolDecompressData(struct CompressionHeader *header, const u32 *data, void 
     {
         memcpy(loVec, leftoverPos, header->loSize);
     }
-    //subCycleCount = CycleCountEnd();
-    //MgbaPrintf(MGBA_LOG_WARN, "Unencoded copy time: %u", subCycleCount);
-    //cycleCountTotal += subCycleCount;
 
-    /*
-    DebugPrintf("LOs");
-    for (u32 i = 0; i < header->loSize; i++)
-        DebugPrintf("%u", loVec[i]);
-    DebugPrintf("Syms");
-    for (u32 i = 0; i < header->symSize; i++)
-        DebugPrintf("%u", symVec[i]);
-    */
-
-    //CycleCountStart();
     DecodeInstructions(header, loVec, symVec, dest);
-    //subCycleCount = CycleCountEnd();
-    //MgbaPrintf(MGBA_LOG_WARN, "Instruction decoding time: %u", subCycleCount);
-    //cycleCountTotal += subCycleCount;
-    //MgbaPrintf(MGBA_LOG_WARN, "Total time: %u", cycleCountTotal);
 
     Free(loVec);
     Free(symVec);
