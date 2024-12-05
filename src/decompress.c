@@ -327,8 +327,8 @@ void BuildDecompressionTable(const u32 *packedFreqs, struct DecodeYK *table, u32
     //u32 timeTaken = CycleCountEnd();
     //MgbaPrintf(MGBA_LOG_WARN, "Unpacking: %u", timeTaken);
     //CycleCountStart();
-
-    for (u32 i = 0; i < 16; i++) {
+    for (u32 i = 0; i < 16; i++)
+    {
         if (freqs[i] != 0)
         {
             memcpy(&table[currCol], &ykTemplate[freqs[i]], freqs[i]*sizeof(struct DecodeYK));
@@ -339,8 +339,6 @@ void BuildDecompressionTable(const u32 *packedFreqs, struct DecodeYK *table, u32
             currCol += freqs[i];
         }
     }
-
-
     //timeTaken = CycleCountEnd();
     //MgbaPrintf(MGBA_LOG_WARN, "Building: %u", timeTaken);
 }
@@ -543,7 +541,7 @@ void DecodeInstructions(const struct CompressionHeader *header, u8 *loVec, u16 *
             dest = (void *)(dest + 2);
             if (currOffset == 1)
             {
-                memset(dest, symVec[symIndex], 2*currLength);
+                CpuFill16(symVec[symIndex], dest, 2*currLength);
                 dest = (void *)(dest + currLength*2);
             }
             else
@@ -598,11 +596,11 @@ void SmolDecompressData(const struct CompressionHeader *header, const u32 *data,
 
 
     sBitIndex = 0;
-    if (loEncoded == TRUE)
+    if (loEncoded)
     {
         DecodeLOtANS(data, pLoFreqs, loVec, header->loSize);
     }
-    if (symEncoded == TRUE)
+    if (symEncoded)
     {
         if (symDelta)
             DecodeSymDeltatANS(data, pSymFreqs, symVec, header->symSize);

@@ -43,7 +43,7 @@ enum CompressionMode {
 
 extern struct DecodeYK ykTemplate[2*TANS_TABLE_SIZE];
 
-void UnpackFrequencies(const u32 *packedFreqs, u8 *freqs);
+void UnpackFrequencies(const u32 *packedFreqs, u32 *freqs);
 
 void DecompressDataVram(const u32 *src, void *dest);
 void DecompressDataWram(const u32 *src, void *dest);
@@ -51,17 +51,17 @@ void DecompressDataWram(const u32 *src, void *dest);
 //  For decompressing a single part of a multi-part spritesheet
 //void DecompressSubFrame(const u32 *src, void *dest, u32 frameId);
 
-void SmolDecompressData(struct CompressionHeader *header, const u32 *data, void *dest);
+void SmolDecompressData(const struct CompressionHeader *header, const u32 *data, void *dest);
 
-void BuildDecompressionTable(const u32 *freqs, struct DecodeYK *ykTable, u8 *symbolTable);
+void BuildDecompressionTable(const u32 *freqs, struct DecodeYK *ykTable, u32 *symbolTable);
 
-void DecodeLOtANS(const u32 *data, u32 *readIndex, u32 *bitIndex, const u32 *pFreqs, u8 *resultVec, u32 *state, u32 count);
+void DecodeLOtANS(const u32 *data, const u32 *pFreqs, u8 *resultVec, u32 count);
 
-void DecodeSymtANS(const u32 *data, u32 *readIndex, u32 *bitIndex, const u32 *pFreqs, u16 *resultVec, u32 *state, u32 count);
+void DecodeSymtANS(const u32 *data, const u32 *pFreqs, u16 *resultVec, u32 count);
 
-void DecodeSymDeltatANS(const u32 *data, u32 *readIndex, u32 *bitIndex, const u32 *pFreqs, u16 *resultVec, u32 *state, u32 count);
+void DecodeSymDeltatANS(const u32 *data, const u32 *pFreqs, u16 *resultVec, u32 count);
 
-void DecodeInstructions(struct CompressionHeader *header, u8 *loVec, u16 *symVec, void *dest);
+void DecodeInstructions(const struct CompressionHeader *header, u8 *loVec, u16 *symVec, void *dest);
 
 bool32 isModeLoEncoded(enum CompressionMode mode);
 bool32 isModeSymEncoded(enum CompressionMode mode);
