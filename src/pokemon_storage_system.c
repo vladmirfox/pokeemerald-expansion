@@ -8051,27 +8051,25 @@ static void InitMenu(void)
     sStorage->menuWindow.baseBlock = 92;
 }
 
-static const u8 gPCText_Give[] = _("GIVE");
-
 static const u8 *const sMenuTexts[] =
 {
-    [MENU_CANCEL]     = COMPOUND_STRING("CANCEL"),
+    [MENU_CANCEL]     = gText_Cancel,
     [MENU_STORE]      = COMPOUND_STRING("STORE"),
     [MENU_WITHDRAW]   = COMPOUND_STRING("WITHDRAW"),
     [MENU_MOVE]       = COMPOUND_STRING("MOVE"),
     [MENU_SHIFT]      = COMPOUND_STRING("SHIFT"),
     [MENU_PLACE]      = COMPOUND_STRING("PLACE"),
-    [MENU_SUMMARY]    = COMPOUND_STRING("SUMMARY"),
+    [MENU_SUMMARY]    = gText_Summary,
     [MENU_RELEASE]    = COMPOUND_STRING("RELEASE"),
     [MENU_MARK]       = COMPOUND_STRING("MARK"),
     [MENU_JUMP]       = COMPOUND_STRING("JUMP"),
     [MENU_WALLPAPER]  = COMPOUND_STRING("WALLPAPER"),
-    [MENU_NAME]       = COMPOUND_STRING("NAME"),
+    [MENU_NAME]       = gText_Name,
     [MENU_TAKE]       = COMPOUND_STRING("TAKE"),
-    [MENU_GIVE]       = gPCText_Give,
-    [MENU_GIVE_2]     = gPCText_Give,
+    [MENU_GIVE]       = gMenuText_Give,
+    [MENU_GIVE_2]     = gMenuText_Give,
     [MENU_SWITCH]     = gText_Switch,
-    [MENU_BAG]        = COMPOUND_STRING("BAG"),
+    [MENU_BAG]        = gText_Bag,
     [MENU_INFO]       = gText_Info,
     [MENU_SCENERY_1]  = COMPOUND_STRING("SCENERY 1"),
     [MENU_SCENERY_2]  = COMPOUND_STRING("SCENERY 2"),

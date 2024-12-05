@@ -538,8 +538,6 @@ static const u8 *const sNoWonderSharedTexts[] = {
 ALIGNED(4) static const u8 sText_Battle[] = _("BATTLE");
 ALIGNED(4) static const u8 sText_Chat2[] = _("CHAT");
 ALIGNED(4) static const u8 sText_Greetings[] = _("GREETINGS");
-ALIGNED(4) static const u8 sText_Exit[] = _("EXIT");
-ALIGNED(4) static const u8 sText_Exit2[] = _("EXIT");
 ALIGNED(4) static const u8 sText_Info[] = _("INFO");
 ALIGNED(4) static const u8 sText_NameWantedOfferLv[] = _("NAME{CLEAR_TO 60}WANTED{CLEAR_TO 110}OFFER{CLEAR_TO 198}LV.");
 ALIGNED(4) static const u8 sText_SingleBattle[] = _("SINGLE BATTLE");
@@ -796,7 +794,7 @@ static const struct ListMenuItem sInviteToActivityMenuItems[] = {
     { sText_Greetings, ACTIVITY_CARD | LINK_GROUP_CAPACITY(0, 2)},
     { sText_Battle,    ACTIVITY_BATTLE_SINGLE | IN_UNION_ROOM | LINK_GROUP_CAPACITY(0, 2)},
     { sText_Chat2,     ACTIVITY_CHAT | IN_UNION_ROOM | LINK_GROUP_CAPACITY(0, 2)},
-    { sText_Exit,      ACTIVITY_NONE | IN_UNION_ROOM }
+    { gText_Exit3,     ACTIVITY_NONE | IN_UNION_ROOM }
 };
 
 static const struct ListMenuTemplate sListMenuTemplate_InviteToActivity = {
@@ -833,7 +831,7 @@ static const struct WindowTemplate sWindowTemplate_RegisterForTrade = {
 static const struct ListMenuItem sRegisterForTradeListMenuItems[] = {
     { gText_Register, 1 },
     { sText_Info, 2 },
-    { sText_Exit, 3 }
+    { gText_Exit3, 3 }
 };
 
 static const struct ListMenuTemplate sListMenuTemplate_RegisterForTrade = {
@@ -886,7 +884,7 @@ static const struct ListMenuItem sTradingBoardTypes[NUMBER_OF_MON_TYPES] = {
     { gTypesInfo[TYPE_STEEL].name,    TYPE_STEEL          },
     { gTypesInfo[TYPE_DARK].name,     TYPE_DARK           },
     { gTypesInfo[TYPE_FAIRY].name,    TYPE_FAIRY          },
-    { sText_Exit,                NUMBER_OF_MON_TYPES }
+    { gText_Exit3,                    NUMBER_OF_MON_TYPES }
 };
 
 static const struct ListMenuTemplate sMenuTemplate_TradingBoardRequestType = {
@@ -940,7 +938,7 @@ static const struct ListMenuItem sTradeBoardListMenuItems[] = {
     { sText_EmptyString,  5 },
     { sText_EmptyString,  6 },
     { sText_EmptyString,  7 },
-    { sText_Exit2,  8 }
+    { gText_Exit3,  8 }
 };
 
 static const struct ListMenuTemplate sTradeBoardListMenuTemplate = {

@@ -5340,7 +5340,7 @@ static void Task_LearnedMove(u8 taskId)
     }
     GetMonNickname(mon, gStringVar1);
     StringCopy(gStringVar2, GetMoveName(move[0]));
-    StringExpandPlaceholders(gStringVar4, gText_PkmnLearnedMove3);
+    StringExpandPlaceholders(gStringVar4, gText_PkmnLearnedMove);
     DisplayPartyMenuMessage(gStringVar4, TRUE);
     ScheduleBgCopyTilemapToVram(2);
     gTasks[taskId].func = Task_DoLearnedMoveFanfareAfterText;
@@ -5460,7 +5460,7 @@ static void Task_PartyMenuReplaceMove(u8 taskId)
 static void StopLearningMovePrompt(u8 taskId)
 {
     StringCopy(gStringVar2, GetMoveName(gPartyMenu.data1));
-    StringExpandPlaceholders(gStringVar4, gText_StopLearningMove2);
+    StringExpandPlaceholders(gStringVar4, gText_StopLearningMove);
     DisplayPartyMenuMessage(gStringVar4, TRUE);
     ScheduleBgCopyTilemapToVram(2);
     gTasks[taskId].func = Task_StopLearningMoveYesNo;
@@ -5792,7 +5792,7 @@ static void DisplayMonLearnedMove(u8 taskId, u16 move)
 {
     GetMonNickname(&gPlayerParty[gPartyMenu.slotId], gStringVar1);
     StringCopy(gStringVar2, GetMoveName(move));
-    StringExpandPlaceholders(gStringVar4, gText_PkmnLearnedMove3);
+    StringExpandPlaceholders(gStringVar4, gText_PkmnLearnedMove);
     DisplayPartyMenuMessage(gStringVar4, TRUE);
     ScheduleBgCopyTilemapToVram(2);
     gPartyMenu.data1 = move;

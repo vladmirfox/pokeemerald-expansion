@@ -40,19 +40,11 @@ extern const u8 gText_Super[];
 extern const u8 gText_Hyper[];
 extern const u8 gText_Master[];
 
-extern const u8 gText_Beauty2[];
-extern const u8 gText_Cute2[];
-extern const u8 gText_Smart2[];
-extern const u8 gText_Tough2[];
-
 extern const u8 gText_Items[];
 extern const u8 gText_Key_Items[];
 extern const u8 gText_Poke_Balls[];
-extern const u8 gText_TMs_Hms[];
-extern const u8 gText_Berries2[];
+extern const u8 gText_TMs_HMs[];
 
-extern const u8 gText_Single2[];
-extern const u8 gText_Double2[];
 extern const u8 gText_Multi[];
 extern const u8 gText_MultiLink[];
 
@@ -121,7 +113,6 @@ extern const u8 gText_DecorationWillBeDiscarded[];
 extern const u8 gText_CantThrowAwayInUse[];
 extern const u8 gText_DecorationThrownAway[];
 
-extern const u8 gText_PokeBalls[];
 extern const u8 gText_Berries[];
 extern const u8 gText_Berry[];
 
@@ -139,7 +130,6 @@ extern const u8 gText_Doll[];
 extern const u8 gText_Cushion[];
 extern const u8 gText_Decorate[];
 extern const u8 gText_PutAway[];
-extern const u8 gText_Toss2[];
 extern const u8 gText_Hoenn[];
 extern const u8 gText_Ferry[];
 extern const u8 gText_SecretBase[];
@@ -169,7 +159,6 @@ extern const u8 gText_Gold[];
 extern const u8 gMenuText_Use[];
 extern const u8 gMenuText_Toss[];
 extern const u8 gMenuText_Give[];
-extern const u8 gMenuText_Register[];
 extern const u8 gMenuText_Confirm[];
 
 extern const u8 gText_EggNickname[];
@@ -179,7 +168,6 @@ extern const u8 gText_InGameClockUsable[];
 
 // reset rtc screen texts
 extern const u8 gText_Day[];
-extern const u8 gText_Colon3[];
 extern const u8 gText_PresentTime[];
 extern const u8 gText_PreviousTime[];
 extern const u8 gText_ResetRTCConfirmCancel[];
@@ -190,15 +178,8 @@ extern const u8 gText_SaveCompleted[];
 extern const u8 gText_SaveFailed[];
 
 // menu texts
-extern const u8 gText_MenuPokedex[];
-extern const u8 gText_MenuBag[];
-extern const u8 gText_MenuPokenav[];
 extern const u8 gText_MenuPlayer[];
 extern const u8 gText_MenuSave[];
-extern const u8 gText_MenuOption[];
-extern const u8 gText_MenuExit[];
-extern const u8 gText_MenuRetire[];
-extern const u8 gText_MenuRest[];
 extern const u8 gText_Floor1[];
 extern const u8 gText_Floor2[];
 extern const u8 gText_Floor3[];
@@ -210,12 +191,10 @@ extern const u8 gText_Peak[];
 extern const u8 gText_SafariBallStock[];
 extern const u8 gText_BattlePyramidFloor[];
 
-extern const u8 gText_MenuOptionPokedex[];
-extern const u8 gText_MenuOptionBag[];
-extern const u8 gText_MenuOptionPokenav[];
+extern const u8 gText_Pokedex[];
+extern const u8 gText_Bag[];
+extern const u8 gText_Pokenav[];
 extern const u8 gText_MenuOptionSave[];
-extern const u8 gText_MenuOptionOption[];
-extern const u8 gText_MenuOptionExit[];
 
 // save menu texts
 extern const u8 gText_ConfirmSave[];
@@ -225,9 +204,8 @@ extern const u8 gText_SavingDontTurnOff[];
 extern const u8 gText_PlayerSavedGame[];
 extern const u8 gText_SaveError[];
 extern const u8 gText_SavingDontTurnOffPower[];
-extern const u8 gText_SavingPlayer[];
+extern const u8 gText_Player[];
 extern const u8 gText_SavingBadges[];
-extern const u8 gText_SavingPokedex[];
 
 // Battle pyramid menu texts
 extern const u8 gText_BattlePyramidConfirmRest[];
@@ -354,10 +332,10 @@ extern const u8 gText_PkmnAdoresBaseVar2Fell[];
 extern const u8 gText_PkmnAlreadyKnows[];
 extern const u8 gText_PkmnCantLearnMove[];
 extern const u8 gText_PkmnNeedsToReplaceMove[];
-extern const u8 gText_PkmnLearnedMove3[];
+extern const u8 gText_PkmnLearnedMove[];
 extern const u8 gText_WhichMoveToForget[];
 extern const u8 gText_12PoofForgotMove[];
-extern const u8 gText_StopLearningMove2[];
+extern const u8 gText_StopLearningMove[];
 extern const u8 gText_MoveNotLearned[];
 extern const u8 gText_PkmnElevatedToLvVar2[];
 extern const u8 gText_PkmnGainedExp[];
@@ -479,7 +457,6 @@ extern const u8 gText_B4F[];
 extern const u8 gText_Rooftop[];
 extern const u8 gText_ElevatorNowOn[];
 
-extern const u8 gText_BattleTower2[];
 extern const u8 gText_BattleDome[];
 extern const u8 gText_BattlePalace[];
 extern const u8 gText_BattleArena[];
@@ -642,10 +619,8 @@ extern const u8 gText_Winona[];
 extern const u8 gText_Phoebe[];
 extern const u8 gText_Glacia[];
 
-extern const u8 gText_MoveRelearnerPkmnLearnedMove[];
 extern const u8 gText_MoveRelearnerPkmnTryingToLearnMove[];
 extern const u8 gText_MoveRelearnerWhichMoveToForget[];
-extern const u8 gText_MoveRelearnerStopTryingToTeachMove[];
 extern const u8 gText_MoveRelearnerAndPoof[];
 extern const u8 gText_MoveRelearnerPkmnForgotMoveAndLearnedNew[];
 extern const u8 gText_TeachWhichMoveToPkmn[];
@@ -679,7 +654,6 @@ extern const u8 gText_Info[];
 extern const u8 gText_Switch[];
 extern const u8 gText_RentalPkmn[];
 extern const u8 gText_TypeSlash[];
-extern const u8 gText_SpDef4[];
 extern const u8 gText_ExpPoints[];
 extern const u8 gText_NextLv[];
 extern const u8 gText_Status[];
@@ -819,13 +793,11 @@ extern const u8 gText_GreenShard[];
 extern const u8 gText_Opponent[];
 extern const u8 gText_Tourney_Tree[];
 extern const u8 gText_ReadyToStart[];
-extern const u8 gText_Record2[];
 extern const u8 gText_Rest[];
 extern const u8 gText_Retire[];
 extern const u8 gText_TradeCenter[];
 extern const u8 gText_Colosseum[];
 extern const u8 gText_RecordCorner[];
-extern const u8 gText_BerryCrush3[];
 extern const u8 gText_BattleRules[];
 extern const u8 gText_JudgeMind[];
 extern const u8 gText_JudgeSkill[];
@@ -843,10 +815,6 @@ extern const u8 gText_ExpertTagMatch[];
 extern const u8 gText_TimeBoard[];
 extern const u8 gText_TimeCleared[];
 extern const u8 gText_XMinYDotZSec[];
-extern const u8 gText_TrainerHill1F[];
-extern const u8 gText_TrainerHill2F[];
-extern const u8 gText_TrainerHill3F[];
-extern const u8 gText_TrainerHill4F[];
 
 // Cable Club multichoice text
 extern const u8 CableClub_Text_TradeUsingLinkCable[];
@@ -905,7 +873,6 @@ extern const u8 gText_FacilitySingle[];
 extern const u8 gText_FacilityDouble[];
 extern const u8 gText_FacilityMulti[];
 extern const u8 gText_FacilityLink[];
-extern const u8 gText_Facility[];
 
 extern const u8 gText_RecordsLv50[];
 extern const u8 gText_RecordsOpenLevel[];
@@ -1527,7 +1494,6 @@ extern const u8 gText_Time[];
 
 // daycare
 extern const u8 gText_NewLine2[];
-extern const u8 gText_Exit4[];
 extern const u8 gText_Lv[];
 extern const u8 gExpandedPlaceholder_Empty[];
 extern const u8 gText_Exit[];
@@ -1586,7 +1552,6 @@ extern const u8 gText_XWillBeSentToY[];
 extern const u8 gText_ByeByeVar1[];
 extern const u8 gText_XSentOverY[];
 extern const u8 gText_TakeGoodCareOfX[];
-extern const u8 gText_CommunicationStandby5[];
 
 // match call
 extern const u8 MatchCall_WildBattleText1[];
@@ -1917,8 +1882,7 @@ extern const u8 gText_WaitingTrainerFinishReading[];
 extern const u8 gText_TrainerCardName[];
 extern const u8 gText_TrainerCardMoney[];
 extern const u8 gText_PokedollarVar1[];
-extern const u8 gText_TrainerCardPokedex[];
-extern const u8 gText_Colon2[];
+extern const u8 gText_Colon[];
 extern const u8 gText_Var1sTrainerCard[];
 extern const u8 gText_HallOfFameDebut[];
 extern const u8 gText_WinsLosses[];
@@ -1951,13 +1915,6 @@ extern const u8 gText_BattleArenaGutsSymbol[];
 extern const u8 gText_BattleFactoryKnowledgeSymbol[];
 extern const u8 gText_BattlePikeLuckSymbol[];
 extern const u8 gText_BattlePyramidBraveSymbol[];
-extern const u8 gText_BattleTower3[];
-extern const u8 gText_BattleDome2[];
-extern const u8 gText_BattlePalace2[];
-extern const u8 gText_BattleArena2[];
-extern const u8 gText_BattleFactory2[];
-extern const u8 gText_BattlePike2[];
-extern const u8 gText_BattlePyramid2[];
 extern const u8 gText_BattleTowerDesc[];
 extern const u8 gText_BattleDomeDesc[];
 extern const u8 gText_BattlePalaceDesc[];
@@ -2002,7 +1959,6 @@ extern const u8 gText_WhatYouSayIfYouWin[];
 extern const u8 gText_UponLosingABattle[];
 extern const u8 gText_WhatYouSayIfYouLose[];
 extern const u8 gText_CombineNineWordsOrPhrases[];
-extern const u8 gText_AndMakeAMessage2[];
 extern const u8 gText_TheMailMessage[];
 extern const u8 gText_Interview[];
 extern const u8 gText_LetsReplyToTheInterview[];
@@ -2032,7 +1988,6 @@ extern const u8 gText_FindWordsWhichFit[];
 extern const u8 gText_TheTrainersImage[];
 extern const u8 gText_ApprenticePhrase[];
 extern const u8 gText_GoodSaying[];
-extern const u8 gText_CombineTwoWordsOrPhrases2[];
 extern const u8 gText_ToTeachHerAGoodSaying[];
 extern const u8 gText_FansQuestion[];
 extern const u8 gText_TheImage[];
@@ -2224,13 +2179,12 @@ extern const u8 gText_ExitingChat[];
 extern const u8 gText_LeaderLeftEndingChat[];
 extern const u8 gText_RegisteredTextChangedOKToSave[];
 extern const u8 gText_AlreadySavedFile_Chat[];
-extern const u8 gText_SavingDontTurnOff_Chat[];
 extern const u8 gText_PlayerSavedGame_Chat[];
 extern const u8 gText_IfLeaderLeavesChatEnds[];
 extern const u8 gText_Upper[];
 extern const u8 gText_Lower[];
+extern const u8 gText_Others[];
 extern const u8 gText_Symbols[];
-extern const u8 gText_Exit2[];
 
 // Dodrio Berry Picking
 extern const u8 gText_BerryPickingRecords[];
@@ -2251,21 +2205,13 @@ extern const u8 gText_CantHoldAnyMore[];
 extern const u8 gText_FilledStorageSpace[];
 extern const u8 gText_BerryPickingResults[];
 extern const u8 gText_WantToPlayAgain[];
-extern const u8 gText_CommunicationStandby3[];
 extern const u8 gText_SomeoneDroppedOut[];
 
 // Pokémon jump
-extern const u8 gText_WantToPlayAgain2[];
-extern const u8 gText_SomeoneDroppedOut2[];
-extern const u8 gText_CommunicationStandby4[];
 extern const u8 gText_AwesomeWonF701F700[];
-extern const u8 gText_FilledStorageSpace2[];
-extern const u8 gText_CantHoldMore[];
-extern const u8 gText_SpacePoints2[];
-extern const u8 gText_SpaceTimes3[];
+extern const u8 gText_SpaceTimes[];
 extern const u8 gText_PkmnJumpRecords[];
 extern const u8 gText_JumpsInARow[];
-extern const u8 gText_BestScore2[];
 extern const u8 gText_ExcellentsInARow[];
 
 // Berry crush
@@ -2275,17 +2221,14 @@ extern const u8 gText_1DotBlueF700[];
 extern const u8 gText_1DotF700[];
 extern const u8 gText_TimeColon[];
 extern const u8 gText_SpaceSec[];
-extern const u8 gText_XDotY2[];
 extern const u8 gText_SpaceMin[];
 extern const u8 gText_StrVar1[];
 extern const u8 gText_PressingSpeed[];
 extern const u8 gText_TimesPerSec[];
-extern const u8 gText_XDotY3[];
 extern const u8 gText_Silkiness[];
 extern const u8 gText_Var1Percent[];
 extern const u8 gText_PressesRankings[];
 extern const u8 gText_CrushingResults[];
-extern const u8 gText_BerryCrush2[];
 extern const u8 gText_PressingSpeedRankings[];
 extern const u8 gText_Var1Players[];
 extern const u8 gText_ReadyPickBerry[];
@@ -2332,14 +2275,12 @@ extern const u8 gText_Summary[];
 extern const u8 gText_Rechoose[];
 extern const u8 gText_Deselect[];
 extern const u8 gText_Rent[];
-extern const u8 gText_Others2[];
 extern const u8 gText_QuitSwapping[];
 extern const u8 gText_AcceptThisPkmn[];
 extern const u8 gText_SelectPkmnToAccept[];
 extern const u8 gText_SelectPkmnToSwap[];
 extern const u8 gText_PkmnSwap[];
 extern const u8 gText_Swap[];
-extern const u8 gText_Summary2[];
 extern const u8 gText_PkmnForSwap[];
 extern const u8 gText_SamePkmnInPartyAlready[];
 

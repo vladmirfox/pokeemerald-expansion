@@ -242,7 +242,7 @@ const struct MenuAction gMailboxMailOptions[] =
 {
     { COMPOUND_STRING("READ"),        {Mailbox_DoMailRead} },
     { COMPOUND_STRING("MOVE TO BAG"), {Mailbox_MoveToBag} },
-    { COMPOUND_STRING("GIVE"),        {Mailbox_Give} },
+    { gMenuText_Give,                 {Mailbox_Give} },
     { gText_Cancel,                   {Mailbox_Cancel} }
 };
 

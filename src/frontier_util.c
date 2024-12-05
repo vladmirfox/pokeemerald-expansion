@@ -752,16 +752,16 @@ static const struct WindowTemplate sRankingHallRecordsWindowTemplate =
 
 static const u8 *const sRecordsWindowChallengeTexts[][2] =
 {
-    [RANKING_HALL_TOWER_SINGLES] = {gText_BattleTower2,  gText_FacilitySingle},
-    [RANKING_HALL_TOWER_DOUBLES] = {gText_BattleTower2,  gText_FacilityDouble},
-    [RANKING_HALL_TOWER_MULTIS]  = {gText_BattleTower2,  gText_FacilityMulti},
+    [RANKING_HALL_TOWER_SINGLES] = {gText_BattleTower,   gText_FacilitySingle},
+    [RANKING_HALL_TOWER_DOUBLES] = {gText_BattleTower,   gText_FacilityDouble},
+    [RANKING_HALL_TOWER_MULTIS]  = {gText_BattleTower,   gText_FacilityMulti},
     [RANKING_HALL_DOME]          = {gText_BattleDome,    gText_FacilitySingle},
     [RANKING_HALL_PALACE]        = {gText_BattlePalace,  gText_FacilitySingle},
-    [RANKING_HALL_ARENA]         = {gText_BattleArena,   gText_Facility},
+    [RANKING_HALL_ARENA]         = {gText_BattleArena,   gText_StrVar1},
     [RANKING_HALL_FACTORY]       = {gText_BattleFactory, gText_FacilitySingle},
-    [RANKING_HALL_PIKE]          = {gText_BattlePike,    gText_Facility},
-    [RANKING_HALL_PYRAMID]       = {gText_BattlePyramid, gText_Facility},
-    [RANKING_HALL_TOWER_LINK]    = {gText_BattleTower2,  gText_FacilityLink},
+    [RANKING_HALL_PIKE]          = {gText_BattlePike,    gText_StrVar1},
+    [RANKING_HALL_PYRAMID]       = {gText_BattlePyramid, gText_StrVar1},
+    [RANKING_HALL_TOWER_LINK]    = {gText_BattleTower,   gText_FacilityLink},
 };
 
 static const u8 *const sLevelModeText[] =

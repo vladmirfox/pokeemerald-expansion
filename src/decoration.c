@@ -231,7 +231,7 @@ static const struct MenuAction sDecorationMainMenuActions[] =
         .func = { .void_u8 = DecorationMenuAction_PutAway },
     },
     {
-        .text = gText_Toss2,
+        .text = gMenuText_Toss,
         .func = { .void_u8 = DecorationMenuAction_Toss },
     },
     {

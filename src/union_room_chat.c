@@ -710,7 +710,7 @@ static const struct MessageWindowInfo sDisplayStdMessages[] = {
         .useWiderBox = TRUE
     },
     [STDMESSAGE_SAVING_NO_OFF] = {
-        .text = gText_SavingDontTurnOff_Chat,
+        .text = gText_SavingDontTurnOff2,
         .boxType = 2,
         .x = 0,
         .y = 1,
@@ -748,7 +748,7 @@ static const struct MenuAction sKeyboardPageTitleTexts[UNION_ROOM_KB_PAGE_COUNT 
     [UNION_ROOM_KB_PAGE_LOWER]    = {gText_Lower, {NULL}},
     [UNION_ROOM_KB_PAGE_EMOJI]    = {gText_Symbols, {NULL}},
     [UNION_ROOM_KB_PAGE_REGISTER] = {gText_Register, {NULL}},
-    [UNION_ROOM_KB_PAGE_COUNT]    = {gText_Exit2, {NULL}},
+    [UNION_ROOM_KB_PAGE_COUNT]    = {gText_Exit, {NULL}},
 };
 
 static const u16 sUnionRoomChatInterfacePal[] = INCBIN_U16("graphics/union_room_chat/interface.gbapal");

@@ -264,12 +264,11 @@ static const u8 *const sBlenderOpponentsNames[] =
     [BLENDER_MISTER] = COMPOUND_STRING("MISTER"),
     [BLENDER_LADDIE] = COMPOUND_STRING("LADDIE"),
     [BLENDER_LASSIE] = COMPOUND_STRING("LASSIE"),
-    [BLENDER_MASTER] = COMPOUND_STRING("MASTER"),
+    [BLENDER_MASTER] = gText_Master,
     [BLENDER_DUDE]   = COMPOUND_STRING("DUDE"),
     [BLENDER_MISS]   = COMPOUND_STRING("MISS"),
 };
 
-static const u8 sText_CommunicationStandby[] = _("Communication standby…");
 static const u8 sText_WouldLikeToBlendAnotherBerry[] = _("Would you like to blend another BERRY?");
 static const u8 sText_RunOutOfBerriesForBlending[] = _("You've run out of BERRIES for\nblending in the BERRY BLENDER.\p");
 static const u8 sText_YourPokeblockCaseIsFull[] = _("Your {POKEBLOCK} CASE is full.\p");
@@ -287,7 +286,6 @@ static const u8 sText_NewLine[] = _("\n");
 static const u8 sText_Ranking[] = _("RANKING");
 static const u8 sText_TheLevelIs[] = _("The level is ");
 static const u8 sText_TheFeelIs[] = _(", and the feel is ");
-static const u8 sText_Dot2[] = _(".");
 
 static const struct BgTemplate sBgTemplates[3] =
 {
@@ -1328,7 +1326,7 @@ static void CB2_StartBlenderLink(void)
         }
         break;
     case 5:
-        PrintMessage(&sBerryBlender->textState, sText_CommunicationStandby, 0);
+        PrintMessage(&sBerryBlender->textState, gText_CommunicationStandby, 0);
         sBerryBlender->mainState = 8;
         sBerryBlender->framesToWait = 0;
         break;
@@ -2728,7 +2726,7 @@ static void CB2_EndBlenderGame(void)
         sBerryBlender->gameEndState++;
         break;
     case 13:
-        if (PrintMessage(&sBerryBlender->textState, sText_CommunicationStandby, GetPlayerTextSpeedDelay()))
+        if (PrintMessage(&sBerryBlender->textState, gText_CommunicationStandby, GetPlayerTextSpeedDelay()))
         {
             SetMainCallback2(CB2_CheckPlayAgainLink);
             sBerryBlender->gameEndState = 0;
@@ -3593,7 +3591,7 @@ static void PrintMadePokeblockString(struct Pokeblock *pokeblock, u8 *dst)
     ConvertIntToDecimalStringN(text, feel, STR_CONV_MODE_LEFT_ALIGN, 3);
     StringAppend(dst, text);
 
-    StringAppend(dst, sText_Dot2);
+    StringAppend(dst, sText_Dot);
     StringAppend(dst, sText_NewParagraph);
 }
 

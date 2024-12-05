@@ -35,12 +35,8 @@ static const u8 sText_SpaceMove[] = _(" MOVE"); // unused
 static const u8 sText_NewLine[] = _("\n");
 static const u8 sText_FourQuestionMarks[] = _("????");
 static const u8 sText_IsThisTradeOkay[] = _("Is this trade okay?");
-static const u8 sText_Summary[] = _("SUMMARY");
-static const u8 sText_Trade[] = _("TRADE");
 static const u8 sText_CancelTrade[] = _("Cancel trade?");
 static const u8 sJPText_PressBButtonToQuit[] = _("Bボタン　で　もどります");
-static const u8 sText_Summary2[] = _("SUMMARY");
-static const u8 sText_Trade2[] = _("TRADE");
 static const u8 sText_CommunicationStandby[] = _("{COLOR DARK_GRAY}{HIGHLIGHT WHITE}{SHADOW LIGHT_GRAY}Communication standby…\nPlease wait.");
 static const u8 sText_TheTradeHasBeenCanceled[] = _("{COLOR DARK_GRAY}{HIGHLIGHT WHITE}{SHADOW LIGHT_GRAY}The trade has\nbeen canceled.");
 static const u8 sText_OnlyPkmnForBattle[] = _("That's your only\nPOKéMON for battle.");
@@ -356,16 +352,16 @@ static const u8 *const sActionTexts[] =
 {
     [TEXT_CANCEL]       = gText_Cancel,
     [TEXT_CHOOSE_MON]   = gText_ChoosePokemon,
-    [TEXT_SUMMARY]      = sText_Summary,
-    [TEXT_TRADE]        = sText_Trade,
+    [TEXT_SUMMARY]      = gText_Summary,
+    [TEXT_TRADE]        = gText_Trade,
     [TEXT_CANCEL_TRADE] = sText_CancelTrade,
     [TEXT_JP_QUIT]      = sJPText_PressBButtonToQuit
 };
 
 static const struct MenuAction sSelectTradeMonActions[] =
 {
-    {sText_Summary2, {Task_DrawSelectionSummary}},
-    {sText_Trade2,   {Task_DrawSelectionTrade}}
+    {gText_Summary,  {Task_DrawSelectionSummary}},
+    {gText_Trade,    {Task_DrawSelectionTrade}}
 };
 
 static const u8 *const sMessages[] =

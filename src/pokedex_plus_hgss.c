@@ -188,7 +188,6 @@ static const u8 sText_Stats_eggGroup_AMORPHOUS[] = _("AMORPHOUS");
 static const u8 sText_Stats_eggGroup_WATER_2[] = _("WATER {CIRCLE_2}");
 static const u8 sText_Stats_eggGroup_DITTO[] = _("DITTO");
 static const u8 sText_Stats_eggGroup_DRAGON[] = _("DRAGON");
-static const u8 sText_Stats_eggGroup_UNKNOWN[] = _("???");
 static const u8 sText_Dex_SEEN[] = _("SEEN");
 static const u8 sText_Dex_OWN[] = _("OWN");
 
@@ -5755,7 +5754,7 @@ static void PrintStatsScreen_Left(u8 taskId)
             StringCopy(gStringVar1, gText_ThreeDashes);
             break;
         default:
-            StringCopy(gStringVar1, sText_Stats_eggGroup_UNKNOWN);
+            StringCopy(gStringVar1, gText_ThreeQuestionMarks);
             break;
         }
         //Egg group 2
@@ -5809,7 +5808,7 @@ static void PrintStatsScreen_Left(u8 taskId)
                 StringCopy(gStringVar2, gText_ThreeDashes);
                 break;
             default:
-                StringCopy(gStringVar2, sText_Stats_eggGroup_UNKNOWN);
+                StringCopy(gStringVar2, gText_ThreeQuestionMarks);
                 break;
             }
             StringExpandPlaceholders(gStringVar3, sText_Stats_eggGroup_Groups);
