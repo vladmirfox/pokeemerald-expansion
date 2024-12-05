@@ -47,7 +47,9 @@ void UnpackFrequencies(const u32 *packedFreqs, u8 *freqs);
 
 void DecompressDataVram(const u32 *src, void *dest);
 void DecompressDataWram(const u32 *src, void *dest);
-void DecompressSubFrame(const u32 *src, void *dest, u32 frameId);
+
+//  For decompressing a single part of a multi-part spritesheet
+//void DecompressSubFrame(const u32 *src, void *dest, u32 frameId);
 
 void SmolDecompressData(struct CompressionHeader *header, const u32 *data, void *dest);
 

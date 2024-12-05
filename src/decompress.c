@@ -300,11 +300,15 @@ void DecompressDataWram(const u32 *src, void *dest)
     }
 }
 
+//  For decompressing a single part of a multi-part spritesheet
+/*
 void DecompressSubFrame(const u32 *src, void *dest, u32 frameId)
 {
     struct SpriteSheetHeader header;
     CpuCopy32(src, &header, 4);
+    const u32 *offsets = &src[1];
 }
+*/
 
 void BuildDecompressionTable(const u32 *packedFreqs, struct DecodeYK *table, u8 *symbolTable)
 {
