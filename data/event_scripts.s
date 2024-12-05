@@ -1124,3 +1124,7 @@ EventScript_VsSeekerChargingDone::
 	.include "data/maps/Route101_NormansLab/scripts.inc"
 
 	.include "data/maps/CherryGarden/scripts.inc"
+
+	.include "data/maps/LittlerootTest/scripts.inc"
+
+	.include "data/maps/PetalburgWoods3/scripts.inc"

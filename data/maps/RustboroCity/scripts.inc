@@ -157,6 +157,9 @@ RustboroCity_EventScript_DevonEmployee2::
 	end
 
 RustboroCity_EventScript_Woman::
+	@ TRIGGER RIVAL BATTLE SKIPPING GYM
+	clearflag FLAG_HIDE_RUSTBORO_CITY_RIVAL
+	setvar VAR_RUSTBORO_CITY_STATE, 7
 	msgbox RustboroCity_Text_GymLeaderIsntEasyWithFire, MSGBOX_NPC
 	end
 
@@ -852,7 +855,7 @@ RustboroCity_EventScript_RivalEncounter::
 	end
 
 RustboroCity_EventScript_MayEncounter::
-	goto_if_set FLAG_DEFEATED_RIVAL_RUSTBORO, RustboroCity_EventScript_MayBrineyHint
+	goto_if_set FLAG_DEFEATED_RIVAL_RUSTBORO, RustboroCity_EventScript_MayCallFromWally
 	goto_if_set FLAG_MET_RIVAL_RUSTBORO, RustboroCity_EventScript_MayAskToBattle
 	setflag FLAG_MET_RIVAL_RUSTBORO
 	msgbox RustboroCity_Text_MayHiLetsRegister, MSGBOX_DEFAULT
@@ -890,7 +893,7 @@ RustboroCity_EventScript_BattleMay::
 	case 2, RustboroCity_EventScript_BattleMayMudkip
 	end
 
-RustboroCity_EventScript_MayBrineyHint::
+RustboroCity_EventScript_MayCallFromWally::
 	msgbox RustboroCity_Text_MayPostBattle, MSGBOX_DEFAULT
 	applymovement LOCALID_RIVAL, Common_Movement_FaceAwayPlayer
 	waitmovement 0
@@ -966,19 +969,19 @@ RustboroCity_EventScript_RestoreBgm::
 RustboroCity_EventScript_BattleMayTreecko::
 	trainerbattle_no_intro TRAINER_MAY_RUSTBORO_TREECKO, RustboroCity_Text_MayDefeat
 	setflag FLAG_DEFEATED_RIVAL_RUSTBORO
-	goto RustboroCity_EventScript_MayBrineyHint
+	goto RustboroCity_EventScript_MayCallFromWally
 	end
 
 RustboroCity_EventScript_BattleMayTorchic::
 	trainerbattle_no_intro TRAINER_MAY_RUSTBORO_TORCHIC, RustboroCity_Text_MayDefeat
 	setflag FLAG_DEFEATED_RIVAL_RUSTBORO
-	goto RustboroCity_EventScript_MayBrineyHint
+	goto RustboroCity_EventScript_MayCallFromWally
 	end
 
 RustboroCity_EventScript_BattleMayMudkip::
 	trainerbattle_no_intro TRAINER_MAY_RUSTBORO_MUDKIP, RustboroCity_Text_MayDefeat
 	setflag FLAG_DEFEATED_RIVAL_RUSTBORO
-	goto RustboroCity_EventScript_MayBrineyHint
+	goto RustboroCity_EventScript_MayCallFromWally
 	end
 
 RustboroCity_EventScript_BrendanEncounter::

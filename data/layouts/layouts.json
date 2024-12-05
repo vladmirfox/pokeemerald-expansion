@@ -94,7 +94,7 @@
     {
       "id": "LAYOUT_LITTLEROOT_TOWN",
       "name": "LittlerootTown_Layout",
-      "width": 50,
+      "width": 20,
       "height": 20,
       "primary_tileset": "gTileset_General",
       "secondary_tileset": "gTileset_Petalburg",
@@ -4660,6 +4660,26 @@
       "secondary_tileset": "gTileset_Rustboro",
       "border_filepath": "data/layouts/CherryGarden/border.bin",
       "blockdata_filepath": "data/layouts/CherryGarden/map.bin"
+    },
+    {
+      "id": "LAYOUT_LITTLEROOT_TEST",
+      "name": "LittlerootTest_Layout",
+      "width": 20,
+      "height": 20,
+      "primary_tileset": "gTileset_General",
+      "secondary_tileset": "gTileset_Petalburg",
+      "border_filepath": "data/layouts/LittlerootTest/border.bin",
+      "blockdata_filepath": "data/layouts/LittlerootTest/map.bin"
+    },
+    {
+      "id": "LAYOUT_PETALBURG_WOODS3",
+      "name": "PetalburgWoods3_Layout",
+      "width": 24,
+      "height": 36,
+      "primary_tileset": "gTileset_General",
+      "secondary_tileset": "gTileset_Petalburg",
+      "border_filepath": "data/layouts/PetalburgWoods3/border.bin",
+      "blockdata_filepath": "data/layouts/PetalburgWoods3/map.bin"
     }
   ]
 }

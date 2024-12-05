@@ -319,6 +319,9 @@ Route104_EventScript_TrainerTipsDoubleBattles::
 	end
 
 Route104_EventScript_Boy1::
+	setvar VAR_PETALBURG_CITY_STATE, 3
+	clearflag FLAG_HIDE_PETALBURG_CITY_DAD
+	clearflag FLAG_HIDE_PETALBURG_CITY_WALLY
 	msgbox Route104_Text_ThrowBallAtWeakenedPokemon, MSGBOX_NPC
 	end
 

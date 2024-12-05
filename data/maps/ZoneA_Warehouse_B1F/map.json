@@ -3,7 +3,7 @@
   "name": "ZoneA_Warehouse_B1F",
   "layout": "LAYOUT_ZONE_A_WAREHOUSE_B1F",
   "music": "MUS_AQUA_MAGMA_HIDEOUT",
-  "region_map_section": "MAPSEC_MAGMA_HIDEOUT",
+  "region_map_section": "MAPSEC_ZONE_ALPHA",
   "requires_flash": false,
   "weather": "WEATHER_NONE",
   "map_type": "MAP_TYPE_INDOOR",
@@ -62,9 +62,9 @@
       "movement_range_x": 0,
       "movement_range_y": 0,
       "trainer_type": "TRAINER_TYPE_NONE",
-      "trainer_sight_or_berry_tree_id": "0",
-      "script": "NULL",
-      "flag": "0"
+      "trainer_sight_or_berry_tree_id": "ITEM_FULL_HEAL",
+      "script": "Common_EventScript_FindItem",
+      "flag": "FLAG_ITEM_LAB_A_FULL_HEAL"
     },
     {
       "graphics_id": "OBJ_EVENT_GFX_ARCO_MEMBER_B",
@@ -134,7 +134,7 @@
       "x": 10,
       "y": 6,
       "elevation": 0,
-      "var": "VAR_WAREHOUSE_A_STATE",
+      "var": "VAR_LAB_A_STATE",
       "var_value": "0",
       "script": "ZoneA_Warehouse_B1F_EventScript_AdminBattle0"
     },
@@ -143,7 +143,7 @@
       "x": 10,
       "y": 7,
       "elevation": 0,
-      "var": "VAR_WAREHOUSE_A_STATE",
+      "var": "VAR_LAB_A_STATE",
       "var_value": "0",
       "script": "ZoneA_Warehouse_B1F_EventScript_AdminBattle1"
     }

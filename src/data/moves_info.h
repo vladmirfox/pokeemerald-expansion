@@ -1161,7 +1161,7 @@ const struct MoveInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
             "A toxic attack with barbs,\n"
             "etc., that may poison."),
         .effect = EFFECT_HIT,
-        .power = 15,
+        .power = 25,
         .type = TYPE_POISON,
         .accuracy = 100,
         .pp = 35,
@@ -6393,7 +6393,7 @@ const struct MoveInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
             "A rock-crushing attack\n"
             "that may lower Defense."),
         .effect = EFFECT_HIT,
-        .power = 60,
+        .power = 45,
         .type = TYPE_FIGHTING,
         .accuracy = 100,
         .pp = 15,

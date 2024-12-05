@@ -63,7 +63,7 @@ ZoneA_Warehouse_B1F_EventScript_AdminDefeated::
 	lockall
 	turnobject LOCALID_SCIENTIST1, DIR_NORTH
 	turnobject LOCALID_SCIENTIST2, DIR_NORTH
-	setvar VAR_WAREHOUSE_A_STATE, 1
+	setvar VAR_LAB_A_STATE, 1
 	@ Unlock traveling to Dewford with Briney
 	clearflag FLAG_HIDE_BRINEYS_HOUSE_MR_BRINEY
 	clearflag FLAG_HIDE_BRINEYS_HOUSE_PEEKO

@@ -103,7 +103,8 @@
     "DigSite2",
     "VerdanturfRavine",
     "BleakisleTown",
-    "CherryGarden"
+    "CherryGarden",
+    "LittlerootTest"
   ],
   "gMapGroup_IndoorZoneA": [
     "ZoneA_Warehouse_1F",
@@ -350,6 +351,8 @@
     "GraniteCave_B2F",
     "GraniteCave_StevensRoom",
     "PetalburgWoods",
+    "PetalburgWoods2",
+    "PetalburgWoods3",
     "MtChimney",
     "JaggedPass",
     "FieryPath",
@@ -453,8 +456,7 @@
     "BleakisleCave_3R",
     "BleakisleCave_B1F_1R",
     "BleakisleCave_B1F_2R",
-    "MauvilleTunnel",
-    "PetalburgWoods2"
+    "MauvilleTunnel"
   ],
   "gMapGroup_IndoorDynamic": [
     "SecretBase_RedCave1",

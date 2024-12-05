@@ -6,21 +6,21 @@ ZoneA_Warehouse_1F_MapScripts::
 	.byte 0
 
 ZoneA_Warehouse_1F_OnTransition:
-	call_if_eq VAR_WAREHOUSE_A_STATE, 1
+	call_if_eq VAR_LAB_A_STATE, 1
 	end
 
 ZoneA_Warehouse_1F_OnFrame:
-	map_script_2 VAR_WAREHOUSE_A_STATE, 1, ZoneA_Warehouse_1F_EventScript_HeadScientistExplainMachine
+	map_script_2 VAR_LAB_A_STATE, 1, ZoneA_Warehouse_1F_EventScript_HeadScientistExplainMachine
 	.2byte 0
 
 ZoneA_Warehouse_1F_EventScript_HeadScientistExplainMachine::
 	msgbox ZoneA_Warehouse_1F_Text_HeadScientistExplainMachine, MSGBOX_DEFAULT
 	closemessage
-	setvar VAR_WAREHOUSE_A_STATE, 2
+	setvar VAR_LAB_A_STATE, 2
 	end
 
 ZoneA_Warehouse_1F_OnWarp:
-	map_script_2 VAR_WAREHOUSE_A_STATE, 1, ZoneA_Warehouse_1F_EventScript_FaceNorth
+	map_script_2 VAR_LAB_A_STATE, 1, ZoneA_Warehouse_1F_EventScript_FaceNorth
 	.2byte 0
 
 ZoneA_Warehouse_1F_EventScript_FaceNorth::

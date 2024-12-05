@@ -58,7 +58,9 @@ Route101_NormansLab_EventScript_GoodLuck::
 
 Route101_NormansLab_EventScript_PokeballAnorith::
 	lock
+	showmonpic SPECIES_ANORITH_DELTA, 10, 3
 	msgbox Route101_NormansLab_Text_PickAnorith, MSGBOX_YESNO
+	hidemonpic
 	goto_if_eq VAR_RESULT, YES, Route101_NormansLab_EventScript_TakeAnorith
 	release
 	end
@@ -75,7 +77,9 @@ Route101_NormansLab_EventScript_TakeAnorith::
 
 Route101_NormansLab_EventScript_PokeballLileep::
 	lock
+	showmonpic SPECIES_LILEEP, 10, 3
 	msgbox Route101_NormansLab_Text_PickLileep, MSGBOX_YESNO
+	hidemonpic
 	goto_if_eq VAR_RESULT, YES, Route101_NormansLab_EventScript_TakeLileep
 	release
 	end
@@ -93,7 +97,7 @@ Route101_NormansLab_EventScript_TakeLileep::
 
 Route101_NormansLab_EventScript_TookStarter::
 	@ TODO: Cleanup unneeded flags
-	setflag FLAG_HIDE_ROUTE_101_ZIGZAGOON
+	setflag FLAG_HIDE_NORMANS_LAB_STARTER_POKEBALLS
 	setflag FLAG_SYS_POKEMON_GET
 	setflag FLAG_RESCUED_BIRCH
 	setflag FLAG_HIDE_ROUTE_101_BIRCH_ZIGZAGOON_BATTLE

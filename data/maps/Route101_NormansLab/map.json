@@ -2,8 +2,8 @@
   "id": "MAP_ROUTE101_NORMANS_LAB",
   "name": "Route101_NormansLab",
   "layout": "LAYOUT_ROUTE101_NORMANS_LAB",
-  "music": "MUS_ROUTE101",
-  "region_map_section": "MAPSEC_NONE",
+  "music": "MUS_RG_OAK_LAB",
+  "region_map_section": "MAPSEC_ROUTE_101",
   "requires_flash": false,
   "weather": "WEATHER_NONE",
   "map_type": "MAP_TYPE_NONE",
@@ -38,7 +38,7 @@
       "trainer_type": "TRAINER_TYPE_NONE",
       "trainer_sight_or_berry_tree_id": "0",
       "script": "Route101_NormansLab_EventScript_PokeballAnorith",
-      "flag": "FLAG_HIDE_ROUTE_101_ZIGZAGOON"
+      "flag": "FLAG_HIDE_NORMANS_LAB_STARTER_POKEBALLS"
     },
     {
       "graphics_id": "OBJ_EVENT_GFX_POKE_BALL",
@@ -51,7 +51,7 @@
       "trainer_type": "TRAINER_TYPE_NONE",
       "trainer_sight_or_berry_tree_id": "0",
       "script": "Route101_NormansLab_EventScript_PokeballLileep",
-      "flag": "FLAG_HIDE_ROUTE_101_ZIGZAGOON"
+      "flag": "FLAG_HIDE_NORMANS_LAB_STARTER_POKEBALLS"
     }
   ],
   "warp_events": [

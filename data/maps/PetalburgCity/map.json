@@ -43,12 +43,12 @@
       "x": 10,
       "y": 13,
       "elevation": 3,
-      "movement_type": "MOVEMENT_TYPE_FACE_UP",
+      "movement_type": "MOVEMENT_TYPE_LOOK_AROUND",
       "movement_range_x": 0,
       "movement_range_y": 0,
       "trainer_type": "TRAINER_TYPE_NONE",
       "trainer_sight_or_berry_tree_id": "0",
-      "script": "0x0",
+      "script": "PetalburgCity_EventScript_Wally",
       "flag": "FLAG_HIDE_PETALBURG_CITY_WALLY"
     },
     {
@@ -141,6 +141,19 @@
       "trainer_sight_or_berry_tree_id": "0",
       "script": "0x0",
       "flag": "FLAG_HIDE_PETALBURG_CITY_MAY"
+    },
+    {
+      "graphics_id": "OBJ_EVENT_GFX_NORMAN",
+      "x": 26,
+      "y": 16,
+      "elevation": 0,
+      "movement_type": "MOVEMENT_TYPE_FACE_DOWN",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "NULL",
+      "flag": "FLAG_HIDE_PETALBURG_CITY_DAD"
     }
   ],
   "warp_events": [
@@ -266,6 +279,42 @@
       "var": "VAR_PETALBURG_CITY_STATE",
       "var_value": "1",
       "script": "PetalburgCity_EventScript_HelpWally0"
+    },
+    {
+      "type": "trigger",
+      "x": 29,
+      "y": 16,
+      "elevation": 0,
+      "var": "VAR_PETALBURG_CITY_STATE",
+      "var_value": "3",
+      "script": "PetalburgCity_EventScript_RewardFromDadAndWally0"
+    },
+    {
+      "type": "trigger",
+      "x": 29,
+      "y": 17,
+      "elevation": 0,
+      "var": "VAR_PETALBURG_CITY_STATE",
+      "var_value": "3",
+      "script": "PetalburgCity_EventScript_RewardFromDadAndWally1"
+    },
+    {
+      "type": "trigger",
+      "x": 29,
+      "y": 18,
+      "elevation": 0,
+      "var": "VAR_PETALBURG_CITY_STATE",
+      "var_value": "3",
+      "script": "PetalburgCity_EventScript_RewardFromDadAndWally2"
+    },
+    {
+      "type": "trigger",
+      "x": 29,
+      "y": 19,
+      "elevation": 0,
+      "var": "VAR_PETALBURG_CITY_STATE",
+      "var_value": "3",
+      "script": "PetalburgCity_EventScript_RewardFromDadAndWally3"
     }
   ],
   "bg_events": [

@@ -1,6 +1,6 @@
 .set LOCALID_GRUNT, 3
 .set LOCALID_DEVON_EMPLOYEE, 4
-.set LOCALID_AARON, 14
+.set LOCALID_AARON_SOUTH, 12
 
 PetalburgWoods_MapScripts::
 	map_script MAP_SCRIPT_ON_TRANSITION, PetalburgWoods_OnTransition
@@ -514,24 +514,24 @@ PetalburgWoods_EventScript_Healed::
 
 PetalburgWoods_EventScript_MeetAaronLeft::
 	lock
-	applymovement LOCALID_AARON, Common_Movement_ExclamationMark
+	applymovement LOCALID_AARON_SOUTH, Common_Movement_ExclamationMark
 	waitmovement 0
-	applymovement LOCALID_AARON, PetalburgWoods_Movement_AaronWalkOverLeft
+	applymovement LOCALID_AARON_SOUTH, PetalburgWoods_Movement_AaronWalkOverLeft
 	waitmovement 0
 	msgbox PetalburgWoods_Text_AaronIntro, MSGBOX_AUTOCLOSE
-	applymovement LOCALID_AARON, PetaburgWoods_Movement_AaronWalkBackLeft
+	applymovement LOCALID_AARON_SOUTH, PetaburgWoods_Movement_AaronWalkBackLeft
 	waitmovement 0
 	setvar VAR_AARON_STATE, 1
 	end
 
 PetalburgWoods_EventScript_MeetAaronRight::
 	lock
-	applymovement LOCALID_AARON, Common_Movement_ExclamationMark
+	applymovement LOCALID_AARON_SOUTH, Common_Movement_ExclamationMark
 	waitmovement 0
-	applymovement LOCALID_AARON, PetalburgWoods_Movement_AaronWalkOverRight
+	applymovement LOCALID_AARON_SOUTH, PetalburgWoods_Movement_AaronWalkOverRight
 	waitmovement 0
 	msgbox PetalburgWoods_Text_AaronIntro, MSGBOX_AUTOCLOSE
-	applymovement LOCALID_AARON, PetaburgWoods_Movement_AaronWalkBackRight
+	applymovement LOCALID_AARON_SOUTH, PetaburgWoods_Movement_AaronWalkBackRight
 	waitmovement 0
 	setvar VAR_AARON_STATE, 1
 	end
@@ -551,9 +551,9 @@ PetalburgWoods_EventScript_StopCountingTrainers::
 	return
 
 PetalburgWoods_EventScript_MoveAaronToExit::
-	setflag FLAG_HIDE_PETALBURG_AARON_SOUTH
-	clearflag FLAG_HIDE_PETALBURG_AARON_NORTH
-	setvar VAR_AARON_STATE, 2
+	@ setflag FLAG_HIDE_PETALBURG_AARON_SOUTH
+	@ clearflag FLAG_HIDE_PETALBURG_AARON_NORTH
+	@ setvar VAR_AARON_STATE, 2
 	return
 
 PetalburgWoods_EventScript_GiveReward::
@@ -607,7 +607,7 @@ PetalburgWoods_Text_AaronIntro:
 	.string "My name is AARON, BUG-type\n"
 	.string "extraordinaire!\p"
 	.string "I'm running a challenge for new\n"
-	.string "TRAINERS, defeat all three BUG \l"
+	.string "TRAINERS, defeat all seven BUG \l"
 	.string "CATCHERS on your way through the\l"
 	.string "forest and I'll give you a\l"
 	.string "fabulous prize!\p"
