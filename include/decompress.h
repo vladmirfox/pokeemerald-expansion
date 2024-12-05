@@ -7,6 +7,10 @@
 #define PACKED_FREQ_MASK    0x3F
 #define PARTIAL_FREQ_MASK   0xC0000000
 
+#define FIRST_LO_MASK   0x7f
+#define CONTINUE_BIT    0x80
+
+
 extern u8 ALIGNED(4) gDecompressionBuffer[0x4000];
 
 struct CompressionHeader {

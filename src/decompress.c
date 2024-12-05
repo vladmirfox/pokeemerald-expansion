@@ -497,12 +497,10 @@ void DecodeInstructions(struct CompressionHeader *header, u8 *loVec, u16 *symVec
 {
     u32 loIndex = 0;
     u32 symIndex = 0;
-    u32 totalInstructions = 0;
     while (loIndex < header->loSize)
     {
-        totalInstructions++;
-        u32 currLength = loVec[loIndex] & 0x7f;
-        if ((loVec[loIndex] & 0x80) == 0x80)
+        u32 currLength = loVec[loIndex] & FIRST_LO_MASK;
+        if (loVec[loIndex] & CONTINUE_BIT)
         {
             currLength += loVec[loIndex+1] << 7;
             loIndex += 2;
@@ -511,8 +509,8 @@ void DecodeInstructions(struct CompressionHeader *header, u8 *loVec, u16 *symVec
         {
             loIndex++;
         }
-        u32 currOffset = loVec[loIndex] & 0x7f;
-        if ((loVec[loIndex] & 0x80) == 0x80)
+        u32 currOffset = loVec[loIndex] & FIRST_LO_MASK;
+        if (loVec[loIndex] & CONTINUE_BIT)
         {
             currOffset += loVec[loIndex+1] << 7;
             loIndex += 2;
