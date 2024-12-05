@@ -346,11 +346,13 @@ void BuildDecompressionTable(const u32 *packedFreqs, struct DecodeYK *table, u32
 static EWRAM_DATA u8 sBitIndex = 0;
 static EWRAM_DATA u32 sReadIndex = 0;
 static EWRAM_DATA u32 sCurrState = 0;
+// Order of allocated memory- ykTable, symbolTable(these go first, because are always aligned), loSize, symSize
+static EWRAM_DATA void *sMemoryAllocated;
 
 void DecodeLOtANS(const u32 *data, const u32 *pFreqs, u8 *resultVec, u32 count)
 {
-    struct DecodeYK *ykTable = Alloc(TANS_TABLE_SIZE*sizeof(struct DecodeYK));
-    u32 *symbolTable = Alloc(TANS_TABLE_SIZE * 4);
+    struct DecodeYK *ykTable = sMemoryAllocated;
+    u32 *symbolTable = sMemoryAllocated + (TANS_TABLE_SIZE*sizeof(struct DecodeYK));
     BuildDecompressionTable(pFreqs, ykTable, symbolTable);
     u32 currBits = data[sReadIndex];
 
@@ -398,14 +400,13 @@ void DecodeLOtANS(const u32 *data, const u32 *pFreqs, u8 *resultVec, u32 count)
         }
         resultVec[currSym] = symbol;
     }
-    Free(ykTable);
-    Free(symbolTable);
+
 }
 
 void DecodeSymtANS(const u32 *data, const u32 *pFreqs, u16 *resultVec, u32 count)
 {
-    struct DecodeYK ykTable[64];
-    u32 symbolTable[64];
+    struct DecodeYK *ykTable = sMemoryAllocated;
+    u32 *symbolTable = sMemoryAllocated + (TANS_TABLE_SIZE*sizeof(struct DecodeYK));
     BuildDecompressionTable(pFreqs, ykTable, symbolTable);
     u32 currBits = data[sReadIndex];
     /*
@@ -455,8 +456,9 @@ void DecodeSymtANS(const u32 *data, const u32 *pFreqs, u16 *resultVec, u32 count
 
 void DecodeSymDeltatANS(const u32 *data, const u32 *pFreqs, u16 *resultVec, u32 count)
 {
-    struct DecodeYK *ykTable = Alloc(TANS_TABLE_SIZE*sizeof(struct DecodeYK));
-    u32 *symbolTable = Alloc(TANS_TABLE_SIZE * 4);
+    //void *memory = Alloc(TANS_TABLE_SIZE*sizeof(struct DecodeYK) + (TANS_TABLE_SIZE * 4));
+    struct DecodeYK *ykTable = sMemoryAllocated;
+    u32 *symbolTable = sMemoryAllocated + (TANS_TABLE_SIZE*sizeof(struct DecodeYK));
     BuildDecompressionTable(pFreqs, ykTable, symbolTable);
     u32 currBits = data[sReadIndex];
     u32 prevSymbol = 0;
@@ -505,8 +507,7 @@ void DecodeSymDeltatANS(const u32 *data, const u32 *pFreqs, u16 *resultVec, u32 
         }
         resultVec[currSym] = symbol;
     }
-    Free(ykTable);
-    Free(symbolTable);
+    //Free(memory);
 }
 
 void DecodeInstructions(const struct CompressionHeader *header, u8 *loVec, u16 *symVec, void *dest)
@@ -568,8 +569,12 @@ void SmolDecompressData(const struct CompressionHeader *header, const u32 *data,
     sReadIndex = 0;
 
     sCurrState = header->initialState;
-    u8 *loVec = Alloc(header->loSize);
-    u16 *symVec = Alloc(header->symSize*2);
+    // Allocate also for ykTable and symbolTable
+    u32 headerLoSize = header->loSize;
+    sMemoryAllocated = Alloc((TANS_TABLE_SIZE*sizeof(struct DecodeYK) + (TANS_TABLE_SIZE * 4)) + headerLoSize + (header->symSize*2));
+
+    u8 *loVec = sMemoryAllocated + (TANS_TABLE_SIZE*sizeof(struct DecodeYK) + (TANS_TABLE_SIZE * 4));
+    u16 *symVec = sMemoryAllocated + (TANS_TABLE_SIZE*sizeof(struct DecodeYK) + (TANS_TABLE_SIZE * 4)) + headerLoSize;
     bool32 loEncoded = isModeLoEncoded(header->mode);
     bool32 symEncoded = isModeSymEncoded(header->mode);
     bool32 symDelta = isModeSymDelta(header->mode);
@@ -601,7 +606,7 @@ void SmolDecompressData(const struct CompressionHeader *header, const u32 *data,
     sBitIndex = 0;
     if (loEncoded)
     {
-        DecodeLOtANS(data, pLoFreqs, loVec, header->loSize);
+        DecodeLOtANS(data, pLoFreqs, loVec, headerLoSize);
     }
     if (symEncoded)
     {
@@ -627,8 +632,7 @@ void SmolDecompressData(const struct CompressionHeader *header, const u32 *data,
 
     DecodeInstructions(header, loVec, symVec, dest);
 
-    Free(loVec);
-    Free(symVec);
+    Free(sMemoryAllocated);
 }
 
 bool32 isModeLoEncoded(enum CompressionMode mode)
