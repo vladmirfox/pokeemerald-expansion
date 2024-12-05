@@ -300,6 +300,12 @@ void DecompressDataWram(const u32 *src, void *dest)
     }
 }
 
+void DecompressSubFrame(const u32 *src, void *dest, u32 frameId)
+{
+    struct SpriteSheetHeader header;
+    CpuCopy32(src, &header, 4);
+}
+
 void BuildDecompressionTable(const u32 *packedFreqs, struct DecodeYK *table, u8 *symbolTable)
 {
     u8 *freqs = Alloc(16);
@@ -313,8 +319,6 @@ void BuildDecompressionTable(const u32 *packedFreqs, struct DecodeYK *table, u8 
     {
         if (freqs[i] != 0)
         {
-            //  Copying 16-bit sized data from EWRAM to array, IMPROVEMENT POSSIBLE
-            //memcpy(&table[currCol], &ykTemplate[freqs[i]], freqs[i]*sizeof(struct DecodeYK));
             CpuCopy16(&ykTemplate[freqs[i]], &table[currCol], freqs[i]*sizeof(struct DecodeYK));
             //  Setting 8-bit array elements to a single symbol, IMPROVEMENT POSSIBLE
             //  Or it's not possible? Using CpuFill with 16-bit variables was worse

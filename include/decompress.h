@@ -19,6 +19,12 @@ struct CompressionHeader {
     u32 loSize:13;
 };
 
+struct SpriteSheetHeader {
+    u32 mode:5;
+    u32 numComponents:11;
+    u32 framesPerComponent:16;
+};
+
 struct DecodeYK {
     u8 yVal;
     u8 kVal;
@@ -31,6 +37,7 @@ enum CompressionMode {
     ENCODE_LO = 3,
     ENCODE_BOTH = 4,
     ENCODE_BOTH_DELTA_SYMS = 5,
+    IS_FRAME_CONTAINER = 6,
     MODE_LZ77 = 16,
 };
 
@@ -40,6 +47,7 @@ void UnpackFrequencies(const u32 *packedFreqs, u8 *freqs);
 
 void DecompressDataVram(const u32 *src, void *dest);
 void DecompressDataWram(const u32 *src, void *dest);
+void DecompressSubFrame(const u32 *src, void *dest, u32 frameId);
 
 void SmolDecompressData(struct CompressionHeader *header, const u32 *data, void *dest);
 

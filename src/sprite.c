@@ -877,8 +877,12 @@ void BeginAnim(struct Sprite *sprite)
 
         if (sprite->usingSheet)
         {
+            //  Inject OW decompression here
             if (OW_GFX_COMPRESS && sprite->sheetSpan)
+            {
+                MgbaPrintf(MGBA_LOG_WARN, "New anim frame?");
                 imageValue = (imageValue + 1) << sprite->sheetSpan;
+            }
             sprite->oam.tileNum = sprite->sheetTileStart + imageValue;
         }
         else
@@ -936,7 +940,15 @@ void AnimCmd_frame(struct Sprite *sprite)
     if (sprite->usingSheet)
     {
         if (OW_GFX_COMPRESS && sprite->sheetSpan)
+        {
+            //  Inject OW frame switcher here
+            if (imageValue >> 1 != sprite->prevFrame >> 1)
+            {
+                MgbaPrintf(MGBA_LOG_WARN, "Address: %u", &sprite->images->data);
+            }
+            sprite->prevFrame = imageValue;
             imageValue = (imageValue + 1) << sprite->sheetSpan;
+        }
         sprite->oam.tileNum = sprite->sheetTileStart + imageValue;
     }
     else

@@ -457,9 +457,67 @@ std::vector<unsigned char> readFileAsUC(std::string filePath)
 
 CompressedImage processImage(std::string fileName, InputSettings settings)
 {
+    CompressedImage image;
+    std::vector<unsigned char> input = readFileAsUC(fileName);
+    if (settings.useFrames)
+    {
+        //  Determine number of frames
+        size_t totalPixels = input.size()*2;
+        //  Split input and append
+        size_t smallFrames = totalPixels/OVERWORLD_16X16;
+        size_t largeFrames = totalPixels/OVERWORLD_32X32;
+    }
+    else
+    {
+        image = processImageData(input, settings, fileName);
+    }
+    return image;
+}
+
+CompressedImage processImageFrames(std::string fileName, InputSettings settings)
+{
+    CompressedImage image;
+    std::vector<unsigned char> input = readFileAsUC(fileName);
+    std::vector<std::vector<unsigned char>> allInputs(4);
+    size_t totalSize = input.size();
+    size_t partialSize = totalSize/4;
+    size_t currIndex = 0;
+    size_t subIndex = 0;
+    size_t inputIndex = 0;
+    std::vector<size_t> frameOffsets;
+    for (unsigned char currChar : input)
+    {
+        frameOffsets.push_back(image.otherBits.size());
+        if (subIndex == partialSize)
+        {
+            subIndex = 0;
+            inputIndex++;
+        }
+        allInputs[inputIndex].push_back(currChar);
+        subIndex++;
+    }
+    for (size_t i = 0; i < 4; i++)
+    {
+        CompressedImage tempImage = processImageData(allInputs[i], settings, fileName);
+        for (unsigned int currVal : tempImage.writeVec)
+            image.otherBits.push_back(currVal);
+    }
+    unsigned int header = IS_FRAME_CONTAINER;
+    image.writeVec.push_back(header);
+    for (size_t i = 0; i < 4; i++)
+        image.writeVec.push_back((unsigned int)frameOffsets[i]);
+    for (unsigned int currVal : image.otherBits)
+        image.writeVec.push_back(currVal);
+    image.isValid = true;
+
+    return image;
+}
+
+CompressedImage processImageData(std::vector<unsigned char> input, InputSettings settings, std::string fileName)
+{
     CompressedImage bestImage;
     bool hasImage = false;
-    std::vector<unsigned char> rawBase = readFileAsUC(fileName);
+    std::vector<unsigned char> rawBase = input;
     std::vector<unsigned short> usBase(rawBase.size()/2);
     memcpy(usBase.data(), rawBase.data(), rawBase.size());
     size_t baseLZsize = 0;

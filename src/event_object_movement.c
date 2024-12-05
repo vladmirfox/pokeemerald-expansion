@@ -7919,6 +7919,7 @@ bool8 MovementAction_PlayerRunRight_Step1(struct ObjectEvent *objectEvent, struc
 
 void StartSpriteAnimInDirection(struct ObjectEvent *objectEvent, struct Sprite *sprite, u8 direction, u8 animNum)
 {
+    MgbaPrintf(MGBA_LOG_WARN, "Dirstart");
     SetAndStartSpriteAnim(sprite, animNum, 0);
     SetObjectEventDirection(objectEvent, direction);
     sprite->sActionFuncId = 1;
@@ -7926,6 +7927,7 @@ void StartSpriteAnimInDirection(struct ObjectEvent *objectEvent, struct Sprite *
 
 bool8 MovementAction_StartAnimInDirection_Step0(struct ObjectEvent *objectEvent, struct Sprite *sprite)
 {
+    MgbaPrintf(MGBA_LOG_WARN, "Movstart");
     StartSpriteAnimInDirection(objectEvent, sprite, objectEvent->movementDirection, sprite->animNum);
     return FALSE;
 }

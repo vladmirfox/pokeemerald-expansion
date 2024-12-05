@@ -20,6 +20,7 @@ bool isNumber(std::string input)
 enum Option {
     ANALYZE,
     WRITE,
+    FRAME_WRITE,
     DECODE,
     USAGE,
 };
@@ -40,6 +41,8 @@ int main(int argc, char *argv[])
             option = ANALYZE;
         else if (argument.compare("-w") == 0)
             option = WRITE;
+        else if (argument.compare("-fw") == 0)
+            option = FRAME_WRITE;
         else if (argument.compare("-d") == 0)
             option = DECODE;
     }
@@ -82,6 +85,9 @@ int main(int argc, char *argv[])
                     fprintf(stderr, "Unrecognized setting3 \"%s\", defaulting to \"true\"\n", setting3.c_str());
             }
             break;
+        case FRAME_WRITE:
+            settings.useFrames = true;
+            option = WRITE;
         case WRITE:
             if (argc > 3)
             {
@@ -210,7 +216,11 @@ int main(int argc, char *argv[])
     {
         if (std::filesystem::exists(input))
         {
-            CompressedImage image = processImage(input, settings);
+            CompressedImage image;
+            if (settings.useFrames)
+                image = processImageFrames(input, settings);
+            else
+                image = processImage(input, settings);
             if (image.isValid)
             {
                 std::ofstream fileOut(output.c_str(), std::ios::out | std::ios::binary);

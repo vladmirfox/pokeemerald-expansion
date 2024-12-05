@@ -12,6 +12,9 @@
 #include "fileDispatcher.h"
 #include "tANS.h"
 
+#define OVERWORLD_16X16         256
+#define OVERWORLD_32X32         1024
+
 #define TANS_TABLE_SIZE         64
 #define LO_CONTINUE_BIT         0x80
 #define LO_LOW_BITS_MASK        0x7f
@@ -39,6 +42,7 @@ enum CompressionMode {
     ENCODE_LO = 3,
     ENCODE_BOTH = 4,
     ENCODE_BOTH_DELTA_SYMS = 5,
+    IS_FRAME_CONTAINER = 6,
 };
 
 struct ShortCopy {
@@ -109,6 +113,7 @@ struct InputSettings {
     bool canEncodeSyms = true;
     bool canDeltaSyms = true;
     bool shouldCompare = false;
+    bool useFrames = false;
     InputSettings();
     InputSettings(bool canEncodeLO, bool canEncodeSyms, bool canDeltaSyms);
 };
@@ -126,6 +131,8 @@ struct DataVecsNew {
 void analyzeImages(std::vector<CompressedImage> *allImages, std::mutex *imageMutex, FileDispatcher *dispatcher, std::mutex *dispatchMutex, InputSettings settings);
 
 CompressedImage processImage(std::string fileName, InputSettings settings);
+CompressedImage processImageFrames(std::string fileName, InputSettings settings);
+CompressedImage processImageData(std::vector<unsigned char> input, InputSettings settings, std::string fileName);
 
 class ImagePrinter {
     bool printedHeaders = false;
