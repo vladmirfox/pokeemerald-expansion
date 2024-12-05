@@ -71,7 +71,7 @@ MaguroHarbor_House2_EventScript_Fisherman_Text_0:
 
 MaguroHarbor_House2_EventScript_Fisherman_Text_1:
 # 23 "data/maps/MaguroHarbor_House2/scripts.pory"
-	.string "My daughter is current at the\n"
+	.string "My daughter is currently at the\n"
 	.string "Beachbound Route with her partner.\l"
 	.string "She stays out late, but I'm not\l"
 	.string "worried since she's not alone. She's a\l"
