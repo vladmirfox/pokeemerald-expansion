@@ -354,6 +354,7 @@ void DecodeLOtANS(const u32 *data, const u32 *pFreqs, u8 *resultVec, u32 count)
     BuildDecompressionTable(pFreqs, ykTable, symbolTable);
     u32 currBits = data[sReadIndex];
 
+    /*
     static const u8 maskTable[7] = {
         0,
         1,
@@ -363,6 +364,7 @@ void DecodeLOtANS(const u32 *data, const u32 *pFreqs, u8 *resultVec, u32 count)
         31,
         63
     };
+    */
 
     for (u32 currSym = 0; currSym < count; currSym++)
     {
@@ -372,8 +374,8 @@ void DecodeLOtANS(const u32 *data, const u32 *pFreqs, u8 *resultVec, u32 count)
             symbol += symbolTable[sCurrState] << (currNibble*4);
             u32 currK = ykTable[sCurrState].kVal;
             u32 nextState = ykTable[sCurrState].yVal;
-            //nextState += (currBits >> sBitIndex) & (0xff >> (8-currK));
-            nextState += (currBits >> sBitIndex) & maskTable[currK];
+            nextState += (currBits >> sBitIndex) & (0xff >> (8-currK));
+            //nextState += (currBits >> sBitIndex) & maskTable[currK];
             if (sBitIndex + currK < 32)
             {
                 sBitIndex += currK;
@@ -538,8 +540,7 @@ void DecodeInstructions(const struct CompressionHeader *header, u8 *loVec, u16 *
         }
         if (currLength != 0)
         {
-            u16 *destU16 = dest;
-            *destU16 = symVec[symIndex];
+            *(u16 *)(dest) = symVec[symIndex];
             dest = (void *)(dest + 2);
             if (currOffset == 1)
             {
