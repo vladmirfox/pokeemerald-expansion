@@ -1796,7 +1796,7 @@ static s32 AI_CheckBadMove(u32 battlerAtk, u32 battlerDef, u32 move, s32 score)
                 ADJUST_SCORE(-10);
             break;
         case EFFECT_REST:
-            if (!CanBeSlept(battlerAtk, aiData->abilities[battlerAtk], FALSE))
+            if (!CanBeSlept(battlerAtk, aiData->abilities[battlerAtk], NOT_BLOCKED_BY_SLEEP_CLAUSE))
                 ADJUST_SCORE(-10);
             //fallthrough
         case EFFECT_RESTORE_HP:
@@ -2356,12 +2356,15 @@ static s32 AI_CheckBadMove(u32 battlerAtk, u32 battlerDef, u32 move, s32 score)
                 ADJUST_SCORE(-10);
             break;
         case EFFECT_SOAK:
+        {
+            u32 types[3];
+            GetBattlerTypes(battlerDef, FALSE, types);
+            // TODO: Use the type of the move like 'VARIOUS_TRY_SOAK'?
             if (PartnerMoveIsSameAsAttacker(BATTLE_PARTNER(battlerAtk), battlerDef, move, aiData->partnerMove)
-              || (GetBattlerType(battlerDef, 0, FALSE) == TYPE_WATER
-              && GetBattlerType(battlerDef, 1, FALSE) == TYPE_WATER
-              && GetBattlerType(battlerDef, 2, FALSE) == TYPE_MYSTERY))
+              || (types[0] == TYPE_WATER && types[1] == TYPE_WATER && types[2] == TYPE_MYSTERY))
                 ADJUST_SCORE(-10);    // target is already water-only
             break;
+        }
         case EFFECT_THIRD_TYPE:
             switch (move)
             {
@@ -3460,7 +3463,7 @@ static u32 AI_CalcMoveEffectScore(u32 battlerAtk, u32 battlerDef, u32 move)
         }
         break;
     case EFFECT_REST:
-        if (!(CanBeSlept(battlerAtk, aiData->abilities[battlerAtk], FALSE)))
+        if (!(CanBeSlept(battlerAtk, aiData->abilities[battlerAtk], NOT_BLOCKED_BY_SLEEP_CLAUSE)))
         {
             break;
         }
@@ -4435,7 +4438,7 @@ static u32 AI_CalcMoveEffectScore(u32 battlerAtk, u32 battlerDef, u32 move)
             ADJUST_SCORE(GOOD_EFFECT);
         break;
     case EFFECT_SALT_CURE:
-        if (IS_BATTLER_OF_TYPE(battlerDef, TYPE_WATER) || IS_BATTLER_OF_TYPE(battlerDef, TYPE_STEEL))
+        if (IS_BATTLER_ANY_TYPE(battlerDef, TYPE_WATER, TYPE_STEEL))
             ADJUST_SCORE(DECENT_EFFECT);
         break;
     } // move effect checks
