@@ -191,7 +191,7 @@ static const struct MenuAction sStartMenuItems[] =
     [MENU_ACTION_BAG]             = {gText_Bag,         {.u8_void = StartMenuBagCallback}},
     [MENU_ACTION_POKENAV]         = {gText_Pokenav,     {.u8_void = StartMenuPokeNavCallback}},
     [MENU_ACTION_PLAYER]          = {gText_MenuPlayer,  {.u8_void = StartMenuPlayerNameCallback}},
-    [MENU_ACTION_SAVE]            = {gText_MenuSave,    {.u8_void = StartMenuSaveCallback}},
+    [MENU_ACTION_SAVE]            = {gText_Save,        {.u8_void = StartMenuSaveCallback}},
     [MENU_ACTION_OPTION]          = {gText_Option,      {.u8_void = StartMenuOptionCallback}},
     [MENU_ACTION_EXIT]            = {gText_Exit,        {.u8_void = StartMenuExitCallback}},
     [MENU_ACTION_RETIRE_SAFARI]   = {gText_Retire,      {.u8_void = StartMenuSafariZoneRetireCallback}},

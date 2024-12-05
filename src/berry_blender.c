@@ -282,7 +282,6 @@ static const u8 sText_Sec[] = _(" sec.");
 static const u8 sText_MaximumSpeed[] = _("MAXIMUM SPEED");
 static const u8 sText_RPM[] = _(" RPM");
 static const u8 sText_Dot[] = _(".");
-static const u8 sText_NewLine[] = _("\n");
 static const u8 sText_Ranking[] = _("RANKING");
 static const u8 sText_TheLevelIs[] = _("The level is ");
 static const u8 sText_TheFeelIs[] = _(", and the feel is ");
@@ -3578,7 +3577,7 @@ static void PrintMadePokeblockString(struct Pokeblock *pokeblock, u8 *dst)
     dst[0] = EOS;
     StringCopy(dst, gPokeblockNames[pokeblock->color]);
     StringAppend(dst, sText_WasMade);
-    StringAppend(dst, sText_NewLine);
+    StringAppend(dst, gText_NewLine);
 
     flavorLvl = GetHighestPokeblocksFlavorLevel(pokeblock);
     feel = GetPokeblocksFeel(pokeblock);

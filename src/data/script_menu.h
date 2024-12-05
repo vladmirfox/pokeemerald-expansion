@@ -556,7 +556,7 @@ static const struct MenuAction MultichoiceList_ForcedStartMenu[] =
     {gText_Bag},
     {gText_Pokenav},
     {gText_EmptyString}, // blank because it's filled by the player's name
-    {gText_MenuOptionSave},
+    {gText_Save},
     {gText_Option},
     {gText_Exit},
 };

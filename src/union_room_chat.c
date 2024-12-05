@@ -493,10 +493,10 @@ static const u8 *const sUnionRoomKeyboardText[UNION_ROOM_KB_PAGE_COUNT - 1][UNIO
         gText_UnionRoomChatKeyboard_PQRST,
         gText_UnionRoomChatKeyboard_UVWXY,
         gText_UnionRoomChatKeyboard_Z,
-        gText_UnionRoomChatKeyboard_01234Upper,
-        gText_UnionRoomChatKeyboard_56789Upper,
-        gText_UnionRoomChatKeyboard_PunctuationUpper,
-        gText_UnionRoomChatKeyboard_SymbolsUpper
+        gText_UnionRoomChatKeyboard_01234,
+        gText_UnionRoomChatKeyboard_56789,
+        gText_UnionRoomChatKeyboard_Punctuation,
+        gText_UnionRoomChatKeyboard_Symbols
     },
     [UNION_ROOM_KB_PAGE_LOWER] =
     {
@@ -506,10 +506,10 @@ static const u8 *const sUnionRoomKeyboardText[UNION_ROOM_KB_PAGE_COUNT - 1][UNIO
         gText_UnionRoomChatKeyboard_pqrst,
         gText_UnionRoomChatKeyboard_uvwxy,
         gText_UnionRoomChatKeyboard_z,
-        gText_UnionRoomChatKeyboard_01234Lower,
-        gText_UnionRoomChatKeyboard_56789Lower,
-        gText_UnionRoomChatKeyboard_PunctuationLower,
-        gText_UnionRoomChatKeyboard_SymbolsLower
+        gText_UnionRoomChatKeyboard_01234,
+        gText_UnionRoomChatKeyboard_56789,
+        gText_UnionRoomChatKeyboard_Punctuation,
+        gText_UnionRoomChatKeyboard_Symbols
     },
     [UNION_ROOM_KB_PAGE_EMOJI] =
     {

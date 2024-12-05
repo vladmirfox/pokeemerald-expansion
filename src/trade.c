@@ -1976,7 +1976,7 @@ static void BufferMovesString(u8 *str, u8 whichParty, u8 partyIdx)
             if (moves[i] != MOVE_NONE)
                 StringAppend(str, GetMoveName(moves[i]));
 
-            StringAppend(str, sText_NewLine);
+            StringAppend(str, gText_NewLine);
         }
     }
     else

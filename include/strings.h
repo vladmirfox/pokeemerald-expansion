@@ -179,7 +179,6 @@ extern const u8 gText_SaveFailed[];
 
 // menu texts
 extern const u8 gText_MenuPlayer[];
-extern const u8 gText_MenuSave[];
 extern const u8 gText_Floor1[];
 extern const u8 gText_Floor2[];
 extern const u8 gText_Floor3[];
@@ -194,7 +193,7 @@ extern const u8 gText_BattlePyramidFloor[];
 extern const u8 gText_Pokedex[];
 extern const u8 gText_Bag[];
 extern const u8 gText_Pokenav[];
-extern const u8 gText_MenuOptionSave[];
+extern const u8 gText_Save[];
 
 // save menu texts
 extern const u8 gText_ConfirmSave[];
@@ -1493,7 +1492,6 @@ extern const u8 gText_Name[];
 extern const u8 gText_Time[];
 
 // daycare
-extern const u8 gText_NewLine2[];
 extern const u8 gText_Lv[];
 extern const u8 gExpandedPlaceholder_Empty[];
 extern const u8 gText_Exit[];
@@ -2043,20 +2041,16 @@ extern const u8 gText_UnionRoomChatKeyboard_KLMNO[];
 extern const u8 gText_UnionRoomChatKeyboard_PQRST[];
 extern const u8 gText_UnionRoomChatKeyboard_UVWXY[];
 extern const u8 gText_UnionRoomChatKeyboard_Z[];
-extern const u8 gText_UnionRoomChatKeyboard_01234Upper[];
-extern const u8 gText_UnionRoomChatKeyboard_56789Upper[];
-extern const u8 gText_UnionRoomChatKeyboard_PunctuationUpper[];
-extern const u8 gText_UnionRoomChatKeyboard_SymbolsUpper[];
+extern const u8 gText_UnionRoomChatKeyboard_01234[];
+extern const u8 gText_UnionRoomChatKeyboard_56789[];
+extern const u8 gText_UnionRoomChatKeyboard_Punctuation[];
+extern const u8 gText_UnionRoomChatKeyboard_Symbols[];
 extern const u8 gText_UnionRoomChatKeyboard_abcde[];
 extern const u8 gText_UnionRoomChatKeyboard_fghij[];
 extern const u8 gText_UnionRoomChatKeyboard_klmno[];
 extern const u8 gText_UnionRoomChatKeyboard_pqrst[];
 extern const u8 gText_UnionRoomChatKeyboard_uvwxy[];
 extern const u8 gText_UnionRoomChatKeyboard_z[];
-extern const u8 gText_UnionRoomChatKeyboard_01234Lower[];
-extern const u8 gText_UnionRoomChatKeyboard_56789Lower[];
-extern const u8 gText_UnionRoomChatKeyboard_PunctuationLower[];
-extern const u8 gText_UnionRoomChatKeyboard_SymbolsLower[];
 extern const u8 gText_UnionRoomChatKeyboard_Emoji1[];
 extern const u8 gText_UnionRoomChatKeyboard_Emoji2[];
 extern const u8 gText_UnionRoomChatKeyboard_Emoji3[];

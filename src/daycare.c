@@ -1415,9 +1415,9 @@ static void UNUSED GetDaycareLevelMenuText(struct DayCare *daycare, u8 *dest)
     }
 
     StringCopy(dest, monNames[0]);
-    StringAppend(dest, gText_NewLine2);
+    StringAppend(dest, gText_NewLine);
     StringAppend(dest, monNames[1]);
-    StringAppend(dest, gText_NewLine2);
+    StringAppend(dest, gText_NewLine);
     StringAppend(dest, gText_Exit);
 }
 
@@ -1434,7 +1434,7 @@ static void UNUSED GetDaycareLevelMenuLevelText(struct DayCare *daycare, u8 *des
         level = GetLevelAfterDaycareSteps(&daycare->mons[i].mon, daycare->mons[i].steps);
         ConvertIntToDecimalStringN(text, level, STR_CONV_MODE_LEFT_ALIGN, 3);
         StringAppend(dest, text);
-        StringAppend(dest, gText_NewLine2);
+        StringAppend(dest, gText_NewLine);
     }
 }
 
