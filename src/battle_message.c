@@ -2938,7 +2938,7 @@ u32 BattleStringExpandPlaceholders(const u8 *src, u8 *dst, u32 dstSize)
                     textStart[classLength] = classString[classLength];
                     classLength++;
                 }
-                textStart[classLength] = CHAR_NBSP;
+                textStart[classLength] = CHAR_SPACE;
                 textStart += classLength + 1;
                 nameString = BattleStringGetOpponentNameByTrainerId(gTrainerBattleOpponent_B, textStart, multiplayerId, GetBattlerAtPosition(B_POSITION_OPPONENT_RIGHT));
                 if (nameString != textStart)
@@ -2993,7 +2993,7 @@ u32 BattleStringExpandPlaceholders(const u8 *src, u8 *dst, u32 dstSize)
                     textStart[classLength] = classString[classLength];
                     classLength++;
                 }
-                textStart[classLength] = CHAR_NBSP;
+                textStart[classLength] = CHAR_SPACE;
                 textStart += classLength + 1;
                 nameString = BattleStringGetPlayerName(textStart, GetBattlerAtPosition(B_POSITION_PLAYER_RIGHT));
                 if (nameString != textStart)
@@ -3059,7 +3059,7 @@ u32 BattleStringExpandPlaceholders(const u8 *src, u8 *dst, u32 dstSize)
                         textStart[classLength] = classString[classLength];
                         classLength++;
                     }
-                    textStart[classLength] = CHAR_NBSP;
+                    textStart[classLength] = CHAR_SPACE;
                     textStart += 1 + classLength;
                     nameString = BattleStringGetTrainerName(textStart, multiplayerId, gBattlerAttacker);
                     if (nameString != textStart)
@@ -3115,7 +3115,10 @@ u32 BattleStringExpandPlaceholders(const u8 *src, u8 *dst, u32 dstSize)
             {
                 while (*toCpy != EOS)
                 {
-                    dst[dstID] = *toCpy;
+                    if (*toCpy == CHAR_SPACE)
+                        dst[dstID] = CHAR_NBSP;
+                    else
+                        dst[dstID] = *toCpy;
                     dstID++;
                     toCpy++;
                 }
