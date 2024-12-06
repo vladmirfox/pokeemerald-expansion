@@ -356,25 +356,23 @@ static EWRAM_DATA u32 sCurrState = 0;
 // Order of allocated memory- ykTable, symbolTable(these go first, because are always aligned), loSize, symSize
 static EWRAM_DATA void *sMemoryAllocated;
 
-void DecodeLOtANS(const u32 *data, const u32 *pFreqs, u8 *resultVec, u32 count)
+__attribute__((optimize("-O3"))) void DecodeLOtANS(const u32 *data, const u32 *pFreqs, u8 *resultVec, u32 count)
 {
     struct DecodeYK *ykTable = sMemoryAllocated;
     u32 *symbolTable = sMemoryAllocated + (TANS_TABLE_SIZE*sizeof(struct DecodeYK));
     BuildDecompressionTable(pFreqs, ykTable, symbolTable);
     u32 currBits = data[sReadIndex];
 
-    /*
-    static const u8 maskTable[7] = {
-        0,
-        1,
-        3,
-        7,
-        15,
-        31,
-        63
-    };
-    */
+    u8 maskTable[7];
+    maskTable[0] = 0;
+    maskTable[1] = 1;
+    maskTable[2] = 3;
+    maskTable[3] = 7;
+    maskTable[4] = 15;
+    maskTable[5] = 31;
+    maskTable[6] = 63;
 
+    u32 bitIndex = sBitIndex;
     for (u32 currSym = 0; currSym < count; currSym++)
     {
         u32 symbol = 0;
@@ -383,31 +381,32 @@ void DecodeLOtANS(const u32 *data, const u32 *pFreqs, u8 *resultVec, u32 count)
             symbol += symbolTable[sCurrState] << (currNibble*4);
             u32 currK = ykTable[sCurrState].kVal;
             u32 nextState = ykTable[sCurrState].yVal;
-            nextState += (currBits >> sBitIndex) & (0xff >> (8-currK));
-            //nextState += (currBits >> sBitIndex) & maskTable[currK];
-            if (sBitIndex + currK < 32)
+            //nextState += (currBits >> bitIndex) & (0xff >> (8-currK));
+            nextState += (currBits >> bitIndex) & maskTable[currK];
+            if (bitIndex + currK < 32)
             {
-                sBitIndex += currK;
+                bitIndex += currK;
             }
-            else if (sBitIndex + currK == 32)
+            else if (bitIndex + currK == 32)
             {
                 sReadIndex += 1;
                 currBits = data[sReadIndex];
-                sBitIndex = 0;
+                bitIndex = 0;
             }
-            else if ((sBitIndex + currK) > 32)
+            else if ((bitIndex + currK) > 32)
             {
                 sReadIndex += 1;
                 currBits = data[sReadIndex];
-                u32 remainder = sBitIndex + currK - 32;
+                u32 remainder = bitIndex + currK - 32;
                 nextState += (data[sReadIndex] & ((1u << remainder) - 1)) << (currK - remainder);
-                sBitIndex = remainder;
+                bitIndex = remainder;
             }
             sCurrState = nextState-64;
         }
         resultVec[currSym] = symbol;
     }
 
+    sBitIndex = bitIndex;
 }
 
 void DecodeSymtANS(const u32 *data, const u32 *pFreqs, u16 *resultVec, u32 count)
