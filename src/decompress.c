@@ -461,14 +461,75 @@ void DecodeSymtANS(const u32 *data, const u32 *pFreqs, u16 *resultVec, u32 count
     }
 }
 
+struct DecodeSymDeltaStuff
+{
+    u16 *resultVec;
+    u32 *symbolTable;
+    struct DecodeYK *ykTable;
+    u32 count;
+};
+
+static inline void CopyFuncToIwram(void *funcBuffer, void *_funcStartAddress, void *_funcEndAdress)
+{
+    u32 *funcBufferPtr = funcBuffer;
+    u32 *funcStartAddress = _funcStartAddress;
+    u32 *funcEndAddress = _funcEndAdress;
+
+    while (funcStartAddress != funcEndAddress) {
+        *(funcBufferPtr++) = *(funcStartAddress++);
+    }
+}
+
+void DecodeSymDeltatANSLoop(const u32 *data, struct DecodeSymDeltaStuff *stuff, u8 *maskTable)
+{
+    u32 readIndex = sReadIndex;
+    u32 currBits = data[readIndex];
+    u32 prevSymbol = 0;
+    u32 bitIndex = sBitIndex;
+    for (u32 currSym = 0; currSym < stuff->count; currSym++)
+    {
+        u32 symbol = 0;
+        for (u32 currNibble = 0; currNibble < 4; currNibble++)
+        {
+            u32 currSymbol = (prevSymbol + stuff->symbolTable[sCurrState]) & 0xf;
+            prevSymbol = currSymbol;
+            symbol += currSymbol << (currNibble*4);
+            u32 currK = stuff->ykTable[sCurrState].kVal;
+            u32 nextState = stuff->ykTable[sCurrState].yVal;
+            //nextState += (currBits >> bitIndex) & (0xff >> (8-currK));
+            nextState += (currBits >> bitIndex) & maskTable[currK];
+            if (bitIndex + currK < 32)
+            {
+                bitIndex += currK;
+            }
+            else if (bitIndex + currK == 32)
+            {
+                readIndex += 1;
+                currBits = data[readIndex];
+                bitIndex = 0;
+            }
+            else if ((bitIndex + currK) > 32)
+            {
+                readIndex += 1;
+                currBits = data[readIndex];
+                u32 remainder = bitIndex + currK - 32;
+                nextState += (currBits & ((1u << remainder) - 1)) << (currK - remainder);
+                bitIndex = remainder;
+            }
+            sCurrState = nextState - 64;
+        }
+        stuff->resultVec[currSym] = symbol;
+    }
+    sBitIndex = bitIndex;
+    sReadIndex = readIndex;
+}
+
 void DecodeSymDeltatANS(const u32 *data, const u32 *pFreqs, u16 *resultVec, u32 count)
 {
     //void *memory = Alloc(TANS_TABLE_SIZE*sizeof(struct DecodeYK) + (TANS_TABLE_SIZE * 4));
     struct DecodeYK *ykTable = sMemoryAllocated;
     u32 *symbolTable = sMemoryAllocated + (TANS_TABLE_SIZE*sizeof(struct DecodeYK));
     BuildDecompressionTable(pFreqs, ykTable, symbolTable);
-    u32 currBits = data[sReadIndex];
-    u32 prevSymbol = 0;
 
     // fastest in IWRAM, all masks are assigned separately, because we don't want to waste time on memset
     u8 maskTable[7];
@@ -480,40 +541,18 @@ void DecodeSymDeltatANS(const u32 *data, const u32 *pFreqs, u16 *resultVec, u32 
     maskTable[5] = 31;
     maskTable[6] = 63;
 
-    for (u32 currSym = 0; currSym < count; currSym++)
-    {
-        u32 symbol = 0;
-        for (u32 currNibble = 0; currNibble < 4; currNibble++)
-        {
-            u32 currSymbol = (prevSymbol + symbolTable[sCurrState]) & 0xf;
-            prevSymbol = currSymbol;
-            symbol += currSymbol << (currNibble*4);
-            u32 currK = ykTable[sCurrState].kVal;
-            u32 nextState = ykTable[sCurrState].yVal;
-            //nextState += (currBits >> sBitIndex) & (0xff >> (8-currK));
-            nextState += (currBits >> sBitIndex) & maskTable[currK];
-            if (sBitIndex + currK < 32)
-            {
-                sBitIndex += currK;
-            }
-            else if (sBitIndex + currK == 32)
-            {
-                sReadIndex += 1;
-                currBits = data[sReadIndex];
-                sBitIndex = 0;
-            }
-            else if ((sBitIndex + currK) > 32)
-            {
-                sReadIndex += 1;
-                currBits = data[sReadIndex];
-                u32 remainder = sBitIndex + currK - 32;
-                nextState += (currBits & ((1u << remainder) - 1)) << (currK - remainder);
-                sBitIndex = remainder;
-            }
-            sCurrState = nextState - 64;
-        }
-        resultVec[currSym] = symbol;
-    }
+    struct DecodeSymDeltaStuff stuff;
+    stuff.resultVec = resultVec;
+    stuff.ykTable = ykTable;
+    stuff.symbolTable = symbolTable;
+    stuff.count = count;
+
+    u32 funcBuffer[350];
+
+    CopyFuncToIwram(funcBuffer, DecodeSymDeltatANSLoop, DecodeSymDeltatANS);
+
+    void (*decodeFunction)(const u32 *data, struct DecodeSymDeltaStuff *stuff, u8 *maskTable) = ((void *) funcBuffer) + 1;
+    decodeFunction(data, &stuff, maskTable);
     //Free(memory);
 }
 
@@ -569,17 +608,6 @@ ALIGNED(4) void DecodeInstructions(u32 headerLoSize, u8 *loVec, u16 *symVec, voi
     }
 }
 
-static inline void CopyFuncToIwram(void *funcBuffer, void *_funcStartAddress, void *_funcEndAdress)
-{
-    u32 *funcBufferPtr = funcBuffer;
-    u32 *funcStartAddress = _funcStartAddress;
-    u32 *funcEndAddress = _funcEndAdress;
-
-    while (funcStartAddress != funcEndAddress) {
-        *(funcBufferPtr++) = *(funcStartAddress++);
-    }
-}
-
 ALIGNED(4) void DecodeInstructionsIwram(u32 headerLoSize, u8 *loVec, u16 *symVec, void *dest)
 {
     u32 funcBuffer[350];
@@ -597,8 +625,8 @@ void SmolDecompressData(const struct CompressionHeader *header, const u32 *data,
     // Allocate also for ykTable and symbolTable
     u32 headerLoSize = header->loSize;
     u32 headerSymSize = header->symSize;
-    sMemoryAllocated = Alloc((TANS_TABLE_SIZE*sizeof(struct DecodeYK) + (TANS_TABLE_SIZE * 4)) + headerLoSize + (headerSymSize*2));
-
+    // LoSize HAS TO go last, because it is NOT aligned
+    sMemoryAllocated = Alloc((TANS_TABLE_SIZE*sizeof(struct DecodeYK) + (TANS_TABLE_SIZE * 4)) + (headerSymSize*2) + headerLoSize);
     u16 *symVec = sMemoryAllocated + (TANS_TABLE_SIZE*sizeof(struct DecodeYK) + (TANS_TABLE_SIZE * 4));
     u8 *loVec = sMemoryAllocated + (TANS_TABLE_SIZE*sizeof(struct DecodeYK) + (TANS_TABLE_SIZE * 4)) + headerSymSize*2;
     bool32 loEncoded = isModeLoEncoded(header->mode);
