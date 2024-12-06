@@ -247,12 +247,36 @@ DOUBLE_BATTLE_TEST("Pursuit only attacks a switching foe if foe is alive")
         OPPONENT(SPECIES_WYNAUT);
         OPPONENT(SPECIES_LINOONE);
     } WHEN {
+        TURN { SWITCH(playerLeft, 2); MOVE(opponentLeft, MOVE_PURSUIT, target: playerLeft); MOVE(opponentRight, MOVE_PURSUIT, target: playerLeft); SEND_OUT(playerLeft, 2); }
+    } SCENE {
+        SWITCH_OUT_MESSAGE("Wobbuffet");
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_PURSUIT, opponentLeft);
+        HP_BAR(playerLeft);
+        NOT ANIMATION(ANIM_TYPE_MOVE, MOVE_PURSUIT, opponentRight);
+        MESSAGE("Wobbuffet fainted!");
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_PURSUIT, opponentRight);
+        SEND_IN_MESSAGE("Grimer");
+    }
+}
+
+DOUBLE_BATTLE_TEST("Pursuit attacks the second switching foe if the first faints from pursuit")
+{
+    // This test does not make sense for B_PURSUIT_TARGET < GEN_4
+    GIVEN {
+        PLAYER(SPECIES_WOBBUFFET) { HP(1); }
+        PLAYER(SPECIES_ZIGZAGOON);
+        PLAYER(SPECIES_GRIMER);
+        PLAYER(SPECIES_SUNKERN);
+        OPPONENT(SPECIES_WYNAUT);
+        OPPONENT(SPECIES_LINOONE);
+    } WHEN {
         TURN { SWITCH(playerLeft, 2); SWITCH(playerRight, 3); MOVE(opponentLeft, MOVE_PURSUIT, target: playerLeft); MOVE(opponentRight, MOVE_PURSUIT, target: playerRight); SEND_OUT(playerLeft, 2); }
     } SCENE {
         SWITCH_OUT_MESSAGE("Wobbuffet");
         ANIMATION(ANIM_TYPE_MOVE, MOVE_PURSUIT, opponentLeft);
         HP_BAR(playerLeft);
         MESSAGE("Wobbuffet fainted!");
+        NOT ANIMATION(ANIM_TYPE_MOVE, MOVE_PURSUIT, opponentRight);
         SWITCH_OUT_MESSAGE("Zigzagoon");
         ANIMATION(ANIM_TYPE_MOVE, MOVE_PURSUIT, opponentRight);
         HP_BAR(playerRight);
@@ -347,6 +371,29 @@ SINGLE_BATTLE_TEST("Pursuit user mega evolves before attacking a switching foe a
         HP_BAR(player);
         HP_BAR(player);
         SEND_IN_MESSAGE("Zigzagoon");
+    }
+}
+
+SINGLE_BATTLE_TEST("Pursuit user terastalizes before attacking a switching foe and gets the damage boost from the tera type", s16 damage)
+{
+    u32 tera;
+    PARAMETRIZE { tera = GIMMICK_NONE; }
+    PARAMETRIZE { tera = GIMMICK_TERA; }
+    GIVEN {
+        PLAYER(SPECIES_WOBBUFFET);
+        PLAYER(SPECIES_ZIGZAGOON);
+        OPPONENT(SPECIES_KANGASKHAN) { TeraType(TYPE_DARK); }
+    } WHEN {
+        TURN { SWITCH(player, 1); MOVE(opponent, MOVE_PURSUIT, gimmick: tera); }
+    } SCENE {
+        SWITCH_OUT_MESSAGE("Wobbuffet");
+        if (tera == GIMMICK_TERA)
+            ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_TERA_ACTIVATE, opponent);
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_PURSUIT, opponent);
+        HP_BAR(player, captureDamage: &results[i].damage);
+        SEND_IN_MESSAGE("Zigzagoon");
+    } FINALLY {
+        EXPECT_MUL_EQ(results[0].damage, Q_4_12(1.5), results[1].damage);
     }
 }
 
