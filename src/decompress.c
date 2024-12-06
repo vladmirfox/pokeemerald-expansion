@@ -356,25 +356,23 @@ static EWRAM_DATA u32 sCurrState = 0;
 // Order of allocated memory- ykTable, symbolTable(these go first, because are always aligned), loSize, symSize
 static EWRAM_DATA void *sMemoryAllocated;
 
-void DecodeLOtANS(const u32 *data, const u32 *pFreqs, u8 *resultVec, u32 count)
+__attribute__((optimize("-O3"))) void DecodeLOtANS(const u32 *data, const u32 *pFreqs, u8 *resultVec, u32 count)
 {
     struct DecodeYK *ykTable = sMemoryAllocated;
     u32 *symbolTable = sMemoryAllocated + (TANS_TABLE_SIZE*sizeof(struct DecodeYK));
     BuildDecompressionTable(pFreqs, ykTable, symbolTable);
     u32 currBits = data[sReadIndex];
 
-    /*
-    static const u8 maskTable[7] = {
-        0,
-        1,
-        3,
-        7,
-        15,
-        31,
-        63
-    };
-    */
+    u8 maskTable[7];
+    maskTable[0] = 0;
+    maskTable[1] = 1;
+    maskTable[2] = 3;
+    maskTable[3] = 7;
+    maskTable[4] = 15;
+    maskTable[5] = 31;
+    maskTable[6] = 63;
 
+    u32 bitIndex = sBitIndex;
     for (u32 currSym = 0; currSym < count; currSym++)
     {
         u32 symbol = 0;
@@ -383,31 +381,32 @@ void DecodeLOtANS(const u32 *data, const u32 *pFreqs, u8 *resultVec, u32 count)
             symbol += symbolTable[sCurrState] << (currNibble*4);
             u32 currK = ykTable[sCurrState].kVal;
             u32 nextState = ykTable[sCurrState].yVal;
-            nextState += (currBits >> sBitIndex) & (0xff >> (8-currK));
-            //nextState += (currBits >> sBitIndex) & maskTable[currK];
-            if (sBitIndex + currK < 32)
+            //nextState += (currBits >> bitIndex) & (0xff >> (8-currK));
+            nextState += (currBits >> bitIndex) & maskTable[currK];
+            if (bitIndex + currK < 32)
             {
-                sBitIndex += currK;
+                bitIndex += currK;
             }
-            else if (sBitIndex + currK == 32)
+            else if (bitIndex + currK == 32)
             {
                 sReadIndex += 1;
                 currBits = data[sReadIndex];
-                sBitIndex = 0;
+                bitIndex = 0;
             }
-            else if ((sBitIndex + currK) > 32)
+            else if ((bitIndex + currK) > 32)
             {
                 sReadIndex += 1;
                 currBits = data[sReadIndex];
-                u32 remainder = sBitIndex + currK - 32;
+                u32 remainder = bitIndex + currK - 32;
                 nextState += (data[sReadIndex] & ((1u << remainder) - 1)) << (currK - remainder);
-                sBitIndex = remainder;
+                bitIndex = remainder;
             }
             sCurrState = nextState-64;
         }
         resultVec[currSym] = symbol;
     }
 
+    sBitIndex = bitIndex;
 }
 
 void DecodeSymtANS(const u32 *data, const u32 *pFreqs, u16 *resultVec, u32 count)
@@ -480,7 +479,8 @@ static inline void CopyFuncToIwram(void *funcBuffer, void *_funcStartAddress, vo
     }
 }
 
-void DecodeSymDeltatANSLoop(const u32 *data, struct DecodeSymDeltaStuff *stuff, u8 *maskTable)
+// -O3 saves us almost 30k cycles compared to -O2
+__attribute__((target("arm"))) __attribute__((noinline)) __attribute__((optimize("-O3"))) void DecodeSymDeltatANSLoop(const u32 *data, struct DecodeSymDeltaStuff *stuff, u8 *maskTable)
 {
     u32 readIndex = sReadIndex;
     u32 currBits = data[readIndex];
@@ -524,6 +524,11 @@ void DecodeSymDeltatANSLoop(const u32 *data, struct DecodeSymDeltaStuff *stuff, 
     sReadIndex = readIndex;
 }
 
+__attribute__((target("arm"))) __attribute__((noinline)) void SwitchToArmCallFunc(const u32 *data, struct DecodeSymDeltaStuff *stuff, u8 *maskTable, void (*decodeFunction)(const u32 *data, struct DecodeSymDeltaStuff *stuff, u8 *maskTable))
+{
+    decodeFunction(data, stuff, maskTable);
+}
+
 void DecodeSymDeltatANS(const u32 *data, const u32 *pFreqs, u16 *resultVec, u32 count)
 {
     //void *memory = Alloc(TANS_TABLE_SIZE*sizeof(struct DecodeYK) + (TANS_TABLE_SIZE * 4));
@@ -547,16 +552,18 @@ void DecodeSymDeltatANS(const u32 *data, const u32 *pFreqs, u16 *resultVec, u32 
     stuff.symbolTable = symbolTable;
     stuff.count = count;
 
-    u32 funcBuffer[350];
+    u32 funcBuffer[200];
 
-    CopyFuncToIwram(funcBuffer, DecodeSymDeltatANSLoop, DecodeSymDeltatANS);
+    CopyFuncToIwram(funcBuffer, DecodeSymDeltatANSLoop, SwitchToArmCallFunc);
 
-    void (*decodeFunction)(const u32 *data, struct DecodeSymDeltaStuff *stuff, u8 *maskTable) = ((void *) funcBuffer) + 1;
-    decodeFunction(data, &stuff, maskTable);
+    void (*decodeFunction)(const u32 *data, struct DecodeSymDeltaStuff *stuff, u8 *maskTable) = ((void *) funcBuffer) + 0;
+
+    SwitchToArmCallFunc(data, &stuff, maskTable, decodeFunction);
+    //decodeFunction(data, stuff, maskTable);
     //Free(memory);
 }
 
-ALIGNED(4) void DecodeInstructions(u32 headerLoSize, u8 *loVec, u16 *symVec, void *dest)
+__attribute__((target("arm"))) __attribute__((noinline)) void DecodeInstructions(u32 headerLoSize, u8 *loVec, u16 *symVec, void *dest)
 {
     u32 loIndex = 0;
     u32 symIndex = 0;
@@ -608,13 +615,19 @@ ALIGNED(4) void DecodeInstructions(u32 headerLoSize, u8 *loVec, u16 *symVec, voi
     }
 }
 
+__attribute__((target("arm"))) __attribute__((noinline)) void SwitchToArmCallDecodeInstructions(u32 headerLoSize, u8 *loVec, u16 *symVec, void *dest, void (*decodeFunction)(u32 headerLoSize, u8 *loVec, u16 *symVec, void *dest))
+{
+    decodeFunction(headerLoSize, loVec, symVec, dest);
+}
+
 ALIGNED(4) void DecodeInstructionsIwram(u32 headerLoSize, u8 *loVec, u16 *symVec, void *dest)
 {
-    u32 funcBuffer[350];
-    CopyFuncToIwram(funcBuffer, DecodeInstructions, DecodeInstructionsIwram);
+    u32 funcBuffer[200];
+    CopyFuncToIwram(funcBuffer, DecodeInstructions, SwitchToArmCallDecodeInstructions);
 
-    void (*decodeFunction)(u32 headerLoSize, u8 *loVec, u16 *symVec, void *dest) = ((void *) funcBuffer) + 1;
-    decodeFunction(headerLoSize, loVec, symVec, dest);
+    void (*decodeFunction)(u32 headerLoSize, u8 *loVec, u16 *symVec, void *dest) = ((void *) funcBuffer);
+    SwitchToArmCallDecodeInstructions(headerLoSize, loVec, symVec, dest, decodeFunction);
+    //decodeFunction(headerLoSize, loVec, symVec, dest);
 }
 
 void SmolDecompressData(const struct CompressionHeader *header, const u32 *data, void *dest)
