@@ -864,7 +864,6 @@ extern const u8 gText_NewLine[];
 extern const u8 gText_LineBreak[];
 extern const u8 gText_Space[];
 extern const u8 gText_Are[];
-extern const u8 gText_Are2[];
 extern const u8 gText_123Dot[][3];
 
 // Frontier util.

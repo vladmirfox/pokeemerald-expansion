@@ -15,7 +15,6 @@ const u8 gGiftRibbonDescriptionPart2_Participation[] = _("Participation RIBBON")
 const u8 gGiftRibbonDescriptionPart1_PokemonLeague[] = _("POKéMON LEAGUE");
 const u8 gGiftRibbonDescriptionPart1_AdvanceCup[] = _("ADVANCE CUP");
 const u8 gGiftRibbonDescriptionPart1_PokemonTournament[] = _("POKéMON Tournament");
-const u8 gGiftRibbonDescriptionPart2_Participation2[] = _("Participation RIBBON");
 const u8 gGiftRibbonDescriptionPart1_PokemonEvent[] = _("POKéMON Event");
 const u8 gGiftRibbonDescriptionPart1_PokemonFestival[] = _("POKéMON Festival");
 const u8 gGiftRibbonDescriptionPart1_DifficultyClearing[] = _("Difficulty-clearing");
@@ -86,9 +85,9 @@ const u8 *const gGiftRibbonDescriptionPointers[MAX_GIFT_RIBBON][2] =
     {gGiftRibbonDescriptionPart1_AdvanceCup,            gGiftRibbonDescriptionPart2_RunnerUp},
     {gGiftRibbonDescriptionPart1_AdvanceCup,            gGiftRibbonDescriptionPart2_Semifinalist},
     {gGiftRibbonDescriptionPart1_AdvanceCup,            gGiftRibbonDescriptionPart2_Participation},
-    {gGiftRibbonDescriptionPart1_PokemonTournament,     gGiftRibbonDescriptionPart2_Participation2},
-    {gGiftRibbonDescriptionPart1_PokemonEvent,          gGiftRibbonDescriptionPart2_Participation2},
-    {gGiftRibbonDescriptionPart1_PokemonFestival,       gGiftRibbonDescriptionPart2_Participation2},
+    {gGiftRibbonDescriptionPart1_PokemonTournament,     gGiftRibbonDescriptionPart2_Participation},
+    {gGiftRibbonDescriptionPart1_PokemonEvent,          gGiftRibbonDescriptionPart2_Participation},
+    {gGiftRibbonDescriptionPart1_PokemonFestival,       gGiftRibbonDescriptionPart2_Participation},
     {gGiftRibbonDescriptionPart1_DifficultyClearing,    gGiftRibbonDescriptionPart2_Commemorative},
     {gGiftRibbonDescriptionPart1_ClearingAllChallenges, gGiftRibbonDescriptionPart2_ClearingAllChallenges},
     {gGiftRibbonDescriptionPart1_100StraightWin,        gGiftRibbonDescriptionPart2_Commemorative},
