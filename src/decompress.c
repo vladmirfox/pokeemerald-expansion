@@ -563,7 +563,7 @@ void DecodeSymDeltatANS(const u32 *data, const u32 *pFreqs, u16 *resultVec, u32 
     //Free(memory);
 }
 
-ALIGNED(4) void DecodeInstructions(u32 headerLoSize, u8 *loVec, u16 *symVec, void *dest)
+__attribute__((target("arm"))) __attribute__((noinline)) void DecodeInstructions(u32 headerLoSize, u8 *loVec, u16 *symVec, void *dest)
 {
     u32 loIndex = 0;
     u32 symIndex = 0;
@@ -615,13 +615,19 @@ ALIGNED(4) void DecodeInstructions(u32 headerLoSize, u8 *loVec, u16 *symVec, voi
     }
 }
 
+__attribute__((target("arm"))) __attribute__((noinline)) void SwitchToArmCallDecodeInstructions(u32 headerLoSize, u8 *loVec, u16 *symVec, void *dest, void (*decodeFunction)(u32 headerLoSize, u8 *loVec, u16 *symVec, void *dest))
+{
+    decodeFunction(headerLoSize, loVec, symVec, dest);
+}
+
 ALIGNED(4) void DecodeInstructionsIwram(u32 headerLoSize, u8 *loVec, u16 *symVec, void *dest)
 {
     u32 funcBuffer[350];
-    CopyFuncToIwram(funcBuffer, DecodeInstructions, DecodeInstructionsIwram);
+    CopyFuncToIwram(funcBuffer, DecodeInstructions, SwitchToArmCallDecodeInstructions);
 
-    void (*decodeFunction)(u32 headerLoSize, u8 *loVec, u16 *symVec, void *dest) = ((void *) funcBuffer) + 1;
-    decodeFunction(headerLoSize, loVec, symVec, dest);
+    void (*decodeFunction)(u32 headerLoSize, u8 *loVec, u16 *symVec, void *dest) = ((void *) funcBuffer);
+    SwitchToArmCallDecodeInstructions(headerLoSize, loVec, symVec, dest, decodeFunction);
+    //decodeFunction(headerLoSize, loVec, symVec, dest);
 }
 
 void SmolDecompressData(const struct CompressionHeader *header, const u32 *data, void *dest)
