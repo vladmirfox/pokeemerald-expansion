@@ -540,7 +540,7 @@ Debug_EventScript_FontTest_Text_8::
 	.string "ozone of the franz laissez and buzzing.$"
 
 
-Debug_EventScript_FontTest_Text_9::           @ Special thanks to Nintendo for this nice pangram to test other glyphs
+Debug_EventScript_FontTest_Text_9::                 @ Special thanks to Nintendo for this nice pangram to test other glyphs
 	.string "{FONT_SMALL_NARROWER}"                 @ Edit this to test your font
 	.string "42 × 138 = 5796.\n"
 	.string "Mr Jock, TV quiz PhD: bags 20% fewer\l"
