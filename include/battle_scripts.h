@@ -358,7 +358,6 @@ extern const u8 BattleScript_SelectingNotAllowedMoveThroatChopInPalace[];
 extern const u8 BattleScript_ThroatChopEndTurn[];
 extern const u8 BattleScript_GemActivates[];
 extern const u8 BattleScript_BerryReduceDmg[];
-extern const u8 BattleScript_PrintBerryReduceString[];
 extern const u8 BattleScript_WeaknessPolicy[];
 extern const u8 BattleScript_TargetItemStatRaise[];
 extern const u8 BattleScript_RockyHelmetActivates[];
@@ -518,8 +517,10 @@ extern const u8 BattleScript_AromaVeilProtectsRet[];
 extern const u8 BattleScript_LowerAtkSpAtk[];
 extern const u8 BattleScript_Terastallization[];
 extern const u8 BattleScript_BoosterEnergyEnd2[];
+extern const u8 BattleScript_BoosterEnergyRet[];
 extern const u8 BattleScript_TeraShellDistortingTypeMatchups[];
 extern const u8 BattleScript_TeraFormChange[];
+extern const u8 BattleScript_SleepClausePreventsEnd[];
 
 // zmoves
 extern const u8 BattleScript_ZMoveActivateDamaging[];
@@ -624,6 +625,9 @@ extern const u8 BattleScript_EffectMimic[];
 extern const u8 BattleScript_EffectMetronome[];
 extern const u8 BattleScript_EffectLeechSeed[];
 extern const u8 BattleScript_EffectDoNothing[];
+extern const u8 BattleScript_EffectHoldHands[];
+extern const u8 BattleScript_EffectCelebrate[];
+extern const u8 BattleScript_EffectHappyHour[];
 extern const u8 BattleScript_EffectDisable[];
 extern const u8 BattleScript_EffectLevelDamage[];
 extern const u8 BattleScript_EffectPsywave[];
