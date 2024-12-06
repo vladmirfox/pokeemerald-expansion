@@ -36,7 +36,6 @@ SINGLE_BATTLE_TEST("OHKO moves can hit semi-invulnerable mons when the user has 
     }
 }
 
-
 TO_DO_BATTLE_TEST("Fissure faints the target, skipping regular damage calculations")
 TO_DO_BATTLE_TEST("Fissure always fails if the target has a higher level than the user")
 TO_DO_BATTLE_TEST("Fissure's accuracy increases by 1% for every level the user has over the target")
