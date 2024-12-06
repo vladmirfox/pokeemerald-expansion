@@ -32,11 +32,6 @@
       "map": "MAP_SHOGUNATE",
       "offset": 7,
       "direction": "left"
-    },
-    {
-      "map": "MAP_YIFU_CITY2",
-      "offset": -11,
-      "direction": "down"
     }
   ],
   "object_events": [

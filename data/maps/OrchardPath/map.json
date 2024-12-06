@@ -22,11 +22,6 @@
       "map": "MAP_PUDDLE_PATH",
       "offset": 0,
       "direction": "up"
-    },
-    {
-      "map": "MAP_YIFU_CITY2",
-      "offset": -18,
-      "direction": "right"
     }
   ],
   "object_events": [
