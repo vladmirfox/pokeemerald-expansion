@@ -571,19 +571,23 @@ ALIGNED(4) void DecodeInstructions(u32 headerLoSize, u8 *loVec, u16 *symVec, voi
     }
 }
 
-ALIGNED(4) void DecodeInstructionsIwram(u32 headerLoSize, u8 *loVec, u16 *symVec, void *dest)
+static inline void CopyFuncToIwram(void *funcBuffer, void *_funcStartAddress, void *_funcEndAdress)
 {
-    u32 funcBuffer[350];
     u32 *funcBufferPtr = funcBuffer;
-    u32 *funcStartAddress = (void *) DecodeInstructions;
-    u32 *funcEndAddress = (void *) DecodeInstructionsIwram;
+    u32 *funcStartAddress = _funcStartAddress;
+    u32 *funcEndAddress = _funcEndAdress;
 
     while (funcStartAddress != funcEndAddress) {
         *(funcBufferPtr++) = *(funcStartAddress++);
     }
+}
+
+ALIGNED(4) void DecodeInstructionsIwram(u32 headerLoSize, u8 *loVec, u16 *symVec, void *dest)
+{
+    u32 funcBuffer[350];
+    CopyFuncToIwram(funcBuffer, DecodeInstructions, DecodeInstructionsIwram);
 
     void (*decodeFunction)(u32 headerLoSize, u8 *loVec, u16 *symVec, void *dest) = ((void *) funcBuffer) + 1;
-
     decodeFunction(headerLoSize, loVec, symVec, dest);
 }
 

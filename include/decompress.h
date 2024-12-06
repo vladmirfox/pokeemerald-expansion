@@ -61,7 +61,7 @@ void DecodeSymtANS(const u32 *data, const u32 *pFreqs, u16 *resultVec, u32 count
 
 void DecodeSymDeltatANS(const u32 *data, const u32 *pFreqs, u16 *resultVec, u32 count);
 
-void DecodeInstructions(const struct CompressionHeader *header, u8 *loVec, u16 *symVec, void *dest);
+void DecodeInstructions(u32 headerLoSize, u8 *loVec, u16 *symVec, void *dest);
 
 bool32 isModeLoEncoded(enum CompressionMode mode);
 bool32 isModeSymEncoded(enum CompressionMode mode);
