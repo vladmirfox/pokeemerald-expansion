@@ -374,6 +374,28 @@ SINGLE_BATTLE_TEST("Pursuit user mega evolves before attacking a switching foe a
     }
 }
 
+DOUBLE_BATTLE_TEST("Pursuit user mega evolves before attacking a switching foe and others mega evolve after switch")
+{
+    GIVEN {
+        PLAYER(SPECIES_CHARIZARD) { Item(ITEM_CHARIZARDITE_X); }
+        PLAYER(SPECIES_WOBBUFFET);
+        PLAYER(SPECIES_ZIGZAGOON);
+        OPPONENT(SPECIES_WOBBUFFET);
+        OPPONENT(SPECIES_KANGASKHAN) { Item(ITEM_KANGASKHANITE); }
+    } WHEN {
+        TURN { SWITCH(playerRight, 2); MOVE(opponentRight, MOVE_PURSUIT, gimmick: GIMMICK_MEGA, target: playerRight); MOVE(playerLeft, MOVE_CELEBRATE, gimmick: GIMMICK_MEGA); }
+    } SCENE {
+        SWITCH_OUT_MESSAGE("Wobbuffet");
+        ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_MEGA_EVOLUTION, opponentRight);
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_PURSUIT, opponentRight);
+        HP_BAR(playerRight);
+        HP_BAR(playerRight);
+        SEND_IN_MESSAGE("Zigzagoon");
+        ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_MEGA_EVOLUTION, playerLeft);
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_CELEBRATE, playerLeft);
+    }
+}
+
 SINGLE_BATTLE_TEST("Pursuit user terastalizes before attacking a switching foe and gets the damage boost from the tera type", s16 damage)
 {
     u32 tera;
