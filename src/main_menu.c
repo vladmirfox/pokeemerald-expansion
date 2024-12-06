@@ -1042,7 +1042,14 @@ static void Task_HandleMainMenuAPressed(u8 taskId)
             default:
                 gPlttBufferUnfaded[0] = RGB_BLACK;
                 gPlttBufferFaded[0] = RGB_BLACK;
-		DoKabaSpeech();
+
+                // TODO EVA decomment this, and remove next lines
+		        // DoKabaSpeech();
+                NewGameBirchSpeech_SetDefaultPlayerName(0);
+                gSaveBlock2Ptr->playerGender = FEMALE;
+                SetMainCallback2(CB2_NewGame);
+                // end of placeholder code
+
                 DestroyTask(taskId);
                 break;
             case ACTION_CONTINUE:

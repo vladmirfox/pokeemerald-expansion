@@ -1,3 +1,5 @@
+const LOCALID_SANDSLASH = 5
+
 mapscripts SilverTunnel_2F_MapScripts {
 	
 }
@@ -24,4 +26,33 @@ script SilverTunnel_2F_EventScript_Trainer2 {
 	speakername("TODO")
 	msgbox(format("Now I'm sad"), MSGBOX_AUTOCLOSE)
 	end
+}
+
+script SilverTunnel_2F_EventScript_Sandslash {
+    lock
+    faceplayer
+    playmoncry(SPECIES_SANDSLASH, CRY_MODE_NORMAL)
+    speakername("Sandslash")
+    msgbox(format(
+        "Sahaaah!"
+    ))
+    waitmoncry
+    closemessage
+    release
+}
+
+script SilverTunnel_2F_EventScript_Miner {
+    lock
+    faceplayer
+    speakername("Miner")
+    msgbox(format(
+        "We're here mining all day, everyday! Ain't that right, Sandy?"
+    ))
+    closemessage
+	turnobject(VAR_LAST_TALKED, DIR_EAST)
+	playmoncry(SPECIES_SANDSLASH, CRY_MODE_NORMAL)
+	applymovement(LOCALID_SANDSLASH, moves(jump_in_place_right))
+	waitmoncry
+	waitmovement(0)
+    release
 }

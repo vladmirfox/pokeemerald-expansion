@@ -1,3 +1,73 @@
 mapscripts Silveridge_House1_MapScripts {
 	
 }
+
+script Silveridge_House1_EventScript_Woman {
+    lock
+    faceplayer
+    speakername("Woman")
+    msgbox(format(
+        "Oh, you came all the way from Kura Village? You have good legs!"
+    ))
+    closemessage
+    release
+}
+
+script Silveridge_House1_EventScript_FirebringerFangirl {
+    lock
+    faceplayer
+    speakername("Girl")
+    msgbox(format(
+        "This place gets pretty cold, especially when the winds blow strong into the valley.\p"
+        "I don't know what we would do without those brave Firebringers.\p"
+        "They carry live Slugma on their back all the way down Mt Kazan! I could never!\p"
+        "Sigh… I hope a handsome Firebringer notices me one day…"
+    ))
+    closemessage
+    applymovement(VAR_LAST_TALKED, Common_Movement_FaceOriginalDirection)
+    waitmovement(0)
+    release
+}
+
+script Silveridge_House1_EventScript_Sandslash {
+    lock
+    faceplayer
+    playmoncry(SPECIES_SANDSLASH, CRY_MODE_NORMAL)
+    speakername("Sandslash")
+    msgbox(format(
+        "Sahaaah!"
+    ))
+    waitmoncry
+    closemessage
+    release
+}
+
+script Silveridge_House1_EventScript_Man {
+    lock
+    faceplayer
+    speakername("Miner")
+    if (flag(FLAG_OBTAINED_EVERSTONE)) {
+        msgbox(format(
+            "You think some Pokémon prefer to remain small forever?"
+        ))
+        closemessage
+    } else {
+        msgbox(format(
+            "My job is to mine ore in Silver Tunnel, all day long.\p"
+            "I love it! I wouldn't trade it for the world. I'm fine with being a simple miner forever.\p"
+            "Speaking of… I often find interesting rocks in there. Look at this!"
+        ))
+        closemessage
+
+        giveitem(ITEM_EVERSTONE)
+        setflag(FLAG_OBTAINED_EVERSTONE)
+
+        speakername("Miner")
+        msgbox(format(
+            "Apparently as long as a Pokémon holds on to this stone, it'll stop growing.\p"
+            "My helper Sandslash is already fully grown, so I don't need it."
+        ))
+        closemessage
+    }
+    release
+}

@@ -68,7 +68,7 @@
 // Lets the player be invisible when warping into a new map
 // (useful for cutscenes)
 #define FLAG_SPAWN_INVISIBLE 0x32
-#define FLAG_UNUSED_0x033    0x33 // Unused Flag
+#define FLAG_OBTAINED_EVERSTONE 0x33
 #define FLAG_UNUSED_0x034    0x34 // Unused Flag
 #define FLAG_UNUSED_0x035    0x35 // Unused Flag
 #define FLAG_UNUSED_0x036    0x36 // Unused Flag
