@@ -6060,6 +6060,18 @@
       "secondary_tileset": "gTileset_Silveridge",
       "border_filepath": "data/layouts/WindyCape2/border.bin",
       "blockdata_filepath": "data/layouts/WindyCape2/map.bin"
+    },
+    {
+      "id": "LAYOUT_YIFU_CITY2",
+      "name": "YifuCity2_Layout",
+      "width": 70,
+      "height": 75,
+      "border_width": 1,
+      "border_height": 1,
+      "primary_tileset": "gTileset_PorytilesPrimaryTutorial",
+      "secondary_tileset": "gTileset_Yifu",
+      "border_filepath": "data/layouts/YifuCity2/border.bin",
+      "blockdata_filepath": "data/layouts/YifuCity2/map.bin"
     }
   ]
 }
