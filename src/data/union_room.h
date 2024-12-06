@@ -1,5 +1,3 @@
-ALIGNED(4) static const u8 sText_EmptyString[] = _("");
-ALIGNED(4) static const u8 sText_Colon[] = _(":");
 ALIGNED(4) static const u8 sText_ID[] = _("{ID}");
 ALIGNED(4) static const u8 sText_PleaseStartOver[] = _("Please start over from the beginning.");
 ALIGNED(4) static const u8 sText_WirelessSearchCanceled[] = _("The WIRELESS COMMUNICATION\nSYSTEM search has been canceled.");
@@ -266,7 +264,6 @@ static const u8 *const sText_WaitOrShowCardTexts[GENDER_COUNT][4] = {
     }
 };
 
-ALIGNED(4) static const u8 sText_WaitForChatMale2[] = _("You want to chat, huh?\nSure, just wait a little."); // Unused
 ALIGNED(4) static const u8 sText_DoneWaitingBattleMale[] = _("Thanks for waiting!\nLet's get our battle started!{PAUSE 60}");
 ALIGNED(4) static const u8 sText_DoneWaitingChatMale[] = _("All right!\nLet's chat!{PAUSE 60}");
 ALIGNED(4) static const u8 sText_DoneWaitingBattleFemale[] = _("Sorry I made you wait!\nLet's get started!{PAUSE 60}");
@@ -512,26 +509,18 @@ static const u8 *const sNoWonderSharedTexts[] = {
     sText_NoNewsSharedRightNow
 };
 
-ALIGNED(4) static const u8 sText_Battle[] = _("BATTLE");
 ALIGNED(4) static const u8 sText_Greetings[] = _("GREETINGS");
-ALIGNED(4) static const u8 sText_Info[] = _("INFO");
 ALIGNED(4) static const u8 sText_NameWantedOfferLv[] = _("NAME{CLEAR_TO 60}WANTED{CLEAR_TO 110}OFFER{CLEAR_TO 198}LV.");
 ALIGNED(4) static const u8 sText_SingleBattle[] = _("SINGLE BATTLE");
 ALIGNED(4) static const u8 sText_DoubleBattle[] = _("DOUBLE BATTLE");
 ALIGNED(4) static const u8 sText_MultiBattle[] = _("MULTI BATTLE");
-ALIGNED(4) static const u8 sText_PokemonTrades[] = _("POKéMON TRADES");
 ALIGNED(4) static const u8 sText_Chat[] = _("CHAT");
 ALIGNED(4) static const u8 sText_Cards[] = _("CARDS");
-ALIGNED(4) static const u8 sText_WonderCards[] = _("WONDER CARDS");
-ALIGNED(4) static const u8 sText_WonderNews[] = _("WONDER NEWS");
 ALIGNED(4) static const u8 sText_PokemonJump[] = _("POKéMON JUMP");
-ALIGNED(4) static const u8 sText_BerryCrush[] = _("BERRY CRUSH");
 ALIGNED(4) static const u8 sText_BerryPicking[] = _("BERRY-PICKING");
 ALIGNED(4) static const u8 sText_Search[] = _("SEARCH");
 ALIGNED(4) static const u8 sText_BerryBlender[] = _("BERRY BLENDER");
-ALIGNED(4) static const u8 sText_RecordCorner[] = _("RECORD CORNER");
 ALIGNED(4) static const u8 sText_CoolContest[] = _("COOL CONTEST");
-ALIGNED(4) static const u8 sText_BeautyContest[] = _("BEAUTY CONTEST");
 ALIGNED(4) static const u8 sText_CuteContest[] = _("CUTE CONTEST");
 ALIGNED(4) static const u8 sText_SmartContest[] = _("SMART CONTEST");
 ALIGNED(4) static const u8 sText_ToughContest[] = _("TOUGH CONTEST");
@@ -564,31 +553,31 @@ static const u8 *const sGladToMeetYouTexts[GENDER_COUNT] = {
 ALIGNED(4) static const u8 sText_FinishedCheckingPlayersTrainerCard[] = _("Finished checking {DYNAMIC 1}'s\nTRAINER CARD.{PAUSE 60}");
 
 static const u8 *const sLinkGroupActivityNameTexts[] = {
-    [ACTIVITY_NONE]              = sText_EmptyString,
+    [ACTIVITY_NONE]              = gText_EmptyString,
     [ACTIVITY_BATTLE_SINGLE]     = sText_SingleBattle,
     [ACTIVITY_BATTLE_DOUBLE]     = sText_DoubleBattle,
     [ACTIVITY_BATTLE_MULTI]      = sText_MultiBattle,
-    [ACTIVITY_TRADE]             = sText_PokemonTrades,
+    [ACTIVITY_TRADE]             = gText_PokemonTrades,
     [ACTIVITY_CHAT]              = sText_Chat,
-    [ACTIVITY_WONDER_CARD_DUP]   = sText_WonderCards,
-    [ACTIVITY_WONDER_NEWS_DUP]   = sText_WonderNews,
+    [ACTIVITY_WONDER_CARD_DUP]   = gText_WonderCards,
+    [ACTIVITY_WONDER_NEWS_DUP]   = gText_WonderNews,
     [ACTIVITY_CARD]              = sText_Cards,
     [ACTIVITY_POKEMON_JUMP]      = sText_PokemonJump,
-    [ACTIVITY_BERRY_CRUSH]       = sText_BerryCrush,
+    [ACTIVITY_BERRY_CRUSH]       = gText_BerryCrush,
     [ACTIVITY_BERRY_PICK]        = sText_BerryPicking,
     [ACTIVITY_SEARCH]            = sText_Search,
-    [ACTIVITY_SPIN_TRADE]        = sText_EmptyString,
+    [ACTIVITY_SPIN_TRADE]        = gText_EmptyString,
     [ACTIVITY_BATTLE_TOWER_OPEN] = sText_BattleTowerOpenLv,
-    [ACTIVITY_RECORD_CORNER]     = sText_RecordCorner,
+    [ACTIVITY_RECORD_CORNER]     = gText_RecordCorner,
     [ACTIVITY_BERRY_BLENDER]     = sText_BerryBlender,
-    [ACTIVITY_ACCEPT]            = sText_EmptyString,
-    [ACTIVITY_DECLINE]           = sText_EmptyString,
-    [ACTIVITY_NPCTALK]           = sText_EmptyString,
-    [ACTIVITY_PLYRTALK]          = sText_EmptyString,
-    [ACTIVITY_WONDER_CARD]       = sText_WonderCards,
-    [ACTIVITY_WONDER_NEWS]       = sText_WonderNews,
+    [ACTIVITY_ACCEPT]            = gText_EmptyString,
+    [ACTIVITY_DECLINE]           = gText_EmptyString,
+    [ACTIVITY_NPCTALK]           = gText_EmptyString,
+    [ACTIVITY_PLYRTALK]          = gText_EmptyString,
+    [ACTIVITY_WONDER_CARD]       = gText_WonderCards,
+    [ACTIVITY_WONDER_NEWS]       = gText_WonderNews,
     [ACTIVITY_CONTEST_COOL]      = sText_CoolContest,
-    [ACTIVITY_CONTEST_BEAUTY]    = sText_BeautyContest,
+    [ACTIVITY_CONTEST_BEAUTY]    = gText_BeautyContest,
     [ACTIVITY_CONTEST_CUTE]      = sText_CuteContest,
     [ACTIVITY_CONTEST_SMART]     = sText_SmartContest,
     [ACTIVITY_CONTEST_TOUGH]     = sText_ToughContest,
@@ -668,11 +657,11 @@ static const struct WindowTemplate sWindowTemplate_NumPlayerMode = {
 };
 
 static const struct ListMenuItem sPossibleGroupMembersListMenuItems[] = {
-    { sText_EmptyString, 0 },
-    { sText_EmptyString, 1 },
-    { sText_EmptyString, 2 },
-    { sText_EmptyString, 3 },
-    { sText_EmptyString, 4 }
+    { gText_EmptyString, 0 },
+    { gText_EmptyString, 1 },
+    { gText_EmptyString, 2 },
+    { gText_EmptyString, 3 },
+    { gText_EmptyString, 4 }
 };
 
 static const struct ListMenuTemplate sListMenuTemplate_PossibleGroupMembers = {
@@ -717,22 +706,22 @@ static const struct WindowTemplate sWindowTemplate_PlayerNameAndId = {
 };
 
 static const struct ListMenuItem sUnionRoomGroupsMenuItems[] = {
-    { sText_EmptyString,  0 },
-    { sText_EmptyString,  1 },
-    { sText_EmptyString,  2 },
-    { sText_EmptyString,  3 },
-    { sText_EmptyString,  4 },
-    { sText_EmptyString,  5 },
-    { sText_EmptyString,  6 },
-    { sText_EmptyString,  7 },
-    { sText_EmptyString,  8 },
-    { sText_EmptyString,  9 },
-    { sText_EmptyString, 10 },
-    { sText_EmptyString, 11 },
-    { sText_EmptyString, 12 },
-    { sText_EmptyString, 13 },
-    { sText_EmptyString, 14 },
-    { sText_EmptyString, 15 }
+    { gText_EmptyString,  0 },
+    { gText_EmptyString,  1 },
+    { gText_EmptyString,  2 },
+    { gText_EmptyString,  3 },
+    { gText_EmptyString,  4 },
+    { gText_EmptyString,  5 },
+    { gText_EmptyString,  6 },
+    { gText_EmptyString,  7 },
+    { gText_EmptyString,  8 },
+    { gText_EmptyString,  9 },
+    { gText_EmptyString, 10 },
+    { gText_EmptyString, 11 },
+    { gText_EmptyString, 12 },
+    { gText_EmptyString, 13 },
+    { gText_EmptyString, 14 },
+    { gText_EmptyString, 15 }
 };
 
 static const struct ListMenuTemplate sListMenuTemplate_UnionRoomGroups = {
@@ -768,9 +757,9 @@ static const struct WindowTemplate sWindowTemplate_InviteToActivity = {
 
 static const struct ListMenuItem sInviteToActivityMenuItems[] = {
     { sText_Greetings, ACTIVITY_CARD | LINK_GROUP_CAPACITY(0, 2)},
-    { sText_Battle,    ACTIVITY_BATTLE_SINGLE | IN_UNION_ROOM | LINK_GROUP_CAPACITY(0, 2)},
+    { gText_Battle,    ACTIVITY_BATTLE_SINGLE | IN_UNION_ROOM | LINK_GROUP_CAPACITY(0, 2)},
     { sText_Chat,      ACTIVITY_CHAT | IN_UNION_ROOM | LINK_GROUP_CAPACITY(0, 2)},
-    { gText_Exit3,     ACTIVITY_NONE | IN_UNION_ROOM }
+    { gText_Exit,      ACTIVITY_NONE | IN_UNION_ROOM }
 };
 
 static const struct ListMenuTemplate sListMenuTemplate_InviteToActivity = {
@@ -806,8 +795,8 @@ static const struct WindowTemplate sWindowTemplate_RegisterForTrade = {
 
 static const struct ListMenuItem sRegisterForTradeListMenuItems[] = {
     { gText_Register, 1 },
-    { sText_Info, 2 },
-    { gText_Exit3, 3 }
+    { gText_Info, 2 },
+    { gText_Exit, 3 }
 };
 
 static const struct ListMenuTemplate sListMenuTemplate_RegisterForTrade = {
@@ -860,7 +849,7 @@ static const struct ListMenuItem sTradingBoardTypes[NUMBER_OF_MON_TYPES] = {
     { gTypesInfo[TYPE_STEEL].name,    TYPE_STEEL          },
     { gTypesInfo[TYPE_DARK].name,     TYPE_DARK           },
     { gTypesInfo[TYPE_FAIRY].name,    TYPE_FAIRY          },
-    { gText_Exit3,                    NUMBER_OF_MON_TYPES }
+    { gText_Exit,                     NUMBER_OF_MON_TYPES }
 };
 
 static const struct ListMenuTemplate sMenuTemplate_TradingBoardRequestType = {
@@ -905,16 +894,16 @@ static const struct WindowTemplate sWindowTemplate_TradingBoardMain = {
 };
 
 static const struct ListMenuItem sTradeBoardListMenuItems[] = {
-    { sText_EmptyString, LIST_HEADER },
-    { sText_EmptyString,  0 },
-    { sText_EmptyString,  1 },
-    { sText_EmptyString,  2 },
-    { sText_EmptyString,  3 },
-    { sText_EmptyString,  4 },
-    { sText_EmptyString,  5 },
-    { sText_EmptyString,  6 },
-    { sText_EmptyString,  7 },
-    { gText_Exit3,  8 }
+    { gText_EmptyString, LIST_HEADER },
+    { gText_EmptyString,  0 },
+    { gText_EmptyString,  1 },
+    { gText_EmptyString,  2 },
+    { gText_EmptyString,  3 },
+    { gText_EmptyString,  4 },
+    { gText_EmptyString,  5 },
+    { gText_EmptyString,  6 },
+    { gText_EmptyString,  7 },
+    { gText_Exit,         8 }
 };
 
 static const struct ListMenuTemplate sTradeBoardListMenuTemplate = {
@@ -950,22 +939,22 @@ static const struct WindowTemplate sWindowTemplate_Unused = {
 };
 
 static const struct ListMenuItem sEmptyListMenuItems[] = {
-    { sText_EmptyString,  0 },
-    { sText_EmptyString,  1 },
-    { sText_EmptyString,  2 },
-    { sText_EmptyString,  3 },
-    { sText_EmptyString,  4 },
-    { sText_EmptyString,  5 },
-    { sText_EmptyString,  6 },
-    { sText_EmptyString,  7 },
-    { sText_EmptyString,  8 },
-    { sText_EmptyString,  9 },
-    { sText_EmptyString, 10 },
-    { sText_EmptyString, 11 },
-    { sText_EmptyString, 12 },
-    { sText_EmptyString, 13 },
-    { sText_EmptyString, 14 },
-    { sText_EmptyString, 15 }
+    { gText_EmptyString,  0 },
+    { gText_EmptyString,  1 },
+    { gText_EmptyString,  2 },
+    { gText_EmptyString,  3 },
+    { gText_EmptyString,  4 },
+    { gText_EmptyString,  5 },
+    { gText_EmptyString,  6 },
+    { gText_EmptyString,  7 },
+    { gText_EmptyString,  8 },
+    { gText_EmptyString,  9 },
+    { gText_EmptyString, 10 },
+    { gText_EmptyString, 11 },
+    { gText_EmptyString, 12 },
+    { gText_EmptyString, 13 },
+    { gText_EmptyString, 14 },
+    { gText_EmptyString, 15 }
 };
 
 // Unused

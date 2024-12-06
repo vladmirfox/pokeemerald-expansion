@@ -37,7 +37,6 @@ static const u8 sText_CancelTrade[] = _("Cancel trade?");
 static const u8 sJPText_PressBButtonToQuit[] = _("Bボタン　で　もどります");
 static const u8 sText_CommunicationStandby[] = _("{COLOR DARK_GRAY}{HIGHLIGHT WHITE}{SHADOW LIGHT_GRAY}Communication standby…\nPlease wait.");
 static const u8 sText_TheTradeHasBeenCanceled[] = _("{COLOR DARK_GRAY}{HIGHLIGHT WHITE}{SHADOW LIGHT_GRAY}The trade has\nbeen canceled.");
-static const u8 sText_OnlyPkmnForBattle[] = _("That's your only\nPOKéMON for battle.");
 static const u8 sText_WaitingForYourFriend[] = _("{COLOR DARK_GRAY}{HIGHLIGHT WHITE}{SHADOW LIGHT_GRAY}Waiting for your friend\nto finish…");
 static const u8 sText_YourFriendWantsToTrade[] = _("Your friend wants\nto trade POKéMON.");
 
@@ -366,7 +365,7 @@ static const u8 *const sMessages[] =
 {
     [MSG_STANDBY]                    = sText_CommunicationStandby,
     [MSG_CANCELED]                   = sText_TheTradeHasBeenCanceled,
-    [MSG_ONLY_MON1]                  = sText_OnlyPkmnForBattle,
+    [MSG_ONLY_MON1]                  = gText_OnlyPkmnForBattle,
     [MSG_ONLY_MON2]                  = gText_OnlyPkmnForBattle, //identical text to above
     [MSG_WAITING_FOR_FRIEND]         = sText_WaitingForYourFriend,
     [MSG_FRIEND_WANTS_TO_TRADE]      = sText_YourFriendWantsToTrade,

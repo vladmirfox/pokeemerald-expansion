@@ -204,7 +204,7 @@ extern const u8 gText_PlayerSavedGame[];
 extern const u8 gText_SaveError[];
 extern const u8 gText_SavingDontTurnOffPower[];
 extern const u8 gText_Player[];
-extern const u8 gText_SavingBadges[];
+extern const u8 gText_Badges[];
 
 // Battle pyramid menu texts
 extern const u8 gText_BattlePyramidConfirmRest[];
@@ -872,8 +872,6 @@ extern const u8 gText_FacilityDouble[];
 extern const u8 gText_FacilityMulti[];
 extern const u8 gText_FacilityLink[];
 
-extern const u8 gText_RecordsLv50[];
-extern const u8 gText_RecordsOpenLevel[];
 extern const u8 gText_FrontierFacilityWinStreak[];
 extern const u8 gText_FrontierFacilityClearStreak[];
 extern const u8 gText_FrontierFacilityRoomsCleared[];
@@ -2100,7 +2098,6 @@ extern const u8 gJPText_MysteryGift[];
 extern const u8 gJPText_DecideStop[];
 extern const u8 gText_WonderCards[];
 extern const u8 gText_WonderNews[];
-extern const u8 gText_Exit3[];
 extern const u8 gText_WirelessCommunication[];
 extern const u8 gText_Friend2[];
 extern const u8 gText_Receive[];
@@ -2232,8 +2229,6 @@ extern const u8 gText_PlayBerryCrushAgain[];
 extern const u8 gText_YouHaveNoBerries[];
 extern const u8 gText_MemberDroppedOut[];
 extern const u8 gText_TimesUpNoGoodPowder[];
-extern const u8 gText_CommunicationStandby2[];
-extern const u8 gText_SpaceTimes2[];
 extern const u8 gText_XDotY[];
 extern const u8 gText_Var1Berry[];
 extern const u8 gText_NeatnessRankings[];

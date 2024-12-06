@@ -412,7 +412,7 @@ static const u8 *const sMessages[] =
     [MSG_NO_BERRIES]   = gText_YouHaveNoBerries,
     [MSG_DROPPED]      = gText_MemberDroppedOut,
     [MSG_TIMES_UP]     = gText_TimesUpNoGoodPowder,
-    [MSG_COMM_STANDBY] = gText_CommunicationStandby2,
+    [MSG_COMM_STANDBY] = gText_CommunicationStandby,
 };
 
 static const struct BgTemplate sBgTemplates[4] =
@@ -905,8 +905,8 @@ static const struct DigitObjUtilTemplate sDigitObjTemplates[] =
 
 static const u8 *const sResultsTexts[] =
 {
-    [RESULTS_PAGE_PRESSES]  = gText_SpaceTimes2, // " times"
-    [RESULTS_PAGE_RANDOM]   = gText_XDotY,       // "##.##", for Neatness, Cooperation, or Power value
+    [RESULTS_PAGE_PRESSES]  = gText_SpaceTimes, // " times"
+    [RESULTS_PAGE_RANDOM]   = gText_XDotY,      // "##.##", for Neatness, Cooperation, or Power value
     [RESULTS_PAGE_CRUSHING] = gText_Var1Berry,
 
     [RESULTS_PAGE_NEATNESS + NUM_RESULTS_PAGES]    = gText_NeatnessRankings,

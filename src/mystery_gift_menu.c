@@ -217,7 +217,7 @@ static const struct WindowTemplate sWindowTemplate_GiftSelect_1Option = {
 static const struct ListMenuItem sListMenuItems_CardsOrNews[] = {
     { gText_WonderCards,  0 },
     { gText_WonderNews,   1 },
-    { gText_Exit3,        LIST_CANCEL }
+    { gText_Exit,         LIST_CANCEL }
 };
 
 static const struct ListMenuItem sListMenuItems_WirelessOrFriend[] = {
