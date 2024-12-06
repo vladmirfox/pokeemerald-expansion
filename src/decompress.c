@@ -560,12 +560,10 @@ ALIGNED(4) void DecodeInstructions(u32 headerLoSize, u8 *loVec, u16 *symVec, voi
 {
     u32 loIndex = 0;
     u32 symIndex = 0;
-    u32 totalInstructions = 0;
     while (loIndex < headerLoSize)
     {
-        totalInstructions++;
-        u32 currLength = loVec[loIndex] & 0x7f;
-        if ((loVec[loIndex] & 0x80) == 0x80)
+        u32 currLength = loVec[loIndex] & FIRST_LO_MASK;
+        if (loVec[loIndex] & CONTINUE_BIT)
         {
             currLength += loVec[loIndex+1] << 7;
             loIndex += 2;
@@ -574,8 +572,8 @@ ALIGNED(4) void DecodeInstructions(u32 headerLoSize, u8 *loVec, u16 *symVec, voi
         {
             loIndex++;
         }
-        u32 currOffset = loVec[loIndex] & 0x7f;
-        if ((loVec[loIndex] & 0x80) == 0x80)
+        u32 currOffset = loVec[loIndex] & FIRST_LO_MASK;
+        if (loVec[loIndex] & CONTINUE_BIT)
         {
             currOffset += loVec[loIndex+1] << 7;
             loIndex += 2;
@@ -629,9 +627,8 @@ void SmolDecompressData(const struct CompressionHeader *header, const u32 *data,
     u32 headerSymSize = header->symSize;
     // LoSize HAS TO go last, because it is NOT aligned
     sMemoryAllocated = Alloc((TANS_TABLE_SIZE*sizeof(struct DecodeYK) + (TANS_TABLE_SIZE * 4)) + (headerSymSize*2) + headerLoSize);
-
-    u8 *loVec = sMemoryAllocated + (TANS_TABLE_SIZE*sizeof(struct DecodeYK) + (TANS_TABLE_SIZE * 4)) + (headerSymSize*2);
     u16 *symVec = sMemoryAllocated + (TANS_TABLE_SIZE*sizeof(struct DecodeYK) + (TANS_TABLE_SIZE * 4));
+    u8 *loVec = sMemoryAllocated + (TANS_TABLE_SIZE*sizeof(struct DecodeYK) + (TANS_TABLE_SIZE * 4)) + headerSymSize*2;
     bool32 loEncoded = isModeLoEncoded(header->mode);
     bool32 symEncoded = isModeSymEncoded(header->mode);
     bool32 symDelta = isModeSymDelta(header->mode);
