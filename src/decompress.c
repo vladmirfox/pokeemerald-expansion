@@ -480,7 +480,7 @@ static inline void CopyFuncToIwram(void *funcBuffer, void *_funcStartAddress, vo
     }
 }
 
-void DecodeSymDeltatANSLoop(const u32 *data, struct DecodeSymDeltaStuff *stuff, u8 *maskTable)
+__attribute__((target("arm"))) __attribute__((noinline)) void DecodeSymDeltatANSLoop(const u32 *data, struct DecodeSymDeltaStuff *stuff, u8 *maskTable)
 {
     u32 readIndex = sReadIndex;
     u32 currBits = data[readIndex];
@@ -524,6 +524,11 @@ void DecodeSymDeltatANSLoop(const u32 *data, struct DecodeSymDeltaStuff *stuff, 
     sReadIndex = readIndex;
 }
 
+__attribute__((target("arm"))) __attribute__((noinline)) void SwitchToArmCallFunc(const u32 *data, struct DecodeSymDeltaStuff *stuff, u8 *maskTable, void (*decodeFunction)(const u32 *data, struct DecodeSymDeltaStuff *stuff, u8 *maskTable))
+{
+    decodeFunction(data, stuff, maskTable);
+}
+
 void DecodeSymDeltatANS(const u32 *data, const u32 *pFreqs, u16 *resultVec, u32 count)
 {
     //void *memory = Alloc(TANS_TABLE_SIZE*sizeof(struct DecodeYK) + (TANS_TABLE_SIZE * 4));
@@ -549,10 +554,12 @@ void DecodeSymDeltatANS(const u32 *data, const u32 *pFreqs, u16 *resultVec, u32 
 
     u32 funcBuffer[350];
 
-    CopyFuncToIwram(funcBuffer, DecodeSymDeltatANSLoop, DecodeSymDeltatANS);
+    CopyFuncToIwram(funcBuffer, DecodeSymDeltatANSLoop, SwitchToArmCallFunc);
 
-    void (*decodeFunction)(const u32 *data, struct DecodeSymDeltaStuff *stuff, u8 *maskTable) = ((void *) funcBuffer) + 1;
-    decodeFunction(data, &stuff, maskTable);
+    void (*decodeFunction)(const u32 *data, struct DecodeSymDeltaStuff *stuff, u8 *maskTable) = ((void *) funcBuffer) + 0;
+
+    SwitchToArmCallFunc(data, &stuff, maskTable, decodeFunction);
+    //decodeFunction(data, stuff, maskTable);
     //Free(memory);
 }
 
