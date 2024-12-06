@@ -480,7 +480,8 @@ static inline void CopyFuncToIwram(void *funcBuffer, void *_funcStartAddress, vo
     }
 }
 
-__attribute__((target("arm"))) __attribute__((noinline)) void DecodeSymDeltatANSLoop(const u32 *data, struct DecodeSymDeltaStuff *stuff, u8 *maskTable)
+// -O3 saves us almost 30k cycles compared to -O2
+__attribute__((target("arm"))) __attribute__((noinline)) __attribute__((optimize("-O3"))) void DecodeSymDeltatANSLoop(const u32 *data, struct DecodeSymDeltaStuff *stuff, u8 *maskTable)
 {
     u32 readIndex = sReadIndex;
     u32 currBits = data[readIndex];
@@ -552,7 +553,7 @@ void DecodeSymDeltatANS(const u32 *data, const u32 *pFreqs, u16 *resultVec, u32 
     stuff.symbolTable = symbolTable;
     stuff.count = count;
 
-    u32 funcBuffer[350];
+    u32 funcBuffer[200];
 
     CopyFuncToIwram(funcBuffer, DecodeSymDeltatANSLoop, SwitchToArmCallFunc);
 
@@ -622,7 +623,7 @@ __attribute__((target("arm"))) __attribute__((noinline)) void SwitchToArmCallDec
 
 ALIGNED(4) void DecodeInstructionsIwram(u32 headerLoSize, u8 *loVec, u16 *symVec, void *dest)
 {
-    u32 funcBuffer[350];
+    u32 funcBuffer[200];
     CopyFuncToIwram(funcBuffer, DecodeInstructions, SwitchToArmCallDecodeInstructions);
 
     void (*decodeFunction)(u32 headerLoSize, u8 *loVec, u16 *symVec, void *dest) = ((void *) funcBuffer);
