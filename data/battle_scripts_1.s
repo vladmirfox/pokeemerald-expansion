@@ -4071,7 +4071,7 @@ BattleScript_EffectDestinyBond::
 	attackcanceler
 	attackstring
 	ppreduce
-	setdestinybond
+	trysetdestinybond BattleScript_ButItFailed
 	attackanimation
 	waitanimation
 	printstring STRINGID_PKMNTRYINGTOTAKEFOE
