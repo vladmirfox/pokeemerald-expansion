@@ -4436,15 +4436,17 @@ static u32 GetGMaxTargetSpecies(u32 species)
     return SPECIES_NONE;
 }
 
-static bool32 DoesMonMeetAdditionalConditions(struct Pokemon *mon, const struct EvolutionParam *params)
+static bool32 DoesMonMeetAdditionalConditions(struct Pokemon *mon, const struct EvolutionParam *params, bool32 *consumeItem)
 {
     u32 j;
+    u32 gender = GetMonGender(mon);
     u32 friendship = GetMonData(mon, MON_DATA_FRIENDSHIP, 0);
     u32 attack = GetMonData(mon, MON_DATA_ATK, 0);
     u32 defense = GetMonData(mon, MON_DATA_DEF, 0);
     u32 personality = GetMonData(mon, MON_DATA_PERSONALITY, 0);
     u16 upperPersonality = personality >> 16;
     u32 weather = GetCurrentWeather();
+    u32 nature = GetNature(mon);
     // Check for additional conditions (only if the primary method passes). Skips if there's no additional conditions.
     for (j = 0; params != NULL && params[j].condition != CONDITIONS_END; j++)
     {
@@ -4453,7 +4455,7 @@ static bool32 DoesMonMeetAdditionalConditions(struct Pokemon *mon, const struct 
         {
         // Gen 2
         case IF_GENDER:
-            if (params[j].arg == GetMonGender(mon))
+            if (gender == GetMonGender(mon))
                 currentCondition = TRUE;
             break;
         case IF_MIN_FRIENDSHIP:
@@ -4542,6 +4544,12 @@ static bool32 DoesMonMeetAdditionalConditions(struct Pokemon *mon, const struct 
                 }
             }
             break;
+        // Gen 8
+        case IF_NATURE:
+            if (nature == params[j].arg)
+                currentCondition = TRUE;
+            break;
+        // Gen 9
         case IF_PID_MODULO_100_GT:
             if ((personality % 100) > params[j].arg)
                 currentCondition = TRUE;
@@ -4642,53 +4650,6 @@ u16 GetEvolutionTargetSpecies(struct Pokemon *mon, enum EvolutionMode mode, u16 
                 if (evolutions[i].param <= beauty)
                     conditionsMet = TRUE;
                 break;
-            case EVO_LEVEL_NATURE_AMPED:
-                if (evolutions[i].param <= level)
-                {
-                    u8 nature = GetNature(mon);
-                    switch (nature)
-                    {
-                    case NATURE_HARDY:
-                    case NATURE_BRAVE:
-                    case NATURE_ADAMANT:
-                    case NATURE_NAUGHTY:
-                    case NATURE_DOCILE:
-                    case NATURE_IMPISH:
-                    case NATURE_LAX:
-                    case NATURE_HASTY:
-                    case NATURE_JOLLY:
-                    case NATURE_NAIVE:
-                    case NATURE_RASH:
-                    case NATURE_SASSY:
-                    case NATURE_QUIRKY:
-                        conditionsMet = TRUE;
-                        break;
-                    }
-                }
-                break;
-            case EVO_LEVEL_NATURE_LOW_KEY:
-                if (evolutions[i].param <= level)
-                {
-                    u8 nature = GetNature(mon);
-                    switch (nature)
-                    {
-                    case NATURE_LONELY:
-                    case NATURE_BOLD:
-                    case NATURE_RELAXED:
-                    case NATURE_TIMID:
-                    case NATURE_SERIOUS:
-                    case NATURE_MODEST:
-                    case NATURE_MILD:
-                    case NATURE_QUIET:
-                    case NATURE_BASHFUL:
-                    case NATURE_CALM:
-                    case NATURE_GENTLE:
-                    case NATURE_CAREFUL:
-                        conditionsMet = TRUE;
-                        break;
-                    }
-                }
-                break;
             case EVO_LEVEL_ITEM_HOLD:
                 if (heldItem == evolutions[i].param)
                 {
@@ -4714,7 +4675,7 @@ u16 GetEvolutionTargetSpecies(struct Pokemon *mon, enum EvolutionMode mode, u16 
                 break;
             }
 
-            if (conditionsMet && DoesMonMeetAdditionalConditions(mon, evolutions[i].params))
+            if (conditionsMet && DoesMonMeetAdditionalConditions(mon, evolutions[i].params, &consumeItem))
             {
                 // All checks passed, so stop checking the rest of the evolutions.
                 // This is different from vanilla where the loop continues.
@@ -4742,7 +4703,7 @@ u16 GetEvolutionTargetSpecies(struct Pokemon *mon, enum EvolutionMode mode, u16 
                 break;
             }
 
-            if (conditionsMet && DoesMonMeetAdditionalConditions(mon, evolutions[i].params))
+            if (conditionsMet && DoesMonMeetAdditionalConditions(mon, evolutions[i].params, &consumeItem))
             {
                 // All checks passed, so stop checking the rest of the evolutions.
                 // This is different from vanilla where the loop continues.
@@ -4777,7 +4738,7 @@ u16 GetEvolutionTargetSpecies(struct Pokemon *mon, enum EvolutionMode mode, u16 
                 break;
             }
 
-            if (conditionsMet && DoesMonMeetAdditionalConditions(mon, evolutions[i].params))
+            if (conditionsMet && DoesMonMeetAdditionalConditions(mon, evolutions[i].params, &consumeItem))
             {
                 // All checks passed, so stop checking the rest of the evolutions.
                 // This is different from vanilla where the loop continues.
@@ -4803,7 +4764,7 @@ u16 GetEvolutionTargetSpecies(struct Pokemon *mon, enum EvolutionMode mode, u16 
                 break;
             }
 
-            if (conditionsMet && DoesMonMeetAdditionalConditions(mon, evolutions[i].params))
+            if (conditionsMet && DoesMonMeetAdditionalConditions(mon, evolutions[i].params, &consumeItem))
             {
                 // All checks passed, so stop checking the rest of the evolutions.
                 // This is different from vanilla where the loop continues.
@@ -4829,7 +4790,7 @@ u16 GetEvolutionTargetSpecies(struct Pokemon *mon, enum EvolutionMode mode, u16 
                 break;
             }
 
-            if (conditionsMet && DoesMonMeetAdditionalConditions(mon, evolutions[i].params))
+            if (conditionsMet && DoesMonMeetAdditionalConditions(mon, evolutions[i].params, &consumeItem))
             {
                 // All checks passed, so stop checking the rest of the evolutions.
                 // This is different from vanilla where the loop continues.
@@ -4868,7 +4829,7 @@ u16 GetEvolutionTargetSpecies(struct Pokemon *mon, enum EvolutionMode mode, u16 
                 break;
             }
 
-            if (conditionsMet && DoesMonMeetAdditionalConditions(mon, evolutions[i].params))
+            if (conditionsMet && DoesMonMeetAdditionalConditions(mon, evolutions[i].params, &consumeItem))
             {
                 // All checks passed, so stop checking the rest of the evolutions.
                 // This is different from vanilla where the loop continues.

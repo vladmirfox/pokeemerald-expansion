@@ -267,6 +267,8 @@ enum EvolutionConditions {
     IF_TYPE_IN_PARTY,                   // The party contains a Pokémon of the specified type.
     IF_WEATHER,                         // It is the specific weather in the current map.
     IF_KNOWS_MOVE_TYPE,                 // Pokémon knows a move with a specific type.
+    // Gen 8
+    IF_NATURE,                          // Pokémon has a specific nature.
     // Gen 9
     IF_PID_MODULO_100_GT,               // The Pokémon's personality value's modulo by 100 is greater than the defined value.
     IF_PID_MODULO_100_EQ,               // The Pokémon's personality value's modulo by 100 is equal than the defined value.
@@ -284,8 +286,6 @@ enum EvolutionMethods {
     EVO_LEVEL_SHEDINJA,                  // Pokémon reaches the specified level (special value for Shedinja)
     EVO_BEAUTY,                          // Pokémon levels up with beauty ≥ specified value
     EVO_TRADE_SPECIFIC_MON,              // Pokémon is traded for a specified Pokémon
-    EVO_LEVEL_NATURE_AMPED,              // Pokémon reaches the specified level, it has a Hardy, Brave, Adamant, Naughty, Docile, Impish, Lax, Hasty, Jolly, Naive, Rash, Sassy, or Quirky nature.
-    EVO_LEVEL_NATURE_LOW_KEY,            // Pokémon reaches the specified level, it has a Lonely, Bold, Relaxed, Timid, Serious, Modest, Mild, Quiet, Bashful, Calm, Gentle, or Careful nature.
     EVO_CRITICAL_HITS,                   // Pokémon performs specified number of critical hits in one battle
     EVO_SCRIPT_TRIGGER_DMG,              // Pokémon has specified HP below max, then player interacts trigger
     EVO_DARK_SCROLL,                     // interacts with Scroll of Darkness
