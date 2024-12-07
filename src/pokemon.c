@@ -4439,17 +4439,19 @@ static u32 GetGMaxTargetSpecies(u32 species)
 u16 GetEvolutionTargetSpecies(struct Pokemon *mon, enum EvolutionMode mode, u16 evolutionItem, struct Pokemon *tradePartner)
 {
     int i, j;
-    u16 targetSpecies = SPECIES_NONE;
-    u16 species = GetMonData(mon, MON_DATA_SPECIES, 0);
-    u16 heldItem = GetMonData(mon, MON_DATA_HELD_ITEM, 0);
+    u32 targetSpecies = SPECIES_NONE;
+    u32 species = GetMonData(mon, MON_DATA_SPECIES, 0);
+    u32 heldItem = GetMonData(mon, MON_DATA_HELD_ITEM, 0);
     u32 personality = GetMonData(mon, MON_DATA_PERSONALITY, 0);
-    u8 level = GetMonData(mon, MON_DATA_LEVEL, 0);
-    u16 friendship = GetMonData(mon, MON_DATA_FRIENDSHIP, 0);
-    u8 beauty = GetMonData(mon, MON_DATA_BEAUTY, 0);
+    u32 level = GetMonData(mon, MON_DATA_LEVEL, 0);
+    u32 friendship = GetMonData(mon, MON_DATA_FRIENDSHIP, 0);
+    u32 beauty = GetMonData(mon, MON_DATA_BEAUTY, 0);
+    u32 attack = GetMonData(mon, MON_DATA_ATK, 0);
+    u32 defense = GetMonData(mon, MON_DATA_DEF, 0);
     u16 upperPersonality = personality >> 16;
     u32 holdEffect, currentMap, partnerSpecies, partnerHeldItem, partnerHoldEffect;
     bool32 consumeItem = FALSE;
-    u16 evolutionTracker = GetMonData(mon, MON_DATA_EVOLUTION_TRACKER, 0);
+    u32 evolutionTracker = GetMonData(mon, MON_DATA_EVOLUTION_TRACKER, 0);
     const struct Evolution *evolutions = GetSpeciesEvolutions(species);
 
     if (evolutions == NULL)
@@ -4533,21 +4535,6 @@ u16 GetEvolutionTargetSpecies(struct Pokemon *mon, enum EvolutionMode mode, u16 
             case EVO_LEVEL:
                 if (evolutions[i].param <= level)
                     conditionsMet = TRUE;
-                break;
-            case EVO_LEVEL_ATK_GT_DEF:
-                if (evolutions[i].param <= level)
-                    if (GetMonData(mon, MON_DATA_ATK, 0) > GetMonData(mon, MON_DATA_DEF, 0))
-                        conditionsMet = TRUE;
-                break;
-            case EVO_LEVEL_ATK_EQ_DEF:
-                if (evolutions[i].param <= level)
-                    if (GetMonData(mon, MON_DATA_ATK, 0) == GetMonData(mon, MON_DATA_DEF, 0))
-                        conditionsMet = TRUE;
-                break;
-            case EVO_LEVEL_ATK_LT_DEF:
-                if (evolutions[i].param <= level)
-                    if (GetMonData(mon, MON_DATA_ATK, 0) < GetMonData(mon, MON_DATA_DEF, 0))
-                        conditionsMet = TRUE;
                 break;
             case EVO_LEVEL_SILCOON:
                 if (evolutions[i].param <= level && (upperPersonality % 10) <= 4)
@@ -4727,6 +4714,18 @@ u16 GetEvolutionTargetSpecies(struct Pokemon *mon, enum EvolutionMode mode, u16 
                     if (friendship >= evolutions[i].params[j].arg)
                         currentCondition = TRUE;
                     break;
+                case IF_ATK_GT_DEF:
+                    if (attack > defense)
+                        conditionsMet = TRUE;
+                    break;
+                case IF_ATK_EQ_DEF:
+                    if (attack == defense)
+                        conditionsMet = TRUE;
+                    break;
+                case IF_ATK_LT_DEF:
+                    if (attack < defense)
+                        conditionsMet = TRUE;
+                    break;
                 }
                 if (currentCondition == FALSE)
                     conditionsMet = FALSE;
@@ -4773,6 +4772,18 @@ u16 GetEvolutionTargetSpecies(struct Pokemon *mon, enum EvolutionMode mode, u16 
                 case IF_MIN_FRIENDSHIP:
                     if (friendship >= evolutions[i].params[j].arg)
                         currentCondition = TRUE;
+                    break;
+                case IF_ATK_GT_DEF:
+                    if (attack > defense)
+                        conditionsMet = TRUE;
+                    break;
+                case IF_ATK_EQ_DEF:
+                    if (attack == defense)
+                        conditionsMet = TRUE;
+                    break;
+                case IF_ATK_LT_DEF:
+                    if (attack < defense)
+                        conditionsMet = TRUE;
                     break;
                 }
                 if (currentCondition == FALSE)
@@ -4828,6 +4839,18 @@ u16 GetEvolutionTargetSpecies(struct Pokemon *mon, enum EvolutionMode mode, u16 
                     if (friendship >= evolutions[i].params[j].arg)
                         currentCondition = TRUE;
                     break;
+                case IF_ATK_GT_DEF:
+                    if (attack > defense)
+                        conditionsMet = TRUE;
+                    break;
+                case IF_ATK_EQ_DEF:
+                    if (attack == defense)
+                        conditionsMet = TRUE;
+                    break;
+                case IF_ATK_LT_DEF:
+                    if (attack < defense)
+                        conditionsMet = TRUE;
+                    break;
                 }
                 if (currentCondition == FALSE)
                     conditionsMet = FALSE;
@@ -4881,6 +4904,18 @@ u16 GetEvolutionTargetSpecies(struct Pokemon *mon, enum EvolutionMode mode, u16 
                     if (friendship >= evolutions[i].params[j].arg)
                         currentCondition = TRUE;
                     break;
+                case IF_ATK_GT_DEF:
+                    if (attack > defense)
+                        conditionsMet = TRUE;
+                    break;
+                case IF_ATK_EQ_DEF:
+                    if (attack == defense)
+                        conditionsMet = TRUE;
+                    break;
+                case IF_ATK_LT_DEF:
+                    if (attack < defense)
+                        conditionsMet = TRUE;
+                    break;
                 }
                 if (currentCondition == FALSE)
                     conditionsMet = FALSE;
@@ -4925,6 +4960,18 @@ u16 GetEvolutionTargetSpecies(struct Pokemon *mon, enum EvolutionMode mode, u16 
                 case IF_MIN_FRIENDSHIP:
                     if (friendship >= evolutions[i].params[j].arg)
                         currentCondition = TRUE;
+                    break;
+                case IF_ATK_GT_DEF:
+                    if (attack > defense)
+                        conditionsMet = TRUE;
+                    break;
+                case IF_ATK_EQ_DEF:
+                    if (attack == defense)
+                        conditionsMet = TRUE;
+                    break;
+                case IF_ATK_LT_DEF:
+                    if (attack < defense)
+                        conditionsMet = TRUE;
                     break;
                 }
                 if (currentCondition == FALSE)
@@ -4983,6 +5030,18 @@ u16 GetEvolutionTargetSpecies(struct Pokemon *mon, enum EvolutionMode mode, u16 
                 case IF_MIN_FRIENDSHIP:
                     if (friendship >= evolutions[i].params[j].arg)
                         currentCondition = TRUE;
+                    break;
+                case IF_ATK_GT_DEF:
+                    if (attack > defense)
+                        conditionsMet = TRUE;
+                    break;
+                case IF_ATK_EQ_DEF:
+                    if (attack == defense)
+                        conditionsMet = TRUE;
+                    break;
+                case IF_ATK_LT_DEF:
+                    if (attack < defense)
+                        conditionsMet = TRUE;
                     break;
                 }
                 if (currentCondition == FALSE)

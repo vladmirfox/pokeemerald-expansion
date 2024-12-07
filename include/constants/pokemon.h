@@ -246,8 +246,11 @@
 #define EVOLUTIONS_END                    0xFFFF // Not an actual evolution, used to mark the end of an evolution array.
 
 enum EvolutionConditions {
-    IF_GENDER,                          // Pokémon is of specific gender
-    IF_MIN_FRIENDSHIP,                  // Pokémon has the defined amount of Friendship
+    IF_GENDER,                          // Pokémon is of specific gender.
+    IF_MIN_FRIENDSHIP,                  // Pokémon has the defined amount of Friendship.
+    IF_ATK_GT_DEF,                      // Pokémon's Attack is greater than its Defense stat.
+    IF_ATK_EQ_DEF,                      // Pokémon's Attack is equal to its Defense stat.
+    IF_ATK_LT_DEF,                      // Pokémon's Attack is lower than its Defense stat.
     CONDITIONS_END
 };
 
@@ -257,9 +260,6 @@ enum EvolutionMethods {
     EVO_TRADE,                           // Pokémon is traded
     EVO_TRADE_ITEM,                      // Pokémon is traded while it's holding the specified item
     EVO_ITEM,                            // specified item is used on Pokémon
-    EVO_LEVEL_ATK_GT_DEF,                // Pokémon reaches the specified level with attack > defense
-    EVO_LEVEL_ATK_EQ_DEF,                // Pokémon reaches the specified level with attack = defense
-    EVO_LEVEL_ATK_LT_DEF,                // Pokémon reaches the specified level with attack < defense
     EVO_LEVEL_SILCOON,                   // Pokémon reaches the specified level with a Silcoon personality value
     EVO_LEVEL_CASCOON,                   // Pokémon reaches the specified level with a Cascoon personality value
     EVO_LEVEL_NINJASK,                   // Pokémon reaches the specified level (special value for Ninjask)
