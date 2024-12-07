@@ -246,6 +246,7 @@
 #define EVOLUTIONS_END                    0xFFFF // Not an actual evolution, used to mark the end of an evolution array.
 
 enum EvolutionConditions {
+    // Gen 2
     IF_GENDER,                          // Pokémon is of specific gender.
     IF_TIME,                            // Is the specific time of day.
     IF_NOT_TIME,                        // Is NOT the specific time of day.
@@ -253,6 +254,10 @@ enum EvolutionConditions {
     IF_ATK_GT_DEF,                      // Pokémon's Attack is greater than its Defense stat.
     IF_ATK_EQ_DEF,                      // Pokémon's Attack is equal to its Defense stat.
     IF_ATK_LT_DEF,                      // Pokémon's Attack is lower than its Defense stat.
+    // Gen 4
+    IF_SPECIES_IN_PARTY,                // The party contains a Pokémon of the specified species.
+    // Gen 6
+    IF_TYPE_IN_PARTY,                   // The party contains a Pokémon of the specified type.
     CONDITIONS_END
 };
 
@@ -271,8 +276,6 @@ enum EvolutionMethods {
     EVO_LEVEL_MOVE_TYPE,                 // Pokémon levels up, knows move with specified type
     EVO_MAPSEC,                          // Pokémon levels up on specified mapsec
     EVO_LEVEL_RAIN,                      // Pokémon reaches the specified level during rain in the overworld
-    EVO_SPECIFIC_MON_IN_PARTY,           // Pokémon levels up with a specified Pokémon in party
-    EVO_LEVEL_DARK_TYPE_MON_IN_PARTY,    // Pokémon reaches the specified level with a Dark Type Pokémon in party
     EVO_TRADE_SPECIFIC_MON,              // Pokémon is traded for a specified Pokémon
     EVO_SPECIFIC_MAP,                    // Pokémon levels up on specified map
     EVO_LEVEL_NATURE_AMPED,              // Pokémon reaches the specified level, it has a Hardy, Brave, Adamant, Naughty, Docile, Impish, Lax, Hasty, Jolly, Naive, Rash, Sassy, or Quirky nature.
