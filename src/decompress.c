@@ -12,7 +12,7 @@
 
 EWRAM_DATA ALIGNED(4) u8 gDecompressionBuffer[0x4000] = {0};
 
-EWRAM_INIT struct DecodeYK ykTemplate[2*TANS_TABLE_SIZE] = {
+static const struct DecodeYK sYkTemplate[2*TANS_TABLE_SIZE] = {
     [0] = {0, 0},
     [1] = {1<<6, 6},
     [2] = {2<<5, 5},
@@ -331,7 +331,7 @@ void BuildDecompressionTable(const u32 *packedFreqs, struct DecodeYK *table, u32
     {
         if (freqs[i] != 0)
         {
-            DmaCopy16(3, &ykTemplate[freqs[i]], &table[currCol], freqs[i]*sizeof(struct DecodeYK));
+            DmaCopy16(3, &sYkTemplate[freqs[i]], &table[currCol], freqs[i]*sizeof(struct DecodeYK));
             for (u32 j = 0; j < freqs[i]; j++)
                 symbolTable[currCol + j] = i;
             currCol += freqs[i];
@@ -340,7 +340,7 @@ void BuildDecompressionTable(const u32 *packedFreqs, struct DecodeYK *table, u32
         i++;
         if (freqs[i] != 0)
         {
-            DmaCopy16(3, &ykTemplate[freqs[i]], &table[currCol], freqs[i]*sizeof(struct DecodeYK));
+            DmaCopy16(3, &sYkTemplate[freqs[i]], &table[currCol], freqs[i]*sizeof(struct DecodeYK));
             for (u32 j = 0; j < freqs[i]; j++)
                 symbolTable[currCol + j] = i;
             currCol += freqs[i];
