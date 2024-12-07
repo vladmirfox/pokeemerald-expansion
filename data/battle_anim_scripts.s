@@ -5567,13 +5567,13 @@ gBattleAnimMove_VoltSwitch::
 	loadspritegfx ANIM_TAG_IONS
 	loadspritegfx ANIM_TAG_SPARK_2
 	playsewithpan SE_M_THUNDERBOLT, SOUND_PAN_ATTACKER
-	createsprite gVoltSwitchSpriteTemplate, ANIM_TARGET, 3, 0, 0, 0, 0, 0x20, 20
+	createsprite gVoltSwitchSpriteTemplate, ANIM_TARGET, 3, 0, 0, 0, 0, 32, 20
 	delay 30
 	createvisualtask AnimTask_ShakeMon2 2, ANIM_TARGET, 3, 0, 8, 1
 	call VoltSwitchElectricFlashes
 	delay 2
 	playsewithpan SE_M_THUNDERBOLT, SOUND_PAN_ATTACKER
-	createsprite gVoltSwitchSpriteTemplate ANIM_TARGET, 3, 0, 0, 0, 0, 0x20, -20
+	createsprite gVoltSwitchSpriteTemplate ANIM_TARGET, 3, 0, 0, 0, 0, 32, -20
 	delay 4
 	call VoltSwitchElectricFlashes
 	delay 18
@@ -5586,14 +5586,14 @@ gBattleAnimMove_VoltSwitch::
 
 VoltSwitchElectricFlashes:
 	playsewithpan SE_M_CHARGE, SOUND_PAN_TARGET
-	createsprite gElectricitySpriteTemplate, ANIM_TARGET, 2, 0x5, 0x0, 0x5, 0
-	createsprite gElectricitySpriteTemplate, ANIM_TARGET, 2, 0xfffb, 0xa, 0x5, 1
-	createsprite gElectricitySpriteTemplate, ANIM_TARGET, 2, 0xf, 0x14, 0x5, 2
-	createsprite gElectricitySpriteTemplate, ANIM_TARGET, 2, 0xfff1, 0xfff6, 0x5, 0
-	createsprite gElectricitySpriteTemplate, ANIM_TARGET, 2, 0x19, 0x0, 0x5, 1
-	createsprite gElectricitySpriteTemplate, ANIM_TARGET, 2, 0xfff8, 0x8, 0x5, 2
-	createsprite gElectricitySpriteTemplate, ANIM_TARGET, 2, 0x2, 0xfff8, 0x5, 0
-	createsprite gElectricitySpriteTemplate, ANIM_TARGET, 2, 0xffec, 0xf, 0x5, 1
+	createsprite gElectricitySpriteTemplate, ANIM_TARGET, 2, 5, 0, 5, 0
+	createsprite gElectricitySpriteTemplate, ANIM_TARGET, 2, -5, 10, 5, 1
+	createsprite gElectricitySpriteTemplate, ANIM_TARGET, 2, 15, 20, 5, 2
+	createsprite gElectricitySpriteTemplate, ANIM_TARGET, 2, -15, -10, 5, 0
+	createsprite gElectricitySpriteTemplate, ANIM_TARGET, 2, 25, 0, 5, 1
+	createsprite gElectricitySpriteTemplate, ANIM_TARGET, 2, -8, 8, 5, 2
+	createsprite gElectricitySpriteTemplate, ANIM_TARGET, 2, 2, -8, 5, 0
+	createsprite gElectricitySpriteTemplate, ANIM_TARGET, 2, -20, 15, 5, 1
 	return
 
 gBattleAnimMove_StruggleBug::
