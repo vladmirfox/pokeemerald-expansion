@@ -262,9 +262,11 @@ enum EvolutionConditions {
     IF_SPECIES_IN_PARTY,                // The party contains a Pokémon of the specified species.
     IF_IN_MAP,                          // It's in the specific map.
     IF_IN_MAPSEC,                       // It's in the specific map sector.
+    IF_KNOWS_MOVE,                      // Pokémon knows specific move.
     // Gen 6
     IF_TYPE_IN_PARTY,                   // The party contains a Pokémon of the specified type.
     IF_WEATHER,                         // It is the specific weather in the current map.
+    IF_KNOWS_MOVE_TYPE,                 // Pokémon knows a move with a specific type.
     // Gen 9
     IF_PID_MODULO_100_GT,               // The Pokémon's personality value's modulo by 100 is greater than the defined value.
     IF_PID_MODULO_100_EQ,               // The Pokémon's personality value's modulo by 100 is equal than the defined value.
@@ -281,8 +283,6 @@ enum EvolutionMethods {
     EVO_LEVEL_NINJASK,                   // Pokémon reaches the specified level (special value for Ninjask)
     EVO_LEVEL_SHEDINJA,                  // Pokémon reaches the specified level (special value for Shedinja)
     EVO_BEAUTY,                          // Pokémon levels up with beauty ≥ specified value
-    EVO_MOVE,                            // Pokémon levels up, knows specified move
-    EVO_LEVEL_MOVE_TYPE,                 // Pokémon levels up, knows move with specified type
     EVO_TRADE_SPECIFIC_MON,              // Pokémon is traded for a specified Pokémon
     EVO_LEVEL_NATURE_AMPED,              // Pokémon reaches the specified level, it has a Hardy, Brave, Adamant, Naughty, Docile, Impish, Lax, Hasty, Jolly, Naive, Rash, Sassy, or Quirky nature.
     EVO_LEVEL_NATURE_LOW_KEY,            // Pokémon reaches the specified level, it has a Lonely, Bold, Relaxed, Timid, Serious, Modest, Mild, Quiet, Bashful, Calm, Gentle, or Careful nature.

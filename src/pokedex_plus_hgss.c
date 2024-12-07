@@ -6546,7 +6546,6 @@ static void PrintEvolutionTargetSpeciesAndMethod(u8 taskId, u16 species, u8 dept
             CopyItemName(item, gStringVar2); //item
             StringExpandPlaceholders(gStringVar4, sText_EVO_LEVEL_ITEM_HOLD_NIGHT );
             break;
-        */
         case EVO_MOVE:
             StringCopy(gStringVar2, GetMoveName(evolutions[i].param));
             StringExpandPlaceholders(gStringVar4, sText_EVO_MOVE );
@@ -6555,7 +6554,6 @@ static void PrintEvolutionTargetSpeciesAndMethod(u8 taskId, u16 species, u8 dept
             StringCopy(gStringVar2, gTypesInfo[evolutions[i].param].name);
             StringExpandPlaceholders(gStringVar4, sText_EVO_FRIENDSHIP_MOVE_TYPE );
             break;
-        /*
         case EVO_MAPSEC:
             StringCopy(gStringVar2, gRegionMapEntries[evolutions[i].param].name);
             StringExpandPlaceholders(gStringVar4, sText_EVO_MAPSEC );

@@ -4451,6 +4451,7 @@ static bool32 DoesMonMeetAdditionalConditions(struct Pokemon *mon, const struct 
         u32 currentCondition = FALSE;
         switch(params[j].condition)
         {
+        // Gen 2
         case IF_GENDER:
             if (params[j].arg == GetMonGender(mon))
                 currentCondition = TRUE;
@@ -4491,6 +4492,7 @@ static bool32 DoesMonMeetAdditionalConditions(struct Pokemon *mon, const struct 
             if ((upperPersonality % 10) < params[j].arg)
                 currentCondition = TRUE;
             break;
+        // Gen 4
         case IF_SPECIES_IN_PARTY:
             for (j = 0; j < PARTY_SIZE; j++)
             {
@@ -4501,14 +4503,19 @@ static bool32 DoesMonMeetAdditionalConditions(struct Pokemon *mon, const struct 
                 }
             }
             break;
-        case IF_IN_MAPSEC:
-            if (gMapHeader.regionMapSectionId == params[j].arg)
-                currentCondition = TRUE;
-            break;
         case IF_IN_MAP:
             if (params[j].arg == ((gSaveBlock1Ptr->location.mapGroup) << 8 | gSaveBlock1Ptr->location.mapNum))
                 currentCondition = TRUE;
             break;
+        case IF_IN_MAPSEC:
+            if (gMapHeader.regionMapSectionId == params[j].arg)
+                currentCondition = TRUE;
+            break;
+        case IF_KNOWS_MOVE:
+            if (MonKnowsMove(mon, params[j].arg))
+                currentCondition = TRUE;
+            break;
+        // Gen 6
         case IF_TYPE_IN_PARTY:
             for (j = 0; j < PARTY_SIZE; j++)
             {
@@ -4524,6 +4531,16 @@ static bool32 DoesMonMeetAdditionalConditions(struct Pokemon *mon, const struct 
         case IF_WEATHER:
             if (weather == params[j].arg)
                 currentCondition = TRUE;
+            break;
+        case IF_KNOWS_MOVE_TYPE:
+            for (j = 0; j < MAX_MON_MOVES; j++)
+            {
+                if (gMovesInfo[GetMonData(mon, MON_DATA_MOVE1 + j, NULL)].type == params[j].arg)
+                {
+                    currentCondition = TRUE;
+                    break;
+                }
+            }
             break;
         case IF_PID_MODULO_100_GT:
             if ((personality % 100) > params[j].arg)
@@ -4546,7 +4563,7 @@ static bool32 DoesMonMeetAdditionalConditions(struct Pokemon *mon, const struct 
 
 u16 GetEvolutionTargetSpecies(struct Pokemon *mon, enum EvolutionMode mode, u16 evolutionItem, struct Pokemon *tradePartner)
 {
-    int i, j;
+    int i;
     u32 targetSpecies = SPECIES_NONE;
     u32 species = GetMonData(mon, MON_DATA_SPECIES, 0);
     u32 heldItem = GetMonData(mon, MON_DATA_HELD_ITEM, 0);
@@ -4600,7 +4617,6 @@ u16 GetEvolutionTargetSpecies(struct Pokemon *mon, enum EvolutionMode mode, u16 
     {
     case EVO_MODE_NORMAL:
     case EVO_MODE_BATTLE_ONLY:
-        DebugPrintf("hours:%d", gLocalTime.hours);
         for (i = 0; evolutions[i].method != EVOLUTIONS_END; i++)
         {
             bool32 conditionsMet = FALSE;
@@ -4625,20 +4641,6 @@ u16 GetEvolutionTargetSpecies(struct Pokemon *mon, enum EvolutionMode mode, u16 
             case EVO_BEAUTY:
                 if (evolutions[i].param <= beauty)
                     conditionsMet = TRUE;
-                break;
-            case EVO_MOVE:
-                if (MonKnowsMove(mon, evolutions[i].param))
-                    conditionsMet = TRUE;
-                break;
-            case EVO_LEVEL_MOVE_TYPE:
-                for (j = 0; j < MAX_MON_MOVES; j++)
-                {
-                    if (gMovesInfo[GetMonData(mon, MON_DATA_MOVE1 + j, NULL)].type == evolutions[i].param)
-                    {
-                        conditionsMet = TRUE;
-                        break;
-                    }
-                }
                 break;
             case EVO_LEVEL_NATURE_AMPED:
                 if (evolutions[i].param <= level)
