@@ -4500,111 +4500,105 @@ u16 GetEvolutionTargetSpecies(struct Pokemon *mon, enum EvolutionMode mode, u16 
 
         for (i = 0; evolutions[i].method != EVOLUTIONS_END; i++)
         {
+            bool32 conditionsMet = FALSE;
             if (SanitizeSpeciesId(evolutions[i].targetSpecies) == SPECIES_NONE)
                 continue;
 
+            // Check main primary evolution method
             switch (evolutions[i].method)
             {
             case EVO_FRIENDSHIP:
                 if (friendship >= FRIENDSHIP_EVO_THRESHOLD)
-                    targetSpecies = evolutions[i].targetSpecies;
+                    conditionsMet = TRUE;
                 break;
             case EVO_FRIENDSHIP_DAY:
                 if (GetTimeOfDay() != TIME_NIGHT && friendship >= FRIENDSHIP_EVO_THRESHOLD)
-                    targetSpecies = evolutions[i].targetSpecies;
+                    conditionsMet = TRUE;
                 break;
             case EVO_LEVEL_DAY:
                 if (GetTimeOfDay() != TIME_NIGHT && evolutions[i].param <= level)
-                    targetSpecies = evolutions[i].targetSpecies;
+                    conditionsMet = TRUE;
                 break;
             case EVO_FRIENDSHIP_NIGHT:
                 if (GetTimeOfDay() == TIME_NIGHT && friendship >= FRIENDSHIP_EVO_THRESHOLD)
-                    targetSpecies = evolutions[i].targetSpecies;
+                    conditionsMet = TRUE;
                 break;
             case EVO_LEVEL_NIGHT:
                 if (GetTimeOfDay() == TIME_NIGHT && evolutions[i].param <= level)
-                    targetSpecies = evolutions[i].targetSpecies;
+                    conditionsMet = TRUE;
                 break;
             case EVO_ITEM_HOLD_NIGHT:
                 if (GetTimeOfDay() == TIME_NIGHT && heldItem == evolutions[i].param)
                 {
-                    targetSpecies = evolutions[i].targetSpecies;
+                    conditionsMet = TRUE;
                     consumeItem = TRUE;
                 }
                 break;
             case EVO_ITEM_HOLD_DAY:
                 if (GetTimeOfDay() != TIME_NIGHT && heldItem == evolutions[i].param)
                 {
-                    targetSpecies = evolutions[i].targetSpecies;
+                    conditionsMet = TRUE;
                     consumeItem = TRUE;
                 }
                 break;
             case EVO_LEVEL_DUSK:
                 if (GetTimeOfDay() == TIME_EVENING && evolutions[i].param <= level)
-                    targetSpecies = evolutions[i].targetSpecies;
+                    conditionsMet = TRUE;
                 break;
             case EVO_LEVEL:
                 if (evolutions[i].param <= level)
-                    targetSpecies = evolutions[i].targetSpecies;
-                break;
-            case EVO_LEVEL_FEMALE:
-                if (evolutions[i].param <= level && GetMonGender(mon) == MON_FEMALE)
-                    targetSpecies = evolutions[i].targetSpecies;
-                break;
-            case EVO_LEVEL_MALE:
-                if (evolutions[i].param <= level && GetMonGender(mon) == MON_MALE)
-                    targetSpecies = evolutions[i].targetSpecies;
+                    conditionsMet = TRUE;
                 break;
             case EVO_LEVEL_ATK_GT_DEF:
                 if (evolutions[i].param <= level)
                     if (GetMonData(mon, MON_DATA_ATK, 0) > GetMonData(mon, MON_DATA_DEF, 0))
-                        targetSpecies = evolutions[i].targetSpecies;
+                        conditionsMet = TRUE;
                 break;
             case EVO_LEVEL_ATK_EQ_DEF:
                 if (evolutions[i].param <= level)
                     if (GetMonData(mon, MON_DATA_ATK, 0) == GetMonData(mon, MON_DATA_DEF, 0))
-                        targetSpecies = evolutions[i].targetSpecies;
+                        conditionsMet = TRUE;
                 break;
             case EVO_LEVEL_ATK_LT_DEF:
                 if (evolutions[i].param <= level)
                     if (GetMonData(mon, MON_DATA_ATK, 0) < GetMonData(mon, MON_DATA_DEF, 0))
-                        targetSpecies = evolutions[i].targetSpecies;
+                        conditionsMet = TRUE;
                 break;
             case EVO_LEVEL_SILCOON:
                 if (evolutions[i].param <= level && (upperPersonality % 10) <= 4)
-                    targetSpecies = evolutions[i].targetSpecies;
+                    conditionsMet = TRUE;
                 break;
             case EVO_LEVEL_CASCOON:
                 if (evolutions[i].param <= level && (upperPersonality % 10) > 4)
-                    targetSpecies = evolutions[i].targetSpecies;
+                    conditionsMet = TRUE;
                 break;
             case EVO_LEVEL_NINJASK:
                 if (evolutions[i].param <= level)
-                    targetSpecies = evolutions[i].targetSpecies;
+                    conditionsMet = TRUE;
                 break;
             case EVO_LEVEL_FAMILY_OF_FOUR:
                 if (mode == EVO_MODE_BATTLE_ONLY && evolutions[i].param <= level && (personality % 100) != 0)
-                    targetSpecies = evolutions[i].targetSpecies;
+                    conditionsMet = TRUE;
                 break;
             case EVO_LEVEL_FAMILY_OF_THREE:
                 if (mode == EVO_MODE_BATTLE_ONLY && evolutions[i].param <= level && (personality % 100) == 0)
-                    targetSpecies = evolutions[i].targetSpecies;
+                    conditionsMet = TRUE;
                 break;
             case EVO_BEAUTY:
                 if (evolutions[i].param <= beauty)
-                    targetSpecies = evolutions[i].targetSpecies;
+                    conditionsMet = TRUE;
                 break;
             case EVO_MOVE:
                 if (MonKnowsMove(mon, evolutions[i].param))
-                    targetSpecies = evolutions[i].targetSpecies;
+                    conditionsMet = TRUE;
                 break;
             case EVO_MOVE_TWO_SEGMENT:
                 if (MonKnowsMove(mon, evolutions[i].param) && (personality % 100) != 0)
-                    targetSpecies = evolutions[i].targetSpecies;
+                    conditionsMet = TRUE;
                 break;
             case EVO_MOVE_THREE_SEGMENT:
                 if (MonKnowsMove(mon, evolutions[i].param) && (personality % 100) == 0)
-                    targetSpecies = evolutions[i].targetSpecies;
+                    conditionsMet = TRUE;
                 break;
             case EVO_FRIENDSHIP_MOVE_TYPE:
                 if (friendship >= FRIENDSHIP_EVO_THRESHOLD)
@@ -4613,7 +4607,7 @@ u16 GetEvolutionTargetSpecies(struct Pokemon *mon, enum EvolutionMode mode, u16 
                     {
                         if (gMovesInfo[GetMonData(mon, MON_DATA_MOVE1 + j, NULL)].type == evolutions[i].param)
                         {
-                            targetSpecies = evolutions[i].targetSpecies;
+                            conditionsMet = TRUE;
                             break;
                         }
                     }
@@ -4624,7 +4618,7 @@ u16 GetEvolutionTargetSpecies(struct Pokemon *mon, enum EvolutionMode mode, u16 
                 {
                     if (GetMonData(&gPlayerParty[j], MON_DATA_SPECIES, NULL) == evolutions[i].param)
                     {
-                        targetSpecies = evolutions[i].targetSpecies;
+                        conditionsMet = TRUE;
                         break;
                     }
                 }
@@ -4638,7 +4632,7 @@ u16 GetEvolutionTargetSpecies(struct Pokemon *mon, enum EvolutionMode mode, u16 
                         if (gSpeciesInfo[currSpecies].types[0] == TYPE_DARK
                          || gSpeciesInfo[currSpecies].types[1] == TYPE_DARK)
                         {
-                            targetSpecies = evolutions[i].targetSpecies;
+                            conditionsMet = TRUE;
                             break;
                         }
                     }
@@ -4648,22 +4642,22 @@ u16 GetEvolutionTargetSpecies(struct Pokemon *mon, enum EvolutionMode mode, u16 
                 j = GetCurrentWeather();
                 if (evolutions[i].param <= level
                  && (j == WEATHER_RAIN || j == WEATHER_RAIN_THUNDERSTORM || j == WEATHER_DOWNPOUR))
-                    targetSpecies = evolutions[i].targetSpecies;
+                    conditionsMet = TRUE;
                 break;
             case EVO_LEVEL_FOG:
                 j = GetCurrentWeather();
                 if (evolutions[i].param <= level
                  && (j == WEATHER_FOG_HORIZONTAL || j == WEATHER_FOG_DIAGONAL))
-                    targetSpecies = evolutions[i].targetSpecies;
+                    conditionsMet = TRUE;
                 break;
             case EVO_MAPSEC:
                 if (gMapHeader.regionMapSectionId == evolutions[i].param)
-                    targetSpecies = evolutions[i].targetSpecies;
+                    conditionsMet = TRUE;
                 break;
             case EVO_SPECIFIC_MAP:
                 currentMap = ((gSaveBlock1Ptr->location.mapGroup) << 8 | gSaveBlock1Ptr->location.mapNum);
                 if (currentMap == evolutions[i].param)
-                    targetSpecies = evolutions[i].targetSpecies;
+                    conditionsMet = TRUE;
                 break;
             case EVO_LEVEL_NATURE_AMPED:
                 if (evolutions[i].param <= level)
@@ -4684,7 +4678,7 @@ u16 GetEvolutionTargetSpecies(struct Pokemon *mon, enum EvolutionMode mode, u16 
                     case NATURE_RASH:
                     case NATURE_SASSY:
                     case NATURE_QUIRKY:
-                        targetSpecies = evolutions[i].targetSpecies;
+                        conditionsMet = TRUE;
                         break;
                     }
                 }
@@ -4707,7 +4701,7 @@ u16 GetEvolutionTargetSpecies(struct Pokemon *mon, enum EvolutionMode mode, u16 
                     case NATURE_CALM:
                     case NATURE_GENTLE:
                     case NATURE_CAREFUL:
-                        targetSpecies = evolutions[i].targetSpecies;
+                        conditionsMet = TRUE;
                         break;
                     }
                 }
@@ -4715,29 +4709,49 @@ u16 GetEvolutionTargetSpecies(struct Pokemon *mon, enum EvolutionMode mode, u16 
             case EVO_ITEM_HOLD:
                 if (heldItem == evolutions[i].param)
                 {
-                    targetSpecies = evolutions[i].targetSpecies;
+                    conditionsMet = TRUE;
                     consumeItem = TRUE;
                 }
                 break;
             case EVO_USE_MOVE_TWENTY_TIMES:
                 if (evolutionTracker >= 20)
-                    targetSpecies = evolutions[i].targetSpecies;
+                    conditionsMet = TRUE;
                 break;
-            case EVO_RECOIL_DAMAGE_MALE:
-                if (evolutionTracker >= evolutions[i].param && GetMonGender(mon) == MON_MALE)
-                    targetSpecies = evolutions[i].targetSpecies;
-                break;
-            case EVO_RECOIL_DAMAGE_FEMALE:
-                if (evolutionTracker >= evolutions[i].param && GetMonGender(mon) == MON_FEMALE)
-                    targetSpecies = evolutions[i].targetSpecies;
+            case EVO_RECOIL_DAMAGE:
+                if (evolutionTracker >= evolutions[i].param)
+                    conditionsMet = TRUE;
                 break;
             case EVO_DEFEAT_THREE_WITH_ITEM:
                 if (evolutionTracker >= 3)
-                    targetSpecies = evolutions[i].targetSpecies;
+                    conditionsMet = TRUE;
                 break;
             case EVO_OVERWORLD_STEPS:
                 if (mon == GetFirstLiveMon() && gFollowerSteps >= evolutions[i].param)
-                    targetSpecies = evolutions[i].targetSpecies;
+                    conditionsMet = TRUE;
+                break;
+            }
+
+            // Check for additional conditions (only if the primary method passes). Skips if there's no additional conditions.
+            for (j = 0; conditionsMet == TRUE && evolutions[i].params != NULL && evolutions[i].params[j].condition != CONDITIONS_END; j++)
+            {
+                u32 currentCondition = FALSE;
+                switch(evolutions[i].params[j].condition)
+                {
+                case IF_GENDER:
+                    if (evolutions[i].params[j].arg == GetMonGender(mon))
+                        currentCondition = TRUE;
+                    break;
+                }
+                if (currentCondition == FALSE)
+                    conditionsMet = FALSE;
+            }
+
+            if (conditionsMet)
+            {
+                // All checks passed, so stop checking the rest of the evolutions.
+                // This is different from vanilla where the loop continues.
+                // If you have overlapping evolutions, put the ones you want to happen first on top of the list.
+                targetSpecies = evolutions[i].targetSpecies;
                 break;
             }
         }
@@ -4748,6 +4762,7 @@ u16 GetEvolutionTargetSpecies(struct Pokemon *mon, enum EvolutionMode mode, u16 
 
         for (i = 0; evolutions[i].method != EVOLUTIONS_END; i++)
         {
+            bool32 conditionsMet = FALSE;
             if (SanitizeSpeciesId(evolutions[i].targetSpecies) == SPECIES_NONE)
                 continue;
 
@@ -4756,9 +4771,33 @@ u16 GetEvolutionTargetSpecies(struct Pokemon *mon, enum EvolutionMode mode, u16 
             case EVO_ITEM_COUNT_999:
                 if (CheckBagHasItem(evolutions[i].param, 999))
                 {
-                    targetSpecies = evolutions[i].targetSpecies;
+                    conditionsMet = TRUE;
                     RemoveBagItem(evolutions[i].param, 999);
                 }
+                break;
+            }
+
+            // Check for additional conditions (only if the primary method passes). Skips if there's no additional conditions.
+            for (j = 0; conditionsMet == TRUE && evolutions[i].params != NULL && evolutions[i].params[j].condition != CONDITIONS_END; j++)
+            {
+                u32 currentCondition = FALSE;
+                switch(evolutions[i].params[j].condition)
+                {
+                case IF_GENDER:
+                    if (evolutions[i].params[j].arg == GetMonGender(mon))
+                        currentCondition = TRUE;
+                    break;
+                }
+                if (currentCondition == FALSE)
+                    conditionsMet = FALSE;
+            }
+
+            if (conditionsMet)
+            {
+                // All checks passed, so stop checking the rest of the evolutions.
+                // This is different from vanilla where the loop continues.
+                // If you have overlapping evolutions, put the ones you want to happen first on top of the list.
+                targetSpecies = evolutions[i].targetSpecies;
                 break;
             }
         }
@@ -4766,24 +4805,49 @@ u16 GetEvolutionTargetSpecies(struct Pokemon *mon, enum EvolutionMode mode, u16 
     case EVO_MODE_TRADE:
         for (i = 0; evolutions[i].method != EVOLUTIONS_END; i++)
         {
+            bool32 conditionsMet = FALSE;
             if (SanitizeSpeciesId(evolutions[i].targetSpecies) == SPECIES_NONE)
                 continue;
 
             switch (evolutions[i].method)
             {
             case EVO_TRADE:
-                targetSpecies = evolutions[i].targetSpecies;
+                conditionsMet = TRUE;
                 break;
             case EVO_TRADE_ITEM:
                 if (evolutions[i].param == heldItem)
                 {
-                    targetSpecies = evolutions[i].targetSpecies;
+                    conditionsMet = TRUE;
                     consumeItem = TRUE;
                 }
                 break;
             case EVO_TRADE_SPECIFIC_MON:
                 if (evolutions[i].param == partnerSpecies && partnerHoldEffect != HOLD_EFFECT_PREVENT_EVOLVE)
-                    targetSpecies = evolutions[i].targetSpecies;
+                    conditionsMet = TRUE;
+                break;
+            }
+
+            // Check for additional conditions (only if the primary method passes). Skips if there's no additional conditions.
+            for (j = 0; conditionsMet == TRUE && evolutions[i].params != NULL && evolutions[i].params[j].condition != CONDITIONS_END; j++)
+            {
+                u32 currentCondition = FALSE;
+                switch(evolutions[i].params[j].condition)
+                {
+                case IF_GENDER:
+                    if (evolutions[i].params[j].arg == GetMonGender(mon))
+                        currentCondition = TRUE;
+                    break;
+                }
+                if (currentCondition == FALSE)
+                    conditionsMet = FALSE;
+            }
+
+            if (conditionsMet)
+            {
+                // All checks passed, so stop checking the rest of the evolutions.
+                // This is different from vanilla where the loop continues.
+                // If you have overlapping evolutions, put the ones you want to happen first on top of the list.
+                targetSpecies = evolutions[i].targetSpecies;
                 break;
             }
         }
@@ -4792,6 +4856,7 @@ u16 GetEvolutionTargetSpecies(struct Pokemon *mon, enum EvolutionMode mode, u16 
     case EVO_MODE_ITEM_CHECK:
         for (i = 0; evolutions[i].method != EVOLUTIONS_END; i++)
         {
+            bool32 conditionsMet = FALSE;
             if (SanitizeSpeciesId(evolutions[i].targetSpecies) == SPECIES_NONE)
                 continue;
 
@@ -4799,23 +4864,39 @@ u16 GetEvolutionTargetSpecies(struct Pokemon *mon, enum EvolutionMode mode, u16 
             {
             case EVO_ITEM:
                 if (evolutions[i].param == evolutionItem)
-                    targetSpecies = evolutions[i].targetSpecies;
-                break;
-            case EVO_ITEM_FEMALE:
-                if (GetMonGender(mon) == MON_FEMALE && evolutions[i].param == evolutionItem)
-                    targetSpecies = evolutions[i].targetSpecies;
-                break;
-            case EVO_ITEM_MALE:
-                if (GetMonGender(mon) == MON_MALE && evolutions[i].param == evolutionItem)
-                    targetSpecies = evolutions[i].targetSpecies;
+                    conditionsMet = TRUE;
                 break;
             case EVO_ITEM_NIGHT:
                 if (GetTimeOfDay() == TIME_NIGHT && evolutions[i].param == evolutionItem)
-                    targetSpecies = evolutions[i].targetSpecies;
+                    conditionsMet = TRUE;
                 break;
             case EVO_ITEM_DAY:
                 if (GetTimeOfDay() != TIME_NIGHT && evolutions[i].param == evolutionItem)
-                    targetSpecies = evolutions[i].targetSpecies;
+                    conditionsMet = TRUE;
+                break;
+            }
+
+            // Check for additional conditions (only if the primary method passes). Skips if there's no additional conditions.
+            for (j = 0; conditionsMet == TRUE && evolutions[i].params != NULL && evolutions[i].params[j].condition != CONDITIONS_END; j++)
+            {
+                u32 currentCondition = FALSE;
+                switch(evolutions[i].params[j].condition)
+                {
+                case IF_GENDER:
+                    if (evolutions[i].params[j].arg == GetMonGender(mon))
+                        currentCondition = TRUE;
+                    break;
+                }
+                if (currentCondition == FALSE)
+                    conditionsMet = FALSE;
+            }
+
+            if (conditionsMet)
+            {
+                // All checks passed, so stop checking the rest of the evolutions.
+                // This is different from vanilla where the loop continues.
+                // If you have overlapping evolutions, put the ones you want to happen first on top of the list.
+                targetSpecies = evolutions[i].targetSpecies;
                 break;
             }
         }
@@ -4824,6 +4905,7 @@ u16 GetEvolutionTargetSpecies(struct Pokemon *mon, enum EvolutionMode mode, u16 
     case EVO_MODE_BATTLE_SPECIAL:
         for (i = 0; evolutions[i].method != EVOLUTIONS_END; i++)
         {
+            bool32 conditionsMet = FALSE;
             if (SanitizeSpeciesId(evolutions[i].targetSpecies) == SPECIES_NONE)
                 continue;
 
@@ -4831,7 +4913,31 @@ u16 GetEvolutionTargetSpecies(struct Pokemon *mon, enum EvolutionMode mode, u16 
             {
             case EVO_CRITICAL_HITS:
                 if (gPartyCriticalHits[evolutionItem] >= evolutions[i].param)
-                    targetSpecies = evolutions[i].targetSpecies;
+                    conditionsMet = TRUE;
+                break;
+            }
+
+            // Check for additional conditions (only if the primary method passes). Skips if there's no additional conditions.
+            for (j = 0; conditionsMet == TRUE && evolutions[i].params != NULL && evolutions[i].params[j].condition != CONDITIONS_END; j++)
+            {
+                u32 currentCondition = FALSE;
+                switch(evolutions[i].params[j].condition)
+                {
+                case IF_GENDER:
+                    if (evolutions[i].params[j].arg == GetMonGender(mon))
+                        currentCondition = TRUE;
+                    break;
+                }
+                if (currentCondition == FALSE)
+                    conditionsMet = FALSE;
+            }
+
+            if (conditionsMet)
+            {
+                // All checks passed, so stop checking the rest of the evolutions.
+                // This is different from vanilla where the loop continues.
+                // If you have overlapping evolutions, put the ones you want to happen first on top of the list.
+                targetSpecies = evolutions[i].targetSpecies;
                 break;
             }
         }
@@ -4840,6 +4946,7 @@ u16 GetEvolutionTargetSpecies(struct Pokemon *mon, enum EvolutionMode mode, u16 
     case EVO_MODE_OVERWORLD_SPECIAL:
         for (i = 0; evolutions[i].method != EVOLUTIONS_END; i++)
         {
+            bool32 conditionsMet = FALSE;
             if (SanitizeSpeciesId(evolutions[i].targetSpecies) == SPECIES_NONE)
                 continue;
 
@@ -4851,16 +4958,40 @@ u16 GetEvolutionTargetSpecies(struct Pokemon *mon, enum EvolutionMode mode, u16 
                 if (evolutionItem == EVO_SCRIPT_TRIGGER_DMG
                     && currentHp != 0
                     && (GetMonData(mon, MON_DATA_MAX_HP, NULL) - currentHp >= evolutions[i].param))
-                    targetSpecies = evolutions[i].targetSpecies;
+                    conditionsMet = TRUE;
                 break;
             }
             case EVO_DARK_SCROLL:
                 if (evolutionItem == EVO_DARK_SCROLL)
-                    targetSpecies = evolutions[i].targetSpecies;
+                    conditionsMet = TRUE;
                 break;
             case EVO_WATER_SCROLL:
                 if (evolutionItem == EVO_WATER_SCROLL)
-                    targetSpecies = evolutions[i].targetSpecies;
+                    conditionsMet = TRUE;
+                break;
+            }
+
+            // Check for additional conditions (only if the primary method passes). Skips if there's no additional conditions.
+            for (j = 0; conditionsMet == TRUE && evolutions[i].params != NULL && evolutions[i].params[j].condition != CONDITIONS_END; j++)
+            {
+                u32 currentCondition = FALSE;
+                switch(evolutions[i].params[j].condition)
+                {
+                case IF_GENDER:
+                    if (evolutions[i].params[j].arg == GetMonGender(mon))
+                        currentCondition = TRUE;
+                    break;
+                }
+                if (currentCondition == FALSE)
+                    conditionsMet = FALSE;
+            }
+
+            if (conditionsMet)
+            {
+                // All checks passed, so stop checking the rest of the evolutions.
+                // This is different from vanilla where the loop continues.
+                // If you have overlapping evolutions, put the ones you want to happen first on top of the list.
+                targetSpecies = evolutions[i].targetSpecies;
                 break;
             }
         }

@@ -245,6 +245,11 @@
 
 #define EVOLUTIONS_END                    0xFFFF // Not an actual evolution, used to mark the end of an evolution array.
 
+enum EvolutionConditions {
+    IF_GENDER,                           // Pokémon is of specific gender
+    CONDITIONS_END
+};
+
 enum EvolutionMethods {
     EVO_NONE,                            // Not an actual evolution, used to generate offspring that can't evolve into the specified species, like regional forms.
     EVO_FRIENDSHIP,                      // Pokémon levels up with friendship ≥ 220
@@ -262,8 +267,6 @@ enum EvolutionMethods {
     EVO_LEVEL_NINJASK,                   // Pokémon reaches the specified level (special value for Ninjask)
     EVO_LEVEL_SHEDINJA,                  // Pokémon reaches the specified level (special value for Shedinja)
     EVO_BEAUTY,                          // Pokémon levels up with beauty ≥ specified value
-    EVO_LEVEL_FEMALE,                    // Pokémon reaches the specified level, is female
-    EVO_LEVEL_MALE,                      // Pokémon reaches the specified level, is male
     EVO_LEVEL_NIGHT,                     // Pokémon reaches the specified level, is night
     EVO_LEVEL_DAY,                       // Pokémon reaches the specified level, is day
     EVO_LEVEL_DUSK,                      // Pokémon reaches the specified level, is dusk (5-6 P.M)
@@ -272,8 +275,6 @@ enum EvolutionMethods {
     EVO_MOVE,                            // Pokémon levels up, knows specified move
     EVO_FRIENDSHIP_MOVE_TYPE,            // Pokémon levels up with friendship ≥ 220, knows move with specified type
     EVO_MAPSEC,                          // Pokémon levels up on specified mapsec
-    EVO_ITEM_MALE,                       // specified item is used on a male Pokémon
-    EVO_ITEM_FEMALE,                     // specified item is used on a female Pokémon
     EVO_LEVEL_RAIN,                      // Pokémon reaches the specified level during rain in the overworld
     EVO_SPECIFIC_MON_IN_PARTY,           // Pokémon levels up with a specified Pokémon in party
     EVO_LEVEL_DARK_TYPE_MON_IN_PARTY,    // Pokémon reaches the specified level with a Dark Type Pokémon in party
@@ -294,8 +295,7 @@ enum EvolutionMethods {
     EVO_LEVEL_FAMILY_OF_THREE,           // Pokémon reaches the specified level in battle with a personality value with a modulus of 0
     EVO_LEVEL_FAMILY_OF_FOUR,            // Pokémon reaches the specified level in battle with a personality value with a modulus of 1-99
     EVO_USE_MOVE_TWENTY_TIMES,           // Pokémon levels up after having used a move for at least 20 times
-    EVO_RECOIL_DAMAGE_MALE,              // Pokémon levels up after having suffered specified amount of non-fainting recoil damage as a male
-    EVO_RECOIL_DAMAGE_FEMALE,            // Pokémon levels up after having suffered specified amount of non-fainting recoil damage as a female
+    EVO_RECOIL_DAMAGE,                   // Pokémon levels up after having suffered specified amount of non-fainting recoil damage
     EVO_ITEM_COUNT_999,                  // Pokémon levels up after trainer has collected 999 of a specific item
     EVO_DEFEAT_THREE_WITH_ITEM,          // Pokémon levels up after having defeat 3 Pokémon of the same species holding the specified item
     EVO_OVERWORLD_STEPS,                 // Pokémon levels up after having taken a specific amount of steps in the overworld
