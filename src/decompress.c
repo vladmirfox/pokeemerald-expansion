@@ -304,6 +304,7 @@ void DecompressDataWram(const u32 *src, void *dest)
             LZ77UnCompWram(src, dest);
             break;
         default:
+            DebugPrintf("%u: %u %u", header.mode, header.loSize, header.symSize);
             SmolDecompressData(&header, &src[2], dest);
     }
 }

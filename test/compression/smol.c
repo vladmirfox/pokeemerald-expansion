@@ -184,3 +184,33 @@ TEST("Compression test: complex battle sprite")
 
     Free(compBuffer);
 }
+
+TEST("Compression test: Gossifleur")
+{
+    static const u32 origFile[] = INCBIN_U32("test/compression/gossifleur.4bpp");
+    static const u32 compFile[] = INCBIN_U32("test/compression/gossifleur.4bpp.smol");
+    u32 imageSize = GetDecompressedDataSize(compFile);
+    u32 *compBuffer = Alloc(imageSize);
+    CycleCountStart();
+    LZDecompressWram(compFile, compBuffer);
+    u32 timeTaken = CycleCountEnd();
+    DebugPrintf("Gossifleur: %u", timeTaken);
+
+    u32 val1 = 0;
+    u32 val2 = 0;
+    bool32 areEqual = TRUE;
+    for (u32 i = 0; i < imageSize/4; i++)
+    {
+        val1 = origFile[i];
+        val2 = compBuffer[i];
+        if (val1 != val2)
+        {
+            areEqual = FALSE;
+            break;
+        }
+    }
+
+    EXPECT_EQ(areEqual, TRUE);
+
+    Free(compBuffer);
+}
