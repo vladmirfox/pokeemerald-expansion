@@ -247,6 +247,8 @@
 
 enum EvolutionConditions {
     IF_GENDER,                          // Pokémon is of specific gender.
+    IF_TIME,                            // Is the specific time of day.
+    IF_NOT_TIME,                        // Is NOT the specific time of day.
     IF_MIN_FRIENDSHIP,                  // Pokémon has the defined amount of Friendship.
     IF_ATK_GT_DEF,                      // Pokémon's Attack is greater than its Defense stat.
     IF_ATK_EQ_DEF,                      // Pokémon's Attack is equal to its Defense stat.
@@ -265,11 +267,6 @@ enum EvolutionMethods {
     EVO_LEVEL_NINJASK,                   // Pokémon reaches the specified level (special value for Ninjask)
     EVO_LEVEL_SHEDINJA,                  // Pokémon reaches the specified level (special value for Shedinja)
     EVO_BEAUTY,                          // Pokémon levels up with beauty ≥ specified value
-    EVO_LEVEL_NIGHT,                     // Pokémon reaches the specified level, is night
-    EVO_LEVEL_DAY,                       // Pokémon reaches the specified level, is day
-    EVO_LEVEL_DUSK,                      // Pokémon reaches the specified level, is dusk (5-6 P.M)
-    EVO_ITEM_HOLD_DAY,                   // Pokémon levels up, holds specified item at day
-    EVO_ITEM_HOLD_NIGHT,                 // Pokémon levels up, holds specified item at night
     EVO_MOVE,                            // Pokémon levels up, knows specified move
     EVO_LEVEL_MOVE_TYPE,                 // Pokémon levels up, knows move with specified type
     EVO_MAPSEC,                          // Pokémon levels up on specified mapsec
@@ -284,9 +281,7 @@ enum EvolutionMethods {
     EVO_SCRIPT_TRIGGER_DMG,              // Pokémon has specified HP below max, then player interacts trigger
     EVO_DARK_SCROLL,                     // interacts with Scroll of Darkness
     EVO_WATER_SCROLL,                    // interacts with Scroll of Waters
-    EVO_ITEM_NIGHT,                      // specified item is used on Pokémon, is night
-    EVO_ITEM_DAY,                        // specified item is used on Pokémon, is day
-    EVO_ITEM_HOLD,                       // Pokémon levels up, holds specified item
+    EVO_LEVEL_ITEM_HOLD,                 // Pokémon levels up, holds specified item
     EVO_LEVEL_FOG,                       // Pokémon reaches the specified level during fog in the overworld
     EVO_MOVE_TWO_SEGMENT,                // Pokémon levels up, knows specified move, has a personality value with a modulus of 0
     EVO_MOVE_THREE_SEGMENT,              // Pokémon levels up, knows specified move, has a personality value with a modulus of 1-99

@@ -4468,6 +4468,14 @@ static bool32 DoesMonMeetAdditionalConditions(struct Pokemon *mon, const struct 
             if (attack < defense)
                 currentCondition = TRUE;
             break;
+        case IF_TIME:
+            if (GetTimeOfDay() == params[j].arg)
+                currentCondition = TRUE;
+            break;
+        case IF_NOT_TIME:
+            if (GetTimeOfDay() != params[j].arg)
+                currentCondition = TRUE;
+            break;
         }
         if (currentCondition == FALSE)
             return FALSE;
@@ -4533,6 +4541,7 @@ u16 GetEvolutionTargetSpecies(struct Pokemon *mon, enum EvolutionMode mode, u16 
     {
     case EVO_MODE_NORMAL:
     case EVO_MODE_BATTLE_ONLY:
+        DebugPrintf("hours:%d", gLocalTime.hours);
         for (i = 0; evolutions[i].method != EVOLUTIONS_END; i++)
         {
             bool32 conditionsMet = FALSE;
@@ -4542,32 +4551,6 @@ u16 GetEvolutionTargetSpecies(struct Pokemon *mon, enum EvolutionMode mode, u16 
             // Check main primary evolution method
             switch (evolutions[i].method)
             {
-            case EVO_LEVEL_DAY:
-                if (GetTimeOfDay() != TIME_NIGHT && evolutions[i].param <= level)
-                    conditionsMet = TRUE;
-                break;
-            case EVO_LEVEL_NIGHT:
-                if (GetTimeOfDay() == TIME_NIGHT && evolutions[i].param <= level)
-                    conditionsMet = TRUE;
-                break;
-            case EVO_ITEM_HOLD_NIGHT:
-                if (GetTimeOfDay() == TIME_NIGHT && heldItem == evolutions[i].param)
-                {
-                    conditionsMet = TRUE;
-                    consumeItem = TRUE;
-                }
-                break;
-            case EVO_ITEM_HOLD_DAY:
-                if (GetTimeOfDay() != TIME_NIGHT && heldItem == evolutions[i].param)
-                {
-                    conditionsMet = TRUE;
-                    consumeItem = TRUE;
-                }
-                break;
-            case EVO_LEVEL_DUSK:
-                if (GetTimeOfDay() == TIME_EVENING && evolutions[i].param <= level)
-                    conditionsMet = TRUE;
-                break;
             case EVO_LEVEL:
                 if (evolutions[i].param <= level)
                     conditionsMet = TRUE;
@@ -4711,7 +4694,7 @@ u16 GetEvolutionTargetSpecies(struct Pokemon *mon, enum EvolutionMode mode, u16 
                     }
                 }
                 break;
-            case EVO_ITEM_HOLD:
+            case EVO_LEVEL_ITEM_HOLD:
                 if (heldItem == evolutions[i].param)
                 {
                     conditionsMet = TRUE;
@@ -4821,14 +4804,6 @@ u16 GetEvolutionTargetSpecies(struct Pokemon *mon, enum EvolutionMode mode, u16 
             {
             case EVO_ITEM:
                 if (evolutions[i].param == evolutionItem)
-                    conditionsMet = TRUE;
-                break;
-            case EVO_ITEM_NIGHT:
-                if (GetTimeOfDay() == TIME_NIGHT && evolutions[i].param == evolutionItem)
-                    conditionsMet = TRUE;
-                break;
-            case EVO_ITEM_DAY:
-                if (GetTimeOfDay() != TIME_NIGHT && evolutions[i].param == evolutionItem)
                     conditionsMet = TRUE;
                 break;
             }
