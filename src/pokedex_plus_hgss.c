@@ -6387,7 +6387,7 @@ static u8 PrintPreEvolutions(u8 taskId, u16 species)
 static void PrintEvolutionTargetSpeciesAndMethod(u8 taskId, u16 species, u8 depth, u32 *depth_i, u32 alreadyPrintedIcons[], u32 *icon_depth_i)
 {
     int i;
-    const struct MapHeader *mapHeader;
+    //const struct MapHeader *mapHeader;
     u16 targetSpecies = 0;
 
     u16 item;
@@ -6555,11 +6555,11 @@ static void PrintEvolutionTargetSpeciesAndMethod(u8 taskId, u16 species, u8 dept
             StringCopy(gStringVar2, gTypesInfo[evolutions[i].param].name);
             StringExpandPlaceholders(gStringVar4, sText_EVO_FRIENDSHIP_MOVE_TYPE );
             break;
+        /*
         case EVO_MAPSEC:
             StringCopy(gStringVar2, gRegionMapEntries[evolutions[i].param].name);
             StringExpandPlaceholders(gStringVar4, sText_EVO_MAPSEC );
             break;
-        /*
         case EVO_ITEM_MALE:
             item = evolutions[i].param; //item
             CopyItemName(item, gStringVar2); //item
@@ -6586,11 +6586,13 @@ static void PrintEvolutionTargetSpeciesAndMethod(u8 taskId, u16 species, u8 dept
             StringCopy(gStringVar2, GetSpeciesName(evolutions[i].param)); //mon name
             StringExpandPlaceholders(gStringVar4, sText_EVO_TRADE_SPECIFIC_MON );
             break;
+        /*
         case EVO_SPECIFIC_MAP:
             mapHeader = Overworld_GetMapHeaderByGroupAndId(evolutions[i].param >> 8, evolutions[i].param & 0xFF);
             GetMapName(gStringVar2, mapHeader->regionMapSectionId, 0);
             StringExpandPlaceholders(gStringVar4, sText_EVO_SPECIFIC_MAP );
             break;
+        */
         case EVO_LEVEL_NATURE_AMPED:
             ConvertIntToDecimalStringN(gStringVar2, evolutions[i].param, STR_CONV_MODE_LEADING_ZEROS, EVO_SCREEN_LVL_DIGITS); //level
             StringExpandPlaceholders(gStringVar4, sText_EVO_LEVEL_NATURE_AMPED);

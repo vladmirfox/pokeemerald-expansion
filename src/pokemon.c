@@ -4501,6 +4501,14 @@ static bool32 DoesMonMeetAdditionalConditions(struct Pokemon *mon, const struct 
                 }
             }
             break;
+        case IF_IN_MAPSEC:
+            if (gMapHeader.regionMapSectionId == params[j].arg)
+                currentCondition = TRUE;
+            break;
+        case IF_IN_MAP:
+            if (params[j].arg == ((gSaveBlock1Ptr->location.mapGroup) << 8 | gSaveBlock1Ptr->location.mapNum))
+                currentCondition = TRUE;
+            break;
         case IF_TYPE_IN_PARTY:
             for (j = 0; j < PARTY_SIZE; j++)
             {
@@ -4544,7 +4552,7 @@ u16 GetEvolutionTargetSpecies(struct Pokemon *mon, enum EvolutionMode mode, u16 
     u32 heldItem = GetMonData(mon, MON_DATA_HELD_ITEM, 0);
     u32 level = GetMonData(mon, MON_DATA_LEVEL, 0);
     u32 beauty = GetMonData(mon, MON_DATA_BEAUTY, 0);
-    u32 holdEffect, currentMap, partnerSpecies, partnerHeldItem, partnerHoldEffect;
+    u32 holdEffect, partnerSpecies, partnerHeldItem, partnerHoldEffect;
     bool32 consumeItem = FALSE;
     u32 evolutionTracker = GetMonData(mon, MON_DATA_EVOLUTION_TRACKER, 0);
     const struct Evolution *evolutions = GetSpeciesEvolutions(species);
@@ -4631,15 +4639,6 @@ u16 GetEvolutionTargetSpecies(struct Pokemon *mon, enum EvolutionMode mode, u16 
                         break;
                     }
                 }
-                break;
-            case EVO_MAPSEC:
-                if (gMapHeader.regionMapSectionId == evolutions[i].param)
-                    conditionsMet = TRUE;
-                break;
-            case EVO_SPECIFIC_MAP:
-                currentMap = ((gSaveBlock1Ptr->location.mapGroup) << 8 | gSaveBlock1Ptr->location.mapNum);
-                if (currentMap == evolutions[i].param)
-                    conditionsMet = TRUE;
                 break;
             case EVO_LEVEL_NATURE_AMPED:
                 if (evolutions[i].param <= level)

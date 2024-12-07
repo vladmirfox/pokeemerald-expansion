@@ -255,11 +255,13 @@ enum EvolutionConditions {
     IF_ATK_EQ_DEF,                      // Pokémon's Attack is equal to its Defense stat.
     IF_ATK_LT_DEF,                      // Pokémon's Attack is lower than its Defense stat.
     // Gen 3
-    IF_PID_UPPER_MODULO_10_GT,          // The Pokémon's personality value's modulo by 10 is greater than the defined value.
-    IF_PID_UPPER_MODULO_10_EQ,          // The Pokémon's personality value's modulo by 10 is equal than the defined value.
-    IF_PID_UPPER_MODULO_10_LT,          // The Pokémon's personality value's modulo by 10 is lower than the defined value.
+    IF_PID_UPPER_MODULO_10_GT,          // The Pokémon's upper personality value's modulo by 10 is greater than the defined value.
+    IF_PID_UPPER_MODULO_10_EQ,          // The Pokémon's upper personality value's modulo by 10 is equal than the defined value.
+    IF_PID_UPPER_MODULO_10_LT,          // The Pokémon's upper personality value's modulo by 10 is lower than the defined value.
     // Gen 4
     IF_SPECIES_IN_PARTY,                // The party contains a Pokémon of the specified species.
+    IF_IN_MAP,                          // It's in the specific map.
+    IF_IN_MAPSEC,                       // It's in the specific map sector.
     // Gen 6
     IF_TYPE_IN_PARTY,                   // The party contains a Pokémon of the specified type.
     IF_WEATHER,                         // It is the specific weather in the current map.
@@ -281,9 +283,7 @@ enum EvolutionMethods {
     EVO_BEAUTY,                          // Pokémon levels up with beauty ≥ specified value
     EVO_MOVE,                            // Pokémon levels up, knows specified move
     EVO_LEVEL_MOVE_TYPE,                 // Pokémon levels up, knows move with specified type
-    EVO_MAPSEC,                          // Pokémon levels up on specified mapsec
     EVO_TRADE_SPECIFIC_MON,              // Pokémon is traded for a specified Pokémon
-    EVO_SPECIFIC_MAP,                    // Pokémon levels up on specified map
     EVO_LEVEL_NATURE_AMPED,              // Pokémon reaches the specified level, it has a Hardy, Brave, Adamant, Naughty, Docile, Impish, Lax, Hasty, Jolly, Naive, Rash, Sassy, or Quirky nature.
     EVO_LEVEL_NATURE_LOW_KEY,            // Pokémon reaches the specified level, it has a Lonely, Bold, Relaxed, Timid, Serious, Modest, Mild, Quiet, Bashful, Calm, Gentle, or Careful nature.
     EVO_CRITICAL_HITS,                   // Pokémon performs specified number of critical hits in one battle
