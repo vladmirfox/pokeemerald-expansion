@@ -4443,8 +4443,8 @@ u16 GetEvolutionTargetSpecies(struct Pokemon *mon, enum EvolutionMode mode, u16 
     u16 species = GetMonData(mon, MON_DATA_SPECIES, 0);
     u16 heldItem = GetMonData(mon, MON_DATA_HELD_ITEM, 0);
     u32 personality = GetMonData(mon, MON_DATA_PERSONALITY, 0);
-    u8 level;
-    u16 friendship;
+    u8 level = GetMonData(mon, MON_DATA_LEVEL, 0);
+    u16 friendship = GetMonData(mon, MON_DATA_FRIENDSHIP, 0);
     u8 beauty = GetMonData(mon, MON_DATA_BEAUTY, 0);
     u16 upperPersonality = personality >> 16;
     u32 holdEffect, currentMap, partnerSpecies, partnerHeldItem, partnerHoldEffect;
@@ -4495,9 +4495,6 @@ u16 GetEvolutionTargetSpecies(struct Pokemon *mon, enum EvolutionMode mode, u16 
     {
     case EVO_MODE_NORMAL:
     case EVO_MODE_BATTLE_ONLY:
-        level = GetMonData(mon, MON_DATA_LEVEL, 0);
-        friendship = GetMonData(mon, MON_DATA_FRIENDSHIP, 0);
-
         for (i = 0; evolutions[i].method != EVOLUTIONS_END; i++)
         {
             bool32 conditionsMet = FALSE;
@@ -4507,20 +4504,8 @@ u16 GetEvolutionTargetSpecies(struct Pokemon *mon, enum EvolutionMode mode, u16 
             // Check main primary evolution method
             switch (evolutions[i].method)
             {
-            case EVO_FRIENDSHIP:
-                if (friendship >= FRIENDSHIP_EVO_THRESHOLD)
-                    conditionsMet = TRUE;
-                break;
-            case EVO_FRIENDSHIP_DAY:
-                if (GetTimeOfDay() != TIME_NIGHT && friendship >= FRIENDSHIP_EVO_THRESHOLD)
-                    conditionsMet = TRUE;
-                break;
             case EVO_LEVEL_DAY:
                 if (GetTimeOfDay() != TIME_NIGHT && evolutions[i].param <= level)
-                    conditionsMet = TRUE;
-                break;
-            case EVO_FRIENDSHIP_NIGHT:
-                if (GetTimeOfDay() == TIME_NIGHT && friendship >= FRIENDSHIP_EVO_THRESHOLD)
                     conditionsMet = TRUE;
                 break;
             case EVO_LEVEL_NIGHT:
@@ -4600,16 +4585,13 @@ u16 GetEvolutionTargetSpecies(struct Pokemon *mon, enum EvolutionMode mode, u16 
                 if (MonKnowsMove(mon, evolutions[i].param) && (personality % 100) == 0)
                     conditionsMet = TRUE;
                 break;
-            case EVO_FRIENDSHIP_MOVE_TYPE:
-                if (friendship >= FRIENDSHIP_EVO_THRESHOLD)
+            case EVO_LEVEL_MOVE_TYPE:
+                for (j = 0; j < MAX_MON_MOVES; j++)
                 {
-                    for (j = 0; j < MAX_MON_MOVES; j++)
+                    if (gMovesInfo[GetMonData(mon, MON_DATA_MOVE1 + j, NULL)].type == evolutions[i].param)
                     {
-                        if (gMovesInfo[GetMonData(mon, MON_DATA_MOVE1 + j, NULL)].type == evolutions[i].param)
-                        {
-                            conditionsMet = TRUE;
-                            break;
-                        }
+                        conditionsMet = TRUE;
+                        break;
                     }
                 }
                 break;
@@ -4741,6 +4723,10 @@ u16 GetEvolutionTargetSpecies(struct Pokemon *mon, enum EvolutionMode mode, u16 
                     if (evolutions[i].params[j].arg == GetMonGender(mon))
                         currentCondition = TRUE;
                     break;
+                case IF_MIN_FRIENDSHIP:
+                    if (friendship >= evolutions[i].params[j].arg)
+                        currentCondition = TRUE;
+                    break;
                 }
                 if (currentCondition == FALSE)
                     conditionsMet = FALSE;
@@ -4757,9 +4743,6 @@ u16 GetEvolutionTargetSpecies(struct Pokemon *mon, enum EvolutionMode mode, u16 
         }
         break;
     case EVO_MODE_CANT_STOP:
-        level = GetMonData(mon, MON_DATA_LEVEL, 0);
-        friendship = GetMonData(mon, MON_DATA_FRIENDSHIP, 0);
-
         for (i = 0; evolutions[i].method != EVOLUTIONS_END; i++)
         {
             bool32 conditionsMet = FALSE;
@@ -4785,6 +4768,10 @@ u16 GetEvolutionTargetSpecies(struct Pokemon *mon, enum EvolutionMode mode, u16 
                 {
                 case IF_GENDER:
                     if (evolutions[i].params[j].arg == GetMonGender(mon))
+                        currentCondition = TRUE;
+                    break;
+                case IF_MIN_FRIENDSHIP:
+                    if (friendship >= evolutions[i].params[j].arg)
                         currentCondition = TRUE;
                     break;
                 }
@@ -4837,6 +4824,10 @@ u16 GetEvolutionTargetSpecies(struct Pokemon *mon, enum EvolutionMode mode, u16 
                     if (evolutions[i].params[j].arg == GetMonGender(mon))
                         currentCondition = TRUE;
                     break;
+                case IF_MIN_FRIENDSHIP:
+                    if (friendship >= evolutions[i].params[j].arg)
+                        currentCondition = TRUE;
+                    break;
                 }
                 if (currentCondition == FALSE)
                     conditionsMet = FALSE;
@@ -4886,6 +4877,10 @@ u16 GetEvolutionTargetSpecies(struct Pokemon *mon, enum EvolutionMode mode, u16 
                     if (evolutions[i].params[j].arg == GetMonGender(mon))
                         currentCondition = TRUE;
                     break;
+                case IF_MIN_FRIENDSHIP:
+                    if (friendship >= evolutions[i].params[j].arg)
+                        currentCondition = TRUE;
+                    break;
                 }
                 if (currentCondition == FALSE)
                     conditionsMet = FALSE;
@@ -4925,6 +4920,10 @@ u16 GetEvolutionTargetSpecies(struct Pokemon *mon, enum EvolutionMode mode, u16 
                 {
                 case IF_GENDER:
                     if (evolutions[i].params[j].arg == GetMonGender(mon))
+                        currentCondition = TRUE;
+                    break;
+                case IF_MIN_FRIENDSHIP:
+                    if (friendship >= evolutions[i].params[j].arg)
                         currentCondition = TRUE;
                     break;
                 }
@@ -4979,6 +4978,10 @@ u16 GetEvolutionTargetSpecies(struct Pokemon *mon, enum EvolutionMode mode, u16 
                 {
                 case IF_GENDER:
                     if (evolutions[i].params[j].arg == GetMonGender(mon))
+                        currentCondition = TRUE;
+                    break;
+                case IF_MIN_FRIENDSHIP:
+                    if (friendship >= evolutions[i].params[j].arg)
                         currentCondition = TRUE;
                     break;
                 }

@@ -246,15 +246,13 @@
 #define EVOLUTIONS_END                    0xFFFF // Not an actual evolution, used to mark the end of an evolution array.
 
 enum EvolutionConditions {
-    IF_GENDER,                           // Pokémon is of specific gender
+    IF_GENDER,                          // Pokémon is of specific gender
+    IF_MIN_FRIENDSHIP,                  // Pokémon has the defined amount of Friendship
     CONDITIONS_END
 };
 
 enum EvolutionMethods {
     EVO_NONE,                            // Not an actual evolution, used to generate offspring that can't evolve into the specified species, like regional forms.
-    EVO_FRIENDSHIP,                      // Pokémon levels up with friendship ≥ 220
-    EVO_FRIENDSHIP_DAY,                  // Pokémon levels up during the day with friendship ≥ 220
-    EVO_FRIENDSHIP_NIGHT,                // Pokémon levels up at night with friendship ≥ 220
     EVO_LEVEL,                           // Pokémon reaches the specified level
     EVO_TRADE,                           // Pokémon is traded
     EVO_TRADE_ITEM,                      // Pokémon is traded while it's holding the specified item
@@ -273,7 +271,7 @@ enum EvolutionMethods {
     EVO_ITEM_HOLD_DAY,                   // Pokémon levels up, holds specified item at day
     EVO_ITEM_HOLD_NIGHT,                 // Pokémon levels up, holds specified item at night
     EVO_MOVE,                            // Pokémon levels up, knows specified move
-    EVO_FRIENDSHIP_MOVE_TYPE,            // Pokémon levels up with friendship ≥ 220, knows move with specified type
+    EVO_LEVEL_MOVE_TYPE,                 // Pokémon levels up, knows move with specified type
     EVO_MAPSEC,                          // Pokémon levels up on specified mapsec
     EVO_LEVEL_RAIN,                      // Pokémon reaches the specified level during rain in the overworld
     EVO_SPECIFIC_MON_IN_PARTY,           // Pokémon levels up with a specified Pokémon in party

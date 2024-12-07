@@ -6452,6 +6452,7 @@ static void PrintEvolutionTargetSpeciesAndMethod(u8 taskId, u16 species, u8 dept
 
         switch (evolutions[i].method)
         {
+        /*
         case EVO_FRIENDSHIP:
             ConvertIntToDecimalStringN(gStringVar2, 220, STR_CONV_MODE_LEADING_ZEROS, 3); //friendship value
             StringExpandPlaceholders(gStringVar4, sText_EVO_FRIENDSHIP );
@@ -6462,6 +6463,7 @@ static void PrintEvolutionTargetSpeciesAndMethod(u8 taskId, u16 species, u8 dept
         case EVO_FRIENDSHIP_NIGHT:
             StringExpandPlaceholders(gStringVar4, sText_EVO_FRIENDSHIP_NIGHT );
             break;
+        */
         case EVO_LEVEL:
             ConvertIntToDecimalStringN(gStringVar2, evolutions[i].param, STR_CONV_MODE_LEADING_ZEROS, EVO_SCREEN_LVL_DIGITS); //level
             StringExpandPlaceholders(gStringVar4, sText_EVO_LEVEL );
@@ -6547,7 +6549,7 @@ static void PrintEvolutionTargetSpeciesAndMethod(u8 taskId, u16 species, u8 dept
             StringCopy(gStringVar2, GetMoveName(evolutions[i].param));
             StringExpandPlaceholders(gStringVar4, sText_EVO_MOVE );
             break;
-        case EVO_FRIENDSHIP_MOVE_TYPE:
+        case EVO_LEVEL_MOVE_TYPE:
             StringCopy(gStringVar2, gTypesInfo[evolutions[i].param].name);
             StringExpandPlaceholders(gStringVar4, sText_EVO_FRIENDSHIP_MOVE_TYPE );
             break;
