@@ -422,6 +422,7 @@ __attribute__((target("arm"))) __attribute__((noinline)) void SwitchToArmCallLOt
     decodeFunction(data, stuff, maskTable);
 }
 
+// fastest in IWRAM, all masks are assigned separately, because we don't want to waste time on memset
 static inline void SetMaskTable(u8 *maskTable)
 {
     maskTable[0] = 0;
@@ -452,10 +453,7 @@ void DecodeLOtANS(const u32 *data, const u32 *pFreqs, u8 *resultVec, u32 count)
     u32 funcBuffer[200];
 
     CopyFuncToIwram(funcBuffer, DecodeLOtANSLoop, SwitchToArmCallLOtANS);
-
-    void (*decodeFunction)(const u32 *data, struct DecodeStuff *stuff, u8 *maskTable) = ((void *) funcBuffer) + 0;
-
-    SwitchToArmCallLOtANS(data, &stuff, maskTable, decodeFunction);
+    SwitchToArmCallLOtANS(data, &stuff, maskTable, (void *) funcBuffer);
 }
 
 void DecodeSymtANS(const u32 *data, const u32 *pFreqs, u16 *resultVec, u32 count)
@@ -565,7 +563,6 @@ void DecodeSymDeltatANS(const u32 *data, const u32 *pFreqs, u16 *resultVec, u32 
     u32 *symbolTable = sMemoryAllocated + (TANS_TABLE_SIZE*sizeof(struct DecodeYK));
     BuildDecompressionTable(pFreqs, ykTable, symbolTable);
 
-    // fastest in IWRAM, all masks are assigned separately, because we don't want to waste time on memset
     u8 maskTable[8];
     SetMaskTable(maskTable);
 
@@ -578,10 +575,7 @@ void DecodeSymDeltatANS(const u32 *data, const u32 *pFreqs, u16 *resultVec, u32 
     u32 funcBuffer[200];
 
     CopyFuncToIwram(funcBuffer, DecodeSymDeltatANSLoop, SwitchToArmCallSymDeltaANS);
-
-    void (*decodeFunction)(const u32 *data, struct DecodeStuff *stuff, u8 *maskTable) = ((void *) funcBuffer) + 0;
-
-    SwitchToArmCallSymDeltaANS(data, &stuff, maskTable, decodeFunction);
+    SwitchToArmCallSymDeltaANS(data, &stuff, maskTable, (void *) funcBuffer);
 }
 
 __attribute__((target("arm"))) __attribute__((noinline)) void DecodeInstructions(u32 headerLoSize, u8 *loVec, u16 *symVec, void *dest)
@@ -641,14 +635,12 @@ __attribute__((target("arm"))) __attribute__((noinline)) void SwitchToArmCallDec
     decodeFunction(headerLoSize, loVec, symVec, dest);
 }
 
-ALIGNED(4) void DecodeInstructionsIwram(u32 headerLoSize, u8 *loVec, u16 *symVec, void *dest)
+void DecodeInstructionsIwram(u32 headerLoSize, u8 *loVec, u16 *symVec, void *dest)
 {
     u32 funcBuffer[200];
-    CopyFuncToIwram(funcBuffer, DecodeInstructions, SwitchToArmCallDecodeInstructions);
 
-    void (*decodeFunction)(u32 headerLoSize, u8 *loVec, u16 *symVec, void *dest) = ((void *) funcBuffer);
-    SwitchToArmCallDecodeInstructions(headerLoSize, loVec, symVec, dest, decodeFunction);
-    //decodeFunction(headerLoSize, loVec, symVec, dest);
+    CopyFuncToIwram(funcBuffer, DecodeInstructions, SwitchToArmCallDecodeInstructions);
+    SwitchToArmCallDecodeInstructions(headerLoSize, loVec, symVec, dest, (void *) funcBuffer);
 }
 
 void SmolDecompressData(const struct CompressionHeader *header, const u32 *data, void *dest)
