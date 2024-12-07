@@ -650,8 +650,6 @@ void SmolDecompressData(const struct SmolHeader *header, const u32 *data, void *
         return;
     u8 *leftoverPos = (u8 *)data;
 
-    sReadIndex = 0;
-
     sCurrState = header->initialState;
     // Allocate also for ykTable and symbolTable
     u32 headerLoSize = header->loSize;
@@ -665,10 +663,10 @@ void SmolDecompressData(const struct SmolHeader *header, const u32 *data, void *
     bool32 symEncoded = isModeSymEncoded(header->mode);
     bool32 symDelta = isModeSymDelta(header->mode);
 
-
     const u32 *pLoFreqs;
     const u32 *pSymFreqs;
 
+    sReadIndex = 0;
     switch (header->mode)
     {
         case ENCODE_LO:
