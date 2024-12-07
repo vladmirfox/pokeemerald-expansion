@@ -254,11 +254,19 @@ enum EvolutionConditions {
     IF_ATK_GT_DEF,                      // Pokémon's Attack is greater than its Defense stat.
     IF_ATK_EQ_DEF,                      // Pokémon's Attack is equal to its Defense stat.
     IF_ATK_LT_DEF,                      // Pokémon's Attack is lower than its Defense stat.
+    // Gen 3
+    IF_PID_UPPER_MODULO_10_GT,          // The Pokémon's personality value's modulo by 10 is greater than the defined value.
+    IF_PID_UPPER_MODULO_10_EQ,          // The Pokémon's personality value's modulo by 10 is equal than the defined value.
+    IF_PID_UPPER_MODULO_10_LT,          // The Pokémon's personality value's modulo by 10 is lower than the defined value.
     // Gen 4
     IF_SPECIES_IN_PARTY,                // The party contains a Pokémon of the specified species.
     // Gen 6
     IF_TYPE_IN_PARTY,                   // The party contains a Pokémon of the specified type.
     IF_WEATHER,                         // It is the specific weather in the current map.
+    // Gen 9
+    IF_PID_MODULO_100_GT,               // The Pokémon's personality value's modulo by 100 is greater than the defined value.
+    IF_PID_MODULO_100_EQ,               // The Pokémon's personality value's modulo by 100 is equal than the defined value.
+    IF_PID_MODULO_100_LT,               // The Pokémon's personality value's modulo by 100 is lower than the defined value.
     CONDITIONS_END
 };
 
@@ -268,8 +276,6 @@ enum EvolutionMethods {
     EVO_TRADE,                           // Pokémon is traded
     EVO_TRADE_ITEM,                      // Pokémon is traded while it's holding the specified item
     EVO_ITEM,                            // specified item is used on Pokémon
-    EVO_LEVEL_SILCOON,                   // Pokémon reaches the specified level with a Silcoon personality value
-    EVO_LEVEL_CASCOON,                   // Pokémon reaches the specified level with a Cascoon personality value
     EVO_LEVEL_NINJASK,                   // Pokémon reaches the specified level (special value for Ninjask)
     EVO_LEVEL_SHEDINJA,                  // Pokémon reaches the specified level (special value for Shedinja)
     EVO_BEAUTY,                          // Pokémon levels up with beauty ≥ specified value
@@ -285,10 +291,7 @@ enum EvolutionMethods {
     EVO_DARK_SCROLL,                     // interacts with Scroll of Darkness
     EVO_WATER_SCROLL,                    // interacts with Scroll of Waters
     EVO_LEVEL_ITEM_HOLD,                 // Pokémon levels up, holds specified item
-    EVO_MOVE_TWO_SEGMENT,                // Pokémon levels up, knows specified move, has a personality value with a modulus of 0
-    EVO_MOVE_THREE_SEGMENT,              // Pokémon levels up, knows specified move, has a personality value with a modulus of 1-99
-    EVO_LEVEL_FAMILY_OF_THREE,           // Pokémon reaches the specified level in battle with a personality value with a modulus of 0
-    EVO_LEVEL_FAMILY_OF_FOUR,            // Pokémon reaches the specified level in battle with a personality value with a modulus of 1-99
+    EVO_LEVEL_BATTLE_ONLY,               // Pokémon reaches the specified level, in battle only
     EVO_USE_MOVE_TWENTY_TIMES,           // Pokémon levels up after having used a move for at least 20 times
     EVO_RECOIL_DAMAGE,                   // Pokémon levels up after having suffered specified amount of non-fainting recoil damage
     EVO_ITEM_COUNT_999,                  // Pokémon levels up after trainer has collected 999 of a specific item

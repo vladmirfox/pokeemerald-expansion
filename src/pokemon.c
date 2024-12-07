@@ -4442,6 +4442,8 @@ static bool32 DoesMonMeetAdditionalConditions(struct Pokemon *mon, const struct 
     u32 friendship = GetMonData(mon, MON_DATA_FRIENDSHIP, 0);
     u32 attack = GetMonData(mon, MON_DATA_ATK, 0);
     u32 defense = GetMonData(mon, MON_DATA_DEF, 0);
+    u32 personality = GetMonData(mon, MON_DATA_PERSONALITY, 0);
+    u16 upperPersonality = personality >> 16;
     u32 weather = GetCurrentWeather();
     // Check for additional conditions (only if the primary method passes). Skips if there's no additional conditions.
     for (j = 0; params != NULL && params[j].condition != CONDITIONS_END; j++)
@@ -4477,6 +4479,18 @@ static bool32 DoesMonMeetAdditionalConditions(struct Pokemon *mon, const struct 
             if (GetTimeOfDay() != params[j].arg)
                 currentCondition = TRUE;
             break;
+        case IF_PID_UPPER_MODULO_10_GT:
+            if ((upperPersonality % 10) > params[j].arg)
+                currentCondition = TRUE;
+            break;
+        case IF_PID_UPPER_MODULO_10_EQ:
+            if ((upperPersonality % 10) == params[j].arg)
+                currentCondition = TRUE;
+            break;
+        case IF_PID_UPPER_MODULO_10_LT:
+            if ((upperPersonality % 10) < params[j].arg)
+                currentCondition = TRUE;
+            break;
         case IF_SPECIES_IN_PARTY:
             for (j = 0; j < PARTY_SIZE; j++)
             {
@@ -4491,7 +4505,8 @@ static bool32 DoesMonMeetAdditionalConditions(struct Pokemon *mon, const struct 
             for (j = 0; j < PARTY_SIZE; j++)
             {
                 u16 currSpecies = GetMonData(&gPlayerParty[j], MON_DATA_SPECIES, NULL);
-                if (gSpeciesInfo[currSpecies].types[0] == params[j].arg || gSpeciesInfo[currSpecies].types[1] == params[j].arg)
+                if (gSpeciesInfo[currSpecies].types[0] == params[j].arg
+                 || gSpeciesInfo[currSpecies].types[1] == params[j].arg)
                 {
                     currentCondition = TRUE;
                     break;
@@ -4500,6 +4515,18 @@ static bool32 DoesMonMeetAdditionalConditions(struct Pokemon *mon, const struct 
             break;
         case IF_WEATHER:
             if (weather == params[j].arg)
+                currentCondition = TRUE;
+            break;
+        case IF_PID_MODULO_100_GT:
+            if ((personality % 100) > params[j].arg)
+                currentCondition = TRUE;
+            break;
+        case IF_PID_MODULO_100_EQ:
+            if ((personality % 100) == params[j].arg)
+                currentCondition = TRUE;
+            break;
+        case IF_PID_MODULO_100_LT:
+            if ((personality % 100) < params[j].arg)
                 currentCondition = TRUE;
             break;
         }
@@ -4515,10 +4542,8 @@ u16 GetEvolutionTargetSpecies(struct Pokemon *mon, enum EvolutionMode mode, u16 
     u32 targetSpecies = SPECIES_NONE;
     u32 species = GetMonData(mon, MON_DATA_SPECIES, 0);
     u32 heldItem = GetMonData(mon, MON_DATA_HELD_ITEM, 0);
-    u32 personality = GetMonData(mon, MON_DATA_PERSONALITY, 0);
     u32 level = GetMonData(mon, MON_DATA_LEVEL, 0);
     u32 beauty = GetMonData(mon, MON_DATA_BEAUTY, 0);
-    u16 upperPersonality = personality >> 16;
     u32 holdEffect, currentMap, partnerSpecies, partnerHeldItem, partnerHoldEffect;
     bool32 consumeItem = FALSE;
     u32 evolutionTracker = GetMonData(mon, MON_DATA_EVOLUTION_TRACKER, 0);
@@ -4581,24 +4606,12 @@ u16 GetEvolutionTargetSpecies(struct Pokemon *mon, enum EvolutionMode mode, u16 
                 if (evolutions[i].param <= level)
                     conditionsMet = TRUE;
                 break;
-            case EVO_LEVEL_SILCOON:
-                if (evolutions[i].param <= level && (upperPersonality % 10) <= 4)
-                    conditionsMet = TRUE;
-                break;
-            case EVO_LEVEL_CASCOON:
-                if (evolutions[i].param <= level && (upperPersonality % 10) > 4)
-                    conditionsMet = TRUE;
-                break;
             case EVO_LEVEL_NINJASK:
                 if (evolutions[i].param <= level)
                     conditionsMet = TRUE;
                 break;
-            case EVO_LEVEL_FAMILY_OF_FOUR:
-                if (mode == EVO_MODE_BATTLE_ONLY && evolutions[i].param <= level && (personality % 100) != 0)
-                    conditionsMet = TRUE;
-                break;
-            case EVO_LEVEL_FAMILY_OF_THREE:
-                if (mode == EVO_MODE_BATTLE_ONLY && evolutions[i].param <= level && (personality % 100) == 0)
+            case EVO_LEVEL_BATTLE_ONLY:
+                if (mode == EVO_MODE_BATTLE_ONLY && evolutions[i].param <= level)
                     conditionsMet = TRUE;
                 break;
             case EVO_BEAUTY:
@@ -4607,14 +4620,6 @@ u16 GetEvolutionTargetSpecies(struct Pokemon *mon, enum EvolutionMode mode, u16 
                 break;
             case EVO_MOVE:
                 if (MonKnowsMove(mon, evolutions[i].param))
-                    conditionsMet = TRUE;
-                break;
-            case EVO_MOVE_TWO_SEGMENT:
-                if (MonKnowsMove(mon, evolutions[i].param) && (personality % 100) != 0)
-                    conditionsMet = TRUE;
-                break;
-            case EVO_MOVE_THREE_SEGMENT:
-                if (MonKnowsMove(mon, evolutions[i].param) && (personality % 100) == 0)
                     conditionsMet = TRUE;
                 break;
             case EVO_LEVEL_MOVE_TYPE:
@@ -4874,7 +4879,7 @@ u16 GetEvolutionTargetSpecies(struct Pokemon *mon, enum EvolutionMode mode, u16 
         break;
     }
 
-    // Pikachu, Meowth, and Eevee cannot evolve if they have the
+    // Pikachu, Meowth, Eevee and Duraludon cannot evolve if they have the
     // Gigantamax Factor. We assume that is because their evolutions
     // do not have a Gigantamax Form.
     if (GetMonData(mon, MON_DATA_GIGANTAMAX_FACTOR, NULL)
