@@ -304,7 +304,6 @@ void DecompressDataWram(const u32 *src, void *dest)
             LZ77UnCompWram(src, dest);
             break;
         default:
-            DebugPrintf("%u: %u %u", header.mode, header.loSize, header.symSize);
             SmolDecompressData(&header, &src[2], dest);
     }
 }
@@ -646,20 +645,26 @@ void DecodeInstructionsIwram(u32 headerLoSize, u8 *loVec, u16 *symVec, void *des
 
 void SmolDecompressData(const struct SmolHeader *header, const u32 *data, void *dest)
 {
+    //  This is apparently needed due to Game Freak sending bullshit down the decompression pipeline
+    if (header->loSize == 0 || header->symSize == 0)
+        return;
+    u8 *leftoverPos = (u8 *)data;
+
     sReadIndex = 0;
 
     sCurrState = header->initialState;
     // Allocate also for ykTable and symbolTable
     u32 headerLoSize = header->loSize;
     u32 headerSymSize = header->symSize;
+    u32 alignedLoSize = header->loSize % 2 == 1 ? headerLoSize + 1 : headerLoSize;
     // LoSize HAS TO go last, because it is NOT aligned
-    sMemoryAllocated = Alloc((TANS_TABLE_SIZE*sizeof(struct DecodeYK) + (TANS_TABLE_SIZE * 4)) + (headerSymSize*2) + headerLoSize);
+    sMemoryAllocated = Alloc((TANS_TABLE_SIZE*sizeof(struct DecodeYK) + (TANS_TABLE_SIZE * 4)) + (headerSymSize*2) + alignedLoSize);
     u16 *symVec = sMemoryAllocated + (TANS_TABLE_SIZE*sizeof(struct DecodeYK) + (TANS_TABLE_SIZE * 4));
     u8 *loVec = sMemoryAllocated + (TANS_TABLE_SIZE*sizeof(struct DecodeYK) + (TANS_TABLE_SIZE * 4)) + headerSymSize*2;
     bool32 loEncoded = isModeLoEncoded(header->mode);
     bool32 symEncoded = isModeSymEncoded(header->mode);
     bool32 symDelta = isModeSymDelta(header->mode);
-    u8 *leftoverPos = (u8 *)data;
+
 
     const u32 *pLoFreqs;
     const u32 *pSymFreqs;
@@ -687,6 +692,7 @@ void SmolDecompressData(const struct SmolHeader *header, const u32 *data, void *
     if (loEncoded)
     {
         DecodeLOtANS(data, pLoFreqs, loVec, headerLoSize);
+        leftoverPos += 12;
     }
     if (symEncoded)
     {
@@ -694,6 +700,7 @@ void SmolDecompressData(const struct SmolHeader *header, const u32 *data, void *
             DecodeSymDeltatANS(data, pSymFreqs, symVec, headerSymSize);
         else
             DecodeSymtANS(data, pSymFreqs, symVec, headerSymSize);
+        leftoverPos += 12;
     }
 
     if (loEncoded || symEncoded)
@@ -701,13 +708,15 @@ void SmolDecompressData(const struct SmolHeader *header, const u32 *data, void *
 
     if (symEncoded == FALSE)
     {
-        CpuCopy16(leftoverPos, symVec, headerSymSize*2);
+        DmaCopy16(3, leftoverPos, symVec, headerSymSize*2);
+        //CpuCopy16(leftoverPos, symVec, headerSymSize*2);
         leftoverPos += headerSymSize*2;
     }
 
     if (loEncoded == FALSE)
     {
-        memcpy(loVec, leftoverPos, headerLoSize);
+        DmaCopy16(3, leftoverPos, loVec, alignedLoSize);
+        //memcpy(loVec, leftoverPos, headerLoSize);
     }
 
     DecodeInstructionsIwram(headerLoSize, loVec, symVec, dest);
@@ -750,10 +759,6 @@ void LoadSpecialPokePic(void *dest, s32 species, u32 personality, bool8 isFrontP
 
     if (isFrontPic)
     {
-        //CycleCountStart();
-        //LZDecompressWram(bigTestData, &gDecompressionBuffer[0]);
-        //u32 timeTaken = CycleCountEnd();
-        //MgbaPrintf(MGBA_LOG_WARN, "LZ time: %u", timeTaken);
     #if P_GENDER_DIFFERENCES
         if (gSpeciesInfo[species].frontPicFemale != NULL && IsPersonalityFemale(species, personality))
             LZDecompressWram(gSpeciesInfo[species].frontPicFemale, dest);
