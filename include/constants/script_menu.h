@@ -124,6 +124,8 @@
 #define MULTI_TAG_MATCH_TYPE               113
 #define MULTI_BERRY_PLOT                   114
 #define MULTI_FOSSIL_MON_GIFT              115
+#define MULTI_DELTA_MACHINE_MENU           116
+#define MULTI_LAB_A_DELTAS                 117
 
 // Lilycove SS Tidal Multichoice Selections
 #define SSTIDAL_SELECTION_SLATEPORT        0

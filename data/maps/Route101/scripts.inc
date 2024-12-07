@@ -215,6 +215,10 @@ Route101_EventScript_RouteSign::
 	msgbox Route101_Text_RouteSign, MSGBOX_SIGN
 	end
 
+Route101_EventScript_NormansLabSign::
+	msgbox Route101_Text_NormansLabSign, MSGBOX_SIGN
+	end
+
 @ Route101_EventScript_BirchsBag::
 @ 	lock
 @ 	faceplayer
@@ -296,4 +300,7 @@ Route101_Text_WildPokemonInTallGrass:
 Route101_Text_RouteSign:
 	.string "ROUTE 101\n"
 	.string "{UP_ARROW} OLDALE TOWN$"
+
+Route101_Text_NormansLabSign:
+	.string "NORMAN'S LAB$"
 

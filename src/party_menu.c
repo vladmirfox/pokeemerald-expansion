@@ -7719,7 +7719,7 @@ void MoveDeleterChooseMoveToForget(void)
 void UpgradeToDeltaSpecies(void)
 {
     struct Pokemon *mon = &gPlayerParty[gSpecialVar_0x8004];
-    u16 species = GetMonData(mon, MON_DATA_SPECIES + gSpecialVar_0x8005);
+    u16 species = GetMonData(mon, MON_DATA_SPECIES);
     u8 nickname[POKEMON_NAME_LENGTH + 1];
     GetMonData(mon, MON_DATA_NICKNAME, nickname);
     StringGet_Nickname(nickname);
@@ -7764,7 +7764,6 @@ void UpgradeToDeltaSpecies(void)
             SetMonData(mon, MON_DATA_MOVE1 + i, &moveId);
             SetMonData(mon, MON_DATA_PP1 + i, &gMovesInfo[moveId].pp);
         }
-
     }
 }
 
@@ -7781,13 +7780,13 @@ u16 GetMonDeltaVersion(struct Pokemon *mon)
             break;
         case SPECIES_DUSTOX: deltaSpecies = SPECIES_DUSTOX_DELTA;
             break;
-        case SPECIES_NINCADA: deltaSpecies = SPECIES_NINCADA_DELTA;
+        case SPECIES_FEAROW: deltaSpecies = SPECIES_FEAROW_DELTA;
             break;
         case SPECIES_NINJASK: deltaSpecies = SPECIES_NINJASK_DELTA;
             break;
         case SPECIES_SHEDINJA: deltaSpecies = SPECIES_SHEDINJA_DELTA;
             break;
-        case SPECIES_SANDSHREW: deltaSpecies = SPECIES_SANDSHREW_DELTA;
+        case SPECIES_LAIRON: deltaSpecies = SPECIES_LAIRON_DELTA;
             break;
         case SPECIES_SANDSLASH: deltaSpecies = SPECIES_SANDSLASH_DELTA;
             break;

@@ -1836,3 +1836,16 @@ const u8 gText_AM[] = _("AM");
 const u8 gText_PM[] = _("PM");
 const u8 gText_Tricerachop[] = _("TRICERACHOP");
 const u8 gText_Voltrex[] = _("VOLTREX");
+
+const u8 gText_Convert[] = _("CONVERT");
+const u8 gText_Wurmple[] = _("WURMPLE");
+const u8 gText_Venonat[] = _("VENONAT");
+const u8 gText_Silcoon[] = _("SILCOON");
+const u8 gText_Whismur[] = _("WHISMUR");
+const u8 gText_Sandslash[] = _("SANDSLASH");
+const u8 gText_Dustox[] = _("DUSTOX");
+const u8 gText_Lairon[] = _("LAIRON");
+const u8 gText_Fearow[] = _("FEAROW");
+const u8 gText_Beedrill[] = _("BEEDRILL");
+const u8 gText_Shedinja[] = _("SHEDINJA");
+

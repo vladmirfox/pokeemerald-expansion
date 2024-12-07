@@ -3045,6 +3045,20 @@ extern const u8 gText_PlantBerry[];
 extern const u8 gText_Tricerachop[];
 extern const u8 gText_Voltrex[];
 
+// Delta Machine Options
+extern const u8 gText_Convert[];
+// Lab A
+extern const u8 gText_Wurmple[];
+extern const u8 gText_Venonat[];
+extern const u8 gText_Silcoon[];
+extern const u8 gText_Whismur[];
+extern const u8 gText_Sandslash[];
+extern const u8 gText_Dustox[];
+extern const u8 gText_Lairon[];
+extern const u8 gText_Fearow[];
+extern const u8 gText_Beedrill[];
+extern const u8 gText_Shedinja[];
+
 // Map name pop-up
 extern const u8 gText_AM[];
 extern const u8 gText_PM[];

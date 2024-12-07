@@ -64,8 +64,12 @@ LittlerootTown_BrendansHouse_1F_OnFrame:
 	@ State 6 modified, dad takes you to his lab to give starter
 	map_script_2 VAR_LITTLEROOT_INTRO_STATE, 6, LittlerootTown_BrendansHouse_1F_EventScript_PetalburgGymReport
 	map_script_2 VAR_LITTLEROOT_HOUSES_STATE_MAY, 1, LittlerootTown_BrendansHouse_1F_EventScript_YoureNewNeighbor
-	map_script_2 VAR_LITTLEROOT_HOUSES_STATE_MAY, 3, PlayersHouse_1F_EventScript_GetSSTicketAndSeeLatiTV
+	map_script_2 VAR_LITTLEROOT_HOUSES_STATE_MAY, 3, LittlerootTown_BrendansHouse_1F_GuardSSTicketAndLati
 	.2byte 0
+
+LittlerootTown_BrendansHouse_1F_GuardSSTicketAndLati::
+	@ goto_if_set FLAG_IS_CHAMPION, PlayersHouse_1F_EventScript_GetSSTicketAndSeeLatiTV
+	end
 
 LittlerootTown_BrendansHouse_1F_EventScript_GoUpstairsToSetClock::
 	lockall
@@ -93,7 +97,7 @@ LittlerootTown_BrendansHouse_1F_EventScript_EnterHouseMovingIn::
 LittlerootTown_BrendansHouse_1F_EventScript_PetalburgGymReport::
 	lockall
 	setvar VAR_LITTLEROOT_INTRO_STATE, 7
-	call LittlerootTown_BrendansHouse_1F_EventScript_DadTakesYouToLab
+	goto LittlerootTown_BrendansHouse_1F_EventScript_DadTakesYouToLab
 	end
 
 LittlerootTown_BrendansHouse_1F_EventScript_DadTakesYouToLab::

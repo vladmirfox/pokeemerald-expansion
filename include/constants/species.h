@@ -1632,10 +1632,10 @@
 #define SPECIES_WURMPLE_DELTA                           1524
 #define SPECIES_SILCOON_DELTA                           1525
 #define SPECIES_DUSTOX_DELTA                            1526
-#define SPECIES_NINCADA_DELTA                           1527
+#define SPECIES_FEAROW_DELTA                            1527
 #define SPECIES_NINJASK_DELTA                           1528
 #define SPECIES_SHEDINJA_DELTA                          1529
-#define SPECIES_SANDSHREW_DELTA                         1530
+#define SPECIES_LAIRON_DELTA                            1530
 #define SPECIES_SANDSLASH_DELTA                         1531
 #define SPECIES_CACNEA_DELTA                            1532
 #define SPECIES_CACTURNE_DELTA                          1533

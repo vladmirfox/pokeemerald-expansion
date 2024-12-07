@@ -784,6 +784,27 @@ static const struct MenuAction MultichoiceList_FossilMonGift[] =
     {gText_Voltrex},
 };
 
+static const struct MenuAction MultichoiceList_DeltaMachineMenu[] =
+{
+    {gText_Info},
+    {gText_Convert},
+    {gText_Exit},
+};
+
+static const struct MenuAction MultichoiceList_LabADeltas[] =
+{
+    {gText_Wurmple},
+    {gText_Venonat},
+    {gText_Silcoon},
+    {gText_Whismur},
+    {gText_Sandslash},
+    {gText_Dustox},
+    {gText_Lairon},
+    {gText_Fearow},
+    {gText_Beedrill},
+    {gText_Shedinja},
+};
+
 static const struct MenuAction MultichoiceList_Exit[] =
 {
     {gText_Exit},
@@ -913,6 +934,8 @@ static const struct MultichoiceListStruct sMultichoiceLists[] =
     [MULTI_TAG_MATCH_TYPE]             = MULTICHOICE(MultichoiceList_TagMatchType),
     [MULTI_BERRY_PLOT]                 = MULTICHOICE(MultichoiceList_BerryPlot),
     [MULTI_FOSSIL_MON_GIFT]            = MULTICHOICE(MultichoiceList_FossilMonGift),
+    [MULTI_DELTA_MACHINE_MENU]         = MULTICHOICE(MultichoiceList_DeltaMachineMenu),
+    [MULTI_LAB_A_DELTAS]               = MULTICHOICE(MultichoiceList_LabADeltas),
 };
 
 const u8 *const gStdStrings[] =
