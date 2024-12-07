@@ -4436,6 +4436,45 @@ static u32 GetGMaxTargetSpecies(u32 species)
     return SPECIES_NONE;
 }
 
+static bool32 DoesMonMeetAdditionalConditions(struct Pokemon *mon, const struct EvolutionParam *params)
+{
+    u32 j;
+    u32 friendship = GetMonData(mon, MON_DATA_FRIENDSHIP, 0);
+    u32 attack = GetMonData(mon, MON_DATA_ATK, 0);
+    u32 defense = GetMonData(mon, MON_DATA_DEF, 0);
+    // Check for additional conditions (only if the primary method passes). Skips if there's no additional conditions.
+    for (j = 0; params != NULL && params[j].condition != CONDITIONS_END; j++)
+    {
+        u32 currentCondition = FALSE;
+        switch(params[j].condition)
+        {
+        case IF_GENDER:
+            if (params[j].arg == GetMonGender(mon))
+                currentCondition = TRUE;
+            break;
+        case IF_MIN_FRIENDSHIP:
+            if (friendship >= params[j].arg)
+                currentCondition = TRUE;
+            break;
+        case IF_ATK_GT_DEF:
+            if (attack > defense)
+                currentCondition = TRUE;
+            break;
+        case IF_ATK_EQ_DEF:
+            if (attack == defense)
+                currentCondition = TRUE;
+            break;
+        case IF_ATK_LT_DEF:
+            if (attack < defense)
+                currentCondition = TRUE;
+            break;
+        }
+        if (currentCondition == FALSE)
+            return FALSE;
+    }
+    return TRUE;
+}
+
 u16 GetEvolutionTargetSpecies(struct Pokemon *mon, enum EvolutionMode mode, u16 evolutionItem, struct Pokemon *tradePartner)
 {
     int i, j;
@@ -4444,10 +4483,7 @@ u16 GetEvolutionTargetSpecies(struct Pokemon *mon, enum EvolutionMode mode, u16 
     u32 heldItem = GetMonData(mon, MON_DATA_HELD_ITEM, 0);
     u32 personality = GetMonData(mon, MON_DATA_PERSONALITY, 0);
     u32 level = GetMonData(mon, MON_DATA_LEVEL, 0);
-    u32 friendship = GetMonData(mon, MON_DATA_FRIENDSHIP, 0);
     u32 beauty = GetMonData(mon, MON_DATA_BEAUTY, 0);
-    u32 attack = GetMonData(mon, MON_DATA_ATK, 0);
-    u32 defense = GetMonData(mon, MON_DATA_DEF, 0);
     u16 upperPersonality = personality >> 16;
     u32 holdEffect, currentMap, partnerSpecies, partnerHeldItem, partnerHoldEffect;
     bool32 consumeItem = FALSE;
@@ -4700,38 +4736,7 @@ u16 GetEvolutionTargetSpecies(struct Pokemon *mon, enum EvolutionMode mode, u16 
                 break;
             }
 
-            // Check for additional conditions (only if the primary method passes). Skips if there's no additional conditions.
-            for (j = 0; conditionsMet == TRUE && evolutions[i].params != NULL && evolutions[i].params[j].condition != CONDITIONS_END; j++)
-            {
-                u32 currentCondition = FALSE;
-                switch(evolutions[i].params[j].condition)
-                {
-                case IF_GENDER:
-                    if (evolutions[i].params[j].arg == GetMonGender(mon))
-                        currentCondition = TRUE;
-                    break;
-                case IF_MIN_FRIENDSHIP:
-                    if (friendship >= evolutions[i].params[j].arg)
-                        currentCondition = TRUE;
-                    break;
-                case IF_ATK_GT_DEF:
-                    if (attack > defense)
-                        conditionsMet = TRUE;
-                    break;
-                case IF_ATK_EQ_DEF:
-                    if (attack == defense)
-                        conditionsMet = TRUE;
-                    break;
-                case IF_ATK_LT_DEF:
-                    if (attack < defense)
-                        conditionsMet = TRUE;
-                    break;
-                }
-                if (currentCondition == FALSE)
-                    conditionsMet = FALSE;
-            }
-
-            if (conditionsMet)
+            if (conditionsMet && DoesMonMeetAdditionalConditions(mon, evolutions[i].params))
             {
                 // All checks passed, so stop checking the rest of the evolutions.
                 // This is different from vanilla where the loop continues.
@@ -4759,38 +4764,7 @@ u16 GetEvolutionTargetSpecies(struct Pokemon *mon, enum EvolutionMode mode, u16 
                 break;
             }
 
-            // Check for additional conditions (only if the primary method passes). Skips if there's no additional conditions.
-            for (j = 0; conditionsMet == TRUE && evolutions[i].params != NULL && evolutions[i].params[j].condition != CONDITIONS_END; j++)
-            {
-                u32 currentCondition = FALSE;
-                switch(evolutions[i].params[j].condition)
-                {
-                case IF_GENDER:
-                    if (evolutions[i].params[j].arg == GetMonGender(mon))
-                        currentCondition = TRUE;
-                    break;
-                case IF_MIN_FRIENDSHIP:
-                    if (friendship >= evolutions[i].params[j].arg)
-                        currentCondition = TRUE;
-                    break;
-                case IF_ATK_GT_DEF:
-                    if (attack > defense)
-                        conditionsMet = TRUE;
-                    break;
-                case IF_ATK_EQ_DEF:
-                    if (attack == defense)
-                        conditionsMet = TRUE;
-                    break;
-                case IF_ATK_LT_DEF:
-                    if (attack < defense)
-                        conditionsMet = TRUE;
-                    break;
-                }
-                if (currentCondition == FALSE)
-                    conditionsMet = FALSE;
-            }
-
-            if (conditionsMet)
+            if (conditionsMet && DoesMonMeetAdditionalConditions(mon, evolutions[i].params))
             {
                 // All checks passed, so stop checking the rest of the evolutions.
                 // This is different from vanilla where the loop continues.
@@ -4825,38 +4799,7 @@ u16 GetEvolutionTargetSpecies(struct Pokemon *mon, enum EvolutionMode mode, u16 
                 break;
             }
 
-            // Check for additional conditions (only if the primary method passes). Skips if there's no additional conditions.
-            for (j = 0; conditionsMet == TRUE && evolutions[i].params != NULL && evolutions[i].params[j].condition != CONDITIONS_END; j++)
-            {
-                u32 currentCondition = FALSE;
-                switch(evolutions[i].params[j].condition)
-                {
-                case IF_GENDER:
-                    if (evolutions[i].params[j].arg == GetMonGender(mon))
-                        currentCondition = TRUE;
-                    break;
-                case IF_MIN_FRIENDSHIP:
-                    if (friendship >= evolutions[i].params[j].arg)
-                        currentCondition = TRUE;
-                    break;
-                case IF_ATK_GT_DEF:
-                    if (attack > defense)
-                        conditionsMet = TRUE;
-                    break;
-                case IF_ATK_EQ_DEF:
-                    if (attack == defense)
-                        conditionsMet = TRUE;
-                    break;
-                case IF_ATK_LT_DEF:
-                    if (attack < defense)
-                        conditionsMet = TRUE;
-                    break;
-                }
-                if (currentCondition == FALSE)
-                    conditionsMet = FALSE;
-            }
-
-            if (conditionsMet)
+            if (conditionsMet && DoesMonMeetAdditionalConditions(mon, evolutions[i].params))
             {
                 // All checks passed, so stop checking the rest of the evolutions.
                 // This is different from vanilla where the loop continues.
@@ -4890,38 +4833,7 @@ u16 GetEvolutionTargetSpecies(struct Pokemon *mon, enum EvolutionMode mode, u16 
                 break;
             }
 
-            // Check for additional conditions (only if the primary method passes). Skips if there's no additional conditions.
-            for (j = 0; conditionsMet == TRUE && evolutions[i].params != NULL && evolutions[i].params[j].condition != CONDITIONS_END; j++)
-            {
-                u32 currentCondition = FALSE;
-                switch(evolutions[i].params[j].condition)
-                {
-                case IF_GENDER:
-                    if (evolutions[i].params[j].arg == GetMonGender(mon))
-                        currentCondition = TRUE;
-                    break;
-                case IF_MIN_FRIENDSHIP:
-                    if (friendship >= evolutions[i].params[j].arg)
-                        currentCondition = TRUE;
-                    break;
-                case IF_ATK_GT_DEF:
-                    if (attack > defense)
-                        conditionsMet = TRUE;
-                    break;
-                case IF_ATK_EQ_DEF:
-                    if (attack == defense)
-                        conditionsMet = TRUE;
-                    break;
-                case IF_ATK_LT_DEF:
-                    if (attack < defense)
-                        conditionsMet = TRUE;
-                    break;
-                }
-                if (currentCondition == FALSE)
-                    conditionsMet = FALSE;
-            }
-
-            if (conditionsMet)
+            if (conditionsMet && DoesMonMeetAdditionalConditions(mon, evolutions[i].params))
             {
                 // All checks passed, so stop checking the rest of the evolutions.
                 // This is different from vanilla where the loop continues.
@@ -4947,38 +4859,7 @@ u16 GetEvolutionTargetSpecies(struct Pokemon *mon, enum EvolutionMode mode, u16 
                 break;
             }
 
-            // Check for additional conditions (only if the primary method passes). Skips if there's no additional conditions.
-            for (j = 0; conditionsMet == TRUE && evolutions[i].params != NULL && evolutions[i].params[j].condition != CONDITIONS_END; j++)
-            {
-                u32 currentCondition = FALSE;
-                switch(evolutions[i].params[j].condition)
-                {
-                case IF_GENDER:
-                    if (evolutions[i].params[j].arg == GetMonGender(mon))
-                        currentCondition = TRUE;
-                    break;
-                case IF_MIN_FRIENDSHIP:
-                    if (friendship >= evolutions[i].params[j].arg)
-                        currentCondition = TRUE;
-                    break;
-                case IF_ATK_GT_DEF:
-                    if (attack > defense)
-                        conditionsMet = TRUE;
-                    break;
-                case IF_ATK_EQ_DEF:
-                    if (attack == defense)
-                        conditionsMet = TRUE;
-                    break;
-                case IF_ATK_LT_DEF:
-                    if (attack < defense)
-                        conditionsMet = TRUE;
-                    break;
-                }
-                if (currentCondition == FALSE)
-                    conditionsMet = FALSE;
-            }
-
-            if (conditionsMet)
+            if (conditionsMet && DoesMonMeetAdditionalConditions(mon, evolutions[i].params))
             {
                 // All checks passed, so stop checking the rest of the evolutions.
                 // This is different from vanilla where the loop continues.
@@ -5017,38 +4898,7 @@ u16 GetEvolutionTargetSpecies(struct Pokemon *mon, enum EvolutionMode mode, u16 
                 break;
             }
 
-            // Check for additional conditions (only if the primary method passes). Skips if there's no additional conditions.
-            for (j = 0; conditionsMet == TRUE && evolutions[i].params != NULL && evolutions[i].params[j].condition != CONDITIONS_END; j++)
-            {
-                u32 currentCondition = FALSE;
-                switch(evolutions[i].params[j].condition)
-                {
-                case IF_GENDER:
-                    if (evolutions[i].params[j].arg == GetMonGender(mon))
-                        currentCondition = TRUE;
-                    break;
-                case IF_MIN_FRIENDSHIP:
-                    if (friendship >= evolutions[i].params[j].arg)
-                        currentCondition = TRUE;
-                    break;
-                case IF_ATK_GT_DEF:
-                    if (attack > defense)
-                        conditionsMet = TRUE;
-                    break;
-                case IF_ATK_EQ_DEF:
-                    if (attack == defense)
-                        conditionsMet = TRUE;
-                    break;
-                case IF_ATK_LT_DEF:
-                    if (attack < defense)
-                        conditionsMet = TRUE;
-                    break;
-                }
-                if (currentCondition == FALSE)
-                    conditionsMet = FALSE;
-            }
-
-            if (conditionsMet)
+            if (conditionsMet && DoesMonMeetAdditionalConditions(mon, evolutions[i].params))
             {
                 // All checks passed, so stop checking the rest of the evolutions.
                 // This is different from vanilla where the loop continues.
