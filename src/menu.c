@@ -1947,14 +1947,7 @@ void *malloc_and_decompress(const void *src, u32 *size)
     union CompressionHeader header;
     CpuCopy32(src, &header, 8);
 
-    switch (header.smol.mode)
-    {
-        case MODE_LZ77:
-            *size = header.lz77.size;
-            break;
-        default:
-            *size = header.smol.imageSize*32;
-    }
+    *size = GetDecompressedDataSize(src);
 
     ptr = Alloc(*size);
     if (ptr)

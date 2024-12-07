@@ -945,15 +945,13 @@ static void UNUSED StitchObjectsOn8x8Canvas(s32 object_size, s32 object_count, u
 
 u32 GetDecompressedDataSize(const u32 *ptr)
 {
-    const struct SmolHeader *header = (const struct SmolHeader *)ptr;
-    if (header->mode == MODE_LZ77)
+    union CompressionHeader *header = (union CompressionHeader *)ptr;
+    switch (header->smol.mode)
     {
-        const u8 *ptr8 = (const u8 *)ptr;
-        return (ptr8[3] << 16) | (ptr8[2] << 8) | (ptr8[1]);
-    }
-    else
-    {
-        return header->imageSize*32;
+        case MODE_LZ77:
+            return header->lz77.size;
+        default:
+            return header->smol.imageSize*32;
     }
 }
 
@@ -962,7 +960,7 @@ bool8 LoadCompressedSpriteSheetUsingHeap(const struct CompressedSpriteSheet *src
     struct SpriteSheet dest;
     void *buffer;
 
-    buffer = AllocZeroed(src->data[0] >> 8);
+    buffer = AllocZeroed(GetDecompressedDataSize(&src->data[0]));
     LZDecompressWram(src->data, buffer);
 
     dest.data = buffer;
@@ -979,7 +977,7 @@ bool8 LoadCompressedSpritePaletteUsingHeap(const struct CompressedSpritePalette 
     struct SpritePalette dest;
     void *buffer;
 
-    buffer = AllocZeroed(src->data[0] >> 8);
+    buffer = AllocZeroed(GetDecompressedDataSize(&src->data[0]));
     LZDecompressWram(src->data, buffer);
     dest.data = buffer;
     dest.tag = src->tag;
