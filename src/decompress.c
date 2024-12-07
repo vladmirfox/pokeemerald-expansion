@@ -282,7 +282,7 @@ void UnpackFrequencies(const u32 *packedFreqs, u32 *freqs)
 
 void DecompressDataVram(const u32 *src, void *dest)
 {
-    struct CompressionHeader header;
+    struct SmolHeader header;
     CpuCopy32(src, &header, 8);
     switch (header.mode)
     {
@@ -296,7 +296,7 @@ void DecompressDataVram(const u32 *src, void *dest)
 
 void DecompressDataWram(const u32 *src, void *dest)
 {
-    struct CompressionHeader header;
+    struct SmolHeader header;
     CpuCopy32(src, &header, 8);
     switch (header.mode)
     {
@@ -630,7 +630,7 @@ ALIGNED(4) void DecodeInstructionsIwram(u32 headerLoSize, u8 *loVec, u16 *symVec
     //decodeFunction(headerLoSize, loVec, symVec, dest);
 }
 
-void SmolDecompressData(const struct CompressionHeader *header, const u32 *data, void *dest)
+void SmolDecompressData(const struct SmolHeader *header, const u32 *data, void *dest)
 {
     sReadIndex = 0;
 
@@ -926,7 +926,7 @@ static void UNUSED StitchObjectsOn8x8Canvas(s32 object_size, s32 object_count, u
 
 u32 GetDecompressedDataSize(const u32 *ptr)
 {
-    const struct CompressionHeader *header = (const struct CompressionHeader *)ptr;
+    const struct SmolHeader *header = (const struct SmolHeader *)ptr;
     if (header->mode == MODE_LZ77)
     {
         const u8 *ptr8 = (const u8 *)ptr;

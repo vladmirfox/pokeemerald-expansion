@@ -13,7 +13,13 @@
 
 extern u8 ALIGNED(4) gDecompressionBuffer[0x4000];
 
-struct CompressionHeader {
+struct LZ77Header {
+    u32 lz77IdBits:5;
+    u32 padding:3;
+    u32 size:24;
+};
+
+struct SmolHeader {
     u32 mode:5;
     u32 imageSize:11;
     u32 symSize:15;
@@ -21,6 +27,11 @@ struct CompressionHeader {
     u32 initialState:6;
     u32 bitstreamSize:13;
     u32 loSize:13;
+};
+
+union CompressionHeader {
+    struct LZ77Header lz77;
+    struct SmolHeader smol;
 };
 
 struct SpriteSheetHeader {
@@ -55,7 +66,7 @@ void DecompressDataWram(const u32 *src, void *dest);
 //  For decompressing a single part of a multi-part spritesheet
 //void DecompressSubFrame(const u32 *src, void *dest, u32 frameId);
 
-void SmolDecompressData(const struct CompressionHeader *header, const u32 *data, void *dest);
+void SmolDecompressData(const struct SmolHeader *header, const u32 *data, void *dest);
 
 void BuildDecompressionTable(const u32 *freqs, struct DecodeYK *ykTable, u32 *symbolTable);
 
