@@ -12,7 +12,7 @@
 
 EWRAM_DATA ALIGNED(4) u8 gDecompressionBuffer[0x4000] = {0};
 
-EWRAM_INIT struct DecodeYK ykTemplate[2*TANS_TABLE_SIZE] = {
+static const struct DecodeYK sYkTemplate[2*TANS_TABLE_SIZE] = {
     [0] = {0, 0},
     [1] = {1<<6, 6},
     [2] = {2<<5, 5},
@@ -331,7 +331,7 @@ void BuildDecompressionTable(const u32 *packedFreqs, struct DecodeYK *table, u32
     {
         if (freqs[i] != 0)
         {
-            DmaCopy16(3, &ykTemplate[freqs[i]], &table[currCol], freqs[i]*sizeof(struct DecodeYK));
+            DmaCopy16(3, &sYkTemplate[freqs[i]], &table[currCol], freqs[i]*sizeof(struct DecodeYK));
             for (u32 j = 0; j < freqs[i]; j++)
                 symbolTable[currCol + j] = i;
             currCol += freqs[i];
@@ -340,7 +340,7 @@ void BuildDecompressionTable(const u32 *packedFreqs, struct DecodeYK *table, u32
         i++;
         if (freqs[i] != 0)
         {
-            DmaCopy16(3, &ykTemplate[freqs[i]], &table[currCol], freqs[i]*sizeof(struct DecodeYK));
+            DmaCopy16(3, &sYkTemplate[freqs[i]], &table[currCol], freqs[i]*sizeof(struct DecodeYK));
             for (u32 j = 0; j < freqs[i]; j++)
                 symbolTable[currCol + j] = i;
             currCol += freqs[i];
@@ -353,34 +353,41 @@ void BuildDecompressionTable(const u32 *packedFreqs, struct DecodeYK *table, u32
 static EWRAM_DATA u8 sBitIndex = 0;
 static EWRAM_DATA u32 sReadIndex = 0;
 static EWRAM_DATA u32 sCurrState = 0;
-// Order of allocated memory- ykTable, symbolTable(these go first, because are always aligned), loSize, symSize
+// Order of allocated memory- ykTable, symbolTable(these go first, because are always aligned), symSize, loSize(last, because not aligned)
 static EWRAM_DATA void *sMemoryAllocated;
 
-__attribute__((optimize("-O3"))) void DecodeLOtANS(const u32 *data, const u32 *pFreqs, u8 *resultVec, u32 count)
+struct DecodeStuff
 {
-    struct DecodeYK *ykTable = sMemoryAllocated;
-    u32 *symbolTable = sMemoryAllocated + (TANS_TABLE_SIZE*sizeof(struct DecodeYK));
-    BuildDecompressionTable(pFreqs, ykTable, symbolTable);
-    u32 currBits = data[sReadIndex];
+    void *resultVec; // u16 for SymDelta, u8 for LOtANS
+    u32 *symbolTable;
+    struct DecodeYK *ykTable;
+    u32 count;
+};
 
-    u8 maskTable[7];
-    maskTable[0] = 0;
-    maskTable[1] = 1;
-    maskTable[2] = 3;
-    maskTable[3] = 7;
-    maskTable[4] = 15;
-    maskTable[5] = 31;
-    maskTable[6] = 63;
+static inline void CopyFuncToIwram(void *funcBuffer, void *_funcStartAddress, void *_funcEndAdress)
+{
+    //u32 timerBefore = REG_TM2CNT_L | (REG_TM3CNT_L << 16u);
 
+    CpuFastCopy(_funcStartAddress, funcBuffer, _funcEndAdress - _funcStartAddress);
+
+    //u32 timerAfter = REG_TM2CNT_L | (REG_TM3CNT_L << 16u);
+    //DebugPrintf("before: %d, after: %d\n", timerBefore, timerAfter);
+}
+
+// - O3 saves cycles
+__attribute__((target("arm"))) __attribute__((noinline)) __attribute__((optimize("-O3"))) void DecodeLOtANSLoop(const u32 *data, struct DecodeStuff *stuff, u8 *maskTable)
+{
+    u32 readIndex = sReadIndex;
+    u32 currBits = data[readIndex];
     u32 bitIndex = sBitIndex;
-    for (u32 currSym = 0; currSym < count; currSym++)
+    for (u32 currSym = 0; currSym < stuff->count; currSym++)
     {
         u32 symbol = 0;
         for (u32 currNibble = 0; currNibble < 2; currNibble++)
         {
-            symbol += symbolTable[sCurrState] << (currNibble*4);
-            u32 currK = ykTable[sCurrState].kVal;
-            u32 nextState = ykTable[sCurrState].yVal;
+            symbol += stuff->symbolTable[sCurrState] << (currNibble*4);
+            u32 currK = stuff->ykTable[sCurrState].kVal;
+            u32 nextState = stuff->ykTable[sCurrState].yVal;
             //nextState += (currBits >> bitIndex) & (0xff >> (8-currK));
             nextState += (currBits >> bitIndex) & maskTable[currK];
             if (bitIndex + currK < 32)
@@ -389,24 +396,64 @@ __attribute__((optimize("-O3"))) void DecodeLOtANS(const u32 *data, const u32 *p
             }
             else if (bitIndex + currK == 32)
             {
-                sReadIndex += 1;
-                currBits = data[sReadIndex];
+                readIndex += 1;
+                currBits = data[readIndex];
                 bitIndex = 0;
             }
             else if ((bitIndex + currK) > 32)
             {
-                sReadIndex += 1;
-                currBits = data[sReadIndex];
+                readIndex += 1;
+                currBits = data[readIndex];
                 u32 remainder = bitIndex + currK - 32;
-                nextState += (data[sReadIndex] & ((1u << remainder) - 1)) << (currK - remainder);
+                nextState += (data[readIndex] & ((1u << remainder) - 1)) << (currK - remainder);
                 bitIndex = remainder;
             }
             sCurrState = nextState-64;
         }
-        resultVec[currSym] = symbol;
+        ((u8*)(stuff->resultVec))[currSym] = symbol;
     }
 
     sBitIndex = bitIndex;
+    sReadIndex = readIndex;
+}
+
+__attribute__((target("arm"))) __attribute__((noinline)) void SwitchToArmCallLOtANS(const u32 *data, struct DecodeStuff *stuff, u8 *maskTable, void (*decodeFunction)(const u32 *data, struct DecodeStuff *stuff, u8 *maskTable))
+{
+    decodeFunction(data, stuff, maskTable);
+}
+
+// fastest in IWRAM, all masks are assigned separately, because we don't want to waste time on memset
+static inline void SetMaskTable(u8 *maskTable)
+{
+    maskTable[0] = 0;
+    maskTable[1] = 1;
+    maskTable[2] = 3;
+    maskTable[3] = 7;
+    maskTable[4] = 15;
+    maskTable[5] = 31;
+    maskTable[6] = 63;
+    maskTable[7] = 0; // This mask doesn't really 'exist', but because the memory is aligned to 4 now, the compiler can generate 2 ldr/str instructions instead of strb/strh
+}
+
+void DecodeLOtANS(const u32 *data, const u32 *pFreqs, u8 *resultVec, u32 count)
+{
+    struct DecodeYK *ykTable = sMemoryAllocated;
+    u32 *symbolTable = sMemoryAllocated + (TANS_TABLE_SIZE*sizeof(struct DecodeYK));
+    BuildDecompressionTable(pFreqs, ykTable, symbolTable);
+
+    u8 maskTable[8];
+    SetMaskTable(maskTable);
+
+    struct DecodeStuff stuff;
+    stuff.resultVec = resultVec;
+    stuff.ykTable = ykTable;
+    stuff.symbolTable = symbolTable;
+    stuff.count = count;
+
+    u32 funcBuffer[200];
+
+    CopyFuncToIwram(funcBuffer, DecodeLOtANSLoop, SwitchToArmCallLOtANS);
+    SwitchToArmCallLOtANS(data, &stuff, maskTable, (void *) funcBuffer);
 }
 
 void DecodeSymtANS(const u32 *data, const u32 *pFreqs, u16 *resultVec, u32 count)
@@ -460,27 +507,8 @@ void DecodeSymtANS(const u32 *data, const u32 *pFreqs, u16 *resultVec, u32 count
     }
 }
 
-struct DecodeSymDeltaStuff
-{
-    u16 *resultVec;
-    u32 *symbolTable;
-    struct DecodeYK *ykTable;
-    u32 count;
-};
-
-static inline void CopyFuncToIwram(void *funcBuffer, void *_funcStartAddress, void *_funcEndAdress)
-{
-    u32 *funcBufferPtr = funcBuffer;
-    u32 *funcStartAddress = _funcStartAddress;
-    u32 *funcEndAddress = _funcEndAdress;
-
-    while (funcStartAddress != funcEndAddress) {
-        *(funcBufferPtr++) = *(funcStartAddress++);
-    }
-}
-
 // -O3 saves us almost 30k cycles compared to -O2
-__attribute__((target("arm"))) __attribute__((noinline)) __attribute__((optimize("-O3"))) void DecodeSymDeltatANSLoop(const u32 *data, struct DecodeSymDeltaStuff *stuff, u8 *maskTable)
+__attribute__((target("arm"))) __attribute__((noinline)) __attribute__((optimize("-O3"))) void DecodeSymDeltatANSLoop(const u32 *data, struct DecodeStuff *stuff, u8 *maskTable)
 {
     u32 readIndex = sReadIndex;
     u32 currBits = data[readIndex];
@@ -518,35 +546,27 @@ __attribute__((target("arm"))) __attribute__((noinline)) __attribute__((optimize
             }
             sCurrState = nextState - 64;
         }
-        stuff->resultVec[currSym] = symbol;
+        ((u16*)(stuff->resultVec))[currSym] = symbol;
     }
     sBitIndex = bitIndex;
     sReadIndex = readIndex;
 }
 
-__attribute__((target("arm"))) __attribute__((noinline)) void SwitchToArmCallFunc(const u32 *data, struct DecodeSymDeltaStuff *stuff, u8 *maskTable, void (*decodeFunction)(const u32 *data, struct DecodeSymDeltaStuff *stuff, u8 *maskTable))
+__attribute__((target("arm"))) __attribute__((noinline)) void SwitchToArmCallSymDeltaANS(const u32 *data, struct DecodeStuff *stuff, u8 *maskTable, void (*decodeFunction)(const u32 *data, struct DecodeStuff *stuff, u8 *maskTable))
 {
     decodeFunction(data, stuff, maskTable);
 }
 
 void DecodeSymDeltatANS(const u32 *data, const u32 *pFreqs, u16 *resultVec, u32 count)
 {
-    //void *memory = Alloc(TANS_TABLE_SIZE*sizeof(struct DecodeYK) + (TANS_TABLE_SIZE * 4));
     struct DecodeYK *ykTable = sMemoryAllocated;
     u32 *symbolTable = sMemoryAllocated + (TANS_TABLE_SIZE*sizeof(struct DecodeYK));
     BuildDecompressionTable(pFreqs, ykTable, symbolTable);
 
-    // fastest in IWRAM, all masks are assigned separately, because we don't want to waste time on memset
-    u8 maskTable[7];
-    maskTable[0] = 0;
-    maskTable[1] = 1;
-    maskTable[2] = 3;
-    maskTable[3] = 7;
-    maskTable[4] = 15;
-    maskTable[5] = 31;
-    maskTable[6] = 63;
+    u8 maskTable[8];
+    SetMaskTable(maskTable);
 
-    struct DecodeSymDeltaStuff stuff;
+    struct DecodeStuff stuff;
     stuff.resultVec = resultVec;
     stuff.ykTable = ykTable;
     stuff.symbolTable = symbolTable;
@@ -554,13 +574,8 @@ void DecodeSymDeltatANS(const u32 *data, const u32 *pFreqs, u16 *resultVec, u32 
 
     u32 funcBuffer[200];
 
-    CopyFuncToIwram(funcBuffer, DecodeSymDeltatANSLoop, SwitchToArmCallFunc);
-
-    void (*decodeFunction)(const u32 *data, struct DecodeSymDeltaStuff *stuff, u8 *maskTable) = ((void *) funcBuffer) + 0;
-
-    SwitchToArmCallFunc(data, &stuff, maskTable, decodeFunction);
-    //decodeFunction(data, stuff, maskTable);
-    //Free(memory);
+    CopyFuncToIwram(funcBuffer, DecodeSymDeltatANSLoop, SwitchToArmCallSymDeltaANS);
+    SwitchToArmCallSymDeltaANS(data, &stuff, maskTable, (void *) funcBuffer);
 }
 
 __attribute__((target("arm"))) __attribute__((noinline)) void DecodeInstructions(u32 headerLoSize, u8 *loVec, u16 *symVec, void *dest)
@@ -620,14 +635,12 @@ __attribute__((target("arm"))) __attribute__((noinline)) void SwitchToArmCallDec
     decodeFunction(headerLoSize, loVec, symVec, dest);
 }
 
-ALIGNED(4) void DecodeInstructionsIwram(u32 headerLoSize, u8 *loVec, u16 *symVec, void *dest)
+void DecodeInstructionsIwram(u32 headerLoSize, u8 *loVec, u16 *symVec, void *dest)
 {
     u32 funcBuffer[200];
-    CopyFuncToIwram(funcBuffer, DecodeInstructions, SwitchToArmCallDecodeInstructions);
 
-    void (*decodeFunction)(u32 headerLoSize, u8 *loVec, u16 *symVec, void *dest) = ((void *) funcBuffer);
-    SwitchToArmCallDecodeInstructions(headerLoSize, loVec, symVec, dest, decodeFunction);
-    //decodeFunction(headerLoSize, loVec, symVec, dest);
+    CopyFuncToIwram(funcBuffer, DecodeInstructions, SwitchToArmCallDecodeInstructions);
+    SwitchToArmCallDecodeInstructions(headerLoSize, loVec, symVec, dest, (void *) funcBuffer);
 }
 
 void SmolDecompressData(const struct CompressionHeader *header, const u32 *data, void *dest)
