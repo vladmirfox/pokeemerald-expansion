@@ -4442,6 +4442,7 @@ static bool32 DoesMonMeetAdditionalConditions(struct Pokemon *mon, const struct 
     u32 friendship = GetMonData(mon, MON_DATA_FRIENDSHIP, 0);
     u32 attack = GetMonData(mon, MON_DATA_ATK, 0);
     u32 defense = GetMonData(mon, MON_DATA_DEF, 0);
+    u32 weather = GetCurrentWeather();
     // Check for additional conditions (only if the primary method passes). Skips if there's no additional conditions.
     for (j = 0; params != NULL && params[j].condition != CONDITIONS_END; j++)
     {
@@ -4496,6 +4497,10 @@ static bool32 DoesMonMeetAdditionalConditions(struct Pokemon *mon, const struct 
                     break;
                 }
             }
+            break;
+        case IF_WEATHER:
+            if (weather == params[j].arg)
+                currentCondition = TRUE;
             break;
         }
         if (currentCondition == FALSE)
@@ -4621,18 +4626,6 @@ u16 GetEvolutionTargetSpecies(struct Pokemon *mon, enum EvolutionMode mode, u16 
                         break;
                     }
                 }
-                break;
-            case EVO_LEVEL_RAIN:
-                j = GetCurrentWeather();
-                if (evolutions[i].param <= level
-                 && (j == WEATHER_RAIN || j == WEATHER_RAIN_THUNDERSTORM || j == WEATHER_DOWNPOUR))
-                    conditionsMet = TRUE;
-                break;
-            case EVO_LEVEL_FOG:
-                j = GetCurrentWeather();
-                if (evolutions[i].param <= level
-                 && (j == WEATHER_FOG_HORIZONTAL || j == WEATHER_FOG_DIAGONAL))
-                    conditionsMet = TRUE;
                 break;
             case EVO_MAPSEC:
                 if (gMapHeader.regionMapSectionId == evolutions[i].param)

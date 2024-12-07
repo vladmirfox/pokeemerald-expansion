@@ -6570,12 +6570,10 @@ static void PrintEvolutionTargetSpeciesAndMethod(u8 taskId, u16 species, u8 dept
             CopyItemName(item, gStringVar2); //item
             StringExpandPlaceholders(gStringVar4, sText_EVO_ITEM_FEMALE );
             break;
-        */
         case EVO_LEVEL_RAIN:
             //if (j == WEATHER_RAIN || j == WEATHER_RAIN_THUNDERSTORM || j == WEATHER_DOWNPOUR)
             StringExpandPlaceholders(gStringVar4, sText_EVO_LEVEL_RAIN );
             break;
-        /*
         case EVO_SPECIFIC_MON_IN_PARTY:
             StringCopy(gStringVar2, GetSpeciesName(evolutions[i].param)); //mon name
             StringExpandPlaceholders(gStringVar4, sText_EVO_SPECIFIC_MON_IN_PARTY );

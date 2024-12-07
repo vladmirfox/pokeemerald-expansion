@@ -258,6 +258,7 @@ enum EvolutionConditions {
     IF_SPECIES_IN_PARTY,                // The party contains a Pokémon of the specified species.
     // Gen 6
     IF_TYPE_IN_PARTY,                   // The party contains a Pokémon of the specified type.
+    IF_WEATHER,                         // It is the specific weather in the current map.
     CONDITIONS_END
 };
 
@@ -275,7 +276,6 @@ enum EvolutionMethods {
     EVO_MOVE,                            // Pokémon levels up, knows specified move
     EVO_LEVEL_MOVE_TYPE,                 // Pokémon levels up, knows move with specified type
     EVO_MAPSEC,                          // Pokémon levels up on specified mapsec
-    EVO_LEVEL_RAIN,                      // Pokémon reaches the specified level during rain in the overworld
     EVO_TRADE_SPECIFIC_MON,              // Pokémon is traded for a specified Pokémon
     EVO_SPECIFIC_MAP,                    // Pokémon levels up on specified map
     EVO_LEVEL_NATURE_AMPED,              // Pokémon reaches the specified level, it has a Hardy, Brave, Adamant, Naughty, Docile, Impish, Lax, Hasty, Jolly, Naive, Rash, Sassy, or Quirky nature.
@@ -285,7 +285,6 @@ enum EvolutionMethods {
     EVO_DARK_SCROLL,                     // interacts with Scroll of Darkness
     EVO_WATER_SCROLL,                    // interacts with Scroll of Waters
     EVO_LEVEL_ITEM_HOLD,                 // Pokémon levels up, holds specified item
-    EVO_LEVEL_FOG,                       // Pokémon reaches the specified level during fog in the overworld
     EVO_MOVE_TWO_SEGMENT,                // Pokémon levels up, knows specified move, has a personality value with a modulus of 0
     EVO_MOVE_THREE_SEGMENT,              // Pokémon levels up, knows specified move, has a personality value with a modulus of 1-99
     EVO_LEVEL_FAMILY_OF_THREE,           // Pokémon reaches the specified level in battle with a personality value with a modulus of 0
