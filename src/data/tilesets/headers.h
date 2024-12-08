@@ -1111,3 +1111,14 @@ const struct Tileset gTileset_Gate =
     .metatileAttributes = gMetatileAttributes_Gate,
     .callback = NULL,
 };
+
+const struct Tileset gTileset_House_Marble =
+{
+    .isCompressed = TRUE,
+    .isSecondary = TRUE,
+    .tiles = gTilesetTiles_House_Marble,
+    .palettes = gTilesetPalettes_House_Marble,
+    .metatiles = gMetatiles_House_Marble,
+    .metatileAttributes = gMetatileAttributes_House_Marble,
+    .callback = NULL,
+};

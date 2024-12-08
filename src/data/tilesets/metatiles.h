@@ -286,3 +286,6 @@ const u16 gMetatileAttributes_HarvestShrine[] = INCBIN_U16("data/tilesets/second
 
 const u16 gMetatiles_Gate[] = INCBIN_U16("data/tilesets/secondary/gate/metatiles.bin");
 const u16 gMetatileAttributes_Gate[] = INCBIN_U16("data/tilesets/secondary/gate/metatile_attributes.bin");
+
+const u16 gMetatiles_House_Marble[] = INCBIN_U16("data/tilesets/secondary/house_marble/metatiles.bin");
+const u16 gMetatileAttributes_House_Marble[] = INCBIN_U16("data/tilesets/secondary/house_marble/metatile_attributes.bin");

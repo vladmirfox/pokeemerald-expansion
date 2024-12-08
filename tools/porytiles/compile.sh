@@ -52,6 +52,7 @@ porytiles compile-secondary -Wall -o ../../data/tilesets/secondary/house_beige/ 
 porytiles compile-secondary -Wall -o ../../data/tilesets/secondary/house_stone/ ./house-stone/ ./building-generic/ ../../include/constants/metatile_behaviors.h
 porytiles compile-secondary -Wall -o ../../data/tilesets/secondary/house_green/ ./house-green/ ./building-generic/ ../../include/constants/metatile_behaviors.h
 porytiles compile-secondary -Wall -o ../../data/tilesets/secondary/house_hardwood2/ ./house-hardwood2/ ./building-generic/ ../../include/constants/metatile_behaviors.h
+porytiles compile-secondary -Wall -o ../../data/tilesets/secondary/house_marble/ ./house-marble/ ./building-generic/ ../../include/constants/metatile_behaviors.h
 # Dojos
 echo "DOJOS"
 porytiles compile-secondary -Wall -o ../../data/tilesets/secondary/dojo_maguro/ ./dojo-maguro/ ./building-generic/ ../../include/constants/metatile_behaviors.h

@@ -6208,12 +6208,12 @@
     {
       "id": "LAYOUT_YIFU_CITY_HOUSE2",
       "name": "YifuCity_House2_Layout",
-      "width": 10,
-      "height": 10,
+      "width": 6,
+      "height": 7,
       "border_width": 1,
       "border_height": 1,
       "primary_tileset": "gTileset_Building_Generic",
-      "secondary_tileset": "gTileset_HouseStone",
+      "secondary_tileset": "gTileset_House_Marble",
       "border_filepath": "data/layouts/YifuCity_House2/border.bin",
       "blockdata_filepath": "data/layouts/YifuCity_House2/map.bin"
     },
