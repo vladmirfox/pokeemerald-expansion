@@ -21,14 +21,14 @@
       "x": 6,
       "y": 10,
       "elevation": 0,
-      "dest_map": "MAP_YIFU_CITY2",
+      "dest_map": "MAP_YIFU_CITY",
       "dest_warp_id": "0"
     },
     {
       "x": 7,
       "y": 10,
       "elevation": 0,
-      "dest_map": "MAP_YIFU_CITY2",
+      "dest_map": "MAP_YIFU_CITY",
       "dest_warp_id": "1"
     },
     {

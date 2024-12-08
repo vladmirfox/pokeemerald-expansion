@@ -1322,7 +1322,7 @@ EventScript_VsSeekerChargingDone::
 
 	.include "data/maps/Silveridge_House2/scripts.inc"
 
-	.include "data/maps/YifuCity2/scripts.inc"
+	.include "data/maps/YifuCity/scripts.inc"
 
 	.include "data/maps/YifuCity_Refuge/scripts.inc"
 

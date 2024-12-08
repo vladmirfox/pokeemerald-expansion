@@ -6050,16 +6050,16 @@
       "blockdata_filepath": "data/layouts/WindyCape2/map.bin"
     },
     {
-      "id": "LAYOUT_YIFU_CITY2",
-      "name": "YifuCity2_Layout",
+      "id": "LAYOUT_YIFU_CITY",
+      "name": "YifuCity_Layout",
       "width": 70,
       "height": 75,
       "border_width": 1,
       "border_height": 1,
       "primary_tileset": "gTileset_PorytilesPrimaryTutorial",
       "secondary_tileset": "gTileset_Yifu",
-      "border_filepath": "data/layouts/YifuCity2/border.bin",
-      "blockdata_filepath": "data/layouts/YifuCity2/map.bin"
+      "border_filepath": "data/layouts/YifuCity/border.bin",
+      "blockdata_filepath": "data/layouts/YifuCity/map.bin"
     },
     {
       "id": "LAYOUT_YIFU_CITY_REFUGE",
