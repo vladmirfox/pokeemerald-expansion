@@ -1,20 +1,25 @@
 # Instructions
 Install instructions for each supported operating system can be found in their respective directories under `docs/install/`.
+Lines to those can be found under each heading.
 This file only contains a short introduction to each supported system.
 If you run into trouble, ask for help on Discord (see [README.md](README.md)).
 
 After completing the install instructions for your OS, proceed to [Building pokeemerald-expansion](#building-pokeemerald-expansion).
 
 ## Windows
+**Windows needs one of the systems to build the project**
 **A note of caution**: As Windows 7 and Windows 8 are officially unsupported by Microsoft, some maintainers are unwilling to maintain the Windows 7/8 instructions. Thus, these instructions may break in the future with fixes taking longer than fixes to the Windows 10/11 instructions.
 
 On Windows, the project can be built using the following systems:
 - WSL2, fastest
 - WSL1, 7 times slower than WSL2
-- Msys2, 20 times slower than WSL2
-- Cygwin, 30 timer slower than WSL2
+- Msys2, 20 times slower than WSL2 (**NOTE**: Currently broken on pret upstream)
+- Cygwin, 30 timer slower than WSL2 (**NOTE**: Currently broken on pret upstream)
 
 **NOTE**: Only WSL systems are recommended.
+[WSL Install instructions](docs/windows/WSL.md)
+[Msys2 Install instructions](docs/windows/MSYS2.md)
+[Cygwin Install instructions](docs/windows/CYGWIN.md)
 
 ## Linux
 The project can be built on any Linux distribution.
