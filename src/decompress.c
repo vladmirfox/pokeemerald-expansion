@@ -916,7 +916,7 @@ u32 GetDecompressedDataSize(const u32 *ptr)
         case MODE_LZ77:
             return header->lz77.size;
         default:
-            return header->smol.imageSize*32;
+            return header->smol.imageSize*SMOL_IMAGE_SIZE_MULTIPLIER;
     }
 }
 
