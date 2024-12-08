@@ -516,6 +516,7 @@ CompressedImage processImageFrames(std::string fileName, InputSettings settings)
 CompressedImage processImageData(std::vector<unsigned char> input, InputSettings settings, std::string fileName)
 {
     CompressedImage bestImage;
+    CompressionMode someMode;
     bool hasImage = false;
     std::vector<unsigned char> rawBase = input;
     std::vector<unsigned short> usBase(rawBase.size()/2);
@@ -552,6 +553,22 @@ CompressedImage processImageData(std::vector<unsigned char> input, InputSettings
         CompressionMode mode = BASE_ONLY;
         //std::vector<CompressionMode> modesToUse = {BASE_ONLY};
         std::vector<CompressionMode> modesToUse = {BASE_ONLY, ENCODE_SYMS, ENCODE_DELTA_SYMS, ENCODE_LO, ENCODE_BOTH, ENCODE_BOTH_DELTA_SYMS};
+        if (fileName.find("test/compression/") != std::string::npos)
+        {
+            if (fileName.find("mode_0.4bpp") != std::string::npos)
+                modesToUse = {BASE_ONLY};
+            else if (fileName.find("mode_1.4bpp") != std::string::npos)
+                modesToUse = {ENCODE_SYMS};
+            else if (fileName.find("mode_2.4bpp") != std::string::npos)
+                modesToUse = {ENCODE_DELTA_SYMS};
+            else if (fileName.find("mode_3.4bpp") != std::string::npos)
+                modesToUse = {ENCODE_LO};
+            else if (fileName.find("mode_4.4bpp") != std::string::npos)
+                modesToUse = {ENCODE_BOTH};
+            else if (fileName.find("mode_5.4bpp") != std::string::npos)
+                modesToUse = {ENCODE_BOTH_DELTA_SYMS};
+        }
+
         for (CompressionMode currMode : modesToUse)
         {
             mode = currMode;
@@ -592,6 +609,7 @@ CompressedImage processImageData(std::vector<unsigned char> input, InputSettings
                 bestImage = image;
                 hasImage = true;
                 bestImage.writeVec = uiVec;
+                someMode = mode;
             }
             else if (image.compressedSize < bestImage.compressedSize)
             {
@@ -601,9 +619,11 @@ CompressedImage processImageData(std::vector<unsigned char> input, InputSettings
                 bestImage = image;
                 hasImage = true;
                 bestImage.writeVec = uiVec;
+                someMode = mode;
             }
         }
     }
+    bestImage.mode = someMode;
     bestImage.fileName = fileName;
     bestImage.lzSize = baseLZsize;
     bestImage.rawNumBytes = rawBase.size();
