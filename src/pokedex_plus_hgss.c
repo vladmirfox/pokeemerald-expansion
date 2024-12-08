@@ -6471,11 +6471,13 @@ static void PrintEvolutionTargetSpeciesAndMethod(u8 taskId, u16 species, u8 dept
         case EVO_TRADE:
             StringExpandPlaceholders(gStringVar4, sText_EVO_TRADE );
             break;
+        /*
         case EVO_TRADE_ITEM:
             item = evolutions[i].param; //item
             CopyItemName(item, gStringVar2); //item
             StringExpandPlaceholders(gStringVar4, sText_EVO_TRADE_ITEM );
             break;
+        */
         case EVO_ITEM:
             item = evolutions[i].param;
             CopyItemName(item, gStringVar2);
@@ -6628,12 +6630,12 @@ static void PrintEvolutionTargetSpeciesAndMethod(u8 taskId, u16 species, u8 dept
             CopyItemName(item, gStringVar2);
             StringExpandPlaceholders(gStringVar4, sText_EVO_LEVEL_ITEM_DAY );
             break;
-        */
         case EVO_LEVEL_ITEM_HOLD:
             item = evolutions[i].param;
             CopyItemName(item, gStringVar2);
             StringExpandPlaceholders(gStringVar4, sText_EVO_LEVEL_ITEM_HOLD);
             break;
+        */
         case EVO_USE_MOVE_TWENTY_TIMES:
             StringCopy(gStringVar2, GetMoveName(evolutions[i].param));
             StringExpandPlaceholders(gStringVar4, sText_EVO_USE_MOVE_TWENTY_TIMES );

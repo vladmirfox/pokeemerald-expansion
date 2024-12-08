@@ -4436,7 +4436,7 @@ static u32 GetGMaxTargetSpecies(u32 species)
     return SPECIES_NONE;
 }
 
-static bool32 DoesMonMeetAdditionalConditions(struct Pokemon *mon, const struct EvolutionParam *params, bool32 *consumeItem)
+static bool32 DoesMonMeetAdditionalConditions(struct Pokemon *mon, const struct EvolutionParam *params, u32 heldItem, bool32 *consumeItem)
 {
     u32 j;
     u32 gender = GetMonGender(mon);
@@ -4447,6 +4447,8 @@ static bool32 DoesMonMeetAdditionalConditions(struct Pokemon *mon, const struct 
     u16 upperPersonality = personality >> 16;
     u32 weather = GetCurrentWeather();
     u32 nature = GetNature(mon);
+    u32 conditionRemovesItem = FALSE;
+
     // Check for additional conditions (only if the primary method passes). Skips if there's no additional conditions.
     for (j = 0; params != NULL && params[j].condition != CONDITIONS_END; j++)
     {
@@ -4482,6 +4484,14 @@ static bool32 DoesMonMeetAdditionalConditions(struct Pokemon *mon, const struct 
             if (GetTimeOfDay() != params[j].arg)
                 currentCondition = TRUE;
             break;
+        case IF_HOLD_ITEM:
+            if (heldItem == params[j].arg)
+            {
+                currentCondition = TRUE;
+                conditionRemovesItem = TRUE;
+            }
+            break;
+        // Gen 3
         case IF_PID_UPPER_MODULO_10_GT:
             if ((upperPersonality % 10) > params[j].arg)
                 currentCondition = TRUE;
@@ -4566,6 +4576,9 @@ static bool32 DoesMonMeetAdditionalConditions(struct Pokemon *mon, const struct 
         if (currentCondition == FALSE)
             return FALSE;
     }
+    if (conditionRemovesItem)
+        *consumeItem = TRUE;
+
     return TRUE;
 }
 
@@ -4650,13 +4663,6 @@ u16 GetEvolutionTargetSpecies(struct Pokemon *mon, enum EvolutionMode mode, u16 
                 if (evolutions[i].param <= beauty)
                     conditionsMet = TRUE;
                 break;
-            case EVO_LEVEL_ITEM_HOLD:
-                if (heldItem == evolutions[i].param)
-                {
-                    conditionsMet = TRUE;
-                    consumeItem = TRUE;
-                }
-                break;
             case EVO_USE_MOVE_TWENTY_TIMES:
                 if (evolutionTracker >= 20)
                     conditionsMet = TRUE;
@@ -4675,7 +4681,7 @@ u16 GetEvolutionTargetSpecies(struct Pokemon *mon, enum EvolutionMode mode, u16 
                 break;
             }
 
-            if (conditionsMet && DoesMonMeetAdditionalConditions(mon, evolutions[i].params, &consumeItem))
+            if (conditionsMet && DoesMonMeetAdditionalConditions(mon, evolutions[i].params, heldItem, &consumeItem))
             {
                 // All checks passed, so stop checking the rest of the evolutions.
                 // This is different from vanilla where the loop continues.
@@ -4703,7 +4709,7 @@ u16 GetEvolutionTargetSpecies(struct Pokemon *mon, enum EvolutionMode mode, u16 
                 break;
             }
 
-            if (conditionsMet && DoesMonMeetAdditionalConditions(mon, evolutions[i].params, &consumeItem))
+            if (conditionsMet && DoesMonMeetAdditionalConditions(mon, evolutions[i].params, heldItem, &consumeItem))
             {
                 // All checks passed, so stop checking the rest of the evolutions.
                 // This is different from vanilla where the loop continues.
@@ -4725,20 +4731,13 @@ u16 GetEvolutionTargetSpecies(struct Pokemon *mon, enum EvolutionMode mode, u16 
             case EVO_TRADE:
                 conditionsMet = TRUE;
                 break;
-            case EVO_TRADE_ITEM:
-                if (evolutions[i].param == heldItem)
-                {
-                    conditionsMet = TRUE;
-                    consumeItem = TRUE;
-                }
-                break;
             case EVO_TRADE_SPECIFIC_MON:
                 if (evolutions[i].param == partnerSpecies && partnerHoldEffect != HOLD_EFFECT_PREVENT_EVOLVE)
                     conditionsMet = TRUE;
                 break;
             }
 
-            if (conditionsMet && DoesMonMeetAdditionalConditions(mon, evolutions[i].params, &consumeItem))
+            if (conditionsMet && DoesMonMeetAdditionalConditions(mon, evolutions[i].params, heldItem, &consumeItem))
             {
                 // All checks passed, so stop checking the rest of the evolutions.
                 // This is different from vanilla where the loop continues.
@@ -4764,7 +4763,7 @@ u16 GetEvolutionTargetSpecies(struct Pokemon *mon, enum EvolutionMode mode, u16 
                 break;
             }
 
-            if (conditionsMet && DoesMonMeetAdditionalConditions(mon, evolutions[i].params, &consumeItem))
+            if (conditionsMet && DoesMonMeetAdditionalConditions(mon, evolutions[i].params, heldItem, &consumeItem))
             {
                 // All checks passed, so stop checking the rest of the evolutions.
                 // This is different from vanilla where the loop continues.
@@ -4790,7 +4789,7 @@ u16 GetEvolutionTargetSpecies(struct Pokemon *mon, enum EvolutionMode mode, u16 
                 break;
             }
 
-            if (conditionsMet && DoesMonMeetAdditionalConditions(mon, evolutions[i].params, &consumeItem))
+            if (conditionsMet && DoesMonMeetAdditionalConditions(mon, evolutions[i].params, heldItem, &consumeItem))
             {
                 // All checks passed, so stop checking the rest of the evolutions.
                 // This is different from vanilla where the loop continues.
@@ -4829,7 +4828,7 @@ u16 GetEvolutionTargetSpecies(struct Pokemon *mon, enum EvolutionMode mode, u16 
                 break;
             }
 
-            if (conditionsMet && DoesMonMeetAdditionalConditions(mon, evolutions[i].params, &consumeItem))
+            if (conditionsMet && DoesMonMeetAdditionalConditions(mon, evolutions[i].params, heldItem, &consumeItem))
             {
                 // All checks passed, so stop checking the rest of the evolutions.
                 // This is different from vanilla where the loop continues.

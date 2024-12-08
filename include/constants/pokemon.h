@@ -254,6 +254,7 @@ enum EvolutionConditions {
     IF_ATK_GT_DEF,                      // Pokémon's Attack is greater than its Defense stat.
     IF_ATK_EQ_DEF,                      // Pokémon's Attack is equal to its Defense stat.
     IF_ATK_LT_DEF,                      // Pokémon's Attack is lower than its Defense stat.
+    IF_HOLD_ITEM,                       // Pokémon is holding a specific item.
     // Gen 3
     IF_PID_UPPER_MODULO_10_GT,          // The Pokémon's upper personality value's modulo by 10 is greater than the defined value.
     IF_PID_UPPER_MODULO_10_EQ,          // The Pokémon's upper personality value's modulo by 10 is equal than the defined value.
@@ -280,7 +281,6 @@ enum EvolutionMethods {
     EVO_NONE,                            // Not an actual evolution, used to generate offspring that can't evolve into the specified species, like regional forms.
     EVO_LEVEL,                           // Pokémon reaches the specified level
     EVO_TRADE,                           // Pokémon is traded
-    EVO_TRADE_ITEM,                      // Pokémon is traded while it's holding the specified item
     EVO_ITEM,                            // specified item is used on Pokémon
     EVO_LEVEL_NINJASK,                   // Pokémon reaches the specified level (special value for Ninjask)
     EVO_LEVEL_SHEDINJA,                  // Pokémon reaches the specified level (special value for Shedinja)
@@ -290,7 +290,6 @@ enum EvolutionMethods {
     EVO_SCRIPT_TRIGGER_DMG,              // Pokémon has specified HP below max, then player interacts trigger
     EVO_DARK_SCROLL,                     // interacts with Scroll of Darkness
     EVO_WATER_SCROLL,                    // interacts with Scroll of Waters
-    EVO_LEVEL_ITEM_HOLD,                 // Pokémon levels up, holds specified item
     EVO_LEVEL_BATTLE_ONLY,               // Pokémon reaches the specified level, in battle only
     EVO_USE_MOVE_TWENTY_TIMES,           // Pokémon levels up after having used a move for at least 20 times
     EVO_RECOIL_DAMAGE,                   // Pokémon levels up after having suffered specified amount of non-fainting recoil damage
