@@ -8,6 +8,7 @@ After completing the install instructions for your OS, proceed to [Building poke
 
 ## Windows
 **Windows needs one of the systems to build the project**
+
 **A note of caution**: As Windows 7 and Windows 8 are officially unsupported by Microsoft, some maintainers are unwilling to maintain the Windows 7/8 instructions. Thus, these instructions may break in the future with fixes taking longer than fixes to the Windows 10/11 instructions.
 
 On Windows, the project can be built using the following systems:
