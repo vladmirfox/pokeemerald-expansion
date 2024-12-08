@@ -32,14 +32,17 @@ Distributions with instructions:
 - [Debian](docs/install/linux/DEBIAN.md)
 - [Arch Linux](docs/install/linux/ARCH_LINUX.md)
 - [NixOS](docs/install/linux/NIXOS.md)
+
 Other distributions have to infer what to do from [general instructions](docs/install/linux/OTHERS.md).
 
 ## Mac
 Some extra considerations exist to get the testing system working.
+
 [Mac instructions](docs/install/mac/MAC_OS.md)
 
 ## ChromeOS
 Only tested on x86_64 based systems.
+
 [Chrome OS instructions](docs/install/chromeos/CHROME_OS.md)
 
 # Building pokeemerald-expansion
