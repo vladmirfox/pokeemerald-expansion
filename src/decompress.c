@@ -6,10 +6,6 @@
 #include "pokemon_sprite_visualizer.h"
 #include "text.h"
 
-//const u32 bigTestData[] = INCBIN_U32("test/bigTestImage.4bpp.smol");
-//const u32 bigTestData[] = INCBIN_U32("graphics/bigTestImageNoANS.4bpp.smol");
-//const u32 bigTestData[] = INCBIN_U32("data/tilesets/primary/general/tiles.4bpp.lz");
-
 EWRAM_DATA ALIGNED(4) u8 gDecompressionBuffer[0x4000] = {0};
 
 static const struct DecodeYK sYkTemplate[2*TANS_TABLE_SIZE] = {
@@ -145,13 +141,11 @@ static const struct DecodeYK sYkTemplate[2*TANS_TABLE_SIZE] = {
 
 void LZDecompressWram(const u32 *src, void *dest)
 {
-    //LZ77UnCompWram(src, dest);
     DecompressDataWram(src, dest);
 }
 
 void LZDecompressVram(const u32 *src, void *dest)
 {
-    //LZ77UnCompVram(src, dest);
     DecompressDataVram(src, dest);
 }
 
@@ -322,11 +316,7 @@ void BuildDecompressionTable(const u32 *packedFreqs, struct DecodeYK *table, u32
 {
     u32 freqs[16];
     u32 currCol = 0;
-    //CycleCountStart();
     UnpackFrequencies(packedFreqs, freqs);
-    //u32 timeTaken = CycleCountEnd();
-    //MgbaPrintf(MGBA_LOG_WARN, "Unpacking: %u", timeTaken);
-    //CycleCountStart();
     for (u32 i = 0; i < 16; i++)
     {
         if (freqs[i] != 0)
@@ -346,8 +336,6 @@ void BuildDecompressionTable(const u32 *packedFreqs, struct DecodeYK *table, u32
             currCol += freqs[i];
         }
     }
-    //timeTaken = CycleCountEnd();
-    //MgbaPrintf(MGBA_LOG_WARN, "Building: %u", timeTaken);
 }
 
 static EWRAM_DATA u8 sBitIndex = 0;
@@ -366,12 +354,7 @@ struct DecodeStuff
 
 static inline void CopyFuncToIwram(void *funcBuffer, void *_funcStartAddress, void *_funcEndAdress)
 {
-    //u32 timerBefore = REG_TM2CNT_L | (REG_TM3CNT_L << 16u);
-
     CpuFastCopy(_funcStartAddress, funcBuffer, _funcEndAdress - _funcStartAddress);
-
-    //u32 timerAfter = REG_TM2CNT_L | (REG_TM3CNT_L << 16u);
-    //DebugPrintf("before: %d, after: %d\n", timerBefore, timerAfter);
 }
 
 // - O3 saves cycles
@@ -388,7 +371,6 @@ __attribute__((target("arm"))) __attribute__((noinline)) __attribute__((optimize
             symbol += stuff->symbolTable[sCurrState] << (currNibble*4);
             u32 currK = stuff->ykTable[sCurrState].kVal;
             u32 nextState = stuff->ykTable[sCurrState].yVal;
-            //nextState += (currBits >> bitIndex) & (0xff >> (8-currK));
             nextState += (currBits >> bitIndex) & maskTable[currK];
             if (bitIndex + currK < 32)
             {
@@ -462,17 +444,6 @@ void DecodeSymtANS(const u32 *data, const u32 *pFreqs, u16 *resultVec, u32 count
     u32 *symbolTable = sMemoryAllocated + (TANS_TABLE_SIZE*sizeof(struct DecodeYK));
     BuildDecompressionTable(pFreqs, ykTable, symbolTable);
     u32 currBits = data[sReadIndex];
-    /*
-    u8 maskTable[7] = {
-        0,
-        1,
-        3,
-        7,
-        15,
-        31,
-        63
-    };
-    */
     for (u32 currSym = 0; currSym < count; currSym++)
     {
         u32 symbol = 0;
@@ -482,7 +453,6 @@ void DecodeSymtANS(const u32 *data, const u32 *pFreqs, u16 *resultVec, u32 count
             u32 currK = ykTable[sCurrState].kVal;
             u32 nextState = ykTable[sCurrState].yVal;
             nextState += (currBits >> sBitIndex) & (0xff >> (8-currK));
-            //nextState += (currBits >> sBitIndex) & maskTable[currK];
             if (sBitIndex + currK < 32)
             {
                 sBitIndex += currK;
@@ -524,7 +494,6 @@ __attribute__((target("arm"))) __attribute__((noinline)) __attribute__((optimize
             symbol += currSymbol << (currNibble*4);
             u32 currK = stuff->ykTable[sCurrState].kVal;
             u32 nextState = stuff->ykTable[sCurrState].yVal;
-            //nextState += (currBits >> bitIndex) & (0xff >> (8-currK));
             nextState += (currBits >> bitIndex) & maskTable[currK];
             if (bitIndex + currK < 32)
             {
@@ -707,14 +676,12 @@ void SmolDecompressData(const struct SmolHeader *header, const u32 *data, void *
     if (symEncoded == FALSE)
     {
         DmaCopy16(3, leftoverPos, symVec, headerSymSize*2);
-        //CpuCopy16(leftoverPos, symVec, headerSymSize*2);
         leftoverPos += headerSymSize*2;
     }
 
     if (loEncoded == FALSE)
     {
         DmaCopy16(3, leftoverPos, loVec, alignedLoSize);
-        //memcpy(loVec, leftoverPos, headerLoSize);
     }
 
     DecodeInstructionsIwram(headerLoSize, loVec, symVec, dest);
