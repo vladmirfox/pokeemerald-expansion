@@ -18,8 +18,11 @@ On Windows, the project can be built using the following systems:
 - Cygwin, 30 timer slower than WSL2 (**NOTE**: Currently broken on pret upstream)
 
 **NOTE**: Only WSL systems are recommended.
+
 [WSL Install instructions](docs/windows/WSL.md)
+
 [Msys2 Install instructions](docs/windows/MSYS2.md)
+
 [Cygwin Install instructions](docs/windows/CYGWIN.md)
 
 ## Linux
