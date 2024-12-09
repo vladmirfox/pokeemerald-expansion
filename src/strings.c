@@ -1621,14 +1621,6 @@ const u8 gText_BasePointsResetToZero[] = _("{STR_VAR_1}'s base points\nwere all 
 const u8 gText_Fertilize[] = _("FERTILIZE");
 const u8 gText_PlantBerry[] = _("PLANT BERRY");
 
-const u8 gText_Saturday[] = _("Saturday,");
-const u8 gText_Sunday[] = _("Sunday,");
-const u8 gText_Monday[] = _("Monday,");
-const u8 gText_Tuesday[] = _("Tuesday,");
-const u8 gText_Wednesday[] = _("Wednesday,");
-const u8 gText_Thursday[] = _("Thursday,");
-const u8 gText_Friday[] = _("Friday,");
-
 const u8 gText_CurrentTime[] = _("Time: {STR_VAR_1}:{STR_VAR_2}");
 const u8 gText_CurrentTimeOff[] = _("Time: {STR_VAR_1} {STR_VAR_2}");
 const u8 gText_CurrentTimeAM[] = _("Time: {STR_VAR_1}:{STR_VAR_2} AM");
@@ -1637,12 +1629,5 @@ const u8 gText_CurrentTimePM[] = _("Time: {STR_VAR_1}:{STR_VAR_2} PM");
 const u8 gText_CurrentTimePMOff[] = _("Time: {STR_VAR_1} {STR_VAR_2} PM");
 const u8 gText_Date[] = _("{STR_VAR_1} {STR_VAR_2}, YEAR {STR_VAR_3}");
 
-const u8 *const gDayNameStringsTable[7] = {
-    [DAY_SUNDAY] = gText_Sunday,
-    [DAY_MONDAY] = gText_Monday,
-    [DAY_TUESDAY] = gText_Tuesday,
-    [DAY_WEDNESDAY] = gText_Wednesday,
-    [DAY_THURSDAY] = gText_Thursday,
-    [DAY_FRIDAY] = gText_Friday,
-    [DAY_SATURDAY] = gText_Saturday,
-};
+const u8 gText_AM[] = _("AM");
+const u8 gText_PM[] = _("PM");
