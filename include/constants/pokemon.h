@@ -259,6 +259,7 @@ enum EvolutionConditions {
     IF_PID_UPPER_MODULO_10_GT,          // The Pokémon's upper personality value's modulo by 10 is greater than the defined value.
     IF_PID_UPPER_MODULO_10_EQ,          // The Pokémon's upper personality value's modulo by 10 is equal than the defined value.
     IF_PID_UPPER_MODULO_10_LT,          // The Pokémon's upper personality value's modulo by 10 is lower than the defined value.
+    IF_MIN_BEAUTY,                      // Pokémon has the defined amount of Beauty.
     // Gen 4
     IF_SPECIES_IN_PARTY,                // The party contains a Pokémon of the specified species.
     IF_IN_MAP,                          // It's in the specific map.
@@ -284,7 +285,6 @@ enum EvolutionMethods {
     EVO_ITEM,                            // specified item is used on Pokémon
     EVO_LEVEL_NINJASK,                   // Pokémon reaches the specified level (special value for Ninjask)
     EVO_LEVEL_SHEDINJA,                  // Pokémon reaches the specified level (special value for Shedinja)
-    EVO_BEAUTY,                          // Pokémon levels up with beauty ≥ specified value
     EVO_TRADE_SPECIFIC_MON,              // Pokémon is traded for a specified Pokémon
     EVO_CRITICAL_HITS,                   // Pokémon performs specified number of critical hits in one battle
     EVO_SCRIPT_TRIGGER_DMG,              // Pokémon has specified HP below max, then player interacts trigger

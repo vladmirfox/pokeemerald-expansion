@@ -4445,6 +4445,7 @@ static bool32 DoesMonMeetAdditionalConditions(struct Pokemon *mon, const struct 
     u32 defense = GetMonData(mon, MON_DATA_DEF, 0);
     u32 personality = GetMonData(mon, MON_DATA_PERSONALITY, 0);
     u16 upperPersonality = personality >> 16;
+    u32 beauty = GetMonData(mon, MON_DATA_BEAUTY, 0);
     u32 weather = GetCurrentWeather();
     u32 nature = GetNature(mon);
     u32 conditionRemovesItem = FALSE;
@@ -4502,6 +4503,10 @@ static bool32 DoesMonMeetAdditionalConditions(struct Pokemon *mon, const struct 
             break;
         case IF_PID_UPPER_MODULO_10_LT:
             if ((upperPersonality % 10) < params[i].arg)
+                currentCondition = TRUE;
+            break;
+        case IF_MIN_BEAUTY:
+            if (beauty >= params[i].arg)
                 currentCondition = TRUE;
             break;
         // Gen 4
@@ -4589,7 +4594,6 @@ u16 GetEvolutionTargetSpecies(struct Pokemon *mon, enum EvolutionMode mode, u16 
     u32 species = GetMonData(mon, MON_DATA_SPECIES, 0);
     u32 heldItem = GetMonData(mon, MON_DATA_HELD_ITEM, 0);
     u32 level = GetMonData(mon, MON_DATA_LEVEL, 0);
-    u32 beauty = GetMonData(mon, MON_DATA_BEAUTY, 0);
     u32 holdEffect, partnerSpecies, partnerHeldItem, partnerHoldEffect;
     bool32 consumeItem = FALSE;
     u32 evolutionTracker = GetMonData(mon, MON_DATA_EVOLUTION_TRACKER, 0);
@@ -4657,10 +4661,6 @@ u16 GetEvolutionTargetSpecies(struct Pokemon *mon, enum EvolutionMode mode, u16 
                 break;
             case EVO_LEVEL_BATTLE_ONLY:
                 if (mode == EVO_MODE_BATTLE_ONLY && evolutions[i].param <= level)
-                    conditionsMet = TRUE;
-                break;
-            case EVO_BEAUTY:
-                if (evolutions[i].param <= beauty)
                     conditionsMet = TRUE;
                 break;
             case EVO_USE_MOVE_TWENTY_TIMES:
