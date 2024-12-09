@@ -19497,17 +19497,19 @@ F_TRAINER_FEMALE |
         },
     },
 #line 7835
-    [TRAINER_MAKOTO_1] =
+    [TRAINER_CYNDY_1] =
     {
 #line 7836
-        .trainerName = _("Makoto"),
+        .trainerName = _("CYNDY"),
 #line 7837
-        .trainerClass = TRAINER_CLASS_FISHERMAN,
+        .trainerClass = TRAINER_CLASS_BATTLE_GIRL,
 #line 7838
-        .trainerPic = TRAINER_PIC_FISHERMAN,
+        .trainerPic = TRAINER_PIC_BATTLE_GIRL,
         .encounterMusic_gender = 
+#line 7839
+F_TRAINER_FEMALE | 
 #line 7840
-            TRAINER_ENCOUNTER_MUSIC_HIKER,
+            TRAINER_ENCOUNTER_MUSIC_INTENSE,
 #line 7841
         .doubleBattle = FALSE,
 #line 7842
@@ -19517,7 +19519,7 @@ F_TRAINER_FEMALE |
         {
             {
 #line 7844
-            .species = SPECIES_CRAMORANT,
+            .species = SPECIES_MEDITITE,
             .gender = TRAINER_MON_RANDOM_GENDER,
 #line 7846
             .iv = TRAINER_PARTY_IVS(12, 12, 12, 12, 12, 12),
@@ -19528,7 +19530,7 @@ F_TRAINER_FEMALE |
             },
             {
 #line 7848
-            .species = SPECIES_KRABBY,
+            .species = SPECIES_MAKUHITA,
             .gender = TRAINER_MON_RANDOM_GENDER,
 #line 7850
             .iv = TRAINER_PARTY_IVS(12, 12, 12, 12, 12, 12),
@@ -21924,19 +21926,19 @@ F_TRAINER_FEMALE |
         },
     },
 #line 8775
-    [TRAINER_ITAMAE] =
+    [TRAINER_GINA_AND_MIA] =
     {
 #line 8776
-        .trainerName = _("Itamae"),
+        .trainerName = _("GINA & MIA"),
 #line 8777
-        .trainerClass = TRAINER_CLASS_COOK,
+        .trainerClass = TRAINER_CLASS_TWINS,
 #line 8778
-        .trainerPic = TRAINER_PIC_COOK,
+        .trainerPic = TRAINER_PIC_TWINS,
         .encounterMusic_gender = 
 #line 8780
-            TRAINER_ENCOUNTER_MUSIC_HIKER,
+            TRAINER_ENCOUNTER_MUSIC_TWINS,
 #line 8781
-        .doubleBattle = FALSE,
+        .doubleBattle = TRUE,
 #line 8782
         .aiFlags = AI_FLAG_CHECK_BAD_MOVE,
         .partySize = 2,
@@ -21944,23 +21946,23 @@ F_TRAINER_FEMALE |
         {
             {
 #line 8784
-            .species = SPECIES_NACLI,
+            .species = SPECIES_SEEDOT,
             .gender = TRAINER_MON_RANDOM_GENDER,
 #line 8786
             .iv = TRAINER_PARTY_IVS(0, 0, 0, 0, 0, 0),
 #line 8785
-            .lvl = 16,
+            .lvl = 6,
             .nature = NATURE_HARDY,
             .dynamaxLevel = MAX_DYNAMAX_LEVEL,
             },
             {
 #line 8788
-            .species = SPECIES_DWEBBLE,
+            .species = SPECIES_LOTAD,
             .gender = TRAINER_MON_RANDOM_GENDER,
 #line 8790
             .iv = TRAINER_PARTY_IVS(0, 0, 0, 0, 0, 0),
 #line 8789
-            .lvl = 16,
+            .lvl = 6,
             .nature = NATURE_HARDY,
             .dynamaxLevel = MAX_DYNAMAX_LEVEL,
             },
@@ -27705,19 +27707,19 @@ F_TRAINER_FEMALE |
         },
     },
 #line 11045
-    [TRAINER_MUSASHI_1] =
+    [TRAINER_HALEY_1] =
     {
 #line 11046
-        .trainerName = _("Musashi"),
+        .trainerName = _("HALEY"),
 #line 11047
-        .trainerClass = TRAINER_CLASS_BATTLE_GIRL,
+        .trainerClass = TRAINER_CLASS_LASS,
 #line 11048
-        .trainerPic = TRAINER_PIC_BATTLE_GIRL,
+        .trainerPic = TRAINER_PIC_LASS,
         .encounterMusic_gender = 
 #line 11049
 F_TRAINER_FEMALE | 
 #line 11050
-            TRAINER_ENCOUNTER_MUSIC_INTENSE,
+            TRAINER_ENCOUNTER_MUSIC_FEMALE,
 #line 11051
         .doubleBattle = FALSE,
 #line 11052
@@ -27727,12 +27729,12 @@ F_TRAINER_FEMALE |
         {
             {
 #line 11054
-            .species = SPECIES_MAKUHITA,
+            .species = SPECIES_LOTAD,
             .gender = TRAINER_MON_RANDOM_GENDER,
 #line 11056
             .iv = TRAINER_PARTY_IVS(0, 0, 0, 0, 0, 0),
 #line 11055
-            .lvl = 16,
+            .lvl = 6,
             .nature = NATURE_HARDY,
             .dynamaxLevel = MAX_DYNAMAX_LEVEL,
             },
@@ -27743,7 +27745,7 @@ F_TRAINER_FEMALE |
 #line 11060
             .iv = TRAINER_PARTY_IVS(0, 0, 0, 0, 0, 0),
 #line 11059
-            .lvl = 16,
+            .lvl = 6,
             .nature = NATURE_HARDY,
             .dynamaxLevel = MAX_DYNAMAX_LEVEL,
             },

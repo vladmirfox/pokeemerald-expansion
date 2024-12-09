@@ -221,7 +221,7 @@ struct Time
 #define    MONTH_TEN           10
 #define    MONTH_ELEVEN        11
 #define    MONTH_TWELVE        12
-#define    MONTH_COUNT      MONTH_TWELVE
+#define    MONTH_COUNT         MONTH_DEC
 
 
 struct SaveBlock3

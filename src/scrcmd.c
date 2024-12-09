@@ -37,6 +37,7 @@
 #include "overworld.h"
 #include "rotating_tile_puzzle.h"
 #include "rtc.h"
+#include "fake_rtc.h"
 #include "script.h"
 #include "script_menu.h"
 #include "script_movement.h"
@@ -722,13 +723,9 @@ bool8 ScrCmd_gettime(struct ScriptContext *ctx)
     gSpecialVar_0x8000 = time->hours;
     gSpecialVar_0x8001 = time->minutes;
     gSpecialVar_0x8002 = time->seconds;
-    gSpecialVar_0x8003 = time->dayOfWeek;
-    gSpecialVar_0x8004 = time->months;
-    gSpecialVar_0x8005 = time->years;
 
-    StringCopy(gStringVar1, gMonthNameStringsTable[time->months]);
     ConvertIntToDecimalStringN(gStringVar2, time->days, STR_CONV_MODE_LEADING_ZEROS, 2);
-    ConvertIntToDecimalStringN(gStringVar3, time->years, STR_CONV_MODE_RIGHT_ALIGN, 2);
+
     return FALSE;
 }
 
