@@ -1620,5 +1620,60 @@ const u8 gText_ExpShareOff[] = _("The Exp. Share has been turned off.{PAUSE_UNTI
 const u8 gText_BasePointsResetToZero[] = _("{STR_VAR_1}'s base points\nwere all reset to zero!{PAUSE_UNTIL_PRESS}");
 const u8 gText_Fertilize[] = _("FERTILIZE");
 const u8 gText_PlantBerry[] = _("PLANT BERRY");
-const u8 gText_AM[] = _("AM");
-const u8 gText_PM[] = _("PM");
+
+const u8 gText_Saturday[] = _("Saturday,");
+const u8 gText_Sunday[] = _("Sunday,");
+const u8 gText_Monday[] = _("Monday,");
+const u8 gText_Tuesday[] = _("Tuesday,");
+const u8 gText_Wednesday[] = _("Wednesday,");
+const u8 gText_Thursday[] = _("Thursday,");
+const u8 gText_Friday[] = _("Friday,");
+
+const u8 *const gMonthNameStringsTable[] =
+{
+    [MONTH_ONE] = gText_January,
+    [MONTH_TWO] = gText_February,
+    [MONTH_THREE] = gText_March,
+    [MONTH_FOUR] = gText_April,
+    [MONTH_FIVE] = gText_May,
+    [MONTH_SIX] = gText_June,
+    [MONTH_SEVEN] = gText_July,
+    [MONTH_EIGHT] = gText_August,
+    [MONTH_NINE] = gText_September,
+    [MONTH_TEN] = gText_October,
+    [MONTH_ELEVEN] = gText_November,
+    [MONTH_TWELVE] = gText_December,
+};
+
+const u8 gText_Month[]    = _("Month");
+
+const u8 gText_January[]    = _("Jan");
+const u8 gText_February[]   = _("Feb");
+const u8 gText_March[]      = _("Mar");
+const u8 gText_April[]      = _("Apr");
+const u8 gText_May[]        = _("May");
+const u8 gText_June[]       = _("Jun");
+const u8 gText_July[]       = _("Jul");
+const u8 gText_August[]     = _("Aug");
+const u8 gText_September[]  = _("Sep");
+const u8 gText_October[]    = _("Oct");
+const u8 gText_November[]   = _("Nov");
+const u8 gText_December[]   = _("Dec");
+
+const u8 gText_CurrentTime[] = _("Time: {STR_VAR_1}:{STR_VAR_2}");
+const u8 gText_CurrentTimeOff[] = _("Time: {STR_VAR_1} {STR_VAR_2}");
+const u8 gText_CurrentTimeAM[] = _("Time: {STR_VAR_1}:{STR_VAR_2} AM");
+const u8 gText_CurrentTimeAMOff[] = _("Time: {STR_VAR_1} {STR_VAR_2} AM");
+const u8 gText_CurrentTimePM[] = _("Time: {STR_VAR_1}:{STR_VAR_2} PM");
+const u8 gText_CurrentTimePMOff[] = _("Time: {STR_VAR_1} {STR_VAR_2} PM");
+const u8 gText_Date[] = _("{STR_VAR_1} {STR_VAR_2}, YEAR {STR_VAR_3}");
+
+const u8 *const gDayNameStringsTable[7] = {
+    [DAY_SUNDAY] = gText_Sunday,
+    [DAY_MONDAY] = gText_Monday,
+    [DAY_TUESDAY] = gText_Tuesday,
+    [DAY_WEDNESDAY] = gText_Wednesday,
+    [DAY_THURSDAY] = gText_Thursday,
+    [DAY_FRIDAY] = gText_Friday,
+    [DAY_SATURDAY] = gText_Saturday,
+};
