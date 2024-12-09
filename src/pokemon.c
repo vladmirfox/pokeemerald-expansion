@@ -6662,7 +6662,7 @@ u16 MonTryLearningNewMoveEvolution(struct Pokemon *mon, bool8 firstMove)
     while(learnset[sLearningMoveTableID].move != LEVEL_UP_MOVE_END)
     {
         while ((learnset[sLearningMoveTableID].level == 0 || learnset[sLearningMoveTableID].level == level)
-             && !(learnset[sLearningMoveTableID].level == 1 && P_EVOLUTION_LEVEL_1_LEARN >= GEN_8))
+             && !(P_EVOLUTION_LEVEL_1_LEARN >= GEN_8 && learnset[sLearningMoveTableID].level == 1))
         {
             gMoveToLearn = learnset[sLearningMoveTableID].move;
             sLearningMoveTableID++;
