@@ -210,6 +210,7 @@ void NewGameInitData(void)
     ResetLotteryCorner();
     WarpToStartPositionInPlayersBedroom();
     gSaveBlock1Ptr->initialVBlank = 0;
+    WarpToTruck();
     RunScriptImmediately(EventScript_ResetAllMapFlags);
     ResetMiniGamesRecords();
     InitUnionRoomChatRegisteredTexts();
@@ -224,7 +225,7 @@ void NewGameInitData(void)
     ResetItemFlags();
 
     // Custom
-    SetNewIngameTime();
+    FakeRtc_ManuallySetTime(0, 8, 0, 0);
     InitTimeBasedEvents();
 }
 
