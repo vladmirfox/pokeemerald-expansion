@@ -3,7 +3,6 @@
 #include "strings.h"
 #include "text.h"
 #include "rtc.h"
-#include "constants/rtc.h"
 #include "fake_rtc.h"
 #include "event_data.h"
 #include "script.h"
