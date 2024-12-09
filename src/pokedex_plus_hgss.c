@@ -6661,10 +6661,12 @@ static void PrintEvolutionTargetSpeciesAndMethod(u8 taskId, u16 species, u8 dept
             StringCopy(gStringVar3, GetSpeciesName(species));
             StringExpandPlaceholders(gStringVar4, sText_EVO_DEFEAT_THREE_WITH_ITEM);
             break;
+        /*
         case EVO_OVERWORLD_STEPS:
             ConvertIntToDecimalStringN(gStringVar2, evolutions[i].param, STR_CONV_MODE_LEADING_ZEROS, 4);
             StringExpandPlaceholders(gStringVar4, sText_EVO_OVERWORLD_STEPS);
             break;
+        */
         default:
             StringExpandPlaceholders(gStringVar4, sText_EVO_UNKNOWN);
             break;

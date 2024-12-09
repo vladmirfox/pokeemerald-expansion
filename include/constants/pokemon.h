@@ -247,55 +247,55 @@
 
 enum EvolutionConditions {
     // Gen 2
-    IF_GENDER,                          // Pokémon is of specific gender.
-    IF_TIME,                            // Is the specific time of day.
-    IF_NOT_TIME,                        // Is NOT the specific time of day.
-    IF_MIN_FRIENDSHIP,                  // Pokémon has the defined amount of Friendship.
-    IF_ATK_GT_DEF,                      // Pokémon's Attack is greater than its Defense stat.
-    IF_ATK_EQ_DEF,                      // Pokémon's Attack is equal to its Defense stat.
-    IF_ATK_LT_DEF,                      // Pokémon's Attack is lower than its Defense stat.
-    IF_HOLD_ITEM,                       // Pokémon is holding a specific item.
+    IF_GENDER,                          // The Pokémon is of specific gender.
+    IF_TIME,                            // It is currently the specific time of day.
+    IF_NOT_TIME,                        // It is NOT currently the specific time of day.
+    IF_MIN_FRIENDSHIP,                  // The Pokémon has the defined amount of Friendship.
+    IF_ATK_GT_DEF,                      // The Pokémon's Attack is greater than its Defense stat.
+    IF_ATK_EQ_DEF,                      // The Pokémon's Attack is equal to its Defense stat.
+    IF_ATK_LT_DEF,                      // The Pokémon's Attack is lower than its Defense stat.
+    IF_HOLD_ITEM,                       // The Pokémon is holding a specific item.
     // Gen 3
     IF_PID_UPPER_MODULO_10_GT,          // The Pokémon's upper personality value's modulo by 10 is greater than the defined value.
     IF_PID_UPPER_MODULO_10_EQ,          // The Pokémon's upper personality value's modulo by 10 is equal than the defined value.
     IF_PID_UPPER_MODULO_10_LT,          // The Pokémon's upper personality value's modulo by 10 is lower than the defined value.
-    IF_MIN_BEAUTY,                      // Pokémon has the defined amount of Beauty.
+    IF_MIN_BEAUTY,                      // The Pokémon has the defined amount of Beauty.
     // Gen 4
     IF_SPECIES_IN_PARTY,                // The party contains a Pokémon of the specified species.
-    IF_IN_MAP,                          // It's in the specific map.
-    IF_IN_MAPSEC,                       // It's in the specific map sector.
-    IF_KNOWS_MOVE,                      // Pokémon knows specific move.
+    IF_IN_MAP,                          // The player is currently in the specific map.
+    IF_IN_MAPSEC,                       // The player is currently in the specific map sector.
+    IF_KNOWS_MOVE,                      // The Pokémon knows specific move.
     // Gen 6
     IF_TYPE_IN_PARTY,                   // The party contains a Pokémon of the specified type.
-    IF_WEATHER,                         // It is the specific weather in the current map.
-    IF_KNOWS_MOVE_TYPE,                 // Pokémon knows a move with a specific type.
+    IF_WEATHER,                         // It is currently the specific weather in the current map.
+    IF_KNOWS_MOVE_TYPE,                 // The Pokémon knows a move with a specific type.
     // Gen 8
-    IF_NATURE,                          // Pokémon has a specific nature.
+    IF_NATURE,                          // The Pokémon has a specific nature.
     // Gen 9
     IF_PID_MODULO_100_GT,               // The Pokémon's personality value's modulo by 100 is greater than the defined value.
     IF_PID_MODULO_100_EQ,               // The Pokémon's personality value's modulo by 100 is equal than the defined value.
     IF_PID_MODULO_100_LT,               // The Pokémon's personality value's modulo by 100 is lower than the defined value.
+    IF_MIN_OVERWORLD_STEPS,             // The Player has taken a specific amount of steps in the overworld with the Pokémon following them or in the first slot of the party.
     CONDITIONS_END
 };
 
 enum EvolutionMethods {
-    EVO_NONE,                            // Not an actual evolution, used to generate offspring that can't evolve into the specified species, like regional forms.
-    EVO_LEVEL,                           // Pokémon reaches the specified level
-    EVO_TRADE,                           // Pokémon is traded
-    EVO_ITEM,                            // specified item is used on Pokémon
-    EVO_LEVEL_NINJASK,                   // Pokémon reaches the specified level (special value for Ninjask)
-    EVO_LEVEL_SHEDINJA,                  // Pokémon reaches the specified level (special value for Shedinja)
-    EVO_TRADE_SPECIFIC_MON,              // Pokémon is traded for a specified Pokémon
-    EVO_CRITICAL_HITS,                   // Pokémon performs specified number of critical hits in one battle
-    EVO_SCRIPT_TRIGGER_DMG,              // Pokémon has specified HP below max, then player interacts trigger
-    EVO_DARK_SCROLL,                     // interacts with Scroll of Darkness
-    EVO_WATER_SCROLL,                    // interacts with Scroll of Waters
-    EVO_LEVEL_BATTLE_ONLY,               // Pokémon reaches the specified level, in battle only
-    EVO_USE_MOVE_TWENTY_TIMES,           // Pokémon levels up after having used a move for at least 20 times
-    EVO_RECOIL_DAMAGE,                   // Pokémon levels up after having suffered specified amount of non-fainting recoil damage
-    EVO_ITEM_COUNT_999,                  // Pokémon levels up after trainer has collected 999 of a specific item
-    EVO_DEFEAT_THREE_WITH_ITEM,          // Pokémon levels up after having defeat 3 Pokémon of the same species holding the specified item
-    EVO_OVERWORLD_STEPS,                 // Pokémon levels up after having taken a specific amount of steps in the overworld
+    EVO_NONE,                   // Not an actual evolution, used to generate offspring that can't evolve into the specified species, like regional forms.
+    EVO_LEVEL,                  // Pokémon reaches the specified level
+    EVO_TRADE,                  // Pokémon is traded
+    EVO_ITEM,                   // specified item is used on Pokémon
+    EVO_LEVEL_NINJASK,          // Pokémon reaches the specified level (special value for Ninjask)
+    EVO_LEVEL_SHEDINJA,         // Pokémon reaches the specified level (special value for Shedinja)
+    EVO_TRADE_SPECIFIC_MON,     // Pokémon is traded for a specified Pokémon
+    EVO_CRITICAL_HITS,          // Pokémon performs specified number of critical hits in one battle
+    EVO_SCRIPT_TRIGGER_DMG,     // Pokémon has specified HP below max, then player interacts trigger
+    EVO_DARK_SCROLL,            // interacts with Scroll of Darkness
+    EVO_WATER_SCROLL,           // interacts with Scroll of Waters
+    EVO_LEVEL_BATTLE_ONLY,      // Pokémon reaches the specified level, in battle only
+    EVO_USE_MOVE_TWENTY_TIMES,  // Pokémon levels up after having used a move for at least 20 times
+    EVO_RECOIL_DAMAGE,          // Pokémon levels up after having suffered specified amount of non-fainting recoil damage
+    EVO_ITEM_COUNT_999,         // Pokémon levels up after trainer has collected 999 of a specific item
+    EVO_DEFEAT_THREE_WITH_ITEM, // Pokémon levels up after having defeat 3 Pokémon of the same species holding the specified item
 };
 
 enum EvolutionMode {

@@ -4577,6 +4577,10 @@ static bool32 DoesMonMeetAdditionalConditions(struct Pokemon *mon, const struct 
             if ((personality % 100) < params[i].arg)
                 currentCondition = TRUE;
             break;
+        case IF_MIN_OVERWORLD_STEPS:
+            if (mon == GetFirstLiveMon() && gFollowerSteps >= params[i].arg)
+                currentCondition = TRUE;
+            break;
         }
         if (currentCondition == FALSE)
             return FALSE;
@@ -4673,10 +4677,6 @@ u16 GetEvolutionTargetSpecies(struct Pokemon *mon, enum EvolutionMode mode, u16 
                 break;
             case EVO_DEFEAT_THREE_WITH_ITEM:
                 if (evolutionTracker >= 3)
-                    conditionsMet = TRUE;
-                break;
-            case EVO_OVERWORLD_STEPS:
-                if (mon == GetFirstLiveMon() && gFollowerSteps >= evolutions[i].param)
                     conditionsMet = TRUE;
                 break;
             }
