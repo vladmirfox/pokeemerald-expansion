@@ -1963,7 +1963,7 @@
 	.4byte \seconds
 	.endm
 
-	@ Specific Time Unit macros
+	@@ Specific Time Unit macros
 	@ Adds a number of years to the current time.
 	.macro addyear years:req
 	callnative RtcCmd_addyear
@@ -2024,7 +2024,7 @@
 	.4byte \minutes
 	.endm
 
-@ Supplementary
+	@ Supplementary
 
 	.macro goto_if_unset flag:req, dest:req
 	checkflag \flag
@@ -2509,4 +2509,3 @@
 	callnative ScrCmd_travellingmerchant
 	waitstate
 	.endm
-	
