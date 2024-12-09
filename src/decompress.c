@@ -8,7 +8,7 @@
 
 //const u32 bigTestData[] = INCBIN_U32("test/bigTestImage.4bpp.smol");
 //const u32 bigTestData[] = INCBIN_U32("graphics/bigTestImageNoANS.4bpp.smol");
-//const u32 bigTestData[] = INCBIN_U32("data/tilesets/primary/general/tiles.4bpp.lz");
+//const u32 bigTestData[] = INCBIN_U32("data/tilesets/primary/general/tiles.4bpp.smol");
 
 EWRAM_DATA ALIGNED(4) u8 gDecompressionBuffer[0x4000] = {0};
 
@@ -331,7 +331,7 @@ void BuildDecompressionTable(const u32 *packedFreqs, struct DecodeYK *table, u32
     {
         if (freqs[i] != 0)
         {
-            DmaCopy16(3, &sYkTemplate[freqs[i]], &table[currCol], freqs[i]*sizeof(struct DecodeYK));
+            memcpy(&table[currCol], &sYkTemplate[freqs[i]], freqs[i]*sizeof(struct DecodeYK));
             for (u32 j = 0; j < freqs[i]; j++)
                 symbolTable[currCol + j] = i;
             currCol += freqs[i];
@@ -340,7 +340,7 @@ void BuildDecompressionTable(const u32 *packedFreqs, struct DecodeYK *table, u32
         i++;
         if (freqs[i] != 0)
         {
-            DmaCopy16(3, &sYkTemplate[freqs[i]], &table[currCol], freqs[i]*sizeof(struct DecodeYK));
+            memcpy(&table[currCol], &sYkTemplate[freqs[i]], freqs[i]*sizeof(struct DecodeYK));
             for (u32 j = 0; j < freqs[i]; j++)
                 symbolTable[currCol + j] = i;
             currCol += freqs[i];
@@ -578,6 +578,23 @@ void DecodeSymDeltatANS(const u32 *data, const u32 *pFreqs, u16 *resultVec, u32 
     SwitchToArmCallSymDeltaANS(data, &stuff, maskTable, (void *) funcBuffer);
 }
 
+static inline void Copy16(void *_src, void *_dst, u32 size)
+{
+    u16 *src = _src;
+    u16 *dst = _dst;
+    for (u32 i = 0; i < size; i++) {
+        dst[i] = src[i];
+    }
+}
+
+static inline void Fill16(u16 value, void *_dst, u32 size)
+{
+    u16 *dst = _dst;
+    for (u32 i = 0; i < size; i++) {
+        dst[i] = value;
+    }
+}
+
 __attribute__((target("arm"))) __attribute__((noinline)) void DecodeInstructions(u32 headerLoSize, u8 *loVec, u16 *symVec, void *dest)
 {
     u32 loIndex = 0;
@@ -610,20 +627,20 @@ __attribute__((target("arm"))) __attribute__((noinline)) void DecodeInstructions
             dest = (void *)(dest + 2);
             if (currOffset == 1)
             {
-                DmaFill16(3, symVec[symIndex], dest, 2*currLength);
+                Fill16(symVec[symIndex], dest, currLength);
                 dest = (void *)(dest + currLength*2);
             }
             else
             {
-
-                DmaCopy16(3, (void *)(dest - currOffset*2), dest, currLength*2);
+                Copy16((void *)(dest - currOffset*2), dest, currLength);
+                //DmaCopy16(3, (void *)(dest - currOffset*2), dest, currLength*2);
                 dest = (void *)(dest + currLength*2);
             }
             symIndex++;
         }
         else
         {
-            DmaCopy16(3, &symVec[symIndex], dest, currOffset*2);
+            Copy16(&symVec[symIndex], dest, currOffset);
             dest = (void *)(dest + currOffset*2);
             symIndex += currOffset;
         }
