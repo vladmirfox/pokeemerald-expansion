@@ -29,11 +29,13 @@
 #define IMAGE_SIZE_MASK         0x7ff
 #define IMAGE_SIZE_OFFSET       5
 #define SYM_SIZE_MASK           0x7fff
-#define SYM_SIZE_OFFSET         16
+#define SYM_SIZE_OFFSET         17
 #define BITSTREAM_SIZE_MASK     0x1fff
 #define BITSTREAM_SIZE_OFFSET   6
 #define LO_SIZE_MASK            0x1fff
 #define LO_SIZE_OFFSET          19
+
+#define IMAGE_SIZE_MODIFIER     16
 
 enum CompressionMode {
     BASE_ONLY = 0,

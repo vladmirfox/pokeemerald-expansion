@@ -10,6 +10,8 @@
 #define FIRST_LO_MASK   0x7f
 #define CONTINUE_BIT    0x80
 
+#define SMOL_IMAGE_SIZE_MULTIPLIER 16
+
 
 extern u8 ALIGNED(4) gDecompressionBuffer[0x4000];
 
@@ -21,9 +23,8 @@ struct LZ77Header {
 
 struct SmolHeader {
     u32 mode:5;
-    u32 imageSize:11;
+    u32 imageSize:12;
     u32 symSize:15;
-    u32 padding:1;
     u32 initialState:6;
     u32 bitstreamSize:13;
     u32 loSize:13;

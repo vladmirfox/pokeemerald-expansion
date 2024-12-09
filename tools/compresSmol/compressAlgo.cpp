@@ -516,6 +516,7 @@ CompressedImage processImageFrames(std::string fileName, InputSettings settings)
 CompressedImage processImageData(std::vector<unsigned char> input, InputSettings settings, std::string fileName)
 {
     CompressedImage bestImage;
+    CompressionMode someMode;
     bool hasImage = false;
     std::vector<unsigned char> rawBase = input;
     std::vector<unsigned short> usBase(rawBase.size()/2);
@@ -552,6 +553,29 @@ CompressedImage processImageData(std::vector<unsigned char> input, InputSettings
         CompressionMode mode = BASE_ONLY;
         //std::vector<CompressionMode> modesToUse = {BASE_ONLY};
         std::vector<CompressionMode> modesToUse = {BASE_ONLY, ENCODE_SYMS, ENCODE_DELTA_SYMS, ENCODE_LO, ENCODE_BOTH, ENCODE_BOTH_DELTA_SYMS};
+        if (fileName.find("test/compression/") != std::string::npos)
+        {
+            if (fileName.find("mode_0.4bpp") != std::string::npos)
+                modesToUse = {BASE_ONLY};
+            else if (fileName.find("mode_1.4bpp") != std::string::npos)
+                modesToUse = {ENCODE_SYMS};
+            else if (fileName.find("mode_2.4bpp") != std::string::npos)
+                modesToUse = {ENCODE_DELTA_SYMS};
+            else if (fileName.find("mode_3.4bpp") != std::string::npos)
+                modesToUse = {ENCODE_LO};
+            else if (fileName.find("mode_4.4bpp") != std::string::npos)
+                modesToUse = {ENCODE_BOTH};
+            else if (fileName.find("mode_5.4bpp") != std::string::npos)
+                modesToUse = {ENCODE_BOTH_DELTA_SYMS};
+
+            if (modesToUse.size() == 1)
+            {
+                settings.canDeltaSyms = true;
+                settings.canEncodeLO = true;
+                settings.canEncodeSyms = true;
+            }
+        }
+
         for (CompressionMode currMode : modesToUse)
         {
             mode = currMode;
@@ -592,6 +616,7 @@ CompressedImage processImageData(std::vector<unsigned char> input, InputSettings
                 bestImage = image;
                 hasImage = true;
                 bestImage.writeVec = uiVec;
+                someMode = mode;
             }
             else if (image.compressedSize < bestImage.compressedSize)
             {
@@ -601,9 +626,11 @@ CompressedImage processImageData(std::vector<unsigned char> input, InputSettings
                 bestImage = image;
                 hasImage = true;
                 bestImage.writeVec = uiVec;
+                someMode = mode;
             }
         }
     }
+    bestImage.mode = someMode;
     bestImage.fileName = fileName;
     bestImage.lzSize = baseLZsize;
     bestImage.rawNumBytes = rawBase.size();
@@ -921,7 +948,7 @@ int findInitialState(EncodeCol encodeCol, unsigned char firstSymbol)
     bitstream   12      23  8628 max so far, divide by 4
     loLength    12      23  2922 max so far
     symLength   14      37  14k max so far
-    imageSize   10      47  16384 max so far, divide by 32
+    imageSize   10      47  16384 max so far, divide by 16
 
     u32:5   mode+lz
     u32:10  image size, divided by 32
@@ -938,9 +965,9 @@ std::vector<unsigned int> getNewHeaders(CompressionMode mode, size_t imageSize, 
     std::vector<unsigned int> returnVec(2);
 
     returnVec[0] += (unsigned int)mode;     //  5 bits
-    returnVec[0] += (imageSize/32) << IMAGE_SIZE_OFFSET;    //  11 bits
+    returnVec[0] += (imageSize/IMAGE_SIZE_MODIFIER) << IMAGE_SIZE_OFFSET;    //  12 bits
     returnVec[0] += (symLength) << SYM_SIZE_OFFSET;    //  15 bits
-                                            //  31 total
+                                            //  32 total
 
     returnVec[1] += initialState;           //  6 bits
     returnVec[1] += bitstreamSize << BITSTREAM_SIZE_OFFSET;     //  13 bits
@@ -956,7 +983,7 @@ CompressedImage readNewHeader(std::vector<unsigned int> *pInput)
     headers[0] = (*pInput)[0];
     headers[1] = (*pInput)[1];
     image.mode = (CompressionMode)(headers[0] & MODE_MASK);
-    image.rawNumBytes = ((headers[0] >> IMAGE_SIZE_OFFSET) & IMAGE_SIZE_MASK) * 32;
+    image.rawNumBytes = ((headers[0] >> IMAGE_SIZE_OFFSET) & IMAGE_SIZE_MASK) * IMAGE_SIZE_MODIFIER;
     image.symSize = ((headers[0] >> SYM_SIZE_OFFSET) & SYM_SIZE_MASK);
 
     image.initialState = headers[1] & INITIAL_STATE_MASK;

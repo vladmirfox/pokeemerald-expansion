@@ -880,7 +880,6 @@ void BeginAnim(struct Sprite *sprite)
             //  Inject OW decompression here
             if (OW_GFX_COMPRESS && sprite->sheetSpan)
             {
-                MgbaPrintf(MGBA_LOG_WARN, "New anim frame?");
                 imageValue = (imageValue + 1) << sprite->sheetSpan;
             }
             sprite->oam.tileNum = sprite->sheetTileStart + imageValue;
