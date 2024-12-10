@@ -35,7 +35,6 @@ DOUBLE_BATTLE_TEST("Coaching bypasses Protect")
 
 DOUBLE_BATTLE_TEST("Coaching bypasses Crafty Shield")
 {
-    KNOWN_FAILING; // Coaching fails
     GIVEN {
         PLAYER(SPECIES_WOBBUFFET);
         PLAYER(SPECIES_WYNAUT);
