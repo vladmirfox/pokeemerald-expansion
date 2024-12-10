@@ -15,7 +15,7 @@ const struct PoolRules defaultPoolRules =
 };
 
 const struct PoolRules gPoolRulesetsList[] = {
-    [POOL_RULESET_DEFAULT] = {
+    [POOL_RULESET_BASIC] = {
         .speciesClause = B_POOL_RULE_SPECIES_CLAUSE,
         .excludeForms = B_POOL_RULE_EXCLUDE_FORMS,
         .itemClause = B_POOL_RULE_ITEM_CLAUSE,

@@ -16,7 +16,7 @@
 
 #define MAX_TRAINER_AI_FLAGS 32
 #define MAX_TRAINER_ITEMS 4
-#define PARTY_SIZE 64
+#define PARTY_SIZE 255
 #define MAX_MON_MOVES 4
 #define MAX_MON_TAGS 8
 
