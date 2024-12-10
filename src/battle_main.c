@@ -2123,7 +2123,7 @@ static void RandomizePoolIndices(const struct Trainer *trainer, u8 *poolIndexArr
     for (u32 i = 0; i < poolSize; i++)
         poolIndexArray[i] = i;
     u32 rnd;
-    if (B_POOL_SETTTING_CONSISTENT_RNG)
+    if (B_POOL_SETTING_CONSISTENT_RNG)
         rnd = Random32();
     else
         rnd = Random32();
@@ -2147,7 +2147,7 @@ static void RandomizePoolIndices(const struct Trainer *trainer, u8 *poolIndexArr
             numBits = 2;
         if (usedBits + numBits > 32)
         {
-            if (B_POOL_SETTTING_CONSISTENT_RNG)
+            if (B_POOL_SETTING_CONSISTENT_RNG)
                 rnd = Random32();
             else
                 rnd = Random32();
