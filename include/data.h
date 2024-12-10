@@ -94,6 +94,8 @@ struct Trainer
     /*0x1F*/ u8 mugshotColor;
     /*0x20*/ u8 partySize;
     /*0x21*/ u8 poolSize;
+    /*0x22*/ u16 poolRuleIndex;
+    //  End of 32-bit alignment
 };
 
 struct TrainerClass

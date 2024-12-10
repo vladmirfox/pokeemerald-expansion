@@ -21,20 +21,41 @@ struct MultiPartnerMenuPokemon
 
 #define POOL_SLOT_DISABLED  0xff
 
-#define POOL_TAG_DISABLED   0x1
-#define POOL_TAG_UNIQUE     0x2
-#define POOL_TAG_2_MAX      0x4
-#define POOL_TAG_REQUIRED   0x8
+//  Unlimited is set to 0 so that the default is unlimited
+#define POOL_MEMBER_COUNT_UNLIMITED 0
+#define POOL_MEMBER_COUNT_NONE      0xff
 
-#define POOL_TAG_LEAD           1 << 0
-#define POOL_TAG_ACE            1 << 1
-#define POOL_TAG_WEATHER_SETTER 1 << 2
-#define POOL_TAG_WEATHER_ABUSER 1 << 3
-#define POOL_TAG_SUPPORT        1 << 4
-#define POOL_TAG_6              1 << 5
-#define POOL_TAG_7              1 << 6
-#define POOL_TAG_8              1 << 7
-#define NUM_TAGS                8
+enum PoolRulesets {
+    POOL_RULESET_DEFAULT,
+    POOL_RULESET_DOUBLES,
+    POOL_RULESET_WEATHER_SINGLES,
+    POOL_RULESET_WEATHER_DOUBLES,
+    POOL_RULESET_SUPPORT_DOUBLES,
+};
+
+enum PoolTags {
+    //  Lead and Ace has special handling, leave them be
+    POOL_TAG_LEAD = 0,
+    POOL_TAG_ACE = 1,
+    //  No special handling for these
+    POOL_TAG_WEATHER_SETTER = 2,
+    POOL_TAG_WEATHER_ABUSER = 3,
+    POOL_TAG_SUPPORT = 4,
+    POOL_TAG_6 = 5,
+    POOL_TAG_7 = 6,
+    POOL_TAG_8 = 7,
+    //  Must be the last element
+    NUM_TAGS = 8
+};
+
+#define MON_POOL_TAG_LEAD           1 << POOL_TAG_LEAD
+#define MON_POOL_TAG_ACE            1 << POOL_TAG_ACE
+#define MON_POOL_TAG_WEATHER_SETTER 1 << POOL_TAG_WEATHER_SETTER
+#define MON_POOL_TAG_WEATHER_ABUSER 1 << POOL_TAG_WEATHER_ABUSER
+#define MON_POOL_TAG_SUPPORT        1 << POOL_TAG_SUPPORT
+#define MON_POOL_TAG_6              1 << POOL_TAG_6
+#define MON_POOL_TAG_7              1 << POOL_TAG_7
+#define MON_POOL_TAG_8              1 << POOL_TAG_8
 
 struct PoolRules
 {
@@ -42,19 +63,8 @@ struct PoolRules
     bool8 excludeForms;
     bool8 itemClause;
     bool8 itemClauseExclusions;
-    u32 tagLead:4;
-    u32 tagAce:4;
-    u32 tagWeatherSetter:4;
-    u32 tagWeatherAbuser:4;
-    u32 tagSupport:4;
-    u32 tag6:4;
-    u32 tag7:4;
-    u32 tag8:4;
-};
-
-union PoolRuleAccess {
-    u32 ruleAccess[2];
-    struct PoolRules poolRules;
+    u8 tagMaxMembers[NUM_TAGS];
+    bool8 tagRequired[NUM_TAGS];
 };
 
 // defines for the 'DoBounceEffect' function
