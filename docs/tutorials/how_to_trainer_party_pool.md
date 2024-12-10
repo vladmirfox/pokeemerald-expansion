@@ -1,6 +1,8 @@
 # How to use Trainer Party Pools
 Trainer Party Pools (TPP) is a way to introduce a bit of unpredictability to trainer battles by allowing trainer to generate parties from pools defined by the user.
 
+The maximum number of mons that can be in a single trainer's pool is 255.
+
 ## Turning on TPP with `trainer.sparty`
 To use TPP with `trainers.party`, all that's needed is to define a `Party Size` that's smaller than than the number of defined mons for the trainer.
 
