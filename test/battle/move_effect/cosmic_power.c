@@ -1,6 +1,11 @@
 #include "global.h"
 #include "test/battle.h"
 
+ASSUMPTIONS
+{
+    ASSUME(gMovesInfo[MOVE_COSMIC_POWER].effect == EFFECT_COSMIC_POWER);
+}
+
 SINGLE_BATTLE_TEST("Cosmic Power increases the user's Defense and Sp. Defense by 1 stage each")
 {
     GIVEN {

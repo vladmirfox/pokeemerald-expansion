@@ -1,6 +1,11 @@
 #include "global.h"
 #include "test/battle.h"
 
+ASSUMPTIONS
+{
+    ASSUME(gMovesInfo[MOVE_COACHING].effect == EFFECT_COACHING);
+}
+
 DOUBLE_BATTLE_TEST("Coaching raises Attack and Defense of ally by 1 stage each")
 {
     GIVEN {
@@ -20,6 +25,7 @@ DOUBLE_BATTLE_TEST("Coaching raises Attack and Defense of ally by 1 stage each")
 DOUBLE_BATTLE_TEST("Coaching bypasses Protect")
 {
     GIVEN {
+        ASSUME(gMovesInfo[MOVE_PROTECT].effect == EFFECT_PROTECT);
         PLAYER(SPECIES_WOBBUFFET);
         PLAYER(SPECIES_WYNAUT);
         OPPONENT(SPECIES_WOBBUFFET);
@@ -36,6 +42,7 @@ DOUBLE_BATTLE_TEST("Coaching bypasses Protect")
 DOUBLE_BATTLE_TEST("Coaching bypasses Crafty Shield")
 {
     GIVEN {
+        ASSUME(gMovesInfo[MOVE_CRAFTY_SHIELD].effect == EFFECT_PROTECT);
         PLAYER(SPECIES_WOBBUFFET);
         PLAYER(SPECIES_WYNAUT);
         OPPONENT(SPECIES_WOBBUFFET);
@@ -53,6 +60,7 @@ DOUBLE_BATTLE_TEST("Coaching fails if all allies are is semi-invulnerable")
 {
     KNOWN_FAILING; // Coaching succeeds
     GIVEN {
+        ASSUME(gMovesInfo[MOVE_FLY].effect == EFFECT_SEMI_INVULNERABLE);
         PLAYER(SPECIES_WOBBUFFET);
         PLAYER(SPECIES_HAWLUCHA);
         OPPONENT(SPECIES_WOBBUFFET);
