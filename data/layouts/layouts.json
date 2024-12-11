@@ -6117,7 +6117,7 @@
       "border_width": 1,
       "border_height": 1,
       "primary_tileset": "gTileset_Building_Generic",
-      "secondary_tileset": "gTileset_HouseStone",
+      "secondary_tileset": "gTileset_House_Marble",
       "border_filepath": "data/layouts/YifuCity_CrobatShop/border.bin",
       "blockdata_filepath": "data/layouts/YifuCity_CrobatShop/map.bin"
     },

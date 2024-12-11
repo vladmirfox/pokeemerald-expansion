@@ -4,10 +4,21 @@ mapscripts YifuCity_Refuge_MapScripts {}
 
 script YifuCity_Refuge_EventScript_FakeNurse {
 	setvar(VAR_0x800B, LOCALID_NURSE)
-	call(Common_EventScript_PkmnCenterNurse_CutTheBullshit)
-	waitmessage
-	waitbuttonpress
-	release
+	lock
+	faceplayer
+	setvar(VAR_0x8004, 0)
+	msgbox(format("Gimme yer Pokémon, I'mma heal 'em good."))
+	closemessage
+
+	incrementgamestat(GAME_STAT_USED_POKECENTER)
+	call(EventScript_PkmnCenterNurse_TakeAndHealPkmn)
+
+	// TODO EVA: swap one pokémon
+	
+	msgbox(format("Yep, uh, good as new, probably!"))
+	closemessage
+	msgbox(format("C'magain, whatever."))
+	closemessage
 	end
 }
 
