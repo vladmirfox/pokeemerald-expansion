@@ -354,7 +354,10 @@ __attribute__((target("arm"))) __attribute__((noinline)) __attribute__((optimize
     u32 readIndex = sReadIndex;
     u32 currBits = data[readIndex];
     u32 bitIndex = sBitIndex;
-    for (u32 currSym = 0; currSym < stuff->count; currSym++)
+    u8 * resultVec = (u8*)(stuff->resultVec);
+    u8 * resultVecEnd = &resultVec[stuff->count];
+
+    do
     {
         u32 symbol = 0;
         for (u32 currNibble = 0; currNibble < 2; currNibble++)
@@ -362,6 +365,7 @@ __attribute__((target("arm"))) __attribute__((noinline)) __attribute__((optimize
             symbol += stuff->symbolTable[sCurrState] << (currNibble*4);
             u32 currK = stuff->ykTable[sCurrState].kVal;
             u32 nextState = stuff->ykTable[sCurrState].yVal;
+            //nextState += (currBits >> bitIndex) & (0xff >> (8-currK));
             nextState += (currBits >> bitIndex) & maskTable[currK];
             if (bitIndex + currK < 32)
             {
@@ -383,8 +387,8 @@ __attribute__((target("arm"))) __attribute__((noinline)) __attribute__((optimize
             }
             sCurrState = nextState-64;
         }
-        ((u8*)(stuff->resultVec))[currSym] = symbol;
-    }
+        *resultVec++ = symbol;
+    } while (resultVec < resultVecEnd);
 
     sBitIndex = bitIndex;
     sReadIndex = readIndex;
@@ -475,7 +479,10 @@ __attribute__((target("arm"))) __attribute__((noinline)) __attribute__((optimize
     u32 currBits = data[readIndex];
     u32 prevSymbol = 0;
     u32 bitIndex = sBitIndex;
-    for (u32 currSym = 0; currSym < stuff->count; currSym++)
+    u16 * resultVec = (u16*)(stuff->resultVec);
+    u16 * resultVecEnd = &resultVec[stuff->count];
+
+    do
     {
         u32 symbol = 0;
         for (u32 currNibble = 0; currNibble < 4; currNibble++)
@@ -506,8 +513,8 @@ __attribute__((target("arm"))) __attribute__((noinline)) __attribute__((optimize
             }
             sCurrState = nextState - 64;
         }
-        ((u16*)(stuff->resultVec))[currSym] = symbol;
-    }
+        *resultVec++ = symbol;
+    } while (resultVec < resultVecEnd);
     sBitIndex = bitIndex;
     sReadIndex = readIndex;
 }
