@@ -14118,4 +14118,20 @@ const struct Item gItemsInfo[] =
         .iconPic = gItemIcon_Fishcake,
         .iconPalette = gItemIconPalette_Fishcake,
     },
+
+    [ITEM_REFUGE_ROOM_KEY] =
+    {
+        .name = _("Room Key"),
+        .price = 500,
+        .description = COMPOUND_STRING(
+            "A key to a room\n"
+            "at the Yifu City\n"
+            "refuge."
+        ),
+        .pocket = POCKET_KEY_ITEMS,
+        .type = ITEM_USE_BAG_MENU,
+        .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
+        .iconPic = gItemIcon_BasementKey,
+        .iconPalette = gItemIconPalette_OldKey,
+    },
 };

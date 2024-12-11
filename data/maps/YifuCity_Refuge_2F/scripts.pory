@@ -1,0 +1,27 @@
+mapscripts YifuCity_Refuge_2F_MapScripts {
+	
+}
+
+script YifuCity_Refuge_2F_OricorioTrade {
+	
+}
+
+script YifuCity_Refuge_2F_TravelingMerchant {
+	lock
+	faceplayer
+	speakername("Okada")
+	msgbox(format(
+		"Oh, good evening, {PLAYER}! I'm exhausted! I've been walking since morning, I'm calling it a day.\p"
+		"Never underestimate a good night's sleep!"
+	))
+	closemessage
+	release
+}
+
+script YifuCity_Refuge_2F_CoupleMan {
+	
+}
+
+script YifuCity_Refuge_2F_CoupleWoman {
+	
+}

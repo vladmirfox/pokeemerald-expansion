@@ -724,7 +724,7 @@
     {
       "id": "LAYOUT_POKEMON_CENTER_1F",
       "name": "PokemonCenter_1F_Layout",
-      "width": 14,
+      "width": 12,
       "height": 11,
       "border_width": 2,
       "border_height": 2,
@@ -6064,7 +6064,7 @@
     {
       "id": "LAYOUT_YIFU_CITY_REFUGE",
       "name": "YifuCity_Refuge_Layout",
-      "width": 14,
+      "width": 12,
       "height": 11,
       "border_width": 2,
       "border_height": 2,
@@ -6081,7 +6081,7 @@
       "border_width": 1,
       "border_height": 1,
       "primary_tileset": "gTileset_Building_Generic",
-      "secondary_tileset": "gTileset_HouseStone",
+      "secondary_tileset": "gTileset_House_Marble",
       "border_filepath": "data/layouts/YifuCity_Onsen/border.bin",
       "blockdata_filepath": "data/layouts/YifuCity_Onsen/map.bin"
     },
@@ -6218,40 +6218,52 @@
       "blockdata_filepath": "data/layouts/YifuCity_House2/map.bin"
     },
     {
-      "id": "LAYOUT_YIFU_CITY_HOUSE3",
-      "name": "YifuCity_House3_Layout",
-      "width": 10,
-      "height": 10,
+      "id": "LAYOUT_HOUSE_MARBLE",
+      "name": "House_Marble",
+      "width": 8,
+      "height": 7,
       "border_width": 1,
       "border_height": 1,
       "primary_tileset": "gTileset_Building_Generic",
-      "secondary_tileset": "gTileset_HouseStone",
-      "border_filepath": "data/layouts/YifuCity_House3/border.bin",
-      "blockdata_filepath": "data/layouts/YifuCity_House3/map.bin"
+      "secondary_tileset": "gTileset_House_Marble",
+      "border_filepath": "data/layouts/House_Marble/border.bin",
+      "blockdata_filepath": "data/layouts/House_Marble/map.bin"
     },
     {
       "id": "LAYOUT_YIFU_CITY_HOUSE4",
       "name": "YifuCity_House4_Layout",
-      "width": 10,
-      "height": 10,
+      "width": 8,
+      "height": 7,
       "border_width": 1,
       "border_height": 1,
       "primary_tileset": "gTileset_Building_Generic",
-      "secondary_tileset": "gTileset_HouseStone",
+      "secondary_tileset": "gTileset_House_Marble",
       "border_filepath": "data/layouts/YifuCity_House4/border.bin",
       "blockdata_filepath": "data/layouts/YifuCity_House4/map.bin"
     },
     {
       "id": "LAYOUT_YIFU_CITY_REFUGE_2F",
       "name": "YifuCity_Refuge_2F_Layout",
-      "width": 10,
-      "height": 10,
+      "width": 31,
+      "height": 21,
       "border_width": 1,
       "border_height": 1,
       "primary_tileset": "gTileset_Building_Generic",
       "secondary_tileset": "gTileset_Refuge",
       "border_filepath": "data/layouts/YifuCity_Refuge_2F/border.bin",
       "blockdata_filepath": "data/layouts/YifuCity_Refuge_2F/map.bin"
+    },
+    {
+      "id": "LAYOUT_YIFU_CITY_REFUGE_2F_ROOMS",
+      "name": "YifuCity_Refuge_2F_Rooms_Layout",
+      "width": 31,
+      "height": 20,
+      "border_width": 1,
+      "border_height": 1,
+      "primary_tileset": "gTileset_Building_Generic",
+      "secondary_tileset": "gTileset_Refuge",
+      "border_filepath": "data/layouts/YifuCity_Refuge_2F_Rooms/border.bin",
+      "blockdata_filepath": "data/layouts/YifuCity_Refuge_2F_Rooms/map.bin"
     }
   ]
 }

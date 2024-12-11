@@ -16,7 +16,7 @@
   "object_events": [
     {
       "graphics_id": "OBJ_EVENT_GFX_NURSE",
-      "x": 6,
+      "x": 5,
       "y": 2,
       "elevation": 0,
       "movement_type": "MOVEMENT_TYPE_NONE",
@@ -29,7 +29,7 @@
     },
     {
       "graphics_id": "OBJ_EVENT_GFX_MAN_1",
-      "x": 6,
+      "x": 5,
       "y": 4,
       "elevation": 0,
       "movement_type": "MOVEMENT_TYPE_FACE_UP",
@@ -43,7 +43,7 @@
     {
       "graphics_id": "OBJ_EVENT_GFX_WOMAN_3",
       "x": 8,
-      "y": 7,
+      "y": 9,
       "elevation": 0,
       "movement_type": "MOVEMENT_TYPE_LOOK_AROUND",
       "movement_range_x": 0,
@@ -55,7 +55,7 @@
     },
     {
       "graphics_id": "OBJ_EVENT_GFX_FAT_MAN",
-      "x": 12,
+      "x": 10,
       "y": 3,
       "elevation": 0,
       "movement_type": "MOVEMENT_TYPE_LOOK_AROUND",
@@ -68,8 +68,8 @@
     },
     {
       "graphics_id": "OBJ_EVENT_GFX_TRAVELER",
-      "x": 4,
-      "y": 9,
+      "x": 3,
+      "y": 8,
       "elevation": 0,
       "movement_type": "MOVEMENT_TYPE_LOOK_AROUND",
       "movement_range_x": 0,
@@ -81,8 +81,8 @@
     },
     {
       "graphics_id": "OBJ_EVENT_GFX_SPECIES(SNORUNT)",
-      "x": 4,
-      "y": 10,
+      "x": 3,
+      "y": 9,
       "elevation": 0,
       "movement_type": "MOVEMENT_TYPE_WALK_IN_PLACE_DOWN",
       "movement_range_x": 0,
@@ -94,7 +94,7 @@
     },
     {
       "graphics_id": "OBJ_EVENT_GFX_VAR_1",
-      "x": 11,
+      "x": 9,
       "y": 2,
       "elevation": 0,
       "movement_type": "MOVEMENT_TYPE_FACE_DOWN",
@@ -108,7 +108,7 @@
     {
       "graphics_id": "OBJ_EVENT_GFX_MAN_2",
       "x": 1,
-      "y": 2,
+      "y": 6,
       "elevation": 0,
       "movement_type": "MOVEMENT_TYPE_LOOK_AROUND",
       "movement_range_x": 0,
@@ -121,9 +121,9 @@
     {
       "graphics_id": "OBJ_EVENT_GFX_BOY_1",
       "x": 10,
-      "y": 3,
+      "y": 4,
       "elevation": 0,
-      "movement_type": "MOVEMENT_TYPE_FACE_UP_AND_RIGHT",
+      "movement_type": "MOVEMENT_TYPE_FACE_UP_AND_LEFT",
       "movement_range_x": 0,
       "movement_range_y": 0,
       "trainer_type": "TRAINER_TYPE_NONE",
@@ -133,10 +133,10 @@
     },
     {
       "graphics_id": "OBJ_EVENT_GFX_TWIN_M",
-      "x": 12,
-      "y": 4,
+      "x": 11,
+      "y": 3,
       "elevation": 0,
-      "movement_type": "MOVEMENT_TYPE_FACE_UP_AND_LEFT",
+      "movement_type": "MOVEMENT_TYPE_FACE_DOWN_UP_AND_LEFT",
       "movement_range_x": 0,
       "movement_range_y": 0,
       "trainer_type": "TRAINER_TYPE_NONE",
@@ -146,10 +146,10 @@
     },
     {
       "graphics_id": "OBJ_EVENT_GFX_WOMAN_2",
-      "x": 13,
-      "y": 3,
+      "x": 11,
+      "y": 2,
       "elevation": 0,
-      "movement_type": "MOVEMENT_TYPE_FACE_UP_AND_LEFT",
+      "movement_type": "MOVEMENT_TYPE_FACE_DOWN_AND_LEFT",
       "movement_range_x": 0,
       "movement_range_y": 0,
       "trainer_type": "TRAINER_TYPE_NONE",
@@ -160,14 +160,14 @@
   ],
   "warp_events": [
     {
-      "x": 6,
+      "x": 5,
       "y": 10,
       "elevation": 0,
       "dest_map": "MAP_CHII_TOWN",
       "dest_warp_id": "4"
     },
     {
-      "x": 7,
+      "x": 6,
       "y": 10,
       "elevation": 0,
       "dest_map": "MAP_CHII_TOWN",
