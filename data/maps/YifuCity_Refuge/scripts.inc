@@ -2,7 +2,7 @@ YifuCity_Refuge_MapScripts::
 	.byte 0
 
 
-YifuCity_Refuge_EventScript_Nurse::
+YifuCity_Refuge_EventScript_FakeNurse::
 # 6 "data/maps/YifuCity_Refuge/scripts.pory"
 	setvar VAR_0x800B, 1
 # 7 "data/maps/YifuCity_Refuge/scripts.pory"

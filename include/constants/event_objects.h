@@ -86,7 +86,7 @@
 #define OBJ_EVENT_GFX_CUTTABLE_TREE               82
 #define OBJ_EVENT_GFX_MART_EMPLOYEE               83
 #define OBJ_EVENT_GFX_ROOFTOP_SALE_WOMAN          84
-#define OBJ_EVENT_GFX_TEALA                       85
+#define OBJ_EVENT_GFX_VALET                       85
 #define OBJ_EVENT_GFX_BREAKABLE_ROCK              86
 #define OBJ_EVENT_GFX_PUSHABLE_BOULDER            87
 #define OBJ_EVENT_GFX_MR_BRINEYS_BOAT             88
@@ -393,7 +393,7 @@
 #define OBJ_EVENT_PAL_TAG_AROMA_LADY              0x1125
 #define OBJ_EVENT_PAL_TAG_OLD_MAN                 0x1126
 #define OBJ_EVENT_PAL_TAG_KOISHI                  0x1127
-#define OBJ_EVENT_PAL_TAG_LITTLE_GIRL             0x1128 // UNUSED
+#define OBJ_EVENT_PAL_TAG_VALET                   0x1128
 #define OBJ_EVENT_PAL_TAG_FAT_MAN                 0x1129
 #define OBJ_EVENT_PAL_TAG_ARTIST                  0x112A
 #define OBJ_EVENT_PAL_TAG_NINJA_BOY               0x112B
