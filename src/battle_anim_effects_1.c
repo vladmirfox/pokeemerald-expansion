@@ -6660,6 +6660,16 @@ static void TrySwapSkyDropTargets(u32 battlerAtk, u32 battlerPartner)
     SWAP(gBattleStruct->skyDropTargets[battlerAtk], gBattleStruct->skyDropTargets[battlerPartner], temp);
 }
 
+static void TrySwapStickyWebBattlerId(u32 battlerAtk, u32 battlerPartner)
+{
+    u32 oppSide = GetBattlerSide(BATTLE_OPPOSITE(battlerAtk));
+    // if we've set sticky web on the opposing side, need to swap stickyWebBattlerId for mirror armor
+    if (gSideTimers[oppSide].stickyWebBattlerId == battlerAtk)
+        gSideTimers[oppSide].stickyWebBattlerId = battlerPartner;
+    else if (gSideTimers[oppSide].stickyWebBattlerId == battlerPartner)
+        gSideTimers[oppSide].stickyWebBattlerId = battlerAtk;
+}
+
 static void AnimTask_AllySwitchDataSwap(u8 taskId)
 {
     s32 i, j;
@@ -6711,6 +6721,7 @@ static void AnimTask_AllySwitchDataSwap(u8 taskId)
     SWAP(gBattlerPartyIndexes[battlerAtk], gBattlerPartyIndexes[battlerPartner], temp);
     
     TrySwapSkyDropTargets(battlerAtk, battlerPartner);
+    TrySwapStickyWebBattlerId(battlerAtk, battlerPartner);
 
     // For Snipe Shot and abilities Stalwart/Propeller Tail - keep the original target.
     for (i = 0; i < MAX_BATTLERS_COUNT; i++)
