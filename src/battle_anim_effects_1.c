@@ -6642,6 +6642,24 @@ static void ReloadBattlerSprites(u32 battler, struct Pokemon *party)
     }
 }
 
+static void TrySwapSkyDropTargets(u32 battlerAtk, u32 battlerPartner)
+{
+    u32 i, temp;
+    
+    // battlerAtk is using Ally Switch
+    // check if our partner is the target of sky drop
+    // If so, change that index to battlerAtk
+    for (i = 0; i < gBattlersCount; i++) {
+        if (gBattleStruct->skyDropTargets[i] == battlerPartner) {
+            gBattleStruct->skyDropTargets[i] = battlerAtk;
+            break;
+        }
+    }
+    
+    // Then swap our own sky drop targets with the partner in case our partner is mid-skydrop
+    SWAP(gBattleStruct->skyDropTargets[battlerAtk], gBattleStruct->skyDropTargets[battlerPartner], temp);
+}
+
 static void AnimTask_AllySwitchDataSwap(u8 taskId)
 {
     s32 i, j;
@@ -6691,6 +6709,8 @@ static void AnimTask_AllySwitchDataSwap(u8 taskId)
     party = GetBattlerParty(battlerAtk);
     SwitchTwoBattlersInParty(battlerAtk, battlerPartner);
     SWAP(gBattlerPartyIndexes[battlerAtk], gBattlerPartyIndexes[battlerPartner], temp);
+    
+    TrySwapSkyDropTargets(battlerAtk, battlerPartner);
 
     // For Snipe Shot and abilities Stalwart/Propeller Tail - keep the original target.
     for (i = 0; i < MAX_BATTLERS_COUNT; i++)
