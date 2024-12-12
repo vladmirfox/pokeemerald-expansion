@@ -1129,4 +1129,10 @@ struct MapPosition
     s8 elevation;
 };
 
+struct GenerationalChanges
+{
+    bool32 galeWingsFullHealth:1;
+    u32 padding:31;
+};
+
 #endif // GUARD_GLOBAL_H

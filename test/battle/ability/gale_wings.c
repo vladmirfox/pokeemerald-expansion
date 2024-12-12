@@ -1,12 +1,15 @@
 #include "global.h"
 #include "test/battle.h"
 
-SINGLE_BATTLE_TEST("Gale Wings only grants priority at full HP")
+SINGLE_BATTLE_TEST("Gale Wings only grants priority at full HP (Gen 7+)")
 {
-    u16 hp;
-    PARAMETRIZE { hp = 100; }
-    PARAMETRIZE { hp = 99; }
+    u32 hp, config;
+    PARAMETRIZE { hp = 100; config = GEN_7; }
+    PARAMETRIZE { hp = 99;  config = GEN_7; }
+    PARAMETRIZE { hp = 100; config = GEN_6; }
+    PARAMETRIZE { hp = 99;  config = GEN_6; }
     GIVEN {
+        SetGenConfig(GEN_CONFIG_GALE_WINGS, config);
         ASSUME(B_GALE_WINGS >= GEN_7);
         ASSUME(gMovesInfo[MOVE_AERIAL_ACE].type == TYPE_FLYING);
         PLAYER(SPECIES_TALONFLAME) { Ability(ABILITY_GALE_WINGS); HP(hp); MaxHP(100); Speed(1);}
@@ -14,7 +17,7 @@ SINGLE_BATTLE_TEST("Gale Wings only grants priority at full HP")
     } WHEN {
         TURN { MOVE(player, MOVE_AERIAL_ACE); }
     } SCENE {
-        if (hp == 100) {
+        if (hp == 100 || config <= GEN_6) {
             MESSAGE("Talonflame used Aerial Ace!");
             MESSAGE("The opposing Wobbuffet used Celebrate!");
         }

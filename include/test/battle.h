@@ -488,6 +488,7 @@
 #include "battle.h"
 #include "battle_anim.h"
 #include "data.h"
+#include "generational_changes.h"
 #include "item.h"
 #include "random.h"
 #include "recorded_battle.h"
