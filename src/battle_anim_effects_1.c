@@ -6666,7 +6666,7 @@ static void TrySwapSkyDropTargets(u32 battlerAtk, u32 battlerPartner)
     else if (gSideTimers[side].field == battlerPartner)             \
         gSideTimers[side].field = battlerAtk;
 
-static void TrySwapSideTimerBattlerIds(u32 battlerAtk, u32 battlerPartner)
+static void TrySwapStickyWebBattlerId(u32 battlerAtk, u32 battlerPartner)
 {
     u32 atkSide = GetBattlerSide(battlerAtk);
     u32 oppSide = GetBattlerSide(BATTLE_OPPOSITE(battlerAtk));
@@ -6688,8 +6688,7 @@ static void TrySwapSideTimerBattlerIds(u32 battlerAtk, u32 battlerPartner)
 static void TrySwapWishBattlerIds(u32 battlerAtk, u32 battlerPartner)
 {
     u32 i, temp;
-    u32 atkSide = GET_ROYALE_SIDE(battlerAtk);
-    u32 oppSide = GET_ROYALE_SIDE(BATTLE_OPPOSITE(battlerAtk));
+    u32 oppSide = GetBattlerSide(BATTLE_OPPOSITE(battlerAtk));
     
     // if used future sight on opposing side, properly track who used it
     if (gSideStatuses[oppSide] & SIDE_STATUS_FUTUREATTACK) {
@@ -6767,7 +6766,7 @@ static void AnimTask_AllySwitchDataSwap(u8 taskId)
     SWAP(gBattlerPartyIndexes[battlerAtk], gBattlerPartyIndexes[battlerPartner], temp);
     
     TrySwapSkyDropTargets(battlerAtk, battlerPartner);
-    TrySwapSideTimerBattlerIds(battlerAtk, battlerPartner);
+    TrySwapStickyWebBattlerId(battlerAtk, battlerPartner);
     TrySwapWishBattlerIds(battlerAtk, battlerPartner);
 
     // For Snipe Shot and abilities Stalwart/Propeller Tail - keep the original target.
