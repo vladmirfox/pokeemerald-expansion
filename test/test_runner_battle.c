@@ -160,6 +160,7 @@ static void BattleTest_SetUp(void *data)
 {
     const struct BattleTest *test = data;
     memset(STATE, 0, sizeof(*STATE));
+    TestInitConfigData();
     InvokeTestFunction(test);
     STATE->parameters = STATE->parametersCount;
     if (STATE->parametersCount == 0 && test->resultsSize > 0)
@@ -1417,6 +1418,7 @@ static void BattleTest_TearDown(void *data)
     // Free resources that aren't cleaned up when the battle was
     // aborted unexpectedly.
     ClearFlagAfterTest();
+    TestFreeConfigData();
     if (STATE->tearDownBattle)
         TearDownBattle();
 }
