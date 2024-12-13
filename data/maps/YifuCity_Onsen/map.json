@@ -35,13 +35,6 @@
       "elevation": 0,
       "dest_map": "MAP_YIFU_CITY",
       "dest_warp_id": "2"
-    },
-    {
-      "x": 5,
-      "y": 6,
-      "elevation": 0,
-      "dest_map": "MAP_YIFU_CITY",
-      "dest_warp_id": "2"
     }
   ],
   "coord_events": [

@@ -82,130 +82,95 @@
   ],
   "warp_events": [
     {
-      "x": 0,
-      "y": 19,
-      "elevation": 0,
-      "dest_map": "MAP_YIFU_CITY_REFUGE",
-      "dest_warp_id": "2"
-    },
-    {
       "x": 1,
-      "y": 19,
+      "y": 18,
       "elevation": 0,
       "dest_map": "MAP_YIFU_CITY_REFUGE",
-      "dest_warp_id": "2"
+      "dest_warp_id": "1"
     },
     {
       "x": 2,
+      "y": 14,
+      "elevation": 0,
+      "dest_map": "MAP_YIFU_CITY_REFUGE_2F",
+      "dest_warp_id": "9"
+    },
+    {
+      "x": 3,
+      "y": 14,
+      "elevation": 0,
+      "dest_map": "MAP_YIFU_CITY_REFUGE_2F",
+      "dest_warp_id": "9"
+    },
+    {
+      "x": 10,
       "y": 14,
       "elevation": 0,
       "dest_map": "MAP_YIFU_CITY_REFUGE_2F",
       "dest_warp_id": "10"
     },
     {
-      "x": 3,
+      "x": 11,
+      "y": 14,
+      "elevation": 0,
+      "dest_map": "MAP_YIFU_CITY_REFUGE_2F",
+      "dest_warp_id": "10"
+    },
+    {
+      "x": 18,
       "y": 14,
       "elevation": 0,
       "dest_map": "MAP_YIFU_CITY_REFUGE_2F",
       "dest_warp_id": "11"
     },
     {
-      "x": 10,
+      "x": 19,
+      "y": 14,
+      "elevation": 0,
+      "dest_map": "MAP_YIFU_CITY_REFUGE_2F",
+      "dest_warp_id": "11"
+    },
+    {
+      "x": 26,
       "y": 14,
       "elevation": 0,
       "dest_map": "MAP_YIFU_CITY_REFUGE_2F",
       "dest_warp_id": "12"
     },
     {
-      "x": 11,
-      "y": 14,
-      "elevation": 0,
-      "dest_map": "MAP_YIFU_CITY_REFUGE_2F",
-      "dest_warp_id": "13"
-    },
-    {
-      "x": 18,
-      "y": 14,
-      "elevation": 0,
-      "dest_map": "MAP_YIFU_CITY_REFUGE_2F",
-      "dest_warp_id": "14"
-    },
-    {
-      "x": 19,
-      "y": 14,
-      "elevation": 0,
-      "dest_map": "MAP_YIFU_CITY_REFUGE_2F",
-      "dest_warp_id": "15"
-    },
-    {
-      "x": 26,
-      "y": 14,
-      "elevation": 0,
-      "dest_map": "MAP_YIFU_CITY_REFUGE_2F",
-      "dest_warp_id": "16"
-    },
-    {
       "x": 27,
       "y": 14,
       "elevation": 0,
       "dest_map": "MAP_YIFU_CITY_REFUGE_2F",
-      "dest_warp_id": "17"
+      "dest_warp_id": "12"
     },
     {
-      "x": 2,
-      "y": 8,
+      "x": 3,
+      "y": 7,
       "elevation": 0,
       "dest_map": "MAP_YIFU_CITY_REFUGE_2F",
       "dest_warp_id": "2"
     },
     {
-      "x": 3,
-      "y": 8,
-      "elevation": 0,
-      "dest_map": "MAP_YIFU_CITY_REFUGE_2F",
-      "dest_warp_id": "3"
-    },
-    {
-      "x": 10,
-      "y": 8,
+      "x": 11,
+      "y": 7,
       "elevation": 0,
       "dest_map": "MAP_YIFU_CITY_REFUGE_2F",
       "dest_warp_id": "4"
     },
     {
-      "x": 11,
-      "y": 8,
-      "elevation": 0,
-      "dest_map": "MAP_YIFU_CITY_REFUGE_2F",
-      "dest_warp_id": "5"
-    },
-    {
-      "x": 18,
-      "y": 8,
+      "x": 19,
+      "y": 7,
       "elevation": 0,
       "dest_map": "MAP_YIFU_CITY_REFUGE_2F",
       "dest_warp_id": "6"
     },
     {
-      "x": 19,
-      "y": 8,
-      "elevation": 0,
-      "dest_map": "MAP_YIFU_CITY_REFUGE_2F",
-      "dest_warp_id": "7"
-    },
-    {
-      "x": 26,
-      "y": 8,
+      "x": 27,
+      "y": 7,
       "elevation": 0,
       "dest_map": "MAP_YIFU_CITY_REFUGE_2F",
       "dest_warp_id": "8"
-    },
-    {
-      "x": 27,
-      "y": 8,
-      "elevation": 0,
-      "dest_map": "MAP_YIFU_CITY_REFUGE_2F",
-      "dest_warp_id": "9"
     }
   ],
   "coord_events": [

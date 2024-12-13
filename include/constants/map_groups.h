@@ -123,6 +123,7 @@
 #define MAP_YIFU_CITY_HOUSE4          (14 | (9 << 8))
 #define MAP_YIFU_CITY_REFUGE_2F       (15 | (9 << 8))
 #define MAP_YIFU_CITY_REFUGE_2F_ROOMS (16 | (9 << 8))
+#define MAP_YIFU_CITY_RESTAURANT      (17 | (9 << 8))
 
 // gMapGroup_Dungeons
 #define MAP_GINKO_WOODS      (0 | (10 << 8))

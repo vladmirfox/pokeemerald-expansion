@@ -7,6 +7,7 @@ script YifuCity_Refuge_EventScript_FakeNurse {
 	lock
 	faceplayer
 	setvar(VAR_0x8004, 0)
+	speakername("Nurse")
 	msgbox(format("Gimme yer Pokémon, I'mma heal 'em good."))
 	closemessage
 
@@ -15,11 +16,23 @@ script YifuCity_Refuge_EventScript_FakeNurse {
 
 	// TODO EVA: swap one pokémon
 	
-	msgbox(format("Yep, uh, good as new, probably!"))
-	closemessage
-	msgbox(format("C'magain, whatever."))
+	speakername("Nurse")
+	msgbox(format(
+		"Yep, uh, good as new, probably!\p"
+		"C'magain, or whatever."
+	))
 	closemessage
 	end
+}
+
+script YifuCity_Refuge_EventScript_Woobat {
+	lock
+	playmoncry(SPECIES_WOOBAT, CRY_MODE_NORMAL)
+	speakername("Chansey?")
+	msgbox("Rrrrr!")
+	waitse
+	closemessage
+	release
 }
 
 script YifuCity_Refuge_EventScript_Shamisen {

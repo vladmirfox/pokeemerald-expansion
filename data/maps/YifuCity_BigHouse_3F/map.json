@@ -18,15 +18,15 @@
   ],
   "warp_events": [
     {
-      "x": 1,
-      "y": 1,
+      "x": 13,
+      "y": 2,
       "elevation": 0,
       "dest_map": "MAP_YIFU_CITY_BIG_HOUSE_2F",
       "dest_warp_id": "1"
     },
     {
-      "x": 8,
-      "y": 1,
+      "x": 16,
+      "y": 2,
       "elevation": 0,
       "dest_map": "MAP_YIFU_CITY_BIG_HOUSE_4F",
       "dest_warp_id": "0"

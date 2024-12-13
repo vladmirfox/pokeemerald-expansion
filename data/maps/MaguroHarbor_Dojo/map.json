@@ -87,13 +87,6 @@
       "elevation": 0,
       "dest_map": "MAP_MAGURO_HARBOR",
       "dest_warp_id": "1"
-    },
-    {
-      "x": 6,
-      "y": 19,
-      "elevation": 0,
-      "dest_map": "MAP_MAGURO_HARBOR",
-      "dest_warp_id": "1"
     }
   ],
   "coord_events": [
