@@ -1,3 +1,13 @@
+script Common_EventScript_PkmnCenterNurse_Chansey {
+	lock
+	playmoncry(SPECIES_CHANSEY, CRY_MODE_NORMAL)
+	speakername("Chansey")
+	msgbox("Sey!")
+	waitse
+	closemessage
+	release
+}
+
 script Common_EventScript_PkmnCenterNurse_CutTheBullshit {
 	lock
 	faceplayer

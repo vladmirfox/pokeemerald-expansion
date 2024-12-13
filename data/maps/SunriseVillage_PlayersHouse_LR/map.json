@@ -43,13 +43,6 @@
   ],
   "warp_events": [
     {
-      "x": 4,
-      "y": 7,
-      "elevation": 0,
-      "dest_map": "MAP_SUNRISE_VILLAGE",
-      "dest_warp_id": "0"
-    },
-    {
       "x": 5,
       "y": 7,
       "elevation": 0,
@@ -68,7 +61,7 @@
       "y": 1,
       "elevation": 0,
       "dest_map": "MAP_SUNRISE_VILLAGE_PLAYERS_HOUSE_BEDROOM",
-      "dest_warp_id": "1"
+      "dest_warp_id": "0"
     }
   ],
   "coord_events": [

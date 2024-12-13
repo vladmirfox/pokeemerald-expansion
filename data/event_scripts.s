@@ -1218,8 +1218,6 @@ EventScript_VsSeekerChargingDone::
 
 	.include "data/maps/WhiteslateRoute/scripts.inc"
 
-	.include "data/maps/YifuCity/scripts.inc"
-
 	.include "data/maps/KuraTown_Dojo/scripts.inc"
 
 	.include "data/maps/KuraTown_House3/scripts.inc"
@@ -1319,3 +1317,41 @@ EventScript_VsSeekerChargingDone::
 	.include "data/maps/WindyCape2/scripts.inc"
 
 	.include "data/maps/Silveridge_House2/scripts.inc"
+
+	.include "data/maps/YifuCity/scripts.inc"
+
+	.include "data/maps/YifuCity_Refuge/scripts.inc"
+
+	.include "data/maps/YifuCity_Onsen/scripts.inc"
+
+	.include "data/maps/YifuCity_Dojo/scripts.inc"
+
+	.include "data/maps/YifuCity_ClothingShop/scripts.inc"
+
+	.include "data/maps/YifuCity_CrobatShop/scripts.inc"
+
+	.include "data/maps/YifuCity_DecoShop/scripts.inc"
+
+	.include "data/maps/YifuCity_House1_1F/scripts.inc"
+
+	.include "data/maps/YifuCity_House1_2F/scripts.inc"
+
+	.include "data/maps/YifuCity_BigHouse_1F/scripts.inc"
+
+	.include "data/maps/YifuCity_BigHouse_2F/scripts.inc"
+
+	.include "data/maps/YifuCity_BigHouse_3F/scripts.inc"
+
+	.include "data/maps/YifuCity_BigHouse_4F/scripts.inc"
+
+	.include "data/maps/YifuCity_House2/scripts.inc"
+
+	.include "data/maps/YifuCity_House3/scripts.inc"
+
+	.include "data/maps/YifuCity_House4/scripts.inc"
+
+	.include "data/maps/YifuCity_Refuge_2F/scripts.inc"
+
+	.include "data/maps/YifuCity_Refuge_2F_Rooms/scripts.inc"
+
+	.include "data/maps/YifuCity_Restaurant/scripts.inc"

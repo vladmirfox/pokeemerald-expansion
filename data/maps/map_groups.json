@@ -9,6 +9,7 @@
     "gMapGroup_IndoorBeachboundRoute",
     "gMapGroup_IndoorMaguro",
     "gMapGroup_IndoorSilveridge",
+    "gMapGroup_IndoorYifu",
     "gMapGroup_Dungeons",
     "gMapGroup_VanillaMaps1",
     "gMapGroup_VanillaMaps2",
@@ -28,7 +29,6 @@
     "Silveridge",
     "WindyCape",
     "WhiteslateRoute",
-    "YifuCity",
     "BelvedereRoute",
     "Soulkeep",
     "OrchardPath",
@@ -61,7 +61,8 @@
     "SteepstonePass",
     "Shogunate",
     "ScenicRouteSaberside",
-    "WindyCape2"
+    "WindyCape2",
+    "YifuCity"
   ],
   "gMapGroup_IndoorSunriseVillage": [
     "LittlerootTown_BrendansHouse_1F",
@@ -113,6 +114,26 @@
     "Silveridge_House1",
     "Silveridge_Refuge",
     "Silveridge_House2"
+  ],
+  "gMapGroup_IndoorYifu": [
+    "YifuCity_Refuge",
+    "YifuCity_Onsen",
+    "YifuCity_Dojo",
+    "YifuCity_ClothingShop",
+    "YifuCity_CrobatShop",
+    "YifuCity_DecoShop",
+    "YifuCity_House1_1F",
+    "YifuCity_House1_2F",
+    "YifuCity_BigHouse_1F",
+    "YifuCity_BigHouse_2F",
+    "YifuCity_BigHouse_3F",
+    "YifuCity_BigHouse_4F",
+    "YifuCity_House2",
+    "YifuCity_House3",
+    "YifuCity_House4",
+    "YifuCity_Refuge_2F",
+    "YifuCity_Refuge_2F_Rooms",
+    "YifuCity_Restaurant"
   ],
   "gMapGroup_Dungeons": [
     "GinkoWoods",

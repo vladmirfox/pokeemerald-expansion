@@ -1,6 +1,8 @@
 const LOCALID_BEAN = 8
 const LOCALID_SAMURAI = 10
 const LOCALID_KOISHI = 12
+const LOCALID_NATSUKI = 13
+const FLAG_HIDE_NATSUKI = FLAG_TEMP_1
 
 mapscripts Beachbound_Route_Decay_MapScripts {
 	MAP_SCRIPT_ON_FRAME_TABLE [
@@ -11,6 +13,9 @@ mapscripts Beachbound_Route_Decay_MapScripts {
 script Beachbound_Route_Decay_SeeDecay {
 	lock
 	setvar(VAR_DECAY_BEACHBOUND_ROUTE, 2)
+
+	setflag(FLAG_HIDE_NATSUKI)
+	removeobject(LOCALID_NATSUKI)
 
 	playse(SE_PIN)
 	applymovement(OBJ_EVENT_ID_PLAYER, Common_Movement_ExclamationMark)
@@ -56,12 +61,34 @@ script BeachboundRoute_Decay_EventScript_BeanDialogue {
 	speakername("Hariko")
 	msgbox(format(
 		"Oh! Hello.\n{PLAYER}, right?\p"
-		"I am Hariko, remember me? We had a chat in the Ginko Woods.\p"
-		"What do you think is happening here? It looks like there is some sort of {COLOR RED}decay{COLOR DARK_GRAY} affecting this whole spot.\p"
-		"The Samurai over there told me there are reports of this phenomenon hitting several areas over the last few days.\p"
-		"That coincides with the start of the Volcano's rumbling spells, so both seem to be related.\p"
-		"Whatever it is, it is not good. I want to learn as much as I can about this {COLOR RED}decay{COLOR DARK_GRAY}, which is why I am here.\p"
-		"Did you also come here to investigate, {PLAYER}? We should team up!"
+		"I am Hariko, remember me? We had a chat in the Ginko Woods."
+		// "What do you think is happening here? It looks like there is some sort of {COLOR RED}decay{COLOR DARK_GRAY} affecting this whole spot.\p"
+		// "The Samurai over there told me there are reports of this phenomenon hitting several areas over the last few days.\p"
+		// "That coincides with the start of the Volcano's rumbling spells, so both seem to be related.\p"
+		// "Whatever it is, it is not good. I want to learn as much as I can about this {COLOR RED}decay{COLOR DARK_GRAY}, which is why I am here.\p"
+		// "Did you also come here to investigate, {PLAYER}? We should team up!"
+	))
+	closemessage
+
+	setflag(FLAG_HIDE_NATSUKI)
+	addobject(LOCALID_NATSUKI)
+
+	applymovement(LOCALID_NATSUKI, moves(walk_right * 4))
+	waitmovement(0)
+
+	playse(SE_PIN)
+	applymovement(LOCALID_NATSUKI, Common_Movement_ExclamationMark)
+	waitse
+	waitmovement(0)
+	delay(48)
+
+	applymovement(LOCALID_NATSUKI, moves(walk_right * 5, face_down))
+	waitmovement(0)
+
+	speakername("Natsuki")
+	msgbox(format(
+		"{PLAYER}! What's going on?\p"
+		"Who is this, blah blah blah"
 	))
 	closemessage
 
@@ -77,10 +104,11 @@ script BeachboundRoute_Decay_EventScript_BeanDialogue {
 
 	speakername("Koishi")
 	msgbox(format(
-		"I couldn't help but overhear your conversation. You two are way too young and inexperienced to be getting involved in this!\p"
-		"We know nothing about this {COLOR RED}decay{COLOR DARK_GRAY} yet. We only know that it's dangerous.\p"
-		"The Pokémon touched by the {COLOR RED}decay{COLOR DARK_GRAY}… They act strangely, like they are corrupted by it.\p"
-		"We don't want to have to rescue you, so please let the adults handle the issue."
+		"I heard you, do not get involved in this"
+		// "I couldn't help but overhear your conversation. You two are way too young and inexperienced to be getting involved in this!\p"
+		// "We know nothing about this {COLOR RED}decay{COLOR DARK_GRAY} yet. We only know that it's dangerous.\p"
+		// "The Pokémon touched by the {COLOR RED}decay{COLOR DARK_GRAY}… They act strangely, like they are corrupted by it.\p"
+		// "We don't want to have to rescue you, so please let the adults handle the issue."
 	))
 	closemessage
 
@@ -97,10 +125,23 @@ script BeachboundRoute_Decay_EventScript_BeanDialogue {
 	speakername("Hariko")
 	msgbox(format(
 		"This is unfair! How are we supposed to investigate if we're not allowed to?\p"
-		"Well, I am going to stay here for a while, and hopefully glean some interesting stuff.\p"
-		"I will catch up with you later, {PLAYER}."
+		"Let's leave now."
 	))
 	closemessage
+
+	applymovement(LOCALID_BEAN, moves(walk_left * 8))
+	waitmovement(0)
+	removeobject(LOCALID_BEAN)
+
+	speakername("Natsuki")
+	msgbox(format(
+		"I'm leaving too"
+	))
+	closemessage
+	
+	applymovement(LOCALID_NATSUKI, moves(walk_left * 9))
+	waitmovement(0)
+	removeobject(LOCALID_NATSUKI)
 
 	release
 }

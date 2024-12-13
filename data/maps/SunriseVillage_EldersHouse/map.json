@@ -145,14 +145,7 @@
       "y": 1,
       "elevation": 0,
       "dest_map": "MAP_SUNRISE_VILLAGE_ELDERS_HOUSE_PRIVATE_QUARTERS",
-      "dest_warp_id": "1"
-    },
-    {
-      "x": 5,
-      "y": 8,
-      "elevation": 0,
-      "dest_map": "MAP_SUNRISE_VILLAGE",
-      "dest_warp_id": "1"
+      "dest_warp_id": "0"
     },
     {
       "x": 6,
@@ -163,15 +156,6 @@
     }
   ],
   "coord_events": [
-    {
-      "type": "trigger",
-      "x": 5,
-      "y": 8,
-      "elevation": 0,
-      "var": "VAR_SUNRISE_VILLAGE_INTRO_STATE",
-      "var_value": "5",
-      "script": "SunriseVillage_EldersHouse_EventScript_TryToLeave"
-    },
     {
       "type": "trigger",
       "x": 6,

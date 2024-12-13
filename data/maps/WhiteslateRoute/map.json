@@ -15,18 +15,8 @@
   "connections": [
     {
       "map": "MAP_TRANQUIL_ROUTE",
-      "offset": -44,
-      "direction": "right"
-    },
-    {
-      "map": "MAP_TRANQUIL_ROUTE",
       "offset": -42,
       "direction": "right"
-    },
-    {
-      "map": "MAP_YIFU_CITY",
-      "offset": -19,
-      "direction": "down"
     },
     {
       "map": "MAP_STEEPSTONE_PASS_BOTTOM",
@@ -37,6 +27,11 @@
       "map": "MAP_SHOGUNATE",
       "offset": 7,
       "direction": "left"
+    },
+    {
+      "map": "MAP_YIFU_CITY",
+      "offset": -16,
+      "direction": "down"
     }
   ],
   "object_events": [

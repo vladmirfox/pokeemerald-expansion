@@ -86,7 +86,7 @@
 #define OBJ_EVENT_GFX_CUTTABLE_TREE               82
 #define OBJ_EVENT_GFX_MART_EMPLOYEE               83
 #define OBJ_EVENT_GFX_ROOFTOP_SALE_WOMAN          84
-#define OBJ_EVENT_GFX_TEALA                       85
+#define OBJ_EVENT_GFX_VALET                       85
 #define OBJ_EVENT_GFX_BREAKABLE_ROCK              86
 #define OBJ_EVENT_GFX_PUSHABLE_BOULDER            87
 #define OBJ_EVENT_GFX_MR_BRINEYS_BOAT             88
@@ -128,7 +128,7 @@
 #define OBJ_EVENT_GFX_DRAKE                      124
 #define OBJ_EVENT_GFX_KOISHI                     125
 #define OBJ_EVENT_GFX_HANA                       126
-#define OBJ_EVENT_GFX_WATTSON                    127
+#define OBJ_EVENT_GFX_YUTAKA                    127
 #define OBJ_EVENT_GFX_FLANNERY                   128
 #define OBJ_EVENT_GFX_NORMAN                     129
 #define OBJ_EVENT_GFX_WINONA                     130
@@ -393,7 +393,7 @@
 #define OBJ_EVENT_PAL_TAG_AROMA_LADY              0x1125
 #define OBJ_EVENT_PAL_TAG_OLD_MAN                 0x1126
 #define OBJ_EVENT_PAL_TAG_KOISHI                  0x1127
-#define OBJ_EVENT_PAL_TAG_LITTLE_GIRL             0x1128 // UNUSED
+#define OBJ_EVENT_PAL_TAG_VALET                   0x1128
 #define OBJ_EVENT_PAL_TAG_FAT_MAN                 0x1129
 #define OBJ_EVENT_PAL_TAG_ARTIST                  0x112A
 #define OBJ_EVENT_PAL_TAG_NINJA_BOY               0x112B
@@ -431,6 +431,7 @@
 #define OBJ_EVENT_PAL_TAG_CROBAT_SHADOWS          0x114B
 #define OBJ_EVENT_PAL_TAG_MONK                    0x114C
 #define OBJ_EVENT_PAL_TAG_SAMURAI                 0x114D
+#define OBJ_EVENT_PAL_TAG_YUTAKA                  0x114E
 
 #if OW_FOLLOWERS_POKEBALLS
 // Vanilla

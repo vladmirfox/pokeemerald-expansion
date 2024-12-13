@@ -1002,9 +1002,13 @@
 // LEGEND PLATE
 
 // Custom hearth items
-#define ITEM_FISHCAKE 828
 
-#define ITEMS_COUNT 829
+// Items
+#define ITEM_FISHCAKE 828
+// Key items
+#define ITEM_REFUGE_ROOM_KEY 829
+
+#define ITEMS_COUNT 830
 #define ITEM_FIELD_ARROW ITEMS_COUNT
 
 // A special item id associated with "Cancel"/"Exit" etc. in a list of items or decorations

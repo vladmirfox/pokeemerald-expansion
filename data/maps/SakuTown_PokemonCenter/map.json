@@ -100,13 +100,6 @@
       "elevation": 0,
       "dest_map": "MAP_SAKU_TOWN",
       "dest_warp_id": "1"
-    },
-    {
-      "x": 7,
-      "y": 10,
-      "elevation": 0,
-      "dest_map": "MAP_SAKU_TOWN",
-      "dest_warp_id": "1"
     }
   ],
   "coord_events": [

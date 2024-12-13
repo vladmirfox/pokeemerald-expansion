@@ -11872,7 +11872,7 @@ F_TRAINER_FEMALE |
 #line 4796
         .trainerName = _("Koishi"),
 #line 4797
-        .trainerClass = TRAINER_CLASS_LEADER,
+        .trainerClass = TRAINER_CLASS_DOJO_MASTER,
 #line 4798
         .trainerPic = TRAINER_PIC_LEADER_KOISHI,
         .encounterMusic_gender = 
@@ -11921,7 +11921,7 @@ F_TRAINER_FEMALE |
 #line 4814
         .trainerName = _("Hana"),
 #line 4815
-        .trainerClass = TRAINER_CLASS_LEADER,
+        .trainerClass = TRAINER_CLASS_DOJO_MASTER,
 #line 4816
         .trainerPic = TRAINER_PIC_LEADER_HANA,
         .encounterMusic_gender = 
@@ -11997,17 +11997,19 @@ F_TRAINER_FEMALE |
         },
     },
 #line 4847
-    [TRAINER_WATTSON_1] =
+    [TRAINER_YUTAKA_1] =
     {
 #line 4848
-        .trainerName = _("WATTSON"),
+        .trainerName = _("Yutaka"),
 #line 4849
-        .trainerClass = TRAINER_CLASS_LEADER,
+        .trainerClass = TRAINER_CLASS_DOJO_MASTER,
 #line 4850
-        .trainerPic = TRAINER_PIC_LEADER_WATTSON,
+        .trainerPic = TRAINER_PIC_LEADER_YUTAKA,
         .encounterMusic_gender = 
+#line 4851
+F_TRAINER_FEMALE | 
 #line 4852
-            TRAINER_ENCOUNTER_MUSIC_MALE,
+            TRAINER_ENCOUNTER_MUSIC_FEMALE,
 #line 4853
         .items = { ITEM_SUPER_POTION, ITEM_SUPER_POTION },
 #line 4854
@@ -12099,7 +12101,7 @@ F_TRAINER_FEMALE |
 #line 4890
         .trainerName = _("FLANNERY"),
 #line 4891
-        .trainerClass = TRAINER_CLASS_LEADER,
+        .trainerClass = TRAINER_CLASS_DOJO_MASTER,
 #line 4892
         .trainerPic = TRAINER_PIC_LEADER_FLANNERY,
         .encounterMusic_gender = 
@@ -12198,7 +12200,7 @@ F_TRAINER_FEMALE |
 #line 4932
         .trainerName = _("NORMAN"),
 #line 4933
-        .trainerClass = TRAINER_CLASS_LEADER,
+        .trainerClass = TRAINER_CLASS_DOJO_MASTER,
 #line 4934
         .trainerPic = TRAINER_PIC_LEADER_NORMAN,
         .encounterMusic_gender = 
@@ -12295,7 +12297,7 @@ F_TRAINER_FEMALE |
 #line 4974
         .trainerName = _("WINONA"),
 #line 4975
-        .trainerClass = TRAINER_CLASS_LEADER,
+        .trainerClass = TRAINER_CLASS_DOJO_MASTER,
 #line 4976
         .trainerPic = TRAINER_PIC_LEADER_WINONA,
         .encounterMusic_gender = 
@@ -12412,7 +12414,7 @@ F_TRAINER_FEMALE |
 #line 5024
         .trainerName = _("TATE&LIZA"),
 #line 5025
-        .trainerClass = TRAINER_CLASS_LEADER,
+        .trainerClass = TRAINER_CLASS_DOJO_MASTER,
 #line 5026
         .trainerPic = TRAINER_PIC_LEADER_TATE_AND_LIZA,
         .encounterMusic_gender = 
@@ -12511,7 +12513,7 @@ F_TRAINER_FEMALE |
 #line 5066
         .trainerName = _("JUAN"),
 #line 5067
-        .trainerClass = TRAINER_CLASS_LEADER,
+        .trainerClass = TRAINER_CLASS_DOJO_MASTER,
 #line 5068
         .trainerPic = TRAINER_PIC_LEADER_JUAN,
         .encounterMusic_gender = 
@@ -35479,7 +35481,7 @@ F_TRAINER_FEMALE |
 #line 14130
         .trainerName = _("ROXANNE"),
 #line 14131
-        .trainerClass = TRAINER_CLASS_LEADER,
+        .trainerClass = TRAINER_CLASS_DOJO_MASTER,
 #line 14132
         .trainerPic = TRAINER_PIC_LEADER_KOISHI,
         .encounterMusic_gender = 
@@ -35580,7 +35582,7 @@ F_TRAINER_FEMALE |
 #line 14172
         .trainerName = _("ROXANNE"),
 #line 14173
-        .trainerClass = TRAINER_CLASS_LEADER,
+        .trainerClass = TRAINER_CLASS_DOJO_MASTER,
 #line 14174
         .trainerPic = TRAINER_PIC_LEADER_KOISHI,
         .encounterMusic_gender = 
@@ -35699,7 +35701,7 @@ F_TRAINER_FEMALE |
 #line 14222
         .trainerName = _("ROXANNE"),
 #line 14223
-        .trainerClass = TRAINER_CLASS_LEADER,
+        .trainerClass = TRAINER_CLASS_DOJO_MASTER,
 #line 14224
         .trainerPic = TRAINER_PIC_LEADER_KOISHI,
         .encounterMusic_gender = 
@@ -35818,7 +35820,7 @@ F_TRAINER_FEMALE |
 #line 14272
         .trainerName = _("ROXANNE"),
 #line 14273
-        .trainerClass = TRAINER_CLASS_LEADER,
+        .trainerClass = TRAINER_CLASS_DOJO_MASTER,
 #line 14274
         .trainerPic = TRAINER_PIC_LEADER_KOISHI,
         .encounterMusic_gender = 
@@ -35955,7 +35957,7 @@ F_TRAINER_FEMALE |
 #line 14330
         .trainerName = _("BRAWLY"),
 #line 14331
-        .trainerClass = TRAINER_CLASS_LEADER,
+        .trainerClass = TRAINER_CLASS_DOJO_MASTER,
 #line 14332
         .trainerPic = TRAINER_PIC_LEADER_HANA,
         .encounterMusic_gender = 
@@ -36054,7 +36056,7 @@ F_TRAINER_FEMALE |
 #line 14372
         .trainerName = _("BRAWLY"),
 #line 14373
-        .trainerClass = TRAINER_CLASS_LEADER,
+        .trainerClass = TRAINER_CLASS_DOJO_MASTER,
 #line 14374
         .trainerPic = TRAINER_PIC_LEADER_HANA,
         .encounterMusic_gender = 
@@ -36153,7 +36155,7 @@ F_TRAINER_FEMALE |
 #line 14414
         .trainerName = _("BRAWLY"),
 #line 14415
-        .trainerClass = TRAINER_CLASS_LEADER,
+        .trainerClass = TRAINER_CLASS_DOJO_MASTER,
 #line 14416
         .trainerPic = TRAINER_PIC_LEADER_HANA,
         .encounterMusic_gender = 
@@ -36270,7 +36272,7 @@ F_TRAINER_FEMALE |
 #line 14464
         .trainerName = _("BRAWLY"),
 #line 14465
-        .trainerClass = TRAINER_CLASS_LEADER,
+        .trainerClass = TRAINER_CLASS_DOJO_MASTER,
 #line 14466
         .trainerPic = TRAINER_PIC_LEADER_HANA,
         .encounterMusic_gender = 
@@ -36400,17 +36402,19 @@ F_TRAINER_FEMALE |
         },
     },
 #line 14521
-    [TRAINER_WATTSON_2] =
+    [TRAINER_YUTAKA_2] =
     {
 #line 14522
-        .trainerName = _("WATTSON"),
+        .trainerName = _("Yutaka"),
 #line 14523
-        .trainerClass = TRAINER_CLASS_LEADER,
+        .trainerClass = TRAINER_CLASS_DOJO_MASTER,
 #line 14524
-        .trainerPic = TRAINER_PIC_LEADER_WATTSON,
+        .trainerPic = TRAINER_PIC_LEADER_YUTAKA,
         .encounterMusic_gender = 
+#line 14525
+F_TRAINER_FEMALE | 
 #line 14526
-            TRAINER_ENCOUNTER_MUSIC_MALE,
+            TRAINER_ENCOUNTER_MUSIC_FEMALE,
 #line 14527
         .items = { ITEM_FULL_RESTORE, ITEM_FULL_RESTORE, ITEM_FULL_RESTORE },
 #line 14528
@@ -36499,17 +36503,19 @@ F_TRAINER_FEMALE |
         },
     },
 #line 14563
-    [TRAINER_WATTSON_3] =
+    [TRAINER_YUTAKA_3] =
     {
 #line 14564
-        .trainerName = _("WATTSON"),
+        .trainerName = _("Yutaka"),
 #line 14565
-        .trainerClass = TRAINER_CLASS_LEADER,
+        .trainerClass = TRAINER_CLASS_DOJO_MASTER,
 #line 14566
-        .trainerPic = TRAINER_PIC_LEADER_WATTSON,
+        .trainerPic = TRAINER_PIC_LEADER_YUTAKA,
         .encounterMusic_gender = 
+#line 14567
+F_TRAINER_FEMALE | 
 #line 14568
-            TRAINER_ENCOUNTER_MUSIC_MALE,
+            TRAINER_ENCOUNTER_MUSIC_FEMALE,
 #line 14569
         .items = { ITEM_FULL_RESTORE, ITEM_FULL_RESTORE, ITEM_FULL_RESTORE },
 #line 14570
@@ -36616,17 +36622,19 @@ F_TRAINER_FEMALE |
         },
     },
 #line 14613
-    [TRAINER_WATTSON_4] =
+    [TRAINER_YUTAKA_4] =
     {
 #line 14614
-        .trainerName = _("WATTSON"),
+        .trainerName = _("Yutaka"),
 #line 14615
-        .trainerClass = TRAINER_CLASS_LEADER,
+        .trainerClass = TRAINER_CLASS_DOJO_MASTER,
 #line 14616
-        .trainerPic = TRAINER_PIC_LEADER_WATTSON,
+        .trainerPic = TRAINER_PIC_LEADER_YUTAKA,
         .encounterMusic_gender = 
+#line 14617
+F_TRAINER_FEMALE | 
 #line 14618
-            TRAINER_ENCOUNTER_MUSIC_MALE,
+            TRAINER_ENCOUNTER_MUSIC_FEMALE,
 #line 14619
         .items = { ITEM_FULL_RESTORE, ITEM_FULL_RESTORE, ITEM_FULL_RESTORE },
 #line 14620
@@ -36733,17 +36741,19 @@ F_TRAINER_FEMALE |
         },
     },
 #line 14663
-    [TRAINER_WATTSON_5] =
+    [TRAINER_YUTAKA_5] =
     {
 #line 14664
-        .trainerName = _("WATTSON"),
+        .trainerName = _("Yutaka"),
 #line 14665
-        .trainerClass = TRAINER_CLASS_LEADER,
+        .trainerClass = TRAINER_CLASS_DOJO_MASTER,
 #line 14666
-        .trainerPic = TRAINER_PIC_LEADER_WATTSON,
+        .trainerPic = TRAINER_PIC_LEADER_YUTAKA,
         .encounterMusic_gender = 
+#line 14667
+F_TRAINER_FEMALE | 
 #line 14668
-            TRAINER_ENCOUNTER_MUSIC_MALE,
+            TRAINER_ENCOUNTER_MUSIC_FEMALE,
 #line 14669
         .items = { ITEM_FULL_RESTORE, ITEM_FULL_RESTORE, ITEM_FULL_RESTORE },
 #line 14670
@@ -36873,7 +36883,7 @@ F_TRAINER_FEMALE |
 #line 14722
         .trainerName = _("FLANNERY"),
 #line 14723
-        .trainerClass = TRAINER_CLASS_LEADER,
+        .trainerClass = TRAINER_CLASS_DOJO_MASTER,
 #line 14724
         .trainerPic = TRAINER_PIC_LEADER_FLANNERY,
         .encounterMusic_gender = 
@@ -36976,7 +36986,7 @@ F_TRAINER_FEMALE |
 #line 14764
         .trainerName = _("FLANNERY"),
 #line 14765
-        .trainerClass = TRAINER_CLASS_LEADER,
+        .trainerClass = TRAINER_CLASS_DOJO_MASTER,
 #line 14766
         .trainerPic = TRAINER_PIC_LEADER_FLANNERY,
         .encounterMusic_gender = 
@@ -37097,7 +37107,7 @@ F_TRAINER_FEMALE |
 #line 14814
         .trainerName = _("FLANNERY"),
 #line 14815
-        .trainerClass = TRAINER_CLASS_LEADER,
+        .trainerClass = TRAINER_CLASS_DOJO_MASTER,
 #line 14816
         .trainerPic = TRAINER_PIC_LEADER_FLANNERY,
         .encounterMusic_gender = 
@@ -37236,7 +37246,7 @@ F_TRAINER_FEMALE |
 #line 14872
         .trainerName = _("FLANNERY"),
 #line 14873
-        .trainerClass = TRAINER_CLASS_LEADER,
+        .trainerClass = TRAINER_CLASS_DOJO_MASTER,
 #line 14874
         .trainerPic = TRAINER_PIC_LEADER_FLANNERY,
         .encounterMusic_gender = 
@@ -37375,7 +37385,7 @@ F_TRAINER_FEMALE |
 #line 14930
         .trainerName = _("NORMAN"),
 #line 14931
-        .trainerClass = TRAINER_CLASS_LEADER,
+        .trainerClass = TRAINER_CLASS_DOJO_MASTER,
 #line 14932
         .trainerPic = TRAINER_PIC_LEADER_NORMAN,
         .encounterMusic_gender = 
@@ -37474,7 +37484,7 @@ F_TRAINER_FEMALE |
 #line 14972
         .trainerName = _("NORMAN"),
 #line 14973
-        .trainerClass = TRAINER_CLASS_LEADER,
+        .trainerClass = TRAINER_CLASS_DOJO_MASTER,
 #line 14974
         .trainerPic = TRAINER_PIC_LEADER_NORMAN,
         .encounterMusic_gender = 
@@ -37591,7 +37601,7 @@ F_TRAINER_FEMALE |
 #line 15022
         .trainerName = _("NORMAN"),
 #line 15023
-        .trainerClass = TRAINER_CLASS_LEADER,
+        .trainerClass = TRAINER_CLASS_DOJO_MASTER,
 #line 15024
         .trainerPic = TRAINER_PIC_LEADER_NORMAN,
         .encounterMusic_gender = 
@@ -37708,7 +37718,7 @@ F_TRAINER_FEMALE |
 #line 15072
         .trainerName = _("NORMAN"),
 #line 15073
-        .trainerClass = TRAINER_CLASS_LEADER,
+        .trainerClass = TRAINER_CLASS_DOJO_MASTER,
 #line 15074
         .trainerPic = TRAINER_PIC_LEADER_NORMAN,
         .encounterMusic_gender = 
@@ -37843,7 +37853,7 @@ F_TRAINER_FEMALE |
 #line 15130
         .trainerName = _("WINONA"),
 #line 15131
-        .trainerClass = TRAINER_CLASS_LEADER,
+        .trainerClass = TRAINER_CLASS_DOJO_MASTER,
 #line 15132
         .trainerPic = TRAINER_PIC_LEADER_WINONA,
         .encounterMusic_gender = 
@@ -37962,7 +37972,7 @@ F_TRAINER_FEMALE |
 #line 15180
         .trainerName = _("WINONA"),
 #line 15181
-        .trainerClass = TRAINER_CLASS_LEADER,
+        .trainerClass = TRAINER_CLASS_DOJO_MASTER,
 #line 15182
         .trainerPic = TRAINER_PIC_LEADER_WINONA,
         .encounterMusic_gender = 
@@ -38099,7 +38109,7 @@ F_TRAINER_FEMALE |
 #line 15238
         .trainerName = _("WINONA"),
 #line 15239
-        .trainerClass = TRAINER_CLASS_LEADER,
+        .trainerClass = TRAINER_CLASS_DOJO_MASTER,
 #line 15240
         .trainerPic = TRAINER_PIC_LEADER_WINONA,
         .encounterMusic_gender = 
@@ -38236,7 +38246,7 @@ F_TRAINER_FEMALE |
 #line 15296
         .trainerName = _("WINONA"),
 #line 15297
-        .trainerClass = TRAINER_CLASS_LEADER,
+        .trainerClass = TRAINER_CLASS_DOJO_MASTER,
 #line 15298
         .trainerPic = TRAINER_PIC_LEADER_WINONA,
         .encounterMusic_gender = 
@@ -38373,7 +38383,7 @@ F_TRAINER_FEMALE |
 #line 15354
         .trainerName = _("TATE&LIZA"),
 #line 15355
-        .trainerClass = TRAINER_CLASS_LEADER,
+        .trainerClass = TRAINER_CLASS_DOJO_MASTER,
 #line 15356
         .trainerPic = TRAINER_PIC_LEADER_TATE_AND_LIZA,
         .encounterMusic_gender = 
@@ -38492,7 +38502,7 @@ F_TRAINER_FEMALE |
 #line 15404
         .trainerName = _("TATE&LIZA"),
 #line 15405
-        .trainerClass = TRAINER_CLASS_LEADER,
+        .trainerClass = TRAINER_CLASS_DOJO_MASTER,
 #line 15406
         .trainerPic = TRAINER_PIC_LEADER_TATE_AND_LIZA,
         .encounterMusic_gender = 
@@ -38629,7 +38639,7 @@ F_TRAINER_FEMALE |
 #line 15462
         .trainerName = _("TATE&LIZA"),
 #line 15463
-        .trainerClass = TRAINER_CLASS_LEADER,
+        .trainerClass = TRAINER_CLASS_DOJO_MASTER,
 #line 15464
         .trainerPic = TRAINER_PIC_LEADER_TATE_AND_LIZA,
         .encounterMusic_gender = 
@@ -38766,7 +38776,7 @@ F_TRAINER_FEMALE |
 #line 15520
         .trainerName = _("TATE&LIZA"),
 #line 15521
-        .trainerClass = TRAINER_CLASS_LEADER,
+        .trainerClass = TRAINER_CLASS_DOJO_MASTER,
 #line 15522
         .trainerPic = TRAINER_PIC_LEADER_TATE_AND_LIZA,
         .encounterMusic_gender = 
@@ -38903,7 +38913,7 @@ F_TRAINER_FEMALE |
 #line 15578
         .trainerName = _("JUAN"),
 #line 15579
-        .trainerClass = TRAINER_CLASS_LEADER,
+        .trainerClass = TRAINER_CLASS_DOJO_MASTER,
 #line 15580
         .trainerPic = TRAINER_PIC_LEADER_JUAN,
         .encounterMusic_gender = 
@@ -39020,7 +39030,7 @@ F_TRAINER_FEMALE |
 #line 15628
         .trainerName = _("JUAN"),
 #line 15629
-        .trainerClass = TRAINER_CLASS_LEADER,
+        .trainerClass = TRAINER_CLASS_DOJO_MASTER,
 #line 15630
         .trainerPic = TRAINER_PIC_LEADER_JUAN,
         .encounterMusic_gender = 
@@ -39137,7 +39147,7 @@ F_TRAINER_FEMALE |
 #line 15678
         .trainerName = _("JUAN"),
 #line 15679
-        .trainerClass = TRAINER_CLASS_LEADER,
+        .trainerClass = TRAINER_CLASS_DOJO_MASTER,
 #line 15680
         .trainerPic = TRAINER_PIC_LEADER_JUAN,
         .encounterMusic_gender = 
@@ -39272,7 +39282,7 @@ F_TRAINER_FEMALE |
 #line 15736
         .trainerName = _("JUAN"),
 #line 15737
-        .trainerClass = TRAINER_CLASS_LEADER,
+        .trainerClass = TRAINER_CLASS_DOJO_MASTER,
 #line 15738
         .trainerPic = TRAINER_PIC_LEADER_JUAN,
         .encounterMusic_gender = 

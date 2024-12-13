@@ -69,13 +69,6 @@
   ],
   "warp_events": [
     {
-      "x": 5,
-      "y": 8,
-      "elevation": 0,
-      "dest_map": "MAP_SAKU_TOWN",
-      "dest_warp_id": "2"
-    },
-    {
       "x": 6,
       "y": 8,
       "elevation": 0,
@@ -97,7 +90,7 @@
     },
     {
       "type": "sign",
-      "x": 7,
+      "x": 8,
       "y": 8,
       "elevation": 0,
       "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",

@@ -1,0 +1,14 @@
+mapscripts YifuCity_CrobatShop_MapScripts {
+	
+}
+
+script YifuCity_CrobatShop_Cashier {
+	lock
+	faceplayer
+	speakername("Cashier")
+	msgbox(format(
+		"G'day uh, welcome to the ye olde Crobat Shoppe!\p"
+		"TODO EVA"
+	))
+	release
+}

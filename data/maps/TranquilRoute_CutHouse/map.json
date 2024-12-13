@@ -30,13 +30,6 @@
   ],
   "warp_events": [
     {
-      "x": 4,
-      "y": 7,
-      "elevation": 0,
-      "dest_map": "MAP_TRANQUIL_ROUTE",
-      "dest_warp_id": "0"
-    },
-    {
       "x": 5,
       "y": 7,
       "elevation": 0,

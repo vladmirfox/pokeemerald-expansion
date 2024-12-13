@@ -1,0 +1,15 @@
+mapscripts YifuCity_MapScripts {
+	
+}
+
+script YifuCity_EventScript_StoleMyMon {
+	lock
+	faceplayer
+	speakername("Man")
+	msgbox(format(
+		"When I got my Shiftry back from the nurse, it had somehow changed into a Pidgey…\p"
+		"Each day, Pokémon never cease to amaze me!"
+	))
+	closemessage
+	release
+}
