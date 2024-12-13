@@ -128,7 +128,7 @@
 #define OBJ_EVENT_GFX_DRAKE                      124
 #define OBJ_EVENT_GFX_KOISHI                     125
 #define OBJ_EVENT_GFX_HANA                       126
-#define OBJ_EVENT_GFX_WATTSON                    127
+#define OBJ_EVENT_GFX_YUTAKA                    127
 #define OBJ_EVENT_GFX_FLANNERY                   128
 #define OBJ_EVENT_GFX_NORMAN                     129
 #define OBJ_EVENT_GFX_WINONA                     130
@@ -431,6 +431,7 @@
 #define OBJ_EVENT_PAL_TAG_CROBAT_SHADOWS          0x114B
 #define OBJ_EVENT_PAL_TAG_MONK                    0x114C
 #define OBJ_EVENT_PAL_TAG_SAMURAI                 0x114D
+#define OBJ_EVENT_PAL_TAG_YUTAKA                  0x114E
 
 #if OW_FOLLOWERS_POKEBALLS
 // Vanilla

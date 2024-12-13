@@ -11997,14 +11997,14 @@ F_TRAINER_FEMALE |
         },
     },
 #line 4847
-    [TRAINER_WATTSON_1] =
+    [TRAINER_YUTAKA_1] =
     {
 #line 4848
         .trainerName = _("WATTSON"),
 #line 4849
         .trainerClass = TRAINER_CLASS_LEADER,
 #line 4850
-        .trainerPic = TRAINER_PIC_LEADER_WATTSON,
+        .trainerPic = TRAINER_PIC_LEADER_YUTAKA,
         .encounterMusic_gender = 
 #line 4852
             TRAINER_ENCOUNTER_MUSIC_MALE,
@@ -36400,14 +36400,14 @@ F_TRAINER_FEMALE |
         },
     },
 #line 14521
-    [TRAINER_WATTSON_2] =
+    [TRAINER_YUTAKA_2] =
     {
 #line 14522
         .trainerName = _("WATTSON"),
 #line 14523
         .trainerClass = TRAINER_CLASS_LEADER,
 #line 14524
-        .trainerPic = TRAINER_PIC_LEADER_WATTSON,
+        .trainerPic = TRAINER_PIC_LEADER_YUTAKA,
         .encounterMusic_gender = 
 #line 14526
             TRAINER_ENCOUNTER_MUSIC_MALE,
@@ -36499,14 +36499,14 @@ F_TRAINER_FEMALE |
         },
     },
 #line 14563
-    [TRAINER_WATTSON_3] =
+    [TRAINER_YUTAKA_3] =
     {
 #line 14564
         .trainerName = _("WATTSON"),
 #line 14565
         .trainerClass = TRAINER_CLASS_LEADER,
 #line 14566
-        .trainerPic = TRAINER_PIC_LEADER_WATTSON,
+        .trainerPic = TRAINER_PIC_LEADER_YUTAKA,
         .encounterMusic_gender = 
 #line 14568
             TRAINER_ENCOUNTER_MUSIC_MALE,
@@ -36616,14 +36616,14 @@ F_TRAINER_FEMALE |
         },
     },
 #line 14613
-    [TRAINER_WATTSON_4] =
+    [TRAINER_YUTAKA_4] =
     {
 #line 14614
         .trainerName = _("WATTSON"),
 #line 14615
         .trainerClass = TRAINER_CLASS_LEADER,
 #line 14616
-        .trainerPic = TRAINER_PIC_LEADER_WATTSON,
+        .trainerPic = TRAINER_PIC_LEADER_YUTAKA,
         .encounterMusic_gender = 
 #line 14618
             TRAINER_ENCOUNTER_MUSIC_MALE,
@@ -36733,14 +36733,14 @@ F_TRAINER_FEMALE |
         },
     },
 #line 14663
-    [TRAINER_WATTSON_5] =
+    [TRAINER_YUTAKA_5] =
     {
 #line 14664
         .trainerName = _("WATTSON"),
 #line 14665
         .trainerClass = TRAINER_CLASS_LEADER,
 #line 14666
-        .trainerPic = TRAINER_PIC_LEADER_WATTSON,
+        .trainerPic = TRAINER_PIC_LEADER_YUTAKA,
         .encounterMusic_gender = 
 #line 14668
             TRAINER_ENCOUNTER_MUSIC_MALE,

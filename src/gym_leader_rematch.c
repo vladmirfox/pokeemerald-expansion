@@ -12,7 +12,7 @@ static s32 GetRematchIndex(u32 trainerIdx);
 static const u16 GymLeaderRematches_AfterNewMauville[] = {
     REMATCH_ROXANNE,
     REMATCH_HANA,
-    REMATCH_WATTSON,
+    REMATCH_YUTAKA,
     REMATCH_FLANNERY,
     REMATCH_NORMAN,
     REMATCH_WINONA,

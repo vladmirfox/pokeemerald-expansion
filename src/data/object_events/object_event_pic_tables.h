@@ -613,16 +613,8 @@ static const struct SpriteFrameImage sPicTable_Hana[] = {
     overworld_ascending_frames(gObjectEventPic_Hana, 4, 4)
 };
 
-static const struct SpriteFrameImage sPicTable_Wattson[] = {
-    overworld_frame(gObjectEventPic_Wattson, 2, 4, 0),
-    overworld_frame(gObjectEventPic_Wattson, 2, 4, 1),
-    overworld_frame(gObjectEventPic_Wattson, 2, 4, 2),
-    overworld_frame(gObjectEventPic_Wattson, 2, 4, 0),
-    overworld_frame(gObjectEventPic_Wattson, 2, 4, 0),
-    overworld_frame(gObjectEventPic_Wattson, 2, 4, 1),
-    overworld_frame(gObjectEventPic_Wattson, 2, 4, 1),
-    overworld_frame(gObjectEventPic_Wattson, 2, 4, 2),
-    overworld_frame(gObjectEventPic_Wattson, 2, 4, 2),
+static const struct SpriteFrameImage sPicTable_Yutaka[] = {
+    overworld_ascending_frames(gObjectEventPic_Yutaka, 4, 4)
 };
 
 static const struct SpriteFrameImage sPicTable_Flannery[] = {

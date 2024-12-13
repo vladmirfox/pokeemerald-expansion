@@ -137,7 +137,7 @@ extern const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Glacia;
 extern const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Drake;
 extern const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Koishi;
 extern const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Hana;
-extern const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Wattson;
+extern const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Yutaka;
 extern const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Flannery;
 extern const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Norman;
 extern const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Winona;
@@ -403,7 +403,7 @@ const struct ObjectEventGraphicsInfo *const gObjectEventGraphicsInfoPointers[NUM
     [OBJ_EVENT_GFX_DRAKE] =                    &gObjectEventGraphicsInfo_Drake,
     [OBJ_EVENT_GFX_KOISHI] =                  &gObjectEventGraphicsInfo_Koishi,
     [OBJ_EVENT_GFX_HANA] =                     &gObjectEventGraphicsInfo_Hana,
-    [OBJ_EVENT_GFX_WATTSON] =                  &gObjectEventGraphicsInfo_Wattson,
+    [OBJ_EVENT_GFX_YUTAKA] =                  &gObjectEventGraphicsInfo_Yutaka,
     [OBJ_EVENT_GFX_FLANNERY] =                 &gObjectEventGraphicsInfo_Flannery,
     [OBJ_EVENT_GFX_NORMAN] =                   &gObjectEventGraphicsInfo_Norman,
     [OBJ_EVENT_GFX_WINONA] =                   &gObjectEventGraphicsInfo_Winona,
