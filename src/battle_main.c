@@ -347,7 +347,7 @@ const struct TrainerClass gTrainerClasses[TRAINER_CLASS_COUNT] =
     TRAINER_CLASS(TRAINER_CLASS_PSYCHIC, "Psychic", 6),
     TRAINER_CLASS(TRAINER_CLASS_GENTLEMAN, "Gentleman", 20, ITEM_LUXURY_BALL),
     TRAINER_CLASS(TRAINER_CLASS_ELITE_FOUR, "Elite Four", 25, ITEM_ULTRA_BALL),
-    TRAINER_CLASS(TRAINER_CLASS_LEADER, "Leader", 25),
+    TRAINER_CLASS(TRAINER_CLASS_DOJO_MASTER, "Dojo Master", 25),
     TRAINER_CLASS(TRAINER_CLASS_SCHOOL_KID, "School Kid"),
     TRAINER_CLASS(TRAINER_CLASS_SR_AND_JR, "Sr. and Jr.", 4),
     TRAINER_CLASS(TRAINER_CLASS_POKEFAN, "Pokéfan", 20),
@@ -5426,7 +5426,7 @@ static void HandleEndTurn_BattleWon(void)
         case TRAINER_CLASS_MAGMA_LEADER:
             PlayBGM(MUS_VICTORY_AQUA_MAGMA);
             break;
-        case TRAINER_CLASS_LEADER:
+        case TRAINER_CLASS_DOJO_MASTER:
             PlayBGM(MUS_VICTORY_GYM_LEADER);
             break;
         default:
