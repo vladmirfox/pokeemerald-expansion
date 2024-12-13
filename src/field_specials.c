@@ -4373,3 +4373,11 @@ void GetDexRiddleFeedback(void)
         gSpecialVar_Result = 0;
     }
 }
+
+/**
+ * Obliterates from existence the Pokémon the player previously selected via the select screen.
+ */
+void DestroySelectedPartyMon(void) {
+    u8 monId = GetCursorSelectionMonId();
+    ZeroMonData(&gPlayerParty[monId]);
+}

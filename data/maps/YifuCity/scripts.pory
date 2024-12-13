@@ -13,3 +13,123 @@ script YifuCity_EventScript_StoleMyMon {
 	closemessage
 	release
 }
+
+script YifuCity_EventScript_IDontFeelSafe {
+	lock
+	faceplayer
+	speakername("Woman")
+	msgbox(format(
+		"I don't feel safe with those Crobat dudes creeping around the city…\p"
+		"I can't imagine how much worse it'd be if it were not for the patrolling Samurai!"
+	))
+	closemessage
+	release
+}
+
+script YifuCity_EventScript_Samurai {
+	lock
+	faceplayer
+	speakername("Samurai")
+	msgbox(format(
+		"The Crobat Shadow's reign of terror will cease!"
+	))
+	closemessage
+	release
+}
+
+script YifuCity_EventScript_Samurai2 {
+	lock
+	faceplayer
+	speakername("Samurai")
+	msgbox(format(
+		"Please be vigilant! Should you witness any suspicious situation, report it immediately!"
+	))
+	closemessage
+	release
+}
+
+script YifuCity_EventScript_ShinySeller {
+	lock
+	faceplayer
+	speakername("Shady man")
+	msgbox(format(
+		"Hey, uh… Wanna buy this Pokémon 'ere? 'Parently it's super rare or somethin', but I don't really need it, so…"
+	))
+
+	showmonpic(SPECIES_CATERPIE, 10, 3, TRUE)
+	playmoncry(SPECIES_CATERPIE, CRY_MODE_NORMAL)
+	waitmoncry
+
+	closemessage
+	hidemonpic
+	
+	speakername("Shady man")
+	msgbox(format(
+		"So whadyasay?\n"
+		"It's yours for only ¥6000."
+	))
+
+	goto(YifuCity_ShinySellerChoice)
+
+	release
+}
+
+script YifuCity_ShinySellerChoice {
+	showmoneybox(10, 0)
+
+	dynmultichoice(
+		0,
+		0,
+		TRUE,
+		10,
+		0,
+		DYN_MULTICHOICE_CB_NONE,
+		"I'll buy it!",
+		"No, thanks.",
+		"Are you a criminal?"
+	)
+
+	closemessage
+
+	switch(var(VAR_RESULT)) {
+		case 0:
+			if (checkmoney(6000)) {
+				speakername("Shady man")
+				msgbox(format(
+					"Alright yeah, gimme the cash."
+				))
+
+				removemoney(6000)
+				updatemoneybox
+
+				closemessage
+
+				givemon(SPECIES_CATERPIE, 5)
+				playfanfare(MUS_OBTAIN_ITEM)
+				message(format("{PLAYER} received the Pokémon Caterpie!"))
+				waitmessage
+				waitfanfare
+
+				hidemoneybox
+			} else {
+				speakername("Shady man")
+				msgbox(format(
+					"You, uh… You don't got enough cash, kid."
+				))
+			}
+		case 1:
+			speakername("Shady man")
+			msgbox(format(
+				"Then why are ya bothering me? Scram, kid!"
+			))
+			closemessage
+		case 2:
+			speakername("Shady man")
+			msgbox(format(
+				"What? No! Why would ya even say that? Do I not look respectable to ya?\p"
+				"So uh… You gonna buy it or not?"
+			))
+			goto(YifuCity_ShinySellerChoice)
+	}
+	release
+}

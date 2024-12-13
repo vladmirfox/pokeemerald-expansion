@@ -6113,7 +6113,7 @@
       "id": "LAYOUT_YIFU_CITY_CROBAT_SHOP",
       "name": "YifuCity_CrobatShop_Layout",
       "width": 10,
-      "height": 9,
+      "height": 10,
       "border_width": 1,
       "border_height": 1,
       "primary_tileset": "gTileset_Building_Generic",
@@ -6160,7 +6160,7 @@
     {
       "id": "LAYOUT_YIFU_CITY_BIG_HOUSE_1F",
       "name": "YifuCity_BigHouse_1F_Layout",
-      "width": 19,
+      "width": 15,
       "height": 19,
       "border_width": 1,
       "border_height": 1,

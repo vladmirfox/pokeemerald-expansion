@@ -12,3 +12,23 @@ script YifuCity_CrobatShop_Cashier {
 	))
 	release
 }
+
+script YifuCity_CrobatShop_Customer1 {
+	lock
+	faceplayer
+	speakername("Customer")
+	msgbox(format(
+		"This place is amazing!\nHow is everything so cheap?!"
+	))
+	release
+}
+
+script YifuCity_CrobatShop_Customer2 {
+	lock
+	faceplayer
+	speakername("Customer")
+	msgbox(format(
+		"These Super Balls looks… different, somehow…"
+	))
+	release
+}
