@@ -208,6 +208,7 @@ DOUBLE_BATTLE_TEST("Ally switch swaps sky drop targets if being used by partner"
 {
     u8 visibility;
     GIVEN {
+        ASSUME(gMovesInfo[MOVE_SKY_DROP].effect == EFFECT_SKY_DROP);
         PLAYER(SPECIES_FEAROW) { Speed(100); }
         PLAYER(SPECIES_XATU)   { Speed(150); }
         OPPONENT(SPECIES_ARON) { Speed(25); Ability(ABILITY_STURDY); }
@@ -244,6 +245,7 @@ DOUBLE_BATTLE_TEST("Ally switch swaps opposing sky drop targets if partner is be
 {
     u8 visibility;
     GIVEN {
+        ASSUME(gMovesInfo[MOVE_SKY_DROP].effect == EFFECT_SKY_DROP);
         PLAYER(SPECIES_ARON) { Speed(25); Ability(ABILITY_STURDY); }
         PLAYER(SPECIES_WYNAUT) { Speed(30); }
         OPPONENT(SPECIES_FEAROW) { Speed(100); }
@@ -275,6 +277,3 @@ DOUBLE_BATTLE_TEST("Ally switch swaps opposing sky drop targets if partner is be
         EXPECT_EQ(visibility, 0);
     }
 }
-
-// Triple Battles required to test
-//TO_DO_BATTLE_TEST("Ally Switch fails if the user is in the middle of the field in a Triple Battle");
