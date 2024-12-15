@@ -33,7 +33,6 @@ SINGLE_BATTLE_TEST("Gale Wings only grants priority to Flying-type moves")
     PARAMETRIZE { move = MOVE_AERIAL_ACE; }
     PARAMETRIZE { move = MOVE_FLARE_BLITZ; }
     GIVEN {
-        ASSUME(B_GALE_WINGS >= GEN_7);
         ASSUME(gMovesInfo[MOVE_AERIAL_ACE].type == TYPE_FLYING);
         ASSUME(gMovesInfo[MOVE_FLARE_BLITZ].type == TYPE_FIRE);
         PLAYER(SPECIES_TALONFLAME) { Ability(ABILITY_GALE_WINGS); HP(100); MaxHP(100); Speed(1);}
@@ -60,7 +59,6 @@ SINGLE_BATTLE_TEST("Gale Wings doesn't increase priority of Flying-type Natural 
     PARAMETRIZE { move = MOVE_JUDGMENT; heldItem = ITEM_SKY_PLATE; }
     PARAMETRIZE { move = MOVE_HIDDEN_POWER; heldItem = ITEM_NONE; }
     GIVEN {
-        ASSUME(B_GALE_WINGS >= GEN_7);
         ASSUME(gMovesInfo[MOVE_NATURAL_GIFT].effect == EFFECT_NATURAL_GIFT);
         ASSUME(gMovesInfo[MOVE_JUDGMENT].effect == EFFECT_CHANGE_TYPE_ON_ITEM);
         // IV combinations sourced from https://www.smogon.com/forums/threads/hidden-power-iv-combinations.78083/
