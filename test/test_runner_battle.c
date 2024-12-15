@@ -1515,6 +1515,12 @@ void SetFlagForTest(u32 sourceLine, u16 flagId)
     FlagSet(flagId);
 }
 
+void TestSetConfig(u32 sourceLine, enum GenConfigTag configTag, u32 value)
+{
+    INVALID_IF(!STATE->runGiven, "WITH_CONFIG outside of GIVEN");
+    SetGenConfig(configTag, value);
+}
+
 void ClearFlagAfterTest(void)
 {
     if (DATA.flagId != 0)

@@ -9,8 +9,7 @@ SINGLE_BATTLE_TEST("Gale Wings only grants priority at full HP (Gen 7+)")
     PARAMETRIZE { hp = 100; config = GEN_6; }
     PARAMETRIZE { hp = 99;  config = GEN_6; }
     GIVEN {
-        SetGenConfig(GEN_CONFIG_GALE_WINGS, config);
-        ASSUME(B_GALE_WINGS >= GEN_7);
+        WITH_CONFIG(GEN_CONFIG_GALE_WINGS, config);
         ASSUME(gMovesInfo[MOVE_AERIAL_ACE].type == TYPE_FLYING);
         PLAYER(SPECIES_TALONFLAME) { Ability(ABILITY_GALE_WINGS); HP(hp); MaxHP(100); Speed(1);}
         OPPONENT(SPECIES_WOBBUFFET) { Speed(100);};
