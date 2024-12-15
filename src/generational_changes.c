@@ -4,30 +4,16 @@
 #include "constants/generational_changes.h"
 
 #if TESTING
-EWRAM_INIT struct GenerationalChanges gGenerationalChanges =
-#else
-const struct GenerationalChanges gGenerationalChanges =
-#endif
-{
-    .galeWingsFullHealth = B_GALE_WINGS >= GEN_7,
-};
+EWRAM_DATA u8 *gGenerationalChangesTestOverride = NULL;
 
-u32 GetGenConfig(enum GenConfigTag configTag)
+void TestInitConfigData(void)
 {
-    switch (configTag)
-    {
-    case GEN_CONFIG_GALE_WINGS: return gGenerationalChanges.galeWingsFullHealth ? GEN_7 : GEN_6;
-    default:                    return GEN_LATEST;
-    }
+    gGenerationalChangesTestOverride = Alloc(sizeof(sGenerationalChanges));
+    memcpy(gGenerationalChangesTestOverride, sGenerationalChanges, sizeof(sGenerationalChanges));
 }
 
-void SetGenConfig(enum GenConfigTag configTag, u32 value)
+void TestFreeConfigData(void)
 {
-#if TESTING
-    switch (configTag)
-    {
-    case GEN_CONFIG_GALE_WINGS: gGenerationalChanges.galeWingsFullHealth = (value >= GEN_7);
-    }
-#else
-#endif
+    TRY_FREE_AND_SET_NULL(gGenerationalChangesTestOverride)
 }
+#endif
