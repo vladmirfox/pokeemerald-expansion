@@ -248,7 +248,7 @@ SunriseVillage_EldersHouse_EventScript_TryToEnterOtherRoom::
 # 183 "data/maps/SunriseVillage_EldersHouse/scripts.pory"
 	closemessage
 # 184 "data/maps/SunriseVillage_EldersHouse/scripts.pory"
-	applymovement OBJ_EVENT_ID_PLAYER, Common_Movement_WalkDown
+	applymovement OBJ_EVENT_ID_PLAYER, SunriseVillage_EldersHouse_EventScript_TryToEnterOtherRoom_Movement_0
 # 185 "data/maps/SunriseVillage_EldersHouse/scripts.pory"
 	waitmovement 0
 # 186 "data/maps/SunriseVillage_EldersHouse/scripts.pory"
@@ -1087,6 +1087,12 @@ SunriseVillage_EldersHouse_Movement_PlayerGoesBackAfterPickingTrapinchFromRight:
 # 677 "data/maps/SunriseVillage_EldersHouse/scripts.pory"
 	walk_in_place_faster_up
 # 678 "data/maps/SunriseVillage_EldersHouse/scripts.pory"
+	step_end
+
+# 184 "data/maps/SunriseVillage_EldersHouse/scripts.pory"
+SunriseVillage_EldersHouse_EventScript_TryToEnterOtherRoom_Movement_0:
+# 184 "data/maps/SunriseVillage_EldersHouse/scripts.pory"
+	walk_down
 	step_end
 
 SunriseVillage_EldersHouse_EventScript_DistributionCutscene_Text_0:

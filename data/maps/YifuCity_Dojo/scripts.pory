@@ -4,7 +4,21 @@ const LOCALID_GEISHA_3 = 3
 
 
 mapscripts YifuCity_Dojo_MapScripts {
-	
+	MAP_SCRIPT_ON_LOAD {
+		// Door room 1 -> room 2
+		if (var(VAR_YIFU_DOJO_STATE) >= 1) {
+			call(YifuCity_Dojo_SetDoor1Metatiles)
+		}
+	}
+    MAP_SCRIPT_ON_TRANSITION: YifuCity_Dojo_SetupNpcs
+}
+
+script YifuCity_Dojo_SetupNpcs {
+    if (var(VAR_YIFU_DOJO_STATE) >= 1) {
+        setobjectxyperm(LOCALID_GEISHA_2, 15, 33)
+        setobjectxyperm(LOCALID_GEISHA_3, 18, 33)
+        removeobject(LOCALID_GEISHA_1)
+    }
 }
 
 script YifuCity_Dojo_EventScript_Dance1_FromUp {
@@ -34,12 +48,12 @@ script YifuCity_Dojo_EventScript_Dance1 {
     closemessage
 
     special(SpawnCameraObject)
-	applymovement(OBJ_EVENT_ID_CAMERA, moves(walk_up * 2))
+	applymovement(OBJ_EVENT_ID_CAMERA, moves(walk_up * 2, delay_16 * 2))
 	waitmovement(0)
 
     call(YifuCity_Dojo_Dance1)
 
-    applymovement(OBJ_EVENT_ID_CAMERA, moves(walk_down * 2))
+    applymovement(OBJ_EVENT_ID_CAMERA, moves(walk_down * 2, delay_16 * 2))
 	waitmovement(0)
     special(RemoveCameraObject)
 
@@ -74,17 +88,23 @@ script YifuCity_Dojo_EventScript_Dance1 {
         ))
         closemessage
 
+        setvar(VAR_YIFU_DOJO_STATE, 1)
+
         applymovement(LOCALID_GEISHA_1, Common_Movement_TeleportAway)
         applymovement(LOCALID_GEISHA_2, moves(walk_down))
         applymovement(LOCALID_GEISHA_3, moves(walk_down))
         waitmovement(LOCALID_GEISHA_2)
         waitmovement(LOCALID_GEISHA_3)
+
+        special(SpawnCameraObject)
+        applymovement(OBJ_EVENT_ID_CAMERA, moves(walk_right * 4))
+
         playse(SE_LEDGE)
-        applymovement(LOCALID_GEISHA_2, moves(jump_2_down, delay_16, walk_right * 7, face_left))
-        applymovement(LOCALID_GEISHA_3, moves(jump_2_down, delay_16, walk_down, walk_right * 8, walk_up, face_right))
-        waitmovement(LOCALID_GEISHA_1)
+        applymovement(LOCALID_GEISHA_2, moves(jump_2_down, delay_16, walk_down, walk_right * 8, walk_up, face_right))
+        applymovement(LOCALID_GEISHA_3, moves(jump_2_down, delay_16, walk_right * 7, face_left))
         waitmovement(LOCALID_GEISHA_2)
         waitmovement(LOCALID_GEISHA_3)
+	    waitmovement(OBJ_EVENT_ID_CAMERA)
         waitse
     } else {
         speakername("Kimono girls")
@@ -97,33 +117,24 @@ script YifuCity_Dojo_EventScript_Dance1 {
         applymovement(LOCALID_GEISHA_1, Common_Movement_TeleportAway)
         applymovement(LOCALID_GEISHA_2, moves(walk_down))
         applymovement(LOCALID_GEISHA_3, moves(walk_down))
-        waitmovement(0)
-        // TODO EVA!
-        // waitmovement(LOCALID_GEISHA_1)
-        // waitmovement(LOCALID_GEISHA_2)
-        // waitmovement(LOCALID_GEISHA_3)
-        // playse(SE_LEDGE)
-        // applymovement(LOCALID_GEISHA_2, moves(jump_2_down, delay_16, walk_right))
-        // applymovement(LOCALID_GEISHA_3, moves(jump_2_down, delay_16, walk_left))
-        applymovement(2, moves(
-            jump_2_down,
-            delay_16,
-            walk_right
-        ))
-        // applymovement(LOCALID_GEISHA_3, moves(
-        //     jump_2_down
-        //     walk_left
-        // ))
-        // waitmovement(0)
-        waitmovement(0)
-        // waitmovement(LOCALID_GEISHA_3)
+        waitmovement(LOCALID_GEISHA_2)
+        waitmovement(LOCALID_GEISHA_3)
 
-        // trainerbattle_two_trainers(
-        //     TRAINER_AKARI,
-        //     format("Oh!"),
-        //     TRAINER_YUKA,
-        //     format("I see.")
-        // )
+        playse(SE_LEDGE)
+
+        applymovement(LOCALID_GEISHA_2, moves(jump_2_down, delay_16, walk_right))
+        applymovement(LOCALID_GEISHA_3, moves(jump_2_down, delay_16, walk_left))
+        waitmovement(LOCALID_GEISHA_2)
+        waitmovement(LOCALID_GEISHA_3)
+
+        trainerbattle_two_trainers(
+            TRAINER_AKARI,
+            format("Oh!"),
+            TRAINER_YUKA,
+            format("I see.")
+        )
+
+        setvar(VAR_YIFU_DOJO_STATE, 1)
 
         speakername("Kimono girls")
         msgbox(format(
@@ -141,38 +152,81 @@ script YifuCity_Dojo_EventScript_Dance1 {
             walk_right * 8
             face_left
         ))
+
+        special(SpawnCameraObject)
+        applymovement(OBJ_EVENT_ID_CAMERA, moves(walk_right * 4))
+
         waitmovement(LOCALID_GEISHA_2)
         waitmovement(LOCALID_GEISHA_3)
+	    waitmovement(OBJ_EVENT_ID_CAMERA)
     }
 
+    delay(32)
+
     // Door appears
-    setmetatile(16, 31, METATILE_DojoYifu_YifuDojoDoorBottomLeft, TRUE)
-    setmetatile(17, 31, METATILE_DojoYifu_YifuDojoDoorBottomRight, TRUE)
-    setmetatile(16, 32, METATILE_DojoYifu_YifuDojoDoorTopLeft, TRUE)
-    setmetatile(17, 32, METATILE_DojoYifu_YifuDojoDoorTopRight, TRUE)
-    special(DrawWholeMapView)
+    call(YifuCity_Dojo_SetDoor1Metatiles)
 
     setvar(VAR_0x8004, 1)  // vertical pan
     setvar(VAR_0x8005, 1)  // horizontal pan
-    setvar(VAR_0x8006, 1)  // num shakes
+    setvar(VAR_0x8006, 2)  // num shakes
     setvar(VAR_0x8007, 4)  // shake delay
     special(ShakeCamera)
 
     playse(SE_UNLOCK)
 
-    applymovement(LOCALID_GEISHA_2, moves(face_down))
-    applymovement(LOCALID_GEISHA_3, moves(face_down))
+    applymovement(LOCALID_GEISHA_2, Common_Movement_WalkInPlaceFasterDown)
+    applymovement(LOCALID_GEISHA_3, Common_Movement_WalkInPlaceFasterDown)
     waitmovement(LOCALID_GEISHA_2)
     waitmovement(LOCALID_GEISHA_3)
     waitse
 
+    delay(32)
+    
+    applymovement(OBJ_EVENT_ID_CAMERA, moves(walk_left * 4))
+    waitmovement(OBJ_EVENT_ID_CAMERA)
+    special(RemoveCameraObject)
+
     release
 }
 
-movement Blabla1 {
-    jump_2_down
-    // delay_16
-    walk_right
+script YifuCity_Dojo_SetDoor1Metatiles {
+    setmetatile(16, 31, METATILE_DojoYifu_YifuDojoDoorTopLeft, TRUE)
+    setmetatile(17, 31, METATILE_DojoYifu_YifuDojoDoorTopRight, TRUE)
+    setmetatile(16, 32, METATILE_DojoYifu_YifuDojoDoorBottomLeft, TRUE)
+    setmetatile(17, 32, METATILE_DojoYifu_YifuDojoDoorBottomRight, TRUE)
+    special(DrawWholeMapView)
+}
+
+script YifuCity_Dojo_SetDoor2Metatiles {
+    setmetatile(43, 31, METATILE_DojoYifu_YifuDojoDoorTopLeft, TRUE)
+    setmetatile(44, 31, METATILE_DojoYifu_YifuDojoDoorTopRight, TRUE)
+    setmetatile(43, 32, METATILE_DojoYifu_YifuDojoDoorBottomLeft, TRUE)
+    setmetatile(44, 32, METATILE_DojoYifu_YifuDojoDoorBottomRight, TRUE)
+    special(DrawWholeMapView)
+}
+
+script YifuCity_Dojo_SetDoor3Metatiles {
+    setmetatile(22, 13, METATILE_DojoYifu_YifuDojoPassageTopLeft, TRUE)
+    setmetatile(25, 13, METATILE_DojoYifu_YifuDojoPassageTopRight, TRUE)
+    setmetatile(22, 14, METATILE_DojoYifu_YifuDojoPassageBottomLeft, TRUE)
+    setmetatile(25, 14, METATILE_DojoYifu_YifuDojoPassageBottomRight, TRUE)
+
+    setmetatile(23, 10, METATILE_DojoYifu_YifuDojoWoodFloorDark, FALSE)
+    setmetatile(24, 10, METATILE_DojoYifu_YifuDojoWoodFloor, FALSE)
+    setmetatile(23, 11, METATILE_DojoYifu_YifuDojoWoodFloorDark, FALSE)
+    setmetatile(24, 11, METATILE_DojoYifu_YifuDojoWoodFloor, FALSE)
+    setmetatile(23, 12, METATILE_DojoYifu_YifuDojoWoodFloorDark, FALSE)
+    setmetatile(24, 12, METATILE_DojoYifu_YifuDojoWoodFloor, FALSE)
+    setmetatile(23, 13, METATILE_DojoYifu_YifuDojoWoodFloorDark, FALSE)
+    setmetatile(23, 14, METATILE_DojoYifu_YifuDojoWoodFloorDark, FALSE)
+    setmetatile(24, 13, METATILE_DojoYifu_YifuDojoWoodFloor, FALSE)
+    setmetatile(24, 14, METATILE_DojoYifu_YifuDojoWoodFloor, FALSE)
+    setmetatile(24, 15, METATILE_DojoYifu_YifuDojoWoodFloor, FALSE)
+
+    setmetatile(23, 18, METATILE_DojoYifu_YifuDojoStairs, FALSE)
+    setmetatile(24, 18, METATILE_DojoYifu_YifuDojoStairs, FALSE)
+
+    special(DrawWholeMapView)
 }
 
 script YifuCity_Dojo_Dance1_Jump {
@@ -283,9 +337,24 @@ script YifuCity_Dojo_EventScript_DojoStatue {
 	releaseall
 }
 
-// TODO EVA remove
-script EvaPouet {
-    lock
-    goto(YifuCity_Dojo_EventScript_Dance1)
-    release
+script YifuCity_Dojo_EventScript_Akari {
+    trainerbattle_single(
+		TRAINER_AKARI,
+		format("You still wish to fight? Very well!"),
+		format("Oh!")
+	)
+	speakername("Akari")
+	msgbox(format("You are very graceful. Are you sure you're not a dancer?"), MSGBOX_AUTOCLOSE)
+	end
+}
+
+script YifuCity_Dojo_EventScript_Yuka {
+    trainerbattle_single(
+		TRAINER_YUKA,
+		format("You have a good eye! Let's see if that applies to Pokémon, as well!"),
+		format("I see.")
+	)
+	speakername("Yuka")
+	msgbox(format("The next dance should be more of a challenge."), MSGBOX_AUTOCLOSE)
+	end
 }

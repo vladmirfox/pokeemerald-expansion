@@ -181,7 +181,7 @@ script SunriseVillage_EldersHouse_EventScript_TryToEnterOtherRoom {
 		"Where do you think you're going?"
 	))
 	closemessage
-	applymovement(OBJ_EVENT_ID_PLAYER, Common_Movement_WalkDown)
+	applymovement(OBJ_EVENT_ID_PLAYER, moves(walk_down))
 	waitmovement(0)
 	release
 }
