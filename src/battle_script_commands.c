@@ -8840,7 +8840,6 @@ static bool32 TryDefogClear(u32 battlerAtk, bool32 clear)
 static bool32 TryTidyUpClear(u32 battlerAtk, bool32 clear)
 {
     s32 i;
-    u8 saveBattler = gBattlerAttacker;
 
     for (i = 0; i < NUM_BATTLE_SIDES; i++)
     {
@@ -8866,12 +8865,19 @@ static bool32 TryTidyUpClear(u32 battlerAtk, bool32 clear)
                 BattleScriptPushCursor();
                 gBattlescriptCurrInstr = BattleScript_SubstituteFade;
             }
-            gBattlerAttacker = saveBattler;
+            if (GetBattlerSide(battlerAtk) != i)
+            {
+                SWAP(gBattlerAttacker, gBattlerTarget, i);
+            }
             return TRUE;
         }
     }
-
-    gBattlerAttacker = saveBattler;
+    
+    if (GetBattlerSide(battlerAtk) != i)
+    {
+        SWAP(gBattlerAttacker, gBattlerTarget, i);
+    }
+    
     return FALSE;
 }
 
