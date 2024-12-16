@@ -11,6 +11,7 @@
 #include "event_data.h"
 #include "data.h"
 #include "item.h"
+#include "move.h"
 #include "pokemon.h"
 #include "random.h"
 #include "recorded_battle.h"
