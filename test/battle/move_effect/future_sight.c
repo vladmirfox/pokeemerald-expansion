@@ -4,7 +4,7 @@
 ASSUMPTIONS
 {
     ASSUME(gMovesInfo[MOVE_SEED_FLARE].power == gMovesInfo[MOVE_FUTURE_SIGHT].power);
-    ASSUME(gMovesInfo[MOVE_SEED_FLARE].category == gMovesInfo[MOVE_FUTURE_SIGHT].category);
+    ASSUME(GetMoveCategory(MOVE_SEED_FLARE) == GetMoveCategory(MOVE_FUTURE_SIGHT));
     ASSUME(GetMoveEffect(MOVE_FUTURE_SIGHT) == EFFECT_FUTURE_SIGHT);
     ASSUME(gMovesInfo[MOVE_FUTURE_SIGHT].power > 0);
 }

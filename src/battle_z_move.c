@@ -390,7 +390,7 @@ static void ZMoveSelectionDisplayPower(u16 move, u16 zMove)
     if (zMove >= MOVE_CATASTROPIKA)
         power = gMovesInfo[zMove].power;
 
-    if (gMovesInfo[move].category != DAMAGE_CATEGORY_STATUS)
+    if (GetMoveCategory(move) != DAMAGE_CATEGORY_STATUS)
     {
         txtPtr = StringCopy(gDisplayedStringBattle, sText_PowerColon);
         ConvertIntToDecimalStringN(txtPtr, power, STR_CONV_MODE_LEFT_ALIGN, 3);
@@ -542,7 +542,7 @@ void SetZEffect(void)
 
 u32 GetZMovePower(u32 move)
 {
-    if (gMovesInfo[move].category == DAMAGE_CATEGORY_STATUS)
+    if (GetMoveCategory(move) == DAMAGE_CATEGORY_STATUS)
         return 0;
     if (GetMoveEffect(move) == EFFECT_OHKO)
         return 180;

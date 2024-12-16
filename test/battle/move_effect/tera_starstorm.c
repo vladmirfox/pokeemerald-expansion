@@ -46,7 +46,7 @@ SINGLE_BATTLE_TEST("Tera Starstorm becomes a physical move if the user is Terapa
     PARAMETRIZE { tera = GIMMICK_NONE; }
     PARAMETRIZE { tera = GIMMICK_TERA; }
     GIVEN {
-        ASSUME(gMovesInfo[MOVE_TERA_STARSTORM].category == DAMAGE_CATEGORY_SPECIAL);
+        ASSUME(GetMoveCategory(MOVE_TERA_STARSTORM) == DAMAGE_CATEGORY_SPECIAL);
         PLAYER(SPECIES_TERAPAGOS_STELLAR) { Attack(100); SpAttack(50); }
         OPPONENT(SPECIES_WOBBUFFET) { Defense(200); SpDefense(200); }
     } WHEN {

@@ -27,12 +27,12 @@ SINGLE_BATTLE_TEST("ignoresTargetAbility moves do not ignore the attacker's own 
         PLAYER(SPECIES_CLEFABLE) { Speed(1); Ability(ability); }
         OPPONENT(SPECIES_ARON) { Speed(2); }
     } WHEN {
-        if (gMovesInfo[move].category == DAMAGE_CATEGORY_PHYSICAL)
+        if (GetMoveCategory(move) == DAMAGE_CATEGORY_PHYSICAL)
             TURN { MOVE(opponent, MOVE_IRON_DEFENSE); MOVE(player, move); }
         else
             TURN { MOVE(opponent, MOVE_AMNESIA); MOVE(player, move); }
     } SCENE {
-        if (gMovesInfo[move].category == DAMAGE_CATEGORY_PHYSICAL)
+        if (GetMoveCategory(move) == DAMAGE_CATEGORY_PHYSICAL)
             ANIMATION(ANIM_TYPE_MOVE, MOVE_IRON_DEFENSE, opponent);
         else
             ANIMATION(ANIM_TYPE_MOVE, MOVE_AMNESIA, opponent);

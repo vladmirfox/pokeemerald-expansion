@@ -3,7 +3,7 @@
 
 ASSUMPTIONS
 {
-    ASSUME(gMovesInfo[MOVE_TACKLE].category == DAMAGE_CATEGORY_PHYSICAL);
+    ASSUME(GetMoveCategory(MOVE_TACKLE) == DAMAGE_CATEGORY_PHYSICAL);
 }
 
 SINGLE_BATTLE_TEST("Contrary raises Attack when Intimidated in a single battle", s16 damage)
@@ -83,7 +83,7 @@ SINGLE_BATTLE_TEST("Contrary raises stats after using a move which would normall
     PARAMETRIZE { ability = ABILITY_TANGLED_FEET; }
     GIVEN {
         ASSUME(MoveHasAdditionalEffectSelf(MOVE_OVERHEAT, MOVE_EFFECT_SP_ATK_MINUS_2) == TRUE);
-        ASSUME(gMovesInfo[MOVE_OVERHEAT].category == DAMAGE_CATEGORY_SPECIAL);
+        ASSUME(GetMoveCategory(MOVE_OVERHEAT) == DAMAGE_CATEGORY_SPECIAL);
         PLAYER(SPECIES_WOBBUFFET);
         OPPONENT(SPECIES_SPINDA) { Ability(ability); }
     } WHEN {

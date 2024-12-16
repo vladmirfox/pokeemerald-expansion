@@ -211,7 +211,7 @@ DOUBLE_BATTLE_TEST("Spread Moves: AOE move vs Eiscue and Mimikyu (Based on vanil
 {
     GIVEN {
         ASSUME(gMovesInfo[MOVE_EARTHQUAKE].target == MOVE_TARGET_FOES_AND_ALLY);
-        ASSUME(gMovesInfo[MOVE_EARTHQUAKE].category == DAMAGE_CATEGORY_PHYSICAL);
+        ASSUME(GetMoveCategory(MOVE_EARTHQUAKE) == DAMAGE_CATEGORY_PHYSICAL);
         PLAYER(SPECIES_WOBBUFFET);
         PLAYER(SPECIES_EISCUE);
         OPPONENT(SPECIES_MIMIKYU);
@@ -271,7 +271,7 @@ DOUBLE_BATTLE_TEST("Spread Moves: Spread move vs Eiscue and Mimikyu with 1 Eject
 {
     GIVEN {
         ASSUME(gMovesInfo[MOVE_RAZOR_LEAF].target == MOVE_TARGET_BOTH);
-        ASSUME(gMovesInfo[MOVE_RAZOR_LEAF].category == DAMAGE_CATEGORY_PHYSICAL);
+        ASSUME(GetMoveCategory(MOVE_RAZOR_LEAF) == DAMAGE_CATEGORY_PHYSICAL);
         PLAYER(SPECIES_WOBBUFFET) { Speed(40); }
         PLAYER(SPECIES_WYNAUT) { Speed(30); }
         OPPONENT(SPECIES_MIMIKYU) { Speed(20); Item(ITEM_EJECT_BUTTON); }

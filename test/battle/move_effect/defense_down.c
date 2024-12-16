@@ -12,7 +12,7 @@ SINGLE_BATTLE_TEST("Tail Whip lowers Defense", s16 damage)
     PARAMETRIZE { lowerDefense = FALSE; }
     PARAMETRIZE { lowerDefense = TRUE; }
     GIVEN {
-        ASSUME(gMovesInfo[MOVE_TACKLE].category == DAMAGE_CATEGORY_PHYSICAL);
+        ASSUME(GetMoveCategory(MOVE_TACKLE) == DAMAGE_CATEGORY_PHYSICAL);
         PLAYER(SPECIES_WOBBUFFET);
         OPPONENT(SPECIES_WOBBUFFET);
     } WHEN {

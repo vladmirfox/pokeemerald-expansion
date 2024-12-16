@@ -2088,7 +2088,7 @@ static void Cmd_critcalc(void)
 static inline void GetShellSideArmCategory(u32 battlerDef)
 {
     if (GetMoveEffect(gCurrentMove) == EFFECT_SHELL_SIDE_ARM)
-        gBattleStruct->swapDamageCategory = (gBattleStruct->shellSideArmCategory[gBattlerAttacker][battlerDef] != gMovesInfo[gCurrentMove].category);
+        gBattleStruct->swapDamageCategory = (gBattleStruct->shellSideArmCategory[gBattlerAttacker][battlerDef] != GetMoveCategory(gCurrentMove));
 }
 
 static void Cmd_damagecalc(void)
@@ -2374,7 +2374,7 @@ static inline bool32 TryStrongWindsWeakenAttack(u32 battlerDef, u32 moveType)
 {
     if (gBattleWeather & B_WEATHER_STRONG_WINDS && WEATHER_HAS_EFFECT)
     {
-        if (gMovesInfo[gCurrentMove].category != DAMAGE_CATEGORY_STATUS
+        if (GetMoveCategory(gCurrentMove) != DAMAGE_CATEGORY_STATUS
          && IS_BATTLER_OF_TYPE(battlerDef, TYPE_FLYING)
          && gTypeEffectivenessTable[moveType][TYPE_FLYING] >= UQ_4_12(2.0)
          && !gBattleStruct->printedStrongWindsWeakenedAttack)
@@ -6290,7 +6290,7 @@ static void Cmd_moveend(void)
             break;
         case MOVEEND_NUM_HITS:
             if (gBattlerAttacker != gBattlerTarget
-                && gMovesInfo[gCurrentMove].category != DAMAGE_CATEGORY_STATUS
+                && GetMoveCategory(gCurrentMove) != DAMAGE_CATEGORY_STATUS
                 && MoveResultHasEffect(gBattlerTarget)
                 && TARGET_TURN_DAMAGED)
             {
@@ -16411,7 +16411,7 @@ bool32 IsMoveAffectedByParentalBond(u32 move, u32 battler)
 {
     if (move != MOVE_NONE && move != MOVE_UNAVAILABLE && move != MOVE_STRUGGLE
         && !gMovesInfo[move].parentalBondBanned
-        && gMovesInfo[move].category != DAMAGE_CATEGORY_STATUS
+        && GetMoveCategory(move) != DAMAGE_CATEGORY_STATUS
         && gMovesInfo[move].strikeCount < 2
         && GetMoveEffect(move) != EFFECT_MULTI_HIT)
     {
@@ -17383,7 +17383,7 @@ void BS_SetPhotonGeyserCategory(void)
     u32 effect = GetMoveEffect(gCurrentMove);
     if (!((effect == EFFECT_TERA_BLAST && GetActiveGimmick(gBattlerAttacker) != GIMMICK_TERA)
             || (effect == EFFECT_TERA_STARSTORM && GetActiveGimmick(gBattlerAttacker) != GIMMICK_TERA && gBattleMons[gBattlerAttacker].species == SPECIES_TERAPAGOS_STELLAR)))
-        gBattleStruct->swapDamageCategory = (GetCategoryBasedOnStats(gBattlerAttacker) != gMovesInfo[gCurrentMove].category);
+        gBattleStruct->swapDamageCategory = (GetCategoryBasedOnStats(gBattlerAttacker) != GetMoveCategory(gCurrentMove));
     gBattlescriptCurrInstr = cmd->nextInstr;
 }
 

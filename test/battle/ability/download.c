@@ -3,8 +3,8 @@
 
 ASSUMPTIONS
 {
-    ASSUME(gMovesInfo[MOVE_TACKLE].category == DAMAGE_CATEGORY_PHYSICAL);
-    ASSUME(gMovesInfo[MOVE_TRI_ATTACK].category == DAMAGE_CATEGORY_SPECIAL);
+    ASSUME(GetMoveCategory(MOVE_TACKLE) == DAMAGE_CATEGORY_PHYSICAL);
+    ASSUME(GetMoveCategory(MOVE_TRI_ATTACK) == DAMAGE_CATEGORY_SPECIAL);
 }
 
 SINGLE_BATTLE_TEST("Download raises Attack if player has lower Def than Sp. Def", s16 damage)

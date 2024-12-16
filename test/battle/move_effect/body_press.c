@@ -4,7 +4,7 @@
 ASSUMPTIONS
 {
     ASSUME(GetMoveEffect(MOVE_BODY_PRESS) == EFFECT_BODY_PRESS);
-    ASSUME(gMovesInfo[MOVE_BODY_PRESS].category == DAMAGE_CATEGORY_PHYSICAL);
+    ASSUME(GetMoveCategory(MOVE_BODY_PRESS) == DAMAGE_CATEGORY_PHYSICAL);
 }
 
 SINGLE_BATTLE_TEST("Body Press uses physical defense stat of target", s16 damage)

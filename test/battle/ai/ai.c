@@ -90,15 +90,15 @@ AI_SINGLE_BATTLE_TEST("AI prefers moves with better accuracy, but only if they b
         ASSUME(gMovesInfo[MOVE_SHOCK_WAVE].accuracy == 0);
         ASSUME(gMovesInfo[MOVE_THUNDERBOLT].accuracy == 100);
         ASSUME(gMovesInfo[MOVE_ICY_WIND].accuracy != 100);
-        ASSUME(gMovesInfo[MOVE_SLAM].category == DAMAGE_CATEGORY_PHYSICAL);
-        ASSUME(gMovesInfo[MOVE_STRENGTH].category == DAMAGE_CATEGORY_PHYSICAL);
-        ASSUME(gMovesInfo[MOVE_TACKLE].category == DAMAGE_CATEGORY_PHYSICAL);
-        ASSUME(gMovesInfo[MOVE_MEGA_KICK].category == DAMAGE_CATEGORY_PHYSICAL);
-        ASSUME(gMovesInfo[MOVE_SWIFT].category == DAMAGE_CATEGORY_SPECIAL);
-        ASSUME(gMovesInfo[MOVE_SHOCK_WAVE].category == DAMAGE_CATEGORY_SPECIAL);
-        ASSUME(gMovesInfo[MOVE_ICY_WIND].category == DAMAGE_CATEGORY_SPECIAL);
-        ASSUME(gMovesInfo[MOVE_THUNDERBOLT].category == DAMAGE_CATEGORY_SPECIAL);
-        ASSUME(gMovesInfo[MOVE_GUST].category == DAMAGE_CATEGORY_SPECIAL);
+        ASSUME(GetMoveCategory(MOVE_SLAM) == DAMAGE_CATEGORY_PHYSICAL);
+        ASSUME(GetMoveCategory(MOVE_STRENGTH) == DAMAGE_CATEGORY_PHYSICAL);
+        ASSUME(GetMoveCategory(MOVE_TACKLE) == DAMAGE_CATEGORY_PHYSICAL);
+        ASSUME(GetMoveCategory(MOVE_MEGA_KICK) == DAMAGE_CATEGORY_PHYSICAL);
+        ASSUME(GetMoveCategory(MOVE_SWIFT) == DAMAGE_CATEGORY_SPECIAL);
+        ASSUME(GetMoveCategory(MOVE_SHOCK_WAVE) == DAMAGE_CATEGORY_SPECIAL);
+        ASSUME(GetMoveCategory(MOVE_ICY_WIND) == DAMAGE_CATEGORY_SPECIAL);
+        ASSUME(GetMoveCategory(MOVE_THUNDERBOLT) == DAMAGE_CATEGORY_SPECIAL);
+        ASSUME(GetMoveCategory(MOVE_GUST) == DAMAGE_CATEGORY_SPECIAL);
         OPPONENT(SPECIES_EXPLOUD) { Moves(move1, move2, move3, move4); Ability(abilityAtk); SpAttack(50); } // Low Sp.Atk, so Swift deals less damage than Strength.
     } WHEN {
             switch (turns)
@@ -146,10 +146,10 @@ AI_SINGLE_BATTLE_TEST("AI prefers moves which deal more damage instead of moves 
     PARAMETRIZE { move1 = MOVE_POISON_JAB; move2 = MOVE_WATER_GUN; expectedMove = MOVE_POISON_JAB; abilityDef = ABILITY_IMMUNITY; turns = 3; }
 
     GIVEN {
-        ASSUME(gMovesInfo[MOVE_WATERFALL].category == DAMAGE_CATEGORY_PHYSICAL);
-        ASSUME(gMovesInfo[MOVE_SCALD].category == DAMAGE_CATEGORY_SPECIAL);
-        ASSUME(gMovesInfo[MOVE_POISON_JAB].category == DAMAGE_CATEGORY_PHYSICAL);
-        ASSUME(gMovesInfo[MOVE_WATER_GUN].category == DAMAGE_CATEGORY_SPECIAL);
+        ASSUME(GetMoveCategory(MOVE_WATERFALL) == DAMAGE_CATEGORY_PHYSICAL);
+        ASSUME(GetMoveCategory(MOVE_SCALD) == DAMAGE_CATEGORY_SPECIAL);
+        ASSUME(GetMoveCategory(MOVE_POISON_JAB) == DAMAGE_CATEGORY_PHYSICAL);
+        ASSUME(GetMoveCategory(MOVE_WATER_GUN) == DAMAGE_CATEGORY_SPECIAL);
         AI_FLAGS(AI_FLAG_CHECK_BAD_MOVE | AI_FLAG_CHECK_VIABILITY | AI_FLAG_TRY_TO_FAINT);
         PLAYER(SPECIES_TYPHLOSION) { Ability(abilityDef); }
         PLAYER(SPECIES_WOBBUFFET);
@@ -176,8 +176,8 @@ AI_SINGLE_BATTLE_TEST("AI prefers Earthquake over Drill Run if both require the 
 {
     // Drill Run has less accuracy than E-quake, but can score a higher crit. However the chance is too small, so AI should ignore it.
     GIVEN {
-        ASSUME(gMovesInfo[MOVE_EARTHQUAKE].category == DAMAGE_CATEGORY_PHYSICAL); // Added because Geodude has to KO Typhlosion
-        ASSUME(gMovesInfo[MOVE_DRILL_RUN].category == DAMAGE_CATEGORY_PHYSICAL);  // Added because Geodude has to KO Typhlosion
+        ASSUME(GetMoveCategory(MOVE_EARTHQUAKE) == DAMAGE_CATEGORY_PHYSICAL); // Added because Geodude has to KO Typhlosion
+        ASSUME(GetMoveCategory(MOVE_DRILL_RUN) == DAMAGE_CATEGORY_PHYSICAL);  // Added because Geodude has to KO Typhlosion
         AI_FLAGS(AI_FLAG_CHECK_BAD_MOVE | AI_FLAG_CHECK_VIABILITY | AI_FLAG_TRY_TO_FAINT);
         PLAYER(SPECIES_TYPHLOSION);
         PLAYER(SPECIES_WOBBUFFET);
@@ -202,8 +202,8 @@ AI_SINGLE_BATTLE_TEST("AI prefers a weaker move over a one with a downside effec
     PARAMETRIZE { move1 = MOVE_OVERHEAT; move2 = MOVE_FLAMETHROWER; hp = 250; expectedMove = MOVE_OVERHEAT; turns = 1; }
 
     GIVEN {
-        ASSUME(gMovesInfo[MOVE_FLAMETHROWER].category == DAMAGE_CATEGORY_SPECIAL); // Added because Typhlosion has to KO Wobbuffet
-        ASSUME(gMovesInfo[MOVE_OVERHEAT].category == DAMAGE_CATEGORY_SPECIAL);     // Added because Typhlosion has to KO Wobbuffet
+        ASSUME(GetMoveCategory(MOVE_FLAMETHROWER) == DAMAGE_CATEGORY_SPECIAL); // Added because Typhlosion has to KO Wobbuffet
+        ASSUME(GetMoveCategory(MOVE_OVERHEAT) == DAMAGE_CATEGORY_SPECIAL);     // Added because Typhlosion has to KO Wobbuffet
         AI_FLAGS(AI_FLAG_CHECK_BAD_MOVE | AI_FLAG_CHECK_VIABILITY | AI_FLAG_TRY_TO_FAINT);
         PLAYER(SPECIES_WOBBUFFET) { HP(hp); }
         PLAYER(SPECIES_WOBBUFFET);
@@ -242,8 +242,8 @@ AI_SINGLE_BATTLE_TEST("AI prefers moves with the best possible score, chosen ran
 AI_SINGLE_BATTLE_TEST("AI can choose a status move that boosts the attack by two")
 {
     GIVEN {
-        ASSUME(gMovesInfo[MOVE_STRENGTH].category == DAMAGE_CATEGORY_PHYSICAL);
-        ASSUME(gMovesInfo[MOVE_HORN_ATTACK].category == DAMAGE_CATEGORY_PHYSICAL);
+        ASSUME(GetMoveCategory(MOVE_STRENGTH) == DAMAGE_CATEGORY_PHYSICAL);
+        ASSUME(GetMoveCategory(MOVE_HORN_ATTACK) == DAMAGE_CATEGORY_PHYSICAL);
         AI_FLAGS(AI_FLAG_CHECK_BAD_MOVE | AI_FLAG_CHECK_VIABILITY | AI_FLAG_TRY_TO_FAINT);
         PLAYER(SPECIES_WOBBUFFET) { HP(277); };
         PLAYER(SPECIES_WOBBUFFET);
@@ -330,8 +330,8 @@ AI_SINGLE_BATTLE_TEST("AI won't use Solar Beam if there is no Sun up or the user
     PARAMETRIZE { }
 
     GIVEN {
-        ASSUME(gMovesInfo[MOVE_SOLAR_BEAM].category == DAMAGE_CATEGORY_SPECIAL);
-        ASSUME(gMovesInfo[MOVE_GRASS_PLEDGE].category == DAMAGE_CATEGORY_SPECIAL);
+        ASSUME(GetMoveCategory(MOVE_SOLAR_BEAM) == DAMAGE_CATEGORY_SPECIAL);
+        ASSUME(GetMoveCategory(MOVE_GRASS_PLEDGE) == DAMAGE_CATEGORY_SPECIAL);
         AI_FLAGS(AI_FLAG_CHECK_BAD_MOVE | AI_FLAG_CHECK_VIABILITY | AI_FLAG_TRY_TO_FAINT);
         PLAYER(SPECIES_WOBBUFFET) { HP(211); }
         PLAYER(SPECIES_WOBBUFFET);
@@ -355,7 +355,7 @@ AI_SINGLE_BATTLE_TEST("AI won't use Solar Beam if there is no Sun up or the user
 AI_SINGLE_BATTLE_TEST("AI won't use ground type attacks against flying type Pokemon unless Gravity is in effect")
 {
     GIVEN {
-        ASSUME(gMovesInfo[MOVE_EARTHQUAKE].category == DAMAGE_CATEGORY_PHYSICAL); // Otherwise, it doesn't KO Crobat
+        ASSUME(GetMoveCategory(MOVE_EARTHQUAKE) == DAMAGE_CATEGORY_PHYSICAL); // Otherwise, it doesn't KO Crobat
         AI_FLAGS(AI_FLAG_CHECK_BAD_MOVE | AI_FLAG_CHECK_VIABILITY | AI_FLAG_TRY_TO_FAINT);
         PLAYER(SPECIES_CROBAT);
         PLAYER(SPECIES_WOBBUFFET);
@@ -430,7 +430,7 @@ AI_DOUBLE_BATTLE_TEST("AI will not use a status move if partner already chose He
 
     for (j = MOVE_NONE + 1; j < MOVES_COUNT; j++)
     {
-        if (gMovesInfo[j].category == DAMAGE_CATEGORY_STATUS) {
+        if (GetMoveCategory(j) == DAMAGE_CATEGORY_STATUS) {
             PARAMETRIZE { statusMove = j; }
         }
     }
@@ -725,7 +725,7 @@ AI_SINGLE_BATTLE_TEST("AI calculates guaranteed criticals and detects critical i
         ASSUME(gMovesInfo[MOVE_STORM_THROW].power == 60);
         ASSUME(gMovesInfo[MOVE_BRICK_BREAK].power == 75);
         ASSUME(GetMoveType(MOVE_STORM_THROW) == GetMoveType(MOVE_BRICK_BREAK));
-        ASSUME(gMovesInfo[MOVE_STORM_THROW].category == gMovesInfo[MOVE_BRICK_BREAK].category);
+        ASSUME(GetMoveCategory(MOVE_STORM_THROW) == GetMoveCategory(MOVE_BRICK_BREAK));
         AI_FLAGS(AI_FLAG_CHECK_BAD_MOVE | AI_FLAG_CHECK_VIABILITY | AI_FLAG_TRY_TO_FAINT | AI_FLAG_OMNISCIENT);
         PLAYER(SPECIES_OMASTAR) { Ability(ability); }
         OPPONENT(SPECIES_WOBBUFFET) { Moves(MOVE_STORM_THROW, MOVE_BRICK_BREAK); }
@@ -765,7 +765,7 @@ AI_SINGLE_BATTLE_TEST("AI avoids contact moves against rocky helmet")
         ASSUME(!gMovesInfo[MOVE_LEAFAGE].makesContact);
         ASSUME(gMovesInfo[MOVE_BRANCH_POKE].power == gMovesInfo[MOVE_LEAFAGE].power);
         ASSUME(GetMoveType(MOVE_BRANCH_POKE) == GetMoveType(MOVE_LEAFAGE));
-        ASSUME(gMovesInfo[MOVE_BRANCH_POKE].category == gMovesInfo[MOVE_LEAFAGE].category);
+        ASSUME(GetMoveCategory(MOVE_BRANCH_POKE) == GetMoveCategory(MOVE_LEAFAGE));
         AI_FLAGS(AI_FLAG_CHECK_BAD_MOVE | AI_FLAG_CHECK_VIABILITY | AI_FLAG_TRY_TO_FAINT | AI_FLAG_OMNISCIENT);
         PLAYER(SPECIES_WOBBUFFET) { Item(item); }
         OPPONENT(SPECIES_WOBBUFFET) { Moves(MOVE_BRANCH_POKE, MOVE_LEAFAGE); }
@@ -789,7 +789,7 @@ AI_SINGLE_BATTLE_TEST("AI uses a guaranteed KO move instead of the move with the
         ASSUME(gMovesInfo[MOVE_SLASH].power == 70);
         ASSUME(gMovesInfo[MOVE_STRENGTH].power == 80);
         ASSUME(GetMoveType(MOVE_SLASH) == GetMoveType(MOVE_STRENGTH));
-        ASSUME(gMovesInfo[MOVE_SLASH].category == gMovesInfo[MOVE_STRENGTH].category);
+        ASSUME(GetMoveCategory(MOVE_SLASH) == GetMoveCategory(MOVE_STRENGTH));
         AI_FLAGS(flags);
         PLAYER(SPECIES_WOBBUFFET) { HP(225); }
         OPPONENT(SPECIES_ABSOL) { Ability(ABILITY_SUPER_LUCK); Moves(MOVE_SLASH, MOVE_STRENGTH); }
@@ -821,7 +821,7 @@ AI_SINGLE_BATTLE_TEST("AI stays choice locked into moves in spite of the player'
         ASSUME(gMovesInfo[MOVE_QUICK_ATTACK].priority == 1);
         ASSUME(gMovesInfo[MOVE_BOOMBURST].soundMove == TRUE);
         ASSUME(gMovesInfo[MOVE_BULLET_SEED].ballisticMove == TRUE);
-        ASSUME(gMovesInfo[MOVE_TAIL_WHIP].category == DAMAGE_CATEGORY_STATUS);
+        ASSUME(GetMoveCategory(MOVE_TAIL_WHIP) == DAMAGE_CATEGORY_STATUS);
         AI_FLAGS(AI_FLAG_CHECK_BAD_MOVE | AI_FLAG_CHECK_VIABILITY | AI_FLAG_TRY_TO_FAINT);
         PLAYER(SPECIES_WOBBUFFET);
         PLAYER(playerMon) { Ability(ability); }

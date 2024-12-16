@@ -3,7 +3,7 @@
 
 ASSUMPTIONS
 {
-    // ASSUME(gMovesInfo[MOVE_AERIAL_ACE].category == DAMAGE_CATEGORY_PHYSICAL);
+    // ASSUME(GetMoveCategory(MOVE_AERIAL_ACE) == DAMAGE_CATEGORY_PHYSICAL);
 }
 
 SINGLE_BATTLE_TEST("(Gulp Missile) If base Cramorant hits target with Surf it transforms into Gulping form if max HP is over 1/2")

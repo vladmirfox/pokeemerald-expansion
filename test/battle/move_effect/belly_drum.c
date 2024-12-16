@@ -25,7 +25,7 @@ SINGLE_BATTLE_TEST("Belly Drum maximizes the user's Attack stat", s16 damage)
     PARAMETRIZE { raiseAttack = FALSE; }
     PARAMETRIZE { raiseAttack = TRUE; }
     GIVEN {
-        ASSUME(gMovesInfo[MOVE_TACKLE].category == DAMAGE_CATEGORY_PHYSICAL);
+        ASSUME(GetMoveCategory(MOVE_TACKLE) == DAMAGE_CATEGORY_PHYSICAL);
         PLAYER(SPECIES_WOBBUFFET);
         OPPONENT(SPECIES_WOBBUFFET);
     } WHEN {
@@ -111,7 +111,7 @@ SINGLE_BATTLE_TEST("Belly Drum minimizes the user's Attack stat with Contrary", 
     PARAMETRIZE { raiseAttack = FALSE; }
     PARAMETRIZE { raiseAttack = TRUE; }
     GIVEN {
-        ASSUME(gMovesInfo[MOVE_TACKLE].category == DAMAGE_CATEGORY_PHYSICAL);
+        ASSUME(GetMoveCategory(MOVE_TACKLE) == DAMAGE_CATEGORY_PHYSICAL);
         PLAYER(SPECIES_WOBBUFFET) { Ability(ABILITY_CONTRARY); }
         OPPONENT(SPECIES_WOBBUFFET);
     } WHEN {

@@ -269,9 +269,9 @@ DOUBLE_BATTLE_TEST("Powder damages a target using Shell Trap even if it wasn't h
     GIVEN {
         ASSUME(GetMoveEffect(MOVE_SHELL_TRAP) == EFFECT_SHELL_TRAP);
         ASSUME(GetMoveType(MOVE_SHELL_TRAP) == TYPE_FIRE);
-        ASSUME(gMovesInfo[MOVE_TACKLE].category == DAMAGE_CATEGORY_PHYSICAL);
-        ASSUME(gMovesInfo[MOVE_EMBER].category == DAMAGE_CATEGORY_SPECIAL);
-        ASSUME(gMovesInfo[MOVE_TICKLE].category == DAMAGE_CATEGORY_STATUS);
+        ASSUME(GetMoveCategory(MOVE_TACKLE) == DAMAGE_CATEGORY_PHYSICAL);
+        ASSUME(GetMoveCategory(MOVE_EMBER) == DAMAGE_CATEGORY_SPECIAL);
+        ASSUME(GetMoveCategory(MOVE_TICKLE) == DAMAGE_CATEGORY_STATUS);
         ASSUME(GetMoveEffect(MOVE_TICKLE) == EFFECT_TICKLE);
         PLAYER(SPECIES_TURTONATOR);
         PLAYER(SPECIES_WOBBUFFET);

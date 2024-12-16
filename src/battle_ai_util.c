@@ -3634,7 +3634,7 @@ bool32 PartyHasMoveCategory(u32 battlerId, u32 category)
             if (pp > 0 && move != MOVE_NONE)
             {
                 //TODO - handle photon geyser, light that burns the sky
-                if (gMovesInfo[move].category == category)
+                if (GetMoveCategory(move) == category)
                     return TRUE;
             }
         }
@@ -3876,7 +3876,7 @@ void IncreaseBurnScore(u32 battlerAtk, u32 battlerDef, u32 move, s32 *score)
             || (!(AI_THINKING_STRUCT->aiFlags[battlerAtk] & AI_FLAG_OMNISCIENT) // Not Omniscient but expects physical attacker
                 && gSpeciesInfo[gBattleMons[battlerDef].species].baseAttack >= gSpeciesInfo[gBattleMons[battlerDef].species].baseSpAttack + 10))
         {
-            if (gMovesInfo[GetBestDmgMoveFromBattler(battlerDef, battlerAtk)].category == DAMAGE_CATEGORY_PHYSICAL)
+            if (GetMoveCategory(GetBestDmgMoveFromBattler(battlerDef, battlerAtk)) == DAMAGE_CATEGORY_PHYSICAL)
                 ADJUST_SCORE_PTR(DECENT_EFFECT);
             else
                 ADJUST_SCORE_PTR(WEAK_EFFECT);
@@ -3960,7 +3960,7 @@ void IncreaseFrostbiteScore(u32 battlerAtk, u32 battlerDef, u32 move, s32 *score
             || (!(AI_THINKING_STRUCT->aiFlags[battlerAtk] & AI_FLAG_OMNISCIENT) // Not Omniscient but expects special attacker
                 && gSpeciesInfo[gBattleMons[battlerDef].species].baseSpAttack >= gSpeciesInfo[gBattleMons[battlerDef].species].baseAttack + 10))
         {
-            if (gMovesInfo[GetBestDmgMoveFromBattler(battlerDef, battlerAtk)].category == DAMAGE_CATEGORY_SPECIAL)
+            if (GetMoveCategory(GetBestDmgMoveFromBattler(battlerDef, battlerAtk)) == DAMAGE_CATEGORY_SPECIAL)
                 ADJUST_SCORE_PTR(DECENT_EFFECT);
             else
                 ADJUST_SCORE_PTR(WEAK_EFFECT);

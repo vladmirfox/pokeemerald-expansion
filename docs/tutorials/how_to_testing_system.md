@@ -111,7 +111,7 @@ SINGLE_BATTLE_TEST("Meditate raises Attack", s16 damage)
     PARAMETRIZE { raiseAttack = FALSE; }
     PARAMETRIZE { raiseAttack = TRUE; }
     GIVEN {
-        ASSUME(gMovesInfo[MOVE_TACKLE].category == DAMAGE_CATEGORY_PHYSICAL);
+        ASSUME(GetMoveCategory(MOVE_TACKLE) == DAMAGE_CATEGORY_PHYSICAL);
         PLAYER(SPECIES_WOBBUFFET);
         OPPONENT(SPECIES_WOBBUFFET);
     } WHEN {
@@ -146,7 +146,7 @@ The overworld is not available, so it is only possible to test commands which do
 ### `ASSUME`
 `ASSUME(cond)`
 Causes the test to be skipped if `cond` is false. Used to document any prerequisites of the test, e.g. to test Burn reducing the Attack of a Pokémon we can observe the damage of a physical attack with and without the burn. To document that this test assumes the attack is physical we can use:
-`ASSUME(gMovesInfo[MOVE_WHATEVER].category == DAMAGE_CATEGORY_PHYSICAL);`
+`ASSUME(GetMoveCategory(MOVE_WHATEVER) == DAMAGE_CATEGORY_PHYSICAL);`
 
 ### `ASSUMPTIONS`
 ```

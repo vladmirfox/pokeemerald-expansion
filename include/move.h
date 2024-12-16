@@ -25,9 +25,9 @@ struct MoveInfo
     const u8 *name;
     const u8 *description;
     u16 effect;
-    u16 type:5;
+    u16 type:5;     // Up to 32
     u16 category:2;
-    u16 power:9; // up to 511
+    u16 power:9;    // up to 511
     u16 accuracy:7;
     u16 target:9;
     u8 pp;
@@ -134,6 +134,11 @@ static inline u32 GetMoveEffect(u32 moveId)
 static inline u32 GetMoveType(u32 moveId)
 {
     return gMovesInfo[SanitizeMoveId(moveId)].type;
+}
+
+static inline u32 GetMoveCategory(u32 moveId)
+{
+    return gMovesInfo[SanitizeMoveId(moveId)].category;
 }
 
 static inline const u8 *GetMoveAnimationScript(u32 moveId)

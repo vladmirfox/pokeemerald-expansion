@@ -12,7 +12,7 @@ SINGLE_BATTLE_TEST("Tail Glow drastically raises Special Attack", s16 damage)
     PARAMETRIZE { raiseSpecialAttack = FALSE; }
     PARAMETRIZE { raiseSpecialAttack = TRUE; }
     GIVEN {
-        ASSUME(gMovesInfo[MOVE_GUST].category == DAMAGE_CATEGORY_SPECIAL);
+        ASSUME(GetMoveCategory(MOVE_GUST) == DAMAGE_CATEGORY_SPECIAL);
         PLAYER(SPECIES_WOBBUFFET);
         OPPONENT(SPECIES_WOBBUFFET);
     } WHEN {

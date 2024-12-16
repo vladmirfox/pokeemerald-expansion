@@ -207,13 +207,13 @@ void HandleAction_UseMove(void)
     // check Z-Move used
     if (GetActiveGimmick(gBattlerAttacker) == GIMMICK_Z_MOVE && !IS_MOVE_STATUS(gCurrentMove) && !IsZMove(gCurrentMove))
     {
-        gBattleStruct->categoryOverride = gMovesInfo[gCurrentMove].category;
+        gBattleStruct->categoryOverride = GetMoveCategory(gCurrentMove);
         gCurrentMove = gChosenMove = GetUsableZMove(gBattlerAttacker, gCurrentMove);
     }
     // check Max Move used
     else if (GetActiveGimmick(gBattlerAttacker) == GIMMICK_DYNAMAX)
     {
-        gBattleStruct->categoryOverride = gMovesInfo[gCurrentMove].category;
+        gBattleStruct->categoryOverride = GetMoveCategory(gCurrentMove);
         gCurrentMove = gChosenMove = GetMaxMove(gBattlerAttacker, gCurrentMove);
     }
 
@@ -694,7 +694,7 @@ void HandleAction_ActionFinished(void)
 
     if (GetActiveGimmick(gBattlerAttacker) == GIMMICK_TERA
         && GetBattlerTeraType(gBattlerAttacker) == TYPE_STELLAR
-        && gMovesInfo[gCurrentMove].category != DAMAGE_CATEGORY_STATUS
+        && GetMoveCategory(gCurrentMove) != DAMAGE_CATEGORY_STATUS
         && IsTypeStellarBoosted(gBattlerAttacker, moveType))
     {
         ExpendTypeStellarBoost(gBattlerAttacker, moveType);
@@ -3561,7 +3561,7 @@ u8 AtkCanceller_UnableToUseMove(u32 moveType)
                         gBattlescriptCurrInstr = BattleScript_ZMoveActivatePowder;
                     }
                 }
-                else if (gMovesInfo[gCurrentMove].category == DAMAGE_CATEGORY_STATUS)
+                else if (GetMoveCategory(gCurrentMove) == DAMAGE_CATEGORY_STATUS)
                 {
                     if (!alreadyUsed)
                     {
@@ -10522,7 +10522,7 @@ static inline uq4_12_t CalcTypeEffectivenessMultiplierInternal(u32 move, u32 mov
     if (recordAbilities && (illusionSpecies = GetIllusionMonSpecies(battlerDef)))
         TryNoticeIllusionInTypeEffectiveness(move, moveType, battlerAtk, battlerDef, modifier, illusionSpecies);
 
-    if (gMovesInfo[move].category == DAMAGE_CATEGORY_STATUS && move != MOVE_THUNDER_WAVE)
+    if (GetMoveCategory(move) == DAMAGE_CATEGORY_STATUS && move != MOVE_THUNDER_WAVE)
     {
         modifier = UQ_4_12(1.0);
         if (B_GLARE_GHOST < GEN_4 && move == MOVE_GLARE && IS_BATTLER_OF_TYPE(battlerDef, TYPE_GHOST))
@@ -11192,7 +11192,7 @@ bool32 ShouldGetStatBadgeBoost(u16 badgeFlag, u32 battler)
 
 static u32 SwapMoveDamageCategory(u32 move)
 {
-    if (gMovesInfo[move].category == DAMAGE_CATEGORY_PHYSICAL)
+    if (GetMoveCategory(move) == DAMAGE_CATEGORY_PHYSICAL)
         return DAMAGE_CATEGORY_SPECIAL;
     return DAMAGE_CATEGORY_PHYSICAL;
 }
@@ -11204,7 +11204,7 @@ u8 GetBattleMoveCategory(u32 moveId)
     if (gBattleStruct != NULL && (IsZMove(moveId) || IsMaxMove(moveId))) // TODO: Might be buggy depending on when this is called.
         return gBattleStruct->categoryOverride;
     if (B_PHYSICAL_SPECIAL_SPLIT >= GEN_4)
-        return gMovesInfo[moveId].category;
+        return GetMoveCategory(moveId);
 
     if (IS_MOVE_STATUS(moveId))
         return DAMAGE_CATEGORY_STATUS;

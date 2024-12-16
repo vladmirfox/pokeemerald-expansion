@@ -680,7 +680,7 @@ void HandleInputChooseMove(u32 battler)
         if (gBattleStruct->zmove.viewing)
         {
             gBattleStruct->zmove.viewing = FALSE;
-            if (gMovesInfo[moveInfo->moves[gMoveSelectionCursor[battler]]].category != DAMAGE_CATEGORY_STATUS)
+            if (GetMoveCategory(moveInfo->moves[gMoveSelectionCursor[battler]]) != DAMAGE_CATEGORY_STATUS)
                 moveTarget = MOVE_TARGET_SELECTED;  //damaging z moves always have selected target
         }
 
@@ -1731,7 +1731,7 @@ static void MoveSelectionDisplayMoveType(u32 battler)
             || speciesId == SPECIES_OGERPON_CORNERSTONE || speciesId == SPECIES_OGERPON_CORNERSTONE_TERA)
             type = gBattleMons[battler].types[1];
     }
-    else if (gMovesInfo[moveInfo->moves[gMoveSelectionCursor[battler]]].category == DAMAGE_CATEGORY_STATUS
+    else if (GetMoveCategory(moveInfo->moves[gMoveSelectionCursor[battler]]) == DAMAGE_CATEGORY_STATUS
              && (GetActiveGimmick(battler) == GIMMICK_DYNAMAX || IsGimmickSelected(battler, GIMMICK_DYNAMAX)))
     {
         type = TYPE_NORMAL; // Max Guard is always a Normal-type move

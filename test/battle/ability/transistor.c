@@ -20,8 +20,8 @@ SINGLE_BATTLE_TEST("Transistor increases Electric-type attack / special attack",
         ASSUME(GetMoveType(MOVE_TACKLE) != TYPE_ELECTRIC);
         ASSUME(GetMoveType(MOVE_WILD_CHARGE) == TYPE_ELECTRIC);
         ASSUME(GetMoveType(MOVE_THUNDER_SHOCK) == TYPE_ELECTRIC);
-        ASSUME(gMovesInfo[MOVE_WILD_CHARGE].category == DAMAGE_CATEGORY_PHYSICAL);
-        ASSUME(gMovesInfo[MOVE_THUNDER_SHOCK].category == DAMAGE_CATEGORY_SPECIAL);
+        ASSUME(GetMoveCategory(MOVE_WILD_CHARGE) == DAMAGE_CATEGORY_PHYSICAL);
+        ASSUME(GetMoveCategory(MOVE_THUNDER_SHOCK) == DAMAGE_CATEGORY_SPECIAL);
         PLAYER(SPECIES_REGIELEKI) { Ability(ability); }
         OPPONENT(SPECIES_WOBBUFFET);
     } WHEN {

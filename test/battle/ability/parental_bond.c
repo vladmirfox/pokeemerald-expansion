@@ -4,7 +4,7 @@
 SINGLE_BATTLE_TEST("Parental Bond converts Tackle into a two-strike move")
 {
     GIVEN {
-        ASSUME(gMovesInfo[MOVE_TACKLE].category != DAMAGE_CATEGORY_STATUS);
+        ASSUME(GetMoveCategory(MOVE_TACKLE) != DAMAGE_CATEGORY_STATUS);
         ASSUME(gMovesInfo[MOVE_TACKLE].strikeCount < 2);
         ASSUME(GetMoveEffect(MOVE_TACKLE) == EFFECT_HIT);
         PLAYER(SPECIES_KANGASKHAN) { Item(ITEM_KANGASKHANITE); }
@@ -27,7 +27,7 @@ SINGLE_BATTLE_TEST("Parental Bond converts Tackle into a two-strike move")
 SINGLE_BATTLE_TEST("Parental Bond does not convert a move with three or more strikes to a two-strike move")
 {
     GIVEN {
-        ASSUME(gMovesInfo[MOVE_TRIPLE_KICK].category != DAMAGE_CATEGORY_STATUS);
+        ASSUME(GetMoveCategory(MOVE_TRIPLE_KICK) != DAMAGE_CATEGORY_STATUS);
         ASSUME(gMovesInfo[MOVE_TRIPLE_KICK].strikeCount == 3);
         PLAYER(SPECIES_KANGASKHAN) { Item(ITEM_KANGASKHANITE); }
         OPPONENT(SPECIES_WOBBUFFET);
@@ -137,7 +137,7 @@ SINGLE_BATTLE_TEST("Parental Bond has no affect on multi hit moves and they stil
 
     GIVEN {
         ASSUME(B_MULTI_HIT_CHANCE >= GEN_5);
-        ASSUME(gMovesInfo[MOVE_COMET_PUNCH].category != DAMAGE_CATEGORY_STATUS);
+        ASSUME(GetMoveCategory(MOVE_COMET_PUNCH) != DAMAGE_CATEGORY_STATUS);
         ASSUME(GetMoveEffect(MOVE_COMET_PUNCH) == EFFECT_MULTI_HIT);
         PLAYER(SPECIES_KANGASKHAN) { Item(ITEM_KANGASKHANITE); }
         OPPONENT(SPECIES_WOBBUFFET);
@@ -163,7 +163,7 @@ SINGLE_BATTLE_TEST("Parental Bond has no affect on multi hit moves and they stil
 
     GIVEN {
         ASSUME(B_MULTI_HIT_CHANCE >= GEN_5);
-        ASSUME(gMovesInfo[MOVE_COMET_PUNCH].category != DAMAGE_CATEGORY_STATUS);
+        ASSUME(GetMoveCategory(MOVE_COMET_PUNCH) != DAMAGE_CATEGORY_STATUS);
         ASSUME(GetMoveEffect(MOVE_COMET_PUNCH) == EFFECT_MULTI_HIT);
         PLAYER(SPECIES_KANGASKHAN) { Item(ITEM_KANGASKHANITE); }
         OPPONENT(SPECIES_WOBBUFFET);
@@ -190,7 +190,7 @@ SINGLE_BATTLE_TEST("Parental Bond has no affect on multi hit moves and they stil
 
     GIVEN {
         ASSUME(B_MULTI_HIT_CHANCE >= GEN_5);
-        ASSUME(gMovesInfo[MOVE_COMET_PUNCH].category != DAMAGE_CATEGORY_STATUS);
+        ASSUME(GetMoveCategory(MOVE_COMET_PUNCH) != DAMAGE_CATEGORY_STATUS);
         ASSUME(GetMoveEffect(MOVE_COMET_PUNCH) == EFFECT_MULTI_HIT);
         PLAYER(SPECIES_KANGASKHAN) { Item(ITEM_KANGASKHANITE); }
         OPPONENT(SPECIES_WOBBUFFET);
@@ -218,7 +218,7 @@ SINGLE_BATTLE_TEST("Parental Bond has no affect on multi hit moves and they stil
 
     GIVEN {
         ASSUME(B_MULTI_HIT_CHANCE >= GEN_5);
-        ASSUME(gMovesInfo[MOVE_COMET_PUNCH].category != DAMAGE_CATEGORY_STATUS);
+        ASSUME(GetMoveCategory(MOVE_COMET_PUNCH) != DAMAGE_CATEGORY_STATUS);
         ASSUME(GetMoveEffect(MOVE_COMET_PUNCH) == EFFECT_MULTI_HIT);
         PLAYER(SPECIES_KANGASKHAN) { Item(ITEM_KANGASKHANITE); }
         OPPONENT(SPECIES_WOBBUFFET);
@@ -242,7 +242,7 @@ SINGLE_BATTLE_TEST("Parental Bond has no affect on multi hit moves and they stil
 SINGLE_BATTLE_TEST("Parental Bond Smack Down effect triggers after 2nd hit")
 {
     GIVEN {
-        ASSUME(gMovesInfo[MOVE_SMACK_DOWN].category != DAMAGE_CATEGORY_STATUS);
+        ASSUME(GetMoveCategory(MOVE_SMACK_DOWN) != DAMAGE_CATEGORY_STATUS);
         ASSUME(gMovesInfo[MOVE_SMACK_DOWN].strikeCount < 2);
         ASSUME(MoveHasAdditionalEffect(MOVE_SMACK_DOWN, MOVE_EFFECT_SMACK_DOWN));
         PLAYER(SPECIES_KANGASKHAN) { Item(ITEM_KANGASKHANITE); }

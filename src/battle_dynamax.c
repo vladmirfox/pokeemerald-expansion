@@ -292,7 +292,7 @@ u16 GetMaxMove(u32 battler, u32 baseMove)
     {
         return MOVE_STRUGGLE;
     }
-    else if (gMovesInfo[baseMove].category == DAMAGE_CATEGORY_STATUS)
+    else if (GetMoveCategory(baseMove) == DAMAGE_CATEGORY_STATUS)
     {
         return MOVE_MAX_GUARD;
     }

@@ -5,7 +5,7 @@ SINGLE_BATTLE_TEST("Cud Chew will activate Kee Berry effect again on the next tu
 {
     GIVEN {
         ASSUME(gItemsInfo[ITEM_KEE_BERRY].holdEffect == HOLD_EFFECT_KEE_BERRY);
-        ASSUME(gMovesInfo[MOVE_TACKLE].category == DAMAGE_CATEGORY_PHYSICAL);
+        ASSUME(GetMoveCategory(MOVE_TACKLE) == DAMAGE_CATEGORY_PHYSICAL);
         PLAYER(SPECIES_WOBBUFFET);
         OPPONENT(SPECIES_TAUROS_PALDEA_COMBAT) { Ability(ABILITY_CUD_CHEW); Item(ITEM_KEE_BERRY); }
     } WHEN {

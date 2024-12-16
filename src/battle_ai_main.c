@@ -3196,7 +3196,7 @@ static u32 AI_CalcMoveEffectScore(u32 battlerAtk, u32 battlerDef, u32 move)
     u32 i;
 
     // The AI should understand that while Dynamaxed, status moves function like Protect.
-    if (GetActiveGimmick(battlerAtk) == GIMMICK_DYNAMAX && gMovesInfo[move].category == DAMAGE_CATEGORY_STATUS)
+    if (GetActiveGimmick(battlerAtk) == GIMMICK_DYNAMAX && GetMoveCategory(move) == DAMAGE_CATEGORY_STATUS)
         moveEffect = EFFECT_PROTECT;
 
     // check status move preference
@@ -5184,7 +5184,7 @@ static s32 AI_PowerfulStatus(u32 battlerAtk, u32 battlerDef, u32 move, s32 score
 {
     u32 moveEffect = GetMoveEffect(move);
 
-    if (gMovesInfo[move].category != DAMAGE_CATEGORY_STATUS || GetMoveEffect(AI_DATA->partnerMove) == moveEffect)
+    if (GetMoveCategory(move) != DAMAGE_CATEGORY_STATUS || GetMoveEffect(AI_DATA->partnerMove) == moveEffect)
         return score;
 
     switch (moveEffect)
