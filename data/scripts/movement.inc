@@ -113,3 +113,21 @@ Common_Movement_WalkUp2::
 	walk_up
 	walk_up
 	step_end
+
+Common_Movement_TeleportAway::
+	face_up
+	delay_4
+	face_left
+	delay_4
+	face_down
+	delay_4
+	face_right
+	delay_4
+	face_up
+	disable_anim
+	slide_up
+	slide_up
+	slide_up
+	slide_up
+	slide_up
+	slide_up

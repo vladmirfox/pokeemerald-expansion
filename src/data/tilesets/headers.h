@@ -1122,3 +1122,14 @@ const struct Tileset gTileset_House_Marble =
     .metatileAttributes = gMetatileAttributes_House_Marble,
     .callback = NULL,
 };
+
+const struct Tileset gTileset_DojoYifu =
+{
+    .isCompressed = TRUE,
+    .isSecondary = TRUE,
+    .tiles = gTilesetTiles_DojoYifu,
+    .palettes = gTilesetPalettes_DojoYifu,
+    .metatiles = gMetatiles_DojoYifu,
+    .metatileAttributes = gMetatileAttributes_DojoYifu,
+    .callback = NULL,
+};

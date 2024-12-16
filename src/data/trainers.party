@@ -3358,29 +3358,22 @@ Hariyama
 Level: 32
 IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
 
-=== TRAINER_KIRK ===
-Name: KIRK
-Class: Guitarist
-Pic: Guitarist
-Gender: Male
-Music: Intense
+=== TRAINER_AKARI ===
+Name: Akari
+Class: Kimono Girl
+Pic: Kimono Girl
+Gender: Female
+Music: Female
 Double Battle: No
 AI: Check Bad Move
 
-Electrike
+Bounsweet
 Level: 17
 IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
-- Quick Attack
-- Thunder Wave
-- Spark
-- Leer
 
-Voltorb
+Skiploom
 Level: 17
 IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
-- Charge
-- Shock Wave
-- Screech
 
 === TRAINER_GRUNT_AQUA_HIDEOUT_7 ===
 Name: GRUNT
@@ -11846,30 +11839,22 @@ IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
 - Feint Attack
 - Bind
 
-=== TRAINER_VIVIAN ===
-Name: VIVIAN
-Class: Battle Girl
-Pic: Battle Girl
+=== TRAINER_YUKA ===
+Name: Yuka
+Class: Kimono Girl
+Pic: Kimono Girl
 Gender: Female
-Music: Intense
+Music: Female
 Double Battle: No
 AI: Check Bad Move
 
-Meditite
+Bounsweet
 Level: 17
 IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
-- Bide
-- Detect
-- Confusion
-- Thunder Punch
 
-Meditite
+Bounsweet
 Level: 17
 IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
-- Thunder Punch
-- Detect
-- Confusion
-- Meditate
 
 === TRAINER_DANIELLE ===
 Name: DANIELLE

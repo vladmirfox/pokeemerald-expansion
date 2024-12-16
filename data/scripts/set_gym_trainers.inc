@@ -88,13 +88,13 @@ Bonsai_Dojo_SetGymTrainers::
 
 MauvilleCity_Gym_SetGymTrainers::
 # 32 "data/scripts/set_gym_trainers.pory"
-	settrainerflag TRAINER_KIRK
+	settrainerflag TRAINER_AKARI
 # 33 "data/scripts/set_gym_trainers.pory"
 	settrainerflag TRAINER_SHAWN
 # 34 "data/scripts/set_gym_trainers.pory"
 	settrainerflag TRAINER_BEN
 # 35 "data/scripts/set_gym_trainers.pory"
-	settrainerflag TRAINER_VIVIAN
+	settrainerflag TRAINER_YUKA
 # 36 "data/scripts/set_gym_trainers.pory"
 	settrainerflag TRAINER_ANGELO
 	return

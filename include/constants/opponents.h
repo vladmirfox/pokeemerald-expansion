@@ -194,7 +194,7 @@
 #define TRAINER_YUJI                        188
 #define TRAINER_DAISUKE                     189
 #define TRAINER_ATSUSHI                     190
-#define TRAINER_KIRK                        191
+#define TRAINER_AKARI                       191
 #define TRAINER_GRUNT_AQUA_HIDEOUT_7        192
 #define TRAINER_GRUNT_AQUA_HIDEOUT_8        193
 #define TRAINER_SHAWN                       194
@@ -652,7 +652,7 @@
 #define TRAINER_KIRA_AND_DAN_5              646
 #define TRAINER_JOHANNA                     647
 #define TRAINER_GERALD                      648
-#define TRAINER_VIVIAN                      649
+#define TRAINER_YUKA                      649
 #define TRAINER_DANIELLE                    650
 #define TRAINER_HIDEO                       651
 #define TRAINER_KEIGO                       652

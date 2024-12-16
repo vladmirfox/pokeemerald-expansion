@@ -29,10 +29,10 @@ script Bonsai_Dojo_SetGymTrainers {
 }
 
 script MauvilleCity_Gym_SetGymTrainers {
-	settrainerflag(TRAINER_KIRK)
+	settrainerflag(TRAINER_AKARI)
 	settrainerflag(TRAINER_SHAWN)
 	settrainerflag(TRAINER_BEN)
-	settrainerflag(TRAINER_VIVIAN)
+	settrainerflag(TRAINER_YUKA)
 	settrainerflag(TRAINER_ANGELO)
 	return
 }

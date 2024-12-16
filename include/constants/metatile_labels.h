@@ -142,6 +142,12 @@
 #define METATILE_Dewford_Door              0x225
 #define METATILE_Dewford_Door_BattleTower  0x25D
 
+// gTileset_DojoYifu
+#define METATILE_DojoYifu_YifuDojoDoorBottomLeft   0x220
+#define METATILE_DojoYifu_YifuDojoDoorBottomRight  0x221
+#define METATILE_DojoYifu_YifuDojoDoorTopLeft      0x218
+#define METATILE_DojoYifu_YifuDojoDoorTopRight     0x219
+
 // gTileset_EliteFour
 #define METATILE_EliteFour_EntryDoor_ClosedBottom    0x20E
 #define METATILE_EliteFour_EntryDoor_ClosedTop       0x206
