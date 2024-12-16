@@ -1179,7 +1179,7 @@ static void Cmd_attackcanceler(void)
 
     s32 i;
     u16 attackerAbility = GetBattlerAbility(gBattlerAttacker);
-    u32 moveType = GetMoveType(gCurrentMove);
+    u32 moveType = GetBattleMoveType(gCurrentMove);
 
     if (gBattleStruct->usedEjectItem & (1u << gBattlerAttacker))
     {
@@ -1700,7 +1700,7 @@ static void AccuracyCheck(bool32 recalcDragonDarts, const u8 *nextInstr, const u
     }
     else
     {
-        u32 moveType = GetMoveType(move);
+        u32 moveType = GetBattleMoveType(move);
         u32 moveTarget = GetBattlerMoveTargetType(gBattlerAttacker, move);
         bool32 calcSpreadMove = IsSpreadMove(moveTarget) && !IS_MOVE_STATUS(move);
 
@@ -2106,7 +2106,7 @@ static void Cmd_damagecalc(void)
     struct DamageCalculationData damageCalcData;
     damageCalcData.battlerAtk = gBattlerAttacker;
     damageCalcData.move = gCurrentMove;
-    damageCalcData.moveType = GetMoveType(gCurrentMove);
+    damageCalcData.moveType = GetBattleMoveType(gCurrentMove);
     damageCalcData.randomFactor = TRUE;
     damageCalcData.updateFlags = TRUE;
 
@@ -2153,7 +2153,7 @@ static void Cmd_typecalc(void)
 
     if (!IsSpreadMove(GetBattlerMoveTargetType(gBattlerAttacker, gCurrentMove))) // Handled in CANCELLER_MULTI_TARGET_MOVES for Spread Moves
     {
-        u32 moveType = GetMoveType(gCurrentMove);
+        u32 moveType = GetBattleMoveType(gCurrentMove);
         CalcTypeEffectivenessMultiplier(gCurrentMove, moveType, gBattlerAttacker, gBattlerTarget, GetBattlerAbility(gBattlerTarget), TRUE);
     }
 
@@ -2422,7 +2422,7 @@ static inline bool32 TryActivateWeakenessBerry(u32 battlerDef)
 
 static bool32 ProcessPreAttackAnimationFuncs(void)
 {
-    u32 moveType = GetMoveType(gCurrentMove);
+    u32 moveType = GetBattleMoveType(gCurrentMove);
     if (IsDoubleSpreadMove())
     {
         u32 moveTarget = GetBattlerMoveTargetType(gBattlerAttacker, gCurrentMove);
@@ -3357,7 +3357,7 @@ void SetMoveEffect(bool32 primary, bool32 certain)
 
             if (B_STATUS_TYPE_IMMUNITY == GEN_1)
             {
-                u32 moveType = GetMoveType(gCurrentMove);
+                u32 moveType = GetBattleMoveType(gCurrentMove);
                 if (primary == FALSE && certain == FALSE && IS_BATTLER_OF_TYPE(gEffectBattler, moveType))
                     break;
             }
@@ -3370,7 +3370,7 @@ void SetMoveEffect(bool32 primary, bool32 certain)
         case STATUS1_FREEZE:
             if (B_STATUS_TYPE_IMMUNITY == GEN_1)
             {
-                u32 moveType = GetMoveType(gCurrentMove);
+                u32 moveType = GetBattleMoveType(gCurrentMove);
                 if (primary == FALSE && certain == FALSE && IS_BATTLER_OF_TYPE(gEffectBattler, moveType))
                     break;
             }
@@ -3409,7 +3409,7 @@ void SetMoveEffect(bool32 primary, bool32 certain)
             }
             if (B_STATUS_TYPE_IMMUNITY == GEN_1)
             {
-                u32 moveType = GetMoveType(gCurrentMove);
+                u32 moveType = GetBattleMoveType(gCurrentMove);
                 if (primary == FALSE && certain == FALSE && IS_BATTLER_OF_TYPE(gEffectBattler, moveType))
                     break;
             }
@@ -3479,7 +3479,7 @@ void SetMoveEffect(bool32 primary, bool32 certain)
         case STATUS1_FROSTBITE:
             if (B_STATUS_TYPE_IMMUNITY == GEN_1)
             {
-                u32 moveType = GetMoveType(gCurrentMove);
+                u32 moveType = GetBattleMoveType(gCurrentMove);
                 if (primary == FALSE && certain == FALSE && IS_BATTLER_OF_TYPE(gEffectBattler, moveType))
                     break;
             }
@@ -5872,7 +5872,7 @@ static void Cmd_moveend(void)
     endState = cmd->endState;
 
     holdEffectAtk = GetBattlerHoldEffect(gBattlerAttacker, TRUE);
-    moveType = GetMoveType(gCurrentMove);
+    moveType = GetBattleMoveType(gCurrentMove);
 
     u32 moveEffect = GetMoveEffect(gCurrentMove);
 
@@ -6387,7 +6387,7 @@ static void Cmd_moveend(void)
                         gLastMoves[gBattlerAttacker] = gChosenMove;
                         RecordKnownMove(gBattlerAttacker, gChosenMove);
                         gLastResultingMoves[gBattlerAttacker] = gCurrentMove;
-                        gLastUsedMoveType[gBattlerAttacker] = GetMoveType(gCurrentMove);
+                        gLastUsedMoveType[gBattlerAttacker] = GetBattleMoveType(gCurrentMove);
                     }
                 }
                 else
@@ -6409,7 +6409,7 @@ static void Cmd_moveend(void)
                     else
                     {
                         gLastLandedMoves[gBattlerTarget] = gCurrentMove;
-                        gLastHitByType[gBattlerTarget] = GetMoveType(gCurrentMove);
+                        gLastHitByType[gBattlerTarget] = GetBattleMoveType(gCurrentMove);
                     }
                 }
                 else
