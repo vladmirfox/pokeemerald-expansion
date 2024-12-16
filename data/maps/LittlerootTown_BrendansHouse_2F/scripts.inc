@@ -273,7 +273,7 @@ PlayersHouse_2F_EventScript_GameCube::
 	end
 
 PlayersHouse_2F_Text_ClockIsStopped:
-	.string "The clock is stopped…\p"
+	.string "I think the clock is broken\p"
 	.string "Better set it and start it!$"
 
 PlayersHouse_2F_Text_HowDoYouLikeYourRoom:
