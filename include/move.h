@@ -2,6 +2,8 @@
 #define GUARD_MOVES_H
 
 #include "contest_effect.h"
+#include "constants/battle_move_effects.h"
+#include "constants/moves.h"
 
 #define EFFECTS_ARR(...) (const struct AdditionalEffect[]) {__VA_ARGS__}
 #define ADDITIONAL_EFFECTS(...) EFFECTS_ARR( __VA_ARGS__ ), .numAdditionalEffects = ARRAY_COUNT(EFFECTS_ARR( __VA_ARGS__ ))
@@ -101,11 +103,48 @@ struct MoveInfo
 };
 
 extern const struct MoveInfo gMovesInfo[];
+extern const u8 gNotDoneYetDescription[];
 
-const u8 *GetMoveName(u32 moveId);
-const u8 *GetMoveDescription(u32 moveId);
-u32 GetMoveEffect(u32 moveId);
-u32 GetMoveType(u32 moveId);
-const u8 *GetMoveAnimationScript(u32 moveId);
+static inline u32 SanitizeMoveId(u32 moveId)
+{
+    if (moveId >= MOVES_COUNT_ALL)
+        return MOVE_NONE;
+    else
+        return moveId;
+}
+
+static inline const u8 *GetMoveName(u32 moveId)
+{
+    return gMovesInfo[SanitizeMoveId(moveId)].name;
+}
+
+static inline const u8 *GetMoveDescription(u32 moveId)
+{
+    moveId = SanitizeMoveId(moveId);
+    if (gMovesInfo[moveId].effect == EFFECT_PLACEHOLDER)
+        return gNotDoneYetDescription;
+    return gMovesInfo[moveId].description;
+}
+
+static inline u32 GetMoveEffect(u32 moveId)
+{
+    return gMovesInfo[SanitizeMoveId(moveId)].effect;
+}
+
+static inline u32 GetMoveType(u32 moveId)
+{
+    return gMovesInfo[SanitizeMoveId(moveId)].type;
+}
+
+static inline const u8 *GetMoveAnimationScript(u32 moveId)
+{
+    moveId = SanitizeMoveId(moveId);
+    if (gMovesInfo[moveId].battleAnimScript == NULL)
+    {
+        DebugPrintfLevel(MGBA_LOG_WARN, "No animation for moveId=%u", moveId);
+        return gMovesInfo[MOVE_NONE].battleAnimScript;
+    }
+    return gMovesInfo[moveId].battleAnimScript;
+}
 
 #endif // GUARD_MOVES_H
