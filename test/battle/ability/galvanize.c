@@ -4,7 +4,7 @@
 ASSUMPTIONS
 {
     ASSUME(GetMoveType(MOVE_TACKLE) == TYPE_NORMAL);
-    ASSUME(gMovesInfo[MOVE_TACKLE].power > 0);
+    ASSUME(GetMovePower(MOVE_TACKLE) > 0);
 }
 
 SINGLE_BATTLE_TEST("Galvanize turns a normal type move into Electric")

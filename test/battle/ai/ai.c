@@ -81,8 +81,8 @@ AI_SINGLE_BATTLE_TEST("AI prefers moves with better accuracy, but only if they b
         PLAYER(SPECIES_WOBBUFFET) { HP(hp); }
         PLAYER(SPECIES_WOBBUFFET);
         ASSUME(gMovesInfo[MOVE_SWIFT].accuracy == 0);
-        ASSUME(gMovesInfo[MOVE_SLAM].power == gMovesInfo[MOVE_STRENGTH].power);
-        ASSUME(gMovesInfo[MOVE_MEGA_KICK].power > gMovesInfo[MOVE_STRENGTH].power);
+        ASSUME(GetMovePower(MOVE_SLAM) == GetMovePower(MOVE_STRENGTH));
+        ASSUME(GetMovePower(MOVE_MEGA_KICK) > GetMovePower(MOVE_STRENGTH));
         ASSUME(gMovesInfo[MOVE_SLAM].accuracy < gMovesInfo[MOVE_STRENGTH].accuracy);
         ASSUME(gMovesInfo[MOVE_MEGA_KICK].accuracy < gMovesInfo[MOVE_STRENGTH].accuracy);
         ASSUME(gMovesInfo[MOVE_TACKLE].accuracy == 100);
@@ -510,8 +510,8 @@ AI_SINGLE_BATTLE_TEST("First Impression is preferred on the first turn of the sp
 {
     GIVEN {
         ASSUME(GetMoveEffect(MOVE_FIRST_IMPRESSION) == EFFECT_FIRST_TURN_ONLY);
-        ASSUME(gMovesInfo[MOVE_FIRST_IMPRESSION].power == 90);
-        ASSUME(gMovesInfo[MOVE_LUNGE].power == 80);
+        ASSUME(GetMovePower(MOVE_FIRST_IMPRESSION) == 90);
+        ASSUME(GetMovePower(MOVE_LUNGE) == 80);
         AI_FLAGS(AI_FLAG_CHECK_BAD_MOVE | AI_FLAG_CHECK_VIABILITY | AI_FLAG_TRY_TO_FAINT);
         PLAYER(SPECIES_KANGASKHAN);
         OPPONENT(SPECIES_WOBBUFFET) { Moves(MOVE_FIRST_IMPRESSION, MOVE_LUNGE); }
@@ -532,8 +532,8 @@ AI_SINGLE_BATTLE_TEST("First Impression is not chosen if it's blocked by certain
 
     GIVEN {
         ASSUME(GetMoveEffect(MOVE_FIRST_IMPRESSION) == EFFECT_FIRST_TURN_ONLY);
-        ASSUME(gMovesInfo[MOVE_FIRST_IMPRESSION].power == 90);
-        ASSUME(gMovesInfo[MOVE_LUNGE].power == 80);
+        ASSUME(GetMovePower(MOVE_FIRST_IMPRESSION) == 90);
+        ASSUME(GetMovePower(MOVE_LUNGE) == 80);
         AI_FLAGS(AI_FLAG_CHECK_BAD_MOVE | AI_FLAG_CHECK_VIABILITY | AI_FLAG_TRY_TO_FAINT | AI_FLAG_OMNISCIENT);
         PLAYER(species) { Ability(ability); }
         OPPONENT(SPECIES_WOBBUFFET) { Moves(MOVE_FIRST_IMPRESSION, MOVE_LUNGE); }
@@ -596,9 +596,9 @@ AI_SINGLE_BATTLE_TEST("AI will choose Scratch over Power-up Punch with Contrary"
     PARAMETRIZE {ability = ABILITY_SUCTION_CUPS; }
     PARAMETRIZE {ability = ABILITY_CONTRARY; }
     GIVEN {
-        ASSUME(gMovesInfo[MOVE_SCRATCH].power == 40);
+        ASSUME(GetMovePower(MOVE_SCRATCH) == 40);
         ASSUME(GetMoveType(MOVE_SCRATCH) == TYPE_NORMAL);
-        ASSUME(gMovesInfo[MOVE_POWER_UP_PUNCH].power == 40);
+        ASSUME(GetMovePower(MOVE_POWER_UP_PUNCH) == 40);
         ASSUME(GetMoveType(MOVE_POWER_UP_PUNCH) == TYPE_FIGHTING);
         ASSUME(gSpeciesInfo[SPECIES_SQUIRTLE].types[0] == TYPE_WATER);
         ASSUME(gSpeciesInfo[SPECIES_SQUIRTLE].types[1] == TYPE_WATER);
@@ -622,9 +622,9 @@ AI_SINGLE_BATTLE_TEST("AI will choose Superpower over Outrage with Contrary")
     PARAMETRIZE {ability = ABILITY_SUCTION_CUPS; }
     PARAMETRIZE {ability = ABILITY_CONTRARY; }
     GIVEN {
-        ASSUME(gMovesInfo[MOVE_SUPERPOWER].power == 120);
+        ASSUME(GetMovePower(MOVE_SUPERPOWER) == 120);
         ASSUME(GetMoveType(MOVE_SUPERPOWER) == TYPE_FIGHTING);
-        ASSUME(gMovesInfo[MOVE_OUTRAGE].power == 120);
+        ASSUME(GetMovePower(MOVE_OUTRAGE) == 120);
         ASSUME(GetMoveType(MOVE_OUTRAGE) == TYPE_DRAGON);
         ASSUME(gSpeciesInfo[SPECIES_SQUIRTLE].types[0] == TYPE_WATER);
         ASSUME(gSpeciesInfo[SPECIES_SQUIRTLE].types[1] == TYPE_WATER);
@@ -722,8 +722,8 @@ AI_SINGLE_BATTLE_TEST("AI calculates guaranteed criticals and detects critical i
 
     GIVEN {
         ASSUME(gMovesInfo[MOVE_STORM_THROW].alwaysCriticalHit);
-        ASSUME(gMovesInfo[MOVE_STORM_THROW].power == 60);
-        ASSUME(gMovesInfo[MOVE_BRICK_BREAK].power == 75);
+        ASSUME(GetMovePower(MOVE_STORM_THROW) == 60);
+        ASSUME(GetMovePower(MOVE_BRICK_BREAK) == 75);
         ASSUME(GetMoveType(MOVE_STORM_THROW) == GetMoveType(MOVE_BRICK_BREAK));
         ASSUME(GetMoveCategory(MOVE_STORM_THROW) == GetMoveCategory(MOVE_BRICK_BREAK));
         AI_FLAGS(AI_FLAG_CHECK_BAD_MOVE | AI_FLAG_CHECK_VIABILITY | AI_FLAG_TRY_TO_FAINT | AI_FLAG_OMNISCIENT);
@@ -763,7 +763,7 @@ AI_SINGLE_BATTLE_TEST("AI avoids contact moves against rocky helmet")
     GIVEN {
         ASSUME(gMovesInfo[MOVE_BRANCH_POKE].makesContact);
         ASSUME(!gMovesInfo[MOVE_LEAFAGE].makesContact);
-        ASSUME(gMovesInfo[MOVE_BRANCH_POKE].power == gMovesInfo[MOVE_LEAFAGE].power);
+        ASSUME(GetMovePower(MOVE_BRANCH_POKE) == GetMovePower(MOVE_LEAFAGE));
         ASSUME(GetMoveType(MOVE_BRANCH_POKE) == GetMoveType(MOVE_LEAFAGE));
         ASSUME(GetMoveCategory(MOVE_BRANCH_POKE) == GetMoveCategory(MOVE_LEAFAGE));
         AI_FLAGS(AI_FLAG_CHECK_BAD_MOVE | AI_FLAG_CHECK_VIABILITY | AI_FLAG_TRY_TO_FAINT | AI_FLAG_OMNISCIENT);
@@ -786,8 +786,8 @@ AI_SINGLE_BATTLE_TEST("AI uses a guaranteed KO move instead of the move with the
 
     GIVEN {
         ASSUME(gMovesInfo[MOVE_SLASH].criticalHitStage == 1);
-        ASSUME(gMovesInfo[MOVE_SLASH].power == 70);
-        ASSUME(gMovesInfo[MOVE_STRENGTH].power == 80);
+        ASSUME(GetMovePower(MOVE_SLASH) == 70);
+        ASSUME(GetMovePower(MOVE_STRENGTH) == 80);
         ASSUME(GetMoveType(MOVE_SLASH) == GetMoveType(MOVE_STRENGTH));
         ASSUME(GetMoveCategory(MOVE_SLASH) == GetMoveCategory(MOVE_STRENGTH));
         AI_FLAGS(flags);

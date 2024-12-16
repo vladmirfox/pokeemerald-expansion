@@ -5287,10 +5287,11 @@ static void PrintStatsScreen_Moves_Bottom(u8 taskId)
     if (gTasks[taskId].data[5] == 0)
     {
         //Power
-        if (gMovesInfo[move].power < 2)
+        u32 power = GetMovePower(move);
+        if (power < 2)
             StringCopy(gStringVar1, gText_ThreeDashes);
         else
-            ConvertIntToDecimalStringN(gStringVar1, gMovesInfo[move].power, STR_CONV_MODE_RIGHT_ALIGN, 3);
+            ConvertIntToDecimalStringN(gStringVar1, power, STR_CONV_MODE_RIGHT_ALIGN, 3);
         PrintStatsScreenTextSmall(WIN_STATS_MOVES_BOTTOM, gStringVar1, moves_x + 45, moves_y);
         //Physical/Special/Status Category
         DestroyCategoryIcon();

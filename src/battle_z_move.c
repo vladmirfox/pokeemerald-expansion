@@ -388,7 +388,7 @@ static void ZMoveSelectionDisplayPower(u16 move, u16 zMove)
     u16 power = GetZMovePower(move);
 
     if (zMove >= MOVE_CATASTROPIKA)
-        power = gMovesInfo[zMove].power;
+        power = GetMovePower(zMove);
 
     if (GetMoveCategory(move) != DAMAGE_CATEGORY_STATUS)
     {
@@ -551,26 +551,17 @@ u32 GetZMovePower(u32 move)
         return gMovesInfo[move].zMove.powerOverride;
     else
     {
-        if (gMovesInfo[move].power >= 140)
-            return 200;
-        else if (gMovesInfo[move].power >= 130)
-            return 195;
-        else if (gMovesInfo[move].power >= 120)
-            return 190;
-        else if (gMovesInfo[move].power >= 110)
-            return 185;
-        else if (gMovesInfo[move].power >= 100)
-            return 180;
-        else if (gMovesInfo[move].power >= 90)
-            return 175;
-        else if (gMovesInfo[move].power >= 80)
-            return 160;
-        else if (gMovesInfo[move].power >= 70)
-            return 140;
-        else if (gMovesInfo[move].power >= 60)
-            return 120;
-        else
-            return 100;
+        u32 power = GetMovePower(move);
+        if      (power >= 140) return 200;
+        else if (power >= 130) return 195;
+        else if (power >= 120) return 190;
+        else if (power >= 110) return 185;
+        else if (power >= 100) return 180;
+        else if (power >= 90)  return 175;
+        else if (power >= 80)  return 160;
+        else if (power >= 70)  return 140;
+        else if (power >= 60)  return 120;
+        else                   return 100;
     }
 }
 

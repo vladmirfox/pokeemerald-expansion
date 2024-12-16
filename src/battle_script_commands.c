@@ -1215,7 +1215,7 @@ static void Cmd_attackcanceler(void)
     if (AtkCanceller_UnableToUseMove(moveType))
         return;
 
-    if (WEATHER_HAS_EFFECT && gMovesInfo[gCurrentMove].power)
+    if (WEATHER_HAS_EFFECT && GetMovePower(gCurrentMove) != 0)
     {
         if (moveType == TYPE_FIRE && (gBattleWeather & B_WEATHER_RAIN_PRIMAL))
         {
@@ -1745,7 +1745,7 @@ static void AccuracyCheck(bool32 recalcDragonDarts, const u8 *nextInstr, const u
                     return;
                 }
 
-                if (gMovesInfo[move].power)
+                if (GetMovePower(move) != 0)
                     CalcTypeEffectivenessMultiplier(move, moveType, gBattlerAttacker, battlerDef, GetBattlerAbility(battlerDef), TRUE);
             }
         }
@@ -6010,7 +6010,7 @@ static void Cmd_moveend(void)
                 && GetBattlerSide(gBattlerAttacker) != GetBattlerSide(gBattlerTarget)
                 && MoveResultHasEffect(gBattlerTarget)
                 && TARGET_TURN_DAMAGED
-                && gMovesInfo[gCurrentMove].power != 0
+                && GetMovePower(gCurrentMove) != 0
                 && CompareStat(gBattlerTarget, STAT_ATK, MAX_STAT_STAGE, CMP_LESS_THAN))
             {
                 SET_STATCHANGER(STAT_ATK, 1, FALSE);
@@ -9026,7 +9026,7 @@ static void Cmd_useitemonopponent(void)
 static bool32 HasAttackerFaintedTarget(void)
 {
     if (MoveResultHasEffect(gBattlerTarget)
-        && gMovesInfo[gCurrentMove].power != 0
+        && GetMovePower(gCurrentMove) != 0
         && (gLastHitBy[gBattlerTarget] == 0xFF || gLastHitBy[gBattlerTarget] == gBattlerAttacker)
         && gBattleStruct->moveTarget[gBattlerAttacker] == gBattlerTarget
         && gBattlerTarget != gBattlerAttacker
@@ -14298,7 +14298,7 @@ static void Cmd_trydobeatup(void)
             gBattlescriptCurrInstr = cmd->nextInstr;
 
             gBattleStruct->moveDamage[gBattlerTarget] = gSpeciesInfo[GetMonData(&party[gBattleCommunication[0]], MON_DATA_SPECIES)].baseAttack;
-            gBattleStruct->moveDamage[gBattlerTarget] *= gMovesInfo[gCurrentMove].power;
+            gBattleStruct->moveDamage[gBattlerTarget] *= GetMovePower(gCurrentMove);
             gBattleStruct->moveDamage[gBattlerTarget] *= (GetMonData(&party[gBattleCommunication[0]], MON_DATA_LEVEL) * 2 / 5 + 2);
             gBattleStruct->moveDamage[gBattlerTarget] /= gSpeciesInfo[gBattleMons[gBattlerTarget].species].baseDefense;
             gBattleStruct->moveDamage[gBattlerTarget] = (gBattleStruct->moveDamage[gBattlerTarget] / 50) + 2;

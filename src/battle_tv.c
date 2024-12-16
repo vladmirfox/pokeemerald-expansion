@@ -782,10 +782,11 @@ void BattleTv_SetDataBasedOnMove(u16 move, u16 weatherFlags, struct DisableStruc
         tvPtr->side[atkSide ^ BIT_SIDE].explosion = TRUE;
     }
 
-    AddMovePoints(PTS_REFLECT,      move, gMovesInfo[move].power, 0);
-    AddMovePoints(PTS_LIGHT_SCREEN, move, gMovesInfo[move].power, 0);
-    AddMovePoints(PTS_WATER_SPORT,  move, 0,                        0);
-    AddMovePoints(PTS_MUD_SPORT,    move, 0,                        0);
+    u32 movePower = GetMovePower(move);
+    AddMovePoints(PTS_REFLECT,      move, movePower, 0);
+    AddMovePoints(PTS_LIGHT_SCREEN, move, movePower, 0);
+    AddMovePoints(PTS_WATER_SPORT,  move, 0,         0);
+    AddMovePoints(PTS_MUD_SPORT,    move, 0,         0);
 }
 
 void BattleTv_SetDataBasedOnAnimation(u8 animationId)

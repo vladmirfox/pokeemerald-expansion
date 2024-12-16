@@ -231,7 +231,7 @@ void HandleAction_UseMove(void)
     else if (IsDoubleBattle()
            && gSideTimers[side].followmeTimer == 0
            && !(gBattleStruct->pursuitTarget & (1u << *(gBattleStruct->moveTarget + gBattlerAttacker)))
-           && (gMovesInfo[gCurrentMove].power != 0 || (moveTarget != MOVE_TARGET_USER && moveTarget != MOVE_TARGET_ALL_BATTLERS))
+           && (GetMovePower(gCurrentMove) != 0 || (moveTarget != MOVE_TARGET_USER && moveTarget != MOVE_TARGET_ALL_BATTLERS))
            && ((GetBattlerAbility(*(gBattleStruct->moveTarget + gBattlerAttacker)) != ABILITY_LIGHTNING_ROD && moveType == TYPE_ELECTRIC)
             || (GetBattlerAbility(*(gBattleStruct->moveTarget + gBattlerAttacker)) != ABILITY_STORM_DRAIN && moveType == TYPE_WATER)))
     {
@@ -3992,11 +3992,14 @@ static void ForewarnChooseMove(u32 battler)
                     data[count].power = 120;
                     break;
                 default:
-                    if (gMovesInfo[data[count].moveId].power == 1)
+                {
+                    u32 movePower = GetMovePower(data[count].moveId);
+                    if (movePower == 1)
                         data[count].power = 80;
                     else
-                        data[count].power = gMovesInfo[data[count].moveId].power;
+                        data[count].power = movePower;
                     break;
+                }
                 }
                 count++;
             }
@@ -5669,7 +5672,7 @@ u32 AbilityBattleEffects(u32 caseID, u32 battler, u32 ability, u32 special, u32 
         case ABILITY_COLOR_CHANGE:
             if (MoveResultHasEffect(battler)
              && move != MOVE_STRUGGLE
-             && gMovesInfo[move].power != 0
+             && GetMovePower(move) != 0
              && TARGET_TURN_DAMAGED
              && !IS_BATTLER_OF_TYPE(battler, moveType)
              && moveType != TYPE_STELLAR
@@ -8630,7 +8633,7 @@ bool32 IsBattlerProtected(u32 battlerAtk, u32 battlerDef, u32 move)
         isProtected = TRUE;
     else if (gProtectStructs[battlerDef].spikyShielded)
         isProtected = TRUE;
-    else if (gProtectStructs[battlerDef].kingsShielded && gMovesInfo[move].power != 0)
+    else if (gProtectStructs[battlerDef].kingsShielded && GetMovePower(move) != 0)
         isProtected = TRUE;
     else if (gProtectStructs[battlerDef].maxGuarded)
         isProtected = TRUE;
@@ -8904,7 +8907,7 @@ static inline u32 CalcMoveBasePower(struct DamageCalculationData *damageCalcData
     u32 move = damageCalcData->move;
 
     u32 i;
-    u32 basePower = gMovesInfo[move].power;
+    u32 basePower = GetMovePower(move);
     u32 weight, hpFraction, speed;
 
     if (GetActiveGimmick(battlerAtk) == GIMMICK_Z_MOVE)
@@ -10330,7 +10333,7 @@ static inline s32 DoFutureSightAttackDamageCalcVars(struct DamageCalculationData
     struct Pokemon *partyMon = &party[gWishFutureKnock.futureSightPartyIndex[battlerDef]];
     u32 partyMonLevel = GetMonData(partyMon, MON_DATA_LEVEL, NULL);
     u32 partyMonSpecies = GetMonData(partyMon, MON_DATA_SPECIES, NULL);
-    gBattleMovePower = gMovesInfo[move].power;
+    gBattleMovePower = GetMovePower(move);
 
     if (IS_MOVE_PHYSICAL(move))
         userFinalAttack = GetMonData(partyMon, MON_DATA_ATK, NULL);
@@ -10555,7 +10558,7 @@ static inline uq4_12_t CalcTypeEffectivenessMultiplierInternal(u32 move, u32 mov
 
     if (((defAbility == ABILITY_WONDER_GUARD && modifier <= UQ_4_12(1.0))
         || (defAbility == ABILITY_TELEPATHY && battlerDef == BATTLE_PARTNER(battlerAtk)))
-        && gMovesInfo[move].power)
+        && GetMovePower(move) != 0)
     {
         modifier = UQ_4_12(0.0);
         if (recordAbilities)
@@ -10604,7 +10607,7 @@ uq4_12_t CalcPartyMonTypeEffectivenessMultiplier(u16 move, u16 speciesDef, u16 a
 
         if (moveType == TYPE_GROUND && abilityDef == ABILITY_LEVITATE && !(gFieldStatuses & STATUS_FIELD_GRAVITY))
             modifier = UQ_4_12(0.0);
-        if (abilityDef == ABILITY_WONDER_GUARD && modifier <= UQ_4_12(1.0) && gMovesInfo[move].power)
+        if (abilityDef == ABILITY_WONDER_GUARD && modifier <= UQ_4_12(1.0) && GetMovePower(move) != 0)
             modifier = UQ_4_12(0.0);
     }
 
@@ -11271,7 +11274,7 @@ static u32 GetFlingPowerFromItemId(u32 itemId)
 {
     if (itemId >= ITEM_TM01 && itemId <= ITEM_HM08)
     {
-        u32 power = gMovesInfo[ItemIdToBattleMoveId(itemId)].power;
+        u32 power = GetMovePower(ItemIdToBattleMoveId(itemId));
         if (power > 1)
             return power;
         return 10; // Status moves and moves with variable power always return 10 power.
@@ -11896,6 +11899,7 @@ void SetShellSideArmCategory(void)
     u8 statStage;
     u32 physical;
     u32 special;
+    u32 power = GetMovePower(MOVE_SHELL_SIDE_ARM);
 
     for (battlerAtk = 0; battlerAtk < gBattlersCount; battlerAtk++)
     {
@@ -11919,14 +11923,14 @@ void SetShellSideArmCategory(void)
             targetDefStat *= gStatStageRatios[statStage][0];
             targetDefStat /= gStatStageRatios[statStage][1];
 
-            physical = ((((2 * gBattleMons[battlerAtk].level / 5 + 2) * gMovesInfo[MOVE_SHELL_SIDE_ARM].power * attackerAtkStat) / targetDefStat) / 50);
+            physical = ((((2 * gBattleMons[battlerAtk].level / 5 + 2) * power * attackerAtkStat) / targetDefStat) / 50);
 
             targetSpDefStat = gBattleMons[battlerDef].spDefense;
             statStage = gBattleMons[battlerDef].statStages[STAT_SPDEF];
             targetSpDefStat *= gStatStageRatios[statStage][0];
             targetSpDefStat /= gStatStageRatios[statStage][1];
 
-            special = ((((2 * gBattleMons[battlerAtk].level / 5 + 2) * gMovesInfo[MOVE_SHELL_SIDE_ARM].power * attackerSpAtkStat) / targetSpDefStat) / 50);
+            special = ((((2 * gBattleMons[battlerAtk].level / 5 + 2) * power * attackerSpAtkStat) / targetSpDefStat) / 50);
 
             if ((physical > special) || (physical == special && RandomPercentage(RNG_SHELL_SIDE_ARM, 50)))
                 gBattleStruct->shellSideArmCategory[battlerAtk][battlerDef] = DAMAGE_CATEGORY_PHYSICAL;

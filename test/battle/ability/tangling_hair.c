@@ -4,7 +4,7 @@
 ASSUMPTIONS
 {
     ASSUME(GetMoveEffect(MOVE_TACKLE) == EFFECT_HIT);
-    ASSUME(gMovesInfo[MOVE_TACKLE].power > 0);
+    ASSUME(GetMovePower(MOVE_TACKLE) > 0);
     ASSUME(gMovesInfo[MOVE_TACKLE].makesContact == TRUE);
 }
 

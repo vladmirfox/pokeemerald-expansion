@@ -1757,7 +1757,7 @@ static void MoveSelectionDisplayMoveDescription(u32 battler)
 {
     struct ChooseMoveStruct *moveInfo = (struct ChooseMoveStruct*)(&gBattleResources->bufferA[battler][4]);
     u16 move = moveInfo->moves[gMoveSelectionCursor[battler]];
-    u16 pwr = gMovesInfo[move].power;
+    u16 pwr = GetMovePower(move);
     u16 acc = gMovesInfo[move].accuracy;
 
     u8 pwr_num[3], acc_num[3];

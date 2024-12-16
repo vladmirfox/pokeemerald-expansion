@@ -81,7 +81,7 @@ AI_SINGLE_BATTLE_TEST("AI sees increased base power of Grav Apple")
 
     GIVEN {
         ASSUME(GetMoveEffect(MOVE_GRAV_APPLE) == EFFECT_GRAV_APPLE);
-        ASSUME(gMovesInfo[MOVE_GRAV_APPLE].power == gMovesInfo[MOVE_DRUM_BEATING].power);
+        ASSUME(GetMovePower(MOVE_GRAV_APPLE) == GetMovePower(MOVE_DRUM_BEATING));
         ASSUME(MoveHasAdditionalEffect(MOVE_DRUM_BEATING, MOVE_EFFECT_SPD_MINUS_1) == TRUE);
         AI_FLAGS(AI_FLAG_CHECK_BAD_MOVE | AI_FLAG_CHECK_VIABILITY | AI_FLAG_TRY_TO_FAINT);
         PLAYER(SPECIES_WOBBUFFET) { HP(81); Speed(20); }

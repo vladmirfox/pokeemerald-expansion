@@ -372,7 +372,7 @@ static u8 GetMaxPowerTier(u32 move)
 {
     if (gMovesInfo[move].strikeCount >= 2 && gMovesInfo[move].strikeCount <= 5)
     {
-        switch(gMovesInfo[move].power)
+        switch(GetMovePower(move))
         {
             case 0 ... 25:  return MAX_POWER_TIER_2;
             case 26 ... 30: return MAX_POWER_TIER_3;
@@ -419,7 +419,7 @@ static u8 GetMaxPowerTier(u32 move)
         case EFFECT_LOW_KICK:
             return MAX_POWER_TIER_7;
         case EFFECT_MULTI_HIT:
-            switch(gMovesInfo[move].power)
+            switch(GetMovePower(move))
             {
                 case 0 ... 15:    return MAX_POWER_TIER_1;
                 case 16 ... 18:   return MAX_POWER_TIER_2;
@@ -429,7 +429,7 @@ static u8 GetMaxPowerTier(u32 move)
             }
     }
 
-    switch (gMovesInfo[move].power)
+    switch (GetMovePower(move))
     {
         case 0 ... 40:    return MAX_POWER_TIER_1;
         case 45 ... 50:   return MAX_POWER_TIER_2;

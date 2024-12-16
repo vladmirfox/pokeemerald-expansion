@@ -433,7 +433,7 @@ static void SetBattlerAiMovesData(struct AiLogicData *aiData, u32 battlerAtk, u3
 
             if (move != 0
              && move != 0xFFFF
-             //&& gMovesInfo[move].power != 0  /* we want to get effectiveness and accuracy of status moves */
+             //&& GetMovePower(move) != 0  /* we want to get effectiveness and accuracy of status moves */
              && !(aiData->moveLimitations[battlerAtk] & (1u << moveIndex)))
             {
                 dmg = AI_CalcDamage(move, battlerAtk, battlerDef, &effectiveness, TRUE, weather, rollType);
@@ -2619,7 +2619,7 @@ static s32 AI_TryToFaint(u32 battlerAtk, u32 battlerDef, u32 move, s32 score)
     if (IS_TARGETING_PARTNER(battlerAtk, battlerDef))
         return score;
 
-    if (gMovesInfo[move].power == 0)
+    if (GetMovePower(move) == 0)
         return score; // can't make anything faint with no power
 
     if (CanIndexMoveFaintTarget(battlerAtk, battlerDef, movesetIndex, 0) && GetMoveEffect(move) != EFFECT_EXPLOSION)
@@ -3091,7 +3091,7 @@ static s32 AI_CompareDamagingMoves(u32 battlerAtk, u32 battlerDef, u32 currId)
 
     for (i = 0; i < MAX_MON_MOVES; i++)
     {
-        if (moves[i] != MOVE_NONE && gMovesInfo[moves[i]].power)
+        if (moves[i] != MOVE_NONE && GetMovePower(moves[i]) != 0)
         {
             noOfHits[i] = GetNoOfHitsToKOBattler(battlerAtk, battlerDef, i);
             if (ShouldUseSpreadDamageMove(battlerAtk,moves[i], i, noOfHits[i]))
@@ -4702,7 +4702,7 @@ static s32 AI_CheckViability(u32 battlerAtk, u32 battlerDef, u32 move, s32 score
     if (IS_TARGETING_PARTNER(battlerAtk, battlerDef))
         return score;
 
-    if (gMovesInfo[move].power)
+    if (GetMovePower(move) != 0)
     {
         if (GetNoOfHitsToKOBattler(battlerAtk, battlerDef, AI_THINKING_STRUCT->movesetIndex) == 0)
             ADJUST_AND_RETURN_SCORE(NO_DAMAGE_OR_FAILS); // No point in checking the move further so return early
@@ -4940,7 +4940,7 @@ static s32 AI_PreferBatonPass(u32 battlerAtk, u32 battlerDef, u32 move, s32 scor
 {
     if (IS_TARGETING_PARTNER(battlerAtk, battlerDef)
       || CountUsablePartyMons(battlerAtk) == 0
-      || gMovesInfo[move].power != 0
+      || GetMovePower(move) != 0
       || !HasMoveEffect(battlerAtk, EFFECT_BATON_PASS)
       || IsBattlerTrapped(battlerAtk, TRUE))
         return score;

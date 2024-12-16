@@ -4845,7 +4845,7 @@ s8 GetMovePriority(u32 battler, u16 move)
     s8 priority;
     u16 ability = GetBattlerAbility(battler);
 
-    if (GetActiveGimmick(battler) == GIMMICK_Z_MOVE && gMovesInfo[move].power != 0)
+    if (GetActiveGimmick(battler) == GIMMICK_Z_MOVE && GetMovePower(move) != 0)
         move = GetUsableZMove(battler, move);
 
     priority = gMovesInfo[move].priority;

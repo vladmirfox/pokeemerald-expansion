@@ -3982,7 +3982,7 @@ static bool32 IsDomePopularMove(u32 move)
     if (i == NUM_TECHNICAL_MACHINES + NUM_HIDDEN_MACHINES)
         return FALSE;
     // Filter in TMs/HMs
-    if (gMovesInfo[move].power >= 90)
+    if (GetMovePower(move) >= 90)
         return TRUE;
 
     switch(GetMoveEffect(move))
@@ -4327,7 +4327,7 @@ static void DisplayTrainerInfoOnCard(u8 flags, u8 trainerTourneyId)
                     allocatedArray[k] = IsDomeStatusMoveEffect(move);
                     break;
                 case MOVE_POINTS_DMG:
-                    allocatedArray[k] = (gMovesInfo[move].power != 0) ? 1 : 0;
+                    allocatedArray[k] = (GetMovePower(move) != 0) ? 1 : 0;
                     break;
                 case MOVE_POINTS_DEF:
                     allocatedArray[k] = IsDomeDefensiveMoveEffect(effect) ? 1 : 0;
@@ -4336,7 +4336,7 @@ static void DisplayTrainerInfoOnCard(u8 flags, u8 trainerTourneyId)
                     allocatedArray[k] = (gMovesInfo[move].accuracy == 0 || gMovesInfo[move].accuracy == 100) ? 1 : 0;
                     break;
                 case MOVE_POINTS_POWERFUL:
-                    allocatedArray[k] = (gMovesInfo[move].power >= 100) ? 1 : 0;
+                    allocatedArray[k] = (GetMovePower(move) >= 100) ? 1 : 0;
                     break;
                 case MOVE_POINTS_POPULAR:
                     allocatedArray[k] = IsDomePopularMove(move) ? 1 : 0;
@@ -4345,7 +4345,7 @@ static void DisplayTrainerInfoOnCard(u8 flags, u8 trainerTourneyId)
                     allocatedArray[k] = IsDomeLuckyMove(move) ? 1 : 0;
                     break;
                 case MOVE_POINTS_STRONG:
-                    allocatedArray[k] = (gMovesInfo[move].power >= 90) ? 1 : 0;
+                    allocatedArray[k] = (GetMovePower(move) >= 90) ? 1 : 0;
                     break;
                 case MOVE_POINTS_LOW_PP:
                     allocatedArray[k] = (gMovesInfo[move].pp <= 5) ? 1 : 0;
@@ -5108,7 +5108,7 @@ static u16 GetWinningMove(int winnerTournamentId, int loserTournamentId, u8 roun
             else
                 moveIds[i * MAX_MON_MOVES + j] = gFacilityTrainerMons[DOME_MONS[winnerTournamentId][i]].moves[j];
 
-            movePower = gMovesInfo[moveIds[i * MAX_MON_MOVES + j]].power;
+            movePower = GetMovePower(moveIds[i * MAX_MON_MOVES + j]);
             if (movePower == 0)
                 movePower = 40;
             else if (movePower == 1)

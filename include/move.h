@@ -141,6 +141,11 @@ static inline u32 GetMoveCategory(u32 moveId)
     return gMovesInfo[SanitizeMoveId(moveId)].category;
 }
 
+static inline u32 GetMovePower(u32 moveId)
+{
+    return gMovesInfo[SanitizeMoveId(moveId)].power;
+}
+
 static inline const u8 *GetMoveAnimationScript(u32 moveId)
 {
     moveId = SanitizeMoveId(moveId);

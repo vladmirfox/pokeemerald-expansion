@@ -6,7 +6,7 @@ AI_SINGLE_BATTLE_TEST("AI prefers to set up a powerful Status over fainting a ta
 {
     GIVEN {
         ASSUME(GetMoveEffect(MOVE_TRICK_ROOM) == EFFECT_TRICK_ROOM);
-        ASSUME(gMovesInfo[MOVE_TACKLE].power > 0);
+        ASSUME(GetMovePower(MOVE_TACKLE) > 0);
         AI_FLAGS(AI_FLAG_CHECK_BAD_MOVE | AI_FLAG_TRY_TO_FAINT | AI_FLAG_CHECK_VIABILITY | AI_FLAG_POWERFUL_STATUS);
         PLAYER(SPECIES_WOBBUFFET) { HP(1); }
         PLAYER(SPECIES_WYNAUT);
@@ -24,7 +24,7 @@ AI_SINGLE_BATTLE_TEST("AI will try to do damage on target instead of setting up 
     GIVEN {
         ASSUME(MoveHasAdditionalEffectSelf(MOVE_RAPID_SPIN, MOVE_EFFECT_RAPID_SPIN) == TRUE);
         ASSUME(GetMoveEffect(MOVE_STEALTH_ROCK) == EFFECT_STEALTH_ROCK);
-        ASSUME(gMovesInfo[MOVE_TACKLE].power > 0);
+        ASSUME(GetMovePower(MOVE_TACKLE) > 0);
         AI_FLAGS(AI_FLAG_CHECK_BAD_MOVE | AI_FLAG_TRY_TO_FAINT | AI_FLAG_POWERFUL_STATUS | AI_FLAG_OMNISCIENT);
         PLAYER(SPECIES_WOBBUFFET) { HP(1); Moves(MOVE_RAPID_SPIN, MOVE_DEFOG, MOVE_CELEBRATE); }
         PLAYER(SPECIES_WYNAUT);
@@ -41,7 +41,7 @@ AI_SINGLE_BATTLE_TEST("AI will not set up Rain if it is already raining")
 {
     GIVEN {
         ASSUME(GetMoveEffect(MOVE_RAIN_DANCE) == EFFECT_RAIN_DANCE);
-        ASSUME(gMovesInfo[MOVE_TACKLE].power > 0);
+        ASSUME(GetMovePower(MOVE_TACKLE) > 0);
         AI_FLAGS(AI_FLAG_CHECK_BAD_MOVE | AI_FLAG_TRY_TO_FAINT | AI_FLAG_CHECK_VIABILITY | AI_FLAG_POWERFUL_STATUS);
         PLAYER(SPECIES_WOBBUFFET);
         PLAYER(SPECIES_WYNAUT);

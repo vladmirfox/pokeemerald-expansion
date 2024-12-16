@@ -14,7 +14,7 @@ SINGLE_BATTLE_TEST("Foul Play uses physical attack stat of target", s16 damage)
     PARAMETRIZE { move = MOVE_FOUL_PLAY; }
 
     GIVEN {
-        ASSUME(gMovesInfo[MOVE_HIGH_HORSEPOWER].power == gMovesInfo[MOVE_FOUL_PLAY].power);
+        ASSUME(GetMovePower(MOVE_HIGH_HORSEPOWER) == GetMovePower(MOVE_FOUL_PLAY));
         ASSUME(GetMoveEffect(MOVE_SWORDS_DANCE) == EFFECT_ATTACK_UP_2);
         PLAYER(SPECIES_SHELLDER);
         OPPONENT(SPECIES_SHELLDER);

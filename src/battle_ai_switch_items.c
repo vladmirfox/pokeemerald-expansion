@@ -123,7 +123,7 @@ static bool32 ShouldSwitchIfHasBadOdds(u32 battler)
             }
 
             // Only check damage if move has power
-            if (gMovesInfo[aiMove].power != 0)
+            if (GetMovePower(aiMove) != 0)
             {
                 // Check if mon has a super effective move
                 if (AI_GetMoveEffectiveness(aiMove, battler, opposingBattler) >= AI_EFFECTIVENESS_x2)
@@ -156,7 +156,7 @@ static bool32 ShouldSwitchIfHasBadOdds(u32 battler)
     for (i = 0; i < MAX_MON_MOVES; i++)
     {
         playerMove = gBattleMons[opposingBattler].moves[i];
-        if (playerMove != MOVE_NONE && gMovesInfo[playerMove].power != 0)
+        if (playerMove != MOVE_NONE && GetMovePower(playerMove) != 0)
         {
             damageTaken = AI_CalcDamage(playerMove, opposingBattler, battler, &effectiveness, FALSE, weather, DMG_ROLL_HIGHEST).expected;
             if (damageTaken > maxDamageTaken)
@@ -1245,7 +1245,7 @@ static u32 GetBestMonDmg(struct Pokemon *party, int firstId, int lastId, u8 inva
         for (j = 0; j < MAX_MON_MOVES; j++)
         {
             aiMove = AI_DATA->switchinCandidate.battleMon.moves[j];
-            if (aiMove != MOVE_NONE && gMovesInfo[aiMove].power != 0)
+            if (aiMove != MOVE_NONE && GetMovePower(aiMove) != 0)
             {
                 aiMove = GetMonData(&party[i], MON_DATA_MOVE1 + j);
                 dmg = AI_CalcPartyMonDamage(aiMove, battler, opposingBattler, AI_DATA->switchinCandidate.battleMon, TRUE, rollType);
@@ -1701,7 +1701,7 @@ static s32 GetMaxDamagePlayerCouldDealToSwitchin(u32 battler, u32 opposingBattle
     for (i = 0; i < MAX_MON_MOVES; i++)
     {
         playerMove = gBattleMons[opposingBattler].moves[i];
-        if (playerMove != MOVE_NONE && gMovesInfo[playerMove].power != 0)
+        if (playerMove != MOVE_NONE && GetMovePower(playerMove) != 0)
         {
             damageTaken = AI_CalcPartyMonDamage(playerMove, opposingBattler, battler, battleMon, FALSE, DMG_ROLL_HIGHEST);
             if (damageTaken > maxDamageTaken)
@@ -1828,8 +1828,9 @@ static u32 GetBestMonIntegrated(struct Pokemon *party, int firstId, int lastId, 
         for (j = 0; j < MAX_MON_MOVES; j++)
         {
             aiMove = AI_DATA->switchinCandidate.battleMon.moves[j];
+            u32 aiPower = GetMovePower(aiMove);
 
-            if (aiMove != MOVE_NONE && gMovesInfo[aiMove].power != 0)
+            if (aiMove != MOVE_NONE && aiPower != 0)
             {
                 if (AI_THINKING_STRUCT->aiFlags[battler] & AI_FLAG_CONSERVATIVE)
                     damageDealt = AI_CalcPartyMonDamage(aiMove, battler, opposingBattler, AI_DATA->switchinCandidate.battleMon, TRUE, DMG_ROLL_LOWEST);
@@ -1859,7 +1860,7 @@ static u32 GetBestMonIntegrated(struct Pokemon *party, int firstId, int lastId, 
             }
 
             // Check for mon with resistance and super effective move for best type matchup mon with effective move
-            if (aiMove != MOVE_NONE && gMovesInfo[aiMove].power != 0)
+            if (aiMove != MOVE_NONE && aiPower != 0)
             {
                 if (typeMatchup < bestResistEffective)
                 {

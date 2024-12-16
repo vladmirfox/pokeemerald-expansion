@@ -3,7 +3,7 @@
 
 ASSUMPTIONS
 {
-    ASSUME(gMovesInfo[MOVE_WATER_GUN].power != 0);
+    ASSUME(GetMovePower(MOVE_WATER_GUN) != 0);
     ASSUME(GetMoveType(MOVE_WATER_GUN) == TYPE_WATER);
 }
 
@@ -32,7 +32,7 @@ SINGLE_BATTLE_TEST("Desolate Land blocks damaging Water-type moves")
 DOUBLE_BATTLE_TEST("Desolate Land blocks damaging Water-type moves and prints the message only once with moves hitting multiple targets")
 {
     GIVEN {
-        ASSUME(gMovesInfo[MOVE_SURF].power != 0);
+        ASSUME(GetMovePower(MOVE_SURF) != 0);
         ASSUME(GetMoveType(MOVE_SURF) == TYPE_WATER);
         ASSUME(gMovesInfo[MOVE_SURF].target == MOVE_TARGET_FOES_AND_ALLY);
         PLAYER(SPECIES_GROUDON) {Item(ITEM_RED_ORB); {Speed(5);}}

@@ -541,10 +541,10 @@ static inline s32 SetFixedMoveBasePower(u32 battlerAtk, u32 move)
     {
     case EFFECT_ROLLOUT:
         n = gDisableStructs[battlerAtk].rolloutTimer - 1;
-        fixedBasePower = CalcRolloutBasePower(battlerAtk, gMovesInfo[move].power, n < 0 ? 5 : n);
+        fixedBasePower = CalcRolloutBasePower(battlerAtk, GetMovePower(move), n < 0 ? 5 : n);
         break;
     case EFFECT_FURY_CUTTER:
-        fixedBasePower = CalcFuryCutterBasePower(gMovesInfo[move].power, min(gDisableStructs[battlerAtk].furyCutterCounter + 1, 5));
+        fixedBasePower = CalcFuryCutterBasePower(GetMovePower(move), min(gDisableStructs[battlerAtk].furyCutterCounter + 1, 5));
         break;
     default:
         fixedBasePower = 0;
@@ -669,10 +669,11 @@ struct SimulatedDamage AI_CalcDamage(u32 move, u32 battlerAtk, u32 battlerDef, u
     moveType = GetBattleMoveType(move);
     effectivenessMultiplier = CalcTypeEffectivenessMultiplier(move, moveType, battlerAtk, battlerDef, aiData->abilities[battlerDef], FALSE);
 
-    if (gMovesInfo[move].power)
+    u32 movePower = GetMovePower(move);
+    if (movePower)
         isDamageMoveUnusable = IsDamageMoveUnusable(battlerAtk, battlerDef, move, moveType);
 
-    if (gMovesInfo[move].power && !isDamageMoveUnusable)
+    if (movePower && !isDamageMoveUnusable)
     {
         s32 critChanceIndex, fixedBasePower;
 
@@ -2424,7 +2425,7 @@ bool32 HasDamagingMove(u32 battlerId)
 
     for (i = 0; i < MAX_MON_MOVES; i++)
     {
-        if (moves[i] != MOVE_NONE && moves[i] != MOVE_UNAVAILABLE && gMovesInfo[moves[i]].power != 0)
+        if (moves[i] != MOVE_NONE && moves[i] != MOVE_UNAVAILABLE && GetMovePower(moves[i]) != 0)
             return TRUE;
     }
 
@@ -2439,7 +2440,7 @@ bool32 HasDamagingMoveOfType(u32 battlerId, u32 type)
     for (i = 0; i < MAX_MON_MOVES; i++)
     {
         if (moves[i] != MOVE_NONE && moves[i] != MOVE_UNAVAILABLE
-          && GetMoveType(moves[i]) == type && gMovesInfo[moves[i]].power != 0)
+          && GetMoveType(moves[i]) == type && GetMovePower(moves[i]) != 0)
             return TRUE;
     }
 

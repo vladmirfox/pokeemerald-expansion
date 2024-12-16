@@ -189,7 +189,7 @@ DOUBLE_BATTLE_TEST("The base power of a combined pledge move effect is 150")
     s16 combinedPledgeDamage;
 
     GIVEN {
-        ASSUME(gMovesInfo[MOVE_HYPER_BEAM].power == 150);
+        ASSUME(GetMovePower(MOVE_HYPER_BEAM) == 150);
         PLAYER(SPECIES_WOBBUFFET) { Speed(4); }
         PLAYER(SPECIES_WYNAUT) { Speed(3); }
         OPPONENT(SPECIES_WOBBUFFET) { Speed(8); }

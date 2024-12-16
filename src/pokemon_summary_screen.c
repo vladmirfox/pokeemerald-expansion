@@ -3750,17 +3750,18 @@ static void PrintMoveNameAndPP(u8 moveIndex)
 static void PrintMovePowerAndAccuracy(u16 moveIndex)
 {
     const u8 *text;
-    if (moveIndex != 0)
+    if (moveIndex != MOVE_NONE)
     {
         FillWindowPixelRect(PSS_LABEL_WINDOW_MOVES_POWER_ACC, PIXEL_FILL(0), 53, 0, 19, 32);
 
-        if (gMovesInfo[moveIndex].power < 2)
+        u32 power = GetMovePower(moveIndex);
+        if (power < 2)
         {
             text = gText_ThreeDashes;
         }
         else
         {
-            ConvertIntToDecimalStringN(gStringVar1, gMovesInfo[moveIndex].power, STR_CONV_MODE_RIGHT_ALIGN, 3);
+            ConvertIntToDecimalStringN(gStringVar1, power, STR_CONV_MODE_RIGHT_ALIGN, 3);
             text = gStringVar1;
         }
 

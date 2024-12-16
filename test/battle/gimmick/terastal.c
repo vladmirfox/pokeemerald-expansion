@@ -92,7 +92,7 @@ SINGLE_BATTLE_TEST("(TERA) Terastallizing boosts moves of the same type to 60 BP
     PARAMETRIZE { tera = GIMMICK_NONE; }
     PARAMETRIZE { tera = GIMMICK_TERA; }
     GIVEN {
-        ASSUME(gMovesInfo[MOVE_ABSORB].power == 20);
+        ASSUME(GetMovePower(MOVE_ABSORB) == 20);
         PLAYER(SPECIES_WOBBUFFET) { TeraType(TYPE_GRASS); }
         OPPONENT(SPECIES_WOBBUFFET);
     } WHEN {
@@ -113,7 +113,7 @@ SINGLE_BATTLE_TEST("(TERA) Terastallization's 60 BP floor occurs after Technicia
     PARAMETRIZE { tera = GIMMICK_NONE; }
     PARAMETRIZE { tera = GIMMICK_TERA; }
     GIVEN {
-        ASSUME(gMovesInfo[MOVE_MEGA_DRAIN].power == 40);
+        ASSUME(GetMovePower(MOVE_MEGA_DRAIN) == 40);
         PLAYER(SPECIES_MR_MIME) { Ability(ABILITY_TECHNICIAN); TeraType(TYPE_GRASS); }
         OPPONENT(SPECIES_WOBBUFFET);
     } WHEN {
@@ -608,8 +608,8 @@ SINGLE_BATTLE_TEST("(TERA) Terastallizing into the Stellar type boosts all moves
 {
     s16 damage[4];
     GIVEN {
-        ASSUME(gMovesInfo[MOVE_MEGA_DRAIN].power == 40);
-        ASSUME(gMovesInfo[MOVE_BUBBLE].power == 40);
+        ASSUME(GetMovePower(MOVE_MEGA_DRAIN) == 40);
+        ASSUME(GetMovePower(MOVE_BUBBLE) == 40);
         PLAYER(SPECIES_WOBBUFFET) { TeraType(TYPE_STELLAR); }
         OPPONENT(SPECIES_WOBBUFFET);
     } WHEN {

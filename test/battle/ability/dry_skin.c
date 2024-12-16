@@ -40,7 +40,7 @@ SINGLE_BATTLE_TEST("Dry Skin increases damage taken from Fire-type moves by 25%"
     PARAMETRIZE { ability = ABILITY_DRY_SKIN; }
     GIVEN {
         ASSUME(GetMoveType(MOVE_EMBER) == TYPE_FIRE);
-        ASSUME(gMovesInfo[MOVE_EMBER].power == 40);
+        ASSUME(GetMovePower(MOVE_EMBER) == 40);
         ASSUME(gSpeciesInfo[SPECIES_PARASECT].types[0] == TYPE_BUG);
         ASSUME(gSpeciesInfo[SPECIES_PARASECT].types[1] == TYPE_GRASS);
         ASSUME(gSpeciesInfo[SPECIES_WOBBUFFET].types[0] == TYPE_PSYCHIC);

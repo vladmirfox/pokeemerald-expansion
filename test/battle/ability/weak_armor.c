@@ -3,8 +3,8 @@
 
 ASSUMPTIONS
 {
-    ASSUME(gMovesInfo[MOVE_TACKLE].power != 0);
-    ASSUME(gMovesInfo[MOVE_GUST].power != 0);
+    ASSUME(GetMovePower(MOVE_TACKLE) != 0);
+    ASSUME(GetMovePower(MOVE_GUST) != 0);
     ASSUME(GetMoveCategory(MOVE_GUST) == DAMAGE_CATEGORY_SPECIAL);
     ASSUME(GetMoveCategory(MOVE_TACKLE) == DAMAGE_CATEGORY_PHYSICAL);
     ASSUME(B_WEAK_ARMOR_SPEED >= GEN_7);

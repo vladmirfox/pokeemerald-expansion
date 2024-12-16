@@ -4,7 +4,7 @@
 ASSUMPTIONS
 {
     ASSUME(GetMoveEffect(MOVE_RAGE_FIST) == EFFECT_RAGE_FIST);
-    ASSUME(gMovesInfo[MOVE_RAGE_FIST].power == 50);
+    ASSUME(GetMovePower(MOVE_RAGE_FIST) == 50);
 }
 
 SINGLE_BATTLE_TEST("Rage Fist base power is increased by 50 if the user takes damage")

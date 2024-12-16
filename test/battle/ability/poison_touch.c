@@ -5,7 +5,7 @@ SINGLE_BATTLE_TEST("Poison Touch has a 30% chance to poison when attacking with 
 {
     PASSES_RANDOMLY(3, 10, RNG_POISON_TOUCH);
     GIVEN {
-        ASSUME(gMovesInfo[MOVE_TACKLE].power > 0);
+        ASSUME(GetMovePower(MOVE_TACKLE) > 0);
         ASSUME(gMovesInfo[MOVE_TACKLE].makesContact);
         PLAYER(SPECIES_GRIMER) { Ability(ABILITY_POISON_TOUCH); }
         OPPONENT(SPECIES_WOBBUFFET);
