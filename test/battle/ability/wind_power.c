@@ -193,7 +193,7 @@ DOUBLE_BATTLE_TEST("Wind Power activates correctly when Tailwind is used")
     PARAMETRIZE {opponentSide = FALSE;}
 
     GIVEN {
-        ASSUME(gMovesInfo[MOVE_TAILWIND].effect == EFFECT_TAILWIND);
+        ASSUME(GetMoveEffect(MOVE_TAILWIND) == EFFECT_TAILWIND);
         PLAYER(SPECIES_WATTREL) { Ability(ABILITY_WIND_POWER); Speed(10); }
         PLAYER(SPECIES_WATTREL) { Ability(ABILITY_WIND_POWER); Speed(5); }
         OPPONENT(SPECIES_WATTREL) { Ability(ABILITY_WIND_POWER); Speed(20); }

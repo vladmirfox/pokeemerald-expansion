@@ -197,7 +197,7 @@ SINGLE_BATTLE_TEST("Primal reversion happens after a switch-in caused by Red Car
 SINGLE_BATTLE_TEST("Primal reversion happens after the entry hazards damage")
 {
     GIVEN {
-        ASSUME(gMovesInfo[MOVE_SPIKES].effect == EFFECT_SPIKES);
+        ASSUME(GetMoveEffect(MOVE_SPIKES) == EFFECT_SPIKES);
         PLAYER(SPECIES_WOBBUFFET);
         PLAYER(SPECIES_GROUDON) { Item(ITEM_RED_ORB); }
         OPPONENT(SPECIES_WOBBUFFET);
@@ -262,7 +262,7 @@ DOUBLE_BATTLE_TEST("Primal reversion triggers for multiple battlers if multiple 
 DOUBLE_BATTLE_TEST("Primal reversion triggers for all battlers if multiple fainted the previous turn")
 {
     GIVEN {
-        ASSUME(gMovesInfo[MOVE_EXPLOSION].effect == EFFECT_EXPLOSION);
+        ASSUME(GetMoveEffect(MOVE_EXPLOSION) == EFFECT_EXPLOSION);
         ASSUME(gMovesInfo[MOVE_EXPLOSION].target == MOVE_TARGET_FOES_AND_ALLY);
         PLAYER(SPECIES_WOBBUFFET);
         PLAYER(SPECIES_CATERPIE) { HP(1); }
@@ -290,11 +290,11 @@ DOUBLE_BATTLE_TEST("Primal reversion triggers for all battlers if multiple faint
 DOUBLE_BATTLE_TEST("Primal reversion and other switch-in effects trigger for all battlers if multiple fainted the previous turn")
 {
     GIVEN {
-        ASSUME(gMovesInfo[MOVE_EXPLOSION].effect == EFFECT_EXPLOSION);
+        ASSUME(GetMoveEffect(MOVE_EXPLOSION) == EFFECT_EXPLOSION);
         ASSUME(gMovesInfo[MOVE_EXPLOSION].target == MOVE_TARGET_FOES_AND_ALLY);
-        ASSUME(gMovesInfo[MOVE_STICKY_WEB].effect == EFFECT_STICKY_WEB);
-        ASSUME(gMovesInfo[MOVE_SPIKES].effect == EFFECT_SPIKES);
-        ASSUME(gMovesInfo[MOVE_TOXIC_SPIKES].effect == EFFECT_TOXIC_SPIKES);
+        ASSUME(GetMoveEffect(MOVE_STICKY_WEB) == EFFECT_STICKY_WEB);
+        ASSUME(GetMoveEffect(MOVE_SPIKES) == EFFECT_SPIKES);
+        ASSUME(GetMoveEffect(MOVE_TOXIC_SPIKES) == EFFECT_TOXIC_SPIKES);
         PLAYER(SPECIES_WOBBUFFET);
         PLAYER(SPECIES_CATERPIE) { HP(1); }
         PLAYER(SPECIES_SCRAFTY) { Ability(ABILITY_INTIMIDATE); }

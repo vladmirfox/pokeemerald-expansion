@@ -3,7 +3,7 @@
 
 ASSUMPTIONS
 {
-    ASSUME(gMovesInfo[MOVE_MEDITATE].effect == EFFECT_ATTACK_UP);
+    ASSUME(GetMoveEffect(MOVE_MEDITATE) == EFFECT_ATTACK_UP);
 }
 
 SINGLE_BATTLE_TEST("Meditate raises Attack by 1 stage", s16 damage)

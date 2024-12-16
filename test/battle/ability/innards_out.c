@@ -33,7 +33,7 @@ SINGLE_BATTLE_TEST("Innards Out does not trigger after Gastro Acid has been used
         PLAYER(SPECIES_WOBBUFFET);
         OPPONENT(SPECIES_WOBBUFFET);
         ASSUME(gMovesInfo[MOVE_PSYCHIC].power != 0);
-        ASSUME(gMovesInfo[MOVE_GASTRO_ACID].effect == EFFECT_GASTRO_ACID);
+        ASSUME(GetMoveEffect(MOVE_GASTRO_ACID) == EFFECT_GASTRO_ACID);
     } WHEN {
         TURN { MOVE(opponent, MOVE_GASTRO_ACID); }
         TURN { MOVE(opponent, MOVE_PSYCHIC); SEND_OUT(player, 1); }

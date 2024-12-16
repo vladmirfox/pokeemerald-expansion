@@ -32,7 +32,7 @@ This can be translated to an automated test as follows:
 ```
 ASSUMPTIONS
 {
-    ASSUME(gMovesInfo[MOVE_STUN_SPORE].effect == EFFECT_PARALYZE);
+    ASSUME(GetMoveEffect(MOVE_STUN_SPORE) == EFFECT_PARALYZE);
 }
 
 SINGLE_BATTLE_TEST("Stun Spore inflicts paralysis")
@@ -159,7 +159,7 @@ Should be placed immediately after any `#includes` and contain any `ASSUME` stat
 ```
 ASSUMPTIONS
 {
-    ASSUME(gMovesInfo[MOVE_POISON_STING].effect == EFFECT_POISON_HIT);
+    ASSUME(GetMoveEffect(MOVE_POISON_STING) == EFFECT_POISON_HIT);
 }
 ```
 

@@ -3,7 +3,7 @@
 
 ASSUMPTIONS
 {
-    ASSUME(gMovesInfo[MOVE_UPPER_HAND].effect == EFFECT_UPPER_HAND);
+    ASSUME(GetMoveEffect(MOVE_UPPER_HAND) == EFFECT_UPPER_HAND);
     ASSUME(gMovesInfo[MOVE_UPPER_HAND].priority == 3);
     ASSUME(MoveHasAdditionalEffect(MOVE_UPPER_HAND, MOVE_EFFECT_FLINCH) == TRUE);
 }

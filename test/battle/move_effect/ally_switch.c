@@ -3,7 +3,7 @@
 
 ASSUMPTIONS
 {
-    ASSUME(gMovesInfo[MOVE_ALLY_SWITCH].effect == EFFECT_ALLY_SWITCH);
+    ASSUME(GetMoveEffect(MOVE_ALLY_SWITCH) == EFFECT_ALLY_SWITCH);
 }
 
 SINGLE_BATTLE_TEST("Ally Switch fails in a single battle")
@@ -41,7 +41,7 @@ DOUBLE_BATTLE_TEST("Ally Switch fails if there is no partner")
 DOUBLE_BATTLE_TEST("Ally Switch changes the position of battlers")
 {
     GIVEN {
-        ASSUME(gMovesInfo[MOVE_SCREECH].effect == EFFECT_DEFENSE_DOWN_2);
+        ASSUME(GetMoveEffect(MOVE_SCREECH) == EFFECT_DEFENSE_DOWN_2);
         ASSUME(gMovesInfo[MOVE_SCREECH].target == MOVE_TARGET_SELECTED);
         PLAYER(SPECIES_WOBBUFFET) { Speed(5); } // Wobb is playerLeft, but it'll be Wynaut after Ally Switch
         PLAYER(SPECIES_WYNAUT) { Speed(4); }
@@ -72,7 +72,7 @@ DOUBLE_BATTLE_TEST("Ally Switch changes the position of battlers")
 DOUBLE_BATTLE_TEST("Ally Switch does not redirect the target of Snipe Shot")
 {
     GIVEN {
-        ASSUME(gMovesInfo[MOVE_SNIPE_SHOT].effect == EFFECT_SNIPE_SHOT);
+        ASSUME(GetMoveEffect(MOVE_SNIPE_SHOT) == EFFECT_SNIPE_SHOT);
         PLAYER(SPECIES_WOBBUFFET); // Wobb is playerLeft, but it'll be Wynaut after Ally Switch
         PLAYER(SPECIES_WYNAUT);
         OPPONENT(SPECIES_KADABRA);

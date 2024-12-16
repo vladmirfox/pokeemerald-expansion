@@ -15,9 +15,9 @@ SINGLE_BATTLE_TEST("Sheer Force boosts power, but removes secondary effects of m
     for (j = 1; j < MOVES_COUNT; j++)
     {
         if (MoveIsAffectedBySheerForce(j)
-          //&& gMovesInfo[j].effect != EFFECT_ORDER_UP
-          && gMovesInfo[j].effect != EFFECT_AURA_WHEEL
-          && gMovesInfo[j].effect != EFFECT_PLACEHOLDER)
+          //&& GetMoveEffect(j) != EFFECT_ORDER_UP
+          && GetMoveEffect(j) != EFFECT_AURA_WHEEL
+          && GetMoveEffect(j) != EFFECT_PLACEHOLDER)
         {
             PARAMETRIZE { ability = ABILITY_ANGER_POINT; move = j; }
             PARAMETRIZE { ability = ABILITY_SHEER_FORCE; move = j; }
@@ -34,7 +34,7 @@ SINGLE_BATTLE_TEST("Sheer Force boosts power, but removes secondary effects of m
             TURN { MOVE(opponent, MOVE_QUICK_ATTACK); MOVE(player, move); }
         else
             TURN { MOVE(player, move); }
-        if (gMovesInfo[move].effect == EFFECT_TWO_TURNS_ATTACK || gMovesInfo[move].effect == EFFECT_SEMI_INVULNERABLE) {
+        if (GetMoveEffect(move) == EFFECT_TWO_TURNS_ATTACK || GetMoveEffect(move) == EFFECT_SEMI_INVULNERABLE) {
                 TURN { SKIP_TURN(player); }
                 TURN { ; }
         }

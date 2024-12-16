@@ -24,7 +24,7 @@ SINGLE_BATTLE_TEST("Anger Point does not trigger when already at maximum Attack 
 {
     GIVEN {
         ASSUME(gMovesInfo[MOVE_FROST_BREATH].alwaysCriticalHit);
-        ASSUME(gMovesInfo[MOVE_BELLY_DRUM].effect == EFFECT_BELLY_DRUM);
+        ASSUME(GetMoveEffect(MOVE_BELLY_DRUM) == EFFECT_BELLY_DRUM);
         PLAYER(SPECIES_PRIMEAPE) { Ability(ABILITY_ANGER_POINT); Speed(2); }
         OPPONENT(SPECIES_SNORUNT) { Speed(1); }
     } WHEN {
@@ -51,7 +51,7 @@ SINGLE_BATTLE_TEST("Anger Point does not trigger when a substitute takes the hit
 {
     GIVEN {
         ASSUME(gMovesInfo[MOVE_FROST_BREATH].alwaysCriticalHit);
-        ASSUME(gMovesInfo[MOVE_SUBSTITUTE].effect == EFFECT_SUBSTITUTE);
+        ASSUME(GetMoveEffect(MOVE_SUBSTITUTE) == EFFECT_SUBSTITUTE);
         PLAYER(SPECIES_PRIMEAPE) { Ability(ABILITY_ANGER_POINT); Speed(2); }
         OPPONENT(SPECIES_SNORUNT) { Speed(1); }
     } WHEN {

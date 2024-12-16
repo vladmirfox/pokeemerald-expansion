@@ -131,7 +131,7 @@ SINGLE_BATTLE_TEST("Dancer-called attacks have their type updated")
 {
     GIVEN {
         ASSUME(gMovesInfo[MOVE_REVELATION_DANCE].danceMove == TRUE);
-        ASSUME(gMovesInfo[MOVE_REVELATION_DANCE].effect == EFFECT_REVELATION_DANCE);
+        ASSUME(GetMoveEffect(MOVE_REVELATION_DANCE) == EFFECT_REVELATION_DANCE);
         PLAYER(SPECIES_TANGROWTH);
         OPPONENT(SPECIES_ORICORIO_BAILE);
     } WHEN {
@@ -150,7 +150,7 @@ DOUBLE_BATTLE_TEST("Dancer doesn't trigger on a snatched move")
 {
     GIVEN {
         ASSUME(gMovesInfo[MOVE_DRAGON_DANCE].danceMove == TRUE);
-        ASSUME(gMovesInfo[MOVE_SNATCH].effect == EFFECT_SNATCH);
+        ASSUME(GetMoveEffect(MOVE_SNATCH) == EFFECT_SNATCH);
         PLAYER(SPECIES_WOBBUFFET);
         PLAYER(SPECIES_WYNAUT);
         OPPONENT(SPECIES_ORICORIO);
@@ -175,7 +175,7 @@ DOUBLE_BATTLE_TEST("Dancer triggers on Instructed dance moves")
     GIVEN {
         ASSUME(gMovesInfo[MOVE_DRAGON_DANCE].danceMove == TRUE);
         ASSUME(gMovesInfo[MOVE_DRAGON_DANCE].instructBanned == FALSE);
-        ASSUME(gMovesInfo[MOVE_INSTRUCT].effect == EFFECT_INSTRUCT);
+        ASSUME(GetMoveEffect(MOVE_INSTRUCT) == EFFECT_INSTRUCT);
         PLAYER(SPECIES_WOBBUFFET);
         PLAYER(SPECIES_WYNAUT);
         OPPONENT(SPECIES_ORICORIO);
@@ -202,7 +202,7 @@ DOUBLE_BATTLE_TEST("Dancer-called move doesn't update move to be Instructed")
     GIVEN {
         ASSUME(gMovesInfo[MOVE_DRAGON_DANCE].danceMove == TRUE);
         ASSUME(gMovesInfo[MOVE_TACKLE].instructBanned == FALSE);
-        ASSUME(gMovesInfo[MOVE_INSTRUCT].effect == EFFECT_INSTRUCT);
+        ASSUME(GetMoveEffect(MOVE_INSTRUCT) == EFFECT_INSTRUCT);
         PLAYER(SPECIES_WOBBUFFET);
         PLAYER(SPECIES_WYNAUT);
         OPPONENT(SPECIES_ORICORIO);

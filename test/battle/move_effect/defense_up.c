@@ -3,7 +3,7 @@
 
 ASSUMPTIONS
 {
-    ASSUME(gMovesInfo[MOVE_HARDEN].effect == EFFECT_DEFENSE_UP);
+    ASSUME(GetMoveEffect(MOVE_HARDEN) == EFFECT_DEFENSE_UP);
 }
 
 SINGLE_BATTLE_TEST("Harden raises Defense", s16 damage)

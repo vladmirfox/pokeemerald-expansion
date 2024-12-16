@@ -3,7 +3,7 @@
 
 ASSUMPTIONS
 {
-    ASSUME(gMovesInfo[MOVE_POWDER].effect == EFFECT_POWDER);
+    ASSUME(GetMoveEffect(MOVE_POWDER) == EFFECT_POWDER);
     ASSUME(gMovesInfo[MOVE_POWDER].powderMove == TRUE);
     ASSUME(gMovesInfo[MOVE_EMBER].type == TYPE_FIRE);
 }
@@ -164,7 +164,7 @@ SINGLE_BATTLE_TEST("Powder fails if the target has Overcoat")
 DOUBLE_BATTLE_TEST("Powder still blocks the target's Fire type moves even if it was given Grass type")
 {
     GIVEN {
-        ASSUME(gMovesInfo[MOVE_FORESTS_CURSE].effect == EFFECT_THIRD_TYPE);
+        ASSUME(GetMoveEffect(MOVE_FORESTS_CURSE) == EFFECT_THIRD_TYPE);
         ASSUME(gMovesInfo[MOVE_FORESTS_CURSE].argument == TYPE_GRASS);
         PLAYER(SPECIES_WOBBUFFET);
         PLAYER(SPECIES_WOBBUFFET);
@@ -185,7 +185,7 @@ DOUBLE_BATTLE_TEST("Powder still blocks the target's Fire type moves even if it 
 DOUBLE_BATTLE_TEST("Powder still blocks the target's Fire type moves even if it was given Overcoat")
 {
     GIVEN {
-        ASSUME(gMovesInfo[MOVE_DOODLE].effect == EFFECT_DOODLE);
+        ASSUME(GetMoveEffect(MOVE_DOODLE) == EFFECT_DOODLE);
         PLAYER(SPECIES_WOBBUFFET);
         PLAYER(SPECIES_WOBBUFFET);
         OPPONENT(SPECIES_FORRETRESS) { Ability(ABILITY_OVERCOAT); }
@@ -244,7 +244,7 @@ SINGLE_BATTLE_TEST("Powder doesn't prevent a Fire move from thawing its user out
 SINGLE_BATTLE_TEST("Powder doesn't consume Berry from Fire type Natural Gift but prevents using the move")
 {
     GIVEN {
-        ASSUME(gMovesInfo[MOVE_NATURAL_GIFT].effect == EFFECT_NATURAL_GIFT);
+        ASSUME(GetMoveEffect(MOVE_NATURAL_GIFT) == EFFECT_NATURAL_GIFT);
         PLAYER(SPECIES_WOBBUFFET) { Item(ITEM_CHERI_BERRY); }
         OPPONENT(SPECIES_VIVILLON);
     } WHEN {
@@ -267,12 +267,12 @@ DOUBLE_BATTLE_TEST("Powder damages a target using Shell Trap even if it wasn't h
     PARAMETRIZE { move = MOVE_EMBER; }
     PARAMETRIZE { move = MOVE_TICKLE;}
     GIVEN {
-        ASSUME(gMovesInfo[MOVE_SHELL_TRAP].effect == EFFECT_SHELL_TRAP);
+        ASSUME(GetMoveEffect(MOVE_SHELL_TRAP) == EFFECT_SHELL_TRAP);
         ASSUME(gMovesInfo[MOVE_SHELL_TRAP].type == TYPE_FIRE);
         ASSUME(gMovesInfo[MOVE_TACKLE].category == DAMAGE_CATEGORY_PHYSICAL);
         ASSUME(gMovesInfo[MOVE_EMBER].category == DAMAGE_CATEGORY_SPECIAL);
         ASSUME(gMovesInfo[MOVE_TICKLE].category == DAMAGE_CATEGORY_STATUS);
-        ASSUME(gMovesInfo[MOVE_TICKLE].effect == EFFECT_TICKLE);
+        ASSUME(GetMoveEffect(MOVE_TICKLE) == EFFECT_TICKLE);
         PLAYER(SPECIES_TURTONATOR);
         PLAYER(SPECIES_WOBBUFFET);
         OPPONENT(SPECIES_WYNAUT);

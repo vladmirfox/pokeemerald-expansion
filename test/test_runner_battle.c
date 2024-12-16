@@ -2175,7 +2175,7 @@ void Move(u32 sourceLine, struct BattlePokemon *battler, struct MoveContext ctx)
     MoveGetIdAndSlot(battlerId, &ctx, &moveId, &moveSlot, sourceLine);
     target = MoveGetTarget(battlerId, moveId, &ctx, sourceLine);
 
-    if (gMovesInfo[moveId].effect == EFFECT_REVIVAL_BLESSING)
+    if (GetMoveEffect(moveId) == EFFECT_REVIVAL_BLESSING)
         requirePartyIndex = MoveGetFirstFainted(battlerId) != PARTY_SIZE;
 
     // Check party menu moves.

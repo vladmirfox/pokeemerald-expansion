@@ -4,9 +4,9 @@
 // These tests cover all 3 effects: Stockpile, Spit up and Swallow.
 ASSUMPTIONS
 {
-    ASSUME(gMovesInfo[MOVE_STOCKPILE].effect == EFFECT_STOCKPILE);
-    ASSUME(gMovesInfo[MOVE_SWALLOW].effect == EFFECT_SWALLOW);
-    ASSUME(gMovesInfo[MOVE_SPIT_UP].effect == EFFECT_SPIT_UP);
+    ASSUME(GetMoveEffect(MOVE_STOCKPILE) == EFFECT_STOCKPILE);
+    ASSUME(GetMoveEffect(MOVE_SWALLOW) == EFFECT_SWALLOW);
+    ASSUME(GetMoveEffect(MOVE_SPIT_UP) == EFFECT_SPIT_UP);
 }
 
 SINGLE_BATTLE_TEST("Stockpile's count can go up only to 3")

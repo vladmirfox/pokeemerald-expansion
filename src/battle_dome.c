@@ -3890,7 +3890,7 @@ static bool32 IsDomeHealingMove(u32 move)
     if (IsHealingMove(move))
         return TRUE;
     // Check extra effects not considered plain healing by AI
-    switch (gMovesInfo[move].effect)
+    switch (GetMoveEffect(move))
     {
         case EFFECT_INGRAIN:
         case EFFECT_REFRESH:
@@ -3951,7 +3951,7 @@ static bool32 IsDomeLuckyMove(u32 move)
 {
     if (gMovesInfo[move].accuracy <= 50)
         return TRUE;
-    switch(gMovesInfo[move].effect)
+    switch(GetMoveEffect(move))
     {
     case EFFECT_COUNTER:
     case EFFECT_OHKO: // Technically redundant because of the above accuracy check
@@ -3985,7 +3985,7 @@ static bool32 IsDomePopularMove(u32 move)
     if (gMovesInfo[move].power >= 90)
         return TRUE;
 
-    switch(gMovesInfo[move].effect)
+    switch(GetMoveEffect(move))
     {
     case EFFECT_PROTECT:
     case EFFECT_MAT_BLOCK:
@@ -4000,7 +4000,7 @@ static bool32 IsDomePopularMove(u32 move)
 
 static bool32 IsDomeStatusMoveEffect(u32 move)
 {
-    switch(gMovesInfo[move].effect)
+    switch(GetMoveEffect(move))
     {
     case EFFECT_SLEEP:
     case EFFECT_CONFUSE:
@@ -4294,24 +4294,25 @@ static void DisplayTrainerInfoOnCard(u8 flags, u8 trainerTourneyId)
         {
             for (k = 0; k < NUM_MOVE_POINT_TYPES; k++)
             {
-                u16 move;
+                u32 move, effect;
                 if (trainerId == TRAINER_FRONTIER_BRAIN)
                     move = GetFrontierBrainMonMove(i, j);
                 else if (trainerId == TRAINER_PLAYER)
                     move = gSaveBlock2Ptr->frontier.domePlayerPartyData[i].moves[j];
                 else
                     move = gFacilityTrainerMons[DOME_MONS[trainerTourneyId][i]].moves[j];
+                effect = GetMoveEffect(move);
 
                 switch (k)
                 {
                 case MOVE_POINTS_COMBO:
-                    allocatedArray[k] = IsDomeComboMoveEffect(gMovesInfo[move].effect) ? 1 : 0;
+                    allocatedArray[k] = IsDomeComboMoveEffect(effect) ? 1 : 0;
                     break;
                 case MOVE_POINTS_STAT_RAISE:
-                    allocatedArray[k] = IsStatRaisingEffect(gMovesInfo[move].effect) ? 1 : 0;
+                    allocatedArray[k] = IsStatRaisingEffect(effect) ? 1 : 0;
                     break;
                 case MOVE_POINTS_STAT_LOWER:
-                    allocatedArray[k] = IsStatLoweringEffect(gMovesInfo[move].effect) ? 1 : 0;
+                    allocatedArray[k] = IsStatLoweringEffect(effect) ? 1 : 0;
                     break;
                 case MOVE_POINTS_RARE:
                     allocatedArray[k] = IsDomeRareMove(move) ? 1 : 0;
@@ -4320,7 +4321,7 @@ static void DisplayTrainerInfoOnCard(u8 flags, u8 trainerTourneyId)
                     allocatedArray[k] = IsDomeHealingMove(move) ? 1 : 0;
                     break;
                 case MOVE_POINTS_RISKY:
-                    allocatedArray[k] = IsDomeRiskyMoveEffect(gMovesInfo[move].effect) ? 1 : 0;
+                    allocatedArray[k] = IsDomeRiskyMoveEffect(effect) ? 1 : 0;
                     break;
                 case MOVE_POINTS_STATUS:
                     allocatedArray[k] = IsDomeStatusMoveEffect(move);
@@ -4329,7 +4330,7 @@ static void DisplayTrainerInfoOnCard(u8 flags, u8 trainerTourneyId)
                     allocatedArray[k] = (gMovesInfo[move].power != 0) ? 1 : 0;
                     break;
                 case MOVE_POINTS_DEF:
-                    allocatedArray[k] = IsDomeDefensiveMoveEffect(gMovesInfo[move].effect) ? 1 : 0;
+                    allocatedArray[k] = IsDomeDefensiveMoveEffect(effect) ? 1 : 0;
                     break;
                 case MOVE_POINTS_ACCURATE:
                     allocatedArray[k] = (gMovesInfo[move].accuracy == 0 || gMovesInfo[move].accuracy == 100) ? 1 : 0;
@@ -5112,7 +5113,7 @@ static u16 GetWinningMove(int winnerTournamentId, int loserTournamentId, u8 roun
                 movePower = 40;
             else if (movePower == 1)
                 movePower = 60;
-            else if (gMovesInfo[moveIds[i * MAX_MON_MOVES + j]].effect == EFFECT_EXPLOSION)
+            else if (GetMoveEffect(moveIds[i * MAX_MON_MOVES + j]) == EFFECT_EXPLOSION)
                 movePower /= 2;
 
             for (k = 0; k < FRONTIER_PARTY_SIZE; k++)

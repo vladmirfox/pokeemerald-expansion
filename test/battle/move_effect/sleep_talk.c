@@ -3,7 +3,7 @@
 
 ASSUMPTIONS
 {
-    ASSUME(gMovesInfo[MOVE_SLEEP_TALK].effect == EFFECT_SLEEP_TALK);
+    ASSUME(GetMoveEffect(MOVE_SLEEP_TALK) == EFFECT_SLEEP_TALK);
     ASSUME(gMovesInfo[MOVE_RAZOR_WIND].sleepTalkBanned == TRUE);
     ASSUME(gMovesInfo[MOVE_FLY].sleepTalkBanned == TRUE);
     ASSUME(gMovesInfo[MOVE_DIG].sleepTalkBanned == TRUE);

@@ -3,7 +3,7 @@
 
 ASSUMPTIONS
 {
-    ASSUME(gMovesInfo[MOVE_FICKLE_BEAM].effect == EFFECT_FICKLE_BEAM);
+    ASSUME(GetMoveEffect(MOVE_FICKLE_BEAM) == EFFECT_FICKLE_BEAM);
 }
 
 SINGLE_BATTLE_TEST("Fickle Beam deals double damage 30% of the time")

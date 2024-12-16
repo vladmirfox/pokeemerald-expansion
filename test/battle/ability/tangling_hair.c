@@ -3,7 +3,7 @@
 
 ASSUMPTIONS
 {
-    ASSUME(gMovesInfo[MOVE_TACKLE].effect == EFFECT_HIT);
+    ASSUME(GetMoveEffect(MOVE_TACKLE) == EFFECT_HIT);
     ASSUME(gMovesInfo[MOVE_TACKLE].power > 0);
     ASSUME(gMovesInfo[MOVE_TACKLE].makesContact == TRUE);
 }

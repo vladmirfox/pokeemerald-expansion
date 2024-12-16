@@ -73,7 +73,7 @@ SINGLE_BATTLE_TEST("Rattled boosts speed by 1 when affected by Intimidate")
 SINGLE_BATTLE_TEST("Rattled triggers correctly when hit by U-Turn") // Specific test here, because of #3124
 {
     GIVEN {
-        ASSUME(gMovesInfo[MOVE_U_TURN].effect == EFFECT_HIT_ESCAPE);
+        ASSUME(GetMoveEffect(MOVE_U_TURN) == EFFECT_HIT_ESCAPE);
         ASSUME(gMovesInfo[MOVE_U_TURN].type == TYPE_BUG);
         PLAYER(SPECIES_WOBBUFFET);
         PLAYER(SPECIES_WYNAUT);

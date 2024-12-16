@@ -3,13 +3,13 @@
 
 ASSUMPTIONS
 {
-    ASSUME(gMovesInfo[MOVE_TELEKINESIS].effect == EFFECT_TELEKINESIS);
+    ASSUME(GetMoveEffect(MOVE_TELEKINESIS) == EFFECT_TELEKINESIS);
 }
 
 SINGLE_BATTLE_TEST("Telekinesis makes the target unable to avoid any attacks made against it")
 {
     GIVEN {
-        ASSUME(gMovesInfo[MOVE_MINIMIZE].effect == EFFECT_MINIMIZE); // Raises evs by 2
+        ASSUME(GetMoveEffect(MOVE_MINIMIZE) == EFFECT_MINIMIZE); // Raises evs by 2
         ASSUME(gMovesInfo[MOVE_SCREECH].accuracy < 100);
         PLAYER(SPECIES_WOBBUFFET);
         OPPONENT(SPECIES_WYNAUT);

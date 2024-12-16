@@ -6,7 +6,7 @@ ASSUMPTIONS
     ASSUME(gItemsInfo[ITEM_AIR_BALLOON].holdEffect == HOLD_EFFECT_AIR_BALLOON);
     ASSUME(gMovesInfo[MOVE_EARTHQUAKE].type == TYPE_GROUND);
     ASSUME(gMovesInfo[MOVE_TACKLE].type != TYPE_GROUND);
-    ASSUME(gMovesInfo[MOVE_RECYCLE].effect == EFFECT_RECYCLE);
+    ASSUME(GetMoveEffect(MOVE_RECYCLE) == EFFECT_RECYCLE);
 }
 
 SINGLE_BATTLE_TEST("Air Balloon prevents the holder from taking damage from ground type moves")

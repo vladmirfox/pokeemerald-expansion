@@ -3,16 +3,16 @@
 
 ASSUMPTIONS
 {
-    ASSUME(gMovesInfo[MOVE_PROTECT].effect == EFFECT_PROTECT);
-    ASSUME(gMovesInfo[MOVE_DETECT].effect == EFFECT_PROTECT);
-    ASSUME(gMovesInfo[MOVE_KINGS_SHIELD].effect == EFFECT_PROTECT);
-    ASSUME(gMovesInfo[MOVE_SILK_TRAP].effect == EFFECT_PROTECT);
-    ASSUME(gMovesInfo[MOVE_SPIKY_SHIELD].effect == EFFECT_PROTECT);
-    ASSUME(gMovesInfo[MOVE_WIDE_GUARD].effect == EFFECT_PROTECT);
-    ASSUME(gMovesInfo[MOVE_QUICK_GUARD].effect == EFFECT_PROTECT);
-    ASSUME(gMovesInfo[MOVE_CRAFTY_SHIELD].effect == EFFECT_PROTECT);
-    ASSUME(gMovesInfo[MOVE_BANEFUL_BUNKER].effect == EFFECT_PROTECT);
-    ASSUME(gMovesInfo[MOVE_BURNING_BULWARK].effect == EFFECT_PROTECT);
+    ASSUME(GetMoveEffect(MOVE_PROTECT) == EFFECT_PROTECT);
+    ASSUME(GetMoveEffect(MOVE_DETECT) == EFFECT_PROTECT);
+    ASSUME(GetMoveEffect(MOVE_KINGS_SHIELD) == EFFECT_PROTECT);
+    ASSUME(GetMoveEffect(MOVE_SILK_TRAP) == EFFECT_PROTECT);
+    ASSUME(GetMoveEffect(MOVE_SPIKY_SHIELD) == EFFECT_PROTECT);
+    ASSUME(GetMoveEffect(MOVE_WIDE_GUARD) == EFFECT_PROTECT);
+    ASSUME(GetMoveEffect(MOVE_QUICK_GUARD) == EFFECT_PROTECT);
+    ASSUME(GetMoveEffect(MOVE_CRAFTY_SHIELD) == EFFECT_PROTECT);
+    ASSUME(GetMoveEffect(MOVE_BANEFUL_BUNKER) == EFFECT_PROTECT);
+    ASSUME(GetMoveEffect(MOVE_BURNING_BULWARK) == EFFECT_PROTECT);
     ASSUME(gMovesInfo[MOVE_TACKLE].category == DAMAGE_CATEGORY_PHYSICAL);
     ASSUME(gMovesInfo[MOVE_TACKLE].makesContact);
     ASSUME(gMovesInfo[MOVE_LEER].category == DAMAGE_CATEGORY_STATUS);
@@ -282,7 +282,7 @@ SINGLE_BATTLE_TEST("Multi-hit moves don't hit a protected target and fail only o
     PARAMETRIZE { move = MOVE_SPIKY_SHIELD; }
 
     GIVEN {
-        ASSUME(gMovesInfo[MOVE_ARM_THRUST].effect == EFFECT_MULTI_HIT);
+        ASSUME(GetMoveEffect(MOVE_ARM_THRUST) == EFFECT_MULTI_HIT);
         PLAYER(SPECIES_RAPIDASH);
         OPPONENT(SPECIES_BEAUTIFLY);
     } WHEN {
@@ -494,9 +494,9 @@ SINGLE_BATTLE_TEST("Protect does not block Confide or Decorate")
     PARAMETRIZE { move = MOVE_DECORATE; }
 
     GIVEN {
-        ASSUME(gMovesInfo[MOVE_CONFIDE].effect == EFFECT_SPECIAL_ATTACK_DOWN);
+        ASSUME(GetMoveEffect(MOVE_CONFIDE) == EFFECT_SPECIAL_ATTACK_DOWN);
         ASSUME(gMovesInfo[MOVE_CONFIDE].ignoresProtect == TRUE);
-        ASSUME(gMovesInfo[MOVE_DECORATE].effect == EFFECT_DECORATE);
+        ASSUME(GetMoveEffect(MOVE_DECORATE) == EFFECT_DECORATE);
         ASSUME(gMovesInfo[MOVE_DECORATE].ignoresProtect == TRUE);
         PLAYER(SPECIES_WOBBUFFET);
         OPPONENT(SPECIES_WOBBUFFET);
@@ -516,9 +516,9 @@ DOUBLE_BATTLE_TEST("Crafty Shield protects self and ally from Confide and Decora
     PARAMETRIZE { move = MOVE_DECORATE; }
 
     GIVEN {
-        ASSUME(gMovesInfo[MOVE_CONFIDE].effect == EFFECT_SPECIAL_ATTACK_DOWN);
+        ASSUME(GetMoveEffect(MOVE_CONFIDE) == EFFECT_SPECIAL_ATTACK_DOWN);
         ASSUME(gMovesInfo[MOVE_CONFIDE].ignoresProtect == TRUE);
-        ASSUME(gMovesInfo[MOVE_DECORATE].effect == EFFECT_DECORATE);
+        ASSUME(GetMoveEffect(MOVE_DECORATE) == EFFECT_DECORATE);
         ASSUME(gMovesInfo[MOVE_DECORATE].ignoresProtect == TRUE);
         PLAYER(SPECIES_WOBBUFFET);
         PLAYER(SPECIES_WYNAUT);

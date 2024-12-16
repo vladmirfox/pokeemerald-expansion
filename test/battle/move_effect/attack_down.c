@@ -3,7 +3,7 @@
 
 ASSUMPTIONS
 {
-    ASSUME(gMovesInfo[MOVE_GROWL].effect == EFFECT_ATTACK_DOWN);
+    ASSUME(GetMoveEffect(MOVE_GROWL) == EFFECT_ATTACK_DOWN);
 }
 
 SINGLE_BATTLE_TEST("Growl lowers Attack by 1 stage", s16 damage)

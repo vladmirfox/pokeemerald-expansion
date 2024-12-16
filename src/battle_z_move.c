@@ -249,7 +249,7 @@ u32 GetTypeBasedZMove(u32 move)
         moveType = TYPE_MYSTERY;
 
     // Z-Weather Ball changes types, however Revelation Dance, -ate ability affected moves, and Hidden Power do not
-    if (gBattleStruct->dynamicMoveType && gMovesInfo[move].effect == EFFECT_WEATHER_BALL)
+    if (gBattleStruct->dynamicMoveType && GetMoveEffect(move) == EFFECT_WEATHER_BALL)
         moveType = gBattleStruct->dynamicMoveType & DYNAMIC_TYPE_MASK;
 
     // Get Z-Move from type
@@ -544,7 +544,7 @@ u32 GetZMovePower(u32 move)
 {
     if (gMovesInfo[move].category == DAMAGE_CATEGORY_STATUS)
         return 0;
-    if (gMovesInfo[move].effect == EFFECT_OHKO)
+    if (GetMoveEffect(move) == EFFECT_OHKO)
         return 180;
 
     if (gMovesInfo[move].zMove.powerOverride > 0)

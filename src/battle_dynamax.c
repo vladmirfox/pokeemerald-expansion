@@ -240,7 +240,7 @@ bool32 IsMoveBlockedByMaxGuard(u32 move)
 bool32 IsMoveBlockedByDynamax(u32 move)
 {
     // TODO: Certain moves are banned in raids.
-    switch (gMovesInfo[move].effect)
+    switch (GetMoveEffect(move))
     {
         case EFFECT_HEAT_CRASH:
         case EFFECT_LOW_KICK:
@@ -382,7 +382,7 @@ static u8 GetMaxPowerTier(u32 move)
         }
     }
 
-    switch (gMovesInfo[move].effect)
+    switch (GetMoveEffect(move))
     {
         case EFFECT_BIDE:
         case EFFECT_SUPER_FANG:

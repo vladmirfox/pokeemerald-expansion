@@ -3,7 +3,7 @@
 
 ASSUMPTIONS
 {
-    ASSUME(gMovesInfo[MOVE_THUNDER].effect == EFFECT_THUNDER);
+    ASSUME(GetMoveEffect(MOVE_THUNDER) == EFFECT_THUNDER);
     ASSUME(gMovesInfo[MOVE_THUNDER].accuracy == 70);
 }
 

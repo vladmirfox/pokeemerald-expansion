@@ -29,9 +29,9 @@ SINGLE_BATTLE_TEST("Galvanize can not turn certain moves into Electric type move
     PARAMETRIZE { move = MOVE_MULTI_ATTACK; }
 
     GIVEN {
-        ASSUME(gMovesInfo[MOVE_HIDDEN_POWER].effect == EFFECT_HIDDEN_POWER);
-        ASSUME(gMovesInfo[MOVE_WEATHER_BALL].effect == EFFECT_WEATHER_BALL);
-        ASSUME(gMovesInfo[MOVE_MULTI_ATTACK].effect == EFFECT_CHANGE_TYPE_ON_ITEM);
+        ASSUME(GetMoveEffect(MOVE_HIDDEN_POWER) == EFFECT_HIDDEN_POWER);
+        ASSUME(GetMoveEffect(MOVE_WEATHER_BALL) == EFFECT_WEATHER_BALL);
+        ASSUME(GetMoveEffect(MOVE_MULTI_ATTACK) == EFFECT_CHANGE_TYPE_ON_ITEM);
         PLAYER(SPECIES_KRABBY);
         OPPONENT(SPECIES_GEODUDE_ALOLA) { Ability(ABILITY_GALVANIZE); }
     } WHEN {

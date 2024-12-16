@@ -3,7 +3,7 @@
 
 ASSUMPTIONS
 {
-    ASSUME(gMovesInfo[MOVE_ROOST].effect == EFFECT_ROOST);
+    ASSUME(GetMoveEffect(MOVE_ROOST) == EFFECT_ROOST);
     ASSUME(gSpeciesInfo[SPECIES_WOBBUFFET].types[0] != TYPE_FLYING);
     ASSUME(gSpeciesInfo[SPECIES_WOBBUFFET].types[1] != TYPE_FLYING);
     // One attack of each type to verify typelessness

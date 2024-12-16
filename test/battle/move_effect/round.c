@@ -3,7 +3,7 @@
 
 ASSUMPTIONS
 {
-    ASSUME(gMovesInfo[MOVE_ROUND].effect == EFFECT_ROUND);
+    ASSUME(GetMoveEffect(MOVE_ROUND) == EFFECT_ROUND);
 }
 
 DOUBLE_BATTLE_TEST("Round allows other battlers which also selected the moves to immediately use the move, ignoring turn order")

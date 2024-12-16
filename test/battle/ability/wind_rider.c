@@ -3,7 +3,7 @@
 
 ASSUMPTIONS
 {
-    ASSUME(gMovesInfo[MOVE_TAILWIND].effect == EFFECT_TAILWIND);
+    ASSUME(GetMoveEffect(MOVE_TAILWIND) == EFFECT_TAILWIND);
     ASSUME(gMovesInfo[MOVE_TAILWIND].windMove == TRUE);
 }
 

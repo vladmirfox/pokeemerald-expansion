@@ -26,7 +26,7 @@ AI_SINGLE_BATTLE_TEST("Choiced Pokémon switch out after using a status move onc
 
     GIVEN {
         ASSUME(gMovesInfo[MOVE_YAWN].category == DAMAGE_CATEGORY_STATUS);
-        ASSUME(gMovesInfo[MOVE_YAWN].effect == EFFECT_YAWN);
+        ASSUME(GetMoveEffect(MOVE_YAWN) == EFFECT_YAWN);
         AI_FLAGS(AI_FLAG_CHECK_BAD_MOVE | AI_FLAG_CHECK_VIABILITY | AI_FLAG_TRY_TO_FAINT);
         PLAYER(SPECIES_RHYDON)
         OPPONENT(SPECIES_LOPUNNY) { Moves(MOVE_YAWN, MOVE_TACKLE); Item(heldItem); Ability(ability); }
@@ -95,7 +95,7 @@ AI_SINGLE_BATTLE_TEST("Choiced Pokémon won't use status move if they are the on
 
     GIVEN {
         ASSUME(gMovesInfo[MOVE_YAWN].category == DAMAGE_CATEGORY_STATUS);
-        ASSUME(gMovesInfo[MOVE_YAWN].effect == EFFECT_YAWN);
+        ASSUME(GetMoveEffect(MOVE_YAWN) == EFFECT_YAWN);
         AI_FLAGS(AI_FLAG_CHECK_BAD_MOVE | AI_FLAG_CHECK_VIABILITY | AI_FLAG_TRY_TO_FAINT);
         PLAYER(SPECIES_RHYDON)
         OPPONENT(SPECIES_LOPUNNY) { Moves(MOVE_YAWN, MOVE_TACKLE); Item(heldItem); Ability(ability); }
@@ -130,7 +130,7 @@ AI_SINGLE_BATTLE_TEST("Choiced Pokémon won't use status move if they don't have
 
     GIVEN {
         ASSUME(gMovesInfo[MOVE_YAWN].category == DAMAGE_CATEGORY_STATUS);
-        ASSUME(gMovesInfo[MOVE_YAWN].effect == EFFECT_YAWN);
+        ASSUME(GetMoveEffect(MOVE_YAWN) == EFFECT_YAWN);
         AI_FLAGS(AI_FLAG_CHECK_BAD_MOVE | AI_FLAG_CHECK_VIABILITY | AI_FLAG_TRY_TO_FAINT);
         PLAYER(SPECIES_RHYDON)
         OPPONENT(SPECIES_LOPUNNY) { Moves(MOVE_YAWN, MOVE_TACKLE); Item(heldItem); Ability(ability); }
@@ -165,7 +165,7 @@ AI_SINGLE_BATTLE_TEST("Choiced Pokémon won't use status move if they are trappe
 
     GIVEN {
         ASSUME(gMovesInfo[MOVE_YAWN].category == DAMAGE_CATEGORY_STATUS);
-        ASSUME(gMovesInfo[MOVE_YAWN].effect == EFFECT_YAWN);
+        ASSUME(GetMoveEffect(MOVE_YAWN) == EFFECT_YAWN);
         AI_FLAGS(AI_FLAG_CHECK_BAD_MOVE | AI_FLAG_CHECK_VIABILITY | AI_FLAG_TRY_TO_FAINT);
         PLAYER(species) { Ability(playerAbility); }
         OPPONENT(SPECIES_LOPUNNY) { Moves(MOVE_YAWN, MOVE_TACKLE); Item(heldItem); Ability(aiAbility); }

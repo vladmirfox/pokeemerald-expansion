@@ -3,7 +3,7 @@
 
 ASSUMPTIONS
 {
-    ASSUME(gMovesInfo[MOVE_PHOTON_GEYSER].effect == EFFECT_PHOTON_GEYSER);
+    ASSUME(GetMoveEffect(MOVE_PHOTON_GEYSER) == EFFECT_PHOTON_GEYSER);
 }
 
 SINGLE_BATTLE_TEST("Photon Geyser can be mirror coated if it is a special move")

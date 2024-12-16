@@ -393,7 +393,7 @@ SINGLE_BATTLE_TEST("(TERA) Double Shock does not remove the user's Electric type
 {
     s16 damage[4];
     GIVEN {
-        ASSUME(gMovesInfo[MOVE_DOUBLE_SHOCK].effect == EFFECT_FAIL_IF_NOT_ARG_TYPE);
+        ASSUME(GetMoveEffect(MOVE_DOUBLE_SHOCK) == EFFECT_FAIL_IF_NOT_ARG_TYPE);
         PLAYER(SPECIES_PICHU) { TeraType(TYPE_ELECTRIC); }
         PLAYER(SPECIES_WOBBUFFET)
         OPPONENT(SPECIES_WOBBUFFET);

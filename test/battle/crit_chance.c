@@ -4,7 +4,7 @@
 SINGLE_BATTLE_TEST("Crit Chance: Side effected by Lucky Chant blocks critical hits")
 {
     GIVEN {
-        ASSUME(gMovesInfo[MOVE_LUCKY_CHANT].effect == EFFECT_LUCKY_CHANT);
+        ASSUME(GetMoveEffect(MOVE_LUCKY_CHANT) == EFFECT_LUCKY_CHANT);
         PLAYER(SPECIES_WOBBUFFET);
         OPPONENT(SPECIES_WOBBUFFET);
     } WHEN {
@@ -100,7 +100,7 @@ SINGLE_BATTLE_TEST("Crit Chance: Mold Breaker, Teravolt and Turboblaze ignore Ba
 SINGLE_BATTLE_TEST("Crit Chance: User effected by Laser Focus causes moves to result in a critical hit")
 {
     GIVEN {
-        ASSUME(gMovesInfo[MOVE_LASER_FOCUS].effect == EFFECT_LASER_FOCUS);
+        ASSUME(GetMoveEffect(MOVE_LASER_FOCUS) == EFFECT_LASER_FOCUS);
         PLAYER(SPECIES_WOBBUFFET);
         OPPONENT(SPECIES_WOBBUFFET);
     } WHEN {
@@ -131,7 +131,7 @@ SINGLE_BATTLE_TEST("Crit Chance: Focus Energy increases the user's critical hit 
     PASSES_RANDOMLY(1, 2, RNG_CRITICAL_HIT);
     GIVEN {
         ASSUME(B_CRIT_CHANCE >= GEN_7);
-        ASSUME(gMovesInfo[MOVE_FOCUS_ENERGY].effect == EFFECT_FOCUS_ENERGY);
+        ASSUME(GetMoveEffect(MOVE_FOCUS_ENERGY) == EFFECT_FOCUS_ENERGY);
         PLAYER(SPECIES_WOBBUFFET);
         OPPONENT(SPECIES_WOBBUFFET);
     } WHEN {
@@ -258,7 +258,7 @@ SINGLE_BATTLE_TEST("Crit Chance: Focus Energy increases critical hit ratio by tw
     GIVEN {
         ASSUME(B_CRIT_CHANCE >= GEN_7);
         ASSUME(gMovesInfo[MOVE_SLASH].criticalHitStage == 1);
-        ASSUME(gMovesInfo[MOVE_FOCUS_ENERGY].effect == EFFECT_FOCUS_ENERGY);
+        ASSUME(GetMoveEffect(MOVE_FOCUS_ENERGY) == EFFECT_FOCUS_ENERGY);
         PLAYER(SPECIES_WOBBUFFET);
         OPPONENT(SPECIES_WOBBUFFET);
     } WHEN {
@@ -275,7 +275,7 @@ SINGLE_BATTLE_TEST("Crit Chance: Focus Energy increases critical hit ratio by tw
 SINGLE_BATTLE_TEST("Crit Chance: Dragon Cheer fails in a single battle")
 {
     GIVEN {
-        ASSUME(gMovesInfo[MOVE_DRAGON_CHEER].effect == EFFECT_DRAGON_CHEER);
+        ASSUME(GetMoveEffect(MOVE_DRAGON_CHEER) == EFFECT_DRAGON_CHEER);
         PLAYER(SPECIES_WOBBUFFET);
         OPPONENT(SPECIES_WOBBUFFET);
     } WHEN {
@@ -291,7 +291,7 @@ DOUBLE_BATTLE_TEST("Crit Chance: Dragon Cheer increases critical hit ratio by on
     GIVEN {
         ASSUME(B_CRIT_CHANCE >= GEN_7);
         ASSUME(gMovesInfo[MOVE_TACKLE].criticalHitStage == 0);
-        ASSUME(gMovesInfo[MOVE_DRAGON_CHEER].effect == EFFECT_DRAGON_CHEER);
+        ASSUME(GetMoveEffect(MOVE_DRAGON_CHEER) == EFFECT_DRAGON_CHEER);
         PLAYER(SPECIES_WOBBUFFET);
         PLAYER(SPECIES_WYNAUT);
         OPPONENT(SPECIES_WOBBUFFET);
@@ -312,7 +312,7 @@ DOUBLE_BATTLE_TEST("Crit Chance: Dragon Cheer increases critical hit ratio by tw
     GIVEN {
         ASSUME(B_CRIT_CHANCE >= GEN_7);
         ASSUME(gMovesInfo[MOVE_TACKLE].criticalHitStage == 0);
-        ASSUME(gMovesInfo[MOVE_DRAGON_CHEER].effect == EFFECT_DRAGON_CHEER);
+        ASSUME(GetMoveEffect(MOVE_DRAGON_CHEER) == EFFECT_DRAGON_CHEER);
         PLAYER(SPECIES_WOBBUFFET);
         PLAYER(SPECIES_DRATINI);
         OPPONENT(SPECIES_WOBBUFFET);
@@ -331,8 +331,8 @@ DOUBLE_BATTLE_TEST("Crit Chance: Dragon Cheer fails if critical hit stage was al
 {
     GIVEN {
         ASSUME(gMovesInfo[MOVE_SLASH].criticalHitStage == 1);
-        ASSUME(gMovesInfo[MOVE_FOCUS_ENERGY].effect == EFFECT_FOCUS_ENERGY);
-        ASSUME(gMovesInfo[MOVE_DRAGON_CHEER].effect == EFFECT_DRAGON_CHEER);
+        ASSUME(GetMoveEffect(MOVE_FOCUS_ENERGY) == EFFECT_FOCUS_ENERGY);
+        ASSUME(GetMoveEffect(MOVE_DRAGON_CHEER) == EFFECT_DRAGON_CHEER);
         PLAYER(SPECIES_WOBBUFFET);
         PLAYER(SPECIES_WOBBUFFET);
         OPPONENT(SPECIES_WOBBUFFET);

@@ -3,7 +3,7 @@
 
 ASSUMPTIONS
 {
-    ASSUME(gMovesInfo[MOVE_GLAIVE_RUSH].effect == EFFECT_GLAIVE_RUSH);
+    ASSUME(GetMoveEffect(MOVE_GLAIVE_RUSH) == EFFECT_GLAIVE_RUSH);
 }
 
 SINGLE_BATTLE_TEST("If Glaive Rush is successful moves targeted at the user do not check accuracy")

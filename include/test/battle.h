@@ -29,7 +29,7 @@
  *
  *   ASSUMPTIONS
  *   {
- *       ASSUME(gMovesInfo[MOVE_STUN_SPORE].effect == EFFECT_PARALYZE);
+ *       ASSUME(GetMoveEffect(MOVE_STUN_SPORE) == EFFECT_PARALYZE);
  *   }
  *
  *   SINGLE_BATTLE_TEST("Stun Spore inflicts paralysis")
@@ -186,7 +186,7 @@
  * move_effect_poison_hit.c should be:
  *     ASSUMPTIONS
  *     {
- *         ASSUME(gMovesInfo[MOVE_POISON_STING].effect == EFFECT_POISON_HIT);
+ *         ASSUME(GetMoveEffect(MOVE_POISON_STING) == EFFECT_POISON_HIT);
  *     }
  *
  * SINGLE_BATTLE_TEST(name, results...) and DOUBLE_BATTLE_TEST(name, results...)

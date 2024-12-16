@@ -21,7 +21,7 @@ SINGLE_BATTLE_TEST("Compound Eyes does not affect OHKO moves")
     PASSES_RANDOMLY(30, 100, RNG_ACCURACY);
     GIVEN {
         ASSUME(gMovesInfo[MOVE_FISSURE].accuracy == 30);
-        ASSUME(gMovesInfo[MOVE_FISSURE].effect == EFFECT_OHKO);
+        ASSUME(GetMoveEffect(MOVE_FISSURE) == EFFECT_OHKO);
         PLAYER(SPECIES_BUTTERFREE) { Ability(ABILITY_COMPOUND_EYES); }
         OPPONENT(SPECIES_WOBBUFFET);
     } WHEN {

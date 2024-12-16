@@ -3,7 +3,7 @@
 
 ASSUMPTIONS
 {
-    ASSUME(gMovesInfo[MOVE_REFLECT].effect == EFFECT_REFLECT);
+    ASSUME(GetMoveEffect(MOVE_REFLECT) == EFFECT_REFLECT);
 }
 
 SINGLE_BATTLE_TEST("Reflect reduces physical damage", s16 damage)
