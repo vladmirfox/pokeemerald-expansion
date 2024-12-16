@@ -109,6 +109,7 @@ static bool8 StartMenuLinkModePlayerNameCallback(void);
 static bool8 StartMenuBattlePyramidRetireCallback(void);
 static bool8 StartMenuBattlePyramidBagCallback(void);
 static bool8 StartMenuDebugCallback(void);
+static bool8 StartMenuTeleportCallback(void);
 
 // Menu callbacks
 static bool8 SaveStartCallback(void);
@@ -203,6 +204,7 @@ static const struct MenuAction sStartMenuItems[] =
     [MENU_ACTION_RETIRE_FRONTIER] = {gText_MenuRetire,  {.u8_void = StartMenuBattlePyramidRetireCallback}},
     [MENU_ACTION_PYRAMID_BAG]     = {gText_MenuBag,     {.u8_void = StartMenuBattlePyramidBagCallback}},
     [MENU_ACTION_DEBUG]           = {sText_MenuDebug,   {.u8_void = StartMenuDebugCallback}},
+    [MENU_ACTION_TELEPORT]        = {gText_MenuTeleport, {.u8_void = StartMenuTeleportCallback}},
 };
 
 static const struct BgTemplate sBgTemplates_LinkBattleSave[] =
@@ -930,7 +932,6 @@ static bool8 BattlePyramidRetireCallback(void)
 static bool8 StartMenuTeleportCallback(void) {
     RemoveExtraStartMenuWindows();
     HideStartMenu();
-    ScriptContext_SetupScript(TeleportMenu);
 
     return TRUE;
 }

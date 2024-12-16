@@ -2,7 +2,7 @@
   "id": "MAP_LITTLEROOT_POKE_MART",
   "name": "LittlerootPokeMart",
   "layout": "LAYOUT_LITTLEROOT_POKE_MART",
-  "music": "MUS_DUMMY",
+  "music": "MUS_POKE_MART",
   "region_map_section": "MAPSEC_LITTLEROOT_TOWN",
   "requires_flash": false,
   "weather": "WEATHER_NONE",
