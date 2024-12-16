@@ -264,10 +264,11 @@ Route101_Text_HelpMe:
 	.string "H-help me!$"
 
 Route101_Text_PleaseHelp:
-	.string "Hello! You over there!\n"
-	.string "Please! Help!\p"
+	.string "YO NIGGA, OVER HERE\n"
+	.string "HELP MEEEE\p"
 	.string "In my BAG!\n"
-	.string "There's a POKé BALL!$"
+	.string "There's a POKé BALL!\n"
+	.string "KILL THESE THINGS$"
 
 Route101_Text_DontLeaveMe:
 	.string "Wh-Where are you going?!\n"
@@ -275,8 +276,8 @@ Route101_Text_DontLeaveMe:
 
 Route101_Text_YouSavedMe:
 	.string "PROF. BIRCH: Whew…\p"
-	.string "I was in the tall grass studying wild\n"
-	.string "POKéMON when I was jumped.\p"
+	.string "I was fucking the pokemon\n"
+	.string "then it kinda just, attacked me\p"
 	.string "You saved me.\n"
 	.string "Thanks a lot!\p"
 	.string "Oh?\p"

@@ -322,7 +322,9 @@ LittlerootTown_Movement_TwinApproachPlayerLeft:
 	step_end
 
 LittlerootTown_Movement_TwinPushPlayerFromRoute:
-	walk_down
+	walk_left
+	walk_fast_down
+	walk_fast_down
 	step_end
 
 LittlerootTown_Movement_TwinReturnLeft:
