@@ -1,13 +1,14 @@
 gText_Birch_Welcome::
-	.string "Hi! Sorry to keep you waiting!\p"
-	.string "Welcome to the world of POKéMON!\p"
+	.string "Oh shit, when did you get here?!\p"
+	.string "Welcome to the world of POKéMON bitch!\p"
 	.string "My name is BIRCH.\p"
 	.string "But everyone calls me the POKéMON\n"
-	.string "PROFESSOR.\p"
+	.string "Rapist.\p"
 	.string "$"
 
 gText_Birch_Pokemon::
-	.string "This is what we call a “POKéMON.”\p"
+	.string "This is what we call a “POKéMON.”\n"
+	.string "Please don't rape them\p"
 	.string "\n"
 	.string "$"
 
