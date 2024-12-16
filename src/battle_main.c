@@ -1916,11 +1916,230 @@ static bool32 IsPoolLegal(const struct Trainer *trainer, u32 battleTypeFlags)
     //  Verify that the trainer has a valid pool
     if (B_POOL_SETTING_FAST_VERIFICATION)
         return TRUE;
-    //  Check illegal settings
-    for (u32 i = 0; i < NUM_TAGS; i++)
-    {
-    }
+    if (trainer->poolSize > 255)
+        return FALSE;
     return TRUE;
+    /*
+    //  Find required tags with small limits
+    u32 numPicked = 0;
+    u8 *monIndices = Alloc(trainer->poolSize);
+    for (u32 i = 0; i < trainer->poolSize; i++)
+        monIndices[i] = i;
+    struct PoolRules rules = gPoolRulesetsList[trainer->poolRuleIndex];
+    u32 requiredTags = 0;
+    for (u32 currTag = 0; currTag < POOL_NUM_TAGS; currTag++)
+        if (rules.tagRequired[currTag])
+            requiredTags |= (1u << currTag);
+
+    while (requiredTags)
+    {
+        u32 mostRequired = 0;
+        u32 indexOfMostRequired = 0;
+        for (u32 currIndex = 0; currIndex < trainer->poolSize; currIndex++)
+        {
+            u32 currNumTags = 0;
+            for (u32 currTag = 0; currTag < POOL_NUM_TAGS; currTag++)
+            {
+                if (requiredTags & (1u << currTag)
+                 && monIndices[currIndex] != POOL_SLOT_DISABLED
+                 && trainer->party[monIndices[currIndex]].tags & (1u << currTag))
+                {
+                    currNumTags++;
+                }
+            }
+            if (currNumTags >= mostRequired)
+            {
+                mostRequired = currNumTags;
+                indexOfMostRequired = currIndex;
+            }
+        }
+        if (mostRequired > 0)
+        {
+            for (u32 currTag = 0; currTag < POOL_NUM_TAGS; currTag++)
+            {
+                if (trainer->party[indexOfMostRequired].tags & (1u << currTag))
+                {
+                    rules.tagRequired[currTag] = FALSE;
+                    if (rules.tagMaxMembers[currTag] == 1)
+                    {
+                        rules.tagMaxMembers[currTag] = POOL_SLOT_DISABLED;
+                        //  Remove mond from pool if max numbers has been reached
+                        for (u32 currIndex = 0; currIndex < trainer->poolSize; currIndex++)
+                        {
+                            if (trainer->party[currIndex].tags & (1u << currTag))
+                                monIndices[currIndex] = POOL_SLOT_DISABLED;
+                        }
+                    }
+                    else if (rules.tagMaxMembers[currTag] != POOL_MEMBER_COUNT_UNLIMITED)
+                    {
+                        rules.tagMaxMembers[currTag]--;
+                    }
+                }
+            }
+            for (u32 currTag = 0; currTag < POOL_NUM_TAGS; currTag++)
+            {
+                if (trainer->party[indexOfMostRequired].tags & (1u << currTag))
+                {
+                    rules.tagRequired[currTag] = FALSE;
+                    if (rules.tagMaxMembers[currTag] == 1)
+                    {
+                        rules.tagMaxMembers[currTag] = POOL_SLOT_DISABLED;
+                        //  Remove mon from pool if max numbers has been reached
+                        for (u32 currIndex = 0; currIndex < trainer->poolSize; currIndex++)
+                        {
+                            if (trainer->party[currIndex].tags & (1u << currTag))
+                                monIndices[currIndex] = POOL_SLOT_DISABLED;
+                        }
+                    }
+                    else if (rules.tagMaxMembers[currTag] != POOL_MEMBER_COUNT_UNLIMITED)
+                    {
+                        rules.tagMaxMembers[currTag]--;
+                    }
+                }
+            }
+            //  Remove same species, natdex and item if applicable
+            u16 chosenSpecies = trainer->party[indexOfMostRequired].species;
+            u16 chosenNatDex = gSpeciesInfo[chosenSpecies].natDexNum;
+            u16 chosenItem = trainer->party[indexOfMostRequired].heldItem;
+            if (rules.itemClause && chosenItem != ITEM_NONE)
+            {
+                bool32 isItemExcluded = FALSE;
+                if (rules.itemClauseExclusions)
+                    for (u32 i = 0; i < ARRAY_COUNT(poolItemClauseExclusions); i++)
+                        if (poolItemClauseExclusions[i] == chosenItem)
+                            isItemExcluded = TRUE;
+                if (!isItemExcluded)
+                    for (u32 currIndex = 0; currIndex < trainer->poolSize; currIndex++)
+                        if (monIndices[currIndex] != POOL_SLOT_DISABLED
+                         && trainer->party[currIndex].heldItem == chosenItem)
+                        {
+                            monIndices[currIndex] = POOL_SLOT_DISABLED;
+                            break;
+                        }
+            }
+            if (rules.speciesClause)
+            {
+                for (u32 currIndex = 0; currIndex < trainer->poolSize; currIndex++)
+                {
+                    if (monIndices[currIndex] != POOL_SLOT_DISABLED
+                     && (trainer->party[currIndex].species == chosenSpecies
+                      || (rules.excludeForms
+                       && gSpeciesInfo[trainer->party[currIndex].species].natDexNum == chosenNatDex)))
+                    {
+                        monIndices[currIndex] = POOL_SLOT_DISABLED;
+                        break;
+                    }
+                }
+            }
+        }
+        else if (requiredTags)
+        {
+            //  Not all required tags were found in the pool
+            Free(monIndices);
+            return FALSE;
+        }
+        numPicked++;
+    }
+    bool32 poolIsEmpty = FALSE;
+    while (!poolIsEmpty)
+    {
+        u32 mostTags = 0;
+        u32 indexOfMostTags = 0;
+        for (u32 currIndex = 0; currIndex < trainer->poolSize; currIndex++)
+        {
+            u32 currNumTags = 0;
+            for (u32 currTag = 0; currTag < POOL_NUM_TAGS; currTag++)
+            {
+                if (monIndices[currIndex] != POOL_SLOT_DISABLED
+                 && trainer->party[monIndices[currIndex]].tags & (1u << currTag))
+                    currNumTags++;
+            }
+            if (currNumTags >= mostTags)
+            {
+                mostTags = currNumTags;
+                indexOfMostTags = currIndex;
+            }
+        }
+        if (mostTags > 0)
+        {
+            for (u32 currTag = 0; currTag < POOL_NUM_TAGS; currTag++)
+            {
+                if (trainer->party[indexOfMostTags].tags & (1u << currTag))
+                {
+                    rules.tagRequired[currTag] = FALSE;
+                    if (rules.tagMaxMembers[currTag] == 1)
+                    {
+                        rules.tagMaxMembers[currTag] = POOL_SLOT_DISABLED;
+                        //  Remove mon from pool if max numbers has been reached
+                        for (u32 currIndex = 0; currIndex < trainer->poolSize; currIndex++)
+                        {
+                            if (trainer->party[currIndex].tags & (1u << currTag))
+                                monIndices[currIndex] = POOL_SLOT_DISABLED;
+                        }
+                    }
+                    else if (rules.tagMaxMembers[currTag] != POOL_MEMBER_COUNT_UNLIMITED)
+                    {
+                        rules.tagMaxMembers[currTag]--;
+                    }
+                }
+            }
+            //  Remove same species, natdex and item if applicable
+            u16 chosenSpecies = trainer->party[indexOfMostTags].species;
+            u16 chosenNatDex = gSpeciesInfo[chosenSpecies].natDexNum;
+            u16 chosenItem = trainer->party[indexOfMostTags].heldItem;
+            if (rules.itemClause && chosenItem != ITEM_NONE)
+            {
+                bool32 isItemExcluded = FALSE;
+                if (rules.itemClauseExclusions)
+                    for (u32 i = 0; i < ARRAY_COUNT(poolItemClauseExclusions); i++)
+                        if (poolItemClauseExclusions[i] == chosenItem)
+                            isItemExcluded = TRUE;
+                if (!isItemExcluded)
+                    for (u32 currIndex = 0; currIndex < trainer->poolSize; currIndex++)
+                        if (monIndices[currIndex] != POOL_SLOT_DISABLED
+                         && trainer->party[currIndex].heldItem == chosenItem)
+                        {
+                            monIndices[currIndex] = POOL_SLOT_DISABLED;
+                            break;
+                        }
+            }
+            if (rules.speciesClause)
+            {
+                for (u32 currIndex = 0; currIndex < trainer->poolSize; currIndex++)
+                {
+                    if (monIndices[currIndex] != POOL_SLOT_DISABLED
+                     && (trainer->party[currIndex].species == chosenSpecies
+                      || (rules.excludeForms
+                       && gSpeciesInfo[trainer->party[currIndex].species].natDexNum == chosenNatDex)))
+                    {
+                        monIndices[currIndex] = POOL_SLOT_DISABLED;
+                        break;
+                    }
+                }
+            }
+        }
+        poolIsEmpty = TRUE;
+        for (u32 currIndex = 0; currIndex < trainer->poolSize; currIndex++)
+        {
+            if (monIndices[currIndex] != POOL_SLOT_DISABLED)
+            {
+                poolIsEmpty = FALSE;
+                break;
+            }
+        }
+        numPicked++;
+    }
+    if (numPicked >= trainer->partySize)
+    {
+        Free(monIndices);
+        return TRUE;
+    }
+    Free(monIndices);
+    if (numPicked >= trainer->partySize)
+        return TRUE;
+    else
+        return TRUE;
+    */
 }
 
 static u32 PickMonFromPool(const struct Trainer *trainer, u8 *poolIndexArray, u32 partyIndex, u32 monsCount, u32 battleTypeFlags, struct PoolRules *rules)
@@ -1937,15 +2156,15 @@ static u32 PickMonFromPool(const struct Trainer *trainer, u8 *poolIndexArray, u3
         for (u32 currIndex = 0; currIndex < trainer->poolSize; currIndex++)
         {
             if ((poolIndexArray[currIndex] != POOL_SLOT_DISABLED)
-             && (trainer->party[poolIndexArray[currIndex]].tags & (1 << POOL_TAG_LEAD)))
+             && (trainer->party[poolIndexArray[currIndex]].tags & (1u << POOL_TAG_LEAD)))
             {
                 if (firstLeadIndex == POOL_SLOT_DISABLED)
                     firstLeadIndex = currIndex;
                 //  Start from index 2, since lead and ace has special handling
-                for (u32 currTag = 2; currTag < NUM_TAGS; currTag++)
+                for (u32 currTag = 2; currTag < POOL_NUM_TAGS; currTag++)
                 {
                     if (rules->tagRequired[currTag]
-                     && trainer->party[poolIndexArray[currIndex]].tags & (1 << currTag))
+                     && trainer->party[poolIndexArray[currIndex]].tags & (1u << currTag))
                     {
                         arrayIndex = currIndex;
                         foundRequiredTag = TRUE;
@@ -1981,15 +2200,15 @@ static u32 PickMonFromPool(const struct Trainer *trainer, u8 *poolIndexArray, u3
         for (u32 currIndex = 0; currIndex < trainer->poolSize; currIndex++)
         {
             if ((poolIndexArray[currIndex] != POOL_SLOT_DISABLED)
-             && (trainer->party[poolIndexArray[currIndex]].tags & (1 << POOL_TAG_ACE)))
+             && (trainer->party[poolIndexArray[currIndex]].tags & (1u << POOL_TAG_ACE)))
             {
                 if (firstAceIndex == POOL_SLOT_DISABLED)
                     firstAceIndex = currIndex;
                 //  Start from index 2, since lead and ace has special handling
-                for (u32 currTag = 2; currTag < NUM_TAGS; currTag++)
+                for (u32 currTag = 2; currTag < POOL_NUM_TAGS; currTag++)
                 {
                     if (rules->tagRequired[currTag]
-                     && trainer->party[poolIndexArray[currIndex]].tags & (1 << currTag))
+                     && trainer->party[poolIndexArray[currIndex]].tags & (1u << currTag))
                     {
                         arrayIndex = currIndex;
                         foundRequiredTag = TRUE;
@@ -2020,15 +2239,17 @@ static u32 PickMonFromPool(const struct Trainer *trainer, u8 *poolIndexArray, u3
         u32 firstUnpickedIndex = POOL_SLOT_DISABLED;
         for (u32 currIndex = 0; currIndex < trainer->poolSize; currIndex++)
         {
-            if (poolIndexArray[currIndex] != POOL_SLOT_DISABLED)
+            if (poolIndexArray[currIndex] != POOL_SLOT_DISABLED
+             && !(trainer->party[poolIndexArray[currIndex]].tags & (1u << POOL_TAG_LEAD))
+             && !(trainer->party[poolIndexArray[currIndex]].tags & (1u << POOL_TAG_ACE)))
             {
                 if (firstUnpickedIndex == POOL_SLOT_DISABLED)
                     firstUnpickedIndex = currIndex;
                 //  Start from index 2, since lead and ace has special handling
-                for (u32 currTag = 2; currTag < NUM_TAGS; currTag++)
+                for (u32 currTag = 2; currTag < POOL_NUM_TAGS; currTag++)
                 {
                     if (rules->tagRequired[currTag]
-                     && trainer->party[poolIndexArray[currIndex]].tags & (1 << currTag))
+                     && trainer->party[poolIndexArray[currIndex]].tags & (1u << currTag))
                     {
                         arrayIndex = currIndex;
                         foundRequiredTag = TRUE;
@@ -2057,9 +2278,9 @@ static u32 PickMonFromPool(const struct Trainer *trainer, u8 *poolIndexArray, u3
     u16 chosenNatDex = gSpeciesInfo[chosenSpecies].natDexNum;
     //  If tag was required, change pool rule to account for the required tag already being picked
     u32 tagsToEliminate = 0;
-    for (u32 currTag = 0; currTag < NUM_TAGS; currTag++)
+    for (u32 currTag = 0; currTag < POOL_NUM_TAGS; currTag++)
     {
-        if (chosenTags & (1 << currTag)
+        if (chosenTags & (1u << currTag)
          && rules->tagMaxMembers[currTag] != POOL_MEMBER_COUNT_UNLIMITED)
         {
             if (rules->tagMaxMembers[currTag] == 1)
@@ -2067,10 +2288,10 @@ static u32 PickMonFromPool(const struct Trainer *trainer, u8 *poolIndexArray, u3
             else
                 rules->tagMaxMembers[currTag]--;
         }
-        if (chosenTags & (1 << currTag))
+        if (chosenTags & (1u << currTag))
             rules->tagRequired[currTag] = FALSE;
         if (rules->tagMaxMembers[currTag] == POOL_MEMBER_COUNT_NONE)
-            tagsToEliminate |= 1 << currTag;
+            tagsToEliminate |= 1u << currTag;
     }
     //  If species clause, remove picked species from pool
     //  If item clause, remove all mons with same held item from pool
@@ -2119,7 +2340,11 @@ static u32 PickMonFromPool(const struct Trainer *trainer, u8 *poolIndexArray, u3
 
 static u32 GetPoolSeed(const struct Trainer *trainer)
 {
-    u32 seed = gSaveBlock2Ptr->playerTrainerId[0] + (gSaveBlock2Ptr->playerTrainerId[1] << 8) + (gSaveBlock2Ptr->playerTrainerId[2] << 16) + (gSaveBlock2Ptr->playerTrainerId[3] << 24);
+    u32 seed;
+    if (B_POOL_SETTING_USE_FIXED_SEED)
+        seed = B_POOL_SETTING_FIXED_SEED;
+    else
+        seed = gSaveBlock2Ptr->playerTrainerId[0] + (gSaveBlock2Ptr->playerTrainerId[1] << 8) + (gSaveBlock2Ptr->playerTrainerId[2] << 16) + (gSaveBlock2Ptr->playerTrainerId[3] << 24);
     seed ^= (u32)trainer;
     return seed;
 }
@@ -2170,7 +2395,7 @@ static void RandomizePoolIndices(const struct Trainer *trainer, u8 *poolIndexArr
                 rnd = Random32();
             usedBits = 0;
         }
-        u32 currIndex = (rnd & ((1 << numBits) - 1)) % (poolSize - i);
+        u32 currIndex = (rnd & ((1u << numBits) - 1)) % (poolSize - i);
         rnd = rnd >> numBits;
         usedBits += numBits;
         u32 tempValue = poolIndexArray[poolSize - 1 - i];

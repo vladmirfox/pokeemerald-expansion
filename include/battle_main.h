@@ -45,7 +45,7 @@ enum PoolTags {
     POOL_TAG_7 = 6,
     POOL_TAG_8 = 7,
     //  Must be the last element
-    NUM_TAGS = 8
+    POOL_NUM_TAGS = 8
 };
 
 #define MON_POOL_TAG_LEAD           1 << POOL_TAG_LEAD
@@ -63,8 +63,8 @@ struct PoolRules
     bool8 excludeForms;
     bool8 itemClause;
     bool8 itemClauseExclusions;
-    u8 tagMaxMembers[NUM_TAGS];
-    bool8 tagRequired[NUM_TAGS];
+    u8 tagMaxMembers[POOL_NUM_TAGS];
+    bool8 tagRequired[POOL_NUM_TAGS];
 };
 
 // defines for the 'DoBounceEffect' function
