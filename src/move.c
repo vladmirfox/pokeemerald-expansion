@@ -16,6 +16,14 @@ const u8 *GetMoveName(u32 moveId)
     return gMovesInfo[SanitizeMoveId(moveId)].name;
 }
 
+const u8 *GetMoveDescription(u32 moveId)
+{
+    moveId = SanitizeMoveId(moveId);
+    if (gMovesInfo[moveId].effect == EFFECT_PLACEHOLDER)
+        return gNotDoneYetDescription;
+    return gMovesInfo[moveId].description;
+}
+
 const u8 *GetMoveAnimationScript(u32 moveId)
 {
     moveId = SanitizeMoveId(moveId);

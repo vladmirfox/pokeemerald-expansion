@@ -95,9 +95,9 @@ TEST("Move descriptions fit on Pokemon Summary Screen")
     u32 move = MOVE_NONE;
     for (i = 1; i < MOVES_COUNT; i++)
     {
-        PARAMETRIZE_LABEL("%S", gMovesInfo[i].description) { move = i; }
+        PARAMETRIZE_LABEL("%S", GetMoveDescription(i)) { move = i; }
     }
-    EXPECT_LE(GetStringWidth(fontId, gMovesInfo[move].description, 0), widthPx);
+    EXPECT_LE(GetStringWidth(fontId, GetMoveDescription(move), 0), widthPx);
 }
 
 TEST("Item names fit on Bag Screen (list)")
