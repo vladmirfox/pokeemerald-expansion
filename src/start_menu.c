@@ -48,12 +48,15 @@
 #include "constants/rgb.h"
 #include "constants/songs.h"
 
+extern u8 TeleportMenu[];
+
 // Menu actions
 enum
 {
     MENU_ACTION_POKEDEX,
     MENU_ACTION_POKEMON,
     MENU_ACTION_BAG,
+    MENU_ACTION_TELEPORT,
     MENU_ACTION_POKENAV,
     MENU_ACTION_PLAYER,
     MENU_ACTION_SAVE,
@@ -335,6 +338,7 @@ static void BuildNormalStartMenu(void)
     }
 
     AddStartMenuAction(MENU_ACTION_BAG);
+    AddStartMenuAction(MENU_ACTION_TELEPORT);
 
     if (FlagGet(FLAG_SYS_POKENAV_GET) == TRUE)
     {
@@ -645,7 +649,8 @@ static bool8 HandleStartMenuInput(void)
             && gMenuCallback != StartMenuExitCallback
             && gMenuCallback != StartMenuDebugCallback
             && gMenuCallback != StartMenuSafariZoneRetireCallback
-            && gMenuCallback != StartMenuBattlePyramidRetireCallback)
+            && gMenuCallback != StartMenuBattlePyramidRetireCallback
+            && gMenuCallback != StartMenuTeleportCallback)
         {
            FadeScreen(FADE_TO_BLACK, 0);
         }
@@ -920,6 +925,14 @@ static bool8 BattlePyramidRetireCallback(void)
     }
 
     return FALSE;
+}
+
+static bool8 StartMenuTeleportCallback(void) {
+    RemoveExtraStartMenuWindows();
+    HideStartMenu();
+    ScriptContext_SetupScript(TeleportMenu);
+
+    return TRUE;
 }
 
 static void InitSave(void)
