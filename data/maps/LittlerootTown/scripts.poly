@@ -1,3 +1,4 @@
+raw '
 .set LOCALID_TWIN, 1
 .set LOCALID_MOM, 4
 .set LOCALID_RIVAL, 7
@@ -1021,23 +1022,10 @@ LittlerootTown_Text_BirchSomethingToShowYouAtLab:
 	.string "I have something to show you.\n"
 	.string "Let's go to my LAB.$"
 
-LittlerootTown_EventScript_WarningSign::
-	lockall
-	msgbox LittlerootTown_EventScript_WarningSign_Text_0
-	releaseall
-	return
+'
 
-
-LittlerootTown_EventScript_WarningSign_Text_0:
-	.string "Yeah I'm not gonna lie I trapped you here$"
-	
-
-LittlerootTown_EventScript_RandomSign::
-	lockall
-	msgbox LittlerootTown_EventScript_RandomSign_Text_0
-	releaseall
-	return
-
-
-LittlerootTown_EventScript_RandomSign_Text_0:
-	.string "You should look in the hole...$"
+script LittlerootTown_EventScript_WarningSign {
+    lockall
+    msgbox("Yeah I'm not gonna lie I trapped you here")
+    releaseall
+}

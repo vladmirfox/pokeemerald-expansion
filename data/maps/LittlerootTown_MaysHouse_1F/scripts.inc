@@ -360,8 +360,8 @@ RivalsHouse_1F_Text_ShouldGoHomeEverySoOften:
 	.string "worries about you, {PLAYER}{KUN}.$"
 
 RivalsHouse_1F_Text_MayWhoAreYou:
-	.string "Huh?\n"
-	.string "Who… Who are you?\p"
+	.string "WHO ARE YOU AND HOW'D U GET IN?!\n"
+	.string "LEAVE CREEP\p"
 	.string "… … … … … … … …\n"
 	.string "… … … … … … … …\p"
 	.string "Oh, you're {PLAYER}{KUN}.\n"
