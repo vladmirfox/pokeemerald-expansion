@@ -103,5 +103,6 @@ struct MoveInfo
 extern const struct MoveInfo gMovesInfo[];
 
 const u8 *GetMoveName(u32 moveId);
+const u8 *GetMoveAnimationScript(u32 moveId);
 
 #endif // GUARD_MOVES_H
