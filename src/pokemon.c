@@ -6940,11 +6940,6 @@ u16 GetSpeciesPreEvolution(u16 species)
     return SPECIES_NONE;
 }
 
-const u8 *GetMoveName(u16 moveId)
-{
-    return gMovesInfo[moveId].name;
-}
-
 const u8 *GetMoveAnimationScript(u16 moveId)
 {
     if (gMovesInfo[moveId].battleAnimScript == NULL)

@@ -2050,7 +2050,7 @@ static void PlayerHandleChooseAction(u32 battler)
     {
         StringCopy(gStringVar1, COMPOUND_STRING("Partner will use:\n"));
         u32 move = gBattleMons[B_POSITION_PLAYER_RIGHT].moves[*(gBattleStruct->chosenMovePositions + B_POSITION_PLAYER_RIGHT)];
-        StringAppend(gStringVar1, gMovesInfo[move].name);
+        StringAppend(gStringVar1, GetMoveName(move));
         if (gMovesInfo[move].target == MOVE_TARGET_SELECTED)
         {
             if (gBattleStruct->aiChosenTarget[B_POSITION_PLAYER_RIGHT] == B_POSITION_OPPONENT_LEFT)
