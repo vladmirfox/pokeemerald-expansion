@@ -48,12 +48,15 @@
 #include "constants/rgb.h"
 #include "constants/songs.h"
 
+extern u8 TeleportMenu[];
+
 // Menu actions
 enum
 {
     MENU_ACTION_POKEDEX,
     MENU_ACTION_POKEMON,
     MENU_ACTION_BAG,
+    MENU_ACTION_TELEPORT,
     MENU_ACTION_POKENAV,
     MENU_ACTION_PLAYER,
     MENU_ACTION_SAVE,
@@ -106,6 +109,7 @@ static bool8 StartMenuLinkModePlayerNameCallback(void);
 static bool8 StartMenuBattlePyramidRetireCallback(void);
 static bool8 StartMenuBattlePyramidBagCallback(void);
 static bool8 StartMenuDebugCallback(void);
+static bool8 StartMenuTeleportCallback(void);
 
 // Menu callbacks
 static bool8 SaveStartCallback(void);
@@ -200,6 +204,7 @@ static const struct MenuAction sStartMenuItems[] =
     [MENU_ACTION_RETIRE_FRONTIER] = {gText_MenuRetire,  {.u8_void = StartMenuBattlePyramidRetireCallback}},
     [MENU_ACTION_PYRAMID_BAG]     = {gText_MenuBag,     {.u8_void = StartMenuBattlePyramidBagCallback}},
     [MENU_ACTION_DEBUG]           = {sText_MenuDebug,   {.u8_void = StartMenuDebugCallback}},
+    [MENU_ACTION_TELEPORT]        = {gText_MenuTeleport, {.u8_void = StartMenuTeleportCallback}},
 };
 
 static const struct BgTemplate sBgTemplates_LinkBattleSave[] =
@@ -335,6 +340,7 @@ static void BuildNormalStartMenu(void)
     }
 
     AddStartMenuAction(MENU_ACTION_BAG);
+    AddStartMenuAction(MENU_ACTION_TELEPORT);
 
     if (FlagGet(FLAG_SYS_POKENAV_GET) == TRUE)
     {
@@ -645,7 +651,8 @@ static bool8 HandleStartMenuInput(void)
             && gMenuCallback != StartMenuExitCallback
             && gMenuCallback != StartMenuDebugCallback
             && gMenuCallback != StartMenuSafariZoneRetireCallback
-            && gMenuCallback != StartMenuBattlePyramidRetireCallback)
+            && gMenuCallback != StartMenuBattlePyramidRetireCallback
+            && gMenuCallback != StartMenuTeleportCallback)
         {
            FadeScreen(FADE_TO_BLACK, 0);
         }
@@ -920,6 +927,13 @@ static bool8 BattlePyramidRetireCallback(void)
     }
 
     return FALSE;
+}
+
+static bool8 StartMenuTeleportCallback(void) {
+    RemoveExtraStartMenuWindows();
+    HideStartMenu();
+
+    return TRUE;
 }
 
 static void InitSave(void)
