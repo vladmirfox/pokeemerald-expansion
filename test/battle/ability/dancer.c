@@ -229,7 +229,7 @@ DOUBLE_BATTLE_TEST("Dancer doesn't call a move that didn't execute due to Powder
 {
     GIVEN {
         ASSUME(gMovesInfo[MOVE_FIERY_DANCE].danceMove == TRUE);
-        ASSUME(gMovesInfo[MOVE_FIERY_DANCE].type == TYPE_FIRE);
+        ASSUME(GetMoveType(MOVE_FIERY_DANCE) == TYPE_FIRE);
         PLAYER(SPECIES_VOLCARONA);
         PLAYER(SPECIES_ORICORIO);
         OPPONENT(SPECIES_WYNAUT);

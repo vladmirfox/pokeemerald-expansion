@@ -3697,7 +3697,7 @@ u8 AtkCanceller_UnableToUseMove(u32 moveType)
                     }
                     else
                     {
-                        CalcTypeEffectivenessMultiplier(gCurrentMove, gMovesInfo[gCurrentMove].type, gBattlerAttacker, battlerDef, GetBattlerAbility(battlerDef), TRUE);
+                        CalcTypeEffectivenessMultiplier(gCurrentMove, GetMoveType(gCurrentMove), gBattlerAttacker, battlerDef, GetBattlerAbility(battlerDef), TRUE);
                     }
                 }
                 if (moveTarget == MOVE_TARGET_BOTH)
@@ -11966,7 +11966,7 @@ u32 GetBattleMoveType(u32 move)
           || move == MOVE_FUTURE_SIGHT
           || move == MOVE_DOOM_DESIRE))
           return TYPE_MYSTERY;
-    return gMovesInfo[move].type;
+    return GetMoveType(move);
 }
 
 void TryActivateSleepClause(u32 battler, u32 indexInParty)

@@ -3,7 +3,7 @@
 
 ASSUMPTIONS
 {
-    ASSUME(gMovesInfo[MOVE_TACKLE].type == TYPE_NORMAL);
+    ASSUME(GetMoveType(MOVE_TACKLE) == TYPE_NORMAL);
     ASSUME(gMovesInfo[MOVE_TACKLE].power > 0);
 }
 

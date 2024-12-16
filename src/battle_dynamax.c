@@ -333,8 +333,9 @@ u8 GetMaxMovePower(u32 move)
     }
 
     tier = GetMaxPowerTier(move);
-    if (gMovesInfo[move].type == TYPE_FIGHTING
-     || gMovesInfo[move].type == TYPE_POISON
+    u32 moveType = GetMoveType(move);
+    if (moveType == TYPE_FIGHTING
+     || moveType == TYPE_POISON
      || move == MOVE_MULTI_ATTACK)
     {
         switch (tier)
@@ -659,11 +660,12 @@ void BS_SetMaxMoveEffect(void)
             u8 side = GetBattlerSide(gBattlerTarget);
             if (!(gSideStatuses[side] & SIDE_STATUS_DAMAGE_NON_TYPES))
             {
+                u32 moveType = GetMoveType(gCurrentMove);
                 gSideStatuses[side] |= SIDE_STATUS_DAMAGE_NON_TYPES;
                 gSideTimers[side].damageNonTypesTimer = 5; // damage is dealt for 4 turns, ends on 5th
-                gSideTimers[side].damageNonTypesType = gMovesInfo[gCurrentMove].type;
+                gSideTimers[side].damageNonTypesType = moveType;
                 BattleScriptPush(gBattlescriptCurrInstr + 1);
-                ChooseDamageNonTypesString(gMovesInfo[gCurrentMove].type);
+                ChooseDamageNonTypesString(moveType);
                 gBattlescriptCurrInstr = BattleScript_DamageNonTypesStarts;
                 effect++;
             }

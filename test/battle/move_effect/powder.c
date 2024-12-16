@@ -5,7 +5,7 @@ ASSUMPTIONS
 {
     ASSUME(GetMoveEffect(MOVE_POWDER) == EFFECT_POWDER);
     ASSUME(gMovesInfo[MOVE_POWDER].powderMove == TRUE);
-    ASSUME(gMovesInfo[MOVE_EMBER].type == TYPE_FIRE);
+    ASSUME(GetMoveType(MOVE_EMBER) == TYPE_FIRE);
 }
 
 
@@ -225,7 +225,7 @@ SINGLE_BATTLE_TEST("Powder doesn't prevent a Fire move from thawing its user out
 {
     GIVEN {
         ASSUME(gMovesInfo[MOVE_FLAME_WHEEL].thawsUser);
-        ASSUME(gMovesInfo[MOVE_FLAME_WHEEL].type == TYPE_FIRE);
+        ASSUME(GetMoveType(MOVE_FLAME_WHEEL) == TYPE_FIRE);
         PLAYER(SPECIES_WOBBUFFET) { Status1(STATUS1_FREEZE); }
         OPPONENT(SPECIES_VIVILLON);
     } WHEN {
@@ -268,7 +268,7 @@ DOUBLE_BATTLE_TEST("Powder damages a target using Shell Trap even if it wasn't h
     PARAMETRIZE { move = MOVE_TICKLE;}
     GIVEN {
         ASSUME(GetMoveEffect(MOVE_SHELL_TRAP) == EFFECT_SHELL_TRAP);
-        ASSUME(gMovesInfo[MOVE_SHELL_TRAP].type == TYPE_FIRE);
+        ASSUME(GetMoveType(MOVE_SHELL_TRAP) == TYPE_FIRE);
         ASSUME(gMovesInfo[MOVE_TACKLE].category == DAMAGE_CATEGORY_PHYSICAL);
         ASSUME(gMovesInfo[MOVE_EMBER].category == DAMAGE_CATEGORY_SPECIAL);
         ASSUME(gMovesInfo[MOVE_TICKLE].category == DAMAGE_CATEGORY_STATUS);

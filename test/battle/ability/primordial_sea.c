@@ -4,7 +4,7 @@
 ASSUMPTIONS
 {
     ASSUME(gMovesInfo[MOVE_EMBER].power != 0);
-    ASSUME(gMovesInfo[MOVE_EMBER].type == TYPE_FIRE);
+    ASSUME(GetMoveType(MOVE_EMBER) == TYPE_FIRE);
 }
 
 SINGLE_BATTLE_TEST("Primordial Sea blocks damaging Fire-type moves")
@@ -33,7 +33,7 @@ DOUBLE_BATTLE_TEST("Primordial Sea blocks damaging Fire-type moves and prints th
 {
     GIVEN {
         ASSUME(gMovesInfo[MOVE_ERUPTION].power != 0);
-        ASSUME(gMovesInfo[MOVE_ERUPTION].type == TYPE_FIRE);
+        ASSUME(GetMoveType(MOVE_ERUPTION) == TYPE_FIRE);
         ASSUME(gMovesInfo[MOVE_ERUPTION].target == MOVE_TARGET_BOTH);
         PLAYER(SPECIES_KYOGRE) {Item(ITEM_BLUE_ORB); {Speed(5);}}
         PLAYER(SPECIES_WOBBUFFET) {Speed(5);}

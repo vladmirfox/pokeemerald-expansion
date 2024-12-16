@@ -559,7 +559,7 @@ AI_SINGLE_BATTLE_TEST("AI will only choose Surf 1/3 times if the opposing mon ha
 {
     PASSES_RANDOMLY(1, 3, RNG_AI_ABILITY);
     GIVEN {
-        ASSUME(gMovesInfo[MOVE_THUNDERBOLT].type == TYPE_ELECTRIC);
+        ASSUME(GetMoveType(MOVE_THUNDERBOLT) == TYPE_ELECTRIC);
         AI_FLAGS(AI_FLAG_CHECK_BAD_MOVE | AI_FLAG_CHECK_VIABILITY | AI_FLAG_TRY_TO_FAINT);
         PLAYER(SPECIES_LANTURN) { Ability(ABILITY_VOLT_ABSORB); };
         OPPONENT(SPECIES_LANTURN) { Moves(MOVE_THUNDERBOLT, MOVE_ICE_BEAM, MOVE_SURF); }
@@ -576,7 +576,7 @@ AI_SINGLE_BATTLE_TEST("AI will choose Thunderbolt then Surf 2/3 times if the opp
 {
     PASSES_RANDOMLY(2, 3, RNG_AI_ABILITY);
     GIVEN {
-        ASSUME(gMovesInfo[MOVE_THUNDERBOLT].type == TYPE_ELECTRIC);
+        ASSUME(GetMoveType(MOVE_THUNDERBOLT) == TYPE_ELECTRIC);
         AI_FLAGS(AI_FLAG_CHECK_BAD_MOVE | AI_FLAG_CHECK_VIABILITY | AI_FLAG_TRY_TO_FAINT);
         PLAYER(SPECIES_LANTURN) { Ability(ABILITY_VOLT_ABSORB); };
         OPPONENT(SPECIES_LANTURN) { Moves(MOVE_THUNDERBOLT, MOVE_ICE_BEAM, MOVE_SURF); }
@@ -597,9 +597,9 @@ AI_SINGLE_BATTLE_TEST("AI will choose Scratch over Power-up Punch with Contrary"
     PARAMETRIZE {ability = ABILITY_CONTRARY; }
     GIVEN {
         ASSUME(gMovesInfo[MOVE_SCRATCH].power == 40);
-        ASSUME(gMovesInfo[MOVE_SCRATCH].type == TYPE_NORMAL);
+        ASSUME(GetMoveType(MOVE_SCRATCH) == TYPE_NORMAL);
         ASSUME(gMovesInfo[MOVE_POWER_UP_PUNCH].power == 40);
-        ASSUME(gMovesInfo[MOVE_POWER_UP_PUNCH].type == TYPE_FIGHTING);
+        ASSUME(GetMoveType(MOVE_POWER_UP_PUNCH) == TYPE_FIGHTING);
         ASSUME(gSpeciesInfo[SPECIES_SQUIRTLE].types[0] == TYPE_WATER);
         ASSUME(gSpeciesInfo[SPECIES_SQUIRTLE].types[1] == TYPE_WATER);
         AI_FLAGS(AI_FLAG_CHECK_BAD_MOVE | AI_FLAG_CHECK_VIABILITY | AI_FLAG_TRY_TO_FAINT);
@@ -623,9 +623,9 @@ AI_SINGLE_BATTLE_TEST("AI will choose Superpower over Outrage with Contrary")
     PARAMETRIZE {ability = ABILITY_CONTRARY; }
     GIVEN {
         ASSUME(gMovesInfo[MOVE_SUPERPOWER].power == 120);
-        ASSUME(gMovesInfo[MOVE_SUPERPOWER].type == TYPE_FIGHTING);
+        ASSUME(GetMoveType(MOVE_SUPERPOWER) == TYPE_FIGHTING);
         ASSUME(gMovesInfo[MOVE_OUTRAGE].power == 120);
-        ASSUME(gMovesInfo[MOVE_OUTRAGE].type == TYPE_DRAGON);
+        ASSUME(GetMoveType(MOVE_OUTRAGE) == TYPE_DRAGON);
         ASSUME(gSpeciesInfo[SPECIES_SQUIRTLE].types[0] == TYPE_WATER);
         ASSUME(gSpeciesInfo[SPECIES_SQUIRTLE].types[1] == TYPE_WATER);
         AI_FLAGS(AI_FLAG_CHECK_BAD_MOVE | AI_FLAG_CHECK_VIABILITY | AI_FLAG_TRY_TO_FAINT);
@@ -724,7 +724,7 @@ AI_SINGLE_BATTLE_TEST("AI calculates guaranteed criticals and detects critical i
         ASSUME(gMovesInfo[MOVE_STORM_THROW].alwaysCriticalHit);
         ASSUME(gMovesInfo[MOVE_STORM_THROW].power == 60);
         ASSUME(gMovesInfo[MOVE_BRICK_BREAK].power == 75);
-        ASSUME(gMovesInfo[MOVE_STORM_THROW].type == gMovesInfo[MOVE_BRICK_BREAK].type);
+        ASSUME(GetMoveType(MOVE_STORM_THROW) == GetMoveType(MOVE_BRICK_BREAK));
         ASSUME(gMovesInfo[MOVE_STORM_THROW].category == gMovesInfo[MOVE_BRICK_BREAK].category);
         AI_FLAGS(AI_FLAG_CHECK_BAD_MOVE | AI_FLAG_CHECK_VIABILITY | AI_FLAG_TRY_TO_FAINT | AI_FLAG_OMNISCIENT);
         PLAYER(SPECIES_OMASTAR) { Ability(ability); }
@@ -764,7 +764,7 @@ AI_SINGLE_BATTLE_TEST("AI avoids contact moves against rocky helmet")
         ASSUME(gMovesInfo[MOVE_BRANCH_POKE].makesContact);
         ASSUME(!gMovesInfo[MOVE_LEAFAGE].makesContact);
         ASSUME(gMovesInfo[MOVE_BRANCH_POKE].power == gMovesInfo[MOVE_LEAFAGE].power);
-        ASSUME(gMovesInfo[MOVE_BRANCH_POKE].type == gMovesInfo[MOVE_LEAFAGE].type);
+        ASSUME(GetMoveType(MOVE_BRANCH_POKE) == GetMoveType(MOVE_LEAFAGE));
         ASSUME(gMovesInfo[MOVE_BRANCH_POKE].category == gMovesInfo[MOVE_LEAFAGE].category);
         AI_FLAGS(AI_FLAG_CHECK_BAD_MOVE | AI_FLAG_CHECK_VIABILITY | AI_FLAG_TRY_TO_FAINT | AI_FLAG_OMNISCIENT);
         PLAYER(SPECIES_WOBBUFFET) { Item(item); }
@@ -788,7 +788,7 @@ AI_SINGLE_BATTLE_TEST("AI uses a guaranteed KO move instead of the move with the
         ASSUME(gMovesInfo[MOVE_SLASH].criticalHitStage == 1);
         ASSUME(gMovesInfo[MOVE_SLASH].power == 70);
         ASSUME(gMovesInfo[MOVE_STRENGTH].power == 80);
-        ASSUME(gMovesInfo[MOVE_SLASH].type == gMovesInfo[MOVE_STRENGTH].type);
+        ASSUME(GetMoveType(MOVE_SLASH) == GetMoveType(MOVE_STRENGTH));
         ASSUME(gMovesInfo[MOVE_SLASH].category == gMovesInfo[MOVE_STRENGTH].category);
         AI_FLAGS(flags);
         PLAYER(SPECIES_WOBBUFFET) { HP(225); }

@@ -228,7 +228,7 @@
  *         PARAMETRIZE { hp = 99; }
  *         PARAMETRIZE { hp = 33; }
  *         GIVEN {
- *             ASSUME(gMovesInfo[MOVE_EMBER].type == TYPE_FIRE);
+ *             ASSUME(GetMoveType(MOVE_EMBER) == TYPE_FIRE);
  *             PLAYER(SPECIES_CHARMANDER) { Ability(ABILITY_BLAZE); MaxHP(99); HP(hp); }
  *             OPPONENT(SPECIES_WOBBUFFET);
  *         } WHEN {

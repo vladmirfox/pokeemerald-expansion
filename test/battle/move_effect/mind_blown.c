@@ -154,7 +154,7 @@ SINGLE_BATTLE_TEST("Mind Blown makes the user lose HP even if the opposing mon p
 SINGLE_BATTLE_TEST("Mind Blown makes the user lose HP even if it is absorbed by Flash Fire")
 {
     GIVEN {
-        ASSUME(gMovesInfo[MOVE_MIND_BLOWN].type == TYPE_FIRE);
+        ASSUME(GetMoveType(MOVE_MIND_BLOWN) == TYPE_FIRE);
         PLAYER(SPECIES_WOBBUFFET);
         OPPONENT(SPECIES_CYNDAQUIL) { Ability(ABILITY_FLASH_FIRE); }
     } WHEN {

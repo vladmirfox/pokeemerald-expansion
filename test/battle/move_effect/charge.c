@@ -4,7 +4,7 @@
 ASSUMPTIONS
 {
     ASSUME(gMovesInfo[MOVE_THUNDERBOLT].power != 0);
-    ASSUME(gMovesInfo[MOVE_THUNDERBOLT].type == TYPE_ELECTRIC);
+    ASSUME(GetMoveType(MOVE_THUNDERBOLT) == TYPE_ELECTRIC);
 }
 
 SINGLE_BATTLE_TEST("Charge doubles the damage of the next Electric move of the user")
@@ -114,7 +114,7 @@ SINGLE_BATTLE_TEST("Charge's effect is removed regardless if the next move is El
     s16 chargedUpDamage = 0;
 
     GIVEN {
-        ASSUME(gMovesInfo[MOVE_TACKLE].type != TYPE_ELECTRIC);
+        ASSUME(GetMoveType(MOVE_TACKLE) != TYPE_ELECTRIC);
         ASSUME(gMovesInfo[MOVE_TACKLE].power != 0);
         PLAYER(SPECIES_WOBBUFFET);
         OPPONENT(SPECIES_WOBBUFFET);

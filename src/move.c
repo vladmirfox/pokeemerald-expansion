@@ -31,6 +31,11 @@ u32 GetMoveEffect(u32 moveId)
     return gMovesInfo[SanitizeMoveId(moveId)].effect;
 }
 
+u32 GetMoveType(u32 moveId)
+{
+    return gMovesInfo[SanitizeMoveId(moveId)].type;
+}
+
 const u8 *GetMoveAnimationScript(u32 moveId)
 {
     moveId = SanitizeMoveId(moveId);

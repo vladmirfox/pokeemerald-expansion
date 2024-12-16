@@ -688,7 +688,7 @@ SINGLE_BATTLE_TEST("(TERA) Stellar type's one-time boost factors in dynamically-
 {
     s16 damage[4];
     GIVEN {
-        ASSUME(gMovesInfo[MOVE_WEATHER_BALL].type == TYPE_NORMAL);
+        ASSUME(GetMoveType(MOVE_WEATHER_BALL) == TYPE_NORMAL);
         PLAYER(SPECIES_PELIPPER) { Ability(ABILITY_DRIZZLE); TeraType(TYPE_STELLAR); }
         OPPONENT(SPECIES_WOBBUFFET);
     } WHEN {
@@ -731,8 +731,8 @@ SINGLE_BATTLE_TEST("(TERA) Terapagos retains the Stellar type boost at all times
     PARAMETRIZE { move = MOVE_TACKLE; }
     PARAMETRIZE { move = MOVE_MACH_PUNCH; }
     GIVEN {
-        ASSUME(gMovesInfo[MOVE_TACKLE].type == TYPE_NORMAL);
-        ASSUME(gMovesInfo[MOVE_MACH_PUNCH].type != TYPE_NORMAL);
+        ASSUME(GetMoveType(MOVE_TACKLE) == TYPE_NORMAL);
+        ASSUME(GetMoveType(MOVE_MACH_PUNCH) != TYPE_NORMAL);
         PLAYER(SPECIES_TERAPAGOS);
         OPPONENT(SPECIES_WOBBUFFET);
     } WHEN {

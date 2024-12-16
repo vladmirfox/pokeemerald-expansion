@@ -1507,11 +1507,11 @@ SINGLE_BATTLE_TEST("(DYNAMAX) Max Moves don't bypass absorbing abilities")
     PARAMETRIZE { move = MOVE_VINE_WHIP; ability = ABILITY_SAP_SIPPER; species = SPECIES_MILTANK; }
 
     GIVEN {
-        ASSUME(gMovesInfo[MOVE_WATER_GUN].type == TYPE_WATER);
-        ASSUME(gMovesInfo[MOVE_SPARK].type == TYPE_ELECTRIC);
-        ASSUME(gMovesInfo[MOVE_EMBER].type == TYPE_FIRE);
-        ASSUME(gMovesInfo[MOVE_MUD_BOMB].type == TYPE_GROUND);
-        ASSUME(gMovesInfo[MOVE_VINE_WHIP].type == TYPE_GRASS);
+        ASSUME(GetMoveType(MOVE_WATER_GUN) == TYPE_WATER);
+        ASSUME(GetMoveType(MOVE_SPARK) == TYPE_ELECTRIC);
+        ASSUME(GetMoveType(MOVE_EMBER) == TYPE_FIRE);
+        ASSUME(GetMoveType(MOVE_MUD_BOMB) == TYPE_GROUND);
+        ASSUME(GetMoveType(MOVE_VINE_WHIP) == TYPE_GRASS);
         PLAYER(SPECIES_WOBBUFFET);
         OPPONENT(species) { Ability(ability); }
     } WHEN {

@@ -7703,7 +7703,7 @@ static bool32 DoSwitchInEffectsForBattler(u32 battler)
         && GetBattlerAbility(battler) != ABILITY_MAGIC_GUARD)
     {
         gDisableStructs[battler].stealthRockDone = TRUE;
-        gBattleStruct->moveDamage[battler] = GetStealthHazardDamage(gMovesInfo[MOVE_STEALTH_ROCK].type, battler);
+        gBattleStruct->moveDamage[battler] = GetStealthHazardDamage(GetMoveType(MOVE_STEALTH_ROCK), battler);
 
         if (gBattleStruct->moveDamage[battler] != 0)
             SetDmgHazardsBattlescript(battler, B_MSG_STEALTHROCKDMG);
@@ -7762,7 +7762,7 @@ static bool32 DoSwitchInEffectsForBattler(u32 battler)
         && GetBattlerAbility(battler) != ABILITY_MAGIC_GUARD)
     {
         gDisableStructs[battler].steelSurgeDone = TRUE;
-        gBattleStruct->moveDamage[battler] = GetStealthHazardDamage(gMovesInfo[MOVE_G_MAX_STEELSURGE].type, battler);
+        gBattleStruct->moveDamage[battler] = GetStealthHazardDamage(GetMoveType(MOVE_G_MAX_STEELSURGE), battler);
 
         if (gBattleStruct->moveDamage[battler] != 0)
             SetDmgHazardsBattlescript(battler, B_MSG_SHARPSTEELDMG);
@@ -9289,11 +9289,11 @@ static bool32 IsElectricAbilityAffected(u32 battler, u32 ability)
     u32 moveType;
 
     if (gBattleStruct->dynamicMoveType == 0)
-        moveType = gMovesInfo[gCurrentMove].type;
+        moveType = GetMoveType(gCurrentMove);
     else if (!(gBattleStruct->dynamicMoveType & F_DYNAMIC_TYPE_IGNORE_PHYSICALITY))
         moveType = gBattleStruct->dynamicMoveType & DYNAMIC_TYPE_MASK;
     else
-        moveType = gMovesInfo[gCurrentMove].type;
+        moveType = GetMoveType(gCurrentMove);
 
     if (moveType == TYPE_ELECTRIC
      && (ability != ABILITY_LIGHTNING_ROD || B_REDIRECT_ABILITY_IMMUNITY >= GEN_5)
@@ -10357,15 +10357,16 @@ static void Cmd_various(void)
         VARIOUS_ARGS(const u8 *failInstr);
         u32 types[3];
         GetBattlerTypes(gBattlerTarget, FALSE, types);
-        if ((types[0] == gMovesInfo[gCurrentMove].type && types[1] == gMovesInfo[gCurrentMove].type)
+        u32 moveType = GetMoveType(gCurrentMove);
+        if ((types[0] == moveType && types[1] == moveType)
          || GetActiveGimmick(gBattlerTarget) == GIMMICK_TERA)
         {
             gBattlescriptCurrInstr = cmd->failInstr;
         }
         else
         {
-            SET_BATTLER_TYPE(gBattlerTarget, gMovesInfo[gCurrentMove].type);
-            PREPARE_TYPE_BUFFER(gBattleTextBuff1, gMovesInfo[gCurrentMove].type);
+            SET_BATTLER_TYPE(gBattlerTarget, moveType);
+            PREPARE_TYPE_BUFFER(gBattleTextBuff1, moveType);
             gBattlescriptCurrInstr = cmd->nextInstr;
         }
         return;
@@ -12561,7 +12562,7 @@ static void Cmd_tryconversiontypechange(void)
         {
             if (gBattleMons[gBattlerAttacker].moves[moveChecked] != MOVE_NONE)
             {
-                moveType = gMovesInfo[gBattleMons[gBattlerAttacker].moves[moveChecked]].type;
+                moveType = GetMoveType(gBattleMons[gBattlerAttacker].moves[moveChecked]);
                 break;
             }
         }
@@ -12589,7 +12590,7 @@ static void Cmd_tryconversiontypechange(void)
 
         for (moveChecked = 0; moveChecked < validMoves; moveChecked++)
         {
-            moveType = gMovesInfo[gBattleMons[gBattlerAttacker].moves[moveChecked]].type;
+            moveType = GetMoveType(gBattleMons[gBattlerAttacker].moves[moveChecked]);
 
             if (moveType == TYPE_MYSTERY)
             {
@@ -12616,7 +12617,7 @@ static void Cmd_tryconversiontypechange(void)
             {
                 while ((moveChecked = MOD(Random(), MAX_MON_MOVES)) >= validMoves);
 
-                moveType = gMovesInfo[gBattleMons[gBattlerAttacker].moves[moveChecked]].type;
+                moveType = GetMoveType(gBattleMons[gBattlerAttacker].moves[moveChecked]);
 
                 if (moveType == TYPE_MYSTERY)
                 {

@@ -47,7 +47,7 @@ SINGLE_BATTLE_TEST("Telekinesis ends after 3 turns")
 SINGLE_BATTLE_TEST("Telekinesis makes the target immune to Ground-type attacks")
 {
     GIVEN {
-        ASSUME(gMovesInfo[MOVE_BULLDOZE].type == TYPE_GROUND);
+        ASSUME(GetMoveType(MOVE_BULLDOZE) == TYPE_GROUND);
         PLAYER(SPECIES_WOBBUFFET);
         OPPONENT(SPECIES_WYNAUT);
     } WHEN {

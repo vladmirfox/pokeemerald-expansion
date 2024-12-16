@@ -4618,7 +4618,7 @@ u16 GetEvolutionTargetSpecies(struct Pokemon *mon, enum EvolutionMode mode, u16 
                 {
                     for (j = 0; j < MAX_MON_MOVES; j++)
                     {
-                        if (gMovesInfo[GetMonData(mon, MON_DATA_MOVE1 + j, NULL)].type == evolutions[i].param)
+                        if (GetMoveType(GetMonData(mon, MON_DATA_MOVE1 + j, NULL)) == evolutions[i].param)
                         {
                             targetSpecies = evolutions[i].targetSpecies;
                             break;
@@ -6980,5 +6980,5 @@ u32 CheckDynamicMoveType(struct Pokemon *mon, u32 move, u32 battler)
     u32 moveType = GetDynamicMoveType(mon, move, battler, NULL);
     if (moveType != TYPE_NONE)
         return moveType;
-    return gMovesInfo[move].type;
+    return GetMoveType(move);
 }

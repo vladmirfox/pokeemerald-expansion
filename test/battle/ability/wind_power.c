@@ -4,7 +4,7 @@
 ASSUMPTIONS
 {
     ASSUME(gMovesInfo[MOVE_THUNDERBOLT].power != 0);
-    ASSUME(gMovesInfo[MOVE_THUNDERBOLT].type == TYPE_ELECTRIC);
+    ASSUME(GetMoveType(MOVE_THUNDERBOLT) == TYPE_ELECTRIC);
     ASSUME(gMovesInfo[MOVE_TACKLE].power != 0);
     ASSUME(gMovesInfo[MOVE_AIR_CUTTER].power != 0);
     ASSUME(gMovesInfo[MOVE_AIR_CUTTER].target == MOVE_TARGET_BOTH);

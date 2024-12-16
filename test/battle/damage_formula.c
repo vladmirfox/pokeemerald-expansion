@@ -248,8 +248,8 @@ DOUBLE_BATTLE_TEST("Transistor Damage calculation", s16 damage)
                     }
     }
     GIVEN {
-        ASSUME(gMovesInfo[MOVE_WILD_CHARGE].type == TYPE_ELECTRIC);
-        ASSUME(gMovesInfo[MOVE_THUNDER_SHOCK].type == TYPE_ELECTRIC);
+        ASSUME(GetMoveType(MOVE_WILD_CHARGE) == TYPE_ELECTRIC);
+        ASSUME(GetMoveType(MOVE_THUNDER_SHOCK) == TYPE_ELECTRIC);
         ASSUME(gMovesInfo[MOVE_WILD_CHARGE].category == DAMAGE_CATEGORY_PHYSICAL);
         ASSUME(gMovesInfo[MOVE_THUNDER_SHOCK].category == DAMAGE_CATEGORY_SPECIAL);
         ASSUME(NUM_DAMAGE_SPREADS == 16);

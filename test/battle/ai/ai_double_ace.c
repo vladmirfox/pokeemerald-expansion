@@ -3,7 +3,7 @@
 
 ASSUMPTIONS {
     ASSUME(GetMoveEffect(MOVE_U_TURN) == EFFECT_HIT_ESCAPE);
-    ASSUME(gMovesInfo[MOVE_CRUNCH].type == TYPE_DARK);
+    ASSUME(GetMoveType(MOVE_CRUNCH) == TYPE_DARK);
     ASSUME(gSpeciesInfo[SPECIES_WOBBUFFET].types[0] == TYPE_PSYCHIC);
     ASSUME(gSpeciesInfo[SPECIES_WOBBUFFET].types[1] == TYPE_PSYCHIC);
 }

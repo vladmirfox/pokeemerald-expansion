@@ -7,7 +7,7 @@ SINGLE_BATTLE_TEST("Swarm boosts Bug-type moves in a pinch", s16 damage)
     PARAMETRIZE { hp = 99; }
     PARAMETRIZE { hp = 33; }
     GIVEN {
-        ASSUME(gMovesInfo[MOVE_BUG_BITE].type == TYPE_BUG);
+        ASSUME(GetMoveType(MOVE_BUG_BITE) == TYPE_BUG);
         ASSUME(gMovesInfo[MOVE_BUG_BITE].power == 60);
         ASSUME(gMovesInfo[MOVE_BUG_BITE].category == DAMAGE_CATEGORY_PHYSICAL);
         ASSUME(gSpeciesInfo[SPECIES_LEDYBA].types[0] == TYPE_BUG);

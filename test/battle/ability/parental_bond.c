@@ -110,7 +110,7 @@ SINGLE_BATTLE_TEST("Parental Bond-converted moves only hit once on Lightning Rod
     PARAMETRIZE { move = MOVE_SURF; ability = ABILITY_STORM_DRAIN; species = SPECIES_LILEEP; type = TYPE_WATER; }
     GIVEN {
         ASSUME(gMovesInfo[move].strikeCount < 2);
-        ASSUME(gMovesInfo[move].type == type);
+        ASSUME(GetMoveType(move) == type);
         PLAYER(SPECIES_KANGASKHAN) { Item(ITEM_KANGASKHANITE); }
         OPPONENT(species) { Ability(ability); }
     } WHEN {

@@ -1715,7 +1715,7 @@ static void MoveSelectionDisplayMoveType(u32 battler)
     u32 speciesId;
     struct ChooseMoveStruct *moveInfo = (struct ChooseMoveStruct *)(&gBattleResources->bufferA[battler][4]);
     txtPtr = StringCopy(gDisplayedStringBattle, gText_MoveInterfaceType);
-    type = gMovesInfo[moveInfo->moves[gMoveSelectionCursor[battler]]].type;
+    type = GetMoveType(moveInfo->moves[gMoveSelectionCursor[battler]]);
 
     if (moveInfo->moves[gMoveSelectionCursor[battler]] == MOVE_TERA_BLAST)
     {

@@ -183,7 +183,7 @@ const void *GetItemIconPalette(u16 itemId)
     if (itemId >= ITEMS_COUNT)
         return gItemsInfo[0].iconPalette;
     if (itemId >= ITEM_TM01 && itemId < ITEM_HM01 + NUM_HIDDEN_MACHINES)
-        return gTypesInfo[gMovesInfo[gItemsInfo[itemId].secondaryId].type].paletteTMHM;
+        return gTypesInfo[GetMoveType(gItemsInfo[itemId].secondaryId)].paletteTMHM;
 
     return gItemsInfo[itemId].iconPalette;
 }

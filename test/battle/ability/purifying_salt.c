@@ -7,7 +7,7 @@ SINGLE_BATTLE_TEST("Purifying Salt halves damage from Ghost-type moves", s16 dam
     PARAMETRIZE { ability = ABILITY_STURDY; }
     PARAMETRIZE { ability = ABILITY_PURIFYING_SALT; }
     GIVEN {
-        ASSUME(gMovesInfo[MOVE_SHADOW_BALL].type == TYPE_GHOST);
+        ASSUME(GetMoveType(MOVE_SHADOW_BALL) == TYPE_GHOST);
         PLAYER(SPECIES_WOBBUFFET);
         OPPONENT(SPECIES_GARGANACL) { Ability(ability); }
     } WHEN {
