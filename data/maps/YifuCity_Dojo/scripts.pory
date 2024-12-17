@@ -374,7 +374,7 @@ script YifuCity_Dojo_EventScript_Dance3 {
         ))
         closemessage
 
-        setvar(VAR_YIFU_DOJO_STATE, 2)
+        setvar(VAR_YIFU_DOJO_STATE, 3)
 
         call(YifuCity_Dojo_Dance3_GeishasGoDirectlyToDoor)
     } else {
@@ -394,7 +394,7 @@ script YifuCity_Dojo_EventScript_Dance3 {
             format("You didn't see me trip over my own foot, did you?")
         )
 
-        setvar(VAR_YIFU_DOJO_STATE, 2)
+        setvar(VAR_YIFU_DOJO_STATE, 3)
 
         speakername("Kimono girls")
         msgbox(format(
@@ -889,15 +889,28 @@ script YifuCity_Dojo_EventScript_Yutaka {
 		TRAINER_YUTAKA_1,
 		format(
             "Excuse me, what is this?\p"
-            "Is there a reason for the accoutrement you're donning?"
-            "A carnival, perhaps? Or have you lost a bet?\p"
-            "Or do you simply lack a basic sense of style to such an extreme degree?\p"
-            "Here you are, parading around in your peasant's clothes…\p"
-            "(…Yutaka, you must not let this offend you so! You are stronger than that!)\p"
+            "Is there a reason for the\n"
+            "accoutrement you're donning?\l"
+            "A carnival, perhaps?\l"
+            "Or have you lost a bet?\p"
+            "Or do you simply lack a basic\n"
+            "sense of style to such an\l"
+            "extreme degree?\p"
+            "Here you are, parading around\n"
+            "in your peasant's clothes…\p"
+            "(…Yutaka, you must not let this\n"
+            "offend you so!\l"
+            "You are stronger than that!)\p"
             "Ahem… Let us move on…\l"
-            "You shall be fighting my exquisite assortment of Pokémon, in the hope of obtaining an official Token from me.\l"
-			"Please try not to be too overwhelmed by my strength and, most of all, by my impeccable sense of fashion.\l"
-			"Let this battle begin!"
+            "You shall be fighting my exquisite\l"
+            "assortment of Pokémon,\l"
+            "in the hopes of obtaining\l"
+            "an official Token from me.\p"
+            "Please try not to be too\n"
+            "overwhelmed by my strength and,\l"
+            "most of all, by my impeccable\l"
+            "sense of fashion.\p"
+            "Let this battle begin!"
 		),
 		format("How dare you!"),
 		YifuCity_Dojo_EventScript_YutakaDefeated,
@@ -936,7 +949,7 @@ script YifuCity_Dojo_EventScript_YutakaDefeated {
 	msgbox(
 		format(
 			"This scroll contains something something something.\p"
-			"And, uh… We should go clothes-shopping together sometime.\l"
+			"And, uh… We should go clothes-shopping together sometime."
             "I cannot bear to see your image suffer so."
 		),
 		MSGBOX_DEFAULT

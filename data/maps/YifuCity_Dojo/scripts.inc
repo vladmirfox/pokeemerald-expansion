@@ -408,7 +408,7 @@ YifuCity_Dojo_EventScript_Dance3::
 # 390 "data/maps/YifuCity_Dojo/scripts.pory"
 	trainerbattle_two_trainers TRAINER_NANAMI, YifuCity_Dojo_EventScript_Dance3_Text_6, TRAINER_KANAE, YifuCity_Dojo_EventScript_Dance3_Text_7
 # 397 "data/maps/YifuCity_Dojo/scripts.pory"
-	setvar VAR_YIFU_DOJO_STATE, 2
+	setvar VAR_YIFU_DOJO_STATE, 3
 # 399 "data/maps/YifuCity_Dojo/scripts.pory"
 	speakername YifuCity_Dojo_EventScript_Dance1_Text_0
 # 400 "data/maps/YifuCity_Dojo/scripts.pory"
@@ -470,7 +470,7 @@ YifuCity_Dojo_EventScript_Dance3_2:
 # 375 "data/maps/YifuCity_Dojo/scripts.pory"
 	closemessage
 # 377 "data/maps/YifuCity_Dojo/scripts.pory"
-	setvar VAR_YIFU_DOJO_STATE, 2
+	setvar VAR_YIFU_DOJO_STATE, 3
 # 379 "data/maps/YifuCity_Dojo/scripts.pory"
 	call YifuCity_Dojo_Dance3_GeishasGoDirectlyToDoor
 	goto YifuCity_Dojo_EventScript_Dance3_1
@@ -968,50 +968,56 @@ YifuCity_Dojo_EventScript_ImpossibleDancer::
 
 YifuCity_Dojo_EventScript_Yutaka::
 # 875 "data/maps/YifuCity_Dojo/scripts.pory"
-	speakername YifuCity_Dojo_EventScript_Yutaka_Text_0
+	lock
 # 876 "data/maps/YifuCity_Dojo/scripts.pory"
+	faceplayer
+# 877 "data/maps/YifuCity_Dojo/scripts.pory"
+	speakername YifuCity_Dojo_EventScript_Yutaka_Text_0
+# 878 "data/maps/YifuCity_Dojo/scripts.pory"
 	msgbox YifuCity_Dojo_EventScript_Yutaka_Text_1
-# 880 "data/maps/YifuCity_Dojo/scripts.pory"
-	applymovement VAR_LAST_TALKED, Common_Movement_ExclamationMark
-# 881 "data/maps/YifuCity_Dojo/scripts.pory"
-	playse SE_PIN
 # 882 "data/maps/YifuCity_Dojo/scripts.pory"
-	waitmovement 0
+	applymovement VAR_LAST_TALKED, Common_Movement_ExclamationMark
 # 883 "data/maps/YifuCity_Dojo/scripts.pory"
-	waitse
+	playse SE_PIN
 # 884 "data/maps/YifuCity_Dojo/scripts.pory"
-	delay 48
+	waitmovement 0
+# 885 "data/maps/YifuCity_Dojo/scripts.pory"
+	waitse
 # 886 "data/maps/YifuCity_Dojo/scripts.pory"
+	delay 48
+# 888 "data/maps/YifuCity_Dojo/scripts.pory"
 	trainerbattle_single TRAINER_YUTAKA_1, YifuCity_Dojo_EventScript_Yutaka_Text_2, YifuCity_Dojo_EventScript_Yutaka_Text_3, YifuCity_Dojo_EventScript_YutakaDefeated, NO_MUSIC
-# 906 "data/maps/YifuCity_Dojo/scripts.pory"
+# 921 "data/maps/YifuCity_Dojo/scripts.pory"
 	msgbox YifuCity_Dojo_EventScript_Yutaka_Text_4
+# 925 "data/maps/YifuCity_Dojo/scripts.pory"
+	release
 	end
 
 
 YifuCity_Dojo_EventScript_YutakaDefeated::
-# 913 "data/maps/YifuCity_Dojo/scripts.pory"
-	message YifuCity_Dojo_EventScript_YutakaDefeated_Text_0
-# 916 "data/maps/YifuCity_Dojo/scripts.pory"
-	waitmessage
-# 917 "data/maps/YifuCity_Dojo/scripts.pory"
-	call Common_EventScript_PlayGymBadgeFanfare
-# 918 "data/maps/YifuCity_Dojo/scripts.pory"
-	msgbox YifuCity_Dojo_EventScript_YutakaDefeated_Text_1, MSGBOX_DEFAULT
 # 930 "data/maps/YifuCity_Dojo/scripts.pory"
+	message YifuCity_Dojo_EventScript_YutakaDefeated_Text_0
+# 933 "data/maps/YifuCity_Dojo/scripts.pory"
+	waitmessage
+# 934 "data/maps/YifuCity_Dojo/scripts.pory"
+	call Common_EventScript_PlayGymBadgeFanfare
+# 935 "data/maps/YifuCity_Dojo/scripts.pory"
+	msgbox YifuCity_Dojo_EventScript_YutakaDefeated_Text_1, MSGBOX_DEFAULT
+# 947 "data/maps/YifuCity_Dojo/scripts.pory"
 	giveitem ITEM_TM_DOUBLE_TEAM
-# 932 "data/maps/YifuCity_Dojo/scripts.pory"
-	msgbox YifuCity_Dojo_EventScript_YutakaDefeated_Text_2, MSGBOX_DEFAULT
-# 940 "data/maps/YifuCity_Dojo/scripts.pory"
-	closemessage
-# 942 "data/maps/YifuCity_Dojo/scripts.pory"
-	setflag FLAG_BADGE03_GET
-# 943 "data/maps/YifuCity_Dojo/scripts.pory"
-	setvar VAR_0x8008, 3
-# 944 "data/maps/YifuCity_Dojo/scripts.pory"
-	call Common_EventScript_SetGymTrainers
-# 945 "data/maps/YifuCity_Dojo/scripts.pory"
-	addvar VAR_PLAYER_REPUTATION, 5
 # 949 "data/maps/YifuCity_Dojo/scripts.pory"
+	msgbox YifuCity_Dojo_EventScript_YutakaDefeated_Text_2, MSGBOX_DEFAULT
+# 957 "data/maps/YifuCity_Dojo/scripts.pory"
+	closemessage
+# 959 "data/maps/YifuCity_Dojo/scripts.pory"
+	setflag FLAG_BADGE03_GET
+# 960 "data/maps/YifuCity_Dojo/scripts.pory"
+	setvar VAR_0x8008, 3
+# 961 "data/maps/YifuCity_Dojo/scripts.pory"
+	call Common_EventScript_SetGymTrainers
+# 962 "data/maps/YifuCity_Dojo/scripts.pory"
+	addvar VAR_PLAYER_REPUTATION, 5
+# 966 "data/maps/YifuCity_Dojo/scripts.pory"
 	release
 	end
 
@@ -1743,52 +1749,55 @@ YifuCity_Dojo_EventScript_ImpossibleDancer_Text_0:
 	.string "Hey! How did you get up here?!$"
 
 YifuCity_Dojo_EventScript_Yutaka_Text_0:
-# 875 "data/maps/YifuCity_Dojo/scripts.pory"
+# 877 "data/maps/YifuCity_Dojo/scripts.pory"
 	.string "Yutaka$"
 
 YifuCity_Dojo_EventScript_Yutaka_Text_1:
-# 877 "data/maps/YifuCity_Dojo/scripts.pory"
+# 879 "data/maps/YifuCity_Dojo/scripts.pory"
 	.string "Well done! Welcome to Yifu City's Doj-$"
 
 YifuCity_Dojo_EventScript_Yutaka_Text_2:
-# 889 "data/maps/YifuCity_Dojo/scripts.pory"
+# 891 "data/maps/YifuCity_Dojo/scripts.pory"
 	.string "Excuse me, what is this?\p"
 	.string "Is there a reason for the\n"
 	.string "accoutrement you're donning?\l"
-	.string "A carnival, perhaps? Or have you lost\l"
-	.string "a bet?\l"
-	.string "Or do you simply lack a basic sense of\l"
-	.string "style to such an extreme degree?\l"
-	.string "Here you are, parading around in your\l"
-	.string "peasant's clothes…\l"
-	.string "(…Yutaka, you must not let this\l"
-	.string "offend you so! You are stronger than\l"
-	.string "that!)\l"
+	.string "A carnival, perhaps?\l"
+	.string "Or have you lost a bet?\p"
+	.string "Or do you simply lack a basic\n"
+	.string "sense of style to such an\l"
+	.string "extreme degree?\p"
+	.string "Here you are, parading around\n"
+	.string "in your peasant's clothes…\p"
+	.string "(…Yutaka, you must not let this\n"
+	.string "offend you so!\l"
+	.string "You are stronger than that!)\p"
 	.string "Ahem… Let us move on…\l"
-	.string "You shall be fighting my exquisite\l"
-	.string "assortment of Pokémon, in the hope of\l"
-	.string "obtaining an official Token from me.\l"
-	.string "Please try not to be too overwhelmed\l"
-	.string "by my strength and, most of all, by my\l"
-	.string "impeccable sense of fashion.\l"
+	.string "You shall be fighting my\n"
+	.string "exquisite assortment of Pokémon,\l"
+	.string "in the hopes of obtaining\l"
+	.string "an official Token from me.\p"
+	.string "Please try not to be too\n"
+	.string "overwhelmed by my strength and,\l"
+	.string "most of all, by my impeccable\l"
+	.string "sense of fashion.\p"
 	.string "Let this battle begin!$"
 
 YifuCity_Dojo_EventScript_Yutaka_Text_3:
-# 900 "data/maps/YifuCity_Dojo/scripts.pory"
+# 915 "data/maps/YifuCity_Dojo/scripts.pory"
 	.string "How dare you!$"
 
 YifuCity_Dojo_EventScript_Yutaka_Text_4:
-# 907 "data/maps/YifuCity_Dojo/scripts.pory"
+# 922 "data/maps/YifuCity_Dojo/scripts.pory"
 	.string "You shall achieve great things. I hope\n"
 	.string "we meet again.$"
 
 YifuCity_Dojo_EventScript_YutakaDefeated_Text_0:
-# 914 "data/maps/YifuCity_Dojo/scripts.pory"
+# 931 "data/maps/YifuCity_Dojo/scripts.pory"
 	.string "{PLAYER} received the Silk Token\n"
 	.string "from Yutaka.$"
 
 YifuCity_Dojo_EventScript_YutakaDefeated_Text_1:
-# 920 "data/maps/YifuCity_Dojo/scripts.pory"
+# 937 "data/maps/YifuCity_Dojo/scripts.pory"
 	.string "I am outrée! Your techniques are\n"
 	.string "rough and vulgar, yet…\l"
 	.string "The victory is yours… That is\l"
@@ -1802,7 +1811,7 @@ YifuCity_Dojo_EventScript_YutakaDefeated_Text_1:
 	.string "Do accept this, as well.$"
 
 YifuCity_Dojo_EventScript_YutakaDefeated_Text_2:
-# 934 "data/maps/YifuCity_Dojo/scripts.pory"
+# 951 "data/maps/YifuCity_Dojo/scripts.pory"
 	.string "This scroll contains something\n"
 	.string "something something.\p"
 	.string "And, uh… We should go\n"
