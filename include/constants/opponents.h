@@ -197,7 +197,7 @@
 #define TRAINER_AKARI                       191
 #define TRAINER_GRUNT_AQUA_HIDEOUT_7        192
 #define TRAINER_GRUNT_AQUA_HIDEOUT_8        193
-#define TRAINER_SHAWN                       194
+#define TRAINER_KANAE                       194
 #define TRAINER_FERNANDO_1                  195
 #define TRAINER_DALTON_1                    196
 #define TRAINER_DALTON_2                    197
@@ -230,7 +230,7 @@
 #define TRAINER_DONALD                      224
 #define TRAINER_TAYLOR                      225
 #define TRAINER_JEFFREY_1                   226
-#define TRAINER_DEREK                       227
+#define TRAINER_KARIN                       227
 #define TRAINER_JEFFREY_2                   228
 #define TRAINER_JEFFREY_3                   229
 #define TRAINER_JEFFREY_4                   230
@@ -326,7 +326,7 @@
 #define TRAINER_IZUMI                       320
 #define TRAINER_REN                         321
 #define TRAINER_JOEY                        322
-#define TRAINER_BEN                         323
+#define TRAINER_NANAMI                         323
 #define TRAINER_QUINCY                      324
 #define TRAINER_KATELYNN                    325
 #define TRAINER_JAYLEN                      326
@@ -805,7 +805,7 @@
 #define TRAINER_JUAN_3                      799
 #define TRAINER_JUAN_4                      800
 #define TRAINER_JUAN_5                      801
-#define TRAINER_ANGELO                      802
+#define TRAINER_MIIKA                      802
 #define TRAINER_DARIUS                      803
 #define TRAINER_STEVEN                      804
 #define TRAINER_ANABEL                      805

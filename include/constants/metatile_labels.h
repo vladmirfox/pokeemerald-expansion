@@ -143,17 +143,17 @@
 #define METATILE_Dewford_Door_BattleTower  0x25D
 
 // gTileset_DojoYifu
-#define METATILE_DojoYifu_YifuDojoDoorBottomLeft      0x220
-#define METATILE_DojoYifu_YifuDojoDoorBottomRight     0x221
-#define METATILE_DojoYifu_YifuDojoDoorTopLeft         0x218
-#define METATILE_DojoYifu_YifuDojoDoorTopRight        0x219
-#define METATILE_DojoYifu_YifuDojoPassageBottomLeft   0x234
-#define METATILE_DojoYifu_YifuDojoPassageBottomRight  0x233
-#define METATILE_DojoYifu_YifuDojoPassageTopLeft      0x21D
-#define METATILE_DojoYifu_YifuDojoPassageTopRight     0x21A
-#define METATILE_DojoYifu_YifuDojoStairs              0x216
-#define METATILE_DojoYifu_YifuDojoWoodFloor           0x20F
-#define METATILE_DojoYifu_YifuDojoWoodFloorDark       0x21F
+#define METATILE_DojoYifu_DoorBottomLeft      0x220
+#define METATILE_DojoYifu_DoorBottomRight     0x221
+#define METATILE_DojoYifu_DoorTopLeft         0x218
+#define METATILE_DojoYifu_DoorTopRight        0x219
+#define METATILE_DojoYifu_PassageBottomLeft   0x234
+#define METATILE_DojoYifu_PassageBottomRight  0x233
+#define METATILE_DojoYifu_PassageTopLeft      0x21D
+#define METATILE_DojoYifu_PassageTopRight     0x21A
+#define METATILE_DojoYifu_Stairs              0x216
+#define METATILE_DojoYifu_WoodFloor           0x20F
+#define METATILE_DojoYifu_WoodFloorDark       0x21F
 
 // gTileset_EliteFour
 #define METATILE_EliteFour_EntryDoor_ClosedBottom    0x20E

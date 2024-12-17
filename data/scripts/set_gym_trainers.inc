@@ -31,7 +31,7 @@ Common_EventScript_SetGymTrainers_3:
 
 Common_EventScript_SetGymTrainers_4:
 # 5 "data/scripts/set_gym_trainers.pory"
-	call MauvilleCity_Gym_SetGymTrainers
+	call YifuCity_Dojo_SetGymTrainers
 	return
 
 Common_EventScript_SetGymTrainers_5:
@@ -86,17 +86,17 @@ Bonsai_Dojo_SetGymTrainers::
 	return
 
 
-MauvilleCity_Gym_SetGymTrainers::
+YifuCity_Dojo_SetGymTrainers::
 # 32 "data/scripts/set_gym_trainers.pory"
 	settrainerflag TRAINER_AKARI
 # 33 "data/scripts/set_gym_trainers.pory"
-	settrainerflag TRAINER_SHAWN
-# 34 "data/scripts/set_gym_trainers.pory"
-	settrainerflag TRAINER_BEN
-# 35 "data/scripts/set_gym_trainers.pory"
 	settrainerflag TRAINER_YUKA
+# 34 "data/scripts/set_gym_trainers.pory"
+	settrainerflag TRAINER_KANAE
+# 35 "data/scripts/set_gym_trainers.pory"
+	settrainerflag TRAINER_NANAMI
 # 36 "data/scripts/set_gym_trainers.pory"
-	settrainerflag TRAINER_ANGELO
+	settrainerflag TRAINER_MIIKA
 	return
 
 
