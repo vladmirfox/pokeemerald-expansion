@@ -1142,7 +1142,7 @@ s32 AI_WhoStrikesFirst(u32 battlerAI, u32 battler, u32 moveConsidered)
 
 static bool32 CanEndureHit(u32 battler, u32 battlerTarget, u32 move)
 {
-    if (!BATTLER_MAX_HP(battlerTarget) || gMovesInfo[move].effect == EFFECT_MULTI_HIT)
+    if (!AtMaxHp(battlerTarget) || gMovesInfo[move].effect == EFFECT_MULTI_HIT)
         return FALSE;
     if (gMovesInfo[move].strikeCount > 1 && !(gMovesInfo[move].effect == EFFECT_DRAGON_DARTS && IsValidDoubleBattle(battlerTarget)))
         return FALSE;
