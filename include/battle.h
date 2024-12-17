@@ -1192,7 +1192,7 @@ extern bool8 gLastUsedBallMenuPresent;
 extern u8 gPartyCriticalHits[PARTY_SIZE];
 extern u8 gCategoryIconSpriteId;
 
-static inline bool32 BattlerTurnDamaged(u32 battler)
+static inline bool32 IsBattlerTurnDamaged(u32 battler)
 {
     return gSpecialStatuses[battler].physicalDmg != 0
         || gSpecialStatuses[battler].specialDmg != 0
@@ -1203,6 +1203,7 @@ static inline bool32 IsBattlerAtMaxHp(u32 battler)
 {
     return gBattleMons[battler].hp == gBattleMons[battler].maxHP;
 }
+
 static inline u32 GetBattlerPosition(u32 battler)
 {
     return gBattlerPositions[battler];

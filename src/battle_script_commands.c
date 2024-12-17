@@ -5997,7 +5997,7 @@ static void Cmd_moveend(void)
                 && gBattlerAttacker != gBattlerTarget
                 && GetBattlerSide(gBattlerAttacker) != GetBattlerSide(gBattlerTarget)
                 && MoveResultHasEffect(gBattlerTarget)
-                && BattlerTurnDamaged(gBattlerTarget)
+                && IsBattlerTurnDamaged(gBattlerTarget)
                 && gMovesInfo[gCurrentMove].power != 0
                 && CompareStat(gBattlerTarget, STAT_ATK, MAX_STAT_STAGE, CMP_LESS_THAN))
             {
@@ -6282,7 +6282,7 @@ static void Cmd_moveend(void)
             if (gBattlerAttacker != gBattlerTarget
                 && gMovesInfo[gCurrentMove].category != DAMAGE_CATEGORY_STATUS
                 && MoveResultHasEffect(gBattlerTarget)
-                && BattlerTurnDamaged(gBattlerTarget))
+                && IsBattlerTurnDamaged(gBattlerTarget))
             {
                 gBattleStruct->timesGotHit[GetBattlerSide(gBattlerTarget)][gBattlerPartyIndexes[gBattlerTarget]]++;
             }
@@ -6563,7 +6563,7 @@ static void Cmd_moveend(void)
               && gBattleMons[gBattlerAttacker].item == ITEM_NONE
               && gBattleMons[gBattlerTarget].item != ITEM_NONE
               && IsBattlerAlive(gBattlerAttacker)
-              && BattlerTurnDamaged(gBattlerTarget)
+              && IsBattlerTurnDamaged(gBattlerTarget)
               && CanStealItem(gBattlerAttacker, gBattlerTarget, gBattleMons[gBattlerTarget].item)
               && !gSpecialStatuses[gBattlerAttacker].gemBoost   // In base game, gems are consumed after magician would activate.
               && !(gWishFutureKnock.knockedOffMons[GetBattlerSide(gBattlerTarget)] & (1u << gBattlerPartyIndexes[gBattlerTarget]))
@@ -6609,7 +6609,7 @@ static void Cmd_moveend(void)
                                 continue;
                             // Since we check if battler was damaged, we don't need to check move result.
                             // In fact, doing so actually prevents multi-target moves from activating eject button properly
-                            if (!BattlerTurnDamaged(battler))
+                            if (!IsBattlerTurnDamaged(battler))
                                 continue;
                         }
                         else if (ejectPackBattlers & (1u << battler))
@@ -6704,7 +6704,7 @@ static void Cmd_moveend(void)
                         if (redCardBattlers & (1u << battler)
                           && IsBattlerAlive(battler)
                           && !DoesSubstituteBlockMove(gBattlerAttacker, battler, gCurrentMove)
-                          && BattlerTurnDamaged(battler)
+                          && IsBattlerTurnDamaged(battler)
                           && CanBattlerSwitch(gBattlerAttacker))
                         {
                             gLastUsedItem = gBattleMons[battler].item;
@@ -6753,7 +6753,7 @@ static void Cmd_moveend(void)
                     // Attacker is mon who made contact, battler is mon with pickpocket
                     if (battler != gBattlerAttacker                                                     // Cannot pickpocket yourself
                       && GetBattlerAbility(battler) == ABILITY_PICKPOCKET                               // Target must have pickpocket ability
-                      && BattlerTurnDamaged(battler)                                                  // Target needs to have been damaged
+                      && IsBattlerTurnDamaged(battler)                                                  // Target needs to have been damaged
                       && !DoesSubstituteBlockMove(gBattlerAttacker, battler, gCurrentMove)              // Subsitute unaffected
                       && IsBattlerAlive(battler)                                                        // Battler must be alive to pickpocket
                       && gBattleMons[battler].item == ITEM_NONE                                         // Pickpocketer can't have an item already
@@ -17495,7 +17495,7 @@ void BS_TryActivateGulpMissile(void)
 
     if (MoveResultHasEffect(gBattlerTarget)
         && !gProtectStructs[gBattlerAttacker].confusionSelfDmg
-        && BattlerTurnDamaged(gBattlerTarget)
+        && IsBattlerTurnDamaged(gBattlerTarget)
         && gBattleMons[gBattlerTarget].species != SPECIES_CRAMORANT
         && GetBattlerAbility(gBattlerTarget) == ABILITY_GULP_MISSILE)
     {
@@ -17696,7 +17696,7 @@ void BS_TryHitSwitchTarget(void)
     if (IsBattlerAlive(gBattlerAttacker)
      && IsBattlerAlive(gBattlerTarget)
      && MoveResultHasEffect(gBattlerTarget)
-     && BattlerTurnDamaged(gBattlerTarget)
+     && IsBattlerTurnDamaged(gBattlerTarget)
      && gSpecialStatuses[gBattlerAttacker].parentalBondState != PARENTAL_BOND_1ST_HIT
      && GetBattlerAbility(gBattlerTarget) != ABILITY_GUARD_DOG)
     {
