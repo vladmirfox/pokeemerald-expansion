@@ -4,7 +4,7 @@
 ASSUMPTIONS
 {
     ASSUME(MoveHasAdditionalEffect(MOVE_POWDER_SNOW, MOVE_EFFECT_FREEZE_OR_FROSTBITE) == TRUE);
-    ASSUME(gMovesInfo[MOVE_BLIZZARD].accuracy == 70);
+    ASSUME(GetMoveAccuracy(MOVE_BLIZZARD) == 70);
 }
 
 #if B_USE_FROSTBITE == TRUE

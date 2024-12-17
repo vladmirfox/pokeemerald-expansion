@@ -3949,7 +3949,7 @@ static bool32 IsDomeRiskyMoveEffect(u32 effect)
 
 static bool32 IsDomeLuckyMove(u32 move)
 {
-    if (gMovesInfo[move].accuracy <= 50)
+    if (GetMoveAccuracy(move) <= 50)
         return TRUE;
     switch(GetMoveEffect(move))
     {
@@ -4294,14 +4294,15 @@ static void DisplayTrainerInfoOnCard(u8 flags, u8 trainerTourneyId)
         {
             for (k = 0; k < NUM_MOVE_POINT_TYPES; k++)
             {
-                u32 move, effect;
+                u32 move;
                 if (trainerId == TRAINER_FRONTIER_BRAIN)
                     move = GetFrontierBrainMonMove(i, j);
                 else if (trainerId == TRAINER_PLAYER)
                     move = gSaveBlock2Ptr->frontier.domePlayerPartyData[i].moves[j];
                 else
                     move = gFacilityTrainerMons[DOME_MONS[trainerTourneyId][i]].moves[j];
-                effect = GetMoveEffect(move);
+                u32 effect = GetMoveEffect(move);
+                u32 accuracy = GetMoveAccuracy(move);
 
                 switch (k)
                 {
@@ -4333,7 +4334,7 @@ static void DisplayTrainerInfoOnCard(u8 flags, u8 trainerTourneyId)
                     allocatedArray[k] = IsDomeDefensiveMoveEffect(effect) ? 1 : 0;
                     break;
                 case MOVE_POINTS_ACCURATE:
-                    allocatedArray[k] = (gMovesInfo[move].accuracy == 0 || gMovesInfo[move].accuracy == 100) ? 1 : 0;
+                    allocatedArray[k] = (accuracy == 0 || accuracy == 100) ? 1 : 0;
                     break;
                 case MOVE_POINTS_POWERFUL:
                     allocatedArray[k] = (GetMovePower(move) >= 100) ? 1 : 0;

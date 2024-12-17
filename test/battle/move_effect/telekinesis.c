@@ -10,7 +10,7 @@ SINGLE_BATTLE_TEST("Telekinesis makes the target unable to avoid any attacks mad
 {
     GIVEN {
         ASSUME(GetMoveEffect(MOVE_MINIMIZE) == EFFECT_MINIMIZE); // Raises evs by 2
-        ASSUME(gMovesInfo[MOVE_SCREECH].accuracy < 100);
+        ASSUME(GetMoveAccuracy(MOVE_SCREECH) < 100);
         PLAYER(SPECIES_WOBBUFFET);
         OPPONENT(SPECIES_WYNAUT);
     } WHEN {

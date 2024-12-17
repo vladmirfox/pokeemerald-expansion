@@ -3,7 +3,7 @@
 
 ASSUMPTIONS
 {
-    ASSUME(gMovesInfo[MOVE_TACKLE].accuracy == 100);
+    ASSUME(GetMoveAccuracy(MOVE_TACKLE) == 100);
     ASSUME(GetMoveEffect(MOVE_SAND_ATTACK) == EFFECT_ACCURACY_DOWN);
     ASSUME(B_ILLUMINATE_EFFECT >= GEN_9);
 }
@@ -78,7 +78,7 @@ SINGLE_BATTLE_TEST("Keen Eye, Gen9+ Illuminate & Minds Eye are ignored by Mold B
         PARAMETRIZE { speciesOpponent = SPECIES_URSALUNA_BLOODMOON; abilityOpponent = ABILITY_MINDS_EYE; }
     }
 
-    PASSES_RANDOMLY(gMovesInfo[MOVE_TACKLE].accuracy * 3 / 4, 100, RNG_ACCURACY);
+    PASSES_RANDOMLY(GetMoveAccuracy(MOVE_TACKLE) * 3 / 4, 100, RNG_ACCURACY);
     GIVEN {
         PLAYER(speciesPlayer) { Ability(abilityPlayer); }
         OPPONENT(speciesOpponent) { Ability(abilityOpponent); }

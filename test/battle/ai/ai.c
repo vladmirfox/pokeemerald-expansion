@@ -80,16 +80,16 @@ AI_SINGLE_BATTLE_TEST("AI prefers moves with better accuracy, but only if they b
         AI_FLAGS(AI_FLAG_CHECK_BAD_MOVE | AI_FLAG_CHECK_VIABILITY | AI_FLAG_TRY_TO_FAINT);
         PLAYER(SPECIES_WOBBUFFET) { HP(hp); }
         PLAYER(SPECIES_WOBBUFFET);
-        ASSUME(gMovesInfo[MOVE_SWIFT].accuracy == 0);
+        ASSUME(GetMoveAccuracy(MOVE_SWIFT) == 0);
         ASSUME(GetMovePower(MOVE_SLAM) == GetMovePower(MOVE_STRENGTH));
         ASSUME(GetMovePower(MOVE_MEGA_KICK) > GetMovePower(MOVE_STRENGTH));
-        ASSUME(gMovesInfo[MOVE_SLAM].accuracy < gMovesInfo[MOVE_STRENGTH].accuracy);
-        ASSUME(gMovesInfo[MOVE_MEGA_KICK].accuracy < gMovesInfo[MOVE_STRENGTH].accuracy);
-        ASSUME(gMovesInfo[MOVE_TACKLE].accuracy == 100);
-        ASSUME(gMovesInfo[MOVE_GUST].accuracy == 100);
-        ASSUME(gMovesInfo[MOVE_SHOCK_WAVE].accuracy == 0);
-        ASSUME(gMovesInfo[MOVE_THUNDERBOLT].accuracy == 100);
-        ASSUME(gMovesInfo[MOVE_ICY_WIND].accuracy != 100);
+        ASSUME(GetMoveAccuracy(MOVE_SLAM) < GetMoveAccuracy(MOVE_STRENGTH));
+        ASSUME(GetMoveAccuracy(MOVE_MEGA_KICK) < GetMoveAccuracy(MOVE_STRENGTH));
+        ASSUME(GetMoveAccuracy(MOVE_TACKLE) == 100);
+        ASSUME(GetMoveAccuracy(MOVE_GUST) == 100);
+        ASSUME(GetMoveAccuracy(MOVE_SHOCK_WAVE) == 0);
+        ASSUME(GetMoveAccuracy(MOVE_THUNDERBOLT) == 100);
+        ASSUME(GetMoveAccuracy(MOVE_ICY_WIND) != 100);
         ASSUME(GetMoveCategory(MOVE_SLAM) == DAMAGE_CATEGORY_PHYSICAL);
         ASSUME(GetMoveCategory(MOVE_STRENGTH) == DAMAGE_CATEGORY_PHYSICAL);
         ASSUME(GetMoveCategory(MOVE_TACKLE) == DAMAGE_CATEGORY_PHYSICAL);

@@ -265,7 +265,7 @@
  *
  * If the tag is not provided, runs the test 50 times and computes an
  * approximate pass ratio.
- *     PASSES_RANDOMLY(gMovesInfo[move].accuracy, 100);
+ *     PASSES_RANDOMLY(GetMoveAccuracy(move), 100);
  * Note that this mode of PASSES_RANDOMLY makes the tests run very
  * slowly and should be avoided where possible. If the mechanic you are
  * testing is missing its tag, you should add it.

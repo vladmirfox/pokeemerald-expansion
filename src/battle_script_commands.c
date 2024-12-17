@@ -1528,7 +1528,7 @@ static bool32 AccuracyCalcHelper(u32 move, u32 battler)
     {
         effect = TRUE;
     }
-    else if (gMovesInfo[move].accuracy == 0)
+    else if (GetMoveAccuracy(move) == 0)
     {
         effect = TRUE;
     }
@@ -1569,7 +1569,7 @@ u32 GetTotalAccuracy(u32 battlerAtk, u32 battlerDef, u32 move, u32 atkAbility, u
     if (buff > MAX_STAT_STAGE)
         buff = MAX_STAT_STAGE;
 
-    moveAcc = gMovesInfo[move].accuracy;
+    moveAcc = GetMoveAccuracy(move);
     // Check Thunder and Hurricane on sunny weather.
     if (IsBattlerWeatherAffected(battlerDef, B_WEATHER_SUN) && GetMoveEffect(move) == EFFECT_THUNDER)
         moveAcc = 50;
@@ -12733,7 +12733,7 @@ static void Cmd_tryKO(void)
         }
         else
         {
-            u16 odds = gMovesInfo[gCurrentMove].accuracy + (gBattleMons[gBattlerAttacker].level - gBattleMons[gBattlerTarget].level);
+            u16 odds = GetMoveAccuracy(gCurrentMove) + (gBattleMons[gBattlerAttacker].level - gBattleMons[gBattlerTarget].level);
             if (B_SHEER_COLD_ACC >= GEN_7 && gCurrentMove == MOVE_SHEER_COLD && !IS_BATTLER_OF_TYPE(gBattlerAttacker, TYPE_ICE))
                 odds -= 10;
             if (RandomPercentage(RNG_ACCURACY, odds) && gBattleMons[gBattlerAttacker].level >= gBattleMons[gBattlerTarget].level)

@@ -146,6 +146,11 @@ static inline u32 GetMovePower(u32 moveId)
     return gMovesInfo[SanitizeMoveId(moveId)].power;
 }
 
+static inline u32 GetMoveAccuracy(u32 moveId)
+{
+    return gMovesInfo[SanitizeMoveId(moveId)].accuracy;
+}
+
 static inline const u8 *GetMoveAnimationScript(u32 moveId)
 {
     moveId = SanitizeMoveId(moveId);

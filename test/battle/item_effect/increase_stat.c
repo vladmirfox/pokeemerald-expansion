@@ -134,11 +134,11 @@ SINGLE_BATTLE_TEST("X Speed sharply raises battler's Speed stat", s16 damage)
 SINGLE_BATTLE_TEST("X Accuracy sharply raises battler's Accuracy stat")
 {
 
-    ASSUME(gMovesInfo[MOVE_SING].accuracy == 55);
+    ASSUME(GetMoveAccuracy(MOVE_SING) == 55);
     if (B_X_ITEMS_BUFF >= GEN_7)
-        PASSES_RANDOMLY(gMovesInfo[MOVE_SING].accuracy * 5 / 3, 100, RNG_ACCURACY);
+        PASSES_RANDOMLY(GetMoveAccuracy(MOVE_SING) * 5 / 3, 100, RNG_ACCURACY);
     else
-        PASSES_RANDOMLY(gMovesInfo[MOVE_SING].accuracy * 4 / 3, 100, RNG_ACCURACY);
+        PASSES_RANDOMLY(GetMoveAccuracy(MOVE_SING) * 4 / 3, 100, RNG_ACCURACY);
     GIVEN {
         ASSUME(gItemsInfo[ITEM_X_ACCURACY].battleUsage == EFFECT_ITEM_INCREASE_STAT);
         PLAYER(SPECIES_WOBBUFFET);

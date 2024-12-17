@@ -1556,7 +1556,7 @@ bool32 IsMoveEncouragedToHit(u32 battlerAtk, u32 battlerDef, u32 move)
         return TRUE;
     if (B_MINIMIZE_DMG_ACC >= GEN_6 && (gStatuses3[battlerDef] & STATUS3_MINIMIZED) && gMovesInfo[move].minimizeDoubleDamage)
         return TRUE;
-    if (gMovesInfo[move].accuracy == 0)
+    if (GetMoveAccuracy(move) == 0)
         return TRUE;
 
     return FALSE;
@@ -2158,7 +2158,7 @@ bool32 HasMoveWithLowAccuracy(u32 battlerAtk, u32 battlerDef, u32 accCheck, bool
         {
             if (ignoreStatus && IS_MOVE_STATUS(moves[i]))
                 continue;
-            else if ((!IS_MOVE_STATUS(moves[i]) && gMovesInfo[moves[i]].accuracy == 0)
+            else if ((!IS_MOVE_STATUS(moves[i]) && GetMoveAccuracy(moves[i]) == 0)
                   || GetBattlerMoveTargetType(battlerAtk, moves[i]) & (MOVE_TARGET_USER | MOVE_TARGET_OPPONENTS_FIELD))
                 continue;
 

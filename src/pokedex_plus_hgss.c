@@ -5297,10 +5297,11 @@ static void PrintStatsScreen_Moves_Bottom(u8 taskId)
         DestroyCategoryIcon();
         ShowCategoryIcon(GetBattleMoveCategory(move));
         //Accuracy
-        if (gMovesInfo[move].accuracy == 0)
+        u32 accuracy = GetMoveAccuracy(move);
+        if (accuracy == 0)
             StringCopy(gStringVar1, gText_ThreeDashes);
         else
-            ConvertIntToDecimalStringN(gStringVar1, gMovesInfo[move].accuracy, STR_CONV_MODE_RIGHT_ALIGN, 3);
+            ConvertIntToDecimalStringN(gStringVar1, accuracy, STR_CONV_MODE_RIGHT_ALIGN, 3);
         PrintStatsScreenTextSmall(WIN_STATS_MOVES_BOTTOM, gStringVar1,  moves_x + 114, moves_y);
     }
     else //Appeal + Jam

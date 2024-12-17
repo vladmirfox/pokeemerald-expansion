@@ -9,8 +9,8 @@ SINGLE_BATTLE_TEST("Accuracy controls the proportion of misses")
     PARAMETRIZE { move = MOVE_HYDRO_PUMP; }
     PARAMETRIZE { move = MOVE_RAZOR_LEAF; }
     PARAMETRIZE { move = MOVE_SCRATCH; }
-    ASSUME(0 < gMovesInfo[move].accuracy && gMovesInfo[move].accuracy <= 100);
-    PASSES_RANDOMLY(gMovesInfo[move].accuracy, 100, RNG_ACCURACY);
+    ASSUME(0 < GetMoveAccuracy(move) && GetMoveAccuracy(move) <= 100);
+    PASSES_RANDOMLY(GetMoveAccuracy(move), 100, RNG_ACCURACY);
     GIVEN {
         PLAYER(SPECIES_WOBBUFFET);
         OPPONENT(SPECIES_WOBBUFFET);

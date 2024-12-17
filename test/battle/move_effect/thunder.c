@@ -4,7 +4,7 @@
 ASSUMPTIONS
 {
     ASSUME(GetMoveEffect(MOVE_THUNDER) == EFFECT_THUNDER);
-    ASSUME(gMovesInfo[MOVE_THUNDER].accuracy == 70);
+    ASSUME(GetMoveAccuracy(MOVE_THUNDER) == 70);
 }
 
 SINGLE_BATTLE_TEST("Thunder's accuracy is lowered to 50% in Sunlight")

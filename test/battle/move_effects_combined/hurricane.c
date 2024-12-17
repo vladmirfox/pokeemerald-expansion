@@ -4,7 +4,7 @@
 ASSUMPTIONS
 {
     ASSUME(GetMoveEffect(MOVE_HURRICANE) == EFFECT_THUNDER);
-    ASSUME(gMovesInfo[MOVE_HURRICANE].accuracy == 70);
+    ASSUME(GetMoveAccuracy(MOVE_HURRICANE) == 70);
 }
 
 SINGLE_BATTLE_TEST("Hurricane's accuracy is lowered to 50% in Sunlight")
