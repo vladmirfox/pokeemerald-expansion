@@ -99,3 +99,19 @@ AI_SINGLE_BATTLE_TEST("AI will use Shed Tail to pivot to another mon while in da
         TURN { MOVE(player, MOVE_TACKLE); EXPECT_MOVE(opponent, MOVE_SHED_TAIL); }
     }
 }
+
+SINGLE_BATTLE_TEST("Shed Tail creates a Substitute with 1/4 of user maximum health")
+{
+    GIVEN {
+        ASSUME(gMovesInfo[MOVE_GUST].power == 40);
+        ASSUME(gMovesInfo[MOVE_GUST].type == TYPE_FLYING);
+        PLAYER(SPECIES_BULBASAUR);
+        PLAYER(SPECIES_BULBASAUR);
+        OPPONENT(SPECIES_CHARMANDER);
+    } WHEN {
+        TURN { MOVE(player, MOVE_SHED_TAIL); MOVE(opponent, MOVE_GUST); SEND_OUT(player, 1); }
+    } SCENE {
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_SHED_TAIL, player);
+        MESSAGE("Bulbasaur's substitute faded!");
+    }
+}
