@@ -4447,8 +4447,9 @@ static u32 AI_CalcMoveEffectScore(u32 battlerAtk, u32 battlerDef, u32 move)
         break;
     } // move effect checks
 
+    u32 additionalEffectCount = GetMoveAdditionalEffectCount(move);
     // check move additional effects that are likely to happen
-    for (i = 0; i < gMovesInfo[move].numAdditionalEffects; i++)
+    for (i = 0; i < additionalEffectCount; i++)
     {
         // Only consider effects with a guaranteed chance to happen
         if (!MoveEffectIsGuaranteed(battlerAtk, aiData->abilities[battlerAtk], &gMovesInfo[move].additionalEffects[i]))
@@ -4830,7 +4831,8 @@ static s32 AI_ForceSetupFirstTurn(u32 battlerAtk, u32 battlerDef, u32 move, s32 
     {
         // TEMPORARY - should applied to all moves regardless of EFFECT
         // Consider move effects
-        for (i = 0; i < gMovesInfo[move].numAdditionalEffects; i++)
+        u32 additionalEffectCount = GetMoveAdditionalEffectCount(move);
+        for (i = 0; i < additionalEffectCount; i++)
         {
             switch (gMovesInfo[move].additionalEffects[i].moveEffect)
             {
@@ -4902,7 +4904,8 @@ static s32 AI_Risky(u32 battlerAtk, u32 battlerDef, u32 move, s32 score)
     {
         // TEMPORARY - should applied to all moves regardless of EFFECT
         // Consider move effects
-        for (i = 0; i < gMovesInfo[move].numAdditionalEffects; i++)
+        u32 additionalEffectCount = GetMoveAdditionalEffectCount(move);
+        for (i = 0; i < additionalEffectCount; i++)
         {
             switch (gMovesInfo[move].additionalEffects[i].moveEffect)
             {

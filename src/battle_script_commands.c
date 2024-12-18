@@ -4299,7 +4299,8 @@ static void Cmd_setadditionaleffects(void)
 
     if (MoveResultHasEffect(gBattlerTarget))
     {
-        if (gMovesInfo[gCurrentMove].numAdditionalEffects > gBattleStruct->additionalEffectsCounter)
+        u32 numAdditionalEffects = GetMoveAdditionalEffectCount(gCurrentMove);
+        if (numAdditionalEffects > gBattleStruct->additionalEffectsCounter)
         {
             u32 percentChance;
             const struct AdditionalEffect *additionalEffect = &gMovesInfo[gCurrentMove].additionalEffects[gBattleStruct->additionalEffectsCounter];
@@ -4328,7 +4329,7 @@ static void Cmd_setadditionaleffects(void)
 
             // Call setadditionaleffects again in the case of a move with multiple effects
             gBattleStruct->additionalEffectsCounter++;
-            if (gMovesInfo[gCurrentMove].numAdditionalEffects > gBattleStruct->additionalEffectsCounter)
+            if (numAdditionalEffects > gBattleStruct->additionalEffectsCounter)
                 gBattleScripting.moveEffect = MOVE_EFFECT_CONTINUE;
             else
                 gBattleScripting.moveEffect = gBattleStruct->additionalEffectsCounter = 0;
@@ -16473,7 +16474,8 @@ static bool8 CanBurnHitThaw(u16 move)
 
     if (B_BURN_HIT_THAW >= GEN_6)
     {
-        for (i = 0; i < gMovesInfo[move].numAdditionalEffects; i++)
+        u32 numAdditionalEffects = GetMoveAdditionalEffectCount(move);
+        for (i = 0; i < numAdditionalEffects; i++)
         {
             if (gMovesInfo[move].additionalEffects[i].moveEffect == MOVE_EFFECT_BURN)
                 return TRUE;

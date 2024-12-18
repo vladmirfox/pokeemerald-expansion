@@ -803,7 +803,8 @@ static bool32 AI_IsMoveEffectInPlus(u32 battlerAtk, u32 battlerDef, u32 move, s3
     }
 
     // check ADDITIONAL_EFFECTS
-    for (i = 0; i < gMovesInfo[move].numAdditionalEffects; i++)
+    u32 additionalEffectCount = GetMoveAdditionalEffectCount(move);
+    for (i = 0; i < additionalEffectCount; i++)
     {
         // Consider move effects that target self
         if (gMovesInfo[move].additionalEffects[i].self)
@@ -928,7 +929,8 @@ static bool32 AI_IsMoveEffectInMinus(u32 battlerAtk, u32 battlerDef, u32 move, s
         break;
     default:
     {
-        for (i = 0; i < gMovesInfo[move].numAdditionalEffects; i++)
+        u32 additionalEffectCount = GetMoveAdditionalEffectCount(move);
+        for (i = 0; i < additionalEffectCount; i++)
         {
             switch (gMovesInfo[move].additionalEffects[i].moveEffect)
             {
@@ -2134,7 +2136,8 @@ bool32 HasMoveThatLowersOwnStats(u32 battlerId)
         aiMove = moves[i];
         if (aiMove != MOVE_NONE && aiMove != MOVE_UNAVAILABLE)
         {
-            for (j = 0; j < gMovesInfo[aiMove].numAdditionalEffects; j++)
+            u32 additionalEffectCount = GetMoveAdditionalEffectCount(aiMove);
+            for (j = 0; j < additionalEffectCount; j++)
             {
                 if (IsSelfStatLoweringEffect(gMovesInfo[aiMove].additionalEffects[j].moveEffect) && gMovesInfo[aiMove].additionalEffects[j].self)
                     return TRUE;
@@ -2407,7 +2410,8 @@ static inline bool32 IsMoveSleepClauseTrigger(u32 move)
     }
 
     // Sleeping effects like G-Max Befuddle, G-Max Snooze, etc.
-    for (i = 0; i < gMovesInfo[move].numAdditionalEffects; i++)
+    u32 additionalEffectCount = GetMoveAdditionalEffectCount(move);
+    for (i = 0; i < additionalEffectCount; i++)
     {
         switch (gMovesInfo[move].additionalEffects[i].moveEffect)
         {

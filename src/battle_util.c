@@ -11733,7 +11733,8 @@ bool32 IsGen6ExpShareEnabled(void)
 bool32 MoveHasAdditionalEffect(u32 move, u32 moveEffect)
 {
     u32 i;
-    for (i = 0; i < gMovesInfo[move].numAdditionalEffects; i++)
+    u32 numAdditionalEffects = GetMoveAdditionalEffectCount(move);
+    for (i = 0; i < numAdditionalEffects; i++)
     {
         if (gMovesInfo[move].additionalEffects[i].moveEffect == moveEffect
          && gMovesInfo[move].additionalEffects[i].self == FALSE)
@@ -11745,7 +11746,8 @@ bool32 MoveHasAdditionalEffect(u32 move, u32 moveEffect)
 bool32 MoveHasAdditionalEffectWithChance(u32 move, u32 moveEffect, u32 chance)
 {
     u32 i;
-    for (i = 0; i < gMovesInfo[move].numAdditionalEffects; i++)
+    u32 numAdditionalEffects = GetMoveAdditionalEffectCount(move);
+    for (i = 0; i < numAdditionalEffects; i++)
     {
         if (gMovesInfo[move].additionalEffects[i].moveEffect == moveEffect
          && gMovesInfo[move].additionalEffects[i].chance == chance)
@@ -11757,7 +11759,8 @@ bool32 MoveHasAdditionalEffectWithChance(u32 move, u32 moveEffect, u32 chance)
 bool32 MoveHasAdditionalEffectSelf(u32 move, u32 moveEffect)
 {
     u32 i;
-    for (i = 0; i < gMovesInfo[move].numAdditionalEffects; i++)
+    u32 numAdditionalEffects = GetMoveAdditionalEffectCount(move);
+    for (i = 0; i < numAdditionalEffects; i++)
     {
         if (gMovesInfo[move].additionalEffects[i].moveEffect == moveEffect
          && gMovesInfo[move].additionalEffects[i].self == TRUE)
@@ -11774,7 +11777,8 @@ bool32 MoveHasAdditionalEffectSelfArg(u32 move, u32 moveEffect, u32 argument)
 bool32 MoveHasChargeTurnAdditionalEffect(u32 move)
 {
     u32 i;
-    for (i = 0; i < gMovesInfo[move].numAdditionalEffects; i++)
+    u32 numAdditionalEffects = GetMoveAdditionalEffectCount(move);
+    for (i = 0; i < numAdditionalEffects; i++)
     {
         if (gMovesInfo[move].additionalEffects[i].onChargeTurnOnly)
             return TRUE;
@@ -11785,7 +11789,8 @@ bool32 MoveHasChargeTurnAdditionalEffect(u32 move)
 bool32 MoveIsAffectedBySheerForce(u32 move)
 {
     u32 i;
-    for (i = 0; i < gMovesInfo[move].numAdditionalEffects; i++)
+    u32 numAdditionalEffects = GetMoveAdditionalEffectCount(move);
+    for (i = 0; i < numAdditionalEffects; i++)
     {
         if (gMovesInfo[move].additionalEffects[i].chance > 0)
             return TRUE;

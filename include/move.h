@@ -28,6 +28,7 @@ struct MoveInfo
     u16 type:5;     // Up to 32
     u16 category:2;
     u16 power:9;    // up to 511
+    // end of word
     u16 accuracy:7;
     u16 target:9;
     u8 pp;
@@ -35,7 +36,7 @@ struct MoveInfo
         u8 effect;
         u8 powerOverride;
     } zMove;
-
+    // end of word
     s32 priority:4;
     u32 recoil:7;
     u32 strikeCount:4; // Max 15 hits. Defaults to 1 if not set. May apply its effect on each hit.
@@ -55,7 +56,7 @@ struct MoveInfo
     bool32 ballisticMove:1;
     bool32 powderMove:1;
     bool32 danceMove:1;
-     // end of word
+    // end of word
     bool32 windMove:1;
     bool32 slicingMove:1;
     bool32 healingMove:1;
@@ -193,6 +194,11 @@ static inline u32 GetMoveCriticalHitStage(u32 moveId)
 static inline bool32 MoveAlwaysCrits(u32 moveId)
 {
     return gMovesInfo[SanitizeMoveId(moveId)].alwaysCriticalHit;
+}
+
+static inline u32 GetMoveAdditionalEffectCount(u32 moveId)
+{
+    return gMovesInfo[SanitizeMoveId(moveId)].numAdditionalEffects;
 }
 
 static inline const u8 *GetMoveAnimationScript(u32 moveId)
