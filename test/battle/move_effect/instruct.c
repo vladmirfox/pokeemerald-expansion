@@ -112,7 +112,7 @@ DOUBLE_BATTLE_TEST("Instruct-called move fails if it can only be used on the fir
         ANIMATION(ANIM_TYPE_MOVE, MOVE_INSTRUCT, playerLeft);
         NOT ANIMATION(ANIM_TYPE_MOVE, MOVE_FAKE_OUT, playerRight);
     } THEN {
-        EXPECT_EQ(playerRight->pp[3], gMovesInfo[MOVE_FAKE_OUT].pp - 2);
+        EXPECT_EQ(playerRight->pp[3], GetMovePP(MOVE_FAKE_OUT) - 2);
     }
 }
 
@@ -174,7 +174,7 @@ DOUBLE_BATTLE_TEST("Instruct-called status move fails if taunted")
             ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_STATS_CHANGE, opponentLeft);
         }
     } THEN {
-        EXPECT_EQ(playerRight->pp[3], gMovesInfo[MOVE_GROWL].pp - 1);
+        EXPECT_EQ(playerRight->pp[3], GetMovePP(MOVE_GROWL) - 1);
     }
 }
 
@@ -194,7 +194,7 @@ DOUBLE_BATTLE_TEST("Instruct-called moves fail if disabled")
         ANIMATION(ANIM_TYPE_MOVE, MOVE_INSTRUCT, playerLeft);
         NOT ANIMATION(ANIM_TYPE_MOVE, MOVE_TACKLE, playerRight);
     } THEN {
-        EXPECT_EQ(playerRight->pp[0], gMovesInfo[MOVE_TACKLE].pp - 1);
+        EXPECT_EQ(playerRight->pp[0], GetMovePP(MOVE_TACKLE) - 1);
     }
 }
 

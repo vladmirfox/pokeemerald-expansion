@@ -41,7 +41,7 @@ SINGLE_BATTLE_TEST("Powder blocks the target's Fire type moves and consumes PP")
             HP_BAR(opponent);
         }
     } THEN {
-        EXPECT_EQ(player->pp[0], gMovesInfo[MOVE_EMBER].pp - 1);
+        EXPECT_EQ(player->pp[0], GetMovePP(MOVE_EMBER) - 1);
     }
 }
 

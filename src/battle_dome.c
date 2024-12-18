@@ -4349,7 +4349,7 @@ static void DisplayTrainerInfoOnCard(u8 flags, u8 trainerTourneyId)
                     allocatedArray[k] = (GetMovePower(move) >= 90) ? 1 : 0;
                     break;
                 case MOVE_POINTS_LOW_PP:
-                    allocatedArray[k] = (gMovesInfo[move].pp <= 5) ? 1 : 0;
+                    allocatedArray[k] = (GetMovePP(move) <= 5) ? 1 : 0;
                     break;
                 case MOVE_POINTS_EFFECT:
                     allocatedArray[k] = MoveIsAffectedBySheerForce(move);

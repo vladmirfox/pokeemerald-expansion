@@ -156,6 +156,11 @@ static inline u32 GetMoveTarget(u32 moveId)
     return gMovesInfo[SanitizeMoveId(moveId)].target;
 }
 
+static inline u32 GetMovePP(u32 moveId)
+{
+    return gMovesInfo[SanitizeMoveId(moveId)].pp;
+}
+
 static inline const u8 *GetMoveAnimationScript(u32 moveId)
 {
     moveId = SanitizeMoveId(moveId);
