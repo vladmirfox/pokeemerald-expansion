@@ -1159,6 +1159,8 @@ static bool8 TryProduceOrHatchEgg(struct DayCare *daycare)
         u32 eggCycles;
         u8 toSub = GetEggCyclesToSubtract();
 
+        if (P_EGG_CYCLE_LENGTH >= GEN_8)
+            daycare->stepCounter = 255;
         for (i = 0; i < gPlayerPartyCount; i++)
         {
             if (!GetMonData(&gPlayerParty[i], MON_DATA_IS_EGG))
