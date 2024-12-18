@@ -171,6 +171,11 @@ static inline u32 GetMoveZPowerOverride(u32 moveId)
     return gMovesInfo[SanitizeMoveId(moveId)].zMove.powerOverride;
 }
 
+static inline s32 GetMovePriority(u32 moveId)
+{
+    return gMovesInfo[SanitizeMoveId(moveId)].priority;
+}
+
 static inline const u8 *GetMoveAnimationScript(u32 moveId)
 {
     moveId = SanitizeMoveId(moveId);

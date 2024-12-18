@@ -397,8 +397,8 @@ DOUBLE_BATTLE_TEST("Quick Guard protects self and ally from priority moves")
     PARAMETRIZE { move = MOVE_QUICK_ATTACK; targetOpponent = opponentRight; }
 
     GIVEN {
-        ASSUME(gMovesInfo[MOVE_TACKLE].priority == 0);
-        ASSUME(gMovesInfo[MOVE_QUICK_ATTACK].priority == 1);
+        ASSUME(GetMovePriority(MOVE_TACKLE) == 0);
+        ASSUME(GetMovePriority(MOVE_QUICK_ATTACK) == 1);
         PLAYER(SPECIES_WOBBUFFET);
         PLAYER(SPECIES_WOBBUFFET);
         OPPONENT(SPECIES_WOBBUFFET);
@@ -427,7 +427,7 @@ DOUBLE_BATTLE_TEST("Quick Guard can not fail on consecutive turns")
 
     PASSES_RANDOMLY(2, 2);
     GIVEN {
-        ASSUME(gMovesInfo[MOVE_QUICK_ATTACK].priority == 1);
+        ASSUME(GetMovePriority(MOVE_QUICK_ATTACK) == 1);
         PLAYER(SPECIES_WOBBUFFET);
         PLAYER(SPECIES_WOBBUFFET);
         OPPONENT(SPECIES_WOBBUFFET);

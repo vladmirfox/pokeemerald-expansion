@@ -9,7 +9,7 @@ ASSUMPTIONS
 DOUBLE_BATTLE_TEST("Beak Blast's charging message is shown before other moves are used")
 {
     GIVEN {
-        ASSUME(gMovesInfo[MOVE_BEAK_BLAST].priority < 0);
+        ASSUME(GetMovePriority(MOVE_BEAK_BLAST) < 0);
         PLAYER(SPECIES_WYNAUT) { Speed(10); }
         PLAYER(SPECIES_WOBBUFFET) { Speed(5); }
         OPPONENT(SPECIES_WOBBUFFET) { Speed(2); }
@@ -36,7 +36,7 @@ DOUBLE_BATTLE_TEST("Beak Blast's charging message is shown before other moves ar
 DOUBLE_BATTLE_TEST("Beak Blast burns all who make contact with the pokemon")
 {
     GIVEN {
-        ASSUME(gMovesInfo[MOVE_BEAK_BLAST].priority < 0);
+        ASSUME(GetMovePriority(MOVE_BEAK_BLAST) < 0);
         ASSUME(gMovesInfo[MOVE_TACKLE].makesContact);
         PLAYER(SPECIES_WYNAUT) { Speed(10); }
         PLAYER(SPECIES_WOBBUFFET) { Speed(5); }

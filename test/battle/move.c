@@ -42,7 +42,7 @@ SINGLE_BATTLE_TEST("AdditionalEffect.chance controls the proportion of secondary
 SINGLE_BATTLE_TEST("Turn order is determined by priority")
 {
     GIVEN {
-        ASSUME(gMovesInfo[MOVE_QUICK_ATTACK].priority > gMovesInfo[MOVE_TACKLE].priority);
+        ASSUME(GetMovePriority(MOVE_QUICK_ATTACK) > GetMovePriority(MOVE_TACKLE));
         PLAYER(SPECIES_WOBBUFFET);
         OPPONENT(SPECIES_WOBBUFFET);
     } WHEN {

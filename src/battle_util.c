@@ -9494,7 +9494,7 @@ static inline u32 CalcMoveBasePowerAfterModifiers(struct DamageCalculationData *
         && uq4_12_multiply_by_int_half_down(modifier, basePower) < 60
         && gMovesInfo[move].strikeCount < 2
         && moveEffect != EFFECT_MULTI_HIT
-        && gMovesInfo[move].priority == 0)
+        && GetMovePriority(move) == 0)
     {
         return 60;
     }

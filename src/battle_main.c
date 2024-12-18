@@ -4849,11 +4849,11 @@ s8 GetBattleMovePriority(u32 battler, u16 move)
     if (GetActiveGimmick(battler) == GIMMICK_Z_MOVE && GetMovePower(move) != 0)
         move = GetUsableZMove(battler, move);
 
-    priority = gMovesInfo[move].priority;
+    priority = GetMovePriority(move);
 
     // Max Guard check
     if (GetActiveGimmick(battler) == GIMMICK_DYNAMAX && GetMoveCategory(move) == DAMAGE_CATEGORY_STATUS)
-        return gMovesInfo[MOVE_MAX_GUARD].priority;
+        return GetMovePriority(MOVE_MAX_GUARD);
 
     if (ability == ABILITY_GALE_WINGS
         && (B_GALE_WINGS < GEN_7 || BATTLER_MAX_HP(battler))

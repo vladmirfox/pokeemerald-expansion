@@ -201,7 +201,7 @@ DOUBLE_BATTLE_TEST("Instruct-called moves fail if disabled")
 DOUBLE_BATTLE_TEST("Instruct-called moves keep their priority")
 {
     GIVEN {
-        ASSUME(gMovesInfo[MOVE_QUICK_ATTACK].priority == 1);
+        ASSUME(GetMovePriority(MOVE_QUICK_ATTACK) == 1);
         ASSUME(GetMoveEffect(MOVE_PSYCHIC_TERRAIN) == EFFECT_PSYCHIC_TERRAIN);
         PLAYER(SPECIES_WOBBUFFET);
         PLAYER(SPECIES_WOBBUFFET) { Moves(MOVE_TACKLE, MOVE_POUND, MOVE_SCRATCH, MOVE_QUICK_ATTACK); }
