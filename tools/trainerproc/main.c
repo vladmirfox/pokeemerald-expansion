@@ -1214,6 +1214,7 @@ static bool parse_trainer(struct Parser *p, const struct Parsed *parsed, struct 
                 any_error = !set_show_parse_error(p, key.location, "duplicate 'Difficulty'");
             trainer->difficulty_line = value.location.line;
             trainer->difficulty = token_string(&value);
+        }
         else if (is_literal_token(&key, "Party Size"))
         {
             if (trainer->party_size_line)
