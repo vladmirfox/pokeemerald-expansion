@@ -3685,7 +3685,7 @@ u8 AtkCanceller_UnableToUseMove(u32 moveType)
                         gBattleStruct->noResultString[battlerDef] = TRUE;
                     }
                     else if (AbilityBattleEffects(ABILITYEFFECT_WOULD_BLOCK, battlerDef, 0, 0, 0)
-                          || (IsBattlerTerrainAffected(gBattlerAttacker, STATUS_FIELD_PSYCHIC_TERRAIN) && GetMovePriority(gBattlerAttacker, gCurrentMove) > 0))
+                          || (IsBattlerTerrainAffected(gBattlerAttacker, STATUS_FIELD_PSYCHIC_TERRAIN) && GetBattleMovePriority(gBattlerAttacker, gCurrentMove) > 0))
                     {
                         gBattleStruct->moveResultFlags[battlerDef] = 0;
                         gBattleStruct->noResultString[battlerDef] = TRUE;
@@ -4135,7 +4135,7 @@ u32 CanAbilityBlockMove(u32 battlerAtk, u32 battlerDef, u32 move, u32 abilityDef
     case ABILITY_ARMOR_TAIL:
         if (GetBattlerSide(battlerAtk) != GetBattlerSide(battlerDef))
         {
-            u32 priority = AI_DATA->aiCalcInProgress ? GetMovePriority(battlerAtk, move) : GetChosenMovePriority(battlerAtk);
+            u32 priority = AI_DATA->aiCalcInProgress ? GetBattleMovePriority(battlerAtk, move) : GetChosenMovePriority(battlerAtk);
             if (priority > 0)
                 effect = MOVE_BLOCKED_BY_DAZZLING;
         }
@@ -4165,7 +4165,7 @@ u32 CanPartnerAbilityBlockMove(u32 battlerAtk, u32 battlerDef, u32 move, u32 abi
     case ABILITY_ARMOR_TAIL:
         if (GetBattlerSide(battlerAtk) != GetBattlerSide(battlerDef))
         {
-            s32 priority = AI_DATA->aiCalcInProgress ? GetMovePriority(battlerAtk, move) : GetChosenMovePriority(battlerAtk);
+            s32 priority = AI_DATA->aiCalcInProgress ? GetBattleMovePriority(battlerAtk, move) : GetChosenMovePriority(battlerAtk);
             if (priority > 0)
                 return MOVE_BLOCKED_BY_PARTNER_DAZZLING;
         }
