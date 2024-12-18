@@ -244,10 +244,10 @@ SINGLE_BATTLE_TEST("Recoil damage is not applied if target was protected")
 
 
     GIVEN {
-        ASSUME(gMovesInfo[MOVE_VOLT_TACKLE].recoil > 0);
-        ASSUME(gMovesInfo[MOVE_HEAD_SMASH].recoil > 0);
-        ASSUME(gMovesInfo[MOVE_TAKE_DOWN].recoil > 0);
-        ASSUME(gMovesInfo[MOVE_DOUBLE_EDGE].recoil > 0);
+        ASSUME(GetMoveRecoil(MOVE_VOLT_TACKLE) > 0);
+        ASSUME(GetMoveRecoil(MOVE_HEAD_SMASH) > 0);
+        ASSUME(GetMoveRecoil(MOVE_TAKE_DOWN) > 0);
+        ASSUME(GetMoveRecoil(MOVE_DOUBLE_EDGE) > 0);
         PLAYER(SPECIES_RAPIDASH);
         OPPONENT(SPECIES_BEAUTIFLY);
     } WHEN {

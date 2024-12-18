@@ -54,7 +54,7 @@ SINGLE_BATTLE_TEST("Sheer Force boosts power, but removes secondary effects of m
                 MESSAGE("Wobbuffet flinched and couldn't move!");
             }
             // Volt Tackle/Flare Blitz edge case: recoil happens, but target isn't statused
-            if (gMovesInfo[move].recoil > 0)
+            if (GetMoveRecoil(move) > 0)
             {
                 HP_BAR(player);
                 MESSAGE("Tauros was damaged by the recoil!");
