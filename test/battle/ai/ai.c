@@ -721,7 +721,7 @@ AI_SINGLE_BATTLE_TEST("AI calculates guaranteed criticals and detects critical i
     PARAMETRIZE { ability = ABILITY_SHELL_ARMOR; }
 
     GIVEN {
-        ASSUME(gMovesInfo[MOVE_STORM_THROW].alwaysCriticalHit);
+        ASSUME(MoveAlwaysCrits(MOVE_STORM_THROW));
         ASSUME(GetMovePower(MOVE_STORM_THROW) == 60);
         ASSUME(GetMovePower(MOVE_BRICK_BREAK) == 75);
         ASSUME(GetMoveType(MOVE_STORM_THROW) == GetMoveType(MOVE_BRICK_BREAK));

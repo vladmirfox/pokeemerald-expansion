@@ -40,54 +40,53 @@ struct MoveInfo
     u32 recoil:7;
     u32 strikeCount:4; // Max 15 hits. Defaults to 1 if not set. May apply its effect on each hit.
     u32 criticalHitStage:2;
-    u32 alwaysCriticalHit:1;
+    bool32 alwaysCriticalHit:1;
     u32 numAdditionalEffects:2; // limited to 3 - don't want to get too crazy
-    // 12 bits left to complete this word - continues into flags
-
     // Flags
-    u32 makesContact:1;
-    u32 ignoresProtect:1;
-    u32 magicCoatAffected:1;
-    u32 snatchAffected:1;
-    u32 ignoresKingsRock:1;
-    u32 punchingMove:1;
-    u32 bitingMove:1;
-    u32 pulseMove:1;
-    u32 soundMove:1;
-    u32 ballisticMove:1;
-    u32 powderMove:1;
-    u32 danceMove:1;
-    u32 windMove:1;
-    u32 slicingMove:1; // end of word
-    u32 healingMove:1;
-    u32 minimizeDoubleDamage:1;
-    u32 ignoresTargetAbility:1;
-    u32 ignoresTargetDefenseEvasionStages:1;
-    u32 damagesUnderground:1;
-    u32 damagesUnderwater:1;
-    u32 damagesAirborne:1;
-    u32 damagesAirborneDoubleDamage:1;
-    u32 ignoreTypeIfFlyingAndUngrounded:1;
-    u32 thawsUser:1;
-    u32 ignoresSubstitute:1;
-    u32 forcePressure:1;
-    u32 cantUseTwice:1;
-
+    bool32 makesContact:1;
+    bool32 ignoresProtect:1;
+    bool32 magicCoatAffected:1;
+    bool32 snatchAffected:1;
+    bool32 ignoresKingsRock:1;
+    bool32 punchingMove:1;
+    bool32 bitingMove:1;
+    bool32 pulseMove:1;
+    bool32 soundMove:1;
+    bool32 ballisticMove:1;
+    bool32 powderMove:1;
+    bool32 danceMove:1;
+     // end of word
+    bool32 windMove:1;
+    bool32 slicingMove:1;
+    bool32 healingMove:1;
+    bool32 minimizeDoubleDamage:1;
+    bool32 ignoresTargetAbility:1;
+    bool32 ignoresTargetDefenseEvasionStages:1;
+    bool32 damagesUnderground:1;
+    bool32 damagesUnderwater:1;
+    bool32 damagesAirborne:1;
+    bool32 damagesAirborneDoubleDamage:1;
+    bool32 ignoreTypeIfFlyingAndUngrounded:1;
+    bool32 thawsUser:1;
+    bool32 ignoresSubstitute:1;
+    bool32 forcePressure:1;
+    bool32 cantUseTwice:1;
     // Ban flags
-    u32 gravityBanned:1;
-    u32 mirrorMoveBanned:1;
-    u32 meFirstBanned:1;
-    u32 mimicBanned:1;
-    u32 metronomeBanned:1;
-    u32 copycatBanned:1;
-    u32 assistBanned:1; // Matches same moves as copycatBanned + semi-invulnerable moves and Mirror Coat.
-    u32 sleepTalkBanned:1;
-    u32 instructBanned:1;
-    u32 encoreBanned:1;
-    u32 parentalBondBanned:1;
-    u32 skyBattleBanned:1;
-    u32 sketchBanned:1;
-    u32 padding:5; // end of word
+    bool32 gravityBanned:1;
+    bool32 mirrorMoveBanned:1;
+    bool32 meFirstBanned:1;
+    bool32 mimicBanned:1;
+    bool32 metronomeBanned:1;
+    bool32 copycatBanned:1;
+    bool32 assistBanned:1; // Matches same moves as copycatBanned + semi-invulnerable moves and Mirror Coat.
+    bool32 sleepTalkBanned:1;
+    bool32 instructBanned:1;
+    bool32 encoreBanned:1;
+    bool32 parentalBondBanned:1;
+    bool32 skyBattleBanned:1;
+    bool32 sketchBanned:1;
+    u32 padding:19;
+    // end of word
 
     u32 argument;
 
@@ -189,6 +188,11 @@ static inline u32 GetMoveStrikeCount(u32 moveId)
 static inline u32 GetMoveCriticalHitStage(u32 moveId)
 {
     return gMovesInfo[SanitizeMoveId(moveId)].criticalHitStage;
+}
+
+static inline bool32 MoveAlwaysCrits(u32 moveId)
+{
+    return gMovesInfo[SanitizeMoveId(moveId)].alwaysCriticalHit;
 }
 
 static inline const u8 *GetMoveAnimationScript(u32 moveId)
