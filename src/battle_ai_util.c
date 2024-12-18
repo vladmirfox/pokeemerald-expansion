@@ -2073,7 +2073,7 @@ bool32 HasMoveWithCriticalHitChance(u32 battlerId)
     for (i = 0; i < MAX_MON_MOVES; i++)
     {
         if (moves[i] != MOVE_NONE && moves[i] != MOVE_UNAVAILABLE
-            && gMovesInfo[moves[i]].criticalHitStage > 0)
+            && GetMoveCriticalHitStage(moves[i]) > 0)
             return TRUE;
     }
 
@@ -2460,7 +2460,7 @@ bool32 HasHighCritRatioMove(u32 battler)
 
     for (i = 0; i < MAX_MON_MOVES; i++)
     {
-        if (moves[i] != MOVE_NONE && moves[i] != MOVE_UNAVAILABLE && gMovesInfo[moves[i]].criticalHitStage > 0)
+        if (moves[i] != MOVE_NONE && moves[i] != MOVE_UNAVAILABLE && GetMoveCriticalHitStage(moves[i]) > 0)
             return TRUE;
     }
 

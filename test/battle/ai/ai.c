@@ -785,7 +785,7 @@ AI_SINGLE_BATTLE_TEST("AI uses a guaranteed KO move instead of the move with the
     PARAMETRIZE { flags = AI_FLAG_CHECK_BAD_MOVE | AI_FLAG_CHECK_VIABILITY | AI_FLAG_TRY_TO_FAINT; }
 
     GIVEN {
-        ASSUME(gMovesInfo[MOVE_SLASH].criticalHitStage == 1);
+        ASSUME(GetMoveCriticalHitStage(MOVE_SLASH) == 1);
         ASSUME(GetMovePower(MOVE_SLASH) == 70);
         ASSUME(GetMovePower(MOVE_STRENGTH) == 80);
         ASSUME(GetMoveType(MOVE_SLASH) == GetMoveType(MOVE_STRENGTH));

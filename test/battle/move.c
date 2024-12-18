@@ -153,7 +153,7 @@ SINGLE_BATTLE_TEST("Slash's critical hits occur at a 1/8 rate")
     PASSES_RANDOMLY(1, 8, RNG_CRITICAL_HIT);
     GIVEN {
         ASSUME(B_CRIT_CHANCE >= GEN_7);
-        ASSUME(gMovesInfo[MOVE_SLASH].criticalHitStage == 1);
+        ASSUME(GetMoveCriticalHitStage(MOVE_SLASH) == 1);
         PLAYER(SPECIES_WOBBUFFET);
         OPPONENT(SPECIES_WOBBUFFET);
     } WHEN {
