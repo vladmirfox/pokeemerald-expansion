@@ -102,16 +102,23 @@ AI_SINGLE_BATTLE_TEST("AI will use Shed Tail to pivot to another mon while in da
 
 SINGLE_BATTLE_TEST("Shed Tail creates a Substitute with 1/4 of user maximum health")
 {
+    u32 hp;
+    PARAMETRIZE { hp = 160; }
+    PARAMETRIZE { hp = 164; }
+
     GIVEN {
-        ASSUME(gMovesInfo[MOVE_GUST].power == 40);
-        ASSUME(gMovesInfo[MOVE_GUST].type == TYPE_FLYING);
-        PLAYER(SPECIES_BULBASAUR);
+        ASSUME(gMovesInfo[MOVE_DRAGON_RAGE].argument == 40);
+        ASSUME(gMovesInfo[MOVE_DRAGON_RAGE].effect == EFFECT_FIXED_DAMAGE_ARG);
+        PLAYER(SPECIES_BULBASAUR) { MaxHP(hp); }
         PLAYER(SPECIES_BULBASAUR);
         OPPONENT(SPECIES_CHARMANDER);
     } WHEN {
-        TURN { MOVE(player, MOVE_SHED_TAIL); MOVE(opponent, MOVE_GUST); SEND_OUT(player, 1); }
+        TURN { MOVE(player, MOVE_SHED_TAIL); MOVE(opponent, MOVE_DRAGON_RAGE); SEND_OUT(player, 1); }
     } SCENE {
         ANIMATION(ANIM_TYPE_MOVE, MOVE_SHED_TAIL, player);
-        MESSAGE("Bulbasaur's substitute faded!");
+        if (hp == 160)
+            MESSAGE("Bulbasaur's substitute faded!");
+        else
+            NOT MESSAGE("Bulbasaur's substitute faded!");
     }
 }
