@@ -60,7 +60,7 @@ AI_SINGLE_BATTLE_TEST("Choiced Pokémon won't use stat boosting moves")
     }
 
     GIVEN {
-        ASSUME(gMovesInfo[MOVE_SWORDS_DANCE].target == MOVE_TARGET_USER);
+        ASSUME(GetMoveTarget(MOVE_SWORDS_DANCE) == MOVE_TARGET_USER);
         AI_FLAGS(AI_FLAG_CHECK_BAD_MOVE | AI_FLAG_CHECK_VIABILITY | AI_FLAG_TRY_TO_FAINT);
         PLAYER(SPECIES_RHYDON)
         OPPONENT(SPECIES_LOPUNNY) { Moves(MOVE_SWORDS_DANCE, MOVE_TACKLE); Item(heldItem); Ability(ability); }

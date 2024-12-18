@@ -661,7 +661,8 @@ static inline bool32 ShouldConsiderMoveForBattler(u32 battlerAi, u32 battlerDef,
 {
     if (battlerAi == BATTLE_PARTNER(battlerDef))
     {
-        if (gMovesInfo[move].target == MOVE_TARGET_BOTH || gMovesInfo[move].target == MOVE_TARGET_OPPONENTS_FIELD)
+        u32 target = GetMoveTarget(move);
+        if (target == MOVE_TARGET_BOTH || target == MOVE_TARGET_OPPONENTS_FIELD)
             return FALSE;
     }
     return TRUE;
@@ -3072,7 +3073,7 @@ static inline bool32 ShouldUseSpreadDamageMove(u32 battlerAtk, u32 move, u32 mov
     return (IsDoubleBattle()
          && noOfHitsToFaintPartner != 0 // Immunity check
          && IsBattlerAlive(partnerBattler)
-         && gMovesInfo[move].target == MOVE_TARGET_FOES_AND_ALLY
+         && GetMoveTarget(move) == MOVE_TARGET_FOES_AND_ALLY
          && !(noOfHitsToFaintPartner < 4 && hitsToFaintOpposingBattler == 1)
          && noOfHitsToFaintPartner < 7);
 }

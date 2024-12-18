@@ -42,7 +42,7 @@ DOUBLE_BATTLE_TEST("Ally Switch changes the position of battlers")
 {
     GIVEN {
         ASSUME(GetMoveEffect(MOVE_SCREECH) == EFFECT_DEFENSE_DOWN_2);
-        ASSUME(gMovesInfo[MOVE_SCREECH].target == MOVE_TARGET_SELECTED);
+        ASSUME(GetMoveTarget(MOVE_SCREECH) == MOVE_TARGET_SELECTED);
         PLAYER(SPECIES_WOBBUFFET) { Speed(5); } // Wobb is playerLeft, but it'll be Wynaut after Ally Switch
         PLAYER(SPECIES_WYNAUT) { Speed(4); }
         OPPONENT(SPECIES_KADABRA) { Speed(3); }

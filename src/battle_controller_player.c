@@ -686,7 +686,7 @@ void HandleInputChooseMove(u32 battler)
 
         // Status moves turn into Max Guard when Dynamaxed, targets user.
         if (GetActiveGimmick(battler) == GIMMICK_DYNAMAX || IsGimmickSelected(battler, GIMMICK_DYNAMAX))
-            moveTarget = gMovesInfo[GetMaxMove(battler, moveInfo->moves[gMoveSelectionCursor[battler]])].target;
+            moveTarget = GetMoveTarget(GetMaxMove(battler, moveInfo->moves[gMoveSelectionCursor[battler]]));
 
         if (moveTarget & MOVE_TARGET_USER)
             gMultiUsePlayerCursor = battler;
@@ -2048,7 +2048,8 @@ static void PlayerHandleChooseAction(u32 battler)
         StringCopy(gStringVar1, COMPOUND_STRING("Partner will use:\n"));
         u32 move = gBattleMons[B_POSITION_PLAYER_RIGHT].moves[*(gBattleStruct->chosenMovePositions + B_POSITION_PLAYER_RIGHT)];
         StringAppend(gStringVar1, GetMoveName(move));
-        if (gMovesInfo[move].target == MOVE_TARGET_SELECTED)
+        u32 moveTarget = GetMoveTarget(move);
+        if (moveTarget == MOVE_TARGET_SELECTED)
         {
             if (gBattleStruct->aiChosenTarget[B_POSITION_PLAYER_RIGHT] == B_POSITION_OPPONENT_LEFT)
                 StringAppend(gStringVar1, COMPOUND_STRING(" -{UP_ARROW}"));
@@ -2059,15 +2060,15 @@ static void PlayerHandleChooseAction(u32 battler)
             else if (gBattleStruct->aiChosenTarget[B_POSITION_PLAYER_RIGHT] == B_POSITION_PLAYER_RIGHT)
                 StringAppend(gStringVar1, COMPOUND_STRING(" {DOWN_ARROW}-"));
         }
-        else if (gMovesInfo[move].target == MOVE_TARGET_BOTH)
+        else if (moveTarget == MOVE_TARGET_BOTH)
         {
             StringAppend(gStringVar1, COMPOUND_STRING(" {UP_ARROW}{UP_ARROW}"));
         }
-        else if (gMovesInfo[move].target == MOVE_TARGET_FOES_AND_ALLY)
+        else if (moveTarget == MOVE_TARGET_FOES_AND_ALLY)
         {
             StringAppend(gStringVar1, COMPOUND_STRING(" {V_D_ARROW}{UP_ARROW}"));
         }
-        else if (gMovesInfo[move].target == MOVE_TARGET_ALL_BATTLERS)
+        else if (moveTarget == MOVE_TARGET_ALL_BATTLERS)
         {
             StringAppend(gStringVar1, COMPOUND_STRING(" {V_D_ARROW}{V_D_ARROW}"));
         }

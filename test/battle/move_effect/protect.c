@@ -325,9 +325,9 @@ DOUBLE_BATTLE_TEST("Wide Guard protects self and ally from multi-target moves")
     PARAMETRIZE { move = MOVE_HYPER_VOICE; } // 2 foes
 
     GIVEN {
-        ASSUME(gMovesInfo[MOVE_TACKLE].target == MOVE_TARGET_SELECTED);
-        ASSUME(gMovesInfo[MOVE_SURF].target == MOVE_TARGET_FOES_AND_ALLY);
-        ASSUME(gMovesInfo[MOVE_HYPER_VOICE].target == MOVE_TARGET_BOTH);
+        ASSUME(GetMoveTarget(MOVE_TACKLE) == MOVE_TARGET_SELECTED);
+        ASSUME(GetMoveTarget(MOVE_SURF) == MOVE_TARGET_FOES_AND_ALLY);
+        ASSUME(GetMoveTarget(MOVE_HYPER_VOICE) == MOVE_TARGET_BOTH);
         PLAYER(SPECIES_WOBBUFFET);
         PLAYER(SPECIES_WOBBUFFET);
         OPPONENT(SPECIES_WOBBUFFET);
@@ -364,7 +364,7 @@ DOUBLE_BATTLE_TEST("Wide Guard can not fail on consecutive turns")
 
     PASSES_RANDOMLY(2, 2);
     GIVEN {
-        ASSUME(gMovesInfo[MOVE_HYPER_VOICE].target == MOVE_TARGET_BOTH);
+        ASSUME(GetMoveTarget(MOVE_HYPER_VOICE) == MOVE_TARGET_BOTH);
         PLAYER(SPECIES_WOBBUFFET);
         PLAYER(SPECIES_WOBBUFFET);
         OPPONENT(SPECIES_WOBBUFFET);
@@ -457,8 +457,8 @@ DOUBLE_BATTLE_TEST("Crafty Shield protects self and ally from status moves")
     PARAMETRIZE { move = MOVE_TACKLE; targetOpponent = opponentRight; }
 
     GIVEN {
-        ASSUME(gMovesInfo[MOVE_LEER].target == MOVE_TARGET_BOTH);
-        ASSUME(gMovesInfo[MOVE_HYPER_VOICE].target == MOVE_TARGET_BOTH);
+        ASSUME(GetMoveTarget(MOVE_LEER) == MOVE_TARGET_BOTH);
+        ASSUME(GetMoveTarget(MOVE_HYPER_VOICE) == MOVE_TARGET_BOTH);
         ASSUME(GetMoveCategory(MOVE_HYPER_VOICE) == DAMAGE_CATEGORY_SPECIAL);
         PLAYER(SPECIES_WOBBUFFET);
         PLAYER(SPECIES_WOBBUFFET);
