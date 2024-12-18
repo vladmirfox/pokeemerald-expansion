@@ -161,6 +161,16 @@ static inline u32 GetMovePP(u32 moveId)
     return gMovesInfo[SanitizeMoveId(moveId)].pp;
 }
 
+static inline u32 GetMoveZEffect(u32 moveId)
+{
+    return gMovesInfo[SanitizeMoveId(moveId)].zMove.effect;
+}
+
+static inline u32 GetMoveZPowerOverride(u32 moveId)
+{
+    return gMovesInfo[SanitizeMoveId(moveId)].zMove.powerOverride;
+}
+
 static inline const u8 *GetMoveAnimationScript(u32 moveId)
 {
     moveId = SanitizeMoveId(moveId);

@@ -77,7 +77,7 @@ SINGLE_BATTLE_TEST("(Z-MOVE) Z-Moves deal 1/4 damage through protect", s16 damag
 SINGLE_BATTLE_TEST("(Z-MOVE) Z_EFFECT_RESET_STATS clears a battler's negative stat stages")
 {
     GIVEN {
-        ASSUME(gMovesInfo[MOVE_LEECH_SEED].zMove.effect == Z_EFFECT_RESET_STATS);
+        ASSUME(GetMoveZEffect(MOVE_LEECH_SEED) == Z_EFFECT_RESET_STATS);
         PLAYER(SPECIES_WOBBUFFET) { Item(ITEM_GRASSIUM_Z); }
         OPPONENT(SPECIES_WOBBUFFET);
     } WHEN {
@@ -97,7 +97,7 @@ SINGLE_BATTLE_TEST("(Z-MOVE) Z_EFFECT_ALL_STATS_UP raises all of a battler's sta
 {
     GIVEN {
         ASSUME(GetMoveType(MOVE_CELEBRATE) == TYPE_NORMAL);
-        ASSUME(gMovesInfo[MOVE_CELEBRATE].zMove.effect == Z_EFFECT_ALL_STATS_UP_1);
+        ASSUME(GetMoveZEffect(MOVE_CELEBRATE) == Z_EFFECT_ALL_STATS_UP_1);
         PLAYER(SPECIES_WOBBUFFET) { Item(ITEM_NORMALIUM_Z); }
         OPPONENT(SPECIES_WOBBUFFET);
     } WHEN {
@@ -119,7 +119,7 @@ SINGLE_BATTLE_TEST("(Z-MOVE) Z_EFFECT_BOOST_CRITS raises a battler's critical hi
     PASSES_RANDOMLY(1, 2, RNG_CRITICAL_HIT);
     GIVEN {
         ASSUME(GetMoveType(MOVE_FORESIGHT) == TYPE_NORMAL);
-        ASSUME(gMovesInfo[MOVE_FORESIGHT].zMove.effect == Z_EFFECT_BOOST_CRITS);
+        ASSUME(GetMoveZEffect(MOVE_FORESIGHT) == Z_EFFECT_BOOST_CRITS);
         PLAYER(SPECIES_WOBBUFFET) { Item(ITEM_NORMALIUM_Z); }
         OPPONENT(SPECIES_WOBBUFFET);
     } WHEN {
@@ -137,7 +137,7 @@ DOUBLE_BATTLE_TEST("(Z-MOVE) Z_EFFECT_FOLLOW_ME redirects attacks to the user")
 {
     GIVEN {
         ASSUME(GetMoveType(MOVE_DESTINY_BOND) == TYPE_GHOST);
-        ASSUME(gMovesInfo[MOVE_DESTINY_BOND].zMove.effect == Z_EFFECT_FOLLOW_ME);
+        ASSUME(GetMoveZEffect(MOVE_DESTINY_BOND) == Z_EFFECT_FOLLOW_ME);
         PLAYER(SPECIES_WOBBUFFET) { Item(ITEM_GHOSTIUM_Z); }
         PLAYER(SPECIES_WYNAUT);
         OPPONENT(SPECIES_WOBBUFFET);
@@ -158,7 +158,7 @@ SINGLE_BATTLE_TEST("(Z-MOVE) Z_EFFECT_RESTORE_REPLACEMENT_HP fully heals the rep
 {
     GIVEN {
         ASSUME(GetMoveType(MOVE_PARTING_SHOT) == TYPE_DARK);
-        ASSUME(gMovesInfo[MOVE_PARTING_SHOT].zMove.effect == Z_EFFECT_RESTORE_REPLACEMENT_HP);
+        ASSUME(GetMoveZEffect(MOVE_PARTING_SHOT) == Z_EFFECT_RESTORE_REPLACEMENT_HP);
         PLAYER(SPECIES_WOBBUFFET) { Item(ITEM_DARKINIUM_Z); }
         PLAYER(SPECIES_WYNAUT) { HP(1); }
         OPPONENT(SPECIES_WOBBUFFET);
@@ -185,7 +185,7 @@ SINGLE_BATTLE_TEST("(Z-MOVE) Z_EFFECT_CURSE activates Z_EFFECT_RECOVER_HP or Z_E
         ASSUME(gSpeciesInfo[SPECIES_WOBBUFFET].types[0] != TYPE_GHOST);
         ASSUME(gSpeciesInfo[SPECIES_WOBBUFFET].types[1] != TYPE_GHOST);
         ASSUME(gSpeciesInfo[SPECIES_DUSCLOPS].types[0] == TYPE_GHOST);
-        ASSUME(gMovesInfo[MOVE_CURSE].zMove.effect == Z_EFFECT_CURSE);
+        ASSUME(GetMoveZEffect(MOVE_CURSE) == Z_EFFECT_CURSE);
         PLAYER(species) { Item(ITEM_GHOSTIUM_Z); HP(1); }
         OPPONENT(SPECIES_WOBBUFFET);
     } WHEN {
@@ -219,7 +219,7 @@ SINGLE_BATTLE_TEST("(Z-MOVE) Z-Mirror Move raises the user's attack by two stage
 {
     GIVEN {
         ASSUME(GetMoveType(MOVE_MIRROR_MOVE) == TYPE_FLYING);
-        ASSUME(gMovesInfo[MOVE_MIRROR_MOVE].zMove.effect == Z_EFFECT_ATK_UP_2);
+        ASSUME(GetMoveZEffect(MOVE_MIRROR_MOVE) == Z_EFFECT_ATK_UP_2);
         PLAYER(SPECIES_WOBBUFFET) { Item(ITEM_FLYINIUM_Z); }
         OPPONENT(SPECIES_WOBBUFFET);
     } WHEN {
@@ -241,7 +241,7 @@ SINGLE_BATTLE_TEST("(Z-MOVE) Z-Mirror Move raises the user's attack by two stage
 {
     GIVEN {
         ASSUME(GetMoveType(MOVE_MIRROR_MOVE) == TYPE_FLYING);
-        ASSUME(gMovesInfo[MOVE_MIRROR_MOVE].zMove.effect == Z_EFFECT_ATK_UP_2);
+        ASSUME(GetMoveZEffect(MOVE_MIRROR_MOVE) == Z_EFFECT_ATK_UP_2);
         PLAYER(SPECIES_WOBBUFFET) { Item(ITEM_FLYINIUM_Z); }
         OPPONENT(SPECIES_WOBBUFFET);
     } WHEN {
@@ -260,7 +260,7 @@ SINGLE_BATTLE_TEST("(Z-MOVE) Z-Copycat raises the user's accuracy by one stage a
 {
     GIVEN {
         ASSUME(GetMoveType(MOVE_COPYCAT) == TYPE_NORMAL);
-        ASSUME(gMovesInfo[MOVE_COPYCAT].zMove.effect == Z_EFFECT_ACC_UP_1);
+        ASSUME(GetMoveZEffect(MOVE_COPYCAT) == Z_EFFECT_ACC_UP_1);
         PLAYER(SPECIES_WOBBUFFET) { Item(ITEM_NORMALIUM_Z); }
         OPPONENT(SPECIES_WOBBUFFET);
     } WHEN {
@@ -282,7 +282,7 @@ SINGLE_BATTLE_TEST("(Z-MOVE) Z-Me First raises the user's speed by two stages an
     PARAMETRIZE { meFirst = FALSE; }
     GIVEN {
         ASSUME(GetMoveType(MOVE_ME_FIRST) == TYPE_NORMAL);
-        ASSUME(gMovesInfo[MOVE_ME_FIRST].zMove.effect == Z_EFFECT_SPD_UP_2);
+        ASSUME(GetMoveZEffect(MOVE_ME_FIRST) == Z_EFFECT_SPD_UP_2);
         PLAYER(SPECIES_WOBBUFFET) { Item(ITEM_NORMALIUM_Z); }
         OPPONENT(SPECIES_WOBBUFFET);
     } WHEN {
@@ -437,7 +437,7 @@ SINGLE_BATTLE_TEST("(Z-MOVE) Powder blocks Fire type Z-Moves but not boosts gran
 {
     GIVEN {
         ASSUME(GetMoveType(MOVE_WILL_O_WISP) == TYPE_FIRE);
-        ASSUME(gMovesInfo[MOVE_WILL_O_WISP].zMove.effect == Z_EFFECT_ATK_UP_1);
+        ASSUME(GetMoveZEffect(MOVE_WILL_O_WISP) == Z_EFFECT_ATK_UP_1);
         PLAYER(SPECIES_WOBBUFFET) { Item(ITEM_FIRIUM_Z); }
         OPPONENT(SPECIES_VIVILLON);
     } WHEN {

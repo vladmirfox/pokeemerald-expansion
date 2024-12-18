@@ -278,7 +278,7 @@ bool32 MoveSelectionDisplayZMove(u16 zmove, u32 battler)
 
         if (IS_MOVE_STATUS(move))
         {
-            u8 zEffect = gMovesInfo[move].zMove.effect;
+            u8 zEffect = GetMoveZEffect(move);
 
             gDisplayedStringBattle[0] = EOS;
 
@@ -433,7 +433,7 @@ static void ZMoveSelectionDisplayMoveType(u16 zMove, u32 battler)
 void SetZEffect(void)
 {
     u32 i;
-    u32 effect = gMovesInfo[gBattleStruct->zmove.baseMoves[gBattlerAttacker]].zMove.effect;
+    u32 effect = GetMoveZEffect(gBattleStruct->zmove.baseMoves[gBattlerAttacker]);
 
     if (effect == Z_EFFECT_CURSE)
     {
@@ -547,21 +547,20 @@ u32 GetZMovePower(u32 move)
     if (GetMoveEffect(move) == EFFECT_OHKO)
         return 180;
 
-    if (gMovesInfo[move].zMove.powerOverride > 0)
-        return gMovesInfo[move].zMove.powerOverride;
-    else
-    {
-        u32 power = GetMovePower(move);
-        if      (power >= 140) return 200;
-        else if (power >= 130) return 195;
-        else if (power >= 120) return 190;
-        else if (power >= 110) return 185;
-        else if (power >= 100) return 180;
-        else if (power >= 90)  return 175;
-        else if (power >= 80)  return 160;
-        else if (power >= 70)  return 140;
-        else if (power >= 60)  return 120;
-        else                   return 100;
-    }
+    u32 power = GetMoveZPowerOverride(move);
+    if (power > 0)
+        return power;
+
+    power = GetMovePower(move);
+    if      (power >= 140) return 200;
+    else if (power >= 130) return 195;
+    else if (power >= 120) return 190;
+    else if (power >= 110) return 185;
+    else if (power >= 100) return 180;
+    else if (power >= 90)  return 175;
+    else if (power >= 80)  return 160;
+    else if (power >= 70)  return 140;
+    else if (power >= 60)  return 120;
+    else                   return 100;
 }
 
