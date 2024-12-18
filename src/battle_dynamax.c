@@ -370,7 +370,8 @@ u8 GetMaxMovePower(u32 move)
 
 static u8 GetMaxPowerTier(u32 move)
 {
-    if (gMovesInfo[move].strikeCount >= 2 && gMovesInfo[move].strikeCount <= 5)
+    u32 strikeCount = GetMoveStrikeCount(move);
+    if (strikeCount >= 2 && strikeCount <= 5)
     {
         switch(GetMovePower(move))
         {

@@ -3598,6 +3598,7 @@ u8 AtkCanceller_UnableToUseMove(u32 moveType)
         case CANCELLER_MULTIHIT_MOVES:
         {
             u32 moveEffect = GetMoveEffect(gCurrentMove);
+            u32 strikeCount = GetMoveStrikeCount(gCurrentMove);
             if (moveEffect == EFFECT_MULTI_HIT)
             {
                 u32 ability = GetBattlerAbility(gBattlerAttacker);
@@ -3619,7 +3620,7 @@ u8 AtkCanceller_UnableToUseMove(u32 moveType)
 
                 PREPARE_BYTE_NUMBER_BUFFER(gBattleScripting.multihitString, 1, 0)
             }
-            else if (gMovesInfo[gCurrentMove].strikeCount > 1)
+            else if (strikeCount > 1)
             {
                 if (moveEffect == EFFECT_POPULATION_BOMB && GetBattlerHoldEffect(gBattlerAttacker, TRUE) == HOLD_EFFECT_LOADED_DICE)
                 {
@@ -3627,7 +3628,7 @@ u8 AtkCanceller_UnableToUseMove(u32 moveType)
                 }
                 else
                 {
-                    gMultiHitCounter = gMovesInfo[gCurrentMove].strikeCount;
+                    gMultiHitCounter = strikeCount;
 
                     if (moveEffect == EFFECT_DRAGON_DARTS
                      && CanTargetPartner(gBattlerAttacker, gBattlerTarget)
@@ -8959,7 +8960,7 @@ static inline u32 CalcMoveBasePower(struct DamageCalculationData *damageCalcData
         basePower = gBattleStruct->presentBasePower;
         break;
     case EFFECT_TRIPLE_KICK:
-        basePower *= 1 + gMovesInfo[move].strikeCount - gMultiHitCounter;
+        basePower *= 1 + GetMoveStrikeCount(move) - gMultiHitCounter;
         break;
     case EFFECT_SPIT_UP:
         basePower = 100 * gDisableStructs[battlerAtk].stockpileCounter;
@@ -9492,7 +9493,7 @@ static inline u32 CalcMoveBasePowerAfterModifiers(struct DamageCalculationData *
         && (moveType == GetBattlerTeraType(battlerAtk)
         || (GetBattlerTeraType(battlerAtk) == TYPE_STELLAR && IsTypeStellarBoosted(battlerAtk, moveType)))
         && uq4_12_multiply_by_int_half_down(modifier, basePower) < 60
-        && gMovesInfo[move].strikeCount < 2
+        && GetMoveStrikeCount(move) < 2
         && moveEffect != EFFECT_MULTI_HIT
         && GetMovePriority(move) == 0)
     {

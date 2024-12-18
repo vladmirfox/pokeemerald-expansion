@@ -103,7 +103,7 @@ SINGLE_BATTLE_TEST("White Herb restores stats after all hits of a multi hit move
     PARAMETRIZE { species = SPECIES_DUGTRIO_ALOLA; ability = ABILITY_TANGLING_HAIR; }
 
     GIVEN {
-        ASSUME(gMovesInfo[MOVE_DUAL_WINGBEAT].strikeCount == 2);
+        ASSUME(GetMoveStrikeCount(MOVE_DUAL_WINGBEAT) == 2);
         PLAYER(SPECIES_WOBBUFFET) { Item(ITEM_WHITE_HERB); }
         OPPONENT(species) { Ability(ability); }
     } WHEN {

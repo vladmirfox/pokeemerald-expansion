@@ -623,10 +623,11 @@ static inline void CalcDynamicMoveDamage(struct DamageCalculationData *damageCal
     }
 
     // Handle other multi-strike moves
-    if (gMovesInfo[move].strikeCount > 1 && effect != EFFECT_TRIPLE_KICK)
+    u32 strikeCount = GetMoveStrikeCount(move);
+    if (strikeCount > 1 && effect != EFFECT_TRIPLE_KICK)
     {
-        expected *= gMovesInfo[move].strikeCount;
-        minimum *= gMovesInfo[move].strikeCount;
+        expected *= strikeCount;
+        minimum *= strikeCount;
     }
 
     if (expected == 0)
@@ -727,7 +728,7 @@ struct SimulatedDamage AI_CalcDamage(u32 move, u32 battlerAtk, u32 battlerDef, u
             s32 nonCritDmg = 0;
             if (moveEffect == EFFECT_TRIPLE_KICK)
             {
-                for (gMultiHitCounter = gMovesInfo[move].strikeCount; gMultiHitCounter > 0; gMultiHitCounter--) // The global is used to simulate actual damage done
+                for (gMultiHitCounter = GetMoveStrikeCount(move); gMultiHitCounter > 0; gMultiHitCounter--) // The global is used to simulate actual damage done
                 {
                     nonCritDmg += CalculateMoveDamageVars(&damageCalcData, fixedBasePower,
                                                           effectivenessMultiplier, weather,
@@ -1149,7 +1150,7 @@ static bool32 CanEndureHit(u32 battler, u32 battlerTarget, u32 move)
     u32 effect = GetMoveEffect(move);
     if (!BATTLER_MAX_HP(battlerTarget) || effect == EFFECT_MULTI_HIT)
         return FALSE;
-    if (gMovesInfo[move].strikeCount > 1 && !(effect == EFFECT_DRAGON_DARTS && IsValidDoubleBattle(battlerTarget)))
+    if (GetMoveStrikeCount(move) > 1 && !(effect == EFFECT_DRAGON_DARTS && IsValidDoubleBattle(battlerTarget)))
         return FALSE;
     if (AI_DATA->holdEffects[battlerTarget] == HOLD_EFFECT_FOCUS_SASH)
         return TRUE;

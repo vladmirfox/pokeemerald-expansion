@@ -181,6 +181,11 @@ static inline u32 GetMoveRecoil(u32 moveId)
     return gMovesInfo[SanitizeMoveId(moveId)].recoil;
 }
 
+static inline u32 GetMoveStrikeCount(u32 moveId)
+{
+    return gMovesInfo[SanitizeMoveId(moveId)].strikeCount;
+}
+
 static inline const u8 *GetMoveAnimationScript(u32 moveId)
 {
     moveId = SanitizeMoveId(moveId);

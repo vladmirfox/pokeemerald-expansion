@@ -5,7 +5,7 @@ SINGLE_BATTLE_TEST("Parental Bond converts Tackle into a two-strike move")
 {
     GIVEN {
         ASSUME(GetMoveCategory(MOVE_TACKLE) != DAMAGE_CATEGORY_STATUS);
-        ASSUME(gMovesInfo[MOVE_TACKLE].strikeCount < 2);
+        ASSUME(GetMoveStrikeCount(MOVE_TACKLE) < 2);
         ASSUME(GetMoveEffect(MOVE_TACKLE) == EFFECT_HIT);
         PLAYER(SPECIES_KANGASKHAN) { Item(ITEM_KANGASKHANITE); }
         OPPONENT(SPECIES_WOBBUFFET);
@@ -28,7 +28,7 @@ SINGLE_BATTLE_TEST("Parental Bond does not convert a move with three or more str
 {
     GIVEN {
         ASSUME(GetMoveCategory(MOVE_TRIPLE_KICK) != DAMAGE_CATEGORY_STATUS);
-        ASSUME(gMovesInfo[MOVE_TRIPLE_KICK].strikeCount == 3);
+        ASSUME(GetMoveStrikeCount(MOVE_TRIPLE_KICK) == 3);
         PLAYER(SPECIES_KANGASKHAN) { Item(ITEM_KANGASKHANITE); }
         OPPONENT(SPECIES_WOBBUFFET);
     } WHEN {
@@ -54,9 +54,9 @@ SINGLE_BATTLE_TEST("Parental Bond converts multi-target moves into a two-strike 
     PARAMETRIZE { move = MOVE_ICY_WIND; }
 
     GIVEN {
-        ASSUME(gMovesInfo[MOVE_EARTHQUAKE].strikeCount < 2);
+        ASSUME(GetMoveStrikeCount(MOVE_EARTHQUAKE) < 2);
         ASSUME(GetMoveTarget(MOVE_EARTHQUAKE) == MOVE_TARGET_FOES_AND_ALLY);
-        ASSUME(gMovesInfo[MOVE_ICY_WIND].strikeCount < 2);
+        ASSUME(GetMoveStrikeCount(MOVE_ICY_WIND) < 2);
         ASSUME(GetMoveTarget(MOVE_ICY_WIND) == MOVE_TARGET_BOTH);
         PLAYER(SPECIES_KANGASKHAN) { Item(ITEM_KANGASKHANITE); }
         OPPONENT(SPECIES_WOBBUFFET);
@@ -78,7 +78,7 @@ SINGLE_BATTLE_TEST("Parental Bond converts multi-target moves into a two-strike 
 DOUBLE_BATTLE_TEST("Parental Bond does not convert multi-target moves into a two-strike move in Double Battles, even if it only damages one")
 {
     GIVEN {
-        ASSUME(gMovesInfo[MOVE_EARTHQUAKE].strikeCount < 2);
+        ASSUME(GetMoveStrikeCount(MOVE_EARTHQUAKE) < 2);
         ASSUME(GetMoveTarget(MOVE_EARTHQUAKE) == MOVE_TARGET_FOES_AND_ALLY);
         ASSUME(gSpeciesInfo[SPECIES_PIDGEY].types[1] == TYPE_FLYING);
         PLAYER(SPECIES_KANGASKHAN) { Item(ITEM_KANGASKHANITE); }
@@ -109,7 +109,7 @@ SINGLE_BATTLE_TEST("Parental Bond-converted moves only hit once on Lightning Rod
     PARAMETRIZE { move = MOVE_THUNDERBOLT; ability = ABILITY_LIGHTNING_ROD; species = SPECIES_RAICHU; type = TYPE_ELECTRIC; }
     PARAMETRIZE { move = MOVE_SURF; ability = ABILITY_STORM_DRAIN; species = SPECIES_LILEEP; type = TYPE_WATER; }
     GIVEN {
-        ASSUME(gMovesInfo[move].strikeCount < 2);
+        ASSUME(GetMoveStrikeCount(move) < 2);
         ASSUME(GetMoveType(move) == type);
         PLAYER(SPECIES_KANGASKHAN) { Item(ITEM_KANGASKHANITE); }
         OPPONENT(species) { Ability(ability); }
@@ -243,7 +243,7 @@ SINGLE_BATTLE_TEST("Parental Bond Smack Down effect triggers after 2nd hit")
 {
     GIVEN {
         ASSUME(GetMoveCategory(MOVE_SMACK_DOWN) != DAMAGE_CATEGORY_STATUS);
-        ASSUME(gMovesInfo[MOVE_SMACK_DOWN].strikeCount < 2);
+        ASSUME(GetMoveStrikeCount(MOVE_SMACK_DOWN) < 2);
         ASSUME(MoveHasAdditionalEffect(MOVE_SMACK_DOWN, MOVE_EFFECT_SMACK_DOWN));
         PLAYER(SPECIES_KANGASKHAN) { Item(ITEM_KANGASKHANITE); }
         OPPONENT(SPECIES_SKARMORY);
