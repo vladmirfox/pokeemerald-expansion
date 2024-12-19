@@ -106,6 +106,7 @@ SINGLE_BATTLE_TEST("Thief and Covet don't steal target's held item if target has
     }
 }
 
+// Test can't currently verify if the item is sent to Bag
 WILD_BATTLE_TEST("Thief and Covet steal target's held item and it's added to Bag in wild battles (Gen 9)")
 {
     u32 move;
