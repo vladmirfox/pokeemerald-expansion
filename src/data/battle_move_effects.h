@@ -1811,12 +1811,6 @@ const struct BattleMoveEffect gBattleMoveEffects[NUM_BATTLE_MOVE_EFFECTS] =
         .battleTvScore = 0, // TODO: Assign points
     },
 
-    [EFFECT_EERIE_SPELL] =
-    {
-        .battleScript = BattleScript_EffectEerieSpell,
-        .battleTvScore = 0, // TODO: Assign points
-    },
-
     [EFFECT_JUNGLE_HEALING] =
     {
         .battleScript = BattleScript_EffectJungleHealing,
@@ -2080,12 +2074,6 @@ const struct BattleMoveEffect gBattleMoveEffects[NUM_BATTLE_MOVE_EFFECTS] =
     [EFFECT_POPULATION_BOMB] =
     {
         .battleScript = BattleScript_EffectHit,
-        .battleTvScore = 0, // TODO: Assign points
-    },
-
-    [EFFECT_SALT_CURE] =
-    {
-        .battleScript = BattleScript_EffectSaltCure,
         .battleTvScore = 0, // TODO: Assign points
     },
 
