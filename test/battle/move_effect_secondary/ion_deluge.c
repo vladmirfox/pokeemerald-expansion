@@ -3,7 +3,7 @@
 
 ASSUMPTIONS
 {
-    ASSUME(MoveHasAdditionalEffect(MOVE_PLASMA_FISTS, MOVE_EFFECT_ION_DELUGE) == TRUE);
+    ASSUME(MoveHasAdditionalEffectSelf(MOVE_PLASMA_FISTS, MOVE_EFFECT_ION_DELUGE) == TRUE);
 }
 
 SINGLE_BATTLE_TEST("Ion Duldge turns normal moves into electric for the remainder of the current turn")
