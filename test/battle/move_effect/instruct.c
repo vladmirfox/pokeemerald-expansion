@@ -79,7 +79,7 @@ DOUBLE_BATTLE_TEST("Instruct doesn't bypass sleep")
 DOUBLE_BATTLE_TEST("Instruct fails if target doesn't know the last move it used")
 {
     GIVEN {
-        ASSUME(gMovesInfo[MOVE_DRAGON_DANCE].danceMove == TRUE);
+        ASSUME(IsDanceMove(MOVE_DRAGON_DANCE));
         PLAYER(SPECIES_WOBBUFFET);
         PLAYER(SPECIES_ORICORIO) { Moves(MOVE_TACKLE, MOVE_POUND, MOVE_SCRATCH, MOVE_CELEBRATE); }
         OPPONENT(SPECIES_WOBBUFFET);

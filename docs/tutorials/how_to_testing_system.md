@@ -78,7 +78,7 @@ This can again be translated as follows:
 SINGLE_BATTLE_TEST("Stun Spore does not affect Grass-types")
 {
     GIVEN {
-        ASSUME(gMovesInfo[MOVE_STUN_SPORE].powderMove);
+        ASSUME(IsPowderMove(MOVE_STUN_SPORE));
         ASSUME(gSpeciesInfo[SPECIES_ODDISH].types[0] == TYPE_GRASS);
         PLAYER(SPECIES_ODDISH); // 1.
         OPPONENT(SPECIES_ODDISH); // 2.

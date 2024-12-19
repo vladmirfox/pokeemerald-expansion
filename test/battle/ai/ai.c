@@ -819,8 +819,8 @@ AI_SINGLE_BATTLE_TEST("AI stays choice locked into moves in spite of the player'
     GIVEN {
         ASSUME(gItemsInfo[ITEM_CHOICE_BAND].holdEffect == HOLD_EFFECT_CHOICE_BAND);
         ASSUME(GetMovePriority(MOVE_QUICK_ATTACK) == 1);
-        ASSUME(gMovesInfo[MOVE_BOOMBURST].soundMove == TRUE);
-        ASSUME(gMovesInfo[MOVE_BULLET_SEED].ballisticMove == TRUE);
+        ASSUME(IsSoundMove(MOVE_BOOMBURST));
+        ASSUME(IsBallisticMove(MOVE_BULLET_SEED));
         ASSUME(GetMoveCategory(MOVE_TAIL_WHIP) == DAMAGE_CATEGORY_STATUS);
         AI_FLAGS(AI_FLAG_CHECK_BAD_MOVE | AI_FLAG_CHECK_VIABILITY | AI_FLAG_TRY_TO_FAINT);
         PLAYER(SPECIES_WOBBUFFET);

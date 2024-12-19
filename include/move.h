@@ -221,6 +221,46 @@ static inline bool32 MoveCanSnatched(u32 moveId)
     return gMovesInfo[SanitizeMoveId(moveId)].snatchAffected;
 }
 
+static inline bool32 MoveIgnoresKingsRock(u32 moveId)
+{
+    return gMovesInfo[SanitizeMoveId(moveId)].ignoresKingsRock;
+}
+
+static inline bool32 IsPunchingMove(u32 moveId)
+{
+    return gMovesInfo[SanitizeMoveId(moveId)].punchingMove;
+}
+
+static inline bool32 IsBitingMove(u32 moveId)
+{
+    return gMovesInfo[SanitizeMoveId(moveId)].bitingMove;
+}
+
+static inline bool32 IsPulseMove(u32 moveId)
+{
+    return gMovesInfo[SanitizeMoveId(moveId)].pulseMove;
+}
+
+static inline bool32 IsSoundMove(u32 moveId)
+{
+    return gMovesInfo[SanitizeMoveId(moveId)].soundMove;
+}
+
+static inline bool32 IsBallisticMove(u32 moveId)
+{
+    return gMovesInfo[SanitizeMoveId(moveId)].ballisticMove;
+}
+
+static inline bool32 IsPowderMove(u32 moveId)
+{
+    return gMovesInfo[SanitizeMoveId(moveId)].powderMove;
+}
+
+static inline bool32 IsDanceMove(u32 moveId)
+{
+    return gMovesInfo[SanitizeMoveId(moveId)].danceMove;
+}
+
 static inline const u8 *GetMoveAnimationScript(u32 moveId)
 {
     moveId = SanitizeMoveId(moveId);

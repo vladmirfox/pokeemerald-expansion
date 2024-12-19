@@ -1183,7 +1183,7 @@ u32 TrySetCantSelectMoveBattleScript(u32 battler)
         }
     }
 
-    if (DYNAMAX_BYPASS_CHECK && GetActiveGimmick(gBattlerAttacker) != GIMMICK_Z_MOVE && gDisableStructs[battler].throatChopTimer != 0 && gMovesInfo[move].soundMove)
+    if (DYNAMAX_BYPASS_CHECK && GetActiveGimmick(gBattlerAttacker) != GIMMICK_Z_MOVE && gDisableStructs[battler].throatChopTimer != 0 && IsSoundMove(move))
     {
         gCurrentMove = move;
         if (gBattleTypeFlags & BATTLE_TYPE_PALACE)
@@ -1423,7 +1423,7 @@ u8 CheckMoveLimitations(u32 battler, u8 unusableMoves, u16 check)
         else if (check & MOVE_LIMITATION_BELCH && IsBelchPreventingMove(battler, move))
             unusableMoves |= 1u << i;
         // Throat Chop
-        else if (check & MOVE_LIMITATION_THROAT_CHOP && gDisableStructs[battler].throatChopTimer && gMovesInfo[move].soundMove)
+        else if (check & MOVE_LIMITATION_THROAT_CHOP && gDisableStructs[battler].throatChopTimer && IsSoundMove(move))
             unusableMoves |= 1u << i;
         // Stuff Cheeks
         else if (check & MOVE_LIMITATION_STUFF_CHEEKS && moveEffect == EFFECT_STUFF_CHEEKS && ItemId_GetPocket(gBattleMons[battler].item) != POCKET_BERRIES)
@@ -3489,7 +3489,7 @@ u8 AtkCanceller_UnableToUseMove(u32 moveType)
             gBattleStruct->atkCancellerTracker++;
             break;
         case CANCELLER_POWDER_MOVE:
-            if ((gMovesInfo[gCurrentMove].powderMove) && (gBattlerAttacker != gBattlerTarget))
+            if ((IsPowderMove(gCurrentMove)) && (gBattlerAttacker != gBattlerTarget))
             {
                 if (B_POWDER_GRASS >= GEN_6
                     && (IS_BATTLER_OF_TYPE(gBattlerTarget, TYPE_GRASS) || GetBattlerAbility(gBattlerTarget) == ABILITY_OVERCOAT))
@@ -3532,7 +3532,7 @@ u8 AtkCanceller_UnableToUseMove(u32 moveType)
             gBattleStruct->atkCancellerTracker++;
             break;
         case CANCELLER_THROAT_CHOP:
-            if (GetActiveGimmick(gBattlerAttacker) != GIMMICK_Z_MOVE && gDisableStructs[gBattlerAttacker].throatChopTimer && gMovesInfo[gCurrentMove].soundMove)
+            if (GetActiveGimmick(gBattlerAttacker) != GIMMICK_Z_MOVE && gDisableStructs[gBattlerAttacker].throatChopTimer && IsSoundMove(gCurrentMove))
             {
                 gProtectStructs[gBattlerAttacker].usedThroatChopPreventedMove = TRUE;
                 CancelMultiTurnMoves(gBattlerAttacker);
@@ -4124,11 +4124,11 @@ u32 CanAbilityBlockMove(u32 battlerAtk, u32 battlerDef, u32 move, u32 abilityDef
     switch (abilityDef)
     {
     case ABILITY_SOUNDPROOF:
-        if (gMovesInfo[move].soundMove && !(GetBattlerMoveTargetType(battlerAtk, move) & MOVE_TARGET_USER))
+        if (IsSoundMove(move) && !(GetBattlerMoveTargetType(battlerAtk, move) & MOVE_TARGET_USER))
             effect = MOVE_BLOCKED_BY_SOUNDPROOF_OR_BULLETPROOF;
         break;
     case ABILITY_BULLETPROOF:
-        if (gMovesInfo[move].ballisticMove)
+        if (IsBallisticMove(move))
             effect = MOVE_BLOCKED_BY_SOUNDPROOF_OR_BULLETPROOF;
         break;
     case ABILITY_DAZZLING:
@@ -6149,7 +6149,7 @@ u32 AbilityBattleEffects(u32 caseID, u32 battler, u32 ability, u32 special, u32 
         {
         case ABILITY_DANCER:
             if (IsBattlerAlive(battler)
-             && (gMovesInfo[gCurrentMove].danceMove)
+             && IsDanceMove(gCurrentMove)
              && !gSpecialStatuses[battler].dancerUsedMove
              && gBattlerAttacker != battler)
             {
@@ -8005,7 +8005,7 @@ u32 ItemBattleEffects(enum ItemEffect caseID, u32 battler, bool32 moveTurn)
                 if (gBattleStruct->moveDamage[battler] != 0  // Need to have done damage
                     && MoveResultHasEffect(gBattlerTarget)
                     && TARGET_TURN_DAMAGED
-                    && !gMovesInfo[gCurrentMove].ignoresKingsRock
+                    && !MoveIgnoresKingsRock(gCurrentMove)
                     && gBattleMons[gBattlerTarget].hp
                     && RandomPercentage(RNG_HOLD_EFFECT_FLINCH, atkHoldEffectParam)
                     && ability != ABILITY_STENCH)
@@ -8075,7 +8075,7 @@ u32 ItemBattleEffects(enum ItemEffect caseID, u32 battler, bool32 moveTurn)
         case HOLD_EFFECT_THROAT_SPRAY:  // Does NOT need to be a damaging move
             if (gProtectStructs[gBattlerAttacker].targetAffected
              && IsBattlerAlive(gBattlerAttacker)
-             && gMovesInfo[gCurrentMove].soundMove
+             && IsSoundMove(gCurrentMove)
              && CompareStat(gBattlerAttacker, STAT_SPATK, MAX_STAT_STAGE, CMP_LESS_THAN)
              && !NoAliveMonsForEitherParty())   // Don't activate if battle will end
             {
@@ -8596,7 +8596,7 @@ bool32 IsMoveMakingContact(u32 move, u32 battlerAtk)
         else
             return FALSE;
     }
-    else if ((atkHoldEffect == HOLD_EFFECT_PUNCHING_GLOVE && gMovesInfo[move].punchingMove)
+    else if ((atkHoldEffect == HOLD_EFFECT_PUNCHING_GLOVE && IsPunchingMove(move))
            || GetBattlerAbility(battlerAtk) == ABILITY_LONG_REACH)
     {
         return FALSE;
@@ -9267,7 +9267,7 @@ static inline u32 CalcMoveBasePowerAfterModifiers(struct DamageCalculationData *
            modifier = uq4_12_multiply(modifier, UQ_4_12(1.2));
         break;
     case ABILITY_IRON_FIST:
-        if (gMovesInfo[move].punchingMove)
+        if (IsPunchingMove(move))
            modifier = uq4_12_multiply(modifier, UQ_4_12(1.2));
         break;
     case ABILITY_SHEER_FORCE:
@@ -9294,11 +9294,11 @@ static inline u32 CalcMoveBasePowerAfterModifiers(struct DamageCalculationData *
            modifier = uq4_12_multiply(modifier, UQ_4_12(1.3));
         break;
     case ABILITY_STRONG_JAW:
-        if (gMovesInfo[move].bitingMove)
+        if (IsBitingMove(move))
            modifier = uq4_12_multiply(modifier, UQ_4_12(1.5));
         break;
     case ABILITY_MEGA_LAUNCHER:
-        if (gMovesInfo[move].pulseMove)
+        if (IsPulseMove(move))
            modifier = uq4_12_multiply(modifier, UQ_4_12(1.5));
         break;
     case ABILITY_WATER_BUBBLE:
@@ -9330,7 +9330,7 @@ static inline u32 CalcMoveBasePowerAfterModifiers(struct DamageCalculationData *
             modifier = uq4_12_multiply(modifier, UQ_4_12(1.2));
         break;
     case ABILITY_PUNK_ROCK:
-        if (gMovesInfo[move].soundMove)
+        if (IsSoundMove(move))
             modifier = uq4_12_multiply(modifier, UQ_4_12(1.3));
         break;
     case ABILITY_STEELY_SPIRIT:
@@ -9479,7 +9479,7 @@ static inline u32 CalcMoveBasePowerAfterModifiers(struct DamageCalculationData *
             modifier = uq4_12_multiply(modifier, holdEffectModifier);
         break;
     case HOLD_EFFECT_PUNCHING_GLOVE:
-        if (gMovesInfo[move].punchingMove)
+        if (IsPunchingMove(move))
            modifier = uq4_12_multiply(modifier, UQ_4_12(1.1));
         break;
     case HOLD_EFFECT_OGERPON_MASK:
@@ -10134,7 +10134,7 @@ static inline uq4_12_t GetDefenderAbilitiesModifier(u32 move, u32 moveType, u32 
             return UQ_4_12(0.5);
         break;
     case ABILITY_PUNK_ROCK:
-        if (gMovesInfo[move].soundMove)
+        if (IsSoundMove(move))
             return UQ_4_12(0.5);
         break;
     case ABILITY_ICE_SCALES:

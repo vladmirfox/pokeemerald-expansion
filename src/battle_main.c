@@ -6054,7 +6054,7 @@ u32 GetDynamicMoveType(struct Pokemon *mon, u32 move, u32 battler, u8 *ateBoost)
             *ateBoost = TRUE;
         return TYPE_NORMAL;
     }
-    else if (gMovesInfo[move].soundMove && ability == ABILITY_LIQUID_VOICE)
+    else if (IsSoundMove(move) && ability == ABILITY_LIQUID_VOICE)
     {
         return TYPE_WATER;
     }
