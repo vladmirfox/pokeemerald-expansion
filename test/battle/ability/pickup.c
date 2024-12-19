@@ -26,6 +26,7 @@ SINGLE_BATTLE_TEST("Pickup grants an item used by another Pokémon")
 WILD_BATTLE_TEST("Pickup grants an item used by itself in wild battles (Gen 9)")
 {
     GIVEN {
+        ASSUME(B_PICKUP_WILD >= GEN_9);
         PLAYER(SPECIES_ZIGZAGOON) { Ability(ABILITY_PICKUP); MaxHP(100); HP(51); Item(ITEM_SITRUS_BERRY); }
         OPPONENT(SPECIES_WOBBUFFET);
     } WHEN {
