@@ -201,6 +201,11 @@ static inline u32 GetMoveAdditionalEffectCount(u32 moveId)
     return gMovesInfo[SanitizeMoveId(moveId)].numAdditionalEffects;
 }
 
+static inline bool32 MoveMakesContact(u32 moveId)
+{
+    return gMovesInfo[SanitizeMoveId(moveId)].makesContact;
+}
+
 static inline const u8 *GetMoveAnimationScript(u32 moveId)
 {
     moveId = SanitizeMoveId(moveId);

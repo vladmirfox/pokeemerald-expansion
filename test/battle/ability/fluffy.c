@@ -3,10 +3,10 @@
 
 ASSUMPTIONS
 {
-    ASSUME(gMovesInfo[MOVE_TACKLE].makesContact);
+    ASSUME(MoveMakesContact(MOVE_TACKLE));
     ASSUME(GetMoveType(MOVE_EMBER) == TYPE_FIRE);
-    ASSUME(gMovesInfo[MOVE_TACKLE].makesContact);
-    ASSUME(gMovesInfo[MOVE_FIRE_PUNCH].makesContact);
+    ASSUME(MoveMakesContact(MOVE_TACKLE));
+    ASSUME(MoveMakesContact(MOVE_FIRE_PUNCH));
     ASSUME(GetMoveType(MOVE_FIRE_PUNCH) == TYPE_FIRE);
 }
 

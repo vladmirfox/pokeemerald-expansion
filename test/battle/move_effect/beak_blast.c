@@ -37,7 +37,7 @@ DOUBLE_BATTLE_TEST("Beak Blast burns all who make contact with the pokemon")
 {
     GIVEN {
         ASSUME(GetMovePriority(MOVE_BEAK_BLAST) < 0);
-        ASSUME(gMovesInfo[MOVE_TACKLE].makesContact);
+        ASSUME(MoveMakesContact(MOVE_TACKLE));
         PLAYER(SPECIES_WYNAUT) { Speed(10); }
         PLAYER(SPECIES_WOBBUFFET) { Speed(5); }
         OPPONENT(SPECIES_WOBBUFFET) { Speed(3); }
@@ -80,9 +80,9 @@ SINGLE_BATTLE_TEST("Beak Blast burns only when contact moves are used")
     PARAMETRIZE { move = MOVE_LEER; burn = FALSE; }
 
     GIVEN {
-        ASSUME(gMovesInfo[MOVE_TACKLE].makesContact);
-        ASSUME(!gMovesInfo[MOVE_WATER_GUN].makesContact);
-        ASSUME(!gMovesInfo[MOVE_LEER].makesContact);
+        ASSUME(MoveMakesContact(MOVE_TACKLE));
+        ASSUME(!MoveMakesContact(MOVE_WATER_GUN));
+        ASSUME(!MoveMakesContact(MOVE_LEER));
         PLAYER(SPECIES_WOBBUFFET);
         OPPONENT(SPECIES_WOBBUFFET);
     } WHEN {

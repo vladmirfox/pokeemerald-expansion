@@ -14,10 +14,10 @@ ASSUMPTIONS
     ASSUME(GetMoveEffect(MOVE_BANEFUL_BUNKER) == EFFECT_PROTECT);
     ASSUME(GetMoveEffect(MOVE_BURNING_BULWARK) == EFFECT_PROTECT);
     ASSUME(GetMoveCategory(MOVE_TACKLE) == DAMAGE_CATEGORY_PHYSICAL);
-    ASSUME(gMovesInfo[MOVE_TACKLE].makesContact);
+    ASSUME(MoveMakesContact(MOVE_TACKLE));
     ASSUME(GetMoveCategory(MOVE_LEER) == DAMAGE_CATEGORY_STATUS);
     ASSUME(GetMoveCategory(MOVE_WATER_GUN) == DAMAGE_CATEGORY_SPECIAL);
-    ASSUME(!(gMovesInfo[MOVE_WATER_GUN].makesContact));
+    ASSUME(!(MoveMakesContact(MOVE_WATER_GUN)));
 }
 
 SINGLE_BATTLE_TEST("Protect, Detect, Spiky Shield, Baneful Bunker and Burning Bulwark protect from all moves")

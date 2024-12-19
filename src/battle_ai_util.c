@@ -996,9 +996,11 @@ s32 AI_WhichMoveBetter(u32 move1, u32 move2, u32 battlerAtk, u32 battlerDef, s32
         && (AI_DATA->holdEffects[battlerDef] == HOLD_EFFECT_ROCKY_HELMET
         || defAbility == ABILITY_IRON_BARBS || defAbility == ABILITY_ROUGH_SKIN))
     {
-        if (gMovesInfo[move1].makesContact && !gMovesInfo[move2].makesContact)
+        bool32 moveContact1 = MoveMakesContact(move1);
+        bool32 moveContact2 = MoveMakesContact(move2);
+        if (moveContact1 && !moveContact2)
             return -1;
-        if (gMovesInfo[move2].makesContact && !gMovesInfo[move1].makesContact)
+        if (moveContact2 && !moveContact1)
             return 1;
     }
 
@@ -3980,7 +3982,7 @@ void IncreaseFrostbiteScore(u32 battlerAtk, u32 battlerDef, u32 move, s32 *score
 
 bool32 AI_MoveMakesContact(u32 ability, u32 holdEffect, u32 move)
 {
-    if (gMovesInfo[move].makesContact
+    if (MoveMakesContact(move)
       && ability != ABILITY_LONG_REACH
       && holdEffect != HOLD_EFFECT_PROTECTIVE_PADS)
         return TRUE;

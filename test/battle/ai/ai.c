@@ -761,8 +761,8 @@ AI_SINGLE_BATTLE_TEST("AI avoids contact moves against rocky helmet")
     PARAMETRIZE { item = ITEM_ROCKY_HELMET; }
 
     GIVEN {
-        ASSUME(gMovesInfo[MOVE_BRANCH_POKE].makesContact);
-        ASSUME(!gMovesInfo[MOVE_LEAFAGE].makesContact);
+        ASSUME(MoveMakesContact(MOVE_BRANCH_POKE));
+        ASSUME(!MoveMakesContact(MOVE_LEAFAGE));
         ASSUME(GetMovePower(MOVE_BRANCH_POKE) == GetMovePower(MOVE_LEAFAGE));
         ASSUME(GetMoveType(MOVE_BRANCH_POKE) == GetMoveType(MOVE_LEAFAGE));
         ASSUME(GetMoveCategory(MOVE_BRANCH_POKE) == GetMoveCategory(MOVE_LEAFAGE));
