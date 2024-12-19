@@ -3,9 +3,9 @@
 
 ASSUMPTIONS
 {
-    ASSUME(gMovesInfo[MOVE_SUNSTEEL_STRIKE].ignoresTargetAbility);
-    ASSUME(gMovesInfo[MOVE_MOONGEIST_BEAM].ignoresTargetAbility);
-    ASSUME(gMovesInfo[MOVE_PHOTON_GEYSER].ignoresTargetAbility);
+    ASSUME(MoveIgnoresTargetAbility(MOVE_SUNSTEEL_STRIKE));
+    ASSUME(MoveIgnoresTargetAbility(MOVE_MOONGEIST_BEAM));
+    ASSUME(MoveIgnoresTargetAbility(MOVE_PHOTON_GEYSER));
 }
 
 SINGLE_BATTLE_TEST("ignoresTargetAbility moves do not ignore the attacker's own ability", s16 damage)

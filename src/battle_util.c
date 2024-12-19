@@ -1111,7 +1111,7 @@ bool32 IsHealBlockPreventingMove(u32 battler, u32 move)
     if (!(gStatuses3[battler] & STATUS3_HEAL_BLOCK))
         return FALSE;
 
-    return gMovesInfo[move].healingMove;
+    return IsHealingMove(move);
 }
 
 bool32 IsBelchPreventingMove(u32 battler, u32 move)
@@ -4218,7 +4218,7 @@ u32 CanAbilityAbsorbMove(u32 battlerAtk, u32 battlerDef, u32 abilityDef, u32 mov
             effect = MOVE_ABSORBED_BY_STAT_INCREASE_ABILITY;
         break;
     case ABILITY_WIND_RIDER:
-        if (gMovesInfo[move].windMove && !(GetBattlerMoveTargetType(battlerAtk, move) & MOVE_TARGET_USER))
+        if (IsWindMove(move) && !(GetBattlerMoveTargetType(battlerAtk, move) & MOVE_TARGET_USER))
             effect = MOVE_ABSORBED_BY_STAT_INCREASE_ABILITY;
         break;
     case ABILITY_FLASH_FIRE:
@@ -6037,7 +6037,7 @@ u32 AbilityBattleEffects(u32 caseID, u32 battler, u32 ability, u32 special, u32 
             }
             break;
         case ABILITY_WIND_POWER:
-            if (!(gMovesInfo[gCurrentMove].windMove))
+            if (!IsWindMove(gCurrentMove))
                 break;
             // fall through
         case ABILITY_ELECTROMORPHOSIS:
@@ -6500,7 +6500,7 @@ bool32 IsMoldBreakerTypeAbility(u32 battler, u32 ability)
 
 static inline bool32 CanBreakThroughAbility(u32 battlerAtk, u32 battlerDef, u32 ability)
 {
-    return ((IsMoldBreakerTypeAbility(battlerAtk, ability) || gMovesInfo[gCurrentMove].ignoresTargetAbility)
+    return ((IsMoldBreakerTypeAbility(battlerAtk, ability) || MoveIgnoresTargetAbility(gCurrentMove))
          && battlerDef != battlerAtk
          && gAbilitiesInfo[gBattleMons[battlerDef].ability].breakable
          && gBattlerByTurnOrder[gCurrentTurnActionNumber] == battlerAtk
@@ -9338,7 +9338,7 @@ static inline u32 CalcMoveBasePowerAfterModifiers(struct DamageCalculationData *
             modifier = uq4_12_multiply(modifier, UQ_4_12(1.5));
         break;
     case ABILITY_SHARPNESS:
-        if (gMovesInfo[move].slicingMove)
+        if (IsSlicingMove(move))
            modifier = uq4_12_multiply(modifier, UQ_4_12(1.5));
         break;
     case ABILITY_SUPREME_OVERLORD:
@@ -10045,7 +10045,7 @@ static inline uq4_12_t GetZMaxMoveAgainstProtectionModifier(struct DamageCalcula
 
 static inline uq4_12_t GetMinimizeModifier(u32 move, u32 battlerDef)
 {
-    if (gMovesInfo[move].minimizeDoubleDamage && gStatuses3[battlerDef] & STATUS3_MINIMIZED)
+    if (MoveIncreasesPowerToMinimizedTargets(move) && gStatuses3[battlerDef] & STATUS3_MINIMIZED)
         return UQ_4_12(2.0);
     return UQ_4_12(1.0);
 }

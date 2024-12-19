@@ -1419,7 +1419,7 @@ bool32 DoesBattlerIgnoreAbilityChecks(u32 atkAbility, u32 move)
     if (AI_THINKING_STRUCT->aiFlags[sBattler_AI] & AI_FLAG_NEGATE_UNAWARE)
         return FALSE;   // AI handicap flag: doesn't understand ability suppression concept
 
-    if (IsMoldBreakerTypeAbility(sBattler_AI, atkAbility) || gMovesInfo[move].ignoresTargetAbility)
+    if (IsMoldBreakerTypeAbility(sBattler_AI, atkAbility) || MoveIgnoresTargetAbility(move))
         return TRUE;
 
     return FALSE;
@@ -1559,7 +1559,7 @@ bool32 IsMoveEncouragedToHit(u32 battlerAtk, u32 battlerDef, u32 move)
         return TRUE;
     if ((weather & (B_WEATHER_HAIL | B_WEATHER_SNOW)) && effect == EFFECT_BLIZZARD)
         return TRUE;
-    if (B_MINIMIZE_DMG_ACC >= GEN_6 && (gStatuses3[battlerDef] & STATUS3_MINIMIZED) && gMovesInfo[move].minimizeDoubleDamage)
+    if (B_MINIMIZE_DMG_ACC >= GEN_6 && (gStatuses3[battlerDef] & STATUS3_MINIMIZED) && MoveIncreasesPowerToMinimizedTargets(move))
         return TRUE;
     if (GetMoveAccuracy(move) == 0)
         return TRUE;
@@ -2194,11 +2194,6 @@ bool32 HasSleepMoveWithLowAccuracy(u32 battlerAtk, u32 battlerDef)
         }
     }
     return FALSE;
-}
-
-bool32 IsHealingMove(u32 move)
-{
-    return gMovesInfo[move].healingMove;
 }
 
 bool32 HasHealingEffect(u32 battlerId)
@@ -4005,11 +4000,11 @@ bool32 ShouldUseZMove(u32 battlerAtk, u32 battlerDef, u32 chosenMove)
         struct SimulatedDamage dmg;
 
         if (gBattleMons[battlerDef].ability == ABILITY_DISGUISE
-            && !gMovesInfo[zMove].ignoresTargetAbility
+            && !MoveIgnoresTargetAbility(zMove)
             && (gBattleMons[battlerDef].species == SPECIES_MIMIKYU_DISGUISED || gBattleMons[battlerDef].species == SPECIES_MIMIKYU_TOTEM_DISGUISED))
             return FALSE; // Don't waste a Z-Move busting disguise
         if (gBattleMons[battlerDef].ability == ABILITY_ICE_FACE
-            && !gMovesInfo[zMove].ignoresTargetAbility
+            && !MoveIgnoresTargetAbility(zMove)
             && gBattleMons[battlerDef].species == SPECIES_EISCUE_ICE && IS_MOVE_PHYSICAL(chosenMove))
             return FALSE; // Don't waste a Z-Move busting Ice Face
 

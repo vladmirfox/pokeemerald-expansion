@@ -4,7 +4,7 @@
 ASSUMPTIONS
 {
     ASSUME(GetMoveEffect(MOVE_TAILWIND) == EFFECT_TAILWIND);
-    ASSUME(gMovesInfo[MOVE_TAILWIND].windMove == TRUE);
+    ASSUME(IsWindMove(MOVE_TAILWIND));
 }
 
 SINGLE_BATTLE_TEST("Wind Rider raises Attack by one stage if it sets up Tailwind")
@@ -108,7 +108,7 @@ SINGLE_BATTLE_TEST("Wind Rider activates when it's no longer effected by Neutral
 SINGLE_BATTLE_TEST("Wind Rider absorbs Wind moves and raises Attack by one stage")
 {
     GIVEN {
-        ASSUME(gMovesInfo[MOVE_GUST].windMove == TRUE);
+        ASSUME(IsWindMove(MOVE_GUST));
         PLAYER(SPECIES_WOBBUFFET);
         OPPONENT(SPECIES_BRAMBLIN) { Ability(ABILITY_WIND_RIDER); }
     } WHEN {

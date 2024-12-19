@@ -1525,7 +1525,7 @@ static bool32 AccuracyCalcHelper(u32 move, u32 battler)
 
     if (B_MINIMIZE_DMG_ACC >= GEN_6
      && (gStatuses3[battler] & STATUS3_MINIMIZED)
-     && gMovesInfo[move].minimizeDoubleDamage)
+     && MoveIncreasesPowerToMinimizedTargets(move))
     {
         effect = TRUE;
     }
@@ -5976,7 +5976,7 @@ static void Cmd_moveend(void)
         case MOVEEND_ABSORB:
             if (moveEffect == EFFECT_ABSORB)
             {
-                if (gStatuses3[gBattlerAttacker] & STATUS3_HEAL_BLOCK && gMovesInfo[gCurrentMove].healingMove)
+                if (gStatuses3[gBattlerAttacker] & STATUS3_HEAL_BLOCK && IsHealingMove(gCurrentMove))
                 {
                     gBattleScripting.moveendState++;
                     break;

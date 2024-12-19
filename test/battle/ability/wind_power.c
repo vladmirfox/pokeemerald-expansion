@@ -8,11 +8,11 @@ ASSUMPTIONS
     ASSUME(GetMovePower(MOVE_TACKLE) != 0);
     ASSUME(GetMovePower(MOVE_AIR_CUTTER) != 0);
     ASSUME(GetMoveTarget(MOVE_AIR_CUTTER) == MOVE_TARGET_BOTH);
-    ASSUME(gMovesInfo[MOVE_AIR_CUTTER].windMove == TRUE);
+    ASSUME(IsWindMove(MOVE_AIR_CUTTER));
     ASSUME(GetMovePower(MOVE_PETAL_BLIZZARD) != 0);
     ASSUME(GetMoveTarget(MOVE_PETAL_BLIZZARD) == MOVE_TARGET_FOES_AND_ALLY);
-    ASSUME(gMovesInfo[MOVE_PETAL_BLIZZARD].windMove == TRUE);
-    ASSUME(gMovesInfo[MOVE_TACKLE].windMove == FALSE);
+    ASSUME(IsWindMove(MOVE_PETAL_BLIZZARD));
+    ASSUME(!IsWindMove(MOVE_TACKLE));
 }
 
 SINGLE_BATTLE_TEST("Wind Power sets up Charge for player when hit by a wind move")

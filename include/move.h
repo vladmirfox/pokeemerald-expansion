@@ -261,6 +261,31 @@ static inline bool32 IsDanceMove(u32 moveId)
     return gMovesInfo[SanitizeMoveId(moveId)].danceMove;
 }
 
+static inline bool32 IsWindMove(u32 moveId)
+{
+    return gMovesInfo[SanitizeMoveId(moveId)].windMove;
+}
+
+static inline bool32 IsSlicingMove(u32 moveId)
+{
+    return gMovesInfo[SanitizeMoveId(moveId)].slicingMove;
+}
+
+static inline bool32 IsHealingMove(u32 moveId)
+{
+    return gMovesInfo[SanitizeMoveId(moveId)].healingMove;
+}
+
+static inline bool32 MoveIncreasesPowerToMinimizedTargets(u32 moveId)
+{
+    return gMovesInfo[SanitizeMoveId(moveId)].minimizeDoubleDamage;
+}
+
+static inline bool32 MoveIgnoresTargetAbility(u32 moveId)
+{
+    return gMovesInfo[SanitizeMoveId(moveId)].ignoresTargetAbility;
+}
+
 static inline const u8 *GetMoveAnimationScript(u32 moveId)
 {
     moveId = SanitizeMoveId(moveId);

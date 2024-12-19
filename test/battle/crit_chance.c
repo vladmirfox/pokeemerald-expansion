@@ -43,7 +43,7 @@ SINGLE_BATTLE_TEST("Crit Chance: Flag ignoresTargetAbility ignores Battle Armor 
     PARAMETRIZE { species = SPECIES_ARMALDO; ability = ABILITY_BATTLE_ARMOR; }
 
     GIVEN {
-        ASSUME(gMovesInfo[MOVE_SUNSTEEL_STRIKE].ignoresTargetAbility == TRUE);
+        ASSUME(MoveIgnoresTargetAbility(MOVE_SUNSTEEL_STRIKE));
         PLAYER(SPECIES_WOBBUFFET);
         OPPONENT(species) { Ability(ability); }
     } WHEN {
