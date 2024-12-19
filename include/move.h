@@ -206,6 +206,21 @@ static inline bool32 MoveMakesContact(u32 moveId)
     return gMovesInfo[SanitizeMoveId(moveId)].makesContact;
 }
 
+static inline bool32 MoveIgnoresProtect(u32 moveId)
+{
+    return gMovesInfo[SanitizeMoveId(moveId)].ignoresProtect;
+}
+
+static inline bool32 MoveCanBeBouncedBack(u32 moveId)
+{
+    return gMovesInfo[SanitizeMoveId(moveId)].magicCoatAffected;
+}
+
+static inline bool32 MoveCanSnatched(u32 moveId)
+{
+    return gMovesInfo[SanitizeMoveId(moveId)].snatchAffected;
+}
+
 static inline const u8 *GetMoveAnimationScript(u32 moveId)
 {
     moveId = SanitizeMoveId(moveId);

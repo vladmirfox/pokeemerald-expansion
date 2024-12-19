@@ -8622,7 +8622,7 @@ bool32 IsBattlerProtected(u32 battlerAtk, u32 battlerDef, u32 move)
         isProtected = FALSE;
     else if (gSideStatuses[GetBattlerSide(battlerDef)] & SIDE_STATUS_CRAFTY_SHIELD && IS_MOVE_STATUS(move) && GetMoveEffect(move) != EFFECT_COACHING)
         isProtected = TRUE;
-    else if (gMovesInfo[move].ignoresProtect)
+    else if (MoveIgnoresProtect(move))
         isProtected = FALSE;
     else if (gProtectStructs[battlerDef].protected)
         isProtected = TRUE;

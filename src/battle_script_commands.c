@@ -1291,8 +1291,9 @@ static void Cmd_attackcanceler(void)
         return;
     }
 
+    u32 isBounceable = MoveCanBeBouncedBack(gCurrentMove);
     if (gProtectStructs[gBattlerTarget].bounceMove
-        && gMovesInfo[gCurrentMove].magicCoatAffected
+        && isBounceable
         && !gBattleStruct->bouncedMoveIsUsed)
     {
         gBattleStruct->bouncedMoveIsUsed = TRUE;
@@ -1313,7 +1314,7 @@ static void Cmd_attackcanceler(void)
         }
         return;
     }
-    else if (gMovesInfo[gCurrentMove].magicCoatAffected && !gBattleStruct->bouncedMoveIsUsed)
+    else if (isBounceable && !gBattleStruct->bouncedMoveIsUsed)
     {
         u32 battler = gBattlerTarget;
 
@@ -1351,7 +1352,7 @@ static void Cmd_attackcanceler(void)
 
     for (i = 0; i < gBattlersCount; i++)
     {
-        if ((gProtectStructs[gBattlerByTurnOrder[i]].stealMove) && gMovesInfo[gCurrentMove].snatchAffected)
+        if ((gProtectStructs[gBattlerByTurnOrder[i]].stealMove) && MoveCanSnatched(gCurrentMove))
         {
             gProtectStructs[gBattlerByTurnOrder[i]].stealMove = FALSE;
             gBattleStruct->snatchedMoveIsUsed = TRUE;

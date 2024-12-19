@@ -25,7 +25,7 @@ SINGLE_BATTLE_TEST("Jump Kick has 50% recoil on miss")
 SINGLE_BATTLE_TEST("Jump Kick has 50% recoil on protect")
 {
     GIVEN {
-        ASSUME(!gMovesInfo[MOVE_JUMP_KICK].ignoresProtect);
+        ASSUME(!MoveIgnoresProtect(MOVE_JUMP_KICK));
         PLAYER(SPECIES_WOBBUFFET);
         OPPONENT(SPECIES_WOBBUFFET);
     } WHEN {
