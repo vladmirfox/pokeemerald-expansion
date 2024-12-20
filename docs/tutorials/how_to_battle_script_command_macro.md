@@ -10,7 +10,7 @@ In general, `gBattlescriptCurrInstr` tracks the current battle script position a
 	.4byte \func
 	.endm
 ```
-`callnative` uses the last battle script command ID in order to pass a native function as an argument. Arguments are added recursively via a macro, so no need to worry about how they need to align to the amount of instructions to skip.
+`callnative` uses the last battle script command ID in order to pass a native function as an argument. Additional optional arguments are added recursively via a macro, so no need to worry about how they need to align to the amount of instructions to skip.
 
 Now, how might we add a custom `callnative` command? Here are the steps. We will use `BS_TrySetOctolock` as an example.
 ### 1. Create a macro in `asm/macros/battle_script.inc`. For example:
