@@ -33,10 +33,10 @@ enum DifficultyLevel GetTrainerDifficultyLevelTest(u16 trainerId)
 
 TEST("CreateNPCTrainerPartyForTrainer generates customized Pokémon")
 {
-    enum DifficultyLevel difficulty = GetCurrentDifficultyLevel();
+    u32 currTrainer = 0;
     struct Pokemon *testParty = Alloc(6 * sizeof(struct Pokemon));
     u8 nickBuffer[20];
-    CreateNPCTrainerPartyFromTrainer(testParty, &sTestTrainers[difficulty][0], TRUE, BATTLE_TYPE_TRAINER);
+    CreateNPCTrainerPartyFromTrainer(testParty, &sTestTrainers[GetTrainerDifficultyLevelTest(currTrainer)][currTrainer], TRUE, BATTLE_TYPE_TRAINER);
     EXPECT(IsMonShiny(&testParty[0]));
     EXPECT(!IsMonShiny(&testParty[1]));
 
