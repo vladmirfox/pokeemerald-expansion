@@ -1,6 +1,6 @@
 ## How to add new Battle Script Commands/Macros
 
-To preface this tutorial, the battle engine upgrade has exhausted all battle script command IDs. Historically, we've used the `various` command to effectively add new commands. However, this has caused issues of mantainability and readability due to the massive switch needed for it. Thanks to the cleanup made by the team and contributors, we now are able to call an infinite amount of commands by using `callnative`, This is preferential to creating a secondary battle script command table like is done in the CFRU.
+To preface this tutorial, the battle engine upgrade has exhausted all battle script command IDs. Historically, we've used the `various` command to effectively add new commands. However, this has caused issues of maintainability and readability due to the massive switch needed for it. Thanks to the cleanup made by the team and contributors, we now are able to call an infinite amount of commands by using `callnative`. This is preferential to creating a secondary battle script command table like is done in the CFRU.
 
 In general, `gBattlescriptCurrInstr` tracks the current battle script position as a ROM address. Fortunately, we don't need to worry about ROM addresses when using the decomps, but it is important to understand because of how the `callnative` command is set up.
 
