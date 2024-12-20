@@ -163,6 +163,7 @@ SINGLE_BATTLE_TEST("(Gulp Missile) Transformed Cramorant Gulping lowers defense 
 SINGLE_BATTLE_TEST("(Gulp Missile) Transformed Cramorant Gulping lowers defense and still triggers other effects after")
 {
     GIVEN {
+        ASSUME(gMovesInfo[MOVE_TACKLE].makesContact == TRUE);
         PLAYER(SPECIES_CRAMORANT) { Ability(ABILITY_GULP_MISSILE); Item(ITEM_ROCKY_HELMET); }
         OPPONENT(SPECIES_WOBBUFFET);
     } WHEN {
