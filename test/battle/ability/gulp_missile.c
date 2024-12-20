@@ -140,7 +140,7 @@ SINGLE_BATTLE_TEST("(Gulp Missile) Transformed Cramorant Gulping lowers defense 
     u32 species, ability;
     PARAMETRIZE { species = SPECIES_METAGROSS; ability = ABILITY_CLEAR_BODY; }
     PARAMETRIZE { species = SPECIES_CORVIKNIGHT; ability = ABILITY_MIRROR_ARMOR; }
-    PARAMETRIZE { species = SPECIES_FEAROW; ability = ABILITY_BIG_PECKS; }
+    PARAMETRIZE { species = SPECIES_CHATOT; ability = ABILITY_BIG_PECKS; }
     GIVEN {
         PLAYER(SPECIES_CRAMORANT) { Ability(ABILITY_GULP_MISSILE); }
         OPPONENT(species) { Ability(ability); }
