@@ -162,6 +162,7 @@ SINGLE_BATTLE_TEST("(Gulp Missile) Transformed Cramorant Gulping lowers defense 
 
 SINGLE_BATTLE_TEST("(Gulp Missile) Transformed Cramorant Gulping lowers defense and still triggers other effects after")
 {
+    // Make sure attacker and target are correct after triggering the ability
     u32 ability;
     PARAMETRIZE { ability = ABILITY_INFILTRATOR; }
     PARAMETRIZE { ability = ABILITY_CLEAR_BODY; }
