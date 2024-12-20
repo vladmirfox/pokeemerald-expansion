@@ -17,7 +17,17 @@ In general, `gBattlescriptCurrInstr` tracks the current battle script position a
 Now, how might we add a custom various command case? Here are the steps. We will use `VARIOUS_SET_SIMPLE_BEAM` as an example.
 ### 1. Add a definition to `include/constants/battle_script_commands.h`.
 
-For example, `#define VARIOUS_SET_SIMPLE_BEAM   39`
+For example:
+```diff
+enum CmdVarious
+{
+    ...
+    VARIOUS_SUCKER_PUNCH_CHECK,
++   VARIOUS_SET_SIMPLE_BEAM,
+    VARIOUS_TRY_ENTRAINMENT,
+    ...
+};
+```
 
 ### 2. Create a macro in `asm/macros/battle_script.inc`. For example:
 ```c
