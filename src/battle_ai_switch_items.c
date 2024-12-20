@@ -122,7 +122,7 @@ static bool32 ShouldSwitchIfHasBadOdds(u32 battler)
                 hasStatusMove = TRUE;
             }
 
-            // Only check damage if move has power
+            // Only check damage if it's a damaging move
             if (!IS_MOVE_STATUS(aiMove))
             {
                 // Check if mon has a super effective move

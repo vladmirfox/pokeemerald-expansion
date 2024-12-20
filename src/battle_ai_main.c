@@ -2608,7 +2608,7 @@ static s32 AI_TryToFaint(u32 battlerAtk, u32 battlerDef, u32 move, s32 score)
         return score;
 
     if (IS_MOVE_STATUS(move))
-        return score; // can't make anything faint with no power
+        return score; // status moves aren't accounted here
 
     if (CanIndexMoveFaintTarget(battlerAtk, battlerDef, movesetIndex, 0) && gMovesInfo[move].effect != EFFECT_EXPLOSION)
     {
