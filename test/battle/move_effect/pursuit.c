@@ -610,4 +610,23 @@ SINGLE_BATTLE_TEST("Pursuit attacks a switching foe and switchin is correctly st
     }
 }
 
+SINGLE_BATTLE_TEST("Pursuit doesn't cause mon with Emergency Exit to switch twice")
+{
+    GIVEN {
+        PLAYER(SPECIES_GOLISOPOD) { HP(101); MaxHP(200); Ability(ABILITY_EMERGENCY_EXIT); }
+        PLAYER(SPECIES_WOBBUFFET);
+        PLAYER(SPECIES_VOLTORB);
+        OPPONENT(SPECIES_WOBBUFFET);
+    } WHEN {
+        TURN { SWITCH(player, 1); MOVE(opponent, MOVE_PURSUIT); SEND_OUT(player, 2); }
+    } SCENE {
+        SWITCH_OUT_MESSAGE("Golisopod");
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_PURSUIT, opponent);
+        ABILITY_POPUP(player, ABILITY_EMERGENCY_EXIT);
+        SEND_IN_MESSAGE("Voltorb");
+    } THEN {
+        EXPECT_EQ(player->species, SPECIES_VOLTORB);
+    }
+}
+
 TO_DO_BATTLE_TEST("Baton Pass doesn't cause Pursuit to increase its power or priority");
