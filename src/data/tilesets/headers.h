@@ -1133,3 +1133,14 @@ const struct Tileset gTileset_DojoYifu =
     .metatileAttributes = gMetatileAttributes_DojoYifu,
     .callback = NULL,
 };
+
+const struct Tileset gTileset_CrobatHideout =
+{
+    .isCompressed = TRUE,
+    .isSecondary = TRUE,
+    .tiles = gTilesetTiles_CrobatHideout,
+    .palettes = gTilesetPalettes_CrobatHideout,
+    .metatiles = gMetatiles_CrobatHideout,
+    .metatileAttributes = gMetatileAttributes_CrobatHideout,
+    .callback = NULL,
+};

@@ -60,7 +60,7 @@ script YifuCity_EventScript_ShinySeller {
 	playmoncry(SPECIES_CATERPIE, CRY_MODE_NORMAL)
 	waitmoncry
 
-	closemessage
+	waitbuttonpress
 	hidemonpic
 	
 	speakername("Shady man")
@@ -75,7 +75,7 @@ script YifuCity_EventScript_ShinySeller {
 }
 
 script YifuCity_ShinySellerChoice {
-	showmoneybox(10, 0)
+	showmoneybox(18, 0)
 
 	dynmultichoice(
 		0,
@@ -99,31 +99,106 @@ script YifuCity_ShinySellerChoice {
 					"Alright yeah, gimme the cash."
 				))
 
+				setvar(VAR_TEMP_TRANSFERRED_SPECIES, SPECIES_CATERPIE)
+				givemon(SPECIES_CATERPIE, 5, isShiny=FALSE)
+
+				if (var(VAR_RESULT) == MON_CANT_GIVE) {
+					goto(Common_EventScript_NoMoreRoomForPokemon)
+				}
+
 				removemoney(6000)
 				updatemoneybox
 
 				closemessage
 
-				givemon(SPECIES_CATERPIE, 5)
 				playfanfare(MUS_OBTAIN_ITEM)
 				message(format("{PLAYER} received the Pokémon Caterpie!"))
 				waitmessage
 				waitfanfare
 
 				hidemoneybox
+
+				bufferspeciesname(STR_VAR_1, SPECIES_CATERPIE)
+				if (var(VAR_RESULT) == MON_GIVEN_TO_PARTY) {
+					msgbox(gText_NicknameThisPokemon, MSGBOX_YESNO)
+					if (var(VAR_RESULT) != NO) {
+						call(Common_EventScript_GetGiftMonPartySlot)
+						call(Common_EventScript_NameReceivedPartyMon)
+					}
+				} elif (var(VAR_RESULT) == MON_GIVEN_TO_PC) {
+					msgbox(gText_NicknameThisPokemon, MSGBOX_YESNO)
+					if (var(VAR_RESULT) == NO) {
+						call(Common_EventScript_NameReceivedBoxMon)
+						call(Common_EventScript_TransferredToPC)
+					} else {
+						call(Common_EventScript_GetGiftMonPartySlot)
+						call(Common_EventScript_NameReceivedPartyMon)
+					}
+				}
+
+				speakername("Shady man")
+				msgbox(format(
+					"Heheheehe… I'm rich! Finally rich!"
+				))
+				closemessage
+
+				if (var(VAR_FACING) == DIR_EAST) {
+					applymovement(VAR_LAST_TALKED, moves(walk_faster_down, walk_faster_left * 8, walk_faster_up * 11))
+				} else {
+					applymovement(VAR_LAST_TALKED, moves(walk_faster_left * 8, walk_faster_up * 10))
+				}
+				delay(24)
+				applymovement(OBJ_EVENT_ID_PLAYER, Common_Movement_FaceLeft)
+				waitmovement(VAR_LAST_TALKED)
+				removeobject(VAR_LAST_TALKED)
+
+				delay(48)
+				applymovement(OBJ_EVENT_ID_PLAYER, Common_Movement_FaceDown)
+				waitmovement(0)
+
+				msgbox(format(
+					"… … … … … …\n… … … … … …"
+				))
+				closemessage
+
+				playse(SE_PIN)
+				applymovement(OBJ_EVENT_ID_PLAYER, Common_Movement_ExclamationMark)
+				waitmovement(0)
+				waitse
+				delay(48)
+
+				showmonpic(SPECIES_CATERPIE, 10, 3, TRUE)
+				playmoncry(SPECIES_CATERPIE, CRY_MODE_NORMAL)
+				waitmoncry
+
+				msgbox(format(
+					"Some gold paint came off the Caterpie…"
+				))
+				hidemonpic
+				showmonpic(SPECIES_CATERPIE, 10, 3)
+				
+				waitbuttonpress
+				closemessage
+				hidemonpic
+
+				setflag(FLAG_BOUGHT_FAKE_SHINY)
+
 			} else {
 				speakername("Shady man")
 				msgbox(format(
 					"You, uh… You don't got enough cash, kid."
 				))
+				closemessage
 			}
 		case 1:
+			hidemoneybox
 			speakername("Shady man")
 			msgbox(format(
 				"Then why are ya bothering me? Scram, kid!"
 			))
 			closemessage
 		case 2:
+			hidemoneybox
 			speakername("Shady man")
 			msgbox(format(
 				"What? No! Why would ya even say that? Do I not look respectable to ya?\p"
@@ -131,5 +206,7 @@ script YifuCity_ShinySellerChoice {
 			))
 			goto(YifuCity_ShinySellerChoice)
 	}
+
+	hidemoneybox
 	release
 }

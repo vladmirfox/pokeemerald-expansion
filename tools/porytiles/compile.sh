@@ -67,3 +67,6 @@ porytiles compile-secondary -Wall -o ../../data/tilesets/secondary/school/ ./sch
 # Gate
 echo "GATE"
 porytiles compile-secondary -Wall -o ../../data/tilesets/secondary/gate/ ./gate/ ./building-generic/ ../../include/constants/metatile_behaviors.h
+# Crobat hideout
+echo "CROBAT HIDEOUT"
+porytiles compile-secondary -Wall -o ../../data/tilesets/secondary/crobat_hideout/ ./crobat-hideout/ ./building-generic/ ../../include/constants/metatile_behaviors.h
