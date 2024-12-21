@@ -5754,7 +5754,9 @@ u16 GetBattleBGM(void)
         }
     }
     else if (gBattleTypeFlags & (BATTLE_TYPE_LINK | BATTLE_TYPE_RECORDED_LINK))
+    {
         return MUS_VS_TRAINER;
+    }
     else if (gBattleTypeFlags & BATTLE_TYPE_TRAINER)
     {
         u8 trainerClass;
@@ -5801,7 +5803,9 @@ u16 GetBattleBGM(void)
         }
     }
     else
+    {
         return MUS_VS_WILD;
+    }
 }
 
 void PlayBattleBGM(void)
