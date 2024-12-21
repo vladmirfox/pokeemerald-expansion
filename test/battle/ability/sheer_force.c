@@ -610,6 +610,7 @@ static inline bool32 IsMoveSheerForceBoosted(u32 move)
     return FALSE;
 }
 
+// Test split into four parts that handles ~1/4 of all moves each
 DOUBLE_BATTLE_TEST("Sheer Force only boosts the damage of moves it's supposed to boost 1")
 {
     s16 damage1, damage2;

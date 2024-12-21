@@ -28,6 +28,5 @@ SINGLE_BATTLE_TEST("Baddy Bad sets up Reflect when it was succesful")
                 MESSAGE("Reflect made your team stronger against physical moves!");
             }
         }
-
     }
 }

@@ -28,6 +28,5 @@ SINGLE_BATTLE_TEST("Glitzy Glow sets up Light Screen when it was succesful")
                 MESSAGE("Light Screen made your team stronger against special moves!");
             }
         }
-
     }
 }

@@ -28,6 +28,5 @@ SINGLE_BATTLE_TEST("Freeze Frost restores stat changes when it was succesful")
                 MESSAGE("All stat changes were eliminated!");
             }
         }
-
     }
 }
