@@ -14465,7 +14465,6 @@ static void Cmd_trywish(void)
             gBattleMoveDamage = max(1, GetNonDynamaxMaxHP(gBattlerAttacker) / 2);
         }
 
-        gHitMarker |= HITMARKER_IGNORE_DISGUISE;
         gBattleMoveDamage *= -1;
         if (gBattleMons[gBattlerTarget].hp == gBattleMons[gBattlerTarget].maxHP)
             gBattlescriptCurrInstr = cmd->failInstr;
