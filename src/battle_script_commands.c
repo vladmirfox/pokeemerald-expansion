@@ -14338,7 +14338,7 @@ static void Cmd_setsemiinvulnerablebit(void)
 
     if (gBattleMoveEffects[gMovesInfo[gCurrentMove].effect].semiInvulnerableEffect == TRUE)
     {
-        u32 semiInvulnerableEffect = gMovesInfo[gCurrentMove].argument.status;
+        u32 semiInvulnerableEffect = UNCOMPRESS_BITS(gMovesInfo[gCurrentMove].argument.twoTurnAttack.status);
         if (cmd->clear)
             gStatuses3[gBattlerAttacker] &= ~semiInvulnerableEffect;
         else
