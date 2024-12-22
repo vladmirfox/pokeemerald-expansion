@@ -620,15 +620,18 @@ static void ContestEffect_QualityDependsOnTiming(void)
     {
         appeal = 10;
         SetContestantEffectStringID(eContestAppealResults.contestant, CONTEST_STRING_APPEAL_NOT_VERY_WELL);
-    } else if (rval < 6)
+    }
+    else if (rval < 6)
     {
         appeal = 20;
         SetContestantEffectStringID(eContestAppealResults.contestant, CONTEST_STRING_APPEAL_SLIGHTLY_WELL2);
-    } else if (rval < 8)
+    }
+    else if (rval < 8)
     {
         appeal = 40;
         SetContestantEffectStringID(eContestAppealResults.contestant, CONTEST_STRING_APPEAL_PRETTY_WELL2);
-    } else if (rval < 9)
+    }
+    else if (rval < 9)
     {
         appeal = 60;
         SetContestantEffectStringID(eContestAppealResults.contestant, CONTEST_STRING_APPEAL_VERY_WELL);
@@ -869,7 +872,9 @@ static void ContestEffect_ScrambleNextTurnOrder(void)
                         break;
                     }
                     else
+                    {
                         rval--;
+                    }
                 }
             }
         }
@@ -909,7 +914,9 @@ static void ContestEffect_BadlyStartleMonsWithGoodAppeals(void)
                 eContestAppealResults.jam = RoundUp(eContestAppealResults.jam);
             }
             else
+            {
                 eContestAppealResults.jam = 10;
+            }
             eContestAppealResults.jamQueue[0] = i;
             eContestAppealResults.jamQueue[1] = CONTESTANT_NONE;
             if (WasAtLeastOneOpponentJammed())
@@ -1072,7 +1079,9 @@ static s16 RoundTowardsZero(s16 score)
             score -= 10 - absScore;
     }
     else
+    {
         score -= absScore;
+    }
     return score;
 }
 

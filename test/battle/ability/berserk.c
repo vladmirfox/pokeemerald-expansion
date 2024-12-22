@@ -14,7 +14,7 @@ SINGLE_BATTLE_TEST("Berserk activates only if the target had more than 50% of it
     PARAMETRIZE { hp = 254; activates = TRUE; }
 
     GIVEN {
-        ASSUME(GetMovePower(MOVE_TACKLE) != 0);
+        ASSUME(!IS_MOVE_STATUS(MOVE_TACKLE));
         PLAYER(SPECIES_DRAMPA) { Ability(ABILITY_BERSERK); MaxHP(maxHp); HP(hp); }
         OPPONENT(SPECIES_WOBBUFFET);
     } WHEN {
@@ -37,7 +37,7 @@ SINGLE_BATTLE_TEST("Berserk raises Sp.Atk by 1")
 {
     u16 maxHp = 500;
     GIVEN {
-        ASSUME(GetMovePower(MOVE_TACKLE) != 0);
+        ASSUME(!IS_MOVE_STATUS(MOVE_TACKLE));
         PLAYER(SPECIES_DRAMPA) { Ability(ABILITY_BERSERK); MaxHP(maxHp); HP(maxHp / 2 + 1); }
         OPPONENT(SPECIES_WOBBUFFET);
     } WHEN {
