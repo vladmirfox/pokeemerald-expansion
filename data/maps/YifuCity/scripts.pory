@@ -1,3 +1,5 @@
+const FLAG_IS_MON_SENT_TO_PC = FLAG_TEMP_1
+
 mapscripts YifuCity_MapScripts {
 	
 }
@@ -31,7 +33,7 @@ script YifuCity_EventScript_Samurai {
 	faceplayer
 	speakername("Samurai")
 	msgbox(format(
-		"The Crobat Shadow's reign of terror will cease!"
+		"The Crobat Shadows' reign of terror will cease!"
 	))
 	closemessage
 	release
@@ -53,7 +55,7 @@ script YifuCity_EventScript_ShinySeller {
 	faceplayer
 	speakername("Shady man")
 	msgbox(format(
-		"Hey, uh… Wanna buy this Pokémon 'ere? 'Parently it's super rare or somethin', but I don't really need it, so…"
+		"Hey, uh… Wanna buy this Pokémon 'ere?\n'Parently it's super rare or somethin', but I don't really need it, so…"
 	))
 
 	showmonpic(SPECIES_CATERPIE, 10, 3, TRUE)
@@ -66,7 +68,7 @@ script YifuCity_EventScript_ShinySeller {
 	speakername("Shady man")
 	msgbox(format(
 		"So whadyasay?\n"
-		"It's yours for only ¥6000."
+		"It's yours for only ¥10000."
 	))
 
 	goto(YifuCity_ShinySellerChoice)
@@ -93,7 +95,7 @@ script YifuCity_ShinySellerChoice {
 
 	switch(var(VAR_RESULT)) {
 		case 0:
-			if (checkmoney(6000)) {
+			if (checkmoney(10000)) {
 				speakername("Shady man")
 				msgbox(format(
 					"Alright yeah, gimme the cash."
@@ -106,7 +108,7 @@ script YifuCity_ShinySellerChoice {
 					goto(Common_EventScript_NoMoreRoomForPokemon)
 				}
 
-				removemoney(6000)
+				removemoney(10000)
 				updatemoneybox
 
 				closemessage
@@ -127,13 +129,10 @@ script YifuCity_ShinySellerChoice {
 					}
 				} elif (var(VAR_RESULT) == MON_GIVEN_TO_PC) {
 					msgbox(gText_NicknameThisPokemon, MSGBOX_YESNO)
-					if (var(VAR_RESULT) == NO) {
+					if (var(VAR_RESULT) != NO) {
 						call(Common_EventScript_NameReceivedBoxMon)
-						call(Common_EventScript_TransferredToPC)
-					} else {
-						call(Common_EventScript_GetGiftMonPartySlot)
-						call(Common_EventScript_NameReceivedPartyMon)
 					}
+					setflag(FLAG_IS_MON_SENT_TO_PC)
 				}
 
 				speakername("Shady man")
@@ -174,12 +173,19 @@ script YifuCity_ShinySellerChoice {
 				msgbox(format(
 					"Some gold paint came off the Caterpie…"
 				))
+
+				playse(SE_M_MIST)
 				hidemonpic
 				showmonpic(SPECIES_CATERPIE, 10, 3)
+				waitse
 				
 				waitbuttonpress
 				closemessage
 				hidemonpic
+
+				if (flag(FLAG_IS_MON_SENT_TO_PC)) {
+					call(Common_EventScript_TransferredToPC)
+				}
 
 				setflag(FLAG_BOUGHT_FAKE_SHINY)
 

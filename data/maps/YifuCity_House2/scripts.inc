@@ -78,7 +78,7 @@ YifuCity_House2_Tarountula::
 # 63 "data/maps/YifuCity_House2/scripts.pory"
 	closemessage
 # 65 "data/maps/YifuCity_House2/scripts.pory"
-	goto_if_set FLAG_OBTAINED_DESTINY_KNOT, YifuCity_House2_Tarountula_2
+	goto_if_unset FLAG_OBTAINED_DESTINY_KNOT, YifuCity_House2_Tarountula_2
 YifuCity_House2_Tarountula_1:
 # 72 "data/maps/YifuCity_House2/scripts.pory"
 	release
@@ -110,6 +110,8 @@ YifuCity_House2_Seamstress_Movement_0:
 	walk_right
 # 26 "data/maps/YifuCity_House2/scripts.pory"
 	walk_right
+# 26 "data/maps/YifuCity_House2/scripts.pory"
+	face_up
 # 26 "data/maps/YifuCity_House2/scripts.pory"
 	delay_16
 # 26 "data/maps/YifuCity_House2/scripts.pory"

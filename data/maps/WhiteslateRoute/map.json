@@ -49,7 +49,7 @@
       "flag": "0"
     },
     {
-      "graphics_id": "OBJ_EVENT_GFX_NINJA_BOY",
+      "graphics_id": "OBJ_EVENT_GFX_YOUNGSTER",
       "x": 26,
       "y": 46,
       "elevation": 0,
@@ -124,7 +124,7 @@
     {
       "type": "hidden_item",
       "x": 26,
-      "y": 38,
+      "y": 39,
       "elevation": 0,
       "item": "ITEM_NONE",
       "flag": "FLAG_TEMP_1"
