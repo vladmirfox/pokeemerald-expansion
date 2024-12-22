@@ -271,8 +271,8 @@
 #define VAR_WILD_AI_FLAGS                                0x40FB // Unused Var
 #define VAR_STARTING_STATUS_TIMER                        0x40FC // Unused Var
 #define VAR_STARTING_STATUS                              0x40FD // Unused Var
-#define VAR_DEXNAV_SPECIES                               0x40FE // Unused Var
-#define VAR_DEXNAV_STEP_COUNTER                          0x40FF // Unused Var
+#define VAR_SYS_DEXNAV_SPECIES                               0x40FE // Unused Var
+#define VAR_SYS_DEXNAV_STEP_COUNTER                          0x40FF // Unused Var
 
 #define VARS_END                                         0x40FF
 #define VARS_COUNT                                       (VARS_END - VARS_START + 1)

@@ -1514,9 +1514,9 @@
 #define FLAG_NO_COLLISION                           (SYSTEM_FLAGS + 0x8A) // Unused Flag
 #define FLAG_VS_SEEKER_CHARGING                     (SYSTEM_FLAGS + 0x8B) // Unused Flag
 #define FLAG_EXP_SHARE_FLAG                         (SYSTEM_FLAGS + 0x8C) // Unused Flag
-#define FLAG_SYS_DEXNAV_SEARCH                      (SYSTEM_FLAGS + 0x8D) // Unused Flag
-#define FLAG_SYS_DEXNAV_GET                         (SYSTEM_FLAGS + 0x8E) // Unused Flag
-#define FLAG_SYS_DETECTOR_MODE                      (SYSTEM_FLAGS + 0x8F) // Unused Flag
+#define FLAG_SYS_DEXNAV_SEARCH_ON                   (SYSTEM_FLAGS + 0x8D) // Unused Flag
+#define FLAG_SYS_DEXNAV_GET_ON                      (SYSTEM_FLAGS + 0x8E) // Unused Flag
+#define FLAG_SYS_DETECTOR_MODE_ON                   (SYSTEM_FLAGS + 0x8F) // Unused Flag
 #define FLAG_INVERSE_BATTLE                         (SYSTEM_FLAGS + 0x90) // Unused Flag
 #define FLAG_FORCE_DOUBLE_WILD                      (SYSTEM_FLAGS + 0x91) // Unused Flag
 #define FLAG_SMART_WILD_AI_FLAG                     (SYSTEM_FLAGS + 0x92) // Unused Flag
