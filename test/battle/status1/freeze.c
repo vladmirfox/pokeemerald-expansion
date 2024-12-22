@@ -32,7 +32,7 @@ SINGLE_BATTLE_TEST("Freeze is thawed by opponent's Fire-type attacks")
 SINGLE_BATTLE_TEST("Freeze is thawed by user's Flame Wheel")
 {
     GIVEN {
-        ASSUME(gMovesInfo[MOVE_FLAME_WHEEL].thawsUser);
+        ASSUME(MoveThawsUser(MOVE_FLAME_WHEEL));
         PLAYER(SPECIES_WOBBUFFET) { Status1(STATUS1_FREEZE); }
         OPPONENT(SPECIES_WOBBUFFET);
     } WHEN {

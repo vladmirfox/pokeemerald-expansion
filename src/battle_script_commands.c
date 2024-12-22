@@ -1503,9 +1503,9 @@ static bool32 AccuracyCalcHelper(u32 move, u32 battler)
     }
     else if ((gStatuses3[battler] & STATUS3_COMMANDER)
           || (gStatuses3[battler] & STATUS3_PHANTOM_FORCE)
-          || ((gStatuses3[battler] & STATUS3_ON_AIR) && !(gMovesInfo[move].damagesAirborne || gMovesInfo[move].damagesAirborneDoubleDamage))
-          || ((gStatuses3[battler] & STATUS3_UNDERGROUND) && !gMovesInfo[move].damagesUnderground)
-          || ((gStatuses3[battler] & STATUS3_UNDERWATER) && !gMovesInfo[move].damagesUnderwater))
+          || ((gStatuses3[battler] & STATUS3_ON_AIR) && !(MoveDamagesAirborne(move) || MoveDamagesAirborneDoubleDamage(move)))
+          || ((gStatuses3[battler] & STATUS3_UNDERGROUND) && !MoveDamagesUnderground(move))
+          || ((gStatuses3[battler] & STATUS3_UNDERWATER) && !MoveDamagesUnderWater(move)))
     {
         gBattleStruct->moveResultFlags[battler] |= MOVE_RESULT_MISSED;
         effect = TRUE;
@@ -1555,7 +1555,7 @@ u32 GetTotalAccuracy(u32 battlerAtk, u32 battlerDef, u32 move, u32 atkAbility, u
     if (atkAbility == ABILITY_UNAWARE || atkAbility == ABILITY_KEEN_EYE || atkAbility == ABILITY_MINDS_EYE
             || (B_ILLUMINATE_EFFECT >= GEN_9 && atkAbility == ABILITY_ILLUMINATE))
         evasionStage = DEFAULT_STAT_STAGE;
-    if (gMovesInfo[move].ignoresTargetDefenseEvasionStages)
+    if (MoveIgnoresDefenseEvasionStages(move))
         evasionStage = DEFAULT_STAT_STAGE;
     if (defAbility == ABILITY_UNAWARE)
         accStage = DEFAULT_STAT_STAGE;
@@ -1803,7 +1803,7 @@ static void Cmd_ppreduce(void)
     if (moveTarget == MOVE_TARGET_BOTH
         || moveTarget == MOVE_TARGET_FOES_AND_ALLY
         || moveTarget == MOVE_TARGET_ALL_BATTLERS
-        || gMovesInfo[gCurrentMove].forcePressure)
+        || MoveForcesPressure(gCurrentMove))
     {
         for (i = 0; i < gBattlersCount; i++)
         {
@@ -6039,7 +6039,7 @@ static void Cmd_moveend(void)
             if (gBattleMons[gBattlerTarget].status1 & STATUS1_FROSTBITE
                 && IsBattlerAlive(gBattlerTarget)
                 && gBattlerAttacker != gBattlerTarget
-                && gMovesInfo[originallyUsedMove].thawsUser
+                && MoveThawsUser(originallyUsedMove)
                 && MoveResultHasEffect(gBattlerTarget))
             {
                 gBattleMons[gBattlerTarget].status1 &= ~STATUS1_FROSTBITE;
@@ -15296,7 +15296,7 @@ bool32 DoesSubstituteBlockMove(u32 battlerAtk, u32 battlerDef, u32 move)
 {
     if (!(gBattleMons[battlerDef].status2 & STATUS2_SUBSTITUTE))
         return FALSE;
-    else if (gMovesInfo[move].ignoresSubstitute)
+    else if (MoveIgnoresSubstitute(move))
         return FALSE;
     else if (GetBattlerAbility(battlerAtk) == ABILITY_INFILTRATOR)
         return FALSE;

@@ -224,7 +224,7 @@ SINGLE_BATTLE_TEST("Powder prevents Protean from changing its user to Fire type"
 SINGLE_BATTLE_TEST("Powder doesn't prevent a Fire move from thawing its user out")
 {
     GIVEN {
-        ASSUME(gMovesInfo[MOVE_FLAME_WHEEL].thawsUser);
+        ASSUME(MoveThawsUser(MOVE_FLAME_WHEEL));
         ASSUME(GetMoveType(MOVE_FLAME_WHEEL) == TYPE_FIRE);
         PLAYER(SPECIES_WOBBUFFET) { Status1(STATUS1_FREEZE); }
         OPPONENT(SPECIES_VIVILLON);

@@ -3,8 +3,8 @@
 
 ASSUMPTIONS
 {
-    ASSUME(gMovesInfo[MOVE_GIGATON_HAMMER].cantUseTwice == TRUE);
-    ASSUME(gMovesInfo[MOVE_BLOOD_MOON].cantUseTwice == TRUE);
+    ASSUME(MoveCantBeUsedTwice(MOVE_GIGATON_HAMMER) == TRUE);
+    ASSUME(MoveCantBeUsedTwice(MOVE_BLOOD_MOON) == TRUE);
 }
 
 SINGLE_BATTLE_TEST("Struggle will be used if slow Encore is used on moves with the cantUseTwice flag")

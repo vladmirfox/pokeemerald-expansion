@@ -286,6 +286,56 @@ static inline bool32 MoveIgnoresTargetAbility(u32 moveId)
     return gMovesInfo[SanitizeMoveId(moveId)].ignoresTargetAbility;
 }
 
+static inline bool32 MoveIgnoresDefenseEvasionStages(u32 moveId)
+{
+    return gMovesInfo[SanitizeMoveId(moveId)].ignoresTargetDefenseEvasionStages;
+}
+
+static inline bool32 MoveDamagesUnderground(u32 moveId)
+{
+    return gMovesInfo[SanitizeMoveId(moveId)].damagesUnderground;
+}
+
+static inline bool32 MoveDamagesUnderWater(u32 moveId)
+{
+    return gMovesInfo[SanitizeMoveId(moveId)].damagesUnderwater;
+}
+
+static inline bool32 MoveDamagesAirborne(u32 moveId)
+{
+    return gMovesInfo[SanitizeMoveId(moveId)].damagesAirborne;
+}
+
+static inline bool32 MoveDamagesAirborneDoubleDamage(u32 moveId)
+{
+    return gMovesInfo[SanitizeMoveId(moveId)].damagesAirborneDoubleDamage;
+}
+
+static inline bool32 MoveIgnoresTypeIfFlyingAndUngrounded(u32 moveId)
+{
+    return gMovesInfo[SanitizeMoveId(moveId)].ignoreTypeIfFlyingAndUngrounded;
+}
+
+static inline bool32 MoveThawsUser(u32 moveId)
+{
+    return gMovesInfo[SanitizeMoveId(moveId)].thawsUser;
+}
+
+static inline bool32 MoveIgnoresSubstitute(u32 moveId)
+{
+    return gMovesInfo[SanitizeMoveId(moveId)].ignoresSubstitute;
+}
+
+static inline bool32 MoveForcesPressure(u32 moveId)
+{
+    return gMovesInfo[SanitizeMoveId(moveId)].forcePressure;
+}
+
+static inline bool32 MoveCantBeUsedTwice(u32 moveId)
+{
+    return gMovesInfo[SanitizeMoveId(moveId)].cantUseTwice;
+}
+
 static inline const u8 *GetMoveAnimationScript(u32 moveId)
 {
     moveId = SanitizeMoveId(moveId);
