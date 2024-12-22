@@ -1828,7 +1828,6 @@ static u32 GetBestMonIntegrated(struct Pokemon *party, int firstId, int lastId, 
         for (j = 0; j < MAX_MON_MOVES; j++)
         {
             aiMove = AI_DATA->switchinCandidate.battleMon.moves[j];
-            u32 aiPower = GetMovePower(aiMove);
 
             if (aiMove != MOVE_NONE && !IS_MOVE_STATUS(aiMove))
             {
