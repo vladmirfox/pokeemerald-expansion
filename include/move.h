@@ -356,6 +356,11 @@ static inline bool32 IsMoveMimicBanned(u32 moveId)
     return gMovesInfo[SanitizeMoveId(moveId)].mimicBanned;
 }
 
+static inline bool32 IsMoveMetronomeBanned(u32 moveId)
+{
+    return gMovesInfo[SanitizeMoveId(moveId)].metronomeBanned;
+}
+
 static inline bool32 IsMoveCopycatBanned(u32 moveId)
 {
     return gMovesInfo[SanitizeMoveId(moveId)].copycatBanned;
