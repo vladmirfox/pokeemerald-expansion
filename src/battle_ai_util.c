@@ -23,16 +23,6 @@
 #include "constants/moves.h"
 #include "constants/items.h"
 
-#define CHECK_MOVE_FLAG(flag)                                                                                   \
-    s32 i;                                                                                                      \
-    u16 *moves = GetMovesArray(battler);                                                                        \
-    for (i = 0; i < MAX_MON_MOVES; i++)                                                                         \
-    {                                                                                                           \
-        if (moves[i] != MOVE_NONE && moves[i] != MOVE_UNAVAILABLE && gMovesInfo[moves[i]].flag)                 \
-            return TRUE;                                                                                        \
-    }                                                                                                           \
-    return FALSE
-
 static u32 AI_GetEffectiveness(uq4_12_t multiplier);
 
 // Functions
@@ -2243,7 +2233,14 @@ bool32 HasTrappingMoveEffect(u32 battler)
 
 bool32 HasThawingMove(u32 battler)
 {
-    CHECK_MOVE_FLAG(thawsUser);
+    s32 i;
+    u16 *moves = GetMovesArray(battler);
+    for (i = 0; i < MAX_MON_MOVES; i++)
+    {
+        if (moves[i] != MOVE_NONE && moves[i] != MOVE_UNAVAILABLE && gMovesInfo[moves[i]].thawsUser)
+            return TRUE;
+    }
+    return FALSE;
 }
 
 bool32 IsUngroundingEffect(u32 effect)
@@ -2455,7 +2452,14 @@ bool32 HasDamagingMoveOfType(u32 battlerId, u32 type)
 
 bool32 HasSubstituteIgnoringMove(u32 battler)
 {
-    CHECK_MOVE_FLAG(ignoresSubstitute);
+    s32 i;
+    u16 *moves = GetMovesArray(battler);
+    for (i = 0; i < MAX_MON_MOVES; i++)
+    {
+        if (moves[i] != MOVE_NONE && moves[i] != MOVE_UNAVAILABLE && gMovesInfo[moves[i]].ignoresSubstitute)
+            return TRUE;
+    }
+    return FALSE;
 }
 
 bool32 HasHighCritRatioMove(u32 battler)
@@ -2474,12 +2478,26 @@ bool32 HasHighCritRatioMove(u32 battler)
 
 bool32 HasMagicCoatAffectedMove(u32 battler)
 {
-    CHECK_MOVE_FLAG(magicCoatAffected);
+    s32 i;
+    u16 *moves = GetMovesArray(battler);
+    for (i = 0; i < MAX_MON_MOVES; i++)
+    {
+        if (moves[i] != MOVE_NONE && moves[i] != MOVE_UNAVAILABLE && gMovesInfo[moves[i]].magicCoatAffected)
+            return TRUE;
+    }
+    return FALSE;
 }
 
 bool32 HasSnatchAffectedMove(u32 battler)
 {
-    CHECK_MOVE_FLAG(snatchAffected);
+    s32 i;
+    u16 *moves = GetMovesArray(battler);
+    for (i = 0; i < MAX_MON_MOVES; i++)
+    {
+        if (moves[i] != MOVE_NONE && moves[i] != MOVE_UNAVAILABLE && gMovesInfo[moves[i]].snatchAffected)
+            return TRUE;
+    }
+    return FALSE;
 }
 
 bool32 IsTwoTurnNotSemiInvulnerableMove(u32 battlerAtk, u32 move)

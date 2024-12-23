@@ -1203,7 +1203,7 @@ static void ContestAICmd_get_used_combo_starter(void)
     u8 contestant = GetContestantIdByTurn(gAIScriptPtr[1]);
 
     if (IsContestantAllowedToCombo(contestant))
-        result = gMovesInfo[eContestantStatus[contestant].prevMove].contestComboStarterId ? TRUE : FALSE;
+        result = GetMoveContestComboStarter(eContestantStatus[contestant].prevMove) ? TRUE : FALSE;
 
     eContestAI.scriptResult = result;
     gAIScriptPtr += 2;

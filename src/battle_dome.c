@@ -5109,7 +5109,7 @@ static u16 GetWinningMove(int winnerTournamentId, int loserTournamentId, u8 roun
             else
                 moveIds[i * MAX_MON_MOVES + j] = gFacilityTrainerMons[DOME_MONS[winnerTournamentId][i]].moves[j];
 
-            movePower = gMovesInfo[moveIds[i * MAX_MON_MOVES + j]].power;
+            movePower = GetMovePower(moveIds[i * MAX_MON_MOVES + j]);
             if (IS_MOVE_STATUS(moveIds[i * MAX_MON_MOVES + j]))
                 movePower = 40;
             else if (movePower == 1)
