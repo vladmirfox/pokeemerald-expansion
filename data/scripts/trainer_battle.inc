@@ -138,18 +138,18 @@ Std_MsgboxAutoclose::
 	release
 	return
 
-EventScript_Lock::
+EventScript_LockSnippet::
 	lock
 	faceplayer
 	setflag FLAG_SAFE_FOLLOWER_MOVEMENT
 	return
 
-EventScript_TrainerApproach2::
+EventScript_TrainerApproachSnippet::
 	special DoTrainerApproach
 	waitstate
 	return
 
-EventScript_RevealTrainer2::
+EventScript_RevealTrainerSnippet::
 	applymovement VAR_LAST_TALKED, Movement_RevealTrainer
 	waitmovement 0
 	clearflag FLAG_SAFE_FOLLOWER_MOVEMENT
@@ -160,38 +160,38 @@ EventScript_IsTrainerFlagSet::
 	goto_if_ne VAR_RESULT, FALSE, EventScript_NoNormalTrainerBattle
 	return
 
-EventScript_PlayTrainerEncounterMusic::
+EventScript_PlayTrainerEncounterMusicSnippet::
 	special PlayTrainerEncounterMusic
 	return
 
-EventScript_SetTrainerFacingDirection::
+EventScript_SetTrainerFacingDirectionSnippet::
 	special SetTrainerFacingDirection
 	return
 
-EventScript_ShowTrainerIntroMsg2::
+EventScript_ShowTrainerIntroMsgSnippet::
 	special ShowTrainerIntroSpeech
 	waitmessage
 	waitbuttonpress
 	return 
 
-EventScript_PrepareSecondTrainerApproach::
+EventScript_PrepareSecondTrainerApproachSnippet::
 	special PrepareSecondApproachingTrainer
 	return
 
-EventScript_GotoPostBattleScript::
+EventScript_GotoPostBattleScriptSnippet::
 	gotopostbattlescript
 	return
 
-EventScript_DoTrainerBattle2::
+EventScript_DoTrainerBattleSnippet::
 	dotrainerbattle
 	return
 
-EventScript_DoRematchTrainerBattle::
+EventScript_DoRematchTrainerBattleSnippet::
 	special BattleSetup_StartRematchBattle
 	waitstate
 	return
 
-EventScript_EndTrainerBattle2::
+EventScript_EndTrainerBattleSnippet::
 	gotobeatenscript
 	releaseall
 	end

@@ -1233,14 +1233,14 @@ const u8* BattleSetup_ConfigureTrainerBattleMultiBattle(const u8* data, PtrStack
 {
     if (TRAINER_BATTLE_PARAM.playMusicA)
     {
-        PUSH(EventScript_PlayTrainerEncounterMusic);
+        PUSH(EventScript_PlayTrainerEncounterMusicSnippet);
     }
 
-    PUSH(EventScript_TrainerApproach2);
+    PUSH(EventScript_TrainerApproachSnippet);
 
     if (TRAINER_BATTLE_PARAM.introTextA != NULL) 
     {
-        PUSH(EventScript_ShowTrainerIntroMsg2);
+        PUSH(EventScript_ShowTrainerIntroMsgSnippet);
     }
 
     PUSH(EventScript_SavePlayerParty);
@@ -1275,14 +1275,14 @@ const u8 *BattleSetup_ConfigureTrainerBattleApproachingTrainer(const u8* data, P
 
     if (TRAINER_BATTLE_PARAM.playMusicA)
     {
-        PUSH(EventScript_PlayTrainerEncounterMusic);
+        PUSH(EventScript_PlayTrainerEncounterMusicSnippet);
     }
 
-    PUSH(EventScript_TrainerApproach2);
+    PUSH(EventScript_TrainerApproachSnippet);
 
     if (TRAINER_BATTLE_PARAM.introTextA != NULL) 
     {
-        PUSH(EventScript_ShowTrainerIntroMsg2);
+        PUSH(EventScript_ShowTrainerIntroMsgSnippet);
     }
     
     if (TryPrepareSecondApproachingTrainer2()) {
@@ -1297,22 +1297,22 @@ const u8 *BattleSetup_ConfigureTrainerBattleApproachingTrainer(const u8* data, P
             TRAINER_BATTLE_PARAM.battleOpponentB = LocalIdToHillTrainerId(TRAINER_BATTLE_PARAM.objEventLocalIdB);
         }
 
-        PUSH(EventScript_PrepareSecondTrainerApproach);
+        PUSH(EventScript_PrepareSecondTrainerApproachSnippet);
         if (TRAINER_BATTLE_PARAM.playMusicB) 
         {
-            PUSH(EventScript_PlayTrainerEncounterMusic);
+            PUSH(EventScript_PlayTrainerEncounterMusicSnippet);
         }
 
-        PUSH(EventScript_TrainerApproach2);
+        PUSH(EventScript_TrainerApproachSnippet);
         
         if (TRAINER_BATTLE_PARAM.introTextB) 
         {
-            PUSH(EventScript_ShowTrainerIntroMsg2);
+            PUSH(EventScript_ShowTrainerIntroMsgSnippet);
         }
     }
 
-    PUSH(EventScript_DoTrainerBattle2);
-    PUSH(EventScript_EndTrainerBattle2);
+    PUSH(EventScript_DoTrainerBattleSnippet);
+    PUSH(EventScript_EndTrainerBattleSnippet);
     return NULL;
 }
 
@@ -1331,11 +1331,11 @@ const u8 *BattleSetup_ConfigureTrainerBattle(const u8 *data, PtrStack *scrStack,
 
 
     SetMapVarsToTrainerA(); // TODO check which cases exactly need this and why
-    PUSH(EventScript_Lock);
-    PUSH(EventScript_RevealTrainer2);
+    PUSH(EventScript_LockSnippet);
+    PUSH(EventScript_RevealTrainerSnippet);
 
     if (GetTrainerFlag() || (TRAINER_BATTLE_PARAM.isRematch && !IsTrainerReadyForRematch())) { 
-        PUSH(EventScript_GotoPostBattleScript);
+        PUSH(EventScript_GotoPostBattleScriptSnippet);
         return NULL;
     }
 
@@ -1370,26 +1370,26 @@ const u8 *BattleSetup_ConfigureTrainerBattle(const u8 *data, PtrStack *scrStack,
 
     if (TRAINER_BATTLE_PARAM.playMusicA)
     {
-        PUSH(EventScript_PlayTrainerEncounterMusic);
+        PUSH(EventScript_PlayTrainerEncounterMusicSnippet);
     }
 
-    PUSH(EventScript_SetTrainerFacingDirection);
+    PUSH(EventScript_SetTrainerFacingDirectionSnippet);
 
     if (TRAINER_BATTLE_PARAM.introTextA != NULL) 
     {
-        PUSH(EventScript_ShowTrainerIntroMsg2);
+        PUSH(EventScript_ShowTrainerIntroMsgSnippet);
     }
 
     if (TRAINER_BATTLE_PARAM.isRematch) 
     {
-        PUSH(EventScript_DoRematchTrainerBattle);
+        PUSH(EventScript_DoRematchTrainerBattleSnippet);
     }
     else 
     {
-        PUSH(EventScript_DoTrainerBattle2);
+        PUSH(EventScript_DoTrainerBattleSnippet);
     }
 
-    PUSH(EventScript_EndTrainerBattle2);
+    PUSH(EventScript_EndTrainerBattleSnippet);
 
 
     DebugPrintStack(scrStack);
