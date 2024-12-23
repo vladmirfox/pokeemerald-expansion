@@ -2237,7 +2237,7 @@ bool32 HasThawingMove(u32 battler)
     u16 *moves = GetMovesArray(battler);
     for (i = 0; i < MAX_MON_MOVES; i++)
     {
-        if (moves[i] != MOVE_NONE && moves[i] != MOVE_UNAVAILABLE && gMovesInfo[moves[i]].thawsUser)
+        if (moves[i] != MOVE_NONE && moves[i] != MOVE_UNAVAILABLE && MoveThawsUser(moves[i]))
             return TRUE;
     }
     return FALSE;
@@ -2456,7 +2456,7 @@ bool32 HasSubstituteIgnoringMove(u32 battler)
     u16 *moves = GetMovesArray(battler);
     for (i = 0; i < MAX_MON_MOVES; i++)
     {
-        if (moves[i] != MOVE_NONE && moves[i] != MOVE_UNAVAILABLE && gMovesInfo[moves[i]].ignoresSubstitute)
+        if (moves[i] != MOVE_NONE && moves[i] != MOVE_UNAVAILABLE && MoveIgnoresSubstitute(moves[i]))
             return TRUE;
     }
     return FALSE;
@@ -2482,7 +2482,7 @@ bool32 HasMagicCoatAffectedMove(u32 battler)
     u16 *moves = GetMovesArray(battler);
     for (i = 0; i < MAX_MON_MOVES; i++)
     {
-        if (moves[i] != MOVE_NONE && moves[i] != MOVE_UNAVAILABLE && gMovesInfo[moves[i]].magicCoatAffected)
+        if (moves[i] != MOVE_NONE && moves[i] != MOVE_UNAVAILABLE && MoveCanBeBouncedBack(moves[i]))
             return TRUE;
     }
     return FALSE;
@@ -2494,7 +2494,7 @@ bool32 HasSnatchAffectedMove(u32 battler)
     u16 *moves = GetMovesArray(battler);
     for (i = 0; i < MAX_MON_MOVES; i++)
     {
-        if (moves[i] != MOVE_NONE && moves[i] != MOVE_UNAVAILABLE && gMovesInfo[moves[i]].snatchAffected)
+        if (moves[i] != MOVE_NONE && moves[i] != MOVE_UNAVAILABLE && MoveCanBeSnatched(moves[i]))
             return TRUE;
     }
     return FALSE;

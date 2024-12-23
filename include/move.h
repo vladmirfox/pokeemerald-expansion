@@ -232,7 +232,7 @@ static inline bool32 MoveCanBeBouncedBack(u32 moveId)
     return gMovesInfo[SanitizeMoveId(moveId)].magicCoatAffected;
 }
 
-static inline bool32 MoveCanSnatched(u32 moveId)
+static inline bool32 MoveCanBeSnatched(u32 moveId)
 {
     return gMovesInfo[SanitizeMoveId(moveId)].snatchAffected;
 }
