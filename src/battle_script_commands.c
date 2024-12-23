@@ -1170,7 +1170,7 @@ bool32 ShouldTeraShellDistortTypeMatchups(u32 move, u32 battlerDef)
 
 bool32 IsMoveNotAllowedInSkyBattles(u32 move)
 {
-    return ((gBattleStruct->isSkyBattle) && (gMovesInfo[gCurrentMove].skyBattleBanned));
+    return (gBattleStruct->isSkyBattle && IsMoveSkyBattleBanned(gCurrentMove));
 }
 
 static void Cmd_attackcanceler(void)
@@ -6445,7 +6445,7 @@ static void Cmd_moveend(void)
         case MOVEEND_MIRROR_MOVE: // mirror move
             if (!(gAbsentBattlerFlags & (1u << gBattlerAttacker))
                 && !(gBattleStruct->absentBattlerFlags & (1u << gBattlerAttacker))
-                && !gMovesInfo[originallyUsedMove].mirrorMoveBanned
+                && !IsMoveMirrorMoveBanned(originallyUsedMove)
                 && gHitMarker & HITMARKER_OBEYS
                 && gBattlerAttacker != gBattlerTarget
                 && !(gHitMarker & HITMARKER_FAINTED(gBattlerTarget))
@@ -10332,7 +10332,7 @@ static void Cmd_various(void)
     {
         VARIOUS_ARGS(const u8 *failInstr);
         u16 move = gBattleMons[gBattlerTarget].moves[gBattleStruct->chosenMovePositions[gBattlerTarget]];
-        if (IS_MOVE_STATUS(move) || gMovesInfo[move].meFirstBanned
+        if (IS_MOVE_STATUS(move) || IsMoveMeFirstBanned(move)
             || GetBattlerTurnOrderNum(gBattlerAttacker) > GetBattlerTurnOrderNum(gBattlerTarget))
             gBattlescriptCurrInstr = cmd->failInstr;
         else
@@ -10457,7 +10457,7 @@ static void Cmd_various(void)
         VARIOUS_ARGS(const u8 *failInstr);
         u16 move = gLastPrintedMoves[gBattlerTarget];
         if (move == MOVE_NONE || move == MOVE_UNAVAILABLE || MoveHasAdditionalEffectSelf(move, MOVE_EFFECT_RECHARGE)
-         || gMovesInfo[move].instructBanned
+         || IsMoveInstructBanned(move)
          || gBattleMoveEffects[GetMoveEffect(move)].twoTurnEffect
          || (GetActiveGimmick(gBattlerTarget) == GIMMICK_DYNAMAX)
          || IsZMove(move)
@@ -13045,7 +13045,7 @@ static void Cmd_mimicattackcopy(void)
 {
     CMD_ARGS(const u8 *failInstr);
 
-    if ((gMovesInfo[gLastMoves[gBattlerTarget]].mimicBanned)
+    if ((IsMoveMimicBanned(gLastMoves[gBattlerTarget]))
         || (gBattleMons[gBattlerAttacker].status2 & STATUS2_TRANSFORMED)
         || gLastMoves[gBattlerTarget] == MOVE_NONE
         || gLastMoves[gBattlerTarget] == MOVE_UNAVAILABLE)
@@ -13087,7 +13087,7 @@ static void Cmd_mimicattackcopy(void)
 static bool32 InvalidMetronomeMove(u32 move)
 {
     return GetMoveEffect(move) == EFFECT_PLACEHOLDER
-        || gMovesInfo[move].metronomeBanned;
+        || IsMoveMetronomeBanned(move);
 }
 
 static void Cmd_metronome(void)
@@ -13245,7 +13245,7 @@ static void Cmd_trysetencore(void)
         }
     }
 
-    if ((gMovesInfo[gLastMoves[gBattlerTarget]].encoreBanned)
+    if ((IsMoveEncoreBanned(gLastMoves[gBattlerTarget]))
      || gLastMoves[gBattlerTarget] == MOVE_NONE
      || gLastMoves[gBattlerTarget] == MOVE_UNAVAILABLE)
     {
@@ -13433,7 +13433,7 @@ static void Cmd_copymovepermanently(void)
 
     if (!(gBattleMons[gBattlerAttacker].status2 & STATUS2_TRANSFORMED)
         && gLastPrintedMoves[gBattlerTarget] != MOVE_UNAVAILABLE
-        && !gMovesInfo[gLastPrintedMoves[gBattlerTarget]].sketchBanned)
+        && !IsMoveSketchBanned(gLastPrintedMoves[gBattlerTarget]))
     {
         s32 i;
 
@@ -13485,7 +13485,7 @@ static void Cmd_trychoosesleeptalkmove(void)
 
     for (i = 0; i < MAX_MON_MOVES; i++)
     {
-        if (gMovesInfo[gBattleMons[gBattlerAttacker].moves[i]].sleepTalkBanned
+        if (IsMoveSleepTalkBanned(gBattleMons[gBattlerAttacker].moves[i])
             || gBattleMoveEffects[GetMoveEffect(gBattleMons[gBattlerAttacker].moves[i])].twoTurnEffect)
         {
             unusableMovesBits |= (1 << (i));
@@ -15055,7 +15055,7 @@ static void Cmd_assistattackselect(void)
             {
                 u16 move = GetMonData(&party[monId], MON_DATA_MOVE1 + moveId);
 
-                if (gMovesInfo[move].assistBanned)
+                if (IsMoveAssistBanned(move))
                     continue;
 
                 validMoves[chooseableMovesNo++] = move;
@@ -16447,7 +16447,7 @@ static bool32 CriticalCapture(u32 odds)
 bool32 IsMoveAffectedByParentalBond(u32 move, u32 battler)
 {
     if (move != MOVE_NONE && move != MOVE_UNAVAILABLE && move != MOVE_STRUGGLE
-        && !gMovesInfo[move].parentalBondBanned
+        && !IsMoveParentalBondBanned(move)
         && GetMoveCategory(move) != DAMAGE_CATEGORY_STATUS
         && GetMoveStrikeCount(move) < 2
         && GetMoveEffect(move) != EFFECT_MULTI_HIT)
@@ -17312,7 +17312,7 @@ void BS_TryCopycat(void)
 {
     NATIVE_ARGS(const u8 *failInstr);
 
-    if (gLastUsedMove == MOVE_NONE || gLastUsedMove == MOVE_UNAVAILABLE || gMovesInfo[gLastUsedMove].copycatBanned || IsZMove(gLastUsedMove))
+    if (gLastUsedMove == MOVE_NONE || gLastUsedMove == MOVE_UNAVAILABLE || IsMoveCopycatBanned(gLastUsedMove) || IsZMove(gLastUsedMove))
     {
         gBattlescriptCurrInstr = cmd->failInstr;
     }

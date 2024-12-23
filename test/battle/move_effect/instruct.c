@@ -24,7 +24,7 @@ DOUBLE_BATTLE_TEST("Instruct fails if target hasn't made a move")
 DOUBLE_BATTLE_TEST("Instruct fails if move is banned by Instruct")
 {
     GIVEN {
-        ASSUME(gMovesInfo[MOVE_BIDE].instructBanned == TRUE);
+        ASSUME(IsMoveInstructBanned(MOVE_BIDE));
         PLAYER(SPECIES_WOBBUFFET);
         PLAYER(SPECIES_WOBBUFFET) { Moves(MOVE_TACKLE, MOVE_POUND, MOVE_SCRATCH, MOVE_BIDE); }
         OPPONENT(SPECIES_WOBBUFFET);

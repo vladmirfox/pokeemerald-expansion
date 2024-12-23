@@ -336,6 +336,66 @@ static inline bool32 MoveCantBeUsedTwice(u32 moveId)
     return gMovesInfo[SanitizeMoveId(moveId)].cantUseTwice;
 }
 
+static inline bool32 IsMoveGravityBanned(u32 moveId)
+{
+    return gMovesInfo[SanitizeMoveId(moveId)].gravityBanned;
+}
+
+static inline bool32 IsMoveMirrorMoveBanned(u32 moveId)
+{
+    return gMovesInfo[SanitizeMoveId(moveId)].mirrorMoveBanned;
+}
+
+static inline bool32 IsMoveMeFirstBanned(u32 moveId)
+{
+    return gMovesInfo[SanitizeMoveId(moveId)].meFirstBanned;
+}
+
+static inline bool32 IsMoveMimicBanned(u32 moveId)
+{
+    return gMovesInfo[SanitizeMoveId(moveId)].mimicBanned;
+}
+
+static inline bool32 IsMoveCopycatBanned(u32 moveId)
+{
+    return gMovesInfo[SanitizeMoveId(moveId)].copycatBanned;
+}
+
+static inline bool32 IsMoveAssistBanned(u32 moveId)
+{
+    return gMovesInfo[SanitizeMoveId(moveId)].assistBanned;
+}
+
+static inline bool32 IsMoveSleepTalkBanned(u32 moveId)
+{
+    return gMovesInfo[SanitizeMoveId(moveId)].sleepTalkBanned;
+}
+
+static inline bool32 IsMoveInstructBanned(u32 moveId)
+{
+    return gMovesInfo[SanitizeMoveId(moveId)].instructBanned;
+}
+
+static inline bool32 IsMoveEncoreBanned(u32 moveId)
+{
+    return gMovesInfo[SanitizeMoveId(moveId)].encoreBanned;
+}
+
+static inline bool32 IsMoveParentalBondBanned(u32 moveId)
+{
+    return gMovesInfo[SanitizeMoveId(moveId)].parentalBondBanned;
+}
+
+static inline bool32 IsMoveSkyBattleBanned(u32 moveId)
+{
+    return gMovesInfo[SanitizeMoveId(moveId)].skyBattleBanned;
+}
+
+static inline bool32 IsMoveSketchBanned(u32 moveId)
+{
+    return gMovesInfo[SanitizeMoveId(moveId)].sketchBanned;
+}
+
 static inline const u8 *GetMoveAnimationScript(u32 moveId)
 {
     moveId = SanitizeMoveId(moveId);

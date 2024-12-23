@@ -4,9 +4,9 @@
 ASSUMPTIONS
 {
     ASSUME(GetMoveEffect(MOVE_SLEEP_TALK) == EFFECT_SLEEP_TALK);
-    ASSUME(gMovesInfo[MOVE_RAZOR_WIND].sleepTalkBanned == TRUE);
-    ASSUME(gMovesInfo[MOVE_FLY].sleepTalkBanned == TRUE);
-    ASSUME(gMovesInfo[MOVE_DIG].sleepTalkBanned == TRUE);
+    ASSUME(IsMoveSleepTalkBanned(MOVE_RAZOR_WIND));
+    ASSUME(IsMoveSleepTalkBanned(MOVE_FLY));
+    ASSUME(IsMoveSleepTalkBanned(MOVE_DIG));
 }
 
 SINGLE_BATTLE_TEST("Sleep Talk fails if not asleep")

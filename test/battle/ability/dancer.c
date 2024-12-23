@@ -174,7 +174,7 @@ DOUBLE_BATTLE_TEST("Dancer triggers on Instructed dance moves")
 {
     GIVEN {
         ASSUME(IsDanceMove(MOVE_DRAGON_DANCE));
-        ASSUME(gMovesInfo[MOVE_DRAGON_DANCE].instructBanned == FALSE);
+        ASSUME(!IsMoveInstructBanned(MOVE_DRAGON_DANCE));
         ASSUME(GetMoveEffect(MOVE_INSTRUCT) == EFFECT_INSTRUCT);
         PLAYER(SPECIES_WOBBUFFET);
         PLAYER(SPECIES_WYNAUT);
@@ -201,7 +201,7 @@ DOUBLE_BATTLE_TEST("Dancer-called move doesn't update move to be Instructed")
 {
     GIVEN {
         ASSUME(IsDanceMove(MOVE_DRAGON_DANCE));
-        ASSUME(gMovesInfo[MOVE_TACKLE].instructBanned == FALSE);
+        ASSUME(!IsMoveInstructBanned(MOVE_TACKLE));
         ASSUME(GetMoveEffect(MOVE_INSTRUCT) == EFFECT_INSTRUCT);
         PLAYER(SPECIES_WOBBUFFET);
         PLAYER(SPECIES_WYNAUT);
