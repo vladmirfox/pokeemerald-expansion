@@ -4323,7 +4323,7 @@ static void Cmd_setadditionaleffects(void)
         if (numAdditionalEffects > gBattleStruct->additionalEffectsCounter)
         {
             u32 percentChance;
-            const struct AdditionalEffect *additionalEffect = &gMovesInfo[gCurrentMove].additionalEffects[gBattleStruct->additionalEffectsCounter];
+            const struct AdditionalEffect *additionalEffect = GetMoveAdditionalEffectById(gCurrentMove, gBattleStruct->additionalEffectsCounter);
             const u8 *currentPtr = gBattlescriptCurrInstr;
 
             // Various checks for if this move effect can be applied this turn
@@ -16508,7 +16508,8 @@ static bool8 CanBurnHitThaw(u16 move)
         u32 numAdditionalEffects = GetMoveAdditionalEffectCount(move);
         for (i = 0; i < numAdditionalEffects; i++)
         {
-            if (gMovesInfo[move].additionalEffects[i].moveEffect == MOVE_EFFECT_BURN)
+            const struct AdditionalEffect *additionalEffect = GetMoveAdditionalEffectById(move, i);
+            if (additionalEffect->moveEffect == MOVE_EFFECT_BURN)
                 return TRUE;
         }
     }

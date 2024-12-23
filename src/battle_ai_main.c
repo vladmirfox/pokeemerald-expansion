@@ -4451,25 +4451,26 @@ static u32 AI_CalcMoveEffectScore(u32 battlerAtk, u32 battlerDef, u32 move)
     // check move additional effects that are likely to happen
     for (i = 0; i < additionalEffectCount; i++)
     {
+        const struct AdditionalEffect *additionalEffect = GetMoveAdditionalEffectById(move, i);
         // Only consider effects with a guaranteed chance to happen
-        if (!MoveEffectIsGuaranteed(battlerAtk, aiData->abilities[battlerAtk], &gMovesInfo[move].additionalEffects[i]))
+        if (!MoveEffectIsGuaranteed(battlerAtk, aiData->abilities[battlerAtk], additionalEffect))
             continue;
 
         // Consider move effects that target self
-        if (gMovesInfo[move].additionalEffects[i].self)
+        if (additionalEffect->self)
         {
             u32 StageStatId;
 
             if (aiData->abilities[battlerAtk] != ABILITY_CONTRARY)
             {
-                switch (gMovesInfo[move].additionalEffects[i].moveEffect)
+                switch (additionalEffect->moveEffect)
                 {
                 case MOVE_EFFECT_ATK_PLUS_1:
                 case MOVE_EFFECT_DEF_PLUS_1:
                 case MOVE_EFFECT_SPD_PLUS_1:
                 case MOVE_EFFECT_SP_ATK_PLUS_1:
                 case MOVE_EFFECT_SP_DEF_PLUS_1:
-                    StageStatId = STAT_CHANGE_ATK + gMovesInfo[move].additionalEffects[i].moveEffect - MOVE_EFFECT_ATK_PLUS_1;
+                    StageStatId = STAT_CHANGE_ATK + additionalEffect->moveEffect - MOVE_EFFECT_ATK_PLUS_1;
                     ADJUST_SCORE(IncreaseStatUpScore(battlerAtk, battlerDef, StageStatId));
                     break;
                 case MOVE_EFFECT_ATK_PLUS_2:
@@ -4477,7 +4478,7 @@ static u32 AI_CalcMoveEffectScore(u32 battlerAtk, u32 battlerDef, u32 move)
                 case MOVE_EFFECT_SPD_PLUS_2:
                 case MOVE_EFFECT_SP_ATK_PLUS_2:
                 case MOVE_EFFECT_SP_DEF_PLUS_2:
-                    StageStatId = STAT_CHANGE_ATK_2 + gMovesInfo[move].additionalEffects[i].moveEffect - MOVE_EFFECT_ATK_PLUS_1;
+                    StageStatId = STAT_CHANGE_ATK_2 + additionalEffect->moveEffect - MOVE_EFFECT_ATK_PLUS_1;
                     ADJUST_SCORE(IncreaseStatUpScore(battlerAtk, battlerDef, StageStatId));
                     break;
                 case MOVE_EFFECT_ACC_PLUS_1:
@@ -4497,14 +4498,14 @@ static u32 AI_CalcMoveEffectScore(u32 battlerAtk, u32 battlerDef, u32 move)
             }
             else
             {
-                switch (gMovesInfo[move].additionalEffects[i].moveEffect)
+                switch (additionalEffect->moveEffect)
                 {
                 case MOVE_EFFECT_ATK_MINUS_1:
                 case MOVE_EFFECT_DEF_MINUS_1:
                 case MOVE_EFFECT_SPD_MINUS_1:
                 case MOVE_EFFECT_SP_ATK_MINUS_1:
                 case MOVE_EFFECT_SP_DEF_MINUS_1:
-                    StageStatId = STAT_CHANGE_ATK + gMovesInfo[move].additionalEffects[i].moveEffect - MOVE_EFFECT_ATK_MINUS_1;
+                    StageStatId = STAT_CHANGE_ATK + additionalEffect->moveEffect - MOVE_EFFECT_ATK_MINUS_1;
                     ADJUST_SCORE(IncreaseStatUpScoreContrary(battlerAtk, battlerDef, StageStatId));
                     break;
                 case MOVE_EFFECT_ATK_MINUS_2:
@@ -4512,7 +4513,7 @@ static u32 AI_CalcMoveEffectScore(u32 battlerAtk, u32 battlerDef, u32 move)
                 case MOVE_EFFECT_SPD_MINUS_2:
                 case MOVE_EFFECT_SP_ATK_MINUS_2:
                 case MOVE_EFFECT_SP_DEF_MINUS_2:
-                    StageStatId = STAT_CHANGE_ATK + gMovesInfo[move].additionalEffects[i].moveEffect - MOVE_EFFECT_ATK_MINUS_2;
+                    StageStatId = STAT_CHANGE_ATK + additionalEffect->moveEffect - MOVE_EFFECT_ATK_MINUS_2;
                     ADJUST_SCORE(IncreaseStatUpScoreContrary(battlerAtk, battlerDef, StageStatId));
                     break;
                 case MOVE_EFFECT_ACC_MINUS_1:
@@ -4541,7 +4542,7 @@ static u32 AI_CalcMoveEffectScore(u32 battlerAtk, u32 battlerDef, u32 move)
         }
         else // consider move effects that hinder the target
         {
-            switch (gMovesInfo[move].additionalEffects[i].moveEffect)
+            switch (additionalEffect->moveEffect)
             {
                 case MOVE_EFFECT_FLINCH:
                     score += ShouldTryToFlinch(battlerAtk, battlerDef, aiData->abilities[battlerAtk], aiData->abilities[battlerDef], move);
@@ -4834,7 +4835,8 @@ static s32 AI_ForceSetupFirstTurn(u32 battlerAtk, u32 battlerDef, u32 move, s32 
         u32 additionalEffectCount = GetMoveAdditionalEffectCount(move);
         for (i = 0; i < additionalEffectCount; i++)
         {
-            switch (gMovesInfo[move].additionalEffects[i].moveEffect)
+            const struct AdditionalEffect * additionalEffect = GetMoveAdditionalEffectById(move, i);
+            switch (additionalEffect->moveEffect)
             {
                 case MOVE_EFFECT_STEALTH_ROCK:
                 case MOVE_EFFECT_SPIKES:
@@ -4907,7 +4909,8 @@ static s32 AI_Risky(u32 battlerAtk, u32 battlerDef, u32 move, s32 score)
         u32 additionalEffectCount = GetMoveAdditionalEffectCount(move);
         for (i = 0; i < additionalEffectCount; i++)
         {
-            switch (gMovesInfo[move].additionalEffects[i].moveEffect)
+            const struct AdditionalEffect *additionalEffect = GetMoveAdditionalEffectById(move, i);
+            switch (additionalEffect->moveEffect)
             {
                 case MOVE_EFFECT_ALL_STATS_UP:
                     if (Random() & 1)

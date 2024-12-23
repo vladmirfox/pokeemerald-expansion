@@ -401,6 +401,11 @@ static inline bool32 IsMoveSketchBanned(u32 moveId)
     return gMovesInfo[SanitizeMoveId(moveId)].sketchBanned;
 }
 
+static inline const struct AdditionalEffect * GetMoveAdditionalEffectById(u32 moveId, u32 effect)
+{
+    return &gMovesInfo[SanitizeMoveId(moveId)].additionalEffects[effect];
+}
+
 static inline u32 GetMoveContestEffect(u32 moveId)
 {
     return gMovesInfo[SanitizeMoveId(moveId)].contestEffect;

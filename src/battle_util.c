@@ -8986,7 +8986,7 @@ static inline u32 CalcMoveBasePower(struct DamageCalculationData *damageCalcData
     case EFFECT_DOUBLE_POWER_ON_ARG_STATUS:
         // Comatose targets treated as if asleep
         if ((gBattleMons[battlerDef].status1 | (STATUS1_SLEEP * (abilityDef == ABILITY_COMATOSE))) & gMovesInfo[move].argument
-         && !((gMovesInfo[move].additionalEffects->moveEffect == MOVE_EFFECT_REMOVE_STATUS) && DoesSubstituteBlockMove(battlerAtk, battlerDef, move)))
+         && !((GetMoveAdditionalEffectById(move, 0)->moveEffect == MOVE_EFFECT_REMOVE_STATUS) && DoesSubstituteBlockMove(battlerAtk, battlerDef, move)))
         {
             basePower *= 2;
         }
@@ -11736,8 +11736,8 @@ bool32 MoveHasAdditionalEffect(u32 move, u32 moveEffect)
     u32 numAdditionalEffects = GetMoveAdditionalEffectCount(move);
     for (i = 0; i < numAdditionalEffects; i++)
     {
-        if (gMovesInfo[move].additionalEffects[i].moveEffect == moveEffect
-         && gMovesInfo[move].additionalEffects[i].self == FALSE)
+        const struct AdditionalEffect *additionalEffect = GetMoveAdditionalEffectById(move, i);
+        if (additionalEffect->moveEffect == moveEffect && additionalEffect->self == FALSE)
             return TRUE;
     }
     return FALSE;
@@ -11749,8 +11749,8 @@ bool32 MoveHasAdditionalEffectWithChance(u32 move, u32 moveEffect, u32 chance)
     u32 numAdditionalEffects = GetMoveAdditionalEffectCount(move);
     for (i = 0; i < numAdditionalEffects; i++)
     {
-        if (gMovesInfo[move].additionalEffects[i].moveEffect == moveEffect
-         && gMovesInfo[move].additionalEffects[i].chance == chance)
+        const struct AdditionalEffect *additionalEffect = GetMoveAdditionalEffectById(move, i);
+        if (additionalEffect->moveEffect == moveEffect && additionalEffect->chance == chance)
             return TRUE;
     }
     return FALSE;
@@ -11762,8 +11762,8 @@ bool32 MoveHasAdditionalEffectSelf(u32 move, u32 moveEffect)
     u32 numAdditionalEffects = GetMoveAdditionalEffectCount(move);
     for (i = 0; i < numAdditionalEffects; i++)
     {
-        if (gMovesInfo[move].additionalEffects[i].moveEffect == moveEffect
-         && gMovesInfo[move].additionalEffects[i].self == TRUE)
+        const struct AdditionalEffect *additionalEffect = GetMoveAdditionalEffectById(move, i);
+        if (additionalEffect->moveEffect == moveEffect && additionalEffect->self == TRUE)
             return TRUE;
     }
     return FALSE;
@@ -11780,7 +11780,7 @@ bool32 MoveHasChargeTurnAdditionalEffect(u32 move)
     u32 numAdditionalEffects = GetMoveAdditionalEffectCount(move);
     for (i = 0; i < numAdditionalEffects; i++)
     {
-        if (gMovesInfo[move].additionalEffects[i].onChargeTurnOnly)
+        if (GetMoveAdditionalEffectById(move, i)->onChargeTurnOnly)
             return TRUE;
     }
     return FALSE;
@@ -11792,7 +11792,7 @@ bool32 MoveIsAffectedBySheerForce(u32 move)
     u32 numAdditionalEffects = GetMoveAdditionalEffectCount(move);
     for (i = 0; i < numAdditionalEffects; i++)
     {
-        if (gMovesInfo[move].additionalEffects[i].chance > 0)
+        if (GetMoveAdditionalEffectById(move, i)->chance > 0)
             return TRUE;
     }
     return FALSE;

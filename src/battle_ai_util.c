@@ -806,10 +806,11 @@ static bool32 AI_IsMoveEffectInPlus(u32 battlerAtk, u32 battlerDef, u32 move, s3
     u32 additionalEffectCount = GetMoveAdditionalEffectCount(move);
     for (i = 0; i < additionalEffectCount; i++)
     {
+        const struct AdditionalEffect *additionalEffect = GetMoveAdditionalEffectById(move, i);
         // Consider move effects that target self
-        if (gMovesInfo[move].additionalEffects[i].self)
+        if (additionalEffect->self)
         {
-            switch (gMovesInfo[move].additionalEffects[i].moveEffect)
+            switch (additionalEffect->moveEffect)
             {
                 case MOVE_EFFECT_ATK_PLUS_1:
                 case MOVE_EFFECT_ATK_PLUS_2:
@@ -852,7 +853,7 @@ static bool32 AI_IsMoveEffectInPlus(u32 battlerAtk, u32 battlerDef, u32 move, s3
         }
         else // consider move effects that hinder the target
         {
-            switch (gMovesInfo[move].additionalEffects[i].moveEffect)
+            switch (additionalEffect->moveEffect)
             {
                 case MOVE_EFFECT_POISON:
                 case MOVE_EFFECT_TOXIC:
@@ -886,7 +887,7 @@ static bool32 AI_IsMoveEffectInPlus(u32 battlerAtk, u32 battlerDef, u32 move, s3
                 case MOVE_EFFECT_SP_DEF_MINUS_1:
                 case MOVE_EFFECT_ACC_MINUS_1:
                 case MOVE_EFFECT_EVS_MINUS_1:
-                    if (ShouldLowerStat(battlerDef, abilityDef, STAT_ATK + (gMovesInfo[move].additionalEffects[i].moveEffect - MOVE_EFFECT_ATK_MINUS_1)) && noOfHitsToKo != 1)
+                    if (ShouldLowerStat(battlerDef, abilityDef, STAT_ATK + (additionalEffect->moveEffect - MOVE_EFFECT_ATK_MINUS_1)) && noOfHitsToKo != 1)
                         return TRUE;
                     break;
                 case MOVE_EFFECT_ATK_MINUS_2:
@@ -896,7 +897,7 @@ static bool32 AI_IsMoveEffectInPlus(u32 battlerAtk, u32 battlerDef, u32 move, s3
                 case MOVE_EFFECT_SP_DEF_MINUS_2:
                 case MOVE_EFFECT_ACC_MINUS_2:
                 case MOVE_EFFECT_EVS_MINUS_2:
-                    if (ShouldLowerStat(battlerDef, abilityDef, STAT_ATK + (gMovesInfo[move].additionalEffects[i].moveEffect - MOVE_EFFECT_ATK_MINUS_2)) && noOfHitsToKo != 1)
+                    if (ShouldLowerStat(battlerDef, abilityDef, STAT_ATK + (additionalEffect->moveEffect - MOVE_EFFECT_ATK_MINUS_2)) && noOfHitsToKo != 1)
                         return TRUE;
                     break;
             }
@@ -932,7 +933,8 @@ static bool32 AI_IsMoveEffectInMinus(u32 battlerAtk, u32 battlerDef, u32 move, s
         u32 additionalEffectCount = GetMoveAdditionalEffectCount(move);
         for (i = 0; i < additionalEffectCount; i++)
         {
-            switch (gMovesInfo[move].additionalEffects[i].moveEffect)
+            const struct AdditionalEffect *additionalEffect = GetMoveAdditionalEffectById(move, i);
+            switch (additionalEffect->moveEffect)
             {
                 case MOVE_EFFECT_ATK_MINUS_1:
                 case MOVE_EFFECT_DEF_MINUS_1:
@@ -951,12 +953,12 @@ static bool32 AI_IsMoveEffectInMinus(u32 battlerAtk, u32 battlerDef, u32 move, s
                 case MOVE_EFFECT_V_CREATE:
                 case MOVE_EFFECT_ATK_DEF_DOWN:
                 case MOVE_EFFECT_DEF_SPDEF_DOWN:
-                    if ((gMovesInfo[move].additionalEffects[i].self && abilityAtk != ABILITY_CONTRARY)
+                    if ((additionalEffect->self && abilityAtk != ABILITY_CONTRARY)
                         || (noOfHitsToKo != 1 && abilityDef == ABILITY_CONTRARY && !DoesBattlerIgnoreAbilityChecks(abilityAtk, move)))
                         return TRUE;
                     break;
                 case MOVE_EFFECT_RECHARGE:
-                    return gMovesInfo[move].additionalEffects[i].self;
+                    return additionalEffect->self;
                 case MOVE_EFFECT_ATK_PLUS_1:
                 case MOVE_EFFECT_DEF_PLUS_1:
                 case MOVE_EFFECT_SPD_PLUS_1:
@@ -972,7 +974,7 @@ static bool32 AI_IsMoveEffectInMinus(u32 battlerAtk, u32 battlerDef, u32 move, s
                 case MOVE_EFFECT_EVS_PLUS_2:
                 case MOVE_EFFECT_ACC_PLUS_2:
                 case MOVE_EFFECT_ALL_STATS_UP:
-                    if ((gMovesInfo[move].additionalEffects[i].self && abilityAtk == ABILITY_CONTRARY)
+                    if ((additionalEffect->self && abilityAtk == ABILITY_CONTRARY)
                         || (noOfHitsToKo != 1 && !(abilityDef == ABILITY_CONTRARY && !DoesBattlerIgnoreAbilityChecks(abilityAtk, move))))
                         return TRUE;
                     break;
@@ -2141,7 +2143,8 @@ bool32 HasMoveThatLowersOwnStats(u32 battlerId)
             u32 additionalEffectCount = GetMoveAdditionalEffectCount(aiMove);
             for (j = 0; j < additionalEffectCount; j++)
             {
-                if (IsSelfStatLoweringEffect(gMovesInfo[aiMove].additionalEffects[j].moveEffect) && gMovesInfo[aiMove].additionalEffects[j].self)
+                const struct AdditionalEffect *additionalEffect = GetMoveAdditionalEffectById(aiMove, j);
+                if (IsSelfStatLoweringEffect(additionalEffect->moveEffect) && additionalEffect->self)
                     return TRUE;
             }
         }
@@ -2410,7 +2413,8 @@ static inline bool32 IsMoveSleepClauseTrigger(u32 move)
     u32 additionalEffectCount = GetMoveAdditionalEffectCount(move);
     for (i = 0; i < additionalEffectCount; i++)
     {
-        switch (gMovesInfo[move].additionalEffects[i].moveEffect)
+        const struct AdditionalEffect *additionalEffect = GetMoveAdditionalEffectById(move, i);
+        switch (additionalEffect->moveEffect)
         {
         case MAX_EFFECT_EFFECT_SPORE_FOES:
         case MAX_EFFECT_YAWN_FOE:

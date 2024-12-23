@@ -536,7 +536,7 @@ SINGLE_BATTLE_TEST("(Z-MOVE) 10,000,000 Volt Thunderbolt has an increased critic
 SINGLE_BATTLE_TEST("(Z-MOVE) Stoked Sparksurfer paralyzes the target")
 {
     GIVEN {
-        ASSUME(gMovesInfo[MOVE_STOKED_SPARKSURFER].additionalEffects[0].moveEffect == MOVE_EFFECT_PARALYSIS);
+        ASSUME(GetMoveAdditionalEffectById(MOVE_STOKED_SPARKSURFER, 0)->moveEffect == MOVE_EFFECT_PARALYSIS);
         PLAYER(SPECIES_RAICHU_ALOLA) { Item(ITEM_ALORAICHIUM_Z); }
         OPPONENT(SPECIES_WOBBUFFET);
     } WHEN {
@@ -606,7 +606,7 @@ SINGLE_BATTLE_TEST("(Z-MOVE) Splintered Stormshards removes terrain")
 SINGLE_BATTLE_TEST("(Z-MOVE) Clangorous Soulblaze boosts all the user's stats by one stage")
 {
     GIVEN {
-        ASSUME(gMovesInfo[MOVE_CLANGOROUS_SOULBLAZE].additionalEffects[0].moveEffect == MOVE_EFFECT_ALL_STATS_UP);
+        ASSUME(GetMoveAdditionalEffectById(MOVE_CLANGOROUS_SOULBLAZE, 0)->moveEffect == MOVE_EFFECT_ALL_STATS_UP);
         PLAYER(SPECIES_KOMMO_O) { Item(ITEM_KOMMONIUM_Z); }
         OPPONENT(SPECIES_WOBBUFFET);
     } WHEN {

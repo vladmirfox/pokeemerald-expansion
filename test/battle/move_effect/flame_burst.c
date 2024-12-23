@@ -3,7 +3,7 @@
 
 ASSUMPTIONS
 {
-    ASSUME(gMovesInfo[MOVE_FLAME_BURST].additionalEffects->moveEffect == MOVE_EFFECT_FLAME_BURST);
+    ASSUME(GetMoveAdditionalEffectById(MOVE_FLAME_BURST, 0)->moveEffect == MOVE_EFFECT_FLAME_BURST);
 }
 
 //  Flame Burst AoE is supposed to hit through Substitute

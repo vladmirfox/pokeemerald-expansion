@@ -10,7 +10,7 @@ DOUBLE_BATTLE_TEST("Round allows other battlers which also selected the moves to
 {
     GIVEN {
         ASSUME(gItemsInfo[ITEM_LAGGING_TAIL].holdEffect == HOLD_EFFECT_LAGGING_TAIL);
-        ASSUME(gMovesInfo[MOVE_IRON_HEAD].additionalEffects[0].moveEffect == MOVE_EFFECT_FLINCH);
+        ASSUME(GetMoveAdditionalEffectById(MOVE_IRON_HEAD, 0)->moveEffect == MOVE_EFFECT_FLINCH);
         PLAYER(SPECIES_WOBBUFFET);
         PLAYER(SPECIES_WYNAUT);
         OPPONENT(SPECIES_WOBBUFFET);

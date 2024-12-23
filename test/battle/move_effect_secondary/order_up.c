@@ -3,7 +3,7 @@
 
 ASSUMPTIONS
 {
-    ASSUME(gMovesInfo[MOVE_ORDER_UP].additionalEffects[0].moveEffect == MOVE_EFFECT_ORDER_UP);
+    ASSUME(GetMoveAdditionalEffectById(MOVE_ORDER_UP, 0)->moveEffect == MOVE_EFFECT_ORDER_UP);
 }
 
 DOUBLE_BATTLE_TEST("Order Up increases a stat based on Tatsugiri's form")
