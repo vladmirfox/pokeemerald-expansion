@@ -392,6 +392,30 @@ bool8 CheckForTrainersWantingBattle(void)
 
     //DebugPrintfLevel(MGBA_LOG_DEBUG, "NoApprTrainers: %d", gNoOfApproachingTrainers);
 
+    if (gNoOfApproachingTrainers > 0) 
+    {
+        ResetTrainerOpponentIds();
+        
+        PtrStack trainerBattleScriptStack;
+        PtrStackInit(&trainerBattleScriptStack);
+        TrainerBattleLoadArgs_2(gApproachingTrainers[0].trainerScriptPtr + OPCODE_OFFSET);
+        if (gNoOfApproachingTrainers > 1)
+        {
+            TrainerBattleLoadArgsSecondTrainer(gApproachingTrainers[1].trainerScriptPtr + OPCODE_OFFSET);
+            gApproachingTrainerId = 0;
+        }
+
+        BattleSetup_ConfigureTrainerBattle(gApproachingTrainers[0].trainerScriptPtr + OPCODE_OFFSET, &trainerBattleScriptStack, TRUE);
+        ScriptContext_SetupScript(EventScript_StartTrainerApproach);
+        ScriptContext_PushFromStack(&trainerBattleScriptStack);
+        LockPlayerFieldControls();
+
+        gSelectedObjectEvent = gApproachingTrainers[0].objectEventId;
+        gSpecialVar_LastTalked = gObjectEvents[gSelectedObjectEvent].localId;
+        gTrainerApproachedPlayer = TRUE;
+        return TRUE;
+    }
+    /*
     if (gNoOfApproachingTrainers == 1)
     {
         ResetTrainerOpponentIds();
@@ -431,6 +455,7 @@ bool8 CheckForTrainersWantingBattle(void)
         gTrainerApproachedPlayer = TRUE;
         return TRUE;
     }
+    */
     else
     {
         gTrainerApproachedPlayer = FALSE;
