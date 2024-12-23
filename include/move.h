@@ -89,7 +89,23 @@ struct MoveInfo
     u32 padding:19;
     // end of word
 
-    u32 argument;
+    union {
+        struct {
+            u16 stringId;
+            u16 status;
+        } twoTurnAttack;
+        struct {
+            u16 side;
+            u16 property; // can be used to remove the hardcoded values
+        } protect;
+        u32 status;
+        u16 moveProperty;
+        u16 holdEffect;
+        u16 type;
+        u16 fixedDamage;
+        u16 absorbPercentage;
+        u16 maxEffect;
+    } argument;
 
     // primary/secondary effects
     const struct AdditionalEffect *additionalEffects;
