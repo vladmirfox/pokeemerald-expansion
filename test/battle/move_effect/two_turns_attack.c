@@ -10,7 +10,6 @@ ASSUMPTIONS
 
     // Solar Beam - check for sun
     ASSUME(gMovesInfo[MOVE_SOLAR_BEAM].effect == EFFECT_SOLAR_BEAM);
-    ASSUME(HIHALF(gMovesInfo[MOVE_SOLAR_BLADE].argument) == B_WEATHER_SUN);
     ASSUME(gMovesInfo[MOVE_SOLAR_BLADE].effect == EFFECT_SOLAR_BEAM);
     ASSUME(HIHALF(gMovesInfo[MOVE_SOLAR_BLADE].argument) == B_WEATHER_SUN);
 
