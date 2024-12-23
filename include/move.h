@@ -401,6 +401,26 @@ static inline bool32 IsMoveSketchBanned(u32 moveId)
     return gMovesInfo[SanitizeMoveId(moveId)].sketchBanned;
 }
 
+static inline u32 GetMoveContestEffect(u32 moveId)
+{
+    return gMovesInfo[SanitizeMoveId(moveId)].contestEffect;
+}
+
+static inline u32 GetMoveContestCategory(u32 moveId)
+{
+    return gMovesInfo[SanitizeMoveId(moveId)].contestCategory;
+}
+
+static inline u32 GetMoveContestComboStarter(u32 moveId)
+{
+    return gMovesInfo[SanitizeMoveId(moveId)].contestComboStarterId;
+}
+
+static inline u32 GetMoveContestComboMoves(u32 moveId, u32 comboMove)
+{
+    return gMovesInfo[SanitizeMoveId(moveId)].contestComboMoves[comboMove];
+}
+
 static inline const u8 *GetMoveAnimationScript(u32 moveId)
 {
     moveId = SanitizeMoveId(moveId);
