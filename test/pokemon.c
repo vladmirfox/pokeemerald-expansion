@@ -210,6 +210,27 @@ TEST("givemon [simple]")
     EXPECT_EQ(GetMonData(&gPlayerParty[0], MON_DATA_LEVEL), 100);
 }
 
+TEST("givemon respects perfectIVCount")
+{
+    ZeroPlayerPartyMons();
+    u32 perfectIVs = 0, j;
+
+    ASSUME(gSpeciesInfo[SPECIES_MEW].perfectIVCount == 3);
+
+    RUN_OVERWORLD_SCRIPT(
+        givemon SPECIES_MEW, 100;
+    );
+
+    EXPECT_EQ(GetMonData(&gPlayerParty[0], MON_DATA_SPECIES), SPECIES_MEW);
+    EXPECT_EQ(GetMonData(&gPlayerParty[0], MON_DATA_LEVEL), 100);
+    for (j = 0; j < NUM_STATS; j++)
+    {
+        if (GetMonData(&gPlayerParty[0], MON_DATA_HP_IV + j) == MAX_PER_STAT_IVS)
+            perfectIVs++;
+    }
+    EXPECT_GE(perfectIVs, 3);
+}
+
 TEST("givemon [moves]")
 {
     ZeroPlayerPartyMons();
