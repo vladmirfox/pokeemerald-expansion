@@ -2,6 +2,7 @@
 #include "battle_pyramid.h"
 #include "bg.h"
 #include "fieldmap.h"
+#include "event_data.h"
 #include "fldeff.h"
 #include "fldeff_misc.h"
 #include "frontier_util.h"
@@ -882,6 +883,7 @@ static void LoadTilesetPalette(struct Tileset const *tileset, u16 destOffset, u1
 {
     u32 low = 0;
     u32 high = 0;
+    u8 season = getCurrentSeason();
 
     if (tileset)
     {
@@ -896,6 +898,29 @@ static void LoadTilesetPalette(struct Tileset const *tileset, u16 destOffset, u1
             ApplyGlobalTintToPaletteEntries(destOffset + 1, (size - 2) >> 1);
             low = 0;
             high = NUM_PALS_IN_PRIMARY;
+            switch(season){
+                case SEASON_SPRING:
+                    LoadPalette(tileset->palettes[0] + 1, destOffset + 1, size - PLTT_SIZEOF(1));
+                break;
+                case SEASON_SUMMER:
+                    if(tileset->palettes_summer != NULL)
+                        LoadPalette(tileset->palettes_summer[0] + 1, destOffset + 1, size - PLTT_SIZEOF(1));
+                    else
+                        LoadPalette(tileset->palettes[0] + 1, destOffset + 1, size - PLTT_SIZEOF(1));
+                break;
+                case SEASON_AUTUMN:
+                    if(tileset->palettes_autumn != NULL)
+                        LoadPalette(tileset->palettes_autumn[0] + 1, destOffset + 1, size - PLTT_SIZEOF(1));
+                    else
+                        LoadPalette(tileset->palettes[0] + 1, destOffset + 1, size - PLTT_SIZEOF(1));
+                break;
+                case SEASON_WINTER:
+                    if(tileset->palettes_winter != NULL)
+                        LoadPalette(tileset->palettes_winter[0] + 1, destOffset + 1, size - PLTT_SIZEOF(1));
+                    else
+                        LoadPalette(tileset->palettes[0] + 1, destOffset + 1, size - PLTT_SIZEOF(1));
+                break;
+            }
         }
         else if (tileset->isSecondary == TRUE)
         {
@@ -907,10 +932,56 @@ static void LoadTilesetPalette(struct Tileset const *tileset, u16 destOffset, u1
                 LoadPaletteFast(tileset->palettes[NUM_PALS_IN_PRIMARY], destOffset, size);
             low = NUM_PALS_IN_PRIMARY;
             high = NUM_PALS_TOTAL;
+            switch(season){
+                case SEASON_SPRING:
+                    LoadPalette(tileset->palettes[NUM_PALS_IN_PRIMARY], destOffset, size);
+                break;
+                case SEASON_SUMMER:
+                    if(tileset->palettes_summer != NULL)
+                        LoadPalette(tileset->palettes_summer[NUM_PALS_IN_PRIMARY], destOffset, size);
+                    else
+                        LoadPalette(tileset->palettes[NUM_PALS_IN_PRIMARY], destOffset, size);
+                break;
+                case SEASON_AUTUMN:
+                    if(tileset->palettes_autumn != NULL)
+                        LoadPalette(tileset->palettes_autumn[NUM_PALS_IN_PRIMARY], destOffset, size);
+                    else
+                        LoadPalette(tileset->palettes[NUM_PALS_IN_PRIMARY], destOffset, size);
+                break;
+                case SEASON_WINTER:
+                    if(tileset->palettes_winter != NULL)
+                        LoadPalette(tileset->palettes_winter[NUM_PALS_IN_PRIMARY], destOffset, size);
+                    else
+                        LoadPalette(tileset->palettes[NUM_PALS_IN_PRIMARY], destOffset, size);
+                break;
+            }
         }
         else
         {
             LoadCompressedPalette((const u32 *)tileset->palettes, destOffset, size);
+            switch(season){
+                case SEASON_SPRING:
+                    LoadCompressedPalette((const u32 *)tileset->palettes, destOffset, size);
+                break;
+                case SEASON_SUMMER:
+                    if(tileset->palettes_summer != NULL)
+                        LoadCompressedPalette((const u32 *)tileset->palettes_summer, destOffset, size);
+                    else
+                        LoadCompressedPalette((const u32 *)tileset->palettes, destOffset, size);
+                break;
+                case SEASON_AUTUMN:
+                    if(tileset->palettes_autumn != NULL)
+                        LoadCompressedPalette((const u32 *)tileset->palettes_autumn, destOffset, size);
+                    else
+                        LoadCompressedPalette((const u32 *)tileset->palettes, destOffset, size);
+                break;
+                case SEASON_WINTER:
+                    if(tileset->palettes_winter != NULL)
+                        LoadCompressedPalette((const u32 *)tileset->palettes_winter, destOffset, size);
+                    else
+                        LoadCompressedPalette((const u32 *)tileset->palettes, destOffset, size);
+                break;
+            }
             ApplyGlobalTintToPaletteEntries(destOffset, size >> 1);
         }
         // convert legacy light palette system to current

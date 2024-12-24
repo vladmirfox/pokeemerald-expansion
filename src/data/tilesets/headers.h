@@ -7,6 +7,9 @@ const struct Tileset gTileset_General =
     .metatiles = gMetatiles_General,
     .metatileAttributes = gMetatileAttributes_General,
     .callback = InitTilesetAnim_General,
+    .palettes_summer = gTilesetPalettes_General_Summer,
+    .palettes_autumn = gTilesetPalettes_General_Autumn,
+    .palettes_winter = gTilesetPalettes_General_Winter,
 };
 
 const struct Tileset gTileset_Petalburg =
@@ -18,6 +21,9 @@ const struct Tileset gTileset_Petalburg =
     .metatiles = gMetatiles_Petalburg,
     .metatileAttributes = gMetatileAttributes_Petalburg,
     .callback = InitTilesetAnim_Petalburg,
+    .palettes_summer = NULL,
+    .palettes_autumn = NULL,
+    .palettes_winter = NULL,
 };
 
 const struct Tileset gTileset_Rustboro =
@@ -29,6 +35,9 @@ const struct Tileset gTileset_Rustboro =
     .metatiles = gMetatiles_Rustboro,
     .metatileAttributes = gMetatileAttributes_Rustboro,
     .callback = InitTilesetAnim_Rustboro,
+    .palettes_summer = NULL,
+    .palettes_autumn = NULL,
+    .palettes_winter = NULL,
 };
 
 const struct Tileset gTileset_Dewford =
@@ -40,6 +49,9 @@ const struct Tileset gTileset_Dewford =
     .metatiles = gMetatiles_Dewford,
     .metatileAttributes = gMetatileAttributes_Dewford,
     .callback = InitTilesetAnim_Dewford,
+    .palettes_summer = NULL,
+    .palettes_autumn = NULL,
+    .palettes_winter = NULL,
 };
 
 const struct Tileset gTileset_Slateport =
@@ -51,6 +63,9 @@ const struct Tileset gTileset_Slateport =
     .metatiles = gMetatiles_Slateport,
     .metatileAttributes = gMetatileAttributes_Slateport,
     .callback = InitTilesetAnim_Slateport,
+    .palettes_summer = NULL,
+    .palettes_autumn = NULL,
+    .palettes_winter = NULL,
 };
 
 const struct Tileset gTileset_Mauville =
@@ -62,6 +77,9 @@ const struct Tileset gTileset_Mauville =
     .metatiles = gMetatiles_Mauville,
     .metatileAttributes = gMetatileAttributes_Mauville,
     .callback = InitTilesetAnim_Mauville,
+    .palettes_summer = NULL,
+    .palettes_autumn = NULL,
+    .palettes_winter = NULL,
 };
 
 const struct Tileset gTileset_Lavaridge =
@@ -73,6 +91,9 @@ const struct Tileset gTileset_Lavaridge =
     .metatiles = gMetatiles_Lavaridge,
     .metatileAttributes = gMetatileAttributes_Lavaridge,
     .callback = InitTilesetAnim_Lavaridge,
+    .palettes_summer = NULL,
+    .palettes_autumn = NULL,
+    .palettes_winter = NULL,
 };
 
 const struct Tileset gTileset_Fallarbor =
@@ -84,6 +105,9 @@ const struct Tileset gTileset_Fallarbor =
     .metatiles = gMetatiles_Fallarbor,
     .metatileAttributes = gMetatileAttributes_Fallarbor,
     .callback = InitTilesetAnim_Fallarbor,
+    .palettes_summer = NULL,
+    .palettes_autumn = NULL,
+    .palettes_winter = NULL,
 };
 
 const struct Tileset gTileset_Fortree =
@@ -95,6 +119,9 @@ const struct Tileset gTileset_Fortree =
     .metatiles = gMetatiles_Fortree,
     .metatileAttributes = gMetatileAttributes_Fortree,
     .callback = InitTilesetAnim_Fortree,
+    .palettes_summer = NULL,
+    .palettes_autumn = NULL,
+    .palettes_winter = NULL,
 };
 
 const struct Tileset gTileset_Lilycove =
@@ -106,6 +133,9 @@ const struct Tileset gTileset_Lilycove =
     .metatiles = gMetatiles_Lilycove,
     .metatileAttributes = gMetatileAttributes_Lilycove,
     .callback = InitTilesetAnim_Lilycove,
+    .palettes_summer = NULL,
+    .palettes_autumn = NULL,
+    .palettes_winter = NULL,
 };
 
 const struct Tileset gTileset_Mossdeep =
@@ -117,6 +147,9 @@ const struct Tileset gTileset_Mossdeep =
     .metatiles = gMetatiles_Mossdeep,
     .metatileAttributes = gMetatileAttributes_Mossdeep,
     .callback = InitTilesetAnim_Mossdeep,
+    .palettes_summer = NULL,
+    .palettes_autumn = NULL,
+    .palettes_winter = NULL,
 };
 
 const struct Tileset gTileset_EverGrande =
@@ -128,6 +161,9 @@ const struct Tileset gTileset_EverGrande =
     .metatiles = gMetatiles_EverGrande,
     .metatileAttributes = gMetatileAttributes_EverGrande,
     .callback = InitTilesetAnim_EverGrande,
+    .palettes_summer = NULL,
+    .palettes_autumn = NULL,
+    .palettes_winter = NULL,
 };
 
 const struct Tileset gTileset_Pacifidlog =
@@ -139,6 +175,9 @@ const struct Tileset gTileset_Pacifidlog =
     .metatiles = gMetatiles_Pacifidlog,
     .metatileAttributes = gMetatileAttributes_Pacifidlog,
     .callback = InitTilesetAnim_Pacifidlog,
+    .palettes_summer = NULL,
+    .palettes_autumn = NULL,
+    .palettes_winter = NULL,
 };
 
 const struct Tileset gTileset_Sootopolis =
@@ -150,6 +189,9 @@ const struct Tileset gTileset_Sootopolis =
     .metatiles = gMetatiles_Sootopolis,
     .metatileAttributes = gMetatileAttributes_Sootopolis,
     .callback = InitTilesetAnim_Sootopolis,
+    .palettes_summer = NULL,
+    .palettes_autumn = NULL,
+    .palettes_winter = NULL,
 };
 
 const struct Tileset gTileset_BattleFrontierOutsideWest =
@@ -161,6 +203,9 @@ const struct Tileset gTileset_BattleFrontierOutsideWest =
     .metatiles = gMetatiles_BattleFrontierOutsideWest,
     .metatileAttributes = gMetatileAttributes_BattleFrontierOutsideWest,
     .callback = InitTilesetAnim_BattleFrontierOutsideWest,
+    .palettes_summer = NULL,
+    .palettes_autumn = NULL,
+    .palettes_winter = NULL,
 };
 
 const struct Tileset gTileset_BattleFrontierOutsideEast =
@@ -172,6 +217,9 @@ const struct Tileset gTileset_BattleFrontierOutsideEast =
     .metatiles = gMetatiles_BattleFrontierOutsideEast,
     .metatileAttributes = gMetatileAttributes_BattleFrontierOutsideEast,
     .callback = InitTilesetAnim_BattleFrontierOutsideEast,
+    .palettes_summer = NULL,
+    .palettes_autumn = NULL,
+    .palettes_winter = NULL,
 };
 
 const struct Tileset gTileset_Building =
@@ -183,6 +231,9 @@ const struct Tileset gTileset_Building =
     .metatiles = gMetatiles_InsideBuilding,
     .metatileAttributes = gMetatileAttributes_InsideBuilding,
     .callback = InitTilesetAnim_Building,
+    .palettes_summer = NULL,
+    .palettes_autumn = NULL,
+    .palettes_winter = NULL,
 };
 
 const struct Tileset gTileset_Shop =
@@ -194,6 +245,9 @@ const struct Tileset gTileset_Shop =
     .metatiles = gMetatiles_Shop,
     .metatileAttributes = gMetatileAttributes_Shop,
     .callback = NULL,
+    .palettes_summer = NULL,
+    .palettes_autumn = NULL,
+    .palettes_winter = NULL,
 };
 
 const struct Tileset gTileset_PokemonCenter =
@@ -205,6 +259,9 @@ const struct Tileset gTileset_PokemonCenter =
     .metatiles = gMetatiles_PokemonCenter,
     .metatileAttributes = gMetatileAttributes_PokemonCenter,
     .callback = NULL,
+    .palettes_summer = NULL,
+    .palettes_autumn = NULL,
+    .palettes_winter = NULL,
 };
 
 const struct Tileset gTileset_Cave =
@@ -216,6 +273,9 @@ const struct Tileset gTileset_Cave =
     .metatiles = gMetatiles_Cave,
     .metatileAttributes = gMetatileAttributes_Cave,
     .callback = InitTilesetAnim_Cave,
+    .palettes_summer = NULL,
+    .palettes_autumn = NULL,
+    .palettes_winter = NULL,
 };
 
 const struct Tileset gTileset_PokemonSchool =
@@ -227,6 +287,9 @@ const struct Tileset gTileset_PokemonSchool =
     .metatiles = gMetatiles_PokemonSchool,
     .metatileAttributes = gMetatileAttributes_PokemonSchool,
     .callback = NULL,
+    .palettes_summer = NULL,
+    .palettes_autumn = NULL,
+    .palettes_winter = NULL,
 };
 
 const struct Tileset gTileset_PokemonFanClub =
@@ -238,6 +301,9 @@ const struct Tileset gTileset_PokemonFanClub =
     .metatiles = gMetatiles_PokemonFanClub,
     .metatileAttributes = gMetatileAttributes_PokemonFanClub,
     .callback = NULL,
+    .palettes_summer = NULL,
+    .palettes_autumn = NULL,
+    .palettes_winter = NULL,
 };
 
 const struct Tileset gTileset_Unused1 =
@@ -249,6 +315,9 @@ const struct Tileset gTileset_Unused1 =
     .metatiles = gMetatiles_Unused1,
     .metatileAttributes = gMetatileAttributes_Unused1,
     .callback = NULL,
+    .palettes_summer = NULL,
+    .palettes_autumn = NULL,
+    .palettes_winter = NULL,
 };
 
 const struct Tileset gTileset_MeteorFalls =
@@ -260,6 +329,9 @@ const struct Tileset gTileset_MeteorFalls =
     .metatiles = gMetatiles_MeteorFalls,
     .metatileAttributes = gMetatileAttributes_MeteorFalls,
     .callback = NULL,
+    .palettes_summer = NULL,
+    .palettes_autumn = NULL,
+    .palettes_winter = NULL,
 };
 
 const struct Tileset gTileset_OceanicMuseum =
@@ -271,6 +343,9 @@ const struct Tileset gTileset_OceanicMuseum =
     .metatiles = gMetatiles_OceanicMuseum,
     .metatileAttributes = gMetatileAttributes_OceanicMuseum,
     .callback = NULL,
+    .palettes_summer = NULL,
+    .palettes_autumn = NULL,
+    .palettes_winter = NULL,
 };
 
 const struct Tileset gTileset_CableClub =
@@ -282,6 +357,9 @@ const struct Tileset gTileset_CableClub =
     .metatiles = gMetatiles_CableClub,
     .metatileAttributes = gMetatileAttributes_CableClub,
     .callback = NULL,
+    .palettes_summer = NULL,
+    .palettes_autumn = NULL,
+    .palettes_winter = NULL,
 };
 
 const struct Tileset gTileset_SeashoreHouse =
@@ -293,6 +371,9 @@ const struct Tileset gTileset_SeashoreHouse =
     .metatiles = gMetatiles_SeashoreHouse,
     .metatileAttributes = gMetatileAttributes_SeashoreHouse,
     .callback = NULL,
+    .palettes_summer = NULL,
+    .palettes_autumn = NULL,
+    .palettes_winter = NULL,
 };
 
 const struct Tileset gTileset_PrettyPetalFlowerShop =
@@ -304,6 +385,9 @@ const struct Tileset gTileset_PrettyPetalFlowerShop =
     .metatiles = gMetatiles_PrettyPetalFlowerShop,
     .metatileAttributes = gMetatileAttributes_PrettyPetalFlowerShop,
     .callback = NULL,
+    .palettes_summer = NULL,
+    .palettes_autumn = NULL,
+    .palettes_winter = NULL,
 };
 
 const struct Tileset gTileset_PokemonDayCare =
@@ -315,6 +399,9 @@ const struct Tileset gTileset_PokemonDayCare =
     .metatiles = gMetatiles_PokemonDayCare,
     .metatileAttributes = gMetatileAttributes_PokemonDayCare,
     .callback = NULL,
+    .palettes_summer = NULL,
+    .palettes_autumn = NULL,
+    .palettes_winter = NULL,
 };
 
 const struct Tileset gTileset_Facility =
@@ -326,6 +413,9 @@ const struct Tileset gTileset_Facility =
     .metatiles = gMetatiles_Facility,
     .metatileAttributes = gMetatileAttributes_Facility,
     .callback = NULL,
+    .palettes_summer = NULL,
+    .palettes_autumn = NULL,
+    .palettes_winter = NULL,
 };
 
 const struct Tileset gTileset_BikeShop =
@@ -337,6 +427,9 @@ const struct Tileset gTileset_BikeShop =
     .metatiles = gMetatiles_BikeShop,
     .metatileAttributes = gMetatileAttributes_BikeShop,
     .callback = InitTilesetAnim_BikeShop,
+    .palettes_summer = NULL,
+    .palettes_autumn = NULL,
+    .palettes_winter = NULL,
 };
 
 const struct Tileset gTileset_RusturfTunnel =
@@ -348,6 +441,9 @@ const struct Tileset gTileset_RusturfTunnel =
     .metatiles = gMetatiles_RusturfTunnel,
     .metatileAttributes = gMetatileAttributes_RusturfTunnel,
     .callback = NULL,
+    .palettes_summer = NULL,
+    .palettes_autumn = NULL,
+    .palettes_winter = NULL,
 };
 
 const struct Tileset gTileset_SecretBaseBrownCave =
@@ -359,6 +455,9 @@ const struct Tileset gTileset_SecretBaseBrownCave =
     .metatiles = gMetatiles_SecretBaseSecondary,
     .metatileAttributes = gMetatileAttributes_SecretBaseSecondary,
     .callback = NULL,
+    .palettes_summer = NULL,
+    .palettes_autumn = NULL,
+    .palettes_winter = NULL,
 };
 
 const struct Tileset gTileset_SecretBaseTree =
@@ -370,6 +469,9 @@ const struct Tileset gTileset_SecretBaseTree =
     .metatiles = gMetatiles_SecretBaseSecondary,
     .metatileAttributes = gMetatileAttributes_SecretBaseSecondary,
     .callback = NULL,
+    .palettes_summer = NULL,
+    .palettes_autumn = NULL,
+    .palettes_winter = NULL,
 };
 
 const struct Tileset gTileset_SecretBaseShrub =
@@ -381,6 +483,9 @@ const struct Tileset gTileset_SecretBaseShrub =
     .metatiles = gMetatiles_SecretBaseSecondary,
     .metatileAttributes = gMetatileAttributes_SecretBaseSecondary,
     .callback = NULL,
+    .palettes_summer = NULL,
+    .palettes_autumn = NULL,
+    .palettes_winter = NULL,
 };
 
 const struct Tileset gTileset_SecretBaseBlueCave =
@@ -392,6 +497,9 @@ const struct Tileset gTileset_SecretBaseBlueCave =
     .metatiles = gMetatiles_SecretBaseSecondary,
     .metatileAttributes = gMetatileAttributes_SecretBaseSecondary,
     .callback = NULL,
+    .palettes_summer = NULL,
+    .palettes_autumn = NULL,
+    .palettes_winter = NULL,
 };
 
 const struct Tileset gTileset_SecretBaseYellowCave =
@@ -403,6 +511,9 @@ const struct Tileset gTileset_SecretBaseYellowCave =
     .metatiles = gMetatiles_SecretBaseSecondary,
     .metatileAttributes = gMetatileAttributes_SecretBaseSecondary,
     .callback = NULL,
+    .palettes_summer = NULL,
+    .palettes_autumn = NULL,
+    .palettes_winter = NULL,
 };
 
 const struct Tileset gTileset_SecretBaseRedCave =
@@ -414,6 +525,9 @@ const struct Tileset gTileset_SecretBaseRedCave =
     .metatiles = gMetatiles_SecretBaseSecondary,
     .metatileAttributes = gMetatileAttributes_SecretBaseSecondary,
     .callback = NULL,
+    .palettes_summer = NULL,
+    .palettes_autumn = NULL,
+    .palettes_winter = NULL,
 };
 
 const struct Tileset gTileset_InsideOfTruck =
@@ -425,6 +539,9 @@ const struct Tileset gTileset_InsideOfTruck =
     .metatiles = gMetatiles_InsideOfTruck,
     .metatileAttributes = gMetatileAttributes_InsideOfTruck,
     .callback = NULL,
+    .palettes_summer = NULL,
+    .palettes_autumn = NULL,
+    .palettes_winter = NULL,
 };
 
 const struct Tileset gTileset_Unused2 =
@@ -436,6 +553,9 @@ const struct Tileset gTileset_Unused2 =
     .metatiles = gMetatiles_Unused2,
     .metatileAttributes = gMetatileAttributes_Unused2,
     .callback = NULL,
+    .palettes_summer = NULL,
+    .palettes_autumn = NULL,
+    .palettes_winter = NULL,
 };
 
 const struct Tileset gTileset_Contest =
@@ -447,6 +567,9 @@ const struct Tileset gTileset_Contest =
     .metatiles = gMetatiles_Contest,
     .metatileAttributes = gMetatileAttributes_Contest,
     .callback = NULL,
+    .palettes_summer = NULL,
+    .palettes_autumn = NULL,
+    .palettes_winter = NULL,
 };
 
 const struct Tileset gTileset_LilycoveMuseum =
@@ -458,6 +581,9 @@ const struct Tileset gTileset_LilycoveMuseum =
     .metatiles = gMetatiles_LilycoveMuseum,
     .metatileAttributes = gMetatileAttributes_LilycoveMuseum,
     .callback = NULL,
+    .palettes_summer = NULL,
+    .palettes_autumn = NULL,
+    .palettes_winter = NULL,
 };
 
 const struct Tileset gTileset_BrendansMaysHouse =
@@ -469,6 +595,9 @@ const struct Tileset gTileset_BrendansMaysHouse =
     .metatiles = gMetatiles_BrendansMaysHouse,
     .metatileAttributes = gMetatileAttributes_BrendansMaysHouse,
     .callback = NULL,
+    .palettes_summer = NULL,
+    .palettes_autumn = NULL,
+    .palettes_winter = NULL,
 };
 
 const struct Tileset gTileset_Lab =
@@ -480,6 +609,9 @@ const struct Tileset gTileset_Lab =
     .metatiles = gMetatiles_Lab,
     .metatileAttributes = gMetatileAttributes_Lab,
     .callback = NULL,
+    .palettes_summer = NULL,
+    .palettes_autumn = NULL,
+    .palettes_winter = NULL,
 };
 
 const struct Tileset gTileset_Underwater =
@@ -491,6 +623,9 @@ const struct Tileset gTileset_Underwater =
     .metatiles = gMetatiles_Underwater,
     .metatileAttributes = gMetatileAttributes_Underwater,
     .callback = InitTilesetAnim_Underwater,
+    .palettes_summer = NULL,
+    .palettes_autumn = NULL,
+    .palettes_winter = NULL,
 };
 
 const struct Tileset gTileset_PetalburgGym =
@@ -502,6 +637,9 @@ const struct Tileset gTileset_PetalburgGym =
     .metatiles = gMetatiles_PetalburgGym,
     .metatileAttributes = gMetatileAttributes_PetalburgGym,
     .callback = NULL,
+    .palettes_summer = NULL,
+    .palettes_autumn = NULL,
+    .palettes_winter = NULL,
 };
 
 const struct Tileset gTileset_SootopolisGym =
@@ -513,6 +651,9 @@ const struct Tileset gTileset_SootopolisGym =
     .metatiles = gMetatiles_SootopolisGym,
     .metatileAttributes = gMetatileAttributes_SootopolisGym,
     .callback = InitTilesetAnim_SootopolisGym,
+    .palettes_summer = NULL,
+    .palettes_autumn = NULL,
+    .palettes_winter = NULL,
 };
 
 const struct Tileset gTileset_GenericBuilding =
@@ -524,6 +665,9 @@ const struct Tileset gTileset_GenericBuilding =
     .metatiles = gMetatiles_GenericBuilding,
     .metatileAttributes = gMetatileAttributes_GenericBuilding,
     .callback = NULL,
+    .palettes_summer = NULL,
+    .palettes_autumn = NULL,
+    .palettes_winter = NULL,
 };
 
 const struct Tileset gTileset_MauvilleGameCorner =
@@ -535,6 +679,9 @@ const struct Tileset gTileset_MauvilleGameCorner =
     .metatiles = gMetatiles_MauvilleGameCorner,
     .metatileAttributes = gMetatileAttributes_MauvilleGameCorner,
     .callback = NULL,
+    .palettes_summer = NULL,
+    .palettes_autumn = NULL,
+    .palettes_winter = NULL,
 };
 
 const struct Tileset gTileset_RustboroGym =
@@ -546,6 +693,9 @@ const struct Tileset gTileset_RustboroGym =
     .metatiles = gMetatiles_RustboroGym,
     .metatileAttributes = gMetatileAttributes_RustboroGym,
     .callback = NULL,
+    .palettes_summer = NULL,
+    .palettes_autumn = NULL,
+    .palettes_winter = NULL,
 };
 
 const struct Tileset gTileset_DewfordGym =
@@ -557,6 +707,9 @@ const struct Tileset gTileset_DewfordGym =
     .metatiles = gMetatiles_DewfordGym,
     .metatileAttributes = gMetatileAttributes_DewfordGym,
     .callback = NULL,
+    .palettes_summer = NULL,
+    .palettes_autumn = NULL,
+    .palettes_winter = NULL,
 };
 
 const struct Tileset gTileset_MauvilleGym =
@@ -568,6 +721,9 @@ const struct Tileset gTileset_MauvilleGym =
     .metatiles = gMetatiles_MauvilleGym,
     .metatileAttributes = gMetatileAttributes_MauvilleGym,
     .callback = InitTilesetAnim_MauvilleGym,
+    .palettes_summer = NULL,
+    .palettes_autumn = NULL,
+    .palettes_winter = NULL,
 };
 
 const struct Tileset gTileset_LavaridgeGym =
@@ -579,6 +735,9 @@ const struct Tileset gTileset_LavaridgeGym =
     .metatiles = gMetatiles_LavaridgeGym,
     .metatileAttributes = gMetatileAttributes_LavaridgeGym,
     .callback = NULL,
+    .palettes_summer = NULL,
+    .palettes_autumn = NULL,
+    .palettes_winter = NULL,
 };
 
 const struct Tileset gTileset_TrickHousePuzzle =
@@ -590,6 +749,9 @@ const struct Tileset gTileset_TrickHousePuzzle =
     .metatiles = gMetatiles_TrickHousePuzzle,
     .metatileAttributes = gMetatileAttributes_TrickHousePuzzle,
     .callback = NULL,
+    .palettes_summer = NULL,
+    .palettes_autumn = NULL,
+    .palettes_winter = NULL,
 };
 
 const struct Tileset gTileset_FortreeGym =
@@ -601,6 +763,9 @@ const struct Tileset gTileset_FortreeGym =
     .metatiles = gMetatiles_FortreeGym,
     .metatileAttributes = gMetatileAttributes_FortreeGym,
     .callback = NULL,
+    .palettes_summer = NULL,
+    .palettes_autumn = NULL,
+    .palettes_winter = NULL,
 };
 
 const struct Tileset gTileset_MossdeepGym =
@@ -612,6 +777,9 @@ const struct Tileset gTileset_MossdeepGym =
     .metatiles = gMetatiles_MossdeepGym,
     .metatileAttributes = gMetatileAttributes_MossdeepGym,
     .callback = NULL,
+    .palettes_summer = NULL,
+    .palettes_autumn = NULL,
+    .palettes_winter = NULL,
 };
 
 const struct Tileset gTileset_InsideShip =
@@ -623,6 +791,9 @@ const struct Tileset gTileset_InsideShip =
     .metatiles = gMetatiles_InsideShip,
     .metatileAttributes = gMetatileAttributes_InsideShip,
     .callback = NULL,
+    .palettes_summer = NULL,
+    .palettes_autumn = NULL,
+    .palettes_winter = NULL,
 };
 
 const struct Tileset gTileset_SecretBase =
@@ -634,6 +805,9 @@ const struct Tileset gTileset_SecretBase =
     .metatiles = gMetatiles_SecretBasePrimary,
     .metatileAttributes = gMetatileAttributes_SecretBasePrimary,
     .callback = NULL,
+    .palettes_summer = NULL,
+    .palettes_autumn = NULL,
+    .palettes_winter = NULL,
 };
 
 const struct Tileset * const gTilesetPointer_SecretBase = &gTileset_SecretBase;
@@ -648,6 +822,9 @@ const struct Tileset gTileset_EliteFour =
     .metatiles = gMetatiles_EliteFour,
     .metatileAttributes = gMetatileAttributes_EliteFour,
     .callback = InitTilesetAnim_EliteFour,
+    .palettes_summer = NULL,
+    .palettes_autumn = NULL,
+    .palettes_winter = NULL,
 };
 
 const struct Tileset gTileset_BattleFrontier =
@@ -659,6 +836,9 @@ const struct Tileset gTileset_BattleFrontier =
     .metatiles = gMetatiles_BattleFrontier,
     .metatileAttributes = gMetatileAttributes_BattleFrontier,
     .callback = NULL,
+    .palettes_summer = NULL,
+    .palettes_autumn = NULL,
+    .palettes_winter = NULL,
 };
 
 const struct Tileset gTileset_BattlePalace =
@@ -670,6 +850,9 @@ const struct Tileset gTileset_BattlePalace =
     .metatiles = gMetatiles_BattlePalace,
     .metatileAttributes = gMetatileAttributes_BattlePalace,
     .callback = NULL,
+    .palettes_summer = NULL,
+    .palettes_autumn = NULL,
+    .palettes_winter = NULL,
 };
 
 const struct Tileset gTileset_BattleDome =
@@ -681,6 +864,9 @@ const struct Tileset gTileset_BattleDome =
     .metatiles = gMetatiles_BattleDome,
     .metatileAttributes = gMetatileAttributes_BattleDome,
     .callback = InitTilesetAnim_BattleDome,
+    .palettes_summer = NULL,
+    .palettes_autumn = NULL,
+    .palettes_winter = NULL,
 };
 
 const struct Tileset gTileset_BattleFactory =
@@ -692,6 +878,9 @@ const struct Tileset gTileset_BattleFactory =
     .metatiles = gMetatiles_BattleFactory,
     .metatileAttributes = gMetatileAttributes_BattleFactory,
     .callback = NULL,
+    .palettes_summer = NULL,
+    .palettes_autumn = NULL,
+    .palettes_winter = NULL,
 };
 
 const struct Tileset gTileset_BattlePike =
@@ -703,6 +892,9 @@ const struct Tileset gTileset_BattlePike =
     .metatiles = gMetatiles_BattlePike,
     .metatileAttributes = gMetatileAttributes_BattlePike,
     .callback = NULL,
+    .palettes_summer = NULL,
+    .palettes_autumn = NULL,
+    .palettes_winter = NULL,
 };
 
 const struct Tileset gTileset_BattleArena =
@@ -714,6 +906,9 @@ const struct Tileset gTileset_BattleArena =
     .metatiles = gMetatiles_BattleArena,
     .metatileAttributes = gMetatileAttributes_BattleArena,
     .callback = NULL,
+    .palettes_summer = NULL,
+    .palettes_autumn = NULL,
+    .palettes_winter = NULL,
 };
 
 const struct Tileset gTileset_BattlePyramid =
@@ -725,6 +920,9 @@ const struct Tileset gTileset_BattlePyramid =
     .metatiles = gMetatiles_BattlePyramid,
     .metatileAttributes = gMetatileAttributes_BattlePyramid,
     .callback = InitTilesetAnim_BattlePyramid,
+    .palettes_summer = NULL,
+    .palettes_autumn = NULL,
+    .palettes_winter = NULL,
 };
 
 const struct Tileset gTileset_MirageTower =
@@ -736,6 +934,9 @@ const struct Tileset gTileset_MirageTower =
     .metatiles = gMetatiles_MirageTower,
     .metatileAttributes = gMetatileAttributes_MirageTower,
     .callback = NULL,
+    .palettes_summer = NULL,
+    .palettes_autumn = NULL,
+    .palettes_winter = NULL,
 };
 
 const struct Tileset gTileset_MossdeepGameCorner =
@@ -747,6 +948,9 @@ const struct Tileset gTileset_MossdeepGameCorner =
     .metatiles = gMetatiles_MossdeepGameCorner,
     .metatileAttributes = gMetatileAttributes_MossdeepGameCorner,
     .callback = NULL,
+    .palettes_summer = NULL,
+    .palettes_autumn = NULL,
+    .palettes_winter = NULL,
 };
 
 const struct Tileset gTileset_IslandHarbor =
@@ -758,6 +962,9 @@ const struct Tileset gTileset_IslandHarbor =
     .metatiles = gMetatiles_IslandHarbor,
     .metatileAttributes = gMetatileAttributes_IslandHarbor,
     .callback = NULL,
+    .palettes_summer = NULL,
+    .palettes_autumn = NULL,
+    .palettes_winter = NULL,
 };
 
 const struct Tileset gTileset_TrainerHill =
@@ -769,6 +976,9 @@ const struct Tileset gTileset_TrainerHill =
     .metatiles = gMetatiles_TrainerHill,
     .metatileAttributes = gMetatileAttributes_TrainerHill,
     .callback = NULL,
+    .palettes_summer = NULL,
+    .palettes_autumn = NULL,
+    .palettes_winter = NULL,
 };
 
 const struct Tileset gTileset_NavelRock =
@@ -780,6 +990,9 @@ const struct Tileset gTileset_NavelRock =
     .metatiles = gMetatiles_NavelRock,
     .metatileAttributes = gMetatileAttributes_NavelRock,
     .callback = NULL,
+    .palettes_summer = NULL,
+    .palettes_autumn = NULL,
+    .palettes_winter = NULL,
 };
 
 const struct Tileset gTileset_BattleFrontierRankingHall =
@@ -791,6 +1004,9 @@ const struct Tileset gTileset_BattleFrontierRankingHall =
     .metatiles = gMetatiles_BattleFrontierRankingHall,
     .metatileAttributes = gMetatileAttributes_BattleFrontierRankingHall,
     .callback = NULL,
+    .palettes_summer = NULL,
+    .palettes_autumn = NULL,
+    .palettes_winter = NULL,
 };
 
 const struct Tileset gTileset_BattleTent =
@@ -802,6 +1018,9 @@ const struct Tileset gTileset_BattleTent =
     .metatiles = gMetatiles_BattleTent,
     .metatileAttributes = gMetatileAttributes_BattleTent,
     .callback = NULL,
+    .palettes_summer = NULL,
+    .palettes_autumn = NULL,
+    .palettes_winter = NULL,
 };
 
 const struct Tileset gTileset_MysteryEventsHouse =
@@ -813,6 +1032,9 @@ const struct Tileset gTileset_MysteryEventsHouse =
     .metatiles = gMetatiles_MysteryEventsHouse,
     .metatileAttributes = gMetatileAttributes_MysteryEventsHouse,
     .callback = NULL,
+    .palettes_summer = NULL,
+    .palettes_autumn = NULL,
+    .palettes_winter = NULL,
 };
 
 const struct Tileset gTileset_UnionRoom =
@@ -824,6 +1046,9 @@ const struct Tileset gTileset_UnionRoom =
     .metatiles = gMetatiles_UnionRoom,
     .metatileAttributes = gMetatileAttributes_UnionRoom,
     .callback = NULL,
+    .palettes_summer = NULL,
+    .palettes_autumn = NULL,
+    .palettes_winter = NULL,
 };
 
 const struct Tileset gTileset_frp_general =
@@ -835,6 +1060,9 @@ const struct Tileset gTileset_frp_general =
     .metatiles = gMetatiles_frp_general,
     .metatileAttributes = gMetatileAttributes_frp_general,
     .callback = NULL,
+    .palettes_summer = NULL,
+    .palettes_autumn = NULL,
+    .palettes_winter = NULL,
 };
 
 const struct Tileset gTileset_frp_berry_forest =
@@ -846,6 +1074,9 @@ const struct Tileset gTileset_frp_berry_forest =
     .metatiles = gMetatiles_frp_berry_forest,
     .metatileAttributes = gMetatileAttributes_frp_berry_forest,
     .callback = NULL,
+    .palettes_summer = NULL,
+    .palettes_autumn = NULL,
+    .palettes_winter = NULL,
 };
 
 const struct Tileset gTileset_frp_cave =
@@ -857,6 +1088,9 @@ const struct Tileset gTileset_frp_cave =
     .metatiles = gMetatiles_frp_cave,
     .metatileAttributes = gMetatileAttributes_frp_cave,
     .callback = NULL,
+    .palettes_summer = NULL,
+    .palettes_autumn = NULL,
+    .palettes_winter = NULL,
 };
 
 const struct Tileset gTileset_frp_celadon_city =
@@ -868,6 +1102,9 @@ const struct Tileset gTileset_frp_celadon_city =
     .metatiles = gMetatiles_frp_celadon_city,
     .metatileAttributes = gMetatileAttributes_frp_celadon_city,
     .callback = NULL,
+    .palettes_summer = NULL,
+    .palettes_autumn = NULL,
+    .palettes_winter = NULL,
 };
 
 const struct Tileset gTileset_frp_cerulean_cave =
@@ -879,6 +1116,9 @@ const struct Tileset gTileset_frp_cerulean_cave =
     .metatiles = gMetatiles_frp_cerulean_cave,
     .metatileAttributes = gMetatileAttributes_frp_cerulean_cave,
     .callback = NULL,
+    .palettes_summer = NULL,
+    .palettes_autumn = NULL,
+    .palettes_winter = NULL,
 };
 
 const struct Tileset gTileset_frp_cerulean_city =
@@ -890,6 +1130,9 @@ const struct Tileset gTileset_frp_cerulean_city =
     .metatiles = gMetatiles_frp_cerulean_city,
     .metatileAttributes = gMetatileAttributes_frp_cerulean_city,
     .callback = NULL,
+    .palettes_summer = NULL,
+    .palettes_autumn = NULL,
+    .palettes_winter = NULL,
 };
 
 const struct Tileset gTileset_frp_cinnabar_island =
@@ -901,6 +1144,9 @@ const struct Tileset gTileset_frp_cinnabar_island =
     .metatiles = gMetatiles_frp_cinnabar_island,
     .metatileAttributes = gMetatileAttributes_frp_cinnabar_island,
     .callback = NULL,
+    .palettes_summer = NULL,
+    .palettes_autumn = NULL,
+    .palettes_winter = NULL,
 };
 
 const struct Tileset gTileset_frp_digletts_cave =
@@ -912,6 +1158,9 @@ const struct Tileset gTileset_frp_digletts_cave =
     .metatiles = gMetatiles_frp_digletts_cave,
     .metatileAttributes = gMetatileAttributes_frp_digletts_cave,
     .callback = NULL,
+    .palettes_summer = NULL,
+    .palettes_autumn = NULL,
+    .palettes_winter = NULL,
 };
 
 const struct Tileset gTileset_frp_fuchsia_city =
@@ -923,6 +1172,9 @@ const struct Tileset gTileset_frp_fuchsia_city =
     .metatiles = gMetatiles_frp_fuchsia_city,
     .metatileAttributes = gMetatileAttributes_frp_fuchsia_city,
     .callback = NULL,
+    .palettes_summer = NULL,
+    .palettes_autumn = NULL,
+    .palettes_winter = NULL,
 };
 
 const struct Tileset gTileset_frp_indigo_plateau =
@@ -934,6 +1186,9 @@ const struct Tileset gTileset_frp_indigo_plateau =
     .metatiles = gMetatiles_frp_indigo_plateau,
     .metatileAttributes = gMetatileAttributes_frp_indigo_plateau,
     .callback = NULL,
+    .palettes_summer = NULL,
+    .palettes_autumn = NULL,
+    .palettes_winter = NULL,
 };
 
 const struct Tileset gTileset_frp_lavender_town =
@@ -945,6 +1200,9 @@ const struct Tileset gTileset_frp_lavender_town =
     .metatiles = gMetatiles_frp_lavender_town,
     .metatileAttributes = gMetatileAttributes_frp_lavender_town,
     .callback = NULL,
+    .palettes_summer = NULL,
+    .palettes_autumn = NULL,
+    .palettes_winter = NULL,
 };
 
 const struct Tileset gTileset_frp_mt_ember =
@@ -956,6 +1214,9 @@ const struct Tileset gTileset_frp_mt_ember =
     .metatiles = gMetatiles_frp_mt_ember,
     .metatileAttributes = gMetatileAttributes_frp_mt_ember,
     .callback = NULL,
+    .palettes_summer = NULL,
+    .palettes_autumn = NULL,
+    .palettes_winter = NULL,
 };
 
 const struct Tileset gTileset_frp_navel_rock =
@@ -967,6 +1228,9 @@ const struct Tileset gTileset_frp_navel_rock =
     .metatiles = gMetatiles_frp_navel_rock,
     .metatileAttributes = gMetatileAttributes_frp_navel_rock,
     .callback = NULL,
+    .palettes_summer = NULL,
+    .palettes_autumn = NULL,
+    .palettes_winter = NULL,
 };
 
 const struct Tileset gTileset_frp_pallet_town =
@@ -978,6 +1242,9 @@ const struct Tileset gTileset_frp_pallet_town =
     .metatiles = gMetatiles_frp_pallet_town,
     .metatileAttributes = gMetatileAttributes_frp_pallet_town,
     .callback = NULL,
+    .palettes_summer = NULL,
+    .palettes_autumn = NULL,
+    .palettes_winter = NULL,
 };
 
 const struct Tileset gTileset_frp_pewter_city =
@@ -989,6 +1256,9 @@ const struct Tileset gTileset_frp_pewter_city =
     .metatiles = gMetatiles_frp_pewter_city,
     .metatileAttributes = gMetatileAttributes_frp_pewter_city,
     .callback = NULL,
+    .palettes_summer = NULL,
+    .palettes_autumn = NULL,
+    .palettes_winter = NULL,
 };
 
 const struct Tileset gTileset_frp_rock_tunnel =
@@ -1000,6 +1270,9 @@ const struct Tileset gTileset_frp_rock_tunnel =
     .metatiles = gMetatiles_frp_rock_tunnel,
     .metatileAttributes = gMetatileAttributes_frp_rock_tunnel,
     .callback = NULL,
+    .palettes_summer = NULL,
+    .palettes_autumn = NULL,
+    .palettes_winter = NULL,
 };
 
 const struct Tileset gTileset_frp_saffron_city =
@@ -1011,6 +1284,9 @@ const struct Tileset gTileset_frp_saffron_city =
     .metatiles = gMetatiles_frp_saffron_city,
     .metatileAttributes = gMetatileAttributes_frp_saffron_city,
     .callback = NULL,
+    .palettes_summer = NULL,
+    .palettes_autumn = NULL,
+    .palettes_winter = NULL,
 };
 
 const struct Tileset gTileset_frp_seafoam_islands =
@@ -1022,6 +1298,9 @@ const struct Tileset gTileset_frp_seafoam_islands =
     .metatiles = gMetatiles_frp_seafoam_islands,
     .metatileAttributes = gMetatileAttributes_frp_seafoam_islands,
     .callback = NULL,
+    .palettes_summer = NULL,
+    .palettes_autumn = NULL,
+    .palettes_winter = NULL,
 };
 
 const struct Tileset gTileset_frp_sevii_islands_45 =
@@ -1033,6 +1312,9 @@ const struct Tileset gTileset_frp_sevii_islands_45 =
     .metatiles = gMetatiles_frp_sevii_islands_45,
     .metatileAttributes = gMetatileAttributes_frp_sevii_islands_45,
     .callback = NULL,
+    .palettes_summer = NULL,
+    .palettes_autumn = NULL,
+    .palettes_winter = NULL,
 };
 
 const struct Tileset gTileset_frp_sevii_islands_67 =
@@ -1044,6 +1326,9 @@ const struct Tileset gTileset_frp_sevii_islands_67 =
     .metatiles = gMetatiles_frp_sevii_islands_67,
     .metatileAttributes = gMetatileAttributes_frp_sevii_islands_67,
     .callback = NULL,
+    .palettes_summer = NULL,
+    .palettes_autumn = NULL,
+    .palettes_winter = NULL,
 };
 
 const struct Tileset gTileset_frp_sevii_islands_123 =
@@ -1055,6 +1340,9 @@ const struct Tileset gTileset_frp_sevii_islands_123 =
     .metatiles = gMetatiles_frp_sevii_islands_123,
     .metatileAttributes = gMetatileAttributes_frp_sevii_islands_123,
     .callback = NULL,
+    .palettes_summer = NULL,
+    .palettes_autumn = NULL,
+    .palettes_winter = NULL,
 };
 
 const struct Tileset gTileset_frp_vermilion_city =
@@ -1066,6 +1354,9 @@ const struct Tileset gTileset_frp_vermilion_city =
     .metatiles = gMetatiles_frp_vermilion_city,
     .metatileAttributes = gMetatileAttributes_frp_vermilion_city,
     .callback = NULL,
+    .palettes_summer = NULL,
+    .palettes_autumn = NULL,
+    .palettes_winter = NULL,
 };
 
 const struct Tileset gTileset_frp_viridian_city =
@@ -1077,6 +1368,9 @@ const struct Tileset gTileset_frp_viridian_city =
     .metatiles = gMetatiles_frp_viridian_city,
     .metatileAttributes = gMetatileAttributes_frp_viridian_city,
     .callback = NULL,
+    .palettes_summer = NULL,
+    .palettes_autumn = NULL,
+    .palettes_winter = NULL,
 };
 
 const struct Tileset gTileset_frp_viridian_forest =
@@ -1088,6 +1382,9 @@ const struct Tileset gTileset_frp_viridian_forest =
     .metatiles = gMetatiles_frp_viridian_forest,
     .metatileAttributes = gMetatileAttributes_frp_viridian_forest,
     .callback = NULL,
+    .palettes_summer = NULL,
+    .palettes_autumn = NULL,
+    .palettes_winter = NULL,
 };
 
 const struct Tileset gTileset_frp_bike_shop =
@@ -1099,6 +1396,9 @@ const struct Tileset gTileset_frp_bike_shop =
     .metatiles = gMetatiles_frp_bike_shop,
     .metatileAttributes = gMetatileAttributes_frp_bike_shop,
     .callback = NULL,
+    .palettes_summer = NULL,
+    .palettes_autumn = NULL,
+    .palettes_winter = NULL,
 };
 
 const struct Tileset gTileset_frp_burgled_house =
@@ -1110,6 +1410,9 @@ const struct Tileset gTileset_frp_burgled_house =
     .metatiles = gMetatiles_frp_burgled_house,
     .metatileAttributes = gMetatileAttributes_frp_burgled_house,
     .callback = NULL,
+    .palettes_summer = NULL,
+    .palettes_autumn = NULL,
+    .palettes_winter = NULL,
 };
 
 const struct Tileset gTileset_frp_cable_club =
@@ -1121,6 +1424,9 @@ const struct Tileset gTileset_frp_cable_club =
     .metatiles = gMetatiles_frp_cable_club,
     .metatileAttributes = gMetatileAttributes_frp_cable_club,
     .callback = NULL,
+    .palettes_summer = NULL,
+    .palettes_autumn = NULL,
+    .palettes_winter = NULL,
 };
 
 const struct Tileset gTileset_frp_celadon_gym =
@@ -1132,6 +1438,9 @@ const struct Tileset gTileset_frp_celadon_gym =
     .metatiles = gMetatiles_frp_celadon_gym,
     .metatileAttributes = gMetatileAttributes_frp_celadon_gym,
     .callback = NULL,
+    .palettes_summer = NULL,
+    .palettes_autumn = NULL,
+    .palettes_winter = NULL,
 };
 
 const struct Tileset gTileset_frp_cerulean_gym =
@@ -1143,6 +1452,9 @@ const struct Tileset gTileset_frp_cerulean_gym =
     .metatiles = gMetatiles_frp_cerulean_gym,
     .metatileAttributes = gMetatileAttributes_frp_cerulean_gym,
     .callback = NULL,
+    .palettes_summer = NULL,
+    .palettes_autumn = NULL,
+    .palettes_winter = NULL,
 };
 
 const struct Tileset gTileset_frp_cinnabar_gym =
@@ -1154,6 +1466,9 @@ const struct Tileset gTileset_frp_cinnabar_gym =
     .metatiles = gMetatiles_frp_cinnabar_gym,
     .metatileAttributes = gMetatileAttributes_frp_cinnabar_gym,
     .callback = NULL,
+    .palettes_summer = NULL,
+    .palettes_autumn = NULL,
+    .palettes_winter = NULL,
 };
 
 const struct Tileset gTileset_frp_generic_building_1 =
@@ -1165,6 +1480,9 @@ const struct Tileset gTileset_frp_generic_building_1 =
     .metatiles = gMetatiles_frp_generic_building_1,
     .metatileAttributes = gMetatileAttributes_frp_generic_building_1,
     .callback = NULL,
+    .palettes_summer = NULL,
+    .palettes_autumn = NULL,
+    .palettes_winter = NULL,
 };
 
 const struct Tileset gTileset_frp_game_corner =
@@ -1176,6 +1494,9 @@ const struct Tileset gTileset_frp_game_corner =
     .metatiles = gMetatiles_frp_game_corner,
     .metatileAttributes = gMetatileAttributes_frp_game_corner,
     .callback = NULL,
+    .palettes_summer = NULL,
+    .palettes_autumn = NULL,
+    .palettes_winter = NULL,
 };
 
 const struct Tileset gTileset_frp_fuchsia_gym =
@@ -1187,6 +1508,9 @@ const struct Tileset gTileset_frp_fuchsia_gym =
     .metatiles = gMetatiles_frp_fuchsia_gym,
     .metatileAttributes = gMetatileAttributes_frp_fuchsia_gym,
     .callback = NULL,
+    .palettes_summer = NULL,
+    .palettes_autumn = NULL,
+    .palettes_winter = NULL,
 };
 
 const struct Tileset gTileset_frp_fan_club_daycare =
@@ -1198,6 +1522,9 @@ const struct Tileset gTileset_frp_fan_club_daycare =
     .metatiles = gMetatiles_frp_fan_club_daycare,
     .metatileAttributes = gMetatileAttributes_frp_fan_club_daycare,
     .callback = NULL,
+    .palettes_summer = NULL,
+    .palettes_autumn = NULL,
+    .palettes_winter = NULL,
 };
 
 const struct Tileset gTileset_frp_department_store =
@@ -1209,6 +1536,9 @@ const struct Tileset gTileset_frp_department_store =
     .metatiles = gMetatiles_frp_department_store,
     .metatileAttributes = gMetatileAttributes_frp_department_store,
     .callback = NULL,
+    .palettes_summer = NULL,
+    .palettes_autumn = NULL,
+    .palettes_winter = NULL,
 };
 
 const struct Tileset gTileset_frp_condominiums =
@@ -1220,6 +1550,9 @@ const struct Tileset gTileset_frp_condominiums =
     .metatiles = gMetatiles_frp_condominiums,
     .metatileAttributes = gMetatileAttributes_frp_condominiums,
     .callback = NULL,
+    .palettes_summer = NULL,
+    .palettes_autumn = NULL,
+    .palettes_winter = NULL,
 };
 
 const struct Tileset gTileset_frp_mart =
@@ -1231,6 +1564,9 @@ const struct Tileset gTileset_frp_mart =
     .metatiles = gMetatiles_frp_mart,
     .metatileAttributes = gMetatileAttributes_frp_mart,
     .callback = NULL,
+    .palettes_summer = NULL,
+    .palettes_autumn = NULL,
+    .palettes_winter = NULL,
 };
 
 const struct Tileset gTileset_frp_lab =
@@ -1242,6 +1578,9 @@ const struct Tileset gTileset_frp_lab =
     .metatiles = gMetatiles_frp_lab,
     .metatileAttributes = gMetatileAttributes_frp_lab,
     .callback = NULL,
+    .palettes_summer = NULL,
+    .palettes_autumn = NULL,
+    .palettes_winter = NULL,
 };
 
 const struct Tileset gTileset_frp_island_harbor =
@@ -1253,6 +1592,9 @@ const struct Tileset gTileset_frp_island_harbor =
     .metatiles = gMetatiles_frp_island_harbor,
     .metatileAttributes = gMetatileAttributes_frp_island_harbor,
     .callback = NULL,
+    .palettes_summer = NULL,
+    .palettes_autumn = NULL,
+    .palettes_winter = NULL,
 };
 
 const struct Tileset gTileset_frp_hoenn_building =
@@ -1264,6 +1606,9 @@ const struct Tileset gTileset_frp_hoenn_building =
     .metatiles = gMetatiles_frp_hoenn_building,
     .metatileAttributes = gMetatileAttributes_frp_hoenn_building,
     .callback = NULL,
+    .palettes_summer = NULL,
+    .palettes_autumn = NULL,
+    .palettes_winter = NULL,
 };
 
 const struct Tileset gTileset_frp_hall_of_fame =
@@ -1275,6 +1620,9 @@ const struct Tileset gTileset_frp_hall_of_fame =
     .metatiles = gMetatiles_frp_hall_of_fame,
     .metatileAttributes = gMetatileAttributes_frp_hall_of_fame,
     .callback = NULL,
+    .palettes_summer = NULL,
+    .palettes_autumn = NULL,
+    .palettes_winter = NULL,
 };
 
 const struct Tileset gTileset_frp_generic_building_2 =
@@ -1286,6 +1634,9 @@ const struct Tileset gTileset_frp_generic_building_2 =
     .metatiles = gMetatiles_frp_generic_building_2,
     .metatileAttributes = gMetatileAttributes_frp_generic_building_2,
     .callback = NULL,
+    .palettes_summer = NULL,
+    .palettes_autumn = NULL,
+    .palettes_winter = NULL,
 };
 
 const struct Tileset gTileset_frp_pokemon_tower =
@@ -1297,6 +1648,9 @@ const struct Tileset gTileset_frp_pokemon_tower =
     .metatiles = gMetatiles_frp_pokemon_tower,
     .metatileAttributes = gMetatileAttributes_frp_pokemon_tower,
     .callback = NULL,
+    .palettes_summer = NULL,
+    .palettes_autumn = NULL,
+    .palettes_winter = NULL,
 };
 
 const struct Tileset gTileset_frp_pokemon_mansion =
@@ -1308,6 +1662,9 @@ const struct Tileset gTileset_frp_pokemon_mansion =
     .metatiles = gMetatiles_frp_pokemon_mansion,
     .metatileAttributes = gMetatileAttributes_frp_pokemon_mansion,
     .callback = NULL,
+    .palettes_summer = NULL,
+    .palettes_autumn = NULL,
+    .palettes_winter = NULL,
 };
 
 const struct Tileset gTileset_frp_pokemon_league =
@@ -1319,6 +1676,9 @@ const struct Tileset gTileset_frp_pokemon_league =
     .metatiles = gMetatiles_frp_pokemon_league,
     .metatileAttributes = gMetatileAttributes_frp_pokemon_league,
     .callback = NULL,
+    .palettes_summer = NULL,
+    .palettes_autumn = NULL,
+    .palettes_winter = NULL,
 };
 
 const struct Tileset gTileset_frp_pokemon_center =
@@ -1330,6 +1690,9 @@ const struct Tileset gTileset_frp_pokemon_center =
     .metatiles = gMetatiles_frp_pokemon_center,
     .metatileAttributes = gMetatileAttributes_frp_pokemon_center,
     .callback = NULL,
+    .palettes_summer = NULL,
+    .palettes_autumn = NULL,
+    .palettes_winter = NULL,
 };
 
 const struct Tileset gTileset_frp_pewter_gym =
@@ -1341,6 +1704,9 @@ const struct Tileset gTileset_frp_pewter_gym =
     .metatiles = gMetatiles_frp_pewter_gym,
     .metatileAttributes = gMetatileAttributes_frp_pewter_gym,
     .callback = NULL,
+    .palettes_summer = NULL,
+    .palettes_autumn = NULL,
+    .palettes_winter = NULL,
 };
 
 const struct Tileset gTileset_frp_museum =
@@ -1352,6 +1718,9 @@ const struct Tileset gTileset_frp_museum =
     .metatiles = gMetatiles_frp_museum,
     .metatileAttributes = gMetatileAttributes_frp_museum,
     .callback = NULL,
+    .palettes_summer = NULL,
+    .palettes_autumn = NULL,
+    .palettes_winter = NULL,
 };
 
 const struct Tileset gTileset_frp_sea_cottage =
@@ -1363,6 +1732,9 @@ const struct Tileset gTileset_frp_sea_cottage =
     .metatiles = gMetatiles_frp_sea_cottage,
     .metatileAttributes = gMetatileAttributes_frp_sea_cottage,
     .callback = NULL,
+    .palettes_summer = NULL,
+    .palettes_autumn = NULL,
+    .palettes_winter = NULL,
 };
 
 const struct Tileset gTileset_frp_school =
@@ -1374,6 +1746,9 @@ const struct Tileset gTileset_frp_school =
     .metatiles = gMetatiles_frp_school,
     .metatileAttributes = gMetatileAttributes_frp_school,
     .callback = NULL,
+    .palettes_summer = NULL,
+    .palettes_autumn = NULL,
+    .palettes_winter = NULL,
 };
 
 const struct Tileset gTileset_frp_saffron_gym =
@@ -1385,6 +1760,9 @@ const struct Tileset gTileset_frp_saffron_gym =
     .metatiles = gMetatiles_frp_saffron_gym,
     .metatileAttributes = gMetatileAttributes_frp_saffron_gym,
     .callback = NULL,
+    .palettes_summer = NULL,
+    .palettes_autumn = NULL,
+    .palettes_winter = NULL,
 };
 
 const struct Tileset gTileset_frp_safari_zone_building =
@@ -1396,6 +1774,9 @@ const struct Tileset gTileset_frp_safari_zone_building =
     .metatiles = gMetatiles_frp_safari_zone_building,
     .metatileAttributes = gMetatileAttributes_frp_safari_zone_building,
     .callback = NULL,
+    .palettes_summer = NULL,
+    .palettes_autumn = NULL,
+    .palettes_winter = NULL,
 };
 
 const struct Tileset gTileset_frp_restaurant_hotel =
@@ -1407,6 +1788,9 @@ const struct Tileset gTileset_frp_restaurant_hotel =
     .metatiles = gMetatiles_frp_restaurant_hotel,
     .metatileAttributes = gMetatileAttributes_frp_restaurant_hotel,
     .callback = NULL,
+    .palettes_summer = NULL,
+    .palettes_autumn = NULL,
+    .palettes_winter = NULL,
 };
 
 const struct Tileset gTileset_frp_power_plant =
@@ -1418,6 +1802,9 @@ const struct Tileset gTileset_frp_power_plant =
     .metatiles = gMetatiles_frp_power_plant,
     .metatileAttributes = gMetatileAttributes_frp_power_plant,
     .callback = NULL,
+    .palettes_summer = NULL,
+    .palettes_autumn = NULL,
+    .palettes_winter = NULL,
 };
 
 const struct Tileset gTileset_frp_viridian_gym =
@@ -1429,6 +1816,9 @@ const struct Tileset gTileset_frp_viridian_gym =
     .metatiles = gMetatiles_frp_viridian_gym,
     .metatileAttributes = gMetatileAttributes_frp_viridian_gym,
     .callback = NULL,
+    .palettes_summer = NULL,
+    .palettes_autumn = NULL,
+    .palettes_winter = NULL,
 };
 
 const struct Tileset gTileset_frp_vermilion_gym =
@@ -1440,6 +1830,9 @@ const struct Tileset gTileset_frp_vermilion_gym =
     .metatiles = gMetatiles_frp_vermilion_gym,
     .metatileAttributes = gMetatileAttributes_frp_vermilion_gym,
     .callback = NULL,
+    .palettes_summer = NULL,
+    .palettes_autumn = NULL,
+    .palettes_winter = NULL,
 };
 
 const struct Tileset gTileset_frp_underground_path =
@@ -1451,6 +1844,9 @@ const struct Tileset gTileset_frp_underground_path =
     .metatiles = gMetatiles_frp_underground_path,
     .metatileAttributes = gMetatileAttributes_frp_underground_path,
     .callback = NULL,
+    .palettes_summer = NULL,
+    .palettes_autumn = NULL,
+    .palettes_winter = NULL,
 };
 
 const struct Tileset gTileset_frp_trainer_tower =
@@ -1462,6 +1858,9 @@ const struct Tileset gTileset_frp_trainer_tower =
     .metatiles = gMetatiles_frp_trainer_tower,
     .metatileAttributes = gMetatileAttributes_frp_trainer_tower,
     .callback = NULL,
+    .palettes_summer = NULL,
+    .palettes_autumn = NULL,
+    .palettes_winter = NULL,
 };
 
 const struct Tileset gTileset_frp_tanoby_ruins =
@@ -1473,6 +1872,9 @@ const struct Tileset gTileset_frp_tanoby_ruins =
     .metatiles = gMetatiles_frp_tanoby_ruins,
     .metatileAttributes = gMetatileAttributes_frp_tanoby_ruins,
     .callback = NULL,
+    .palettes_summer = NULL,
+    .palettes_autumn = NULL,
+    .palettes_winter = NULL,
 };
 
 const struct Tileset gTileset_frp_ss_anne =
@@ -1484,6 +1886,9 @@ const struct Tileset gTileset_frp_ss_anne =
     .metatiles = gMetatiles_frp_ss_anne,
     .metatileAttributes = gMetatileAttributes_frp_ss_anne,
     .callback = NULL,
+    .palettes_summer = NULL,
+    .palettes_autumn = NULL,
+    .palettes_winter = NULL,
 };
 
 const struct Tileset gTileset_frp_silph_co =
@@ -1495,6 +1900,9 @@ const struct Tileset gTileset_frp_silph_co =
     .metatiles = gMetatiles_frp_silph_co,
     .metatileAttributes = gMetatileAttributes_frp_silph_co,
     .callback = NULL,
+    .palettes_summer = NULL,
+    .palettes_autumn = NULL,
+    .palettes_winter = NULL,
 };
 
 const struct Tileset gTileset_frp_building =
@@ -1506,6 +1914,9 @@ const struct Tileset gTileset_frp_building =
     .metatiles = gMetatiles_frp_building,
     .metatileAttributes = gMetatileAttributes_frp_building,
     .callback = NULL,
+    .palettes_summer = NULL,
+    .palettes_autumn = NULL,
+    .palettes_winter = NULL,
 };
 
 const struct Tileset gTileset_ESGeneralRoute =
@@ -1517,6 +1928,9 @@ const struct Tileset gTileset_ESGeneralRoute =
     .metatiles = gMetatiles_ESGeneralRoute,
     .metatileAttributes = gMetatileAttributes_ESGeneralRoute,
     .callback = NULL,
+    .palettes_summer = NULL,
+    .palettes_autumn = NULL,
+    .palettes_winter = NULL,
 };
 
 const struct Tileset gTileset_ES_General =
@@ -1528,6 +1942,9 @@ const struct Tileset gTileset_ES_General =
     .metatiles = gMetatiles_ES_General,
     .metatileAttributes = gMetatileAttributes_ES_General,
     .callback = InitTilesetAnim_General,
+    .palettes_summer = NULL,
+    .palettes_autumn = NULL,
+    .palettes_winter = NULL,
 };
 
 const struct Tileset gTileset_ES_Oceanview =
@@ -1539,4 +1956,7 @@ const struct Tileset gTileset_ES_Oceanview =
     .metatiles = gMetatiles_ES_Oceanview,
     .metatileAttributes = gMetatileAttributes_ES_Oceanview,
     .callback = NULL,
+    .palettes_summer = NULL,
+    .palettes_autumn = NULL,
+    .palettes_winter = NULL,
 };
