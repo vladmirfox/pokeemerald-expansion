@@ -110,9 +110,9 @@ static const struct SpriteFrameImage sPicTable_Beedrill[] = {
     overworld_ascending_frames(gObjectEventPic_Beedrill, 4, 4),
 };
 #if P_MEGA_EVOLUTIONS
-/*static const struct SpriteFrameImage sPicTable_BeedrillMega[] = {
+static const struct SpriteFrameImage sPicTable_BeedrillMega[] = {
     overworld_ascending_frames(gObjectEventPic_BeedrillMega, 4, 4),
-};*/
+};
 #endif //P_MEGA_EVOLUTIONS
 #endif //P_FAMILY_WEEDLE
 
@@ -548,9 +548,9 @@ static const struct SpriteFrameImage sPicTable_AlakazamF[] = {
 };
 #endif //P_GENDER_DIFFERENCES
 #if P_MEGA_EVOLUTIONS
-/*static const struct SpriteFrameImage sPicTable_AlakazamMega[] = {
+static const struct SpriteFrameImage sPicTable_AlakazamMega[] = {
     overworld_ascending_frames(gObjectEventPic_AlakazamMega, 4, 4),
-};*/
+};
 #endif //P_MEGA_EVOLUTIONS
 #endif //P_FAMILY_ABRA
 
