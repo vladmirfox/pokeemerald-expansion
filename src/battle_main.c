@@ -5959,7 +5959,7 @@ u32 GetDynamicMoveType(struct Pokemon *mon, u32 move, u32 battler, u8 *ateBoost)
         }
         break;
     case EFFECT_CHANGE_TYPE_ON_ITEM:
-        if (holdEffect == gMovesInfo[move].argument.holdEffect)
+        if (holdEffect == GetMoveEffectArg_HoldEffect(move))
             return ItemId_GetSecondaryId(heldItem);
         break;
     case EFFECT_REVELATION_DANCE:

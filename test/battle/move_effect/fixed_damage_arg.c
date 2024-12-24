@@ -13,7 +13,7 @@ SINGLE_BATTLE_TEST("Sonic Boom deals fixed damage", s16 damage)
     PARAMETRIZE { mon = SPECIES_ARON; }
 
     GIVEN {
-        ASSUME(gMovesInfo[MOVE_SONIC_BOOM].argument.fixedDamage == 20);
+        ASSUME(GetMoveFixedDamage(MOVE_SONIC_BOOM) == 20);
         PLAYER(SPECIES_WOBBUFFET);
         OPPONENT(mon);
     } WHEN {

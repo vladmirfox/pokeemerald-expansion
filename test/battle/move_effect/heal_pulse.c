@@ -86,7 +86,7 @@ SINGLE_BATTLE_TEST("Heal Pulse is blocked by Substitute")
 SINGLE_BATTLE_TEST("Floral Healing heals the target by 2/3rd of it's maxHP if Grassy Terrain is on the field")
 {
     GIVEN {
-        ASSUME(gMovesInfo[MOVE_FLORAL_HEALING].argument.moveProperty == MOVE_EFFECT_FLORAL_HEALING);
+        ASSUME(GetMoveEffectArg_MoveProperty(MOVE_FLORAL_HEALING) == MOVE_EFFECT_FLORAL_HEALING);
         ASSUME(GetMoveEffect(MOVE_GRASSY_TERRAIN) == EFFECT_GRASSY_TERRAIN);
         PLAYER(SPECIES_WOBBUFFET) { MaxHP(100); HP(1); }
         OPPONENT(SPECIES_WOBBUFFET);

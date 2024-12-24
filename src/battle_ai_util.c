@@ -462,11 +462,11 @@ bool32 IsDamageMoveUnusable(u32 battlerAtk, u32 battlerDef, u32 move, u32 moveTy
             return TRUE;
         break;
     case EFFECT_FAIL_IF_NOT_ARG_TYPE:
-        if (!IS_BATTLER_OF_TYPE(battlerAtk, gMovesInfo[move].argument.type))
+        if (!IS_BATTLER_OF_TYPE(battlerAtk, GetMoveArgType(move)))
             return TRUE;
         break;
     case EFFECT_HIT_SET_REMOVE_TERRAIN:
-        if (!(gFieldStatuses & STATUS_FIELD_TERRAIN_ANY) && gMovesInfo[move].argument.moveProperty == ARG_TRY_REMOVE_TERRAIN_FAIL)
+        if (!(gFieldStatuses & STATUS_FIELD_TERRAIN_ANY) && GetMoveEffectArg_MoveProperty(move) == ARG_TRY_REMOVE_TERRAIN_FAIL)
             return TRUE;
         break;
     case EFFECT_POLTERGEIST:
@@ -559,7 +559,7 @@ static inline void CalcDynamicMoveDamage(struct DamageCalculationData *damageCal
         expected = minimum = gBattleMons[damageCalcData->battlerAtk].level * (abilityAtk == ABILITY_PARENTAL_BOND ? 2 : 1);
         break;
     case EFFECT_FIXED_DAMAGE_ARG:
-        expected = minimum = gMovesInfo[move].argument.fixedDamage * (abilityAtk == ABILITY_PARENTAL_BOND ? 2 : 1);
+        expected = minimum = GetMoveFixedDamage(move) * (abilityAtk == ABILITY_PARENTAL_BOND ? 2 : 1);
         break;
     case EFFECT_MULTI_HIT:
         if (move == MOVE_WATER_SHURIKEN && gBattleMons[damageCalcData->battlerAtk].species == SPECIES_GRENINJA_ASH)
@@ -2039,7 +2039,7 @@ bool32 IsPowerBasedOnStatus(u32 battlerId, u32 effect, u32 argument)
     {
         if (moves[i] != MOVE_NONE && moves[i] != MOVE_UNAVAILABLE
             && GetMoveEffect(moves[i]) == effect
-            && (gMovesInfo[moves[i]].argument.status & argument))
+            && (GetMoveEffectArg_Status(moves[i]) & argument))
             return TRUE;
     }
 
@@ -2507,7 +2507,7 @@ bool32 IsTwoTurnNotSemiInvulnerableMove(u32 battlerAtk, u32 move)
     case EFFECT_SOLAR_BEAM:
     case EFFECT_TWO_TURNS_ATTACK:
         return !(AI_DATA->holdEffects[battlerAtk] == HOLD_EFFECT_POWER_HERB
-              || (AI_GetWeather(AI_DATA) & gMovesInfo[move].argument.twoTurnAttack.status));
+              || (AI_GetWeather(AI_DATA) & GetMoveTwoTurnAttackWeather(move)));
     default:
         return FALSE;
     }
@@ -3259,8 +3259,7 @@ bool32 ShouldAbsorb(u32 battlerAtk, u32 battlerDef, u32 move, s32 damage)
     if (move == 0xFFFF || AI_IsFaster(battlerAtk, battlerDef, move))
     {
         // using item or user goes first
-        u32 healPercent = (gMovesInfo[move].argument.absorbPercentage == 0) ? 50 : gMovesInfo[move].argument.absorbPercentage;
-        s32 healDmg = (healPercent * damage) / 100;
+        s32 healDmg = (GetMoveAbsorbPercentage(move) * damage) / 100;
 
         if (gStatuses3[battlerAtk] & STATUS3_HEAL_BLOCK)
             healDmg = 0;

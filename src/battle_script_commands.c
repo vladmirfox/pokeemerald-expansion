@@ -4078,9 +4078,11 @@ void SetMoveEffect(bool32 primary, bool32 certain)
                 gBattleMons[gBattlerAttacker].status2 |= STATUS2_ESCAPE_PREVENTION;
                 break;
             case MOVE_EFFECT_REMOVE_ARG_TYPE:
+            {
+                u32 type = GetMoveArgType(gCurrentMove);
                 // This seems unnecessary but is done to make it work properly with Parental Bond
                 BattleScriptPush(gBattlescriptCurrInstr + 1);
-                switch (gMovesInfo[gCurrentMove].argument.type)
+                switch (type)
                 {
                     case TYPE_FIRE: // Burn Up
                         gBattlescriptCurrInstr = BattleScript_RemoveFireType;
@@ -4092,8 +4094,9 @@ void SetMoveEffect(bool32 primary, bool32 certain)
                         gBattlescriptCurrInstr = BattleScript_RemoveGenericType;
                         break;
                 }
-                RemoveBattlerType(gEffectBattler, gMovesInfo[gCurrentMove].argument.type);
+                RemoveBattlerType(gEffectBattler, type);
                 break;
+            }
             case MOVE_EFFECT_ROUND:
                 TryUpdateRoundTurnOrder(); // If another Pokémon uses Round before the user this turn, the user will use Round directly after it
                 gBattlescriptCurrInstr++;
@@ -6001,7 +6004,7 @@ static void Cmd_moveend(void)
                 }
                 else if (IsBattlerAlive(gBattlerAttacker) && MoveResultHasEffect(gBattlerTarget))
                 {
-                    gBattleStruct->moveDamage[gBattlerAttacker] = max(1, (gBattleStruct->moveDamage[gBattlerTarget] * gMovesInfo[gCurrentMove].argument.absorbPercentage / 100));
+                    gBattleStruct->moveDamage[gBattlerAttacker] = max(1, (gBattleStruct->moveDamage[gBattlerTarget] * GetMoveAbsorbPercentage(gCurrentMove) / 100));
                     gBattleStruct->moveDamage[gBattlerAttacker] = GetDrainedBigRootHp(gBattlerAttacker, gBattleStruct->moveDamage[gBattlerAttacker]);
                     gHitMarker |= HITMARKER_IGNORE_SUBSTITUTE | HITMARKER_IGNORE_DISGUISE;
                     effect = TRUE;
@@ -6220,18 +6223,20 @@ static void Cmd_moveend(void)
                 }
                 break;
             case MOVE_EFFECT_REMOVE_STATUS: // Smelling salts, Wake-Up Slap, Sparkling Aria
-                if ((gBattleMons[gBattlerTarget].status1 & gMovesInfo[gCurrentMove].argument.status)
+            {
+                u32 argStatus = GetMoveEffectArg_Status(gCurrentMove);
+                if ((gBattleMons[gBattlerTarget].status1 & argStatus)
                  && IsBattlerAlive(gBattlerTarget)
                  && !DoesSubstituteBlockMove(gBattlerAttacker, gBattlerTarget, gCurrentMove))
                 {
-                    gBattleMons[gBattlerTarget].status1 &= ~(gMovesInfo[gCurrentMove].argument.status);
+                    gBattleMons[gBattlerTarget].status1 &= ~(argStatus);
 
                     BtlController_EmitSetMonData(gBattlerTarget, 0, REQUEST_STATUS_BATTLE, 0, 4, &gBattleMons[gBattlerTarget].status1);
                     MarkBattlerForControllerExec(gBattlerTarget);
                     effect = TRUE;
                     BattleScriptPush(gBattlescriptCurrInstr);
 
-                    switch (gMovesInfo[gCurrentMove].argument.status)
+                    switch (argStatus)
                     {
                     case STATUS1_PARALYSIS:
                         gBattlescriptCurrInstr = BattleScript_TargetPRLZHeal;
@@ -6257,6 +6262,7 @@ static void Cmd_moveend(void)
                     }
                 }
                 break; // MOVE_EFFECT_REMOVE_STATUS
+            }
             }
             gBattleStruct->moveEffect2 = 0;
             gBattleScripting.moveendState++;
@@ -6535,7 +6541,7 @@ static void Cmd_moveend(void)
                 if (gMultiHitCounter == 0)
                 {
                     BattleScriptPushCursor();
-                    if (gMovesInfo[gCurrentMove].argument.moveProperty == MOVE_EFFECT_SCALE_SHOT && !NoAliveMonsForEitherParty())
+                    if (GetMoveEffectArg_MoveProperty(gCurrentMove) == MOVE_EFFECT_SCALE_SHOT && !NoAliveMonsForEitherParty())
                         gBattlescriptCurrInstr = BattleScript_ScaleShot;
                     else
                         gBattlescriptCurrInstr = BattleScript_MultiHitPrintStrings;
@@ -10435,7 +10441,7 @@ static void Cmd_various(void)
     case VARIOUS_SET_ARG_TO_BATTLE_DAMAGE:
     {
         VARIOUS_ARGS();
-        gBattleStruct->moveDamage[gBattlerTarget] = gMovesInfo[gCurrentMove].argument.fixedDamage;
+        gBattleStruct->moveDamage[gBattlerTarget] = GetMoveFixedDamage(gCurrentMove);
         break;
     }
     case VARIOUS_TRY_AUTOTOMIZE:
@@ -10707,14 +10713,15 @@ static void Cmd_various(void)
     case VARIOUS_TRY_THIRD_TYPE:
     {
         VARIOUS_ARGS(const u8 *failInstr);
-        if (IS_BATTLER_OF_TYPE(battler, gMovesInfo[gCurrentMove].argument.type) || GetActiveGimmick(battler) == GIMMICK_TERA)
+        u32 type = GetMoveArgType(gCurrentMove);
+        if (IS_BATTLER_OF_TYPE(battler, type) || GetActiveGimmick(battler) == GIMMICK_TERA)
         {
             gBattlescriptCurrInstr = cmd->failInstr;
         }
         else
         {
-            gBattleMons[battler].types[2] = gMovesInfo[gCurrentMove].argument.type;
-            PREPARE_TYPE_BUFFER(gBattleTextBuff1, gMovesInfo[gCurrentMove].argument.type);
+            gBattleMons[battler].types[2] = type;
+            PREPARE_TYPE_BUFFER(gBattleTextBuff1, type);
             gBattlescriptCurrInstr = cmd->nextInstr;
         }
         return;
@@ -11382,7 +11389,7 @@ static void Cmd_setprotectlike(void)
         || (gCurrentMove == MOVE_WIDE_GUARD && B_WIDE_GUARD != GEN_5)
         || (gCurrentMove == MOVE_QUICK_GUARD && B_QUICK_GUARD != GEN_5))
     {
-        if (!gMovesInfo[gCurrentMove].argument.protect.side) // Protects one mon only.
+        if (!GetMoveProtectSide(gCurrentMove)) // Protects one mon only.
         {
             if (GetMoveEffect(gCurrentMove) == EFFECT_ENDURE)
             {
@@ -11939,10 +11946,7 @@ static void Cmd_setdrainedhp(void)
 {
     CMD_ARGS();
 
-    if (gMovesInfo[gCurrentMove].argument.absorbPercentage != 0)
-        gBattleStruct->moveDamage[gBattlerAttacker] = (gHpDealt * gMovesInfo[gCurrentMove].argument.absorbPercentage / 100);
-    else
-        gBattleStruct->moveDamage[gBattlerAttacker] = (gHpDealt / 2);
+    gBattleStruct->moveDamage[gBattlerAttacker] = (gHpDealt * GetMoveAbsorbPercentage(gCurrentMove) / 100);
 
     if (gBattleStruct->moveDamage[gBattlerAttacker] == 0)
         gBattleStruct->moveDamage[gBattlerAttacker] = 1;
@@ -12360,7 +12364,7 @@ static void Cmd_twoturnmoveschargestringandanimation(void)
 {
     CMD_ARGS(const u8 *animationThenStringPtr);
 
-    gBattleScripting.savedStringId = gMovesInfo[gCurrentMove].argument.twoTurnAttack.stringId;
+    gBattleScripting.savedStringId = GetMoveTwoTurnAttackStringId(gCurrentMove);
     if (B_UPDATED_MOVE_DATA < GEN_5 || MoveHasChargeTurnAdditionalEffect(gCurrentMove))
         gBattlescriptCurrInstr = cmd->animationThenStringPtr;
     else
@@ -13606,7 +13610,7 @@ static void Cmd_tryspiteppreduce(void)
         {
             s32 ppToDeduct = B_PP_REDUCED_BY_SPITE >= GEN_4 ? 4 : (Random() & 3) + 2;
             // G-Max Depletion only deducts 2 PP.
-            if (IsMaxMove(gCurrentMove) && gMovesInfo[gCurrentMove].argument.maxEffect == MAX_EFFECT_SPITE)
+            if (IsMaxMove(gCurrentMove) && GetMoveMaxEffect(gCurrentMove) == MAX_EFFECT_SPITE)
                 ppToDeduct = 2;
 
             if (gBattleMons[gBattlerTarget].pp[i] < ppToDeduct)
@@ -14358,7 +14362,7 @@ static void Cmd_setsemiinvulnerablebit(void)
 
     if (gBattleMoveEffects[GetMoveEffect(gCurrentMove)].semiInvulnerableEffect == TRUE)
     {
-        u32 semiInvulnerableEffect = UNCOMPRESS_BITS(gMovesInfo[gCurrentMove].argument.twoTurnAttack.status);
+        u32 semiInvulnerableEffect = GetMoveTwoTurnAttackStatus(gCurrentMove);
         if (cmd->clear)
             gStatuses3[gBattlerAttacker] &= ~semiInvulnerableEffect;
         else
@@ -14382,7 +14386,7 @@ static bool32 CheckIfCanFireTwoTurnMoveNow(u8 battler, bool8 checkChargeTurnEffe
 
     // Certain two-turn moves may fire on the first turn in the right weather (Solar Beam, Electro Shot)
     // By default, all two-turn moves have the option of adding weather to their argument
-    if (IsBattlerWeatherAffected(battler, gMovesInfo[gCurrentMove].argument.status)) // TODO: Two Turn Moves affected by weather need a better rewrite
+    if (IsBattlerWeatherAffected(battler, GetMoveEffectArg_Status(gCurrentMove))) // TODO: Two Turn Moves affected by weather need a better rewrite
         return TRUE;
 
     return FALSE;
@@ -15176,8 +15180,9 @@ static void Cmd_jumpifnotcurrentmoveargtype(void)
 
     u8 battler = GetBattlerForBattleScript(cmd->battler);
     const u8 *failInstr = cmd->failInstr;
+    u32 type = GetMoveArgType(gCurrentMove);
 
-    if (!IS_BATTLER_OF_TYPE(battler, gMovesInfo[gCurrentMove].argument.type))
+    if (!IS_BATTLER_OF_TYPE(battler, type))
         gBattlescriptCurrInstr = failInstr;
     else
         gBattlescriptCurrInstr = cmd->nextInstr;
@@ -16947,11 +16952,11 @@ void BS_ApplySaltCure(void)
     gBattlescriptCurrInstr = cmd->nextInstr;
 }
 
-void BS_JumpIfArgument(void)
+void BS_JumpIfMovePropertyArgument(void)
 {
     NATIVE_ARGS(u8 argument, const u8 *jumpInstr);
 
-    if (gMovesInfo[gCurrentMove].argument.moveProperty == cmd->argument)
+    if (GetMoveEffectArg_MoveProperty(gCurrentMove) == cmd->argument)
         gBattlescriptCurrInstr = cmd->jumpInstr;
     else
         gBattlescriptCurrInstr = cmd->nextInstr;
@@ -16981,7 +16986,7 @@ void BS_SetRemoveTerrain(void)
         gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_TERRAIN_SET_PSYCHIC;
         break;
     case EFFECT_HIT_SET_REMOVE_TERRAIN:
-        switch (gMovesInfo[gCurrentMove].argument.moveProperty)
+        switch (GetMoveEffectArg_MoveProperty(gCurrentMove))
         {
         case ARG_SET_PSYCHIC_TERRAIN: // Genesis Supernova
             statusFlag = STATUS_FIELD_PSYCHIC_TERRAIN;
@@ -17298,7 +17303,7 @@ void BS_TryHealPulse(void)
     {
         if (GetBattlerAbility(gBattlerAttacker) == ABILITY_MEGA_LAUNCHER && IsPulseMove(gCurrentMove))
             gBattleStruct->moveDamage[gBattlerTarget] = -(GetNonDynamaxMaxHP(gBattlerTarget) * 75 / 100);
-        else if (gFieldStatuses & STATUS_FIELD_GRASSY_TERRAIN && gMovesInfo[gCurrentMove].argument.moveProperty == MOVE_EFFECT_FLORAL_HEALING)
+        else if (gFieldStatuses & STATUS_FIELD_GRASSY_TERRAIN && GetMoveEffectArg_MoveProperty(gCurrentMove) == MOVE_EFFECT_FLORAL_HEALING)
             gBattleStruct->moveDamage[gBattlerTarget] = -(GetNonDynamaxMaxHP(gBattlerTarget) * 2 / 3);
         else
             gBattleStruct->moveDamage[gBattlerTarget] = -(GetNonDynamaxMaxHP(gBattlerTarget) / 2);

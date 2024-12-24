@@ -417,7 +417,65 @@ static inline bool32 IsMoveSketchBanned(u32 moveId)
     return gMovesInfo[SanitizeMoveId(moveId)].sketchBanned;
 }
 
-static inline const struct AdditionalEffect * GetMoveAdditionalEffectById(u32 moveId, u32 effect)
+static inline u32 GetMoveTwoTurnAttackStringId(u32 moveId)
+{
+    return gMovesInfo[SanitizeMoveId(moveId)].argument.twoTurnAttack.stringId;
+}
+
+static inline u32 GetMoveTwoTurnAttackStatus(u32 moveId)
+{
+    return UNCOMPRESS_BITS(gMovesInfo[SanitizeMoveId(moveId)].argument.twoTurnAttack.status);
+}
+
+static inline u32 GetMoveTwoTurnAttackWeather(u32 moveId)
+{
+    return gMovesInfo[SanitizeMoveId(moveId)].argument.twoTurnAttack.status;
+}
+
+static inline u32 GetMoveProtectSide(u32 moveId)
+{
+    return gMovesInfo[SanitizeMoveId(moveId)].argument.protect.side;
+}
+
+static inline u32 GetMoveEffectArg_Status(u32 moveId)
+{
+    return gMovesInfo[SanitizeMoveId(moveId)].argument.status;
+}
+
+static inline u32 GetMoveEffectArg_MoveProperty(u32 moveId)
+{
+    return gMovesInfo[SanitizeMoveId(moveId)].argument.moveProperty;
+}
+
+static inline u32 GetMoveEffectArg_HoldEffect(u32 moveId)
+{
+    return gMovesInfo[SanitizeMoveId(moveId)].argument.holdEffect;
+}
+
+static inline u32 GetMoveArgType(u32 moveId)
+{
+    return gMovesInfo[SanitizeMoveId(moveId)].argument.type;
+}
+
+static inline u32 GetMoveFixedDamage(u32 moveId)
+{
+    return gMovesInfo[SanitizeMoveId(moveId)].argument.fixedDamage;
+}
+
+static inline u32 GetMoveAbsorbPercentage(u32 moveId)
+{
+    moveId = SanitizeMoveId(moveId);
+    if (gMovesInfo[moveId].argument.absorbPercentage == 0)
+        return 50;
+    return gMovesInfo[moveId].argument.absorbPercentage;
+}
+
+static inline u32 GetMoveMaxEffect(u32 moveId)
+{
+    return gMovesInfo[SanitizeMoveId(moveId)].argument.maxEffect;
+}
+
+static inline const struct AdditionalEffect *GetMoveAdditionalEffectById(u32 moveId, u32 effect)
 {
     return &gMovesInfo[SanitizeMoveId(moveId)].additionalEffects[effect];
 }

@@ -4331,7 +4331,7 @@ static u32 AI_CalcMoveEffectScore(u32 battlerAtk, u32 battlerDef, u32 move)
             ADJUST_SCORE(DECENT_EFFECT);
         break;
     case EFFECT_SOAK:
-        if (HasMoveWithType(battlerAtk, TYPE_ELECTRIC) || HasMoveWithType(battlerAtk, TYPE_GRASS) || (HasMoveEffect(battlerAtk, EFFECT_SUPER_EFFECTIVE_ON_ARG) && gMovesInfo[move].argument.type == TYPE_WATER) )
+        if (HasMoveWithType(battlerAtk, TYPE_ELECTRIC) || HasMoveWithType(battlerAtk, TYPE_GRASS) || (HasMoveEffect(battlerAtk, EFFECT_SUPER_EFFECTIVE_ON_ARG) && GetMoveArgType(move) == TYPE_WATER) )
             ADJUST_SCORE(DECENT_EFFECT); // Get some super effective moves
         break;
     case EFFECT_THIRD_TYPE:
@@ -4835,7 +4835,7 @@ static s32 AI_ForceSetupFirstTurn(u32 battlerAtk, u32 battlerDef, u32 move, s32 
         u32 additionalEffectCount = GetMoveAdditionalEffectCount(move);
         for (i = 0; i < additionalEffectCount; i++)
         {
-            const struct AdditionalEffect * additionalEffect = GetMoveAdditionalEffectById(move, i);
+            const struct AdditionalEffect *additionalEffect = GetMoveAdditionalEffectById(move, i);
             switch (additionalEffect->moveEffect)
             {
                 case MOVE_EFFECT_STEALTH_ROCK:

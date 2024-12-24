@@ -165,7 +165,7 @@ DOUBLE_BATTLE_TEST("Powder still blocks the target's Fire type moves even if it 
 {
     GIVEN {
         ASSUME(GetMoveEffect(MOVE_FORESTS_CURSE) == EFFECT_THIRD_TYPE);
-        ASSUME(gMovesInfo[MOVE_FORESTS_CURSE].argument.type == TYPE_GRASS);
+        ASSUME(GetMoveArgType(MOVE_FORESTS_CURSE) == TYPE_GRASS);
         PLAYER(SPECIES_WOBBUFFET);
         PLAYER(SPECIES_WOBBUFFET);
         OPPONENT(SPECIES_TREVENANT);
