@@ -4410,6 +4410,56 @@
       "secondary_tileset": "gTileset_MysteryEventsHouse",
       "border_filepath": "data/layouts/SootopolisCity_MysteryEventsHouse_1F_StairsUnblocked/border.bin",
       "blockdata_filepath": "data/layouts/SootopolisCity_MysteryEventsHouse_1F_StairsUnblocked/map.bin"
+    },
+    {
+      "id": "LAYOUT_OCEANVIEW",
+      "name": "Oceanview_Layout",
+      "width": 20,
+      "height": 20,
+      "primary_tileset": "gTileset_General",
+      "secondary_tileset": "gTileset_BattleArena",
+      "border_filepath": "data/layouts/Oceanview/border.bin",
+      "blockdata_filepath": "data/layouts/Oceanview/map.bin"
+    },
+    {
+      "id": "LAYOUT_PROFESSORS_LAB",
+      "name": "ProfessorsLab_Layout",
+      "width": 20,
+      "height": 20,
+      "primary_tileset": "gTileset_Building",
+      "secondary_tileset": "gTileset_BattleArena",
+      "border_filepath": "data/layouts/ProfessorsLab/border.bin",
+      "blockdata_filepath": "data/layouts/ProfessorsLab/map.bin"
+    },
+    {
+      "id": "LAYOUT_DAWNCORAL",
+      "name": "Dawncoral_Layout",
+      "width": 20,
+      "height": 20,
+      "primary_tileset": "gTileset_Building",
+      "secondary_tileset": "gTileset_BattleArena",
+      "border_filepath": "data/layouts/Dawncoral/border.bin",
+      "blockdata_filepath": "data/layouts/Dawncoral/map.bin"
+    },
+    {
+      "id": "LAYOUT_SHADEWIND",
+      "name": "Shadewind_Layout",
+      "width": 20,
+      "height": 20,
+      "primary_tileset": "gTileset_Building",
+      "secondary_tileset": "gTileset_BattleArena",
+      "border_filepath": "data/layouts/Shadewind/border.bin",
+      "blockdata_filepath": "data/layouts/Shadewind/map.bin"
+    },
+    {
+      "id": "LAYOUT_ROUTE1",
+      "name": "Route1_Layout",
+      "width": 20,
+      "height": 20,
+      "primary_tileset": "gTileset_Building",
+      "secondary_tileset": "gTileset_BattleArena",
+      "border_filepath": "data/layouts/Route1/border.bin",
+      "blockdata_filepath": "data/layouts/Route1/map.bin"
     }
   ]
 }
