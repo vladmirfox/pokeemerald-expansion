@@ -205,8 +205,7 @@ A Discord-based ROM hacking community that has many members who hack using the d
 [Click here to join the RHH Discord Server!](https://discord.gg/6CzjAG6GZk)
 
 
-# MEGA SPRITE CREDITS:
-### wow you guys are talented tysm <3
+## Mega Evolution Sprite Credits:
 - [princess-phoenix](https://www.deviantart.com/princess-phoenix)
 - [larryturbo](https://www.deviantart.com/larryturbo)
 - [kidkatt](https://www.deviantart.com/kidkatt)
