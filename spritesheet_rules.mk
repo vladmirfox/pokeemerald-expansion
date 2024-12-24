@@ -810,6 +810,9 @@ $(POKEMONGFXDIR)/pidgeotto/overworld.4bpp: %.4bpp: %.png
 $(POKEMONGFXDIR)/pidgeot/overworld.4bpp: %.4bpp: %.png
 	$(GFX) $< $@ -mwidth 4 -mheight 4
 
+$(POKEMONGFXDIR)/pidgeot/mega/overworld_normal.4bpp: %.4bpp: %.png
+	$(GFX) $< $@ -mwidth 4 -mheight 4
+
 $(POKEMONGFXDIR)/rattata/overworld.4bpp: %.4bpp: %.png
 	$(GFX) $< $@ -mwidth 4 -mheight 4
 

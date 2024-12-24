@@ -1868,6 +1868,14 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .iconPalIndex = 0,
         SHADOW(-7, 19, SHADOW_SIZE_M)
         FOOTPRINT(Pidgeot)
+        OVERWORLD(
+            sPicTable_PidgeotMega,
+            SIZE_32x32,
+            SHADOW_SIZE_M,
+            TRACKS_FOOT,
+            gOverworldPalette_PidgeotMega,
+            gShinyOverworldPalette_PidgeotMega
+        )
         .isMegaEvolution = TRUE,
         .levelUpLearnset = sPidgeotLevelUpLearnset,
         .teachableLearnset = sPidgeotTeachableLearnset,

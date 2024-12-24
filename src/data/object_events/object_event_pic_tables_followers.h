@@ -127,9 +127,9 @@ static const struct SpriteFrameImage sPicTable_Pidgeot[] = {
     overworld_ascending_frames(gObjectEventPic_Pidgeot, 4, 4),
 };
 #if P_MEGA_EVOLUTIONS
-/*static const struct SpriteFrameImage sPicTable_PidgeotMega[] = {
+static const struct SpriteFrameImage sPicTable_PidgeotMega[] = {
     overworld_ascending_frames(gObjectEventPic_PidgeotMega, 4, 4),
-};*/
+};
 #endif //P_MEGA_EVOLUTIONS
 #endif //P_FAMILY_PIDGEY
 

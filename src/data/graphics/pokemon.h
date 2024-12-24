@@ -667,10 +667,10 @@ const u32 gObjectEventPic_Substitute[] = INCBIN_COMP("graphics/pokemon/question_
     const u32 gMonShinyPalette_PidgeotMega[] = INCBIN_U32("graphics/pokemon/pidgeot/mega/shiny.gbapal.lz");
     const u8 gMonIcon_PidgeotMega[] = INCBIN_U8("graphics/pokemon/pidgeot/mega/icon.4bpp");
 #if OW_POKEMON_OBJECT_EVENTS
-    // const u32 gObjectEventPic_PidgeotMega[] = INCBIN_COMP("graphics/pokemon/pidgeot/mega/overworld.4bpp");
+    const u32 gObjectEventPic_PidgeotMega[] = INCBIN_COMP("graphics/pokemon/pidgeot/mega/overworld_normal.4bpp");
 #if OW_PKMN_OBJECTS_SHARE_PALETTES == FALSE
-    // const u32 gOverworldPalette_PidgeotMega[] = INCBIN_U32("graphics/pokemon/pidgeot/mega/overworld_normal.gbapal.lz");
-    // const u32 gShinyOverworldPalette_PidgeotMega[] = INCBIN_U32("graphics/pokemon/pidgeot/mega/overworld_shiny.gbapal.lz");
+    const u32 gOverworldPalette_PidgeotMega[] = INCBIN_U32("graphics/pokemon/pidgeot/mega/overworld_normal.gbapal.lz");
+    const u32 gShinyOverworldPalette_PidgeotMega[] = INCBIN_U32("graphics/pokemon/pidgeot/mega/overworld_shiny.gbapal.lz");
 #endif //OW_PKMN_OBJECTS_SHARE_PALETTES
 #endif //OW_POKEMON_OBJECT_EVENTS
 #endif //P_MEGA_EVOLUTIONS
