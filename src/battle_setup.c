@@ -1299,8 +1299,8 @@ const u8* BattleSetup_ConfigureTrainerBattleMultiBattle(const u8* data, PtrStack
     if (TRAINER_BATTLE_PARAM.multiChooseMons) 
     {
         PUSH(EventScript_ChooseHalfPartyForBattle);
+        PUSH(EventScript_ReducePlayerPartyToSelectedMons);
     }
-    PUSH(EventScript_ReducePlayerPartyToSelectedMons);
     PUSH(EventScript_SaveMonOrder);
     PUSH(EventScript_DoMultiTrainerBattle);
     PUSH(EventScript_SaveSelectedParty);
