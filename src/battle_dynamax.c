@@ -244,6 +244,8 @@ bool32 IsMoveBlockedByDynamax(u32 move)
     {
         case EFFECT_HEAT_CRASH:
         case EFFECT_LOW_KICK:
+        case EFFECT_OHKO:
+        case EFFECT_DESTINTY_BOND:
             return TRUE;
     }
     return FALSE;
