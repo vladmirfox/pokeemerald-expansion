@@ -3192,10 +3192,10 @@ const u32 gObjectEventPic_Substitute[] = INCBIN_COMP("graphics/pokemon/question_
     const u32 gMonShinyPalette_SlowbroMega[] = INCBIN_U32("graphics/pokemon/slowbro/mega/shiny.gbapal.lz");
     const u8 gMonIcon_SlowbroMega[] = INCBIN_U8("graphics/pokemon/slowbro/mega/icon.4bpp");
 #if OW_POKEMON_OBJECT_EVENTS
-    // const u32 gObjectEventPic_SlowbroMega[] = INCBIN_COMP("graphics/pokemon/slowbro/mega/overworld.4bpp");
+    const u32 gObjectEventPic_SlowbroMega[] = INCBIN_COMP("graphics/pokemon/slowbro/mega/overworld_normal.4bpp");
 #if OW_PKMN_OBJECTS_SHARE_PALETTES == FALSE
-    // const u32 gOverworldPalette_SlowbroMega[] = INCBIN_U32("graphics/pokemon/slowbro/mega/overworld_normal.gbapal.lz");
-    // const u32 gShinyOverworldPalette_SlowbroMega[] = INCBIN_U32("graphics/pokemon/slowbro/mega/overworld_shiny.gbapal.lz");
+    const u32 gOverworldPalette_SlowbroMega[] = INCBIN_U32("graphics/pokemon/slowbro/mega/overworld_normal.gbapal.lz");
+    const u32 gShinyOverworldPalette_SlowbroMega[] = INCBIN_U32("graphics/pokemon/slowbro/mega/overworld_shiny.gbapal.lz");
 #endif //OW_PKMN_OBJECTS_SHARE_PALETTES
 #endif //OW_POKEMON_OBJECT_EVENTS
 #endif //P_MEGA_EVOLUTIONS
@@ -3735,10 +3735,10 @@ const u32 gObjectEventPic_Substitute[] = INCBIN_COMP("graphics/pokemon/question_
     const u32 gMonShinyPalette_GengarMega[] = INCBIN_U32("graphics/pokemon/gengar/mega/shiny.gbapal.lz");
     const u8 gMonIcon_GengarMega[] = INCBIN_U8("graphics/pokemon/gengar/mega/icon.4bpp");
 #if OW_POKEMON_OBJECT_EVENTS
-    // const u32 gObjectEventPic_GengarMega[] = INCBIN_COMP("graphics/pokemon/gengar/mega/overworld.4bpp");
+    const u32 gObjectEventPic_GengarMega[] = INCBIN_COMP("graphics/pokemon/gengar/mega/overworld_normal.4bpp");
 #if OW_PKMN_OBJECTS_SHARE_PALETTES == FALSE
-    // const u32 gOverworldPalette_GengarMega[] = INCBIN_U32("graphics/pokemon/gengar/mega/overworld_normal.gbapal.lz");
-    // const u32 gShinyOverworldPalette_GengarMega[] = INCBIN_U32("graphics/pokemon/gengar/mega/overworld_shiny.gbapal.lz");
+    const u32 gOverworldPalette_GengarMega[] = INCBIN_U32("graphics/pokemon/gengar/mega/overworld_normal.gbapal.lz");
+    const u32 gShinyOverworldPalette_GengarMega[] = INCBIN_U32("graphics/pokemon/gengar/mega/overworld_shiny.gbapal.lz");
 #endif //OW_PKMN_OBJECTS_SHARE_PALETTES
 #endif //OW_POKEMON_OBJECT_EVENTS
 #endif //P_MEGA_EVOLUTIONS

@@ -9371,6 +9371,14 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .iconPalIndex = 0,
         SHADOW(0, 13, SHADOW_SIZE_L)
         FOOTPRINT(Slowbro)
+        OVERWORLD(
+            sPicTable_SlowbroMega,
+            SIZE_32x32,
+            SHADOW_SIZE_M,
+            TRACKS_FOOT,
+            gOverworldPalette_SlowbroMega,
+            gShinyOverworldPalette_SlowbroMega
+        )
         .isMegaEvolution = TRUE,
         .levelUpLearnset = sSlowbroLevelUpLearnset,
         .teachableLearnset = sSlowbroTeachableLearnset,
@@ -10939,6 +10947,14 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .iconPalIndex = 2,
         SHADOW(6, 1, SHADOW_SIZE_XL_BATTLE_ONLY)
         FOOTPRINT(Gengar)
+        OVERWORLD(
+            sPicTable_GengarMega,
+            SIZE_32x32,
+            SHADOW_SIZE_M,
+            TRACKS_FOOT,
+            gOverworldPalette_GengarMega,
+            gShinyOverworldPalette_GengarMega
+        )
         .isMegaEvolution = TRUE,
         .levelUpLearnset = sGengarLevelUpLearnset,
         .teachableLearnset = sGengarTeachableLearnset,

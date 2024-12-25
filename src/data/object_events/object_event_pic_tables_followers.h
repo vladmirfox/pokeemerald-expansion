@@ -646,9 +646,9 @@ static const struct SpriteFrameImage sPicTable_Slowking[] = {
 #endif //P_GEN_2_CROSS_EVOS
 
 #if P_MEGA_EVOLUTIONS
-/*static const struct SpriteFrameImage sPicTable_SlowbroMega[] = {
+static const struct SpriteFrameImage sPicTable_SlowbroMega[] = {
     overworld_ascending_frames(gObjectEventPic_SlowbroMega, 4, 4),
-};*/
+};
 #endif //P_MEGA_EVOLUTIONS
 
 #if P_GALARIAN_FORMS
@@ -759,9 +759,9 @@ static const struct SpriteFrameImage sPicTable_Gengar[] = {
     overworld_ascending_frames(gObjectEventPic_Gengar, 4, 4),
 };
 #if P_MEGA_EVOLUTIONS
-/*static const struct SpriteFrameImage sPicTable_GengarMega[] = {
+static const struct SpriteFrameImage sPicTable_GengarMega[] = {
     overworld_ascending_frames(gObjectEventPic_GengarMega, 4, 4),
-};*/
+};
 #endif //P_MEGA_EVOLUTIONS
 #if P_GIGANTAMAX_FORMS
 /*static const struct SpriteFrameImage sPicTable_GengarGmax[] = {

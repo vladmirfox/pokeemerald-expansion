@@ -1032,6 +1032,9 @@ $(POKEMONGFXDIR)/slowpoke/overworld.4bpp: %.4bpp: %.png
 $(POKEMONGFXDIR)/slowbro/overworld.4bpp: %.4bpp: %.png
 	$(GFX) $< $@ -mwidth 4 -mheight 4
 
+$(POKEMONGFXDIR)/slowbro/mega/overworld_normal.4bpp: %.4bpp: %.png
+	$(GFX) $< $@ -mwidth 4 -mheight 4
+
 $(POKEMONGFXDIR)/magnemite/overworld.4bpp: %.4bpp: %.png
 	$(GFX) $< $@ -mwidth 4 -mheight 4
 
@@ -1078,6 +1081,9 @@ $(POKEMONGFXDIR)/haunter/overworld.4bpp: %.4bpp: %.png
 	$(GFX) $< $@ -mwidth 4 -mheight 4
 
 $(POKEMONGFXDIR)/gengar/overworld.4bpp: %.4bpp: %.png
+	$(GFX) $< $@ -mwidth 4 -mheight 4
+
+$(POKEMONGFXDIR)/gengar/mega/overworld_normal.4bpp: %.4bpp: %.png
 	$(GFX) $< $@ -mwidth 4 -mheight 4
 
 $(POKEMONGFXDIR)/onix/overworld.4bpp: %.4bpp: %.png
