@@ -242,10 +242,10 @@ bool32 IsMoveBlockedByDynamax(u32 move)
     // TODO: Certain moves are banned in raids.
     switch (gMovesInfo[move].effect)
     {
+        case EFFECT_DESTINY_BOND:
         case EFFECT_HEAT_CRASH:
         case EFFECT_LOW_KICK:
         case EFFECT_OHKO:
-        case EFFECT_DESTINTY_BOND:
             return TRUE;
     }
     return FALSE;
