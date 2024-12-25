@@ -1163,3 +1163,4 @@ EventScript_VsSeekerChargingDone::
 	.include "data/maps/Shadewind/scripts.inc"
 
 	.include "data/maps/Route1/scripts.inc"
+
