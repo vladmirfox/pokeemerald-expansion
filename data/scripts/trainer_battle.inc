@@ -221,10 +221,17 @@ EventScript_SaveMonOrder::
 	return
 
 EventScript_DoSpecialTrainerBattle::
-	setvar VAR_0x8004, SPECIAL_BATTLE_MULTI
-	setvar VAR_0x8005, MULTI_BATTLE_2_VS_2 | MULTI_BATTLE_CHOOSE_MONS
-	setvar VAR_0x8006, PARTNER_STEVEN
 	special DoSpecialTrainerBattle
+	waitstate
+	return
+
+EventScript_DoMultiTrainerBattle::
+	special DoMultiTrainerBattle
+	waitstate
+	return
+
+EventScript_DoFacilityTrainerBattle::	
+	special DoFacilityTrainerBattle
 	waitstate
 	return
 
@@ -232,3 +239,4 @@ EventScript_SaveSelectedParty::
 	setvar VAR_0x8004, FRONTIER_UTIL_FUNC_SAVE_PARTY
 	special CallFrontierUtilFunc
 	return
+

@@ -25,10 +25,10 @@ typedef union PACKED TrainerBattleParameterUnion
         u8 isRematch:1;
         u8 isTrainerHill:1;
         u8 isTrainerPyramid:1;
-        u8 isMultiBattle:1;
         u8 playMusicA:1;
         u8 playMusicB:1;
-        u8 padding:1;
+        u8 multiChooseMons:1;
+        u8 multiChooseCancel:1;
         u8 objEventLocalIdA;
         u16 battleOpponentA;
         u8* introTextA;
@@ -41,15 +41,16 @@ typedef union PACKED TrainerBattleParameterUnion
         u8* battleScriptRetAddrB;
         u8* victoryText;
         u8* cannotBattleText;
+        u16 battlePartner;
     } params;
     u8 data[sizeof(struct Parameters)];
 } TrainerBattleParameterU;
 
-#define DebugPrintTrainerParams(battleParameter) DebugPrintfLevel(MGBA_LOG_DEBUG, "\nisDouble: %d\nplayMusicA: %d\nplayMusicB: %d\nisRematch: %d\nisTrainerHill: %d\nisTrainerPyramid: %d\nisMultiBattle: %d\npadding: %d\nlocalIdA: %d\ntrainerA: %d\nintroA: %x\ndefeatA: %x\neventA: %x\nlocalIdB: %d\ntrainerB: %d\nintroB: %x\ndefeatB: %x\neventB: %x\nvictory: %x\nnotBattle:%x\n", \
-        battleParameter->params.isDoubleBattle, battleParameter->params.playMusicA, battleParameter->params.playMusicB, battleParameter->params.isRematch, battleParameter->params.isTrainerHill, battleParameter->params.isTrainerPyramid, battleParameter->params.isMultiBattle, battleParameter->params.padding, \
+#define DebugPrintTrainerParams(battleParameter) DebugPrintfLevel(MGBA_LOG_DEBUG, "\nisDouble: %d\nplayMusicA: %d\nplayMusicB: %d\nisRematch: %d\nisTrainerHill: %d\nisTrainerPyramid: %d\npadding: %d\nlocalIdA: %d\ntrainerA: %d\nintroA: %x\ndefeatA: %x\neventA: %x\nlocalIdB: %d\ntrainerB: %d\nintroB: %x\ndefeatB: %x\neventB: %x\nvictory: %x\nnotBattle:%x\npartner: %d\nchoose mons: %d\nallow cancel: %d\n", \
+        battleParameter->params.isDoubleBattle, battleParameter->params.playMusicA, battleParameter->params.playMusicB, battleParameter->params.isRematch, battleParameter->params.isTrainerHill, battleParameter->params.isTrainerPyramid, \
         battleParameter->params.objEventLocalIdA, battleParameter->params.battleOpponentA, battleParameter->params.introTextA, battleParameter->params.defeatTextA, battleParameter->params.battleScriptRetAddrA, \
         battleParameter->params.objEventLocalIdB, battleParameter->params.battleOpponentB, battleParameter->params.introTextB, battleParameter->params.defeatTextB, battleParameter->params.battleScriptRetAddrB, \
-        battleParameter->params.victoryText, battleParameter->params.cannotBattleText)
+        battleParameter->params.victoryText, battleParameter->params.cannotBattleText, battleParameter->params.battlePartner, battleParameter->params.multiChooseMons, battleParameter->params.multiChooseCancel)
 
 typedef struct TrainerBattleScriptStack
 {
@@ -126,5 +127,6 @@ void BattleSetup_StartTrainerBattle_Debug(void);
 s32 TrainerIdToRematchTableId(const struct RematchTrainer *table, u16 trainerId);
 s32 FirstBattleTrainerIdToRematchTableId(const struct RematchTrainer *table, u16 trainerId);
 u16 GetRematchTrainerIdFromTable(const struct RematchTrainer *table, u16 firstBattleTrainerId);
+void CB2_EndTrainerBattle(void);
 
 #endif // GUARD_BATTLE_SETUP_H

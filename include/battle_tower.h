@@ -78,4 +78,6 @@ bool32 ValidateBattleTowerRecord(u8 recordId); // unused
 void TrySetLinkBattleTowerEnemyPartyLevel(void);
 void CreateFacilityMon(const struct TrainerMon *fmon, u16 level, u8 fixedIV, u32 otID, u32 flags, struct Pokemon *dst);
 
+void DoMultiTrainerBattle(void);
+void DoFacilityTrainerBattle(void);
 #endif //GUARD_BATTLE_TOWER_H
