@@ -49,13 +49,8 @@ static void MCB2_InitRegionMapRegisters(void);
 static void VBCB_FieldUpdateRegionMap(void);
 static void MCB2_FieldUpdateRegionMap(void);
 static void FieldUpdateRegionMap(void);
-static void PrintRegionMapSecName(void);
-static void PrintTitleWindowText(void);
-
-static const u8* const FlyPromptText = COMPOUND_STRING("{R_BUTTON}FLY");
-
-u8 hoennOffset;
-u8 flyOffset;
+static void PrintRegionMapSecName();
+static void PrintTitleWindowText();
 
 static const struct BgTemplate sFieldRegionMapBgTemplates[] = {
     {
@@ -77,7 +72,7 @@ static const struct BgTemplate sFieldRegionMapBgTemplates[] = {
     }
 };
 
-const struct WindowTemplate sFieldRegionMapWindowTemplates[] =
+static const struct WindowTemplate sFieldRegionMapWindowTemplates[] =
 {
     [WIN_MAPSEC_NAME] = {
         .bg = 0,
@@ -150,9 +145,6 @@ static void MCB2_FieldUpdateRegionMap(void)
 
 static void FieldUpdateRegionMap(void)
 {
-    hoennOffset = GetStringCenterAlignXOffset(FONT_NORMAL, gText_Hoenn, 0x38);
-    flyOffset = GetStringCenterAlignXOffset(FONT_NORMAL, FlyPromptText, 0x38);
-
     switch (sFieldRegionMapHandler->state)
     {
         case 0:
@@ -238,6 +230,10 @@ static void PrintRegionMapSecName(void)
 
 static void PrintTitleWindowText(void)
 {
+    static const u8 FlyPromptText[] = _("{R_BUTTON}FLY");
+    u8 hoennOffset = GetStringCenterAlignXOffset(FONT_NORMAL, gText_Hoenn, 0x38);
+    u8 flyOffset = GetStringCenterAlignXOffset(FONT_NORMAL, FlyPromptText, 0x38);
+
     FillWindowPixelBuffer(WIN_TITLE, PIXEL_FILL(1));
 
     if (sFieldRegionMapHandler->regionMap.mapSecType == MAPSECTYPE_CITY_CANFLY &&
