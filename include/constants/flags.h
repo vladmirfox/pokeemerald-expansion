@@ -665,11 +665,11 @@
 #define FLAG_MET_TRAVELING_MERCHANT  0x268
 // True if the Pokémon refuge presentation speech has been given
 #define FLAG_POKEMON_REFUGE_PRESENTATION  0x269
-#define FLAG_UNUSED_0x26A  0x26A // Unused Flag
-#define FLAG_UNUSED_0x26B  0x26B // Unused Flag
-#define FLAG_UNUSED_0x26C  0x26C // Unused Flag
-#define FLAG_UNUSED_0x26D  0x26D // Unused Flag
-#define FLAG_UNUSED_0x26E  0x26E // Unused Flag
+#define FLAG_GOT_CROBAT_PASSWORD_FIRST_HALF 0x26A
+#define FLAG_GOT_CROBAT_PASSWORD_SECOND_HALF 0x26B
+#define FLAG_CROBAT_PASSWORD_CORRECT 0x26C
+#define FLAG_CLEARED_CROBAT_HIDEOUT 0x26D
+#define FLAG_CROBAT_HIDEOUT_SEEN_BY_GRUNT 0x26E
 #define FLAG_UNUSED_0x26F  0x26F // Unused Flag
 #define FLAG_UNUSED_0x270  0x270 // Unused Flag
 #define FLAG_UNUSED_0x271  0x271 // Unused Flag

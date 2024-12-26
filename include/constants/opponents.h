@@ -516,7 +516,7 @@
 #define TRAINER_HUDSON                      510
 #define TRAINER_CONOR                       511
 #define TRAINER_EDWIN_1                     512
-#define TRAINER_HECTOR                      513
+#define TRAINER_KODOMO                      513
 #define TRAINER_TABITHA_MOSSDEEP            514
 #define TRAINER_EDWIN_2                     515
 #define TRAINER_EDWIN_3                     516

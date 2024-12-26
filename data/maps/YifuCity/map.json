@@ -71,7 +71,7 @@
     },
     {
       "graphics_id": "OBJ_EVENT_GFX_SPECIES(SURSKIT)",
-      "x": 22,
+      "x": 23,
       "y": 37,
       "elevation": 0,
       "movement_type": "MOVEMENT_TYPE_WANDER_LEFT_AND_RIGHT",
@@ -79,7 +79,7 @@
       "movement_range_y": 0,
       "trainer_type": "TRAINER_TYPE_NONE",
       "trainer_sight_or_berry_tree_id": "0",
-      "script": "NULL",
+      "script": "YifuCity_EventScript_Surskit",
       "flag": "0"
     },
     {
@@ -133,6 +133,58 @@
       "trainer_sight_or_berry_tree_id": "0",
       "script": "YifuCity_EventScript_ShinySeller",
       "flag": "FLAG_BOUGHT_FAKE_SHINY"
+    },
+    {
+      "graphics_id": "OBJ_EVENT_GFX_CROBAT_SHADOWS_GRUNT_M",
+      "x": 60,
+      "y": 13,
+      "elevation": 0,
+      "movement_type": "MOVEMENT_TYPE_FACE_DOWN",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "NULL",
+      "flag": "FLAG_GOT_CROBAT_PASSWORD_FIRST_HALF"
+    },
+    {
+      "graphics_id": "OBJ_EVENT_GFX_CROBAT_SHADOWS_GRUNT_M",
+      "x": 60,
+      "y": 14,
+      "elevation": 0,
+      "movement_type": "MOVEMENT_TYPE_FACE_UP",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "NULL",
+      "flag": "FLAG_GOT_CROBAT_PASSWORD_FIRST_HALF"
+    },
+    {
+      "graphics_id": "OBJ_EVENT_GFX_SPECIES(ZUBAT)",
+      "x": 59,
+      "y": 13,
+      "elevation": 0,
+      "movement_type": "MOVEMENT_TYPE_INVISIBLE",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "NULL",
+      "flag": "FLAG_GOT_CROBAT_PASSWORD_FIRST_HALF"
+    },
+    {
+      "graphics_id": "OBJ_EVENT_GFX_SPECIES(SURSKIT)",
+      "x": 18,
+      "y": 60,
+      "elevation": 0,
+      "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
+      "movement_range_x": 1,
+      "movement_range_y": 3,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "YifuCity_EventScript_Surskit",
+      "flag": "0"
     }
   ],
   "warp_events": [
@@ -236,7 +288,87 @@
     }
   ],
   "coord_events": [
-
+    {
+      "type": "trigger",
+      "x": 56,
+      "y": 14,
+      "elevation": 0,
+      "var": "FLAG_GOT_CROBAT_PASSWORD_FIRST_HALF",
+      "var_value": "0",
+      "script": "YifuCity_Trigger_CrobatGruntsScram"
+    },
+    {
+      "type": "trigger",
+      "x": 56,
+      "y": 13,
+      "elevation": 0,
+      "var": "FLAG_GOT_CROBAT_PASSWORD_FIRST_HALF",
+      "var_value": "0",
+      "script": "YifuCity_Trigger_CrobatGruntsScram"
+    },
+    {
+      "type": "trigger",
+      "x": 56,
+      "y": 12,
+      "elevation": 0,
+      "var": "FLAG_GOT_CROBAT_PASSWORD_FIRST_HALF",
+      "var_value": "0",
+      "script": "YifuCity_Trigger_CrobatGruntsScram"
+    },
+    {
+      "type": "trigger",
+      "x": 56,
+      "y": 11,
+      "elevation": 0,
+      "var": "FLAG_GOT_CROBAT_PASSWORD_FIRST_HALF",
+      "var_value": "0",
+      "script": "YifuCity_Trigger_CrobatGruntsScram"
+    },
+    {
+      "type": "trigger",
+      "x": 56,
+      "y": 10,
+      "elevation": 0,
+      "var": "FLAG_GOT_CROBAT_PASSWORD_FIRST_HALF",
+      "var_value": "0",
+      "script": "YifuCity_Trigger_CrobatGruntsScram"
+    },
+    {
+      "type": "trigger",
+      "x": 60,
+      "y": 18,
+      "elevation": 0,
+      "var": "FLAG_GOT_CROBAT_PASSWORD_FIRST_HALF",
+      "var_value": "0",
+      "script": "YifuCity_Trigger_CrobatGruntsEavesdropPassword"
+    },
+    {
+      "type": "trigger",
+      "x": 59,
+      "y": 18,
+      "elevation": 0,
+      "var": "FLAG_GOT_CROBAT_PASSWORD_FIRST_HALF",
+      "var_value": "0",
+      "script": "YifuCity_Trigger_CrobatGruntsEavesdropPassword"
+    },
+    {
+      "type": "trigger",
+      "x": 51,
+      "y": 20,
+      "elevation": 0,
+      "var": "VAR_TEMP_0",
+      "var_value": "0",
+      "script": "YifuCity_Trigger_CrobatGruntStuckInHole"
+    },
+    {
+      "type": "trigger",
+      "x": 52,
+      "y": 20,
+      "elevation": 0,
+      "var": "VAR_TEMP_0",
+      "var_value": "0",
+      "script": "YifuCity_Trigger_CrobatGruntStuckInHole"
+    }
   ],
   "bg_events": [
     {
