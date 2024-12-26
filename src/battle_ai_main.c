@@ -431,9 +431,9 @@ static void SetBattlerAiMovesData(struct AiLogicData *aiData, u32 battlerAtk, u3
             u8 effectiveness = AI_EFFECTIVENESS_x0;
             move = moves[moveIndex];
 
-            if (move != 0
-             && move != 0xFFFF
-             //&& !IS_MOVE_STATUS(gMovesInfo[move])  /* we want to get effectiveness and accuracy of status moves */
+            if (move != MOVE_NONE
+             && move != MOVE_UNAVAILABLE
+             //&& !IS_MOVE_STATUS(move)  /* we want to get effectiveness and accuracy of status moves */
              && !(aiData->moveLimitations[battlerAtk] & (1u << moveIndex)))
             {
                 dmg = AI_CalcDamage(move, battlerAtk, battlerDef, &effectiveness, TRUE, weather, rollType);
