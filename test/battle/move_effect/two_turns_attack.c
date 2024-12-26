@@ -8,12 +8,6 @@ ASSUMPTIONS
     ASSUME(MoveHasAdditionalEffectSelf(MOVE_SKULL_BASH, MOVE_EFFECT_DEF_PLUS_1) == TRUE);
     ASSUME(GetMoveEffect(MOVE_SKY_ATTACK) == EFFECT_TWO_TURNS_ATTACK);
 
-    // Solar Beam - check for sun
-    ASSUME(GetMoveEffect(MOVE_SOLAR_BEAM) == EFFECT_SOLAR_BEAM);
-    ASSUME(GetMoveTwoTurnAttackWeather(MOVE_SOLAR_BLADE) == B_WEATHER_SUN);
-    ASSUME(GetMoveEffect(MOVE_SOLAR_BLADE) == EFFECT_SOLAR_BEAM);
-    ASSUME(GetMoveTwoTurnAttackWeather(MOVE_SOLAR_BLADE) == B_WEATHER_SUN);
-
     // Electro shot - check for rain
     ASSUME(GetMoveTwoTurnAttackWeather(MOVE_ELECTRO_SHOT) == B_WEATHER_RAIN);
     ASSUME(GetMoveEffect(MOVE_ELECTRO_SHOT) == EFFECT_TWO_TURNS_ATTACK);
