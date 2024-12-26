@@ -2279,3 +2279,12 @@
 	.macro setwilddoubleflag
 	callnative ScriptSetDoubleBattleFlag
 	.endm
+
+	.macro setbattlepartner partnerId:req
+	callnative SetBattlePartner
+	.2byte \partnerId
+	.endm
+
+	.macro clearbattlepartner
+	callnative ClearBattlePartner
+	.endm

@@ -79,7 +79,6 @@ static void DoBattlePikeWildBattle(void);
 static void DoSafariBattle(void);
 static void DoStandardWildBattle(bool32 isDouble);
 static void CB2_EndWildBattle(void);
-static void CB2_EndScriptedWildBattle(void);
 static void TryUpdateGymLeaderRematchFromWild(void);
 static void TryUpdateGymLeaderRematchFromTrainer(void);
 static void CB2_GiveStarter(void);
@@ -729,7 +728,7 @@ static void CB2_EndWildBattle(void)
     }
 }
 
-static void CB2_EndScriptedWildBattle(void)
+void CB2_EndScriptedWildBattle(void)
 {
     CpuFill16(0, (void *)(BG_PLTT), BG_PLTT_SIZE);
     ResetOamRange(0, 128);
@@ -2320,4 +2319,11 @@ u16 CountBattledRematchTeams(u16 trainerId)
     }
 
     return i;
+}
+
+u16 GetBattlePartner(u16 partnerId)
+{
+    if (gSaveBlock1Ptr->battlePartnerOverride != PARTNER_NONE)
+        return gSaveBlock1Ptr->battlePartnerOverride;
+    return partnerId;
 }

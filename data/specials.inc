@@ -557,3 +557,4 @@ gSpecials::
 	def_special Script_GetChosenMonDefensiveIVs
 	def_special DoMultiTrainerBattle
 	def_special DoFacilityTrainerBattle
+	def_special DoMultiWildBattle

@@ -1952,6 +1952,11 @@ static void HandleMultiTrainerBattleEnd(void)
     SetMainCallback2(CB2_EndTrainerBattle);
 }
 
+static void HandleMultiWildBattleEnd(void)
+{
+    SetMainCallback2(CB2_EndScriptedWildBattle);
+}
+
 static void HandleFacilityTrainerBattleEnd(void)
 {
     // TODO move facility battles to here
@@ -1999,11 +2004,21 @@ static void HandleSpecialTrainerBattleEnd(void)
     SetMainCallback2(CB2_ReturnToFieldContinueScriptPlayMapMusic);
 }
 
-static void Task_StartMultiBattleAfterTransition(u8 taskId)
+static void Task_StartMultiTrainerBattleAfterTransition(u8 taskId)
 {
     if (IsBattleTransitionDone() == TRUE)
     {
         gMain.savedCallback = HandleMultiTrainerBattleEnd;
+        SetMainCallback2(CB2_InitBattle);
+        DestroyTask(taskId);
+    }
+}
+
+static void Task_StartMultiWildBattleAfterTransition(u8 taskId)
+{
+    if (IsBattleTransitionDone() == TRUE)
+    {
+        gMain.savedCallback = HandleMultiWildBattleEnd;
         SetMainCallback2(CB2_InitBattle);
         DestroyTask(taskId);
     }
@@ -2031,21 +2046,18 @@ static void Task_StartSpecialBattleAfterTransition(u8 taskId)
 
 void DoMultiTrainerBattle(void)
 {
-    gBattleTypeFlags = BATTLE_TYPE_DOUBLE | BATTLE_TYPE_MULTI | BATTLE_TYPE_INGAME_PARTNER;
-    if (TRAINER_BATTLE_PARAM.battleOpponentA != TRAINER_NONE) // is not against wild pokemon
-    {
-        gBattleTypeFlags |= BATTLE_TYPE_TRAINER;
-    }
+    u16 partnerId;
+    gBattleTypeFlags = BATTLE_TYPE_TRAINER | BATTLE_TYPE_DOUBLE | BATTLE_TYPE_MULTI | BATTLE_TYPE_INGAME_PARTNER;
+
     if (TRAINER_BATTLE_PARAM.battleOpponentB != TRAINER_NONE) // is 2 vs 2 not 2 vs 1
     {
         gBattleTypeFlags |= BATTLE_TYPE_TWO_OPPONENTS;
     }
 
-    DebugPrintfLevel(MGBA_LOG_DEBUG, "flags: %x", gBattleTypeFlags);
-    gPartnerTrainerId = TRAINER_PARTNER(TRAINER_BATTLE_PARAM.battlePartner); // implement override for partner id
+    gPartnerTrainerId = TRAINER_PARTNER(GetBattlePartner(TRAINER_BATTLE_PARAM.battlePartner)); 
 
     FillPartnerParty(gPartnerTrainerId);
-    CreateTask(Task_StartMultiBattleAfterTransition, 1);
+    CreateTask(Task_StartMultiTrainerBattleAfterTransition, 1);
 
     /*
     might be redundant with the other music 
@@ -2054,11 +2066,22 @@ void DoMultiTrainerBattle(void)
         PlayMapChosenOrBattleBGM(0);
     }
     */
+    
+    BattleTransition_StartOnField(GetTrainerBattleTransition());
+}
 
-    if (TRAINER_BATTLE_PARAM.battleOpponentA != TRAINER_NONE)
-        BattleTransition_StartOnField(GetTrainerBattleTransition());
-    else
-        BattleTransition_StartOnField(GetWildBattleTransition());
+void DoMultiWildBattle(void)
+{
+    gBattleTypeFlags = BATTLE_TYPE_DOUBLE | BATTLE_TYPE_MULTI | BATTLE_TYPE_INGAME_PARTNER;
+
+    gPartnerTrainerId = TRAINER_PARTNER(GetBattlePartner(TRAINER_BATTLE_PARAM.battlePartner));
+
+    FillPartnerParty(gPartnerTrainerId);
+    CreateTask(Task_StartMultiWildBattleAfterTransition, 1);
+
+    PlayMapChosenOrBattleBGM(0);
+
+    BattleTransition_StartOnField(GetWildBattleTransition());
 }
 
 void DoFacilityTrainerBattle(void)

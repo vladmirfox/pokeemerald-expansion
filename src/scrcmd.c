@@ -2488,3 +2488,15 @@ void ScriptSetDoubleBattleFlag(struct ScriptContext *ctx)
 {
     sIsScriptedWildDouble = TRUE;
 }
+
+void SetBattlePartner(struct ScriptContext *ctx)
+{
+    u16 partnerId = ScriptReadHalfword(ctx);
+
+    gSaveBlock1Ptr->battlePartnerOverride = partnerId;
+}
+
+void ClearBattlePartner(struct ScriptContext *ctx)
+{
+    gSaveBlock1Ptr->battlePartnerOverride = PARTNER_NONE;
+}
