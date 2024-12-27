@@ -1529,7 +1529,7 @@
 #define FLAG_TERA_ORB_NO_COST                       (SYSTEM_FLAGS + 0x99) // Unused Flag
 #define FLAG_SLEEP_CLAUSE                           (SYSTEM_FLAGS + 0x9A) // Unused Flag
 #define FLAG_SKY_BATTLE                             (SYSTEM_FLAGS + 0x9B) // Unused Flag
-#define FLAG_UNUSED_0x8FC                           (SYSTEM_FLAGS + 0x9C) // Unused Flag
+#define FLAG_SYS_MOVETUTORSWITCH                    (SYSTEM_FLAGS + 0x9C) // Unused Flag
 #define FLAG_UNUSED_0x8FD                           (SYSTEM_FLAGS + 0x9D) // Unused Flag
 #define FLAG_UNUSED_0x8FE                           (SYSTEM_FLAGS + 0x9E) // Unused Flag
 #define FLAG_UNUSED_0x8FF                           (SYSTEM_FLAGS + 0x9F) // Unused Flag

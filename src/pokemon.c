@@ -3590,6 +3590,7 @@ u16 GetSpeciesWeight(u16 species)
 
 const struct LevelUpMove *GetSpeciesLevelUpLearnset(u16 species)
 {
+    if(flag(FLAG_SYS_MOVETUTORSWITCH) == TRUE) {
     const struct LevelUpMove *learnset = gSpeciesInfo[SanitizeSpeciesId(species)].levelUpLearnset;
     if (learnset == NULL)
         return gSpeciesInfo[SPECIES_NONE].levelUpLearnset;
