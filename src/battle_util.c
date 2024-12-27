@@ -3555,36 +3555,6 @@ u8 AtkCanceller_UnableToUseMove(u32 moveType)
             }
             gBattleStruct->atkCancellerTracker++;
             break;
-        case CANCELLER_PROTEAN:
-            if (ProteanTryChangeType(gBattlerAttacker, GetBattlerAbility(gBattlerAttacker), gCurrentMove, moveType))
-            {
-                if (B_PROTEAN_LIBERO == GEN_9)
-                    gDisableStructs[gBattlerAttacker].usedProteanLibero = TRUE;
-                PREPARE_TYPE_BUFFER(gBattleTextBuff1, moveType);
-                gBattlerAbility = gBattlerAttacker;
-                BattleScriptPushCursor();
-                PrepareStringBattle(STRINGID_EMPTYSTRING3, gBattlerAttacker);
-                gBattleCommunication[MSG_DISPLAY] = 1;
-                gBattlescriptCurrInstr = BattleScript_ProteanActivates;
-                effect = 1;
-            }
-            gBattleStruct->atkCancellerTracker++;
-            break;
-        case CANCELLER_PSYCHIC_TERRAIN:
-            if (gFieldStatuses & STATUS_FIELD_PSYCHIC_TERRAIN
-                && IsBattlerGrounded(gBattlerTarget)
-                && GetChosenMovePriority(gBattlerAttacker) > 0
-                && gMovesInfo[gCurrentMove].target != MOVE_TARGET_ALL_BATTLERS
-                && gMovesInfo[gCurrentMove].target != MOVE_TARGET_OPPONENTS_FIELD
-                && GetBattlerSide(gBattlerAttacker) != GetBattlerSide(gBattlerTarget))
-            {
-                CancelMultiTurnMoves(gBattlerAttacker);
-                gBattlescriptCurrInstr = BattleScript_MoveUsedPsychicTerrainPrevents;
-                gHitMarker |= HITMARKER_UNABLE_TO_USE_MOVE;
-                effect = 1;
-            }
-            gBattleStruct->atkCancellerTracker++;
-            break;
         case CANCELLER_POWDER_MOVE:
             if ((gMovesInfo[gCurrentMove].powderMove) && (gBattlerAttacker != gBattlerTarget))
             {
@@ -3625,6 +3595,36 @@ u8 AtkCanceller_UnableToUseMove(u32 moveType)
                     gHitMarker |= HITMARKER_UNABLE_TO_USE_MOVE;
                     effect = 1;
                 }
+            }
+            gBattleStruct->atkCancellerTracker++;
+            break;
+        case CANCELLER_PROTEAN:
+            if (ProteanTryChangeType(gBattlerAttacker, GetBattlerAbility(gBattlerAttacker), gCurrentMove, moveType))
+            {
+                if (B_PROTEAN_LIBERO == GEN_9)
+                    gDisableStructs[gBattlerAttacker].usedProteanLibero = TRUE;
+                PREPARE_TYPE_BUFFER(gBattleTextBuff1, moveType);
+                gBattlerAbility = gBattlerAttacker;
+                BattleScriptPushCursor();
+                PrepareStringBattle(STRINGID_EMPTYSTRING3, gBattlerAttacker);
+                gBattleCommunication[MSG_DISPLAY] = 1;
+                gBattlescriptCurrInstr = BattleScript_ProteanActivates;
+                effect = 1;
+            }
+            gBattleStruct->atkCancellerTracker++;
+            break;
+        case CANCELLER_PSYCHIC_TERRAIN:
+            if (gFieldStatuses & STATUS_FIELD_PSYCHIC_TERRAIN
+                && IsBattlerGrounded(gBattlerTarget)
+                && GetChosenMovePriority(gBattlerAttacker) > 0
+                && gMovesInfo[gCurrentMove].target != MOVE_TARGET_ALL_BATTLERS
+                && gMovesInfo[gCurrentMove].target != MOVE_TARGET_OPPONENTS_FIELD
+                && GetBattlerSide(gBattlerAttacker) != GetBattlerSide(gBattlerTarget))
+            {
+                CancelMultiTurnMoves(gBattlerAttacker);
+                gBattlescriptCurrInstr = BattleScript_MoveUsedPsychicTerrainPrevents;
+                gHitMarker |= HITMARKER_UNABLE_TO_USE_MOVE;
+                effect = 1;
             }
             gBattleStruct->atkCancellerTracker++;
             break;
