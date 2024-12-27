@@ -3541,7 +3541,7 @@ static void CancellerWeatherPrimal(u32 *effect)
 {
     if (WEATHER_HAS_EFFECT && gMovesInfo[gCurrentMove].power)
     {
-        u32 moveType = gMovesInfo[gCurrentMove].type;
+        u32 moveType = GetMoveType(gCurrentMove);
         if (moveType == TYPE_FIRE && (gBattleWeather & B_WEATHER_RAIN_PRIMAL))
         {
             gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_PRIMAL_WEATHER_FIZZLED_BY_RAIN;
@@ -3599,8 +3599,7 @@ static void CancellerPowderStatus(u32 *effect)
     if (gBattleMons[gBattlerAttacker].status2 & STATUS2_POWDER)
     {
         u32 partnerMove = gBattleMons[BATTLE_PARTNER(gBattlerAttacker)].moves[gBattleStruct->chosenMovePositions[BATTLE_PARTNER(gBattlerAttacker)]];
-        u32 moveType = gMovesInfo[gCurrentMove].type;
-        if ((moveType == TYPE_FIRE && !gBattleStruct->pledgeMove)
+        if ((GetMoveType(gCurrentMove) == TYPE_FIRE && !gBattleStruct->pledgeMove)
          || (gCurrentMove == MOVE_FIRE_PLEDGE && partnerMove == MOVE_GRASS_PLEDGE)
          || (gCurrentMove == MOVE_GRASS_PLEDGE && partnerMove == MOVE_FIRE_PLEDGE && gBattleStruct->pledgeMove))
         {
@@ -3620,7 +3619,7 @@ static void CancellerPowderStatus(u32 *effect)
 
 static void CancellerProtean(u32 *effect)
 {
-    u32 moveType = gMovesInfo[gCurrentMove].type;
+    u32 moveType = GetMoveType(gCurrentMove);
     if (ProteanTryChangeType(gBattlerAttacker, GetBattlerAbility(gBattlerAttacker), gCurrentMove, moveType))
     {
         if (B_PROTEAN_LIBERO == GEN_9)
