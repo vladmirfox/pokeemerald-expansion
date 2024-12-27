@@ -1164,7 +1164,6 @@ static void Cmd_attackcanceler(void)
     CMD_ARGS();
 
     s32 i;
-    u16 attackerAbility = GetBattlerAbility(gBattlerAttacker);
     u32 moveType = GetMoveType(gCurrentMove);
 
     if (gBattleStruct->usedEjectItem & (1u << gBattlerAttacker))
