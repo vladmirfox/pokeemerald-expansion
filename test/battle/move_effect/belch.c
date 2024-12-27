@@ -56,6 +56,7 @@ SINGLE_BATTLE_TEST("Belch cannot be used if the user has not eaten a berry")
 SINGLE_BATTLE_TEST("Belch can still be used after switching out")
 {
     GIVEN {
+        ASSUME(gMovesInfo[MOVE_STUFF_CHEEKS].effect == EFFECT_STUFF_CHEEKS);
         PLAYER(SPECIES_GREEDENT) { Item(ITEM_ORAN_BERRY); }
         PLAYER(SPECIES_SKWOVET);
         OPPONENT(SPECIES_WOBBUFFET);
@@ -75,6 +76,9 @@ SINGLE_BATTLE_TEST("Belch can still be used after switching out")
 SINGLE_BATTLE_TEST("Belch can still be used after fainting")
 {
     GIVEN {
+        ASSUME(gMovesInfo[MOVE_STUFF_CHEEKS].effect == EFFECT_STUFF_CHEEKS);
+        ASSUME(gMovesInfo[MOVE_FISSURE].effect == EFFECT_OHKO);
+        ASSUME(gMovesInfo[MOVE_REVIVAL_BLESSING].effect == EFFECT_REVIVAL_BLESSING);
         PLAYER(SPECIES_GREEDENT) { Item(ITEM_ORAN_BERRY); }
         PLAYER(SPECIES_SKWOVET);
         OPPONENT(SPECIES_WOBBUFFET);
@@ -95,6 +99,8 @@ SINGLE_BATTLE_TEST("Belch can still be used after fainting")
 SINGLE_BATTLE_TEST("Belch can still be used after restoring the consumed berry")
 {
     GIVEN {
+        ASSUME(gMovesInfo[MOVE_STUFF_CHEEKS].effect == EFFECT_STUFF_CHEEKS);
+        ASSUME(gMovesInfo[MOVE_RECYCLE].effect == EFFECT_RECYCLE);
         PLAYER(SPECIES_GREEDENT) { Item(ITEM_ORAN_BERRY); }
         PLAYER(SPECIES_SKWOVET);
         OPPONENT(SPECIES_WOBBUFFET);
