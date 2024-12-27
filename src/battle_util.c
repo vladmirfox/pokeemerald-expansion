@@ -3164,6 +3164,18 @@ u8 AtkCanceller_UnableToUseMove(u32 moveType)
             }
             gBattleStruct->atkCancellerTracker++;
             break;
+        case CANCELLER_RECHARGE: // recharge
+            if (gBattleMons[gBattlerAttacker].status2 & STATUS2_RECHARGE)
+            {
+                gBattleMons[gBattlerAttacker].status2 &= ~STATUS2_RECHARGE;
+                gDisableStructs[gBattlerAttacker].rechargeTimer = 0;
+                CancelMultiTurnMoves(gBattlerAttacker);
+                gBattlescriptCurrInstr = BattleScript_MoveUsedMustRecharge;
+                gHitMarker |= HITMARKER_UNABLE_TO_USE_MOVE;
+                effect = 1;
+            }
+            gBattleStruct->atkCancellerTracker++;
+            break;
         case CANCELLER_ASLEEP: // check being asleep
             if (gBattleMons[gBattlerAttacker].status1 & STATUS1_SLEEP)
             {
@@ -3298,18 +3310,6 @@ u8 AtkCanceller_UnableToUseMove(u32 moveType)
             }
             gBattleStruct->atkCancellerTracker++;
             break;
-        case CANCELLER_RECHARGE: // recharge
-            if (gBattleMons[gBattlerAttacker].status2 & STATUS2_RECHARGE)
-            {
-                gBattleMons[gBattlerAttacker].status2 &= ~STATUS2_RECHARGE;
-                gDisableStructs[gBattlerAttacker].rechargeTimer = 0;
-                CancelMultiTurnMoves(gBattlerAttacker);
-                gBattlescriptCurrInstr = BattleScript_MoveUsedMustRecharge;
-                gHitMarker |= HITMARKER_UNABLE_TO_USE_MOVE;
-                effect = 1;
-            }
-            gBattleStruct->atkCancellerTracker++;
-            break;
         case CANCELLER_FLINCH: // flinch
             if (gBattleMons[gBattlerAttacker].status2 & STATUS2_FLINCHED)
             {
@@ -3317,6 +3317,26 @@ u8 AtkCanceller_UnableToUseMove(u32 moveType)
                 CancelMultiTurnMoves(gBattlerAttacker);
                 gBattlescriptCurrInstr = BattleScript_MoveUsedFlinched;
                 gHitMarker |= HITMARKER_UNABLE_TO_USE_MOVE;
+                effect = 1;
+            }
+            gBattleStruct->atkCancellerTracker++;
+            break;
+        case CANCELLER_IN_LOVE: // infatuation
+            if (!gBattleStruct->isAtkCancelerForCalledMove && gBattleMons[gBattlerAttacker].status2 & STATUS2_INFATUATION)
+            {
+                gBattleScripting.battler = CountTrailingZeroBits((gBattleMons[gBattlerAttacker].status2 & STATUS2_INFATUATION) >> 0x10);
+                if (!RandomPercentage(RNG_INFATUATION, 50))
+                {
+                    BattleScriptPushCursor();
+                }
+                else
+                {
+                    BattleScriptPush(BattleScript_MoveUsedIsInLoveCantAttack);
+                    gHitMarker |= HITMARKER_UNABLE_TO_USE_MOVE;
+                    gProtectStructs[gBattlerAttacker].loveImmobility = TRUE;
+                    CancelMultiTurnMoves(gBattlerAttacker);
+                }
+                gBattlescriptCurrInstr = BattleScript_MoveUsedIsInLove;
                 effect = 1;
             }
             gBattleStruct->atkCancellerTracker++;
@@ -3437,26 +3457,6 @@ u8 AtkCanceller_UnableToUseMove(u32 moveType)
                 //CancelMultiTurnMoves(gBattlerAttacker);
                 gBattlescriptCurrInstr = BattleScript_MoveUsedIsParalyzed;
                 gHitMarker |= HITMARKER_UNABLE_TO_USE_MOVE;
-                effect = 1;
-            }
-            gBattleStruct->atkCancellerTracker++;
-            break;
-        case CANCELLER_IN_LOVE: // infatuation
-            if (!gBattleStruct->isAtkCancelerForCalledMove && gBattleMons[gBattlerAttacker].status2 & STATUS2_INFATUATION)
-            {
-                gBattleScripting.battler = CountTrailingZeroBits((gBattleMons[gBattlerAttacker].status2 & STATUS2_INFATUATION) >> 0x10);
-                if (!RandomPercentage(RNG_INFATUATION, 50))
-                {
-                    BattleScriptPushCursor();
-                }
-                else
-                {
-                    BattleScriptPush(BattleScript_MoveUsedIsInLoveCantAttack);
-                    gHitMarker |= HITMARKER_UNABLE_TO_USE_MOVE;
-                    gProtectStructs[gBattlerAttacker].loveImmobility = TRUE;
-                    CancelMultiTurnMoves(gBattlerAttacker);
-                }
-                gBattlescriptCurrInstr = BattleScript_MoveUsedIsInLove;
                 effect = 1;
             }
             gBattleStruct->atkCancellerTracker++;
