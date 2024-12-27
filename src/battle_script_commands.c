@@ -1164,7 +1164,6 @@ static void Cmd_attackcanceler(void)
     CMD_ARGS();
 
     s32 i;
-    u32 moveType = GetMoveType(gCurrentMove);
 
     if (gBattleStruct->usedEjectItem & (1u << gBattlerAttacker))
     {
@@ -1185,7 +1184,7 @@ static void Cmd_attackcanceler(void)
         gBattlescriptCurrInstr = BattleScript_MoveEnd;
         return;
     }
-    if (AtkCanceller_UnableToUseMove(moveType))
+    if (AtkCanceller_MoveSuccessOrder())
         return;
 
     if (gSpecialStatuses[gBattlerAttacker].parentalBondState == PARENTAL_BOND_OFF

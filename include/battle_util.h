@@ -101,8 +101,8 @@ enum
 {
     CANCELLER_FLAGS,
     CANCELLER_STANCE_CHANGE_1,
-    CANCELLER_RECHARGE,
     CANCELLER_SKY_DROP,
+    CANCELLER_RECHARGE,
     CANCELLER_ASLEEP,
     CANCELLER_FROZEN,
     CANCELLER_OBEDIENCE,
@@ -120,7 +120,6 @@ enum
     CANCELLER_BIDE,
     CANCELLER_THAW,
     CANCELLER_STANCE_CHANGE_2,
-    CANCELLER_SET_MOVE_TYPE,
     CANCELLER_WEATHER_PRIMAL,
     CANCELLER_DYNAMAX_BLOCKED,
     CANCELLER_POWDER_MOVE,
@@ -202,7 +201,7 @@ u8 DoBattlerEndTurnEffects(void);
 bool32 HandleWishPerishSongOnTurnEnd(void);
 bool32 HandleFaintedMonActions(void);
 void TryClearRageAndFuryCutter(void);
-u8 AtkCanceller_UnableToUseMove(u32 moveType);
+u32 AtkCanceller_MoveSuccessOrder(void);
 void SetAtkCancellerForCalledMove(void);
 bool32 HasNoMonsToSwitch(u32 battler, u8 r1, u8 r2);
 bool32 TryChangeBattleWeather(u32 battler, u32 weatherEnumId, bool32 viaAbility);
