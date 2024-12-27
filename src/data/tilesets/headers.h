@@ -1942,9 +1942,9 @@ const struct Tileset gTileset_ES_General =
     .metatiles = gMetatiles_ES_General,
     .metatileAttributes = gMetatileAttributes_ES_General,
     .callback = InitTilesetAnim_General,
-    .palettes_summer = NULL,
-    .palettes_autumn = NULL,
-    .palettes_winter = NULL,
+    .palettes_summer = gTilesetPalettes_General_Summer,
+    .palettes_autumn = gTilesetPalettes_General_Autumn,
+    .palettes_winter = gTilesetPalettes_General_Winter,
 };
 
 const struct Tileset gTileset_ES_Oceanview =
