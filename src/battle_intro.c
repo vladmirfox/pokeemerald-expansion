@@ -12,9 +12,6 @@
 #include "constants/battle_partner.h"
 #include "constants/trainers.h"
 
-static void BattleIntroSlide1(u8);
-static void BattleIntroSlide2(u8);
-static void BattleIntroSlide3(u8);
 static void BattleIntroSlideLink(u8);
 static void BattleIntroSlidePartner(u8);
 static void BattleIntroNoSlide(u8);
@@ -184,7 +181,7 @@ static void BattleIntroNoSlide(u8 taskId)
     }
 }
 
-static void BattleIntroSlide1(u8 taskId)
+static void UNUSED BattleIntroSlide1(u8 taskId)
 {
     int i;
 
@@ -269,7 +266,7 @@ static void BattleIntroSlide1(u8 taskId)
     }
 }
 
-static void BattleIntroSlide2(u8 taskId)
+static void UNUSED BattleIntroSlide2(u8 taskId)
 {
     int i;
 
@@ -381,7 +378,7 @@ static void BattleIntroSlide2(u8 taskId)
         SetGpuReg(REG_OFFSET_BLDALPHA, BLDALPHA_BLEND(gTasks[taskId].data[4], 0));
 }
 
-static void BattleIntroSlide3(u8 taskId)
+static void UNUSED BattleIntroSlide3(u8 taskId)
 {
     int i;
 
