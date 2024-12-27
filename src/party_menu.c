@@ -506,7 +506,6 @@ static bool8 SetUpFieldMove_Dive(void);
 void TryItemHoldFormChange(struct Pokemon *mon);
 static void ShowMoveSelectWindow(u8 slot);
 static void Task_HandleWhichMoveInput(u8 taskId);
-static void UpdateSelectedOrderFromParty(void);
 
 // static const data
 #include "data/party_menu.h"
@@ -1382,13 +1381,7 @@ static void Task_ClosePartyMenuAndSetCB2(u8 taskId)
     if (!gPaletteFade.active)
     {
         if (gPartyMenu.menuType == PARTY_MENU_TYPE_IN_BATTLE)
-        {
             UpdatePartyToFieldOrder();
-        }
-        else if (gPartyMenu.menuType == PARTY_MENU_TYPE_CHOOSE_HALF)
-        {
-            UpdateSelectedOrderFromParty();
-        }
 
         if (sPartyMenuInternal->exitCallback != NULL)
             SetMainCallback2(sPartyMenuInternal->exitCallback);
@@ -7439,15 +7432,6 @@ static void UpdatePartyToFieldOrder(void)
     for (i = 0; i < PARTY_SIZE; i++)
         memcpy(&gPlayerParty[GetPartyIdFromBattleSlot(i)], &partyBuffer[i], sizeof(struct Pokemon));
     Free(partyBuffer);
-}
-
-static void UpdateSelectedOrderFromParty(void)
-{
-    u8 i;
-    for (i = 0; i < MAX_FRONTIER_PARTY_SIZE; i++) 
-    {
-        gSelectedOrderFromParty[i] = i + 1;
-    }
 }
 
 static void UNUSED SwitchAliveMonIntoLeadSlot(void)

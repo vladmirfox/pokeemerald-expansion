@@ -59,8 +59,6 @@ extern const u8 EventScript_LoadPlayerParty[];
 extern const u8 EventScript_ReducePlayerPartyToSelectedMons[];
 extern const u8 EventScript_SaveMonOrder[];
 extern const u8 EventScript_DoSpecialTrainerBattle[];
-extern const u8 EventScript_DoMultiTrainerBattle[];
-extern const u8 EventScript_DoFacilityTrainerBattle[];
 extern const u8 EventScript_SaveSelectedParty[];
 
 extern const u8 BerryTreeScript[];

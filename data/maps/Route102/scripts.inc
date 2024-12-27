@@ -64,14 +64,13 @@ Route102_EventScript_Rick::
 	end
 
 Route102_EventScript_Tiana::
-   @trainerbattle localIdA:req, trainer_a:req, intro_text_a:req, lose_text_a:req, event_script_a:req, localIdB:req, trainer_b:req, intro_text_b:req, lose_text_b:req, event_script_b:req, victory_text:req, cannot_battle:req, isDouble:req, playMusicA:req, playMusicB:req, isRematch:req, isTrainerHill:req, isTrainerPyramid:req, mutliChooseMon:req, battlePartner:req
-	trainerbattle OBJ_ID_NONE, TRAINER_TIANA, Route102_Text_TianaIntro, Route102_Text_TianaDefeated, NULL, OBJ_ID_NONE, TRAINER_NONE, NULL, NULL, NULL, NULL, NULL, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, PARTNER_STEVEN, TRUE, TRUE
+	trainerbattle_single TRAINER_TIANA, Route102_Text_TianaIntro, Route102_Text_TianaDefeated
 Route102_EventScript_TianaMsg::
 	msgbox Route102_Text_TianaPostBattle, MSGBOX_AUTOCLOSE
 	end
 
 Route102_EventScript_Allen::
-	trainerbattle OBJ_ID_NONE, TRAINER_ALLEN, Route102_Text_AllenIntro, Route102_Text_AllenDefeated, NULL, OBJ_ID_NONE, TRAINER_NONE, NULL, NULL, NULL, NULL, NULL, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, PARTNER_PHTEVEN, FALSE, FALSE
+	trainerbattle_single TRAINER_ALLEN, Route102_Text_AllenIntro, Route102_Text_AllenDefeated
 	msgbox Route102_Text_AllenPostBattle, MSGBOX_AUTOCLOSE
 	end
 

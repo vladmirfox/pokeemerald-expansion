@@ -42,7 +42,6 @@
 #include "item.h"
 #include "constants/battle_frontier.h"
 #include "constants/battle_setup.h"
-#include "constants/battle_tower.h"
 #include "constants/game_stat.h"
 #include "constants/items.h"
 #include "constants/songs.h"
@@ -79,6 +78,7 @@ static void DoBattlePikeWildBattle(void);
 static void DoSafariBattle(void);
 static void DoStandardWildBattle(bool32 isDouble);
 static void CB2_EndWildBattle(void);
+static void CB2_EndScriptedWildBattle(void);
 static void TryUpdateGymLeaderRematchFromWild(void);
 static void TryUpdateGymLeaderRematchFromTrainer(void);
 static void CB2_GiveStarter(void);
@@ -86,6 +86,7 @@ static void CB2_StartFirstBattle(void);
 static void CB2_EndFirstBattle(void);
 static void SaveChangesToPlayerParty(void);
 static void HandleBattleVariantEndParty(void);
+static void CB2_EndTrainerBattle(void);
 static bool32 IsPlayerDefeated(u32 battleOutcome);
 #if FREE_MATCH_CALL == FALSE
 static u16 GetRematchTrainerId(u16 trainerId);
@@ -728,7 +729,7 @@ static void CB2_EndWildBattle(void)
     }
 }
 
-void CB2_EndScriptedWildBattle(void)
+static void CB2_EndScriptedWildBattle(void)
 {
     CpuFill16(0, (void *)(BG_PLTT), BG_PLTT_SIZE);
     ResetOamRange(0, 128);
@@ -1228,80 +1229,27 @@ void SetMapVarsToTrainerB(void)
 
 #define PUSH(script) PtrStackPushU8(scrStack, script);
 
-#include "party_menu.h"
-
-const u8* BattleSetup_ConfigureTrainerBattleMultiBattle(const u8* data, PtrStack *scrStack, bool16 isApproaching)
+const u8* BattleSetup_ConfigureTrainerBattleMultiBattle(const u8* data, PtrStack *scrStack)
 {
-    
-    if (!isApproaching)
-    {
-        SetMapVarsToTrainerA(); // TODO check which cases exactly need this and why
-        PUSH(EventScript_LockSnippet);
-        PUSH(EventScript_RevealTrainerSnippet);
-
-        if (GetTrainerFlag() || (TRAINER_BATTLE_PARAM.isRematch && !IsTrainerReadyForRematch())) { 
-            PUSH(EventScript_GotoPostBattleScriptSnippet);
-            return NULL;
-    }
-
-    }
     if (TRAINER_BATTLE_PARAM.playMusicA)
     {
         PUSH(EventScript_PlayTrainerEncounterMusicSnippet);
     }
 
-    if (isApproaching)
+    PUSH(EventScript_TrainerApproachSnippet);
+
+    if (TRAINER_BATTLE_PARAM.introTextA != NULL) 
     {
-        PUSH(EventScript_TrainerApproachSnippet);
-
-        if (TRAINER_BATTLE_PARAM.introTextA != NULL) 
-        {
-            PUSH(EventScript_ShowTrainerIntroMsgSnippet);
-        }
-
-        if (TryPrepareSecondApproachingTrainer2()) {
-            SetMapVarsToTrainerB();
-            if (TRAINER_BATTLE_PARAM.isTrainerPyramid) 
-            {
-                TRAINER_BATTLE_PARAM.battleOpponentB = LocalIdToPyramidTrainerId(TRAINER_BATTLE_PARAM.objEventLocalIdB);
-            }
-
-            if (TRAINER_BATTLE_PARAM.isTrainerHill) 
-            {
-                TRAINER_BATTLE_PARAM.battleOpponentB = LocalIdToHillTrainerId(TRAINER_BATTLE_PARAM.objEventLocalIdB);
-            }
-
-            PUSH(EventScript_PrepareSecondTrainerApproachSnippet);
-            if (TRAINER_BATTLE_PARAM.playMusicB) 
-            {
-                PUSH(EventScript_PlayTrainerEncounterMusicSnippet);
-            }
-
-            PUSH(EventScript_TrainerApproachSnippet);
-            
-            if (TRAINER_BATTLE_PARAM.introTextB) 
-            {
-                PUSH(EventScript_ShowTrainerIntroMsgSnippet);
-            }
-        }
-    }
-    else 
-    {
-        if (TRAINER_BATTLE_PARAM.introTextA != NULL)
-        {
-            PUSH(EventScript_ShowTrainerIntroMsgSnippet);
-        }
+        PUSH(EventScript_ShowTrainerIntroMsgSnippet);
     }
 
     PUSH(EventScript_SavePlayerParty);
-
-    if (TRAINER_BATTLE_PARAM.multiChooseMons) 
-    {
-        PUSH(EventScript_ChooseHalfPartyForBattle);
-        PUSH(EventScript_ReducePlayerPartyToSelectedMons);
-    }
+    PUSH(EventScript_ChooseHalfPartyForBattle);
+    PUSH(EventScript_LoadPlayerParty);
+    PUSH(EventScript_SavePlayerParty);
+    PUSH(EventScript_ReducePlayerPartyToSelectedMons);
     PUSH(EventScript_SaveMonOrder);
-    PUSH(EventScript_DoMultiTrainerBattle);
+    PUSH(EventScript_DoSpecialTrainerBattle);
     PUSH(EventScript_SaveSelectedParty);
     PUSH(EventScript_LoadPlayerParty);
 
@@ -1310,9 +1258,9 @@ const u8* BattleSetup_ConfigureTrainerBattleMultiBattle(const u8* data, PtrStack
 
 const u8 *BattleSetup_ConfigureTrainerBattleApproachingTrainer(const u8* data, PtrStack *scrStack)
 {
-    if (TRAINER_BATTLE_PARAM.battlePartner != PARTNER_NONE) 
+    if (TRAINER_BATTLE_PARAM.isMultiBattle) 
     {
-        return BattleSetup_ConfigureTrainerBattleMultiBattle(data, scrStack, TRUE);
+        return BattleSetup_ConfigureTrainerBattleMultiBattle(data, scrStack);
     }
 
     if (TRAINER_BATTLE_PARAM.isTrainerPyramid) 
@@ -1376,9 +1324,9 @@ const u8 *BattleSetup_ConfigureTrainerBattle(const u8 *data, PtrStack *scrStack,
     {
         return BattleSetup_ConfigureTrainerBattleApproachingTrainer(data, scrStack);
     }
-    if (TRAINER_BATTLE_PARAM.battlePartner != PARTNER_NONE) 
+    if (TRAINER_BATTLE_PARAM.isMultiBattle) 
     {
-        return BattleSetup_ConfigureTrainerBattleMultiBattle(data, scrStack, FALSE);
+        return BattleSetup_ConfigureTrainerBattleMultiBattle(data, scrStack);
     }
 
 
@@ -1436,7 +1384,7 @@ const u8 *BattleSetup_ConfigureTrainerBattle(const u8 *data, PtrStack *scrStack,
     {
         PUSH(EventScript_DoRematchTrainerBattleSnippet);
     }
-    else
+    else 
     {
         PUSH(EventScript_DoTrainerBattleSnippet);
     }
@@ -1593,8 +1541,6 @@ static void SetBattledTrainersFlags(void)
     if (TRAINER_BATTLE_PARAM.battleOpponentB != 0)
         FlagSet(GetTrainerBFlag());
     FlagSet(GetTrainerAFlag());
-
-    DebugPrintfLevel(MGBA_LOG_DEBUG, "a: %d b: %d", GetTrainerAFlag(), GetTrainerBFlag());
 }
 
 static void UNUSED SetBattledTrainerFlag(void)
@@ -1708,9 +1654,8 @@ static void HandleBattleVariantEndParty(void)
     FlagClear(B_FLAG_SKY_BATTLE);
 }
 
-void CB2_EndTrainerBattle(void)
+static void CB2_EndTrainerBattle(void)
 {
-    DebugPrintfLevel(MGBA_LOG_DEBUG, "here %d, %d", IsPlayerDefeated(gBattleOutcome), gBattleOutcome);
     HandleBattleVariantEndParty();
 
     if (TRAINER_BATTLE_PARAM.battleOpponentA == TRAINER_SECRET_BASE)
@@ -1731,7 +1676,6 @@ void CB2_EndTrainerBattle(void)
         DowngradeBadPoison();
         if (!InBattlePyramid() && !InTrainerHillChallenge())
         {
-            DebugPrintfLevel(MGBA_LOG_DEBUG, "here2");
             RegisterTrainerInMatchCall();
             SetBattledTrainersFlags();
         }
@@ -2319,11 +2263,4 @@ u16 CountBattledRematchTeams(u16 trainerId)
     }
 
     return i;
-}
-
-u16 GetBattlePartner(u16 partnerId)
-{
-    if (gSaveBlock1Ptr->battlePartnerOverride != PARTNER_NONE)
-        return gSaveBlock1Ptr->battlePartnerOverride;
-    return partnerId;
 }
