@@ -3,6 +3,7 @@
 
 enum GenConfigTag
 {
+    GEN_CONFIG_CRIT_CHANCE,
     GEN_CONFIG_GALE_WINGS,
     GEN_CONFIG_COUNT
 };

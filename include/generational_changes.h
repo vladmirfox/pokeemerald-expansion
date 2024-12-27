@@ -6,6 +6,7 @@
 
 static const u8 sGenerationalChanges[GEN_CONFIG_COUNT] =
 {
+    [GEN_CONFIG_CRIT_CHANCE] = B_CRIT_CHANCE,
     [GEN_CONFIG_GALE_WINGS] = B_GALE_WINGS,
 };
 

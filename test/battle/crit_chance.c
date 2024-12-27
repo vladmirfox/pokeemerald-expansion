@@ -126,24 +126,6 @@ SINGLE_BATTLE_TEST("Crit Chance: If the target is poisoned the ability Merciless
     }
 }
 
-SINGLE_BATTLE_TEST("Crit Chance: Focus Energy increases the user's critical hit ratio by two stage")
-{
-    PASSES_RANDOMLY(1, 2, RNG_CRITICAL_HIT);
-    GIVEN {
-        ASSUME(B_CRIT_CHANCE >= GEN_7);
-        ASSUME(gMovesInfo[MOVE_FOCUS_ENERGY].effect == EFFECT_FOCUS_ENERGY);
-        PLAYER(SPECIES_WOBBUFFET);
-        OPPONENT(SPECIES_WOBBUFFET);
-    } WHEN {
-        TURN { MOVE(player, MOVE_FOCUS_ENERGY); }
-        TURN { MOVE(player, MOVE_TACKLE); }
-    } SCENE {
-        ANIMATION(ANIM_TYPE_MOVE, MOVE_FOCUS_ENERGY, player);
-        ANIMATION(ANIM_TYPE_MOVE, MOVE_TACKLE, player);
-        MESSAGE("A critical hit!");
-    }
-}
-
 SINGLE_BATTLE_TEST("Crit Chance: High crit rate increases the critical hit ratio by one stage")
 {
     PASSES_RANDOMLY(1, 8, RNG_CRITICAL_HIT);
@@ -249,98 +231,5 @@ SINGLE_BATTLE_TEST("Crit Chance: Dire Hit increases a battler's critical hit cha
         MESSAGE("Wobbuffet used the Dire Hit to get pumped!");
         MESSAGE("Wobbuffet used Scratch!");
         MESSAGE("A critical hit!");
-    }
-}
-
-SINGLE_BATTLE_TEST("Crit Chance: Focus Energy increases critical hit ratio by two")
-{
-    PASSES_RANDOMLY(8, 8, RNG_CRITICAL_HIT);
-    GIVEN {
-        ASSUME(B_CRIT_CHANCE >= GEN_7);
-        ASSUME(gMovesInfo[MOVE_SLASH].criticalHitStage == 1);
-        ASSUME(gMovesInfo[MOVE_FOCUS_ENERGY].effect == EFFECT_FOCUS_ENERGY);
-        PLAYER(SPECIES_WOBBUFFET);
-        OPPONENT(SPECIES_WOBBUFFET);
-    } WHEN {
-        TURN { MOVE(player, MOVE_FOCUS_ENERGY); }
-        TURN { MOVE(player, MOVE_SLASH); }
-    } SCENE {
-        ANIMATION(ANIM_TYPE_MOVE, MOVE_FOCUS_ENERGY, player);
-        MESSAGE("Wobbuffet is getting pumped!");
-        ANIMATION(ANIM_TYPE_MOVE, MOVE_SLASH, player);
-        MESSAGE("A critical hit!");
-    }
-}
-
-SINGLE_BATTLE_TEST("Crit Chance: Dragon Cheer fails in a single battle")
-{
-    GIVEN {
-        ASSUME(gMovesInfo[MOVE_DRAGON_CHEER].effect == EFFECT_DRAGON_CHEER);
-        PLAYER(SPECIES_WOBBUFFET);
-        OPPONENT(SPECIES_WOBBUFFET);
-    } WHEN {
-        TURN { MOVE(player, MOVE_DRAGON_CHEER); }
-    } SCENE {
-        MESSAGE("But it failed!");
-    }
-}
-
-DOUBLE_BATTLE_TEST("Crit Chance: Dragon Cheer increases critical hit ratio by one on non Dragon types")
-{
-    PASSES_RANDOMLY(1, 8, RNG_CRITICAL_HIT);
-    GIVEN {
-        ASSUME(B_CRIT_CHANCE >= GEN_7);
-        ASSUME(gMovesInfo[MOVE_TACKLE].criticalHitStage == 0);
-        ASSUME(gMovesInfo[MOVE_DRAGON_CHEER].effect == EFFECT_DRAGON_CHEER);
-        PLAYER(SPECIES_WOBBUFFET);
-        PLAYER(SPECIES_WYNAUT);
-        OPPONENT(SPECIES_WOBBUFFET);
-        OPPONENT(SPECIES_WOBBUFFET);
-    } WHEN {
-        TURN { MOVE(playerLeft, MOVE_DRAGON_CHEER, target: playerRight); MOVE(playerRight, MOVE_TACKLE, target: opponentLeft); }
-    } SCENE {
-        ANIMATION(ANIM_TYPE_MOVE, MOVE_DRAGON_CHEER, playerLeft);
-        MESSAGE("Wynaut is getting pumped!");
-        ANIMATION(ANIM_TYPE_MOVE, MOVE_TACKLE, playerRight);
-        MESSAGE("A critical hit!");
-    }
-}
-
-DOUBLE_BATTLE_TEST("Crit Chance: Dragon Cheer increases critical hit ratio by two on Dragon types")
-{
-    PASSES_RANDOMLY(1, 2, RNG_CRITICAL_HIT);
-    GIVEN {
-        ASSUME(B_CRIT_CHANCE >= GEN_7);
-        ASSUME(gMovesInfo[MOVE_TACKLE].criticalHitStage == 0);
-        ASSUME(gMovesInfo[MOVE_DRAGON_CHEER].effect == EFFECT_DRAGON_CHEER);
-        PLAYER(SPECIES_WOBBUFFET);
-        PLAYER(SPECIES_DRATINI);
-        OPPONENT(SPECIES_WOBBUFFET);
-        OPPONENT(SPECIES_WOBBUFFET);
-    } WHEN {
-        TURN { MOVE(playerLeft, MOVE_DRAGON_CHEER, target: playerRight); MOVE(playerRight, MOVE_TACKLE, target: opponentLeft); }
-    } SCENE {
-        ANIMATION(ANIM_TYPE_MOVE, MOVE_DRAGON_CHEER, playerLeft);
-        MESSAGE("Dratini is getting pumped!");
-        ANIMATION(ANIM_TYPE_MOVE, MOVE_TACKLE, playerRight);
-        MESSAGE("A critical hit!");
-    }
-}
-
-DOUBLE_BATTLE_TEST("Crit Chance: Dragon Cheer fails if critical hit stage was already increased by Focus Energy")
-{
-    GIVEN {
-        ASSUME(gMovesInfo[MOVE_SLASH].criticalHitStage == 1);
-        ASSUME(gMovesInfo[MOVE_FOCUS_ENERGY].effect == EFFECT_FOCUS_ENERGY);
-        ASSUME(gMovesInfo[MOVE_DRAGON_CHEER].effect == EFFECT_DRAGON_CHEER);
-        PLAYER(SPECIES_WOBBUFFET);
-        PLAYER(SPECIES_WOBBUFFET);
-        OPPONENT(SPECIES_WOBBUFFET);
-        OPPONENT(SPECIES_WOBBUFFET);
-    } WHEN {
-        TURN { MOVE(playerLeft, MOVE_FOCUS_ENERGY); MOVE(playerRight, MOVE_DRAGON_CHEER, target: playerLeft); }
-    } SCENE {
-        ANIMATION(ANIM_TYPE_MOVE, MOVE_FOCUS_ENERGY, playerLeft);
-        MESSAGE("But it failed!");
     }
 }

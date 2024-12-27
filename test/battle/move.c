@@ -134,11 +134,11 @@ DOUBLE_BATTLE_TEST("Turn order is determined randomly if priority and Speed tie 
     }
 }
 
-SINGLE_BATTLE_TEST("Critical hits occur at a 1/24 rate")
+SINGLE_BATTLE_TEST("Critical hits occur at a 1/24 rate (Gen 7+)")
 {
     PASSES_RANDOMLY(1, 24, RNG_CRITICAL_HIT);
     GIVEN {
-        ASSUME(B_CRIT_CHANCE >= GEN_7);
+        WITH_CONFIG(GEN_CONFIG_CRIT_CHANCE, GEN_7);
         PLAYER(SPECIES_WOBBUFFET);
         OPPONENT(SPECIES_WOBBUFFET);
     } WHEN {
@@ -148,11 +148,48 @@ SINGLE_BATTLE_TEST("Critical hits occur at a 1/24 rate")
     }
 }
 
-SINGLE_BATTLE_TEST("Slash's critical hits occur at a 1/8 rate")
+SINGLE_BATTLE_TEST("Critical hits occur at a 1/16 rate (Gen 3-6)")
 {
-    PASSES_RANDOMLY(1, 8, RNG_CRITICAL_HIT);
+    u32 genConfig;
+    PASSES_RANDOMLY(1, 16, RNG_CRITICAL_HIT);
+    PARAMETRIZE { genConfig = GEN_3; }
+    PARAMETRIZE { genConfig = GEN_6; }
     GIVEN {
-        ASSUME(B_CRIT_CHANCE >= GEN_7);
+        WITH_CONFIG(GEN_CONFIG_CRIT_CHANCE, genConfig);
+        PLAYER(SPECIES_WOBBUFFET);
+        OPPONENT(SPECIES_WOBBUFFET);
+    } WHEN {
+        TURN { MOVE(player, MOVE_SCRATCH); }
+    } SCENE {
+        MESSAGE("A critical hit!");
+    }
+}
+
+SINGLE_BATTLE_TEST("Critical hits occur at a 17/256 rate (Gen 2)")
+{
+    KNOWN_FAILING;
+    PASSES_RANDOMLY(17, 256, RNG_CRITICAL_HIT);
+    GIVEN {
+        WITH_CONFIG(GEN_CONFIG_CRIT_CHANCE, GEN_2);
+        PLAYER(SPECIES_WOBBUFFET);
+        OPPONENT(SPECIES_WOBBUFFET);
+    } WHEN {
+        TURN { MOVE(player, MOVE_SCRATCH); }
+    } SCENE {
+        MESSAGE("A critical hit!");
+    }
+}
+
+SINGLE_BATTLE_TEST("Slash's critical hits occur at a 1/8 rate (Gen 2-7+)")
+{
+    u32 genConfig;
+    PASSES_RANDOMLY(1, 8, RNG_CRITICAL_HIT);
+    PARAMETRIZE { genConfig = GEN_2; }
+    PARAMETRIZE { genConfig = GEN_3; }
+    PARAMETRIZE { genConfig = GEN_6; }
+    PARAMETRIZE { genConfig = GEN_7; }
+    GIVEN {
+        WITH_CONFIG(GEN_CONFIG_CRIT_CHANCE, genConfig);
         ASSUME(gMovesInfo[MOVE_SLASH].criticalHitStage == 1);
         PLAYER(SPECIES_WOBBUFFET);
         OPPONENT(SPECIES_WOBBUFFET);
