@@ -1979,6 +1979,13 @@ bool8 ScrCmd_trainerbattle(struct ScriptContext *ctx)
     return FALSE;
 }
 
+bool8 ScrCmd_setmultitrainerbattle(struct ScriptContext *ctx)
+{
+    MultiTrainerBattleLoadArgs(ctx->scriptPtr);
+
+    return FALSE;
+}
+
 bool8 ScrCmd_dotrainerbattle(struct ScriptContext *ctx)
 {
     BattleSetup_StartTrainerBattle();

@@ -17,18 +17,17 @@ struct RematchTrainer
 the layout of the first byte can be confusing here
 isDoubleBattle is the least lsb. msb is in the padding.
 */
-typedef union PACKED TrainerBattleParameterUnion
+typedef union PACKED TrainerBattleParameter
 {
-    struct PACKED Parameters
+    struct PACKED _TrainerBattleParameter
     {
         u8 isDoubleBattle:1;
         u8 isRematch:1;
         u8 isTrainerHill:1;
         u8 isTrainerPyramid:1;
-        u8 isMultiBattle:1;
         u8 playMusicA:1;
         u8 playMusicB:1;
-        u8 padding:1;
+        u8 padding:2;
         u8 objEventLocalIdA;
         u16 battleOpponentA;
         u8* introTextA;
@@ -42,11 +41,27 @@ typedef union PACKED TrainerBattleParameterUnion
         u8* victoryText;
         u8* cannotBattleText;
     } params;
-    u8 data[sizeof(struct Parameters)];
-} TrainerBattleParameterU;
+    u8 data[sizeof(struct _TrainerBattleParameter)];
+} TrainerBattleParameter;
 
-#define DebugPrintTrainerParams(battleParameter) DebugPrintfLevel(MGBA_LOG_DEBUG, "\nisDouble: %d\nplayMusicA: %d\nplayMusicB: %d\nisRematch: %d\nisTrainerHill: %d\nisTrainerPyramid: %d\nisMultiBattle: %d\npadding: %d\nlocalIdA: %d\ntrainerA: %d\nintroA: %x\ndefeatA: %x\neventA: %x\nlocalIdB: %d\ntrainerB: %d\nintroB: %x\ndefeatB: %x\neventB: %x\nvictory: %x\nnotBattle:%x\n", \
-        battleParameter->params.isDoubleBattle, battleParameter->params.playMusicA, battleParameter->params.playMusicB, battleParameter->params.isRematch, battleParameter->params.isTrainerHill, battleParameter->params.isTrainerPyramid, battleParameter->params.isMultiBattle, battleParameter->params.padding, \
+/*
+    to use with old multi battle system
+    used instead of TRAINER_BATTLE_SET_TRAINER_A/B modes of trainerbattle macro
+*/
+typedef union PACKED MultiTrainerBattleParameter
+{
+    struct PACKED _MultiTrainerBattleParameter
+    {
+        u16 battleOpponentA;
+        u8* defeatTextA;
+        u16 battleOpponentB;
+        u8* defeatTextB;
+    } params;
+    u8 data[sizeof(struct _MultiTrainerBattleParameter)];
+} MultiTrainerBattleParameter;
+
+#define DebugPrintTrainerParams(battleParameter) DebugPrintfLevel(MGBA_LOG_DEBUG, "\nisDouble: %d\nplayMusicA: %d\nplayMusicB: %d\nisRematch: %d\nisTrainerHill: %d\nisTrainerPyramid: %d\npadding: %d\nlocalIdA: %d\ntrainerA: %d\nintroA: %x\ndefeatA: %x\neventA: %x\nlocalIdB: %d\ntrainerB: %d\nintroB: %x\ndefeatB: %x\neventB: %x\nvictory: %x\nnotBattle:%x\n", \
+        battleParameter->params.isDoubleBattle, battleParameter->params.playMusicA, battleParameter->params.playMusicB, battleParameter->params.isRematch, battleParameter->params.isTrainerHill, battleParameter->params.isTrainerPyramid, battleParameter->params.padding, \
         battleParameter->params.objEventLocalIdA, battleParameter->params.battleOpponentA, battleParameter->params.introTextA, battleParameter->params.defeatTextA, battleParameter->params.battleScriptRetAddrA, \
         battleParameter->params.objEventLocalIdB, battleParameter->params.battleOpponentB, battleParameter->params.introTextB, battleParameter->params.defeatTextB, battleParameter->params.battleScriptRetAddrB, \
         battleParameter->params.victoryText, battleParameter->params.cannotBattleText)
@@ -61,7 +76,7 @@ typedef struct TrainerBattleScriptStack
 
 extern const struct RematchTrainer gRematchTable[REMATCH_TABLE_ENTRIES];
 
-extern TrainerBattleParameterU gTrainerBattleParameter;
+extern TrainerBattleParameter gTrainerBattleParameter;
 extern bool16 gHideCancelOptionOnPartySelect;
 extern u16 gTrainerBattleOpponent_A;
 extern u16 gTrainerBattleOpponent_B;
@@ -120,6 +135,7 @@ void TrainerBattleLoadArgs_2(const u8* data);
 void TrainerBattleLoadArgsTrainerA(const u8* data);
 void TrainerBattleLoadArgsTrainerB(const u8* data);
 void TrainerBattleLoadArgsSecondTrainer(const u8* data);
+void MultiTrainerBattleLoadArgs(const u8* data);
 
 void DoStandardWildBattle_Debug(void);
 void BattleSetup_StartTrainerBattle_Debug(void);
