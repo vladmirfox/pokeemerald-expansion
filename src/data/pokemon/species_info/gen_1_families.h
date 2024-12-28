@@ -2565,7 +2565,7 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .frontPicSize = MON_COORDS_SIZE(32, 40),
         .frontPicYOffset = 13,
         .frontAnimFrames = sAnims_PichuSpikyEared,
-        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
+        .frontAnimId = ANIM_V_JUMPS_H_JUMPS,
         .backPic = gMonBackPic_PichuSpikyEared,
         .backPicSize = MON_COORDS_SIZE(48, 56),
         .backPicYOffset = 8,
@@ -2581,7 +2581,7 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
             SIZE_32x32,
             SHADOW_SIZE_M,
             TRACKS_FOOT,
-            sAnimTable_Following,
+            sAnimTable_Following_Asym,
             gOverworldPalette_PichuSpikyEared,
             gShinyOverworldPalette_PichuSpikyEared
         )
