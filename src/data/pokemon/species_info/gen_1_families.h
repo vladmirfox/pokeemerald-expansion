@@ -2571,7 +2571,7 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .frontPicSize = MON_COORDS_SIZE(32, 40),
         .frontPicYOffset = 13,
         .frontAnimFrames = sAnims_PichuSpikyEared,
-        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
+        .frontAnimId = ANIM_V_JUMPS_H_JUMPS,
         .backPic = gMonBackPic_PichuSpikyEared,
         .backPicSize = MON_COORDS_SIZE(48, 56),
         .backPicYOffset = 8,
@@ -2583,11 +2583,12 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .pokemonJumpType = PKMN_JUMP_TYPE_NORMAL,
         SHADOW(2, 0, SHADOW_SIZE_S)
         FOOTPRINT(Pichu)
-        OVERWORLD(
+        OVERWORLD_SET_ANIM(
             sPicTable_PichuSpikyEared,
             SIZE_32x32,
             SHADOW_SIZE_M,
             TRACKS_FOOT,
+            sAnimTable_Following_Asym,
             gOverworldPalette_PichuSpikyEared,
             gShinyOverworldPalette_PichuSpikyEared
         )
@@ -4835,7 +4836,7 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .palette = gMonPalette_VulpixAlola,
         .shinyPalette = gMonShinyPalette_VulpixAlola,
         .iconSprite = gMonIcon_VulpixAlola,
-        .iconPalIndex = 2,
+        .iconPalIndex = 0,
         .pokemonJumpType = PKMN_JUMP_TYPE_NORMAL,
         SHADOW(-2, 3, SHADOW_SIZE_M)
         FOOTPRINT(Vulpix)
@@ -4903,7 +4904,7 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .palette = gMonPalette_NinetalesAlola,
         .shinyPalette = gMonShinyPalette_NinetalesAlola,
         .iconSprite = gMonIcon_NinetalesAlola,
-        .iconPalIndex = 2,
+        .iconPalIndex = 0,
         .pokemonJumpType = PKMN_JUMP_TYPE_NONE,
         SHADOW(0, 12, SHADOW_SIZE_XL_BATTLE_ONLY)
         FOOTPRINT(Ninetales)
@@ -8839,7 +8840,7 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .palette = gMonPalette_GravelerAlola,
         .shinyPalette = gMonShinyPalette_GravelerAlola,
         .iconSprite = gMonIcon_GravelerAlola,
-        .iconPalIndex = 2,
+        .iconPalIndex = 0,
         .pokemonJumpType = PKMN_JUMP_TYPE_NONE,
         SHADOW(1, 5, SHADOW_SIZE_XL_BATTLE_ONLY)
         FOOTPRINT(Graveler)

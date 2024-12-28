@@ -2697,7 +2697,7 @@ const struct SpeciesInfo gSpeciesInfoGen8[] =
         //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         .backPic = gMonBackPic_Dipplin,
         .backPicSize = MON_COORDS_SIZE(64, 64),
-        .backPicYOffset = 0,
+        .backPicYOffset = 1,
         //.backAnimId = BACK_ANIM_NONE,
         .palette = gMonPalette_Dipplin,
         .shinyPalette = gMonShinyPalette_Dipplin,
@@ -7781,7 +7781,7 @@ const struct SpeciesInfo gSpeciesInfoGen8[] =
         .trainerOffset = 1,
         .frontPic = gMonFrontPic_EnamorusIncarnate,
         .frontPicSize = MON_COORDS_SIZE(64, 64),
-        .frontPicYOffset = 1,
+        .frontPicYOffset = 0,
         .frontAnimFrames = sAnims_EnamorusIncarnate,
         //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         .enemyMonElevation = 7,
@@ -7794,7 +7794,7 @@ const struct SpeciesInfo gSpeciesInfoGen8[] =
         .iconSprite = gMonIcon_EnamorusIncarnate,
         .iconPalIndex = 1,
         .pokemonJumpType = PKMN_JUMP_TYPE_NONE,
-        SHADOW(0, 17, SHADOW_SIZE_M)
+        SHADOW(-3, 19, SHADOW_SIZE_M)
         FOOTPRINT(Enamorus)
         OVERWORLD(
             sPicTable_EnamorusIncarnate,
@@ -7852,7 +7852,7 @@ const struct SpeciesInfo gSpeciesInfoGen8[] =
         //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         .backPic = gMonBackPic_EnamorusTherian,
         .backPicSize = MON_COORDS_SIZE(64, 64),
-        .backPicYOffset = 2,
+        .backPicYOffset = 0,
         //.backAnimId = BACK_ANIM_NONE,
         .palette = gMonPalette_EnamorusTherian,
         .shinyPalette = gMonShinyPalette_EnamorusTherian,
