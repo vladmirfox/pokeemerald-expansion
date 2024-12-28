@@ -7582,13 +7582,8 @@ BattleScript_AbilityPopUp:
 	return
 
 BattleScript_AbilityPopUpScripting:
-	.if B_ABILITY_POP_UP == TRUE
-	showabilitypopup BS_SCRIPTING
-	pause 40
-	.endif
-	recordability BS_SCRIPTING
-	sethword sABILITY_OVERWRITE, 0
-	return
+    copybyte gBattlerAbility, sBATTLER
+    goto BattleScript_AbilityPopUp
 
 BattleScript_AbilityPopUpOverwriteThenNormal:
 	setbyte sFIXED_ABILITY_POPUP, TRUE
