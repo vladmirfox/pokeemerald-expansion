@@ -20,9 +20,12 @@ SINGLE_BATTLE_TEST("Dragon Cheer fails in a single battle")
 
 DOUBLE_BATTLE_TEST("Dragon Cheer increases critical hit ratio by one on non Dragon types")
 {
+    u32 genConfig = 0;
+    for (u32 j = GEN_2; j < GEN_LATEST + 1; j++)
+        PARAMETRIZE { genConfig = j; }
     PASSES_RANDOMLY(1, 8, RNG_CRITICAL_HIT);
     GIVEN {
-        ASSUME(B_CRIT_CHANCE >= GEN_7);
+        WITH_CONFIG(GEN_CONFIG_CRIT_CHANCE, genConfig);
         ASSUME(gMovesInfo[MOVE_TACKLE].criticalHitStage == 0);
         PLAYER(SPECIES_WOBBUFFET);
         PLAYER(SPECIES_WYNAUT);
@@ -38,11 +41,14 @@ DOUBLE_BATTLE_TEST("Dragon Cheer increases critical hit ratio by one on non Drag
     }
 }
 
-DOUBLE_BATTLE_TEST("Dragon Cheer increases critical hit ratio by two on Dragon types")
+DOUBLE_BATTLE_TEST("Dragon Cheer increases critical hit ratio by 2 on Dragon types")
 {
-    PASSES_RANDOMLY(1, 2, RNG_CRITICAL_HIT);
+    u32 genConfig, chance;
+    PARAMETRIZE { genConfig = GEN_2; chance = 4; }
+    PARAMETRIZE { genConfig = GEN_6; chance = 2; }
+    PASSES_RANDOMLY(1, chance, RNG_CRITICAL_HIT);
     GIVEN {
-        ASSUME(B_CRIT_CHANCE >= GEN_7);
+        WITH_CONFIG(GEN_CONFIG_CRIT_CHANCE, genConfig);
         ASSUME(gMovesInfo[MOVE_TACKLE].criticalHitStage == 0);
         PLAYER(SPECIES_WOBBUFFET);
         PLAYER(SPECIES_DRATINI);

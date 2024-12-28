@@ -3,9 +3,12 @@
 
 SINGLE_BATTLE_TEST("Dire Hit increases a battler's critical hit chance by 2 stages")
 {
-    PASSES_RANDOMLY(1, 2, RNG_CRITICAL_HIT);
+    u32 genConfig, chance;
+    PARAMETRIZE { genConfig = GEN_2; chance = 4; }
+    PARAMETRIZE { genConfig = GEN_6; chance = 2; }
+    PASSES_RANDOMLY(1, chance, RNG_CRITICAL_HIT);
     GIVEN {
-        ASSUME(B_CRIT_CHANCE >= GEN_7);
+        WITH_CONFIG(GEN_CONFIG_CRIT_CHANCE, genConfig);
         ASSUME(gItemsInfo[ITEM_DIRE_HIT].battleUsage == EFFECT_ITEM_SET_FOCUS_ENERGY);
         PLAYER(SPECIES_WOBBUFFET);
         OPPONENT(SPECIES_WOBBUFFET);
