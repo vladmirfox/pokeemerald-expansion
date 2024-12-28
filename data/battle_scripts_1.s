@@ -407,13 +407,13 @@ BattleScript_SaltCureExtraDamage::
 	call BattleScript_HurtTarget_NoString
 	printstring STRINGID_TARGETISHURTBYSALTCURE
 	waitmessage B_WAIT_TIME_LONG
+	tryfaintmon BS_TARGET
 	end2
 
 BattleScript_HurtTarget_NoString:
 	orword gHitMarker, HITMARKER_IGNORE_SUBSTITUTE | HITMARKER_PASSIVE_DAMAGE
 	healthbarupdate BS_TARGET
 	datahpupdate BS_TARGET
-	tryfaintmon BS_TARGET
 	return
 
 BattleScript_EffectCorrosiveGas::
