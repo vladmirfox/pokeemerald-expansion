@@ -1,4 +1,4 @@
-// Also used by early Pkmn Breeder, Collector, and Beauty trainers
+// Also used by early PKMN Breeder, Collector, and Beauty trainers
 #define FRONTIER_MONS_YOUNGSTER_LASS_1 \
     FRONTIER_MON_SUNKERN,       \
     FRONTIER_MON_AZURILL,       \
@@ -64,7 +64,7 @@
     FRONTIER_MON_VULPIX,        \
     -1
 
-// Also used by early Pkmn Breeder, Collector, and Beauty trainers
+// Also used by early PKMN Breeder, Collector, and Beauty trainers
 #define FRONTIER_MONS_SCHOOL_KID_1 \
     FRONTIER_MON_PIKACHU,       \
     FRONTIER_MON_SANDSHREW,     \
@@ -152,7 +152,7 @@
     FRONTIER_MON_ARIADOS,       \
     -1
 
-// Also used by early Pkmn Breeder, Collector, and Beauty trainers
+// Also used by early PKMN Breeder, Collector, and Beauty trainers
 #define FRONTIER_MONS_CAMPER_PICNICKER_1 \
     FRONTIER_MON_GRIMER,        \
     FRONTIER_MON_KRABBY,        \
@@ -2833,7 +2833,7 @@
     FRONTIER_MON_TYRANITAR_10,  \
     -1
 
-// Also used by Pkmn Ranger M/F
+// Also used by PKMN Ranger M/F
 // For both classes, M uses Latios and F uses Latias
 #define FRONTIER_MONS_COOLTRAINER_2D(lati)  \
     FRONTIER_MON_ARTICUNO_1,    \
@@ -3118,7 +3118,7 @@
     FRONTIER_MON_RAPIDASH_4,    \
     -1
 
-// Used by Pkmn Ranger M, Gentleman, Running Triathlete, and Cycling Triathlete
+// Used by PKMN Ranger M, Gentleman, Running Triathlete, and Cycling Triathlete
 #define FRONTIER_MONS_GENERAL_A \
     FRONTIER_MON_DUGTRIO_4,     \
     FRONTIER_MON_MEDICHAM_4,    \
@@ -3219,7 +3219,7 @@
     -1
 
 // Identical to FRONTIER_MONS_GENERAL_A but _3
-// Used by Pkmn Ranger, Running Triathlete, and Cycling Triathlete
+// Used by PKMN Ranger, Running Triathlete, and Cycling Triathlete
 #define FRONTIER_MONS_GENERAL_B \
     FRONTIER_MON_DUGTRIO_3,     \
     FRONTIER_MON_MEDICHAM_3,    \
@@ -3320,7 +3320,7 @@
     -1
 
 // Similar to FRONTIER_MONS_GENERAL_A/B but _2
-// Used by Pkmn Ranger, Running Triathlete, and Cycling Triathlete
+// Used by PKMN Ranger, Running Triathlete, and Cycling Triathlete
 #define FRONTIER_MONS_GENERAL_C \
     FRONTIER_MON_DUGTRIO_2,     \
     FRONTIER_MON_MEDICHAM_2,    \
@@ -3421,7 +3421,7 @@
     -1
 
 // Similar to FRONTIER_MONS_GENERAL_C but _1 (would be identical if not for re-ordering)
-// Used by Pkmn Ranger, Running Triathlete, Cycling Triathlete
+// Used by PKMN Ranger, Running Triathlete, Cycling Triathlete
 #define FRONTIER_MONS_GENERAL_D \
     FRONTIER_MON_DUGTRIO_1,     \
     FRONTIER_MON_MEDICHAM_1,    \
@@ -4245,6 +4245,22 @@
     FRONTIER_MON_##legend2##_4, \
     FRONTIER_MON_##legend3##_4, \
     FRONTIER_MON_##lati##_4,    \
+    FRONTIER_MON_##legend1##_5, \
+    FRONTIER_MON_##legend2##_5, \
+    FRONTIER_MON_##legend3##_5, \
+    FRONTIER_MON_##lati##_5,    \
+    FRONTIER_MON_##legend1##_6, \
+    FRONTIER_MON_##legend2##_6, \
+    FRONTIER_MON_##legend3##_6, \
+    FRONTIER_MON_##lati##_6,    \
+    FRONTIER_MON_##legend1##_7, \
+    FRONTIER_MON_##legend2##_7, \
+    FRONTIER_MON_##legend3##_7, \
+    FRONTIER_MON_##lati##_7,    \
+    FRONTIER_MON_##legend1##_8, \
+    FRONTIER_MON_##legend2##_8, \
+    FRONTIER_MON_##legend3##_8, \
+    FRONTIER_MON_##lati##_8,    \
     FRONTIER_MON_GARDEVOIR_5,   \
     FRONTIER_MON_GARDEVOIR_6,   \
     FRONTIER_MON_GARDEVOIR_7,   \
@@ -4256,49 +4272,7 @@
     FRONTIER_MON_METAGROSS_5,   \
     FRONTIER_MON_METAGROSS_6,   \
     FRONTIER_MON_METAGROSS_7,   \
-    FRONTIER_MON_METAGROSS_8,
-
-#define FRONTIER_MONS_PSYCHIC_2A(lati) \
-    FRONTIER_MONS_PSYCHIC_2(lati, ARTICUNO, ZAPDOS, MOLTRES) \
-    FRONTIER_MON_##lati##_5,    \
-    FRONTIER_MON_##lati##_6,    \
-    FRONTIER_MON_##lati##_7,    \
-    FRONTIER_MON_##lati##_8,    \
-    FRONTIER_MON_ARTICUNO_5,    \
-    FRONTIER_MON_ARTICUNO_6,    \
-    FRONTIER_MON_ZAPDOS_5,      \
-    FRONTIER_MON_ZAPDOS_6,      \
-    FRONTIER_MON_MOLTRES_5,     \
-    FRONTIER_MON_MOLTRES_6,     \
-    -1
-
-#define FRONTIER_MONS_PSYCHIC_2B(lati) \
-    FRONTIER_MONS_PSYCHIC_2(lati, RAIKOU, ENTEI, SUICUNE) \
-    FRONTIER_MON_##lati##_5,    \
-    FRONTIER_MON_##lati##_6,    \
-    FRONTIER_MON_##lati##_7,    \
-    FRONTIER_MON_##lati##_8,    \
-    FRONTIER_MON_RAIKOU_5,      \
-    FRONTIER_MON_RAIKOU_6,      \
-    FRONTIER_MON_ENTEI_5,       \
-    FRONTIER_MON_ENTEI_6,       \
-    FRONTIER_MON_SUICUNE_5,     \
-    FRONTIER_MON_SUICUNE_6,     \
-    -1
-
-// Because the Regis/Latis are swapped here they can't all be merged into the same macro and match
-#define FRONTIER_MONS_PSYCHIC_2C(lati) \
-    FRONTIER_MONS_PSYCHIC_2(lati, REGIROCK, REGICE, REGISTEEL) \
-    FRONTIER_MON_REGIROCK_5,    \
-    FRONTIER_MON_REGIROCK_6,    \
-    FRONTIER_MON_REGICE_5,      \
-    FRONTIER_MON_REGICE_6,      \
-    FRONTIER_MON_REGISTEEL_5,   \
-    FRONTIER_MON_REGISTEEL_6,   \
-    FRONTIER_MON_##lati##_5,    \
-    FRONTIER_MON_##lati##_6,    \
-    FRONTIER_MON_##lati##_7,    \
-    FRONTIER_MON_##lati##_8,    \
+    FRONTIER_MON_METAGROSS_8,   \
     -1
 
 #define FRONTIER_MONS_HEX_MANIAC_2A \
@@ -4453,7 +4427,7 @@
     -1
 
 // For whatever reason FRONTIER_MON_MAROWAK_2 is in a different order than _1 _3 and _4
-// This order change is the only difference btween FRONITER_MONS_POKEMANIAC_2A and FRONTIER_MONS_POKEMANIAC_2B other than the numbered suffixes
+// This order change is the only difference between FRONITER_MONS_POKEMANIAC_2A and FRONTIER_MONS_POKEMANIAC_2B other than the numbered suffixes
 #define FRONTIER_MONS_POKEMANIAC_2A \
     FRONTIER_MON_ZANGOOSE_2,    \
     FRONTIER_MON_GRANBULL_1,    \

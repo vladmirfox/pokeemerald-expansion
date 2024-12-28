@@ -38,7 +38,6 @@ destination_pattern = re.compile(r'gBattleFrontierTrainerMons_(.*)')
 modified_content = destination_pattern.sub(add_party_data, destination_content)
 
 # Write the modified content back to battle_frontier_trainers.h
-#(const u16[]){FRONTIER_MONS_PARASOL_LADY_1}
 for file in glob.glob('./src/data/battle_frontier/battle_frontier_trainers.h'):
     with open(file, 'w') as f:
         f.write(modified_content)

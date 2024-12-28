@@ -2001,7 +2001,7 @@ const struct BattleFrontierTrainer gBattleFrontierTrainers[FRONTIER_TRAINERS_COU
         .speechBefore = {EC_WORD_I_AM, EC_WORD_A, EC_WORD_SUPER, EC_WORD_POKEMON, EC_WORD_HERO, EC_WORD_EXCL},
         .speechWin = {EC_WORD_WAS, EC_WORD_THAT, EC_WORD_ENOUGH, EC_WORD_FOR, EC_WORD_YOU, EC_WORD_QUES},
         .speechLose = {EC_WORD_YOU, EC_WORD_SHOULD, EC_WORD_NOT, EC_WORD_BEAT, EC_WORD_A, EC_WORD_HERO},
-        .monSet = (const u16[]){FRONTIER_MONS_PSYCHIC_2A(LATIOS)}
+        .monSet = (const u16[]){FRONTIER_MONS_PSYCHIC_2(LATIOS, ARTICUNO, ZAPDOS, MOLTRES)}
     },
     [FRONTIER_TRAINER_STANLY] = {
         .facilityClass = FACILITY_CLASS_PSYCHIC_M,
@@ -2009,7 +2009,7 @@ const struct BattleFrontierTrainer gBattleFrontierTrainers[FRONTIER_TRAINERS_COU
         .speechBefore = {EC_WORD_THIS, EC_WORD_SHOULD, EC_WORD_BE, EC_WORD_AN, EC_WORD_EASY, EC_WORD_MATCH},
         .speechWin = {EC_WORD_IT, EC_WORD_REALLY, EC_WORD_WAS, EC_WORD_EASY, EC_EMPTY_WORD, EC_EMPTY_WORD},
         .speechLose = {EC_WORD_ARE, EC_WORD_YOU, EC_WORD_HAPPY, EC_WORD_NOW, EC_WORD_QUES, EC_EMPTY_WORD},
-        .monSet = (const u16[]){FRONTIER_MONS_PSYCHIC_2B(LATIOS)}
+        .monSet = (const u16[]){FRONTIER_MONS_PSYCHIC_2(LATIOS, RAIKOU, ENTEI, SUICUNE)}
     },
     [FRONTIER_TRAINER_DARIO] = {
         .facilityClass = FACILITY_CLASS_PSYCHIC_M,
@@ -2017,7 +2017,7 @@ const struct BattleFrontierTrainer gBattleFrontierTrainers[FRONTIER_TRAINERS_COU
         .speechBefore = {EC_WORD_MY, EC_MOVE2(FORESIGHT), EC_WORD_SAYS, EC_WORD_I, EC_WORD_WILL, EC_WORD_WIN},
         .speechWin = {EC_WORD_MY, EC_MOVE2(FORESIGHT), EC_WORD_HAS, EC_WORD_BEEN, EC_WORD_PERFECT, EC_EMPTY_WORD},
         .speechLose = {EC_WORD_I, EC_WORD_DIDN_T, EC_WORD_SEE, EC_WORD_THIS, EC_MOVE(REVERSAL), EC_WORD_ELLIPSIS},
-        .monSet = (const u16[]){FRONTIER_MONS_PSYCHIC_2C(LATIOS)}
+        .monSet = (const u16[]){FRONTIER_MONS_PSYCHIC_2(LATIOS, REGIROCK, REGICE, REGISTEEL)}
     },
     [FRONTIER_TRAINER_KARLEE] = {
         .facilityClass = FACILITY_CLASS_PSYCHIC_F,
@@ -2025,7 +2025,7 @@ const struct BattleFrontierTrainer gBattleFrontierTrainers[FRONTIER_TRAINERS_COU
         .speechBefore = {EC_WORD_SOMETHING, EC_WORD_GOOD, EC_WORD_WILL, EC_WORD_COME, EC_WORD_OF, EC_WORD_THIS},
         .speechWin = {EC_WORD_YOU, EC_WORD_SEE, EC_WORD_QUES, EC_WORD_FANTASTIC, EC_WORD_EXCL, EC_EMPTY_WORD},
         .speechLose = {EC_WORD_THAT, EC_WORD_SOMETHING, EC_WORD_GOOD, EC_WORD_WENT, EC_WORD_TO, EC_WORD_YOU},
-        .monSet = (const u16[]){FRONTIER_MONS_PSYCHIC_2A(LATIAS)}
+        .monSet = (const u16[]){FRONTIER_MONS_PSYCHIC_2(LATIAS, ARTICUNO, ZAPDOS, MOLTRES)}
     },
     [FRONTIER_TRAINER_JAYLIN] = {
         .facilityClass = FACILITY_CLASS_PSYCHIC_F,
@@ -2033,7 +2033,7 @@ const struct BattleFrontierTrainer gBattleFrontierTrainers[FRONTIER_TRAINERS_COU
         .speechBefore = {EC_WORD_EVERY, EC_WORD_TRAINER, EC_WORD_HAS, EC_WORD_BEEN, EC_WORD_TOO_WEAK, EC_WORD_ELLIPSIS},
         .speechWin = {EC_WORD_IT_S, EC_WORD_MAKING, EC_WORD_ME, EC_MOVE(YAWN), EC_WORD_THAT, EC_WORD_BATTLE},
         .speechLose = {EC_WORD_I, EC_WORD_SLEPT, EC_WORD_AND, EC_WORD_SO, EC_WORD_I, EC_WORD_LOST},
-        .monSet = (const u16[]){FRONTIER_MONS_PSYCHIC_2B(LATIAS)}
+        .monSet = (const u16[]){FRONTIER_MONS_PSYCHIC_2(LATIAS, RAIKOU, ENTEI, SUICUNE)}
     },
     [FRONTIER_TRAINER_INGRID] = {
         .facilityClass = FACILITY_CLASS_PSYCHIC_F,
@@ -2041,7 +2041,7 @@ const struct BattleFrontierTrainer gBattleFrontierTrainers[FRONTIER_TRAINERS_COU
         .speechBefore = {EC_WORD_I_AM, EC_WORD_NOT, EC_WORD_A, EC_WORD_VERY, EC_WORD_MEAN, EC_WORD_TRAINER},
         .speechWin = {EC_WORD_WASN_T, EC_WORD_THAT, EC_WORD_A, EC_WORD_GOOD, EC_WORD_MATCH, EC_WORD_QUES},
         .speechLose = {EC_WORD_I, EC_WORD_LOST, EC_WORD_CAUSE, EC_WORD_YOU_RE, EC_WORD_MEAN, EC_WORD_ELLIPSIS},
-        .monSet = (const u16[]){FRONTIER_MONS_PSYCHIC_2C(LATIAS)}
+        .monSet = (const u16[]){FRONTIER_MONS_PSYCHIC_2(LATIAS, REGIROCK, REGICE, REGISTEEL)}
     },
     [FRONTIER_TRAINER_DELILAH] = {
         .facilityClass = FACILITY_CLASS_HEX_MANIAC,
