@@ -4253,13 +4253,7 @@
     FRONTIER_MON_##legend2##_6, \
     FRONTIER_MON_##legend3##_6, \
     FRONTIER_MON_##lati##_6,    \
-    FRONTIER_MON_##legend1##_7, \
-    FRONTIER_MON_##legend2##_7, \
-    FRONTIER_MON_##legend3##_7, \
     FRONTIER_MON_##lati##_7,    \
-    FRONTIER_MON_##legend1##_8, \
-    FRONTIER_MON_##legend2##_8, \
-    FRONTIER_MON_##legend3##_8, \
     FRONTIER_MON_##lati##_8,    \
     FRONTIER_MON_GARDEVOIR_5,   \
     FRONTIER_MON_GARDEVOIR_6,   \
