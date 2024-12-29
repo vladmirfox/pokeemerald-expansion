@@ -1092,3 +1092,11 @@ EventScript_VsSeekerChargingDone::
 	.include "data/maps/Agriville/scripts.inc"
 
 	.include "data/maps/OceanByway/scripts.inc"
+
+	.include "data/maps/Agriville_Indoors/scripts.inc"
+
+	.include "data/maps/Appel_North_River/scripts.inc"
+
+	.include "data/maps/Scyther_Sanctuary/scripts.inc"
+
+	.include "data/maps/AgrivillePkmnCenter/scripts.inc"

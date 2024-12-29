@@ -107,7 +107,8 @@ void AnimTask_SetCamouflageBlend(u8 taskId)
     switch (gBattleTerrain)
     {
     case BATTLE_TERRAIN_GRASS:
-        gBattleAnimArgs[4] = RGB(12, 24, 2);
+        //gBattleAnimArgs[4] = RGB(12, 24, 2);
+        gBattleAnimArgs[4] = RGB(31, 31, 31);
         break;
     case BATTLE_TERRAIN_LONG_GRASS:
         gBattleAnimArgs[4] = RGB(0, 15, 2);

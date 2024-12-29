@@ -15,7 +15,7 @@
 #define APPEL_SILPH_3                   9
 #define APPEL_SILPH_4        10
 #define APPEL_SILPH_5                       11
-#define TRAINER_ALBERTO                      12
+#define EXECUTIVE_HENRY                      12
 #define TRAINER_ED                           13
 #define TRAINER_GRUNT_SEAFLOOR_CAVERN_4      14
 #define TRAINER_DECLAN                       15

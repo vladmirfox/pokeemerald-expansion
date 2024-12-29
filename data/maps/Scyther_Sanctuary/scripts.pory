@@ -1,0 +1,112 @@
+
+mapscripts Scyther_Sanctuary_MapScripts {
+    
+}
+
+text ScytherSanctExec1_d1 {
+    format("Silph Co. must be serious about Project Babble if they're sending me down here.")
+}
+
+text ScytherSanctExec1_d2 {
+    format("Could you forget I said that?")
+}
+
+
+script ScytherSanctExec1 {
+       trainerbattle_double(EXECUTIVE_HENRY,ScytherSanctExec1_d1,ScytherSanctExec1_d2,"ERROR")
+       msgbox(ScytherSanctExec1_d2)
+       waitmessage
+       releaseall
+}
+
+
+text Tessa_PreScytherF1 {
+    format("You're that gym challenger, right? Silph Co. showed up here and started tearing apart the santuary.")
+}
+
+text Tessa_PreScytherF2 {
+    format("............")
+}
+
+text Tessa_PreScytherF3 {
+    format("You're not going to leave, are you? Fine. Help me beat this guy and then I'll let you challenge my gym.")
+}
+
+movement NPC_faceup {
+    face_up
+}
+
+text Orm_PreScytherF {
+    format("All the natural resources of Atlantia belongs to Silph Co. per, the Colress Treaty- this Sanctuary included. If you're going to get in my way, I will remove you.")
+}
+
+
+text Orm_PostScytherF1 {
+    format("...You're stronger than I expected. My men and I will leave. I gathered the samples I needed anyways. Don't expect me to be the last person sent here.")
+}
+
+
+text Orm_PostScytherF2 {
+    format("A scyther taken from a young girl? Ah, yes- it wasn't want we needed. You may have it.")
+}
+
+
+text Tessa_PostScytherF1 {
+    format("Thanks for the help, kid. If you still want to challenge me, I'll be at my gym.")
+}
+ movement WalkOffSceenScyther {
+    walk_down*8
+ }
+
+script Initiate_Battle_Scyther_Sanctuary {
+    lockall
+    releaseall
+    applymovement(1,NPC_faceplayer)
+    waitmovement(1)
+    lockall
+    msgbox(Tessa_PreScytherF1)
+    msgbox(Tessa_PreScytherF2)
+    msgbox(Tessa_PreScytherF3)
+    releaseall
+    applymovement(1,NPC_faceup)
+    waitmovement(1)
+    lockall
+    releaseall
+    applymovement(4,TalkDown)
+    waitmovement(4)
+    lockall
+    msgbox(Orm_PreScytherF)
+
+    
+    msgbox("This is where the double battle will go!")
+
+    releaseall
+    applymovement(4,TalkDown)
+    waitmovement(4)
+    lockall
+    msgbox(Orm_PreScytherF)
+    msgbox(Orm_PostScytherF1)
+    msgbox(Tessa_PreScytherF2)
+    msgbox(Orm_PostScytherF2)
+
+    //screenwipe + setflag to remove silph co
+	fadescreen(FADE_TO_BLACK)
+    removeobject(5)
+    removeobject(4)
+    setvar(VAR_SCYTHER_SANCT_STATE,1)
+    setflag(FLAG_SCYTHER_SANCT_CLEARED)
+	fadescreen(FADE_FROM_BLACK)
+
+    //post combat dialogue
+
+    msgbox(Tessa_PostScytherF1)
+    releaseall
+    applymovement(1,WalkOffSceenScyther)
+    waitmovement(1)
+    removeobject(1)
+    lockall
+    releaseall
+
+
+}
+

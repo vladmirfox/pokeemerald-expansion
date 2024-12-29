@@ -122,6 +122,7 @@ const u16 gEasyChatWordsByLetter_A[] = {
 };
 
 const u16 gEasyChatWordsByLetter_B[] = {
+    EC_POKEMON(BABBLE),
     EC_WORD_BABE,
     EC_WORD_BABY,
     EC_WORD_BACK,

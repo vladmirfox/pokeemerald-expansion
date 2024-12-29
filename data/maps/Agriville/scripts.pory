@@ -1,0 +1,204 @@
+//Map State Guide
+//State 0: Maya not talked to
+//State 1: Maya talked to but silph still needs to be beat
+//State 2: Gym unlocked for battle
+
+
+
+mapscripts Agriville_MapScripts {
+    
+}
+
+script AgrivilleZigzagoon1{
+    lockall
+    msgbox("CRUNCH! MUNCH!")
+    msgbox("The Zigzagoon is chowing down on\na pumpkin.")
+    releaseall
+}
+
+script Agriville_NPC_1 {
+    applymovement(5,NPC_faceplayer)
+    lockall
+    msgbox(Agriville_NPC_1_Msg)
+    releaseall
+}
+
+script Agriville_NPC_2 {
+    applymovement(3,NPC_faceplayer)
+    lockall
+    msgbox(Agriville_NPC_2_Msg)
+    releaseall
+}
+
+script Agriville_NPC_3 {
+    applymovement(4,NPC_faceplayer)
+    lockall
+    msgbox(Agriville_NPC_3_Msg)
+    releaseall
+}
+
+script Agriville_NPC_4 {
+    applymovement(6,NPC_faceplayer)
+    lockall
+    msgbox(Agriville_NPC_4_Msg)
+    releaseall
+}
+
+script Agriville_NPC_5 {
+    applymovement(7,NPC_faceplayer)
+    lockall
+    //later include logic to switch between msgs
+    msgbox(Agriville_NPC_5_Msg)
+    releaseall
+}
+
+script Pumpkin_Seller {
+    applymovement(8,NPC_faceplayer)
+    lockall
+    msgbox(Pumpkin_Seller_Msg_1)
+    releaseall
+}
+
+script Gym1Custscene {
+    lockall
+    //Maya walk + talk
+    releaseall
+    applymovement(12,TalkUp)
+    waitmovement(12)
+    lockall
+    msgbox(Gym1CustsceneText1)
+    
+    //Tessa walk + talk to Maya
+    releaseall
+    applymovement(9,TalkDown)
+    waitmovement(9)
+    lockall
+    msgbox(Gym1CustsceneText2)
+
+    //Maya talk + walk away
+    releaseall
+    applymovement(12,TalkUp)
+    waitmovement(12)
+    lockall
+    msgbox("Please save him, Ms. Tessa!")
+    releaseall
+    applymovement(12,NPC_facedown)
+    waitmovement(12)
+    lockall
+    msgbox("Excuse me.")
+    releaseall
+    applymovement(OBJ_EVENT_ID_PLAYER,PlayerCutsceneMovement)
+    waitmovement(OBJ_EVENT_ID_PLAYER)
+    lockall
+    releaseall
+    applymovement(12,MayaWalkOffScreen)
+    waitmovement(12)
+    removeobject(12)
+
+    //Gym Leader 
+    applymovement(9,Gym_Walk_to_player)
+    applymovement(9, NPC_faceplayer)
+    waitmovement(9)
+    lockall
+    msgbox(Gym1CustsceneText3)
+    releaseall
+    applymovement(9,WalkOffSceen)
+    waitmovement(9)
+    removeobject(9)
+    setflag(FLAG_AGRIVILLE_GYM)
+    setvar(VAR_AGRIVILLE_STATE,1)
+    releaseall
+}
+
+movement NPC_faceplayer {
+    face_player
+}
+movement NPC_facedown {
+    face_down
+}
+
+movement Gym_Walk_to_player {
+    walk_down*3
+    face_right
+}
+
+movement WalkOffSceen {
+    walk_down
+    walk_left*7
+    walk_up
+    walk_left
+}
+
+text Agriville_NPC_1_Msg {
+    format("Agriville is known in the region for its fantastic pumpkins.")
+}
+
+text Agriville_NPC_2_Msg {
+    format("Can't chat now! I'm gonna to beat my record!")
+}
+
+text Agriville_NPC_3_Msg {
+    format("Silph Co. set up the Pokemon League program here. Agriville was one of the first towns to get a gym.")
+}
+
+text Agriville_NPC_4_Msg {
+    format("I love training on the beach in the morning!")
+}
+
+text Agriville_NPC_5_Msg {
+    format("Tessa's bug type Pokemon destroyed my psychic type Pokemon. Maybe I should branch out to a rock or fire type...")
+}
+
+text Pumpkin_Seller_Msg_1 {
+    format("Hey, you're a pokemon trainer right?\n Sal found a strange Pokemon in the fields recently. They might be willing to let you take it off their hand.")
+}
+
+text Pumpkin_Seller_Msg_2 {
+    format("I head Sal gave you that Pokemon! I hope you are getting along")
+}
+
+text Gym1CustsceneText1 {
+    format("Tessa! The scientists stole my Scyther!")
+}
+
+text Gym1CustsceneText2 {
+    format("No worries, Maya. I won't let anybody steal Pokemon in out forest. Wait for me at your Mother's.")
+}
+
+text Gym1CustsceneText3 {
+    format("Oh, a gym challenger? I'm sorry but I hase business in Appel Forest. I'll be back later.")
+}
+
+movement TalkUp {
+ walk_in_place_fast_up   
+}
+
+movement TalkDown {
+    walk_in_place_down
+}
+movement PlayerCutsceneMovement {
+    face_down
+    walk_down
+    face_right
+    walk_right
+    face_left
+}
+
+movement MayaWalkOffScreen {
+    face_down
+    walk_down
+    walk_down
+    walk_down
+    face_left
+    walk_left
+    walk_left
+    walk_left
+    walk_left
+    walk_left
+    walk_left
+    walk_left
+    face_up
+    walk_up
+    face_left
+    walk_left
+}

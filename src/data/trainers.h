@@ -98,7 +98,7 @@ const struct Trainer gTrainers[] = {
 
     [APPEL_SILPH_2] =
     {
-        .trainerClass = TRAINER_CLASS_RUIN_MANIAC,
+        .trainerClass = TRAINER_CLASS_SCIENTIST,
         .encounterMusic_gender = TRAINER_ENCOUNTER_MUSIC_AQUA,
         .trainerPic = TRAINER_PIC_SCIENTIST,
         .trainerName = _("Intern"),
@@ -110,7 +110,7 @@ const struct Trainer gTrainers[] = {
 
     [APPEL_SILPH_3] =
     {
-        .trainerClass = TRAINER_CLASS_RUIN_MANIAC,
+        .trainerClass = TRAINER_CLASS_SCIENTIST,
         .encounterMusic_gender = TRAINER_ENCOUNTER_MUSIC_AQUA,
         .trainerPic = TRAINER_PIC_SCIENTIST,
         .trainerName = _("Intern"),
@@ -122,7 +122,7 @@ const struct Trainer gTrainers[] = {
 
     [APPEL_SILPH_4] =
     {
-        .trainerClass = TRAINER_CLASS_RUIN_MANIAC,
+        .trainerClass = TRAINER_CLASS_SCIENTIST,
         .encounterMusic_gender = TRAINER_ENCOUNTER_MUSIC_AQUA,
         .trainerPic = TRAINER_PIC_SCIENTIST,
         .trainerName = _("Intern"),
@@ -134,7 +134,7 @@ const struct Trainer gTrainers[] = {
 
     [APPEL_SILPH_5] =
     {
-        .trainerClass = TRAINER_CLASS_RUIN_MANIAC,
+        .trainerClass = TRAINER_CLASS_SCIENTIST,
         .encounterMusic_gender = TRAINER_ENCOUNTER_MUSIC_AQUA,
         .trainerPic = TRAINER_PIC_SCIENTIST,
         .trainerName = _("Intern"),
@@ -144,16 +144,16 @@ const struct Trainer gTrainers[] = {
         .party = TRAINER_PARTY(sAppelSilph5),
     },
 
-    [TRAINER_ALBERTO] =
+    [EXECUTIVE_HENRY] =
     {
-        .trainerClass = TRAINER_CLASS_BIRD_KEEPER,
-        .encounterMusic_gender = TRAINER_ENCOUNTER_MUSIC_COOL,
-        .trainerPic = TRAINER_PIC_BIRD_KEEPER,
-        .trainerName = _("ALBERTO"),
-        .items = {},
-        .doubleBattle = FALSE,
+        .trainerClass = TRAINER_CLASS_EXECUTIVE,
+        .encounterMusic_gender = TRAINER_ENCOUNTER_MUSIC_AQUA,
+        .trainerPic = TRAINER_PIC_EXECUTIVE,
+        .trainerName = _("Henry"),
+        .items = {ITEM_SUPER_POTION, ITEM_SUPER_POTION,ITEM_SUPER_POTION,ITEM_SUPER_POTION},
+        .doubleBattle = TRUE,
         .aiFlags = AI_FLAG_CHECK_BAD_MOVE,
-        .party = TRAINER_PARTY(sParty_Alberto),
+        .party = TRAINER_PARTY(sExecHenry1),
     },
 
     [TRAINER_ED] =
@@ -8032,7 +8032,7 @@ const struct Trainer gTrainers[] = {
         .encounterMusic_gender = TRAINER_ENCOUNTER_MUSIC_HIKER,
         .trainerPic = TRAINER_PIC_FISHERMAN,
         .trainerName = _("HENRY"),
-        .items = {},
+        .items = {ITEM_SUPER_POTION, ITEM_SUPER_POTION, ITEM_NONE, ITEM_NONE},
         .doubleBattle = FALSE,
         .aiFlags = AI_FLAG_CHECK_BAD_MOVE,
         .party = TRAINER_PARTY(sParty_Henry),

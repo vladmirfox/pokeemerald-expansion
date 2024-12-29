@@ -325,13 +325,15 @@ Sigillaria::
 	case 1, Sigillaria_3
 # 181 "data/maps/gBaIndoor_Prof/scripts.pory"
 	case 2, Sigillaria_4
-# 194 "data/maps/gBaIndoor_Prof/scripts.pory"
+# 196 "data/maps/gBaIndoor_Prof/scripts.pory"
 	case 3, Sigillaria_5
-# 200 "data/maps/gBaIndoor_Prof/scripts.pory"
+# 203 "data/maps/gBaIndoor_Prof/scripts.pory"
 	lockall
-# 201 "data/maps/gBaIndoor_Prof/scripts.pory"
+# 204 "data/maps/gBaIndoor_Prof/scripts.pory"
+	applymovement 4, NPC_faceplayer
+# 205 "data/maps/gBaIndoor_Prof/scripts.pory"
 	msgbox AllThisNewTech
-# 202 "data/maps/gBaIndoor_Prof/scripts.pory"
+# 206 "data/maps/gBaIndoor_Prof/scripts.pory"
 	release
 	return
 
@@ -373,56 +375,62 @@ Sigillaria_4:
 # 190 "data/maps/gBaIndoor_Prof/scripts.pory"
 	setflag FLAG_RECEIVED_POKEDEX_FROM_BIRCH
 # 191 "data/maps/gBaIndoor_Prof/scripts.pory"
-	setvar VAR_CABLE_CLUB_TUTORIAL_STATE, 1
+	setflag FLAG_SYS_NATIONAL_DEX
 # 192 "data/maps/gBaIndoor_Prof/scripts.pory"
+	special EnableNationalPokedex
+# 193 "data/maps/gBaIndoor_Prof/scripts.pory"
+	setvar VAR_CABLE_CLUB_TUTORIAL_STATE, 1
+# 194 "data/maps/gBaIndoor_Prof/scripts.pory"
 	release
 	return
 
 Sigillaria_5:
-# 195 "data/maps/gBaIndoor_Prof/scripts.pory"
-	lockall
-# 196 "data/maps/gBaIndoor_Prof/scripts.pory"
-	msgbox AllThisNewTech
 # 197 "data/maps/gBaIndoor_Prof/scripts.pory"
+	lockall
+# 198 "data/maps/gBaIndoor_Prof/scripts.pory"
+	applymovement 4, NPC_faceplayer
+# 199 "data/maps/gBaIndoor_Prof/scripts.pory"
+	msgbox AllThisNewTech
+# 200 "data/maps/gBaIndoor_Prof/scripts.pory"
 	release
 	return
 
 
-# 223 "data/maps/gBaIndoor_Prof/scripts.pory"
+# 227 "data/maps/gBaIndoor_Prof/scripts.pory"
 noticeleftmove:
-# 224 "data/maps/gBaIndoor_Prof/scripts.pory"
+# 228 "data/maps/gBaIndoor_Prof/scripts.pory"
 	walk_right
-# 225 "data/maps/gBaIndoor_Prof/scripts.pory"
+# 229 "data/maps/gBaIndoor_Prof/scripts.pory"
 	walk_down
-# 225 "data/maps/gBaIndoor_Prof/scripts.pory"
+# 229 "data/maps/gBaIndoor_Prof/scripts.pory"
 	walk_down
-# 225 "data/maps/gBaIndoor_Prof/scripts.pory"
+# 229 "data/maps/gBaIndoor_Prof/scripts.pory"
 	walk_down
 	step_end
 
-# 229 "data/maps/gBaIndoor_Prof/scripts.pory"
+# 233 "data/maps/gBaIndoor_Prof/scripts.pory"
 postnoticeleftT:
-# 230 "data/maps/gBaIndoor_Prof/scripts.pory"
+# 234 "data/maps/gBaIndoor_Prof/scripts.pory"
 	walk_up
-# 230 "data/maps/gBaIndoor_Prof/scripts.pory"
+# 234 "data/maps/gBaIndoor_Prof/scripts.pory"
 	walk_up
-# 230 "data/maps/gBaIndoor_Prof/scripts.pory"
+# 234 "data/maps/gBaIndoor_Prof/scripts.pory"
 	walk_up
-# 231 "data/maps/gBaIndoor_Prof/scripts.pory"
+# 235 "data/maps/gBaIndoor_Prof/scripts.pory"
 	walk_left
-# 232 "data/maps/gBaIndoor_Prof/scripts.pory"
+# 236 "data/maps/gBaIndoor_Prof/scripts.pory"
 	face_player
 	step_end
 
-# 235 "data/maps/gBaIndoor_Prof/scripts.pory"
+# 239 "data/maps/gBaIndoor_Prof/scripts.pory"
 stopplayer:
-# 236 "data/maps/gBaIndoor_Prof/scripts.pory"
+# 240 "data/maps/gBaIndoor_Prof/scripts.pory"
 	walk_up
 	step_end
 
-# 238 "data/maps/gBaIndoor_Prof/scripts.pory"
+# 242 "data/maps/gBaIndoor_Prof/scripts.pory"
 playerlookup:
-# 239 "data/maps/gBaIndoor_Prof/scripts.pory"
+# 243 "data/maps/gBaIndoor_Prof/scripts.pory"
 	face_up
 	step_end
 
@@ -475,25 +483,26 @@ Sigillaria_Text_0:
 	.string "Go on, pick a pokemon!$"
 
 PostChoice::
-# 207 "data/maps/gBaIndoor_Prof/scripts.pory"
+# 211 "data/maps/gBaIndoor_Prof/scripts.pory"
 	.string "Say could you do me a favor and check\n"
-	.string "on my granddaughter in Appel? My sister\l"
-	.string "told me she lost her precious Scyther.$"
+	.string "on my granddaughter in Agriville? My\l"
+	.string "sister told me she lost her precious\l"
+	.string "Scyther.$"
 
 beforeyouleave::
-# 212 "data/maps/gBaIndoor_Prof/scripts.pory"
-	.string "Oh! and before you leave, take\n"
-	.string "this.Silph Co. sent it to me. It's a\l"
-	.string "PokeDex. It automatically records data\l"
-	.string "about the Pokemon you catch.$"
+# 216 "data/maps/gBaIndoor_Prof/scripts.pory"
+	.string "Oh! and before you leave, take this.\n"
+	.string "Silph Co. sent it to me. It's a PokeDex.\l"
+	.string "It automatically records data about\l"
+	.string "the Pokemon you catch.$"
 
 TriggerGreet::
-# 217 "data/maps/gBaIndoor_Prof/scripts.pory"
+# 221 "data/maps/gBaIndoor_Prof/scripts.pory"
 	.string "Hello {PLAYER}! I just got the\n"
 	.string "Pokemon from Silph Co. in. Say, why don't\l"
 	.string "you choose one?$"
 
 AllThisNewTech::
-# 242 "data/maps/gBaIndoor_Prof/scripts.pory"
+# 246 "data/maps/gBaIndoor_Prof/scripts.pory"
 	.string "All this new technology makes my head\n"
 	.string "spin!$"

@@ -4416,7 +4416,7 @@
       "name": "Ba_Layout",
       "width": 40,
       "height": 27,
-      "primary_tileset": "gTileset_generaljohtotest",
+      "primary_tileset": "gTileset_General",
       "secondary_tileset": "gTileset_Small_Towns",
       "border_filepath": "data/layouts/Ba/border.bin",
       "blockdata_filepath": "data/layouts/Ba/map.bin"
@@ -4475,7 +4475,7 @@
       "id": "LAYOUT_APPEL_FOREST",
       "name": "Appel_Forest_Layout",
       "width": 50,
-      "height": 30,
+      "height": 36,
       "primary_tileset": "gTileset_General",
       "secondary_tileset": "gTileset_Mauville",
       "border_filepath": "data/layouts/Appel_Forest/border.bin",
@@ -4496,7 +4496,7 @@
       "name": "Agriville_Layout",
       "width": 115,
       "height": 30,
-      "primary_tileset": "gTileset_generaljohtotest",
+      "primary_tileset": "gTileset_General",
       "secondary_tileset": "gTileset_Small_Towns",
       "border_filepath": "data/layouts/Agriville/border.bin",
       "blockdata_filepath": "data/layouts/Agriville/map.bin"
@@ -4510,6 +4510,46 @@
       "secondary_tileset": "gTileset_Dewford",
       "border_filepath": "data/layouts/OceanByway/border.bin",
       "blockdata_filepath": "data/layouts/OceanByway/map.bin"
+    },
+    {
+      "id": "LAYOUT_AGRIVILLE_INDOORS",
+      "name": "Agriville_Indoors_Layout",
+      "width": 80,
+      "height": 80,
+      "primary_tileset": "gTileset_Building",
+      "secondary_tileset": "gTileset_GenericBuilding",
+      "border_filepath": "data/layouts/Agriville_Indoors/border.bin",
+      "blockdata_filepath": "data/layouts/Agriville_Indoors/map.bin"
+    },
+    {
+      "id": "LAYOUT_APPEL_NORTH_RIVER",
+      "name": "Appel_North_River_Layout",
+      "width": 20,
+      "height": 20,
+      "primary_tileset": "gTileset_General",
+      "secondary_tileset": "gTileset_Mauville",
+      "border_filepath": "data/layouts/Appel_North_River/border.bin",
+      "blockdata_filepath": "data/layouts/Appel_North_River/map.bin"
+    },
+    {
+      "id": "LAYOUT_SCYTHER_SANCTUARY",
+      "name": "Scyther_Sanctuary_Layout",
+      "width": 28,
+      "height": 28,
+      "primary_tileset": "gTileset_General",
+      "secondary_tileset": "gTileset_Petalburg",
+      "border_filepath": "data/layouts/Scyther_Sanctuary/border.bin",
+      "blockdata_filepath": "data/layouts/Scyther_Sanctuary/map.bin"
+    },
+    {
+      "id": "LAYOUT_AGRIVILLE_PKMN_CENTER",
+      "name": "AgrivillePkmnCenter_Layout",
+      "width": 20,
+      "height": 20,
+      "primary_tileset": "gTileset_Building",
+      "secondary_tileset": "gTileset_PokemonCenter",
+      "border_filepath": "data/layouts/AgrivillePkmnCenter/border.bin",
+      "blockdata_filepath": "data/layouts/AgrivillePkmnCenter/map.bin"
     }
   ]
 }

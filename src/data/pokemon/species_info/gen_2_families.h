@@ -2974,7 +2974,8 @@ const struct SpeciesInfo gSpeciesInfoGen2[] =
         .iconPalIndex = 0,                                                                              \
         FOOTPRINT(Unown)                                                                                \
         .levelUpLearnset = sUnownLevelUpLearnset,                                                       \
-        .teachableLearnset = sUnownTeachableLearnset,                                                   \
+        .teachableLearnset = sUnownTeachableLearnset, \
+        .evolutions = EVOLUTION({EVO_LEVEL, 5, SPECIES_BABBLE}),                                       \
         .tmIlliterate = TRUE,                                                                           \
         .formSpeciesIdTable = sUnownFormSpeciesIdTable,                                                 \
     }
@@ -3007,6 +3008,58 @@ const struct SpeciesInfo gSpeciesInfoGen2[] =
     [SPECIES_UNOWN_Z]     = UNOWN_MISC_INFO(Z,               TRUE,  24, 32, 32, 48, 10 ),
     [SPECIES_UNOWN_EMARK] = UNOWN_MISC_INFO(ExclamationMark, FALSE, 24, 40, 24, 56,  6 ),
     [SPECIES_UNOWN_QMARK] = UNOWN_MISC_INFO(QuestionMark,    TRUE,  24, 40, 32, 56,  6 ),
+    [SPECIES_BABBLE] =
+    {                                                                                                   \
+        .baseHP        = 90,                                                                            \
+        .baseAttack    = 120,                                                                            \
+        .baseDefense   = 90,                                                                            \
+        .baseSpeed     = 90,                                                                            \
+        .baseSpAttack  = 120,                                                                            \
+        .baseSpDefense = 90,                                                                            \
+        .types = MON_TYPES(TYPE_PSYCHIC),                                                               \
+        .catchRate = 225,                                                                               \
+        .expYield = (P_UPDATED_EXP_YIELDS >= GEN_5) ? 118 : 61,                                         \
+        .evYield_Attack = 1,                                                                            \
+        .evYield_SpAttack = 1,                                                                          \
+        .genderRatio = MON_GENDERLESS,                                                                  \
+        .eggCycles = 40,   \
+        .friendship = STANDARD_FRIENDSHIP,\
+        .growthRate = GROWTH_MEDIUM_FAST,\
+        .eggGroups = MON_EGG_GROUPS(EGG_GROUP_NO_EGGS_DISCOVERED),\
+        .abilities = { ABILITY_SHADOW_TAG, ABILITY_NONE, ABILITY_TELEPATHY },\
+        .bodyColor = BODY_COLOR_BLUE,\
+        .speciesName = _("Babble"),\
+        .cryId = CRY_UNOWN,\
+        .natDexNum = NATIONAL_DEX_BABBLE, \
+        .categoryName = _("Tongues"), \
+        .height = 8,\
+        .weight = 140,\
+        .description = COMPOUND_STRING(
+            "This pokemon forms when \n"
+            "a swarm of Unown gather together."),                                                               \
+        .pokemonScale = 411,                                                                            \
+        .pokemonOffset = 2,                                                                             \
+        .trainerScale = 256,                                                                            \
+        .trainerOffset = 0,     
+        .frontPic = gMonFrontPic_Babble,
+        .frontPicSize = MON_COORDS_SIZE(48, 40),
+        .frontPicYOffset = 12,
+        .frontAnimFrames = sAnims_Babble,
+        .frontAnimId = ANIM_H_VIBRATE,
+        .enemyMonElevation = 8,           
+        .frontAnimDelay = 15,
+        .backPic = gMonBackPic_Babble,
+        .backPicSize = MON_COORDS_SIZE(48, 48),
+        .backPicYOffset = 11,
+        .backAnimId = BACK_ANIM_CONCAVE_ARC_SMALL,
+        .palette = gMonPalette_Babble,
+        .shinyPalette = gMonShinyPalette_Babble,
+        .iconSprite = gMonIcon_Babble,
+        .iconPalIndex = 0,
+        FOOTPRINT(Unown)
+        .tmIlliterate = TRUE,
+        .levelUpLearnset = sBabbleLevelUpLearnset,
+    },
 #endif //P_FAMILY_UNOWN
 
 #if P_FAMILY_WOBBUFFET

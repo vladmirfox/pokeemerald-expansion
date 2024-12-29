@@ -2895,6 +2895,12 @@ static const union AnimCmd sAnim_Mismagius_1[] =
 
 #if P_FAMILY_UNOWN
 PLACEHOLDER_ANIM_SINGLE_FRAME(Unown);
+static const union AnimCmd sAnim_Babble_1[]=
+{
+    ANIMCMD_FRAME(0, 15),
+    ANIMCMD_FRAME(1, 15),
+};
+
 #endif //P_FAMILY_UNOWN
 
 #if P_FAMILY_WOBBUFFET
@@ -10861,6 +10867,7 @@ SINGLE_ANIMATION(Mismagius);
 #endif //P_FAMILY_MISDREAVUS
 #if P_FAMILY_UNOWN
 SINGLE_ANIMATION(Unown);
+SINGLE_ANIMATION(Babble);
 #endif //P_FAMILY_UNOWN
 #if P_FAMILY_WOBBUFFET
 #if P_GEN_3_CROSS_EVOS

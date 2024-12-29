@@ -49,8 +49,8 @@
 #define FLAG_APPEL_FOREST_ITEM_3     0x24 // Unused Flag
 #define FLAG_APPEL_FOREST_ITEM_4     0x25 // Unused Flag
 #define FLAG_APPEL_FOREST_ITEM_5     0x26 // Unused Flag
-#define FLAG_UNUSED_0x027    0x27 // Unused Flag
-#define FLAG_UNUSED_0x028    0x28 // Unused Flag
+#define FLAG_AGRIVILLE_GYM    0x27 // Agriville_Gym
+#define FLAG_SCYTHER_SANCT_CLEARED    0x28 // Unused Flag
 #define FLAG_UNUSED_0x029    0x29 // Unused Flag
 #define FLAG_UNUSED_0x02A    0x2A // Unused Flag
 #define FLAG_UNUSED_0x02B    0x2B // Unused Flag

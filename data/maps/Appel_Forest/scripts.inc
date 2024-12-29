@@ -118,83 +118,139 @@ Fisherman_Gives_Good_Rod_5:
 
 AppelBugBattle1::
 # 78 "data/maps/Appel_Forest/scripts.pory"
-	trainerbattle_single APPEL_BUG_CATCHER_1, AppelBugBattle1_Text_0, AppelBugBattle1_Text_1
+	trainerbattle_double APPEL_BUG_CATCHER_1, AppelBugBattle1_Text_0, AppelBugBattle1_Text_1, AppelBugBattle1_Text_2
 # 79 "data/maps/Appel_Forest/scripts.pory"
 	msgbox TheCritters
 # 80 "data/maps/Appel_Forest/scripts.pory"
 	waitmessage
+# 81 "data/maps/Appel_Forest/scripts.pory"
+	releaseall
 	return
 
 
 AppelBugBattle2::
-# 85 "data/maps/Appel_Forest/scripts.pory"
-	trainerbattle_single APPEL_BUG_CATCHER_2, ToJoinAgrivilleGym, gymMaterial
+# 89 "data/maps/Appel_Forest/scripts.pory"
+	trainerbattle_double APPEL_BUG_CATCHER_2, ToJoinAgrivilleGym, gymMaterial, AppelBugBattle1_Text_2
+# 90 "data/maps/Appel_Forest/scripts.pory"
+	msgbox I_need_to_train
+# 91 "data/maps/Appel_Forest/scripts.pory"
+	waitmessage
+# 92 "data/maps/Appel_Forest/scripts.pory"
+	releaseall
 	return
 
 
 AppelFisherman1::
-# 89 "data/maps/Appel_Forest/scripts.pory"
-	trainerbattle_single APPEL_FISHERMAN_1, MyLatestCatch, AppelFisherman1_Text_0
+# 101 "data/maps/Appel_Forest/scripts.pory"
+	trainerbattle_double APPEL_FISHERMAN_1, MyLatestCatch, AppelFisherman1_Text_0, AppelBugBattle1_Text_2
+# 102 "data/maps/Appel_Forest/scripts.pory"
+	msgbox replace_line
+# 103 "data/maps/Appel_Forest/scripts.pory"
+	waitmessage
+# 104 "data/maps/Appel_Forest/scripts.pory"
+	releaseall
 	return
 
 
 AppelFisherman2::
-# 93 "data/maps/Appel_Forest/scripts.pory"
-	trainerbattle_single APPEL_FISHERMAN_2, AppelFisherman2_Text_0, AppelFisherman2_Text_1
+# 108 "data/maps/Appel_Forest/scripts.pory"
+	trainerbattle_double APPEL_FISHERMAN_2, AppelFisherman2_Text_0, AppelFisherman2_Text_1, AppelBugBattle1_Text_2
+# 109 "data/maps/Appel_Forest/scripts.pory"
+	msgbox AppelFisherman2_Text_2
+# 110 "data/maps/Appel_Forest/scripts.pory"
+	waitmessage
+# 111 "data/maps/Appel_Forest/scripts.pory"
+	releaseall
 	return
 
 
 AppelSilph1::
-# 97 "data/maps/Appel_Forest/scripts.pory"
-	trainerbattle_single APPEL_SILPH_1, AppelSilph1_Text_0, AppelSilph1_Text_0
+# 124 "data/maps/Appel_Forest/scripts.pory"
+	trainerbattle_double APPEL_SILPH_1, Silph1_d1, Silph1_d2, AppelBugBattle1_Text_2
+# 125 "data/maps/Appel_Forest/scripts.pory"
+	msgbox AppelSilph1_Text_0
+# 126 "data/maps/Appel_Forest/scripts.pory"
+	waitmessage
+# 127 "data/maps/Appel_Forest/scripts.pory"
+	releaseall
 	return
 
 
 AppelSilph2::
-# 101 "data/maps/Appel_Forest/scripts.pory"
-	trainerbattle_single APPEL_SILPH_2, AppelSilph1_Text_0, AppelSilph1_Text_0
+# 143 "data/maps/Appel_Forest/scripts.pory"
+	trainerbattle_double APPEL_SILPH_2, Silph1_d1, Silph2_d2, AppelBugBattle1_Text_2
+# 144 "data/maps/Appel_Forest/scripts.pory"
+	msgbox Silph2_d3
+# 145 "data/maps/Appel_Forest/scripts.pory"
+	waitmessage
+# 146 "data/maps/Appel_Forest/scripts.pory"
+	releaseall
 	return
 
 
 AppelSilph3::
-# 105 "data/maps/Appel_Forest/scripts.pory"
-	trainerbattle_single APPEL_SILPH_3, AppelSilph1_Text_0, AppelSilph1_Text_0
+# 161 "data/maps/Appel_Forest/scripts.pory"
+	trainerbattle_double APPEL_SILPH_3, Silph3_d1, Silph3_d2, AppelBugBattle1_Text_2
+# 162 "data/maps/Appel_Forest/scripts.pory"
+	msgbox Silph3_d3
+# 163 "data/maps/Appel_Forest/scripts.pory"
+	waitmessage
+# 164 "data/maps/Appel_Forest/scripts.pory"
+	releaseall
 	return
 
 
 AppelSilph4::
-# 109 "data/maps/Appel_Forest/scripts.pory"
-	trainerbattle_single APPEL_SILPH_4, AppelSilph1_Text_0, AppelSilph1_Text_0
+# 180 "data/maps/Appel_Forest/scripts.pory"
+	trainerbattle_single APPEL_SILPH_4, Silph4_d1, Silph4_d2, AppelBugBattle1_Text_2
+# 181 "data/maps/Appel_Forest/scripts.pory"
+	msgbox Silph4_d3
+# 182 "data/maps/Appel_Forest/scripts.pory"
+	waitmessage
+# 183 "data/maps/Appel_Forest/scripts.pory"
+	releaseall
 	return
 
 
 AppelSilph5::
-# 113 "data/maps/Appel_Forest/scripts.pory"
-	trainerbattle_single APPEL_SILPH_5, AppelSilph1_Text_0, AppelSilph1_Text_0
+# 198 "data/maps/Appel_Forest/scripts.pory"
+	trainerbattle_single APPEL_SILPH_5, Silph5_d1, Silph5_d2, AppelBugBattle1_Text_2
+# 199 "data/maps/Appel_Forest/scripts.pory"
+	msgbox Silph5_d3
+# 200 "data/maps/Appel_Forest/scripts.pory"
+	waitmessage
+# 201 "data/maps/Appel_Forest/scripts.pory"
+	releaseall
 	return
 
 
 AppelTourist::
-# 116 "data/maps/Appel_Forest/scripts.pory"
-	trainerbattle_single APPEL_TOURIST, Vacation, AppelTourist_Text_0
+# 208 "data/maps/Appel_Forest/scripts.pory"
+	trainerbattle_double APPEL_TOURIST, Vacation, AppelTourist_Text_0, AppelBugBattle1_Text_2
+# 209 "data/maps/Appel_Forest/scripts.pory"
+	msgbox doAllTheLocals
+# 210 "data/maps/Appel_Forest/scripts.pory"
+	waitmessage
+# 211 "data/maps/Appel_Forest/scripts.pory"
+	releaseall
 	return
 
 
 SilphBlockPlayer::
-# 136 "data/maps/Appel_Forest/scripts.pory"
+# 216 "data/maps/Appel_Forest/scripts.pory"
 	lockall
-# 137 "data/maps/Appel_Forest/scripts.pory"
+# 217 "data/maps/Appel_Forest/scripts.pory"
 	msgbox BlockPlayer
-# 138 "data/maps/Appel_Forest/scripts.pory"
+# 218 "data/maps/Appel_Forest/scripts.pory"
 	waitmessage
-# 139 "data/maps/Appel_Forest/scripts.pory"
+# 219 "data/maps/Appel_Forest/scripts.pory"
 	release
 	end
 
 
-# 143 "data/maps/Appel_Forest/scripts.pory"
+# 240 "data/maps/Appel_Forest/scripts.pory"
 lookup:
-# 144 "data/maps/Appel_Forest/scripts.pory"
+# 241 "data/maps/Appel_Forest/scripts.pory"
 	face_up
 	step_end
 
@@ -226,48 +282,135 @@ AppelBugBattle1_Text_1:
 # 78 "data/maps/Appel_Forest/scripts.pory"
 	.string ":($"
 
+AppelBugBattle1_Text_2:
+# 78 "data/maps/Appel_Forest/scripts.pory"
+	.string "ERROR$"
+
 AppelFisherman1_Text_0:
-# 89 "data/maps/Appel_Forest/scripts.pory"
+# 101 "data/maps/Appel_Forest/scripts.pory"
 	.string "You broke my line!$"
 
 AppelFisherman2_Text_0:
-# 93 "data/maps/Appel_Forest/scripts.pory"
+# 108 "data/maps/Appel_Forest/scripts.pory"
 	.string "Sploosh!$"
 
 AppelFisherman2_Text_1:
-# 93 "data/maps/Appel_Forest/scripts.pory"
+# 108 "data/maps/Appel_Forest/scripts.pory"
 	.string "...sploosh...$"
 
+AppelFisherman2_Text_2:
+# 109 "data/maps/Appel_Forest/scripts.pory"
+	.string "...sploosh...sploosh...$"
+
 AppelSilph1_Text_0:
-# 97 "data/maps/Appel_Forest/scripts.pory"
-	.string "PLACEHOLDER$"
+# 125 "data/maps/Appel_Forest/scripts.pory"
+	.string "You don't have vision.$"
 
 AppelTourist_Text_0:
-# 116 "data/maps/Appel_Forest/scripts.pory"
+# 208 "data/maps/Appel_Forest/scripts.pory"
 	.string "I guess you do...$"
 
-Vacation::
+I_need_to_train::
+# 85 "data/maps/Appel_Forest/scripts.pory"
+	.string "I need to train more!$"
+
+replace_line::
+# 96 "data/maps/Appel_Forest/scripts.pory"
+	.string "Don't worry, I have more fishing line.$"
+
+Silph1_d1::
+# 115 "data/maps/Appel_Forest/scripts.pory"
+	.string "Scram kid! I'm on official Silph Co.\n"
+	.string "business.$"
+
+Silph1_d2::
 # 119 "data/maps/Appel_Forest/scripts.pory"
+	.string "You sadden me.$"
+
+Silph2_d1::
+# 130 "data/maps/Appel_Forest/scripts.pory"
+	.string "Do you think if I beat you, my manager\n"
+	.string "will give me a raise?$"
+
+Silph2_d2::
+# 134 "data/maps/Appel_Forest/scripts.pory"
+	.string "My raise.....$"
+
+Silph2_d3::
+# 138 "data/maps/Appel_Forest/scripts.pory"
+	.string "Look, I'm just trying to make rent,\n"
+	.string "okay?$"
+
+Silph3_d1::
+# 149 "data/maps/Appel_Forest/scripts.pory"
+	.string "I heard Colress hired this new guy, Orm.\n"
+	.string "I don't trust him very much.$"
+
+Silph3_d2::
+# 153 "data/maps/Appel_Forest/scripts.pory"
+	.string "I need to reoptimize my team.$"
+
+Silph3_d3::
+# 157 "data/maps/Appel_Forest/scripts.pory"
+	.string "I may not trust Orm, but Colress knows\n"
+	.string "what he's doing.$"
+
+Silph4_d1::
+# 167 "data/maps/Appel_Forest/scripts.pory"
+	.string "Orm was drinking this weird juice\n"
+	.string "earlier.$"
+
+Silph4_d2::
+# 171 "data/maps/Appel_Forest/scripts.pory"
+	.string "Fine. You go back there, then. I didn't\n"
+	.string "want to anyways.$"
+
+Silph4_d3::
+# 175 "data/maps/Appel_Forest/scripts.pory"
+	.string "I think he got his juice from his\n"
+	.string "Shuckles.$"
+
+Silph5_d1::
+# 186 "data/maps/Appel_Forest/scripts.pory"
+	.string "Can you believe Silph Co. has me in an\n"
+	.string "entry level position? I should be\l"
+	.string "management level- at least!$"
+
+Silph5_d2::
+# 190 "data/maps/Appel_Forest/scripts.pory"
+	.string "Please don't tell my boss I lost to a\n"
+	.string "child.$"
+
+Silph5_d3::
+# 194 "data/maps/Appel_Forest/scripts.pory"
+	.string "Pretty please?$"
+
+doAllTheLocals::
+# 204 "data/maps/Appel_Forest/scripts.pory"
+	.string "Do all the locals battle as well as you?$"
+
+Vacation::
+# 223 "data/maps/Appel_Forest/scripts.pory"
 	.string "You're a local! Say, do you know what a\n"
 	.string "pokemon battle is?$"
 
 ToJoinAgrivilleGym::
-# 123 "data/maps/Appel_Forest/scripts.pory"
+# 227 "data/maps/Appel_Forest/scripts.pory"
 	.string "I'm catching bugs to join Agriville gym!$"
 
 gymMaterial::
-# 127 "data/maps/Appel_Forest/scripts.pory"
+# 231 "data/maps/Appel_Forest/scripts.pory"
 	.string "I'll never be gym material at this rate...$"
 
 MyLatestCatch::
-# 131 "data/maps/Appel_Forest/scripts.pory"
+# 235 "data/maps/Appel_Forest/scripts.pory"
 	.string "My latest catch will reel you in!$"
 
 TheCritters::
-# 147 "data/maps/Appel_Forest/scripts.pory"
+# 244 "data/maps/Appel_Forest/scripts.pory"
 	.string "The critters weren't strong enough.$"
 
 BlockPlayer::
-# 151 "data/maps/Appel_Forest/scripts.pory"
+# 248 "data/maps/Appel_Forest/scripts.pory"
 	.string "Child. This is the scyther sanctuary. No\n"
 	.string "one is allowed in$"

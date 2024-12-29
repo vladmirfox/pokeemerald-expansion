@@ -3146,6 +3146,14 @@ const u8 gMonFootprint_QuestionMark[] = INCBIN_U8("graphics/pokemon/question_mar
     const u8 gMonFootprint_Unown[] = INCBIN_U8("graphics/pokemon/unown/footprint.1bpp");
 #endif //P_FOOTPRINTS
 
+    const u32 gMonFrontPic_Babble[] = INCBIN_U32("graphics/pokemon/babble/anim_front.4bpp.lz");
+    const u32 gMonPalette_Babble[] = INCBIN_U32("graphics/pokemon/babble/normal.gbapal.lz");//
+    const u32 gMonBackPic_Babble[] = INCBIN_U32("graphics/pokemon/babble/back.4bpp.lz");
+    const u32 gMonShinyPalette_Babble[] = INCBIN_U32("graphics/pokemon/babble/shiny.gbapal.lz");
+    const u8 gMonIcon_Babble[] = INCBIN_U8("graphics/pokemon/babble/icon.4bpp");
+#if P_FOOTPRINTS
+    const u8 gMonFootprint_Babble[] = INCBIN_U8("graphics/pokemon/ursaring/footprint.1bpp");
+#endif //P_FOOTPRINTS
     const u32 gMonFrontPic_UnownA[] = INCBIN_U32("graphics/pokemon/unown/front.4bpp.lz");
     const u32 gMonBackPic_UnownA[] = INCBIN_U32("graphics/pokemon/unown/back.4bpp.lz");
     const u8 gMonIcon_UnownA[] = INCBIN_U8("graphics/pokemon/unown/icon.4bpp");

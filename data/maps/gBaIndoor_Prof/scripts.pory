@@ -187,17 +187,21 @@ script Sigillaria{
         setflag(FLAG_SYS_POKEDEX_GET)
         setflag(FLAG_ADVENTURE_STARTED)
 	    special(SetUnlockedPokedexFlags)
-	    setflag(FLAG_RECEIVED_POKEDEX_FROM_BIRCH)
+	    setflag(FLAG_RECEIVED_POKEDEX_FROM_BIRCH)	
+        setflag(FLAG_SYS_NATIONAL_DEX)
+	    special(EnableNationalPokedex)
 	    setvar(VAR_CABLE_CLUB_TUTORIAL_STATE, 1)
         release
 
         case 3:
         lockall
+        applymovement(4,NPC_faceplayer)
         msgbox(AllThisNewTech)
         release
 
         default:
         lockall
+        applymovement(4,NPC_faceplayer)
         msgbox(AllThisNewTech)
         release
 
@@ -205,7 +209,7 @@ script Sigillaria{
 }
 
 text PostChoice{
-     format("Say could you do me a favor and check on my granddaughter in Appel? My sister told me she lost her precious Scyther."
+     format("Say could you do me a favor and check on my granddaughter in Agriville? My sister told me she lost her precious Scyther."
      )
 }
 

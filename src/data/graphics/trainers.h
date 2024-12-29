@@ -295,6 +295,9 @@ const u32 gTrainerBackPicPalette_Leaf[] = INCBIN_U32("graphics/trainers/back_pic
 const u32 gTrainerFrontPic_Scientist[] = INCBIN_U32("graphics/trainers/front_pics/scientist.4bpp.lz");
 const u32 gTrainerPalette_Scientist[] = INCBIN_U32("graphics/trainers/front_pics/scientist.gbapal.lz");
 
+const u32 gTrainerFrontPic_Executive[] = INCBIN_U32("graphics/trainers/front_pics/executive.4bpp.lz");
+const u32 gTrainerPalette_Executive[] = INCBIN_U32("graphics/trainers/front_pics/executive.gbapal.lz");
+
 // The first two parameters invoke a front pic and palette by
 // calling a "TRAINER_PIC" constant (e.g. TRAINER_PIC_HIKER), and
 // gTrainerFrontPic/gTrainerPalette pointers, (e.g "gTrainerFrontPic_Hiker" and "gTrainerPalette_Hiker").
@@ -405,6 +408,7 @@ const struct TrainerSprite gTrainerSprites[] =
     TRAINER_SPRITE(RS_BRENDAN, RubySapphireBrendan),
     TRAINER_SPRITE(RS_MAY, RubySapphireMay),
     TRAINER_SPRITE(SCIENTIST, Scientist),
+    TRAINER_SPRITE(EXECUTIVE, Executive),
 };
 
 static const union AnimCmd sAnimCmd_Hoenn[] =

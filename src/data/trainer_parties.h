@@ -11982,3 +11982,30 @@ static const struct TrainerMon sAppelTourist[] = {
     .species = SPECIES_PIDGEY,
     }
 };
+
+static const struct TrainerMon sExecHenry1[] = {
+    {
+    .lvl = 14,
+    .species = SPECIES_VULPIX,
+    },
+    {
+    .lvl = 16,
+    .species = SPECIES_NIDORINO,
+    },
+    {
+    .lvl = 14,
+    .species = SPECIES_DRATINI,
+    },
+    {
+    .lvl = 14,
+    .species = SPECIES_HORSEA,
+    },
+    {
+    .lvl = 14,
+    .species = SPECIES_WOBBUFFET,
+    },
+    {
+    .lvl = 14,
+    .species = SPECIES_MEOWTH,
+    }
+};

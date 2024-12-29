@@ -75,45 +75,149 @@ script Fisherman_Gives_Good_Rod {
 
 script AppelBugBattle1 {
 
-       trainerbattle_single(APPEL_BUG_CATCHER_1,"This forest is crawling with critters!",":(")
+       trainerbattle_double(APPEL_BUG_CATCHER_1,"This forest is crawling with critters!",":(","ERROR")
        msgbox(TheCritters)
        waitmessage
+       releaseall
 
 }
 
+text I_need_to_train{
+    format("I need to train more!")
+}
 script AppelBugBattle2 {
-       trainerbattle_single(APPEL_BUG_CATCHER_2,ToJoinAgrivilleGym,gymMaterial)
+       trainerbattle_double(APPEL_BUG_CATCHER_2,ToJoinAgrivilleGym,gymMaterial,"ERROR")
+       msgbox(I_need_to_train)
+       waitmessage
+       releaseall
+}
+
+
+text replace_line{
+    format("Don't worry, I have more fishing line.")
 }
 
 script AppelFisherman1 {
-       trainerbattle_single(APPEL_FISHERMAN_1,MyLatestCatch,"You broke my line!")
+       trainerbattle_double(APPEL_FISHERMAN_1,MyLatestCatch,"You broke my line!","ERROR")
+       msgbox(replace_line)
+       waitmessage
+       releaseall
 }
 
 script AppelFisherman2 {
-       trainerbattle_single(APPEL_FISHERMAN_2,"Sploosh!","...sploosh...")
+       trainerbattle_double(APPEL_FISHERMAN_2,"Sploosh!","...sploosh...","ERROR")
+       msgbox("...sploosh...sploosh...")
+       waitmessage
+       releaseall
+}
+
+
+text Silph1_d1{
+    format("Scram kid! I'm on official Silph Co. business.")
+}
+
+text Silph1_d2{
+    format("You sadden me.")
 }
 
 script AppelSilph1{
-       trainerbattle_single(APPEL_SILPH_1,"PLACEHOLDER","PLACEHOLDER")
+       trainerbattle_double(APPEL_SILPH_1,Silph1_d1,Silph1_d2,"ERROR")
+       msgbox("You don't have vision.")
+       waitmessage
+       releaseall
+}
+
+text Silph2_d1{
+    format("Do you think if I beat you, my manager will give me a raise?")
+}
+
+text Silph2_d2{
+    format("My raise.....")
+}
+
+text Silph2_d3{
+    format("Look, I'm just trying to make rent, okay?")
 }
 
 script AppelSilph2{
-       trainerbattle_single(APPEL_SILPH_2,"PLACEHOLDER","PLACEHOLDER")
+       trainerbattle_double(APPEL_SILPH_2,Silph1_d1,Silph2_d2,"ERROR")
+       msgbox(Silph2_d3)
+       waitmessage
+       releaseall
 }
 
+text Silph3_d1{
+    format("I heard Colress hired this new guy, Orm. I don't trust him very much.")
+}
+
+text Silph3_d2{
+    format("I need to reoptimize my team.")
+}
+
+text Silph3_d3{
+    format("I may not trust Orm, but Colress knows what he's doing.")
+}
 script AppelSilph3{
-       trainerbattle_single(APPEL_SILPH_3,"PLACEHOLDER","PLACEHOLDER")
+       trainerbattle_double(APPEL_SILPH_3,Silph3_d1,Silph3_d2,"ERROR")
+       msgbox(Silph3_d3)
+       waitmessage
+       releaseall
+}
+
+text Silph4_d1{
+    format("Orm was drinking this weird juice earlier.")
+}
+
+text Silph4_d2{
+    format("Fine. You go back there, then. I didn't want to anyways.")
+}
+
+text Silph4_d3{
+    format("I think he got his juice from his Shuckles.")
 }
 
 script AppelSilph4{
-       trainerbattle_single(APPEL_SILPH_4,"PLACEHOLDER","PLACEHOLDER")
+       trainerbattle_single(APPEL_SILPH_4,Silph4_d1,Silph4_d2,"ERROR")
+       msgbox(Silph4_d3)
+       waitmessage
+       releaseall
 }
 
+text Silph5_d1{
+    format("Can you believe Silph Co. has me in an entry level position? I should be management level- at least!")
+}
+
+text Silph5_d2{
+    format("Please don't tell my boss I lost to a child.")
+}
+
+text Silph5_d3{
+    format("Pretty please?")
+}
 script AppelSilph5{
-       trainerbattle_single(APPEL_SILPH_5,"PLACEHOLDER","PLACEHOLDER")
+       trainerbattle_single(APPEL_SILPH_5,Silph5_d1,Silph5_d2,"ERROR")
+       msgbox(Silph5_d3)
+       waitmessage
+       releaseall
+}
+
+text doAllTheLocals {
+    format("Do all the locals battle as well as you?")
 }
 script AppelTourist {
-    trainerbattle_single(APPEL_TOURIST,Vacation,"I guess you do...")
+    trainerbattle_double(APPEL_TOURIST,Vacation,"I guess you do...","ERROR")
+       msgbox(doAllTheLocals)
+       waitmessage
+       releaseall
+}
+
+
+script SilphBlockPlayer {
+    lockall()
+    msgbox(BlockPlayer)
+    waitmessage
+    release
+    end
 }
 
 text Vacation {
@@ -132,13 +236,6 @@ text MyLatestCatch{
     format("My latest catch will reel you in!")
 }
 
-script SilphBlockPlayer {
-    lockall()
-    msgbox(BlockPlayer)
-    waitmessage
-    release
-    end
-}
 
 movement lookup {
     face_up

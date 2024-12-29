@@ -102,7 +102,11 @@
     "Appel_Forest",
     "River",
     "Agriville",
-    "OceanByway"
+    "OceanByway",
+    "Agriville_Indoors",
+    "Appel_North_River",
+    "Scyther_Sanctuary",
+    "AgrivillePkmnCenter"
   ],
   "gMapGroup_IndoorLittleroot": [
     "LittlerootTown_BrendansHouse_1F",
