@@ -4328,24 +4328,7 @@ u32 CanAbilityAbsorbMove(u32 battlerAtk, u32 battlerDef, u32 abilityDef, u32 mov
     return effect;
 }
 
-static inline bool32 SetStartingTerrain(u32 flag, u32 message)
-{
-    if (!(gFieldStatuses & flag))
-    {
-        gBattleCommunication[MULTISTRING_CHOOSER] = message;
-        gFieldStatuses |= flag;
-        if (gBattleStruct->startingStatusTimer)
-            gFieldTimers.terrainTimer = gBattleStruct->startingStatusTimer;
-        else
-            gFieldTimers.terrainTimer = 0; // Infinite
-
-        return 2;
-    }
-
-    return 0;
-}
-
-static inline u32 SetStartingRoom(u32 flag, u32 message, u32 anim, u8 *timer)
+static inline u32 SetStartingFieldStatus(u32 flag, u32 message, u32 anim, u8 *timer)
 {
     if (!(gFieldStatuses & flag))
     {
@@ -4417,33 +4400,50 @@ u32 AbilityBattleEffects(u32 caseID, u32 battler, u32 ability, u32 special, u32 
             switch (gBattleStruct->startingStatus)
             {
             case STARTING_STATUS_ELECTRIC_TERRAIN:
-                effect = SetStartingTerrain(STATUS_FIELD_ELECTRIC_TERRAIN, B_MSG_TERRAIN_SET_ELECTRIC);
+                effect = SetStartingFieldStatus(STATUS_FIELD_ELECTRIC_TERRAIN,
+                                                B_MSG_TERRAIN_SET_ELECTRIC,
+                                                0,
+                                                &gFieldTimers.terrainTimer);
+                effect = (effect == 1) ? 2 : 0;
                 break;
             case STARTING_STATUS_MISTY_TERRAIN:
-                effect = SetStartingTerrain(STATUS_FIELD_MISTY_TERRAIN, B_MSG_TERRAIN_SET_MISTY);
+                effect = SetStartingFieldStatus(STATUS_FIELD_MISTY_TERRAIN,
+                                                B_MSG_TERRAIN_SET_MISTY,
+                                                0,
+                                                &gFieldTimers.terrainTimer);
+                effect = (effect == 1) ? 2 : 0;
+                break;
             case STARTING_STATUS_GRASSY_TERRAIN:
-                effect = SetStartingTerrain(STATUS_FIELD_GRASSY_TERRAIN, B_MSG_TERRAIN_SET_GRASSY);
+                effect = SetStartingFieldStatus(STATUS_FIELD_GRASSY_TERRAIN,
+                                                B_MSG_TERRAIN_SET_GRASSY,
+                                                0,
+                                                &gFieldTimers.terrainTimer);
+                effect = (effect == 1) ? 2 : 0;
                 break;
             case STARTING_STATUS_PSYCHIC_TERRAIN:
-                effect = SetStartingTerrain(STATUS_FIELD_PSYCHIC_TERRAIN, B_MSG_TERRAIN_SET_PSYCHIC);
+                effect = SetStartingFieldStatus(STATUS_FIELD_PSYCHIC_TERRAIN,
+                                                B_MSG_TERRAIN_SET_PSYCHIC,
+                                                0,
+                                                &gFieldTimers.terrainTimer);
+                effect = (effect == 1) ? 2 : 0;
                 break;
             case STARTING_STATUS_TRICK_ROOM:
-                effect = SetStartingRoom(STATUS_FIELD_TRICK_ROOM,
-                                         B_MSG_SET_TRICK_ROOM,
-                                         B_ANIM_TRICK_ROOM,
-                                         &gFieldTimers.trickRoomTimer);
+                effect = SetStartingFieldStatus(STATUS_FIELD_TRICK_ROOM,
+                                                B_MSG_SET_TRICK_ROOM,
+                                                B_ANIM_TRICK_ROOM,
+                                                &gFieldTimers.trickRoomTimer);
                 break;
             case STARTING_STATUS_MAGIC_ROOM:
-                effect = SetStartingRoom(STATUS_FIELD_MAGIC_ROOM,
-                                         B_MSG_SET_MAGIC_ROOM,
-                                         B_ANIM_MAGIC_ROOM,
-                                         &gFieldTimers.magicRoomTimer);
+                effect = SetStartingFieldStatus(STATUS_FIELD_MAGIC_ROOM,
+                                                B_MSG_SET_MAGIC_ROOM,
+                                                B_ANIM_MAGIC_ROOM,
+                                                &gFieldTimers.magicRoomTimer);
                 break;
             case STARTING_STATUS_WONDER_ROOM:
-                effect = SetStartingRoom(STATUS_FIELD_WONDER_ROOM,
-                                         B_MSG_SET_WONDER_ROOM,
-                                         B_ANIM_WONDER_ROOM,
-                                         &gFieldTimers.wonderRoomTimer);
+                effect = SetStartingFieldStatus(STATUS_FIELD_WONDER_ROOM,
+                                                B_MSG_SET_WONDER_ROOM,
+                                                B_ANIM_WONDER_ROOM,
+                                                &gFieldTimers.wonderRoomTimer);
                 break;
             case STARTING_STATUS_TAILWIND_PLAYER:
                 effect = SetStartingSideStatus(SIDE_STATUS_TAILWIND,
