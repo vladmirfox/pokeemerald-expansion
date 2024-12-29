@@ -396,3 +396,187 @@
             },
         },
     },
+#line 113
+    [4] =
+    {
+#line 114
+        .trainerName = _("Test1"),
+#line 115
+        .trainerClass = TRAINER_CLASS_PKMN_TRAINER_1,
+#line 116
+        .trainerPic = TRAINER_PIC_RED,
+        .encounterMusic_gender = 
+#line 118
+            TRAINER_ENCOUNTER_MUSIC_MALE,
+#line 119
+        .doubleBattle = FALSE,
+#line 121
+        .poolRuleIndex = POOL_RULESET_BASIC,
+#line 120
+        .partySize = 2,
+        .poolSize = 3,
+        .party = (const struct TrainerMon[])
+        {
+            {
+#line 123
+            .species = SPECIES_WYNAUT,
+            .gender = TRAINER_MON_RANDOM_GENDER,
+#line 125
+            .iv = TRAINER_PARTY_IVS(31, 31, 31, 31, 31, 31),
+#line 125
+            .lvl = 100,
+            .nature = NATURE_HARDY,
+            .dynamaxLevel = MAX_DYNAMAX_LEVEL,
+#line 124
+            .tags = MON_POOL_TAG_LEAD,
+            },
+            {
+#line 126
+            .species = SPECIES_WOBBUFFET,
+            .gender = TRAINER_MON_RANDOM_GENDER,
+#line 128
+            .iv = TRAINER_PARTY_IVS(31, 31, 31, 31, 31, 31),
+#line 128
+            .lvl = 100,
+            .nature = NATURE_HARDY,
+            .dynamaxLevel = MAX_DYNAMAX_LEVEL,
+#line 127
+            .tags = MON_POOL_TAG_LEAD,
+            },
+            {
+#line 129
+            .species = SPECIES_EEVEE,
+            .gender = TRAINER_MON_RANDOM_GENDER,
+#line 131
+            .iv = TRAINER_PARTY_IVS(31, 31, 31, 31, 31, 31),
+#line 131
+            .lvl = 100,
+            .nature = NATURE_HARDY,
+            .dynamaxLevel = MAX_DYNAMAX_LEVEL,
+#line 130
+            .tags = MON_POOL_TAG_LEAD,
+            },
+        },
+    },
+#line 132
+    [5] =
+    {
+#line 133
+        .trainerName = _("Test1"),
+#line 134
+        .trainerClass = TRAINER_CLASS_PKMN_TRAINER_1,
+#line 135
+        .trainerPic = TRAINER_PIC_RED,
+        .encounterMusic_gender = 
+#line 137
+            TRAINER_ENCOUNTER_MUSIC_MALE,
+#line 138
+        .doubleBattle = FALSE,
+#line 140
+        .poolRuleIndex = POOL_RULESET_BASIC,
+#line 141
+        .poolPruneIndex = POOL_PRUNE_TEST,
+#line 139
+        .partySize = 2,
+        .poolSize = 3,
+        .party = (const struct TrainerMon[])
+        {
+            {
+#line 143
+            .species = SPECIES_WYNAUT,
+            .gender = TRAINER_MON_RANDOM_GENDER,
+#line 144
+            .iv = TRAINER_PARTY_IVS(31, 31, 31, 31, 31, 31),
+#line 144
+            .lvl = 100,
+            .nature = NATURE_HARDY,
+            .dynamaxLevel = MAX_DYNAMAX_LEVEL,
+            },
+            {
+#line 145
+            .species = SPECIES_WOBBUFFET,
+            .gender = TRAINER_MON_RANDOM_GENDER,
+#line 147
+            .iv = TRAINER_PARTY_IVS(31, 31, 31, 31, 31, 31),
+#line 147
+            .lvl = 100,
+            .nature = NATURE_HARDY,
+            .dynamaxLevel = MAX_DYNAMAX_LEVEL,
+#line 146
+            .tags = MON_POOL_TAG_LEAD,
+            },
+            {
+#line 148
+            .species = SPECIES_EEVEE,
+            .gender = TRAINER_MON_RANDOM_GENDER,
+#line 149
+            .iv = TRAINER_PARTY_IVS(31, 31, 31, 31, 31, 31),
+#line 149
+            .lvl = 100,
+            .nature = NATURE_HARDY,
+            .dynamaxLevel = MAX_DYNAMAX_LEVEL,
+            },
+        },
+    },
+#line 150
+    [6] =
+    {
+#line 151
+        .trainerName = _("Test1"),
+#line 152
+        .trainerClass = TRAINER_CLASS_PKMN_TRAINER_1,
+#line 153
+        .trainerPic = TRAINER_PIC_RED,
+        .encounterMusic_gender = 
+#line 155
+            TRAINER_ENCOUNTER_MUSIC_MALE,
+#line 156
+        .doubleBattle = FALSE,
+#line 158
+        .poolRuleIndex = POOL_RULESET_BASIC,
+#line 159
+        .poolPickIndex = POOL_PICK_LOWEST,
+#line 157
+        .partySize = 2,
+        .poolSize = 3,
+        .party = (const struct TrainerMon[])
+        {
+            {
+#line 161
+            .species = SPECIES_WYNAUT,
+            .gender = TRAINER_MON_RANDOM_GENDER,
+#line 163
+            .iv = TRAINER_PARTY_IVS(31, 31, 31, 31, 31, 31),
+#line 163
+            .lvl = 100,
+            .nature = NATURE_HARDY,
+            .dynamaxLevel = MAX_DYNAMAX_LEVEL,
+#line 162
+            .tags = MON_POOL_TAG_ACE,
+            },
+            {
+#line 164
+            .species = SPECIES_WOBBUFFET,
+            .gender = TRAINER_MON_RANDOM_GENDER,
+#line 165
+            .iv = TRAINER_PARTY_IVS(31, 31, 31, 31, 31, 31),
+#line 165
+            .lvl = 100,
+            .nature = NATURE_HARDY,
+            .dynamaxLevel = MAX_DYNAMAX_LEVEL,
+            },
+            {
+#line 166
+            .species = SPECIES_EEVEE,
+            .gender = TRAINER_MON_RANDOM_GENDER,
+#line 168
+            .iv = TRAINER_PARTY_IVS(31, 31, 31, 31, 31, 31),
+#line 168
+            .lvl = 100,
+            .nature = NATURE_HARDY,
+            .dynamaxLevel = MAX_DYNAMAX_LEVEL,
+#line 167
+            .tags = MON_POOL_TAG_LEAD,
+            },
+        },
+    },

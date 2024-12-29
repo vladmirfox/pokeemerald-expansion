@@ -293,7 +293,6 @@
 #define B_ENEMY_MON_SHADOW_STYLE        GEN_3 // In Gen4+, all enemy Pokemon will have a shadow drawn beneath them.
                                               // Currently Gen4+ shadows don't properly work with Trainerslides
 
-#define B_POOL_SETTING_FAST_VERIFICATION    FALSE // Skips the pool verification for Trainer Party Pools, relies on the user creating valid pools for all trainers
 #define B_POOL_SETTING_CONSISTENT_RNG       FALSE // If set to true, the same trainer will always generate the same pool on the same save file
 #define B_POOL_SETTING_USE_FIXED_SEED       FALSE // If set to true, will use the fixed seed defined in B_POOL_SETTING_FIXED_SEED
 #define B_POOL_SETTING_FIXED_SEED           0x1D4127 // "Random" number, unless a mistake was made, it's へだら in Emerald charmap which should spell he-da-ra

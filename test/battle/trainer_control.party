@@ -128,3 +128,40 @@ Tags: Lead
 
 Eevee
 Tags: Lead
+
+=== 5 ===
+Name: Test1
+Class: Pkmn Trainer 1
+Pic: Red
+Gender: Male
+Music: Male
+Double Battle: No
+Party Size: 2
+Pool Rules: Basic
+Pool Prune: Test
+
+Wynaut
+
+Wobbuffet
+Tags: Lead
+
+Eevee
+
+=== 6 ===
+Name: Test1
+Class: Pkmn Trainer 1
+Pic: Red
+Gender: Male
+Music: Male
+Double Battle: No
+Party Size: 2
+Pool Rules: Basic
+Pool Pick Functions: Lowest
+
+Wynaut
+Tags: Ace
+
+Wobbuffet
+
+Eevee
+Tags: Lead

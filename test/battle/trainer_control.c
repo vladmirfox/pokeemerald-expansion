@@ -175,7 +175,7 @@ TEST("Trainer Party Pool picks a random lead and a random ace if tags exist in t
     CreateNPCTrainerPartyFromTrainer(testParty, &sTestTrainers[2], TRUE, BATTLE_TYPE_TRAINER);
     EXPECT(GetMonData(&testParty[0], MON_DATA_SPECIES) == SPECIES_ARON);    //  Lead
     EXPECT(GetMonData(&testParty[1], MON_DATA_SPECIES) == SPECIES_WYNAUT);  //  Not Lead or Ace
-    EXPECT(GetMonData(&testParty[2], MON_DATA_SPECIES) == SPECIES_MEW);     //  Ace
+    EXPECT(GetMonData(&testParty[2], MON_DATA_SPECIES) == SPECIES_EEVEE);   //  Ace
     Free(testParty);
 }
 
@@ -189,7 +189,6 @@ TEST("Trainer Party Pool picks according to custom rules")
     Free(testParty);
 }
 
-/*
 TEST("Trainer Party Pool uses standard party creation if pool is illegal")
 {
     struct Pokemon *testParty = Alloc(6 * sizeof(struct Pokemon));
@@ -198,4 +197,21 @@ TEST("Trainer Party Pool uses standard party creation if pool is illegal")
     EXPECT(GetMonData(&testParty[1], MON_DATA_SPECIES) == SPECIES_WOBBUFFET);
     Free(testParty);
 }
-*/
+
+TEST("Trainer Party Pool can be pruned before picking")
+{
+    struct Pokemon *testParty = Alloc(6 * sizeof(struct Pokemon));
+    CreateNPCTrainerPartyFromTrainer(testParty, &sTestTrainers[5], TRUE, BATTLE_TYPE_TRAINER);
+    EXPECT(GetMonData(&testParty[0], MON_DATA_SPECIES) == SPECIES_EEVEE);
+    EXPECT(GetMonData(&testParty[1], MON_DATA_SPECIES) == SPECIES_WYNAUT);
+    Free(testParty);
+}
+
+TEST("Trainer Party Pool can choose which functions to use for picking mons")
+{
+    struct Pokemon *testParty = Alloc(6 * sizeof(struct Pokemon));
+    CreateNPCTrainerPartyFromTrainer(testParty, &sTestTrainers[6], TRUE, BATTLE_TYPE_TRAINER);
+    EXPECT(GetMonData(&testParty[0], MON_DATA_SPECIES) == SPECIES_WYNAUT);
+    EXPECT(GetMonData(&testParty[1], MON_DATA_SPECIES) == SPECIES_WOBBUFFET);
+    Free(testParty);
+}

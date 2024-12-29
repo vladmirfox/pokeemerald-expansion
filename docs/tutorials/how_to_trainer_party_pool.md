@@ -44,6 +44,14 @@ If using `trainers.h`, these tags are applied to mons with the field `.tags`, se
 
 Pokemon can have up to 32 different tags, but anything beyond the 8 initial tags has to be implemented. The numbered tags can be renamed too to better signify their purpose for developers.
 
+## Trainer options
+A few more trainer options are introduced in order to further customize how the pool picking process works.
+
+- `Pool Pick Functions` (`.poolPickIndex`) controls which functons are used to pick mons from the pool, they're split into Lead, Ace, and Other.
+By default, only `Default<position>PickFunction` and `PickLowest` are implemented. Must be an `enum` value in `enum PoolPickFunctions`.
+- `Pool Prune` (`.poolPruneIndex`) controls if members in the pool should be removed before party members are picked from the pool.
+By default, only `POOL_PRUNE_NONE`, which doesn't remove anything from the pool, and `POOL_PRUNE_TEST`, which removes Wobbuffet from the pool, are implemented. Must be an  `enum` value in `enum PoolPruneOptions`.
+
 ## Example pool
 ```
 === TRAINER_TIANA ===
@@ -56,6 +64,7 @@ Double Battle: Yes
 AI: Check Bad Move
 Party Size: 4
 Pool Rules: Weather Doubles
+Pool Pick Index: Default
 
 Zigzagoon
 Level: 4
