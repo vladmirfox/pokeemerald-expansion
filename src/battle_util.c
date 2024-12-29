@@ -3486,8 +3486,8 @@ u8 AtkCanceller_UnableToUseMove(u32 moveType)
         case CANCELLER_PARALYSED: // paralysis
             if (!gBattleStruct->isAtkCancelerForCalledMove
              && gBattleMons[gBattlerAttacker].status1 & STATUS1_PARALYSIS
-             && !RandomPercentage(RNG_PARALYSIS, 75)
-             && (GetBattlerAbility(gBattlerAttacker) != ABILITY_MAGIC_GUARD && B_MAGIC_GUARD >= GEN_4))
+             && (GetBattlerAbility(gBattlerAttacker) != ABILITY_MAGIC_GUARD && B_MAGIC_GUARD >= GEN_4)
+             && RandomPercentage(RNG_PARALYSIS, 25))
             {
                 gProtectStructs[gBattlerAttacker].prlzImmobility = TRUE;
                 // This is removed in FRLG and Emerald for some reason
