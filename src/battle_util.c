@@ -4348,7 +4348,7 @@ static inline u32 SetStartingFieldStatus(u32 flag, u32 message, u32 anim, u8 *ti
 
 static inline u32 SetStartingSideStatus(u32 flag, u32 side, u32 message, u32 anim, u8 *timer)
 {
-    if (!(gSideStatuses[side] & SIDE_STATUS_TAILWIND))
+    if (!(gSideStatuses[side] & flag))
     {
         gBattlerAttacker = side;
         gBattleCommunication[MULTISTRING_CHOOSER] = message;
