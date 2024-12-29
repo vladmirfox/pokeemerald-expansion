@@ -661,7 +661,7 @@ static inline bool32 ShouldConsiderMoveForBattler(u32 battlerAi, u32 battlerDef,
 {
     if (battlerAi == BATTLE_PARTNER(battlerDef))
     {
-        u32 target = GetMoveTarget(move);
+        u32 target = GetBattlerMoveTargetType(battlerAi, move);
         if (target == MOVE_TARGET_BOTH || target == MOVE_TARGET_OPPONENTS_FIELD)
             return FALSE;
     }
@@ -975,7 +975,7 @@ static s32 AI_CheckBadMove(u32 battlerAtk, u32 battlerDef, u32 move, s32 score)
     switch (moveEffect)
     {
         case EFFECT_HIT: // only applies to Vital Throw
-            if (GetMovePriority(move) < 0 && AI_IsFaster(battlerAtk, battlerDef, move) && aiData->hpPercents[battlerAtk] < 40)
+            if (GetBattleMovePriority(battlerAtk, move) < 0 && AI_IsFaster(battlerAtk, battlerDef, move) && aiData->hpPercents[battlerAtk] < 40)
                 ADJUST_SCORE(-2);    // don't want to move last
             break;
         default:
@@ -3073,7 +3073,7 @@ static inline bool32 ShouldUseSpreadDamageMove(u32 battlerAtk, u32 move, u32 mov
     return (IsDoubleBattle()
          && noOfHitsToFaintPartner != 0 // Immunity check
          && IsBattlerAlive(partnerBattler)
-         && GetMoveTarget(move) == MOVE_TARGET_FOES_AND_ALLY
+         && GetBattlerMoveTargetType(battlerAtk, move) == MOVE_TARGET_FOES_AND_ALLY
          && !(noOfHitsToFaintPartner < 4 && hitsToFaintOpposingBattler == 1)
          && noOfHitsToFaintPartner < 7);
 }

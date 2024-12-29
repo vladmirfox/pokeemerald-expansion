@@ -1324,7 +1324,7 @@ static void Cmd_attackcanceler(void)
             gBattleStruct->bouncedMoveIsUsed = TRUE;
         }
         else if (IsDoubleBattle()
-              && GetMoveTarget(gCurrentMove) == MOVE_TARGET_OPPONENTS_FIELD
+              && GetBattlerMoveTargetType(battler, gCurrentMove) == MOVE_TARGET_OPPONENTS_FIELD
               && GetBattlerAbility(BATTLE_PARTNER(gBattlerTarget)) == ABILITY_MAGIC_BOUNCE)
         {
             gBattlerTarget = battler = BATTLE_PARTNER(gBattlerTarget);

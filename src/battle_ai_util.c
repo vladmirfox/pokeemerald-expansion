@@ -3032,7 +3032,7 @@ bool32 AI_CanBeConfused(u32 battlerAtk, u32 battlerDef, u32 move, u32 ability)
 
 bool32 AI_CanConfuse(u32 battlerAtk, u32 battlerDef, u32 defAbility, u32 battlerAtkPartner, u32 move, u32 partnerMove)
 {
-    if (GetMoveTarget(move) == MOVE_TARGET_FOES_AND_ALLY
+    if (GetBattlerMoveTargetType(battlerAtk, move) == MOVE_TARGET_FOES_AND_ALLY
      && AI_CanBeConfused(battlerAtk, battlerDef, move, defAbility)
      && !AI_CanBeConfused(battlerAtk, BATTLE_PARTNER(battlerDef), move, AI_DATA->abilities[BATTLE_PARTNER(battlerDef)]))
         return FALSE;
