@@ -177,7 +177,7 @@ SINGLE_BATTLE_TEST("Disguised Mimikyu blocks a move after getting Gastro Acid Ba
 SINGLE_BATTLE_TEST("Disguise does not break from a teammate's Wish")
 {
     GIVEN {
-        ASSUME(gMovesInfo[MOVE_WISH].effect == EFFECT_WISH);
+        ASSUME(GetMoveEffect(MOVE_WISH) == EFFECT_WISH);
         PLAYER(SPECIES_JIRACHI);
         PLAYER(SPECIES_MIMIKYU_DISGUISED) { Ability(ABILITY_DISGUISE); HP(219); MaxHP(220); }
         OPPONENT(SPECIES_WOBBUFFET);

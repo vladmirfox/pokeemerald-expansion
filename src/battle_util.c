@@ -3224,7 +3224,7 @@ static void CancellerAsleep(u32 *effect)
 
 static void CancellerFrozen(u32 *effect)
 {
-    if (gBattleMons[gBattlerAttacker].status1 & STATUS1_FREEZE && !(gMovesInfo[gCurrentMove].thawsUser))
+    if (gBattleMons[gBattlerAttacker].status1 & STATUS1_FREEZE && !MoveThawsUser(gCurrentMove))
     {
         if (!RandomPercentage(RNG_FROZEN, 20))
         {
@@ -3387,7 +3387,7 @@ static void CancellerGravity(u32 *effect)
 
 static void CancellerThroatChop(u32 *effect)
 {
-    if (GetActiveGimmick(gBattlerAttacker) != GIMMICK_Z_MOVE && gDisableStructs[gBattlerAttacker].throatChopTimer && gMovesInfo[gCurrentMove].soundMove)
+    if (GetActiveGimmick(gBattlerAttacker) != GIMMICK_Z_MOVE && gDisableStructs[gBattlerAttacker].throatChopTimer && IsSoundMove(gCurrentMove))
     {
         gProtectStructs[gBattlerAttacker].usedThroatChopPreventedMove = TRUE;
         CancelMultiTurnMoves(gBattlerAttacker);
@@ -3520,7 +3520,7 @@ static void CancellerThaw(u32 *effect)
         }
         *effect = 2;
     }
-    if (gBattleMons[gBattlerAttacker].status1 & STATUS1_FROSTBITE && gMovesInfo[gCurrentMove].thawsUser)
+    if (gBattleMons[gBattlerAttacker].status1 & STATUS1_FROSTBITE && MoveThawsUser(gCurrentMove))
     {
         if (!(IsMoveEffectRemoveSpeciesType(gCurrentMove, MOVE_EFFECT_REMOVE_ARG_TYPE, TYPE_FIRE) && !IS_BATTLER_OF_TYPE(gBattlerAttacker, TYPE_FIRE)))
         {
@@ -3541,7 +3541,7 @@ static void CancellerStanceChangeTwo(u32 *effect)
 
 static void CancellerWeatherPrimal(u32 *effect)
 {
-    if (WEATHER_HAS_EFFECT && gMovesInfo[gCurrentMove].power)
+    if (WEATHER_HAS_EFFECT && GetMovePower(gCurrentMove) > 0)
     {
         u32 moveType = GetBattleMoveType(gCurrentMove);
         if (moveType == TYPE_FIRE && (gBattleWeather & B_WEATHER_RAIN_PRIMAL))
@@ -3576,7 +3576,7 @@ static void CancellerDynamaxBlocked(u32 *effect)
 
 static void CancellerPowderMove(u32 *effect)
 {
-    if ((gMovesInfo[gCurrentMove].powderMove) && (gBattlerAttacker != gBattlerTarget))
+    if (IsPowderMove(gCurrentMove) && (gBattlerAttacker != gBattlerTarget))
     {
         if (B_POWDER_GRASS >= GEN_6
             && (IS_BATTLER_OF_TYPE(gBattlerTarget, TYPE_GRASS) || GetBattlerAbility(gBattlerTarget) == ABILITY_OVERCOAT))
@@ -3641,8 +3641,8 @@ static void CancellerPsychicTerrain(u32 *effect)
     if (gFieldStatuses & STATUS_FIELD_PSYCHIC_TERRAIN
         && IsBattlerGrounded(gBattlerTarget)
         && GetChosenMovePriority(gBattlerAttacker) > 0
-        && gMovesInfo[gCurrentMove].target != MOVE_TARGET_ALL_BATTLERS
-        && gMovesInfo[gCurrentMove].target != MOVE_TARGET_OPPONENTS_FIELD
+        && GetMoveTarget(gCurrentMove) != MOVE_TARGET_ALL_BATTLERS
+        && GetMoveTarget(gCurrentMove) != MOVE_TARGET_OPPONENTS_FIELD
         && GetBattlerSide(gBattlerAttacker) != GetBattlerSide(gBattlerTarget))
     {
         CancelMultiTurnMoves(gBattlerAttacker);
@@ -3655,8 +3655,8 @@ static void CancellerPsychicTerrain(u32 *effect)
 static void CancellerExplodingDamp(u32 *effect)
 {
     u32 dampBattler = IsAbilityOnField(ABILITY_DAMP);
-    if (dampBattler && (gMovesInfo[gCurrentMove].effect == EFFECT_EXPLOSION
-                     || gMovesInfo[gCurrentMove].effect == EFFECT_MIND_BLOWN))
+    if (dampBattler && (GetMoveEffect(gCurrentMove) == EFFECT_EXPLOSION
+                     || GetMoveEffect(gCurrentMove) == EFFECT_MIND_BLOWN))
     {
         gBattleScripting.battler = dampBattler - 1;
         gBattlescriptCurrInstr = BattleScript_DampStopsExplosion;
@@ -3667,7 +3667,7 @@ static void CancellerExplodingDamp(u32 *effect)
 
 static void CancellerMultihitMoves(u32 *effect)
 {
-    if (gMovesInfo[gCurrentMove].effect == EFFECT_MULTI_HIT)
+    if (GetMoveEffect(gCurrentMove) == EFFECT_MULTI_HIT)
     {
         u32 ability = GetBattlerAbility(gBattlerAttacker);
 
@@ -3688,17 +3688,17 @@ static void CancellerMultihitMoves(u32 *effect)
 
         PREPARE_BYTE_NUMBER_BUFFER(gBattleScripting.multihitString, 1, 0)
     }
-    else if (gMovesInfo[gCurrentMove].strikeCount > 1)
+    else if (GetMoveStrikeCount(gCurrentMove) > 1)
     {
-        if (gMovesInfo[gCurrentMove].effect == EFFECT_POPULATION_BOMB && GetBattlerHoldEffect(gBattlerAttacker, TRUE) == HOLD_EFFECT_LOADED_DICE)
+        if (GetMoveEffect(gCurrentMove) == EFFECT_POPULATION_BOMB && GetBattlerHoldEffect(gBattlerAttacker, TRUE) == HOLD_EFFECT_LOADED_DICE)
         {
             gMultiHitCounter = RandomUniform(RNG_LOADED_DICE, 4, 10);
         }
         else
         {
-            gMultiHitCounter = gMovesInfo[gCurrentMove].strikeCount;
+            gMultiHitCounter = GetMoveStrikeCount(gCurrentMove);
 
-            if (gMovesInfo[gCurrentMove].effect == EFFECT_DRAGON_DARTS
+            if (GetMoveEffect(gCurrentMove) == EFFECT_DRAGON_DARTS
              && CanTargetPartner(gBattlerAttacker, gBattlerTarget)
              && TargetFullyImmuneToCurrMove(gBattlerAttacker, gBattlerTarget))
                 gBattlerTarget = BATTLE_PARTNER(gBattlerTarget);
@@ -3706,7 +3706,7 @@ static void CancellerMultihitMoves(u32 *effect)
 
         PREPARE_BYTE_NUMBER_BUFFER(gBattleScripting.multihitString, 3, 0)
     }
-    else if (B_BEAT_UP >= GEN_5 && gMovesInfo[gCurrentMove].effect == EFFECT_BEAT_UP)
+    else if (B_BEAT_UP >= GEN_5 && GetMoveEffect(gCurrentMove) == EFFECT_BEAT_UP)
     {
         struct Pokemon* party = GetBattlerParty(gBattlerAttacker);
         int i;
@@ -3749,7 +3749,7 @@ static void CancellerZMoves(u32 *effect)
                 gBattlescriptCurrInstr = BattleScript_ZMoveActivatePowder;
             }
         }
-        else if (gMovesInfo[gCurrentMove].category == DAMAGE_CATEGORY_STATUS)
+        else if (GetMoveCategory(gCurrentMove) == DAMAGE_CATEGORY_STATUS)
         {
             if (!alreadyUsed)
             {
@@ -3800,7 +3800,7 @@ static void CancellerMultiTargetMoves(u32 *effect)
             }
             else
             {
-                CalcTypeEffectivenessMultiplier(gCurrentMove, gMovesInfo[gCurrentMove].type, gBattlerAttacker, battlerDef, GetBattlerAbility(battlerDef), TRUE);
+                CalcTypeEffectivenessMultiplier(gCurrentMove, GetMoveType(gCurrentMove), gBattlerAttacker, battlerDef, GetBattlerAbility(battlerDef), TRUE);
             }
         }
         if (moveTarget == MOVE_TARGET_BOTH)
@@ -11895,12 +11895,13 @@ bool32 MoveIsAffectedBySheerForce(u32 move)
     u32 numAdditionalEffects = GetMoveAdditionalEffectCount(move);
     for (i = 0; i < numAdditionalEffects; i++)
     {
-        if (gMovesInfo[move].additionalEffects[i].sheerForceBoost == SHEER_FORCE_NO_BOOST)
+        const struct AdditionalEffect *additionalEffect = GetMoveAdditionalEffectById(move, i);
+        if (additionalEffect->sheerForceBoost == SHEER_FORCE_NO_BOOST)
             continue;
 
-        if (GetMoveAdditionalEffectById(move, i)->chance > 0)
+        if (additionalEffect->chance > 0)
             return TRUE;
-        if (gMovesInfo[move].additionalEffects[i].sheerForceBoost == SHEER_FORCE_BOOST)
+        if (additionalEffect->sheerForceBoost == SHEER_FORCE_BOOST)
             return TRUE;
     }
     return FALSE;
