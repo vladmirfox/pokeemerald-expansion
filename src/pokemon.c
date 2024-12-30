@@ -61,7 +61,7 @@
 #include "constants/weather.h"
 #include "wild_encounter.h"
 
-#define FRIENDSHIP_EVO_THRESHOLD ((P_FRIENDSHIP_EVO_THRESHOLD >= GEN_9) ? 160 : 220)
+#define FRIENDSHIP_EVO_THRESHOLD ((P_FRIENDSHIP_EVO_THRESHOLD >= GEN_8) ? 160 : 220)
 
 struct SpeciesItem
 {
@@ -75,7 +75,6 @@ static void EncryptBoxMon(struct BoxPokemon *boxMon);
 static void DecryptBoxMon(struct BoxPokemon *boxMon);
 static void Task_PlayMapChosenOrBattleBGM(u8 taskId);
 static bool8 ShouldSkipFriendshipChange(void);
-static void RemoveIVIndexFromList(u8 *ivs, u8 selectedIv);
 void TrySpecialOverworldEvo();
 
 EWRAM_DATA static u8 sLearningMoveTableID = 0;
@@ -1022,7 +1021,7 @@ STATIC_ASSERT(NUM_SPECIES < (1 << 11), PokemonSubstruct0_species_TooSmall);
 STATIC_ASSERT(NUMBER_OF_MON_TYPES + 1 <= (1 << 5), PokemonSubstruct0_teraType_TooSmall);
 STATIC_ASSERT(ITEMS_COUNT < (1 << 10), PokemonSubstruct0_heldItem_TooSmall);
 STATIC_ASSERT(MAX_LEVEL <= 100, PokemonSubstruct0_experience_PotentiallTooSmall); // Maximum of ~2 million exp.
-STATIC_ASSERT(LAST_BALL < (1 << 6), PokemonSubstruct0_pokeball_TooSmall);
+STATIC_ASSERT(POKEBALL_COUNT <= (1 << 6), PokemonSubstruct0_pokeball_TooSmall);
 STATIC_ASSERT(MOVES_COUNT_ALL < (1 << 11), PokemonSubstruct1_moves_TooSmall);
 STATIC_ASSERT(ARRAY_COUNT(sCompressedStatuses) <= (1 << 4), PokemonSubstruct3_compressedStatus_TooSmall);
 STATIC_ASSERT(MAX_LEVEL < (1 << 7), PokemonSubstruct3_metLevel_TooSmall);
@@ -2072,6 +2071,13 @@ u8 CountAliveMonsInBattle(u8 caseId, u32 battler)
         for (i = 0; i < MAX_BATTLERS_COUNT; i++)
         {
             if (i != battler && !(gAbsentBattlerFlags & (1u << i)))
+                retVal++;
+        }
+        break;
+    case BATTLE_ALIVE_EXCEPT_BATTLER_SIDE:
+        for (i = 0; i < MAX_BATTLERS_COUNT; i++)
+        {
+            if (i != battler && i != BATTLE_PARTNER(battler) && !(gAbsentBattlerFlags & (1u << i)))
                 retVal++;
         }
         break;
@@ -3368,6 +3374,20 @@ u8 CalculatePartyCount(struct Pokemon *party)
     return partyCount;
 }
 
+u8 CalculatePartyCountOfSide(u32 battler, struct Pokemon *party)
+{
+    s32 partyCount, partySize;
+    GetAIPartyIndexes(battler, &partyCount, &partySize);
+
+    while (partyCount < partySize
+        && GetMonData(&party[partyCount], MON_DATA_SPECIES, NULL) != SPECIES_NONE)
+    {
+        partyCount++;
+    }
+
+    return partyCount;
+}
+
 u8 CalculatePlayerPartyCount(void)
 {
     gPlayerPartyCount = CalculatePartyCount(gPlayerParty);
@@ -3378,6 +3398,11 @@ u8 CalculateEnemyPartyCount(void)
 {
     gEnemyPartyCount = CalculatePartyCount(gEnemyParty);
     return gEnemyPartyCount;
+}
+
+u8 CalculateEnemyPartyCountInSide(u32 battler)
+{
+    return CalculatePartyCountOfSide(battler, gEnemyParty);
 }
 
 u8 GetMonsStateToDoubles(void)
@@ -3675,10 +3700,12 @@ void PokemonToBattleMon(struct Pokemon *src, struct BattlePokemon *dst)
     dst->status2 = 0;
 }
 
-void CopyPlayerPartyMonToBattleData(u8 battlerId, u8 partyIndex)
+void CopyPartyMonToBattleData(u32 battlerId, u32 partyIndex)
 {
-    PokemonToBattleMon(&gPlayerParty[partyIndex], &gBattleMons[battlerId]);
-    gBattleStruct->hpOnSwitchout[GetBattlerSide(battlerId)] = gBattleMons[battlerId].hp;
+    u32 side = GetBattlerSide(battlerId);
+    struct Pokemon *party = GetSideParty(side);
+    PokemonToBattleMon(&party[partyIndex], &gBattleMons[battlerId]);
+    gBattleStruct->hpOnSwitchout[side] = gBattleMons[battlerId].hp;
     UpdateSentPokesToOpponentValue(battlerId);
     ClearTemporarySpeciesSpriteData(battlerId, FALSE);
 }
@@ -4179,7 +4206,24 @@ bool8 HealStatusConditions(struct Pokemon *mon, u32 healMask, u8 battlerId)
         status &= ~healMask;
         SetMonData(mon, MON_DATA_STATUS, &status);
         if (gMain.inBattle && battlerId != MAX_BATTLERS_COUNT)
+        {
             gBattleMons[battlerId].status1 &= ~healMask;
+            if((healMask & STATUS1_SLEEP))
+            {
+                u32 i = 0;
+                u32 battlerSide = GetBattlerSide(battlerId);
+                struct Pokemon *party = GetSideParty(battlerSide);
+
+                for (i = 0; i < PARTY_SIZE; i++)
+                {
+                    if (&party[i] == mon)
+                    {
+                        TryDeactivateSleepClause(battlerSide, i);
+                        break;
+                    }
+                }
+            }
+        }
         return FALSE;
     }
     else
@@ -4957,16 +5001,25 @@ u16 HoennToNationalOrder(u16 hoennNum)
 
     The function then loops over the 16x16 spot image. For each bit in the spot's binary image, if
     the bit is set then it's part of the spot; try to draw it. A pixel is drawn on Spinda if the
-    pixel on Spinda satisfies the following formula: ((u8)(colorIndex - 1) <= 2). The -1 excludes
-    transparent pixels, as these are index 0. Therefore only colors 1, 2, or 3 on Spinda will
-    allow a spot to be drawn. These color indexes are Spinda's light brown body colors. To create
+    pixel is between FIRST_SPOT_COLOR and LAST_SPOT_COLOR (so only colors 1, 2, or 3 on Spinda will
+    allow a spot to be drawn). These color indexes are Spinda's light brown body colors. To create
     the spot it adds 4 to the color index, so Spinda's spots will be colors 5, 6, and 7.
 
-    The above is done two different ways in the function: one with << 4, and one without. This
-    is because Spinda's sprite is a 4 bits per pixel image, but the pointer to Spinda's pixels
+    The above is done in TRY_DRAW_SPOT_PIXEL two different ways: one with << 4, and one without.
+    This is because Spinda's sprite is a 4 bits per pixel image, but the pointer to Spinda's pixels
     (destPixels) is an 8 bit pointer, so it addresses two pixels. Shifting by 4 accesses the 2nd
     of these pixels, so this is done every other time.
 */
+
+// Draw spot pixel if this is Spinda's body color
+#define TRY_DRAW_SPOT_PIXEL(pixels, shift) \
+    if (((*(pixels) & (0xF << (shift))) >= (FIRST_SPOT_COLOR << (shift))) \
+     && ((*(pixels) & (0xF << (shift))) <= (LAST_SPOT_COLOR << (shift)))) \
+    { \
+        *(pixels) += (SPOT_COLOR_ADJUSTMENT << (shift)); \
+    }
+
+
 void DrawSpindaSpots(u32 personality, u8 *dest, bool32 isSecondFrame)
 {
     s32 i;
@@ -5008,16 +5061,12 @@ void DrawSpindaSpots(u32 personality, u8 *dest, bool32 isSecondFrame)
                     if (column & 1)
                     {
                         /* Draw spot pixel if this is Spinda's body color */
-                        if ((u8)((*destPixels & 0xF0) - (FIRST_SPOT_COLOR << 4))
-                            <= ((LAST_SPOT_COLOR - FIRST_SPOT_COLOR) << 4))
-                            *destPixels += (SPOT_COLOR_ADJUSTMENT << 4);
+                        TRY_DRAW_SPOT_PIXEL(destPixels, 4);
                     }
                     else
                     {
                         /* Draw spot pixel if this is Spinda's body color */
-                        if ((u8)((*destPixels & 0xF) - FIRST_SPOT_COLOR)
-                            <= (LAST_SPOT_COLOR - FIRST_SPOT_COLOR))
-                            *destPixels += SPOT_COLOR_ADJUSTMENT;
+                        TRY_DRAW_SPOT_PIXEL(destPixels, 0);
                     }
                 }
 
@@ -5699,7 +5748,9 @@ u16 GetBattleBGM(void)
         }
     }
     else if (gBattleTypeFlags & (BATTLE_TYPE_LINK | BATTLE_TYPE_RECORDED_LINK))
+    {
         return MUS_VS_TRAINER;
+    }
     else if (gBattleTypeFlags & BATTLE_TYPE_TRAINER)
     {
         u8 trainerClass;
@@ -5746,7 +5797,9 @@ u16 GetBattleBGM(void)
         }
     }
     else
+    {
         return MUS_VS_WILD;
+    }
 }
 
 void PlayBattleBGM(void)
@@ -5810,18 +5863,24 @@ const u32 *GetMonSpritePalFromSpecies(u16 species, bool32 isShiny, bool32 isFema
 
     if (isShiny)
     {
+    #if P_GENDER_DIFFERENCES
         if (gSpeciesInfo[species].shinyPaletteFemale != NULL && isFemale)
             return gSpeciesInfo[species].shinyPaletteFemale;
-        else if (gSpeciesInfo[species].shinyPalette != NULL)
+        else
+    #endif
+        if (gSpeciesInfo[species].shinyPalette != NULL)
             return gSpeciesInfo[species].shinyPalette;
         else
             return gSpeciesInfo[SPECIES_NONE].shinyPalette;
     }
     else
     {
+    #if P_GENDER_DIFFERENCES
         if (gSpeciesInfo[species].paletteFemale != NULL && isFemale)
             return gSpeciesInfo[species].paletteFemale;
-        else if (gSpeciesInfo[species].palette != NULL)
+        else
+    #endif
+        if (gSpeciesInfo[species].palette != NULL)
             return gSpeciesInfo[species].palette;
         else
             return gSpeciesInfo[SPECIES_NONE].palette;
@@ -5924,7 +5983,7 @@ void SetMonPreventsSwitchingString(void)
 
     PREPARE_MON_NICK_WITH_PREFIX_BUFFER(gBattleTextBuff2, gBattlerInMenuId, GetPartyIdFromBattlePartyId(gBattlerPartyIndexes[gBattlerInMenuId]))
 
-    BattleStringExpandPlaceholders(gText_PkmnsXPreventsSwitching, gStringVar4);
+    BattleStringExpandPlaceholders(gText_PkmnsXPreventsSwitching, gStringVar4, sizeof(gStringVar4));
 }
 
 static s32 GetWildMonTableIdInAlteringCave(u16 species)
@@ -6613,7 +6672,8 @@ u16 MonTryLearningNewMoveEvolution(struct Pokemon *mon, bool8 firstMove)
     }
     while(learnset[sLearningMoveTableID].move != LEVEL_UP_MOVE_END)
     {
-        while (learnset[sLearningMoveTableID].level == 0 || learnset[sLearningMoveTableID].level == level)
+        while ((learnset[sLearningMoveTableID].level == 0 || learnset[sLearningMoveTableID].level == level)
+             && !(P_EVOLUTION_LEVEL_1_LEARN >= GEN_8 && learnset[sLearningMoveTableID].level == 1))
         {
             gMoveToLearn = learnset[sLearningMoveTableID].move;
             sLearningMoveTableID++;
@@ -6624,7 +6684,9 @@ u16 MonTryLearningNewMoveEvolution(struct Pokemon *mon, bool8 firstMove)
     return 0;
 }
 
-static void RemoveIVIndexFromList(u8 *ivs, u8 selectedIv)
+// Removes the selected index from the given IV list and shifts the remaining
+// elements to the left.
+void RemoveIVIndexFromList(u8 *ivs, u8 selectedIv)
 {
     s32 i, j;
     u8 temp[NUM_STATS];
@@ -6675,12 +6737,14 @@ void TrySpecialOverworldEvo(void)
 
 bool32 SpeciesHasGenderDifferences(u16 species)
 {
+#if P_GENDER_DIFFERENCES
     if (gSpeciesInfo[species].frontPicFemale != NULL
      || gSpeciesInfo[species].backPicFemale != NULL
      || gSpeciesInfo[species].paletteFemale != NULL
      || gSpeciesInfo[species].shinyPaletteFemale != NULL
      || gSpeciesInfo[species].iconSpriteFemale != NULL)
         return TRUE;
+#endif
 
     return FALSE;
 }

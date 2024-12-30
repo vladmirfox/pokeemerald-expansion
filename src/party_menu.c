@@ -245,7 +245,7 @@ static EWRAM_DATA u8 sInitialLevel = 0;
 static EWRAM_DATA u8 sFinalLevel = 0;
 
 // IWRAM common
-void (*gItemUseCB)(u8, TaskFunc);
+COMMON_DATA void (*gItemUseCB)(u8, TaskFunc) = NULL;
 
 static void ResetPartyMenu(void);
 static void CB2_InitPartyMenu(void);
@@ -4578,7 +4578,7 @@ static bool8 NotUsingHPEVItemOnShedinja(struct Pokemon *mon, u16 item)
     return TRUE;
 }
 
-bool32 IsItemFlute(u16 item)
+static bool32 IsItemFlute(u16 item)
 {
     if (item == ITEM_BLUE_FLUTE || item == ITEM_RED_FLUTE || item == ITEM_YELLOW_FLUTE)
         return TRUE;
@@ -5367,7 +5367,9 @@ static void Task_LearnNextMoveOrClosePartyMenu(u8 taskId)
     if (IsFanfareTaskInactive() && ((JOY_NEW(A_BUTTON)) || (JOY_NEW(B_BUTTON))))
     {
         if (gPartyMenu.learnMoveState == 1)
+        {
             Task_TryLearningNextMove(taskId);
+        }
         else
         {
             if (gPartyMenu.learnMoveState == 2) // never occurs
