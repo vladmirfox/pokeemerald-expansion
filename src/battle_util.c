@@ -357,7 +357,7 @@ void HandleAction_UseMove(void)
     }
     else
     {
-        gBattlescriptCurrInstr = GET_MOVE_BATTLESCRIPT(gCurrentMove);
+        gBattlescriptCurrInstr = GetMoveBattleScript(gCurrentMove);
     }
 
     if (gBattleTypeFlags & BATTLE_TYPE_ARENA)

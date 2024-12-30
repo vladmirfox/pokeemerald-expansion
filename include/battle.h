@@ -71,18 +71,6 @@
 // Special indicator value for shellBellDmg in SpecialStatus
 #define IGNORE_SHELL_BELL 0xFFFF
 
-// For defining EFFECT_HIT etc. with battle TV scores and flags etc.
-struct __attribute__((packed, aligned(2))) BattleMoveEffect
-{
-    const u8 *battleScript;
-    u16 battleTvScore:3;
-    u16 encourageEncore:1;
-    u16 twoTurnEffect:1;
-    u16 semiInvulnerableEffect:1;
-    u16 usesProtectCounter:1;
-    u16 padding:9;
-};
-
 #define GET_MOVE_BATTLESCRIPT(move) gBattleMoveEffects[GetMoveEffect(move)].battleScript
 
 struct ResourceFlags
@@ -1177,7 +1165,6 @@ extern u32 gFieldStatuses;
 extern struct FieldTimer gFieldTimers;
 extern u8 gBattlerAbility;
 extern struct QueuedStatBoost gQueuedStatBoosts[MAX_BATTLERS_COUNT];
-extern const struct BattleMoveEffect gBattleMoveEffects[];
 
 extern void (*gPreBattleCallback1)(void);
 extern void (*gBattleMainFunc)(void);

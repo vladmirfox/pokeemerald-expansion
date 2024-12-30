@@ -5,6 +5,18 @@
 #include "constants/battle_move_effects.h"
 #include "constants/moves.h"
 
+// For defining EFFECT_HIT etc. with battle TV scores and flags etc.
+struct __attribute__((packed, aligned(2))) BattleMoveEffect
+{
+    const u8 *battleScript;
+    u16 battleTvScore:3;
+    u16 encourageEncore:1;
+    u16 twoTurnEffect:1;
+    u16 semiInvulnerableEffect:1;
+    u16 usesProtectCounter:1;
+    u16 padding:9;
+};
+
 #define EFFECTS_ARR(...) (const struct AdditionalEffect[]) {__VA_ARGS__}
 #define ADDITIONAL_EFFECTS(...) EFFECTS_ARR( __VA_ARGS__ ), .numAdditionalEffects = ARRAY_COUNT(EFFECTS_ARR( __VA_ARGS__ ))
 
@@ -126,6 +138,7 @@ struct MoveInfo
 
 extern const struct MoveInfo gMovesInfo[];
 extern const u8 gNotDoneYetDescription[];
+extern const struct BattleMoveEffect gBattleMoveEffects[];
 
 static inline u32 SanitizeMoveId(u32 moveId)
 {
@@ -515,6 +528,18 @@ static inline const u8 *GetMoveAnimationScript(u32 moveId)
         return gMovesInfo[MOVE_NONE].battleAnimScript;
     }
     return gMovesInfo[moveId].battleAnimScript;
+}
+
+static inline const u8 *GetMoveBattleScript(u32 moveId)
+{
+    moveId = SanitizeMoveId(moveId);
+    if (gBattleMoveEffects[gMovesInfo[moveId].effect].battleScript == NULL)
+    {
+        DebugPrintfLevel(MGBA_LOG_WARN, "No effect for moveId=%u", moveId);
+        return gBattleMoveEffects[EFFECT_PLACEHOLDER].battleScript;
+    }
+    return gBattleMoveEffects[gMovesInfo[moveId].effect].battleScript;
+
 }
 
 #endif // GUARD_MOVES_H

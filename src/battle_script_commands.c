@@ -6542,7 +6542,7 @@ static void Cmd_moveend(void)
                     if (moveEffect == EFFECT_EXPLOSION)
                         BattleScriptPush(gBattleMoveEffects[EFFECT_HIT].battleScript); // Edge case for Explosion not changing targets
                     else
-                        BattleScriptPush(GET_MOVE_BATTLESCRIPT(gCurrentMove));
+                        BattleScriptPush(GetMoveBattleScript(gCurrentMove));
                     gBattlescriptCurrInstr = BattleScript_FlushMessageBox;
                     return;
                 }
@@ -6564,7 +6564,7 @@ static void Cmd_moveend(void)
                         gBattleScripting.animTurn = 0;
                         gBattleScripting.animTargetsHit = 0;
                         MoveValuesCleanUp();
-                        BattleScriptPush(GET_MOVE_BATTLESCRIPT(gCurrentMove));
+                        BattleScriptPush(GetMoveBattleScript(gCurrentMove));
                         gBattlescriptCurrInstr = BattleScript_FlushMessageBox;
                         return;
                     }
@@ -6622,7 +6622,7 @@ static void Cmd_moveend(void)
                         gSpecialStatuses[gBattlerTarget].focusSashed = 0; // Delete this line to make Focus Sash last for the duration of the whole move turn.
                         gSpecialStatuses[gBattlerAttacker].multiHitOn = TRUE;
                         MoveValuesCleanUp();
-                        BattleScriptPush(GET_MOVE_BATTLESCRIPT(gCurrentMove));
+                        BattleScriptPush(GetMoveBattleScript(gCurrentMove));
                         gBattlescriptCurrInstr = BattleScript_FlushMessageBox;
                         return;
                     }
@@ -8466,7 +8466,7 @@ static void Cmd_jumptocalledmove(void)
     else
         gChosenMove = gCurrentMove = gCalledMove;
 
-    gBattlescriptCurrInstr = GET_MOVE_BATTLESCRIPT(gCurrentMove);
+    gBattlescriptCurrInstr = GetMoveBattleScript(gCurrentMove);
 }
 
 static void Cmd_statusanimation(void)
@@ -11570,7 +11570,7 @@ static void SetMoveForMirrorMove(u32 move)
 
     SetAtkCancellerForCalledMove();
     gBattlerTarget = GetBattleMoveTarget(gCurrentMove, NO_TARGET_OVERRIDE);
-    gBattlescriptCurrInstr = GET_MOVE_BATTLESCRIPT(gCurrentMove);
+    gBattlescriptCurrInstr = GetMoveBattleScript(gCurrentMove);
 }
 
 static void Cmd_trymirrormove(void)
@@ -13125,7 +13125,7 @@ static void Cmd_metronome(void)
     gCurrentMove = RandomUniformExcept(RNG_METRONOME, 1, moveCount - 1, InvalidMetronomeMove);
     SetAtkCancellerForCalledMove();
     PrepareStringBattle(STRINGID_WAGGLINGAFINGER, gBattlerAttacker);
-    gBattlescriptCurrInstr = GET_MOVE_BATTLESCRIPT(gCurrentMove);
+    gBattlescriptCurrInstr = GetMoveBattleScript(gCurrentMove);
     gBattlerTarget = GetBattleMoveTarget(gCurrentMove, NO_TARGET_OVERRIDE);
 }
 
@@ -14487,7 +14487,7 @@ static void Cmd_callterrainattack(void)
     gHitMarker &= ~HITMARKER_ATTACKSTRING_PRINTED;
     gCurrentMove = GetNaturePowerMove(gBattlerAttacker);
     gBattlerTarget = GetBattleMoveTarget(gCurrentMove, NO_TARGET_OVERRIDE);
-    BattleScriptPush(GET_MOVE_BATTLESCRIPT(gCurrentMove));
+    BattleScriptPush(GetMoveBattleScript(gCurrentMove));
     gBattlescriptCurrInstr = cmd->nextInstr;
 }
 
