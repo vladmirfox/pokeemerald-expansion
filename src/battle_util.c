@@ -12161,3 +12161,19 @@ bool32 DoesDestinyBondFail(u32 battler)
         return TRUE;
     return FALSE;
 }
+
+bool32 IsMoveEffectBlockedByTarget(u32 ability)
+{
+    if (ability == ABILITY_SHIELD_DUST)
+    {
+        RecordAbilityBattle(gBattlerTarget, ability);
+        return TRUE;
+    }
+    else if (GetBattlerHoldEffect(gBattlerTarget, TRUE) == HOLD_EFFECT_COVERT_CLOAK)
+    {
+        RecordItemEffectBattle(gBattlerTarget, HOLD_EFFECT_COVERT_CLOAK);
+        return TRUE;
+    }
+
+    return FALSE;
+}

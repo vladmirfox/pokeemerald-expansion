@@ -3177,15 +3177,9 @@ void SetMoveEffect(bool32 primary, bool32 certain)
     gBattleScripting.moveEffect &= ~MOVE_EFFECT_CERTAIN;
 
     if (!primary && affectsUser != MOVE_EFFECT_AFFECTS_USER
-      && !(gHitMarker & HITMARKER_STATUS_ABILITY_EFFECT)
-      && (battlerAbility == ABILITY_SHIELD_DUST || GetBattlerHoldEffect(gEffectBattler, TRUE) == HOLD_EFFECT_COVERT_CLOAK))
-    {
-        if (battlerAbility == ABILITY_SHIELD_DUST)
-            RecordAbilityBattle(gEffectBattler, battlerAbility);
-        else
-            RecordItemEffectBattle(gEffectBattler, HOLD_EFFECT_COVERT_CLOAK);
+     && !(gHitMarker & HITMARKER_STATUS_ABILITY_EFFECT)
+     && IsMoveEffectBlockedByTarget(battlerAbility))
         INCREMENT_RESET_RETURN
-    }
 
     if (gSideStatuses[GetBattlerSide(gEffectBattler)] & SIDE_STATUS_SAFEGUARD && !(gHitMarker & HITMARKER_STATUS_ABILITY_EFFECT)
         && !primary && gBattleScripting.moveEffect <= MOVE_EFFECT_CONFUSION)
@@ -5910,26 +5904,6 @@ static u32 GetNextTarget(u32 moveTarget, bool32 excludeCurrent)
     return battler;
 }
 
-static inline bool32 IsMoveEffectBlockedByTarget(void)
-{
-    if (gBattleStruct->moveEffect2 == MOVE_EFFECT_REMOVE_STATUS && gBattleStruct->numSpreadTargets > 1)
-        return FALSE;
-
-    u32 ability = GetBattlerAbility(gBattlerTarget);
-    if (ability == ABILITY_SHIELD_DUST)
-    {
-        RecordAbilityBattle(gBattlerTarget, ability);
-        return TRUE;
-    }
-    else if (GetBattlerHoldEffect(gBattlerTarget, TRUE) == HOLD_EFFECT_COVERT_CLOAK)
-    {
-        RecordItemEffectBattle(gBattlerTarget, HOLD_EFFECT_COVERT_CLOAK);
-        return TRUE;
-    }
-
-    return FALSE;
-}
-
 static void Cmd_moveend(void)
 {
     CMD_ARGS(u8 endMode, u8 endState);
@@ -6279,7 +6253,7 @@ static void Cmd_moveend(void)
                 if ((gBattleMons[gBattlerTarget].status1 & gMovesInfo[gCurrentMove].argument.status)
                  && IsBattlerAlive(gBattlerTarget)
                  && !DoesSubstituteBlockMove(gBattlerAttacker, gBattlerTarget, gCurrentMove)
-                 && !IsMoveEffectBlockedByTarget())
+                 && (gBattleStruct->numSpreadTargets > 1 || !IsMoveEffectBlockedByTarget(GetBattlerAbility(gBattlerTarget))))
                 {
                     gBattleMons[gBattlerTarget].status1 &= ~(gMovesInfo[gCurrentMove].argument.status);
 
