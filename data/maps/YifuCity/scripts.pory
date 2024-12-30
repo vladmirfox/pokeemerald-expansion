@@ -253,6 +253,7 @@ script YifuCity_Trigger_CrobatGruntsScram {
 	closemessage
 
 	addobject(LOCALID_GRUNT_PASSWORD_ZUBAT)
+	playmoncry(SPECIES_ZUBAT, CRY_MODE_NORMAL)
 	applymovement(
 		LOCALID_GRUNT_PASSWORD_ZUBAT,
 		moves(
@@ -266,6 +267,7 @@ script YifuCity_Trigger_CrobatGruntsScram {
 			unlock_facing_direction
 		)
 	)
+	waitmoncry
 	waitmovement(0)
 
 	applymovement(OBJ_EVENT_ID_PLAYER, moves(lock_facing_direction, walk_left * 2, unlock_facing_direction))
@@ -296,6 +298,8 @@ script YifuCity_Trigger_CrobatGruntsEavesdropPassword {
 		"I tell ya man, damn password keeps changin'…"
 	))
 	closemessage
+
+	delay(24)
 	
 	special(SpawnCameraObject)
 	applymovement(OBJ_EVENT_ID_CAMERA, moves(walk_up * 3))
@@ -350,7 +354,7 @@ script YifuCity_Trigger_CrobatGruntsEavesdropPassword {
 	speakername("Shady man")
 	msgbox(format(
 		"Ya idjet! How're we gunna get back in now??\p"
-		"Now we gotta find another Zubat an' hope he's got the full sent'nce!\p"
+		"Now we gotta find another Zubat an' hope he's got enough brains to remember the full sent'nce!\p"
 		"C'mon, lessgo!"
 	))
 	waitmovement(0)
@@ -369,6 +373,18 @@ script YifuCity_Trigger_CrobatGruntsEavesdropPassword {
 	special(RemoveCameraObject)
 
 	releaseall
+}
+
+script YifuCity_EventScript_HearEcho {
+	lock
+	faceplayer
+	speakername("Boy")
+	msgbox(format(
+		"There's a ghost haunting the canal!\n"
+		"I swear I heard a voice calling when I was walking along the canal!"
+	))
+	closemessage
+	release
 }
 
 script YifuCity_Trigger_CrobatGruntStuckInHole {

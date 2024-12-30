@@ -355,222 +355,244 @@ YifuCity_Trigger_CrobatGruntsScram::
 # 255 "data/maps/YifuCity/scripts.pory"
 	addobject 11
 # 256 "data/maps/YifuCity/scripts.pory"
+	playmoncry SPECIES_ZUBAT, CRY_MODE_NORMAL
+# 257 "data/maps/YifuCity/scripts.pory"
 	applymovement 11, YifuCity_Trigger_CrobatGruntsScram_Movement_1
-# 269 "data/maps/YifuCity/scripts.pory"
-	waitmovement 0
+# 270 "data/maps/YifuCity/scripts.pory"
+	waitmoncry
 # 271 "data/maps/YifuCity/scripts.pory"
+	waitmovement 0
+# 273 "data/maps/YifuCity/scripts.pory"
 	applymovement OBJ_EVENT_ID_PLAYER, YifuCity_Trigger_CrobatGruntsScram_Movement_2
-# 272 "data/maps/YifuCity/scripts.pory"
-	waitmovement 0
 # 274 "data/maps/YifuCity/scripts.pory"
-	speakername YifuCity_EventScript_ShinySeller_Text_0
-# 275 "data/maps/YifuCity/scripts.pory"
-	msgbox YifuCity_Trigger_CrobatGruntsScram_Text_2
-# 278 "data/maps/YifuCity/scripts.pory"
-	closemessage
-# 280 "data/maps/YifuCity/scripts.pory"
-	delay 24
-# 281 "data/maps/YifuCity/scripts.pory"
-	addobject 11
-# 282 "data/maps/YifuCity/scripts.pory"
-	applymovement 11, YifuCity_Trigger_CrobatGruntsScram_Movement_3
-# 283 "data/maps/YifuCity/scripts.pory"
 	waitmovement 0
+# 276 "data/maps/YifuCity/scripts.pory"
+	speakername YifuCity_EventScript_ShinySeller_Text_0
+# 277 "data/maps/YifuCity/scripts.pory"
+	msgbox YifuCity_Trigger_CrobatGruntsScram_Text_2
+# 280 "data/maps/YifuCity/scripts.pory"
+	closemessage
+# 282 "data/maps/YifuCity/scripts.pory"
+	delay 24
+# 283 "data/maps/YifuCity/scripts.pory"
+	addobject 11
+# 284 "data/maps/YifuCity/scripts.pory"
+	applymovement 11, YifuCity_Trigger_CrobatGruntsScram_Movement_3
 # 285 "data/maps/YifuCity/scripts.pory"
+	waitmovement 0
+# 287 "data/maps/YifuCity/scripts.pory"
 	turnobject 9, DIR_SOUTH
-# 286 "data/maps/YifuCity/scripts.pory"
-	turnobject 10, DIR_NORTH
 # 288 "data/maps/YifuCity/scripts.pory"
+	turnobject 10, DIR_NORTH
+# 290 "data/maps/YifuCity/scripts.pory"
 	releaseall
 	return
 
 
 YifuCity_Trigger_CrobatGruntsEavesdropPassword::
-# 292 "data/maps/YifuCity/scripts.pory"
-	lockall
 # 294 "data/maps/YifuCity/scripts.pory"
+	lockall
+# 296 "data/maps/YifuCity/scripts.pory"
 	speakername YifuCity_Trigger_CrobatGruntsEavesdropPassword_Text_0
-# 295 "data/maps/YifuCity/scripts.pory"
+# 297 "data/maps/YifuCity/scripts.pory"
 	msgbox YifuCity_Trigger_CrobatGruntsScram_Text_0
-# 298 "data/maps/YifuCity/scripts.pory"
-	closemessage
 # 300 "data/maps/YifuCity/scripts.pory"
-	special SpawnCameraObject
-# 301 "data/maps/YifuCity/scripts.pory"
-	applymovement OBJ_EVENT_ID_CAMERA, YifuCity_Trigger_CrobatGruntsEavesdropPassword_Movement_0
+	closemessage
 # 302 "data/maps/YifuCity/scripts.pory"
-	waitmovement 0
-# 303 "data/maps/YifuCity/scripts.pory"
-	delay 48
+	delay 24
+# 304 "data/maps/YifuCity/scripts.pory"
+	special SpawnCameraObject
 # 305 "data/maps/YifuCity/scripts.pory"
-	applymovement 9, Common_Movement_WalkInPlaceFasterDown
+	applymovement OBJ_EVENT_ID_CAMERA, YifuCity_Trigger_CrobatGruntsEavesdropPassword_Movement_0
 # 306 "data/maps/YifuCity/scripts.pory"
 	waitmovement 0
-# 308 "data/maps/YifuCity/scripts.pory"
-	speakername YifuCity_EventScript_ShinySeller_Text_0
+# 307 "data/maps/YifuCity/scripts.pory"
+	delay 48
 # 309 "data/maps/YifuCity/scripts.pory"
-	msgbox YifuCity_Trigger_CrobatGruntsEavesdropPassword_Text_1
-# 313 "data/maps/YifuCity/scripts.pory"
-	closemessage
-# 315 "data/maps/YifuCity/scripts.pory"
-	applymovement 10, Common_Movement_WalkInPlaceFasterUp
-# 316 "data/maps/YifuCity/scripts.pory"
-	waitmovement 0
-# 318 "data/maps/YifuCity/scripts.pory"
-	speakername YifuCity_EventScript_ShinySeller_Text_0
-# 319 "data/maps/YifuCity/scripts.pory"
-	msgbox YifuCity_Trigger_CrobatGruntsEavesdropPassword_Text_2
-# 322 "data/maps/YifuCity/scripts.pory"
-	closemessage
-# 324 "data/maps/YifuCity/scripts.pory"
 	applymovement 9, Common_Movement_WalkInPlaceFasterDown
-# 325 "data/maps/YifuCity/scripts.pory"
+# 310 "data/maps/YifuCity/scripts.pory"
 	waitmovement 0
-# 327 "data/maps/YifuCity/scripts.pory"
+# 312 "data/maps/YifuCity/scripts.pory"
 	speakername YifuCity_EventScript_ShinySeller_Text_0
-# 328 "data/maps/YifuCity/scripts.pory"
-	msgbox YifuCity_Trigger_CrobatGruntsEavesdropPassword_Text_3
-# 331 "data/maps/YifuCity/scripts.pory"
+# 313 "data/maps/YifuCity/scripts.pory"
+	msgbox YifuCity_Trigger_CrobatGruntsEavesdropPassword_Text_1
+# 317 "data/maps/YifuCity/scripts.pory"
 	closemessage
-# 333 "data/maps/YifuCity/scripts.pory"
+# 319 "data/maps/YifuCity/scripts.pory"
 	applymovement 10, Common_Movement_WalkInPlaceFasterUp
-# 334 "data/maps/YifuCity/scripts.pory"
+# 320 "data/maps/YifuCity/scripts.pory"
 	waitmovement 0
-# 336 "data/maps/YifuCity/scripts.pory"
+# 322 "data/maps/YifuCity/scripts.pory"
 	speakername YifuCity_EventScript_ShinySeller_Text_0
+# 323 "data/maps/YifuCity/scripts.pory"
+	msgbox YifuCity_Trigger_CrobatGruntsEavesdropPassword_Text_2
+# 326 "data/maps/YifuCity/scripts.pory"
+	closemessage
+# 328 "data/maps/YifuCity/scripts.pory"
+	applymovement 9, Common_Movement_WalkInPlaceFasterDown
+# 329 "data/maps/YifuCity/scripts.pory"
+	waitmovement 0
+# 331 "data/maps/YifuCity/scripts.pory"
+	speakername YifuCity_EventScript_ShinySeller_Text_0
+# 332 "data/maps/YifuCity/scripts.pory"
+	msgbox YifuCity_Trigger_CrobatGruntsEavesdropPassword_Text_3
+# 335 "data/maps/YifuCity/scripts.pory"
+	closemessage
 # 337 "data/maps/YifuCity/scripts.pory"
-	msgbox YifuCity_Trigger_CrobatGruntsEavesdropPassword_Text_4
+	applymovement 10, Common_Movement_WalkInPlaceFasterUp
+# 338 "data/maps/YifuCity/scripts.pory"
+	waitmovement 0
+# 340 "data/maps/YifuCity/scripts.pory"
+	speakername YifuCity_EventScript_ShinySeller_Text_0
 # 341 "data/maps/YifuCity/scripts.pory"
+	msgbox YifuCity_Trigger_CrobatGruntsEavesdropPassword_Text_4
+# 345 "data/maps/YifuCity/scripts.pory"
 	applymovement 10, YifuCity_Trigger_CrobatGruntsEavesdropPassword_Movement_1
-# 342 "data/maps/YifuCity/scripts.pory"
-	speakername YifuCity_EventScript_ShinySeller_Text_0
-# 343 "data/maps/YifuCity/scripts.pory"
-	msgbox YifuCity_Trigger_CrobatGruntsEavesdropPassword_Text_5
 # 346 "data/maps/YifuCity/scripts.pory"
-	waitmovement 0
-# 347 "data/maps/YifuCity/scripts.pory"
-	closemessage
-# 349 "data/maps/YifuCity/scripts.pory"
-	applymovement 9, YifuCity_Trigger_CrobatGruntsEavesdropPassword_Movement_2
-# 350 "data/maps/YifuCity/scripts.pory"
 	speakername YifuCity_EventScript_ShinySeller_Text_0
+# 347 "data/maps/YifuCity/scripts.pory"
+	msgbox YifuCity_Trigger_CrobatGruntsEavesdropPassword_Text_5
+# 350 "data/maps/YifuCity/scripts.pory"
+	waitmovement 0
 # 351 "data/maps/YifuCity/scripts.pory"
-	msgbox YifuCity_Trigger_CrobatGruntsEavesdropPassword_Text_6
-# 356 "data/maps/YifuCity/scripts.pory"
-	waitmovement 0
-# 357 "data/maps/YifuCity/scripts.pory"
 	closemessage
-# 359 "data/maps/YifuCity/scripts.pory"
-	applymovement 9, YifuCity_Trigger_CrobatGruntsEavesdropPassword_Movement_3
+# 353 "data/maps/YifuCity/scripts.pory"
+	applymovement 9, YifuCity_Trigger_CrobatGruntsEavesdropPassword_Movement_2
+# 354 "data/maps/YifuCity/scripts.pory"
+	speakername YifuCity_EventScript_ShinySeller_Text_0
+# 355 "data/maps/YifuCity/scripts.pory"
+	msgbox YifuCity_Trigger_CrobatGruntsEavesdropPassword_Text_6
 # 360 "data/maps/YifuCity/scripts.pory"
-	applymovement 10, YifuCity_Trigger_CrobatGruntsEavesdropPassword_Movement_4
+	waitmovement 0
 # 361 "data/maps/YifuCity/scripts.pory"
-	waitmovement 0
+	closemessage
 # 363 "data/maps/YifuCity/scripts.pory"
-	removeobject 9
+	applymovement 9, YifuCity_Trigger_CrobatGruntsEavesdropPassword_Movement_3
 # 364 "data/maps/YifuCity/scripts.pory"
-	removeobject 10
+	applymovement 10, YifuCity_Trigger_CrobatGruntsEavesdropPassword_Movement_4
 # 365 "data/maps/YifuCity/scripts.pory"
-	setflag FLAG_GOT_CROBAT_PASSWORD_FIRST_HALF
-# 367 "data/maps/YifuCity/scripts.pory"
-	applymovement OBJ_EVENT_ID_CAMERA, YifuCity_Trigger_CrobatGruntsEavesdropPassword_Movement_5
-# 368 "data/maps/YifuCity/scripts.pory"
 	waitmovement 0
+# 367 "data/maps/YifuCity/scripts.pory"
+	removeobject 9
+# 368 "data/maps/YifuCity/scripts.pory"
+	removeobject 10
 # 369 "data/maps/YifuCity/scripts.pory"
-	special RemoveCameraObject
+	setflag FLAG_GOT_CROBAT_PASSWORD_FIRST_HALF
 # 371 "data/maps/YifuCity/scripts.pory"
+	applymovement OBJ_EVENT_ID_CAMERA, YifuCity_Trigger_CrobatGruntsEavesdropPassword_Movement_5
+# 372 "data/maps/YifuCity/scripts.pory"
+	waitmovement 0
+# 373 "data/maps/YifuCity/scripts.pory"
+	special RemoveCameraObject
+# 375 "data/maps/YifuCity/scripts.pory"
 	releaseall
+	return
+
+
+YifuCity_EventScript_HearEcho::
+# 379 "data/maps/YifuCity/scripts.pory"
+	lock
+# 380 "data/maps/YifuCity/scripts.pory"
+	faceplayer
+# 381 "data/maps/YifuCity/scripts.pory"
+	speakername YifuCity_EventScript_HearEcho_Text_0
+# 382 "data/maps/YifuCity/scripts.pory"
+	msgbox YifuCity_EventScript_HearEcho_Text_1
+# 386 "data/maps/YifuCity/scripts.pory"
+	closemessage
+# 387 "data/maps/YifuCity/scripts.pory"
+	release
 	return
 
 
 YifuCity_Trigger_CrobatGruntStuckInHole::
-# 375 "data/maps/YifuCity/scripts.pory"
+# 391 "data/maps/YifuCity/scripts.pory"
 	lockall
-# 377 "data/maps/YifuCity/scripts.pory"
+# 393 "data/maps/YifuCity/scripts.pory"
 	goto_if_set FLAG_GOT_CROBAT_PASSWORD_SECOND_HALF, YifuCity_Trigger_CrobatGruntStuckInHole_2
-# 401 "data/maps/YifuCity/scripts.pory"
-	speakername YifuCity_Trigger_CrobatGruntsEavesdropPassword_Text_0
-# 402 "data/maps/YifuCity/scripts.pory"
-	msgbox YifuCity_Trigger_CrobatGruntStuckInHole_Text_3
-# 405 "data/maps/YifuCity/scripts.pory"
-	closemessage
-# 407 "data/maps/YifuCity/scripts.pory"
-	delay 24
-# 409 "data/maps/YifuCity/scripts.pory"
-	applymovement OBJ_EVENT_ID_PLAYER, YifuCity_Trigger_CrobatGruntStuckInHole_Movement_0
-# 410 "data/maps/YifuCity/scripts.pory"
-	waitmovement 0
-# 412 "data/maps/YifuCity/scripts.pory"
-	delay 24
-# 414 "data/maps/YifuCity/scripts.pory"
-	playse SE_PIN
-# 415 "data/maps/YifuCity/scripts.pory"
-	applymovement OBJ_EVENT_ID_PLAYER, YifuCity_Trigger_CrobatGruntStuckInHole_Movement_1
-# 416 "data/maps/YifuCity/scripts.pory"
-	speakername YifuCity_Trigger_CrobatGruntsEavesdropPassword_Text_0
 # 417 "data/maps/YifuCity/scripts.pory"
-	msgbox YifuCity_Trigger_CrobatGruntStuckInHole_Text_4
-# 424 "data/maps/YifuCity/scripts.pory"
-	waitmovement 0
-# 425 "data/maps/YifuCity/scripts.pory"
-	waitse
-# 426 "data/maps/YifuCity/scripts.pory"
+	speakername YifuCity_Trigger_CrobatGruntsEavesdropPassword_Text_0
+# 418 "data/maps/YifuCity/scripts.pory"
+	msgbox YifuCity_Trigger_CrobatGruntStuckInHole_Text_3
+# 421 "data/maps/YifuCity/scripts.pory"
 	closemessage
+# 423 "data/maps/YifuCity/scripts.pory"
+	delay 24
+# 425 "data/maps/YifuCity/scripts.pory"
+	applymovement OBJ_EVENT_ID_PLAYER, YifuCity_Trigger_CrobatGruntStuckInHole_Movement_0
+# 426 "data/maps/YifuCity/scripts.pory"
+	waitmovement 0
 # 428 "data/maps/YifuCity/scripts.pory"
+	delay 24
+# 430 "data/maps/YifuCity/scripts.pory"
+	playse SE_PIN
+# 431 "data/maps/YifuCity/scripts.pory"
+	applymovement OBJ_EVENT_ID_PLAYER, YifuCity_Trigger_CrobatGruntStuckInHole_Movement_1
+# 432 "data/maps/YifuCity/scripts.pory"
+	speakername YifuCity_Trigger_CrobatGruntsEavesdropPassword_Text_0
+# 433 "data/maps/YifuCity/scripts.pory"
+	msgbox YifuCity_Trigger_CrobatGruntStuckInHole_Text_4
+# 440 "data/maps/YifuCity/scripts.pory"
+	waitmovement 0
+# 441 "data/maps/YifuCity/scripts.pory"
+	waitse
+# 442 "data/maps/YifuCity/scripts.pory"
+	closemessage
+# 444 "data/maps/YifuCity/scripts.pory"
 	setflag FLAG_GOT_CROBAT_PASSWORD_SECOND_HALF
 YifuCity_Trigger_CrobatGruntStuckInHole_1:
-# 431 "data/maps/YifuCity/scripts.pory"
+# 447 "data/maps/YifuCity/scripts.pory"
 	releaseall
 	return
 
 YifuCity_Trigger_CrobatGruntStuckInHole_2:
-# 378 "data/maps/YifuCity/scripts.pory"
+# 394 "data/maps/YifuCity/scripts.pory"
 	speakername YifuCity_Trigger_CrobatGruntsEavesdropPassword_Text_0
-# 380 "data/maps/YifuCity/scripts.pory"
+# 396 "data/maps/YifuCity/scripts.pory"
 	random 3
-# 381 "data/maps/YifuCity/scripts.pory"
+# 397 "data/maps/YifuCity/scripts.pory"
 	switch VAR_RESULT
-# 382 "data/maps/YifuCity/scripts.pory"
+# 398 "data/maps/YifuCity/scripts.pory"
 	case 0, YifuCity_Trigger_CrobatGruntStuckInHole_7
-# 386 "data/maps/YifuCity/scripts.pory"
+# 402 "data/maps/YifuCity/scripts.pory"
 	case 1, YifuCity_Trigger_CrobatGruntStuckInHole_8
-# 390 "data/maps/YifuCity/scripts.pory"
+# 406 "data/maps/YifuCity/scripts.pory"
 	case 2, YifuCity_Trigger_CrobatGruntStuckInHole_9
 YifuCity_Trigger_CrobatGruntStuckInHole_5:
-# 398 "data/maps/YifuCity/scripts.pory"
+# 414 "data/maps/YifuCity/scripts.pory"
 	closemessage
 	goto YifuCity_Trigger_CrobatGruntStuckInHole_1
 
 YifuCity_Trigger_CrobatGruntStuckInHole_7:
-# 383 "data/maps/YifuCity/scripts.pory"
+# 399 "data/maps/YifuCity/scripts.pory"
 	msgbox YifuCity_Trigger_CrobatGruntStuckInHole_Text_0
 	goto YifuCity_Trigger_CrobatGruntStuckInHole_5
 
 YifuCity_Trigger_CrobatGruntStuckInHole_8:
-# 387 "data/maps/YifuCity/scripts.pory"
+# 403 "data/maps/YifuCity/scripts.pory"
 	msgbox YifuCity_Trigger_CrobatGruntStuckInHole_Text_1
 	goto YifuCity_Trigger_CrobatGruntStuckInHole_5
 
 YifuCity_Trigger_CrobatGruntStuckInHole_9:
-# 391 "data/maps/YifuCity/scripts.pory"
+# 407 "data/maps/YifuCity/scripts.pory"
 	msgbox YifuCity_Trigger_CrobatGruntStuckInHole_Text_2
 	goto YifuCity_Trigger_CrobatGruntStuckInHole_5
 
 
 YifuCity_EventScript_Surskit::
-# 435 "data/maps/YifuCity/scripts.pory"
+# 451 "data/maps/YifuCity/scripts.pory"
 	lock
-# 436 "data/maps/YifuCity/scripts.pory"
+# 452 "data/maps/YifuCity/scripts.pory"
 	faceplayer
-# 437 "data/maps/YifuCity/scripts.pory"
+# 453 "data/maps/YifuCity/scripts.pory"
 	speakername YifuCity_EventScript_Surskit_Text_0
-# 438 "data/maps/YifuCity/scripts.pory"
+# 454 "data/maps/YifuCity/scripts.pory"
 	msgbox YifuCity_EventScript_Surskit_Text_1
-# 441 "data/maps/YifuCity/scripts.pory"
+# 457 "data/maps/YifuCity/scripts.pory"
 	playmoncry SPECIES_SURSKIT, CRY_MODE_NORMAL
-# 442 "data/maps/YifuCity/scripts.pory"
+# 458 "data/maps/YifuCity/scripts.pory"
 	waitmoncry
-# 443 "data/maps/YifuCity/scripts.pory"
+# 459 "data/maps/YifuCity/scripts.pory"
 	release
 	end
 
@@ -665,159 +687,157 @@ YifuCity_Trigger_CrobatGruntsScram_Movement_0:
 	jump_in_place_left
 	step_end
 
-# 256 "data/maps/YifuCity/scripts.pory"
+# 257 "data/maps/YifuCity/scripts.pory"
 YifuCity_Trigger_CrobatGruntsScram_Movement_1:
-# 259 "data/maps/YifuCity/scripts.pory"
-	exit_pokeball
 # 260 "data/maps/YifuCity/scripts.pory"
-	face_left
+	exit_pokeball
 # 261 "data/maps/YifuCity/scripts.pory"
-	lock_anim
+	face_left
 # 262 "data/maps/YifuCity/scripts.pory"
-	lock_facing_direction
+	lock_anim
 # 263 "data/maps/YifuCity/scripts.pory"
-	walk_faster_left
-# 264 "data/maps/YifuCity/scripts.pory"
-	walk_faster_right
-# 265 "data/maps/YifuCity/scripts.pory"
-	unlock_anim
-# 266 "data/maps/YifuCity/scripts.pory"
-	unlock_facing_direction
-	step_end
-
-# 271 "data/maps/YifuCity/scripts.pory"
-YifuCity_Trigger_CrobatGruntsScram_Movement_2:
-# 271 "data/maps/YifuCity/scripts.pory"
 	lock_facing_direction
-# 271 "data/maps/YifuCity/scripts.pory"
-	walk_left
-# 271 "data/maps/YifuCity/scripts.pory"
-	walk_left
-# 271 "data/maps/YifuCity/scripts.pory"
+# 264 "data/maps/YifuCity/scripts.pory"
+	walk_faster_left
+# 265 "data/maps/YifuCity/scripts.pory"
+	walk_faster_right
+# 266 "data/maps/YifuCity/scripts.pory"
+	unlock_anim
+# 267 "data/maps/YifuCity/scripts.pory"
 	unlock_facing_direction
 	step_end
 
-# 282 "data/maps/YifuCity/scripts.pory"
+# 273 "data/maps/YifuCity/scripts.pory"
+YifuCity_Trigger_CrobatGruntsScram_Movement_2:
+# 273 "data/maps/YifuCity/scripts.pory"
+	lock_facing_direction
+# 273 "data/maps/YifuCity/scripts.pory"
+	walk_left
+# 273 "data/maps/YifuCity/scripts.pory"
+	walk_left
+# 273 "data/maps/YifuCity/scripts.pory"
+	unlock_facing_direction
+	step_end
+
+# 284 "data/maps/YifuCity/scripts.pory"
 YifuCity_Trigger_CrobatGruntsScram_Movement_3:
-# 282 "data/maps/YifuCity/scripts.pory"
+# 284 "data/maps/YifuCity/scripts.pory"
 	enter_pokeball
 	step_end
 
-# 301 "data/maps/YifuCity/scripts.pory"
+# 305 "data/maps/YifuCity/scripts.pory"
 YifuCity_Trigger_CrobatGruntsEavesdropPassword_Movement_0:
-# 301 "data/maps/YifuCity/scripts.pory"
+# 305 "data/maps/YifuCity/scripts.pory"
 	walk_up
-# 301 "data/maps/YifuCity/scripts.pory"
+# 305 "data/maps/YifuCity/scripts.pory"
 	walk_up
-# 301 "data/maps/YifuCity/scripts.pory"
+# 305 "data/maps/YifuCity/scripts.pory"
 	walk_up
 	step_end
 
-# 341 "data/maps/YifuCity/scripts.pory"
+# 345 "data/maps/YifuCity/scripts.pory"
 YifuCity_Trigger_CrobatGruntsEavesdropPassword_Movement_1:
-# 341 "data/maps/YifuCity/scripts.pory"
+# 345 "data/maps/YifuCity/scripts.pory"
 	jump_in_place_up
 	step_end
 
-# 349 "data/maps/YifuCity/scripts.pory"
+# 353 "data/maps/YifuCity/scripts.pory"
 YifuCity_Trigger_CrobatGruntsEavesdropPassword_Movement_2:
-# 349 "data/maps/YifuCity/scripts.pory"
+# 353 "data/maps/YifuCity/scripts.pory"
 	jump_in_place_down
 	step_end
 
-# 359 "data/maps/YifuCity/scripts.pory"
+# 363 "data/maps/YifuCity/scripts.pory"
 YifuCity_Trigger_CrobatGruntsEavesdropPassword_Movement_3:
-# 359 "data/maps/YifuCity/scripts.pory"
+# 363 "data/maps/YifuCity/scripts.pory"
 	walk_left
-# 359 "data/maps/YifuCity/scripts.pory"
+# 363 "data/maps/YifuCity/scripts.pory"
 	walk_left
-# 359 "data/maps/YifuCity/scripts.pory"
+# 363 "data/maps/YifuCity/scripts.pory"
 	walk_left
-# 359 "data/maps/YifuCity/scripts.pory"
+# 363 "data/maps/YifuCity/scripts.pory"
 	walk_left
-# 359 "data/maps/YifuCity/scripts.pory"
+# 363 "data/maps/YifuCity/scripts.pory"
 	walk_left
-# 359 "data/maps/YifuCity/scripts.pory"
+# 363 "data/maps/YifuCity/scripts.pory"
 	walk_left
-# 359 "data/maps/YifuCity/scripts.pory"
+# 363 "data/maps/YifuCity/scripts.pory"
 	walk_left
-# 359 "data/maps/YifuCity/scripts.pory"
+# 363 "data/maps/YifuCity/scripts.pory"
 	walk_left
-# 359 "data/maps/YifuCity/scripts.pory"
+# 363 "data/maps/YifuCity/scripts.pory"
 	walk_left
-# 359 "data/maps/YifuCity/scripts.pory"
+# 363 "data/maps/YifuCity/scripts.pory"
 	walk_left
 	step_end
 
-# 360 "data/maps/YifuCity/scripts.pory"
+# 364 "data/maps/YifuCity/scripts.pory"
 YifuCity_Trigger_CrobatGruntsEavesdropPassword_Movement_4:
-# 360 "data/maps/YifuCity/scripts.pory"
+# 364 "data/maps/YifuCity/scripts.pory"
 	walk_up
-# 360 "data/maps/YifuCity/scripts.pory"
+# 364 "data/maps/YifuCity/scripts.pory"
 	walk_left
-# 360 "data/maps/YifuCity/scripts.pory"
+# 364 "data/maps/YifuCity/scripts.pory"
 	walk_left
-# 360 "data/maps/YifuCity/scripts.pory"
+# 364 "data/maps/YifuCity/scripts.pory"
 	walk_left
-# 360 "data/maps/YifuCity/scripts.pory"
+# 364 "data/maps/YifuCity/scripts.pory"
 	walk_left
-# 360 "data/maps/YifuCity/scripts.pory"
+# 364 "data/maps/YifuCity/scripts.pory"
 	walk_left
-# 360 "data/maps/YifuCity/scripts.pory"
+# 364 "data/maps/YifuCity/scripts.pory"
 	walk_left
-# 360 "data/maps/YifuCity/scripts.pory"
+# 364 "data/maps/YifuCity/scripts.pory"
 	walk_left
-# 360 "data/maps/YifuCity/scripts.pory"
+# 364 "data/maps/YifuCity/scripts.pory"
 	walk_left
-# 360 "data/maps/YifuCity/scripts.pory"
+# 364 "data/maps/YifuCity/scripts.pory"
 	walk_left
 	step_end
 
-# 367 "data/maps/YifuCity/scripts.pory"
+# 371 "data/maps/YifuCity/scripts.pory"
 YifuCity_Trigger_CrobatGruntsEavesdropPassword_Movement_5:
-# 367 "data/maps/YifuCity/scripts.pory"
+# 371 "data/maps/YifuCity/scripts.pory"
 	walk_down
-# 367 "data/maps/YifuCity/scripts.pory"
+# 371 "data/maps/YifuCity/scripts.pory"
 	walk_down
-# 367 "data/maps/YifuCity/scripts.pory"
+# 371 "data/maps/YifuCity/scripts.pory"
 	walk_down
 	step_end
 
-# 409 "data/maps/YifuCity/scripts.pory"
+# 425 "data/maps/YifuCity/scripts.pory"
 YifuCity_Trigger_CrobatGruntStuckInHole_Movement_0:
-# 409 "data/maps/YifuCity/scripts.pory"
+# 425 "data/maps/YifuCity/scripts.pory"
 	face_left
-# 409 "data/maps/YifuCity/scripts.pory"
+# 425 "data/maps/YifuCity/scripts.pory"
 	delay_16
-# 409 "data/maps/YifuCity/scripts.pory"
-	delay_16
-# 409 "data/maps/YifuCity/scripts.pory"
+# 425 "data/maps/YifuCity/scripts.pory"
 	face_up
-# 409 "data/maps/YifuCity/scripts.pory"
+# 425 "data/maps/YifuCity/scripts.pory"
 	delay_16
-# 409 "data/maps/YifuCity/scripts.pory"
-	delay_16
-# 409 "data/maps/YifuCity/scripts.pory"
+# 425 "data/maps/YifuCity/scripts.pory"
 	face_down
-# 409 "data/maps/YifuCity/scripts.pory"
+# 425 "data/maps/YifuCity/scripts.pory"
 	delay_16
-# 409 "data/maps/YifuCity/scripts.pory"
-	delay_16
-# 409 "data/maps/YifuCity/scripts.pory"
+# 425 "data/maps/YifuCity/scripts.pory"
 	face_right
-# 409 "data/maps/YifuCity/scripts.pory"
+# 425 "data/maps/YifuCity/scripts.pory"
 	delay_16
-# 409 "data/maps/YifuCity/scripts.pory"
-	delay_16
-# 409 "data/maps/YifuCity/scripts.pory"
+# 425 "data/maps/YifuCity/scripts.pory"
 	face_up
+# 425 "data/maps/YifuCity/scripts.pory"
+	delay_16
+# 425 "data/maps/YifuCity/scripts.pory"
+	delay_16
+# 425 "data/maps/YifuCity/scripts.pory"
+	delay_16
 	step_end
 
-# 415 "data/maps/YifuCity/scripts.pory"
+# 431 "data/maps/YifuCity/scripts.pory"
 YifuCity_Trigger_CrobatGruntStuckInHole_Movement_1:
-# 415 "data/maps/YifuCity/scripts.pory"
+# 431 "data/maps/YifuCity/scripts.pory"
 	emote_exclamation_mark
-# 415 "data/maps/YifuCity/scripts.pory"
+# 431 "data/maps/YifuCity/scripts.pory"
 	face_down
 	step_end
 
@@ -938,16 +958,16 @@ YifuCity_Trigger_CrobatGruntsScram_Text_1:
 	.string "Want a taste of this?$"
 
 YifuCity_Trigger_CrobatGruntsScram_Text_2:
-# 276 "data/maps/YifuCity/scripts.pory"
+# 278 "data/maps/YifuCity/scripts.pory"
 	.string "Yeah, that's right, hightail it outta\n"
 	.string "here!$"
 
 YifuCity_Trigger_CrobatGruntsEavesdropPassword_Text_0:
-# 294 "data/maps/YifuCity/scripts.pory"
+# 296 "data/maps/YifuCity/scripts.pory"
 	.string "???$"
 
 YifuCity_Trigger_CrobatGruntsEavesdropPassword_Text_1:
-# 310 "data/maps/YifuCity/scripts.pory"
+# 314 "data/maps/YifuCity/scripts.pory"
 	.string "Last time, I got it wrong and he didn'\n"
 	.string "let me through!\p"
 	.string "Like, brother, why I gotta tell ya\n"
@@ -955,55 +975,66 @@ YifuCity_Trigger_CrobatGruntsEavesdropPassword_Text_1:
 	.string "wen' to school together!$"
 
 YifuCity_Trigger_CrobatGruntsEavesdropPassword_Text_2:
-# 320 "data/maps/YifuCity/scripts.pory"
+# 324 "data/maps/YifuCity/scripts.pory"
 	.string "Wait, ya didn't go to school though,\n"
 	.string "didja?$"
 
 YifuCity_Trigger_CrobatGruntsEavesdropPassword_Text_3:
-# 329 "data/maps/YifuCity/scripts.pory"
+# 333 "data/maps/YifuCity/scripts.pory"
 	.string "Who cares! It's a figger of speech!\n"
 	.string "What's the newest password anyway?$"
 
 YifuCity_Trigger_CrobatGruntsEavesdropPassword_Text_4:
-# 338 "data/maps/YifuCity/scripts.pory"
+# 342 "data/maps/YifuCity/scripts.pory"
 	.string "It's uh…\n"
 	.string "Somethin' with Crobat…\l"
 	.string "“{COLOR RED}Crobat is{COLOR DARK_GRAY}”… Uh…$"
 
 YifuCity_Trigger_CrobatGruntsEavesdropPassword_Text_5:
-# 344 "data/maps/YifuCity/scripts.pory"
+# 348 "data/maps/YifuCity/scripts.pory"
 	.string "Aw man! I forgot it too!$"
 
 YifuCity_Trigger_CrobatGruntsEavesdropPassword_Text_6:
-# 352 "data/maps/YifuCity/scripts.pory"
+# 356 "data/maps/YifuCity/scripts.pory"
 	.string "Ya idjet! How're we gunna get back in\n"
 	.string "now??\p"
 	.string "Now we gotta find another Zubat an'\n"
-	.string "hope he's got the full sent'nce!\p"
+	.string "hope he's got enough brains to\l"
+	.string "remember the full sent'nce!\p"
 	.string "C'mon, lessgo!$"
 
+YifuCity_EventScript_HearEcho_Text_0:
+# 381 "data/maps/YifuCity/scripts.pory"
+	.string "Boy$"
+
+YifuCity_EventScript_HearEcho_Text_1:
+# 383 "data/maps/YifuCity/scripts.pory"
+	.string "There's a ghost haunting the canal!\n"
+	.string "I swear I heard a voice calling when I\l"
+	.string "was walking along the canal!$"
+
 YifuCity_Trigger_CrobatGruntStuckInHole_Text_0:
-# 384 "data/maps/YifuCity/scripts.pory"
+# 400 "data/maps/YifuCity/scripts.pory"
 	.string "Yawn… I'm bored…$"
 
 YifuCity_Trigger_CrobatGruntStuckInHole_Text_1:
-# 388 "data/maps/YifuCity/scripts.pory"
+# 404 "data/maps/YifuCity/scripts.pory"
 	.string "Sure hope there ain't no Sharpedo in\n"
 	.string "here…$"
 
 YifuCity_Trigger_CrobatGruntStuckInHole_Text_2:
-# 392 "data/maps/YifuCity/scripts.pory"
+# 408 "data/maps/YifuCity/scripts.pory"
 	.string "Echo! … … …\n"
 	.string "… … …{FONT_SMALL}echo{FONT_NORMAL}…\p"
 	.string "Hehe…\p"
 	.string "…Sigh…$"
 
 YifuCity_Trigger_CrobatGruntStuckInHole_Text_3:
-# 403 "data/maps/YifuCity/scripts.pory"
+# 419 "data/maps/YifuCity/scripts.pory"
 	.string "Heyyy!! Help!$"
 
 YifuCity_Trigger_CrobatGruntStuckInHole_Text_4:
-# 418 "data/maps/YifuCity/scripts.pory"
+# 434 "data/maps/YifuCity/scripts.pory"
 	.string "I fell down the canal! I'm stuck down\n"
 	.string "'ere!\p"
 	.string "Damn me, couldn't remember the first\n"
@@ -1015,9 +1046,9 @@ YifuCity_Trigger_CrobatGruntStuckInHole_Text_4:
 	.string "This is a dead end!$"
 
 YifuCity_EventScript_Surskit_Text_0:
-# 437 "data/maps/YifuCity/scripts.pory"
+# 453 "data/maps/YifuCity/scripts.pory"
 	.string "Surskit$"
 
 YifuCity_EventScript_Surskit_Text_1:
-# 439 "data/maps/YifuCity/scripts.pory"
+# 455 "data/maps/YifuCity/scripts.pory"
 	.string "Sksksksk…$"

@@ -451,10 +451,12 @@
 #define METATILE_PokemonCenter_Floor_ShadowTop_Alt       0x2DC
 
 // gTileset_PorytilesPrimaryTutorial
-#define METATILE_PorytilesPrimaryTutorial_Grass      0x000
-#define METATILE_PorytilesPrimaryTutorial_Grass2     0x001
-#define METATILE_PorytilesPrimaryTutorial_Grass3     0x002
-#define METATILE_PorytilesPrimaryTutorial_TallGrass  0x008
+#define METATILE_PorytilesPrimaryTutorial_CaveEntrance            0x073
+#define METATILE_PorytilesPrimaryTutorial_Grass                   0x000
+#define METATILE_PorytilesPrimaryTutorial_Grass2                  0x001
+#define METATILE_PorytilesPrimaryTutorial_Grass3                  0x002
+#define METATILE_PorytilesPrimaryTutorial_SecretBaseCaveEntrance  0x0D1
+#define METATILE_PorytilesPrimaryTutorial_TallGrass               0x008
 
 // gTileset_Rustboro
 #define METATILE_Rustboro_Door_Gray  0x21F

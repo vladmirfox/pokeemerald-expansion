@@ -14709,9 +14709,9 @@ F_TRAINER_FEMALE |
 #line 5925
         .trainerName = _("TOSHIO"),
 #line 5926
-        .trainerClass = TRAINER_CLASS_BUG_CATCHER,
+        .trainerClass = TRAINER_CLASS_YOUNGSTER,
 #line 5927
-        .trainerPic = TRAINER_PIC_BUG_CATCHER,
+        .trainerPic = TRAINER_PIC_YOUNGSTER,
         .encounterMusic_gender = 
 #line 5929
             TRAINER_ENCOUNTER_MUSIC_MALE,
@@ -23277,17 +23277,17 @@ F_TRAINER_FEMALE |
         },
     },
 #line 9308
-    [TRAINER_HECTOR] =
+    [TRAINER_KODOMO] =
     {
 #line 9309
-        .trainerName = _("HECTOR"),
+        .trainerName = _("Kodomo"),
 #line 9310
-        .trainerClass = TRAINER_CLASS_COLLECTOR,
+        .trainerClass = TRAINER_CLASS_YOUNGSTER,
 #line 9311
-        .trainerPic = TRAINER_PIC_COLLECTOR,
+        .trainerPic = TRAINER_PIC_YOUNGSTER,
         .encounterMusic_gender = 
 #line 9313
-            TRAINER_ENCOUNTER_MUSIC_SUSPICIOUS,
+            TRAINER_ENCOUNTER_MUSIC_MALE,
 #line 9314
         .doubleBattle = FALSE,
 #line 9315
