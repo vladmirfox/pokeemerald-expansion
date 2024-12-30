@@ -1,6 +1,6 @@
 # pokeemerald-expansion
 
-pokeemerald-expansion is ***NOT a playable romhack. It is a romhack base*** based off pret's [pokeemerald](https://github.com/pret/pokeemerald) decompilation project. It has multiple features available to romhackers so that they can create their own games, but it's not meant to be played on its own.
+pokeemerald-expansion is ***a romhack base*** based off pret's [pokeemerald](https://github.com/pret/pokeemerald) decompilation project. ***It is NOT a playable romhack,*** but it has multiple features available to romhackers so that they can create their own games, so it's not meant to be played on its own.
 
 ## Should I use this or vanilla pokeemerald for my hack?
 The main advantage of using vanilla pokeemerald as a base is being able to link with other official GBA Pokémon games for battles and trading, pokeemerald-expansion can battle and trade with itself out of the box. If you don't mind losing full vanilla compatiblitity, we recommend using pokeemerald-expansion. Otherwise, use pret's pokeemerald. You'll still receive documentation improvements from pret, as we regurlarly incorporate pret's documentation changes.
