@@ -1853,6 +1853,11 @@
 	.4byte \lose_text_b
 	.endm
 
+	.macro facilitytrainerbattle type:req
+	.byte 0xe6
+	.byte \type
+	.endm
+
 @ Supplementary
 
 	.macro goto_if_unset flag:req, dest:req

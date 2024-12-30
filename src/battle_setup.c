@@ -946,6 +946,24 @@ void ResetTrainerOpponentIds(void)
     TRAINER_BATTLE_PARAM.battleOpponentB = 0;
 }
 
+void SetMapVarsToTrainerA(void)
+{
+    if (TRAINER_BATTLE_PARAM.objEventLocalIdA != 0)
+    {
+        gSpecialVar_LastTalked = TRAINER_BATTLE_PARAM.objEventLocalIdA;
+        gSelectedObjectEvent = GetObjectEventIdByLocalIdAndMap(TRAINER_BATTLE_PARAM.objEventLocalIdA, gSaveBlock1Ptr->location.mapNum, gSaveBlock1Ptr->location.mapGroup);
+    }
+}
+
+void SetMapVarsToTrainerB(void)
+{
+    if (TRAINER_BATTLE_PARAM.objEventLocalIdB != 0)
+    {
+        gSpecialVar_LastTalked = TRAINER_BATTLE_PARAM.objEventLocalIdB;
+        gSelectedObjectEvent = GetObjectEventIdByLocalIdAndMap(TRAINER_BATTLE_PARAM.objEventLocalIdB, gSaveBlock1Ptr->location.mapNum, gSaveBlock1Ptr->location.mapGroup);
+    }
+}
+
 static void InitTrainerBattleVariables(void)
 {
     sTrainerBattleMode = 0;
@@ -1027,21 +1045,39 @@ void MultiTrainerBattleLoadArgs(const u8* data)
     TRAINER_BATTLE_PARAM.defeatTextB = temp->params.defeatTextB;
 }
 
-void SetMapVarsToTrainerA(void)
+const u8* BattleSetup_ConfigureFacilityTrainerBattle(u8 type, const u8* scriptEndPtr)
 {
-    if (TRAINER_BATTLE_PARAM.objEventLocalIdA != 0)
+    InitTrainerBattleVariables();
+    sTrainerBattleEndScript = (u8*)scriptEndPtr;
+    switch (type)
     {
-        gSpecialVar_LastTalked = TRAINER_BATTLE_PARAM.objEventLocalIdA;
-        gSelectedObjectEvent = GetObjectEventIdByLocalIdAndMap(TRAINER_BATTLE_PARAM.objEventLocalIdA, gSaveBlock1Ptr->location.mapNum, gSaveBlock1Ptr->location.mapGroup);
-    }
-}
+        case TRAINER_BATTLE_HILL:
+            if (gApproachingTrainerId == 0)
+            {
+                SetMapVarsToTrainerA();
+                TRAINER_BATTLE_PARAM.battleOpponentA = LocalIdToHillTrainerId(gSpecialVar_LastTalked);
+            }
+            else
+            {
+                SetMapVarsToTrainerB();
+                TRAINER_BATTLE_PARAM.battleOpponentB = LocalIdToHillTrainerId(gSpecialVar_LastTalked);
+            }
 
-void SetMapVarsToTrainerB(void)
-{
-    if (TRAINER_BATTLE_PARAM.objEventLocalIdB != 0)
-    {
-        gSpecialVar_LastTalked = TRAINER_BATTLE_PARAM.objEventLocalIdB;
-        gSelectedObjectEvent = GetObjectEventIdByLocalIdAndMap(TRAINER_BATTLE_PARAM.objEventLocalIdB, gSaveBlock1Ptr->location.mapNum, gSaveBlock1Ptr->location.mapGroup);
+            return EventScript_TryDoNormalTrainerBattle;
+        case TRAINER_BATTLE_PYRAMID:
+            if (gApproachingTrainerId == 0)
+            {
+                SetMapVarsToTrainerA();
+                TRAINER_BATTLE_PARAM.battleOpponentA = LocalIdToPyramidTrainerId(gSpecialVar_LastTalked);
+            }
+            else
+            {
+                SetMapVarsToTrainerB();
+                TRAINER_BATTLE_PARAM.battleOpponentB = LocalIdToPyramidTrainerId(gSpecialVar_LastTalked);
+            }
+            return EventScript_TryDoNormalTrainerBattle;
+        default:
+            return NULL;
     }
 }
 
@@ -1215,7 +1251,6 @@ bool32 GetTrainerFlagFromScriptPointer(const u8 *data)
 //       For trainers who spot the player this is handled by PlayerFaceApproachingTrainer
 void SetTrainerFacingDirection(void)
 {
-    DebugPrintfLevel(MGBA_LOG_DEBUG, "settrainerfacingdirection:\nselected: %d\nlast talked: %d\nfacing: %d", gSelectedObjectEvent, gSpecialVar_LastTalked, gSpecialVar_Facing);
     struct ObjectEvent *objectEvent = &gObjectEvents[gSelectedObjectEvent];
     SetTrainerMovementType(objectEvent, GetTrainerFacingDirectionMovementType(objectEvent->facingDirection));
 }
@@ -1443,6 +1478,11 @@ const u8 *BattleSetup_GetScriptAddrAfterBattle(void)
     }
     else
         return EventScript_TestSignpostMsg;
+}
+
+void BattleSetup_SetScriptAddAfterBattle(const u8* ptr)
+{
+    sTrainerBattleEndScript = (u8*)ptr;
 }
 
 const u8 *BattleSetup_GetTrainerPostBattleScript(void)

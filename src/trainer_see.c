@@ -390,8 +390,29 @@ bool8 CheckForTrainersWantingBattle(void)
             break;
     }
 
-    //DebugPrintfLevel(MGBA_LOG_DEBUG, "NoApprTrainers: %d", gNoOfApproachingTrainers);
+    // handle battle pyramid and trainer hill until properly reworked
+    if (InBattlePyramid())
+    {
+        if (gNoOfApproachingTrainers > 0) 
+        {
+            ResetTrainerOpponentIds();
 
+            gSelectedObjectEvent = gApproachingTrainers[0].objectEventId;
+            gSpecialVar_LastTalked = gObjectEvents[gApproachingTrainers[0].objectEventId].localId;
+            BattleSetup_ConfigureFacilityTrainerBattle(TRAINER_BATTLE_PYRAMID, gApproachingTrainers[0].trainerScriptPtr + 2);
+            if (gNoOfApproachingTrainers > 1) 
+            {
+                gSelectedObjectEvent = gApproachingTrainers[1].objectEventId;
+                gSpecialVar_LastTalked = gObjectEvents[gApproachingTrainers[1].objectEventId].localId;
+                BattleSetup_ConfigureFacilityTrainerBattle(TRAINER_BATTLE_PYRAMID, gApproachingTrainers[0].trainerScriptPtr + 2);
+                gApproachingTrainerId = 0;
+            }
+            ScriptContext_SetupScript(EventScript_StartTrainerApproach);
+            LockPlayerFieldControls();
+            return TRUE;
+        }
+    }
+    
     if (gNoOfApproachingTrainers > 0) 
     {
         ResetTrainerOpponentIds();
@@ -406,7 +427,7 @@ bool8 CheckForTrainersWantingBattle(void)
         }
 
         BattleSetup_ConfigureTrainerBattle(gApproachingTrainers[0].trainerScriptPtr + OPCODE_OFFSET, &trainerBattleScriptStack, TRUE);
-        ScriptContext_SetupScript(EventScript_StartTrainerApproach);
+        ScriptContext_SetupScript(EventScript_StartTrainerApproachSnippet);
         ScriptContext_PushFromStack(&trainerBattleScriptStack);
         LockPlayerFieldControls();
 
@@ -415,47 +436,6 @@ bool8 CheckForTrainersWantingBattle(void)
         gTrainerApproachedPlayer = TRUE;
         return TRUE;
     }
-    /*
-    if (gNoOfApproachingTrainers == 1)
-    {
-        ResetTrainerOpponentIds();
-        
-        PtrStack trainerBattleScriptStack;
-        PtrStackInit(&trainerBattleScriptStack);
-        TrainerBattleLoadArgs_2(gApproachingTrainers[0].trainerScriptPtr + OPCODE_OFFSET);
-
-        BattleSetup_ConfigureTrainerBattle(gApproachingTrainers[0].trainerScriptPtr + OPCODE_OFFSET, &trainerBattleScriptStack, TRUE);
-        ScriptContext_SetupScript(EventScript_StartTrainerApproach);
-        ScriptContext_PushFromStack(&trainerBattleScriptStack);
-        LockPlayerFieldControls();
-
-        gSelectedObjectEvent = gApproachingTrainers[0].objectEventId;
-        gSpecialVar_LastTalked = gObjectEvents[gSelectedObjectEvent].localId;
-        gTrainerApproachedPlayer = TRUE;
-        return TRUE;
-    }
-    else if (gNoOfApproachingTrainers == 2)
-    {   
-        ResetTrainerOpponentIds();
-
-        PtrStack trainerBattleScriptStack;
-        PtrStackInit(&trainerBattleScriptStack);
-        TrainerBattleLoadArgs_2(gApproachingTrainers[0].trainerScriptPtr + OPCODE_OFFSET);
-        TrainerBattleLoadArgsSecondTrainer(gApproachingTrainers[1].trainerScriptPtr + OPCODE_OFFSET);
-
-        BattleSetup_ConfigureTrainerBattle(gApproachingTrainers[0].trainerScriptPtr + OPCODE_OFFSET, &trainerBattleScriptStack, TRUE);
-        ScriptContext_SetupScript(EventScript_StartTrainerApproach);
-        ScriptContext_PushFromStack(&trainerBattleScriptStack);
-
-        LockPlayerFieldControls();
-
-        gSelectedObjectEvent = gApproachingTrainers[0].objectEventId;
-        gSpecialVar_LastTalked = gObjectEvents[gSelectedObjectEvent].localId;
-        gApproachingTrainerId = 0;
-        gTrainerApproachedPlayer = TRUE;
-        return TRUE;
-    }
-    */
     else
     {
         gTrainerApproachedPlayer = FALSE;
@@ -475,8 +455,6 @@ static u8 CheckTrainer(u8 objectEventId)
         scriptPtr = GetTrainerHillTrainerScript();
     else
         scriptPtr = GetObjectEventScriptPointerByObjectEventId(objectEventId);
-    
-    //DebugPrintfLevel(MGBA_LOG_DEBUG, "script ptr: %x", scriptPtr);
 
     if (InBattlePyramid())
     {
@@ -923,7 +901,6 @@ void PrepareSecondApproachingTrainer(void)
 
 bool32 TryPrepareSecondApproachingTrainer2(void)
 {
-    DebugPrintfLevel(MGBA_LOG_DEBUG, "no appr: %d, id: %d", gNoOfApproachingTrainers, gApproachingTrainerId);
     return gNoOfApproachingTrainers > 1;
 }
 

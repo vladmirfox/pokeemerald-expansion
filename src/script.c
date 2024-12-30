@@ -107,7 +107,6 @@ bool8 RunScriptCommand(struct ScriptContext *ctx)
             }
 
             cmdCode = *(ctx->scriptPtr);
-            //DebugPrintfLevel(MGBA_LOG_DEBUG, "code: %x, ptr: %x\n", cmdCode, ctx->scriptPtr);
             ctx->scriptPtr++;
             func = &ctx->cmdTable[cmdCode];
 
@@ -244,7 +243,6 @@ bool8 ScriptContext_RunScript(void)
 
     LockPlayerFieldControls();
 
-    //DebugPrintGlobalScriptStack;
     if (!RunScriptCommand(&sGlobalScriptContext))
     {
         sGlobalScriptContextStatus = CONTEXT_SHUTDOWN;

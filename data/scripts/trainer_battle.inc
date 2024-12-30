@@ -1,8 +1,6 @@
 EventScript_StartTrainerApproach::
 	selectapproachingtrainer
 	lockfortrainer
-	return
-
 EventScript_TrainerApproach::
 	special PlayTrainerEncounterMusic
 	special DoTrainerApproach
@@ -142,6 +140,11 @@ EventScript_LockSnippet::
 	lock
 	faceplayer
 	setflag FLAG_SAFE_FOLLOWER_MOVEMENT
+	return
+
+EventScript_StartTrainerApproachSnippet::
+	selectapproachingtrainer
+	lockfortrainer
 	return
 
 EventScript_TrainerApproachSnippet::

@@ -38,6 +38,7 @@ extern const u8 EventScript_TryDoDoubleRematchBattle[];
 extern const u8 EventScript_TryDoRematchBattle[];
 
 extern const u8 EventScript_LockSnippet[];
+extern const u8 EventScript_StartTrainerApproachSnippet[];
 extern const u8 EventScript_TryDoNormalTrainerBattleSnippet[];
 extern const u8 EventScript_RevealTrainerSnippet[];
 extern const u8 EventScript_GetTrainerFlagSnippet[];
