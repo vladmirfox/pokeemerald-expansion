@@ -539,7 +539,6 @@ static inline const u8 *GetMoveBattleScript(u32 moveId)
         return gBattleMoveEffects[EFFECT_PLACEHOLDER].battleScript;
     }
     return gBattleMoveEffects[gMovesInfo[moveId].effect].battleScript;
-
 }
 
 #endif // GUARD_MOVES_H

@@ -10,11 +10,11 @@ SINGLE_BATTLE_TEST("Electromorphosis sets up Charge when hit by any move")
     PARAMETRIZE {move = MOVE_GUST; }
 
     GIVEN {
-        ASSUME(!IS_MOVE_STATUS(MOVE_TACKLE));
-        ASSUME(!IS_MOVE_STATUS(MOVE_GUST));
+        ASSUME(!IsBattleMoveStatus(MOVE_TACKLE));
+        ASSUME(!IsBattleMoveStatus(MOVE_GUST));
         ASSUME(GetMoveCategory(MOVE_GUST) == DAMAGE_CATEGORY_SPECIAL);
         ASSUME(GetMoveCategory(MOVE_TACKLE) == DAMAGE_CATEGORY_PHYSICAL);
-        ASSUME(!IS_MOVE_STATUS(MOVE_THUNDER_SHOCK));
+        ASSUME(!IsBattleMoveStatus(MOVE_THUNDER_SHOCK));
         ASSUME(GetMoveType(MOVE_THUNDER_SHOCK) == TYPE_ELECTRIC);
 
         PLAYER(SPECIES_BELLIBOLT) { Ability(ABILITY_ELECTROMORPHOSIS); Speed(10); }

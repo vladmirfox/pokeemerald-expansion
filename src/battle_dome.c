@@ -2395,7 +2395,7 @@ static int GetTypeEffectivenessPoints(int move, int targetSpecies, int mode)
     int defType1, defType2, defAbility, moveType;
     int typePower = TYPE_x1;
 
-    if (move == MOVE_NONE || move == MOVE_UNAVAILABLE || IS_MOVE_STATUS(move))
+    if (move == MOVE_NONE || move == MOVE_UNAVAILABLE || IsBattleMoveStatus(move))
         return 0;
 
     defType1 = gSpeciesInfo[targetSpecies].types[0];
@@ -4328,7 +4328,7 @@ static void DisplayTrainerInfoOnCard(u8 flags, u8 trainerTourneyId)
                     allocatedArray[k] = IsDomeStatusMoveEffect(move);
                     break;
                 case MOVE_POINTS_DMG:
-                    allocatedArray[k] = (!IS_MOVE_STATUS(move)) ? 1 : 0;
+                    allocatedArray[k] = (!IsBattleMoveStatus(move)) ? 1 : 0;
                     break;
                 case MOVE_POINTS_DEF:
                     allocatedArray[k] = IsDomeDefensiveMoveEffect(effect) ? 1 : 0;
@@ -5110,7 +5110,7 @@ static u16 GetWinningMove(int winnerTournamentId, int loserTournamentId, u8 roun
                 moveIds[i * MAX_MON_MOVES + j] = gFacilityTrainerMons[DOME_MONS[winnerTournamentId][i]].moves[j];
 
             movePower = GetMovePower(moveIds[i * MAX_MON_MOVES + j]);
-            if (IS_MOVE_STATUS(moveIds[i * MAX_MON_MOVES + j]))
+            if (IsBattleMoveStatus(moveIds[i * MAX_MON_MOVES + j]))
                 movePower = 40;
             else if (movePower == 1)
                 movePower = 60;

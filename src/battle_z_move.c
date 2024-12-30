@@ -276,7 +276,7 @@ bool32 MoveSelectionDisplayZMove(u16 zmove, u32 battler)
             BattlePutTextOnWindow(gDisplayedStringBattle, i + 3);
         }
 
-        if (IS_MOVE_STATUS(move))
+        if (IsBattleMoveStatus(move))
         {
             u8 zEffect = GetMoveZEffect(move);
 
