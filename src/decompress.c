@@ -331,7 +331,7 @@ void BuildDecompressionTable(const u32 *packedFreqs, struct DecodeYK *table, u32
 
 static EWRAM_DATA u8 sBitIndex = 0;
 static EWRAM_DATA u32 sReadIndex = 0;
-static EWRAM_DATA u32 sCurrState = 0;
+static IWRAM_DATA u32 sCurrState = 0;
 // Order of allocated memory- ykTable, symbolTable(these go first, because are always aligned), symSize, loSize(last, because not aligned)
 static EWRAM_DATA void *sMemoryAllocated;
 
@@ -364,28 +364,22 @@ __attribute__((target("arm"))) __attribute__((noinline)) __attribute__((optimize
         {
             symbol += stuff->symbolTable[sCurrState] << (currNibble*4);
             u32 currK = stuff->ykTable[sCurrState].kVal;
-            u32 nextState = stuff->ykTable[sCurrState].yVal;
-            //nextState += (currBits >> bitIndex) & (0xff >> (8-currK));
-            nextState += (currBits >> bitIndex) & maskTable[currK];
-            if (bitIndex + currK < 32)
+            sCurrState = stuff->ykTable[sCurrState].yVal - 64;
+            sCurrState += (currBits >> bitIndex) & maskTable[currK];
+            bitIndex += currK;
+            if (bitIndex >= 32)
             {
-                bitIndex += currK;
+                currBits = data[++readIndex];
+                if (bitIndex == 32)
+                {
+                    bitIndex = 0;
+                }
+                else
+                {
+                    bitIndex -= 32;
+                    sCurrState += (currBits & ((1u << bitIndex) - 1)) << (currK - bitIndex);
+                }
             }
-            else if (bitIndex + currK == 32)
-            {
-                readIndex += 1;
-                currBits = data[readIndex];
-                bitIndex = 0;
-            }
-            else if ((bitIndex + currK) > 32)
-            {
-                readIndex += 1;
-                currBits = data[readIndex];
-                u32 remainder = bitIndex + currK - 32;
-                nextState += (data[readIndex] & ((1u << remainder) - 1)) << (currK - remainder);
-                bitIndex = remainder;
-            }
-            sCurrState = nextState-64;
         }
         *resultVec++ = symbol;
     } while (resultVec < resultVecEnd);
@@ -475,9 +469,11 @@ void DecodeSymtANS(const u32 *data, const u32 *pFreqs, u16 *resultVec, u32 count
 // -O3 saves us almost 30k cycles compared to -O2
 __attribute__((target("arm"))) __attribute__((noinline)) __attribute__((optimize("-O3"))) void DecodeSymDeltatANSLoop(const u32 *data, struct DecodeStuff *stuff, u8 *maskTable)
 {
-    u32 readIndex = sReadIndex;
-    u32 currBits = data[readIndex];
-    u32 prevSymbol = 0;
+    data += sReadIndex;
+    const u32 *dataCmpPtr = data;
+
+    u32 currBits = *data++;
+    u32 currSymbol = 0;
     u32 bitIndex = sBitIndex;
     u16 * resultVec = (u16*)(stuff->resultVec);
     u16 * resultVecEnd = &resultVec[stuff->count];
@@ -487,36 +483,28 @@ __attribute__((target("arm"))) __attribute__((noinline)) __attribute__((optimize
         u32 symbol = 0;
         for (u32 currNibble = 0; currNibble < 4; currNibble++)
         {
-            u32 currSymbol = (prevSymbol + stuff->symbolTable[sCurrState]) & 0xf;
-            prevSymbol = currSymbol;
+            currSymbol = (currSymbol + stuff->symbolTable[sCurrState]) & 0xf;
             symbol += currSymbol << (currNibble*4);
             u32 currK = stuff->ykTable[sCurrState].kVal;
-            u32 nextState = stuff->ykTable[sCurrState].yVal;
-            nextState += (currBits >> bitIndex) & maskTable[currK];
-            if (bitIndex + currK < 32)
+            sCurrState = stuff->ykTable[sCurrState].yVal - 64;
+            sCurrState += (currBits >> bitIndex) & maskTable[currK];
+            bitIndex += currK;
+            if (bitIndex > 32)
             {
-                bitIndex += currK;
+                currBits = *data++;
+                bitIndex -= 32;
+                sCurrState += (currBits & ((1u << bitIndex) - 1)) << (currK - bitIndex);
             }
-            else if (bitIndex + currK == 32)
+            else if (bitIndex == 32)
             {
-                readIndex += 1;
-                currBits = data[readIndex];
+                currBits = *data++;
                 bitIndex = 0;
             }
-            else if ((bitIndex + currK) > 32)
-            {
-                readIndex += 1;
-                currBits = data[readIndex];
-                u32 remainder = bitIndex + currK - 32;
-                nextState += (currBits & ((1u << remainder) - 1)) << (currK - remainder);
-                bitIndex = remainder;
-            }
-            sCurrState = nextState - 64;
         }
         *resultVec++ = symbol;
     } while (resultVec < resultVecEnd);
     sBitIndex = bitIndex;
-    sReadIndex = readIndex;
+    sReadIndex += ((data - 1) - dataCmpPtr);
 }
 
 __attribute__((target("arm"))) __attribute__((noinline)) void SwitchToArmCallSymDeltaANS(const u32 *data, struct DecodeStuff *stuff, u8 *maskTable, void (*decodeFunction)(const u32 *data, struct DecodeStuff *stuff, u8 *maskTable))
