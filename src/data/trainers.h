@@ -27725,6 +27725,8 @@ F_TRAINER_FEMALE |
 #line 11056
             .species = SPECIES_ZIGZAGOON,
             .gender = TRAINER_MON_RANDOM_GENDER,
+#line 11056
+            .heldItem = ITEM_EJECT_PACK,
 #line 11058
             .iv = TRAINER_PARTY_IVS(0, 0, 0, 0, 0, 0),
 #line 11057

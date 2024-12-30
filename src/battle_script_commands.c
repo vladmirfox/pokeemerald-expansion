@@ -1206,8 +1206,6 @@ static void Cmd_attackcanceler(void)
         gBattlescriptCurrInstr = BattleScript_MoveEnd;
         return;
     }
-    if (B_STANCE_CHANGE_FAIL < GEN_7 && TryFormChangeBeforeMove())
-        return;
     if (AtkCanceller_UnableToUseMove(moveType))
         return;
 
@@ -1267,8 +1265,6 @@ static void Cmd_attackcanceler(void)
         gMoveResultFlags |= MOVE_RESULT_MISSED;
         return;
     }
-    if (B_STANCE_CHANGE_FAIL >= GEN_7 && TryFormChangeBeforeMove())
-        return;
 
     gHitMarker &= ~HITMARKER_ALLOW_NO_PP;
 
