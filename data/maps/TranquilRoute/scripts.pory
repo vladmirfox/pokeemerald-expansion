@@ -212,6 +212,20 @@ script TranquilRoute_EventScript_Chikao {
 	end
 }
 
+script TranquilRoute_EventScript_Kodomo {
+	trainerbattle_single(
+		TRAINER_KODOMO,
+		format("Ha! Are you trying to avoid the tall grass?"),
+		format("Go back to the grass, you animal!")
+	)
+	speakername("Kodomo")
+	msgbox(format(
+		"I should look for stronger Pokémon in the tall grass, but I'm a little scared of getting jumped by surprise!"
+	))
+	closemessage
+	end
+}
+
 script TranquilRoute_EventScript_Takeshi {
 	trainerbattle_single(
 		TRAINER_TAKESHI,

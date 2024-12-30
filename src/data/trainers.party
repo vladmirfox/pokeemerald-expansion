@@ -3358,29 +3358,22 @@ Hariyama
 Level: 32
 IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
 
-=== TRAINER_KIRK ===
-Name: KIRK
-Class: Guitarist
-Pic: Guitarist
-Gender: Male
-Music: Intense
+=== TRAINER_AKARI ===
+Name: Akari
+Class: Kimono Girl
+Pic: Kimono Girl
+Gender: Female
+Music: Female
 Double Battle: No
 AI: Check Bad Move
 
-Electrike
+Bounsweet
 Level: 17
 IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
-- Quick Attack
-- Thunder Wave
-- Spark
-- Leer
 
-Voltorb
+Skiploom
 Level: 17
 IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
-- Charge
-- Shock Wave
-- Screech
 
 === TRAINER_GRUNT_AQUA_HIDEOUT_7 ===
 Name: GRUNT
@@ -3412,20 +3405,20 @@ Carvanha
 Level: 32
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
-=== TRAINER_SHAWN ===
-Name: SHAWN
-Class: Guitarist
-Pic: Guitarist
-Gender: Male
-Music: Intense
+=== TRAINER_KANAE ===
+Name: Kanae
+Class: Kimono Girl
+Pic: Kimono Girl
+Gender: Female
+Music: Female
 Double Battle: No
 AI: Check Bad Move
 
-Voltorb
+Bounsweet
 Level: 17
 IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
 
-Magnemite
+Bounsweet
 Level: 17
 IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
 
@@ -3989,21 +3982,21 @@ Surskit
 Level: 27
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
-=== TRAINER_DEREK ===
-Name: DEREK
-Class: Bug Maniac
-Pic: Bug Maniac
-Gender: Male
-Music: Suspicious
+=== TRAINER_KARIN ===
+Name: Karin
+Class: Kimono Girl
+Pic: Kimono Girl
+Gender: Female
+Music: Female
 Double Battle: No
 AI: Check Bad Move
 
-Dustox
-Level: 16
+Bounsweet
+Level: 17
 IVs: 18 HP / 18 Atk / 18 Def / 18 SpA / 18 SpD / 18 Spe
 
-Beautifly
-Level: 16
+Bounsweet
+Level: 17
 IVs: 18 HP / 18 Atk / 18 Def / 18 SpA / 18 SpD / 18 Spe
 
 === TRAINER_JEFFREY_2 ===
@@ -5930,8 +5923,8 @@ IVs: 29 HP / 29 Atk / 29 Def / 29 SpA / 29 SpD / 29 Spe
 
 === TRAINER_TOSHIO_1 ===
 Name: TOSHIO
-Class: Bug Catcher
-Pic: Bug Catcher
+Class: Youngster
+Pic: Youngster
 Gender: Male
 Music: Male
 Double Battle: No
@@ -5997,30 +5990,22 @@ Machop
 Level: 9
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
-=== TRAINER_BEN ===
-Name: BEN
-Class: Youngster
-Pic: Youngster
-Gender: Male
-Music: Male
+=== TRAINER_NANAMI ===
+Name: Nanami
+Class: Kimono Girl
+Pic: Kimono Girl
+Gender: Female
+Music: Female
 Double Battle: No
 AI: Check Bad Move
 
-Zigzagoon
+Bounsweet
 Level: 17
 IVs: 18 HP / 18 Atk / 18 Def / 18 SpA / 18 SpD / 18 Spe
-- Headbutt
-- Sand Attack
-- Growl
-- Thunderbolt
 
-Gulpin
+Bounsweet
 Level: 17
 IVs: 18 HP / 18 Atk / 18 Def / 18 SpA / 18 SpD / 18 Spe
-- Amnesia
-- Sludge
-- Yawn
-- Pound
 
 === TRAINER_QUINCY ===
 Name: QUINCY
@@ -9320,12 +9305,12 @@ Nuzleaf
 Level: 14
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
-=== TRAINER_HECTOR ===
-Name: HECTOR
-Class: Collector
-Pic: Collector
+=== TRAINER_KODOMO ===
+Name: Kodomo
+Class: Youngster
+Pic: Youngster
 Gender: Male
-Music: Suspicious
+Music: Male
 Double Battle: No
 AI: Check Bad Move
 
@@ -11846,30 +11831,22 @@ IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
 - Feint Attack
 - Bind
 
-=== TRAINER_VIVIAN ===
-Name: VIVIAN
-Class: Battle Girl
-Pic: Battle Girl
+=== TRAINER_YUKA ===
+Name: Yuka
+Class: Kimono Girl
+Pic: Kimono Girl
 Gender: Female
-Music: Intense
+Music: Female
 Double Battle: No
 AI: Check Bad Move
 
-Meditite
+Bounsweet
 Level: 17
 IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
-- Bide
-- Detect
-- Confusion
-- Thunder Punch
 
-Meditite
+Bounsweet
 Level: 17
 IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
-- Thunder Punch
-- Detect
-- Confusion
-- Meditate
 
 === TRAINER_DANIELLE ===
 Name: DANIELLE
@@ -15790,28 +15767,22 @@ IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 - Ice Beam
 - Rest
 
-=== TRAINER_ANGELO ===
-Name: ANGELO
-Class: Bug Maniac
-Pic: Bug Maniac
-Gender: Male
-Music: Suspicious
+=== TRAINER_MIIKA ===
+Name: Miika
+Class: Kimono Girl
+Pic: Kimono Girl
+Gender: Female
+Music: Female
 Double Battle: No
 AI: Basic Trainer
 
-Illumise
+Bounsweet
 Level: 17
 IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
-- Shock Wave
-- Quick Attack
-- Charm
 
 Volbeat
 Level: 17
 IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
-- Shock Wave
-- Quick Attack
-- Confuse Ray
 
 === TRAINER_DARIUS ===
 Name: DARIUS

@@ -253,11 +253,14 @@
 #define OBJ_EVENT_GFX_MONK                       249
 #define OBJ_EVENT_GFX_SAMURAI                    250
 #define OBJ_EVENT_GFX_ELDER2                     251
+#define OBJ_EVENT_GFX_KIMONO_GIRL                252
+#define OBJ_EVENT_GFX_WOMAN_1                    253
+#define OBJ_EVENT_GFX_COOLTRAINER                254
 
 // NOTE: The maximum amount of object events has been expanded from 255 to 65535.
 // Since dynamic graphics ids still require at least 16 free values, the actual limit
 // is 65519, but even considering follower Pokémon, this should be more than enough :)
-#define NUM_OBJ_EVENT_GFX                        252
+#define NUM_OBJ_EVENT_GFX                        255
 
 
 // These are dynamic object gfx ids.
@@ -394,7 +397,7 @@
 #define OBJ_EVENT_PAL_TAG_OLD_MAN                 0x1126
 #define OBJ_EVENT_PAL_TAG_KOISHI                  0x1127
 #define OBJ_EVENT_PAL_TAG_VALET                   0x1128
-#define OBJ_EVENT_PAL_TAG_FAT_MAN                 0x1129
+#define OBJ_EVENT_PAL_TAG_NPC_PINK_GREEN          0x1129
 #define OBJ_EVENT_PAL_TAG_ARTIST                  0x112A
 #define OBJ_EVENT_PAL_TAG_NINJA_BOY               0x112B
 #define OBJ_EVENT_PAL_TAG_UNUSED                  0x112C
@@ -432,6 +435,7 @@
 #define OBJ_EVENT_PAL_TAG_MONK                    0x114C
 #define OBJ_EVENT_PAL_TAG_SAMURAI                 0x114D
 #define OBJ_EVENT_PAL_TAG_YUTAKA                  0x114E
+#define OBJ_EVENT_PAL_TAG_KIMONO_GIRL             0x114F
 
 #if OW_FOLLOWERS_POKEBALLS
 // Vanilla
@@ -468,6 +472,10 @@
 // Gen VIII
 #define OBJ_EVENT_PAL_TAG_BALL_STRANGE            0x116A
 #endif //OW_FOLLOWERS_POKEBALLS
+
+// More custom Hearth palettes
+#define OBJ_EVENT_PAL_TAG_NPC_ELECTRIC_BLUE_ORANGE 0x116B
+
 // Used as a placeholder follower graphic
 #define OBJ_EVENT_PAL_TAG_SUBSTITUTE              0x7611
 #define OBJ_EVENT_PAL_TAG_EMOTES                  0x8002

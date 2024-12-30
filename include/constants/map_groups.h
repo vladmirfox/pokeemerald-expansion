@@ -126,10 +126,11 @@
 #define MAP_YIFU_CITY_RESTAURANT      (17 | (9 << 8))
 
 // gMapGroup_Dungeons
-#define MAP_GINKO_WOODS      (0 | (10 << 8))
-#define MAP_SILVER_TUNNEL_1F (1 | (10 << 8))
-#define MAP_SILVER_TUNNEL_2F (2 | (10 << 8))
-#define MAP_UUME_FOREST      (3 | (10 << 8))
+#define MAP_GINKO_WOODS       (0 | (10 << 8))
+#define MAP_SILVER_TUNNEL_1F  (1 | (10 << 8))
+#define MAP_SILVER_TUNNEL_2F  (2 | (10 << 8))
+#define MAP_UUME_FOREST       (3 | (10 << 8))
+#define MAP_CROBAT_HIDEOUT_1F (4 | (10 << 8))
 
 // gMapGroup_VanillaMaps1
 #define MAP_PETALBURG_CITY                           (0 | (11 << 8))

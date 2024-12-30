@@ -345,9 +345,9 @@
 #define FLAG_RECEIVED_AURORA_TICKET          0x13A
 #define FLAG_RECEIVED_MYSTIC_TICKET          0x13B
 #define FLAG_RECEIVED_OLD_SEA_MAP            0x13C
-#define FLAG_WONDER_CARD_UNUSED_1            0x13D // These Wonder Card flags are referenced but never set
-#define FLAG_WONDER_CARD_UNUSED_2            0x13E
-#define FLAG_WONDER_CARD_UNUSED_3            0x13F
+#define FLAG_RECEIVED_DOLL_FROM_CHILD        0x13D
+#define FLAG_TRADED_EGG                      0x13E
+#define FLAG_BOUGHT_FAKE_SHINY            0x13F // These Wonder Card flags are referenced but never set
 #define FLAG_WONDER_CARD_UNUSED_4            0x140
 #define FLAG_WONDER_CARD_UNUSED_5            0x141
 #define FLAG_WONDER_CARD_UNUSED_6            0x142
@@ -665,11 +665,11 @@
 #define FLAG_MET_TRAVELING_MERCHANT  0x268
 // True if the Pokémon refuge presentation speech has been given
 #define FLAG_POKEMON_REFUGE_PRESENTATION  0x269
-#define FLAG_UNUSED_0x26A  0x26A // Unused Flag
-#define FLAG_UNUSED_0x26B  0x26B // Unused Flag
-#define FLAG_UNUSED_0x26C  0x26C // Unused Flag
-#define FLAG_UNUSED_0x26D  0x26D // Unused Flag
-#define FLAG_UNUSED_0x26E  0x26E // Unused Flag
+#define FLAG_GOT_CROBAT_PASSWORD_FIRST_HALF 0x26A
+#define FLAG_GOT_CROBAT_PASSWORD_SECOND_HALF 0x26B
+#define FLAG_CROBAT_PASSWORD_CORRECT 0x26C
+#define FLAG_CLEARED_CROBAT_HIDEOUT 0x26D
+#define FLAG_CROBAT_HIDEOUT_SEEN_BY_GRUNT 0x26E
 #define FLAG_UNUSED_0x26F  0x26F // Unused Flag
 #define FLAG_UNUSED_0x270  0x270 // Unused Flag
 #define FLAG_UNUSED_0x271  0x271 // Unused Flag
@@ -1011,7 +1011,7 @@
 #define FLAG_RECEIVED_SHOAL_SHELL_2                                 0x3BD
 #define FLAG_RECEIVED_SHOAL_SHELL_3                                 0x3BE
 #define FLAG_RECEIVED_SHOAL_SHELL_4                                 0x3BF
-#define FLAG_HIDE_ROUTE_111_SECRET_POWER_MAN                        0x3C0
+#define FLAG_GOT_SECRET_POWER                        0x3C0
 #define FLAG_HIDE_SLATEPORT_MUSEUM_POPULATION                       0x3C1
 #define FLAG_HIDE_LILYCOVE_DEPARTMENT_STORE_ROOFTOP_SALE_WOMAN      0x3C2
 #define FLAG_HIDE_MIRAGE_TOWER_ROOT_FOSSIL                          0x3C3

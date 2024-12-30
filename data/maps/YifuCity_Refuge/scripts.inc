@@ -75,67 +75,67 @@ YifuCity_Refuge_EventScript_HotelValet::
 	speakername YifuCity_Refuge_EventScript_HotelValet_Text_0
 # 59 "data/maps/YifuCity_Refuge/scripts.pory"
 	msgbox YifuCity_Refuge_EventScript_HotelValet_Text_1
-# 65 "data/maps/YifuCity_Refuge/scripts.pory"
-	showmoneybox 10, 0
+# 64 "data/maps/YifuCity_Refuge/scripts.pory"
+	showmoneybox 18, 0
 	checkmoney 500
 # 0 "data/maps/YifuCity_Refuge/scripts.pory"
 	compare VAR_RESULT, 0
 	goto_if_ne YifuCity_Refuge_EventScript_HotelValet_2
-# 110 "data/maps/YifuCity_Refuge/scripts.pory"
+# 109 "data/maps/YifuCity_Refuge/scripts.pory"
 	dynmultichoice 0, 0, TRUE, 10, 0, DYN_MULTICHOICE_CB_NONE, YifuCity_Refuge_EventScript_HotelValet_Text_7
-# 119 "data/maps/YifuCity_Refuge/scripts.pory"
+# 118 "data/maps/YifuCity_Refuge/scripts.pory"
 	closemessage
-# 121 "data/maps/YifuCity_Refuge/scripts.pory"
+# 120 "data/maps/YifuCity_Refuge/scripts.pory"
 	speakername YifuCity_Refuge_EventScript_HotelValet_Text_0
-# 122 "data/maps/YifuCity_Refuge/scripts.pory"
+# 121 "data/maps/YifuCity_Refuge/scripts.pory"
 	msgbox YifuCity_Refuge_EventScript_HotelValet_Text_8
-# 126 "data/maps/YifuCity_Refuge/scripts.pory"
+# 125 "data/maps/YifuCity_Refuge/scripts.pory"
 	closemessage
 YifuCity_Refuge_EventScript_HotelValet_1:
-# 129 "data/maps/YifuCity_Refuge/scripts.pory"
+# 128 "data/maps/YifuCity_Refuge/scripts.pory"
 	release
 	return
 
 YifuCity_Refuge_EventScript_HotelValet_2:
-# 68 "data/maps/YifuCity_Refuge/scripts.pory"
+# 67 "data/maps/YifuCity_Refuge/scripts.pory"
 	dynmultichoice 0, 0, TRUE, 10, 0, DYN_MULTICHOICE_CB_NONE, YifuCity_Refuge_EventScript_HotelValet_Text_2, YifuCity_Refuge_EventScript_HotelValet_Text_3
-# 78 "data/maps/YifuCity_Refuge/scripts.pory"
+# 77 "data/maps/YifuCity_Refuge/scripts.pory"
 	closemessage
-# 80 "data/maps/YifuCity_Refuge/scripts.pory"
+# 79 "data/maps/YifuCity_Refuge/scripts.pory"
 	switch VAR_RESULT
-# 81 "data/maps/YifuCity_Refuge/scripts.pory"
+# 80 "data/maps/YifuCity_Refuge/scripts.pory"
 	case 0, YifuCity_Refuge_EventScript_HotelValet_6
-# 101 "data/maps/YifuCity_Refuge/scripts.pory"
+# 100 "data/maps/YifuCity_Refuge/scripts.pory"
 	case 1, YifuCity_Refuge_EventScript_HotelValet_7
 	goto YifuCity_Refuge_EventScript_HotelValet_1
 
 YifuCity_Refuge_EventScript_HotelValet_6:
-# 82 "data/maps/YifuCity_Refuge/scripts.pory"
+# 81 "data/maps/YifuCity_Refuge/scripts.pory"
 	speakername YifuCity_Refuge_EventScript_HotelValet_Text_0
-# 83 "data/maps/YifuCity_Refuge/scripts.pory"
+# 82 "data/maps/YifuCity_Refuge/scripts.pory"
 	msgbox YifuCity_Refuge_EventScript_HotelValet_Text_4
-# 86 "data/maps/YifuCity_Refuge/scripts.pory"
+# 85 "data/maps/YifuCity_Refuge/scripts.pory"
 	removemoney 500
-# 87 "data/maps/YifuCity_Refuge/scripts.pory"
+# 86 "data/maps/YifuCity_Refuge/scripts.pory"
 	updatemoneybox
-# 89 "data/maps/YifuCity_Refuge/scripts.pory"
+# 88 "data/maps/YifuCity_Refuge/scripts.pory"
 	closemessage
-# 91 "data/maps/YifuCity_Refuge/scripts.pory"
+# 90 "data/maps/YifuCity_Refuge/scripts.pory"
 	giveitem ITEM_REFUGE_ROOM_KEY
-# 93 "data/maps/YifuCity_Refuge/scripts.pory"
+# 92 "data/maps/YifuCity_Refuge/scripts.pory"
 	hidemoneybox
-# 95 "data/maps/YifuCity_Refuge/scripts.pory"
+# 94 "data/maps/YifuCity_Refuge/scripts.pory"
 	msgbox YifuCity_Refuge_EventScript_HotelValet_Text_5
-# 98 "data/maps/YifuCity_Refuge/scripts.pory"
+# 97 "data/maps/YifuCity_Refuge/scripts.pory"
 	closemessage
 	goto YifuCity_Refuge_EventScript_HotelValet_1
 
 YifuCity_Refuge_EventScript_HotelValet_7:
-# 102 "data/maps/YifuCity_Refuge/scripts.pory"
+# 101 "data/maps/YifuCity_Refuge/scripts.pory"
 	speakername YifuCity_Refuge_EventScript_HotelValet_Text_0
-# 103 "data/maps/YifuCity_Refuge/scripts.pory"
+# 102 "data/maps/YifuCity_Refuge/scripts.pory"
 	msgbox YifuCity_Refuge_EventScript_HotelValet_Text_6
-# 106 "data/maps/YifuCity_Refuge/scripts.pory"
+# 105 "data/maps/YifuCity_Refuge/scripts.pory"
 	closemessage
 	goto YifuCity_Refuge_EventScript_HotelValet_1
 
@@ -191,33 +191,33 @@ YifuCity_Refuge_EventScript_HotelValet_Text_1:
 	.string "a place to spend the night!$"
 
 YifuCity_Refuge_EventScript_HotelValet_Text_2:
-# 75 "data/maps/YifuCity_Refuge/scripts.pory"
+# 74 "data/maps/YifuCity_Refuge/scripts.pory"
 	.string "One room, please.$"
 
 YifuCity_Refuge_EventScript_HotelValet_Text_3:
-# 76 "data/maps/YifuCity_Refuge/scripts.pory"
+# 75 "data/maps/YifuCity_Refuge/scripts.pory"
 	.string "No, thanks.$"
 
 YifuCity_Refuge_EventScript_HotelValet_Text_4:
-# 84 "data/maps/YifuCity_Refuge/scripts.pory"
+# 83 "data/maps/YifuCity_Refuge/scripts.pory"
 	.string "For sure. That'll be ¥500!$"
 
 YifuCity_Refuge_EventScript_HotelValet_Text_5:
-# 96 "data/maps/YifuCity_Refuge/scripts.pory"
+# 95 "data/maps/YifuCity_Refuge/scripts.pory"
 	.string "Your room is the first one down the\n"
 	.string "corridor! We hope you have a pleasant\l"
 	.string "stay!$"
 
 YifuCity_Refuge_EventScript_HotelValet_Text_6:
-# 104 "data/maps/YifuCity_Refuge/scripts.pory"
+# 103 "data/maps/YifuCity_Refuge/scripts.pory"
 	.string "Have a nice day!$"
 
 YifuCity_Refuge_EventScript_HotelValet_Text_7:
-# 117 "data/maps/YifuCity_Refuge/scripts.pory"
+# 116 "data/maps/YifuCity_Refuge/scripts.pory"
 	.string "I'm poor…$"
 
 YifuCity_Refuge_EventScript_HotelValet_Text_8:
-# 123 "data/maps/YifuCity_Refuge/scripts.pory"
+# 122 "data/maps/YifuCity_Refuge/scripts.pory"
 	.string "Oh my, it appears you don't have\n"
 	.string "enough money…\p"
 	.string "I'm sorry!$"

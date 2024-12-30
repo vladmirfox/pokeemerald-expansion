@@ -1,0 +1,18 @@
+mapscripts CrobatHideout_1F_MapScripts {
+	
+}
+
+// TODO EVA
+script CrobatHideout_1F_EventScript_Grunt1 {
+	trainerbattle_single(
+		TRAINER_DUMMY,
+		format("It's the intruder!!"),
+		format("Boss, help us!")
+	)
+	speakername("Zubat Grunt")
+	msgbox(format(
+		"You got nothin' on us!\nErr I mean, we done nothin' wrong!"
+	))
+	closemessage
+	end
+}

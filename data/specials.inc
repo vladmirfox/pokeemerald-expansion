@@ -564,3 +564,4 @@ gSpecials::
 	def_special AssignRandomMonCryVars
 	def_special EnterDexRiddleGuess
 	def_special GetDexRiddleFeedback
+	def_special DestroySelectedPartyMon

@@ -114,7 +114,7 @@ SunriseVillage_Event_GuardForest::
 # 102 "data/maps/SunriseVillage/scripts.pory"
 	closemessage
 # 103 "data/maps/SunriseVillage/scripts.pory"
-	applymovement OBJ_EVENT_ID_PLAYER, Common_Movement_WalkDown
+	applymovement OBJ_EVENT_ID_PLAYER, SunriseVillage_Event_GuardForest_Movement_0
 # 104 "data/maps/SunriseVillage/scripts.pory"
 	waitmovement 0
 SunriseVillage_Event_GuardForest_1:
@@ -138,7 +138,7 @@ SunriseVillage_Event_GuardForest_2:
 # 83 "data/maps/SunriseVillage/scripts.pory"
 	closemessage
 # 84 "data/maps/SunriseVillage/scripts.pory"
-	applymovement OBJ_EVENT_ID_PLAYER, Common_Movement_WalkDown
+	applymovement OBJ_EVENT_ID_PLAYER, SunriseVillage_Event_GuardForest_Movement_0
 # 85 "data/maps/SunriseVillage/scripts.pory"
 	waitmovement 0
 	goto SunriseVillage_Event_GuardForest_1
@@ -158,7 +158,7 @@ SunriseVillage_Event_GuardForest_6:
 # 75 "data/maps/SunriseVillage/scripts.pory"
 	closemessage
 # 76 "data/maps/SunriseVillage/scripts.pory"
-	applymovement OBJ_EVENT_ID_PLAYER, Common_Movement_WalkDown
+	applymovement OBJ_EVENT_ID_PLAYER, SunriseVillage_Event_GuardForest_Movement_0
 # 77 "data/maps/SunriseVillage/scripts.pory"
 	waitmovement 0
 	goto SunriseVillage_Event_GuardForest_1
@@ -415,6 +415,12 @@ SunriseVillage_Event_EldersHouseSign::
 	msgbox SunriseVillage_Event_EldersHouseSign_Text_0, MSGBOX_SIGN
 	return
 
+
+# 76 "data/maps/SunriseVillage/scripts.pory"
+SunriseVillage_Event_GuardForest_Movement_0:
+# 76 "data/maps/SunriseVillage/scripts.pory"
+	walk_down
+	step_end
 
 SunriseVillage_Event_FatGuy_Text_0:
 # 35 "data/maps/SunriseVillage/scripts.pory"

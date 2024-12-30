@@ -1355,3 +1355,5 @@ EventScript_VsSeekerChargingDone::
 	.include "data/maps/YifuCity_Refuge_2F_Rooms/scripts.inc"
 
 	.include "data/maps/YifuCity_Restaurant/scripts.inc"
+
+	.include "data/maps/CrobatHideout_1F/scripts.inc"

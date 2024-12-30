@@ -142,6 +142,19 @@
 #define METATILE_Dewford_Door              0x225
 #define METATILE_Dewford_Door_BattleTower  0x25D
 
+// gTileset_DojoYifu
+#define METATILE_DojoYifu_DoorBottomLeft      0x220
+#define METATILE_DojoYifu_DoorBottomRight     0x221
+#define METATILE_DojoYifu_DoorTopLeft         0x218
+#define METATILE_DojoYifu_DoorTopRight        0x219
+#define METATILE_DojoYifu_PassageBottomLeft   0x234
+#define METATILE_DojoYifu_PassageBottomRight  0x233
+#define METATILE_DojoYifu_PassageTopLeft      0x21D
+#define METATILE_DojoYifu_PassageTopRight     0x21A
+#define METATILE_DojoYifu_Stairs              0x216
+#define METATILE_DojoYifu_WoodFloor           0x20F
+#define METATILE_DojoYifu_WoodFloorDark       0x21F
+
 // gTileset_EliteFour
 #define METATILE_EliteFour_EntryDoor_ClosedBottom    0x20E
 #define METATILE_EliteFour_EntryDoor_ClosedTop       0x206
@@ -438,10 +451,12 @@
 #define METATILE_PokemonCenter_Floor_ShadowTop_Alt       0x2DC
 
 // gTileset_PorytilesPrimaryTutorial
-#define METATILE_PorytilesPrimaryTutorial_Grass      0x000
-#define METATILE_PorytilesPrimaryTutorial_Grass2     0x001
-#define METATILE_PorytilesPrimaryTutorial_Grass3     0x002
-#define METATILE_PorytilesPrimaryTutorial_TallGrass  0x008
+#define METATILE_PorytilesPrimaryTutorial_CaveEntrance            0x073
+#define METATILE_PorytilesPrimaryTutorial_Grass                   0x000
+#define METATILE_PorytilesPrimaryTutorial_Grass2                  0x001
+#define METATILE_PorytilesPrimaryTutorial_Grass3                  0x002
+#define METATILE_PorytilesPrimaryTutorial_SecretBaseCaveEntrance  0x0D1
+#define METATILE_PorytilesPrimaryTutorial_TallGrass               0x008
 
 // gTileset_Rustboro
 #define METATILE_Rustboro_Door_Gray  0x21F
