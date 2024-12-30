@@ -5,13 +5,17 @@ pokeemerald-expansion is ***NOT a playable romhack. It is a romhack base*** base
 ## Should I use this or vanilla pokeemerald for my hack?
 The main advantage of using vanilla pokeemerald as a base is being able to link with other official GBA Pokémon games for battles and trading, pokeemerald-expansion can battle and trade with itself out of the box. If you don't mind losing full vanilla compatiblitity, we recommend using pokeemerald-expansion. Otherwise, use pret's pokeemerald. You'll still receive documentation improvements from pret, as we regurlarly incorporate pret's documentation changes.
 
+## Using pokeemerald-expansion
+
 If you use pokeemerald-expansion in your hack, please add RHH (Rom Hacking Hideout) to your credits list. Optionally, you can list the version used, so it can help players know what features to expect.
 You can phrase it as the following:
 ```
-Based off RHH's pokeemerald-expansion 1.9.3 https://github.com/rh-hideout/pokeemerald-expansion/
+Based off RHH's pokeemerald-expansion 1.10.0 https://github.com/rh-hideout/pokeemerald-expansion/
 ```
 
 #### Important: DO NOT use GitHub's "Download Zip" option. Using this option will not download the commit history required to update your expansion version or merge other feature branches. Instead, please read [this guide](https://github.com/Pawkkie/Team-Aquas-Asset-Repo/wiki/The-Basics-of-GitHub) to learn how to fork the repository and clone locally from there.
+
+Please follow the instructions in `INSTALL.md` to get pokeemerald-expansion set up on your machine.
 
 ### If I already have a project based on regular pokeemerald, can I use pokeemerald-expansion?
 Yes! Keep in mind that we keep up with pret's documentation of pokeemerald, which means that if your project a bit old, you might get merge conflicts that you need to solve manually.
