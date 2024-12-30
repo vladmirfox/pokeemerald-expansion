@@ -71,8 +71,6 @@
 // Special indicator value for shellBellDmg in SpecialStatus
 #define IGNORE_SHELL_BELL 0xFFFF
 
-#define GET_MOVE_BATTLESCRIPT(move) gBattleMoveEffects[GetMoveEffect(move)].battleScript
-
 struct ResourceFlags
 {
     u32 flags[MAX_BATTLERS_COUNT];
