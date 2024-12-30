@@ -3574,7 +3574,7 @@ static void DoBattleIntro(void)
         }
         else // Skip party summary since it is a wild battle.
         {
-            if (B_FAST_INTRO == TRUE)
+            if (B_FAST_INTRO_PKMN_TEXT == TRUE)
                 gBattleStruct->introState = BATTLE_INTRO_STATE_INTRO_TEXT; // Don't wait for sprite, print message at the same time.
             else
                 gBattleStruct->introState++; // Wait for sprite to load.
@@ -3646,7 +3646,7 @@ static void DoBattleIntro(void)
             }
             else
             {
-                if (B_FAST_INTRO == TRUE)
+                if (B_FAST_INTRO_PKMN_TEXT == TRUE)
                     gBattleStruct->introState = BATTLE_INTRO_STATE_WAIT_FOR_WILD_BATTLE_TEXT;
                 else
                     gBattleStruct->introState = BATTLE_INTRO_STATE_WAIT_FOR_TRAINER_2_SEND_OUT_ANIM;
@@ -3685,7 +3685,7 @@ static void DoBattleIntro(void)
             BtlController_EmitIntroTrainerBallThrow(battler, BUFFER_A);
             MarkBattlerForControllerExec(battler);
         }
-        if (B_FAST_INTRO == TRUE
+        if (B_FAST_INTRO_PKMN_TEXT == TRUE
           && !(gBattleTypeFlags & (BATTLE_TYPE_RECORDED | BATTLE_TYPE_RECORDED_LINK | BATTLE_TYPE_RECORDED_IS_MASTER | BATTLE_TYPE_LINK)))
             gBattleStruct->introState = BATTLE_INTRO_STATE_WAIT_FOR_WILD_BATTLE_TEXT; // Print at the same time as trainer sends out second mon.
         else
@@ -3708,7 +3708,7 @@ static void DoBattleIntro(void)
                 battler = GetBattlerAtPosition(B_POSITION_PLAYER_LEFT);
 
             // A hack that makes fast intro work in trainer battles too.
-            if (B_FAST_INTRO == TRUE
+            if (B_FAST_INTRO_PKMN_TEXT == TRUE
                 && gBattleTypeFlags & BATTLE_TYPE_TRAINER
                 && !(gBattleTypeFlags & (BATTLE_TYPE_RECORDED | BATTLE_TYPE_RECORDED_LINK | BATTLE_TYPE_RECORDED_IS_MASTER | BATTLE_TYPE_LINK))
                 && gSprites[gHealthboxSpriteIds[battler ^ BIT_SIDE]].callback == SpriteCallbackDummy)
