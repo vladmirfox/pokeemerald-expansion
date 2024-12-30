@@ -3650,7 +3650,6 @@ u32 BattlerHPPercentage(u32 battler, u32 operation, u32 threshold)
 u32 ShouldDoTrainerSlide(u32 battler, u32 which)
 {
     u32 i, firstId, lastId, trainerId, retValue = 1;
-    enum DifficultyLevel difficulty = GetCurrentDifficultyLevel();
 
     if (!(gBattleTypeFlags & BATTLE_TYPE_TRAINER) || GetBattlerSide(battler) != B_SIDE_OPPONENT)
         return 0;
@@ -3675,6 +3674,8 @@ u32 ShouldDoTrainerSlide(u32 battler, u32 which)
         firstId = 0, lastId = PARTY_SIZE;
         trainerId = gTrainerBattleOpponent_A;
     }
+
+    enum DifficultyLevel difficulty = GetTrainerDifficultyLevel(trainerId);
 
     for (i = 0; i < ARRAY_COUNT(sTrainerSlides); i++)
     {
