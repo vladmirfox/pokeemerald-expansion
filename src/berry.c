@@ -1711,11 +1711,13 @@ bool32 IsEnigmaBerryValid(void)
 const struct Berry *GetBerryInfo(u8 berry)
 {
     if (berry == ITEM_TO_BERRY(ITEM_ENIGMA_BERRY_E_READER) && IsEnigmaBerryValid())
+    {
     #if FREE_ENIGMA_BERRY == FALSE
         return (struct Berry *)(&gSaveBlock1Ptr->enigmaBerry.berry);
     #else
         return &gBerries[0];    //never reached, but will appease the compiler gods
     #endif //FREE_ENIGMA_BERRY
+    }
     else
     {
         if (berry == BERRY_NONE || berry > ITEM_TO_BERRY(LAST_BERRY_INDEX))
@@ -2037,7 +2039,9 @@ static u8 CalcBerryYieldInternal(u16 max, u16 min, u8 water)
     u32 extraYield;
 
     if (water == 0 || OW_BERRY_MOISTURE)
+    {
         return min;
+    }
     else
     {
         randMin = (max - min) * (water - 1);
@@ -2144,7 +2148,7 @@ void ObjectEventInteractionGetBerryCountString(void)
     u8 treeId = GetObjectEventBerryTreeId(gSelectedObjectEvent);
     u8 berry = GetBerryTypeByBerryTreeId(treeId);
     u8 count = GetBerryCountByBerryTreeId(treeId);
-    
+
     gSpecialVar_0x8006 = BerryTypeToItemId(berry);
     CopyItemNameHandlePlural(BerryTypeToItemId(berry), gStringVar1, count);
     berry = GetTreeMutationValue(treeId);
@@ -2388,6 +2392,8 @@ static u8 GetTreeMutationValue(u8 id)
     myMutation.asField.a = tree->mutationA;
     myMutation.asField.b = tree->mutationB;
     myMutation.asField.unused = 0;
+    if (myMutation.value == 0) // no mutation
+        return 0;
     return sBerryMutations[myMutation.value - 1][2];
 #else
     return 0;
@@ -2422,7 +2428,7 @@ static u16 GetBerryPestSpecies(u8 berryId)
             return P_FAMILY_VOLBEAT_ILLUMISE ? SPECIES_ILLUMISE : SPECIES_NONE;
             break;
         case BERRY_COLOR_GREEN:
-            return P_FAMILY_BURMY ? SPECIES_BURMY_PLANT_CLOAK : SPECIES_NONE;
+            return P_FAMILY_BURMY ? SPECIES_BURMY_PLANT : SPECIES_NONE;
             break;
         case BERRY_COLOR_YELLOW:
             return P_FAMILY_COMBEE ? SPECIES_COMBEE : SPECIES_NONE;
