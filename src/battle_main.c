@@ -2066,9 +2066,15 @@ static u32 PickLowest(const struct Trainer *trainer, u8 *poolIndexArray, u32 par
     u32 monIndex = POOL_SLOT_DISABLED;
     u32 lowestIndex = POOL_SLOT_DISABLED;
     for (u32 i = 0; i < trainer->poolSize; i++)
-        if (poolIndexArray[i] < poolIndexArray[lowestIndex])
+    {
+        if (poolIndexArray[i] < monIndex)
+        {
             lowestIndex = i;
-    monIndex = poolIndexArray[lowestIndex];
+            monIndex = poolIndexArray[i];
+        }
+    }
+    if (lowestIndex == POOL_SLOT_DISABLED)
+        return POOL_SLOT_DISABLED;
     poolIndexArray[lowestIndex] = POOL_SLOT_DISABLED;
     return monIndex;
 }
@@ -2250,6 +2256,14 @@ static void TestPrune(const struct Trainer *trainer, u8 *poolIndexArray, const s
             poolIndexArray[i] = POOL_SLOT_DISABLED;
 }
 
+static void RandomTagPrune(const struct Trainer *trainer, u8 *poolIndexArray, const struct PoolRules *rules)
+{
+    u32 tagToUse = trainer->party[poolIndexArray[0]].tags;
+    for (u32 i = 0; i < trainer->poolSize; i++)
+        if (!(trainer->party[poolIndexArray[i]].tags & tagToUse))
+            poolIndexArray[i] = POOL_SLOT_DISABLED;
+}
+
 static void PrunePool(const struct Trainer *trainer, u8 *poolIndexArray, const struct PoolRules *rules)
 {
     //  Use defined pruning functions go here
@@ -2259,6 +2273,9 @@ static void PrunePool(const struct Trainer *trainer, u8 *poolIndexArray, const s
             break;
         case POOL_PRUNE_TEST:
             TestPrune(trainer, poolIndexArray, rules);
+            break;
+        case POOL_PRUNE_RANDOM_TAG:
+            RandomTagPrune(trainer, poolIndexArray, rules);
             break;
         default:
             break;
