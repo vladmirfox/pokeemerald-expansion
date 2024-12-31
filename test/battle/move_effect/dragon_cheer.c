@@ -80,3 +80,5 @@ DOUBLE_BATTLE_TEST("Dragon Cheer fails if critical hit stage was already increas
         MESSAGE("But it failed!");
     }
 }
+
+TO_DO_BATTLE_TEST("Baton Pass passes Dragon Cheer's effect");
