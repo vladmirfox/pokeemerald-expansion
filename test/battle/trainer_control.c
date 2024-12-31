@@ -6,6 +6,7 @@
 #include "malloc.h"
 #include "random.h"
 #include "string_util.h"
+#include "trainer_pools.h"
 #include "constants/item.h"
 #include "constants/abilities.h"
 #include "constants/trainers.h"
