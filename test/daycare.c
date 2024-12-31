@@ -64,3 +64,26 @@ TEST("Daycare Pokémon can breed with Ditto if they don't belong to the Ditto or
         EXPECT_EQ(GetMonData(&gPlayerParty[0], MON_DATA_SPECIES), SPECIES_NONE);
 
 }
+
+TEST("Daycare Pokémon with regional forms give the correct offspring")
+{
+    u32 offspring = 0;
+    ASSUME(P_FAMILY_MEOWTH == TRUE);
+    ASSUME(P_ALOLAN_FORMS == TRUE);
+    ASSUME(P_GALARIAN_FORMS == TRUE);
+    ASSUME(REGION_CURRENT == REGION_HOENN);
+
+    ZeroPlayerPartyMons();
+    PARAMETRIZE { offspring = SPECIES_MEOWTH;       RUN_OVERWORLD_SCRIPT(givemon SPECIES_MEOWTH,  1, gender=MON_MALE; givemon SPECIES_MEOWTH_ALOLA, 1, gender=MON_FEMALE;); }
+    PARAMETRIZE { offspring = SPECIES_MEOWTH_ALOLA; RUN_OVERWORLD_SCRIPT(givemon SPECIES_MEOWTH,  1, gender=MON_MALE; givemon SPECIES_MEOWTH_ALOLA, 1, gender=MON_FEMALE, item=ITEM_EVERSTONE;); }
+    PARAMETRIZE { offspring = SPECIES_MEOWTH;       RUN_OVERWORLD_SCRIPT(givemon SPECIES_MEOWTH,  1, gender=MON_MALE; givemon SPECIES_MEOWTH_GALAR, 1, gender=MON_FEMALE;); }
+    PARAMETRIZE { offspring = SPECIES_MEOWTH_GALAR; RUN_OVERWORLD_SCRIPT(givemon SPECIES_MEOWTH,  1, gender=MON_MALE; givemon SPECIES_MEOWTH_GALAR, 1, gender=MON_FEMALE, item=ITEM_EVERSTONE;); }
+    // Cases provided by cawtds
+    PARAMETRIZE { offspring = SPECIES_MEOWTH;       RUN_OVERWORLD_SCRIPT(givemon SPECIES_DIGLETT, 1, gender=MON_MALE; givemon SPECIES_MEOWTH_GALAR, 1, gender=MON_FEMALE;); }
+    PARAMETRIZE { offspring = SPECIES_MEOWTH_GALAR; RUN_OVERWORLD_SCRIPT(givemon SPECIES_DIGLETT, 1, gender=MON_MALE; givemon SPECIES_MEOWTH_GALAR, 1, gender=MON_FEMALE, item=ITEM_EVERSTONE;); }
+    PARAMETRIZE { offspring = SPECIES_MEOWTH_GALAR; RUN_OVERWORLD_SCRIPT(givemon SPECIES_PERRSERKER, 1, gender=MON_MALE, item=ITEM_EVERSTONE; givemon SPECIES_PERSIAN, 1, gender=MON_FEMALE;); }
+    //PARAMETRIZE { offspring = SPECIES_MEOWTH;       RUN_OVERWORLD_SCRIPT(givemon SPECIES_PERRSERKER, 1, gender=MON_MALE, item=ITEM_EVERSTONE; givemon SPECIES_PERSIAN, 1, gender=MON_FEMALE, item=ITEM_EVERSTONE;); }
+    STORE_IN_DAYCARE_AND_GET_EGG();
+
+    EXPECT_EQ(GetMonData(&gPlayerParty[0], MON_DATA_SPECIES), offspring);
+}

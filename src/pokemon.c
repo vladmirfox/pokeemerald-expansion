@@ -6979,22 +6979,29 @@ u32 CheckDynamicMoveType(struct Pokemon *mon, u32 move, u32 battler)
     return gMovesInfo[move].type;
 }
 
-u16 GetRegionalForm(u32 species, u32 region)
+u32 GetRegionalForm(u32 species, u32 region)
 {
     u32 formId = 0;
-    u32 foundSpecies = 0;
+    u32 firstFoundSpecies = 0;
+    const u16 *formTable = GetSpeciesFormTable(species);
 
-    if (GetSpeciesFormTable(species) != NULL)
+    if (formTable != NULL)
     {
-        for (formId = 0; GetSpeciesFormTable(species)[formId] != FORM_SPECIES_END; formId++)
+        for (formId = 0; formTable[formId] != FORM_SPECIES_END; formId++)
         {
-            foundSpecies = GetSpeciesFormTable(species)[formId];
-            if ((gSpeciesInfo[foundSpecies].isAlolanForm   && region == REGION_ALOLA)
-             || (gSpeciesInfo[foundSpecies].isGalarianForm && region == REGION_GALAR)
-             || (gSpeciesInfo[foundSpecies].isHisuianForm  && region == REGION_HISUI)
-             || (gSpeciesInfo[foundSpecies].isPaldeanForm  && region == REGION_PALDEA))
-                return foundSpecies;
+            if (firstFoundSpecies == 0)
+                firstFoundSpecies = formTable[formId];
+            
+            if ((gSpeciesInfo[formTable[formId]].isAlolanForm   && region == REGION_ALOLA)
+             || (gSpeciesInfo[formTable[formId]].isGalarianForm && region == REGION_GALAR)
+             || (gSpeciesInfo[formTable[formId]].isHisuianForm  && region == REGION_HISUI)
+             || (gSpeciesInfo[formTable[formId]].isPaldeanForm  && region == REGION_PALDEA))
+            {
+                return formTable[formId];
+            }
         }
+        if (firstFoundSpecies != 0)
+            return firstFoundSpecies;
     }
     return species;
 }
