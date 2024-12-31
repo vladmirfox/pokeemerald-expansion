@@ -115,4 +115,8 @@ Here Tiana has been given a pool that's set up for a double battle with weather.
 
 ## Pool settings
 If no pool rule is specified in the trainer, the default rules will be used, which sets rules according to some defaults from `include/config/battle.h`.
-This file also has settings for pool verification, which will assess if the pool is valid and can generate enough mons to fill the party, and for persistent pool creation which means that every time the same trainer is encountered in a particular save, the part picked from the pool will remain the same.
+This file also has settings for other pool options.
+
+- `B_POOL_SETTING_CONSISTENT_RNG`, `TRUE` or `FALSE`, the party generated will always be the same on a particular save (RNG dependant on trainerId and encountered trainer).
+- `B_POOL_SETTING_USE_FIXED_SEED`, `TRUE` or `FALSE`, the party generated will always be the same on a particular compiled ROM (RNG dependant on a chosen seed and encountered trainer).
+- `B_POOL_SETTING_FIXED_SEED`, seed to use for fixed seed, does nothing if `B_POOL_SETTING_USE_FIXED_SEED` is `FALSE`.
