@@ -1007,9 +1007,9 @@ static u16 DetermineEggSpeciesAndParentSlots(struct DayCare *daycare, u8 *parent
     motherIsForeign = IsSpeciesForeignRegionalForm(motherEggSpecies, REGION_CURRENT);
     fatherIsForeign = IsSpeciesForeignRegionalForm(fatherEggSpecies, REGION_CURRENT);
 
-    if (motherIsForeign && hasMotherEverstone)
+    if (hasMotherEverstone)
         parentSpecies = motherEggSpecies;
-    else if (fatherIsForeign && hasFatherEverstone && GET_BASE_SPECIES_ID(motherEggSpecies) == GET_BASE_SPECIES_ID(fatherEggSpecies))
+    else if (fatherIsForeign && hasFatherEverstone)
         parentSpecies = fatherEggSpecies;
     else if (motherIsForeign)
         parentSpecies = GetRegionalForm(motherEggSpecies, REGION_CURRENT);
