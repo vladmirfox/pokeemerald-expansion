@@ -44,7 +44,7 @@ PRs that DO NOT have the Github labels [`bugfix`](https://github.com/rh-hideout/
 ## Release Blocking and Milestones
 When an issue or PR is assigned to a [milestone on Github](https://github.com/rh-hideout/pokeemerald-expansion/milestones) by a Maintainer, that means it is "Blocking". If another Maintainer agrees with this, then that version cannot be released until that issue is resolved or PR is merged.
 
-This desgination should be reserved for instances where an existing feature on `upcoming` or `master` is broken and causing problems for users or players.
+This designation should be reserved for instances where an existing feature on `upcoming` or `master` is broken and causing problems for users or players.
 
 Blocking issues or PRs can be deferred to future releases but should be discussed with the Maintainers that assigned the designation in the first place.
 
