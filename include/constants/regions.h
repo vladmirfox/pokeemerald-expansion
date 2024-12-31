@@ -15,7 +15,7 @@ enum Region
     REGION_HISUI,
     REGION_PALDEA,
     REGION_COUNT,
-}
+};
 
 // TODO: Since there's no current multi-region support, we have this constant for the purposes of regional form comparisons.
 #define REGION_CURRENT  REGION_HOENN
