@@ -2012,7 +2012,7 @@ u32 GetMostSuitableMonToSwitchInto(u32 battler, bool32 switchAfterMonKOd)
     // This all handled by the GetBestMonIntegrated function if the AI_FLAG_SMART_MON_CHOICES flag is set
     else
     {
-        s32 i, aliveCount = 0;
+        s32 i, aliveCount = 0, aceMonCount = 0;
         u32 invalidMons = 0, aceMonId = PARTY_SIZE;
         // Get invalid slots ids.
         for (i = firstId; i < lastId; i++)
@@ -2029,6 +2029,7 @@ u32 GetMostSuitableMonToSwitchInto(u32 battler, bool32 switchAfterMonKOd)
             else if (IsAceMon(battler, i)) // Save Ace Pokemon for last.
             {
                 aceMonId = i;
+                aceMonCount++;
                 invalidMons |= 1u << i;
             }
             else
@@ -2048,8 +2049,8 @@ u32 GetMostSuitableMonToSwitchInto(u32 battler, bool32 switchAfterMonKOd)
         if (bestMonId != PARTY_SIZE)
             return bestMonId;
 
-        // If ace mon is the last available Pokemon and switch move was used - switch to the mon.
-        if (aceMonId != PARTY_SIZE)
+        // If ace mon is the last available Pokemon and U-Turn/Volt Switch was used - switch to the mon.
+        if (aceMonId != PARTY_SIZE && CountUsablePartyMons(battler) <= aceMonCount && IsSwitchOutEffect(gMovesInfo[gLastUsedMove].effect))
             return aceMonId;
 
         return PARTY_SIZE;
