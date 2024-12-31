@@ -2,16 +2,20 @@
 #define GUARD_CONSTANTS_REGIONS_H
 
 // Core-series regions
-#define REGION_KANTO    0
-#define REGION_JOHTO    1
-#define REGION_HOENN    2
-#define REGION_SINNOH   3
-#define REGION_UNOVA    4
-#define REGION_KALOS    5
-#define REGION_ALOLA    6
-#define REGION_GALAR    7
-#define REGION_HISUI    8
-#define REGION_PALDEA   9
+enum Region
+{
+    REGION_KANTO,
+    REGION_JOHTO,
+    REGION_HOENN,
+    REGION_SINNOH,
+    REGION_UNOVA,
+    REGION_KALOS,
+    REGION_ALOLA,
+    REGION_GALAR,
+    REGION_HISUI,
+    REGION_PALDEA,
+    REGION_COUNT,
+}
 
 // TODO: Since there's no current multi-region support, we have this constant for the purposes of regional form comparisons.
 #define REGION_CURRENT  REGION_HOENN
