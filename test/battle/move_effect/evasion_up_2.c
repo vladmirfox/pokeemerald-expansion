@@ -1,7 +1,7 @@
 #include "global.h"
 #include "test/battle.h"
 
-// There's no move with EFFECT_EVASION_UP_2 effect. Below is a theorical test.
+// There's no move with EFFECT_EVASION_UP_2 effect. Below is a theoretical test.
 
 /*
 ASSUMPTIONS
