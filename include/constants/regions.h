@@ -17,7 +17,4 @@ enum Region
     REGION_COUNT,
 };
 
-// TODO: Since there's no current multi-region support, we have this constant for the purposes of regional form comparisons.
-#define REGION_CURRENT  REGION_HOENN
-
 #endif  // GUARD_CONSTANTS_REGIONS_H

@@ -3,6 +3,7 @@
 #include "event_data.h"
 #include "malloc.h"
 #include "party_menu.h"
+#include "regions.h"
 #include "test/overworld_script.h"
 #include "test/test.h"
 
@@ -71,7 +72,7 @@ TEST("Daycare Pokémon with regional forms give the correct offspring")
     ASSUME(P_FAMILY_MEOWTH == TRUE);
     ASSUME(P_ALOLAN_FORMS == TRUE);
     ASSUME(P_GALARIAN_FORMS == TRUE);
-    ASSUME(REGION_CURRENT == REGION_HOENN);
+    ASSUME(GetCurrentRegion() == REGION_HOENN);
 
     ZeroPlayerPartyMons();
     PARAMETRIZE { offspring = SPECIES_MEOWTH;       RUN_OVERWORLD_SCRIPT(givemon SPECIES_MEOWTH,  1, gender=MON_MALE; givemon SPECIES_MEOWTH_ALOLA, 1, gender=MON_FEMALE;); }
