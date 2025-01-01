@@ -9216,7 +9216,7 @@ static inline u32 CalcMoveBasePower(struct DamageCalculationData *damageCalcData
     case EFFECT_ROUND:
         for (i = 0; i < gBattlersCount; i++)
         {
-            if (i != battlerAtk && IsBattlerAlive(i) && gMovesInfo[gLastUsedMove].effect == EFFECT_ROUND)
+            if (i != battlerAtk && IsBattlerAlive(i) && GetMoveEffect(gLastUsedMove) == EFFECT_ROUND)
             {
                 basePower *= 2;
                 break;
