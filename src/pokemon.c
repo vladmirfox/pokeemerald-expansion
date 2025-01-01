@@ -6979,7 +6979,19 @@ u32 CheckDynamicMoveType(struct Pokemon *mon, u32 move, u32 battler)
     return gMovesInfo[move].type;
 }
 
-u32 GetRegionalForm(u32 species, u32 region)
+bool32 IsSpeciesRegionalFormFromRegion(u32 species, u32 region)
+{
+    switch (region)
+    {
+    case REGION_ALOLA:  return gSpeciesInfo[species].isAlolanForm;
+    case REGION_GALAR:  return gSpeciesInfo[species].isGalarianForm;
+    case REGION_HISUI:  return gSpeciesInfo[species].isHisuianForm;
+    case REGION_PALDEA: return gSpeciesInfo[species].isPaldeanForm;
+    default:            return FALSE;
+    }
+}
+
+u32 GetRegionalFormByRegion(u32 species, u32 region)
 {
     u32 formId = 0;
     u32 firstFoundSpecies = 0;
@@ -6992,13 +7004,8 @@ u32 GetRegionalForm(u32 species, u32 region)
             if (firstFoundSpecies == 0)
                 firstFoundSpecies = formTable[formId];
             
-            if ((gSpeciesInfo[formTable[formId]].isAlolanForm   && region == REGION_ALOLA)
-             || (gSpeciesInfo[formTable[formId]].isGalarianForm && region == REGION_GALAR)
-             || (gSpeciesInfo[formTable[formId]].isHisuianForm  && region == REGION_HISUI)
-             || (gSpeciesInfo[formTable[formId]].isPaldeanForm  && region == REGION_PALDEA))
-            {
+            if (IsSpeciesRegionalFormFromRegion(formTable[formId], region))
                 return formTable[formId];
-            }
         }
         if (firstFoundSpecies != 0)
             return firstFoundSpecies;
@@ -7008,10 +7015,11 @@ u32 GetRegionalForm(u32 species, u32 region)
 
 bool32 IsSpeciesForeignRegionalForm(u32 species, u32 currentRegion)
 {
-    if ((gSpeciesInfo[species].isAlolanForm   && currentRegion != REGION_ALOLA)
-     || (gSpeciesInfo[species].isGalarianForm && currentRegion != REGION_GALAR)
-     || (gSpeciesInfo[species].isHisuianForm  && currentRegion != REGION_HISUI)
-     || (gSpeciesInfo[species].isPaldeanForm  && currentRegion != REGION_PALDEA))
-        return TRUE;
+    u32 i;
+    for (i = 0; i < REGIONS_COUNT; i++)
+    {
+        if (IsSpeciesRegionalFormFromRegion(species, i) && currentRegion != i)
+            return TRUE;
+    }
     return FALSE;
 }

@@ -14,7 +14,7 @@
     StorePokemonInDaycare(&gPlayerParty[0], &gSaveBlock1Ptr->daycare.mons[1]);  \
     RUN_OVERWORLD_SCRIPT( special GiveEggFromDaycare; );
 
-TEST("Daycare Pokémon generate Eggs of the lowest member of the evolutionary family")
+TEST("(Daycare) Pokémon generate Eggs of the lowest member of the evolutionary family")
 {
     ASSUME(P_FAMILY_PIKACHU == TRUE);
     ASSUME(P_GEN_2_CROSS_EVOS == TRUE);
@@ -29,7 +29,7 @@ TEST("Daycare Pokémon generate Eggs of the lowest member of the evolutionary fa
     EXPECT_EQ(GetMonData(&gPlayerParty[0], MON_DATA_SPECIES), SPECIES_PICHU);
 }
 
-TEST("Daycare Pokémon offspring species is based off the mother's species")
+TEST("(Daycare) Pokémon offspring species is based off the mother's species")
 {
     u32 offspring = 0;
     ASSUME(P_FAMILY_PIKACHU == TRUE);
@@ -44,7 +44,7 @@ TEST("Daycare Pokémon offspring species is based off the mother's species")
     EXPECT_EQ(GetMonData(&gPlayerParty[0], MON_DATA_SPECIES), offspring);
 }
 
-TEST("Daycare Pokémon can breed with Ditto if they don't belong to the Ditto or No Eggs Discovered group")
+TEST("(Daycare) Pokémon can breed with Ditto if they don't belong to the Ditto or No Eggs Discovered group")
 {
     u32 j = 0;
     u32 parentSpecies = 0;
@@ -63,10 +63,9 @@ TEST("Daycare Pokémon can breed with Ditto if they don't belong to the Ditto or
         EXPECT_NE(GetMonData(&gPlayerParty[0], MON_DATA_SPECIES), SPECIES_NONE);
     else
         EXPECT_EQ(GetMonData(&gPlayerParty[0], MON_DATA_SPECIES), SPECIES_NONE);
-
 }
 
-TEST("Daycare Pokémon with regional forms give the correct offspring")
+TEST("(Daycare) Pokémon with regional forms give the correct offspring")
 {
     u32 offspring = 0;
     ASSUME(P_FAMILY_MEOWTH == TRUE);
