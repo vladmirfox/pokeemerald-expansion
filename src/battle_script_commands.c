@@ -11914,19 +11914,16 @@ static void Cmd_stockpiletohpheal(void)
     }
 }
 
-static inline s16 CalculateDrainHp()
-{
-    if (gMovesInfo[gCurrentMove].argument.absorbPercentage != 0)
-        return gBattleStruct->moveDamage[gBattlerTarget] * gMovesInfo[gCurrentMove].argument.absorbPercentage / 100;
-    else
-        return gBattleStruct->moveDamage[gBattlerTarget] / 2;
-}
-
 // Sign change for drained HP handled in GetDrainedBigRootHp
 static void Cmd_setdrainedhp(void)
 {
     CMD_ARGS();
-    gBattleStruct->moveDamage[gBattlerAttacker] = CalculateDrainHp();
+
+    if (gMovesInfo[gCurrentMove].argument.absorbPercentage != 0)
+        gBattleStruct->moveDamage[gBattlerAttacker] = gBattleStruct->moveDamage[gBattlerTarget] * gMovesInfo[gCurrentMove].argument.absorbPercentage / 100;
+    else
+        gBattleStruct->moveDamage[gBattlerAttacker] = gBattleStruct->moveDamage[gBattlerTarget] / 2;
+
     if (gBattleStruct->moveDamage[gBattlerAttacker] == 0)
         gBattleStruct->moveDamage[gBattlerAttacker] = 1;
     gBattlescriptCurrInstr = cmd->nextInstr;
