@@ -6979,6 +6979,14 @@ u32 CheckDynamicMoveType(struct Pokemon *mon, u32 move, u32 battler)
     return gMovesInfo[move].type;
 }
 
+bool32 IsSpeciesRegionalForm(u32 species)
+{
+    return gSpeciesInfo[species].isAlolanForm
+        || gSpeciesInfo[species].isGalarianForm
+        || gSpeciesInfo[species].isHisuianForm
+        || gSpeciesInfo[species].isPaldeanForm;
+}
+
 bool32 IsSpeciesRegionalFormFromRegion(u32 species, u32 region)
 {
     switch (region)
@@ -6989,6 +6997,18 @@ bool32 IsSpeciesRegionalFormFromRegion(u32 species, u32 region)
     case REGION_PALDEA: return gSpeciesInfo[species].isPaldeanForm;
     default:            return FALSE;
     }
+}
+
+bool32 SpeciesHasRegionalForm(u32 species)
+{
+    u32 formId;
+    const u16 *formTable = GetSpeciesFormTable(species);
+    for (formId = 0; formTable != NULL && formTable[formId] != FORM_SPECIES_END; formId++)
+    {
+        if (IsSpeciesRegionalForm(formTable[formId]))
+            return TRUE;
+    }
+    return FALSE;
 }
 
 u32 GetRegionalFormByRegion(u32 species, u32 region)
@@ -7018,7 +7038,9 @@ bool32 IsSpeciesForeignRegionalForm(u32 species, u32 currentRegion)
     u32 i;
     for (i = 0; i < REGIONS_COUNT; i++)
     {
-        if (IsSpeciesRegionalFormFromRegion(species, i) && currentRegion != i)
+        if (currentRegion != i && IsSpeciesRegionalFormFromRegion(species, i))
+            return TRUE;
+        else if (currentRegion == i && SpeciesHasRegionalForm(species) && !IsSpeciesRegionalFormFromRegion(species, i))
             return TRUE;
     }
     return FALSE;
