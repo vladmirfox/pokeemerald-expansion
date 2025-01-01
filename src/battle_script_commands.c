@@ -11926,6 +11926,7 @@ static void Cmd_setdrainedhp(void)
 
     if (gBattleStruct->moveDamage[gBattlerAttacker] == 0)
         gBattleStruct->moveDamage[gBattlerAttacker] = 1;
+
     gBattlescriptCurrInstr = cmd->nextInstr;
 }
 
