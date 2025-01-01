@@ -2580,7 +2580,7 @@ static void Cmd_datahpupdate(void)
             {
                 if (gSpecialStatuses[battler].shellBellDmg == 0)
                     gSpecialStatuses[battler].shellBellDmg = gDisableStructs[battler].substituteHP;
-                gBattleStruct->moveDamage[gBattlerTarget] = gDisableStructs[battler].substituteHP;
+                gBattleStruct->moveDamage[battler] = gDisableStructs[battler].substituteHP;
                 gDisableStructs[battler].substituteHP = 0;
             }
             // check substitute fading
