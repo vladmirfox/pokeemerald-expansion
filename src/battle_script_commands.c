@@ -2116,12 +2116,12 @@ static void Cmd_adjustdamage(void)
             continue;
 
         if (DoesSubstituteBlockMove(gBattlerAttacker, battlerDef, gCurrentMove))
-            goto END;
+            continue;
 
         if (DoesDisguiseBlockMove(battlerDef, gCurrentMove))
         {
             gBattleStruct->enduredDamage |= 1u << battlerDef;
-            goto END;
+            continue;
         }
         if (GetBattlerAbility(battlerDef) == ABILITY_ICE_FACE && IS_MOVE_PHYSICAL(gCurrentMove) && gBattleMons[battlerDef].species == SPECIES_EISCUE)
         {
@@ -2131,10 +2131,10 @@ static void Cmd_adjustdamage(void)
             RecordAbilityBattle(gBattlerTarget, ABILITY_ICE_FACE);
             gBattleResources->flags->flags[battlerDef] |= RESOURCE_FLAG_ICE_FACE;
             // Form change will be done after attack animation in Cmd_resultmessage.
-            goto END;
+            continue;
         }
         if (gBattleMons[gBattlerTarget].hp > gBattleStruct->moveDamage[battlerDef])
-            goto END;
+            continue;
 
         holdEffect = GetBattlerHoldEffect(battlerDef, TRUE);
         param = GetBattlerHoldEffectParam(battlerDef);
@@ -2170,7 +2170,7 @@ static void Cmd_adjustdamage(void)
             && !gSpecialStatuses[battlerDef].focusSashed
             && (B_AFFECTION_MECHANICS == FALSE || !gSpecialStatuses[battlerDef].affectionEndured)
             && !gSpecialStatuses[battlerDef].sturdied)
-            goto END;
+            continue;
 
         // Handle reducing the dmg to 1 hp.
         gBattleStruct->moveDamage[battlerDef] = gBattleMons[battlerDef].hp - 1;
@@ -2198,7 +2198,6 @@ static void Cmd_adjustdamage(void)
         }
     }
 
-    END:
     if (calcSpreadMoveDamage)
         gBattleStruct->calculatedDamageDone = TRUE;
     gBattlescriptCurrInstr = cmd->nextInstr;
