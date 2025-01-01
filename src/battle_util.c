@@ -3485,6 +3485,33 @@ static void CancellerParalysed(u32 *effect)
     }
 }
 
+static void CancellerDrowsy(u32 *effect)
+{
+    if (gBattleMons[gBattlerAttacker].status1 & STATUS1_DROWSY)
+    {
+        if (UproarWakeUpCheck(gBattlerAttacker))
+        {
+            TryDeactivateSleepClause(GetBattlerSide(gBattlerAttacker), gBattlerPartyIndexes[gBattlerAttacker]);
+            gBattleMons[gBattlerAttacker].status1 &= ~STATUS1_DROWSY;
+            gBattleMons[gBattlerAttacker].status2 &= ~STATUS2_NIGHTMARE;
+            BattleScriptPushCursor();
+            gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_WOKE_UP_UPROAR;
+            gBattlescriptCurrInstr = BattleScript_MoveUsedWokeUp;
+            *effect = 2;
+        }
+        else if (gChosenMove != MOVE_SNORE && gChosenMove != MOVE_SLEEP_TALK
+                 && !gBattleStruct->isAtkCancelerForCalledMove
+                 && (GetBattlerAbility(gBattlerAttacker) != ABILITY_MAGIC_GUARD && B_MAGIC_GUARD >= GEN_4)
+                 && !RandomPercentage(RNG_DROWSY, 75))
+        {
+            gProtectStructs[gBattlerAttacker].drsImmobility = TRUE;
+            gBattlescriptCurrInstr = BattleScript_MoveUsedIsDrowsy;
+            gHitMarker |= HITMARKER_UNABLE_TO_USE_MOVE;
+            *effect = 1;
+        }
+    }
+}
+
 static void CancellerBide(u32 *effect)
 {
     if (gBattleMons[gBattlerAttacker].status2 & STATUS2_BIDE)
@@ -3838,6 +3865,7 @@ static const MoveSuccessOrderCancellers sMoveSuccessOrderCancellers[] =
     [CANCELLER_IMPRISONED] = CancellerImprisoned,
     [CANCELLER_CONFUSED] = CancellerConfused,
     [CANCELLER_PARALYSED] = CancellerParalysed,
+    [CANCELLER_DROWSY] = CancellerDrowsy,
     [CANCELLER_BIDE] = CancellerBide,
     [CANCELLER_THAW] = CancellerThaw,
     [CANCELLER_STANCE_CHANGE_2] = CancellerStanceChangeTwo,
