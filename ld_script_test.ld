@@ -118,7 +118,7 @@ SECTIONS {
     } > ROM =0
 
     .data.iwram :
-    ALIGN(4)
+    ALIGN(8)
     {
         __iwram_lma = .;
         . = . + (__iwram_end - __iwram_start);
