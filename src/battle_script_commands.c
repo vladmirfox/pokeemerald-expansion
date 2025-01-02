@@ -11942,7 +11942,7 @@ static void Cmd_setdrainedhp(void)
 {
     CMD_ARGS();
 
-    gBattleStruct->moveDamage[gBattlerAttacker] = (gHpDealt * GetMoveAbsorbPercentage(gCurrentMove) / 100);
+    gBattleStruct->moveDamage[gBattlerAttacker] = (gBattleStruct->moveDamage[gBattlerTarget] * GetMoveAbsorbPercentage(gCurrentMove) / 100);
 
     if (gBattleStruct->moveDamage[gBattlerAttacker] == 0)
         gBattleStruct->moveDamage[gBattlerAttacker] = 1;
