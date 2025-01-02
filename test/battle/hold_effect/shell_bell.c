@@ -45,7 +45,6 @@ SINGLE_BATTLE_TEST("Shell Bell recovers no HP if the move did no damage")
             ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_HELD_ITEM_EFFECT, player);
             HP_BAR(player);
         }
-
     }
 }
 
@@ -138,7 +137,5 @@ SINGLE_BATTLE_TEST("Shell Bell does not activate on Future Sight if the original
     }
 }
 
-// HOLD_EFFECT_LIFE_ORB
-// !gSpecialStatuses[gBattlerAttacker].preventLifeOrbDamage
 TO_DO_BATTLE_TEST("If a Pokémon steals a Shell Bell with Thief or Covet, it will recover HP for the use of that move that stole the Shell Bell")
 TO_DO_BATTLE_TEST("If a Pokémon steals a Shell Bell with Magician, it will recover HP for the use of that move that stole the Shell Bell")
