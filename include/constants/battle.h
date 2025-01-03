@@ -221,7 +221,7 @@
 #define HITMARKER_NEVER_SET             (1 << 26) // Cleared as part of a large group. Never set or checked
 #define HITMARKER_CHARGING              (1 << 27)
 #define HITMARKER_FAINTED(battler)      (1u << (battler + 28))
-#define HITMARKER_FAINTED2(battler)     (1u << (28 + battler))
+#define HITMARKER_FAINTED2(battler)     HITMARKER_FAINTED(battler)
 #define HITMARKER_STRING_PRINTED        (1 << 29)
 
 // Per-side statuses that affect an entire party
