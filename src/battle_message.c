@@ -892,6 +892,7 @@ const u8 *const gBattleStringsTable[BATTLESTRINGS_COUNT] =
     [STRINGID_PKMNSITEMFOUGHTOFFDROWSINESS]         = COMPOUND_STRING("{B_SCR_NAME_WITH_PREFIX}'s {B_LAST_ITEM} fought off its drowsiness!"),
     [STRINGID_PKMNFOUGHTOFFDROWSINESS]              = COMPOUND_STRING("{B_DEF_NAME_WITH_PREFIX} fought off its drowsiness!"),
     [STRINGID_PKMNISALREADYDROWSY]                  = COMPOUND_STRING("{B_DEF_NAME_WITH_PREFIX} is already drowsy."),
+    [STRINGID_PKMNISALREADYDROWSY2]                 = COMPOUND_STRING("{B_ATK_NAME_WITH_PREFIX} is already drowsy."),
 };
 
 const u16 gTrainerUsedItemStringIds[] =
