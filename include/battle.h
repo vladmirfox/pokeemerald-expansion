@@ -119,7 +119,6 @@ struct DisableStruct
     u8 cudChew:1;
     u8 spikesDone:1;
     u8 toxicSpikesDone:1;
-    // End of Word
     u8 stickyWebDone:1;
     u8 stealthRockDone:1;
     u8 weatherAbilityDone:1;
@@ -128,14 +127,13 @@ struct DisableStruct
     u8 steelSurgeDone:1;
     u8 usedProteanLibero:1;
     u8 flashFireBoosted:1;
-    // End of Word
+    u16 overwrittenAbility;   // abilities overwritten during battle (keep separate from battle history in case of switching)
     u8 roostActive:1;
     u8 unbrudenActive:1;
     u8 startEmergencyExit:1;
     u8 neutralizingGas:1;
     u8 iceFaceActivationPrevention:1; // fixes hit escape move edge case
     u8 padding:3;
-    // End of Word
 };
 
 // Fully Cleared each turn after end turn effects are done. A few things are cleared before end turn effects
@@ -776,7 +774,6 @@ struct BattleStruct
     u8 effectsBeforeUsingMoveDone:1; // Mega Evo and Focus Punch/Shell Trap effects.
     u8 spriteIgnore0Hp:1;
     u8 targetsDone[MAX_BATTLERS_COUNT]; // Each battler as a bit.
-    u16 overwrittenAbilities[MAX_BATTLERS_COUNT];    // abilities overwritten during battle (keep separate from battle history in case of switching)
     u8 battleBondTransformed[NUM_BATTLE_SIDES]; // Bitfield for each party.
     u8 storedHealingWish:4; // Each battler as a bit.
     u8 storedLunarDance:4; // Each battler as a bit.
