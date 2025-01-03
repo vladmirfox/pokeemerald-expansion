@@ -1135,7 +1135,7 @@ void ResetSentPokesToOpponentValue(void)
     gSentPokesToOpponent[1] = 0;
 
     for (i = 0; i < gBattlersCount; i += 2)
-        bits |= gBitTable[gBattlerPartyIndexes[i]];
+        bits |= (1u << gBattlerPartyIndexes[i]);
 
     for (i = 1; i < gBattlersCount; i += 2)
         gSentPokesToOpponent[(i & BIT_FLANK) >> 1] = bits;
@@ -1153,8 +1153,8 @@ void OpponentSwitchInResetSentPokesToOpponentValue(u32 battler)
 
         for (i = 0; i < gBattlersCount; i += 2)
         {
-            if (!(gAbsentBattlerFlags & gBitTable[i]))
-                bits |= gBitTable[gBattlerPartyIndexes[i]];
+            if (!(gAbsentBattlerFlags & (1u << i)))
+                bits |= (1u << gBattlerPartyIndexes[i]);
         }
         gSentPokesToOpponent[flank] = bits;
     }
@@ -1170,7 +1170,7 @@ void UpdateSentPokesToOpponentValue(u32 battler)
     {
         s32 i;
         for (i = 1; i < gBattlersCount; i++)
-            gSentPokesToOpponent[(i & BIT_FLANK) >> 1] |= gBitTable[gBattlerPartyIndexes[battler]];
+            gSentPokesToOpponent[(i & BIT_FLANK) >> 1] |= (1u << gBattlerPartyIndexes[battler]);
     }
 }
 
@@ -1211,7 +1211,7 @@ bool32 IsBelchPreventingMove(u32 battler, u32 move)
     if (gMovesInfo[move].effect != EFFECT_BELCH)
         return FALSE;
 
-    return !(gBattleStruct->ateBerry[battler & BIT_SIDE] & gBitTable[gBattlerPartyIndexes[battler]]);
+    return !(gBattleStruct->ateBerry[battler & BIT_SIDE] & (1u << gBattlerPartyIndexes[battler]));
 }
 
 // Dynamax bypasses all selection prevention except Taunt and Assault Vest.
@@ -1476,55 +1476,55 @@ u8 CheckMoveLimitations(u32 battler, u8 unusableMoves, u16 check)
         moveEffect = gMovesInfo[move].effect;
         // No move
         if (check & MOVE_LIMITATION_ZEROMOVE && move == MOVE_NONE)
-            unusableMoves |= gBitTable[i];
+            unusableMoves |= (1u << i);
         // No PP
         else if (check & MOVE_LIMITATION_PP && gBattleMons[battler].pp[i] == 0)
-            unusableMoves |= gBitTable[i];
+            unusableMoves |= (1u << i);
         // Placeholder
         else if (check & MOVE_LIMITATION_PLACEHOLDER && moveEffect == EFFECT_PLACEHOLDER)
-            unusableMoves |= gBitTable[i];
+            unusableMoves |= (1u << i);
         // Disable
         else if (check & MOVE_LIMITATION_DISABLED && move == gDisableStructs[battler].disabledMove)
-            unusableMoves |= gBitTable[i];
+            unusableMoves |= (1u << i);
         // Torment
         else if (check & MOVE_LIMITATION_TORMENTED && move == gLastMoves[battler] && gBattleMons[battler].status2 & STATUS2_TORMENT)
-            unusableMoves |= gBitTable[i];
+            unusableMoves |= (1u << i);
         // Taunt
         else if (check & MOVE_LIMITATION_TAUNT && gDisableStructs[battler].tauntTimer && IS_MOVE_STATUS(move))
-            unusableMoves |= gBitTable[i];
+            unusableMoves |= (1u << i);
         // Imprison
         else if (check & MOVE_LIMITATION_IMPRISON && GetImprisonedMovesCount(battler, move))
-            unusableMoves |= gBitTable[i];
+            unusableMoves |= (1u << i);
         // Encore
         else if (check & MOVE_LIMITATION_ENCORE && gDisableStructs[battler].encoreTimer && gDisableStructs[battler].encoredMove != move)
-            unusableMoves |= gBitTable[i];
+            unusableMoves |= (1u << i);
         // Choice Items
         else if (check & MOVE_LIMITATION_CHOICE_ITEM && HOLD_EFFECT_CHOICE(holdEffect) && *choicedMove != MOVE_NONE && *choicedMove != MOVE_UNAVAILABLE && *choicedMove != move)
-            unusableMoves |= gBitTable[i];
+            unusableMoves |= (1u << i);
         // Assault Vest
         else if (check & MOVE_LIMITATION_ASSAULT_VEST && holdEffect == HOLD_EFFECT_ASSAULT_VEST && IS_MOVE_STATUS(move) && gMovesInfo[move].effect != EFFECT_ME_FIRST)
-            unusableMoves |= gBitTable[i];
+            unusableMoves |= (1u << i);
         // Gravity
         else if (check & MOVE_LIMITATION_GRAVITY && IsGravityPreventingMove(move))
-            unusableMoves |= gBitTable[i];
+            unusableMoves |= (1u << i);
         // Heal Block
         else if (check & MOVE_LIMITATION_HEAL_BLOCK && IsHealBlockPreventingMove(battler, move))
-            unusableMoves |= gBitTable[i];
+            unusableMoves |= (1u << i);
         // Belch
         else if (check & MOVE_LIMITATION_BELCH && IsBelchPreventingMove(battler, move))
-            unusableMoves |= gBitTable[i];
+            unusableMoves |= (1u << i);
         // Throat Chop
         else if (check & MOVE_LIMITATION_THROAT_CHOP && gDisableStructs[battler].throatChopTimer && gMovesInfo[move].soundMove)
-            unusableMoves |= gBitTable[i];
+            unusableMoves |= (1u << i);
         // Stuff Cheeks
         else if (check & MOVE_LIMITATION_STUFF_CHEEKS && moveEffect == EFFECT_STUFF_CHEEKS && ItemId_GetPocket(gBattleMons[battler].item) != POCKET_BERRIES)
-            unusableMoves |= gBitTable[i];
+            unusableMoves |= (1u << i);
         // Gorilla Tactics
         else if (check & MOVE_LIMITATION_CHOICE_ITEM && GetBattlerAbility(battler) == ABILITY_GORILLA_TACTICS && *choicedMove != MOVE_NONE && *choicedMove != MOVE_UNAVAILABLE && *choicedMove != move)
-            unusableMoves |= gBitTable[i];
+            unusableMoves |= (1u << i);
         // Can't Use Twice flag
         else if (check & MOVE_LIMITATION_CANT_USE_TWICE && gMovesInfo[move].cantUseTwice && move == gLastResultingMoves[battler])
-            unusableMoves |= gBitTable[i];
+            unusableMoves |= (1u << i);
     }
     return unusableMoves;
 }
