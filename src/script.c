@@ -189,12 +189,6 @@ u32 ScriptPeekWord(struct ScriptContext *ctx)
     return (((((value3 << 8) + value2) << 8) + value1) << 8) + value0;
 }
 
-void ScriptConsume(struct ScriptContext *ctx, u8* buffer, u32 n)
-{
-    for (u32 i = 0; i < n; i++)
-        buffer[i] = ScriptReadWord(ctx);
-}
-
 void LockPlayerFieldControls(void)
 {
     sLockFieldControls = TRUE;

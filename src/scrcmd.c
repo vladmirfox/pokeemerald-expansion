@@ -1962,7 +1962,7 @@ bool8 ScrCmd_trainerbattle(struct ScriptContext *ctx)
     PtrStack trainerBattleScriptStack;
     PtrStackInit(&trainerBattleScriptStack);
 
-    TrainerBattleLoadArgs_2(ctx->scriptPtr);
+    TrainerBattleLoadArgs(ctx->scriptPtr);
     BattleSetup_ConfigureTrainerBattle(ctx->scriptPtr, &trainerBattleScriptStack, FALSE);
 
     const u8* ptr;

@@ -80,20 +80,6 @@ static void HandleRematchVarsOnBattleEnd(void);
 static const u8 *GetIntroSpeechOfApproachingTrainer(void);
 static const u8 *GetTrainerCantBattleSpeech(void);
 
-
-EWRAM_DATA static u8 sTrainerBattleMode = 0;
-EWRAM_DATA u16 gTrainerBattleOpponent_A = 0;
-EWRAM_DATA u16 gTrainerBattleOpponent_B = 0;
-EWRAM_DATA static u16 sTrainerObjectEventLocalId = 0;
-EWRAM_DATA static u8 *sTrainerAIntroSpeech = NULL;
-EWRAM_DATA static u8 *sTrainerBIntroSpeech = NULL;
-EWRAM_DATA static u8 *sTrainerADefeatSpeech = NULL;
-EWRAM_DATA static u8 *sTrainerBDefeatSpeech = NULL;
-EWRAM_DATA static u8 *sTrainerVictorySpeech = NULL;
-EWRAM_DATA static u8 *sTrainerCannotBattleSpeech = NULL;
-EWRAM_DATA static u8 *sTrainerABattleScriptRetAddr = NULL;
-EWRAM_DATA static u8 *sTrainerBBattleScriptRetAddr = NULL;
-
 EWRAM_DATA TrainerBattleParameter gTrainerBattleParameter = {0};
 EWRAM_DATA u16 gPartnerTrainerId = 0;
 EWRAM_DATA static u8 *sTrainerBattleEndScript = NULL;
@@ -966,24 +952,7 @@ void SetMapVarsToTrainerB(void)
 
 void InitTrainerBattleVariables(void)
 {
-    sTrainerBattleMode = 0;
-    if (gApproachingTrainerId == 0)
-    {
-        sTrainerAIntroSpeech = NULL;
-        sTrainerADefeatSpeech = NULL;
-        sTrainerABattleScriptRetAddr = NULL;
-    }
-    else
-    {
-        sTrainerBIntroSpeech = NULL;
-        sTrainerBDefeatSpeech = NULL;
-        sTrainerBBattleScriptRetAddr = NULL;
-    }
-    sTrainerObjectEventLocalId = 0;
-    sTrainerVictorySpeech = NULL;
-    sTrainerCannotBattleSpeech = NULL;
     sTrainerBattleEndScript = NULL;
-
     memset(gTrainerBattleParameter.data, 0, sizeof(gTrainerBattleParameter));
 }
 
@@ -1024,7 +993,7 @@ void TrainerBattleLoadArgsSecondTrainer(const u8* data)
     TRAINER_BATTLE_PARAM.battleScriptRetAddrB = temp->params.battleScriptRetAddrA;
 }
 
-void TrainerBattleLoadArgs_2(const u8* data)
+void TrainerBattleLoadArgs(const u8* data)
 {
     InitTrainerBattleVariables();
     memcpy(gTrainerBattleParameter.data, data, sizeof(TrainerBattleParameter));
@@ -1214,11 +1183,6 @@ void SetTrainerFacingDirection(void)
 {
     struct ObjectEvent *objectEvent = &gObjectEvents[gSelectedObjectEvent];
     SetTrainerMovementType(objectEvent, GetTrainerFacingDirectionMovementType(objectEvent->facingDirection));
-}
-
-u8 GetTrainerBattleMode(void)
-{
-    return sTrainerBattleMode;
 }
 
 bool8 GetTrainerFlag(void)
@@ -1441,7 +1405,7 @@ const u8 *BattleSetup_GetScriptAddrAfterBattle(void)
         return EventScript_TestSignpostMsg;
 }
 
-void BattleSetup_SetScriptAddAfterBattle(const u8* ptr)
+void BattleSetup_SetScriptAddrAfterBattle(const u8* ptr)
 {
     sTrainerBattleEndScript = (u8*)ptr;
 }
@@ -1483,55 +1447,52 @@ void PlayTrainerEncounterMusic(void)
     else
         trainerId = TRAINER_BATTLE_PARAM.battleOpponentB;
 
-    if (sTrainerBattleMode != TRAINER_BATTLE_CONTINUE_SCRIPT_NO_MUSIC
-        && sTrainerBattleMode != TRAINER_BATTLE_CONTINUE_SCRIPT_DOUBLE_NO_MUSIC)
+    switch (GetTrainerEncounterMusicId(trainerId))
     {
-        switch (GetTrainerEncounterMusicId(trainerId))
-        {
-        case TRAINER_ENCOUNTER_MUSIC_MALE:
-            music = MUS_ENCOUNTER_MALE;
-            break;
-        case TRAINER_ENCOUNTER_MUSIC_FEMALE:
-            music = MUS_ENCOUNTER_FEMALE;
-            break;
-        case TRAINER_ENCOUNTER_MUSIC_GIRL:
-            music = MUS_ENCOUNTER_GIRL;
-            break;
-        case TRAINER_ENCOUNTER_MUSIC_INTENSE:
-            music = MUS_ENCOUNTER_INTENSE;
-            break;
-        case TRAINER_ENCOUNTER_MUSIC_COOL:
-            music = MUS_ENCOUNTER_COOL;
-            break;
-        case TRAINER_ENCOUNTER_MUSIC_AQUA:
-            music = MUS_ENCOUNTER_AQUA;
-            break;
-        case TRAINER_ENCOUNTER_MUSIC_MAGMA:
-            music = MUS_ENCOUNTER_MAGMA;
-            break;
-        case TRAINER_ENCOUNTER_MUSIC_SWIMMER:
-            music = MUS_ENCOUNTER_SWIMMER;
-            break;
-        case TRAINER_ENCOUNTER_MUSIC_TWINS:
-            music = MUS_ENCOUNTER_TWINS;
-            break;
-        case TRAINER_ENCOUNTER_MUSIC_ELITE_FOUR:
-            music = MUS_ENCOUNTER_ELITE_FOUR;
-            break;
-        case TRAINER_ENCOUNTER_MUSIC_HIKER:
-            music = MUS_ENCOUNTER_HIKER;
-            break;
-        case TRAINER_ENCOUNTER_MUSIC_INTERVIEWER:
-            music = MUS_ENCOUNTER_INTERVIEWER;
-            break;
-        case TRAINER_ENCOUNTER_MUSIC_RICH:
-            music = MUS_ENCOUNTER_RICH;
-            break;
-        default:
-            music = MUS_ENCOUNTER_SUSPICIOUS;
-        }
-        PlayNewMapMusic(music);
+    case TRAINER_ENCOUNTER_MUSIC_MALE:
+        music = MUS_ENCOUNTER_MALE;
+        break;
+    case TRAINER_ENCOUNTER_MUSIC_FEMALE:
+        music = MUS_ENCOUNTER_FEMALE;
+        break;
+    case TRAINER_ENCOUNTER_MUSIC_GIRL:
+        music = MUS_ENCOUNTER_GIRL;
+        break;
+    case TRAINER_ENCOUNTER_MUSIC_INTENSE:
+        music = MUS_ENCOUNTER_INTENSE;
+        break;
+    case TRAINER_ENCOUNTER_MUSIC_COOL:
+        music = MUS_ENCOUNTER_COOL;
+        break;
+    case TRAINER_ENCOUNTER_MUSIC_AQUA:
+        music = MUS_ENCOUNTER_AQUA;
+        break;
+    case TRAINER_ENCOUNTER_MUSIC_MAGMA:
+        music = MUS_ENCOUNTER_MAGMA;
+        break;
+    case TRAINER_ENCOUNTER_MUSIC_SWIMMER:
+        music = MUS_ENCOUNTER_SWIMMER;
+        break;
+    case TRAINER_ENCOUNTER_MUSIC_TWINS:
+        music = MUS_ENCOUNTER_TWINS;
+        break;
+    case TRAINER_ENCOUNTER_MUSIC_ELITE_FOUR:
+        music = MUS_ENCOUNTER_ELITE_FOUR;
+        break;
+    case TRAINER_ENCOUNTER_MUSIC_HIKER:
+        music = MUS_ENCOUNTER_HIKER;
+        break;
+    case TRAINER_ENCOUNTER_MUSIC_INTERVIEWER:
+        music = MUS_ENCOUNTER_INTERVIEWER;
+        break;
+    case TRAINER_ENCOUNTER_MUSIC_RICH:
+        music = MUS_ENCOUNTER_RICH;
+        break;
+    default:
+        music = MUS_ENCOUNTER_SUSPICIOUS;
     }
+    PlayNewMapMusic(music);
+
 }
 
 static const u8 *ReturnEmptyStringIfNull(const u8 *string)
@@ -1571,7 +1532,7 @@ const u8 *GetTrainerBLoseText(void)
 
 const u8 *GetTrainerWonSpeech(void)
 {
-    return ReturnEmptyStringIfNull(sTrainerVictorySpeech);
+    return ReturnEmptyStringIfNull(TRAINER_BATTLE_PARAM.victoryText);
 }
 
 static const u8 *GetTrainerCantBattleSpeech(void)

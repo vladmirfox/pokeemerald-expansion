@@ -23,6 +23,6 @@ void PtrStackInit(PtrStack* stack);
 void* PtrStackPop(PtrStack* stack);
 bool32 PtrStackPush(PtrStack* stack, void* ptr);
 const u8* PtrStackPopU8(PtrStack *stack);
-bool32 PtrStackPushU8(PtrStack *stack, const u8* ptr);  
+bool32 PtrStackPushU8(PtrStack *stack, const u8* ptr);
 
 #endif // GUARD_STACK_H

@@ -444,7 +444,7 @@ bool8 CheckForTrainersWantingBattle(void)
         
         PtrStack trainerBattleScriptStack;
         PtrStackInit(&trainerBattleScriptStack);
-        TrainerBattleLoadArgs_2(gApproachingTrainers[0].trainerScriptPtr + OPCODE_OFFSET);
+        TrainerBattleLoadArgs(gApproachingTrainers[0].trainerScriptPtr + OPCODE_OFFSET);
         if (gNoOfApproachingTrainers > 1)
         {
             gApproachingTrainerId++;

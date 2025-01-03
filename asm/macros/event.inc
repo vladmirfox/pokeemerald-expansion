@@ -697,7 +697,7 @@
 	.4byte \intro_text_a        @ introTextA
 	.4byte \lose_text_a         @ defeatTextA
 	.4byte \event_script_a      @ retAddrA
-	.byte  \localIdB			@ objEventLocalIdB
+	.byte  \localIdB            @ objEventLocalIdB
 	.2byte \trainer_b           @ battleOpponentB
 	.4byte \intro_text_b        @ introTextB
 	.4byte \lose_text_b         @ defeatTextB
