@@ -1983,6 +1983,7 @@ bool8 ScrCmd_facilitytrainerbattle(struct ScriptContext *ctx)
 {
     u8 type = ScriptReadByte(ctx);
 
+    InitTrainerBattleVariables();
     ctx->scriptPtr = BattleSetup_ConfigureFacilityTrainerBattle(type, ctx->scriptPtr);
     return FALSE;
 }

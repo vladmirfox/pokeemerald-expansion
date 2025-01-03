@@ -964,7 +964,7 @@ void SetMapVarsToTrainerB(void)
     }
 }
 
-static void InitTrainerBattleVariables(void)
+void InitTrainerBattleVariables(void)
 {
     sTrainerBattleMode = 0;
     if (gApproachingTrainerId == 0)
@@ -1047,7 +1047,6 @@ void MultiTrainerBattleLoadArgs(const u8* data)
 
 const u8* BattleSetup_ConfigureFacilityTrainerBattle(u8 type, const u8* scriptEndPtr)
 {
-    InitTrainerBattleVariables();
     sTrainerBattleEndScript = (u8*)scriptEndPtr;
     switch (type)
     {
@@ -1062,7 +1061,6 @@ const u8* BattleSetup_ConfigureFacilityTrainerBattle(u8 type, const u8* scriptEn
                 SetMapVarsToTrainerB();
                 TRAINER_BATTLE_PARAM.battleOpponentB = LocalIdToHillTrainerId(gSpecialVar_LastTalked);
             }
-
             return EventScript_TryDoNormalTrainerBattle;
         case TRAINER_BATTLE_PYRAMID:
             if (gApproachingTrainerId == 0)
