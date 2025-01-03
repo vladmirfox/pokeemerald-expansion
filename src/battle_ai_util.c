@@ -2412,6 +2412,7 @@ static inline bool32 IsMoveSleepClauseTrigger(u32 move)
     case EFFECT_SLEEP:
     case EFFECT_YAWN:
     case EFFECT_DARK_VOID:
+    case EFFECT_DROWSY:
         return TRUE;
     }
 
@@ -2424,6 +2425,7 @@ static inline bool32 IsMoveSleepClauseTrigger(u32 move)
         {
         case MAX_EFFECT_EFFECT_SPORE_FOES:
         case MAX_EFFECT_YAWN_FOE:
+        case MOVE_EFFECT_SLEEP_OR_DROWSY:
             return TRUE;
         }
     }
