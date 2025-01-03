@@ -18,20 +18,21 @@ A pull request meets the scope criteria if:
 
 ## In Scope Categories
 
-1. **SS Species:** Adds Species that have appeared in a Showdown-supported title. Includes follower sprites for all defined species including battle-only ones (ie. Megas)
-2. **SS Moves:** Adds Moves and Move Animations that have appeared in a Showdown-supported title  
-3. **SS Abilities:** Adds Abilities that have appeared in a Showdown-supported title  
-4. **SS Items:** Adds Items that have appeared in a Showdown-supported title  
-5. **SS Gimmicks:** Adds Gimmicks that have appeared in a Showdown-supported title (Dynamax, Mega Evolution, etc.) 
-6. **SS Battle Types:** Adds Special Battle Types that have appeared in a Showdown-supported title (Triple battles, etc.)
-7. **SS Battle Mechanics:** Adds mechanical battle changes that have appeared in a Showdown-supported title, and allow developers to choose which generation suits them where applicable
-8. **Battle AI Behaviour:** Improvements towards the capability of a human competitive player, and unique or interesting behaviours otherwise
-9. **Base Link Compatibility:** The ability for two Base Expansion Version's to connect, trade, and battle one another  
-10. **SS Overworld / Menu Updates:** Replicate overworld or menu changes / additions from Showdown-supported Pokémon titles (followers, raids, sideways stairs, type effectivness indicator, PC functions, etc.)
-11. **Speed Up:** Optimize code to run more efficiently, take up less space, and work better overall to improves the developer and / or player experience
-12. **Compression:** Reduces the size of graphic or sound assets, etc. Includes automatic compression
-13. **Novel Experience:** Adds a novel experience included in another Showdown Supported title (poffins, fishing minigames, etc.)
-15. **Helper Features:** Eases the addition or inclusion of any of the aforementioned, or facilitates developer ease of use
+1. **SS Species**: Adds Species that have appeared in a Showdown-supported title. Includes follower sprites for all defined species including battle-only ones (ie. Megas)
+2. **SS Moves**: Adds Moves and Move Animations that have appeared in a Showdown-supported title  
+3. **SS Abilities**: Adds Abilities that have appeared in a Showdown-supported title  
+4. **SS Items**: Adds Items that have appeared in a Showdown-supported title  
+5. **SS Gimmicks**: Adds Gimmicks that have appeared in a Showdown-supported title (Dynamax, Mega Evolution, etc.) 
+6. **SS Battle Types**: Adds Special Battle Types that have appeared in a Showdown-supported title (Triple battles, etc.)
+7. **SS Battle Mechanics**: Adds mechanical battle changes that have appeared in a Showdown-supported title, and allow developers to choose which generation suits them where applicable
+8. **Battle AI Behaviour**: Improvements towards the capability of a human competitive player, and unique or interesting behaviours otherwise
+9. **Base Link Compatibility**: The ability for two Base Expansion Version's to connect, trade, and battle one another  
+10. **SS Overworld Features**: Add overworld changes / additions from Showdown-supported Pokémon titles (followers, raids, sideways stairs, etc.)
+11. **SS Menu Features**: Add menu changes / additions from Showdown-supported Pokémon titles (type effectivness indicator, PC functions, etc.)
+12. **Speed Up**: Optimize code to run more efficiently, take up less space, and work better overall to improves the developer and / or player experience
+13. **Compression**: Reduces the size of graphic or sound assets, etc. Includes automatic compression
+14. **Novel Experience**: Adds a novel experience included in another Showdown Supported title (poffins, fishing minigames, etc.)
+15. **Helper Features**: Eases the addition or inclusion of any of the aforementioned, or facilitates developer ease of use
 
 ## Not In Scope Categories
 
@@ -41,6 +42,7 @@ A pull request meets the scope criteria if:
 4. **Non-SS Items**: Adds Items that have NOT appeared in a Showdown-supported title
 5. **Non-SS Gimmicks**: Adds Gimmicks that have NOT appeared in a Showdown-supported title (Showdown's Other Metagames, etc.)
 6. **Non-SS Battle Types**: Adds Special Battle Types that have NOT appeared in a Showdown-supported title  
+7. **Non-SS or SS Overworld Maps:** Adds overworld maps from either Showdown-supported titles or non-Showdown-supported titles.
 7. **Duplicate Feature UI**: Adds functionality that duplicates the core functionality of an existing vanilla feature
 8. **Vanilla Link Compatibility**: The ability for Base Expansion Version and Vanilla Emerald Version to connect, trade, and battle one another
 
