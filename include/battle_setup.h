@@ -76,8 +76,6 @@ extern const struct RematchTrainer gRematchTable[REMATCH_TABLE_ENTRIES];
 
 extern TrainerBattleParameter gTrainerBattleParameter;
 extern bool16 gHideCancelOptionOnPartySelect;
-extern u16 gTrainerBattleOpponent_A;
-extern u16 gTrainerBattleOpponent_B;
 extern u16 gPartnerTrainerId;
 
 void BattleSetup_StartWildBattle(void);
