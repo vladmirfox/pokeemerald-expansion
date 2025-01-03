@@ -957,9 +957,9 @@ void MarkBattlerReceivedLinkData(u32 battler)
     s32 i;
 
     for (i = 0; i < GetLinkPlayerCount(); i++)
-        gBattleControllerExecFlags |= (1u << battler) << (i << 2);
+        gBattleControllerExecFlags |= 1u << (battler + (i << 2));
 
-    gBattleControllerExecFlags &= ~((1u << 28) << battler);
+    gBattleControllerExecFlags &= ~(1u << (28 + battler));
 }
 
 const u8* CancelMultiTurnMoves(u32 battler)
