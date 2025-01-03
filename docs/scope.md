@@ -42,7 +42,7 @@ A pull request meets the scope criteria if:
 4. **Non-SS Items**: Adds Items that have NOT appeared in a Showdown-supported title
 5. **Non-SS Gimmicks**: Adds Gimmicks that have NOT appeared in a Showdown-supported title (Showdown's Other Metagames, etc.)
 6. **Non-SS Battle Types**: Adds Special Battle Types that have NOT appeared in a Showdown-supported title  
-7. **Non-SS or SS Overworld Maps:** Adds overworld maps from either Showdown-supported titles or non-Showdown-supported titles.
+7. **Non-SS or SS Overworld Maps**: Adds overworld maps from either Showdown-supported titles or non-Showdown-supported titles.
 7. **Duplicate Feature UI**: Adds functionality that duplicates the core functionality of an existing vanilla feature
 8. **Vanilla Link Compatibility**: The ability for Base Expansion Version and Vanilla Emerald Version to connect, trade, and battle one another
 
@@ -50,8 +50,8 @@ A pull request meets the scope criteria if:
 
 Pull Requests that fall into this category should be brought up to maintainers, who will discuss and vote as to whether or not the feature is considered in scope. Considerations for acceptance may include invasiveness of implementation, popularity, ease of maintenance, etc.
 
-1. **Developer Ease of Use:** Lowers barrier of entry for developers to use existing behavior  
-2. **Fangame Features:** Adds a popular feature from other fangames  
-3. **Popular Non-SS Features:** Exceptions can be made for uniquely popular or requested features (Drowsy, PLA Legend Plate, etc.)
+1. **Developer Ease of Use**: Lowers barrier of entry for developers to use existing behavior  
+2. **Fangame Features**: Adds a popular feature from other fangames  
+3. **Popular Non-SS Features**: Exceptions can be made for uniquely popular or requested features (Drowsy, PLA Legend Plate, etc.)
 4. **External Program**: External programs like poryscript, porymoves, etc.
 
