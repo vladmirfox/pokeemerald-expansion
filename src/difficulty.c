@@ -52,7 +52,7 @@ enum DifficultyLevel GetTrainerDifficultyLevel(u16 trainerId)
     return difficulty;
 }
 
-void Script_IncreaseDifficulty(struct ScriptContext *ctx)
+void Script_IncreaseDifficulty(void)
 {
     enum DifficultyLevel currentDifficulty;
 
@@ -67,7 +67,7 @@ void Script_IncreaseDifficulty(struct ScriptContext *ctx)
     SetCurrentDifficultyLevel(currentDifficulty);
 }
 
-void Script_DecreaseDifficulty(struct ScriptContext *ctx)
+void Script_DecreaseDifficulty(void)
 {
     enum DifficultyLevel currentDifficulty;
 
@@ -82,7 +82,7 @@ void Script_DecreaseDifficulty(struct ScriptContext *ctx)
     SetCurrentDifficultyLevel(--currentDifficulty);
 }
 
-void Script_GetDifficulty(struct ScriptContext *ctx)
+void Script_GetDifficulty(void)
 {
     gSpecialVar_Result = GetCurrentDifficultyLevel();
 }
