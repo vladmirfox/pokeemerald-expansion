@@ -453,7 +453,7 @@ bool8 CheckForTrainersWantingBattle(void)
         }
 
         BattleSetup_ConfigureTrainerBattle(gApproachingTrainers[0].trainerScriptPtr + OPCODE_OFFSET, &trainerBattleScriptStack, TRUE);
-        ScriptContext_SetupScript(EventScript_StartTrainerApproachSnippet);
+        ScriptContext_SetupScript(EventSnippet_StartTrainerApproach);
         ScriptContext_PushFromStack(&trainerBattleScriptStack);
         LockPlayerFieldControls();
 

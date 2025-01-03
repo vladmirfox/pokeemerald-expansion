@@ -36,23 +36,23 @@ extern const u8 EventScript_TryDoDoubleTrainerBattle[];
 extern const u8 EventScript_TryDoNormalTrainerBattle[];
 extern const u8 EventScript_TryDoDoubleRematchBattle[];
 extern const u8 EventScript_TryDoRematchBattle[];
-
-extern const u8 EventScript_LockSnippet[];
-extern const u8 EventScript_StartTrainerApproachSnippet[];
-extern const u8 EventScript_TryDoNormalTrainerBattleSnippet[];
-extern const u8 EventScript_RevealTrainerSnippet[];
-extern const u8 EventScript_GetTrainerFlagSnippet[];
-extern const u8 EventScript_PlayTrainerEncounterMusicSnippet[];
-extern const u8 EventScript_SetTrainerFacingDirectionSnippet[];
-extern const u8 EventScript_TrainerApproachSnippet[];
-extern const u8 EventScript_PrepareSecondTrainerApproachSnippet[];
 extern const u8 EventScript_ShowTrainerIntroMsg[];
-extern const u8 EventScript_ShowTrainerIntroMsgSnippet[];
-extern const u8 EventScript_GotoPostBattleScriptSnippet[];
-extern const u8 EventScript_DoTrainerBattleSnippet[];
-extern const u8 EventScript_DoRematchTrainerBattleSnippet[];
 extern const u8 EventScript_NotEnoughMonsForDoubleBattle[];
-extern const u8 EventScript_EndTrainerBattleSnippet[];
+
+extern const u8 EventSnippet_Lock[];
+extern const u8 EventSnippet_StartTrainerApproach[];
+extern const u8 EventSnippet_TryDoNormalTrainerBattle[];
+extern const u8 EventSnippet_RevealTrainer[];
+extern const u8 EventSnippet_GetTrainerFlag[];
+extern const u8 EventSnippet_PlayTrainerEncounterMusic[];
+extern const u8 EventSnippet_SetTrainerFacingDirection[];
+extern const u8 EventSnippet_TrainerApproach[];
+extern const u8 EventSnippet_PrepareSecondTrainerApproach[];
+extern const u8 EventSnippet_ShowTrainerIntroMsg[];
+extern const u8 EventSnippet_GotoPostBattleScript[];
+extern const u8 EventSnippet_DoTrainerBattle[];
+extern const u8 EventSnippet_DoRematchTrainerBattle[];
+extern const u8 EventSnippet_EndTrainerBattle[];
 
 extern const u8 BerryTreeScript[];
 

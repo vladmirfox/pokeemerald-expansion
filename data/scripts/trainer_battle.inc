@@ -129,23 +129,23 @@ Std_MsgboxAutoclose::
 	release
 	return
 
-EventScript_LockSnippet::
+EventSnippet_Lock::
 	lock
 	faceplayer
 	setflag FLAG_SAFE_FOLLOWER_MOVEMENT
 	return
 
-EventScript_StartTrainerApproachSnippet::
+EventSnippet_StartTrainerApproach::
 	selectapproachingtrainer
 	lockfortrainer
 	return
 
-EventScript_TrainerApproachSnippet::
+EventSnippet_TrainerApproach::
 	special DoTrainerApproach
 	waitstate
 	return
 
-EventScript_RevealTrainerSnippet::
+EventSnippet_RevealTrainer::
 	applymovement VAR_LAST_TALKED, Movement_RevealTrainer
 	waitmovement 0
 	clearflag FLAG_SAFE_FOLLOWER_MOVEMENT
@@ -156,38 +156,38 @@ EventScript_IsTrainerFlagSet::
 	goto_if_ne VAR_RESULT, FALSE, EventScript_NoNormalTrainerBattle
 	return
 
-EventScript_PlayTrainerEncounterMusicSnippet::
+EventSnippet_PlayTrainerEncounterMusic::
 	special PlayTrainerEncounterMusic
 	return
 
-EventScript_SetTrainerFacingDirectionSnippet::
+EventSnippet_SetTrainerFacingDirection::
 	special SetTrainerFacingDirection
 	return
 
-EventScript_ShowTrainerIntroMsgSnippet::
+EventSnippet_ShowTrainerIntroMsg::
 	special ShowTrainerIntroSpeech
 	waitmessage
 	waitbuttonpress
 	return 
 
-EventScript_PrepareSecondTrainerApproachSnippet::
+EventSnippet_PrepareSecondTrainerApproach::
 	special PrepareSecondApproachingTrainer
 	return
 
-EventScript_GotoPostBattleScriptSnippet::
+EventSnippet_GotoPostBattleScript::
 	gotopostbattlescript
 	return
 
-EventScript_DoTrainerBattleSnippet::
+EventSnippet_DoTrainerBattle::
 	dotrainerbattle
 	return
 
-EventScript_DoRematchTrainerBattleSnippet::
+EventSnippet_DoRematchTrainerBattle::
 	special BattleSetup_StartRematchBattle
 	waitstate
 	return
 
-EventScript_EndTrainerBattleSnippet::
+EventSnippet_EndTrainerBattle::
 	gotobeatenscript
 	releaseall
 	end
