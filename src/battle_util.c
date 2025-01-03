@@ -1664,10 +1664,10 @@ u8 DoFieldEndTurnEffects(void)
 {
     u8 effect = 0;
 
-    for (gBattlerAttacker = 0; gBattlerAttacker < gBattlersCount && gAbsentBattlerFlags & gBitTable[gBattlerAttacker]; gBattlerAttacker++)
+    for (gBattlerAttacker = 0; gBattlerAttacker < gBattlersCount && gAbsentBattlerFlags & (1u << gBattlerAttacker); gBattlerAttacker++)
     {
     }
-    for (gBattlerTarget = 0; gBattlerTarget < gBattlersCount && gAbsentBattlerFlags & gBitTable[gBattlerTarget]; gBattlerTarget++)
+    for (gBattlerTarget = 0; gBattlerTarget < gBattlersCount && gAbsentBattlerFlags & (1u << gBattlerTarget); gBattlerTarget++)
     {
     }
 
@@ -2312,7 +2312,7 @@ u8 DoBattlerEndTurnEffects(void)
     while (gBattleStruct->turnEffectsBattlerId < gBattlersCount && gBattleStruct->turnEffectsTracker <= ENDTURN_BATTLER_COUNT)
     {
         battler = gBattlerAttacker = gBattlerByTurnOrder[gBattleStruct->turnEffectsBattlerId];
-        if (gAbsentBattlerFlags & gBitTable[battler])
+        if (gAbsentBattlerFlags & (1u << battler))
         {
             gBattleStruct->turnEffectsBattlerId++;
             continue;
@@ -3004,7 +3004,7 @@ bool32 HandleWishPerishSongOnTurnEnd(void)
 
             if (gWishFutureKnock.futureSightCounter[battler] != 0
              && --gWishFutureKnock.futureSightCounter[battler] == 0
-             && !(gAbsentBattlerFlags & gBitTable[battler]))
+             && !(gAbsentBattlerFlags & (1u << battler)))
             {
                 struct Pokemon *party;
 
@@ -3045,7 +3045,7 @@ bool32 HandleWishPerishSongOnTurnEnd(void)
         while (gBattleStruct->wishPerishSongBattlerId < gBattlersCount)
         {
             battler = gBattlerAttacker = gBattlerByTurnOrder[gBattleStruct->wishPerishSongBattlerId];
-            if (gAbsentBattlerFlags & gBitTable[battler])
+            if (gAbsentBattlerFlags & (1u << battler))
             {
                 gBattleStruct->wishPerishSongBattlerId++;
                 continue;
@@ -3111,8 +3111,8 @@ bool32 HandleFaintedMonActions(void)
             gBattleStruct->faintedActionsState++;
             for (i = 0; i < gBattlersCount; i++)
             {
-                if (gAbsentBattlerFlags & gBitTable[i] && !HasNoMonsToSwitch(i, PARTY_SIZE, PARTY_SIZE))
-                    gAbsentBattlerFlags &= ~(gBitTable[i]);
+                if (gAbsentBattlerFlags & (1u << i) && !HasNoMonsToSwitch(i, PARTY_SIZE, PARTY_SIZE))
+                    gAbsentBattlerFlags &= ~(1u << i);
             }
             // fall through
         case 1:
@@ -3120,7 +3120,7 @@ bool32 HandleFaintedMonActions(void)
             {
                 gBattlerFainted = gBattlerTarget = gBattleStruct->faintedActionsBattlerId;
                 if (gBattleMons[gBattleStruct->faintedActionsBattlerId].hp == 0
-                 && !(gBattleStruct->givenExpMons & gBitTable[gBattlerPartyIndexes[gBattleStruct->faintedActionsBattlerId]])
+                 && !(gBattleStruct->givenExpMons & (1u << gBattlerPartyIndexes[gBattleStruct->faintedActionsBattlerId]))
                  && !(gAbsentBattlerFlags & gBitTable[gBattleStruct->faintedActionsBattlerId]))
                 {
                     BattleScriptExecute(BattleScript_GiveExp);
