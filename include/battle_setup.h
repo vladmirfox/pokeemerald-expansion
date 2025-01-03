@@ -23,11 +23,9 @@ typedef union PACKED TrainerBattleParameter
     {
         u8 isDoubleBattle:1;
         u8 isRematch:1;
-        u8 isTrainerHill:1;
-        u8 isTrainerPyramid:1;
         u8 playMusicA:1;
         u8 playMusicB:1;
-        u8 padding:2;
+        u8 padding:4;
         u8 objEventLocalIdA;
         u16 battleOpponentA;
         u8* introTextA;
@@ -60,8 +58,8 @@ typedef union PACKED MultiTrainerBattleParameter
     u8 data[sizeof(struct _MultiTrainerBattleParameter)];
 } MultiTrainerBattleParameter;
 
-#define DebugPrintTrainerParams(battleParameter) DebugPrintfLevel(MGBA_LOG_DEBUG, "\nisDouble: %d\nplayMusicA: %d\nplayMusicB: %d\nisRematch: %d\nisTrainerHill: %d\nisTrainerPyramid: %d\npadding: %d\nlocalIdA: %d\ntrainerA: %d\nintroA: %x\ndefeatA: %x\neventA: %x\nlocalIdB: %d\ntrainerB: %d\nintroB: %x\ndefeatB: %x\neventB: %x\nvictory: %x\nnotBattle:%x\n", \
-        battleParameter->params.isDoubleBattle, battleParameter->params.playMusicA, battleParameter->params.playMusicB, battleParameter->params.isRematch, battleParameter->params.isTrainerHill, battleParameter->params.isTrainerPyramid, battleParameter->params.padding, \
+#define DebugPrintTrainerParams(battleParameter) DebugPrintfLevel(MGBA_LOG_DEBUG, "\nisDouble: %d\nplayMusicA: %d\nplayMusicB: %d\nisRematch: %d\npadding: %d\nlocalIdA: %d\ntrainerA: %d\nintroA: %x\ndefeatA: %x\neventA: %x\nlocalIdB: %d\ntrainerB: %d\nintroB: %x\ndefeatB: %x\neventB: %x\nvictory: %x\nnotBattle:%x\n", \
+        battleParameter->params.isDoubleBattle, battleParameter->params.playMusicA, battleParameter->params.playMusicB, battleParameter->params.isRematch, battleParameter->params.padding, \
         battleParameter->params.objEventLocalIdA, battleParameter->params.battleOpponentA, battleParameter->params.introTextA, battleParameter->params.defeatTextA, battleParameter->params.battleScriptRetAddrA, \
         battleParameter->params.objEventLocalIdB, battleParameter->params.battleOpponentB, battleParameter->params.introTextB, battleParameter->params.defeatTextB, battleParameter->params.battleScriptRetAddrB, \
         battleParameter->params.victoryText, battleParameter->params.cannotBattleText)

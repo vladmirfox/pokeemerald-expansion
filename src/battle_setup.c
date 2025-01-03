@@ -1083,16 +1083,6 @@ const u8* BattleSetup_ConfigureFacilityTrainerBattle(u8 type, const u8* scriptEn
 
 const u8 *BattleSetup_ConfigureTrainerBattleApproachingTrainer(const u8* data, PtrStack *scrStack)
 {
-    if (TRAINER_BATTLE_PARAM.isTrainerPyramid) 
-    {
-        TRAINER_BATTLE_PARAM.battleOpponentA = LocalIdToPyramidTrainerId(TRAINER_BATTLE_PARAM.objEventLocalIdA);
-    }
-    
-    if (TRAINER_BATTLE_PARAM.isTrainerHill) 
-    {
-        TRAINER_BATTLE_PARAM.battleOpponentA = LocalIdToHillTrainerId(TRAINER_BATTLE_PARAM.objEventLocalIdA);
-    }
-
     if (TRAINER_BATTLE_PARAM.playMusicA)
     {
         PUSH(EventScript_PlayTrainerEncounterMusicSnippet);
@@ -1107,15 +1097,6 @@ const u8 *BattleSetup_ConfigureTrainerBattleApproachingTrainer(const u8* data, P
     
     if (TryPrepareSecondApproachingTrainer2()) {
         SetMapVarsToTrainerB();
-        if (TRAINER_BATTLE_PARAM.isTrainerPyramid) 
-        {
-            TRAINER_BATTLE_PARAM.battleOpponentB = LocalIdToPyramidTrainerId(TRAINER_BATTLE_PARAM.objEventLocalIdB);
-        }
-
-        if (TRAINER_BATTLE_PARAM.isTrainerHill) 
-        {
-            TRAINER_BATTLE_PARAM.battleOpponentB = LocalIdToHillTrainerId(TRAINER_BATTLE_PARAM.objEventLocalIdB);
-        }
 
         PUSH(EventScript_PrepareSecondTrainerApproachSnippet);
         if (TRAINER_BATTLE_PARAM.playMusicB) 
@@ -1163,24 +1144,6 @@ const u8 *BattleSetup_ConfigureTrainerBattle(const u8 *data, PtrStack *scrStack,
     if (TRAINER_BATTLE_PARAM.isRematch)
     {
         TRAINER_BATTLE_PARAM.battleOpponentA = GetRematchTrainerId(TRAINER_BATTLE_PARAM.battleOpponentA);
-    }
-
-    if (TRAINER_BATTLE_PARAM.isTrainerPyramid) 
-    {
-        TRAINER_BATTLE_PARAM.battleOpponentA = LocalIdToPyramidTrainerId(TRAINER_BATTLE_PARAM.objEventLocalIdA);
-        if (TRAINER_BATTLE_PARAM.battleOpponentB != 0)
-        {
-            TRAINER_BATTLE_PARAM.battleOpponentB = LocalIdToPyramidTrainerId(TRAINER_BATTLE_PARAM.objEventLocalIdB);
-        }
-    }
-
-    if (TRAINER_BATTLE_PARAM.isTrainerHill) 
-    {
-        TRAINER_BATTLE_PARAM.battleOpponentA = LocalIdToHillTrainerId(TRAINER_BATTLE_PARAM.objEventLocalIdA);
-        if (TRAINER_BATTLE_PARAM.battleOpponentB != 0)
-        {
-            TRAINER_BATTLE_PARAM.battleOpponentB = LocalIdToHillTrainerId(TRAINER_BATTLE_PARAM.objEventLocalIdB);
-        }
     }
 
     if (TRAINER_BATTLE_PARAM.playMusicA)
