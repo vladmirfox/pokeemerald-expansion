@@ -4,6 +4,7 @@
 // Core-series regions
 enum Region
 {
+    REGION_NONE,
     REGION_KANTO,
     REGION_JOHTO,
     REGION_HOENN,
