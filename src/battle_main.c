@@ -5978,9 +5978,9 @@ u32 GetDynamicMoveType(struct Pokemon *mon, u32 move, u32 battler, u8 *ateBoost)
             u32 teraType;
             if (GetActiveGimmick(battler) == GIMMICK_TERA && ((teraType = GetMonData(mon, MON_DATA_TERA_TYPE)) != TYPE_STELLAR))
                 return teraType;
-            else if (type1 != TYPE_MYSTERY && (!gDisableStructs[battler].roostActive && type1 == TYPE_FLYING))
+            else if (type1 != TYPE_MYSTERY && !(gDisableStructs[battler].roostActive && type1 == TYPE_FLYING))
                 return type1;
-            else if (type2 != TYPE_MYSTERY && (!gDisableStructs[battler].roostActive && type2 == TYPE_FLYING))
+            else if (type2 != TYPE_MYSTERY && !(gDisableStructs[battler].roostActive && type2 == TYPE_FLYING))
                 return type2;
             else if (gDisableStructs[battler].roostActive)
                 return (B_ROOST_PURE_FLYING >= GEN_5 ? TYPE_NORMAL : TYPE_MYSTERY);
