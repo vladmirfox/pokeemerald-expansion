@@ -2577,11 +2577,10 @@ static void Cmd_datahpupdate(void)
             if (gDisableStructs[battler].substituteHP >= gBattleStruct->moveDamage[battler])
             {
                 gDisableStructs[battler].substituteHP -= gBattleStruct->moveDamage[battler];
-                gHpDealt = gBattleStruct->moveDamage[battler];
             }
             else
             {
-                gHpDealt = gBattleStruct->moveDamage[battler] = gDisableStructs[battler].substituteHP;
+                gBattleStruct->moveDamage[battler] = gDisableStructs[battler].substituteHP;
                 gDisableStructs[battler].substituteHP = 0;
             }
             // check substitute fading
@@ -2639,11 +2638,10 @@ static void Cmd_datahpupdate(void)
                 if (gBattleMons[battler].hp > gBattleStruct->moveDamage[battler])
                 {
                     gBattleMons[battler].hp -= gBattleStruct->moveDamage[battler];
-                    gHpDealt = gBattleStruct->moveDamage[battler];
                 }
                 else
                 {
-                    gHpDealt = gBattleStruct->moveDamage[battler] = gBattleMons[battler].hp;
+                    gBattleStruct->moveDamage[battler] = gBattleMons[battler].hp;
                     gBattleMons[battler].hp = 0;
                 }
 
@@ -2654,8 +2652,8 @@ static void Cmd_datahpupdate(void)
                 //       to help determine if a fire move should defrost the target.
                 if (IsBattleMovePhysical(gCurrentMove) && !(gHitMarker & HITMARKER_PASSIVE_DAMAGE) && effect != EFFECT_PAIN_SPLIT)
                 {
-                    gProtectStructs[battler].physicalDmg = gHpDealt;
-                    gSpecialStatuses[battler].physicalDmg = gHpDealt;
+                    gProtectStructs[battler].physicalDmg = gBattleStruct->moveDamage[battler];
+                    gSpecialStatuses[battler].physicalDmg = gBattleStruct->moveDamage[battler];
                     if (cmd->battler == BS_TARGET)
                     {
                         gProtectStructs[battler].physicalBattlerId = gBattlerAttacker;
@@ -2670,8 +2668,8 @@ static void Cmd_datahpupdate(void)
                 else if (!IsBattleMovePhysical(gCurrentMove) && !(gHitMarker & HITMARKER_PASSIVE_DAMAGE) && effect != EFFECT_PAIN_SPLIT)
                 {
                     // Record special damage/attacker for Mirror Coat
-                    gProtectStructs[battler].specialDmg = gHpDealt;
-                    gSpecialStatuses[battler].specialDmg = gHpDealt;
+                    gProtectStructs[battler].specialDmg = gBattleStruct->moveDamage[battler];
+                    gSpecialStatuses[battler].specialDmg = gBattleStruct->moveDamage[battler];
                     if (cmd->battler == BS_TARGET)
                     {
                         gProtectStructs[battler].specialBattlerId = gBattlerAttacker;
@@ -5933,7 +5931,7 @@ static void Cmd_moveend(void)
         switch (gBattleScripting.moveendState)
         {
         case MOVEEND_SUM_DAMAGE: // Sum and store damage dealt for multi strike recoil
-            gBattleScripting.savedDmg += gBattleStruct->moveDamage[gBattlerTarget];;
+            gBattleScripting.savedDmg += gBattleStruct->moveDamage[gBattlerTarget];
             gBattleScripting.moveendState++;
             break;
         case MOVEEND_PROTECT_LIKE_EFFECT:
@@ -11925,7 +11923,7 @@ static void Cmd_setdrainedhp(void)
 {
     CMD_ARGS();
 
-    gBattleStruct->moveDamage[gBattlerAttacker] = (gHpDealt * GetMoveAbsorbPercentage(gCurrentMove) / 100);
+    gBattleStruct->moveDamage[gBattlerAttacker] = (gBattleStruct->moveDamage[gBattlerTarget] * GetMoveAbsorbPercentage(gCurrentMove) / 100);
 
     if (gBattleStruct->moveDamage[gBattlerAttacker] == 0)
         gBattleStruct->moveDamage[gBattlerAttacker] = 1;
