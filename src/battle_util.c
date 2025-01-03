@@ -927,7 +927,7 @@ static void UNUSED MarkAllBattlersForControllerExec(void)
     if (gBattleTypeFlags & BATTLE_TYPE_LINK)
     {
         for (i = 0; i < gBattlersCount; i++)
-            gBattleControllerExecFlags |= (1u << i) << (32 - MAX_BATTLERS_COUNT);
+            gBattleControllerExecFlags |= 1u << (i + 32 - MAX_BATTLERS_COUNT);
     }
     else
     {
@@ -939,7 +939,7 @@ static void UNUSED MarkAllBattlersForControllerExec(void)
 bool32 IsBattlerMarkedForControllerExec(u32 battler)
 {
     if (gBattleTypeFlags & BATTLE_TYPE_LINK)
-        return (gBattleControllerExecFlags & ((1u << battler) << 0x1C)) != 0;
+        return (gBattleControllerExecFlags & (1u << (battler + 28))) != 0;
     else
         return (gBattleControllerExecFlags & (1u << battler)) != 0;
 }
