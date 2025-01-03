@@ -24,8 +24,8 @@ TEST("CreateNPCTrainerPartyForTrainer generates customized Pokémon")
     EXPECT(IsMonShiny(&testParty[0]));
     EXPECT(!IsMonShiny(&testParty[1]));
 
-    EXPECT(GetMonData(&testParty[0], MON_DATA_POKEBALL, 0) == ITEM_MASTER_BALL);
-    EXPECT(GetMonData(&testParty[1], MON_DATA_POKEBALL, 0) == ITEM_POKE_BALL);
+    EXPECT(GetMonData(&testParty[0], MON_DATA_POKEBALL, 0) == BALL_MASTER);
+    EXPECT(GetMonData(&testParty[1], MON_DATA_POKEBALL, 0) == BALL_POKE);
 
     EXPECT(GetMonData(&testParty[0], MON_DATA_SPECIES, 0) == SPECIES_WOBBUFFET);
     EXPECT(GetMonData(&testParty[1], MON_DATA_SPECIES, 0) == SPECIES_WOBBUFFET);
@@ -112,4 +112,51 @@ TEST("ModifyPersonalityForNature can set any nature")
     }
     ModifyPersonalityForNature(&personality, nature);
     EXPECT_EQ(GetNatureFromPersonality(personality), nature);
+}
+
+static const struct TrainerMon sTestParty2[] =
+{
+    {
+        .species = SPECIES_WYNAUT,
+        .lvl = 5,
+    },
+    {
+        .species = SPECIES_WYNAUT,
+        .lvl = 5,
+    },
+    {
+        .species = SPECIES_WYNAUT,
+        .lvl = 5,
+    },
+    {
+        .species = SPECIES_WYNAUT,
+        .lvl = 5,
+    },
+    {
+        .species = SPECIES_WYNAUT,
+        .lvl = 5,
+    },
+    {
+        .species = SPECIES_WYNAUT,
+        .lvl = 5,
+    },
+};
+
+static const struct Trainer sTestTrainer2 =
+{
+    .trainerName = _("Test2"),
+    .trainerClass = TRAINER_CLASS_BLACK_BELT,
+    .party = TRAINER_PARTY(sTestParty2),
+};
+
+TEST("Trainer Class Balls apply to the entire party")
+{
+    u32 j;
+    struct Pokemon *testParty = Alloc(6 * sizeof(struct Pokemon));
+    CreateNPCTrainerPartyFromTrainer(testParty, &sTestTrainer2, TRUE, BATTLE_TYPE_TRAINER);
+    for(j = 0; j < 6; j++)
+    {
+        EXPECT(GetMonData(&testParty[j], MON_DATA_POKEBALL, 0) == gTrainerClasses[sTestTrainer2.trainerClass].ball);
+    }
+    Free(testParty);
 }
