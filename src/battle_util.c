@@ -5078,10 +5078,10 @@ u32 AbilityBattleEffects(u32 caseID, u32 battler, u32 ability, u32 special, u32 
 
             if (!gSpecialStatuses[battler].switchInAbilityDone
              && GetMonData(mon, MON_DATA_SPECIES) == SPECIES_PALAFIN_HERO
-             && !(gBattleStruct->transformZeroToHero[side] & gBitTable[gBattlerPartyIndexes[battler]]))
+             && !(gBattleStruct->transformZeroToHero[side] & (1u << gBattlerPartyIndexes[battler])))
             {
                 gSpecialStatuses[battler].switchInAbilityDone = TRUE;
-                gBattleStruct->transformZeroToHero[side] |= gBitTable[gBattlerPartyIndexes[battler]];
+                gBattleStruct->transformZeroToHero[side] |= (1u << gBattlerPartyIndexes[battler]);
                 BattleScriptPushCursorAndCallback(BattleScript_ZeroToHeroActivates);
                 effect++;
             }
@@ -5272,9 +5272,9 @@ u32 AbilityBattleEffects(u32 caseID, u32 battler, u32 ability, u32 special, u32 
                     for (i = STAT_ATK; i < statsNum; i++)
                     {
                         if (CompareStat(battler, i, MIN_STAT_STAGE, CMP_GREATER_THAN))
-                            validToLower |= gBitTable[i];
+                            validToLower |= (1u << i);
                         if (CompareStat(battler, i, MAX_STAT_STAGE, CMP_LESS_THAN))
-                            validToRaise |= gBitTable[i];
+                            validToRaise |= (1u << i);
                     }
 
                     if (validToLower != 0 || validToRaise != 0) // Can lower one stat, or can raise one stat
@@ -5285,16 +5285,16 @@ u32 AbilityBattleEffects(u32 caseID, u32 battler, u32 ability, u32 special, u32 
                             do
                             {
                                 i = (Random() % statsNum) + STAT_ATK;
-                            } while (!(validToRaise & gBitTable[i]));
+                            } while (!(validToRaise & (1u << i)));
                             SET_STATCHANGER(i, 2, FALSE);
-                            validToLower &= ~(gBitTable[i]); // Can't lower the same stat as raising.
+                            validToLower &= ~((1u << i)); // Can't lower the same stat as raising.
                         }
                         if (validToLower != 0) // Find stat to lower
                         {
                             do
                             {
                                 i = (Random() % statsNum) + STAT_ATK;
-                            } while (!(validToLower & gBitTable[i]));
+                            } while (!(validToLower & (1u << i)));
                             SET_STATCHANGER2(gBattleScripting.savedStatChanger, i, 1, TRUE);
                         }
                         BattleScriptPushCursorAndCallback(BattleScript_MoodyActivates);
@@ -8366,7 +8366,7 @@ u32 ItemBattleEffects(enum ItemEffect caseID, u32 battler, bool32 moveTurn)
 
     // Berry was successfully used on a Pokemon.
     if (effect && (gLastUsedItem >= FIRST_BERRY_INDEX && gLastUsedItem <= LAST_BERRY_INDEX))
-        gBattleStruct->ateBerry[battler & BIT_SIDE] |= gBitTable[gBattlerPartyIndexes[battler]];
+        gBattleStruct->ateBerry[battler & BIT_SIDE] |= (1u << gBattlerPartyIndexes[battler]);
 
     return effect;
 }
@@ -8555,13 +8555,13 @@ u8 GetAttackerObedienceForAction()
     calc = (levelReferenced + obedienceLevel) * ((rnd >> 8) & 255) >> 8;
     if (calc < obedienceLevel)
     {
-        calc = CheckMoveLimitations(gBattlerAttacker, gBitTable[gCurrMovePos], MOVE_LIMITATIONS_ALL);
+        calc = CheckMoveLimitations(gBattlerAttacker, (1u << gCurrMovePos), MOVE_LIMITATIONS_ALL);
         if (calc == ALL_MOVES_MASK) // all moves cannot be used
             return DISOBEYS_LOAFS;
         else // use a random move
             do
                 gCurrMovePos = gChosenMovePos = MOD(Random(), MAX_MON_MOVES);
-            while (gBitTable[gCurrMovePos] & calc);
+            while ((1u << gCurrMovePos) & calc);
         return DISOBEYS_RANDOM_MOVE;
     }
     else
