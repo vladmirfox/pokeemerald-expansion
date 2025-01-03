@@ -7492,8 +7492,19 @@ BattleScript_YawnMakesAsleep::
 	jumpifstatus3 BS_EFFECT_BATTLER, STATUS3_SKY_DROPPED, BattleScript_YawnEnd
 	makevisible BS_EFFECT_BATTLER
 	skydropyawn
-BattleScript_YawnEnd:
+BattleScript_YawnEnd::
 	end2
+
+BattleScript_YawnMakesDrowsy::
+	statusanimation BS_EFFECT_BATTLER
+	printstring STRINGID_PKMNGREWDROWSY
+	waitmessage B_WAIT_TIME_LONG
+	updatestatusicon BS_EFFECT_BATTLER
+	waitstate
+	jumpifstatus3 BS_EFFECT_BATTLER, STATUS3_SKY_DROPPED, BattleScript_YawnEnd
+	makevisible BS_EFFECT_BATTLER
+	skydropyawn
+	goto BattleScript_YawnEnd
 
 BattleScript_EmbargoEndTurn::
 	printstring STRINGID_EMBARGOENDS

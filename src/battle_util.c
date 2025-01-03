@@ -2716,7 +2716,10 @@ u8 DoBattlerEndTurnEffects(void)
                         TryActivateSleepClause(battler, gBattlerPartyIndexes[battler]);
                         BtlController_EmitSetMonData(battler, BUFFER_A, REQUEST_STATUS_BATTLE, 0, 4, &gBattleMons[battler].status1);
                         MarkBattlerForControllerExec(battler);
-                        BattleScriptExecute(BattleScript_YawnMakesAsleep);
+                        if (B_USE_DROWSY)
+                            BattleScriptExecute(BattleScript_YawnMakesDrowsy);
+                        else
+                            BattleScriptExecute(BattleScript_YawnMakesAsleep);
                     }
                     effect++;
                 }
