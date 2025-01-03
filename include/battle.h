@@ -71,20 +71,7 @@
 // Special indicator value for shellBellDmg in SpecialStatus
 #define IGNORE_SHELL_BELL 0xFFFF
 
-struct ResourceFlags
-{
-    u32 flags[MAX_BATTLERS_COUNT];
-};
-
-#define RESOURCE_FLAG_FLASH_FIRE        0x1
-#define RESOURCE_FLAG_ROOST             0x2
-#define RESOURCE_FLAG_UNBURDEN          0x4
-#define RESOURCE_FLAG_UNUSED            0x8
-#define RESOURCE_FLAG_UNUSED_2          0x10
-#define RESOURCE_FLAG_EMERGENCY_EXIT    0x20
-#define RESOURCE_FLAG_NEUTRALIZING_GAS  0x40
-#define RESOURCE_FLAG_ICE_FACE          0x80
-
+// Is cleared when a battler leaves the field, either by switch out or dying. Can also be cleared anytime for a battler.
 struct DisableStruct
 {
     u32 transformedMonPersonality;
@@ -139,8 +126,15 @@ struct DisableStruct
     u8 weatherAbilityDone:1;
     u8 terrainAbilityDone:1;
     u8 usedProteanLibero:1;
+    u8 flashFireBoosted:1;
+    u8 roostActive:1;
+    u8 unbrudenActive:1;
+    u8 startEmergencyExit:1;
+    u8 neutralizingGas:1;
+    u8 iceFaceActivationPrevention:1; // fixes hit escape move edge case
 };
 
+// Fully Cleared each turn after end turn effects are done. A few things are cleared before end turn effects
 struct ProtectStruct
 {
     u32 protected:1;
@@ -194,9 +188,9 @@ struct ProtectStruct
     u32 specialDmg;
     u8 physicalBattlerId;
     u8 specialBattlerId;
-
 };
 
+// Cleared at the start of HandleAction_ActionFinished
 struct SpecialStatus
 {
     s32 shellBellDmg;
@@ -417,7 +411,6 @@ struct StatsArray
 struct BattleResources
 {
     struct SecretBase* secretBase;
-    struct ResourceFlags *flags;
     struct BattleScriptsStack* battleScriptsStack;
     struct BattleCallbacksStack* battleCallbackStack;
     struct StatsArray* beforeLvlUp;
