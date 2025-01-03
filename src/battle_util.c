@@ -8740,7 +8740,7 @@ bool32 IsBattlerAlive(u32 battler)
         return FALSE;
     else if (battler >= gBattlersCount)
         return FALSE;
-    else if (gAbsentBattlerFlags & gBitTable[battler])
+    else if (gAbsentBattlerFlags & (1u << battler))
         return FALSE;
     else
         return TRUE;
@@ -8817,12 +8817,12 @@ u32 GetMoveTargetCount(struct DamageCalculationData *damageCalcData)
     switch (GetBattlerMoveTargetType(battlerAtk, move))
     {
     case MOVE_TARGET_BOTH:
-        return !(gAbsentBattlerFlags & gBitTable[battlerDef])
-             + !(gAbsentBattlerFlags & gBitTable[BATTLE_PARTNER(battlerDef)]);
+        return !(gAbsentBattlerFlags & (1u << battlerDef))
+             + !(gAbsentBattlerFlags & (1u << BATTLE_PARTNER(battlerDef)));
     case MOVE_TARGET_FOES_AND_ALLY:
-        return !(gAbsentBattlerFlags & gBitTable[battlerDef])
-             + !(gAbsentBattlerFlags & gBitTable[BATTLE_PARTNER(battlerDef)])
-             + !(gAbsentBattlerFlags & gBitTable[BATTLE_PARTNER(battlerAtk)]);
+        return !(gAbsentBattlerFlags & (1u << battlerDef))
+             + !(gAbsentBattlerFlags & (1u << BATTLE_PARTNER(battlerDef)))
+             + !(gAbsentBattlerFlags & (1u << BATTLE_PARTNER(battlerAtk)));
     case MOVE_TARGET_OPPONENTS_FIELD:
         return 1;
     case MOVE_TARGET_DEPENDS:
@@ -9252,7 +9252,7 @@ static inline u32 CalcMoveBasePowerAfterModifiers(struct DamageCalculationData *
             modifier = uq4_12_multiply(modifier, UQ_4_12(0.5));
         break;
     case EFFECT_STOMPING_TANTRUM:
-        if (gBattleStruct->lastMoveFailed & gBitTable[battlerAtk])
+        if (gBattleStruct->lastMoveFailed & (1u << battlerAtk))
             modifier = uq4_12_multiply(modifier, UQ_4_12(2.0));
         break;
     case EFFECT_MAGNITUDE:
@@ -9440,7 +9440,7 @@ static inline u32 CalcMoveBasePowerAfterModifiers(struct DamageCalculationData *
     case ABILITY_PROTOSYNTHESIS:
         {
             u8 defHighestStat = GetHighestStatId(battlerDef);
-            if (((weather & B_WEATHER_SUN && WEATHER_HAS_EFFECT) || gBattleStruct->boosterEnergyActivates & gBitTable[battlerDef])
+            if (((weather & B_WEATHER_SUN && WEATHER_HAS_EFFECT) || gBattleStruct->boosterEnergyActivates & (1u << battlerDef))
              && ((IS_MOVE_PHYSICAL(move) && defHighestStat == STAT_DEF) || (IS_MOVE_SPECIAL(move) && defHighestStat == STAT_SPDEF))
              && !(gBattleMons[battlerDef].status2 & STATUS2_TRANSFORMED))
                 modifier = uq4_12_multiply(modifier, UQ_4_12(0.7));
@@ -9449,7 +9449,7 @@ static inline u32 CalcMoveBasePowerAfterModifiers(struct DamageCalculationData *
     case ABILITY_QUARK_DRIVE:
         {
             u8 defHighestStat = GetHighestStatId(battlerDef);
-            if ((gFieldStatuses & STATUS_FIELD_ELECTRIC_TERRAIN || gBattleStruct->boosterEnergyActivates & gBitTable[battlerDef])
+            if ((gFieldStatuses & STATUS_FIELD_ELECTRIC_TERRAIN || gBattleStruct->boosterEnergyActivates & (1u << battlerDef))
              && ((IS_MOVE_PHYSICAL(move) && defHighestStat == STAT_DEF) || (IS_MOVE_SPECIAL(move) && defHighestStat == STAT_SPDEF))
              && !(gBattleMons[battlerDef].status2 & STATUS2_TRANSFORMED))
                 modifier = uq4_12_multiply(modifier, UQ_4_12(0.7));
@@ -11426,7 +11426,7 @@ bool32 CanStealItem(u32 battlerStealing, u32 battlerItem, u16 item)
            | BATTLE_TYPE_LINK
            | BATTLE_TYPE_RECORDED_LINK
            | BATTLE_TYPE_SECRET_BASE))
-        && (gWishFutureKnock.knockedOffMons[stealerSide] & gBitTable[gBattlerPartyIndexes[battlerStealing]]))
+        && (gWishFutureKnock.knockedOffMons[stealerSide] & (1u << gBattlerPartyIndexes[battlerStealing])))
     {
         return FALSE;
     }
