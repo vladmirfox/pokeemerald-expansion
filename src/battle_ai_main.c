@@ -989,6 +989,8 @@ static s32 AI_CheckBadMove(u32 battlerAtk, u32 battlerDef, u32 move, s32 score)
         case EFFECT_DROWSY:
             if (!AI_CanGiveDrowsy(battlerAtk, battlerDef, aiData->abilities[battlerDef], move, aiData->partnerMove))
                 ADJUST_SCORE(-10);
+            if (PartnerMoveActivatesSleepClause(aiData->partnerMove))
+                ADJUST_SCORE(-20);
             break;
         case EFFECT_EXPLOSION:
             if (!(AI_THINKING_STRUCT->aiFlags[battlerAtk] & AI_FLAG_WILL_SUICIDE))
