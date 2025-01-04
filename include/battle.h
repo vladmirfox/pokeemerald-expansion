@@ -640,7 +640,7 @@ struct Battler
   u32 targetsDone:1;
   u32 storedHealingWish:1;
   u32 storedLunarDance:1;
-  u32 enduredDamage:1;
+  u32 enduredDamage:1; // can be moved to a different struct
   u32 boosterEnergyActivates:1;
   u32 usedEjectItem:1;
   u32 sleepClauseEffectExempt:1;
@@ -748,7 +748,7 @@ struct BattleStruct
     u16 arenaStartHp[2];
     u8 arenaLostPlayerMons; // Bits for party member, lost as in referee's decision, not by fainting.
     u8 arenaLostOpponentMons;
-    u8 alreadyStatusedMoveAttempt; // As bits for battlers; For example when using Thunder Wave on an already paralyzed Pokémon.
+        u8 alreadyStatusedMoveAttempt; // As bits for battlers; For example when using Thunder Wave on an already paralyzed Pokémon.
     u8 debugBattler;
     u8 magnitudeBasePower;
     u8 presentBasePower;
@@ -758,7 +758,7 @@ struct BattleStruct
     u8 savedTargetCount:4;
     u8 savedAttackerCount:4;
     bool8 ateBoost[MAX_BATTLERS_COUNT];
-    u8 activeAbilityPopUps; // as bits for each battler
+        u8 activeAbilityPopUps; // as bits for each battler
     u8 abilityPopUpSpriteIds[MAX_BATTLERS_COUNT][2];    // two per battler
     struct ZMoveData zmove;
     struct DynamaxData dynamax;
@@ -767,7 +767,7 @@ struct BattleStruct
     enum BattleIntroStates introState:8;
     u8 ateBerry[2]; // array id determined by side, each party pokemon as bit
     u8 stolenStats[NUM_BATTLE_STATS]; // hp byte is used for which stats to raise, other inform about by how many stages
-    u8 lastMoveFailed; // as bits for each battler, for the sake of Stomping Tantrum
+        u8 lastMoveFailed; // as bits for each battler, for the sake of Stomping Tantrum
     u8 lastMoveTarget[MAX_BATTLERS_COUNT]; // The last target on which each mon used a move, for the sake of Instruct
     u16 tracedAbility[MAX_BATTLERS_COUNT];
     u16 hpBefore[MAX_BATTLERS_COUNT]; // Hp of battlers before using a move. For Berserk and Anger Shell.
@@ -782,7 +782,7 @@ struct BattleStruct
     u16 changedSpecies[NUM_BATTLE_SIDES][PARTY_SIZE]; // For forms when multiple mons can change into the same pokemon.
     u8 quickClawBattlerId;
     struct LostItem itemLost[NUM_BATTLE_SIDES][PARTY_SIZE];  // Pokemon that had items consumed or stolen (two bytes per party member per side)
-    u8 forcedSwitch:4; // For each battler
+        u8 forcedSwitch:4; // For each battler
     u8 additionalEffectsCounter:4; // A counter for the additionalEffects applied by the current move in Cmd_setadditionaleffects
     u8 blunderPolicy:1; // should blunder policy activate
     u8 swapDamageCategory:1; // Photon Geyser, Shell Side Arm, Light That Burns the Sky
@@ -801,10 +801,10 @@ struct BattleStruct
     u8 hitSwitchTargetFailed:1;
     u8 effectsBeforeUsingMoveDone:1; // Mega Evo and Focus Punch/Shell Trap effects.
     u8 spriteIgnore0Hp:1;
-    u8 targetsDone[MAX_BATTLERS_COUNT]; // Each battler as a bit.
+        u8 targetsDone[MAX_BATTLERS_COUNT]; // Each battler as a bit.
     u8 battleBondTransformed[NUM_BATTLE_SIDES]; // Bitfield for each party.
-    u8 storedHealingWish:4; // Each battler as a bit.
-    u8 storedLunarDance:4; // Each battler as a bit.
+        u8 storedHealingWish:4; // Each battler as a bit.
+        u8 storedLunarDance:4; // Each battler as a bit.
     u8 bonusCritStages[MAX_BATTLERS_COUNT]; // G-Max Chi Strike boosts crit stages of allies.
     u8 itemPartyIndex[MAX_BATTLERS_COUNT];
     u8 itemMoveIndex[MAX_BATTLERS_COUNT];
@@ -823,7 +823,7 @@ struct BattleStruct
     u32 aiDelayTimer; // Counts number of frames AI takes to choose an action.
     u32 aiDelayFrames; // Number of frames it took to choose an action.
     u8 timesGotHit[NUM_BATTLE_SIDES][PARTY_SIZE];
-    u8 enduredDamage;
+        u8 enduredDamage;
     u8 transformZeroToHero[NUM_BATTLE_SIDES];
     u8 stickySyrupdBy[MAX_BATTLERS_COUNT];
     u8 intrepidSwordBoost[NUM_BATTLE_SIDES];
@@ -834,17 +834,17 @@ struct BattleStruct
     u8 quickDrawRandom[MAX_BATTLERS_COUNT];
     u8 shellSideArmCategory[MAX_BATTLERS_COUNT][MAX_BATTLERS_COUNT];
     u8 speedTieBreaks; // MAX_BATTLERS_COUNT! values.
-    u8 boosterEnergyActivates;
+        u8 boosterEnergyActivates;
     u8 categoryOverride; // for Z-Moves and Max Moves
     u16 commanderActive[MAX_BATTLERS_COUNT];
     u32 stellarBoostFlags[NUM_BATTLE_SIDES]; // stored as a bitfield of flags for all types for each side
     u8 redCardActivates:1;
     u8 padding1:7;
-    u8 usedEjectItem;
+        u8 usedEjectItem;
     u8 monCausingSleepClause[NUM_BATTLE_SIDES]; // Stores which pokemon on a given side is causing Sleep Clause to be active as the mon's index in the party
-    u8 sleepClauseEffectExempt:4; // Stores whether effect should be exempt from triggering Sleep Clause (Effect Spore)
-    u8 usedMicleBerry:4;
-    u8 pursuitTarget:4; // Each battler as a bit.
+        u8 sleepClauseEffectExempt:4; // Stores whether effect should be exempt from triggering Sleep Clause (Effect Spore)
+        u8 usedMicleBerry:4;
+        u8 pursuitTarget:4; // Each battler as a bit.
     u8 pursuitSwitchByMove:1;
     u8 pursuitStoredSwitch; // Stored id for the Pursuit target's switch
     s32 battlerExpReward;

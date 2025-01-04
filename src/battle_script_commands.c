@@ -6414,9 +6414,9 @@ static void Cmd_moveend(void)
             if ((gBattleStruct->moveResultFlags[gBattlerTarget] & (MOVE_RESULT_FAILED | MOVE_RESULT_DOESNT_AFFECT_FOE))
              || (gBattleMons[gBattlerAttacker].status2 & (STATUS2_FLINCHED))
              || gProtectStructs[gBattlerAttacker].prlzImmobility)
-                gBattleStruct->lastMoveFailed |= 1u << gBattlerAttacker;
+                gBattleStruct->battlers[gBattlerAttacker].lastMoveFailed = TRUE;
             else
-                gBattleStruct->lastMoveFailed &= ~(1u << gBattlerAttacker);
+                gBattleStruct->battlers[gBattlerAttacker].lastMoveFailed = FALSE;
 
             // Set ShellTrap to activate after the attacker's turn if target was hit by a physical move.
             if (GetMoveEffect(gChosenMoveByBattler[gBattlerTarget]) == EFFECT_SHELL_TRAP
@@ -7900,7 +7900,7 @@ static bool32 DoSwitchInEffectsForBattler(u32 battler)
             gBattleStruct->hpOnSwitchout[GetBattlerSide(i)] = gBattleMons[i].hp;
         }
 
-        gBattleStruct->forcedSwitch &= ~(1u << battler);
+        gBattleStruct->battlers[battler].forcedSwitch = FALSE;
         return FALSE;
     }
 
@@ -12541,7 +12541,7 @@ static void Cmd_forcerandomswitch(void)
         {
             *(gBattleStruct->battlerPartyIndexes + gBattlerTarget) = gBattlerPartyIndexes[gBattlerTarget];
             gBattlescriptCurrInstr = BattleScript_RoarSuccessSwitch;
-            gBattleStruct->forcedSwitch |= 1u << gBattlerTarget;
+            gBattleStruct->battlers[gBattlerTarget].forcedSwitch = TRUE;
             *(gBattleStruct->monToSwitchIntoId + gBattlerTarget) = validMons[RandomUniform(RNG_FORCE_RANDOM_SWITCH, 0, validMonsCount - 1)];
 
             if (!IsMultiBattle())

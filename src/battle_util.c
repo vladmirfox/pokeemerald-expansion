@@ -9359,7 +9359,7 @@ static inline u32 CalcMoveBasePowerAfterModifiers(struct DamageCalculationData *
             modifier = uq4_12_multiply(modifier, UQ_4_12(0.5));
         break;
     case EFFECT_STOMPING_TANTRUM:
-        if (gBattleStruct->lastMoveFailed & (1u << battlerAtk))
+        if (gBattleStruct->battlers[battlerAtk].lastMoveFailed)
             modifier = uq4_12_multiply(modifier, UQ_4_12(2.0));
         break;
     case EFFECT_MAGNITUDE:
@@ -12201,7 +12201,7 @@ bool32 DoesDestinyBondFail(u32 battler)
 {
     if (B_DESTINY_BOND_FAIL >= GEN_7
         && GetMoveEffect(gLastResultingMoves[battler]) == EFFECT_DESTINY_BOND
-        && !(gBattleStruct->lastMoveFailed & (1u << battler)))
+        && !gBattleStruct->battlers[battler].lastMoveFailed)
         return TRUE;
     return FALSE;
 }
