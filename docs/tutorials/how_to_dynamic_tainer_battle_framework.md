@@ -1,9 +1,15 @@
 # Contents
-1. [Motivation](#motivation)
-2. [The What](#the-what)
-3. [Scope](#scope)
-5. [The How](#the-how)
-6. [Using the framework](#using-the-framework)
+- [Contents](#contents)
+- [Motivation](#motivation)
+- [The What](#the-what)
+- [Scope](#scope)
+- [The How](#the-how)
+  - [EventSnippets](#eventsnippets)
+  - [TrainerBattleParameter](#trainerbattleparameter)
+  - [Script Building](#script-building)
+- [Using the framework](#using-the-framework)
+    - [1. Adding a new Snippet](#1-adding-a-new-snippet)
+    - [2. Inserting the Snippet](#2-inserting-the-snippet)
 
 # Motivation
 In ~~vanilla~~ pokeemerald-expanded there are a few different trainer battle types such as single, double or rematch battles. Each battle type may also have small variations like continuing a script after the battle, playing the battle music or not showing the intro text for the opponent. Unfortunately each of these variation is defined as their own static battle type in the battle engine leading to:
@@ -55,19 +61,62 @@ The [`TrainerBattleParameter`](https://github.com/u8-Salem/pokeemerald/blob/e431
 After the `gTrainerBattleParameter`was initialized with the parameters the scripts is build in [`BattleSetup_ConfigureTrainerBattle`](https://github.com/u8-Salem/pokeemerald/blob/e431236a9469fc5c7e47e1dd6e92b7fe8a249493/src/battle_setup.c#L1089). Here, changes to battle parameters can be made like
 ```C
 if (TRAINER_BATTLE_PARAM.isRematch)
-    {
-        TRAINER_BATTLE_PARAM.battleOpponentA = GetRematchTrainerId(TRAINER_BATTLE_PARAM.battleOpponentA);
-    }
+{
+    TRAINER_BATTLE_PARAM.battleOpponentA = GetRematchTrainerId(TRAINER_BATTLE_PARAM.battleOpponentA);
+}
 ```
 
 or Snippets may be pushed onto the stack. 
 
 ```C
 if (TRAINER_BATTLE_PARAM.playMusicA)
-    {
-        PUSH(EventSnippet_PlayTrainerEncounterMusic);
-    }
+{
+    PUSH(EventSnippet_PlayTrainerEncounterMusic);
+}
 ```
 
 # Using the framework
 
+Lets demonstrate how to use the framework by adding a simple message before a trainer battle starts like this \
+![example](script_building_example.gif)
+
+### 1. Adding a new Snippet
+
+First we must create a new `EventSnippet` that does the action we want. In this case its a simple `msgbox` but it may be whatever you want.
+```
+EventSnippet_PlayerSeen::
+	msgbox EventSnippet_Text_GetReady, MSGBOX_AUTOCLOSE
+	waitmessage
+	return
+
+EventSnippet_Text_GetReady:
+	.string "I was seen!\l"
+	.string "Lets get ready to fight.$"
+```
+in `event_scripts.h`: 
+```
+extern const u8 EventSnippet_PlayerSeen[];
+```
+
+### 2. Inserting the Snippet
+Now we need to push our Snippet onto the Stack at the right time.
+Since I want this only to apply for **approaching** trainers I add **`PUSH(EventSnippet_PlayerSeen)`** to `BattleSetup_ConfigureTrainerBattleApproachingTrainer` in `battle_setup.c`:
+```C
+const u8 *BattleSetup_ConfigureTrainerBattleApproachingTrainer(const u8* data, PtrStack *scrStack)
+{
+    if (TRAINER_BATTLE_PARAM.playMusicA)
+    {
+        PUSH(EventSnippet_PlayTrainerEncounterMusic);
+    }
+
+    PUSH(EventSnippet_PlayerSeen);
+    PUSH(EventSnippet_TrainerApproach);
+
+    if (TRAINER_BATTLE_PARAM.introTextA != NULL) 
+    {
+        PUSH(EventSnippet_ShowTrainerIntroMsg);
+    }
+    ...
+}
+```
+The order in which snippets are pushed onto the stack is important here. I want my message to show **before** the trainers approach, so I need to push it before `PUSH(EventSnippet_TrainerApproach)`.
