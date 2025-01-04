@@ -20,7 +20,7 @@ static const struct Trainer sTestTrainers[DIFFICULTY_COUNT][NUM_TEST_TRAINERS] =
 
 enum DifficultyLevel GetTrainerDifficultyLevelTest(u16 trainerId)
 {
-    enum DifficultyLevel difficulty = GetTrainerDifficultyLevelTest(0);
+    enum DifficultyLevel difficulty = GetCurrentDifficultyLevel();
 
     if (difficulty == DIFFICULTY_NORMAL)
         return DIFFICULTY_NORMAL;
@@ -110,7 +110,7 @@ TEST("CreateNPCTrainerPartyForTrainer generates customized Pokémon")
 
 TEST("CreateNPCTrainerPartyForTrainer generates different personalities for different mons")
 {
-    enum DifficultyLevel difficulty = GetCurrentDifficultyLevel();
+    enum DifficultyLevel difficulty = GetTrainerDifficultyLevelTest(0);
     struct Pokemon *testParty = Alloc(6 * sizeof(struct Pokemon));
     CreateNPCTrainerPartyFromTrainer(testParty, &sTestTrainers[difficulty][0], TRUE, BATTLE_TYPE_TRAINER);
     EXPECT(testParty[0].box.personality != testParty[1].box.personality);
