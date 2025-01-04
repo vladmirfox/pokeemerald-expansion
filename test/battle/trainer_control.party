@@ -31,7 +31,67 @@ Level: 5
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
 === 1 ===
-Name: Test1
+Name: Test2
+Class: Pkmn Trainer 1
+Pic: Red
+Gender: Male
+Music: Male
+Double Battle: No
+Difficulty: Normal
+
+Mewtwo
+Level: 5
+
+=== 1 ===
+Name: Test2
+Class: Pkmn Trainer 1
+Pic: Red
+Gender: Male
+Music: Male
+Double Battle: No
+Difficulty: HARD
+
+Yveltal
+Level: 99
+
+=== 2 ===
+Name: Test2
+Class: Pkmn Trainer 1
+Pic: Red
+Gender: Male
+Music: Male
+Double Battle: No
+Difficulty: Normal
+
+Mewtwo
+Level: 50
+
+=== 2 ===
+Name: Test2
+Class: Pkmn Trainer 1
+Pic: Red
+Gender: Male
+Music: Male
+Double Battle: No
+Difficulty: Easy
+
+Metapod
+Level: 1
+
+=== 2 ===
+Name: Test2
+Class: Pkmn Trainer 1
+Pic: Red
+Gender: Male
+Music: Male
+Double Battle: No
+Difficulty: Hard
+
+Arceus
+Level: 99
+
+=== 3 ===
+Name: Test3
 Class: Pkmn Trainer 1
 Pic: Red
 Gender: Male
@@ -47,8 +107,8 @@ Eevee
 
 Mew
 
-=== 2 ===
-Name: Test1
+=== 4 ===
+Name: Test4
 Class: Pkmn Trainer 1
 Pic: Red
 Gender: Male
@@ -72,8 +132,8 @@ Tags: Ace
 Aron
 Tags: Lead
 
-=== 3 ===
-Name: Test1
+=== 5 ===
+Name: Test5
 Class: Pkmn Trainer 1
 Pic: Red
 Gender: Male
@@ -110,8 +170,8 @@ Oddish
 
 Eevee
 
-=== 4 ===
-Name: Test1
+=== 6 ===
+Name: Test6
 Class: Pkmn Trainer 1
 Pic: Red
 Gender: Male
@@ -129,7 +189,7 @@ Tags: Lead
 Eevee
 Tags: Lead
 
-=== 5 ===
+=== 7 ===
 Name: Test1
 Class: Pkmn Trainer 1
 Pic: Red
@@ -147,7 +207,7 @@ Tags: Lead
 
 Eevee
 
-=== 6 ===
+=== 7 ===
 Name: Test1
 Class: Pkmn Trainer 1
 Pic: Red
