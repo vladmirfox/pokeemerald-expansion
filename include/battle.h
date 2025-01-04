@@ -627,8 +627,31 @@ enum BattleIntroStates
     BATTLE_INTRO_STATE_SET_DEX_AND_BATTLE_VARS
 };
 
+struct Battler
+{
+  u32 commandingDondozo:1;
+  u32 absentBattlerFlags:1; // TODO
+  u32 focusPunchBattlers:1;
+  u32 multipleSwitchInBattlers:1;
+  u32 alreadyStatusedMoveAttempt:1;
+  u32 activeAbilityPopUps:1;
+  u32 lastMoveFailed:1;
+  u32 forcedSwitch:1;
+  u32 targetsDone:1;
+  u32 storedHealingWish:1;
+  u32 storedLunarDance:1;
+  u32 enduredDamage:1;
+  u32 boosterEnergyActivates:1;
+  u32 usedEjectItem:1;
+  u32 sleepClauseEffectExempt:1;
+  u32 usedMicleBerry:1;
+  u32 pursuitTarget:1;
+  u32 padding:15;
+};
+
 struct BattleStruct
 {
+    struct Battler battlers[MAX_BATTLERS_COUNT];
     u8 turnEffectsTracker;
     u8 turnEffectsBattlerId;
     u8 turnCountersTracker;
@@ -646,7 +669,6 @@ struct BattleStruct
     u8 wildVictorySong;
     u8 dynamicMoveType;
     u8 wrappedBy[MAX_BATTLERS_COUNT];
-    u8 focusPunchBattlers; // as bits
     u8 battlerPreventingSwitchout;
     u8 moneyMultiplier:6;
     u8 moneyMultiplierItem:1;
@@ -687,9 +709,9 @@ struct BattleStruct
     u8 hpScale;
     u16 synchronizeMoveEffect;
     u8 anyMonHasTransformed:1; // Only used in battle_tv.c
-    u8 multipleSwitchInBattlers:4; // One bit per battler
     u8 multipleSwitchInState:2;
     u8 multipleSwitchInCursor:3;
+    u8 padding_a:2;
     u8 multipleSwitchInSortedBattlers[MAX_BATTLERS_COUNT];
     void (*savedCallback)(void);
     u16 usedHeldItems[PARTY_SIZE][NUM_BATTLE_SIDES]; // For each party member and side. For harvest, recycle
@@ -814,7 +836,6 @@ struct BattleStruct
     u8 speedTieBreaks; // MAX_BATTLERS_COUNT! values.
     u8 boosterEnergyActivates;
     u8 categoryOverride; // for Z-Moves and Max Moves
-    u8 commandingDondozo;
     u16 commanderActive[MAX_BATTLERS_COUNT];
     u32 stellarBoostFlags[NUM_BATTLE_SIDES]; // stored as a bitfield of flags for all types for each side
     u8 redCardActivates:1;

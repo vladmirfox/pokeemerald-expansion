@@ -7916,7 +7916,7 @@ static void Cmd_switchineffects(void)
     {
     // Multiple mons fainted and are being switched-in. Their abilities/hazards will play according to speed ties.
     case BS_FAINTED_MULTIPLE_1: // Saves the battlers.
-        gBattleStruct->multipleSwitchInBattlers |= 1 << battler;
+        gBattleStruct->battlers[battler].multipleSwitchInBattlers = TRUE;
         UpdateSentMonFlags(battler);
 
         // Increment fainted battler.
@@ -7945,14 +7945,16 @@ static void Cmd_switchineffects(void)
             for (; gBattleStruct->multipleSwitchInCursor < gBattlersCount; gBattleStruct->multipleSwitchInCursor++)
             {
                 gBattlerFainted = gBattleStruct->multipleSwitchInSortedBattlers[gBattleStruct->multipleSwitchInCursor];
-                if (gBattleStruct->multipleSwitchInBattlers & (1 << (gBattlerFainted)))
+                if (gBattleStruct->battlers[gBattlerFainted].multipleSwitchInBattlers)
                 {
                     if (DoSwitchInEffectsForBattler(gBattlerFainted))
                         return;
                 }
             }
             // All battlers done, end
-            gBattleStruct->multipleSwitchInBattlers = 0;
+            for (i = 0; i < gBattlersCount; i++)
+                gBattleStruct->battlers[i].multipleSwitchInBattlers = FALSE;
+
             gBattleStruct->multipleSwitchInState = 0;
             gBattlescriptCurrInstr = cmd->nextInstr;
         }
