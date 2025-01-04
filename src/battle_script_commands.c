@@ -2128,7 +2128,7 @@ static void Cmd_adjustdamage(void)
 
         if (DoesDisguiseBlockMove(battlerDef, gCurrentMove))
         {
-            gBattleStruct->enduredDamage |= 1u << battlerDef;
+            gSpecialStatuses[battlerDef].enduredDamage = TRUE;
             goto END;
         }
         if (GetBattlerAbility(battlerDef) == ABILITY_ICE_FACE && IsBattleMovePhysical(gCurrentMove) && gBattleMons[battlerDef].species == SPECIES_EISCUE)
@@ -2182,7 +2182,7 @@ static void Cmd_adjustdamage(void)
 
         // Handle reducing the dmg to 1 hp.
         gBattleStruct->moveDamage[battlerDef] = gBattleMons[battlerDef].hp - 1;
-        gBattleStruct->enduredDamage |= 1u << battlerDef;
+        gSpecialStatuses[battlerDef].enduredDamage = TRUE;
 
         if (gProtectStructs[battlerDef].endured)
         {
@@ -7006,7 +7006,6 @@ static void Cmd_moveend(void)
             gBattleStruct->categoryOverride = FALSE;
             gBattleStruct->bouncedMoveIsUsed = FALSE;
             gBattleStruct->snatchedMoveIsUsed = FALSE;
-            gBattleStruct->enduredDamage = 0;
             gBattleStruct->additionalEffectsCounter = 0;
             gBattleStruct->poisonPuppeteerConfusion = FALSE;
             gBattleStruct->fickleBeamBoosted = FALSE;

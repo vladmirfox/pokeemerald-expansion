@@ -140,6 +140,8 @@ struct DisableStruct
     u8 terrainAbilityDone:1;
     u8 usedProteanLibero:1;
     u16 overwrittenAbility;   // abilities overwritten during battle (keep separate from battle history in case of switching)
+
+    u8 boosterEnergyActivates:1;
 };
 
 struct ProtectStruct
@@ -189,7 +191,7 @@ struct ProtectStruct
     u16 eatMirrorHerb:1;
     u16 activateOpportunist:2; // 2 - to copy stats. 1 - stats copied (do not repeat). 0 - no stats to copy
     u16 usedAllySwitch:1;
-    u16 padding:2;
+    u16 padding:1;
     // End of 16-bit bitfield
     u32 physicalDmg;
     u32 specialDmg;
@@ -212,7 +214,8 @@ struct SpecialStatus
     u8 faintedHasReplacement:1;
     u8 focusBanded:1;
     u8 focusSashed:1;
-    u8 unused:2;
+    u8 enduredDamage:1;
+    u8 unused:1;
     // End of byte
     u8 sturdied:1;
     u8 stormDrainRedirected:1;
@@ -641,13 +644,11 @@ struct Battler
     u32 forcedSwitch:1;
     u32 storedHealingWish:1;
     u32 storedLunarDance:1;
-    u32 enduredDamage:1; // can be moved to a different struct
-    u32 boosterEnergyActivates:1; // Move to Disable struct
     u32 usedEjectItem:1;
     u32 sleepClauseEffectExempt:1;
     u32 usedMicleBerry:1;
     u32 pursuitTarget:1;
-    u32 padding:16;
+    u32 padding:17;
 };
 
 struct BattleStruct
@@ -1218,7 +1219,7 @@ static inline bool32 IsBattlerTurnDamaged(u32 battler)
 {
     return gSpecialStatuses[battler].physicalDmg != 0
         || gSpecialStatuses[battler].specialDmg != 0
-        || gBattleStruct->enduredDamage & (1u << battler);
+        || gSpecialStatuses[battler].enduredDamage;
 }
 
 static inline bool32 IsBattlerAtMaxHp(u32 battler)

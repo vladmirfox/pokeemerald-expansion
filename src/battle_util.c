@@ -6555,7 +6555,7 @@ u32 AbilityBattleEffects(u32 caseID, u32 battler, u32 ability, u32 special, u32 
             if (!gDisableStructs[battler].weatherAbilityDone
              && (gBattleWeather & B_WEATHER_SUN) && WEATHER_HAS_EFFECT
              && !(gBattleMons[battler].status2 & STATUS2_TRANSFORMED)
-             && !(gBattleStruct->boosterEnergyActivates & (1u << battler)))
+             && !gDisableStructs[battler].boosterEnergyActivates)
             {
                 gDisableStructs[battler].weatherAbilityDone = TRUE;
                 PREPARE_STAT_BUFFER(gBattleTextBuff1, GetHighestStatId(battler));
@@ -6584,7 +6584,7 @@ u32 AbilityBattleEffects(u32 caseID, u32 battler, u32 ability, u32 special, u32 
             if (!gDisableStructs[battler].terrainAbilityDone
              && gFieldStatuses & STATUS_FIELD_ELECTRIC_TERRAIN
              && !(gBattleMons[battler].status2 & STATUS2_TRANSFORMED)
-             && !(gBattleStruct->boosterEnergyActivates & (1u << battler)))
+             && !gDisableStructs[battler].boosterEnergyActivates)
             {
                 gDisableStructs[battler].terrainAbilityDone = TRUE;
                 PREPARE_STAT_BUFFER(gBattleTextBuff1, GetHighestStatId(battler));
@@ -7304,7 +7304,7 @@ static u32 TryConsumeMirrorHerb(u32 battler, enum ItemEffect caseID)
 
 static inline u32 TryBoosterEnergy(u32 battler, enum ItemEffect caseID)
 {
-    if (gBattleStruct->boosterEnergyActivates & (1u << battler) || gBattleMons[battler].status2 & STATUS2_TRANSFORMED)
+    if (gDisableStructs[battler].boosterEnergyActivates || gBattleMons[battler].status2 & STATUS2_TRANSFORMED)
         return ITEM_NO_EFFECT;
 
     if (((GetBattlerAbility(battler) == ABILITY_PROTOSYNTHESIS) && !((gBattleWeather & B_WEATHER_SUN) && WEATHER_HAS_EFFECT))
@@ -7312,7 +7312,7 @@ static inline u32 TryBoosterEnergy(u32 battler, enum ItemEffect caseID)
     {
         PREPARE_STAT_BUFFER(gBattleTextBuff1, GetHighestStatId(battler));
         gBattlerAbility = gBattleScripting.battler = battler;
-        gBattleStruct->boosterEnergyActivates |= 1u << battler;
+        gDisableStructs[battler].boosterEnergyActivates = TRUE;
         if (caseID == ITEMEFFECT_ON_SWITCH_IN_FIRST_TURN || caseID == ITEMEFFECT_NORMAL)
         {
             BattleScriptExecute(BattleScript_BoosterEnergyEnd2);
@@ -9547,7 +9547,7 @@ static inline u32 CalcMoveBasePowerAfterModifiers(struct DamageCalculationData *
     case ABILITY_PROTOSYNTHESIS:
         {
             u8 defHighestStat = GetHighestStatId(battlerDef);
-            if (((weather & B_WEATHER_SUN && WEATHER_HAS_EFFECT) || gBattleStruct->boosterEnergyActivates & (1u << battlerDef))
+            if (((weather & B_WEATHER_SUN && WEATHER_HAS_EFFECT) || gDisableStructs[battlerDef].boosterEnergyActivates)
              && ((IsBattleMovePhysical(move) && defHighestStat == STAT_DEF) || (IsBattleMoveSpecial(move) && defHighestStat == STAT_SPDEF))
              && !(gBattleMons[battlerDef].status2 & STATUS2_TRANSFORMED))
                 modifier = uq4_12_multiply(modifier, UQ_4_12(0.7));
@@ -9556,7 +9556,7 @@ static inline u32 CalcMoveBasePowerAfterModifiers(struct DamageCalculationData *
     case ABILITY_QUARK_DRIVE:
         {
             u8 defHighestStat = GetHighestStatId(battlerDef);
-            if ((gFieldStatuses & STATUS_FIELD_ELECTRIC_TERRAIN || gBattleStruct->boosterEnergyActivates & (1u << battlerDef))
+            if ((gFieldStatuses & STATUS_FIELD_ELECTRIC_TERRAIN || gDisableStructs[battlerDef].boosterEnergyActivates)
              && ((IsBattleMovePhysical(move) && defHighestStat == STAT_DEF) || (IsBattleMoveSpecial(move) && defHighestStat == STAT_SPDEF))
              && !(gBattleMons[battlerDef].status2 & STATUS2_TRANSFORMED))
                 modifier = uq4_12_multiply(modifier, UQ_4_12(0.7));
@@ -9826,7 +9826,7 @@ static inline u32 CalcAttackStat(struct DamageCalculationData *damageCalcData, u
         if (!(gBattleMons[battlerAtk].status2 & STATUS2_TRANSFORMED))
         {
             u32 atkHighestStat = GetHighestStatId(battlerAtk);
-            if (((weather & B_WEATHER_SUN) && WEATHER_HAS_EFFECT) || gBattleStruct->boosterEnergyActivates & (1u << battlerAtk))
+            if (((weather & B_WEATHER_SUN) && WEATHER_HAS_EFFECT) || gDisableStructs[battlerAtk].boosterEnergyActivates)
             {
                 if ((IsBattleMovePhysical(move) && atkHighestStat == STAT_ATK) || (IsBattleMoveSpecial(move) && atkHighestStat == STAT_SPATK))
                     modifier = uq4_12_multiply(modifier, UQ_4_12(1.3));
@@ -9837,7 +9837,7 @@ static inline u32 CalcAttackStat(struct DamageCalculationData *damageCalcData, u
         if (!(gBattleMons[battlerAtk].status2 & STATUS2_TRANSFORMED))
         {
             u32 atkHighestStat = GetHighestStatId(battlerAtk);
-            if (gFieldStatuses & STATUS_FIELD_ELECTRIC_TERRAIN || gBattleStruct->boosterEnergyActivates & (1u << battlerAtk))
+            if (gFieldStatuses & STATUS_FIELD_ELECTRIC_TERRAIN || gDisableStructs[battlerAtk].boosterEnergyActivates)
             {
                 if ((IsBattleMovePhysical(move) && atkHighestStat == STAT_ATK) || (IsBattleMoveSpecial(move) && atkHighestStat == STAT_SPATK))
                     modifier = uq4_12_multiply(modifier, UQ_4_12(1.3));

@@ -3242,7 +3242,6 @@ void SwitchInClearSetData(u32 battler)
     gBattleStruct->lastTakenMoveFrom[battler][3] = 0;
     gBattleStruct->battlers[battler].lastMoveFailed = FALSE;
     gBattleStruct->palaceFlags &= ~(1u << battler);
-    gBattleStruct->boosterEnergyActivates &= ~(1u << battler);
     gBattleStruct->canPickupItem &= ~(1u << battler);
 
     ClearPursuitValuesIfSet(battler);
@@ -3270,7 +3269,7 @@ void SwitchInClearSetData(u32 battler)
     // Reset damage to prevent things like red card activating if the switched-in mon is holding it
     gSpecialStatuses[battler].physicalDmg = 0;
     gSpecialStatuses[battler].specialDmg = 0;
-    gBattleStruct->enduredDamage &= ~(1u << battler);
+    gSpecialStatuses[battler].enduredDamage = FALSE;
 
     // Reset Eject Button / Eject Pack switch detection
     AI_DATA->ejectButtonSwitch = FALSE;
@@ -3376,7 +3375,6 @@ const u8* FaintClearSetData(u32 battler)
     gBattleStruct->lastTakenMoveFrom[battler][2] = 0;
     gBattleStruct->lastTakenMoveFrom[battler][3] = 0;
     gBattleStruct->palaceFlags &= ~(1u << battler);
-    gBattleStruct->boosterEnergyActivates &= ~(1u << battler);
 
     ClearPursuitValuesIfSet(battler);
 
@@ -4789,9 +4787,9 @@ u32 GetBattlerTotalSpeedStatArgs(u32 battler, u32 ability, u32 holdEffect)
         speed *= 2;
     else if (ability == ABILITY_SLOW_START && gDisableStructs[battler].slowStartTimer != 0)
         speed /= 2;
-    else if (ability == ABILITY_PROTOSYNTHESIS && !(gBattleMons[battler].status2 & STATUS2_TRANSFORMED) && ((gBattleWeather & B_WEATHER_SUN && WEATHER_HAS_EFFECT) || gBattleStruct->boosterEnergyActivates & (1u << battler)))
+    else if (ability == ABILITY_PROTOSYNTHESIS && !(gBattleMons[battler].status2 & STATUS2_TRANSFORMED) && ((gBattleWeather & B_WEATHER_SUN && WEATHER_HAS_EFFECT) || gDisableStructs[battler].boosterEnergyActivates))
         speed = (GetHighestStatId(battler) == STAT_SPEED) ? (speed * 150) / 100 : speed;
-    else if (ability == ABILITY_QUARK_DRIVE && !(gBattleMons[battler].status2 & STATUS2_TRANSFORMED) && (gFieldStatuses & STATUS_FIELD_ELECTRIC_TERRAIN || gBattleStruct->boosterEnergyActivates & (1u << battler)))
+    else if (ability == ABILITY_QUARK_DRIVE && !(gBattleMons[battler].status2 & STATUS2_TRANSFORMED) && (gFieldStatuses & STATUS_FIELD_ELECTRIC_TERRAIN || gDisableStructs[battler].boosterEnergyActivates))
         speed = (GetHighestStatId(battler) == STAT_SPEED) ? (speed * 150) / 100 : speed;
 
     // stat stages
