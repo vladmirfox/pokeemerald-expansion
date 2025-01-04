@@ -26,8 +26,6 @@
 
 #define SKIP_OBJECT_EVENT_LOAD  1
 
-extern EWRAM_DATA bool8 gSkipShowMonAnim;
-
 struct InitialPlayerAvatarState
 {
     u8 transitionFlags;
@@ -54,6 +52,7 @@ extern bool8 (*gFieldCallback2)(void);
 extern u8 gLocalLinkPlayerId;
 extern u8 gFieldLinkPlayerCount;
 extern bool8 gExitStairsMovementDisabled;
+extern bool8 gSkipShowMonAnim;
 
 extern const struct UCoords32 gDirectionToVectors[];
 
