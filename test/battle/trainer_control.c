@@ -20,7 +20,7 @@ static const struct Trainer sTestTrainers[DIFFICULTY_COUNT][NUM_TEST_TRAINERS] =
 
 enum DifficultyLevel GetTrainerDifficultyLevelTest(u16 trainerId)
 {
-    enum DifficultyLevel difficulty = GetCurrentDifficultyLevel();
+    enum DifficultyLevel difficulty = GetTrainerDifficultyLevelTest(0);
 
     if (difficulty == DIFFICULTY_NORMAL)
         return DIFFICULTY_NORMAL;
