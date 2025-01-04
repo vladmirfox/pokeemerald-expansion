@@ -277,8 +277,9 @@ bool8 SetUpFieldMove_Cut(void)
 
 static void FieldCallback_CutGrass(void)
 {
-    FieldEffectStart(FLDEFF_USE_CUT_ON_GRASS);
+    // FieldEffectStart(FLDEFF_USE_CUT_ON_GRASS); // used in the script
     gFieldEffectArguments[0] = GetCursorSelectionMonId();
+    ScriptContext_SetupScript(EventScript_UseCutGrass);
 }
 
 bool8 FldEff_UseCutOnGrass(void)
