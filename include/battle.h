@@ -629,25 +629,25 @@ enum BattleIntroStates
 
 struct Battler
 {
-  u8 targetsDone[MAX_BATTLERS_COUNT];
+    u8 targetsDone[MAX_BATTLERS_COUNT];
 
-  u32 commandingDondozo:1;
-  u32 absentBattlerFlags:1; // TODO
-  u32 focusPunchBattlers:1;
-  u32 multipleSwitchInBattlers:1;
-  u32 alreadyStatusedMoveAttempt:1;
-  u32 activeAbilityPopUps:1;
-  u32 lastMoveFailed:1;
-  u32 forcedSwitch:1;
-  u32 storedHealingWish:1;
-  u32 storedLunarDance:1;
-  u32 enduredDamage:1; // can be moved to a different struct
-  u32 boosterEnergyActivates:1; // Move to Disable struct
-  u32 usedEjectItem:1;
-  u32 sleepClauseEffectExempt:1;
-  u32 usedMicleBerry:1;
-  u32 pursuitTarget:1;
-  u32 padding:15;
+    u32 commandingDondozo:1;
+    u32 absentBattlerFlags:1; // TODO
+    u32 focusPunchBattlers:1;
+    u32 multipleSwitchInBattlers:1;
+    u32 alreadyStatusedMoveAttempt:1;
+    u32 activeAbilityPopUps:1;
+    u32 lastMoveFailed:1;
+    u32 forcedSwitch:1;
+    u32 storedHealingWish:1;
+    u32 storedLunarDance:1;
+    u32 enduredDamage:1; // can be moved to a different struct
+    u32 boosterEnergyActivates:1; // Move to Disable struct
+    u32 usedEjectItem:1;
+    u32 sleepClauseEffectExempt:1;
+    u32 usedMicleBerry:1;
+    u32 pursuitTarget:1;
+    u32 padding:16;
 };
 
 struct BattleStruct
