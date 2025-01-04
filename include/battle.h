@@ -81,7 +81,7 @@ struct DisableStruct
 
     u8 protectUses:4;
     u8 stockpileCounter:4;
-    // End of word
+    // End of Byte
 
     s8 stockpileDef;
     s8 stockpileSpDef;
@@ -92,15 +92,15 @@ struct DisableStruct
 
     u8 disableTimer:4;
     u8 encoreTimer:4;
-    // End of word
+    // End of Byte
 
     u8 perishSongTimer:4;
     u8 rolloutTimer:4;
-    // End of word
+    // End of Byte
 
     u8 rolloutTimerStartValue:4;
     u8 tauntTimer:4;
-    // End of word
+    // End of Byte
 
     u8 furyCutterCounter;
     u8 battlerPreventingEscape;
@@ -109,7 +109,7 @@ struct DisableStruct
 
     u8 mimickedMoves:4;
     u8 chargeTimer:4;
-    // End of word
+    // End of Byte
 
     u8 rechargeTimer;
     u8 autotomizeCount;
@@ -124,7 +124,7 @@ struct DisableStruct
     u8 syrupBombTimer;
     u8 tormentTimer:4; // used for G-Max Meltdown
     u8 usedMoves:4;
-    // End of word
+    // End of Byte
 
     u8 truantCounter:1;
     u8 truantSwitchInHack:1;
@@ -134,7 +134,7 @@ struct DisableStruct
     u8 cudChew:1;
     u8 spikesDone:1;
     u8 toxicSpikesDone:1;
-    // End of word
+    // End of Byte
 
     u8 stickyWebDone:1;
     u8 stealthRockDone:1;
@@ -144,7 +144,7 @@ struct DisableStruct
     u8 steelSurgeDone:1;
     u8 usedProteanLibero:1;
     u8 flashFireBoosted:1;
-    // End of word
+    // End of Byte
 
     u16 overwrittenAbility;   // abilities overwritten during battle (keep separate from battle history in case of switching)
 
@@ -154,7 +154,7 @@ struct DisableStruct
     u8 neutralizingGas:1;
     u8 iceFaceActivationPrevention:1; // fixes hit escape move edge case
     u8 padding:3;
-    // End of word
+    // End of Byte
 };
 
 // Fully Cleared each turn after end turn effects are done. A few things are cleared before end turn effects
