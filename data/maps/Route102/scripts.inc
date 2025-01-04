@@ -64,17 +64,12 @@ Route102_EventScript_Rick::
 	end
 
 Route102_EventScript_Tiana::
-	special ChooseHalfPartyForBattle
-	waitstate
-	multi_2_vs_2 TRAINER_TIANA, Route102_Text_TianaDefeated, TRAINER_ALLEN, Route102_Text_AllenDefeated, PARTNER_STEVEN
-Route102_EventScript_TianaMsg::
+	trainerbattle_single TRAINER_TIANA, Route102_Text_TianaIntro, Route102_Text_TianaDefeated
 	msgbox Route102_Text_TianaPostBattle, MSGBOX_AUTOCLOSE
 	end
 
 Route102_EventScript_Allen::
-	special ChooseHalfPartyForBattle
-	waitstate
-	multi_2_vs_1 TRAINER_TIANA, Route102_Text_TianaDefeated, PARTNER_STEVEN
+	trainerbattle_single TRAINER_ALLEN, Route102_Text_AllenIntro, Route102_Text_AllenDefeated
 	msgbox Route102_Text_AllenPostBattle, MSGBOX_AUTOCLOSE
 	end
 
