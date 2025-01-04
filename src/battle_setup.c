@@ -1095,11 +1095,13 @@ const u8 *BattleSetup_ConfigureTrainerBattle(const u8 *data, PtrStack *scrStack,
         return BattleSetup_ConfigureTrainerBattleApproachingTrainer(data, scrStack);
     }
 
-    SetMapVarsToTrainerA(); // TODO check which cases exactly need this and why
+    SetMapVarsToTrainerA();
     PUSH(EventSnippet_Lock);
     PUSH(EventSnippet_RevealTrainer);
 
-    if (GetTrainerFlag() || (TRAINER_BATTLE_PARAM.isRematch && !IsTrainerReadyForRematch())) { 
+    DebugPrintfLevel(MGBA_LOG_DEBUG, "flag: %d, rematch: %d, ready: %d", GetTrainerFlag(), TRAINER_BATTLE_PARAM.isRematch, IsTrainerReadyForRematch());
+    if ((GetTrainerFlag() && !TRAINER_BATTLE_PARAM.isRematch) 
+     || (!IsTrainerReadyForRematch() && TRAINER_BATTLE_PARAM.isRematch)) { 
         PUSH(EventSnippet_GotoPostBattleScript);
         return NULL;
     }
