@@ -223,7 +223,7 @@ bool32 IsAffectedByFollowMe(u32 battlerAtk, u32 defSide, u32 move)
         || ability == ABILITY_PROPELLER_TAIL || ability == ABILITY_STALWART)
         return FALSE;
 
-    if (effect == EFFECT_PURSUIT && gBattleStruct->pursuitTarget)
+    if (effect == EFFECT_PURSUIT && IsPursuitTargetSet())
         return FALSE;
 
     if (gSideTimers[defSide].followmePowder && !IsAffectedByPowder(battlerAtk, ability, GetBattlerHoldEffect(battlerAtk, TRUE)))
@@ -334,7 +334,7 @@ void HandleAction_UseMove(void)
     }
     else if (IsDoubleBattle()
            && gSideTimers[side].followmeTimer == 0
-           && !(gBattleStruct->pursuitTarget & (1u << *(gBattleStruct->moveTarget + gBattlerAttacker)))
+           && !gBattleStruct->battlers[*(gBattleStruct->moveTarget + gBattlerAttacker)].pursuitTarget
            && (!IsBattleMoveStatus(gCurrentMove) || (moveTarget != MOVE_TARGET_USER && moveTarget != MOVE_TARGET_ALL_BATTLERS))
            && ((GetBattlerAbility(*(gBattleStruct->moveTarget + gBattlerAttacker)) != ABILITY_LIGHTNING_ROD && moveType == TYPE_ELECTRIC)
             || (GetBattlerAbility(*(gBattleStruct->moveTarget + gBattlerAttacker)) != ABILITY_STORM_DRAIN && moveType == TYPE_WATER)))
@@ -815,7 +815,7 @@ void HandleAction_ActionFinished(void)
     gBattleScripting.multihitMoveEffect = 0;
     gBattleResources->battleScriptsStack->size = 0;
 
-    if (B_RECALC_TURN_AFTER_ACTIONS >= GEN_8 && !afterYouActive && !gBattleStruct->pledgeMove && !gBattleStruct->pursuitTarget)
+    if (B_RECALC_TURN_AFTER_ACTIONS >= GEN_8 && !afterYouActive && !gBattleStruct->pledgeMove && !IsPursuitTargetSet())
     {
         // i starts at `gCurrentTurnActionNumber` because we don't want to recalculate turn order for mon that have already
         // taken action. It's been previously increased, which we want in order to not recalculate the turn of the mon that just finished its action
@@ -3281,7 +3281,7 @@ static void CancellerObedience(u32 *effect)
             break;
         case DISOBEYS_FALL_ASLEEP:
             if (IsSleepClauseEnabled())
-                gBattleStruct->sleepClauseEffectExempt |= (1u << gBattlerAttacker);
+                gBattleStruct->battlers[gBattlerAttacker].sleepClauseEffectExempt = TRUE;
             gBattlescriptCurrInstr = BattleScript_IgnoresAndFallsAsleep;
             gBattleStruct->moveResultFlags[gBattlerTarget] |= MOVE_RESULT_MISSED;
             break;
@@ -5931,7 +5931,7 @@ u32 AbilityBattleEffects(u32 caseID, u32 battler, u32 ability, u32 special, u32 
                  && IsMoveMakingContact(move, gBattlerAttacker))
                 {
                     if (IsSleepClauseEnabled())
-                        gBattleStruct->sleepClauseEffectExempt |= (1u << gBattlerAttacker);
+                        gBattleStruct->battlers[gBattlerAttacker].sleepClauseEffectExempt = TRUE;
                     gBattleScripting.moveEffect = MOVE_EFFECT_AFFECTS_USER | MOVE_EFFECT_SLEEP;
                     PREPARE_ABILITY_BUFFER(gBattleTextBuff1, gLastUsedAbility);
                     BattleScriptPushCursor();
@@ -7045,7 +7045,7 @@ static u32 TrySetMicleBerry(u32 battler, u32 itemId, enum ItemEffect caseID)
 {
     if (HasEnoughHpToEatBerry(battler, 4, itemId))
     {
-        gBattleStruct->usedMicleBerry |= 1u << battler;
+        gBattleStruct->battlers[battler].usedMicleBerry = TRUE;
         if (caseID == ITEMEFFECT_ON_SWITCH_IN_FIRST_TURN || caseID == ITEMEFFECT_NORMAL)
         {
             BattleScriptExecute(BattleScript_MicleBerryActivateEnd2);
@@ -9130,7 +9130,7 @@ static inline u32 CalcMoveBasePower(struct DamageCalculationData *damageCalcData
             basePower *= 2;
         break;
     case EFFECT_PURSUIT:
-        if (gBattleStruct->pursuitTarget & (1u << battlerDef))
+        if (gBattleStruct->battlers[battlerDef].pursuitTarget)
             basePower *= 2;
         break;
     case EFFECT_NATURAL_GIFT:
@@ -12143,9 +12143,9 @@ u32 GetBattleMoveType(u32 move)
 
 void TryActivateSleepClause(u32 battler, u32 indexInParty)
 {
-    if (gBattleStruct->sleepClauseEffectExempt & (1u << battler))
+    if (gBattleStruct->battlers[battler].sleepClauseEffectExempt)
     {
-        gBattleStruct->sleepClauseEffectExempt &= ~(1u << battler);
+        gBattleStruct->battlers[battler].sleepClauseEffectExempt = FALSE;
         return;
     }
 
@@ -12221,4 +12221,28 @@ bool32 IsMoveEffectBlockedByTarget(u32 ability)
     }
 
     return FALSE;
+}
+
+bool32 IsPursuitTargetSet(void)
+{
+    for (u32 battler = 0; battler < gBattlersCount; battler++)
+    {
+        if (gBattleStruct->battlers[battler].pursuitTarget)
+            return TRUE;
+    }
+    return FALSE;
+}
+
+void ClearPursuitValues(void)
+{
+    for (u32 i = 0; i < gBattlersCount; i++)
+        gBattleStruct->battlers[i].pursuitTarget = FALSE;
+    gBattleStruct->pursuitSwitchByMove = FALSE;
+    gBattleStruct->pursuitStoredSwitch = 0;
+}
+
+void ClearPursuitValuesIfSet(u32 battler)
+{
+    if (gBattleStruct->battlers[battler].pursuitTarget)
+        ClearPursuitValues();
 }

@@ -3131,7 +3131,6 @@ static void BattleStartClearSetData(void)
 
     gBattleStruct->swapDamageCategory = FALSE; // Photon Geyser, Shell Side Arm, Light That Burns the Sky
     gBattleStruct->categoryOverride = FALSE; // used for Z-Moves and Max Moves
-    gBattleStruct->pursuitTarget = 0;
     gBattleStruct->pursuitSwitchByMove = FALSE;
     gBattleStruct->pursuitStoredSwitch = 0;
 
@@ -3246,12 +3245,7 @@ void SwitchInClearSetData(u32 battler)
     gBattleStruct->boosterEnergyActivates &= ~(1u << battler);
     gBattleStruct->canPickupItem &= ~(1u << battler);
 
-    if (gBattleStruct->pursuitTarget & (1u << battler))
-    {
-        gBattleStruct->pursuitTarget = 0;
-        gBattleStruct->pursuitSwitchByMove = FALSE;
-        gBattleStruct->pursuitStoredSwitch = 0;
-    }
+    ClearPursuitValuesIfSet(battler);
 
     for (i = 0; i < ARRAY_COUNT(gSideTimers); i++)
     {
@@ -3381,16 +3375,10 @@ const u8* FaintClearSetData(u32 battler)
     gBattleStruct->lastTakenMoveFrom[battler][1] = 0;
     gBattleStruct->lastTakenMoveFrom[battler][2] = 0;
     gBattleStruct->lastTakenMoveFrom[battler][3] = 0;
-
-    if (gBattleStruct->pursuitTarget & (1u << battler))
-    {
-        gBattleStruct->pursuitTarget = 0;
-        gBattleStruct->pursuitSwitchByMove = FALSE;
-        gBattleStruct->pursuitStoredSwitch = 0;
-    }
-
     gBattleStruct->palaceFlags &= ~(1u << battler);
     gBattleStruct->boosterEnergyActivates &= ~(1u << battler);
+
+    ClearPursuitValuesIfSet(battler);
 
     if (gBattleStruct->commanderActive[battler] != SPECIES_NONE)
     {
@@ -5195,10 +5183,9 @@ static void TurnValuesCleanUp(bool8 var0)
     gSideTimers[B_SIDE_OPPONENT].followmeTimer = 0;
 
     gBattleStruct->usedEjectItem = 0;
-    gBattleStruct->pursuitTarget = 0;
-    gBattleStruct->pursuitSwitchByMove = FALSE;
-    gBattleStruct->pursuitStoredSwitch = 0;
     gBattleStruct->pledgeMove = FALSE; // combined pledge move may not have been used due to a canceller
+    gBattleStruct->pursuitStoredSwitch = 0;
+    ClearPursuitValues();
     ClearDamageCalcResults();
 }
 
@@ -5410,7 +5397,7 @@ static void RunTurnActionsFunctions(void)
     // Mega Evolve / Focus Punch-like moves after switching, items, running, but before using a move.
     if (gCurrentActionFuncId == B_ACTION_USE_MOVE && !gBattleStruct->effectsBeforeUsingMoveDone)
     {
-        if (!gBattleStruct->pursuitTarget)
+        if (!IsPursuitTargetSet())
         {
             if (TryDoGimmicksBeforeMoves())
                 return;
