@@ -191,7 +191,7 @@ struct ProtectStruct
     u16 eatMirrorHerb:1;
     u16 activateOpportunist:2; // 2 - to copy stats. 1 - stats copied (do not repeat). 0 - no stats to copy
     u16 usedAllySwitch:1;
-    u16 padding:1;
+    u16 padding:2;
     // End of 16-bit bitfield
     u32 physicalDmg;
     u32 specialDmg;
@@ -652,7 +652,7 @@ struct Battler
     // End of Word
 };
 
-// Cleared at the beginning of the battle. Field need to be cleared when needed manually otherwise.
+// Cleared at the beginning of the battle. Fields need to be cleared when needed manually otherwise.
 struct BattleStruct
 {
     struct Battler battlers[MAX_BATTLERS_COUNT];
@@ -715,7 +715,7 @@ struct BattleStruct
     u8 anyMonHasTransformed:1; // Only used in battle_tv.c
     u8 multipleSwitchInState:2;
     u8 multipleSwitchInCursor:3;
-    u8 padding_a:2;
+    u8 padding1:2;
     u8 multipleSwitchInSortedBattlers[MAX_BATTLERS_COUNT];
     void (*savedCallback)(void);
     u16 usedHeldItems[PARTY_SIZE][NUM_BATTLE_SIDES]; // For each party member and side. For harvest, recycle
@@ -835,7 +835,7 @@ struct BattleStruct
     u8 monCausingSleepClause[NUM_BATTLE_SIDES]; // Stores which pokemon on a given side is causing Sleep Clause to be active as the mon's index in the party
     u8 additionalEffectsCounter:4; // A counter for the additionalEffects applied by the current move in Cmd_setadditionaleffects
     u8 redCardActivates:1;
-    u8 padding1:2; // padding in the middle so pursuit fields are together
+    u8 padding2:2; // padding in the middle so pursuit fields are together
     u8 pursuitSwitchByMove:1;
     u8 pursuitStoredSwitch; // Stored id for the Pursuit target's switch
     s32 battlerExpReward;
@@ -851,7 +851,7 @@ struct BattleStruct
     u8 calculatedSpreadMoveAccuracy:1;
     u8 printedStrongWindsWeakenedAttack:1;
     u8 numSpreadTargets:2;
-    u8 padding2:2;
+    u8 padding2:3;
 };
 
 // The palaceFlags member of struct BattleStruct contains 1 flag per move to indicate which moves the AI should consider,
