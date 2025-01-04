@@ -10065,7 +10065,7 @@ static void Cmd_various(void)
     case VARIOUS_SET_ALREADY_STATUS_MOVE_ATTEMPT:
     {
         VARIOUS_ARGS();
-        gBattleStruct->alreadyStatusedMoveAttempt |= 1u << battler;
+        gBattleStruct->battlers[battler].alreadyStatusedMoveAttempt = TRUE;
         break;
     }
     case VARIOUS_PALACE_TRY_ESCAPE_STATUS:
