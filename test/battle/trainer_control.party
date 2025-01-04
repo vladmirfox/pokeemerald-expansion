@@ -42,18 +42,6 @@ Difficulty: Normal
 Mewtwo
 Level: 5
 
-=== 1 ===
-Name: Test2
-Class: Pkmn Trainer 1
-Pic: Red
-Gender: Male
-Music: Male
-Double Battle: No
-Difficulty: HARD
-
-Yveltal
-Level: 99
-
 === 2 ===
 Name: Test2
 Class: Pkmn Trainer 1
@@ -207,7 +195,7 @@ Tags: Lead
 
 Eevee
 
-=== 7 ===
+=== 8 ===
 Name: Test1
 Class: Pkmn Trainer 1
 Pic: Red
