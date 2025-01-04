@@ -6454,7 +6454,7 @@ static void Cmd_moveend(void)
             }
             u32 originalEffect = GetMoveEffect(originallyUsedMove);
             if (!(gAbsentBattlerFlags & (1u << gBattlerAttacker))
-                && !(gBattleStruct->absentBattlerFlags & (1u << gBattlerAttacker))
+                && !gBattleStruct->battlers[gBattlerAttacker].absentBattlerFlags
                 && originalEffect != EFFECT_BATON_PASS && originalEffect != EFFECT_HEALING_WISH)
             {
                 if (gHitMarker & HITMARKER_OBEYS)
@@ -6498,7 +6498,7 @@ static void Cmd_moveend(void)
             break;
         case MOVEEND_MIRROR_MOVE: // mirror move
             if (!(gAbsentBattlerFlags & (1u << gBattlerAttacker))
-                && !(gBattleStruct->absentBattlerFlags & (1u << gBattlerAttacker))
+                && !gBattleStruct->battlers[gBattlerAttacker].absentBattlerFlags
                 && !IsMoveMirrorMoveBanned(originallyUsedMove)
                 && gHitMarker & HITMARKER_OBEYS
                 && gBattlerAttacker != gBattlerTarget

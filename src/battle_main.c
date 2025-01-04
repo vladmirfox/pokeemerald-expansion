@@ -3937,10 +3937,11 @@ static void TryDoEventsBeforeFirstTurn(void)
             *(gBattleStruct->monToSwitchIntoId + i) = PARTY_SIZE;
             gChosenActionByBattler[i] = B_ACTION_NONE;
             gChosenMoveByBattler[i] = MOVE_NONE;
+            gBattleStruct->battlers[i].absentBattlerFlags = gAbsentBattlerFlags & (1u << i);
         }
         TurnValuesCleanUp(FALSE);
         SpecialStatusesClear();
-        *(&gBattleStruct->absentBattlerFlags) = gAbsentBattlerFlags;
+        // *(&gBattleStruct->absentBattlerFlags) = gAbsentBattlerFlags;
         BattlePutTextOnWindow(gText_EmptyString3, B_WIN_MSG);
         AssignUsableGimmicks();
         gBattleMainFunc = HandleTurnActionSelectionState;
@@ -4054,12 +4055,13 @@ void BattleTurnPassed(void)
     {
         gChosenActionByBattler[i] = B_ACTION_NONE;
         gChosenMoveByBattler[i] = MOVE_NONE;
+        gBattleStruct->battlers[i].absentBattlerFlags = gAbsentBattlerFlags & (1u << i);
     }
 
     for (i = 0; i < MAX_BATTLERS_COUNT; i++)
         *(gBattleStruct->monToSwitchIntoId + i) = PARTY_SIZE;
 
-    *(&gBattleStruct->absentBattlerFlags) = gAbsentBattlerFlags;
+    // *(&gBattleStruct->absentBattlerFlags) = gAbsentBattlerFlags;
     BattlePutTextOnWindow(gText_EmptyString3, B_WIN_MSG);
     AssignUsableGimmicks();
     SetShellSideArmCategory();
@@ -4243,10 +4245,10 @@ static void HandleTurnActionSelectionState(void)
             *(gBattleStruct->monToSwitchIntoId + battler) = PARTY_SIZE;
             if (gBattleTypeFlags & BATTLE_TYPE_MULTI
                 || (position & BIT_FLANK) == B_FLANK_LEFT
-                || gBattleStruct->absentBattlerFlags & (1u << GetBattlerAtPosition(BATTLE_PARTNER(position)))
+                || gBattleStruct->battlers[GetBattlerAtPosition(BATTLE_PARTNER(position))].absentBattlerFlags
                 || gBattleCommunication[GetBattlerAtPosition(BATTLE_PARTNER(position))] == STATE_WAIT_ACTION_CONFIRMED)
             {
-                if ((gBattleStruct->absentBattlerFlags & (1u << battler)) || gBattleStruct->battlers[battler].commandingDondozo)
+                if (gBattleStruct->battlers[battler].absentBattlerFlags || gBattleStruct->battlers[battler].commandingDondozo)
                 {
                     gChosenActionByBattler[battler] = B_ACTION_NOTHING_FAINTED;
                     if (!(gBattleTypeFlags & BATTLE_TYPE_MULTI))
@@ -4621,7 +4623,7 @@ static void HandleTurnActionSelectionState(void)
 
                 if (((gBattleTypeFlags & BATTLE_TYPE_MULTI) || !IsDoubleBattle())
                     || (position & BIT_FLANK) != B_FLANK_LEFT
-                    || (*(&gBattleStruct->absentBattlerFlags) & (1u << GetBattlerAtPosition(BATTLE_PARTNER(position)))))
+                    || gBattleStruct->battlers[GetBattlerAtPosition(BATTLE_PARTNER(position))].absentBattlerFlags)
                 {
                     BtlController_EmitLinkStandbyMsg(battler, BUFFER_A, LINK_STANDBY_MSG_STOP_BOUNCE, i);
                 }
@@ -5173,6 +5175,7 @@ static void TurnValuesCleanUp(bool8 var0)
             gBattleStruct->battlers[i].commandingDondozo = FALSE;
 
         gSpecialStatuses[i].parentalBondState = PARENTAL_BOND_OFF;
+        gBattleStruct->battlers[i].usedEjectItem = FALSE;
     }
 
     gSideStatuses[B_SIDE_PLAYER] &= ~(SIDE_STATUS_QUICK_GUARD | SIDE_STATUS_WIDE_GUARD | SIDE_STATUS_CRAFTY_SHIELD | SIDE_STATUS_MAT_BLOCK);
@@ -5180,7 +5183,6 @@ static void TurnValuesCleanUp(bool8 var0)
     gSideTimers[B_SIDE_PLAYER].followmeTimer = 0;
     gSideTimers[B_SIDE_OPPONENT].followmeTimer = 0;
 
-    gBattleStruct->usedEjectItem = 0;
     gBattleStruct->pledgeMove = FALSE; // combined pledge move may not have been used due to a canceller
     gBattleStruct->pursuitStoredSwitch = 0;
     ClearPursuitValues();
