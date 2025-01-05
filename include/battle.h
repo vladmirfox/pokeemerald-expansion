@@ -654,7 +654,7 @@ struct BattlerState
 // Cleared at the beginning of the battle. Fields need to be cleared when needed manually otherwise.
 struct BattleStruct
 {
-    struct BattlerState battlerStates[MAX_BATTLERS_COUNT];
+    struct BattlerState battlerState[MAX_BATTLERS_COUNT];
     u8 turnEffectsTracker;
     u8 turnEffectsBattlerId;
     u8 turnCountersTracker;

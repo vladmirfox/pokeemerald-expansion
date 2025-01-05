@@ -2699,7 +2699,7 @@ static inline bool32 IsAnyAbilityPopUpActive(void)
 {
     for (u32 battler = 0; battler < gBattlersCount; battler++)
     {
-        if (gBattleStruct->battlerStates[battler].activeAbilityPopUps)
+        if (gBattleStruct->battlerState[battler].activeAbilityPopUps)
             return TRUE;
     }
 
@@ -2730,7 +2730,7 @@ void CreateAbilityPopUp(u8 battlerId, u32 ability, bool32 isDoubleBattle)
         LoadSpritePalette(&sSpritePalette_AbilityPopUp);
     }
 
-    gBattleStruct->battlerStates[battlerId].activeAbilityPopUps = TRUE;
+    gBattleStruct->battlerState[battlerId].activeAbilityPopUps = TRUE;
     battlerPosition = GetBattlerPosition(battlerId);
 
     if (isDoubleBattle)
@@ -2821,7 +2821,7 @@ static void SpriteCb_AbilityPopUp(struct Sprite *sprite)
                 ||(sprite->tRightToLeft && (sprite->x -= 4) <= sprite->tOriginalX - ABILITY_POP_UP_POS_X_SLIDE)
                )
             {
-                gBattleStruct->battlerStates[sprite->tBattlerId].activeAbilityPopUps = FALSE;
+                gBattleStruct->battlerState[sprite->tBattlerId].activeAbilityPopUps = FALSE;
                 DestroySprite(sprite);
             }
         }
@@ -2835,7 +2835,7 @@ static void SpriteCb_AbilityPopUp(struct Sprite *sprite)
 
 void DestroyAbilityPopUp(u8 battlerId)
 {
-    if (gBattleStruct->battlerStates[battlerId].activeAbilityPopUps)
+    if (gBattleStruct->battlerState[battlerId].activeAbilityPopUps)
     {
         gSprites[gBattleStruct->abilityPopUpSpriteIds[battlerId][0]].tFrames = 0;
         gSprites[gBattleStruct->abilityPopUpSpriteIds[battlerId][1]].tFrames = 0;
