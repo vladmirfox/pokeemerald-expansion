@@ -430,7 +430,7 @@ bool32 IsDamageMoveUnusable(u32 battlerAtk, u32 battlerDef, u32 move, u32 moveTy
     if (battlerDef == BATTLE_PARTNER(battlerAtk))
         battlerDefAbility = aiData->abilities[battlerDef];
 
-    if (gBattleStruct->battlers[battlerDef].commandingDondozo)
+    if (gBattleStruct->battlerStates[battlerDef].commandingDondozo)
         return TRUE;
 
     if (CanAbilityBlockMove(battlerAtk, battlerDef, move, aiData->abilities[battlerDef]))
@@ -1510,7 +1510,7 @@ bool32 IsSemiInvulnerable(u32 battlerDef, u32 move)
 {
     if (gStatuses3[battlerDef] & STATUS3_PHANTOM_FORCE)
         return TRUE;
-    else if (gBattleStruct->battlers[battlerDef].commandingDondozo)
+    else if (gBattleStruct->battlerStates[battlerDef].commandingDondozo)
         return TRUE;
     else if (!MoveDamagesAirborne(move) && gStatuses3[battlerDef] & STATUS3_ON_AIR)
         return TRUE;

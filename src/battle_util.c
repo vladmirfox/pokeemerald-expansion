@@ -239,8 +239,8 @@ void HandleAction_UseMove(void)
     u16 moveTarget;
 
     gBattlerAttacker = gBattlerByTurnOrder[gCurrentTurnActionNumber];
-    if (gBattleStruct->battlers[gBattlerAttacker].absentBattlerFlags
-     || gBattleStruct->battlers[gBattlerAttacker].commandingDondozo
+    if (gBattleStruct->battlerStates[gBattlerAttacker].absentBattlerFlags
+     || gBattleStruct->battlerStates[gBattlerAttacker].commandingDondozo
      || !IsBattlerAlive(gBattlerAttacker))
     {
         gCurrentActionFuncId = B_ACTION_FINISHED;
@@ -334,7 +334,7 @@ void HandleAction_UseMove(void)
     }
     else if (IsDoubleBattle()
            && gSideTimers[side].followmeTimer == 0
-           && !gBattleStruct->battlers[*(gBattleStruct->moveTarget + gBattlerAttacker)].pursuitTarget
+           && !gBattleStruct->battlerStates[*(gBattleStruct->moveTarget + gBattlerAttacker)].pursuitTarget
            && (!IsBattleMoveStatus(gCurrentMove) || (moveTarget != MOVE_TARGET_USER && moveTarget != MOVE_TARGET_ALL_BATTLERS))
            && ((GetBattlerAbility(*(gBattleStruct->moveTarget + gBattlerAttacker)) != ABILITY_LIGHTNING_ROD && moveType == TYPE_ELECTRIC)
             || (GetBattlerAbility(*(gBattleStruct->moveTarget + gBattlerAttacker)) != ABILITY_STORM_DRAIN && moveType == TYPE_WATER)))
@@ -3281,7 +3281,7 @@ static void CancellerObedience(u32 *effect)
             break;
         case DISOBEYS_FALL_ASLEEP:
             if (IsSleepClauseEnabled())
-                gBattleStruct->battlers[gBattlerAttacker].sleepClauseEffectExempt = TRUE;
+                gBattleStruct->battlerStates[gBattlerAttacker].sleepClauseEffectExempt = TRUE;
             gBattlescriptCurrInstr = BattleScript_IgnoresAndFallsAsleep;
             gBattleStruct->moveResultFlags[gBattlerTarget] |= MOVE_RESULT_MISSED;
             break;
@@ -5245,7 +5245,7 @@ u32 AbilityBattleEffects(u32 caseID, u32 battler, u32 ability, u32 special, u32 
                 SaveBattlerAttacker(gBattlerAttacker);
                 gSpecialStatuses[battler].switchInAbilityDone = TRUE;
                 gBattlerAttacker = partner;
-                gBattleStruct->battlers[battler].commandingDondozo = TRUE;
+                gBattleStruct->battlerStates[battler].commandingDondozo = TRUE;
                 gBattleStruct->commanderActive[partner] = gBattleMons[battler].species;
                 gStatuses3[battler] |= STATUS3_COMMANDER;
                 if (gBattleMons[battler].status2 & STATUS2_CONFUSION
@@ -5931,7 +5931,7 @@ u32 AbilityBattleEffects(u32 caseID, u32 battler, u32 ability, u32 special, u32 
                  && IsMoveMakingContact(move, gBattlerAttacker))
                 {
                     if (IsSleepClauseEnabled())
-                        gBattleStruct->battlers[gBattlerAttacker].sleepClauseEffectExempt = TRUE;
+                        gBattleStruct->battlerStates[gBattlerAttacker].sleepClauseEffectExempt = TRUE;
                     gBattleScripting.moveEffect = MOVE_EFFECT_AFFECTS_USER | MOVE_EFFECT_SLEEP;
                     PREPARE_ABILITY_BUFFER(gBattleTextBuff1, gLastUsedAbility);
                     BattleScriptPushCursor();
@@ -7045,7 +7045,7 @@ static u32 TrySetMicleBerry(u32 battler, u32 itemId, enum ItemEffect caseID)
 {
     if (HasEnoughHpToEatBerry(battler, 4, itemId))
     {
-        gBattleStruct->battlers[battler].usedMicleBerry = TRUE;
+        gBattleStruct->battlerStates[battler].usedMicleBerry = TRUE;
         if (caseID == ITEMEFFECT_ON_SWITCH_IN_FIRST_TURN || caseID == ITEMEFFECT_NORMAL)
         {
             BattleScriptExecute(BattleScript_MicleBerryActivateEnd2);
@@ -9130,7 +9130,7 @@ static inline u32 CalcMoveBasePower(struct DamageCalculationData *damageCalcData
             basePower *= 2;
         break;
     case EFFECT_PURSUIT:
-        if (gBattleStruct->battlers[battlerDef].pursuitTarget)
+        if (gBattleStruct->battlerStates[battlerDef].pursuitTarget)
             basePower *= 2;
         break;
     case EFFECT_NATURAL_GIFT:
@@ -9359,7 +9359,7 @@ static inline u32 CalcMoveBasePowerAfterModifiers(struct DamageCalculationData *
             modifier = uq4_12_multiply(modifier, UQ_4_12(0.5));
         break;
     case EFFECT_STOMPING_TANTRUM:
-        if (gBattleStruct->battlers[battlerAtk].lastMoveFailed)
+        if (gBattleStruct->battlerStates[battlerAtk].lastMoveFailed)
             modifier = uq4_12_multiply(modifier, UQ_4_12(2.0));
         break;
     case EFFECT_MAGNITUDE:
@@ -12143,9 +12143,9 @@ u32 GetBattleMoveType(u32 move)
 
 void TryActivateSleepClause(u32 battler, u32 indexInParty)
 {
-    if (gBattleStruct->battlers[battler].sleepClauseEffectExempt)
+    if (gBattleStruct->battlerStates[battler].sleepClauseEffectExempt)
     {
-        gBattleStruct->battlers[battler].sleepClauseEffectExempt = FALSE;
+        gBattleStruct->battlerStates[battler].sleepClauseEffectExempt = FALSE;
         return;
     }
 
@@ -12201,7 +12201,7 @@ bool32 DoesDestinyBondFail(u32 battler)
 {
     if (B_DESTINY_BOND_FAIL >= GEN_7
         && GetMoveEffect(gLastResultingMoves[battler]) == EFFECT_DESTINY_BOND
-        && !gBattleStruct->battlers[battler].lastMoveFailed)
+        && !gBattleStruct->battlerStates[battler].lastMoveFailed)
         return TRUE;
     return FALSE;
 }
@@ -12227,7 +12227,7 @@ bool32 IsPursuitTargetSet(void)
 {
     for (u32 battler = 0; battler < gBattlersCount; battler++)
     {
-        if (gBattleStruct->battlers[battler].pursuitTarget)
+        if (gBattleStruct->battlerStates[battler].pursuitTarget)
             return TRUE;
     }
     return FALSE;
@@ -12236,13 +12236,13 @@ bool32 IsPursuitTargetSet(void)
 void ClearPursuitValues(void)
 {
     for (u32 i = 0; i < gBattlersCount; i++)
-        gBattleStruct->battlers[i].pursuitTarget = FALSE;
+        gBattleStruct->battlerStates[i].pursuitTarget = FALSE;
     gBattleStruct->pursuitSwitchByMove = FALSE;
     gBattleStruct->pursuitStoredSwitch = 0;
 }
 
 void ClearPursuitValuesIfSet(u32 battler)
 {
-    if (gBattleStruct->battlers[battler].pursuitTarget)
+    if (gBattleStruct->battlerStates[battler].pursuitTarget)
         ClearPursuitValues();
 }

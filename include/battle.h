@@ -140,7 +140,6 @@ struct DisableStruct
     u8 terrainAbilityDone:1;
     u8 usedProteanLibero:1;
     u16 overwrittenAbility;   // abilities overwritten during battle (keep separate from battle history in case of switching)
-
     u8 boosterEnergyActivates:1;
 };
 
@@ -630,7 +629,7 @@ enum BattleIntroStates
     BATTLE_INTRO_STATE_SET_DEX_AND_BATTLE_VARS
 };
 
-struct Battler
+struct BattlerState
 {
     u8 targetsDone[MAX_BATTLERS_COUNT];
 
@@ -655,7 +654,7 @@ struct Battler
 // Cleared at the beginning of the battle. Fields need to be cleared when needed manually otherwise.
 struct BattleStruct
 {
-    struct Battler battlers[MAX_BATTLERS_COUNT];
+    struct BattlerState battlerStates[MAX_BATTLERS_COUNT];
     u8 turnEffectsTracker;
     u8 turnEffectsBattlerId;
     u8 turnCountersTracker;
