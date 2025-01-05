@@ -12225,7 +12225,7 @@ bool32 IsMoveEffectBlockedByTarget(u32 ability)
 
 u32 NumAffectedSpreadMoveTargets(void)
 {
-    u32 targetCount = 0;
+    u32 targetCount = 1;
 
     if (!IsDoubleSpreadMove())
         return targetCount;

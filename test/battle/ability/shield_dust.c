@@ -147,34 +147,8 @@ DOUBLE_BATTLE_TEST("Shield Dust does or does not block Sparkling Aria depending 
     }
 }
 
-DOUBLE_BATTLE_TEST("Shield Dust does block Sparkling Aria when only one mon is hit")
-{
-    u32 move;
-    PARAMETRIZE { move = MOVE_PROTECT; }
-    PARAMETRIZE { move = MOVE_FLY; }
-
-    GIVEN {
-        PLAYER(SPECIES_WYNAUT);
-        PLAYER(SPECIES_WOBBUFFET);
-        OPPONENT(SPECIES_VIVILLON) { Ability(ABILITY_SHIELD_DUST); Status1(STATUS1_BURN); }
-        OPPONENT(SPECIES_WOBBUFFET);
-    } WHEN {
-        TURN { MOVE(opponentRight, move, target: playerLeft);
-               MOVE(playerRight, move, target: opponentRight);
-               MOVE(playerLeft, MOVE_SPARKLING_ARIA); }
-    } SCENE {
-        ANIMATION(ANIM_TYPE_MOVE, move, opponentRight);
-        ANIMATION(ANIM_TYPE_MOVE, MOVE_SPARKLING_ARIA, playerLeft);
-        NONE_OF {
-            MESSAGE("The opposing Vivillon's burn was cured!");
-            STATUS_ICON(opponentLeft, none: TRUE);
-        }
-    }
-}
-
 DOUBLE_BATTLE_TEST("Shield Dust blocks Sparkling Aria if all other targets avoid getting hit by")
 {
-    KNOWN_FAILING;  //  #4636
     GIVEN {
         PLAYER(SPECIES_PRIMARINA);
         PLAYER(SPECIES_VIVILLON) { Ability(ABILITY_SHIELD_DUST); Status1(STATUS1_BURN); }
