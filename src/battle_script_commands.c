@@ -5913,7 +5913,7 @@ static u32 GetNextTarget(u32 moveTarget, bool32 excludeCurrent)
         if (battler != gBattlerAttacker
          && !(excludeCurrent && battler == gBattlerTarget)
          && IsBattlerAlive(battler)
-         && !gBattleStruct->battlers[battler].targetsDone[gBattlerAttacker]
+         && !gBattleStruct->battlers[gBattlerAttacker].targetsDone[battler]
          && (GetBattlerSide(battler) != GetBattlerSide(gBattlerAttacker) || moveTarget == MOVE_TARGET_FOES_AND_ALLY))
             break;
     }
@@ -6518,7 +6518,7 @@ static void Cmd_moveend(void)
              && MoveResultHasEffect(gBattlerTarget))
                 gProtectStructs[gBattlerAttacker].targetAffected = TRUE;
 
-            gBattleStruct->battlers[gBattlerTarget].targetsDone[gBattlerAttacker] = TRUE;
+            gBattleStruct->battlers[gBattlerAttacker].targetsDone[gBattlerTarget] = TRUE;
             if (!(gHitMarker & HITMARKER_UNABLE_TO_USE_MOVE)
                 && IsDoubleBattle()
                 && !gProtectStructs[gBattlerAttacker].chargingTurn
@@ -6549,9 +6549,9 @@ static void Cmd_moveend(void)
                     u8 originalBounceTarget = gBattlerAttacker;
                     gBattleStruct->bouncedMoveIsUsed = FALSE;
                     gBattlerAttacker = gBattleStruct->attackerBeforeBounce;
-                    gBattleStruct->battlers[originalBounceTarget].targetsDone[gBattlerAttacker] = TRUE;
+                    gBattleStruct->battlers[gBattlerAttacker].targetsDone[originalBounceTarget] = TRUE;
                     for (i = 0; i < gBattlersCount; i++)
-                        gBattleStruct->battlers[i].targetsDone[originalBounceTarget] = FALSE;
+                        gBattleStruct->battlers[originalBounceTarget].targetsDone[i] = FALSE;
                     nextTarget = GetNextTarget(moveTarget, FALSE);
                     if (nextTarget != MAX_BATTLERS_COUNT)
                     {
@@ -7022,7 +7022,7 @@ static void Cmd_moveend(void)
 
             for (i = 0; i < gBattlersCount; i++)
             {
-                gBattleStruct->battlers[i].targetsDone[gBattlerAttacker] = FALSE;
+                gBattleStruct->battlers[gBattlerAttacker].targetsDone[i] = FALSE;
 
                 if (gBattleStruct->commanderActive[i] != SPECIES_NONE && !IsBattlerAlive(i))
                 {
