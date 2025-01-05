@@ -17996,8 +17996,8 @@ void BS_SwapStats(void)
 {
     NATIVE_ARGS(u8 stat);
 
-    u8 stat = cmd->stat;
-    u16 temp;
+    u32 stat = cmd->stat;
+    u32 temp;
 
     switch (stat)
     {
@@ -18022,5 +18022,4 @@ void BS_SwapStats(void)
     }
     PREPARE_STAT_BUFFER(gBattleTextBuff1, stat);
     gBattlescriptCurrInstr = cmd->nextInstr;
-    return;
 }
