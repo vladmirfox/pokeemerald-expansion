@@ -84,6 +84,7 @@ void Script_DecreaseDifficulty(void)
 
 void Script_GetDifficulty(void)
 {
+    Script_RequestEffects(SCREFF_V1);
     gSpecialVar_Result = GetCurrentDifficultyLevel();
 }
 

@@ -264,9 +264,13 @@
 	.endm
 
 	@ Replaces the script with the function stored at func. Execution returns to the bytecode script when func returns TRUE.
-	.macro gotonative func:req
+	.macro gotonative func:req, requests_effects=0
 	.byte 0x24
+	.if \requests_effects == 0
 	.4byte \func
+	.else
+	.4byte \func + ROM_SIZE
+	.endif
 	.endm
 
 	@ Calls a function listed in the table in data/specials.inc.
@@ -2361,7 +2365,7 @@
 
 	@ Stores the position of the given object in destX and destY. Mode CURRENT_POSITION will take the object's current position. Mode TEMPLATE_POSITION will take the object's template position.
 	.macro getobjectxy localId:req, posType:req, destX:req, destY:req
-	callnative ScrCmd_getobjectxy
+	callnative ScrCmd_getobjectxy, request_effects=TRUE
 	.2byte \localId
 	.2byte \posType
 	.2byte \destX
@@ -2369,7 +2373,7 @@
 	.endm
 
 	.macro getobjecttemplatexy localId:req, posType = TEMPLATE_POSITION, destX:req, destY:req
-	callnative ScrCmd_getobjectxy
+	callnative ScrCmd_getobjectxy, request_effects=TRUE
 	.2byte \localId
 	.2byte \posType
 	.2byte \destX
@@ -2377,7 +2381,7 @@
 	.endm
 
 	.macro getobjectcurrentxy localId:req, posType = CURRENT_POSITION, destX:req, destY:req
-	callnative ScrCmd_getobjectxy
+	callnative ScrCmd_getobjectxy, request_effects=TRUE
 	.2byte \localId
 	.2byte \posType
 	.2byte \destX
@@ -2386,7 +2390,7 @@
 
 	@ Return TRUE to dest if there is an object at the position x and y.
 	.macro checkobjectat x:req, y:req, dest = VAR_RESULT
-	callnative ScrCmd_checkobjectat
+	callnative ScrCmd_checkobjectat, request_effects=TRUE
 	.2byte \x
 	.2byte \y
 	.2byte \dest
@@ -2394,28 +2398,28 @@
 
 	@ Returns the state of the Pokedex Seen Flag to VAR_RESULT for the Pokemon with speciesId
 	.macro getseenmon species:req
-	callnative Scrcmd_getsetpokedexflag
+	callnative Scrcmd_getsetpokedexflag, request_effects=TRUE
 	.2byte \species
 	.2byte FLAG_GET_SEEN
 	.endm
 
 	@ Returns the state of the Pokedex Caught Flag to VAR_RESULT for the Pokemon with speciesId
 	.macro getcaughtmon species:req
-	callnative Scrcmd_getsetpokedexflag
+	callnative Scrcmd_getsetpokedexflag, request_effects=TRUE
 	.2byte \species
 	.2byte FLAG_GET_CAUGHT
 	.endm
 
 	@ Sets the Pokedex Seen Flag for the Pokemon with speciesId
 	.macro setseenmon species:req
-	callnative Scrcmd_getsetpokedexflag
+	callnative Scrcmd_getsetpokedexflag, request_effects=TRUE
 	.2byte \species
 	.2byte FLAG_SET_SEEN
 	.endm
 
 	@ Sets the Pokedex Caught Flag for the Pokemon with speciesId
 	.macro setcaughtmon species:req
-	callnative Scrcmd_getsetpokedexflag
+	callnative Scrcmd_getsetpokedexflag, request_effects=TRUE
 	.2byte \species
 	.2byte FLAG_SET_CAUGHT
 	.endm
@@ -2425,10 +2429,10 @@
 	.if \mode == OPEN_PARTY_SCREEN
 		special ChoosePartyMon
 		waitstate
-		callnative Scrcmd_checkspecies_choose
+		callnative Scrcmd_checkspecies_choose, request_effects=TRUE
 		.2byte \speciesId
 	.else
-		callnative Scrcmd_checkspecies
+		callnative Scrcmd_checkspecies, request_effects=TRUE
 		.2byte \speciesId
 	.endif
 	.endm
@@ -2439,7 +2443,7 @@
 
 	@ Gets the facing direction of a given event object and stores it in the variable dest.
 	.macro getobjectfacingdirection localId:req, dest:req
-	callnative Scrcmd_getobjectfacingdirection
+	callnative Scrcmd_getobjectfacingdirection, request_effects=TRUE
 	.2byte \localId
 	.2byte \dest
 	.endm
@@ -2453,10 +2457,71 @@
 	.endm
 
 	.macro getdifficulty var:req
-	callnative Script_GetDifficulty
+	callnative Script_GetDifficulty, requests_effects=TRUE
 	.endm
 
 	.macro setdifficulty difficulty:req
 	callnative Script_SetDifficulty
 	.byte \difficulty
+	.endm
+
+	@ Makes the trainer unable to see the player if executed.
+	@ This is a no-op if the player interacts with the trainer.
+	.macro cant_see_if, condition:req
+	callnative Script_EndTrainerCanSeeIf, requests_effects=TRUE
+	.byte \condition
+	.endm
+
+	.macro cant_see
+	cant_see_if_unset 0 @ flag 0 is always FALSE.
+	.endm
+
+	.macro cant_see_if_unset, flag:req
+	checkflag \flag
+	cant_see_if FALSE
+	.endm
+
+	.macro cant_see_if_set, flag:req
+	checkflag \flag
+	cant_see_if TRUE
+	.endm
+
+	.macro cant_see_if_trainerflag_unset, trainer:req
+	checktrainerflag \trainer
+	cant_see_if FALSE
+	.endm
+
+	.macro cant_see_if_trainerflag_set, trainer:req
+	checktrainerflag \trainer
+	cant_see_if TRUE
+	.endm
+
+	.macro cant_see_if_lt, a:req, b:req
+	compare \a, \b
+	cant_see_if 0
+	.endm
+
+	.macro cant_see_if_eq, a:req, b:req
+	compare \a, \b
+	cant_see_if 1
+	.endm
+
+	.macro cant_see_if_gt, a:req, b:req
+	compare \a, \b
+	cant_see_if 2
+	.endm
+
+	.macro cant_see_if_le, a:req, b:req
+	compare \a, \b
+	cant_see_if 3
+	.endm
+
+	.macro cant_see_if_ge, a:req, b:req
+	compare \a, \b
+	cant_see_if 4
+	.endm
+
+	.macro cant_see_if_ne, a:req, b:req
+	compare \a, \b
+	cant_see_if 5
 	.endm

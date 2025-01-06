@@ -240,6 +240,9 @@ void CanHyperTrain(struct ScriptContext *ctx)
 {
     u32 stat = ScriptReadByte(ctx);
     u32 partyIndex = VarGet(ScriptReadHalfword(ctx));
+
+    Script_RequestEffects(SCREFF_V1);
+
     if (stat < NUM_STATS
      && partyIndex < PARTY_SIZE
      && !GetMonData(&gPlayerParty[partyIndex], MON_DATA_HYPER_TRAINED_HP + stat)
@@ -268,6 +271,9 @@ void HyperTrain(struct ScriptContext *ctx)
 void HasGigantamaxFactor(struct ScriptContext *ctx)
 {
     u32 partyIndex = VarGet(ScriptReadHalfword(ctx));
+
+    Script_RequestEffects(SCREFF_V1);
+
     if (partyIndex < PARTY_SIZE)
         gSpecialVar_Result = GetMonData(&gPlayerParty[partyIndex], MON_DATA_GIGANTAMAX_FACTOR);
     else
@@ -297,6 +303,8 @@ void ToggleGigantamaxFactor(struct ScriptContext *ctx)
 void CheckTeraType(struct ScriptContext *ctx)
 {
     u32 partyIndex = VarGet(ScriptReadHalfword(ctx));
+
+    Script_RequestEffects(SCREFF_V1);
 
     gSpecialVar_Result = TYPE_NONE;
 
