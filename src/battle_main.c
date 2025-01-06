@@ -73,6 +73,7 @@
 #include "constants/trainers.h"
 #include "constants/weather.h"
 #include "cable_club.h"
+#include "constants/trainer_slide.h"
 
 extern const struct BgTemplate gBattleBgTemplates[];
 extern const struct WindowTemplate *const gBattleWindowTemplates[];
@@ -5688,7 +5689,7 @@ static void FreeResetData_ReturnToOvOrDoEvolutions(void)
             IncrementDexNavChain();
         else
             gSaveBlock3Ptr->dexNavChain = 0;
-        
+
         gDexNavBattle = FALSE;
         ResetSpriteData();
         if (!(gBattleTypeFlags & (BATTLE_TYPE_LINK
