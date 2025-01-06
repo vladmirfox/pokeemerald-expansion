@@ -137,6 +137,10 @@ Debug_EventScript_Text_DefensiveIVs:
 	.string "HP IVs: {STR_VAR_1}, DEF IVs: {STR_VAR_2}, SPDEF IVs: {STR_VAR_3}$"
 
 Debug_EventScript_Script_1::
+    givemon species=SPECIES_DUGTRIO, level=100,item=0,move1=MOVE_VITAL_THROW
+    givemon species=SPECIES_EXEGGUTOR,level=100,item=0,move1=MOVE_CELEBRATE
+    trainerbattle_no_intro TRAINER_THALIA_4, gText_Sleep
+
 	release
 	end
 

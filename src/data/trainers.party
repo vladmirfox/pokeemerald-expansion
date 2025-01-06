@@ -16753,17 +16753,22 @@ Music: Female
 Double Battle: No
 AI: Check Bad Move
 
-Luvdisc
-Level: 38
-IVs: 3 HP / 3 Atk / 3 Def / 3 SpA / 3 SpD / 3 Spe
+/*TRAINER_SLIDE_BEFORE_FIRST_TURN, */
+/*TRAINER_SLIDE_FIRST_CRITICAL_HIT, */
+/* TRAINER_SLIDE_FIRST_DOWN, */
+/* TRAINER_SLIDE_FIRST_SUPER_EFFECTIVE_HIT, */
 
-Wailmer
-Level: 38
-IVs: 3 HP / 3 Atk / 3 Def / 3 SpA / 3 SpD / 3 Spe
+Miraidon  
+Ability: Hadron Engine  
+Level: 1  
+- Frost Breath  
 
-Seadra
-Level: 38
-IVs: 3 HP / 3 Atk / 3 Def / 3 SpA / 3 SpD / 3 Spe
+Chi-Yu  
+Ability: Beads of Ruin  
+Level: 1  
+IVs: 0 Atk  
+- Ice Beam  
+
 
 === TRAINER_THALIA_5 ===
 Name: THALIA
@@ -16774,17 +16779,13 @@ Music: Female
 Double Battle: No
 AI: Check Bad Move
 
-Luvdisc
-Level: 40
-IVs: 4 HP / 4 Atk / 4 Def / 4 SpA / 4 SpD / 4 Spe
+/* TRAINER_SLIDE_PLAYER_MON_UNAFFECTED, */
+/* TRAINER_SLIDE_FIRST_STAB_MOVE, */
 
-Wailord
-Level: 40
-IVs: 4 HP / 4 Atk / 4 Def / 4 SpA / 4 SpD / 4 Spe
-
-Kingdra
-Level: 40
-IVs: 4 HP / 4 Atk / 4 Def / 4 SpA / 4 SpD / 4 Spe
+Pangoro  
+Ability: Iron Fist  
+Level: 50  
+- Drain Punch 
 
 === TRAINER_MARIELA ===
 Name: MARIELA
@@ -16794,9 +16795,19 @@ Gender: Female
 Music: Intense
 Double Battle: No
 
-Chimecho
-Level: 41
-IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+/* TRAINER_SLIDE_LAST_SWITCHIN, */
+/* TRAINER_SLIDE_LAST_HALF_HP, */
+/* TRAINER_SLIDE_LAST_LOW_HP, */
+
+Gengar  
+Ability: Cursed Body  
+- Explosion  
+
+Mew  
+Ability: Synchronize  
+EVs: 236 HP  
+IVs: 0 Atk  
+- Celebrate  
 
 === TRAINER_ALVARO ===
 Name: ALVARO
@@ -16806,13 +16817,25 @@ Gender: Male
 Music: Intense
 Double Battle: No
 
-Banette
-Level: 41
-IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+/* TRAINER_SLIDE_MEGA_EVOLUTION, */
+/* TRAINER_SLIDE_Z_MOVE, */
+/* TRAINER_SLIDE_DYNAMAX, */
 
-Kadabra
-Level: 41
-IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+Salamence @ Salamencite  
+Ability: Intimidate  
+IVs: 0 Atk  
+- Celebrate  
+
+Pikachu @ Pikashunium Z  
+Ability: Static  
+IVs: 0 Atk  
+- Thunder Shock  
+
+Machamp
+Dynamax Level: 10
+Ability: Guts  
+IVs: 0 Atk  
+- Celebrate
 
 === TRAINER_EVERETT ===
 Name: EVERETT
@@ -16870,6 +16893,11 @@ Gender: Female
 Music: Male
 Double Battle: No
 
-Kyogre
+Chien-Pao
 Level: 5
-IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+- Frost Breath
+
+Dugtrio
+Level: 100
+- Earthquake
+

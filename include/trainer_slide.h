@@ -3,19 +3,19 @@
 
 #include "constants/trainer_slide.h"
 
-bool32 DoesTrainerHaveSlideMessage(enum DifficultyLevel difficulty,u32 slideType);
-bool32 ShouldRunTrainerSlideSwitchIn(enum DifficultyLevel difficulty,u32);
-bool32 ShouldRunTrainerSlideLastLowHp(enum DifficultyLevel difficulty, u32 firstId, u32 lastId, u32 battler);
-bool32 ShouldRunTrainerSlideFirstDown(enum DifficultyLevel difficulty,u32 firstId, u32 lastId);
-bool32 ShouldRunTrainerSlideLastHalfHP(enum DifficultyLevel difficulty,u32 battler, u32 firstId, u32 lastId);
-bool32 ShouldRunTrainerSlideFirstCriticalHit(enum DifficultyLevel difficulty);
-bool32 ShouldRunTrainerSlideFirstSuperEffectiveHit(enum DifficultyLevel difficulty,u32 battler);
-bool32 ShouldRunTrainerSlideFirstSTABMove(enum DifficultyLevel difficulty,u32 firstId, u32 lastId);
-bool32 ShouldRunTrainerSlidePlayMonUnaffected(enum DifficultyLevel difficulty, u32 firstId, u32 lastId);
-bool32 ShouldRunTrainerSlideMegaEvolution(enum DifficultyLevel difficulty);
-bool32 ShouldRunTrainerSlideZMove(enum DifficultyLevel difficulty);
-bool32 ShouldRunTrainerSlideDynamax(enum DifficultyLevel difficulty);
-bool32 ShouldRunTrainerSlideBeforeFirstTurn(enum DifficultyLevel difficulty);
+bool32 DoesTrainerHaveSlideMessage(enum DifficultyLevel difficulty, u32 slideType);
+bool32 ShouldRunTrainerSlideLastSwitchIn(enum DifficultyLevel difficulty, u32,u32);
+bool32 ShouldRunTrainerSlideLastLowHp(enum DifficultyLevel difficulty, u32, u32 firstId, u32 lastId, u32 battler);
+bool32 ShouldRunTrainerSlideFirstDown(enum DifficultyLevel difficulty, u32,u32 firstId, u32 lastId);
+bool32 ShouldRunTrainerSlideLastHalfHP(enum DifficultyLevel difficulty, u32,u32 battler, u32 firstId, u32 lastId);
+bool32 ShouldRunTrainerSlideFirstCriticalHit(enum DifficultyLevel difficulty, u32);
+bool32 ShouldRunTrainerSlideFirstSuperEffectiveHit(enum DifficultyLevel difficulty, u32,u32 battler);
+bool32 ShouldRunTrainerSlideFirstSTABMove(enum DifficultyLevel difficulty, u32,u32 firstId, u32 lastId);
+bool32 ShouldRunTrainerSlidePlayMonUnaffected(enum DifficultyLevel difficulty, u32, u32 firstId, u32 lastId);
+bool32 ShouldRunTrainerSlideMegaEvolution(enum DifficultyLevel difficulty, u32);
+bool32 ShouldRunTrainerSlideZMove(enum DifficultyLevel difficulty, u32);
+bool32 ShouldRunTrainerSlideDynamax(enum DifficultyLevel difficulty, u32);
+bool32 ShouldRunTrainerSlideBeforeFirstTurn(enum DifficultyLevel difficulty, u32);
 
 struct TrainerSlide
 {
