@@ -251,9 +251,16 @@
 	.endm
 
 	@ Calls the native C function stored at func.
-	.macro callnative func:req
+	@ 'callnative's should set 'requests_effects=1' if the native
+	@ contains a call to 'Script_RequestEffects', which allows them
+	@ to be analyzed by 'RunScriptImmediatelyUntilEffect'.
+	.macro callnative func:req, requests_effects=0
 	.byte 0x23
+	.if \requests_effects == 0
 	.4byte \func
+	.else
+	.4byte \func + ROM_SIZE
+	.endif
 	.endm
 
 	@ Replaces the script with the function stored at func. Execution returns to the bytecode script when func returns TRUE.
@@ -999,7 +1006,7 @@
 	.macro givemon species:req, level:req, item, ball, nature, abilityNum, gender, hpEv, atkEv, defEv, speedEv, spAtkEv, spDefEv, hpIv, atkIv, defIv, speedIv, spAtkIv, spDefIv, move1, move2, move3, move4, isShiny, ggMaxFactor, teraType
 	callnative ScrCmd_createmon
 	.byte 0
-	.byte 6	@ PARTY_SIZE - assign to first empty slot
+	.byte PARTY_SIZE @ assign to first empty slot
 	.set givemon_flags, 0
 	.2byte \species
 	.2byte \level
@@ -2190,7 +2197,7 @@
 	@ Sets VAR_RESULT to TRUE if stat can be hyper trained, or to
 	@ FALSE otherwise.
 	.macro canhypertrain stat:req, slot:req
-	callnative CanHyperTrain
+	callnative CanHyperTrain, requests_effects=TRUE
 	.byte \stat
 	.2byte \slot
 	.endm
@@ -2205,7 +2212,7 @@
 	@ Sets VAR_RESULT to TRUE if the Pokemon has the Gigantamax Factor,
 	@ or to FALSE otherwise.
 	.macro hasgigantamaxfactor slot:req
-	callnative HasGigantamaxFactor
+	callnative HasGigantamaxFactor, requests_effects=TRUE
 	.2byte \slot
 	.endm
 
@@ -2258,7 +2265,7 @@
 
 	@ Sets VAR_RESULT to the Pokémon in \slot's Tera Type
 	.macro checkteratype slot:req
-	callnative CheckTeraType
+	callnative CheckTeraType, requests_effects=TRUE
 	.2byte \slot
 	.endm
 
@@ -2285,7 +2292,7 @@
 
 	@ Buffers the nickname of the first alive party member.
 	.macro bufferlivemonnickname out:req
-	callnative BufferFirstLiveMonNickname
+	callnative BufferFirstLiveMonNickname, requests_effects=TRUE
 	.byte \out
 	.endm
 

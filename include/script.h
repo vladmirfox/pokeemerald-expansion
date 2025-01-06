@@ -1,6 +1,8 @@
 #ifndef GUARD_SCRIPT_H
 #define GUARD_SCRIPT_H
 
+#include <setjmp.h>
+
 struct ScriptContext;
 
 typedef bool8 (*ScrCmdFunc)(struct ScriptContext *);
@@ -42,9 +44,9 @@ void ScriptContext_SetupScript(const u8 *ptr);
 void ScriptContext_Stop(void);
 void ScriptContext_Enable(void);
 void RunScriptImmediately(const u8 *ptr);
-u8 *MapHeaderGetScriptTable(u8 tag);
+const u8 *MapHeaderGetScriptTable(u8 tag);
 void MapHeaderRunScriptType(u8 tag);
-u8 *MapHeaderCheckScriptTable(u8 tag);
+const u8 *MapHeaderCheckScriptTable(u8 tag);
 void RunOnLoadMapScript(void);
 void RunOnTransitionMapScript(void);
 void RunOnResumeMapScript(void);
@@ -59,6 +61,37 @@ const u8 *GetRamScript(u8 objectId, const u8 *script);
 bool32 ValidateSavedRamScript(void);
 u8 *GetSavedRamScriptIfValid(void);
 void InitRamScript_NoObjectEvent(u8 *script, u16 scriptSize);
+
+enum
+{
+    SCREFF_SAVE = 1 << 0,
+    SCREFF_HARDWARE = 1 << 1,
+    SCREFF_TRAINERBATTLE = 1 << 2,
+};
+
+enum
+{
+    SCREFF_V1 = ~7,
+};
+
+/* 'RunScriptImmediatelyUntilEffect' executes a script until it reaches
+ * the first command which calls 'Script_RequestEffects' with an
+ * effect in 'effects' in which case it returns 'TRUE' and stores the
+ * current state in 'ctx'; or until it reaches an 'end'/'return' in
+ * which case it returns 'FALSE'.
+ *
+ * Commands, natives, and specials which call 'Script_RequestEffects'
+ * must be explicitly tagged, and must call the function before any of
+ * those effects have occurred. An untagged function could cause any
+ * effect, so execution is stopped to be safe. */
+bool32 RunScriptImmediatelyUntilEffect(u32 effects, const u8 *ptr, struct ScriptContext *ctx);
+bool32 Script_HasNoEffect(const u8 *ptr);
+void Script_RequestEffects(u32 effects);
+void Script_RequestWriteVar(u32 varId);
+void Script_CheckEffectInstrumentedSpecial(u32 specialId);
+void Script_CheckEffectInstrumentedGotoNative(bool8 (*func)(void));
+void Script_CheckEffectInstrumentedCallNative(void (*func)(struct ScriptContext *));
+bool32 Script_IsAnalyzingEffects(void);
 
 // srccmd.h
 void SetMovingNpcId(u16 npcId);

@@ -2,6 +2,8 @@
 #include "script.h"
 #include "event_data.h"
 #include "mystery_gift.h"
+#include "random.h"
+#include "trainer_see.h"
 #include "util.h"
 #include "constants/event_objects.h"
 #include "constants/map_scripts.h"
@@ -281,7 +283,7 @@ void RunScriptImmediately(const u8 *ptr)
     while (RunScriptCommand(&sImmediateScriptContext) == TRUE);
 }
 
-u8 *MapHeaderGetScriptTable(u8 tag)
+const u8 *MapHeaderGetScriptTable(u8 tag)
 {
     const u8 *mapScripts = gMapHeader.mapScripts;
 
@@ -303,14 +305,14 @@ u8 *MapHeaderGetScriptTable(u8 tag)
 
 void MapHeaderRunScriptType(u8 tag)
 {
-    u8 *ptr = MapHeaderGetScriptTable(tag);
+    const u8 *ptr = MapHeaderGetScriptTable(tag);
     if (ptr)
         RunScriptImmediately(ptr);
 }
 
-u8 *MapHeaderCheckScriptTable(u8 tag)
+const u8 *MapHeaderCheckScriptTable(u8 tag)
 {
-    u8 *ptr = MapHeaderGetScriptTable(tag);
+    const u8 *ptr = MapHeaderGetScriptTable(tag);
 
     if (!ptr)
         return NULL;
@@ -364,7 +366,7 @@ void RunOnDiveWarpMapScript(void)
 
 bool8 TryRunOnFrameMapScript(void)
 {
-    u8 *ptr = MapHeaderCheckScriptTable(MAP_SCRIPT_ON_FRAME_TABLE);
+    const u8 *ptr = MapHeaderCheckScriptTable(MAP_SCRIPT_ON_FRAME_TABLE);
 
     if (!ptr)
         return FALSE;
@@ -375,7 +377,7 @@ bool8 TryRunOnFrameMapScript(void)
 
 void TryRunOnWarpIntoMapScript(void)
 {
-    u8 *ptr = MapHeaderCheckScriptTable(MAP_SCRIPT_ON_WARP_INTO_MAP_TABLE);
+    const u8 *ptr = MapHeaderCheckScriptTable(MAP_SCRIPT_ON_WARP_INTO_MAP_TABLE);
     if (ptr)
         RunScriptImmediately(ptr);
 }
@@ -503,4 +505,144 @@ void InitRamScript_NoObjectEvent(u8 *script, u16 scriptSize)
         scriptSize = sizeof(gSaveBlock1Ptr->ramScript.data.script);
     InitRamScript(script, scriptSize, MAP_GROUP(UNDEFINED), MAP_NUM(UNDEFINED), NO_OBJECT);
 #endif //FREE_MYSTERY_EVENT_BUFFERS
+}
+
+bool8 LoadTrainerObjectScript(void)
+{
+    sGlobalScriptContext.scriptPtr = gApproachingTrainers[gNoOfApproachingTrainers - 1].trainerScriptPtr;
+    return TRUE;
+}
+
+struct ScriptEffectContext {
+    u32 breakOn;
+    intptr_t breakTo[5];
+    const u8 *nextCmd;
+};
+
+static struct ScriptEffectContext *sScriptEffect = NULL;
+
+static bool32 Script_IsEffectInstrumentedCommand(ScrCmdFunc func)
+{
+    // In ROM mirror 1.
+    return (((uintptr_t)func) & 0xE000000) == 0xA000000;
+}
+
+void Script_CheckEffectInstrumentedSpecial(u32 specialId)
+{
+    extern const void *gSpecials[];
+    // In ROM mirror 1.
+    if (sScriptEffect && (((uintptr_t)gSpecials[specialId]) & 0xE000000) != 0xA000000)
+        __builtin_longjmp(sScriptEffect->breakTo, 1);
+}
+
+void Script_CheckEffectInstrumentedGotoNative(bool8 (*func)(void))
+{
+    // In ROM mirror 1.
+    if (sScriptEffect && (((uintptr_t)func) & 0xE000000) != 0xA000000)
+        __builtin_longjmp(sScriptEffect->breakTo, 1);
+}
+
+void Script_CheckEffectInstrumentedCallNative(void (*func)(struct ScriptContext *))
+{
+    // In ROM mirror 1.
+    if (sScriptEffect && (((uintptr_t)func) & 0xE000000) != 0xA000000)
+        __builtin_longjmp(sScriptEffect->breakTo, 1);
+}
+
+/* 'setjmp' and 'longjmp' cause link errors, so we use
+ * '__builtin_setjmp' and '__builtin_longjmp' instead.
+ * See https://gcc.gnu.org/onlinedocs/gcc/Nonlocal-Gotos.html */
+static bool32 RunScriptImmediatelyUntilEffect_(struct ScriptContext *ctx)
+{
+    if (__builtin_setjmp(sScriptEffect->breakTo) == 0)
+    {
+        while (TRUE)
+        {
+            u32 cmdCode;
+            ScrCmdFunc *func;
+
+            sScriptEffect->nextCmd = ctx->scriptPtr;
+
+            if (!ctx->scriptPtr)
+                return FALSE;
+
+            cmdCode = *ctx->scriptPtr;
+            ctx->scriptPtr++;
+            func = &ctx->cmdTable[cmdCode];
+
+            // Invalid script command.
+            if (func >= ctx->cmdTableEnd)
+                return TRUE;
+
+            if (!Script_IsEffectInstrumentedCommand(*func))
+                return TRUE;
+
+            // Command which waits for a frame.
+            if ((*func)(ctx))
+            {
+                sScriptEffect->nextCmd = ctx->scriptPtr;
+                return TRUE;
+            }
+        }
+    }
+    else
+    {
+        return TRUE;
+    }
+}
+
+bool32 RunScriptImmediatelyUntilEffect(u32 effects, const u8 *ptr, struct ScriptContext *ctx)
+{
+    AGB_ASSERT(effects & 0x80000000);
+
+    bool32 result;
+    struct ScriptEffectContext seCtx;
+    seCtx.breakOn = effects & 0x7FFFFFFF;
+
+    InitScriptContext(&sImmediateScriptContext, gScriptCmdTable, gScriptCmdTableEnd);
+    SetupBytecodeScript(&sImmediateScriptContext, ptr);
+
+    rng_value_t rngValue = gRngValue;
+    sScriptEffect = &seCtx;
+    result = RunScriptImmediatelyUntilEffect_(&sImmediateScriptContext);
+    sScriptEffect = NULL;
+    gRngValue = rngValue;
+
+    if (result && ctx)
+    {
+        *ctx = sImmediateScriptContext;
+        ctx->scriptPtr = seCtx.nextCmd;
+    }
+
+    return result;
+}
+
+bool32 Script_HasNoEffect(const u8 *ptr)
+{
+    return !RunScriptImmediatelyUntilEffect(~0, ptr, NULL);
+}
+
+void Script_RequestEffects(u32 effects)
+{
+    AGB_ASSERT(effects & 0x80000000);
+
+    if (sScriptEffect)
+    {
+        if (sScriptEffect->breakOn & effects)
+            __builtin_longjmp(sScriptEffect->breakTo, 1);
+    }
+}
+
+void Script_RequestWriteVar(u32 varId)
+{
+    if (sScriptEffect)
+    {
+        if (!(SPECIAL_VARS_START <= varId && varId <= SPECIAL_VARS_END))
+            Script_RequestEffects(SCREFF_V1 | SCREFF_SAVE);
+    }
+}
+
+bool32 Script_IsAnalyzingEffects(void)
+{
+    return sScriptEffect != NULL;
 }
