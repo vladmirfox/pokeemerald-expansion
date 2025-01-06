@@ -1410,6 +1410,14 @@ void Task_PlayerController_RestoreBgmAfterCry(u8 taskId)
 #define tExpTask_gainedExp_2    data[4] // Stored as two half-words containing a word.
 #define tExpTask_frames         data[10]
 
+static void DynamaxModifyHPLevelUp(struct Pokemon *mon, u32 battler, u32 oldMaxHP)
+{
+    ApplyDynamaxHPMultiplier(mon);
+    gBattleScripting.levelUpHP = GetMonData(mon, MON_DATA_MAX_HP) - oldMaxHP; // overwrite levelUpHP since it overflows
+    gBattleMons[battler].hp += gBattleScripting.levelUpHP;
+    SetMonData(mon, MON_DATA_HP, &gBattleMons[battler].hp);
+}
+
 static s32 GetTaskExpValue(u8 taskId)
 {
     return (u16)(gTasks[taskId].tExpTask_gainedExp_1) | (gTasks[taskId].tExpTask_gainedExp_2 << 16);
@@ -1437,13 +1445,7 @@ static void Task_GiveExpToMon(u8 taskId)
 
             // Reapply Dynamax HP multiplier after stats are recalculated.
             if (GetActiveGimmick(battler) == GIMMICK_DYNAMAX && monId == gBattlerPartyIndexes[battler])
-            {
-                ApplyDynamaxHPMultiplier(mon);
-                // overwrite levelUpHP since it overflows
-                gBattleScripting.levelUpHP = GetMonData(mon, MON_DATA_MAX_HP) - oldMaxHP;
-                gBattleMons[battler].hp += gBattleScripting.levelUpHP;
-                SetMonData(mon, MON_DATA_HP, &gBattleMons[battler].hp);
-            }
+                DynamaxModifyHPLevelUp(mon, battler, oldMaxHP);
 
             gainedExp -= nextLvlExp - currExp;
             BtlController_EmitTwoReturnValues(battler, BUFFER_B, RET_VALUE_LEVELED_UP, gainedExp);
@@ -1524,13 +1526,7 @@ static void Task_GiveExpWithExpBar(u8 taskId)
 
                 // Reapply Dynamax HP multiplier after stats are recalculated.
                 if (GetActiveGimmick(battler) == GIMMICK_DYNAMAX && monId == gBattlerPartyIndexes[battler])
-                {
-                    ApplyDynamaxHPMultiplier(mon);
-                    // overwrite levelUpHP since it overflows
-                    gBattleScripting.levelUpHP = GetMonData(mon, MON_DATA_MAX_HP) - oldMaxHP;
-                    gBattleMons[battler].hp += gBattleScripting.levelUpHP;
-                    SetMonData(mon, MON_DATA_HP, &gBattleMons[battler].hp);
-                }
+                    DynamaxModifyHPLevelUp(mon, battler, oldMaxHP);
 
                 gainedExp -= expOnNextLvl - currExp;
                 BtlController_EmitTwoReturnValues(battler, BUFFER_B, RET_VALUE_LEVELED_UP, gainedExp);

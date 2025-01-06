@@ -123,7 +123,7 @@ bool32 CanDynamax(u32 battler)
 // Returns whether a battler is transformed into a Gigantamax form.
 bool32 IsGigantamaxed(u32 battler)
 {
-    struct Pokemon *mon = &GetSideParty(GetBattlerSide(battler))[gBattlerPartyIndexes[battler]];
+    struct Pokemon *mon = GetPartyBattlerData(battler);
     if ((gSpeciesInfo[gBattleMons[battler].species].isGigantamax) && GetMonData(mon, MON_DATA_GIGANTAMAX_FACTOR))
         return TRUE;
     return FALSE;
@@ -151,7 +151,7 @@ u16 GetNonDynamaxHP(u32 battler)
         return gBattleMons[battler].hp;
     else
     {
-        struct Pokemon *mon = &GetSideParty(GetBattlerSide(battler))[gBattlerPartyIndexes[battler]];
+        struct Pokemon *mon = GetPartyBattlerData(battler);
         uq4_12_t mult = GetDynamaxLevelHPMultiplier(GetMonData(mon, MON_DATA_DYNAMAX_LEVEL), TRUE);
         u32 hp = UQ_4_12_TO_INT((gBattleMons[battler].hp * mult) + UQ_4_12_ROUND);
         return hp;
@@ -165,7 +165,7 @@ u16 GetNonDynamaxMaxHP(u32 battler)
         return gBattleMons[battler].maxHP;
     else
     {
-        struct Pokemon *mon = &GetSideParty(GetBattlerSide(battler))[gBattlerPartyIndexes[battler]];
+        struct Pokemon *mon = GetPartyBattlerData(battler);
         uq4_12_t mult = GetDynamaxLevelHPMultiplier(GetMonData(mon, MON_DATA_DYNAMAX_LEVEL), TRUE);
         u32 maxHP = UQ_4_12_TO_INT((gBattleMons[battler].maxHP * mult) + UQ_4_12_ROUND);
         return maxHP;
@@ -510,7 +510,7 @@ void BS_UpdateDynamax(void)
 {
     NATIVE_ARGS();
     u32 battler = gBattleScripting.battler;
-    struct Pokemon *mon = &GetSideParty(GetBattlerSide(battler))[gBattlerPartyIndexes[battler]];
+    struct Pokemon *mon = GetPartyBattlerData(battler);
 
     if (!IsGigantamaxed(battler)) // RecalcBattlerStats will get called on form change.
         RecalcBattlerStats(battler, mon, GetActiveGimmick(battler) == GIMMICK_DYNAMAX);
