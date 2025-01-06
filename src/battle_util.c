@@ -285,7 +285,7 @@ void HandleAction_UseMove(void)
             gBattlerTarget = battler;
         }
     }
-	else if (IsDoubleBattle() && moveTarget & MOVE_TARGET_RANDOM)
+    else if (IsDoubleBattle() && moveTarget & MOVE_TARGET_RANDOM)
     {
         gBattlerTarget = SetRandomTarget(gBattlerAttacker);
         if (gAbsentBattlerFlags & (1u << gBattlerTarget)
@@ -301,7 +301,7 @@ void HandleAction_UseMove(void)
         else
             gBattlerTarget = gBattlerAttacker;
     }
-	else if (IsDoubleBattle() && moveTarget == MOVE_TARGET_FOES_AND_ALLY)
+    else if (IsDoubleBattle() && moveTarget == MOVE_TARGET_FOES_AND_ALLY)
     {
         for (gBattlerTarget = 0; gBattlerTarget < gBattlersCount; gBattlerTarget++)
         {
@@ -932,22 +932,22 @@ static void UNUSED MarkAllBattlersForControllerExec(void)
     else
     {
         for (i = 0; i < gBattlersCount; i++)
-            gBattleControllerExecFlags |= 1 << i;
+            gBattleControllerExecFlags |= 1u << i;
     }
 }
 
 bool32 IsBattlerMarkedForControllerExec(u32 battler)
 {
     if (gBattleTypeFlags & BATTLE_TYPE_LINK)
-        return (gBattleControllerExecFlags & (1 << (battler + 28))) != 0;
+        return (gBattleControllerExecFlags & (1u << (battler + 28))) != 0;
     else
-        return (gBattleControllerExecFlags & (1 << battler)) != 0;
+        return (gBattleControllerExecFlags & (1u << battler)) != 0;
 }
 
 void MarkBattlerForControllerExec(u32 battler)
 {
     if (gBattleTypeFlags & BATTLE_TYPE_LINK)
-        gBattleControllerExecFlags |= 1u << (32 - MAX_BATTLERS_COUNT);
+        gBattleControllerExecFlags |= 1u << (battler + 32 - MAX_BATTLERS_COUNT);
     else
         gBattleControllerExecFlags |= 1u << battler;
 }
@@ -3209,6 +3209,19 @@ void SetAtkCancellerForCalledMove(void)
     gBattleStruct->isAtkCancelerForCalledMove = TRUE;
 }
 
+static inline bool32 TryFormChangeBeforeMove(void)
+{
+    bool32 result = TryBattleFormChange(gBattlerAttacker, FORM_CHANGE_BATTLE_BEFORE_MOVE);
+    if (!result)
+        result = TryBattleFormChange(gBattlerAttacker, FORM_CHANGE_BATTLE_BEFORE_MOVE_CATEGORY);
+    if (!result)
+        return FALSE;
+
+    BattleScriptPushCursor();
+    gBattlescriptCurrInstr = BattleScript_AttackerFormChange;
+    return TRUE;
+}
+
 u8 AtkCanceller_UnableToUseMove(u32 moveType)
 {
     u32 effect = 0;
@@ -3231,6 +3244,11 @@ u8 AtkCanceller_UnableToUseMove(u32 moveType)
                 gHitMarker |= HITMARKER_UNABLE_TO_USE_MOVE;
                 effect = 1;
             }
+            gBattleStruct->atkCancellerTracker++;
+            break;
+        case CANCELLER_STANCE_CHANGE_1:
+            if (B_STANCE_CHANGE_FAIL < GEN_7 && TryFormChangeBeforeMove())
+                effect = 1;
             gBattleStruct->atkCancellerTracker++;
             break;
         case CANCELLER_ASLEEP: // check being asleep
@@ -3571,6 +3589,11 @@ u8 AtkCanceller_UnableToUseMove(u32 moveType)
                 }
                 effect = 2;
             }
+            gBattleStruct->atkCancellerTracker++;
+            break;
+        case CANCELLER_STANCE_CHANGE_2:
+            if (B_STANCE_CHANGE_FAIL >= GEN_7 && TryFormChangeBeforeMove())
+                effect = 1;
             gBattleStruct->atkCancellerTracker++;
             break;
         case CANCELLER_POWDER_MOVE:
@@ -9098,7 +9121,7 @@ static inline u32 CalcMoveBasePower(struct DamageCalculationData *damageCalcData
     case EFFECT_ROUND:
         for (i = 0; i < gBattlersCount; i++)
         {
-            if (i != battlerAtk && IsBattlerAlive(i) && gLastMoves[i] == MOVE_ROUND)
+            if (i != battlerAtk && IsBattlerAlive(i) && gMovesInfo[gLastUsedMove].effect == EFFECT_ROUND)
             {
                 basePower *= 2;
                 break;
@@ -10647,7 +10670,7 @@ static uq4_12_t GetInverseTypeMultiplier(uq4_12_t multiplier)
     }
 }
 
-uq4_12_t GetTypeEffectiveness(struct Pokemon *mon, u8 moveType)
+uq4_12_t GetOverworldTypeEffectiveness(struct Pokemon *mon, u8 moveType)
 {
     uq4_12_t modifier = UQ_4_12(1.0);
     u16 abilityDef = GetMonAbility(mon);
