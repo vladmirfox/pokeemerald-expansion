@@ -12230,6 +12230,7 @@ u32 NumAffectedSpreadMoveTargets(void)
     if (!IsDoubleSpreadMove())
         return targetCount;
 
+    targetCount = 0;
     for (u32 battler = 0; battler < gBattlersCount; battler++)
     {
         if (MoveResultHasEffect(battler))
