@@ -1434,16 +1434,16 @@ u32 AI_GetWeather(struct AiLogicData *aiData)
     return gBattleWeather;
 }
 
-bool32 IsAromaVeilProtectedMove(u32 move)
+bool32 IsAromaVeilProtectedEffect(u32 moveEffect)
 {
-    switch (move)
+    switch (moveEffect)
     {
-    case MOVE_DISABLE:
-    case MOVE_ATTRACT:
-    case MOVE_ENCORE:
-    case MOVE_TORMENT:
-    case MOVE_TAUNT:
-    case MOVE_HEAL_BLOCK:
+    case EFFECT_DISABLE:
+    case EFFECT_ATTRACT:
+    case EFFECT_ENCORE:
+    case EFFECT_TORMENT:
+    case EFFECT_TAUNT:
+    case EFFECT_HEAL_BLOCK:
         return TRUE;
     default:
         return FALSE;
@@ -1498,8 +1498,9 @@ bool32 IsMoveRedirectionPrevented(u32 move, u32 atkAbility)
     if (AI_THINKING_STRUCT->aiFlags[sBattler_AI] & AI_FLAG_NEGATE_UNAWARE)
         return FALSE;
 
-    if (move == MOVE_SKY_DROP
-      || move == MOVE_SNIPE_SHOT
+    u32 effect = GetMoveEffect(move);
+    if (effect == EFFECT_SKY_DROP
+      || effect == EFFECT_SNIPE_SHOT
       || atkAbility == ABILITY_PROPELLER_TAIL
       || atkAbility == ABILITY_STALWART)
         return TRUE;
@@ -3171,7 +3172,7 @@ static u32 FindMoveUsedXTurnsAgo(u32 battlerId, u32 x)
 bool32 IsWakeupTurn(u32 battler)
 {
     // Check if rest was used 2 turns ago
-    if ((gBattleMons[battler].status1 & STATUS1_SLEEP) == 1 && FindMoveUsedXTurnsAgo(battler, 2) == MOVE_REST)
+    if ((gBattleMons[battler].status1 & STATUS1_SLEEP) == 1 && GetMoveEffect(FindMoveUsedXTurnsAgo(battler, 2)) == EFFECT_REST)
         return TRUE;
     else // no way to know
         return FALSE;
@@ -3426,6 +3427,18 @@ bool32 PartnerMoveEffectIsTerrain(u32 battlerAtkPartner, u32 partnerMove)
       || partnerEffect == EFFECT_MISTY_TERRAIN
       || partnerEffect == EFFECT_ELECTRIC_TERRAIN
       || partnerEffect == EFFECT_PSYCHIC_TERRAIN))
+        return TRUE;
+
+    return FALSE;
+}
+
+//PARTNER_MOVE_EFFECT_IS
+bool32 PartnerMoveEffectIs(u32 battlerAtkPartner, u32 partnerMove, u32 effectCheck)
+{
+    if (!IsDoubleBattle())
+        return FALSE;
+
+    if (partnerMove != MOVE_NONE && GetMoveEffect(partnerMove) == effectCheck)
         return TRUE;
 
     return FALSE;
