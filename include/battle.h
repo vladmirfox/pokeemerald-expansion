@@ -789,7 +789,7 @@ struct BattleStruct
     u8 trainerSlidePlayerLandsFirstCriticalHitMsgState:2;
     u8 trainerSlidePlayerLandsFirstSuperEffectiveHitMsgState:2;
     u8 trainerSlidePlayerLandsFirstSTABMoveMsgState:2;
-    u8 trainerSlidePlayerMonUnaffectedMsgState:2;
+    u8 trainerSlideEnemyMonUnaffectedMsgState:2;
     u8 trainerSlideHalfHpMsgDone:1;
     u8 trainerSlideMegaEvolutionMsgDone:1;
     u8 trainerSlideZMoveMsgDone:1;

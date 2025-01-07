@@ -41921,10 +41921,8 @@ F_TRAINER_FEMALE |
         {
             {
 #line 16784
-            .species = SPECIES_WOOPER,
+            .species = SPECIES_QUAGSIRE,
             .gender = TRAINER_MON_RANDOM_GENDER,
-#line 16784
-            .heldItem = ITEM_FOCUS_SASH,
 #line 16786
             .iv = TRAINER_PARTY_IVS(31, 31, 31, 31, 31, 31),
 #line 16785
@@ -41933,7 +41931,7 @@ F_TRAINER_FEMALE |
             .dynamaxLevel = MAX_DYNAMAX_LEVEL,
             .moves = {
 #line 16786
-                MOVE_DRAIN_PUNCH,
+                MOVE_TACKLE,
             },
             },
         },

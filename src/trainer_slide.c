@@ -51,7 +51,7 @@ static const struct TrainerSlide sFrontierTrainerSlides[DIFFICULTY_COUNT][TRAINE
             .msgPlayerLandsFirstCriticalHit = sText_CriticalHit,
             .msgPlayerLandsFirstSuperEffectiveHit = sText_SuperEffective,
             .msgPlayerLandsFirstSTABMove = sText_ABoosted,
-            .msgPlayerMonUnaffected = sText_ButNoEffect,
+            .msgEnemyMonUnaffected = sText_ButNoEffect,
             .msgMegaEvolution = sText_PowderExplodes,
             .msgZMove = sText_Electromagnetism,
             .msgBeforeFirstTurn = sText_GravityIntensified,
@@ -72,7 +72,7 @@ static const struct TrainerSlide sTrainerSlides[DIFFICULTY_COUNT][TRAINERS_COUNT
             .msgPlayerLandsFirstSuperEffectiveHit = COMPOUND_STRING("First_Super_Effective_Hit{PAUSE_UNTIL_PRESS}"),
             //.msgPlayerLandsFirstSTABMove = COMPOUND_STRING("First_Stab_Move{PAUSE_UNTIL_PRESS}"),
             .msgPlayerLandsFirstDown = COMPOUND_STRING("First_Down{PAUSE_UNTIL_PRESS}"),
-            //.msgPlayerMonUnaffected = COMPOUND_STRING("Player_Mon_Unaffected{PAUSE_UNTIL_PRESS}"),
+            //.msgEnemyMonUnaffected = COMPOUND_STRING("Player_Mon_Unaffected{PAUSE_UNTIL_PRESS}"),
             //.msgLastSwitchIn = COMPOUND_STRING("Last_Switchin{PAUSE_UNTIL_PRESS}"),
             //.msgLastHalfHp = COMPOUND_STRING("Last_Half_Hp{PAUSE_UNTIL_PRESS}"),
             //.msgLastLowHp = COMPOUND_STRING("Last_Low_Hp{PAUSE_UNTIL_PRESS}"),
@@ -82,8 +82,8 @@ static const struct TrainerSlide sTrainerSlides[DIFFICULTY_COUNT][TRAINERS_COUNT
         },
         [TRAINER_THALIA_5] =
         {
+            .msgEnemyMonUnaffected = COMPOUND_STRING("Player_Mon_Unaffected{PAUSE_UNTIL_PRESS}"),
             .msgPlayerLandsFirstSTABMove = COMPOUND_STRING("First_Stab_Move{PAUSE_UNTIL_PRESS}"),
-            .msgPlayerMonUnaffected = COMPOUND_STRING("Player_Mon_Unaffected{PAUSE_UNTIL_PRESS}"),
         },
         [TRAINER_MARIELA] =
         {
@@ -107,7 +107,7 @@ Example:
 .msgPlayerLandsFirstCriticalHit = sText_CriticalHit,
 .msgPlayerLandsFirstSuperEffectiveHit = sText_SuperEffective,
 .msgPlayerLandsFirstSTABMove = sText_ABoosted,
-.msgPlayerMonUnaffected = sText_ButNoEffect,
+.msgEnemyMonUnaffected = sText_ButNoEffect,
 .msgMegaEvolution = sText_PowderExplodes,
 .msgZMove = sText_Electromagnetism,
 .msgBeforeFirstTurn = sText_GravityIntensified,
@@ -206,14 +206,22 @@ bool32 ShouldRunTrainerSlidePlayerLandsFirstSuperEffectiveHit(enum DifficultyLev
 
 bool32 ShouldRunTrainerSlidePlayerLandsFirstSTABMove(enum DifficultyLevel difficulty, u32 trainerId, u32 firstId, u32 lastId)
 {
+    DebugPrintf("Running ShouldRunTrainerSlidePlayerLandsFirstSTABMove");
+
     if (sTrainerSlides[difficulty][trainerId].msgPlayerLandsFirstSTABMove == NULL)
         return FALSE;
+
+    DebugPrintf("msgPlayerLandsFirstSTABMove is not NULL");
 
     if (gBattleStruct->trainerSlidePlayerLandsFirstSTABMoveMsgState != 1)
         return FALSE;
 
+    DebugPrintf("trainerSlidePlayerLandsFirstSTABMoveMsgState is 1");
+
     if (GetEnemyMonCount(firstId, lastId, TRUE) != GetEnemyMonCount(firstId, lastId, FALSE))
         return FALSE;
+
+    DebugPrintf("GetEnemyMonCOunt is correct");
 
     return TRUE;
 }
@@ -229,16 +237,24 @@ bool32 ShouldRunTrainerSlidePlayerLandsFirstDown(enum DifficultyLevel difficulty
     return TRUE;
 }
 
-bool32 ShouldRunTrainerSlidePlayMonUnaffected(enum DifficultyLevel difficulty, u32 trainerId, u32 firstId, u32 lastId)
+bool32 ShouldRunTrainerSlideEnemyMonUnaffected(enum DifficultyLevel difficulty, u32 trainerId, u32 firstId, u32 lastId)
 {
-    if (sTrainerSlides[difficulty][trainerId].msgPlayerMonUnaffected == NULL)
+    DebugPrintf("ShouldRunTrainerSlideEnemyMonUnaffected");
+
+    if (sTrainerSlides[difficulty][trainerId].msgEnemyMonUnaffected == NULL)
         return FALSE;
 
-    if (gBattleStruct->trainerSlidePlayerMonUnaffectedMsgState != 1)
+    DebugPrintf("msgEnemyMonUnaffected not NULL");
+
+    if (gBattleStruct->trainerSlideEnemyMonUnaffectedMsgState != 1)
         return FALSE;
+
+    DebugPrintf("msgEnemyMonUnaffected is 1");
 
     if (GetEnemyMonCount(firstId, lastId, TRUE) != GetEnemyMonCount(firstId, lastId, FALSE))
         return FALSE;
+
+    DebugPrintf("GetEnemyMonCount is true");
 
     return TRUE;
 }
@@ -404,11 +420,11 @@ u32 ShouldDoTrainerSlide(u32 battler, u32 which)
                 return retValue;
             }
             break;
-        case TRAINER_SLIDE_PLAYER_MON_UNAFFECTED:
-            if (ShouldRunTrainerSlidePlayMonUnaffected(difficulty, trainerId, firstId, lastId))
+        case TRAINER_SLIDE_ENEMY_MON_UNAFFECTED:
+            if (ShouldRunTrainerSlideEnemyMonUnaffected(difficulty, trainerId, firstId, lastId))
             {
-                gBattleStruct->trainerSlidePlayerMonUnaffectedMsgState = 2;
-                gBattleStruct->trainerSlideMsg = sTrainerSlides[difficulty][trainerId].msgPlayerMonUnaffected;
+                gBattleStruct->trainerSlideEnemyMonUnaffectedMsgState = 2;
+                gBattleStruct->trainerSlideMsg = sTrainerSlides[difficulty][trainerId].msgEnemyMonUnaffected;
                 return TRUE;
             }
             break;

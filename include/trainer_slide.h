@@ -10,7 +10,7 @@ struct TrainerSlide
     const u8 *msgPlayerLandsFirstSuperEffectiveHit;
     const u8 *msgPlayerLandsFirstSTABMove;
     const u8 *msgPlayerLandsFirstDown;
-    const u8 *msgPlayerMonUnaffected;
+    const u8 *msgEnemyMonUnaffected;
     const u8 *msgLastSwitchIn;
     const u8 *msgLastHalfHp;
     const u8 *msgLastLowHp;
@@ -27,7 +27,7 @@ bool32 ShouldRunTrainerSlideLastHalfHP(enum DifficultyLevel difficulty, u32,u32 
 bool32 ShouldRunTrainerSlidePlayerLandsFirstCriticalHit(enum DifficultyLevel difficulty, u32);
 bool32 ShouldRunTrainerSlidePlayerLandsFirstSuperEffectiveHit(enum DifficultyLevel difficulty, u32,u32 battler);
 bool32 ShouldRunTrainerSlidePlayerLandsFirstSTABMove(enum DifficultyLevel difficulty, u32,u32 firstId, u32 lastId);
-bool32 ShouldRunTrainerSlidePlayMonUnaffected(enum DifficultyLevel difficulty, u32, u32 firstId, u32 lastId);
+bool32 ShouldRunTrainerSlideEnemyMonUnaffected(enum DifficultyLevel difficulty, u32, u32 firstId, u32 lastId);
 bool32 ShouldRunTrainerSlideMegaEvolution(enum DifficultyLevel difficulty, u32);
 bool32 ShouldRunTrainerSlideZMove(enum DifficultyLevel difficulty, u32);
 bool32 ShouldRunTrainerSlideDynamax(enum DifficultyLevel difficulty, u32);
