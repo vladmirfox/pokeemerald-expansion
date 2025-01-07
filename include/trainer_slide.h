@@ -6,10 +6,10 @@
 struct TrainerSlide
 {
     const u8 *msgBeforeFirstTurn;
-    const u8 *msgFirstCriticalHit;
-    const u8 *msgFirstSuperEffectiveHit;
-    const u8 *msgFirstSTABMove;
-    const u8 *msgFirstDown;
+    const u8 *msgPlayerLandsFirstCriticalHit;
+    const u8 *msgPlayerLandsFirstSuperEffectiveHit;
+    const u8 *msgPlayerLandsFirstSTABMove;
+    const u8 *msgPlayerLandsFirstDown;
     const u8 *msgPlayerMonUnaffected;
     const u8 *msgLastSwitchIn;
     const u8 *msgLastHalfHp;
@@ -22,11 +22,11 @@ struct TrainerSlide
 bool32 DoesTrainerHaveSlideMessage(enum DifficultyLevel difficulty, u32 slideType);
 bool32 ShouldRunTrainerSlideLastLowHp(enum DifficultyLevel difficulty, u32 trainerId, u32 firstId, u32 lastId, u32 battler);
 bool32 ShouldRunTrainerSlideLastLowHp(enum DifficultyLevel difficulty, u32, u32 firstId, u32 lastId, u32 battler);
-bool32 ShouldRunTrainerSlideFirstDown(enum DifficultyLevel difficulty, u32,u32 firstId, u32 lastId);
+bool32 ShouldRunTrainerSlidePlayerLandsFirstDown(enum DifficultyLevel difficulty, u32,u32 firstId, u32 lastId);
 bool32 ShouldRunTrainerSlideLastHalfHP(enum DifficultyLevel difficulty, u32,u32 battler, u32 firstId, u32 lastId);
-bool32 ShouldRunTrainerSlideFirstCriticalHit(enum DifficultyLevel difficulty, u32);
-bool32 ShouldRunTrainerSlideFirstSuperEffectiveHit(enum DifficultyLevel difficulty, u32,u32 battler);
-bool32 ShouldRunTrainerSlideFirstSTABMove(enum DifficultyLevel difficulty, u32,u32 firstId, u32 lastId);
+bool32 ShouldRunTrainerSlidePlayerLandsFirstCriticalHit(enum DifficultyLevel difficulty, u32);
+bool32 ShouldRunTrainerSlidePlayerLandsFirstSuperEffectiveHit(enum DifficultyLevel difficulty, u32,u32 battler);
+bool32 ShouldRunTrainerSlidePlayerLandsFirstSTABMove(enum DifficultyLevel difficulty, u32,u32 firstId, u32 lastId);
 bool32 ShouldRunTrainerSlidePlayMonUnaffected(enum DifficultyLevel difficulty, u32, u32 firstId, u32 lastId);
 bool32 ShouldRunTrainerSlideMegaEvolution(enum DifficultyLevel difficulty, u32);
 bool32 ShouldRunTrainerSlideZMove(enum DifficultyLevel difficulty, u32);

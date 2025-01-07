@@ -16758,17 +16758,16 @@ AI: Check Bad Move
 /* TRAINER_SLIDE_FIRST_DOWN, */
 /* TRAINER_SLIDE_FIRST_SUPER_EFFECTIVE_HIT, */
 
-Kingler
+Kingler @ Focus Sash
 Ability: Hyper Cutter
 Level: 1  
-- Frost Breath  
+- Tackle
 
 Tropius
 Ability: Harvest
-Level: 1  
+Level: 100
 IVs: 0 Atk  
-- Ice Beam  
-
+- Celebrate
 
 === TRAINER_THALIA_5 ===
 Name: THALIA
@@ -16782,9 +16781,12 @@ AI: Check Bad Move
 /* TRAINER_SLIDE_PLAYER_MON_UNAFFECTED, */
 /* TRAINER_SLIDE_FIRST_STAB_MOVE, */
 
-Pangoro  
-Ability: Iron Fist  
+Wooper
 Level: 50  
+- Drain Punch 
+
+Pangoro
+Level: 50
 - Drain Punch 
 
 === TRAINER_MARIELA ===
@@ -16893,11 +16895,7 @@ Gender: Female
 Music: Male
 Double Battle: No
 
-Chien-Pao
+Kyogre
 Level: 5
-- Frost Breath
-
-Dugtrio
-Level: 100
-- Earthquake
+IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 

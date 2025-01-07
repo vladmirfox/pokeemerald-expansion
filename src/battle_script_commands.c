@@ -2722,8 +2722,8 @@ static void Cmd_critmessage(void)
             PrepareStringBattle(STRINGID_CRITICALHIT, gBattlerAttacker);
 
             // Signal for the trainer slide-in system.
-            if (GetBattlerSide(gBattlerTarget) != B_SIDE_PLAYER && gBattleStruct->trainerSlideFirstCriticalHitMsgState != 2)
-                gBattleStruct->trainerSlideFirstCriticalHitMsgState = 1;
+            if (GetBattlerSide(gBattlerTarget) != B_SIDE_PLAYER && gBattleStruct->trainerSlidePlayerLandsFirstCriticalHitMsgState != 2)
+                gBattleStruct->trainerSlidePlayerLandsFirstCriticalHitMsgState = 1;
 
             gBattleCommunication[MSG_DISPLAY] = 1;
         }
@@ -2871,8 +2871,8 @@ static void Cmd_resultmessage(void)
             }
             if (stringId) // Signal for the trainer slide-in system
             {
-                if (GetBattlerSide(gBattlerTarget) != B_SIDE_PLAYER && gBattleStruct->trainerSlideFirstSuperEffectiveHitMsgState != 2)
-                    gBattleStruct->trainerSlideFirstSuperEffectiveHitMsgState = 1;
+                if (GetBattlerSide(gBattlerTarget) != B_SIDE_PLAYER && gBattleStruct->trainerSlidePlayerLandsFirstSuperEffectiveHitMsgState != 2)
+                    gBattleStruct->trainerSlidePlayerLandsFirstSuperEffectiveHitMsgState = 1;
             }
             break;
         case MOVE_RESULT_NOT_VERY_EFFECTIVE:
@@ -10708,7 +10708,7 @@ static void Cmd_various(void)
     case VARIOUS_TRY_TRAINER_SLIDE_MSG_FIRST_OFF:
     {
         VARIOUS_ARGS();
-        if ((i = ShouldDoTrainerSlide(battler, TRAINER_SLIDE_FIRST_DOWN)))
+        if ((i = ShouldDoTrainerSlide(battler, TRAINER_SLIDE_PLAYER_LANDS_FIRST_DOWN)))
         {
             gBattleScripting.battler = battler;
             BattleScriptPush(cmd->nextInstr);

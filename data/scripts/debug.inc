@@ -138,17 +138,16 @@ Debug_EventScript_Text_DefensiveIVs:
 
 Debug_EventScript_Script_1::
     //TRAINER_SLIDE_BEFORE_FIRST_TURN,
-    //TRAINER_SLIDE_FIRST_CRITICAL_HIT,
-    //TRAINER_SLIDE_FIRST_SUPER_EFFECTIVE_HIT,
-    //TRAINER_SLIDE_FIRST_DOWN,
-    givemon species=SPECIES_DUGTRIO, level=100,item=0,move1=MOVE_VITAL_THROW
-    givemon species=SPECIES_EXEGGUTOR,level=100,item=0,move1=MOVE_CELEBRATE
+    //TRAINER_SLIDE_PLAYER_LANDS_FIRST_CRITICAL_HIT,
+    //TRAINER_SLIDE_PLAYER_LANDS_FIRST_SUPER_EFFECTIVE_HIT,
+    //TRAINER_SLIDE_PLAYER_LANDS_FIRST_DOWN,
+    givemon species=SPECIES_CLEFABLE, level=60,item=0,move1=MOVE_FROST_BREATH,move2=MOVE_ICE_BEAM
     trainerbattle_no_intro TRAINER_THALIA_4, gText_Sleep
 	release
 	end
 
 Debug_EventScript_Script_2::
-    givemon species=SPECIES_
+    givemon species=SPECIES_GASTLY, level=100, item=0, move1=MOVE_VITAL_THROW
     trainerbattle_no_intro TRAINER_THALIA_5, gText_Sleep
 	release
 	end

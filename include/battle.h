@@ -786,9 +786,9 @@ struct BattleStruct
     u8 bonusCritStages[MAX_BATTLERS_COUNT]; // G-Max Chi Strike boosts crit stages of allies.
     u8 itemPartyIndex[MAX_BATTLERS_COUNT];
     u8 itemMoveIndex[MAX_BATTLERS_COUNT];
-    u8 trainerSlideFirstCriticalHitMsgState:2;
-    u8 trainerSlideFirstSuperEffectiveHitMsgState:2;
-    u8 trainerSlideFirstSTABMoveMsgState:2;
+    u8 trainerSlidePlayerLandsFirstCriticalHitMsgState:2;
+    u8 trainerSlidePlayerLandsFirstSuperEffectiveHitMsgState:2;
+    u8 trainerSlidePlayerLandsFirstSTABMoveMsgState:2;
     u8 trainerSlidePlayerMonUnaffectedMsgState:2;
     u8 trainerSlideHalfHpMsgDone:1;
     u8 trainerSlideMegaEvolutionMsgDone:1;

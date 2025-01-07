@@ -10729,8 +10729,8 @@ static inline uq4_12_t CalcTypeEffectivenessMultiplierInternal(u32 move, u32 mov
     }
 
     // Signal for the trainer slide-in system.
-    if (GetBattlerSide(battlerDef) != B_SIDE_PLAYER && modifier && gBattleStruct->trainerSlideFirstSTABMoveMsgState != 2)
-        gBattleStruct->trainerSlideFirstSTABMoveMsgState = 1;
+    if (GetBattlerSide(battlerDef) != B_SIDE_PLAYER && modifier && gBattleStruct->trainerSlidePlayerLandsFirstSTABMoveMsgState != 2)
+        gBattleStruct->trainerSlidePlayerLandsFirstSTABMoveMsgState = 1;
 
     return modifier;
 }
