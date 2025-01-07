@@ -33,7 +33,7 @@ void GetCodeFeedback(void)
 }
 ```
 
-What this function does is compare the input string (`gStringVar2`) against a specified string (`sText_SampleCode`) and returns a value depending on whether the strings matched (`gSpecialVar_Result`). Note that due to the way `StringCompare` works, the comparison does need to be negated with !. By default, this sample setup returns 1 when the string "SampleCode" is entered by the player.
+What this function does is compare the input string (`gStringVar2`) against a specified string (`sText_SampleCode`) and returns a value depending on whether the strings matched (`gSpecialVar_Result`). Note that due to the way `StringCompare` works, the comparison does need to be negated with `!`. By default, this sample setup returns 1 when the string "SampleCode" is entered by the player.
 
 Let's leave that functionality alone in case we ever want to reference it again, and just add a brand new code instead. We want to use the string "CaughtEmAll" as our code, so we'll start by making a string for it, and a new conditional that checks if the entered string matches. We'll also want to make sure we return a new unique number for `gSpecialVar_Result` so our event script knows what happened.
 
@@ -92,28 +92,28 @@ EventScript_CodeEntry::
     special EnterCode
     waitstate
     special GetCodeFeedback
-	end
+    end
 ```
 
 Maybe we first want to prompt the player with a message that says something like "Enter a code?"
 
 ```diff
 EventScript_CodeEntry::
-+	lockall
-+	msgbox EnterCode_EnterCodeText, MSGBOX_YESNO
-+	compare VAR_RESULT, 0
-+	goto_if_eq CodeExit
++   lockall
++   msgbox EnterCode_EnterCodeText, MSGBOX_YESNO
++   compare VAR_RESULT, 0
++   goto_if_eq CodeExit
     special EnterCode
     waitstate
     special GetCodeFeedback
-	end
+    end
 
 +CodeExit::
-+	releaseall
-+	end
++   releaseall
++   end
 +
 +EnterCode_EnterCodeText:
-+	.string "Enter a code?$"
++   .string "Enter a code?$"
 ```
 
 This is all straightforward scripting stuff, the sign will first give the player a YES / NO box and ask whether they'd like to enter a code. Let's now add some cases and messages that handle the different results of the code entry from `GetCodeFeedback`. Let's look at the sign first:
@@ -127,9 +127,9 @@ EventScript_CodeEntry::
     special EnterCode
     waitstate
     special GetCodeFeedback
-+    goto_if_eq VAR_RESULT, 0, CodeFailed
-+    goto_if_eq VAR_RESULT, 1, CodeSampleCode
-+    goto_if_eq VAR_RESULT, 2, CodeCaughtEmAll
++   goto_if_eq VAR_RESULT, 0, CodeFailed
++   goto_if_eq VAR_RESULT, 1, CodeSampleCode
++   goto_if_eq VAR_RESULT, 2, CodeCaughtEmAll
 	end
 ```
 
@@ -137,48 +137,48 @@ Now we're handling cases for each of the possible return values from `GetCodeFee
 
 ```diff
 CodeFailed::
-	msgbox EnterCode_FailedText, MSGBOX_DEFAULT
-	releaseall
-	end
+    msgbox EnterCode_FailedText, MSGBOX_DEFAULT
+    releaseall
+    end
 
 CodeSampleString::
-	msgbox EnterCode_SucceededText, MSGBOX_DEFAULT
+    msgbox EnterCode_SucceededText, MSGBOX_DEFAULT
     msgbox CodeSampleCode_Text, MSGBOX_DEFAULT
     releaseall
     end
 
 CodeCaughtEmAll::
-	msgbox EnterCode_SucceededText, MSGBOX_DEFAULT
-	msgbox CodeCaughtEmAll_Text, MSGBOX_DEFAULT
-	releaseall
-	end
+    msgbox EnterCode_SucceededText, MSGBOX_DEFAULT
+    msgbox CodeCaughtEmAll_Text, MSGBOX_DEFAULT
+    releaseall
+    end
 ```
 
 And lastly, we'll need to add all of the strings we now need to reference:
 
 ```
 EnterCode_FailedText:
-	.string "...nothing happened.$"
+    .string "...nothing happened.$"
 
 EnterCode_SucceededText:
-	.string "The code worked!$"
+    .string "The code worked!$"
 
 CodeSampleCode_Text
     .string "You entered the sample code!$"
 
 CodeCaughtEmAll_Text
-	.string "Encyclopedic knowledge fills your head.\n"
-	.string "It's like you've caught 'em all!$"
+    .string "Encyclopedic knowledge fills your head.\n"
+    .string "It's like you've caught 'em all!$"
 ```
 
 So to finish up, our event script file now looks like this, with all said and done:
 
 ```
 EventScript_CodeEntry::
-	lockall
-	msgbox EnterCode_EnterCodeText, MSGBOX_YESNO
-	compare VAR_RESULT, 0
-	goto_if_eq CodeExit
+    lockall
+    msgbox EnterCode_EnterCodeText, MSGBOX_YESNO
+    compare VAR_RESULT, 0
+    goto_if_eq CodeExit
     special EnterCode
     waitstate
     special GetCodeFeedback
@@ -188,41 +188,41 @@ EventScript_CodeEntry::
 	end
 
 CodeExit::
-	releaseall
-	end
+    releaseall
+    end
 
 CodeFailed::
-	msgbox EnterCode_FailedText, MSGBOX_DEFAULT
-	releaseall
-	end
+    msgbox EnterCode_FailedText, MSGBOX_DEFAULT
+    releaseall
+    end
 
 CodeSampleString::
-	msgbox EnterCode_SucceededText, MSGBOX_DEFAULT
+    msgbox EnterCode_SucceededText, MSGBOX_DEFAULT
     msgbox CodeSampleCode_Text, MSGBOX_DEFAULT
     releaseall
     end
 
 CodeCaughtEmAll::
-	msgbox EnterCode_SucceededText, MSGBOX_DEFAULT
-	msgbox CodeCaughtEmAll_Text, MSGBOX_DEFAULT
-	releaseall
-	end
+    msgbox EnterCode_SucceededText, MSGBOX_DEFAULT
+    msgbox CodeCaughtEmAll_Text, MSGBOX_DEFAULT
+    releaseall
+    end
 
 EnterCode_EnterCodeText:
-	.string "Enter a code?$"
+    .string "Enter a code?$"
 
 EnterCode_FailedText:
-	.string "...nothing happened.$"
+    .string "...nothing happened.$"
 
 EnterCode_SucceededText:
-	.string "The code worked!$"
+    .string "The code worked!$"
 
 CodeSampleCode_Text
     .string "You entered the sample code!$"
 
 CodeCaughtEmAll_Text
-	.string "Encyclopedic knowledge fills your head.\n"
-	.string "It's like you've caught 'em all!$"
+    .string "Encyclopedic knowledge fills your head.\n"
+    .string "It's like you've caught 'em all!$"
 
 ```
 
@@ -230,7 +230,7 @@ And that's it! Feel free to expand this in whatever way you wish, the pattern ca
 
 ## What about a mystery gift setup?
 
-I'd like to cover this separately because it's best handled via `givemon` script commands, which means we don't do much in `GetCodeFeedback` other than return a unique identifier. I'm gonna reference @PCG's mystery gift implementation which is based on this code entry system for a clean and really thorough example.
+I'd like to cover this separately because it's best handled via `givemon` script commands, which means we don't do much in `GetCodeFeedback` other than return a unique identifier. I'm gonna reference @PCG06's mystery gift implementation which is based on this code entry system for a clean and really thorough example.
 
 ### 3. Mystery Gift `GetCodeFeedback`
 
@@ -252,10 +252,10 @@ and that's it, super simple. All of the other handling will have to be done on t
 
 ### 2. Mystery Gift Scripting
 
-Let's return back to our EventScript_CodeEntry pattern from before, but renamed to better match this application.
+Let's return back to our EventScript_CodeEntry pattern from before, but instead use our new codes.
 
 ```
-EventScript_MysteryGift::
+EventScript_CodeEntry::
 	lockall
 	msgbox EnterCode_EnterCodeText, MSGBOX_YESNO
 	compare VAR_RESULT, 0
@@ -287,6 +287,8 @@ Walking through this, it's clear we'll need some more scripting. We first check 
 
 Two things, then; an event script to handle the case where a mystery gift mon has already been redeemed, and an event script to handle when a mystery gift mon has successfully been received.
 
+Just for the sake of simplicity, I'm going to handle entering a used mystery gift code the same way I'd handle an incorrect code. You're welcome to add more complex scripting if you prefer.
+
 ```
 MysteryGift_EventScript_Redeemed::
     msgbox EnterCode_FailedText, MSGBOX_DEFAULT
@@ -294,7 +296,7 @@ MysteryGift_EventScript_Redeemed::
 	end
 ```
 
-Just for the sake of simplicity, I'm going to handle entering a used mystery gift code the same way I'd handle an incorrect code. You're welcome to add more complex scripting if you prefer.
+And then the scripto handle the player having successfully received a mon:
 
 ```
 MysteryGift_EventScript_ReceivedMon::
