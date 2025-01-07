@@ -4352,7 +4352,7 @@ void EnterCode(void)
 }
 void GetCodeFeedback(void)
 {
-    static const u8 sText_SampleCode[] = _("TestText");
+    static const u8 sText_SampleCode[] = _("SampleCode");
     if (!StringCompare(gStringVar2, sText_SampleCode))
         gSpecialVar_Result = 1;
     else
