@@ -149,61 +149,15 @@ bool32 DoesTrainerHaveSlideMessage(enum DifficultyLevel difficulty, u32 slideTyp
     return TRUE;
 }
 
-bool32 ShouldRunTrainerSlideLastSwitchIn(const struct TrainerSlide (*sAllTrainerSlides)[TRAINERS_COUNT], enum DifficultyLevel difficulty, u32 trainerId, u32 battler)
+bool32 ShouldRunTrainerSlideBeforeFirstTurn(enum DifficultyLevel difficulty, u32 trainerId)
 {
-    if (sAllTrainerSlides[difficulty][trainerId].msgLastSwitchIn == NULL)
+    if (sTrainerSlides[difficulty][trainerId].msgBeforeFirstTurn == NULL)
         return FALSE;
 
-    if (CanBattlerSwitch(battler))
+    if (gBattleStruct->trainerSlideBeforeFirstTurnMsgDone)
         return FALSE;
 
-    return TRUE;
-}
-
-bool32 ShouldRunTrainerSlideLastLowHp(enum DifficultyLevel difficulty, u32 trainerId, u32 firstId, u32 lastId, u32 battler)
-{
-    if (sTrainerSlides[difficulty][trainerId].msgLastLowHp == NULL)
-        return FALSE;
-
-    if (gBattleStruct->trainerSlideLowHpMsgDone)
-        return FALSE;
-
-    if (GetEnemyMonCount(firstId, lastId, TRUE) != 1)
-        return FALSE;
-
-    if (!BattlerHPPercentage(battler, LESS_THAN_OR_EQUAL, 4))
-        return FALSE;
-
-    return TRUE;
-}
-
-bool32 ShouldRunTrainerSlideFirstDown(enum DifficultyLevel difficulty, u32 trainerId, u32 firstId, u32 lastId)
-{
-    if (sTrainerSlides[difficulty][trainerId].msgFirstDown == NULL)
-        return FALSE;
-
-    if (GetEnemyMonCount(firstId, lastId, TRUE) != GetEnemyMonCount(firstId, lastId, FALSE) - 1)
-        return FALSE;
-
-    return TRUE;
-}
-
-bool32 ShouldRunTrainerSlideLastHalfHP(enum DifficultyLevel difficulty, u32 trainerId, u32 battler, u32 firstId, u32 lastId)
-{
-    if (sTrainerSlides[difficulty][trainerId].msgLastHalfHp == NULL)
-        return FALSE;
-
-    if (gBattleStruct->trainerSlideHalfHpMsgDone)
-        return FALSE;
-
-    if (GetEnemyMonCount(firstId, lastId, TRUE) != GetEnemyMonCount(firstId, lastId, FALSE) - 1)
-        return FALSE;
-
-    if (!BattlerHPPercentage(battler, LESS_THAN_OR_EQUAL, 2))
-        return FALSE;
-
-    if (!BattlerHPPercentage(battler, GREATER_THAN, 4))
-        return FALSE;
+    DebugPrintf("ShouldRunTrainerSlideBeforeFirstTurn success");
 
     return TRUE;
 }
@@ -247,6 +201,17 @@ bool32 ShouldRunTrainerSlideFirstSTABMove(enum DifficultyLevel difficulty, u32 t
     return TRUE;
 }
 
+bool32 ShouldRunTrainerSlideFirstDown(enum DifficultyLevel difficulty, u32 trainerId, u32 firstId, u32 lastId)
+{
+    if (sTrainerSlides[difficulty][trainerId].msgFirstDown == NULL)
+        return FALSE;
+
+    if (GetEnemyMonCount(firstId, lastId, TRUE) != GetEnemyMonCount(firstId, lastId, FALSE) - 1)
+        return FALSE;
+
+    return TRUE;
+}
+
 bool32 ShouldRunTrainerSlidePlayMonUnaffected(enum DifficultyLevel difficulty, u32 trainerId, u32 firstId, u32 lastId)
 {
     if (sTrainerSlides[difficulty][trainerId].msgPlayerMonUnaffected == NULL)
@@ -256,6 +221,54 @@ bool32 ShouldRunTrainerSlidePlayMonUnaffected(enum DifficultyLevel difficulty, u
         return FALSE;
 
     if (GetEnemyMonCount(firstId, lastId, TRUE) != GetEnemyMonCount(firstId, lastId, FALSE))
+        return FALSE;
+
+    return TRUE;
+}
+
+bool32 ShouldRunTrainerSlideLastSwitchIn(const struct TrainerSlide (*sAllTrainerSlides)[TRAINERS_COUNT], enum DifficultyLevel difficulty, u32 trainerId, u32 battler)
+{
+    if (sAllTrainerSlides[difficulty][trainerId].msgLastSwitchIn == NULL)
+        return FALSE;
+
+    if (CanBattlerSwitch(battler))
+        return FALSE;
+
+    return TRUE;
+}
+
+bool32 ShouldRunTrainerSlideLastHalfHP(enum DifficultyLevel difficulty, u32 trainerId, u32 battler, u32 firstId, u32 lastId)
+{
+    if (sTrainerSlides[difficulty][trainerId].msgLastHalfHp == NULL)
+        return FALSE;
+
+    if (gBattleStruct->trainerSlideHalfHpMsgDone)
+        return FALSE;
+
+    if (GetEnemyMonCount(firstId, lastId, TRUE) != GetEnemyMonCount(firstId, lastId, FALSE) - 1)
+        return FALSE;
+
+    if (!BattlerHPPercentage(battler, LESS_THAN_OR_EQUAL, 2))
+        return FALSE;
+
+    if (!BattlerHPPercentage(battler, GREATER_THAN, 4))
+        return FALSE;
+
+    return TRUE;
+}
+
+bool32 ShouldRunTrainerSlideLastLowHp(enum DifficultyLevel difficulty, u32 trainerId, u32 firstId, u32 lastId, u32 battler)
+{
+    if (sTrainerSlides[difficulty][trainerId].msgLastLowHp == NULL)
+        return FALSE;
+
+    if (gBattleStruct->trainerSlideLowHpMsgDone)
+        return FALSE;
+
+    if (GetEnemyMonCount(firstId, lastId, TRUE) != 1)
+        return FALSE;
+
+    if (!BattlerHPPercentage(battler, LESS_THAN_OR_EQUAL, 4))
         return FALSE;
 
     return TRUE;
@@ -290,19 +303,6 @@ bool32 ShouldRunTrainerSlideDynamax(enum DifficultyLevel difficulty, u32 trainer
 
     if (gBattleStruct->trainerSlideDynamaxMsgDone)
         return FALSE;
-
-    return TRUE;
-}
-
-bool32 ShouldRunTrainerSlideBeforeFirstTurn(enum DifficultyLevel difficulty, u32 trainerId)
-{
-    if (sTrainerSlides[difficulty][trainerId].msgBeforeFirstTurn == NULL)
-        return FALSE;
-
-    if (gBattleStruct->trainerSlideBeforeFirstTurnMsgDone)
-        return FALSE;
-
-    DebugPrintf("ShouldRunTrainerSlideBeforeFirstTurn success");
 
     return TRUE;
 }

@@ -16758,13 +16758,13 @@ AI: Check Bad Move
 /* TRAINER_SLIDE_FIRST_DOWN, */
 /* TRAINER_SLIDE_FIRST_SUPER_EFFECTIVE_HIT, */
 
-Miraidon  
-Ability: Hadron Engine  
+Kingler
+Ability: Hyper Cutter
 Level: 1  
 - Frost Breath  
 
-Chi-Yu  
-Ability: Beads of Ruin  
+Tropius
+Ability: Harvest
 Level: 1  
 IVs: 0 Atk  
 - Ice Beam  
