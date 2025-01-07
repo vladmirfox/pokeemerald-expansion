@@ -80,6 +80,23 @@ static const struct TrainerSlide sTrainerSlides[DIFFICULTY_COUNT][TRAINERS_COUNT
             //.msgZMove = COMPOUND_STRING("Z_Move{PAUSE_UNTIL_PRESS}"),
             //.msgDynamax = COMPOUND_STRING("Dynamax{PAUSE_UNTIL_PRESS}"),
         },
+        [TRAINER_THALIA_5] =
+        {
+            .msgPlayerLandsFirstSTABMove = COMPOUND_STRING("First_Stab_Move{PAUSE_UNTIL_PRESS}"),
+            .msgPlayerMonUnaffected = COMPOUND_STRING("Player_Mon_Unaffected{PAUSE_UNTIL_PRESS}"),
+        },
+        [TRAINER_MARIELA] =
+        {
+            .msgLastSwitchIn = COMPOUND_STRING("Last_Switchin{PAUSE_UNTIL_PRESS}"),
+            .msgLastHalfHp = COMPOUND_STRING("Last_Half_Hp{PAUSE_UNTIL_PRESS}"),
+            .msgLastLowHp = COMPOUND_STRING("Last_Low_Hp{PAUSE_UNTIL_PRESS}"),
+        },
+        [TRAINER_ALVARO] =
+        {
+            .msgMegaEvolution = COMPOUND_STRING("Mega_Evolution{PAUSE_UNTIL_PRESS}"),
+            .msgZMove = COMPOUND_STRING("Z_Move{PAUSE_UNTIL_PRESS}"),
+            .msgDynamax = COMPOUND_STRING("Dynamax{PAUSE_UNTIL_PRESS}"),
+        },
         /* Put any trainer slide-in messages inside this array.
 Example:
 {
@@ -348,33 +365,11 @@ u32 ShouldDoTrainerSlide(u32 battler, u32 which)
     gBattleScripting.battler = battler;
     switch (which)
     {
-        case TRAINER_SLIDE_LAST_SWITCHIN:
-            if (ShouldRunTrainerSlideLastSwitchIn(sAllTrainerSlides,difficulty,trainerId, battler))
+        case TRAINER_SLIDE_BEFORE_FIRST_TURN:
+            if (ShouldRunTrainerSlideBeforeFirstTurn(difficulty, trainerId))
             {
-                gBattleStruct->trainerSlideMsg = sTrainerSlides[difficulty][trainerId].msgLastSwitchIn;
-                return retValue;
-            }
-            break;
-        case TRAINER_SLIDE_LAST_LOW_HP:
-            if (ShouldRunTrainerSlideLastLowHp(difficulty,trainerId,firstId,lastId,battler))
-            {
-                gBattleStruct->trainerSlideLowHpMsgDone = TRUE;
-                gBattleStruct->trainerSlideMsg = sTrainerSlides[difficulty][trainerId].msgLastLowHp;
-                return retValue;
-            }
-            break;
-        case TRAINER_SLIDE_PLAYER_LANDS_FIRST_DOWN:
-            if (ShouldRunTrainerSlidePlayerLandsFirstDown(difficulty, trainerId,firstId, lastId))
-            {
-                gBattleStruct->trainerSlideMsg = sTrainerSlides[difficulty][trainerId].msgPlayerLandsFirstDown;
-                return retValue;
-            }
-            break;
-        case TRAINER_SLIDE_LAST_HALF_HP:
-            if (ShouldRunTrainerSlideLastHalfHP(difficulty, trainerId,battler, firstId, lastId))
-            {
-                gBattleStruct->trainerSlideHalfHpMsgDone = TRUE;
-                gBattleStruct->trainerSlideMsg = sTrainerSlides[difficulty][trainerId].msgLastHalfHp;
+                gBattleStruct->trainerSlideBeforeFirstTurnMsgDone = TRUE;
+                gBattleStruct->trainerSlideMsg = sTrainerSlides[difficulty][trainerId].msgBeforeFirstTurn;
                 return TRUE;
             }
             break;
@@ -402,12 +397,42 @@ u32 ShouldDoTrainerSlide(u32 battler, u32 which)
                 return TRUE;
             }
             break;
+        case TRAINER_SLIDE_PLAYER_LANDS_FIRST_DOWN:
+            if (ShouldRunTrainerSlidePlayerLandsFirstDown(difficulty, trainerId,firstId, lastId))
+            {
+                gBattleStruct->trainerSlideMsg = sTrainerSlides[difficulty][trainerId].msgPlayerLandsFirstDown;
+                return retValue;
+            }
+            break;
         case TRAINER_SLIDE_PLAYER_MON_UNAFFECTED:
             if (ShouldRunTrainerSlidePlayMonUnaffected(difficulty, trainerId, firstId, lastId))
             {
                 gBattleStruct->trainerSlidePlayerMonUnaffectedMsgState = 2;
                 gBattleStruct->trainerSlideMsg = sTrainerSlides[difficulty][trainerId].msgPlayerMonUnaffected;
                 return TRUE;
+            }
+            break;
+        case TRAINER_SLIDE_LAST_SWITCHIN:
+            if (ShouldRunTrainerSlideLastSwitchIn(sAllTrainerSlides,difficulty,trainerId, battler))
+            {
+                gBattleStruct->trainerSlideMsg = sTrainerSlides[difficulty][trainerId].msgLastSwitchIn;
+                return retValue;
+            }
+            break;
+        case TRAINER_SLIDE_LAST_HALF_HP:
+            if (ShouldRunTrainerSlideLastHalfHP(difficulty, trainerId,battler, firstId, lastId))
+            {
+                gBattleStruct->trainerSlideHalfHpMsgDone = TRUE;
+                gBattleStruct->trainerSlideMsg = sTrainerSlides[difficulty][trainerId].msgLastHalfHp;
+                return TRUE;
+            }
+            break;
+        case TRAINER_SLIDE_LAST_LOW_HP:
+            if (ShouldRunTrainerSlideLastLowHp(difficulty,trainerId,firstId,lastId,battler))
+            {
+                gBattleStruct->trainerSlideLowHpMsgDone = TRUE;
+                gBattleStruct->trainerSlideMsg = sTrainerSlides[difficulty][trainerId].msgLastLowHp;
+                return retValue;
             }
             break;
         case TRAINER_SLIDE_MEGA_EVOLUTION:
@@ -423,14 +448,6 @@ u32 ShouldDoTrainerSlide(u32 battler, u32 which)
             {
                 gBattleStruct->trainerSlideZMoveMsgDone = TRUE;
                 gBattleStruct->trainerSlideMsg = sTrainerSlides[difficulty][trainerId].msgZMove;
-                return TRUE;
-            }
-            break;
-        case TRAINER_SLIDE_BEFORE_FIRST_TURN:
-            if (ShouldRunTrainerSlideBeforeFirstTurn(difficulty, trainerId))
-            {
-                gBattleStruct->trainerSlideBeforeFirstTurnMsgDone = TRUE;
-                gBattleStruct->trainerSlideMsg = sTrainerSlides[difficulty][trainerId].msgBeforeFirstTurn;
                 return TRUE;
             }
             break;

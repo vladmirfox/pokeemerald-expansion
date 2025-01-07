@@ -147,16 +147,20 @@ Debug_EventScript_Script_1::
 	end
 
 Debug_EventScript_Script_2::
-    givemon species=SPECIES_GASTLY, level=100, item=0, move1=MOVE_VITAL_THROW
+    givemon species=SPECIES_GASTLY, level=100, item=0, move1=MOVE_CELEBRATE, move2=MOVE_ENERGY_BALL
     trainerbattle_no_intro TRAINER_THALIA_5, gText_Sleep
 	release
 	end
 
 Debug_EventScript_Script_3::
+    givemon species=SPECIES_URSALUNA, level=100, item=0, move1=MOVE_SEISMIC_TOSS
+    trainerbattle_no_intro TRAINER_MARIELA, gText_Sleep
 	release
 	end
 
 Debug_EventScript_Script_4::
+    givemon species=SPECIES_URSALUNA, level=100, item=0, move1=MOVE_SEISMIC_TOSS
+    trainerbattle_no_intro TRAINER_ALVARO, gText_Sleep
 	release
 	end
 

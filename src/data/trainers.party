@@ -16781,12 +16781,8 @@ AI: Check Bad Move
 /* TRAINER_SLIDE_PLAYER_MON_UNAFFECTED, */
 /* TRAINER_SLIDE_FIRST_STAB_MOVE, */
 
-Wooper
+Wooper @ Focus Sash
 Level: 50  
-- Drain Punch 
-
-Pangoro
-Level: 50
 - Drain Punch 
 
 === TRAINER_MARIELA ===
@@ -16800,6 +16796,10 @@ Double Battle: No
 /* TRAINER_SLIDE_LAST_SWITCHIN, */
 /* TRAINER_SLIDE_LAST_HALF_HP, */
 /* TRAINER_SLIDE_LAST_LOW_HP, */
+
+Gengar  
+Ability: Cursed Body  
+- Explosion  
 
 Gengar  
 Ability: Cursed Body  
@@ -16824,16 +16824,19 @@ Double Battle: No
 /* TRAINER_SLIDE_DYNAMAX, */
 
 Salamence @ Salamencite  
+Level: 1
 Ability: Intimidate  
 IVs: 0 Atk  
 - Celebrate  
 
 Pikachu @ Pikashunium Z  
+Level: 1
 Ability: Static  
 IVs: 0 Atk  
 - Thunder Shock  
 
 Machamp
+Level: 1
 Dynamax Level: 10
 Ability: Guts  
 IVs: 0 Atk  
