@@ -628,6 +628,9 @@ void Script_RequestEffects_Internal(u32 effects)
 
 void Script_RequestWriteVar_Internal(u32 varId)
 {
-    if (!(SPECIAL_VARS_START <= varId && varId <= SPECIAL_VARS_END))
-        Script_RequestEffects(SCREFF_V1 | SCREFF_SAVE);
+    if (varId == 0)
+        return;
+    if (SPECIAL_VARS_START <= varId && varId <= SPECIAL_VARS_END)
+        return;
+    Script_RequestEffects(SCREFF_V1 | SCREFF_SAVE);
 }

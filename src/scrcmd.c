@@ -2654,6 +2654,8 @@ bool8 ScrCmd_playmoncry(struct ScriptContext *ctx)
 
 void PlayFirstMonCry(struct ScriptContext *ctx)
 {
+    Script_RequestEffects(SCREFF_V1 | SCREFF_HARDWARE);
+
     PlayCry_Script(GetMonData(GetFirstLiveMon(), MON_DATA_SPECIES), CRY_MODE_NORMAL);
 }
 
@@ -2994,6 +2996,8 @@ bool8 ScrCmd_warpwhitefade(struct ScriptContext *ctx)
 
 void ScriptSetDoubleBattleFlag(struct ScriptContext *ctx)
 {
+    Script_RequestEffects(SCREFF_V1);
+
     sIsScriptedWildDouble = TRUE;
 }
 

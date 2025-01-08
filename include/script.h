@@ -84,9 +84,11 @@ extern u8 gMsgBoxIsCancelable;
  * not performed).
  *
  * Commands, natives, and specials which call 'Script_RequestEffects'
- * must be explicitly tagged, and must call the function before any of
- * those effects occur. An untagged function could cause any effect, so
- * execution is stopped to be safe.
+ * must be explicitly tagged with 'requests_effects=1', and must call
+ * the function before any of those effects occur. An untagged function
+ * could cause any effect, so execution is stopped to be safe. If the
+ * code has no effects it must call 'Script_RequestEffects(SCREFF_V1)'
+ * to note that explicitly.
  *
  * Regular variables are in the save (so should use 'SCREFF_SAVE'), but
  * special variables are not in the save, so 'Script_RequestWriteVar' is
