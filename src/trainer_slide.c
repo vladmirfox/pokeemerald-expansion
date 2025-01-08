@@ -137,10 +137,12 @@ bool32 DoesTrainerHaveSlideMessage(enum DifficultyLevel difficulty, u32 trainerI
 
 bool32 ShouldRunTrainerSlideBeforeFirstTurn(enum DifficultyLevel difficulty, u32 trainerId)
 {
-    if (!DoesTrainerHaveSlideMessage(difficulty,trainerId,TRAINER_SLIDE_BEFORE_FIRST_TURN))
+    enum TrainerSlideType slideId = TRAINER_SLIDE_BEFORE_FIRST_TURN;
+
+    if (!DoesTrainerHaveSlideMessage(difficulty,trainerId,slideId))
         return FALSE;
 
-    if (IsTrainerSlidePlayed(TRAINER_SLIDE_BEFORE_FIRST_TURN));
+    if (IsTrainerSlidePlayed(slideId));
         return FALSE;
 
     return TRUE;
@@ -148,13 +150,15 @@ bool32 ShouldRunTrainerSlideBeforeFirstTurn(enum DifficultyLevel difficulty, u32
 
 bool32 ShouldRunTrainerSlidePlayerLandsFirstCriticalHit(enum DifficultyLevel difficulty, u32 trainerId)
 {
-    if (sTrainerSlides[difficulty][trainerId][TRAINER_SLIDE_PLAYER_LANDS_FIRST_CRITICAL_HIT] == NULL)
+    enum TrainerSlideType slideId = TRAINER_SLIDE_PLAYER_LANDS_FIRST_CRITICAL_HIT;
+
+    if (!DoesTrainerHaveSlideMessage(difficulty,trainerId,slideId))
         return FALSE;
 
-    if (!IsTrainerSlideInitialized(TRAINER_SLIDE_PLAYER_LANDS_FIRST_CRITICAL_HIT))
+    if (!IsTrainerSlideInitialized(slideId))
         return FALSE;
 
-    if (IsTrainerSlidePlayed(TRAINER_SLIDE_PLAYER_LANDS_FIRST_CRITICAL_HIT))
+    if (IsTrainerSlidePlayed(slideId))
         return FALSE;
 
     return TRUE;
@@ -162,10 +166,12 @@ bool32 ShouldRunTrainerSlidePlayerLandsFirstCriticalHit(enum DifficultyLevel dif
 
 bool32 ShouldRunTrainerSlidePlayerLandsFirstSuperEffectiveHit(enum DifficultyLevel difficulty, u32 trainerId, u32 battler)
 {
-    if (sTrainerSlides[difficulty][trainerId][TRAINER_SLIDE_PLAYER_LANDS_FIRST_SUPER_EFFECTIVE_HIT] == NULL)
+    enum TrainerSlideType slideId = TRAINER_SLIDE_PLAYER_LANDS_FIRST_SUPER_EFFECTIVE_HIT;
+
+    if (!DoesTrainerHaveSlideMessage(difficulty,trainerId,slideId))
         return FALSE;
 
-    if (gBattleStruct->trainerSlidePlayerLandsFirstSuperEffectiveHitMsgState != 1)
+    if (IsTrainerSlidePlayed(slideId))
         return FALSE;
 
     if (gBattleMons[battler].hp == 0)
@@ -176,10 +182,12 @@ bool32 ShouldRunTrainerSlidePlayerLandsFirstSuperEffectiveHit(enum DifficultyLev
 
 bool32 ShouldRunTrainerSlidePlayerLandsFirstSTABMove(enum DifficultyLevel difficulty, u32 trainerId, u32 firstId, u32 lastId)
 {
-    if (sTrainerSlides[difficulty][trainerId][TRAINER_SLIDE_PLAYER_LANDS_FIRST_STAB_MOVE] == NULL)
+    enum TrainerSlideType slideId = TRAINER_SLIDE_PLAYER_LANDS_FIRST_SUPER_EFFECTIVE_HIT;
+
+    if (!DoesTrainerHaveSlideMessage(difficulty,trainerId,slideId))
         return FALSE;
 
-    if (gBattleStruct->trainerSlidePlayerLandsFirstSTABMoveMsgState != 1)
+    if (!IsTrainerSlideInitialized(TRAINER_SLIDE_PLAYER_LANDS_FIRST_STAB_MOVE)
         return FALSE;
 
     if (GetEnemyMonCount(firstId, lastId, TRUE) != GetEnemyMonCount(firstId, lastId, FALSE))
@@ -190,7 +198,7 @@ bool32 ShouldRunTrainerSlidePlayerLandsFirstSTABMove(enum DifficultyLevel diffic
 
 bool32 ShouldRunTrainerSlidePlayerLandsFirstDown(enum DifficultyLevel difficulty, u32 trainerId, u32 firstId, u32 lastId)
 {
-    if (sTrainerSlides[difficulty][trainerId][TRAINER_SLIDE_PLAYER_LANDS_FIRST_DOWN] == NULL)
+    if (!DoesTrainerHaveSlideMessage(difficulty,trainerId,slideId))
         return FALSE;
 
     if (GetEnemyMonCount(firstId, lastId, TRUE) != GetEnemyMonCount(firstId, lastId, FALSE) - 1)
@@ -201,7 +209,7 @@ bool32 ShouldRunTrainerSlidePlayerLandsFirstDown(enum DifficultyLevel difficulty
 
 bool32 ShouldRunTrainerSlideEnemyMonUnaffected(enum DifficultyLevel difficulty, u32 trainerId, u32 firstId, u32 lastId)
 {
-    if (sTrainerSlides[difficulty][trainerId][TRAINER_SLIDE_ENEMY_MON_UNAFFECTED] == NULL)
+    if (!DoesTrainerHaveSlideMessage(difficulty,trainerId,slideId))
         return FALSE;
 
     if (gBattleStruct->trainerSlideEnemyMonUnaffectedMsgState != 1)
@@ -215,7 +223,7 @@ bool32 ShouldRunTrainerSlideEnemyMonUnaffected(enum DifficultyLevel difficulty, 
 
 bool32 ShouldRunTrainerSlideLastSwitchIn(enum DifficultyLevel difficulty, u32 trainerId, u32 battler)
 {
-    if (sTrainerSlides[difficulty][trainerId][TRAINER_SLIDE_LAST_HALF_HP] == NULL)
+    if (!DoesTrainerHaveSlideMessage(difficulty,trainerId,slideId))
         return FALSE;
 
 
@@ -227,7 +235,7 @@ bool32 ShouldRunTrainerSlideLastSwitchIn(enum DifficultyLevel difficulty, u32 tr
 
 bool32 ShouldRunTrainerSlideLastHalfHP(enum DifficultyLevel difficulty, u32 trainerId, u32 battler, u32 firstId, u32 lastId)
 {
-    if (sTrainerSlides[difficulty][trainerId][TRAINER_SLIDE_LAST_HALF_HP] == NULL)
+    if (!DoesTrainerHaveSlideMessage(difficulty,trainerId,slideId))
         return FALSE;
 
     if (GetEnemyMonCount(firstId, lastId, TRUE) != 1)
@@ -247,7 +255,7 @@ bool32 ShouldRunTrainerSlideLastHalfHP(enum DifficultyLevel difficulty, u32 trai
 
 bool32 ShouldRunTrainerSlideLastLowHp(enum DifficultyLevel difficulty, u32 trainerId, u32 firstId, u32 lastId, u32 battler)
 {
-    if (sTrainerSlides[difficulty][trainerId][TRAINER_SLIDE_LAST_LOW_HP] == NULL)
+    if (!DoesTrainerHaveSlideMessage(difficulty,trainerId,slideId))
         return FALSE;
 
     if (gBattleStruct->trainerSlideLowHpMsgDone)
@@ -264,7 +272,7 @@ bool32 ShouldRunTrainerSlideLastLowHp(enum DifficultyLevel difficulty, u32 train
 
 bool32 ShouldRunTrainerSlideMegaEvolution(enum DifficultyLevel difficulty, u32 trainerId)
 {
-    if (sTrainerSlides[difficulty][trainerId][TRAINER_SLIDE_MEGA_EVOLUTION] == NULL)
+    if (!DoesTrainerHaveSlideMessage(difficulty,trainerId,slideId))
         return FALSE;
 
     if (gBattleStruct->trainerSlideMegaEvolutionMsgDone)
@@ -275,7 +283,7 @@ bool32 ShouldRunTrainerSlideMegaEvolution(enum DifficultyLevel difficulty, u32 t
 
 bool32 ShouldRunTrainerSlideZMove(enum DifficultyLevel difficulty, u32 trainerId)
 {
-    if (sTrainerSlides[difficulty][trainerId][TRAINER_SLIDE_Z_MOVE] == NULL)
+    if (!DoesTrainerHaveSlideMessage(difficulty,trainerId,slideId))
         return FALSE;
 
     if (gBattleStruct->trainerSlideZMoveMsgDone)
@@ -286,7 +294,7 @@ bool32 ShouldRunTrainerSlideZMove(enum DifficultyLevel difficulty, u32 trainerId
 
 bool32 ShouldRunTrainerSlideDynamax(enum DifficultyLevel difficulty, u32 trainerId)
 {
-    if (sTrainerSlides[difficulty][trainerId][TRAINER_SLIDE_DYNAMAX] == NULL)
+    if (!DoesTrainerHaveSlideMessage(difficulty,trainerId,slideId))
         return FALSE;
 
     if (gBattleStruct->trainerSlideDynamaxMsgDone)
@@ -355,7 +363,7 @@ u32 ShouldDoTrainerSlide(u32 battler, u32 which)
         case TRAINER_SLIDE_PLAYER_LANDS_FIRST_SUPER_EFFECTIVE_HIT:
             if (ShouldRunTrainerSlidePlayerLandsFirstSuperEffectiveHit(difficulty, trainerId, battler))
             {
-                gBattleStruct->trainerSlidePlayerLandsFirstSuperEffectiveHitMsgState = 2;
+                MarkTrainerSlideAsPlayed(which);
                 gBattleStruct->trainerSlideMsg = sTrainerSlides[difficulty][trainerId][TRAINER_SLIDE_PLAYER_LANDS_FIRST_SUPER_EFFECTIVE_HIT];
                 return TRUE;
             }
@@ -363,7 +371,7 @@ u32 ShouldDoTrainerSlide(u32 battler, u32 which)
         case TRAINER_SLIDE_PLAYER_LANDS_FIRST_STAB_MOVE:
             if (ShouldRunTrainerSlidePlayerLandsFirstSTABMove(difficulty, trainerId, firstId, lastId))
             {
-                gBattleStruct->trainerSlidePlayerLandsFirstSTABMoveMsgState = 2;
+                MarkTrainerSlideAsPlayed(which);
                 gBattleStruct->trainerSlideMsg = sTrainerSlides[difficulty][trainerId][TRAINER_SLIDE_PLAYER_LANDS_FIRST_STAB_MOVE];
                 return TRUE;
             }
@@ -453,23 +461,38 @@ void TryInitalizeFirstSTABMoveTrainerSlide(bool32 recordAbilities, u32 battlerDe
     gBattleStruct->trainerSlidePlayerLandsFirstSTABMoveMsgState = 1;
 }
 
-void TryInitalizeTrainerSlide(enum TrainerSlideType slideId, u32 target)
+void TryInitalizeTrainerSlidePlayerLandsFirstCriticalHit(u32 target)
 {
+    enum TrainerSlideType slideId = TRAINER_SLIDE_PLAYER_LANDS_FIRST_CRITICAL_HIT;
+
     if (IsTrainerSlidePlayed(slideId))
         return;
 
     if (IsTrainerSlideInitialized(slideId))
         return;
 
-    switch (slideId)
-    {
-        case TRAINER_SLIDE_PLAYER_LANDS_FIRST_CRITICAL_HIT:
-            if (GetBattlerSide(target) == B_SIDE_PLAYER)
-                return;
-            break;
-        default:
-            return;
-    }
+    if (GetBattlerSide(target) == B_SIDE_PLAYER)
+        return;
+
+    InitalizeTrainerSlide(slideId);
+}
+
+void TryInitalizeTrainerSlidePlayerLandsFirstSuperEffectiveHit(u32 target, u32 stringId)
+{
+    enum TrainerSlideType slideId = TRAINER_SLIDE_PLAYER_LANDS_FIRST_SUPER_EFFECTIVE_HIT;
+
+    if ((stringId != STRINGID_SUPEREFFECTIVE) && stringId != (STRINGID_SUPEREFFECTIVETWOFOES))
+        return;
+
+    if (IsTrainerSlidePlayed(slideId))
+        return;
+
+    if (IsTrainerSlideInitialized(slideId))
+        return;
+
+    if (GetBattlerSide(target) == B_SIDE_PLAYER)
+        return;
+
     InitalizeTrainerSlide(slideId);
 }
 

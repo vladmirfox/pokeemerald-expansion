@@ -832,7 +832,6 @@ struct BattleStruct
     u8 numSpreadTargets:2;
     u8 padding2:2;
     struct MessageStatus slideMessageStatus;
-    u8 trainerSlidePlayerLandsFirstSuperEffectiveHitMsgState:2;
     u8 trainerSlidePlayerLandsFirstSTABMoveMsgState:2;
     u8 trainerSlideEnemyMonUnaffectedMsgState:2;
     u8 trainerSlideHalfHpMsgDone:1;

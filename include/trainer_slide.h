@@ -9,7 +9,8 @@ struct MessageStatus
     u32 messagePlayed;
 };
 
-void TryInitalizeTrainerSlide(enum TrainerSlideType slideId, u32 target);
+void TryInitalizeTrainerSlidePlayerLandsFirstSuperEffectiveHit(u32 target, u32 stringId);
+void TryInitalizeTrainerSlidePlayerLandsFirstCriticalHit(u32 target);
 bool32 IsTrainerSlideInitialized(enum TrainerSlideType slideId);
 bool32 IsTrainerSlidePlayed(enum TrainerSlideType slideId);
 void InitalizeTrainerSlide(enum TrainerSlideType slideId);

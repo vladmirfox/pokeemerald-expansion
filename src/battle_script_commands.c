@@ -2721,7 +2721,7 @@ static void Cmd_critmessage(void)
         {
             PrepareStringBattle(STRINGID_CRITICALHIT, gBattlerAttacker);
 
-            TryInitalizeTrainerSlide(TRAINER_SLIDE_PLAYER_LANDS_FIRST_CRITICAL_HIT, gBattlerTarget);
+            TryInitalizeTrainerSlidePlayerLandsFirstCriticalHit(gBattlerTarget);
 
             gBattleCommunication[MSG_DISPLAY] = 1;
         }
@@ -2867,11 +2867,7 @@ static void Cmd_resultmessage(void)
             {
                 stringId = STRINGID_SUPEREFFECTIVE;
             }
-            if (stringId) // Signal for the trainer slide-in system
-            {
-                if (GetBattlerSide(gBattlerTarget) != B_SIDE_PLAYER && gBattleStruct->trainerSlidePlayerLandsFirstSuperEffectiveHitMsgState != 2)
-                    gBattleStruct->trainerSlidePlayerLandsFirstSuperEffectiveHitMsgState = 1;
-            }
+            TryInitalizeTrainerSlidePlayerLandsFirstSuperEffectiveHit(gBattlerTarget,stringId);
             break;
         case MOVE_RESULT_NOT_VERY_EFFECTIVE:
             if (IsDoubleSpreadMove())
