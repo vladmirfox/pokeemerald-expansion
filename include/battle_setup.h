@@ -12,11 +12,48 @@ struct RematchTrainer
     u16 mapNum;
 };
 
+/*
+the layout of the first byte can be confusing here
+isDoubleBattle is the least lsb. msb is in the mode.
+*/
+typedef union PACKED TrainerBattleParameter
+{
+    struct PACKED _TrainerBattleParameter
+    {
+        u8 isDoubleBattle:1;
+        u8 isRematch:1;
+        u8 playMusicA:1;
+        u8 playMusicB:1;
+        u8 mode:4;
+        u8 objEventLocalIdA;
+        u16 battleOpponentA;
+        u8* introTextA;
+        u8* defeatTextA;
+        u8* battleScriptRetAddrA;
+        u8 objEventLocalIdB;
+        u16 battleOpponentB;
+        u8* introTextB;
+        u8* defeatTextB;
+        u8* battleScriptRetAddrB;
+        u8* victoryText;
+        u8* cannotBattleText;
+    } params;
+    u8 data[sizeof(struct _TrainerBattleParameter)];
+} TrainerBattleParameter;
+
+
 extern const struct RematchTrainer gRematchTable[REMATCH_TABLE_ENTRIES];
 
-extern u16 gTrainerBattleOpponent_A;
-extern u16 gTrainerBattleOpponent_B;
+extern TrainerBattleParameter gTrainerBattleParameter;
 extern u16 gPartnerTrainerId;
+
+#define TRAINER_BATTLE_PARAM gTrainerBattleParameter.params
+
+#define DebugPrintTrainerParams(battleParameter) DebugPrintfLevel(MGBA_LOG_DEBUG, "\nisDouble: %d\nplayMusicA: %d\nplayMusicB: %d\nisRematch: %d\nmode: %d\nlocalIdA: %d\ntrainerA: %d\nintroA: %x\ndefeatA: %x\neventA: %x\nlocalIdB: %d\ntrainerB: %d\nintroB: %x\ndefeatB: %x\neventB: %x\nvictory: %x\nnotBattle:%x\n", \
+        battleParameter->params.isDoubleBattle, battleParameter->params.playMusicA, battleParameter->params.playMusicB, battleParameter->params.isRematch, battleParameter->params.mode, \
+        battleParameter->params.objEventLocalIdA, battleParameter->params.battleOpponentA, battleParameter->params.introTextA, battleParameter->params.defeatTextA, battleParameter->params.battleScriptRetAddrA, \
+        battleParameter->params.objEventLocalIdB, battleParameter->params.battleOpponentB, battleParameter->params.introTextB, battleParameter->params.defeatTextB, battleParameter->params.battleScriptRetAddrB, \
+        battleParameter->params.victoryText, battleParameter->params.cannotBattleText)
 
 void BattleSetup_StartWildBattle(void);
 void BattleSetup_StartDoubleWildBattle(void);
@@ -35,7 +72,8 @@ u8 GetTrainerBattleTransition(void);
 u8 GetSpecialBattleTransition(s32 id);
 void ChooseStarter(void);
 void ResetTrainerOpponentIds(void);
-void SetMapVarsToTrainer(void);
+void SetMapVarsToTrainerA(void);
+void SetMapVarsToTrainerB(void);
 const u8 *BattleSetup_ConfigureTrainerBattle(const u8 *data);
 void ConfigureAndSetUpOneTrainerBattle(u8 trainerObjEventId, const u8 *trainerScript);
 void ConfigureTwoTrainersBattle(u8 trainerObjEventId, const u8 *trainerScript);
@@ -67,6 +105,10 @@ bool8 ShouldTryRematchBattle(void);
 bool8 IsTrainerReadyForRematch(void);
 void ShouldTryGetTrainerScript(void);
 u16 CountBattledRematchTeams(u16 trainerId);
+void TrainerBattleLoadArgs(const u8 *data);
+void TrainerBattleLoadArgsTrainerA(const u8 *data);
+void TrainerBattleLoadArgsTrainerB(const u8 *data);
+void TrainerBattleLoadArgsSecondTrainer(const u8 *data);
 
 void DoStandardWildBattle_Debug(void);
 void BattleSetup_StartTrainerBattle_Debug(void);
