@@ -16798,16 +16798,19 @@ Double Battle: No
 /* TRAINER_SLIDE_LAST_LOW_HP, */
 
 Gengar  
+Level: 1
 Ability: Cursed Body  
-- Explosion  
+- Shadow Ball 
 
 Gengar  
+Level: 1
 Ability: Cursed Body  
-- Explosion  
+- Shadow Ball 
 
 Mew  
+Level: 100
 Ability: Synchronize  
-EVs: 236 HP  
+EVs: 240 HP  
 IVs: 0 Atk  
 - Celebrate  
 

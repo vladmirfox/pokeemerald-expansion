@@ -153,7 +153,7 @@ Debug_EventScript_Script_2::
 	end
 
 Debug_EventScript_Script_3::
-    givemon species=SPECIES_URSALUNA, level=100, item=0, move1=MOVE_SEISMIC_TOSS
+    givemon species=SPECIES_GOTHITELLE, level=100, item=0, move1=MOVE_SEISMIC_TOSS,move2=MOVE_PSYCHIC,move3=MOVE_PSYBEAM,move4=MOVE_SUPER_FANG
     trainerbattle_no_intro TRAINER_MARIELA, gText_Sleep
 	release
 	end
