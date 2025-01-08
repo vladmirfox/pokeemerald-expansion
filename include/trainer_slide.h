@@ -3,6 +3,12 @@
 
 #include "constants/trainer_slide.h"
 
+struct MessageStatus
+{
+    u32 messageInitalized;
+    u32 messagePlayed;
+};
+
 bool32 DoesTrainerHaveSlideMessage(enum DifficultyLevel difficulty, u32 slideType);
 bool32 ShouldRunTrainerSlideLastLowHp(enum DifficultyLevel difficulty, u32 trainerId, u32 firstId, u32 lastId, u32 battler);
 bool32 ShouldRunTrainerSlideLastLowHp(enum DifficultyLevel difficulty, u32, u32 firstId, u32 lastId, u32 battler);

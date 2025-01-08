@@ -448,4 +448,24 @@ void TryInitalizeFirstSTABMoveTrainerSlide(bool32 recordAbilities, u32 battlerDe
     gBattleStruct->trainerSlidePlayerLandsFirstSTABMoveMsgState = 1;
 }
 
+bool32 IsTrainerSlideInitialized(enum TrainerSlideType slideId)
+{
+    return (gBattleStruct->slideMessageStatus.messageInitalized & (1u << slideId)) != 0;
+}
+
+bool32 IsTrainerSlidePlayed(enum TrainerSlideType slideId)
+{
+    return (gBattleStruct->slideMessageStatus.messagePlayed & (1u << slideId)) != 0;
+}
+
+void InitalizeTrainerSlide(enum TrainerSlideType slideId)
+{
+    gBattleStruct->slideMessageStatus.messageInitalized |= 1u << slideId;
+}
+
+void MarkTrainerSlideAsPlayed(enum TrainerSlideType slideId)
+{
+    gBattleStruct->slideMessageStatus.messagePlayed |= 1u << slideId;
+}
+
 //TODO
