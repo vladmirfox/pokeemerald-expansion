@@ -2721,9 +2721,7 @@ static void Cmd_critmessage(void)
         {
             PrepareStringBattle(STRINGID_CRITICALHIT, gBattlerAttacker);
 
-            // Signal for the trainer slide-in system.
-            if (GetBattlerSide(gBattlerTarget) != B_SIDE_PLAYER && gBattleStruct->trainerSlidePlayerLandsFirstCriticalHitMsgState != 2)
-                gBattleStruct->trainerSlidePlayerLandsFirstCriticalHitMsgState = 1;
+            TryInitalizeTrainerSlide(TRAINER_SLIDE_PLAYER_LANDS_FIRST_CRITICAL_HIT, gBattlerTarget);
 
             gBattleCommunication[MSG_DISPLAY] = 1;
         }

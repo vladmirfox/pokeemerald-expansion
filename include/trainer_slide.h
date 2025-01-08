@@ -9,7 +9,12 @@ struct MessageStatus
     u32 messagePlayed;
 };
 
-bool32 DoesTrainerHaveSlideMessage(enum DifficultyLevel difficulty, u32 slideType);
+void TryInitalizeTrainerSlide(enum TrainerSlideType slideId, u32 target);
+bool32 IsTrainerSlideInitialized(enum TrainerSlideType slideId);
+bool32 IsTrainerSlidePlayed(enum TrainerSlideType slideId);
+void InitalizeTrainerSlide(enum TrainerSlideType slideId);
+void MarkTrainerSlideAsPlayed(enum TrainerSlideType slideId);
+bool32 DoesTrainerHaveSlideMessage(enum DifficultyLevel, u32, u32);
 bool32 ShouldRunTrainerSlideLastLowHp(enum DifficultyLevel difficulty, u32 trainerId, u32 firstId, u32 lastId, u32 battler);
 bool32 ShouldRunTrainerSlideLastLowHp(enum DifficultyLevel difficulty, u32, u32 firstId, u32 lastId, u32 battler);
 bool32 ShouldRunTrainerSlidePlayerLandsFirstDown(enum DifficultyLevel difficulty, u32,u32 firstId, u32 lastId);
@@ -23,5 +28,6 @@ bool32 ShouldRunTrainerSlideZMove(enum DifficultyLevel difficulty, u32);
 bool32 ShouldRunTrainerSlideDynamax(enum DifficultyLevel difficulty, u32);
 bool32 ShouldRunTrainerSlideBeforeFirstTurn(enum DifficultyLevel difficulty, u32);
 void TryInitalizeFirstSTABMoveTrainerSlide(bool32, u32, u32, u32);
+bool32 DoesTrainerHaveSlideMessage(enum DifficultyLevel difficulty, u32 trainerId, u32 slideType);
 
 #endif // GUARD_TRAINER_SLIDE_H
