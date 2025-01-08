@@ -1103,17 +1103,17 @@ static u16 RenderText(struct TextPrinter *textPrinter)
 
             switch (currChar)
             {
-                case CHAR_NEWLINE:
-                    textPrinter->printerTemplate.currentX = textPrinter->printerTemplate.x;
-                    textPrinter->printerTemplate.currentY += (gFonts[textPrinter->printerTemplate.fontId].maxLetterHeight + textPrinter->printerTemplate.lineSpacing);
-                    return RENDER_REPEAT;
+	    case CHAR_NEWLINE:
+		textPrinter->printerTemplate.currentX = textPrinter->printerTemplate.x;
+		textPrinter->printerTemplate.currentY += (gFonts[textPrinter->printerTemplate.fontId].maxLetterHeight + textPrinter->printerTemplate.lineSpacing);
+		return RENDER_REPEAT;
             case PLACEHOLDER_BEGIN:
                 textPrinter->printerTemplate.currentChar++;
                 return RENDER_REPEAT;
             case EXT_CTRL_CODE_BEGIN:
                 currChar = *textPrinter->printerTemplate.currentChar;
                 textPrinter->printerTemplate.currentChar++;
-            switch (currChar)
+            	switch (currChar)
                 {
                 case EXT_CTRL_CODE_COLOR:
                     textPrinter->printerTemplate.fgColor = *textPrinter->printerTemplate.currentChar;
@@ -1236,95 +1236,122 @@ static u16 RenderText(struct TextPrinter *textPrinter)
                     textPrinter->japanese = FALSE;
                     return RENDER_REPEAT;
                 }
-                return RENDER_REPEAT;
-            case EXT_CTRL_CODE_MIN_LETTER_SPACING:
-                textPrinter->minLetterSpacing = *textPrinter->printerTemplate.currentChar++;
-                return RENDER_REPEAT;
-            case EXT_CTRL_CODE_JPN:
-                textPrinter->japanese = TRUE;
-                return RENDER_REPEAT;
-            case EXT_CTRL_CODE_ENG:
-                textPrinter->japanese = FALSE;
-                return RENDER_REPEAT;
+		break;
+	    case CHAR_PROMPT_CLEAR:
+                textPrinter->state = RENDER_STATE_CLEAR;
+                TextPrinterInitDownArrowCounters(textPrinter);
+                return RENDER_UPDATE;
+            case CHAR_PROMPT_SCROLL:
+                textPrinter->state = RENDER_STATE_SCROLL_START;
+                TextPrinterInitDownArrowCounters(textPrinter);
+                return RENDER_UPDATE;
+            case CHAR_EXTRA_SYMBOL:
+                currChar = *textPrinter->printerTemplate.currentChar | 0x100;
+                textPrinter->printerTemplate.currentChar++;
+                break;
+            case CHAR_KEYPAD_ICON:
+                currChar = *textPrinter->printerTemplate.currentChar++;
+                gCurGlyph.width = DrawKeypadIcon(textPrinter->printerTemplate.windowId, currChar, textPrinter->printerTemplate.currentX, textPrinter->printerTemplate.currentY);
+                textPrinter->printerTemplate.currentX += gCurGlyph.width + textPrinter->printerTemplate.letterSpacing;
+                return RENDER_PRINT;
+            case EOS:
+                if (DECAP_ENABLED)
+                    // Clear fixed case
+                    textPrinter->lastChar = currChar;
+                return RENDER_FINISH;
+        #if DECAP_ENABLED
+            // Disable/enable decapitalization
+            // In vanilla these are 1-2 pixel spaces
+            case CHAR_FIXED_CASE:
+            case CHAR_UNFIX_CASE:
+		textPrinter->lastChar = currChar
+		if(!textPrinter->japanese)
+		    return RENDER_REPEAT;
+		break;
+	    case CHAR_V:
+                if (lastChar == CHAR_T) // TV
+                    lastChar = 0;
+		break;
+	    case CHAR_M:
+                if (lastChar == CHAR_T) { // TM
+                    lastChar = 0;
+                    break;
+                }
+            case CHAR_P:
+                if (lastChar == CHAR_H) { // HP, HM
+                    lastChar = 0;
+                    break;
+                }
+            case CHAR_C:
+                if (lastChar == CHAR_P) // PC, PP, PM
+                    lastChar = 0;
+                break;
+	#endif
+	    }
+	    // If not Japanese or fixed case, try to decap
+	    if (DECAP_ENABLED && !textPrinter->japanese && lastChar != CHAR_FIXED_CASE)
+	    {
+    	    // Two consecutive uppercase chars; lowercase this one
+	    if (IS_UPPER(currChar) && IS_UPPER(lastChar))
+ 	    currChar = TO_LOWER(currChar);
             }
-            break;
-        case CHAR_PROMPT_CLEAR:
-            textPrinter->state = RENDER_STATE_CLEAR;
-            TextPrinterInitDownArrowCounters(textPrinter);
-            return RENDER_UPDATE;
-        case CHAR_PROMPT_SCROLL:
-            textPrinter->state = RENDER_STATE_SCROLL_START;
-            TextPrinterInitDownArrowCounters(textPrinter);
-            return RENDER_UPDATE;
-        case CHAR_EXTRA_SYMBOL:
-            currChar = *textPrinter->printerTemplate.currentChar | 0x100;
-            textPrinter->printerTemplate.currentChar++;
-            break;
-        case CHAR_KEYPAD_ICON:
-            currChar = *textPrinter->printerTemplate.currentChar++;
-            gCurGlyph.width = DrawKeypadIcon(textPrinter->printerTemplate.windowId, currChar, textPrinter->printerTemplate.currentX, textPrinter->printerTemplate.currentY);
-            textPrinter->printerTemplate.currentX += gCurGlyph.width + textPrinter->printerTemplate.letterSpacing;
-            return RENDER_PRINT;
-        //"EOS" CASE HAS DIFFERENT CODE!!
-        case EOS:
-            return RENDER_FINISH;
-        }
+            switch (subStruct->fontId)
+	    {
+	    case FONT_SMALL:
+	        DecompressGlyph_Small(currChar, textPrinter->japanese);
+	        break;
+	    case FONT_NORMAL:
+	        DecompressGlyph_Normal(currChar, textPrinter->japanese);
+	        break;
+	    case FONT_SHORT:
+	    case FONT_SHORT_COPY_1:
+	    case FONT_SHORT_COPY_2:
+	    case FONT_SHORT_COPY_3:
+	        DecompressGlyph_Short(currChar, textPrinter->japanese);
+	        break;
+	    case FONT_NARROW:
+	        DecompressGlyph_Narrow(currChar, textPrinter->japanese);
+	        break;
+	    case FONT_SMALL_NARROW:
+	        DecompressGlyph_SmallNarrow(currChar, textPrinter->japanese);
+	        break;
+	    case FONT_NARROWER:
+	        DecompressGlyph_Narrower(currChar, textPrinter->japanese);
+	        break;
+	    case FONT_SMALL_NARROWER:
+	        DecompressGlyph_SmallNarrower(currChar, textPrinter->japanese);
+	        break;
+	    case FONT_SHORT_NARROW:
+	        DecompressGlyph_ShortNarrow(currChar, textPrinter->japanese);
+	        break;
+	    case FONT_SHORT_NARROWER:
+	        DecompressGlyph_ShortNarrower(currChar, textPrinter->japanese);
+	        break;
+	    case FONT_BRAILLE:
+	        break;
+	    }
 
-        switch (subStruct->fontId)
-        {
-        case FONT_SMALL:
-            DecompressGlyph_Small(currChar, textPrinter->japanese);
-            break;
-        case FONT_NORMAL:
-            DecompressGlyph_Normal(currChar, textPrinter->japanese);
-            break;
-        case FONT_SHORT:
-        case FONT_SHORT_COPY_1:
-        case FONT_SHORT_COPY_2:
-        case FONT_SHORT_COPY_3:
-            DecompressGlyph_Short(currChar, textPrinter->japanese);
-            break;
-        case FONT_NARROW:
-            DecompressGlyph_Narrow(currChar, textPrinter->japanese);
-            break;
-        case FONT_SMALL_NARROW:
-            DecompressGlyph_SmallNarrow(currChar, textPrinter->japanese);
-            break;
-        case FONT_NARROWER:
-            DecompressGlyph_Narrower(currChar, textPrinter->japanese);
-            break;
-        case FONT_SMALL_NARROWER:
-            DecompressGlyph_SmallNarrower(currChar, textPrinter->japanese);
-            break;
-        case FONT_SHORT_NARROW:
-            DecompressGlyph_ShortNarrow(currChar, textPrinter->japanese);
-            break;
-        case FONT_SHORT_NARROWER:
-            DecompressGlyph_ShortNarrower(currChar, textPrinter->japanese);
-            break;
-        case FONT_BRAILLE:
-            break;
-        }
+       	    CopyGlyphToWindow(textPrinter);
 
-        CopyGlyphToWindow(textPrinter);
-
-        if (textPrinter->minLetterSpacing)
-        {
-            textPrinter->printerTemplate.currentX += gCurGlyph.width;
-            width = textPrinter->minLetterSpacing - gCurGlyph.width;
-            if (width > 0)
+            if (textPrinter->minLetterSpacing)
             {
-                ClearTextSpan(textPrinter, width);
-                textPrinter->printerTemplate.currentX += width;
-            }
-        }
-        else
-        {
-            if (textPrinter->japanese)
-                textPrinter->printerTemplate.currentX += (gCurGlyph.width + textPrinter->printerTemplate.letterSpacing);
-            else
                 textPrinter->printerTemplate.currentX += gCurGlyph.width;
-        }
+                width = textPrinter->minLetterSpacing - gCurGlyph.width;
+                if (width > 0)
+                {
+                    ClearTextSpan(textPrinter, width);
+                    textPrinter->printerTemplate.currentX += width;
+                }
+            }
+            else
+	    {
+                if (textPrinter->japanese)
+                    textPrinter->printerTemplate.currentX += (gCurGlyph.width + textPrinter->printerTemplate.letterSpacing);
+                else
+                    textPrinter->printerTemplate.currentX += gCurGlyph.width;
+            }
+            repeats--;
+        } while (repeats > 0);
         return RENDER_PRINT;
     case RENDER_STATE_WAIT:
         if (TextPrinterWait(textPrinter))
