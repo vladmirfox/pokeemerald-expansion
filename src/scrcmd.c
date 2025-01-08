@@ -875,7 +875,7 @@ bool8 ScrCmd_initclock(struct ScriptContext *ctx)
 
 bool8 ScrCmd_dotimebasedevents(struct ScriptContext *ctx)
 {
-    Script_RequestEffects(SCREFF_V1 | SCREFF_SAVE);
+    Script_RequestEffects(SCREFF_V1 | SCREFF_SAVE | SCREFF_HARDWARE);
 
     DoTimeBasedEvents();
     return FALSE;
