@@ -41921,7 +41921,7 @@ F_TRAINER_FEMALE |
         {
             {
 #line 16784
-            .species = SPECIES_QUAGSIRE,
+            .species = SPECIES_SANDSLASH,
             .gender = TRAINER_MON_RANDOM_GENDER,
 #line 16786
             .iv = TRAINER_PARTY_IVS(31, 31, 31, 31, 31, 31),

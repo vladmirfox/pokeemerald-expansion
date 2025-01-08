@@ -147,7 +147,7 @@ Debug_EventScript_Script_1::
 	end
 
 Debug_EventScript_Script_2::
-    givemon species=SPECIES_GASTLY, level=100, item=0, move1=MOVE_CELEBRATE, move2=MOVE_ENERGY_BALL, move3=MOVE_THUNDERBOLT
+    givemon species=SPECIES_LARVESTA, level=100, item=0, move1=MOVE_CELEBRATE, move2=MOVE_ENERGY_BALL, move3=MOVE_THUNDERBOLT, move4=MOVE_U_TURN
     trainerbattle_no_intro TRAINER_THALIA_5, gText_Sleep
 	release
 	end

@@ -32,6 +32,6 @@ bool32 ShouldRunTrainerSlideMegaEvolution(enum DifficultyLevel difficulty, u32);
 bool32 ShouldRunTrainerSlideZMove(enum DifficultyLevel difficulty, u32);
 bool32 ShouldRunTrainerSlideDynamax(enum DifficultyLevel difficulty, u32);
 bool32 ShouldRunTrainerSlideBeforeFirstTurn(enum DifficultyLevel difficulty, u32);
-
+bool32 ShouldInitalizeFirstSTABMoveTrainerSlide(u32, u32, u32);
 
 #endif // GUARD_TRAINER_SLIDE_H

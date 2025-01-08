@@ -48,6 +48,7 @@
 #include "constants/trainers.h"
 #include "constants/weather.h"
 #include "constants/pokemon.h"
+#include "trainer_slide.h"
 
 /*
 NOTE: The data and functions in this file up until (but not including) sSoundMovesTable
@@ -10727,9 +10728,11 @@ static inline uq4_12_t CalcTypeEffectivenessMultiplierInternal(u32 move, u32 mov
         }
     }
 
-    // Signal for the trainer slide-in system.
-    if (GetBattlerSide(battlerDef) != B_SIDE_PLAYER && modifier && gBattleStruct->trainerSlidePlayerLandsFirstSTABMoveMsgState != 2)
+    if (ShouldInitalizeFirstSTABMoveTrainerSlide(battlerDef, battlerAtk, moveType))
+    {
+        //TODO this is broken. This should only trigger when the user performs a move with STAB, but right now, it happens if the user KNOWS a move and they get STAB on it.
         gBattleStruct->trainerSlidePlayerLandsFirstSTABMoveMsgState = 1;
+    }
 
     return modifier;
 }
