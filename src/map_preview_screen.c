@@ -19,6 +19,8 @@ static EWRAM_DATA bool8 sAllocedBg0TilemapBuffer = FALSE;
 
 static void Task_RunMapPreviewScreenForest(u8 taskId);
 static void Task_RunMapPreview_Script(u8 taskId);
+static void CB2_MapPreviewScript(void);
+static void VblankCB_MapPreviewScript(void);
 
 static const u8 sViridianForestMapPreviewPalette[] = INCBIN_U8("graphics/map_preview/viridian_forest/tiles.gbapal");
 static const u8 sViridianForestMapPreviewTiles[] = INCBIN_U8("graphics/map_preview/viridian_forest/tiles.4bpp.lz");
@@ -683,17 +685,31 @@ u16 MapPreview_GetDuration(u8 mapsec)
     }
 }
 
+static void VblankCB_MapPreviewScript(void)
+{
+    TransferPlttBuffer();
+}
+
 #define taskStep        data[0]
 #define frameCounter    data[1]
 #define MPWindowId      data[2]
 
-static void MapPreview_Script_Start(u8 mapsec)
+void Script_MapPreview(void)
 {
-    u8 taskId;
+    SetVBlankCallback(NULL);
+    gMain.savedCallback = CB2_ReturnToFieldContinueScript;
+    MapPreview_LoadGfx(gMapHeader.regionMapSectionId);
+    BeginNormalPaletteFade(PALETTES_ALL, 0, 0x10, 0, RGB_BLACK);
+    SetVBlankCallback(VblankCB_MapPreviewScript);
+    SetMainCallback2(CB2_MapPreviewScript);
+    CreateTask(Task_RunMapPreview_Script, 0);
+}
 
-    BlendPalettes(PALETTES_ALL, 0x10, RGB_BLACK);
-    taskId = CreateTask(Task_RunMapPreview_Script, 0);
-    gTasks[taskId].MPWindowId = MapPreview_CreateMapNameWindow(mapsec);
+static void CB2_MapPreviewScript(void)
+{
+    RunTasks();
+    DoScheduledBgTilemapCopiesToVram();
+    UpdatePaletteFade();
 }
 
 static void Task_RunMapPreview_Script(u8 taskId)
@@ -706,6 +722,7 @@ static void Task_RunMapPreview_Script(u8 taskId)
     case 0:
         if (!MapPreview_IsGfxLoadFinished() && !IsDma3ManagerBusyWithBgCopy())
         {
+            MPWindowId = MapPreview_CreateMapNameWindow(gMapHeader.regionMapSectionId);
             CopyWindowToVram(MPWindowId, COPYWIN_FULL);
             taskStep++;
         }
@@ -713,7 +730,7 @@ static void Task_RunMapPreview_Script(u8 taskId)
     case 1:
         if (!IsDma3ManagerBusyWithBgCopy())
         {
-            BeginNormalPaletteFade(PALETTES_ALL, -1, 16, 0, RGB_BLACK);
+            FadeInFromBlack();
             taskStep++;
         }
         break;
@@ -739,12 +756,4 @@ static void Task_RunMapPreview_Script(u8 taskId)
 
 #undef taskStep
 #undef frameCounter
-#undef MPDuration
 #undef MPWindowId
-
-void Script_MapPreview(void)
-{
-    gMain.savedCallback = CB2_ReturnToFieldContinueScript;
-    MapPreview_LoadGfx(gMapHeader.regionMapSectionId);
-    MapPreview_Script_Start(gMapHeader.regionMapSectionId);
-}
