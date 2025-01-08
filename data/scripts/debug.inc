@@ -159,7 +159,7 @@ Debug_EventScript_Script_3::
 	end
 
 Debug_EventScript_Script_4::
-    givemon species=SPECIES_URSALUNA, level=100, item=0, move1=MOVE_SEISMIC_TOSS
+    givemon species=SPECIES_URSARING, level=100, item=0, move1=MOVE_VITAL_THROW, move2=MOVE_CELEBRATE
     trainerbattle_no_intro TRAINER_ALVARO, gText_Sleep
 	release
 	end

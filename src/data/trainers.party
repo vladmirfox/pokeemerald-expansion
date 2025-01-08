@@ -16832,18 +16832,19 @@ Ability: Intimidate
 IVs: 0 Atk  
 - Celebrate  
 
-Pikachu @ Pikashunium Z  
-Level: 1
-Ability: Static  
-IVs: 0 Atk  
-- Thunder Shock  
-
 Machamp
 Level: 1
-Dynamax Level: 10
+Gigantamax: Yes
 Ability: Guts  
 IVs: 0 Atk  
 - Celebrate
+
+Pikachu Partner @ Pikashunium Z  
+Level: 1
+Ability: Static  
+IVs: 0 Atk  
+- Thunderbolt
+
 
 === TRAINER_EVERETT ===
 Name: EVERETT

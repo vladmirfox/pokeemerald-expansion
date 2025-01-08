@@ -10728,11 +10728,7 @@ static inline uq4_12_t CalcTypeEffectivenessMultiplierInternal(u32 move, u32 mov
         }
     }
 
-    if (ShouldInitalizeFirstSTABMoveTrainerSlide(battlerDef, battlerAtk, moveType))
-    {
-        //TODO this is broken. This should only trigger when the user performs a move with STAB, but right now, it happens if the user KNOWS a move and they get STAB on it.
-        gBattleStruct->trainerSlidePlayerLandsFirstSTABMoveMsgState = 1;
-    }
+    TryInitalizeFirstSTABMoveTrainerSlide(recordAbilities, battlerDef, battlerAtk, moveType);
 
     return modifier;
 }

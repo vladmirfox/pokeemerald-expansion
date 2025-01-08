@@ -460,16 +460,20 @@ u32 ShouldDoTrainerSlide(u32 battler, u32 which)
     return 0;
 }
 
-bool32 ShouldInitalizeFirstSTABMoveTrainerSlide(u32 battlerDef, u32 battlerAtk, u32 moveType)
+void TryInitalizeFirstSTABMoveTrainerSlide(bool32 recordAbilities, u32 battlerDef, u32 battlerAtk, u32 moveType)
 {
+
+    if (!recordAbilities)
+        return;
+
     if ((GetBattlerSide(battlerDef) == B_SIDE_PLAYER))
-        return FALSE;
+        return;
 
     if (IS_BATTLER_OF_TYPE(battlerAtk, moveType) == FALSE)
-        return FALSE;
+        return;
 
-    if (gBattleStruct->trainerSlidePlayerLandsFirstSTABMoveMsgState == 2)
-        return FALSE;
+    if (gBattleStruct->trainerSlidePlayerLandsFirstSTABMoveMsgState != 0)
+        return;
 
-    return TRUE;
+    gBattleStruct->trainerSlidePlayerLandsFirstSTABMoveMsgState = 1;
 }
