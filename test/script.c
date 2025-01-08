@@ -38,7 +38,6 @@ TEST("Script_HasNoEffect variables")
         copyvar VAR_0x8000, VAR_TEMP_0;
         setorcopyvar VAR_0x8000, VAR_TEMP_0;
         specialvar VAR_RESULT, GetPlayerFacingDirection;
-        gettime;
         getplayerxy VAR_0x8000, VAR_0x8001;
         getpartysize;
         checkitemspace ITEM_POTION, 1;
