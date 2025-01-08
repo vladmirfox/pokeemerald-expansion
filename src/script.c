@@ -316,8 +316,12 @@ const u8 *MapHeaderGetScriptTable(u8 tag)
 void MapHeaderRunScriptType(u8 tag)
 {
     const u8 *ptr = MapHeaderGetScriptTable(tag);
+    struct ScriptContext ctx;
     if (ptr)
-        RunScriptImmediately(ptr);
+    {
+        if (RunScriptImmediatelyUntilEffect(SCREFF_V1 | SCREFF_HARDWARE, ptr, &ctx))
+            ScriptContext_ContinueScript(&ctx);
+    }
 }
 
 const u8 *MapHeaderCheckScriptTable(u8 tag)
