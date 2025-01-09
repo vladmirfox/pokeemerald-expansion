@@ -11,6 +11,8 @@ struct MessageStatus
 
 void TryInitalizeTrainerSlidePlayerLandsFirstSuperEffectiveHit(u32 target, u32 stringId);
 void TryInitalizeTrainerSlidePlayerLandsFirstCriticalHit(u32 target);
+void TryInitalizeTrainerSlideEnemyMonUnaffected(u32 target, u32 stringId);
+void TryInitalizeFirstSTABMoveTrainerSlide(bool32 recordAbilities, u32 battlerDef, u32 battlerAtk, u32 moveType);
 bool32 IsTrainerSlideInitialized(enum TrainerSlideType slideId);
 bool32 IsTrainerSlidePlayed(enum TrainerSlideType slideId);
 void InitalizeTrainerSlide(enum TrainerSlideType slideId);

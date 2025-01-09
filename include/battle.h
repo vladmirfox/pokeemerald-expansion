@@ -832,13 +832,6 @@ struct BattleStruct
     u8 numSpreadTargets:2;
     u8 padding2:2;
     struct MessageStatus slideMessageStatus;
-    u8 trainerSlidePlayerLandsFirstSTABMoveMsgState:2;
-    u8 trainerSlideEnemyMonUnaffectedMsgState:2;
-    u8 trainerSlideHalfHpMsgDone:1;
-    u8 trainerSlideMegaEvolutionMsgDone:1;
-    u8 trainerSlideZMoveMsgDone:1;
-    u8 trainerSlideDynamaxMsgDone:1;
-    u8 trainerSlideLowHpMsgDone:1;
 };
 
 // The palaceFlags member of struct BattleStruct contains 1 flag per move to indicate which moves the AI should consider,

@@ -1129,11 +1129,8 @@ void PrepareStringBattle(u16 stringId, u32 battler)
         gBattlescriptCurrInstr = BattleScript_AbilityRaisesDefenderStat;
         SET_STATCHANGER(STAT_SPEED, 1, FALSE);
     }
-    // Signal for the trainer slide-in system.
-    if ((stringId == STRINGID_ITDOESNTAFFECT || stringId == STRINGID_PKMNWASNTAFFECTED || stringId == STRINGID_PKMNUNAFFECTED)
-     && GetBattlerSide(gBattlerTarget) == B_SIDE_OPPONENT
-     && gBattleStruct->trainerSlideEnemyMonUnaffectedMsgState != 2)
-        gBattleStruct->trainerSlideEnemyMonUnaffectedMsgState = 1;
+
+    TryInitalizeTrainerSlideEnemyMonUnaffected(gBattlerTarget,stringId);
 
     BtlController_EmitPrintString(battler, BUFFER_A, stringId);
     MarkBattlerForControllerExec(battler);
