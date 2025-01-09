@@ -240,6 +240,9 @@ void CanHyperTrain(struct ScriptContext *ctx)
 {
     u32 stat = ScriptReadByte(ctx);
     u32 partyIndex = VarGet(ScriptReadHalfword(ctx));
+
+    Script_RequestEffects(SCREFF_V1);
+
     if (stat < NUM_STATS
      && partyIndex < PARTY_SIZE
      && !GetMonData(&gPlayerParty[partyIndex], MON_DATA_HYPER_TRAINED_HP + stat)
@@ -257,6 +260,9 @@ void HyperTrain(struct ScriptContext *ctx)
 {
     u32 stat = ScriptReadByte(ctx);
     u32 partyIndex = VarGet(ScriptReadHalfword(ctx));
+
+    Script_RequestEffects(SCREFF_V1 | SCREFF_SAVE);
+
     if (stat < NUM_STATS && partyIndex < PARTY_SIZE)
     {
         bool32 data = TRUE;
@@ -268,6 +274,9 @@ void HyperTrain(struct ScriptContext *ctx)
 void HasGigantamaxFactor(struct ScriptContext *ctx)
 {
     u32 partyIndex = VarGet(ScriptReadHalfword(ctx));
+
+    Script_RequestEffects(SCREFF_V1);
+
     if (partyIndex < PARTY_SIZE)
         gSpecialVar_Result = GetMonData(&gPlayerParty[partyIndex], MON_DATA_GIGANTAMAX_FACTOR);
     else
@@ -277,6 +286,8 @@ void HasGigantamaxFactor(struct ScriptContext *ctx)
 void ToggleGigantamaxFactor(struct ScriptContext *ctx)
 {
     u32 partyIndex = VarGet(ScriptReadHalfword(ctx));
+
+    Script_RequestEffects(SCREFF_V1 | SCREFF_SAVE);
 
     gSpecialVar_Result = FALSE;
 
@@ -298,6 +309,8 @@ void CheckTeraType(struct ScriptContext *ctx)
 {
     u32 partyIndex = VarGet(ScriptReadHalfword(ctx));
 
+    Script_RequestEffects(SCREFF_V1);
+
     gSpecialVar_Result = TYPE_NONE;
 
     if (partyIndex < PARTY_SIZE)
@@ -308,6 +321,8 @@ void SetTeraType(struct ScriptContext *ctx)
 {
     u32 type = ScriptReadByte(ctx);
     u32 partyIndex = VarGet(ScriptReadHalfword(ctx));
+
+    Script_RequestEffects(SCREFF_V1 | SCREFF_SAVE);
 
     if (type < NUMBER_OF_MON_TYPES && partyIndex < PARTY_SIZE)
         SetMonData(&gPlayerParty[partyIndex], MON_DATA_TERA_TYPE, &type);
@@ -487,12 +502,49 @@ void ScrCmd_createmon(struct ScriptContext *ctx)
     u8 speedEv        = PARSE_FLAG(8, 0);
     u8 spAtkEv        = PARSE_FLAG(9, 0);
     u8 spDefEv        = PARSE_FLAG(10, 0);
-    u8 hpIv           = PARSE_FLAG(11, Random() % (MAX_PER_STAT_IVS + 1));
-    u8 atkIv          = PARSE_FLAG(12, Random() % (MAX_PER_STAT_IVS + 1));
-    u8 defIv          = PARSE_FLAG(13, Random() % (MAX_PER_STAT_IVS + 1));
-    u8 speedIv        = PARSE_FLAG(14, Random() % (MAX_PER_STAT_IVS + 1));
-    u8 spAtkIv        = PARSE_FLAG(15, Random() % (MAX_PER_STAT_IVS + 1));
-    u8 spDefIv        = PARSE_FLAG(16, Random() % (MAX_PER_STAT_IVS + 1));
+    u8 hpIv           = Random() % (MAX_PER_STAT_IVS + 1);
+    u8 atkIv          = Random() % (MAX_PER_STAT_IVS + 1);
+    u8 defIv          = Random() % (MAX_PER_STAT_IVS + 1);
+    u8 speedIv        = Random() % (MAX_PER_STAT_IVS + 1);
+    u8 spAtkIv        = Random() % (MAX_PER_STAT_IVS + 1);
+    u8 spDefIv        = Random() % (MAX_PER_STAT_IVS + 1);
+
+    // Perfect IV calculation
+    u32 i;
+    u8 availableIVs[NUM_STATS];
+    u8 selectedIvs[NUM_STATS];
+    if (gSpeciesInfo[species].perfectIVCount != 0)
+    {
+        // Initialize a list of IV indices.
+        for (i = 0; i < NUM_STATS; i++)
+            availableIVs[i] = i;
+
+        // Select the IVs that will be perfected.
+        for (i = 0; i < NUM_STATS && i < gSpeciesInfo[species].perfectIVCount; i++)
+        {
+            u8 index = Random() % (NUM_STATS - i);
+            selectedIvs[i] = availableIVs[index];
+            RemoveIVIndexFromList(availableIVs, index);
+        }
+        for (i = 0; i < NUM_STATS && i < gSpeciesInfo[species].perfectIVCount; i++)
+        {
+            switch (selectedIvs[i])
+            {
+            case STAT_HP:    hpIv    = MAX_PER_STAT_IVS; break;
+            case STAT_ATK:   atkIv   = MAX_PER_STAT_IVS; break;
+            case STAT_DEF:   defIv   = MAX_PER_STAT_IVS; break;
+            case STAT_SPEED: speedIv = MAX_PER_STAT_IVS; break;
+            case STAT_SPATK: spAtkIv = MAX_PER_STAT_IVS; break;
+            case STAT_SPDEF: spDefIv = MAX_PER_STAT_IVS; break;
+            }
+        }
+    }
+    hpIv              = PARSE_FLAG(11, hpIv);
+    atkIv             = PARSE_FLAG(12, atkIv);
+    defIv             = PARSE_FLAG(13, defIv);
+    speedIv           = PARSE_FLAG(14, speedIv);
+    spAtkIv           = PARSE_FLAG(15, spAtkIv);
+    spDefIv           = PARSE_FLAG(16, spDefIv);
     u16 move1         = PARSE_FLAG(17, MOVE_NONE);
     u16 move2         = PARSE_FLAG(18, MOVE_NONE);
     u16 move3         = PARSE_FLAG(19, MOVE_NONE);
@@ -504,6 +556,11 @@ void ScrCmd_createmon(struct ScriptContext *ctx)
     u8 evs[NUM_STATS]        = {hpEv, atkEv, defEv, speedEv, spAtkEv, spDefEv};
     u8 ivs[NUM_STATS]        = {hpIv, atkIv, defIv, speedIv, spAtkIv, spDefIv};
     u16 moves[MAX_MON_MOVES] = {move1, move2, move3, move4};
+
+    if (side == 0)
+        Script_RequestEffects(SCREFF_V1 | SCREFF_SAVE);
+    else
+        Script_RequestEffects(SCREFF_V1);
 
     gSpecialVar_Result = ScriptGiveMonParameterized(side, slot, species, level, item, ball, nature, abilityNum, gender, evs, ivs, moves, isShiny, ggMaxFactor, teraType);
 }
@@ -542,6 +599,8 @@ void Script_SetStatus1(struct ScriptContext *ctx)
 {
     u32 status1 = VarGet(ScriptReadHalfword(ctx));
     u32 slot = VarGet(ScriptReadHalfword(ctx));
+
+    Script_RequestEffects(SCREFF_V1 | SCREFF_SAVE);
 
     if (slot >= PARTY_SIZE)
     {
