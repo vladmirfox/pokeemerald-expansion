@@ -62,7 +62,7 @@
 #define PSS_LABEL_WINDOW_PROMPT_CANCEL 4 // Also handles the "rename" prompt if P_SUMMARY_SCREEN_RENAME is true
 #define PSS_LABEL_WINDOW_PROMPT_INFO 5
 #define PSS_LABEL_WINDOW_PROMPT_SWITCH 6
-#define PSS_LABEL_WINDOW_UNUSED1 7
+#define PSS_LABEL_WINDOW_PROMPT_IV_INFO 7
 
 // Info screen
 #define PSS_LABEL_WINDOW_POKEMON_INFO_RENTAL 8
@@ -318,6 +318,7 @@ static void SummaryScreen_DestroyAnimDelayTask(void);
 static bool32 ShouldShowMoveRelearner(void);
 static bool32 ShouldShowRename(void);
 static void ShowCancelOrRenamePrompt(void);
+static void ShowMonIvPrompt(void);
 static void CB2_ReturnToSummaryScreenFromNamingScreen(void);
 static void CB2_PssChangePokemonNickname(void);
 
@@ -454,14 +455,14 @@ static const struct WindowTemplate sSummaryTemplate[] =
         .paletteNum = 7,
         .baseBlock = 121,
     },
-    [PSS_LABEL_WINDOW_UNUSED1] = {
+    [PSS_LABEL_WINDOW_PROMPT_IV_INFO] = {
         .bg = 0,
-        .tilemapLeft = 11,
-        .tilemapTop = 4,
-        .width = 0,
+        .tilemapLeft = 22,
+        .tilemapTop = 0,
+        .width = 8,
         .height = 2,
-        .paletteNum = 6,
-        .baseBlock = 137,
+        .paletteNum = 7,
+        .baseBlock = 105,
     },
     [PSS_LABEL_WINDOW_POKEMON_INFO_RENTAL] = {
         .bg = 0,
@@ -1795,6 +1796,13 @@ static void Task_ChangeSummaryMon(u8 taskId)
                 else
                     ClearWindowTilemap(PSS_LABEL_WINDOW_PROMPT_RELEARN);
             }
+            else if (sMonSummaryScreen->currPageIndex == PSS_PAGE_SKILLS)
+            {
+                if (P_SUMMARY_SCREEN_IV_INFO)
+                    PutWindowTilemap(PSS_LABEL_WINDOW_PROMPT_IV_INFO);
+                else
+                    ClearWindowTilemap(PSS_LABEL_WINDOW_PROMPT_IV_INFO);
+            }
         }
         break;
     case 5:
@@ -1831,6 +1839,12 @@ static void Task_ChangeSummaryMon(u8 taskId)
             FillWindowPixelBuffer(PSS_LABEL_WINDOW_PROMPT_CANCEL, PIXEL_FILL(0));
             ShowCancelOrRenamePrompt();
             PutWindowTilemap(PSS_LABEL_WINDOW_PROMPT_CANCEL);
+        }
+        if (P_SUMMARY_SCREEN_IV_INFO && sMonSummaryScreen->currPageIndex == PSS_PAGE_SKILLS)
+        {   
+            FillWindowPixelBuffer(PSS_LABEL_WINDOW_PROMPT_IV_INFO, PIXEL_FILL(0));
+            ShowMonIvPrompt();
+            PutWindowTilemap(PSS_LABEL_WINDOW_PROMPT_IV_INFO);
         }
         break;
     case 12:
@@ -3009,6 +3023,7 @@ static void PrintPageNamesAndStats(void)
     PrintTextOnWindow(PSS_LABEL_WINDOW_CONTEST_MOVES_TITLE, gText_ContestMoves, 2, 1, 0, 1);
 
     ShowCancelOrRenamePrompt();
+    ShowMonIvPrompt();
 
     stringXPos = GetStringRightAlignXOffset(FONT_NORMAL, gText_Info, 62);
     iconXPos = stringXPos - 16;
@@ -3071,6 +3086,8 @@ static void PutPageWindowTilemaps(u8 page)
         PutWindowTilemap(PSS_LABEL_WINDOW_POKEMON_SKILLS_STATS_LEFT);
         PutWindowTilemap(PSS_LABEL_WINDOW_POKEMON_SKILLS_STATS_RIGHT);
         PutWindowTilemap(PSS_LABEL_WINDOW_POKEMON_SKILLS_EXP);
+        if (P_SUMMARY_SCREEN_IV_INFO)
+            PutWindowTilemap(PSS_LABEL_WINDOW_PROMPT_IV_INFO);
         break;
     case PSS_PAGE_BATTLE_MOVES:
         PutWindowTilemap(PSS_LABEL_WINDOW_BATTLE_MOVES_TITLE);
@@ -4415,6 +4432,19 @@ static void ShowCancelOrRenamePrompt(void)
 
     PrintAOrBButtonIcon(PSS_LABEL_WINDOW_PROMPT_CANCEL, FALSE, iconXPos);
     PrintTextOnWindow(PSS_LABEL_WINDOW_PROMPT_CANCEL, promptText, stringXPos, 1, 0, 0);
+}
+
+static void ShowMonIvPrompt(void)
+{
+    const u8* promptText = COMPOUND_STRING("{R_BUTTON} IVs");
+
+    int stringXPos = GetStringRightAlignXOffset(FONT_NORMAL, promptText, 62);
+    int iconXPos = stringXPos - 16;
+    if (iconXPos < 0)
+        iconXPos = 0;
+
+    // PrintAOrBButtonIcon(PSS_LABEL_WINDOW_PROMPT_IV_INFO, FALSE, iconXPos);
+    PrintTextOnWindow(PSS_LABEL_WINDOW_PROMPT_IV_INFO, promptText, stringXPos, 1, 0, 0);
 }
 
 static void CB2_ReturnToSummaryScreenFromNamingScreen(void)
