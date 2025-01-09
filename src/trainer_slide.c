@@ -309,14 +309,22 @@ enum TrainerSlideTargets ShouldDoTrainerSlide(u32 battler, enum TrainerSlideType
     return retValue;
 }
 
+static bool32 IsSlideInitalizedOrPlayed(enum TrainerSlideType slideId)
+{
+    if (IsTrainerSlideInitialized(slideId))
+        return TRUE;
+
+    if (IsTrainerSlidePlayed(slideId))
+        return TRUE;
+
+    return FALSE;
+}
+
 void TryInitalizeFirstSTABMoveTrainerSlide(bool32 recordAbilities, u32 battlerDef, u32 battlerAtk, u32 moveType)
 {
     enum TrainerSlideType slideId = TRAINER_SLIDE_PLAYER_LANDS_FIRST_STAB_MOVE;
 
-    if (IsTrainerSlideInitialized(slideId))
-        return;
-
-    if (IsTrainerSlidePlayed(slideId))
+    if (IsSlideInitalizedOrPlayed(slideId))
         return;
 
     if (!recordAbilities)
@@ -335,10 +343,7 @@ void TryInitalizeTrainerSlidePlayerLandsFirstCriticalHit(u32 target)
 {
     enum TrainerSlideType slideId = TRAINER_SLIDE_PLAYER_LANDS_FIRST_CRITICAL_HIT;
 
-    if (IsTrainerSlidePlayed(slideId))
-        return;
-
-    if (IsTrainerSlideInitialized(slideId))
+    if (IsSlideInitalizedOrPlayed(slideId))
         return;
 
     if (GetBattlerSide(target) == B_SIDE_PLAYER)
@@ -351,15 +356,12 @@ void TryInitalizeTrainerSlidePlayerLandsFirstSuperEffectiveHit(u32 target, u32 s
 {
     enum TrainerSlideType slideId = TRAINER_SLIDE_PLAYER_LANDS_FIRST_SUPER_EFFECTIVE_HIT;
 
+    if (IsSlideInitalizedOrPlayed(slideId))
+        return;
+
     if (stringId != STRINGID_SUPEREFFECTIVE)
         if (stringId != STRINGID_SUPEREFFECTIVETWOFOES)
             return;
-
-    if (IsTrainerSlidePlayed(slideId))
-        return;
-
-    if (IsTrainerSlideInitialized(slideId))
-        return;
 
     if (GetBattlerSide(target) == B_SIDE_PLAYER)
         return;
@@ -371,10 +373,7 @@ void TryInitalizeTrainerSlideEnemyMonUnaffected(u32 target, u32 stringId)
 {
     enum TrainerSlideType slideId = TRAINER_SLIDE_ENEMY_MON_UNAFFECTED;
 
-    if (IsTrainerSlidePlayed(slideId))
-        return;
-
-    if (IsTrainerSlideInitialized(slideId))
+    if (IsSlideInitalizedOrPlayed(slideId))
         return;
 
     if ((stringId != STRINGID_ITDOESNTAFFECT && stringId != STRINGID_PKMNWASNTAFFECTED && stringId != STRINGID_PKMNUNAFFECTED))
@@ -406,5 +405,3 @@ void MarkTrainerSlideAsPlayed(enum TrainerSlideType slideId)
     gBattleStruct->slideMessageStatus.messagePlayed |= (1u << slideId);
 }
 
-//TODO
-//swap between frontier and not frontier slide messages
