@@ -20,5 +20,5 @@ void MarkTrainerSlideAsPlayed(enum TrainerSlideType slideId);
 bool32 DoesTrainerHaveSlideMessage(enum DifficultyLevel, u32, u32);
 void TryInitalizeFirstSTABMoveTrainerSlide(bool32, u32, u32, u32);
 bool32 DoesTrainerHaveSlideMessage(enum DifficultyLevel difficulty, u32 trainerId, u32 slideType);
-enum TrainerSlideTargets ShouldDoTrainerSlide(u32 battler, u32 which);
+enum TrainerSlideTargets ShouldDoTrainerSlide(u32 battler, enum TrainerSlideType slideId);
 #endif // GUARD_TRAINER_SLIDE_H
