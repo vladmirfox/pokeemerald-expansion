@@ -943,7 +943,6 @@ void TrainerBattleLoadArgs(const u8 *data)
     InitTrainerBattleVariables();
     memcpy(gTrainerBattleParameter.data, data, sizeof(TrainerBattleParameter));
     sTrainerBattleEndScript = (u8*)data + sizeof(TrainerBattleParameter);
-    DebugPrintTrainerParams((&gTrainerBattleParameter));
 }
 
 void TrainerBattleLoadArgsTrainerA(const u8 *data)
