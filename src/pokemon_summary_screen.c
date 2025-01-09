@@ -3023,7 +3023,6 @@ static void PrintPageNamesAndStats(void)
     PrintTextOnWindow(PSS_LABEL_WINDOW_CONTEST_MOVES_TITLE, gText_ContestMoves, 2, 1, 0, 1);
 
     ShowCancelOrRenamePrompt();
-    ShowMonIvPrompt();
 
     stringXPos = GetStringRightAlignXOffset(FONT_NORMAL, gText_Info, 62);
     iconXPos = stringXPos - 16;
@@ -3061,6 +3060,7 @@ static void PrintPageNamesAndStats(void)
     PrintTextOnWindow(PSS_LABEL_WINDOW_MOVES_APPEAL_JAM, gText_Appeal, 0, 1, 0, 1);
     PrintTextOnWindow(PSS_LABEL_WINDOW_MOVES_APPEAL_JAM, gText_Jam, 0, 17, 0, 1);
     PrintTextOnWindowWithFont(PSS_LABEL_WINDOW_PROMPT_RELEARN, gText_Relearn, 0, 4, 0, 0, FONT_SMALL);
+    ShowMonIvPrompt();
 }
 
 static void PutPageWindowTilemaps(u8 page)
