@@ -761,8 +761,8 @@ u8 GetTrainerBattleTransition(void)
     u8 transitionType;
     u8 enemyLevel;
     u8 playerLevel;
-    u32 trainerId = SanitizeTrainerId(TRAINER_BATTLE_PARAM.battleOpponentA);
-    u32 trainerClass = GetTrainerClassFromId(TRAINER_BATTLE_PARAM.battleOpponentA);
+    u32 trainerId = SanitizeTrainerId(TRAINER_BATTLE_PARAM.opponentA);
+    u32 trainerClass = GetTrainerClassFromId(TRAINER_BATTLE_PARAM.opponentA);
 
     if (DoesTrainerHaveMugshot(trainerId))
         return B_TRANSITION_MUGSHOT;
@@ -900,12 +900,12 @@ static void TryUpdateGymLeaderRematchFromTrainer(void)
 
 static u16 GetTrainerAFlag(void)
 {
-    return TRAINER_FLAGS_START + TRAINER_BATTLE_PARAM.battleOpponentA;
+    return TRAINER_FLAGS_START + TRAINER_BATTLE_PARAM.opponentA;
 }
 
 static u16 GetTrainerBFlag(void)
 {
-    return TRAINER_FLAGS_START + TRAINER_BATTLE_PARAM.battleOpponentB;
+    return TRAINER_FLAGS_START + TRAINER_BATTLE_PARAM.opponentB;
 }
 
 static bool32 IsPlayerDefeated(u32 battleOutcome)
@@ -928,8 +928,8 @@ static bool32 IsPlayerDefeated(u32 battleOutcome)
 
 void ResetTrainerOpponentIds(void)
 {
-    TRAINER_BATTLE_PARAM.battleOpponentA = 0;
-    TRAINER_BATTLE_PARAM.battleOpponentB = 0;
+    TRAINER_BATTLE_PARAM.opponentA = 0;
+    TRAINER_BATTLE_PARAM.opponentB = 0;
 }
 
 static void InitTrainerBattleVariables(void)
@@ -951,7 +951,7 @@ void TrainerBattleLoadArgsTrainerA(const u8 *data)
 
     TRAINER_BATTLE_PARAM.playMusicA = temp->params.playMusicA;
     TRAINER_BATTLE_PARAM.objEventLocalIdA = temp->params.objEventLocalIdA;
-    TRAINER_BATTLE_PARAM.battleOpponentA = temp->params.battleOpponentA;
+    TRAINER_BATTLE_PARAM.opponentA = temp->params.opponentA;
     TRAINER_BATTLE_PARAM.introTextA = temp->params.introTextA;
     TRAINER_BATTLE_PARAM.defeatTextA = temp->params.defeatTextA;
     TRAINER_BATTLE_PARAM.battleScriptRetAddrA = temp->params.battleScriptRetAddrA;
@@ -963,7 +963,7 @@ void TrainerBattleLoadArgsTrainerB(const u8 *data)
 
     TRAINER_BATTLE_PARAM.playMusicB = temp->params.playMusicB;
     TRAINER_BATTLE_PARAM.objEventLocalIdB = temp->params.objEventLocalIdB;
-    TRAINER_BATTLE_PARAM.battleOpponentB = temp->params.battleOpponentB;
+    TRAINER_BATTLE_PARAM.opponentB = temp->params.opponentB;
     TRAINER_BATTLE_PARAM.introTextB = temp->params.introTextB;
     TRAINER_BATTLE_PARAM.defeatTextB = temp->params.defeatTextB;
     TRAINER_BATTLE_PARAM.battleScriptRetAddrB = temp->params.battleScriptRetAddrB;
@@ -976,7 +976,7 @@ void TrainerBattleLoadArgsSecondTrainer(const u8 *data)
 
     TRAINER_BATTLE_PARAM.playMusicB = temp->params.playMusicA;
     TRAINER_BATTLE_PARAM.objEventLocalIdB = temp->params.objEventLocalIdA;
-    TRAINER_BATTLE_PARAM.battleOpponentB = temp->params.battleOpponentA;
+    TRAINER_BATTLE_PARAM.opponentB = temp->params.opponentA;
     TRAINER_BATTLE_PARAM.introTextB = temp->params.introTextA;
     TRAINER_BATTLE_PARAM.defeatTextB = temp->params.defeatTextA;
     TRAINER_BATTLE_PARAM.battleScriptRetAddrB = temp->params.battleScriptRetAddrA;
@@ -1026,22 +1026,22 @@ const u8 *BattleSetup_ConfigureTrainerBattle(const u8* data)
 #if FREE_MATCH_CALL == FALSE
     case TRAINER_BATTLE_REMATCH_DOUBLE:
         SetMapVarsToTrainerA();
-        TRAINER_BATTLE_PARAM.battleOpponentA = GetRematchTrainerId(TRAINER_BATTLE_PARAM.battleOpponentA);
+        TRAINER_BATTLE_PARAM.opponentA = GetRematchTrainerId(TRAINER_BATTLE_PARAM.opponentA);
         return EventScript_TryDoDoubleRematchBattle;
     case TRAINER_BATTLE_REMATCH:
         SetMapVarsToTrainerA();
-        TRAINER_BATTLE_PARAM.battleOpponentA = GetRematchTrainerId(TRAINER_BATTLE_PARAM.battleOpponentA);
+        TRAINER_BATTLE_PARAM.opponentA = GetRematchTrainerId(TRAINER_BATTLE_PARAM.opponentA);
         return EventScript_TryDoRematchBattle;
 #endif //FREE_MATCH_CALL
     case TRAINER_BATTLE_PYRAMID:
         if (gApproachingTrainerId == 0)
         {
             SetMapVarsToTrainerA();
-            TRAINER_BATTLE_PARAM.battleOpponentA = LocalIdToPyramidTrainerId(gSpecialVar_LastTalked);
+            TRAINER_BATTLE_PARAM.opponentA = LocalIdToPyramidTrainerId(gSpecialVar_LastTalked);
         }
         else
         {
-            TRAINER_BATTLE_PARAM.battleOpponentB = LocalIdToPyramidTrainerId(gSpecialVar_LastTalked);
+            TRAINER_BATTLE_PARAM.opponentB = LocalIdToPyramidTrainerId(gSpecialVar_LastTalked);
         }
         return EventScript_TryDoNormalTrainerBattle;
     case TRAINER_BATTLE_SET_TRAINERS_FOR_MULTI_BATTLE:
@@ -1050,11 +1050,11 @@ const u8 *BattleSetup_ConfigureTrainerBattle(const u8* data)
         if (gApproachingTrainerId == 0)
         {
             SetMapVarsToTrainerA();
-            TRAINER_BATTLE_PARAM.battleOpponentA = LocalIdToHillTrainerId(gSpecialVar_LastTalked);
+            TRAINER_BATTLE_PARAM.opponentA = LocalIdToHillTrainerId(gSpecialVar_LastTalked);
         }
         else
         {
-            TRAINER_BATTLE_PARAM.battleOpponentB = LocalIdToHillTrainerId(gSpecialVar_LastTalked);
+            TRAINER_BATTLE_PARAM.opponentB = LocalIdToHillTrainerId(gSpecialVar_LastTalked);
         }
         return EventScript_TryDoNormalTrainerBattle;
     case TRAINER_BATTLE_TWO_TRAINERS_NO_INTRO:
@@ -1103,7 +1103,7 @@ void SetUpTwoTrainersBattle(void)
 bool32 GetTrainerFlagFromScriptPointer(const u8 *data)
 {
     TrainerBattleParameter *temp = (TrainerBattleParameter*)(data + OPCODE_OFFSET);
-    return FlagGet(TRAINER_FLAGS_START + temp->params.battleOpponentA);
+    return FlagGet(TRAINER_FLAGS_START + temp->params.opponentA);
 }
 #undef OPCODE_OFFSET
 
@@ -1133,7 +1133,7 @@ bool8 GetTrainerFlag(void)
 
 static void SetBattledTrainersFlags(void)
 {
-    if (TRAINER_BATTLE_PARAM.battleOpponentB != 0)
+    if (TRAINER_BATTLE_PARAM.opponentB != 0)
         FlagSet(GetTrainerBFlag());
     FlagSet(GetTrainerAFlag());
 }
@@ -1253,7 +1253,7 @@ static void CB2_EndTrainerBattle(void)
 {
     HandleBattleVariantEndParty();
 
-    if (TRAINER_BATTLE_PARAM.battleOpponentA == TRAINER_SECRET_BASE)
+    if (TRAINER_BATTLE_PARAM.opponentA == TRAINER_SECRET_BASE)
     {
         DowngradeBadPoison();
         SetMainCallback2(CB2_ReturnToFieldContinueScriptPlayMapMusic);
@@ -1279,7 +1279,7 @@ static void CB2_EndTrainerBattle(void)
 
 static void CB2_EndRematchBattle(void)
 {
-    if (TRAINER_BATTLE_PARAM.battleOpponentA == TRAINER_SECRET_BASE)
+    if (TRAINER_BATTLE_PARAM.opponentA == TRAINER_SECRET_BASE)
     {
         DowngradeBadPoison();
         SetMainCallback2(CB2_ReturnToFieldContinueScriptPlayMapMusic);
@@ -1374,9 +1374,9 @@ void PlayTrainerEncounterMusic(void)
     u16 music;
 
     if (gApproachingTrainerId == 0)
-        trainerId = TRAINER_BATTLE_PARAM.battleOpponentA;
+        trainerId = TRAINER_BATTLE_PARAM.opponentA;
     else
-        trainerId = TRAINER_BATTLE_PARAM.battleOpponentB;
+        trainerId = TRAINER_BATTLE_PARAM.opponentB;
 
     if (TRAINER_BATTLE_PARAM.mode != TRAINER_BATTLE_CONTINUE_SCRIPT_NO_MUSIC
         && TRAINER_BATTLE_PARAM.mode != TRAINER_BATTLE_CONTINUE_SCRIPT_DOUBLE_NO_MUSIC)
@@ -1449,7 +1449,7 @@ const u8 *GetTrainerALoseText(void)
 {
     const u8 *string;
 
-    if (TRAINER_BATTLE_PARAM.battleOpponentA == TRAINER_SECRET_BASE)
+    if (TRAINER_BATTLE_PARAM.opponentA == TRAINER_SECRET_BASE)
         string = GetSecretBaseTrainerLoseText();
     else
         string = TRAINER_BATTLE_PARAM.defeatTextA;
@@ -1710,7 +1710,7 @@ static void RegisterTrainerInMatchCall(void)
 {
     if (FlagGet(FLAG_HAS_MATCH_CALL))
     {
-        u32 matchCallFlagId = GetTrainerMatchCallFlag(TRAINER_BATTLE_PARAM.battleOpponentA);
+        u32 matchCallFlagId = GetTrainerMatchCallFlag(TRAINER_BATTLE_PARAM.opponentA);
         if (matchCallFlagId != 0xFFFF)
             FlagSet(matchCallFlagId);
     }
@@ -1807,15 +1807,15 @@ u16 GetLastBeatenRematchTrainerId(u16 trainerId)
 
 bool8 ShouldTryRematchBattle(void)
 {
-    if (IsFirstTrainerIdReadyForRematch(gRematchTable, TRAINER_BATTLE_PARAM.battleOpponentA))
+    if (IsFirstTrainerIdReadyForRematch(gRematchTable, TRAINER_BATTLE_PARAM.opponentA))
         return TRUE;
 
-    return WasSecondRematchWon(gRematchTable, TRAINER_BATTLE_PARAM.battleOpponentA);
+    return WasSecondRematchWon(gRematchTable, TRAINER_BATTLE_PARAM.opponentA);
 }
 
 bool8 IsTrainerReadyForRematch(void)
 {
-    return IsTrainerReadyForRematch_(gRematchTable, TRAINER_BATTLE_PARAM.battleOpponentA);
+    return IsTrainerReadyForRematch_(gRematchTable, TRAINER_BATTLE_PARAM.opponentA);
 }
 
 static void HandleRematchVarsOnBattleEnd(void)
@@ -1823,7 +1823,7 @@ static void HandleRematchVarsOnBattleEnd(void)
     if ((gBattleTypeFlags & BATTLE_TYPE_TRAINER) && (I_VS_SEEKER_CHARGING != 0))
         ClearRematchMovementByTrainerId();
 
-    ClearTrainerWantRematchState(gRematchTable, TRAINER_BATTLE_PARAM.battleOpponentA);
+    ClearTrainerWantRematchState(gRematchTable, TRAINER_BATTLE_PARAM.opponentA);
     SetBattledTrainersFlags();
 }
 

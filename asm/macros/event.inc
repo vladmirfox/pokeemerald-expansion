@@ -705,12 +705,12 @@
 	.ifgt \type; .set trainerbattle_flags, trainerbattle_flags | (\type << 4); .endif
 	.byte trainerbattle_flags
 	.byte \localIdA             @ objEventLocalIdA
-	.2byte \trainer_a           @ battleOpponentA
+	.2byte \trainer_a           @ opponentA
 	.4byte \intro_text_a        @ introTextA
 	.4byte \lose_text_a         @ defeatTextA
 	.4byte \event_script_a      @ retAddrA
 	.byte  \localIdB            @ objEventLocalIdB
-	.2byte \trainer_b           @ battleOpponentB
+	.2byte \trainer_b           @ opponentB
 	.4byte \intro_text_b        @ introTextB
 	.4byte \lose_text_b         @ defeatTextB
 	.4byte \event_script_b      @ retAddrB
