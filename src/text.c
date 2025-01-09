@@ -1094,12 +1094,6 @@ static u16 RenderText(struct TextPrinter *textPrinter)
         {
             currChar = *textPrinter->printerTemplate.currentChar;
             textPrinter->printerTemplate.currentChar++;
-            if (DECAP_ENABLED)
-            {
-                lastChar = textPrinter->lastChar;
-                if (lastChar != CHAR_FIXED_CASE)
-                    textPrinter->lastChar = currChar;
-            }
 
             switch (currChar)
             {
@@ -1255,46 +1249,8 @@ static u16 RenderText(struct TextPrinter *textPrinter)
                 textPrinter->printerTemplate.currentX += gCurGlyph.width + textPrinter->printerTemplate.letterSpacing;
                 return RENDER_PRINT;
             case EOS:
-                if (DECAP_ENABLED)
-                    // Clear fixed case
-                    textPrinter->lastChar = currChar;
                 return RENDER_FINISH;
-        #if DECAP_ENABLED
-            // Disable/enable decapitalization
-            // In vanilla these are 1-2 pixel spaces
-            case CHAR_FIXED_CASE:
-            case CHAR_UNFIX_CASE:
-		textPrinter->lastChar = currChar
-		if(!textPrinter->japanese)
-		    return RENDER_REPEAT;
-		break;
-	    case CHAR_V:
-                if (lastChar == CHAR_T) // TV
-                    lastChar = 0;
-		break;
-	    case CHAR_M:
-                if (lastChar == CHAR_T) { // TM
-                    lastChar = 0;
-                    break;
-                }
-            case CHAR_P:
-                if (lastChar == CHAR_H) { // HP, HM
-                    lastChar = 0;
-                    break;
-                }
-            case CHAR_C:
-                if (lastChar == CHAR_P) // PC, PP, PM
-                    lastChar = 0;
-                break;
-	#endif
 	    }
-	    // If not Japanese or fixed case, try to decap
-	    if (DECAP_ENABLED && !textPrinter->japanese && lastChar != CHAR_FIXED_CASE)
-	    {
-    	    // Two consecutive uppercase chars; lowercase this one
-	    if (IS_UPPER(currChar) && IS_UPPER(lastChar))
- 	    currChar = TO_LOWER(currChar);
-            }
             switch (subStruct->fontId)
 	    {
 	    case FONT_SMALL:
