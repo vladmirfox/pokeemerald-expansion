@@ -193,7 +193,7 @@ static bool32 ShouldRunTrainerSlidePlayerLandsFirstSuperEffectiveHit(enum Diffic
     if (!IsTrainerSlideInitialized(slideId))
         return FALSE;
 
-    if (gBattleMons[battler].hp == 0)
+    if (!IsBattlerAlive(battler))
         return FALSE;
 
     return TRUE;
