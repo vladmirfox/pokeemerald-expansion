@@ -294,6 +294,8 @@ struct DebugMonData
     u8  mon_ev_satk;
     u8  mon_ev_sdef;
     u8  teraType;
+    u8  dynamaxLevel:7;
+    u8  gmaxFactor:1;
 };
 
 struct DebugMenuListData
@@ -436,6 +438,8 @@ static void DebugAction_Give_Pokemon_SelectShiny(u8 taskId);
 static void DebugAction_Give_Pokemon_SelectNature(u8 taskId);
 static void DebugAction_Give_Pokemon_SelectAbility(u8 taskId);
 static void DebugAction_Give_Pokemon_SelectTeraType(u8 taskId);
+static void DebugAction_Give_Pokemon_SelectDynamaxLevel(u8 taskId);
+static void DebugAction_Give_Pokemon_SelectGigantamaxFactor(u8 taskId);
 static void DebugAction_Give_Pokemon_SelectIVs(u8 taskId);
 static void DebugAction_Give_Pokemon_SelectEVs(u8 taskId);
 static void DebugAction_Give_Pokemon_ComplexCreateMon(u8 taskId);
@@ -632,8 +636,10 @@ static const u8 sDebugText_PokemonID[] =                _("Species: {STR_VAR_3}\
 static const u8 sDebugText_PokemonLevel[] =             _("Level:{CLEAR_TO 90}\n{STR_VAR_1}{CLEAR_TO 90}\n{CLEAR_TO 90}\n{STR_VAR_2}{CLEAR_TO 90}");
 static const u8 sDebugText_PokemonShiny[] =             _("Shiny:{CLEAR_TO 90}\n   {STR_VAR_2}{CLEAR_TO 90}\n{CLEAR_TO 90}\n{CLEAR_TO 90}");
 static const u8 sDebugText_PokemonNature[] =            _("Nature ID: {STR_VAR_3}{CLEAR_TO 90}\n{STR_VAR_1}{CLEAR_TO 90}\n{CLEAR_TO 90}\n{STR_VAR_2}{CLEAR_TO 90}");
-static const u8 sDebugText_PokemonTeraType[] =          _("Type ID: {STR_VAR_3}{CLEAR_TO 90}\n{STR_VAR_1}{CLEAR_TO 90}\n{CLEAR_TO 90}\n{STR_VAR_2}{CLEAR_TO 90}");
 static const u8 sDebugText_PokemonAbility[] =           _("Ability Num: {STR_VAR_3}{CLEAR_TO 90}\n{STR_VAR_1}{CLEAR_TO 90}\n{CLEAR_TO 90}\n{STR_VAR_2}{CLEAR_TO 90}");
+static const u8 sDebugText_PokemonTeraType[] =          _("Tera Type: {STR_VAR_3}{CLEAR_TO 90}\n{STR_VAR_1}{CLEAR_TO 90}\n{CLEAR_TO 90}\n{STR_VAR_2}{CLEAR_TO 90}");
+static const u8 sDebugText_PokemonDynamaxLevel[] =      _("Dmax Lvl:{CLEAR_TO 90}\n{STR_VAR_1}{CLEAR_TO 90}\n{CLEAR_TO 90}\n{STR_VAR_2}{CLEAR_TO 90}");
+static const u8 sDebugText_PokemonGmaxFactor[] =        _("Gmax Factor:{CLEAR_TO 90}\n   {STR_VAR_2}{CLEAR_TO 90}\n{CLEAR_TO 90}\n{CLEAR_TO 90}");
 static const u8 sDebugText_PokemonIVs[] =               _("All IVs:{CLEAR_TO 90}\n    {STR_VAR_3}{CLEAR_TO 90}\n{CLEAR_TO 90}\n{STR_VAR_2}{CLEAR_TO 90}");
 static const u8 sDebugText_PokemonEVs[] =               _("All EVs:{CLEAR_TO 90}\n    {STR_VAR_3}{CLEAR_TO 90}\n{CLEAR_TO 90}\n{STR_VAR_2}{CLEAR_TO 90}");
 static const u8 sDebugText_IV_HP[] =                    _("IV HP:{CLEAR_TO 90}\n    {STR_VAR_3}{CLEAR_TO 90}\n{CLEAR_TO 90}\n{STR_VAR_2}{CLEAR_TO 90}");
@@ -3012,6 +3018,8 @@ static void ResetMonDataStruct(struct DebugMonData *sDebugMonData)
     sDebugMonData->nature           = 0;
     sDebugMonData->abilityNum       = 0;
     sDebugMonData->teraType         = TYPE_NONE;
+    sDebugMonData->dynamaxLevel     = 0;
+    sDebugMonData->gmaxFactor       = FALSE;
     sDebugMonData->mon_iv_hp        = 0;
     sDebugMonData->mon_iv_atk       = 0;
     sDebugMonData->mon_iv_def       = 0;
@@ -3392,6 +3400,82 @@ static void DebugAction_Give_Pokemon_SelectTeraType(u8 taskId)
     if (JOY_NEW(A_BUTTON))
     {
         sDebugMonData->teraType = gTasks[taskId].tInput;
+        gTasks[taskId].tInput = 0;
+        gTasks[taskId].tDigit = 0;
+
+        StringCopy(gStringVar2, gText_DigitIndicator[gTasks[taskId].tDigit]);
+        ConvertIntToDecimalStringN(gStringVar1, gTasks[taskId].tInput, STR_CONV_MODE_LEADING_ZEROS, 2);
+        StringCopyPadded(gStringVar1, gStringVar1, CHAR_SPACE, 15);
+        StringExpandPlaceholders(gStringVar4, sDebugText_PokemonDynamaxLevel);
+        AddTextPrinterParameterized(gTasks[taskId].tSubWindowId, DEBUG_MENU_FONT, gStringVar4, 0, 0, 0, NULL);
+
+        gTasks[taskId].func = DebugAction_Give_Pokemon_SelectDynamaxLevel;
+    }
+    else if (JOY_NEW(B_BUTTON))
+    {
+        PlaySE(SE_SELECT);
+        Free(sDebugMonData);
+        DebugAction_DestroyExtraWindow(taskId);
+    }
+}
+
+static void DebugAction_Give_Pokemon_SelectDynamaxLevel(u8 taskId)
+{
+    if (JOY_NEW(DPAD_ANY))
+    {
+        PlaySE(SE_SELECT);
+        Debug_HandleInput_Numeric(taskId, 0, MAX_DYNAMAX_LEVEL, 2);
+
+        StringCopy(gStringVar2, gText_DigitIndicator[gTasks[taskId].tDigit]);
+        ConvertIntToDecimalStringN(gStringVar1, gTasks[taskId].tInput, STR_CONV_MODE_LEADING_ZEROS, 2);
+        StringCopyPadded(gStringVar1, gStringVar1, CHAR_SPACE, 15);
+        StringExpandPlaceholders(gStringVar4, sDebugText_PokemonDynamaxLevel);
+        AddTextPrinterParameterized(gTasks[taskId].tSubWindowId, DEBUG_MENU_FONT, gStringVar4, 0, 0, 0, NULL);
+    }
+
+    if (JOY_NEW(A_BUTTON))
+    {
+        sDebugMonData->dynamaxLevel = gTasks[taskId].tInput;
+        gTasks[taskId].tInput = 0;
+        gTasks[taskId].tDigit = 0;
+
+        ConvertIntToDecimalStringN(gStringVar3, gTasks[taskId].tInput, STR_CONV_MODE_LEADING_ZEROS, 0);
+        StringCopyPadded(gStringVar3, gStringVar3, CHAR_SPACE, 15);
+        StringCopyPadded(gStringVar2, sDebugText_False, CHAR_SPACE, 15);
+        StringExpandPlaceholders(gStringVar4, sDebugText_PokemonGmaxFactor);
+        AddTextPrinterParameterized(gTasks[taskId].tSubWindowId, DEBUG_MENU_FONT, gStringVar4, 0, 0, 0, NULL);
+
+        gTasks[taskId].func = DebugAction_Give_Pokemon_SelectGigantamaxFactor;
+    }
+    else if (JOY_NEW(B_BUTTON))
+    {
+        PlaySE(SE_SELECT);
+        Free(sDebugMonData);
+        FreeMonIconPalettes();
+        FreeAndDestroyMonIconSprite(&gSprites[gTasks[taskId].tSpriteId]);
+        DebugAction_DestroyExtraWindow(taskId);
+    }
+}
+
+static void DebugAction_Give_Pokemon_SelectGigantamaxFactor(u8 taskId)
+{
+    static const u8 *txtStr;
+
+    if (JOY_NEW(DPAD_ANY))
+    {
+        PlaySE(SE_SELECT);
+        gTasks[taskId].tInput ^= JOY_NEW(DPAD_UP | DPAD_DOWN) > 0;
+        txtStr = (gTasks[taskId].tInput == TRUE) ? sDebugText_True : sDebugText_False;
+        StringCopyPadded(gStringVar2, txtStr, CHAR_SPACE, 15);
+        ConvertIntToDecimalStringN(gStringVar3, gTasks[taskId].tInput, STR_CONV_MODE_LEADING_ZEROS, 0);
+        StringCopyPadded(gStringVar3, gStringVar3, CHAR_SPACE, 15);
+        StringExpandPlaceholders(gStringVar4, sDebugText_PokemonGmaxFactor);
+        AddTextPrinterParameterized(gTasks[taskId].tSubWindowId, DEBUG_MENU_FONT, gStringVar4, 0, 0, 0, NULL);
+    }
+
+    if (JOY_NEW(A_BUTTON))
+    {
+        sDebugMonData->gmaxFactor = gTasks[taskId].tInput;
         gTasks[taskId].tInput = 0;
         gTasks[taskId].tDigit = 0;
 
@@ -3797,6 +3881,8 @@ static void DebugAction_Give_Pokemon_ComplexCreateMon(u8 taskId) //https://githu
     u8 nature       = sDebugMonData->nature;
     u8 abilityNum   = sDebugMonData->abilityNum;
     u32 teraType    = sDebugMonData->teraType;
+    u32 dmaxLevel   = sDebugMonData->dynamaxLevel;
+    u32 gmaxFactor  = sDebugMonData->gmaxFactor;
     moves[0]        = sDebugMonData->mon_move_0;
     moves[1]        = sDebugMonData->mon_move_1;
     moves[2]        = sDebugMonData->mon_move_2;
@@ -3821,6 +3907,12 @@ static void DebugAction_Give_Pokemon_ComplexCreateMon(u8 taskId) //https://githu
 
     //Shininess
     SetMonData(&mon, MON_DATA_IS_SHINY, &isShiny);
+
+    // Gigantamax factor
+    SetMonData(&mon, MON_DATA_GIGANTAMAX_FACTOR, &gmaxFactor);
+
+    // Dynamax Level
+    SetMonData(&mon, MON_DATA_DYNAMAX_LEVEL, &dmaxLevel);
 
     // tera type
     if (teraType >= NUMBER_OF_MON_TYPES)
