@@ -1245,6 +1245,32 @@ static void Debug_DestroyMenu_Full_Script(u8 taskId, const u8 *script)
     ScriptContext_SetupScript(script);
 }
 
+static void Debug_HandleInput_Numeric(u8 taskId, s32 min, s32 max, u32 digits)
+{
+    if (JOY_NEW(DPAD_UP))
+    {
+        gTasks[taskId].tInput += sPowersOfTen[gTasks[taskId].tDigit];
+        if (gTasks[taskId].tInput > max)
+            gTasks[taskId].tInput = max;
+    }
+    if (JOY_NEW(DPAD_DOWN))
+    {
+        gTasks[taskId].tInput -= sPowersOfTen[gTasks[taskId].tDigit];
+        if (gTasks[taskId].tInput < min)
+            gTasks[taskId].tInput = min;
+    }
+    if (JOY_NEW(DPAD_LEFT))
+    {
+        if (gTasks[taskId].tDigit > 0)
+            gTasks[taskId].tDigit -= 1;
+    }
+    if (JOY_NEW(DPAD_RIGHT))
+    {
+        if (gTasks[taskId].tDigit < digits - 1)
+            gTasks[taskId].tDigit += 1;
+    }
+}
+
 static void DebugAction_Cancel(u8 taskId)
 {
     Debug_DestroyMenu_Full(taskId);
@@ -1954,28 +1980,7 @@ static void DebugAction_Util_Warp_SelectMapGroup(u8 taskId)
     if (JOY_NEW(DPAD_ANY))
     {
         PlaySE(SE_SELECT);
-        if (JOY_NEW(DPAD_UP))
-        {
-            gTasks[taskId].tInput += sPowersOfTen[gTasks[taskId].tDigit];
-            if (gTasks[taskId].tInput > LAST_MAP_GROUP)
-                gTasks[taskId].tInput = LAST_MAP_GROUP;
-        }
-        if (JOY_NEW(DPAD_DOWN))
-        {
-            gTasks[taskId].tInput -= sPowersOfTen[gTasks[taskId].tDigit];
-            if (gTasks[taskId].tInput < 0)
-                gTasks[taskId].tInput = 0;
-        }
-        if (JOY_NEW(DPAD_LEFT))
-        {
-            if (gTasks[taskId].tDigit > 0)
-                gTasks[taskId].tDigit -= 1;
-        }
-        if (JOY_NEW(DPAD_RIGHT))
-        {
-            if (gTasks[taskId].tDigit < 2)
-                gTasks[taskId].tDigit += 1;
-        }
+        Debug_HandleInput_Numeric(taskId, 0, LAST_MAP_GROUP, 3);
 
         ConvertIntToDecimalStringN(gStringVar1, gTasks[taskId].tInput, STR_CONV_MODE_LEADING_ZEROS, 3);
         ConvertIntToDecimalStringN(gStringVar2, LAST_MAP_GROUP, STR_CONV_MODE_LEADING_ZEROS, 3);
@@ -2015,28 +2020,7 @@ static void DebugAction_Util_Warp_SelectMap(u8 taskId)
     if (JOY_NEW(DPAD_ANY))
     {
         PlaySE(SE_SELECT);
-        if (JOY_NEW(DPAD_UP))
-        {
-            gTasks[taskId].tInput += sPowersOfTen[gTasks[taskId].tDigit];
-            if (gTasks[taskId].tInput > max_value - 1)
-                gTasks[taskId].tInput = max_value - 1;
-        }
-        if (JOY_NEW(DPAD_DOWN))
-        {
-            gTasks[taskId].tInput -= sPowersOfTen[gTasks[taskId].tDigit];
-            if (gTasks[taskId].tInput < 0)
-                gTasks[taskId].tInput = 0;
-        }
-        if (JOY_NEW(DPAD_LEFT))
-        {
-            if (gTasks[taskId].tDigit > 0)
-                gTasks[taskId].tDigit -= 1;
-        }
-        if (JOY_NEW(DPAD_RIGHT))
-        {
-            if (gTasks[taskId].tDigit < 2)
-                gTasks[taskId].tDigit += 1;
-        }
+        Debug_HandleInput_Numeric(taskId, 0, max_value - 1, 3);
 
         ConvertIntToDecimalStringN(gStringVar1, gTasks[taskId].tInput, STR_CONV_MODE_LEADING_ZEROS, (max_value >= 100) ? 3 : 2);
         ConvertIntToDecimalStringN(gStringVar2, MAP_GROUP_COUNT[gTasks[taskId].tMapGroup] - 1, STR_CONV_MODE_LEADING_ZEROS, (max_value >= 100) ? 3 : 2);
@@ -2260,29 +2244,7 @@ static void DebugAction_Util_Weather_SelectId(u8 taskId)
     if (JOY_NEW(DPAD_ANY))
     {
         PlaySE(SE_SELECT);
-
-        if (JOY_NEW(DPAD_UP))
-        {
-            gTasks[taskId].tInput += sPowersOfTen[gTasks[taskId].tDigit];
-            if (gTasks[taskId].tInput > WEATHER_ROUTE123_CYCLE)
-                gTasks[taskId].tInput = WEATHER_ROUTE123_CYCLE;
-        }
-        if (JOY_NEW(DPAD_DOWN))
-        {
-            gTasks[taskId].tInput -= sPowersOfTen[gTasks[taskId].tDigit];
-            if (gTasks[taskId].tInput < WEATHER_NONE)
-                gTasks[taskId].tInput = WEATHER_NONE;
-        }
-        if (JOY_NEW(DPAD_LEFT))
-        {
-            if (gTasks[taskId].tDigit > 0)
-                gTasks[taskId].tDigit -= 1;
-        }
-        if (JOY_NEW(DPAD_RIGHT))
-        {
-            if (gTasks[taskId].tDigit < 2)
-                gTasks[taskId].tDigit += 1;
-        }
+        Debug_HandleInput_Numeric(taskId, WEATHER_NONE, WEATHER_COUNT - 1, 3);
 
         StringCopy(gStringVar2, gText_DigitIndicator[gTasks[taskId].tDigit]);
         ConvertIntToDecimalStringN(gStringVar3, gTasks[taskId].tInput, STR_CONV_MODE_LEADING_ZEROS, 2);
@@ -2477,34 +2439,8 @@ static void DebugAction_FlagsVars_FlagsSelect(u8 taskId)
         return;
     }
 
-    if (JOY_NEW(DPAD_UP))
-    {
-        PlaySE(SE_SELECT);
-        gTasks[taskId].tInput += sPowersOfTen[gTasks[taskId].tDigit];
-        if (gTasks[taskId].tInput >= FLAGS_COUNT)
-            gTasks[taskId].tInput = FLAGS_COUNT - 1;
-    }
-    if (JOY_NEW(DPAD_DOWN))
-    {
-        PlaySE(SE_SELECT);
-        gTasks[taskId].tInput -= sPowersOfTen[gTasks[taskId].tDigit];
-        if (gTasks[taskId].tInput < 1)
-            gTasks[taskId].tInput = 1;
-    }
-    if (JOY_NEW(DPAD_LEFT))
-    {
-        PlaySE(SE_SELECT);
-        gTasks[taskId].tDigit -= 1;
-        if (gTasks[taskId].tDigit < 0)
-            gTasks[taskId].tDigit = 0;
-    }
-    if (JOY_NEW(DPAD_RIGHT))
-    {
-        PlaySE(SE_SELECT);
-        gTasks[taskId].tDigit += 1;
-        if (gTasks[taskId].tDigit > DEBUG_NUMBER_DIGITS_FLAGS - 1)
-            gTasks[taskId].tDigit = DEBUG_NUMBER_DIGITS_FLAGS - 1;
-    }
+    PlaySE(SE_SELECT);
+    Debug_HandleInput_Numeric(taskId, 1, FLAGS_COUNT - 1, DEBUG_NUMBER_DIGITS_FLAGS);
 
     if (JOY_NEW(DPAD_ANY) || JOY_NEW(A_BUTTON))
     {
@@ -2556,30 +2492,7 @@ static void DebugAction_FlagsVars_Vars(u8 taskId)
 
 static void DebugAction_FlagsVars_Select(u8 taskId)
 {
-    if (JOY_NEW(DPAD_UP))
-    {
-        gTasks[taskId].tInput += sPowersOfTen[gTasks[taskId].tDigit];
-        if (gTasks[taskId].tInput > VARS_END)
-            gTasks[taskId].tInput = VARS_END;
-    }
-    if (JOY_NEW(DPAD_DOWN))
-    {
-        gTasks[taskId].tInput -= sPowersOfTen[gTasks[taskId].tDigit];
-        if (gTasks[taskId].tInput < VARS_START)
-            gTasks[taskId].tInput = VARS_START;
-    }
-    if (JOY_NEW(DPAD_LEFT))
-    {
-        gTasks[taskId].tDigit -= 1;
-        if (gTasks[taskId].tDigit < 0)
-            gTasks[taskId].tDigit = 0;
-    }
-    if (JOY_NEW(DPAD_RIGHT))
-    {
-        gTasks[taskId].tDigit += 1;
-        if (gTasks[taskId].tDigit > DEBUG_NUMBER_DIGITS_VARIABLES - 1)
-            gTasks[taskId].tDigit = DEBUG_NUMBER_DIGITS_VARIABLES - 1;
-    }
+    Debug_HandleInput_Numeric(taskId, VARS_START, VARS_END, DEBUG_NUMBER_DIGITS_VARIABLES);
 
     if (JOY_NEW(DPAD_ANY))
     {
@@ -3002,29 +2915,7 @@ static void DebugAction_Give_Item_SelectId(u8 taskId)
     if (JOY_NEW(DPAD_ANY))
     {
         PlaySE(SE_SELECT);
-
-        if (JOY_NEW(DPAD_UP))
-        {
-            gTasks[taskId].tInput += sPowersOfTen[gTasks[taskId].tDigit];
-            if (gTasks[taskId].tInput >= ITEMS_COUNT)
-                gTasks[taskId].tInput = ITEMS_COUNT - 1;
-        }
-        if (JOY_NEW(DPAD_DOWN))
-        {
-            gTasks[taskId].tInput -= sPowersOfTen[gTasks[taskId].tDigit];
-            if (gTasks[taskId].tInput < 1)
-                gTasks[taskId].tInput = 1;
-        }
-        if (JOY_NEW(DPAD_LEFT))
-        {
-            if (gTasks[taskId].tDigit > 0)
-                gTasks[taskId].tDigit -= 1;
-        }
-        if (JOY_NEW(DPAD_RIGHT))
-        {
-            if (gTasks[taskId].tDigit < DEBUG_NUMBER_DIGITS_ITEMS - 1)
-                gTasks[taskId].tDigit += 1;
-        }
+        Debug_HandleInput_Numeric(taskId, 1, ITEMS_COUNT - 1, DEBUG_NUMBER_DIGITS_ITEMS);
 
         StringCopy(gStringVar2, gText_DigitIndicator[gTasks[taskId].tDigit]);
         u8* end = CopyItemName(gTasks[taskId].tInput, gStringVar1);
@@ -3077,29 +2968,7 @@ static void DebugAction_Give_Item_SelectQuantity(u8 taskId)
     if (JOY_NEW(DPAD_ANY))
     {
         PlaySE(SE_SELECT);
-
-        if (JOY_NEW(DPAD_UP))
-        {
-            gTasks[taskId].tInput += sPowersOfTen[gTasks[taskId].tDigit];
-            if (gTasks[taskId].tInput > MAX_BAG_ITEM_CAPACITY)
-                gTasks[taskId].tInput = MAX_BAG_ITEM_CAPACITY;
-        }
-        if (JOY_NEW(DPAD_DOWN))
-        {
-            gTasks[taskId].tInput -= sPowersOfTen[gTasks[taskId].tDigit];
-            if (gTasks[taskId].tInput < 1)
-                gTasks[taskId].tInput = 1;
-        }
-        if (JOY_NEW(DPAD_LEFT))
-        {
-            if (gTasks[taskId].tDigit > 0)
-                gTasks[taskId].tDigit -= 1;
-        }
-        if (JOY_NEW(DPAD_RIGHT))
-        {
-            if (gTasks[taskId].tDigit < MAX_ITEM_DIGITS)
-                gTasks[taskId].tDigit += 1;
-        }
+        Debug_HandleInput_Numeric(taskId, 1, MAX_BAG_ITEM_CAPACITY, MAX_ITEM_DIGITS);
 
         StringCopy(gStringVar2, gText_DigitIndicator[gTasks[taskId].tDigit]);
         ConvertIntToDecimalStringN(gStringVar1, gTasks[taskId].tInput, STR_CONV_MODE_LEADING_ZEROS, DEBUG_NUMBER_DIGITS_ITEM_QUANTITY);
@@ -3248,29 +3117,7 @@ static void DebugAction_Give_Pokemon_SelectId(u8 taskId)
     if (JOY_NEW(DPAD_ANY))
     {
         PlaySE(SE_SELECT);
-
-        if (JOY_NEW(DPAD_UP))
-        {
-            gTasks[taskId].tInput += sPowersOfTen[gTasks[taskId].tDigit];
-            if (gTasks[taskId].tInput >= NUM_SPECIES)
-                gTasks[taskId].tInput = NUM_SPECIES - 1;
-        }
-        if (JOY_NEW(DPAD_DOWN))
-        {
-            gTasks[taskId].tInput -= sPowersOfTen[gTasks[taskId].tDigit];
-            if (gTasks[taskId].tInput < 1)
-                gTasks[taskId].tInput = 1;
-        }
-        if (JOY_NEW(DPAD_LEFT))
-        {
-            if (gTasks[taskId].tDigit > 0)
-                gTasks[taskId].tDigit -= 1;
-        }
-        if (JOY_NEW(DPAD_RIGHT))
-        {
-            if (gTasks[taskId].tDigit < DEBUG_NUMBER_DIGITS_ITEMS - 1)
-                gTasks[taskId].tDigit += 1;
-        }
+        Debug_HandleInput_Numeric(taskId, 1, NUM_SPECIES - 1, DEBUG_NUMBER_DIGITS_ITEMS);
 
         StringCopy(gStringVar2, gText_DigitIndicator[gTasks[taskId].tDigit]);
         u8 *end = StringCopy(gStringVar1, GetSpeciesName(gTasks[taskId].tInput)); //CopyItemName(gTasks[taskId].tInput, gStringVar1);
@@ -3316,29 +3163,7 @@ static void DebugAction_Give_Pokemon_SelectLevel(u8 taskId)
     if (JOY_NEW(DPAD_ANY))
     {
         PlaySE(SE_SELECT);
-
-        if (JOY_NEW(DPAD_UP))
-        {
-            gTasks[taskId].tInput += sPowersOfTen[gTasks[taskId].tDigit];
-            if (gTasks[taskId].tInput > MAX_LEVEL)
-                gTasks[taskId].tInput = MAX_LEVEL;
-        }
-        if (JOY_NEW(DPAD_DOWN))
-        {
-            gTasks[taskId].tInput -= sPowersOfTen[gTasks[taskId].tDigit];
-            if (gTasks[taskId].tInput < 1)
-                gTasks[taskId].tInput = 1;
-        }
-        if (JOY_NEW(DPAD_LEFT))
-        {
-            if (gTasks[taskId].tDigit > 0)
-                gTasks[taskId].tDigit -= 1;
-        }
-        if (JOY_NEW(DPAD_RIGHT))
-        {
-            if (gTasks[taskId].tDigit < 2)
-                gTasks[taskId].tDigit += 1;
-        }
+        Debug_HandleInput_Numeric(taskId, 1, MAX_LEVEL, 3);
 
         StringCopy(gStringVar2, gText_DigitIndicator[gTasks[taskId].tDigit]);
         ConvertIntToDecimalStringN(gStringVar1, gTasks[taskId].tInput, STR_CONV_MODE_LEADING_ZEROS, 3);
@@ -3591,29 +3416,7 @@ static void DebugAction_Give_Pokemon_SelectIVs(u8 taskId)
     if (JOY_NEW(DPAD_ANY))
     {
         PlaySE(SE_SELECT);
-
-        if (JOY_NEW(DPAD_UP))
-        {
-            gTasks[taskId].tInput += sPowersOfTen[gTasks[taskId].tDigit];
-            if (gTasks[taskId].tInput > MAX_PER_STAT_IVS)
-                gTasks[taskId].tInput = MAX_PER_STAT_IVS;
-        }
-        if (JOY_NEW(DPAD_DOWN))
-        {
-            gTasks[taskId].tInput -= sPowersOfTen[gTasks[taskId].tDigit];
-            if (gTasks[taskId].tInput < 0)
-                gTasks[taskId].tInput = 0;
-        }
-        if (JOY_NEW(DPAD_LEFT))
-        {
-            if (gTasks[taskId].tDigit > 0)
-                gTasks[taskId].tDigit -= 1;
-        }
-        if (JOY_NEW(DPAD_RIGHT))
-        {
-            if (gTasks[taskId].tDigit < 2)
-                gTasks[taskId].tDigit += 1;
-        }
+        Debug_HandleInput_Numeric(taskId, 0, MAX_PER_STAT_IVS, 3);
 
         StringCopy(gStringVar2, gText_DigitIndicator[gTasks[taskId].tDigit]);
         ConvertIntToDecimalStringN(gStringVar3, gTasks[taskId].tInput, STR_CONV_MODE_LEADING_ZEROS, 2);
@@ -3741,29 +3544,7 @@ static void DebugAction_Give_Pokemon_SelectEVs(u8 taskId)
     if (JOY_NEW(DPAD_ANY))
     {
         PlaySE(SE_SELECT);
-
-        if (JOY_NEW(DPAD_UP))
-        {
-            gTasks[taskId].tInput += sPowersOfTen[gTasks[taskId].tDigit];
-            if (gTasks[taskId].tInput > MAX_PER_STAT_EVS)
-                gTasks[taskId].tInput = MAX_PER_STAT_EVS;
-        }
-        if (JOY_NEW(DPAD_DOWN))
-        {
-            gTasks[taskId].tInput -= sPowersOfTen[gTasks[taskId].tDigit];
-            if (gTasks[taskId].tInput < 0)
-                gTasks[taskId].tInput = 0;
-        }
-        if (JOY_NEW(DPAD_LEFT))
-        {
-            if (gTasks[taskId].tDigit > 0)
-                gTasks[taskId].tDigit -= 1;
-        }
-        if (JOY_NEW(DPAD_RIGHT))
-        {
-            if (gTasks[taskId].tDigit < 3)
-                gTasks[taskId].tDigit += 1;
-        }
+        Debug_HandleInput_Numeric(taskId, 0, MAX_PER_STAT_EVS, 4);
 
         StringCopy(gStringVar2, gText_DigitIndicator[gTasks[taskId].tDigit]);
         ConvertIntToDecimalStringN(gStringVar3, gTasks[taskId].tInput, STR_CONV_MODE_LEADING_ZEROS, 3);
@@ -3903,29 +3684,7 @@ static void DebugAction_Give_Pokemon_Move(u8 taskId)
     if (JOY_NEW(DPAD_ANY))
     {
         PlaySE(SE_SELECT);
-
-        if (JOY_NEW(DPAD_UP))
-        {
-            gTasks[taskId].tInput += sPowersOfTen[gTasks[taskId].tDigit];
-            if (gTasks[taskId].tInput >= MOVES_COUNT)
-                gTasks[taskId].tInput = MOVES_COUNT - 1;
-        }
-        if (JOY_NEW(DPAD_DOWN))
-        {
-            gTasks[taskId].tInput -= sPowersOfTen[gTasks[taskId].tDigit];
-            if (gTasks[taskId].tInput < 0)
-                gTasks[taskId].tInput = 0;
-        }
-        if (JOY_NEW(DPAD_LEFT))
-        {
-            if (gTasks[taskId].tDigit > 0)
-                gTasks[taskId].tDigit -= 1;
-        }
-        if (JOY_NEW(DPAD_RIGHT))
-        {
-            if (gTasks[taskId].tDigit < 3)
-                gTasks[taskId].tDigit += 1;
-        }
+        Debug_HandleInput_Numeric(taskId, 0, MOVES_COUNT - 1, 4);
 
         StringCopy(gStringVar2, gText_DigitIndicator[gTasks[taskId].tDigit]);
         u8 *end = StringCopy(gStringVar1, GetMoveName(gTasks[taskId].tInput));
@@ -4376,28 +4135,7 @@ static void DebugAction_Sound_SE_SelectId(u8 taskId)
 {
     if (JOY_NEW(DPAD_ANY))
     {
-        if (JOY_NEW(DPAD_UP))
-        {
-            gTasks[taskId].tInput += sPowersOfTen[gTasks[taskId].tDigit];
-            if (gTasks[taskId].tInput > END_SE)
-                gTasks[taskId].tInput = END_SE;
-        }
-        if (JOY_NEW(DPAD_DOWN))
-        {
-            gTasks[taskId].tInput -= sPowersOfTen[gTasks[taskId].tDigit];
-            if (gTasks[taskId].tInput < 1)
-                gTasks[taskId].tInput = 1;
-        }
-        if (JOY_NEW(DPAD_LEFT))
-        {
-            if (gTasks[taskId].tDigit > 0)
-                gTasks[taskId].tDigit -= 1;
-        }
-        if (JOY_NEW(DPAD_RIGHT))
-        {
-            if (gTasks[taskId].tDigit < DEBUG_NUMBER_DIGITS_ITEMS - 1)
-                gTasks[taskId].tDigit += 1;
-        }
+        Debug_HandleInput_Numeric(taskId, 1, END_SE, DEBUG_NUMBER_DIGITS_ITEMS);
 
         StringCopy(gStringVar2, gText_DigitIndicator[gTasks[taskId].tDigit]);
         StringCopyPadded(gStringVar1, sSENames[gTasks[taskId].tInput - 1], CHAR_SPACE, 35);
@@ -4458,28 +4196,7 @@ static void DebugAction_Sound_MUS_SelectId(u8 taskId)
 {
     if (JOY_NEW(DPAD_ANY))
     {
-        if (JOY_NEW(DPAD_UP))
-        {
-            gTasks[taskId].tInput += sPowersOfTen[gTasks[taskId].tDigit];
-            if (gTasks[taskId].tInput > END_MUS)
-                gTasks[taskId].tInput = END_MUS;
-        }
-        if (JOY_NEW(DPAD_DOWN))
-        {
-            gTasks[taskId].tInput -= sPowersOfTen[gTasks[taskId].tDigit];
-            if (gTasks[taskId].tInput < START_MUS)
-                gTasks[taskId].tInput = START_MUS;
-        }
-        if (JOY_NEW(DPAD_LEFT))
-        {
-            if (gTasks[taskId].tDigit > 0)
-                gTasks[taskId].tDigit -= 1;
-        }
-        if (JOY_NEW(DPAD_RIGHT))
-        {
-            if (gTasks[taskId].tDigit < DEBUG_NUMBER_DIGITS_ITEMS - 1)
-                gTasks[taskId].tDigit += 1;
-        }
+        Debug_HandleInput_Numeric(taskId, START_MUS, END_MUS, DEBUG_NUMBER_DIGITS_ITEMS);
 
         StringCopy(gStringVar2, gText_DigitIndicator[gTasks[taskId].tDigit]);
         StringCopyPadded(gStringVar1, sBGMNames[gTasks[taskId].tInput - START_MUS], CHAR_SPACE, 35);
