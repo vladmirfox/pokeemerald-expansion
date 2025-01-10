@@ -3433,8 +3433,8 @@ static void DebugAction_Give_Pokemon_SelectNature(u8 taskId)
         if (JOY_NEW(DPAD_UP))
         {
             gTasks[taskId].tInput += sPowersOfTen[gTasks[taskId].tDigit];
-            if (gTasks[taskId].tInput > NUM_NATURES-1)
-                gTasks[taskId].tInput = NUM_NATURES-1;
+            if (gTasks[taskId].tInput > NUM_NATURES - 1)
+                gTasks[taskId].tInput = NUM_NATURES - 1;
         }
         if (JOY_NEW(DPAD_DOWN))
         {
@@ -4058,7 +4058,7 @@ static void DebugAction_Give_Pokemon_ComplexCreateMon(u8 taskId) //https://githu
     //Nature
     if (nature == NUM_NATURES || nature == 0xFF)
         nature = Random() % NUM_NATURES;
-    CreateMonWithNature(&mon, species, level, 32, nature);
+    CreateMonWithNature(&mon, species, level, USE_RANDOM_IVS, nature);
 
     //Shininess
     SetMonData(&mon, MON_DATA_IS_SHINY, &isShiny);
@@ -4072,7 +4072,7 @@ static void DebugAction_Give_Pokemon_ComplexCreateMon(u8 taskId) //https://githu
     for (i = 0; i < NUM_STATS; i++)
     {
         iv_val = IVs[i];
-        if (iv_val != 32 && iv_val != 0xFF)
+        if (iv_val != USE_RANDOM_IVS && iv_val != 0xFF)
             SetMonData(&mon, MON_DATA_HP_IV + i, &iv_val);
     }
 
@@ -4087,18 +4087,18 @@ static void DebugAction_Give_Pokemon_ComplexCreateMon(u8 taskId) //https://githu
     //Moves
     for (i = 0; i < MAX_MON_MOVES; i++)
     {
-        if (moves[i] == 0 || moves[i] == 0xFF || moves[i] >= MOVES_COUNT)
+        if (moves[i] == MOVE_NONE || moves[i] == 0xFF || moves[i] >= MOVES_COUNT)
             continue;
 
         SetMonMoveSlot(&mon, moves[i], i);
     }
 
     //Ability
-    if (abilityNum == 0xFF || GetAbilityBySpecies(species, abilityNum) == 0)
+    if (abilityNum == 0xFF || GetAbilityBySpecies(species, abilityNum) == ABILITY_NONE)
     {
         do {
-            abilityNum = Random() % 3;  // includes hidden abilities
-        } while (GetAbilityBySpecies(species, abilityNum) == 0);
+            abilityNum = Random() % NUM_ABILITY_SLOTS;  // includes hidden abilities
+        } while (GetAbilityBySpecies(species, abilityNum) == ABILITY_NONE);
     }
 
     SetMonData(&mon, MON_DATA_ABILITY_NUM, &abilityNum);
@@ -4116,7 +4116,9 @@ static void DebugAction_Give_Pokemon_ComplexCreateMon(u8 taskId) //https://githu
     }
 
     if (i >= PARTY_SIZE)
+    {
         sentToPc = CopyMonToPC(&mon);
+    }
     else
     {
         sentToPc = MON_GIVEN_TO_PARTY;
@@ -4398,7 +4400,7 @@ static void DebugAction_Sound_SE_SelectId(u8 taskId)
         }
 
         StringCopy(gStringVar2, gText_DigitIndicator[gTasks[taskId].tDigit]);
-        StringCopyPadded(gStringVar1, sSENames[gTasks[taskId].tInput-1], CHAR_SPACE, 35);
+        StringCopyPadded(gStringVar1, sSENames[gTasks[taskId].tInput - 1], CHAR_SPACE, 35);
         ConvertIntToDecimalStringN(gStringVar3, gTasks[taskId].tInput, STR_CONV_MODE_LEADING_ZEROS, DEBUG_NUMBER_DIGITS_ITEMS);
         StringExpandPlaceholders(gStringVar4, sDebugText_Sound_SFX_ID);
         AddTextPrinterParameterized(gTasks[taskId].tSubWindowId, DEBUG_MENU_FONT, gStringVar4, 0, 0, 0, NULL);
@@ -4480,7 +4482,7 @@ static void DebugAction_Sound_MUS_SelectId(u8 taskId)
         }
 
         StringCopy(gStringVar2, gText_DigitIndicator[gTasks[taskId].tDigit]);
-        StringCopyPadded(gStringVar1, sBGMNames[gTasks[taskId].tInput-START_MUS], CHAR_SPACE, 35);
+        StringCopyPadded(gStringVar1, sBGMNames[gTasks[taskId].tInput - START_MUS], CHAR_SPACE, 35);
         ConvertIntToDecimalStringN(gStringVar3, gTasks[taskId].tInput, STR_CONV_MODE_LEADING_ZEROS, DEBUG_NUMBER_DIGITS_ITEMS);
         StringExpandPlaceholders(gStringVar4, sDebugText_Sound_Music_ID);
         AddTextPrinterParameterized(gTasks[taskId].tSubWindowId, DEBUG_MENU_FONT, gStringVar4, 0, 0, 0, NULL);
