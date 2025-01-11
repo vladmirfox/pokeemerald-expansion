@@ -92,19 +92,19 @@ static const u8* const sFrontierTrainerSlides[DIFFICULTY_COUNT][TRAINERS_COUNT][
 =
 {
     /*
-    [DIFFICULTY_NORMAL] =
-    {
-        [TRAINER_NONE] =
-        {
-        },
-    },
-    [DIFFICULTY_EASY] =
-    {
-    },
-    [DIFFICULTY_HARD] =
-    {
-    },
-    */
+       [DIFFICULTY_NORMAL] =
+       {
+       [TRAINER_NONE] =
+       {
+       },
+       },
+       [DIFFICULTY_EASY] =
+       {
+       },
+       [DIFFICULTY_HARD] =
+       {
+       },
+       */
 };
 
 static const u8* const sTestTrainerSlides[DIFFICULTY_COUNT][TRAINERS_COUNT][TRAINER_SLIDE_COUNT] =
