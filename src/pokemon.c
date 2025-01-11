@@ -3700,7 +3700,7 @@ void CopyPartyMonToBattleData(u32 battlerId, u32 partyIndex)
     PokemonToBattleMon(&party[partyIndex], &gBattleMons[battlerId]);
     gBattleStruct->hpOnSwitchout[side] = gBattleMons[battlerId].hp;
     UpdateSentPokesToOpponentValue(battlerId);
-    ClearTemporarySpeciesSpriteData(battlerId, FALSE);
+    ClearTemporarySpeciesSpriteData(battlerId, FALSE, FALSE);
 }
 
 bool8 ExecuteTableBasedItemEffect(struct Pokemon *mon, u16 item, u8 partyIndex, u8 moveIndex)

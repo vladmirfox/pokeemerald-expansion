@@ -609,7 +609,7 @@ bool8 IsBattleSEPlaying(u8 battler)
 
 void BattleLoadMonSpriteGfx(struct Pokemon *mon, u32 battler)
 {
-    u32 monsPersonality, currentPersonality, isShiny, species, paletteOffset, position;
+    u32 personalityValue, isShiny, species, paletteOffset, position;
     const void *lzPaletteData;
     struct Pokemon *illusionMon = GetIllusionMonPtr(battler);
     if (illusionMon != NULL)
@@ -618,39 +618,38 @@ void BattleLoadMonSpriteGfx(struct Pokemon *mon, u32 battler)
     if (GetMonData(mon, MON_DATA_IS_EGG) || GetMonData(mon, MON_DATA_SPECIES) == SPECIES_NONE) // Don't load GFX of egg pokemon.
         return;
 
-    monsPersonality = GetMonData(mon, MON_DATA_PERSONALITY);
     isShiny = GetMonData(mon, MON_DATA_IS_SHINY);
 
     if (gBattleSpritesDataPtr->battlerData[battler].transformSpecies == SPECIES_NONE)
     {
         species = GetMonData(mon, MON_DATA_SPECIES);
-        currentPersonality = monsPersonality;
+        personalityValue = GetMonData(mon, MON_DATA_PERSONALITY);
     }
     else
     {
         species = gBattleSpritesDataPtr->battlerData[battler].transformSpecies;
         if (B_TRANSFORM_SHINY >= GEN_4)
         {
-            currentPersonality = gTransformedPersonalities[battler];
+            personalityValue = gTransformedPersonalities[battler];
             isShiny = gTransformedShininess[battler];
         }
         else
         {
-            currentPersonality = monsPersonality;
+            personalityValue = GetMonData(mon, MON_DATA_PERSONALITY);
         }
     }
 
     position = GetBattlerPosition(battler);
     HandleLoadSpecialPokePic((GetBattlerSide(battler) == B_SIDE_OPPONENT),
                              gMonSpritesGfxPtr->spritesGfx[position],
-                             species, currentPersonality);
+                             species, personalityValue);
 
     paletteOffset = OBJ_PLTT_ID(battler);
 
     if (gBattleSpritesDataPtr->battlerData[battler].transformSpecies == SPECIES_NONE)
         lzPaletteData = GetMonFrontSpritePal(mon);
     else
-        lzPaletteData = GetMonSpritePalFromSpeciesAndPersonality(species, isShiny, currentPersonality);
+        lzPaletteData = GetMonSpritePalFromSpeciesAndPersonality(species, isShiny, personalityValue);
 
     LZDecompressWram(lzPaletteData, gDecompressionBuffer);
     LoadPalette(gDecompressionBuffer, paletteOffset, PLTT_SIZE_4BPP);
@@ -937,17 +936,25 @@ void HandleSpeciesGfxDataChange(u8 battlerAtk, u8 battlerDef, bool32 megaEvo, bo
     else
     {
         position = GetBattlerPosition(battlerAtk);
-        targetSpecies = GetMonData(monDef, MON_DATA_SPECIES);
-        
-        if (B_TRANSFORM_SHINY >= GEN_4 && trackEnemyPersonality && !megaEvo)
+        if (gBattleSpritesDataPtr->battlerData[battlerAtk].transformSpecies == SPECIES_NONE)
         {
-            personalityValue = GetMonData(monDef, MON_DATA_PERSONALITY);
-            isShiny = GetMonData(monDef, MON_DATA_IS_SHINY);
+            targetSpecies = GetMonData(monDef, MON_DATA_SPECIES);
+            personalityValue = GetMonData(monAtk, MON_DATA_PERSONALITY);
+            isShiny = GetMonData(monAtk, MON_DATA_IS_SHINY);
         }
         else
         {
-            personalityValue = GetMonData(monAtk, MON_DATA_PERSONALITY);
-            isShiny = GetMonData(monAtk, MON_DATA_IS_SHINY);
+            targetSpecies = gBattleSpritesDataPtr->battlerData[battlerAtk].transformSpecies;
+            if (B_TRANSFORM_SHINY >= GEN_4 && trackEnemyPersonality && !megaEvo)
+            {
+                personalityValue = GetMonData(monDef, MON_DATA_PERSONALITY);
+                isShiny = GetMonData(monDef, MON_DATA_IS_SHINY);
+            }
+            else
+            {
+                personalityValue = GetMonData(monAtk, MON_DATA_PERSONALITY);
+                isShiny = GetMonData(monAtk, MON_DATA_IS_SHINY);
+            }
         }
 
         HandleLoadSpecialPokePic((GetBattlerSide(battlerAtk) != B_SIDE_PLAYER),
@@ -1370,9 +1377,10 @@ void FillAroundBattleWindows(void)
     }
 }
 
-void ClearTemporarySpeciesSpriteData(u8 battler, bool8 dontClearSubstitute)
+void ClearTemporarySpeciesSpriteData(u32 battler, bool32 dontClearTransform, bool32 dontClearSubstitute)
 {
-    gBattleSpritesDataPtr->battlerData[battler].transformSpecies = SPECIES_NONE;
+    if (!dontClearTransform)
+        gBattleSpritesDataPtr->battlerData[battler].transformSpecies = SPECIES_NONE;
     if (!dontClearSubstitute)
         ClearBehindSubstituteBit(battler);
 }
