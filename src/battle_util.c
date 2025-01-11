@@ -9556,6 +9556,8 @@ static inline u32 CalcMoveBasePowerAfterModifiers(struct DamageCalculationData *
         && (moveType == GetBattlerTeraType(battlerAtk)
         || (GetBattlerTeraType(battlerAtk) == TYPE_STELLAR && IsTypeStellarBoosted(battlerAtk, moveType)))
         && uq4_12_multiply_by_int_half_down(modifier, basePower) < 60
+        && gMovesInfo[move].power > 1
+        && gMovesInfo[move].effect != EFFECT_POWER_BASED_ON_USER_HP
         && gMovesInfo[move].strikeCount < 2
         && gMovesInfo[move].effect != EFFECT_MULTI_HIT
         && gMovesInfo[move].priority == 0)
