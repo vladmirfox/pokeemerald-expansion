@@ -254,12 +254,12 @@ static u16 GetTypeBasedMaxMove(u32 battler, u32 type)
     // Gigantamax check
     u32 i;
     u32 species = gBattleMons[battler].species;
-    u32 targetSpecies = SPECIES_NONE;
+    u32 targetSpecies = species;
 
     if (!gSpeciesInfo[species].isGigantamax)
         targetSpecies = GetBattleFormChangeTargetSpecies(battler, FORM_CHANGE_BATTLE_GIGANTAMAX);
 
-    if (targetSpecies != SPECIES_NONE)
+    if (targetSpecies != species)
         species = targetSpecies;
 
     if (gSpeciesInfo[species].isGigantamax)
@@ -589,19 +589,19 @@ void BS_SetMaxMoveEffect(void)
             switch (maxEffect)
             {
                 case MAX_EFFECT_SUN:
-                    weather = ENUM_WEATHER_SUN;
+                    weather = BATTLE_WEATHER_SUN;
                     msg = B_MSG_STARTED_SUNLIGHT;
                     break;
                 case MAX_EFFECT_RAIN:
-                    weather = ENUM_WEATHER_RAIN;
+                    weather = BATTLE_WEATHER_RAIN;
                     msg = B_MSG_STARTED_RAIN;
                     break;
                 case MAX_EFFECT_SANDSTORM:
-                    weather = ENUM_WEATHER_SANDSTORM;
+                    weather = BATTLE_WEATHER_SANDSTORM;
                     msg = B_MSG_STARTED_SANDSTORM;
                     break;
                 case MAX_EFFECT_HAIL:
-                    weather = ENUM_WEATHER_HAIL;
+                    weather = BATTLE_WEATHER_HAIL;
                     msg = B_MSG_STARTED_HAIL;
                     break;
             }
