@@ -938,7 +938,11 @@ void HandleSpeciesGfxDataChange(u8 battlerAtk, u8 battlerDef, bool32 megaEvo, bo
         position = GetBattlerPosition(battlerAtk);
         if (gBattleSpritesDataPtr->battlerData[battlerAtk].transformSpecies == SPECIES_NONE)
         {
-            targetSpecies = GetMonData(monDef, MON_DATA_SPECIES);
+            // Get base form if its currently Gigantamax
+            if (IsGigantamaxed(battlerDef))
+                targetSpecies = gBattleStruct->changedSpecies[GetBattlerSide(battlerDef)][gBattlerPartyIndexes[battlerDef]];
+            else
+                targetSpecies = GetMonData(monDef, MON_DATA_SPECIES);
             personalityValue = GetMonData(monAtk, MON_DATA_PERSONALITY);
             isShiny = GetMonData(monAtk, MON_DATA_IS_SHINY);
         }
