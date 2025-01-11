@@ -59,7 +59,7 @@
 #define PSS_LABEL_WINDOW_CONTEST_MOVES_TITLE 3
 
 // Button control text (upper right)
-#define PSS_LABEL_WINDOW_PROMPT_CANCEL 4 // Also handles the "rename" prompt if P_SUMMARY_SCREEN_RENAME is true
+#define PSS_LABEL_WINDOW_PROMPT_UTILITY 4 // Also handles the "rename" prompt if P_SUMMARY_SCREEN_RENAME is true
 #define PSS_LABEL_WINDOW_PROMPT_INFO 5
 #define PSS_LABEL_WINDOW_PROMPT_SWITCH 6
 #define PSS_DATA_WINDOW_UNUSED 7
@@ -202,6 +202,7 @@ EWRAM_DATA MainCallback gInitialSummaryScreenCallback = NULL; // stores callback
 void PrintTextOnWindow(u8 windowId, const u8 *string, u8 x, u8 y, u8 lineSpacing, u8 colorId);
 void PrintTextOnWindowWithFont(u8 windowId, const u8 *string, u8 x, u8 y, u8 lineSpacing, u8 colorId, u32 fontId);
 u8 AddWindowFromTemplateList(const struct WindowTemplate *template, u8 templateId);
+static u8 IncrementSkillsStatsMode(u8 mode);
 static void ClearStatLabel(void);
 static bool8 LoadGraphics(void);
 static void CB2_InitSummaryScreen(void);
@@ -439,7 +440,7 @@ static const struct WindowTemplate sSummaryTemplate[] =
         .paletteNum = 6,
         .baseBlock = 67,
     },
-    [PSS_LABEL_WINDOW_PROMPT_CANCEL] = {
+    [PSS_LABEL_WINDOW_PROMPT_UTILITY] = {
         .bg = 0,
         .tilemapLeft = 22,
         .tilemapTop = 0,
@@ -1144,13 +1145,6 @@ static const struct SpriteTemplate sSpriteTemplate_StatusCondition =
 };
 static const u16 sMarkings_Pal[] = INCBIN_U16("graphics/summary_screen/markings.gbapal");
 
-enum {
-    SKILL_PAGE_STATS,
-    SKILL_PAGE_IVS,
-    SKILL_PAGE_EVS,
-    PSS_OTHER_PAGES,
-};
-
 // code
 static u8 ShowCategoryIcon(u32 category)
 {
@@ -1642,18 +1636,21 @@ static void ChangeStatLabel(s16 mode)
 
     switch (mode)
     {
-    case SKILL_PAGE_STATS:
+    case SUMMARY_MODE_SKILLS_STATS:
+        ClearStatLabel();
         FillBgTilemapBufferRect(1, STATS_STATS_BLOCK, STATS_CORD_X, STATS_CORD_Y, 1, 1, 2);
         FillBgTilemapBufferRect(1, STATS_STATS_BLOCK + 1, STATS_CORD_X + 1, STATS_CORD_Y, 1, 1, 2);
         FillBgTilemapBufferRect(1, STATS_STATS_BLOCK + 2, STATS_CORD_X + 2, STATS_CORD_Y, 1, 1, 2);
         FillBgTilemapBufferRect(1, STATS_STATS_BLOCK + 3, STATS_CORD_X + 3, STATS_CORD_Y, 1, 1, 2);
         break;
-    case SKILL_PAGE_IVS:
+    case SUMMARY_MODE_SKILLS_IVS:
+        ClearStatLabel();
         FillBgTilemapBufferRect(1, IVS_STATS_BLOCK, STATS_CORD_X, STATS_CORD_Y, 1, 1, 2);
         FillBgTilemapBufferRect(1, IVS_STATS_BLOCK + 1, STATS_CORD_X + 1, STATS_CORD_Y, 1, 1, 2);
         FillBgTilemapBufferRect(1, IVS_STATS_BLOCK + 2, STATS_CORD_X + 2, STATS_CORD_Y, 1, 1, 2);
         break;
-    case SKILL_PAGE_EVS:
+    case SUMMARY_MODE_SKILLS_EVS:
+        ClearStatLabel();
         FillBgTilemapBufferRect(1, EVS_STATS_BLOCK, STATS_CORD_X, STATS_CORD_Y, 1, 1, 2);
         FillBgTilemapBufferRect(1, EVS_STATS_BLOCK + 1, STATS_CORD_X + 1, STATS_CORD_Y, 1, 1, 2);
         FillBgTilemapBufferRect(1, EVS_STATS_BLOCK + 2, STATS_CORD_X + 2, STATS_CORD_Y, 1, 1, 2);
@@ -1675,8 +1672,6 @@ static void ClearStatLabel(void)
 
 static void Task_HandleInput(u8 taskId)
 {
-    s16 *taskData = gTasks[taskId].data;
-
     if (MenuHelpers_ShouldWaitForLinkRecv() != TRUE && !gPaletteFade.active)
     {
         if (JOY_NEW(DPAD_UP))
@@ -1721,8 +1716,7 @@ static void Task_HandleInput(u8 taskId)
             {
                 if (P_SUMMARY_SCREEN_IV_INFO)
                 {
-                    taskData[0]++;
-                    ShowMonSkillsInfo(taskId, taskData[0]);
+                    ShowMonSkillsInfo(taskId, IncrementSkillsStatsMode(sMonSummaryScreen->mode));
                     // PlaySE(SE_M_GIGA_DRAIN);
                 }
             }
@@ -1754,6 +1748,24 @@ static void Task_HandleInput(u8 taskId)
     }
 }
 
+static u8 IncrementSkillsStatsMode(u8 mode)
+{
+    switch (mode)
+    {
+    case SUMMARY_MODE_SKILLS_STATS:
+        sMonSummaryScreen->mode = SUMMARY_MODE_SKILLS_IVS;
+        return SUMMARY_MODE_SKILLS_IVS;
+    case SUMMARY_MODE_SKILLS_IVS:
+    sMonSummaryScreen->mode = SUMMARY_MODE_SKILLS_EVS;
+        return SUMMARY_MODE_SKILLS_EVS;
+    case SUMMARY_MODE_SKILLS_EVS:
+    default:
+        sMonSummaryScreen->mode = SUMMARY_MODE_SKILLS_STATS;
+        return SUMMARY_MODE_SKILLS_STATS;
+    }
+
+}
+
 static void ShowMonSkillsInfo(u8 taskId, s16 mode)
 {
     struct PokeSummary *sum = &sMonSummaryScreen->summary;
@@ -1770,17 +1782,17 @@ static void ShowMonSkillsInfo(u8 taskId, s16 mode)
     }
         
 
-    if (mode == SKILL_PAGE_STATS)
+    if (mode == SUMMARY_MODE_SKILLS_STATS)
     {
         ExtractMonSkillStatsData(mon, sum);
         BufferLeftColumnStats();
     }
-    else if (mode == SKILL_PAGE_IVS)
+    else if (mode == SUMMARY_MODE_SKILLS_IVS)
     {
         ExtractMonSkillIvData(mon, sum);
         BufferLeftColumnIvEvStats();
     }
-    else if (mode == SKILL_PAGE_EVS)
+    else if (mode == SUMMARY_MODE_SKILLS_EVS)
     {
         ExtractMonSkillEvData(mon, sum);
         BufferLeftColumnIvEvStats();
@@ -1887,7 +1899,7 @@ static void ChangeSummaryPokemon(u8 taskId, s8 delta)
                 ClearWindowTilemap(PSS_LABEL_WINDOW_POKEMON_SKILLS_STATUS);
                 ScheduleBgCopyTilemapToVram(0);
                 HandleStatusTilemap(0, 2);
-                // ChangeStatLabel(SKILL_PAGE_STATS);
+                // ChangeStatLabel(SUMMARY_MODE_SKILLS_STATS);
             }
             sMonSummaryScreen->curMonIndex = monId;
             gTasks[taskId].data[0] = 0;
@@ -1964,15 +1976,16 @@ static void Task_ChangeSummaryMon(u8 taskId)
         LimitEggSummaryPageDisplay();
         if (P_SUMMARY_SCREEN_RENAME && sMonSummaryScreen->currPageIndex == PSS_PAGE_INFO)
         {
-            FillWindowPixelBuffer(PSS_LABEL_WINDOW_PROMPT_CANCEL, PIXEL_FILL(0));
-            ShowCancelOrUtilityPrompt(PSS_OTHER_PAGES);
-            PutWindowTilemap(PSS_LABEL_WINDOW_PROMPT_CANCEL);
+            FillWindowPixelBuffer(PSS_LABEL_WINDOW_PROMPT_UTILITY, PIXEL_FILL(0));
+            ShowCancelOrUtilityPrompt(SUMMARY_MODE_NORMAL);
+            PutWindowTilemap(PSS_LABEL_WINDOW_PROMPT_UTILITY);
         }
         if (P_SUMMARY_SCREEN_IV_INFO && sMonSummaryScreen->currPageIndex == PSS_PAGE_SKILLS)
         {   
-            FillWindowPixelBuffer(PSS_LABEL_WINDOW_PROMPT_CANCEL, PIXEL_FILL(0));
-            ShowCancelOrUtilityPrompt(SKILL_PAGE_STATS);
-            PutWindowTilemap(PSS_LABEL_WINDOW_PROMPT_CANCEL);
+            FillWindowPixelBuffer(PSS_LABEL_WINDOW_PROMPT_UTILITY, PIXEL_FILL(0));
+            ShowCancelOrUtilityPrompt(SUMMARY_MODE_SKILLS_STATS);
+            ChangeStatLabel(SUMMARY_MODE_SKILLS_STATS);
+            PutWindowTilemap(PSS_LABEL_WINDOW_PROMPT_UTILITY);
         }
         break;
     case 12:
@@ -2080,13 +2093,15 @@ static void ChangePage(u8 taskId, s8 delta)
     {
         struct Pokemon *mon = &sMonSummaryScreen->currentMon;
 
-        ShowCancelOrUtilityPrompt(SKILL_PAGE_STATS);
+        if (sMonSummaryScreen->mode != SUMMARY_MODE_SKILLS_STATS)
+            sMonSummaryScreen->mode = SUMMARY_MODE_SKILLS_STATS;
+        ShowCancelOrUtilityPrompt(sMonSummaryScreen->mode);
         ExtractMonSkillStatsData(mon, summary);
         BufferLeftColumnStats();
         BufferRightColumnStats();
     }
     else
-        ShowCancelOrUtilityPrompt(PSS_OTHER_PAGES);
+        ShowCancelOrUtilityPrompt(SUMMARY_MODE_NORMAL);
 }
 
 static void PssScrollRight(u8 taskId) // Scroll right
@@ -2332,7 +2347,9 @@ static void CloseMoveSelectMode(u8 taskId)
 {
     DestroyMoveSelectorSprites(SPRITE_ARR_ID_MOVE_SELECTOR1);
     ClearWindowTilemap(PSS_LABEL_WINDOW_PROMPT_SWITCH);
-    PutWindowTilemap(PSS_LABEL_WINDOW_PROMPT_INFO);
+    ClearWindowTilemap(PSS_LABEL_WINDOW_PROMPT_UTILITY);
+    PutWindowTilemap(PSS_LABEL_WINDOW_PROMPT_UTILITY);
+    ShowCancelOrUtilityPrompt(SUMMARY_MODE_NORMAL);
     if (ShouldShowMoveRelearner())
         PutWindowTilemap(PSS_LABEL_WINDOW_PROMPT_RELEARN);
     PrintMoveDetails(0);
@@ -3161,21 +3178,21 @@ static void PrintPageNamesAndStats(void)
     PrintTextOnWindow(PSS_LABEL_WINDOW_BATTLE_MOVES_TITLE, gText_BattleMoves, 2, 1, 0, 1);
     PrintTextOnWindow(PSS_LABEL_WINDOW_CONTEST_MOVES_TITLE, gText_ContestMoves, 2, 1, 0, 1);
 
-    ShowCancelOrUtilityPrompt(PSS_OTHER_PAGES);
+    ShowCancelOrUtilityPrompt(SUMMARY_MODE_NORMAL);
 
-    stringXPos = GetStringRightAlignXOffset(FONT_NORMAL, gText_Info, 62);
+    /*stringXPos = GetStringRightAlignXOffset(FONT_NORMAL, gText_Info, 62);
     iconXPos = stringXPos - 16;
     if (iconXPos < 0)
         iconXPos = 0;
     PrintAOrBButtonIcon(PSS_LABEL_WINDOW_PROMPT_INFO, FALSE, iconXPos);
-    PrintTextOnWindow(PSS_LABEL_WINDOW_PROMPT_INFO, gText_Info, stringXPos, 0, 0, 0);
+    PrintTextOnWindow(PSS_LABEL_WINDOW_PROMPT_INFO, gText_Info, stringXPos, 0, 0, 0);*/
 
     stringXPos = GetStringRightAlignXOffset(FONT_NORMAL, gText_Switch, 62);
     iconXPos = stringXPos - 16;
     if (iconXPos < 0)
         iconXPos = 0;
     PrintAOrBButtonIcon(PSS_LABEL_WINDOW_PROMPT_SWITCH, FALSE, iconXPos);
-    PrintTextOnWindow(PSS_LABEL_WINDOW_PROMPT_SWITCH, gText_Switch, stringXPos, 1, 0, 0);
+    PrintTextOnWindow(PSS_LABEL_WINDOW_PROMPT_SWITCH, gText_Switch, stringXPos, 0, 0, 0);
 
     PrintTextOnWindow(PSS_LABEL_WINDOW_POKEMON_INFO_RENTAL, gText_RentalPkmn, 0, 1, 0, 1);
     PrintTextOnWindow(PSS_LABEL_WINDOW_POKEMON_INFO_TYPE, gText_TypeSlash, 0, 1, 0, 0);
@@ -3214,7 +3231,7 @@ static void PutPageWindowTilemaps(u8 page)
     {
     case PSS_PAGE_INFO:
         PutWindowTilemap(PSS_LABEL_WINDOW_POKEMON_INFO_TITLE);
-        PutWindowTilemap(PSS_LABEL_WINDOW_PROMPT_CANCEL);
+        PutWindowTilemap(PSS_LABEL_WINDOW_PROMPT_UTILITY);
         if (InBattleFactory() == TRUE || InSlateportBattleTent() == TRUE)
             PutWindowTilemap(PSS_LABEL_WINDOW_POKEMON_INFO_RENTAL);
         PutWindowTilemap(PSS_LABEL_WINDOW_POKEMON_INFO_TYPE);
@@ -3225,7 +3242,7 @@ static void PutPageWindowTilemaps(u8 page)
         PutWindowTilemap(PSS_LABEL_WINDOW_POKEMON_SKILLS_STATS_RIGHT);
         PutWindowTilemap(PSS_LABEL_WINDOW_POKEMON_SKILLS_EXP);
         if (P_SUMMARY_SCREEN_IV_INFO)
-            PutWindowTilemap(PSS_LABEL_WINDOW_PROMPT_CANCEL);
+            PutWindowTilemap(PSS_LABEL_WINDOW_PROMPT_UTILITY);
         break;
     case PSS_PAGE_BATTLE_MOVES:
         PutWindowTilemap(PSS_LABEL_WINDOW_BATTLE_MOVES_TITLE);
@@ -3236,7 +3253,7 @@ static void PutPageWindowTilemaps(u8 page)
         }
         else
         {
-            PutWindowTilemap(PSS_LABEL_WINDOW_PROMPT_INFO);
+            PutWindowTilemap(PSS_LABEL_WINDOW_PROMPT_UTILITY);
             if (ShouldShowMoveRelearner())
                 PutWindowTilemap(PSS_LABEL_WINDOW_PROMPT_RELEARN);
         }
@@ -3250,7 +3267,7 @@ static void PutPageWindowTilemaps(u8 page)
         }
         else
         {
-            PutWindowTilemap(PSS_LABEL_WINDOW_PROMPT_INFO);
+            PutWindowTilemap(PSS_LABEL_WINDOW_PROMPT_UTILITY);
             if (ShouldShowMoveRelearner())
                 PutWindowTilemap(PSS_LABEL_WINDOW_PROMPT_RELEARN);
         }
@@ -3270,7 +3287,7 @@ static void ClearPageWindowTilemaps(u8 page)
     switch (page)
     {
     case PSS_PAGE_INFO:
-        ClearWindowTilemap(PSS_LABEL_WINDOW_PROMPT_CANCEL);
+        ClearWindowTilemap(PSS_LABEL_WINDOW_PROMPT_UTILITY);
         if (InBattleFactory() == TRUE || InSlateportBattleTent() == TRUE)
             ClearWindowTilemap(PSS_LABEL_WINDOW_POKEMON_INFO_RENTAL);
         ClearWindowTilemap(PSS_LABEL_WINDOW_POKEMON_INFO_TYPE);
@@ -3279,7 +3296,7 @@ static void ClearPageWindowTilemaps(u8 page)
         ClearWindowTilemap(PSS_LABEL_WINDOW_POKEMON_SKILLS_STATS_LEFT);
         ClearWindowTilemap(PSS_LABEL_WINDOW_POKEMON_SKILLS_STATS_RIGHT);
         ClearWindowTilemap(PSS_LABEL_WINDOW_POKEMON_SKILLS_EXP);
-        ClearPageWindowTilemaps(PSS_LABEL_WINDOW_PROMPT_CANCEL);
+        ClearPageWindowTilemaps(PSS_LABEL_WINDOW_PROMPT_UTILITY);
         break;
     case PSS_PAGE_BATTLE_MOVES:
         if (sMonSummaryScreen->mode == SUMMARY_MODE_SELECT_MOVE)
@@ -3633,7 +3650,7 @@ static void PrintSkillsPageText(void)
 {
     PrintHeldItemName();
     PrintRibbonCount();
-    ShowCancelOrUtilityPrompt(SKILL_PAGE_STATS);
+    ShowCancelOrUtilityPrompt(SUMMARY_MODE_SKILLS_STATS);
     BufferLeftColumnStats();
     PrintLeftColumnStats();
     BufferRightColumnStats();
@@ -3654,7 +3671,7 @@ static void Task_PrintSkillsPage(u8 taskId)
         PrintRibbonCount();
         break;
     case 3:
-        ChangeStatLabel(SKILL_PAGE_STATS);
+        ChangeStatLabel(SUMMARY_MODE_SKILLS_STATS);
         break;
     case 4:
         BufferLeftColumnStats();
@@ -3842,6 +3859,8 @@ static void PrintBattleMoves(void)
             PrintMoveDetails(sMonSummaryScreen->summary.moves[sMonSummaryScreen->firstMoveIndex]);
         }
     }
+
+    ShowCancelOrUtilityPrompt(SUMMARY_MODE_NORMAL);
 }
 
 static void Task_PrintBattleMoves(u8 taskId)
@@ -3971,6 +3990,8 @@ static void PrintContestMoves(void)
         PrintNewMoveDetailsOrCancelText();
         PrintContestMoveDescription(sMonSummaryScreen->firstMoveIndex);
     }
+
+    ShowCancelOrUtilityPrompt(SUMMARY_MODE_NORMAL);
 }
 
 static void Task_PrintContestMoves(u8 taskId)
@@ -4593,7 +4614,6 @@ static void ShowCancelOrUtilityPrompt(s16 mode)
         if (ShouldShowRename())
         {
             promptText = gText_Rename;
-            PlaySE(SE_M_REVERSAL);
         }
         else 
         {
@@ -4602,11 +4622,11 @@ static void ShowCancelOrUtilityPrompt(s16 mode)
     }
     else if (sMonSummaryScreen->currPageIndex == PSS_PAGE_SKILLS && P_SUMMARY_SCREEN_IV_INFO)
     {
-        if (mode == SKILL_PAGE_STATS)
+        if (mode == SUMMARY_MODE_SKILLS_STATS)
             promptText = gText_SkillPageIvs;
-        else if (mode == SKILL_PAGE_IVS)
+        else if (mode == SUMMARY_MODE_SKILLS_IVS)
             promptText = gText_SkillPageEvs;
-        else if (mode == SKILL_PAGE_EVS)
+        else if (mode == SUMMARY_MODE_SKILLS_EVS)
             promptText = gText_SkillPageStats;
         else
             return;
@@ -4616,16 +4636,16 @@ static void ShowCancelOrUtilityPrompt(s16 mode)
     else
         return;
 
-    FillWindowPixelBuffer(PSS_LABEL_WINDOW_PROMPT_CANCEL, PIXEL_FILL(0));
-    PutWindowTilemap(PSS_LABEL_WINDOW_PROMPT_CANCEL);
+    FillWindowPixelBuffer(PSS_LABEL_WINDOW_PROMPT_UTILITY, PIXEL_FILL(0));
+    PutWindowTilemap(PSS_LABEL_WINDOW_PROMPT_UTILITY);
 
     int stringXPos = GetStringRightAlignXOffset(FONT_NORMAL, promptText, 62);
     int iconXPos = stringXPos - 16;
     if (iconXPos < 0)
         iconXPos = 0;
 
-    PrintAOrBButtonIcon(PSS_LABEL_WINDOW_PROMPT_CANCEL, FALSE, iconXPos);
-    PrintTextOnWindow(PSS_LABEL_WINDOW_PROMPT_CANCEL, promptText, stringXPos, 0, 0, 0);
+    PrintAOrBButtonIcon(PSS_LABEL_WINDOW_PROMPT_UTILITY, FALSE, iconXPos);
+    PrintTextOnWindow(PSS_LABEL_WINDOW_PROMPT_UTILITY, promptText, stringXPos, 0, 0, 0);
 }
 
 static void CB2_ReturnToSummaryScreenFromNamingScreen(void)
