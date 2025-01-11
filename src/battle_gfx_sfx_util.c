@@ -638,6 +638,9 @@ void BattleLoadMonSpriteGfx(struct Pokemon *mon, u32 battler)
             personalityValue = GetMonData(mon, MON_DATA_PERSONALITY);
         }
     }
+    // If battler has Gigantamax factor, try convert gfx to G-Max version
+    if (GetActiveGimmick(battler) == GIMMICK_DYNAMAX && GetMonData(mon, MON_DATA_GIGANTAMAX_FACTOR))
+        species = GetGMaxTargetSpecies(species);
 
     position = GetBattlerPosition(battler);
     HandleLoadSpecialPokePic((GetBattlerSide(battler) == B_SIDE_OPPONENT),
