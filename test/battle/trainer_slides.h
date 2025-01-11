@@ -1,18 +1,18 @@
 [DIFFICULTY_NORMAL] =
 {
-    [0] =
+    [TRAINER_SLIDE_BEFORE_FIRST_TURN] =
     {
-        [TRAINER_SLIDE_BEFORE_FIRST_TURN] = COMPOUND_STRING("Before_First_Turn{PAUSE_UNTIL_PRESS}"),
-        [TRAINER_SLIDE_PLAYER_LANDS_FIRST_CRITICAL_HIT] = COMPOUND_STRING("First_Critical_Hit{PAUSE_UNTIL_PRESS}"),
-        [TRAINER_SLIDE_PLAYER_LANDS_FIRST_SUPER_EFFECTIVE_HIT] = COMPOUND_STRING("First_Super_Effective_Hit{PAUSE_UNTIL_PRESS}"),
-        [TRAINER_SLIDE_PLAYER_LANDS_FIRST_DOWN] = COMPOUND_STRING("First_Down{PAUSE_UNTIL_PRESS}"),
-        [TRAINER_SLIDE_ENEMY_MON_UNAFFECTED] = COMPOUND_STRING("Player_Mon_Unaffected{PAUSE_UNTIL_PRESS}"),
-        [TRAINER_SLIDE_PLAYER_LANDS_FIRST_STAB_MOVE] = COMPOUND_STRING("First_Stab_Move{PAUSE_UNTIL_PRESS}"),
-        [TRAINER_SLIDE_LAST_SWITCHIN] = COMPOUND_STRING("Last_Switchin{PAUSE_UNTIL_PRESS}"),
-        [TRAINER_SLIDE_LAST_HALF_HP] = COMPOUND_STRING("Last_Half_Hp{PAUSE_UNTIL_PRESS}"),
-        [TRAINER_SLIDE_LAST_LOW_HP] = COMPOUND_STRING("Last_Low_Hp{PAUSE_UNTIL_PRESS}"),
-        [TRAINER_SLIDE_MEGA_EVOLUTION] = COMPOUND_STRING("Mega_Evolution{PAUSE_UNTIL_PRESS}"),
-        [TRAINER_SLIDE_Z_MOVE] = COMPOUND_STRING("Z_Move{PAUSE_UNTIL_PRESS}"),
-        [TRAINER_SLIDE_DYNAMAX] = COMPOUND_STRING("Dynamax{PAUSE_UNTIL_PRESS}"),
+        [TRAINER_SLIDE_BEFORE_FIRST_TURN] = COMPOUND_STRING("This message plays before the first turn.{PAUSE_UNTIL_PRESS}"),
+        [TRAINER_SLIDE_PLAYER_LANDS_FIRST_CRITICAL_HIT] = COMPOUND_STRING("This message plays after the player lands their first critical hit.{PAUSE_UNTIL_PRESS}"),
+        [TRAINER_SLIDE_PLAYER_LANDS_FIRST_SUPER_EFFECTIVE_HIT] = COMPOUND_STRING("This message plays after the player lands their first super effective hit.{PAUSE_UNTIL_PRESS}"),
+        [TRAINER_SLIDE_PLAYER_LANDS_FIRST_DOWN] = COMPOUND_STRING("This message plays after the player KOs one enemy mon.{PAUSE_UNTIL_PRESS}"),
+        [TRAINER_SLIDE_ENEMY_MON_UNAFFECTED] = COMPOUND_STRING("This message plays after the player attacks the enemy with a move that is ineffective.{PAUSE_UNTIL_PRESS}"),
+        [TRAINER_SLIDE_PLAYER_LANDS_FIRST_STAB_MOVE] = COMPOUND_STRING("This message plays after the player lands their first STAB move.{PAUSE_UNTIL_PRESS}"),
+        [TRAINER_SLIDE_LAST_SWITCHIN] = COMPOUND_STRING("This message plays after the enemy switches in their last Pokemon.{PAUSE_UNTIL_PRESS}"),
+        [TRAINER_SLIDE_LAST_HALF_HP] = COMPOUND_STRING("This message plays after the enemy's last Pokemon has less than 51% remaining HP.{PAUSE_UNTIL_PRESS}"),
+        [TRAINER_SLIDE_LAST_LOW_HP] = COMPOUND_STRING("This message plays after the enemy's last Pokemon has less than 26% remaining HP.{PAUSE_UNTIL_PRESS}"),
+        [TRAINER_SLIDE_MEGA_EVOLUTION] = COMPOUND_STRING("This message plays before the enemy activates the Mega Evolution gimmick.{PAUSE_UNTIL_PRESS}"),
+        [TRAINER_SLIDE_Z_MOVE] = COMPOUND_STRING("This message plays before the enemy activates the Z-Move gimmick.{PAUSE_UNTIL_PRESS}"),
+        [TRAINER_SLIDE_DYNAMAX] = COMPOUND_STRING("This message plays before the enemy activates the Dynamax gimmick.{PAUSE_UNTIL_PRESS}"),
     },
 },
