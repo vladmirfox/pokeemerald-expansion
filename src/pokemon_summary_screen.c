@@ -1717,7 +1717,7 @@ static void Task_HandleInput(u8 taskId)
                 if (P_SUMMARY_SCREEN_IV_INFO)
                 {
                     ShowMonSkillsInfo(taskId, IncrementSkillsStatsMode(sMonSummaryScreen->mode));
-                    // PlaySE(SE_M_GIGA_DRAIN);
+                    PlaySE(SE_SELECT);
                 }
             }
         }
@@ -2089,7 +2089,7 @@ static void ChangePage(u8 taskId, s8 delta)
         SetTaskFuncWithFollowupFunc(taskId, PssScrollLeft, gTasks[taskId].func);
     CreateTextPrinterTask(sMonSummaryScreen->currPageIndex);
     HidePageSpecificSprites();
-    if (sMonSummaryScreen->currPageIndex == PSS_PAGE_SKILLS)
+    if (sMonSummaryScreen->currPageIndex == PSS_PAGE_SKILLS || (sMonSummaryScreen->currPageIndex + delta) == PSS_PAGE_SKILLS)
     {
         struct Pokemon *mon = &sMonSummaryScreen->currentMon;
 
