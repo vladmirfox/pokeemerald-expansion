@@ -925,7 +925,7 @@ void CopyBattleSpriteInvisibility(u8 battler)
 void HandleSpeciesGfxDataChange(u8 battlerAtk, u8 battlerDef, bool32 megaEvo, bool8 trackEnemyPersonality)
 {
     u32 personalityValue, position, paletteOffset, targetSpecies;
-    bool8 isShiny;
+    bool32 isShiny;
     const void *lzPaletteData, *src;
     void *dst;
 
@@ -1003,6 +1003,24 @@ void HandleSpeciesGfxDataChange(u8 battlerAtk, u8 battlerDef, bool32 megaEvo, bo
         {
             gBattleSpritesDataPtr->battlerData[battlerAtk].transformSpecies = targetSpecies;
         }
+    }
+
+    // dynamax tint
+    if (GetActiveGimmick(battlerAtk) == GIMMICK_DYNAMAX)
+    {
+        // Calyrex and its forms have a blue dynamax aura instead of red.
+        if (GET_BASE_SPECIES_ID(targetSpecies) == SPECIES_CALYREX)
+            BlendPalette(paletteOffset, 16, 4, RGB(12, 0, 31));
+        else
+            BlendPalette(paletteOffset, 16, 4, RGB(31, 0, 12));
+        CpuCopy32(gPlttBufferFaded + paletteOffset, gPlttBufferUnfaded + paletteOffset, PLTT_SIZEOF(16));
+    }
+
+    // Terastallization's tint
+    if (GetActiveGimmick(battlerAtk) == GIMMICK_TERA)
+    {
+        BlendPalette(paletteOffset, 16, 8, GetTeraTypeRGB(GetBattlerTeraType(battlerAtk)));
+        CpuCopy32(gPlttBufferFaded + paletteOffset, gPlttBufferUnfaded + paletteOffset, PLTT_SIZEOF(16));
     }
 
     gSprites[gBattlerSpriteIds[battlerAtk]].y = GetBattlerSpriteDefault_Y(battlerAtk);
