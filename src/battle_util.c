@@ -24,6 +24,7 @@
 #include "task.h"
 #include "test_runner.h"
 #include "trig.h"
+#include "trainer_slide.h"
 #include "window.h"
 #include "battle_message.h"
 #include "battle_ai_main.h"
@@ -48,7 +49,6 @@
 #include "constants/trainers.h"
 #include "constants/weather.h"
 #include "constants/pokemon.h"
-#include "trainer_slide.h"
 
 /*
 NOTE: The data and functions in this file up until (but not including) sSoundMovesTable

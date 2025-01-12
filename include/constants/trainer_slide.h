@@ -35,6 +35,4 @@ enum TrainerSlideTargets
     TRAINER_SLIDE_TARGET_TRAINER_B,
 };
 
-#define MULTI_PARTY_SIZE (PARTY_SIZE / 2)
-
 #endif // GUARD_CONSTANTS_TRAINER_SLIDE_H

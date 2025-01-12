@@ -18,8 +18,8 @@
 #include "battle_terastal.h"
 #include "battle_gimmick.h"
 #include "move.h"
-#include "trainer_slide.h"
 #include "random.h" // for rng_value_t
+#include "trainer_slide.h"
 
 // Helper for accessing command arguments and advancing gBattlescriptCurrInstr.
 //

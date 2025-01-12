@@ -70,10 +70,10 @@
 #include "constants/party_menu.h"
 #include "constants/rgb.h"
 #include "constants/songs.h"
+#include "constants/trainer_slide.h"
 #include "constants/trainers.h"
 #include "constants/weather.h"
 #include "cable_club.h"
-#include "constants/trainer_slide.h"
 
 extern const struct BgTemplate gBattleBgTemplates[];
 extern const struct WindowTemplate *const gBattleWindowTemplates[];

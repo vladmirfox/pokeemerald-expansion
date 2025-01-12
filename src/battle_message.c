@@ -21,6 +21,7 @@
 #include "test_runner.h"
 #include "text.h"
 #include "trainer_hill.h"
+#include "trainer_slide.h"
 #include "window.h"
 #include "line_break.h"
 #include "constants/abilities.h"
@@ -34,7 +35,6 @@
 #include "constants/trainers.h"
 #include "constants/trainer_hill.h"
 #include "constants/weather.h"
-#include "trainer_slide.h"
 
 struct BattleWindowText
 {
