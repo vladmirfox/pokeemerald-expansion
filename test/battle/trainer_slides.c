@@ -96,13 +96,11 @@ SINGLE_BATTLE_TEST("Trainer Slide: Last Half Hp")
 {
     gBattleTestRunnerState->data.recordedBattle.opponentA = TRAINER_SLIDE_LAST_HALF_HP;
     GIVEN {
-        PLAYER(SPECIES_WOBBUFFET);
+        PLAYER(SPECIES_WOBBUFFET) { Attack(515);}
         OPPONENT(SPECIES_WOBBUFFET);
-        OPPONENT(SPECIES_WYNAUT);
     } WHEN {
-        TURN { MOVE(opponent, MOVE_HEALING_WISH); SEND_OUT(opponent,1); }
+        TURN { MOVE(player, MOVE_LIQUIDATION); }
     } SCENE {
-        MESSAGE("The opposing Wobbuffet fainted!");
         MESSAGE("This message plays after the enemy's last Pokemon has less than 51% remaining HP.{PAUSE_UNTIL_PRESS}");
     }
 }
