@@ -4463,6 +4463,7 @@ static bool32 DoesMonMeetAdditionalConditions(struct Pokemon *mon, const struct 
     u32 weather = GetCurrentWeather();
     u32 nature = GetNature(mon);
     u32 conditionRemovesItem = FALSE;
+    u32 evolutionTracker = GetMonData(mon, MON_DATA_EVOLUTION_TRACKER, 0);
 
     // Check for additional conditions (only if the primary method passes). Skips if there's no additional conditions.
     for (i = 0; params != NULL && params[i].condition != CONDITIONS_END; i++)
@@ -4578,6 +4579,18 @@ static bool32 DoesMonMeetAdditionalConditions(struct Pokemon *mon, const struct 
             if (nature == params[i].arg)
                 currentCondition = TRUE;
             break;
+        case IF_RECOIL_DAMAGE_GE:
+            if (evolutionTracker >= params[i].arg)
+                currentCondition = TRUE;
+            break;
+        case IF_USED_MOVE_TWENTY_TIMES:
+            if (evolutionTracker >= 20)
+                currentCondition = TRUE;
+            break;
+        case IF_DEFEAT_THREE_WITH_ITEM:
+            if (evolutionTracker >= 3)
+                currentCondition = TRUE;
+            break;
         // Gen 9
         case IF_PID_MODULO_100_GT:
             if ((personality % 100) > params[i].arg)
@@ -4614,7 +4627,6 @@ u16 GetEvolutionTargetSpecies(struct Pokemon *mon, enum EvolutionMode mode, u16 
     u32 level = GetMonData(mon, MON_DATA_LEVEL, 0);
     u32 holdEffect, partnerSpecies, partnerHeldItem, partnerHoldEffect;
     bool32 consumeItem = FALSE;
-    u32 evolutionTracker = GetMonData(mon, MON_DATA_EVOLUTION_TRACKER, 0);
     const struct Evolution *evolutions = GetSpeciesEvolutions(species);
 
     if (evolutions == NULL)
@@ -4679,18 +4691,6 @@ u16 GetEvolutionTargetSpecies(struct Pokemon *mon, enum EvolutionMode mode, u16 
                 break;
             case EVO_LEVEL_BATTLE_ONLY:
                 if (mode == EVO_MODE_BATTLE_ONLY && evolutions[i].param <= level)
-                    conditionsMet = TRUE;
-                break;
-            case EVO_USE_MOVE_TWENTY_TIMES:
-                if (evolutionTracker >= 20)
-                    conditionsMet = TRUE;
-                break;
-            case EVO_RECOIL_DAMAGE:
-                if (evolutionTracker >= evolutions[i].param)
-                    conditionsMet = TRUE;
-                break;
-            case EVO_DEFEAT_THREE_WITH_ITEM:
-                if (evolutionTracker >= 3)
                     conditionsMet = TRUE;
                 break;
             }

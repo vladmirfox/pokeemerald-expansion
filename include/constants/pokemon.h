@@ -271,6 +271,9 @@ enum EvolutionConditions {
     IF_KNOWS_MOVE_TYPE,                 // The Pokémon knows a move with a specific type.
     // Gen 8
     IF_NATURE,                          // The Pokémon has a specific nature.
+    IF_RECOIL_DAMAGE_GE,                // The Pokémon suffered at least certain amount of non-fainting recoil damage.
+    IF_USED_MOVE_TWENTY_TIMES,          // The Pokémon has used a move for at least 20 times.
+    IF_DEFEAT_THREE_WITH_ITEM,          // The Pokémon defeated 3 Pokémon of the same species holding the specified item.
     // Gen 9
     IF_PID_MODULO_100_GT,               // The Pokémon's personality value's modulo by 100 is greater than the defined value.
     IF_PID_MODULO_100_EQ,               // The Pokémon's personality value's modulo by 100 is equal than the defined value.
@@ -292,10 +295,7 @@ enum EvolutionMethods {
     EVO_DARK_SCROLL,            // interacts with Scroll of Darkness
     EVO_WATER_SCROLL,           // interacts with Scroll of Waters
     EVO_LEVEL_BATTLE_ONLY,      // Pokémon reaches the specified level, in battle only
-    EVO_USE_MOVE_TWENTY_TIMES,  // Pokémon levels up after having used a move for at least 20 times
-    EVO_RECOIL_DAMAGE,          // Pokémon levels up after having suffered specified amount of non-fainting recoil damage
     EVO_ITEM_COUNT_999,         // Pokémon levels up after trainer has collected 999 of a specific item
-    EVO_DEFEAT_THREE_WITH_ITEM, // Pokémon levels up after having defeat 3 Pokémon of the same species holding the specified item
 };
 
 enum EvolutionMode {
