@@ -280,8 +280,8 @@ static const struct MenuAction sItemMenuActions[] = {
     [ACTION_BATTLE_USE]        = {gMenuText_Use,                {ItemMenu_UseInBattle}},
     [ACTION_CHECK]             = {COMPOUND_STRING("CHECK"),     {ItemMenu_UseOutOfBattle}},
     [ACTION_WALK]              = {COMPOUND_STRING("WALK"),      {ItemMenu_UseOutOfBattle}},
-    [ACTION_DESELECT]          = {COMPOUND_STRING("CHECK TAG"), {ItemMenu_Register}},
-    [ACTION_CHECK_TAG]         = {COMPOUND_STRING("DESELECT"),  {ItemMenu_CheckTag}},
+    [ACTION_DESELECT]          = {COMPOUND_STRING("DESELECT"),  {ItemMenu_Register}},
+    [ACTION_CHECK_TAG]         = {COMPOUND_STRING("CHECK TAG"), {ItemMenu_CheckTag}},
     [ACTION_CONFIRM]           = {gMenuText_Confirm,            {Task_FadeAndCloseBagMenu}},
     [ACTION_SHOW]              = {COMPOUND_STRING("SHOW"),      {ItemMenu_Show}},
     [ACTION_GIVE_FAVOR_LADY]   = {gMenuText_Give2,              {ItemMenu_GiveFavorLady}},
@@ -916,7 +916,7 @@ static void GetItemName(u8 *dest, u16 itemId)
     {
     case TMHM_POCKET:
         end = StringCopy(gStringVar2, GetMoveName(ItemIdToBattleMoveId(itemId)));
-        PrependFontIdToFit(gStringVar2, end, FONT_NARROW, 73);
+        PrependFontIdToFit(gStringVar2, end, FONT_NARROW, 61);
         if (itemId >= ITEM_HM01)
         {
             // Get HM number
@@ -933,7 +933,7 @@ static void GetItemName(u8 *dest, u16 itemId)
     case BERRIES_POCKET:
         ConvertIntToDecimalStringN(gStringVar1, itemId - FIRST_BERRY_INDEX + 1, STR_CONV_MODE_LEADING_ZEROS, 2);
         end = CopyItemName(itemId, gStringVar2);
-        PrependFontIdToFit(gStringVar2, end, FONT_NARROW, 73);
+        PrependFontIdToFit(gStringVar2, end, FONT_NARROW, 61);
         StringExpandPlaceholders(dest, gText_NumberItem_TMBerry);
         break;
     default:
@@ -2604,34 +2604,36 @@ static void PrintTMHMMoveData(u16 itemId)
     else
     {
         moveId = ItemIdToBattleMoveId(itemId);
-        BlitMenuInfoIcon(WIN_TMHM_INFO, gMovesInfo[moveId].type + 1, 0, 0);
+        BlitMenuInfoIcon(WIN_TMHM_INFO, GetMoveType(moveId) + 1, 0, 0);
 
         // Print TMHM power
-        if (gMovesInfo[moveId].power <= 1)
+        u32 power = GetMovePower(moveId);
+        if (power <= 1)
         {
             text = gText_ThreeDashes;
         }
         else
         {
-            ConvertIntToDecimalStringN(gStringVar1, gMovesInfo[moveId].power, STR_CONV_MODE_RIGHT_ALIGN, 3);
+            ConvertIntToDecimalStringN(gStringVar1, power, STR_CONV_MODE_RIGHT_ALIGN, 3);
             text = gStringVar1;
         }
         BagMenu_Print(WIN_TMHM_INFO, FONT_NORMAL, text, 7, 12, 0, 0, TEXT_SKIP_DRAW, COLORID_TMHM_INFO);
 
+        u32 accuracy = GetMoveAccuracy(moveId);
         // Print TMHM accuracy
-        if (gMovesInfo[moveId].accuracy == 0)
+        if (accuracy == 0)
         {
             text = gText_ThreeDashes;
         }
         else
         {
-            ConvertIntToDecimalStringN(gStringVar1, gMovesInfo[moveId].accuracy, STR_CONV_MODE_RIGHT_ALIGN, 3);
+            ConvertIntToDecimalStringN(gStringVar1, accuracy, STR_CONV_MODE_RIGHT_ALIGN, 3);
             text = gStringVar1;
         }
         BagMenu_Print(WIN_TMHM_INFO, FONT_NORMAL, text, 7, 24, 0, 0, TEXT_SKIP_DRAW, COLORID_TMHM_INFO);
 
         // Print TMHM pp
-        ConvertIntToDecimalStringN(gStringVar1, gMovesInfo[moveId].pp, STR_CONV_MODE_RIGHT_ALIGN, 3);
+        ConvertIntToDecimalStringN(gStringVar1, GetMovePP(moveId), STR_CONV_MODE_RIGHT_ALIGN, 3);
         BagMenu_Print(WIN_TMHM_INFO, FONT_NORMAL, gStringVar1, 7, 36, 0, 0, TEXT_SKIP_DRAW, COLORID_TMHM_INFO);
 
         CopyWindowToVram(WIN_TMHM_INFO, COPYWIN_GFX);
