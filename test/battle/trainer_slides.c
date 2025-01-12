@@ -21,13 +21,34 @@ SINGLE_BATTLE_TEST("Trainer Slide: Player Lands First Critical Hit")
     gBattleTestRunnerState->data.recordedBattle.opponentA = TRAINER_SLIDE_PLAYER_LANDS_FIRST_CRITICAL_HIT;
 
     GIVEN {
+        ASSUME(GetMoveEffect(MOVE_LASER_FOCUS) == EFFECT_LASER_FOCUS);
         PLAYER(SPECIES_WOBBUFFET);
         OPPONENT(SPECIES_WOBBUFFET);
     } WHEN {
-        TURN { MOVE(player, MOVE_FROST_BREATH); }
+        TURN { MOVE(player, MOVE_LASER_FOCUS); }
+        TURN { MOVE(player, MOVE_TACKLE); }
     } SCENE {
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_LASER_FOCUS, player);
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_TACKLE, player);
         MESSAGE("A critical hit!");
         MESSAGE("This message plays after the player lands their first critical hit.{PAUSE_UNTIL_PRESS}");
+    }
+}
+
+SINGLE_BATTLE_TEST("Trainer Slide: Player Lands First STAB Hit")
+{
+    gBattleTestRunnerState->data.recordedBattle.opponentA = TRAINER_SLIDE_PLAYER_LANDS_FIRST_STAB_MOVE;
+
+    GIVEN {
+        ASSUME((GetMoveType(MOVE_VINE_WHIP)) == gSpeciesInfo[SPECIES_BULBASAUR].types[0]);
+        PLAYER(SPECIES_BULBASAUR);
+        OPPONENT(SPECIES_WOBBUFFET);
+    } WHEN {
+        TURN { MOVE(player, MOVE_VINE_WHIP); }
+    } SCENE {
+        MESSAGE("Bulbasaur used Vine Whip!");
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_VINE_WHIP, player);
+        MESSAGE("Player lands their first STAB move.{PAUSE_UNTIL_PRESS}");
     }
 }
 
@@ -36,6 +57,7 @@ SINGLE_BATTLE_TEST("Trainer Slide: Player Lands First Super Effective Hit")
     gBattleTestRunnerState->data.recordedBattle.opponentA = TRAINER_SLIDE_PLAYER_LANDS_FIRST_SUPER_EFFECTIVE_HIT;
 
     GIVEN {
+        ASSUME(GetMoveType(MOVE_BITE) == TYPE_DARK);
         PLAYER(SPECIES_WOBBUFFET);
         OPPONENT(SPECIES_WOBBUFFET);
     } WHEN {
@@ -66,13 +88,16 @@ SINGLE_BATTLE_TEST("Trainer Slide: Enemy Mon Unaffected")
 {
     gBattleTestRunnerState->data.recordedBattle.opponentA = TRAINER_SLIDE_ENEMY_MON_UNAFFECTED;
     GIVEN {
-        ASSUME(GetMoveEffect(MOVE_FISSURE) == EFFECT_OHKO);
-        PLAYER(SPECIES_WOBBUFFET) {Level(99);}
-        OPPONENT(SPECIES_WOBBUFFET);
+        ASSUME(B_SHEER_COLD_IMMUNITY >= GEN_7);
+        ASSUME(gSpeciesInfo[SPECIES_GLALIE].types[0] == TYPE_ICE);
+        PLAYER(SPECIES_WYNAUT);
+        OPPONENT(SPECIES_GLALIE);
     } WHEN {
-        TURN { MOVE(player, MOVE_FISSURE); }
+        TURN { MOVE(player, MOVE_SHEER_COLD); }
     } SCENE {
-        MESSAGE("This message plays after the player attacks the enemy with a move that is ineffective.{PAUSE_UNTIL_PRESS}");
+        NOT ANIMATION(ANIM_TYPE_MOVE, MOVE_SHEER_COLD, player);
+        MESSAGE("It doesn't affect the opposing Glalie…");
+        MESSAGE("Player attacked enemy with ineffective move.{PAUSE_UNTIL_PRESS}");
     }
 }
 
@@ -100,7 +125,7 @@ SINGLE_BATTLE_TEST("Trainer Slide: Last Half Hp")
     } WHEN {
         TURN { MOVE(player, MOVE_LIQUIDATION); }
     } SCENE {
-        MESSAGE("This message plays after the enemy's last Pokemon has less than 51% remaining HP.{PAUSE_UNTIL_PRESS}");
+        MESSAGE("Enemy last Mon has < 51% HP.{PAUSE_UNTIL_PRESS}");
     }
 }
 
@@ -114,7 +139,7 @@ SINGLE_BATTLE_TEST("Trainer Slide: Last Low Hp")
     } WHEN {
         TURN { MOVE(player, MOVE_FALSE_SWIPE); }
     } SCENE {
-        MESSAGE("This message plays after the enemy's last Pokemon has less than 26% remaining HP.{PAUSE_UNTIL_PRESS}");
+        MESSAGE("Enemy last Mon has < 26% HP.{PAUSE_UNTIL_PRESS}");
     }
 }
 
@@ -161,5 +186,6 @@ SINGLE_BATTLE_TEST("Trainer Slide: Dynamax")
             TURN { MOVE(opponent, MOVE_CELEBRATE, gimmick: GIMMICK_DYNAMAX); }
     } SCENE {
         MESSAGE("This message plays before the enemy activates the Dynamax gimmick.{PAUSE_UNTIL_PRESS}");
+        ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_DYNAMAX_GROWTH, opponent);
     }
 }

@@ -18,11 +18,11 @@
     },
     [TRAINER_SLIDE_ENEMY_MON_UNAFFECTED] =
     {
-        [TRAINER_SLIDE_ENEMY_MON_UNAFFECTED] = COMPOUND_STRING("This message plays after the player attacks the enemy with a move that is ineffective.{PAUSE_UNTIL_PRESS}"),
+        [TRAINER_SLIDE_ENEMY_MON_UNAFFECTED] = COMPOUND_STRING("Player attacked enemy with ineffective move.{PAUSE_UNTIL_PRESS}"),
     },
     [TRAINER_SLIDE_PLAYER_LANDS_FIRST_STAB_MOVE] =
     {
-        [TRAINER_SLIDE_PLAYER_LANDS_FIRST_STAB_MOVE] = COMPOUND_STRING("This message plays after the player lands their first STAB move.{PAUSE_UNTIL_PRESS}"),
+        [TRAINER_SLIDE_PLAYER_LANDS_FIRST_STAB_MOVE] = COMPOUND_STRING("Player lands their first STAB move.{PAUSE_UNTIL_PRESS}"),
     },
     [TRAINER_SLIDE_LAST_SWITCHIN] =
     {
@@ -30,11 +30,11 @@
     },
     [TRAINER_SLIDE_LAST_HALF_HP] =
     {
-        [TRAINER_SLIDE_LAST_HALF_HP] = COMPOUND_STRING("This message plays after the enemy's last Pokemon has less than 51% remaining HP.{PAUSE_UNTIL_PRESS}"),
+        [TRAINER_SLIDE_LAST_HALF_HP] = COMPOUND_STRING("Enemy last Mon has < 51% HP.{PAUSE_UNTIL_PRESS}"),
     },
     [TRAINER_SLIDE_LAST_LOW_HP] =
     {
-        [TRAINER_SLIDE_LAST_LOW_HP] = COMPOUND_STRING("This message plays after the enemy's last Pokemon has less than 26% remaining HP.{PAUSE_UNTIL_PRESS}"),
+        [TRAINER_SLIDE_LAST_LOW_HP] = COMPOUND_STRING("Enemy last Mon has < 26% HP.{PAUSE_UNTIL_PRESS}"),
     },
     [TRAINER_SLIDE_MEGA_EVOLUTION] =
     {
