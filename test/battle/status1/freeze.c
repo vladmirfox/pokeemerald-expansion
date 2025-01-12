@@ -44,7 +44,7 @@ SINGLE_BATTLE_TEST("Freeze is thawed by user's Flame Wheel")
     }
 }
 
-SINGLE_BATTLE_TEST("Freeze isn't thawed if opponent is asleept during thawing attack")
+SINGLE_BATTLE_TEST("Freeze isn't thawed if opponent is asleep during thawing attack")
 {
     PASSES_RANDOMLY(80, 100, RNG_FROZEN);
     GIVEN {
