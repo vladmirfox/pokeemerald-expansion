@@ -2535,7 +2535,8 @@ bool8 ScrCmd_ballfollowingmon(struct ScriptContext *ctx)
     {
         return FALSE;
     }
-    else {
+    else
+    {
         ReturnFollowingMonToBall();
     }
     return FALSE;
