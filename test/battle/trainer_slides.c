@@ -111,13 +111,12 @@ SINGLE_BATTLE_TEST("Trainer Slide: Last Low Hp")
 {
     gBattleTestRunnerState->data.recordedBattle.opponentA = TRAINER_SLIDE_LAST_LOW_HP;
     GIVEN {
-        PLAYER(SPECIES_WOBBUFFET);
-        OPPONENT(SPECIES_WOBBUFFET);
-        OPPONENT(SPECIES_WYNAUT);
+        ASSUME(GetMoveEffect(MOVE_FALSE_SWIPE) == EFFECT_FALSE_SWIPE);
+        PLAYER(SPECIES_WOBBUFFET) { Attack(999);}
+        OPPONENT(SPECIES_WOBBUFFET) { Defense(1);}
     } WHEN {
-        TURN { MOVE(opponent, MOVE_HEALING_WISH); SEND_OUT(opponent,1); }
+        TURN { MOVE(player, MOVE_FALSE_SWIPE); }
     } SCENE {
-        MESSAGE("The opposing Wobbuffet fainted!");
         MESSAGE("This message plays after the enemy's last Pokemon has less than 26% remaining HP.{PAUSE_UNTIL_PRESS}");
     }
 }
@@ -127,12 +126,10 @@ SINGLE_BATTLE_TEST("Trainer Slide: Mega Evolution")
     gBattleTestRunnerState->data.recordedBattle.opponentA = TRAINER_SLIDE_MEGA_EVOLUTION;
     GIVEN {
         PLAYER(SPECIES_WOBBUFFET);
-        OPPONENT(SPECIES_WOBBUFFET);
-        OPPONENT(SPECIES_WYNAUT);
+        OPPONENT(SPECIES_LOPUNNY) {Item(ITEM_LOPUNNITE); };
     } WHEN {
-        TURN { MOVE(opponent, MOVE_HEALING_WISH); SEND_OUT(opponent,1); }
+        TURN { MOVE(opponent, MOVE_CELEBRATE, gimmick: GIMMICK_MEGA); }
     } SCENE {
-        MESSAGE("The opposing Wobbuffet fainted!");
         MESSAGE("This message plays before the enemy activates the Mega Evolution gimmick.{PAUSE_UNTIL_PRESS}");
     }
 }
@@ -142,12 +139,10 @@ SINGLE_BATTLE_TEST("Trainer Slide: Z Move")
     gBattleTestRunnerState->data.recordedBattle.opponentA = TRAINER_SLIDE_Z_MOVE;
     GIVEN {
         PLAYER(SPECIES_WOBBUFFET);
-        OPPONENT(SPECIES_WOBBUFFET);
-        OPPONENT(SPECIES_WYNAUT);
+        OPPONENT(SPECIES_WOBBUFFET) { Item(ITEM_NORMALIUM_Z); }
     } WHEN {
-        TURN { MOVE(opponent, MOVE_HEALING_WISH); SEND_OUT(opponent,1); }
+        TURN { MOVE(opponent, MOVE_QUICK_ATTACK, gimmick: GIMMICK_Z_MOVE); }
     } SCENE {
-        MESSAGE("The opposing Wobbuffet fainted!");
         MESSAGE("This message plays before the enemy activates the Z-Move gimmick.{PAUSE_UNTIL_PRESS}");
     }
 }
