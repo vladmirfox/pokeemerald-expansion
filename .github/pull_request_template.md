@@ -1,7 +1,7 @@
 <!--- Provide a general summary of your changes in the Title above -->
 
 <!--- Before submitting, please make sure your pull request meets the scope guidelines. If unsure, please open a thread in #pr-discussions.-->
-<!--- Scope Guidelines: https://github.com/rh-hideout/pokeemerald-expansion/blob/master/docs/scope.md  -->
+<!--- Scope Guidelines: https://github.com/rh-hideout/pokeemerald-expansion/blob/master/docs/team_procedures/scope.md  -->
 <!--- #pr-discussions:  https://discord.com/channels/419213663107416084/1102784418369785948 -->
 
 ## Description
