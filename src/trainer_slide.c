@@ -41,6 +41,7 @@ static u32 BattlerHPPercentage(u32, u32, u32);
 static u32 GetEnemyMonCount(u32, u32, bool32);
 static bool32 DoesTrainerHaveSlideMessage(enum DifficultyLevel, u32, u32);
 static bool32 ShouldRunTrainerSlidePlayerLandsFirstCriticalHit(enum TrainerSlideType);
+static bool32 ShouldRunTrainerSlideEnemyLandsFirstCriticalHit(enum TrainerSlideType slideId);
 static bool32 ShouldRunTrainerSlidePlayerLandsFirstSuperEffectiveHit(u32, enum TrainerSlideType);
 static bool32 ShouldRunTrainerSlidePlayerLandsFirstSTABMove(u32, u32, enum TrainerSlideType);
 static bool32 ShouldRunTrainerSlidePlayerLandsFirstDown(u32, u32);
@@ -127,6 +128,11 @@ void SetTrainerSlideMessage(enum DifficultyLevel difficulty, u32 trainerId, u32 
 }
 
 static bool32 ShouldRunTrainerSlidePlayerLandsFirstCriticalHit(enum TrainerSlideType slideId)
+{
+    return IsTrainerSlideInitialized(slideId);
+}
+
+static bool32 ShouldRunTrainerSlideEnemyLandsFirstCriticalHit(enum TrainerSlideType slideId)
 {
     return IsTrainerSlideInitialized(slideId);
 }
@@ -241,6 +247,9 @@ enum TrainerSlideTargets ShouldDoTrainerSlide(u32 battler, enum TrainerSlideType
         case TRAINER_SLIDE_PLAYER_LANDS_FIRST_CRITICAL_HIT:
             shouldRun = ShouldRunTrainerSlidePlayerLandsFirstCriticalHit(slideId);
             break;
+        case TRAINER_SLIDE_ENEMY_LANDS_FIRST_CRITICAL_HIT:
+            shouldRun = ShouldRunTrainerSlideEnemyLandsFirstCriticalHit(slideId);
+            break;
         case TRAINER_SLIDE_PLAYER_LANDS_FIRST_SUPER_EFFECTIVE_HIT:
             shouldRun = ShouldRunTrainerSlidePlayerLandsFirstSuperEffectiveHit(battler, slideId);
             break;
@@ -315,6 +324,19 @@ void TryInitalizeTrainerSlidePlayerLandsFirstCriticalHit(u32 target)
         return;
 
     if (GetBattlerSide(target) == B_SIDE_PLAYER)
+        return;
+
+    InitalizeTrainerSlide(slideId);
+}
+
+void TryInitalizeTrainerSlideEnemyLandsFirstCriticalHit(u32 target)
+{
+    enum TrainerSlideType slideId = TRAINER_SLIDE_ENEMY_LANDS_FIRST_CRITICAL_HIT;
+
+    if (IsSlideInitalizedOrPlayed(slideId))
+        return;
+
+    if (GetBattlerSide(target) == B_SIDE_OPPONENT)
         return;
 
     InitalizeTrainerSlide(slideId);
