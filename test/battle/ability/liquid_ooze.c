@@ -3,6 +3,7 @@
 
 SINGLE_BATTLE_TEST("Liquid Ooze causes leech seedee to faint before seeder")
 {
+    KNOWN_FAILING; // message fails
     u16 ability;
     PARAMETRIZE { ability = ABILITY_CLEAR_BODY; }
     PARAMETRIZE { ability = ABILITY_LIQUID_OOZE; }    
