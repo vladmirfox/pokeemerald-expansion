@@ -66,13 +66,12 @@ SINGLE_BATTLE_TEST("Trainer Slide: Enemy Mon Unaffected")
 {
     gBattleTestRunnerState->data.recordedBattle.opponentA = TRAINER_SLIDE_ENEMY_MON_UNAFFECTED;
     GIVEN {
-        PLAYER(SPECIES_WOBBUFFET);
+        ASSUME(GetMoveEffect(MOVE_FISSURE) == EFFECT_OHKO);
+        PLAYER(SPECIES_WOBBUFFET) {Level(99);}
         OPPONENT(SPECIES_WOBBUFFET);
-        OPPONENT(SPECIES_WYNAUT);
     } WHEN {
-        TURN { MOVE(opponent, MOVE_HEALING_WISH); SEND_OUT(opponent,1); }
+        TURN { MOVE(player, MOVE_FISSURE); }
     } SCENE {
-        MESSAGE("The opposing Wobbuffet fainted!");
         MESSAGE("This message plays after the player attacks the enemy with a move that is ineffective.{PAUSE_UNTIL_PRESS}");
     }
 }
@@ -129,6 +128,9 @@ SINGLE_BATTLE_TEST("Trainer Slide: Mega Evolution")
         TURN { MOVE(opponent, MOVE_CELEBRATE, gimmick: GIMMICK_MEGA); }
     } SCENE {
         MESSAGE("This message plays before the enemy activates the Mega Evolution gimmick.{PAUSE_UNTIL_PRESS}");
+        MESSAGE("The opposing Lopunny's Lopunnite is reacting to GABRIELLE's Mega Ring!");
+        ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_MEGA_EVOLUTION, opponent);
+        MESSAGE("The opposing Lopunny has Mega Evolved into Mega Lopunny!");
     }
 }
 
@@ -153,7 +155,7 @@ SINGLE_BATTLE_TEST("Trainer Slide: Dynamax")
         PLAYER(SPECIES_WOBBUFFET);
         OPPONENT(SPECIES_WOBBUFFET);
     } WHEN {
-            TURN { MOVE(opponent, MOVE_PROTECT, gimmick: GIMMICK_DYNAMAX); }
+            TURN { MOVE(opponent, MOVE_CELEBRATE, gimmick: GIMMICK_DYNAMAX); }
     } SCENE {
         MESSAGE("This message plays before the enemy activates the Dynamax gimmick.{PAUSE_UNTIL_PRESS}");
     }
