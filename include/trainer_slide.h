@@ -11,10 +11,10 @@ struct MessageStatus
 
 enum TrainerSlideTargets ShouldDoTrainerSlide(u32, enum TrainerSlideType);
 void SetTrainerSlideMessage(enum DifficultyLevel, u32, u32);
-void TryInitalizeFirstSTABMoveTrainerSlide(bool32, u32, u32, u32);
+void TryInitalizeFirstSTABMoveTrainerSlide(u32, u32, u32);
 void TryInitalizeTrainerSlidePlayerLandsFirstCriticalHit(u32);
-void TryInitalizeTrainerSlidePlayerLandsFirstSuperEffectiveHit(u32, u32);
-void TryInitalizeTrainerSlideEnemyMonUnaffected(u32, u32);
+void TryInitalizeTrainerSlidePlayerLandsFirstSuperEffectiveHit(u32);
+void TryInitalizeTrainerSlideEnemyMonUnaffected(u32);
 bool32 IsTrainerSlideInitialized(enum TrainerSlideType);
 bool32 IsTrainerSlidePlayed(enum TrainerSlideType);
 void InitalizeTrainerSlide(enum TrainerSlideType);

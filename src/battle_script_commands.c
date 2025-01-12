@@ -2849,7 +2849,8 @@ static void Cmd_resultmessage(void)
             {
                 stringId = STRINGID_SUPEREFFECTIVE;
             }
-            TryInitalizeTrainerSlidePlayerLandsFirstSuperEffectiveHit(gBattlerTarget,stringId);
+            if (stringId == STRINGID_SUPEREFFECTIVE || stringId == STRINGID_SUPEREFFECTIVETWOFOES)
+                TryInitalizeTrainerSlidePlayerLandsFirstSuperEffectiveHit(gBattlerTarget);
             break;
         case MOVE_RESULT_NOT_VERY_EFFECTIVE:
             if (IsDoubleSpreadMove())

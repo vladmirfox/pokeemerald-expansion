@@ -328,14 +328,11 @@ static bool32 IsSlideInitalizedOrPlayed(enum TrainerSlideType slideId)
     return FALSE;
 }
 
-void TryInitalizeFirstSTABMoveTrainerSlide(bool32 recordAbilities, u32 battlerDef, u32 battlerAtk, u32 moveType)
+void TryInitalizeFirstSTABMoveTrainerSlide(u32 battlerDef, u32 battlerAtk, u32 moveType)
 {
     enum TrainerSlideType slideId = TRAINER_SLIDE_PLAYER_LANDS_FIRST_STAB_MOVE;
 
     if (IsSlideInitalizedOrPlayed(slideId))
-        return;
-
-    if (!recordAbilities)
         return;
 
     if ((GetBattlerSide(battlerDef) == B_SIDE_PLAYER))
@@ -360,16 +357,12 @@ void TryInitalizeTrainerSlidePlayerLandsFirstCriticalHit(u32 target)
     InitalizeTrainerSlide(slideId);
 }
 
-void TryInitalizeTrainerSlidePlayerLandsFirstSuperEffectiveHit(u32 target, u32 stringId)
+void TryInitalizeTrainerSlidePlayerLandsFirstSuperEffectiveHit(u32 target)
 {
     enum TrainerSlideType slideId = TRAINER_SLIDE_PLAYER_LANDS_FIRST_SUPER_EFFECTIVE_HIT;
 
     if (IsSlideInitalizedOrPlayed(slideId))
         return;
-
-    if (stringId != STRINGID_SUPEREFFECTIVE)
-        if (stringId != STRINGID_SUPEREFFECTIVETWOFOES)
-            return;
 
     if (GetBattlerSide(target) == B_SIDE_PLAYER)
         return;
@@ -377,14 +370,11 @@ void TryInitalizeTrainerSlidePlayerLandsFirstSuperEffectiveHit(u32 target, u32 s
     InitalizeTrainerSlide(slideId);
 }
 
-void TryInitalizeTrainerSlideEnemyMonUnaffected(u32 target, u32 stringId)
+void TryInitalizeTrainerSlideEnemyMonUnaffected(u32 target)
 {
     enum TrainerSlideType slideId = TRAINER_SLIDE_ENEMY_MON_UNAFFECTED;
 
     if (IsSlideInitalizedOrPlayed(slideId))
-        return;
-
-    if ((stringId != STRINGID_ITDOESNTAFFECT && stringId != STRINGID_PKMNWASNTAFFECTED && stringId != STRINGID_PKMNUNAFFECTED))
         return;
 
     if (GetBattlerSide(target) != B_SIDE_OPPONENT)

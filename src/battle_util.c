@@ -1130,7 +1130,8 @@ void PrepareStringBattle(u16 stringId, u32 battler)
         SET_STATCHANGER(STAT_SPEED, 1, FALSE);
     }
 
-    TryInitalizeTrainerSlideEnemyMonUnaffected(gBattlerTarget,stringId);
+    if ((stringId == STRINGID_ITDOESNTAFFECT || stringId == STRINGID_PKMNWASNTAFFECTED || stringId == STRINGID_PKMNUNAFFECTED))
+        TryInitalizeTrainerSlideEnemyMonUnaffected(gBattlerTarget);
 
     BtlController_EmitPrintString(battler, BUFFER_A, stringId);
     MarkBattlerForControllerExec(battler);
@@ -10735,7 +10736,8 @@ static inline uq4_12_t CalcTypeEffectivenessMultiplierInternal(u32 move, u32 mov
         }
     }
 
-    TryInitalizeFirstSTABMoveTrainerSlide(recordAbilities, battlerDef, battlerAtk, moveType);
+    if (recordAbilities)
+        TryInitalizeFirstSTABMoveTrainerSlide(battlerDef, battlerAtk, moveType);
 
     return modifier;
 }
