@@ -54,52 +54,15 @@ static const u8* const sTrainerSlides[DIFFICULTY_COUNT][TRAINERS_COUNT][TRAINER_
 {
     [DIFFICULTY_NORMAL] =
     {
-        [TRAINER_THALIA_4] =
-        {
-            [TRAINER_SLIDE_BEFORE_FIRST_TURN] = COMPOUND_STRING("Before_First_Turn{PAUSE_UNTIL_PRESS}"),
-            [TRAINER_SLIDE_PLAYER_LANDS_FIRST_CRITICAL_HIT] = COMPOUND_STRING("First_Critical_Hit{PAUSE_UNTIL_PRESS}"),
-            [TRAINER_SLIDE_PLAYER_LANDS_FIRST_SUPER_EFFECTIVE_HIT] = COMPOUND_STRING("First_Super_Effective_Hit{PAUSE_UNTIL_PRESS}"),
-            [TRAINER_SLIDE_PLAYER_LANDS_FIRST_DOWN] = COMPOUND_STRING("First_Down{PAUSE_UNTIL_PRESS}"),
-        },
-        [TRAINER_THALIA_5] =
-        {
-            [TRAINER_SLIDE_ENEMY_MON_UNAFFECTED] = COMPOUND_STRING("Player_Mon_Unaffected{PAUSE_UNTIL_PRESS}"),
-            [TRAINER_SLIDE_PLAYER_LANDS_FIRST_STAB_MOVE] = COMPOUND_STRING("First_Stab_Move{PAUSE_UNTIL_PRESS}"),
-        },
-        [TRAINER_MARIELA] =
-        {
-            [TRAINER_SLIDE_LAST_SWITCHIN] = COMPOUND_STRING("Last_Switchin{PAUSE_UNTIL_PRESS}"),
-            [TRAINER_SLIDE_LAST_HALF_HP] = COMPOUND_STRING("Last_Half_Hp{PAUSE_UNTIL_PRESS}"),
-            [TRAINER_SLIDE_LAST_LOW_HP] = COMPOUND_STRING("Last_Low_Hp{PAUSE_UNTIL_PRESS}"),
-        },
-        [TRAINER_ALVARO] =
-        {
-            [TRAINER_SLIDE_MEGA_EVOLUTION] = COMPOUND_STRING("Mega_Evolution{PAUSE_UNTIL_PRESS}"),
-            [TRAINER_SLIDE_Z_MOVE] = COMPOUND_STRING("Z_Move{PAUSE_UNTIL_PRESS}"),
-            [TRAINER_SLIDE_DYNAMAX] = COMPOUND_STRING("Dynamax{PAUSE_UNTIL_PRESS}"),
-        },
     },
-    [DIFFICULTY_EASY] = {},
-    [DIFFICULTY_HARD] = {},
 };
 
 static const u8* const sFrontierTrainerSlides[DIFFICULTY_COUNT][TRAINERS_COUNT][TRAINER_SLIDE_COUNT]
 =
 {
-    /*
-       [DIFFICULTY_NORMAL] =
-       {
-       [TRAINER_NONE] =
-       {
-       },
-       },
-       [DIFFICULTY_EASY] =
-       {
-       },
-       [DIFFICULTY_HARD] =
-       {
-       },
-       */
+    [DIFFICULTY_NORMAL] =
+    {
+    },
 };
 
 static const u8* const sTestTrainerSlides[DIFFICULTY_COUNT][TRAINERS_COUNT][TRAINER_SLIDE_COUNT] =
