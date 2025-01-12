@@ -165,6 +165,7 @@ SINGLE_BATTLE_TEST("Trainer Slide: Last Low Hp")
 SINGLE_BATTLE_TEST("Trainer Slide: Mega Evolution")
 {
     gBattleTestRunnerState->data.recordedBattle.opponentA = TRAINER_SLIDE_MEGA_EVOLUTION;
+
     GIVEN {
         PLAYER(SPECIES_WOBBUFFET);
         OPPONENT(SPECIES_LOPUNNY) {Item(ITEM_LOPUNNITE); };
@@ -172,7 +173,6 @@ SINGLE_BATTLE_TEST("Trainer Slide: Mega Evolution")
         TURN { MOVE(opponent, MOVE_CELEBRATE, gimmick: GIMMICK_MEGA); }
     } SCENE {
         MESSAGE("This message plays before the enemy activates the Mega Evolution gimmick.{PAUSE_UNTIL_PRESS}");
-        MESSAGE("The opposing Lopunny's Lopunnite is reacting to GABRIELLE's Mega Ring!");
         ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_MEGA_EVOLUTION, opponent);
         MESSAGE("The opposing Lopunny has Mega Evolved into Mega Lopunny!");
     }
