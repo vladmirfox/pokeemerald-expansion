@@ -949,8 +949,6 @@ static const struct SpriteTemplate sSpriteTemplate_MonIconOnLvlUpBanner =
     .callback = SpriteCB_MonIconOnLvlUpBanner
 };
 
-static const u16 sProtectSuccessRates[] = {USHRT_MAX, USHRT_MAX / 2, USHRT_MAX / 4, USHRT_MAX / 8};
-
 static const u16 sFinalStrikeOnlyEffects[] =
 {
     MOVE_EFFECT_BUG_BITE,
@@ -11058,6 +11056,18 @@ static void TryResetProtectUseCounter(u32 battler)
         gDisableStructs[battler].protectUses = 0;
 }
 
+#define MAX_PROTECT_SUCCESS_RATE 4
+static const u16 sProtectSuccessRates[MAX_PROTECT_SUCCESS_RATE]     = {1, 2, 4, 8};
+static const u16 sProtectSuccessRatesGen6[MAX_PROTECT_SUCCESS_RATE] = {1, 3, 9, 27};
+
+static inline u32 GetProtectSuccessRate(u32 protectUses)
+{
+    protectUses = (protectUses >= MAX_PROTECT_SUCCESS_RATE) ? MAX_PROTECT_SUCCESS_RATE - 1 : protectUses;
+    if (B_PROTECT_SUCCESS_RATE >= GEN_6)
+        return sProtectSuccessRatesGen6[protectUses];
+    return sProtectSuccessRates[protectUses];
+}
+
 static void Cmd_setprotectlike(void)
 {
     CMD_ARGS();
@@ -11069,7 +11079,7 @@ static void Cmd_setprotectlike(void)
     if (gCurrentTurnActionNumber == (gBattlersCount - 1))
         notLastTurn = FALSE;
 
-    if ((sProtectSuccessRates[gDisableStructs[gBattlerAttacker].protectUses] >= Random() && notLastTurn)
+    if ((RandomUniform(RNG_NONE, 1, GetProtectSuccessRate(gDisableStructs[gBattlerAttacker].protectUses)) == 1 && notLastTurn)
         || (gCurrentMove == MOVE_WIDE_GUARD && B_WIDE_GUARD != GEN_5)
         || (gCurrentMove == MOVE_QUICK_GUARD && B_QUICK_GUARD != GEN_5))
     {
@@ -17052,7 +17062,7 @@ void BS_AllySwitchFailChance(void)
     if (B_ALLY_SWITCH_FAIL_CHANCE >= GEN_9)
     {
         TryResetProtectUseCounter(gBattlerAttacker);
-        if (sProtectSuccessRates[gDisableStructs[gBattlerAttacker].protectUses] < Random())
+        if (RandomUniform(RNG_NONE, 1, GetProtectSuccessRate(gDisableStructs[gBattlerAttacker].protectUses)) == 1)
         {
             gDisableStructs[gBattlerAttacker].protectUses = 0;
             gBattlescriptCurrInstr = cmd->failInstr;
