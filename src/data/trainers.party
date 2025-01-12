@@ -16753,21 +16753,17 @@ Music: Female
 Double Battle: No
 AI: Check Bad Move
 
-/*TRAINER_SLIDE_BEFORE_FIRST_TURN, */
-/*TRAINER_SLIDE_FIRST_CRITICAL_HIT, */
-/* TRAINER_SLIDE_FIRST_DOWN, */
-/* TRAINER_SLIDE_FIRST_SUPER_EFFECTIVE_HIT, */
+Luvdisc
+Level: 38
+IVs: 3 HP / 3 Atk / 3 Def / 3 SpA / 3 SpD / 3 Spe
 
-Kingler @ Focus Sash
-Ability: Hyper Cutter
-Level: 1  
-- Tackle
+Wailmer
+Level: 38
+IVs: 3 HP / 3 Atk / 3 Def / 3 SpA / 3 SpD / 3 Spe
 
-Tropius
-Ability: Harvest
-Level: 100
-IVs: 0 Atk  
-- Celebrate
+Seadra
+Level: 38
+IVs: 3 HP / 3 Atk / 3 Def / 3 SpA / 3 SpD / 3 Spe
 
 === TRAINER_THALIA_5 ===
 Name: THALIA
@@ -16778,12 +16774,17 @@ Music: Female
 Double Battle: No
 AI: Check Bad Move
 
-/* TRAINER_SLIDE_ENEMY_MON_UNAFFECTED, */
-/* TRAINER_SLIDE_FIRST_STAB_MOVE, */
+Luvdisc
+Level: 40
+IVs: 4 HP / 4 Atk / 4 Def / 4 SpA / 4 SpD / 4 Spe
 
-Sandslash
-Level: 50  
-- Tackle 
+Wailord
+Level: 40
+IVs: 4 HP / 4 Atk / 4 Def / 4 SpA / 4 SpD / 4 Spe
+
+Kingdra
+Level: 40
+IVs: 4 HP / 4 Atk / 4 Def / 4 SpA / 4 SpD / 4 Spe
 
 === TRAINER_MARIELA ===
 Name: MARIELA
@@ -16793,26 +16794,9 @@ Gender: Female
 Music: Intense
 Double Battle: No
 
-/* TRAINER_SLIDE_LAST_SWITCHIN, */
-/* TRAINER_SLIDE_LAST_HALF_HP, */
-/* TRAINER_SLIDE_LAST_LOW_HP, */
-
-Gengar  
-Level: 1
-Ability: Cursed Body  
-- Shadow Ball 
-
-Gengar  
-Level: 1
-Ability: Cursed Body  
-- Shadow Ball 
-
-Mew  
-Level: 100
-Ability: Synchronize  
-EVs: 240 HP  
-IVs: 0 Atk  
-- Celebrate  
+Chimecho
+Level: 41
+IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
 === TRAINER_ALVARO ===
 Name: ALVARO
@@ -16822,29 +16806,13 @@ Gender: Male
 Music: Intense
 Double Battle: No
 
-/* TRAINER_SLIDE_MEGA_EVOLUTION, */
-/* TRAINER_SLIDE_Z_MOVE, */
-/* TRAINER_SLIDE_DYNAMAX, */
+Banette
+Level: 41
+IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
-Salamence @ Salamencite  
-Level: 1
-Ability: Intimidate  
-IVs: 0 Atk  
-- Celebrate  
-
-Machamp
-Level: 1
-Gigantamax: Yes
-Ability: Guts  
-IVs: 0 Atk  
-- Celebrate
-
-Pikachu Partner @ Pikashunium Z  
-Level: 1
-Ability: Static  
-IVs: 0 Atk  
-- Thunderbolt
-
+Kadabra
+Level: 41
+IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
 === TRAINER_EVERETT ===
 Name: EVERETT
@@ -16905,4 +16873,3 @@ Double Battle: No
 Kyogre
 Level: 5
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
-

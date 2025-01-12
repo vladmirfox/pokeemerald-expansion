@@ -137,30 +137,18 @@ Debug_EventScript_Text_DefensiveIVs:
 	.string "HP IVs: {STR_VAR_1}, DEF IVs: {STR_VAR_2}, SPDEF IVs: {STR_VAR_3}$"
 
 Debug_EventScript_Script_1::
-    //TRAINER_SLIDE_BEFORE_FIRST_TURN,
-    //TRAINER_SLIDE_PLAYER_LANDS_FIRST_CRITICAL_HIT,
-    //TRAINER_SLIDE_PLAYER_LANDS_FIRST_SUPER_EFFECTIVE_HIT,
-    //TRAINER_SLIDE_PLAYER_LANDS_FIRST_DOWN,
-    givemon species=SPECIES_CLEFABLE, level=60,item=0,move1=MOVE_FROST_BREATH,move2=MOVE_ICE_BEAM
-    trainerbattle_no_intro TRAINER_THALIA_4, gText_Sleep
 	release
 	end
 
 Debug_EventScript_Script_2::
-    givemon species=SPECIES_LARVESTA, level=100, item=0, move1=MOVE_CELEBRATE, move2=MOVE_ENERGY_BALL, move3=MOVE_THUNDERBOLT, move4=MOVE_U_TURN
-    trainerbattle_no_intro TRAINER_THALIA_5, gText_Sleep
 	release
 	end
 
 Debug_EventScript_Script_3::
-    givemon species=SPECIES_GOTHITELLE, level=100, item=0, move1=MOVE_SEISMIC_TOSS,move2=MOVE_PSYCHIC,move3=MOVE_PSYBEAM,move4=MOVE_SUPER_FANG
-    trainerbattle_no_intro TRAINER_MARIELA, gText_Sleep
 	release
 	end
 
 Debug_EventScript_Script_4::
-    givemon species=SPECIES_URSARING, level=100, item=0, move1=MOVE_VITAL_THROW, move2=MOVE_CELEBRATE
-    trainerbattle_no_intro TRAINER_ALVARO, gText_Sleep
 	release
 	end
 
