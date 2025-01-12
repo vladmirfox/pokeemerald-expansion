@@ -589,6 +589,7 @@ EWRAM_DATA static u8 sMovingMonOrigBoxId = 0;
 EWRAM_DATA static u8 sMovingMonOrigBoxPos = 0;
 EWRAM_DATA static bool8 sAutoActionOn = 0;
 EWRAM_DATA static bool8 sJustOpenedBag = 0;
+EWRAM_DATA static bool8 sRefreshDisplayMonGfx = FALSE;
 
 // Main tasks
 static void Task_InitPokeStorage(u8);
@@ -6974,7 +6975,10 @@ void SetMonFormPSS(struct BoxPokemon *boxMon, u32 method)
 {
     u16 targetSpecies = GetFormChangeTargetSpeciesBoxMon(boxMon, method, 0);
     if (targetSpecies != GetBoxMonData(boxMon, MON_DATA_SPECIES, NULL))
+    {
         SetBoxMonData(boxMon, MON_DATA_SPECIES, &targetSpecies);
+        sRefreshDisplayMonGfx = TRUE;
+    }
 }
 
 static void SetDisplayMonData(void *pokemon, u8 mode)
@@ -10209,8 +10213,12 @@ void UpdateSpeciesSpritePSS(struct BoxPokemon *boxMon)
     sStorage->displayMonPalette = GetMonSpritePalFromSpeciesAndPersonality(species, isShiny, pid);
     if (!sJustOpenedBag)
     {
-        LoadDisplayMonGfx(species, pid);
-        StartDisplayMonMosaicEffect();
+        if (sRefreshDisplayMonGfx)
+        {
+            LoadDisplayMonGfx(species, pid);
+            StartDisplayMonMosaicEffect();
+            sRefreshDisplayMonGfx = FALSE;
+        }
 
         // Recreate icon sprite
         if (sInPartyMenu)
