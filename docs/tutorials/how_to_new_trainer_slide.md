@@ -65,18 +65,6 @@ enum TrainerSlideType
 Each Trainer Slide has a unique id and needs to be added to this list. Expansion, by default, will support 32 unique messages. If more than 32 are added without expanding the size of `slideMessageStatus`, the game will not compile.
 
 #### Expanding `slideMessageStatus`
-
-##### `include/trainer_slide.h`
-```diff
-struct MessageStatus
-{
-    u32 messageInitalized : TRAINER_SLIDE_BITS;
-    u32 messageInitalized2 : TRAINER_SLIDE_BITS_2;
-    u32 messagePlayed : TRAINER_SLIDE_BITS;
-    u32 messagePlayed2 : TRAINER_SLIDE_BITS_2;
-};
-```
-
 TODO
 
 ### `include/trainer_slide.h`
