@@ -8,10 +8,6 @@
     {
         [TRAINER_SLIDE_PLAYER_LANDS_FIRST_CRITICAL_HIT] = COMPOUND_STRING("This message plays after the player lands their first critical hit.{PAUSE_UNTIL_PRESS}"),
     },
-    [TRAINER_SLIDE_ENEMY_LANDS_FIRST_CRITICAL_HIT] =
-    {
-        [TRAINER_SLIDE_ENEMY_LANDS_FIRST_CRITICAL_HIT] = COMPOUND_STRING("This message plays after the enemy lands their first critical hit.{PAUSE_UNTIL_PRESS}"),
-    },
     [TRAINER_SLIDE_PLAYER_LANDS_FIRST_SUPER_EFFECTIVE_HIT] =
     {
         [TRAINER_SLIDE_PLAYER_LANDS_FIRST_SUPER_EFFECTIVE_HIT] = COMPOUND_STRING("This message plays after the player lands their first super effective hit.{PAUSE_UNTIL_PRESS}"),

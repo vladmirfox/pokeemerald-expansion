@@ -35,25 +35,6 @@ SINGLE_BATTLE_TEST("Trainer Slide: Player Lands First Critical Hit")
     }
 }
 
-SINGLE_BATTLE_TEST("Trainer Slide: Enemy Lands First Critical Hit")
-{
-    gBattleTestRunnerState->data.recordedBattle.opponentA = TRAINER_SLIDE_ENEMY_LANDS_FIRST_CRITICAL_HIT;
-
-    GIVEN {
-        ASSUME(GetMoveEffect(MOVE_LASER_FOCUS) == EFFECT_LASER_FOCUS);
-        PLAYER(SPECIES_WOBBUFFET);
-        OPPONENT(SPECIES_WOBBUFFET);
-    } WHEN {
-        TURN { MOVE(opponent, MOVE_LASER_FOCUS); }
-        TURN { MOVE(opponent, MOVE_TACKLE); }
-    } SCENE {
-        ANIMATION(ANIM_TYPE_MOVE, MOVE_LASER_FOCUS, opponent);
-        ANIMATION(ANIM_TYPE_MOVE, MOVE_TACKLE, opponent);
-        MESSAGE("A critical hit!");
-        MESSAGE("This message plays after the enemy lands their first critical hit.{PAUSE_UNTIL_PRESS}");
-    }
-}
-
 SINGLE_BATTLE_TEST("Trainer Slide: Player Lands First STAB Hit")
 {
     gBattleTestRunnerState->data.recordedBattle.opponentA = TRAINER_SLIDE_PLAYER_LANDS_FIRST_STAB_MOVE;

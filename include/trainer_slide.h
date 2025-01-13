@@ -13,7 +13,6 @@ enum TrainerSlideTargets ShouldDoTrainerSlide(u32, enum TrainerSlideType);
 void SetTrainerSlideMessage(enum DifficultyLevel, u32, u32);
 void TryInitalizeFirstSTABMoveTrainerSlide(u32, u32, u32);
 void TryInitalizeTrainerSlidePlayerLandsFirstCriticalHit(u32);
-void TryInitalizeTrainerSlideEnemyLandsFirstCriticalHit(u32);
 void TryInitalizeTrainerSlidePlayerLandsFirstSuperEffectiveHit(u32);
 void TryInitalizeTrainerSlideEnemyMonUnaffected(u32);
 bool32 IsTrainerSlideInitialized(enum TrainerSlideType);
