@@ -395,28 +395,29 @@ struct ItemIcon
 
 struct PokemonStorageSystemData
 {
+    u16 partyMenuTilemapBuffer[0x108];
+    u8 boxTitleTiles[1024];
+    u16 boxTitlePal[16];
+    u16 wallpaperTilemap[360];
     u8 state;
     u8 boxOption;
     u8 screenChangeType;
     bool8 isReopening;
     u8 taskId;
     u8 wallpaperOffset;
-    u16 partyMenuTilemapBuffer[0x108];
     u16 partyMenuY;
     u8 partyMenuMoveTimer;
     u8 showPartyMenuState;
     bool8 closeBoxFlashing;
     u8 closeBoxFlashTimer;
-    bool8 closeBoxFlashState;
     s16 newCurrBoxId;
     u16 bg2_X;
     s16 scrollSpeed;
     u16 scrollTimer;
-    u8 boxTitleTiles[1024];
+    bool8 closeBoxFlashState;
     u8 boxTitleCycleId;
     u8 wallpaperLoadBoxId;
     s8 wallpaperLoadDir;
-    u16 boxTitlePal[16];
     u16 boxTitlePalOffset;
     u16 boxTitleAltPalOffset;
     struct Sprite *curBoxTitleSprites[2];
@@ -425,7 +426,6 @@ struct PokemonStorageSystemData
     u32 wallpaperPalBits;
     s16 wallpaperSetId;
     s16 wallpaperId;
-    u16 wallpaperTilemap[360];
     u8 wallpaperChangeState;
     u8 scrollState;
     u8 scrollToBoxId;
@@ -440,27 +440,27 @@ struct PokemonStorageSystemData
     u16 iconSpeciesList[MAX_MON_ICONS];
     u16 boxSpecies[IN_BOX_COUNT];
     u32 boxPersonalities[IN_BOX_COUNT];
-    u8 incomingBoxId;
-    u8 shiftTimer;
-    u8 numPartyToCompact;
     u16 iconScrollDistance;
     s16 iconScrollPos;
     s16 iconScrollSpeed;
     u16 iconScrollNumIncoming;
+    u8 incomingBoxId;
+    u8 shiftTimer;
+    u8 numPartyToCompact;
     u8 iconScrollCurColumn;
     s8 iconScrollDirection; // Unnecessary duplicate of scrollDirection
     u8 iconScrollState;
-    struct WindowTemplate menuWindow;
-    struct StorageMenu menuItems[7];
     u8 menuItemsCount;
     u8 menuWidth;
-    u16 menuWindowId;
+    struct WindowTemplate menuWindow;
+    struct StorageMenu menuItems[7];
     struct Sprite *cursorSprite;
     struct Sprite *cursorShadowSprite;
     s32 cursorNewX;
     s32 cursorNewY;
     u32 cursorSpeedX;
     u32 cursorSpeedY;
+    u16 menuWindowId;
     s16 cursorTargetX;
     s16 cursorTargetY;
     u16 cursorMoveSteps;
@@ -478,9 +478,6 @@ struct PokemonStorageSystemData
     u16 displayUnusedVar;
     bool8 setMosaic;
     u8 displayMonMarkings;
-    u8 displayMonLevel;
-    bool8 displayMonIsEgg;
-    u8 displayMonName[POKEMON_NAME_LENGTH + 1];
     u8 displayMonNameText[36];
     u8 displayMonSpeciesName[36];
     u8 displayMonGenderLvlText[36];
@@ -488,6 +485,8 @@ struct PokemonStorageSystemData
     bool8 (*monPlaceChangeFunc)(void);
     u8 monPlaceChangeState;
     u8 shiftBoxId;
+    u8 displayMonLevel;
+    bool8 displayMonIsEgg;
     struct Sprite *markingComboSprite;
     struct Sprite *waveformSprites[2];
     u16 *markingComboTilesPtr;
@@ -507,6 +506,7 @@ struct PokemonStorageSystemData
     u8 summaryMaxPos;
     u8 summaryStartPos;
     u8 summaryScreenMode;
+    u8 inBoxMovingMode;
     union
     {
         struct Pokemon *mon;
@@ -514,11 +514,9 @@ struct PokemonStorageSystemData
     } summaryMon;
     u8 messageText[40];
     u8 boxTitleText[40];
-    u8 releaseMonName[POKEMON_NAME_LENGTH + 1];
     u8 itemName[20];
-    u8 inBoxMovingMode;
-    u16 multiMoveWindowId;
     struct ItemIcon itemIcons[MAX_ITEM_ICONS];
+    u16 multiMoveWindowId;
     u16 movingItemId;
     u16 itemInfoWindowOffset;
     u16 displayMonPalOffset;
@@ -529,6 +527,8 @@ struct PokemonStorageSystemData
     u8 ALIGNED(4) itemIconBuffer[0x800];
     u8 wallpaperBgTilemapBuffer[0x1000];
     u8 displayMenuTilemapBuffer[0x800];
+    u8 displayMonName[POKEMON_NAME_LENGTH + 1];
+    u8 releaseMonName[POKEMON_NAME_LENGTH + 1];
 };
 
 static u32 sItemIconGfxBuffer[98];
