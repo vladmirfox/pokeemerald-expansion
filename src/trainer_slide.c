@@ -371,21 +371,21 @@ void TryInitalizeTrainerSlideEnemyMonUnaffected(u32 target)
 
 bool32 IsTrainerSlideInitialized(enum TrainerSlideType slideId)
 {
-    return (gBattleStruct->slideMessageStatus.messageInitalized & (1u << slideId)) != 0;
+    return (gBattleStruct->slideMessageStatus.messageInitalized & (1 << slideId)) != 0;
 }
 
 bool32 IsTrainerSlidePlayed(enum TrainerSlideType slideId)
 {
-    return (gBattleStruct->slideMessageStatus.messagePlayed & (1u << slideId)) != 0;
+    return (gBattleStruct->slideMessageStatus.messagePlayed & (1 << slideId)) != 0;
 }
 
 void InitalizeTrainerSlide(enum TrainerSlideType slideId)
 {
-    gBattleStruct->slideMessageStatus.messageInitalized |= (1u << slideId);
+    gBattleStruct->slideMessageStatus.messageInitalized |= (1 << slideId);
 }
 
 void MarkTrainerSlideAsPlayed(enum TrainerSlideType slideId)
 {
-    gBattleStruct->slideMessageStatus.messagePlayed |= (1u << slideId);
+    gBattleStruct->slideMessageStatus.messagePlayed |= (1 << slideId);
 }
 
