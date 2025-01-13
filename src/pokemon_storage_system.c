@@ -371,16 +371,6 @@ struct StorageMenu
     int textId;
 };
 
-struct UnkUtilData
-{
-    const u8 *src;
-    u8 *dest;
-    u16 size;
-    u16 unk;
-    u16 height;
-    void (*func)(struct UnkUtilData *data);
-};
-
 struct ChooseBoxMenu
 {
     struct Sprite *menuSprite;
@@ -411,7 +401,6 @@ struct PokemonStorageSystemData
     bool8 isReopening;
     u8 taskId;
     u8 wallpaperOffset;
-    struct UnkUtilData unkUtilData[8];
     u16 partyMenuTilemapBuffer[0x108];
     u16 partyMenuY;
     u8 partyMenuMoveTimer;
@@ -461,12 +450,10 @@ struct PokemonStorageSystemData
     u8 iconScrollCurColumn;
     s8 iconScrollDirection; // Unnecessary duplicate of scrollDirection
     u8 iconScrollState;
-    u8 iconScrollToBoxId; // Unused duplicate of scrollToBoxId
     struct WindowTemplate menuWindow;
     struct StorageMenu menuItems[7];
     u8 menuItemsCount;
     u8 menuWidth;
-    u8 menuUnusedField; // Never read.
     u16 menuWindowId;
     struct Sprite *cursorSprite;
     struct Sprite *cursorShadowSprite;
@@ -534,7 +521,6 @@ struct PokemonStorageSystemData
     struct ItemIcon itemIcons[MAX_ITEM_ICONS];
     u16 movingItemId;
     u16 itemInfoWindowOffset;
-    u8 unkUnused2; // Unused
     u16 displayMonPalOffset;
     u16 *displayMonTilePtr;
     struct Sprite *displayMonSprite;
@@ -4648,7 +4634,6 @@ static u8 CreateBoxMonIconsInColumn(u8 column, u16 distance, s16 speed)
 static void InitBoxMonIconScroll(u8 boxId, s8 direction)
 {
     sStorage->iconScrollState = 0;
-    sStorage->iconScrollToBoxId = boxId;
     sStorage->iconScrollDirection = direction;
     sStorage->iconScrollDistance = 32;
     sStorage->iconScrollSpeed = -(6 * direction);
@@ -8086,7 +8071,6 @@ static void AddMenu(void)
     PrintMenuTable(sStorage->menuWindowId, sStorage->menuItemsCount, (void *)sStorage->menuItems);
     InitMenuInUpperLeftCornerNormal(sStorage->menuWindowId, sStorage->menuItemsCount, 0);
     ScheduleBgCopyTilemapToVram(0);
-    sStorage->menuUnusedField = 0;
 }
 
 // Called after AddMenu to determine whether or not the handler callback should
