@@ -959,7 +959,7 @@ void ReadMidiTracks()
                 if (g_compressionEnabled)
                     Compress(*events);
 
-                if (strcmp(g_asmLabel.c_str(), "se_low_health") == 0)
+                if ((strcmp(g_asmLabel.c_str(), "se_low_health") == 0) && B_NUM_LOW_HEALTH_BEEPS >= 0)
                     PrintAgbTrackLoop(*events);
                 else
                     PrintAgbTrack(*events);
