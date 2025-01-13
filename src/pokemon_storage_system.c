@@ -417,6 +417,7 @@ struct PokemonStorageSystemData
     u8 screenChangeType;
     bool8 isReopening;
     u8 taskId;
+    u8 wallpaperOffset;
     struct UnkUtil unkUtil;
     struct UnkUtilData unkUtilData[8];
     u16 partyMenuTilemapBuffer[0x108];
@@ -430,8 +431,6 @@ struct PokemonStorageSystemData
     u16 bg2_X;
     s16 scrollSpeed;
     u16 scrollTimer;
-    u8 wallpaperOffset;
-    u16 scrollUnused2; // Never read, breaks if removed?
     u8 boxTitleTiles[1024];
     u8 boxTitleCycleId;
     u8 wallpaperLoadBoxId;
@@ -5298,7 +5297,6 @@ static void SetUpScrollToBox(u8 boxId)
 
     sStorage->scrollSpeed = (direction > 0) ? 6 : -6;
     sStorage->scrollTimer = 32;
-    sStorage->scrollUnused2 = (direction <= 0) ? 5 : 0;
 
     sStorage->scrollToBoxId = boxId;
     sStorage->scrollDirection = direction;
