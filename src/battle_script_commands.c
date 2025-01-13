@@ -2703,6 +2703,7 @@ static void Cmd_critmessage(void)
         {
             PrepareStringBattle(STRINGID_CRITICALHIT, gBattlerAttacker);
 
+            TryInitalizeTrainerSlideEnemyLandsFirstCriticalHit(gBattlerTarget);
             TryInitalizeTrainerSlidePlayerLandsFirstCriticalHit(gBattlerTarget);
 
             gBattleCommunication[MSG_DISPLAY] = 1;
