@@ -29,6 +29,8 @@ enum TrainerSlideType
     TRAINER_SLIDE_COUNT,
 };
 
+#define TRAINER_SLIDE_BITS min((TRAINER_SLIDE_COUNT - 1),32)
+
 enum TrainerSlideTargets
 {
     TRAINER_SLIDE_TARGET_NONE,

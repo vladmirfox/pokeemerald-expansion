@@ -37,6 +37,8 @@
 #include "trainer_slide.h"
 #include "battle_message.h"
 
+STATIC_ASSERT(sizeof(gBattleStruct->slideMessageStatus) <= (2 * TRAINER_SLIDE_BITS), Too_Many_Trainer_Slides_Add_More_Members);
+
 static u32 BattlerHPPercentage(u32, u32, u32);
 static u32 GetEnemyMonCount(u32, u32, bool32);
 static bool32 DoesTrainerHaveSlideMessage(enum DifficultyLevel, u32, u32);
