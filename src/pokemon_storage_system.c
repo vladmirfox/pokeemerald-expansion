@@ -392,14 +392,11 @@ struct ChooseBoxMenu
 {
     struct Sprite *menuSprite;
     struct Sprite *menuSideSprites[4];
-    u32 unused1[3];
     struct Sprite *arrowSprites[2];
-    u8 unused2[0x214];
     bool32 loadedPalette;
     u16 tileTag;
     u16 paletteTag;
     u8 curBox;
-    u8 unused3;
     u8 subpriority;
 };
 
