@@ -396,7 +396,7 @@ struct ItemIcon
 struct PokemonStorageSystemData
 {
     u16 partyMenuTilemapBuffer[0x108];
-    u8 boxTitleTiles[1024];
+    ALIGNED(2) u8 boxTitleTiles[1024];
     u16 boxTitlePal[16];
     u16 wallpaperTilemap[360];
     u8 state;
