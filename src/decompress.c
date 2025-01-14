@@ -139,16 +139,6 @@ static const struct DecodeYK sYkTemplate[2*TANS_TABLE_SIZE] = {
     [127] = {127, 0},
 };
 
-void LZDecompressWram(const u32 *src, void *dest)
-{
-    DecompressDataWram(src, dest);
-}
-
-void LZDecompressVram(const u32 *src, void *dest)
-{
-    DecompressDataVram(src, dest);
-}
-
 // Checks if `ptr` is likely LZ77 data
 // Checks word-alignment, min/max size, and header byte
 // Returns uncompressed size if true, 0 otherwise
@@ -175,7 +165,7 @@ u16 LoadCompressedSpriteSheet(const struct CompressedSpriteSheet *src)
 {
     struct SpriteSheet dest;
 
-    LZDecompressWram(src->data, gDecompressionBuffer);
+    DecompressDataWithHeaderWram(src->data, gDecompressionBuffer);
     dest.data = gDecompressionBuffer;
     dest.size = src->size;
     dest.tag = src->tag;
@@ -193,7 +183,7 @@ u16 LoadCompressedSpriteSheetByTemplate(const struct SpriteTemplate *template, s
     if ((size = IsLZ77Data(template->images->data, TILE_SIZE_4BPP, sizeof(gDecompressionBuffer))) == 0)
         return LoadSpriteSheetByTemplate(template, 0, offset);
 
-    LZDecompressWram(template->images->data, gDecompressionBuffer);
+    DecompressDataWithHeaderWram(template->images->data, gDecompressionBuffer);
     myImage.data = gDecompressionBuffer;
     myImage.size = size + offset;
     myTemplate.images = &myImage;
@@ -206,7 +196,7 @@ void LoadCompressedSpriteSheetOverrideBuffer(const struct CompressedSpriteSheet 
 {
     struct SpriteSheet dest;
 
-    LZDecompressWram(src->data, buffer);
+    DecompressDataWithHeaderWram(src->data, buffer);
     dest.data = buffer;
     dest.size = src->size;
     dest.tag = src->tag;
@@ -217,7 +207,7 @@ void LoadCompressedSpritePalette(const struct CompressedSpritePalette *src)
 {
     struct SpritePalette dest;
 
-    LZDecompressWram(src->data, gDecompressionBuffer);
+    DecompressDataWithHeaderWram(src->data, gDecompressionBuffer);
     dest.data = (void *) gDecompressionBuffer;
     dest.tag = src->tag;
     LoadSpritePalette(&dest);
@@ -227,7 +217,7 @@ void LoadCompressedSpritePaletteWithTag(const u32 *pal, u16 tag)
 {
     struct SpritePalette dest;
 
-    LZDecompressWram(pal, gDecompressionBuffer);
+    DecompressDataWithHeaderWram(pal, gDecompressionBuffer);
     dest.data = (void *) gDecompressionBuffer;
     dest.tag = tag;
     LoadSpritePalette(&dest);
@@ -237,7 +227,7 @@ void LoadCompressedSpritePaletteOverrideBuffer(const struct CompressedSpritePale
 {
     struct SpritePalette dest;
 
-    LZDecompressWram(src->data, buffer);
+    DecompressDataWithHeaderWram(src->data, buffer);
     dest.data = buffer;
     dest.tag = src->tag;
     LoadSpritePalette(&dest);
@@ -245,7 +235,7 @@ void LoadCompressedSpritePaletteOverrideBuffer(const struct CompressedSpritePale
 
 void DecompressPicFromTable(const struct CompressedSpriteSheet *src, void *buffer)
 {
-    LZDecompressWram(src->data, buffer);
+    DecompressDataWithHeaderWram(src->data, buffer);
 }
 
 void HandleLoadSpecialPokePic(bool32 isFrontPic, void *dest, s32 species, u32 personality)
@@ -274,7 +264,7 @@ void UnpackFrequencies(const u32 *packedFreqs, u32 *freqs)
     UnpackFrequenciesLoop(packedFreqs, freqs, 2);
 }
 
-void DecompressDataVram(const u32 *src, void *dest)
+void DecompressDataWithHeaderVram(const u32 *src, void *dest)
 {
     struct SmolHeader header;
     CpuCopy32(src, &header, 8);
@@ -288,7 +278,7 @@ void DecompressDataVram(const u32 *src, void *dest)
     }
 }
 
-void DecompressDataWram(const u32 *src, void *dest)
+void DecompressDataWithHeaderWram(const u32 *src, void *dest)
 {
     struct SmolHeader header;
     CpuCopy32(src, &header, 8);
@@ -336,7 +326,7 @@ static IWRAM_DATA u32 sCurrState = 0;
 // Order of allocated memory- ykTable, symbolTable(these go first, because are always aligned), symSize, loSize(last, because not aligned)
 static EWRAM_DATA void *sMemoryAllocated;
 
-struct DecodeStuff
+struct DecodeHelperStruct
 {
     void *resultVec; // u16 for SymDelta, u8 for LOtANS
     u32 *symbolTable;
@@ -350,22 +340,22 @@ static inline void CopyFuncToIwram(void *funcBuffer, void *_funcStartAddress, vo
 }
 
 // - O3 saves cycles
-__attribute__((target("arm"))) __attribute__((noinline, no_reorder)) __attribute__((optimize("-O3"))) void DecodeLOtANSLoop(const u32 *data, struct DecodeStuff *stuff, u8 *maskTable)
+__attribute__((target("arm"))) __attribute__((noinline, no_reorder)) __attribute__((optimize("-O3"))) void DecodeLOtANSLoop(const u32 *data, struct DecodeHelperStruct *decodeHelper, u8 *maskTable)
 {
     u32 readIndex = sReadIndex;
     u32 currBits = data[readIndex];
     u32 bitIndex = sBitIndex;
-    u8 * resultVec = (u8*)(stuff->resultVec);
-    u8 * resultVecEnd = &resultVec[stuff->count];
+    u8 * resultVec = (u8*)(decodeHelper->resultVec);
+    u8 * resultVecEnd = &resultVec[decodeHelper->count];
 
     do
     {
         u32 symbol = 0;
         for (u32 currNibble = 0; currNibble < 2; currNibble++)
         {
-            symbol += stuff->symbolTable[sCurrState] << (currNibble*4);
-            u32 currK = stuff->ykTable[sCurrState].kVal;
-            sCurrState = stuff->ykTable[sCurrState].yVal - 64;
+            symbol += decodeHelper->symbolTable[sCurrState] << (currNibble*4);
+            u32 currK = decodeHelper->ykTable[sCurrState].kVal;
+            sCurrState = decodeHelper->ykTable[sCurrState].yVal - 64;
             sCurrState += (currBits >> bitIndex) & maskTable[currK];
             bitIndex += currK;
             if (bitIndex >= 32)
@@ -389,9 +379,9 @@ __attribute__((target("arm"))) __attribute__((noinline, no_reorder)) __attribute
     sReadIndex = readIndex;
 }
 
-__attribute__((target("arm"))) __attribute__((noinline, no_reorder)) void SwitchToArmCallLOtANS(const u32 *data, struct DecodeStuff *stuff, u8 *maskTable, void (*decodeFunction)(const u32 *data, struct DecodeStuff *stuff, u8 *maskTable))
+__attribute__((target("arm"))) __attribute__((noinline, no_reorder)) void SwitchToArmCallLOtANS(const u32 *data, struct DecodeHelperStruct *decodeHelper, u8 *maskTable, void (*decodeFunction)(const u32 *data, struct DecodeHelperStruct *decodeHelper, u8 *maskTable))
 {
-    decodeFunction(data, stuff, maskTable);
+    decodeFunction(data, decodeHelper, maskTable);
 }
 
 // fastest in IWRAM, all masks are assigned separately, because we don't want to waste time on memset
@@ -416,16 +406,16 @@ void DecodeLOtANS(const u32 *data, const u32 *pFreqs, u8 *resultVec, u32 count)
     u8 maskTable[8];
     SetMaskTable(maskTable);
 
-    struct DecodeStuff stuff;
-    stuff.resultVec = resultVec;
-    stuff.ykTable = ykTable;
-    stuff.symbolTable = symbolTable;
-    stuff.count = count;
+    struct DecodeHelperStruct decodeHelper;
+    decodeHelper.resultVec = resultVec;
+    decodeHelper.ykTable = ykTable;
+    decodeHelper.symbolTable = symbolTable;
+    decodeHelper.count = count;
 
     u32 funcBuffer[200];
 
     CopyFuncToIwram(funcBuffer, DecodeLOtANSLoop, SwitchToArmCallLOtANS);
-    SwitchToArmCallLOtANS(data, &stuff, maskTable, (void *) funcBuffer);
+    SwitchToArmCallLOtANS(data, &decodeHelper, maskTable, (void *) funcBuffer);
 }
 
 void DecodeSymtANS(const u32 *data, const u32 *pFreqs, u16 *resultVec, u32 count)
@@ -468,7 +458,7 @@ void DecodeSymtANS(const u32 *data, const u32 *pFreqs, u16 *resultVec, u32 count
 }
 
 // -O3 saves us almost 30k cycles compared to -O2
-__attribute__((target("arm"))) __attribute__((noinline, no_reorder)) __attribute__((optimize("-O3"))) void DecodeSymDeltatANSLoop(const u32 *data, struct DecodeStuff *stuff, u8 *maskTable)
+__attribute__((target("arm"))) __attribute__((noinline, no_reorder)) __attribute__((optimize("-O3"))) void DecodeSymDeltatANSLoop(const u32 *data, struct DecodeHelperStruct *decodeHelper, u8 *maskTable)
 {
     data += sReadIndex;
     const u32 *dataCmpPtr = data;
@@ -476,9 +466,9 @@ __attribute__((target("arm"))) __attribute__((noinline, no_reorder)) __attribute
     u32 currBits = *data++;
     u32 currSymbol = 0;
     u32 bitIndex = sBitIndex;
-    u16 * resultVec_16 = (u16*)(stuff->resultVec);
-    u32 * resultVec_32 = (u32*)(stuff->resultVec); // Since we're doing 2 symbols at one time we store as word which is faster than storing two halfwords.
-    u16 * resultVecEnd = &resultVec_16[stuff->count];
+    u16 * resultVec_16 = (u16*)(decodeHelper->resultVec);
+    u32 * resultVec_32 = (u32*)(decodeHelper->resultVec); // Since we're doing 2 symbols at one time we store as word which is faster than storing two halfwords.
+    u16 * resultVecEnd = &resultVec_16[decodeHelper->count];
 
     do
     {
@@ -486,10 +476,10 @@ __attribute__((target("arm"))) __attribute__((noinline, no_reorder)) __attribute
 
         for (u32 currNibble = 0; currNibble < 4; currNibble++)
         {
-            currSymbol = (currSymbol + stuff->symbolTable[sCurrState]) & 0xf;
+            currSymbol = (currSymbol + decodeHelper->symbolTable[sCurrState]) & 0xf;
             symbol += currSymbol << (currNibble*4);
-            u32 currK = stuff->ykTable[sCurrState].kVal;
-            sCurrState = stuff->ykTable[sCurrState].yVal - 64;
+            u32 currK = decodeHelper->ykTable[sCurrState].kVal;
+            sCurrState = decodeHelper->ykTable[sCurrState].yVal - 64;
             sCurrState += (currBits >> bitIndex) & maskTable[currK];
             bitIndex += currK;
             if (bitIndex > 32)
@@ -507,10 +497,10 @@ __attribute__((target("arm"))) __attribute__((noinline, no_reorder)) __attribute
 
         for (u32 currNibble = 0; currNibble < 4; currNibble++)
         {
-            currSymbol = (currSymbol + stuff->symbolTable[sCurrState]) & 0xf;
+            currSymbol = (currSymbol + decodeHelper->symbolTable[sCurrState]) & 0xf;
             symbol |= (currSymbol << (currNibble*4)) << 0x10;
-            u32 currK = stuff->ykTable[sCurrState].kVal;
-            sCurrState = stuff->ykTable[sCurrState].yVal - 64;
+            u32 currK = decodeHelper->ykTable[sCurrState].kVal;
+            sCurrState = decodeHelper->ykTable[sCurrState].yVal - 64;
             sCurrState += (currBits >> bitIndex) & maskTable[currK];
             bitIndex += currK;
             if (bitIndex > 32)
@@ -534,9 +524,9 @@ __attribute__((target("arm"))) __attribute__((noinline, no_reorder)) __attribute
     sReadIndex += ((data - 1) - dataCmpPtr);
 }
 
-__attribute__((target("arm"))) __attribute__((noinline, no_reorder)) void SwitchToArmCallSymDeltaANS(const u32 *data, struct DecodeStuff *stuff, u8 *maskTable, void (*decodeFunction)(const u32 *data, struct DecodeStuff *stuff, u8 *maskTable))
+__attribute__((target("arm"))) __attribute__((noinline, no_reorder)) void SwitchToArmCallSymDeltaANS(const u32 *data, struct DecodeHelperStruct *decodeHelper, u8 *maskTable, void (*decodeFunction)(const u32 *data, struct DecodeHelperStruct *decodeHelper, u8 *maskTable))
 {
-    decodeFunction(data, stuff, maskTable);
+    decodeFunction(data, decodeHelper, maskTable);
 }
 
 void DecodeSymDeltatANS(const u32 *data, const u32 *pFreqs, u16 *resultVec, u32 count)
@@ -550,16 +540,16 @@ void DecodeSymDeltatANS(const u32 *data, const u32 *pFreqs, u16 *resultVec, u32 
 
     // We want to store in packs of 2, so count needs to be divisible by 2
     u32 remainingCount = count % 2;
-    struct DecodeStuff stuff;
+    struct DecodeHelperStruct decodeHelper;
 
-    stuff.ykTable = ykTable;
-    stuff.symbolTable = symbolTable;
-    stuff.count = count - remainingCount;
-    stuff.resultVec = resultVec;
+    decodeHelper.ykTable = ykTable;
+    decodeHelper.symbolTable = symbolTable;
+    decodeHelper.count = count - remainingCount;
+    decodeHelper.resultVec = resultVec;
 
     u32 funcBuffer[400];
     CopyFuncToIwram(funcBuffer, DecodeSymDeltatANSLoop, SwitchToArmCallSymDeltaANS);
-    SwitchToArmCallSymDeltaANS(data, &stuff, maskTable, (void *) funcBuffer);
+    SwitchToArmCallSymDeltaANS(data, &decodeHelper, maskTable, (void *) funcBuffer);
 
     u32 currBits = data[sReadIndex];
     for (int i = 0; i < remainingCount; i++)
@@ -791,25 +781,25 @@ void LoadSpecialPokePic(void *dest, s32 species, u32 personality, bool8 isFrontP
     {
     #if P_GENDER_DIFFERENCES
         if (gSpeciesInfo[species].frontPicFemale != NULL && IsPersonalityFemale(species, personality))
-            LZDecompressWram(gSpeciesInfo[species].frontPicFemale, dest);
+            DecompressDataWithHeaderWram(gSpeciesInfo[species].frontPicFemale, dest);
         else
     #endif
         if (gSpeciesInfo[species].frontPic != NULL)
-            LZDecompressWram(gSpeciesInfo[species].frontPic, dest);
+            DecompressDataWithHeaderWram(gSpeciesInfo[species].frontPic, dest);
         else
-            LZDecompressWram(gSpeciesInfo[SPECIES_NONE].frontPic, dest);
+            DecompressDataWithHeaderWram(gSpeciesInfo[SPECIES_NONE].frontPic, dest);
     }
     else
     {
     #if P_GENDER_DIFFERENCES
         if (gSpeciesInfo[species].backPicFemale != NULL && IsPersonalityFemale(species, personality))
-            LZDecompressWram(gSpeciesInfo[species].backPicFemale, dest);
+            DecompressDataWithHeaderWram(gSpeciesInfo[species].backPicFemale, dest);
         else
     #endif
         if (gSpeciesInfo[species].backPic != NULL)
-            LZDecompressWram(gSpeciesInfo[species].backPic, dest);
+            DecompressDataWithHeaderWram(gSpeciesInfo[species].backPic, dest);
         else
-            LZDecompressWram(gSpeciesInfo[SPECIES_NONE].backPic, dest);
+            DecompressDataWithHeaderWram(gSpeciesInfo[SPECIES_NONE].backPic, dest);
     }
 
     if (species == SPECIES_SPINDA && isFrontPic)
@@ -819,9 +809,9 @@ void LoadSpecialPokePic(void *dest, s32 species, u32 personality, bool8 isFrontP
     }
 }
 
-void Unused_LZDecompressWramIndirect(const void **src, void *dest)
+void Unused_DecompressDataWithHeaderWramIndirect(const void **src, void *dest)
 {
-    LZDecompressWram(*src, dest);
+    DecompressDataWithHeaderWram(*src, dest);
 }
 
 static void UNUSED StitchObjectsOn8x8Canvas(s32 object_size, s32 object_count, u8 *src_tiles, u8 *dest_tiles)
@@ -991,7 +981,7 @@ bool8 LoadCompressedSpriteSheetUsingHeap(const struct CompressedSpriteSheet *src
     void *buffer;
 
     buffer = AllocZeroed(GetDecompressedDataSize(&src->data[0]));
-    LZDecompressWram(src->data, buffer);
+    DecompressDataWithHeaderWram(src->data, buffer);
 
     dest.data = buffer;
     dest.size = src->size;
@@ -1008,7 +998,7 @@ bool8 LoadCompressedSpritePaletteUsingHeap(const struct CompressedSpritePalette 
     void *buffer;
 
     buffer = AllocZeroed(GetDecompressedDataSize(&src->data[0]));
-    LZDecompressWram(src->data, buffer);
+    DecompressDataWithHeaderWram(src->data, buffer);
     dest.data = buffer;
     dest.tag = src->tag;
 

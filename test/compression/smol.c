@@ -12,7 +12,7 @@ TEST("Compression test: tileset smol")
     u32 imageSize = GetDecompressedDataSize(compFile);
     u32 *compBuffer = Alloc(imageSize);
     CycleCountStart();
-    LZDecompressWram(compFile, compBuffer);
+    DecompressDataWithHeaderWram(compFile, compBuffer);
     u32 timeTaken = CycleCountEnd();
     DebugPrintf("Time Tileset Smol: %u", timeTaken);
 
@@ -42,7 +42,7 @@ TEST("Compression test: tileset fastSmol")
     u32 imageSize = GetDecompressedDataSize(compFile);
     u32 *compBuffer = Alloc(imageSize);
     CycleCountStart();
-    LZDecompressWram(compFile, compBuffer);
+    DecompressDataWithHeaderWram(compFile, compBuffer);
     u32 timeTaken = CycleCountEnd();
     DebugPrintf("Time Tileset fastSmol: %u", timeTaken);
 
@@ -72,7 +72,7 @@ TEST("Compression test: tileset LZ")
     u32 imageSize = GetDecompressedDataSize(compFile);
     u32 *compBuffer = Alloc(imageSize);
     CycleCountStart();
-    LZDecompressWram(compFile, compBuffer);
+    DecompressDataWithHeaderWram(compFile, compBuffer);
     u32 timeTaken = CycleCountEnd();
     DebugPrintf("Time Tileset LZ: %u", timeTaken);
 
@@ -102,7 +102,7 @@ TEST("Compression test: simple battle sprite smol")
     u32 imageSize = GetDecompressedDataSize(compFile);
     u32 *compBuffer = Alloc(imageSize);
     CycleCountStart();
-    LZDecompressWram(compFile, compBuffer);
+    DecompressDataWithHeaderWram(compFile, compBuffer);
     u32 timeTaken = CycleCountEnd();
     DebugPrintf("Time Simple Sprite smol: %u", timeTaken);
 
@@ -132,7 +132,7 @@ TEST("Compression test: simple battle sprite LZ")
     u32 imageSize = GetDecompressedDataSize(compFile);
     u32 *compBuffer = Alloc(imageSize);
     CycleCountStart();
-    LZDecompressWram(compFile, compBuffer);
+    DecompressDataWithHeaderWram(compFile, compBuffer);
     u32 timeTaken = CycleCountEnd();
     DebugPrintf("Time Simple Sprite LZ: %u", timeTaken);
 
@@ -162,7 +162,7 @@ TEST("Compression test: complex battle sprite")
     u32 imageSize = GetDecompressedDataSize(compFile);
     u32 *compBuffer = Alloc(imageSize);
     CycleCountStart();
-    LZDecompressWram(compFile, compBuffer);
+    DecompressDataWithHeaderWram(compFile, compBuffer);
     u32 timeTaken = CycleCountEnd();
     DebugPrintf("Time Complex Sprite smol: %u", timeTaken);
 
@@ -192,7 +192,7 @@ TEST("Compression test: complex battle sprite")
     u32 imageSize = GetDecompressedDataSize(compFile);
     u32 *compBuffer = Alloc(imageSize);
     CycleCountStart();
-    LZDecompressWram(compFile, compBuffer);
+    DecompressDataWithHeaderWram(compFile, compBuffer);
     u32 timeTaken = CycleCountEnd();
     DebugPrintf("Time Complex Sprite LZ: %u", timeTaken);
 
@@ -222,7 +222,7 @@ TEST("Compression test: Gossifleur")
     u32 imageSize = GetDecompressedDataSize(compFile);
     u32 *compBuffer = Alloc(imageSize);
     CycleCountStart();
-    LZDecompressWram(compFile, compBuffer);
+    DecompressDataWithHeaderWram(compFile, compBuffer);
     u32 timeTaken = CycleCountEnd();
     DebugPrintf("Gossifleur: %u", timeTaken);
 
@@ -252,7 +252,7 @@ TEST("Compression test: bubbles")
     u32 imageSize = GetDecompressedDataSize(compFile);
     u32 *compBuffer = Alloc(imageSize);
     CycleCountStart();
-    LZDecompressWram(compFile, compBuffer);
+    DecompressDataWithHeaderWram(compFile, compBuffer);
     u32 timeTaken = CycleCountEnd();
     DebugPrintf("Small Bubbles: %u", timeTaken);
 
@@ -282,7 +282,7 @@ TEST("Compression test: small mode 0")
     u32 imageSize = GetDecompressedDataSize(compFile);
     u32 *compBuffer = Alloc(imageSize);
     CycleCountStart();
-    LZDecompressWram(compFile, compBuffer);
+    DecompressDataWithHeaderWram(compFile, compBuffer);
     u32 timeTaken = CycleCountEnd();
     DebugPrintf("Small mode 0: %u", timeTaken);
 
@@ -311,7 +311,7 @@ TEST("Compression test: medium mode 0")
     u32 imageSize = GetDecompressedDataSize(compFile);
     u32 *compBuffer = Alloc(imageSize);
     CycleCountStart();
-    LZDecompressWram(compFile, compBuffer);
+    DecompressDataWithHeaderWram(compFile, compBuffer);
     u32 timeTaken = CycleCountEnd();
     DebugPrintf("Medium mode 0: %u", timeTaken);
 
@@ -341,7 +341,7 @@ TEST("Compression test: large mode 0")
     u32 imageSize = GetDecompressedDataSize(compFile);
     u32 *compBuffer = Alloc(imageSize);
     CycleCountStart();
-    LZDecompressWram(compFile, compBuffer);
+    DecompressDataWithHeaderWram(compFile, compBuffer);
     u32 timeTaken = CycleCountEnd();
     DebugPrintf("Large mode 0: %u", timeTaken);
 
@@ -371,7 +371,7 @@ TEST("Compression test: small mode 1")
     u32 imageSize = GetDecompressedDataSize(compFile);
     u32 *compBuffer = Alloc(imageSize);
     CycleCountStart();
-    LZDecompressWram(compFile, compBuffer);
+    DecompressDataWithHeaderWram(compFile, compBuffer);
     u32 timeTaken = CycleCountEnd();
     DebugPrintf("Small mode 1: %u", timeTaken);
 
@@ -401,7 +401,7 @@ TEST("Compression test: medium mode 1")
     u32 imageSize = GetDecompressedDataSize(compFile);
     u32 *compBuffer = Alloc(imageSize);
     CycleCountStart();
-    LZDecompressWram(compFile, compBuffer);
+    DecompressDataWithHeaderWram(compFile, compBuffer);
     u32 timeTaken = CycleCountEnd();
     DebugPrintf("Medium mode 1: %u", timeTaken);
 
@@ -431,7 +431,7 @@ TEST("Compression test: large mode 1")
     u32 imageSize = GetDecompressedDataSize(compFile);
     u32 *compBuffer = Alloc(imageSize);
     CycleCountStart();
-    LZDecompressWram(compFile, compBuffer);
+    DecompressDataWithHeaderWram(compFile, compBuffer);
     u32 timeTaken = CycleCountEnd();
     DebugPrintf("Large mode 1: %u", timeTaken);
 
@@ -461,7 +461,7 @@ TEST("Compression test: small mode 2")
     u32 imageSize = GetDecompressedDataSize(compFile);
     u32 *compBuffer = Alloc(imageSize);
     CycleCountStart();
-    LZDecompressWram(compFile, compBuffer);
+    DecompressDataWithHeaderWram(compFile, compBuffer);
     u32 timeTaken = CycleCountEnd();
     DebugPrintf("Small mode 2: %u", timeTaken);
 
@@ -491,7 +491,7 @@ TEST("Compression test: medium mode 2")
     u32 imageSize = GetDecompressedDataSize(compFile);
     u32 *compBuffer = Alloc(imageSize);
     CycleCountStart();
-    LZDecompressWram(compFile, compBuffer);
+    DecompressDataWithHeaderWram(compFile, compBuffer);
     u32 timeTaken = CycleCountEnd();
     DebugPrintf("Medium mode 2: %u", timeTaken);
 
@@ -521,7 +521,7 @@ TEST("Compression test: large mode 2")
     u32 imageSize = GetDecompressedDataSize(compFile);
     u32 *compBuffer = Alloc(imageSize);
     CycleCountStart();
-    LZDecompressWram(compFile, compBuffer);
+    DecompressDataWithHeaderWram(compFile, compBuffer);
     u32 timeTaken = CycleCountEnd();
     DebugPrintf("Large mode 2: %u", timeTaken);
 
@@ -551,7 +551,7 @@ TEST("Compression test: small mode 3")
     u32 imageSize = GetDecompressedDataSize(compFile);
     u32 *compBuffer = Alloc(imageSize);
     CycleCountStart();
-    LZDecompressWram(compFile, compBuffer);
+    DecompressDataWithHeaderWram(compFile, compBuffer);
     u32 timeTaken = CycleCountEnd();
     DebugPrintf("Small mode 3: %u", timeTaken);
 
@@ -581,7 +581,7 @@ TEST("Compression test: medium mode 3")
     u32 imageSize = GetDecompressedDataSize(compFile);
     u32 *compBuffer = Alloc(imageSize);
     CycleCountStart();
-    LZDecompressWram(compFile, compBuffer);
+    DecompressDataWithHeaderWram(compFile, compBuffer);
     u32 timeTaken = CycleCountEnd();
     DebugPrintf("Medium mode 3: %u", timeTaken);
 
@@ -611,7 +611,7 @@ TEST("Compression test: large mode 3")
     u32 imageSize = GetDecompressedDataSize(compFile);
     u32 *compBuffer = Alloc(imageSize);
     CycleCountStart();
-    LZDecompressWram(compFile, compBuffer);
+    DecompressDataWithHeaderWram(compFile, compBuffer);
     u32 timeTaken = CycleCountEnd();
     DebugPrintf("Large mode 3: %u", timeTaken);
 
@@ -641,7 +641,7 @@ TEST("Compression test: small mode 4")
     u32 imageSize = GetDecompressedDataSize(compFile);
     u32 *compBuffer = Alloc(imageSize);
     CycleCountStart();
-    LZDecompressWram(compFile, compBuffer);
+    DecompressDataWithHeaderWram(compFile, compBuffer);
     u32 timeTaken = CycleCountEnd();
     DebugPrintf("Small mode 4: %u", timeTaken);
 
@@ -671,7 +671,7 @@ TEST("Compression test: medium mode 4")
     u32 imageSize = GetDecompressedDataSize(compFile);
     u32 *compBuffer = Alloc(imageSize);
     CycleCountStart();
-    LZDecompressWram(compFile, compBuffer);
+    DecompressDataWithHeaderWram(compFile, compBuffer);
     u32 timeTaken = CycleCountEnd();
     DebugPrintf("Medium mode 4: %u", timeTaken);
 
@@ -701,7 +701,7 @@ TEST("Compression test: large mode 4")
     u32 imageSize = GetDecompressedDataSize(compFile);
     u32 *compBuffer = Alloc(imageSize);
     CycleCountStart();
-    LZDecompressWram(compFile, compBuffer);
+    DecompressDataWithHeaderWram(compFile, compBuffer);
     u32 timeTaken = CycleCountEnd();
     DebugPrintf("Large mode 4: %u", timeTaken);
 
@@ -731,7 +731,7 @@ TEST("Compression test: small mode 5")
     u32 imageSize = GetDecompressedDataSize(compFile);
     u32 *compBuffer = Alloc(imageSize);
     CycleCountStart();
-    LZDecompressWram(compFile, compBuffer);
+    DecompressDataWithHeaderWram(compFile, compBuffer);
     u32 timeTaken = CycleCountEnd();
     DebugPrintf("Small mode 5: %u", timeTaken);
 
@@ -761,7 +761,7 @@ TEST("Compression test: medium mode 5")
     u32 imageSize = GetDecompressedDataSize(compFile);
     u32 *compBuffer = Alloc(imageSize);
     CycleCountStart();
-    LZDecompressWram(compFile, compBuffer);
+    DecompressDataWithHeaderWram(compFile, compBuffer);
     u32 timeTaken = CycleCountEnd();
     DebugPrintf("Medium mode 5: %u", timeTaken);
 
@@ -791,7 +791,7 @@ TEST("Compression test: large mode 5")
     u32 imageSize = GetDecompressedDataSize(compFile);
     u32 *compBuffer = Alloc(imageSize);
     CycleCountStart();
-    LZDecompressWram(compFile, compBuffer);
+    DecompressDataWithHeaderWram(compFile, compBuffer);
     u32 timeTaken = CycleCountEnd();
     DebugPrintf("Large mode 5: %u", timeTaken);
 
@@ -821,7 +821,7 @@ TEST("Compression test: small mode 0 lz")
     u32 imageSize = GetDecompressedDataSize(compFile);
     u32 *compBuffer = Alloc(imageSize);
     CycleCountStart();
-    LZDecompressWram(compFile, compBuffer);
+    DecompressDataWithHeaderWram(compFile, compBuffer);
     u32 timeTaken = CycleCountEnd();
     DebugPrintf("Small mode 0 lz: %u", timeTaken);
 
@@ -850,7 +850,7 @@ TEST("Compression test: medium mode 0 lz")
     u32 imageSize = GetDecompressedDataSize(compFile);
     u32 *compBuffer = Alloc(imageSize);
     CycleCountStart();
-    LZDecompressWram(compFile, compBuffer);
+    DecompressDataWithHeaderWram(compFile, compBuffer);
     u32 timeTaken = CycleCountEnd();
     DebugPrintf("Medium mode 0 lz: %u", timeTaken);
 
@@ -880,7 +880,7 @@ TEST("Compression test: large mode 0 lz")
     u32 imageSize = GetDecompressedDataSize(compFile);
     u32 *compBuffer = Alloc(imageSize);
     CycleCountStart();
-    LZDecompressWram(compFile, compBuffer);
+    DecompressDataWithHeaderWram(compFile, compBuffer);
     u32 timeTaken = CycleCountEnd();
     DebugPrintf("Large mode 0 lz: %u", timeTaken);
 
@@ -910,7 +910,7 @@ TEST("Compression test: small mode 1 lz")
     u32 imageSize = GetDecompressedDataSize(compFile);
     u32 *compBuffer = Alloc(imageSize);
     CycleCountStart();
-    LZDecompressWram(compFile, compBuffer);
+    DecompressDataWithHeaderWram(compFile, compBuffer);
     u32 timeTaken = CycleCountEnd();
     DebugPrintf("Small mode 1 lz: %u", timeTaken);
 
@@ -940,7 +940,7 @@ TEST("Compression test: medium mode 1 lz")
     u32 imageSize = GetDecompressedDataSize(compFile);
     u32 *compBuffer = Alloc(imageSize);
     CycleCountStart();
-    LZDecompressWram(compFile, compBuffer);
+    DecompressDataWithHeaderWram(compFile, compBuffer);
     u32 timeTaken = CycleCountEnd();
     DebugPrintf("Medium mode 1 lz: %u", timeTaken);
 
@@ -970,7 +970,7 @@ TEST("Compression test: large mode 1 lz")
     u32 imageSize = GetDecompressedDataSize(compFile);
     u32 *compBuffer = Alloc(imageSize);
     CycleCountStart();
-    LZDecompressWram(compFile, compBuffer);
+    DecompressDataWithHeaderWram(compFile, compBuffer);
     u32 timeTaken = CycleCountEnd();
     DebugPrintf("Large mode 1 lz: %u", timeTaken);
 
@@ -1000,7 +1000,7 @@ TEST("Compression test: small mode 2 lz")
     u32 imageSize = GetDecompressedDataSize(compFile);
     u32 *compBuffer = Alloc(imageSize);
     CycleCountStart();
-    LZDecompressWram(compFile, compBuffer);
+    DecompressDataWithHeaderWram(compFile, compBuffer);
     u32 timeTaken = CycleCountEnd();
     DebugPrintf("Small mode 2 lz: %u", timeTaken);
 
@@ -1030,7 +1030,7 @@ TEST("Compression test: medium mode 2 lz")
     u32 imageSize = GetDecompressedDataSize(compFile);
     u32 *compBuffer = Alloc(imageSize);
     CycleCountStart();
-    LZDecompressWram(compFile, compBuffer);
+    DecompressDataWithHeaderWram(compFile, compBuffer);
     u32 timeTaken = CycleCountEnd();
     DebugPrintf("Medium mode 2 lz: %u", timeTaken);
 
@@ -1060,7 +1060,7 @@ TEST("Compression test: large mode 2 lz")
     u32 imageSize = GetDecompressedDataSize(compFile);
     u32 *compBuffer = Alloc(imageSize);
     CycleCountStart();
-    LZDecompressWram(compFile, compBuffer);
+    DecompressDataWithHeaderWram(compFile, compBuffer);
     u32 timeTaken = CycleCountEnd();
     DebugPrintf("Large mode 2 lz: %u", timeTaken);
 
@@ -1090,7 +1090,7 @@ TEST("Compression test: small mode 3 lz")
     u32 imageSize = GetDecompressedDataSize(compFile);
     u32 *compBuffer = Alloc(imageSize);
     CycleCountStart();
-    LZDecompressWram(compFile, compBuffer);
+    DecompressDataWithHeaderWram(compFile, compBuffer);
     u32 timeTaken = CycleCountEnd();
     DebugPrintf("Small mode 3 lz: %u", timeTaken);
 
@@ -1120,7 +1120,7 @@ TEST("Compression test: medium mode 3 lz")
     u32 imageSize = GetDecompressedDataSize(compFile);
     u32 *compBuffer = Alloc(imageSize);
     CycleCountStart();
-    LZDecompressWram(compFile, compBuffer);
+    DecompressDataWithHeaderWram(compFile, compBuffer);
     u32 timeTaken = CycleCountEnd();
     DebugPrintf("Medium mode 3 lz: %u", timeTaken);
 
@@ -1150,7 +1150,7 @@ TEST("Compression test: large mode 3 lz")
     u32 imageSize = GetDecompressedDataSize(compFile);
     u32 *compBuffer = Alloc(imageSize);
     CycleCountStart();
-    LZDecompressWram(compFile, compBuffer);
+    DecompressDataWithHeaderWram(compFile, compBuffer);
     u32 timeTaken = CycleCountEnd();
     DebugPrintf("Large mode 3 lz: %u", timeTaken);
 
@@ -1180,7 +1180,7 @@ TEST("Compression test: small mode 4 lz")
     u32 imageSize = GetDecompressedDataSize(compFile);
     u32 *compBuffer = Alloc(imageSize);
     CycleCountStart();
-    LZDecompressWram(compFile, compBuffer);
+    DecompressDataWithHeaderWram(compFile, compBuffer);
     u32 timeTaken = CycleCountEnd();
     DebugPrintf("Small mode 4 lz: %u", timeTaken);
 
@@ -1210,7 +1210,7 @@ TEST("Compression test: medium mode 4 lz")
     u32 imageSize = GetDecompressedDataSize(compFile);
     u32 *compBuffer = Alloc(imageSize);
     CycleCountStart();
-    LZDecompressWram(compFile, compBuffer);
+    DecompressDataWithHeaderWram(compFile, compBuffer);
     u32 timeTaken = CycleCountEnd();
     DebugPrintf("Medium mode 4 lz: %u", timeTaken);
 
@@ -1240,7 +1240,7 @@ TEST("Compression test: large mode 4 lz")
     u32 imageSize = GetDecompressedDataSize(compFile);
     u32 *compBuffer = Alloc(imageSize);
     CycleCountStart();
-    LZDecompressWram(compFile, compBuffer);
+    DecompressDataWithHeaderWram(compFile, compBuffer);
     u32 timeTaken = CycleCountEnd();
     DebugPrintf("Large mode 4 lz: %u", timeTaken);
 
@@ -1270,7 +1270,7 @@ TEST("Compression test: small mode 5 lz")
     u32 imageSize = GetDecompressedDataSize(compFile);
     u32 *compBuffer = Alloc(imageSize);
     CycleCountStart();
-    LZDecompressWram(compFile, compBuffer);
+    DecompressDataWithHeaderWram(compFile, compBuffer);
     u32 timeTaken = CycleCountEnd();
     DebugPrintf("Small mode 5 lz: %u", timeTaken);
 
@@ -1300,7 +1300,7 @@ TEST("Compression test: medium mode 5 lz")
     u32 imageSize = GetDecompressedDataSize(compFile);
     u32 *compBuffer = Alloc(imageSize);
     CycleCountStart();
-    LZDecompressWram(compFile, compBuffer);
+    DecompressDataWithHeaderWram(compFile, compBuffer);
     u32 timeTaken = CycleCountEnd();
     DebugPrintf("Medium mode 5 lz: %u", timeTaken);
 
@@ -1330,7 +1330,7 @@ TEST("Compression test: large mode 5 lz")
     u32 imageSize = GetDecompressedDataSize(compFile);
     u32 *compBuffer = Alloc(imageSize);
     CycleCountStart();
-    LZDecompressWram(compFile, compBuffer);
+    DecompressDataWithHeaderWram(compFile, compBuffer);
     u32 timeTaken = CycleCountEnd();
     DebugPrintf("Large mode 5 lz: %u", timeTaken);
 

@@ -61,8 +61,8 @@ extern struct DecodeYK ykTemplate[2*TANS_TABLE_SIZE];
 
 void UnpackFrequencies(const u32 *packedFreqs, u32 *freqs);
 
-void DecompressDataVram(const u32 *src, void *dest);
-void DecompressDataWram(const u32 *src, void *dest);
+void DecompressDataWithHeaderVram(const u32 *src, void *dest);
+void DecompressDataWithHeaderWram(const u32 *src, void *dest);
 
 //  For decompressing a single part of a multi-part spritesheet
 //void DecompressSubFrame(const u32 *src, void *dest, u32 frameId);
@@ -84,9 +84,6 @@ bool32 isModeSymEncoded(enum CompressionMode mode);
 bool32 isModeSymDelta(enum CompressionMode mode);
 
 //  Default Decompression functions are below here
-void LZDecompressWram(const u32 *src, void *dest);
-void LZDecompressVram(const u32 *src, void *dest);
-
 u32 IsLZ77Data(const void *ptr, u32 minSize, u32 maxSize);
 
 u16 LoadCompressedSpriteSheet(const struct CompressedSpriteSheet *src);
