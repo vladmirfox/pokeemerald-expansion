@@ -350,7 +350,7 @@ static inline void CopyFuncToIwram(void *funcBuffer, void *_funcStartAddress, vo
 }
 
 // - O3 saves cycles
-__attribute__((target("arm"))) __attribute__((noinline)) __attribute__((optimize("-O3"))) void DecodeLOtANSLoop(const u32 *data, struct DecodeStuff *stuff, u8 *maskTable)
+__attribute__((target("arm"))) __attribute__((noinline, no_reorder)) __attribute__((optimize("-O3"))) void DecodeLOtANSLoop(const u32 *data, struct DecodeStuff *stuff, u8 *maskTable)
 {
     u32 readIndex = sReadIndex;
     u32 currBits = data[readIndex];
@@ -389,7 +389,7 @@ __attribute__((target("arm"))) __attribute__((noinline)) __attribute__((optimize
     sReadIndex = readIndex;
 }
 
-__attribute__((target("arm"))) __attribute__((noinline)) void SwitchToArmCallLOtANS(const u32 *data, struct DecodeStuff *stuff, u8 *maskTable, void (*decodeFunction)(const u32 *data, struct DecodeStuff *stuff, u8 *maskTable))
+__attribute__((target("arm"))) __attribute__((noinline, no_reorder)) void SwitchToArmCallLOtANS(const u32 *data, struct DecodeStuff *stuff, u8 *maskTable, void (*decodeFunction)(const u32 *data, struct DecodeStuff *stuff, u8 *maskTable))
 {
     decodeFunction(data, stuff, maskTable);
 }
@@ -468,7 +468,7 @@ void DecodeSymtANS(const u32 *data, const u32 *pFreqs, u16 *resultVec, u32 count
 }
 
 // -O3 saves us almost 30k cycles compared to -O2
-__attribute__((target("arm"))) __attribute__((noinline)) __attribute__((optimize("-O3"))) void DecodeSymDeltatANSLoop(const u32 *data, struct DecodeStuff *stuff, u8 *maskTable)
+__attribute__((target("arm"))) __attribute__((noinline, no_reorder)) __attribute__((optimize("-O3"))) void DecodeSymDeltatANSLoop(const u32 *data, struct DecodeStuff *stuff, u8 *maskTable)
 {
     data += sReadIndex;
     const u32 *dataCmpPtr = data;
@@ -534,7 +534,7 @@ __attribute__((target("arm"))) __attribute__((noinline)) __attribute__((optimize
     sReadIndex += ((data - 1) - dataCmpPtr);
 }
 
-__attribute__((target("arm"))) __attribute__((noinline)) void SwitchToArmCallSymDeltaANS(const u32 *data, struct DecodeStuff *stuff, u8 *maskTable, void (*decodeFunction)(const u32 *data, struct DecodeStuff *stuff, u8 *maskTable))
+__attribute__((target("arm"))) __attribute__((noinline, no_reorder)) void SwitchToArmCallSymDeltaANS(const u32 *data, struct DecodeStuff *stuff, u8 *maskTable, void (*decodeFunction)(const u32 *data, struct DecodeStuff *stuff, u8 *maskTable))
 {
     decodeFunction(data, stuff, maskTable);
 }
@@ -611,7 +611,7 @@ static inline void Fill16(u16 value, void *_dst, u32 size)
     }
 }
 
-__attribute__((target("arm"))) __attribute__((noinline)) void DecodeInstructions(u32 headerLoSize, u8 *loVec, u16 *symVec, void *dest)
+__attribute__((target("arm"))) __attribute__((noinline, no_reorder)) void DecodeInstructions(u32 headerLoSize, u8 *loVec, u16 *symVec, void *dest)
 {
     u32 loIndex = 0;
     u32 symIndex = 0;
@@ -627,6 +627,7 @@ __attribute__((target("arm"))) __attribute__((noinline)) void DecodeInstructions
         {
             loIndex++;
         }
+
         u32 currOffset = loVec[loIndex] & FIRST_LO_MASK;
         if (loVec[loIndex] & CONTINUE_BIT)
         {
@@ -637,6 +638,7 @@ __attribute__((target("arm"))) __attribute__((noinline)) void DecodeInstructions
         {
             loIndex++;
         }
+
         if (currLength != 0)
         {
             *(u16 *)(dest) = symVec[symIndex];
@@ -649,7 +651,6 @@ __attribute__((target("arm"))) __attribute__((noinline)) void DecodeInstructions
             else
             {
                 Copy16((void *)(dest - currOffset*2), dest, currLength);
-                //DmaCopy16(3, (void *)(dest - currOffset*2), dest, currLength*2);
                 dest = (void *)(dest + currLength*2);
             }
             symIndex++;
@@ -663,7 +664,7 @@ __attribute__((target("arm"))) __attribute__((noinline)) void DecodeInstructions
     }
 }
 
-__attribute__((target("arm"))) __attribute__((noinline)) void SwitchToArmCallDecodeInstructions(u32 headerLoSize, u8 *loVec, u16 *symVec, void *dest, void (*decodeFunction)(u32 headerLoSize, u8 *loVec, u16 *symVec, void *dest))
+__attribute__((target("arm"))) __attribute__((noinline, no_reorder)) void SwitchToArmCallDecodeInstructions(u32 headerLoSize, u8 *loVec, u16 *symVec, void *dest, void (*decodeFunction)(u32 headerLoSize, u8 *loVec, u16 *symVec, void *dest))
 {
     decodeFunction(headerLoSize, loVec, symVec, dest);
 }
