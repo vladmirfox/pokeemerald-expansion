@@ -8,6 +8,7 @@
 
 EWRAM_DATA ALIGNED(4) u8 gDecompressionBuffer[0x4000] = {0};
 
+//  Helper struct to build the tANS decode tables without having to do calculations at run-time
 static const struct DecodeYK sYkTemplate[2*TANS_TABLE_SIZE] = {
     [0] = {0, 0},
     [1] = {1<<6, 6},
@@ -243,6 +244,7 @@ void HandleLoadSpecialPokePic(bool32 isFrontPic, void *dest, s32 species, u32 pe
     LoadSpecialPokePic(dest, species, personality, isFrontPic);
 }
 
+//  Unpack packed tANS encoded data symbol frequences into their individual parts
 static inline void UnpackFrequenciesLoop(const u32 *packedFreqs, u32 *freqs, u32 i)
 {
     // Loop unpack
@@ -264,6 +266,9 @@ void UnpackFrequencies(const u32 *packedFreqs, u32 *freqs)
     UnpackFrequenciesLoop(packedFreqs, freqs, 2);
 }
 
+//  Wrapper function for all decompression calls using formats with headers
+//  calls the correct decompression function depending on the header
+//  VRAM version
 void DecompressDataWithHeaderVram(const u32 *src, void *dest)
 {
     struct SmolHeader header;
@@ -278,6 +283,9 @@ void DecompressDataWithHeaderVram(const u32 *src, void *dest)
     }
 }
 
+//  Wrapper function for all decompression calls using formats with headers
+//  calls the correct decompression function depending on the header
+//  WRAM version
 void DecompressDataWithHeaderWram(const u32 *src, void *dest)
 {
     struct SmolHeader header;
@@ -292,16 +300,7 @@ void DecompressDataWithHeaderWram(const u32 *src, void *dest)
     }
 }
 
-//  For decompressing a single part of a multi-part spritesheet
-/*
-void DecompressSubFrame(const u32 *src, void *dest, u32 frameId)
-{
-    struct SpriteSheetHeader header;
-    CpuCopy32(src, &header, 4);
-    const u32 *offsets = &src[1];
-}
-*/
-
+//  Build the tANS decompression table from the specified frequencies and the precomputed helper struct
 void BuildDecompressionTable(const u32 *packedFreqs, struct DecodeYK *table, u32 *symbolTable)
 {
     u32 freqs[16];
@@ -334,11 +333,15 @@ struct DecodeHelperStruct
     u32 count;
 };
 
+//  Dark Egg magic
 static inline void CopyFuncToIwram(void *funcBuffer, void *_funcStartAddress, void *_funcEndAdress)
 {
     CpuFastCopy(_funcStartAddress, funcBuffer, _funcEndAdress - _funcStartAddress);
 }
 
+//  Inner loop of tANS decoding for Lengths and Offset data for decompression instructions, uses u8 data sizes
+//  Basic process for decoding a tANS encoded value is to read the current symbol from the decoding table, then calculate the next state
+//  from the y and k values for the current state and add the value read from the next k bits in the bitstream
 // - O3 saves cycles
 __attribute__((target("arm"))) __attribute__((noinline, no_reorder)) __attribute__((optimize("-O3"))) void DecodeLOtANSLoop(const u32 *data, struct DecodeHelperStruct *decodeHelper, u8 *maskTable)
 {
@@ -379,11 +382,13 @@ __attribute__((target("arm"))) __attribute__((noinline, no_reorder)) __attribute
     sReadIndex = readIndex;
 }
 
+//  Dark Egg magic
 __attribute__((target("arm"))) __attribute__((noinline, no_reorder)) void SwitchToArmCallLOtANS(const u32 *data, struct DecodeHelperStruct *decodeHelper, u8 *maskTable, void (*decodeFunction)(const u32 *data, struct DecodeHelperStruct *decodeHelper, u8 *maskTable))
 {
     decodeFunction(data, decodeHelper, maskTable);
 }
 
+//  Mask table for reading data from a bitstream for tANS decoding
 // fastest in IWRAM, all masks are assigned separately, because we don't want to waste time on memset
 static inline void SetMaskTable(u8 *maskTable)
 {
@@ -397,6 +402,7 @@ static inline void SetMaskTable(u8 *maskTable)
     maskTable[7] = 0; // This mask doesn't really 'exist', but because the memory is aligned to 4 now, the compiler can generate 2 ldr/str instructions instead of strb/strh
 }
 
+//  Function that decodes tANS encoded LO data, resulting data is u8 values
 void DecodeLOtANS(const u32 *data, const u32 *pFreqs, u8 *resultVec, u32 count)
 {
     struct DecodeYK *ykTable = sMemoryAllocated;
@@ -457,6 +463,9 @@ void DecodeSymtANS(const u32 *data, const u32 *pFreqs, u16 *resultVec, u32 count
     }
 }
 
+//  Inner loop of tANS decoding for delta encoded symbol data, uses u16 data size
+//  Basic process for decoding a tANS encoded value is to read the current symbol from the decoding table, then calculate the next state
+//  from the y and k values for the current state and add the value read from the next k bits in the bitstream
 // -O3 saves us almost 30k cycles compared to -O2
 __attribute__((target("arm"))) __attribute__((noinline, no_reorder)) __attribute__((optimize("-O3"))) void DecodeSymDeltatANSLoop(const u32 *data, struct DecodeHelperStruct *decodeHelper, u8 *maskTable)
 {
@@ -524,6 +533,7 @@ __attribute__((target("arm"))) __attribute__((noinline, no_reorder)) __attribute
     sReadIndex += ((data - 1) - dataCmpPtr);
 }
 
+//  Dark Egg magic
 __attribute__((target("arm"))) __attribute__((noinline, no_reorder)) void SwitchToArmCallSymDeltaANS(const u32 *data, struct DecodeHelperStruct *decodeHelper, u8 *maskTable, void (*decodeFunction)(const u32 *data, struct DecodeHelperStruct *decodeHelper, u8 *maskTable))
 {
     decodeFunction(data, decodeHelper, maskTable);
@@ -601,6 +611,17 @@ static inline void Fill16(u16 value, void *_dst, u32 size)
     }
 }
 
+//  Function to decode the instructions into the actual decompressed data
+//  Basic process:
+//  Read length from the loVec, 1 or 2 bytes as indicated by the last bit in the first byte
+//  Read offset from the loVec, 1 or 2 bytes as indicated by the last bit in the first byte
+//  If length is not 0 and offset is not 1:
+//      Insert the current value from the Symbol vector into current result position and advance symbol vector by 1
+//      Copy <length> values from <offset> values back in the result vector
+//  If length is not 0 and offser is 1:
+//      Insert the current value from the Symbol vector into current result position <length> times, then advance symbol vector by 1
+//  If length is 0:
+//      Insert <offset> number of symbols from the symbol vector into the result vector and advance the symbol vector position by <offset>
 __attribute__((target("arm"))) __attribute__((noinline, no_reorder)) void DecodeInstructions(u32 headerLoSize, u8 *loVec, u16 *symVec, void *dest)
 {
     u32 loIndex = 0;
@@ -654,11 +675,13 @@ __attribute__((target("arm"))) __attribute__((noinline, no_reorder)) void Decode
     }
 }
 
+//  Dark Egg magic
 __attribute__((target("arm"))) __attribute__((noinline, no_reorder)) void SwitchToArmCallDecodeInstructions(u32 headerLoSize, u8 *loVec, u16 *symVec, void *dest, void (*decodeFunction)(u32 headerLoSize, u8 *loVec, u16 *symVec, void *dest))
 {
     decodeFunction(headerLoSize, loVec, symVec, dest);
 }
 
+//  Dark Egg magic
 void DecodeInstructionsIwram(u32 headerLoSize, u8 *loVec, u16 *symVec, void *dest)
 {
     u32 funcBuffer[200];
@@ -667,6 +690,7 @@ void DecodeInstructionsIwram(u32 headerLoSize, u8 *loVec, u16 *symVec, void *des
     SwitchToArmCallDecodeInstructions(headerLoSize, loVec, symVec, dest, (void *) funcBuffer);
 }
 
+//  Entrance point for smol compressed data
 void SmolDecompressData(const struct SmolHeader *header, const u32 *data, void *dest)
 {
     //  This is apparently needed due to Game Freak sending bullshit down the decompression pipeline
@@ -691,6 +715,7 @@ void SmolDecompressData(const struct SmolHeader *header, const u32 *data, void *
     const u32 *pSymFreqs;
 
     sReadIndex = 0;
+    //  Use different decoding flows depending on which mode the data is compressed with
     switch (header->mode)
     {
         case ENCODE_LO:
@@ -711,39 +736,51 @@ void SmolDecompressData(const struct SmolHeader *header, const u32 *data, void *
     }
 
     sBitIndex = 0;
+    //  Decode tANS encoded LO data, mode 3, 4 and 5
     if (loEncoded)
     {
         DecodeLOtANS(data, pLoFreqs, loVec, headerLoSize);
         leftoverPos += 12;
     }
+    //  Decode tANS encoded symbol data, mode 1, 2, 4 and 5
     if (symEncoded)
     {
+        //  Symbols are delta encoded, mode 2 and 5
         if (symDelta)
             DecodeSymDeltatANS(data, pSymFreqs, symVec, headerSymSize);
+        //  Symbols are not delta encoded, mode 1 and 4
         else
             DecodeSymtANS(data, pSymFreqs, symVec, headerSymSize);
         leftoverPos += 12;
     }
 
+    //  If not both of lo and sym data are tANS encoded, data that isn't entropy encoded exists
+    //  This is stored after the 32-bit aligned bitstream
     if (loEncoded || symEncoded)
         leftoverPos += 4*header->bitstreamSize;
 
+    //  Copy the not entropy encoded symbol data to the symbol buffer
+    //  Symbol data is u16 aligned
     if (symEncoded == FALSE)
     {
         DmaCopy16(3, leftoverPos, symVec, headerSymSize*2);
         leftoverPos += headerSymSize*2;
     }
 
+    //  Copy the not entropy encoded lo data to the lo buffer
+    //  Despite the individual lo values being u8 aligned, the entire vector for the u8 values is u16 aligned
     if (loEncoded == FALSE)
     {
         DmaCopy16(3, leftoverPos, loVec, alignedLoSize);
     }
 
+    //  Actually decode the final data from loVec and symVec
     DecodeInstructionsIwram(headerLoSize, loVec, symVec, dest);
 
     Free(sMemoryAllocated);
 }
 
+//  Helper functions for determining modes
 bool32 isModeLoEncoded(enum CompressionMode mode)
 {
     if (mode == ENCODE_LO
