@@ -59,33 +59,30 @@
 #define PSS_LABEL_WINDOW_CONTEST_MOVES_TITLE 3
 
 // Button control text (upper right)
-#define PSS_LABEL_WINDOW_PROMPT_UTILITY 4 // Also handles the "rename" prompt if P_SUMMARY_SCREEN_RENAME is true
-// #define PSS_LABEL_WINDOW_PROMPT_INFO 5
-#define PSS_LABEL_WINDOW_PROMPT_SWITCH 6
-#define PSS_DATA_WINDOW_UNUSED 7
+#define PSS_LABEL_WINDOW_PROMPT_UTILITY 4 // Also handles the "Rename" and "IVs"/"EVs" prompts if P_SUMMARY_SCREEN_RENAME and P_SUMMARY_SCREEN_IV_INFO are true, respectively
+#define PSS_LABEL_WINDOW_PROMPT_SWITCH 5
+#define PSS_DATA_WINDOW_UNUSED 6
 
 // Info screen
-#define PSS_LABEL_WINDOW_POKEMON_INFO_RENTAL 8
-#define PSS_LABEL_WINDOW_POKEMON_INFO_TYPE 9
+#define PSS_LABEL_WINDOW_POKEMON_INFO_RENTAL 7
+#define PSS_LABEL_WINDOW_POKEMON_INFO_TYPE 8
 
 // Skills screen
-#define PSS_LABEL_WINDOW_POKEMON_SKILLS_STATS_LEFT 10 // HP, Attack, Defense
-#define PSS_LABEL_WINDOW_POKEMON_SKILLS_STATS_RIGHT 11 // Sp. Attack, Sp. Defense, Speed
-#define PSS_LABEL_WINDOW_POKEMON_SKILLS_EXP 12 // EXP, Next Level
-#define PSS_LABEL_WINDOW_POKEMON_SKILLS_STATUS 13
+#define PSS_LABEL_WINDOW_POKEMON_SKILLS_STATS_LEFT 9 // HP, Attack, Defense
+#define PSS_LABEL_WINDOW_POKEMON_SKILLS_STATS_RIGHT 10 // Sp. Attack, Sp. Defense, Speed
+#define PSS_LABEL_WINDOW_POKEMON_SKILLS_EXP 11 // EXP, Next Level
+#define PSS_LABEL_WINDOW_POKEMON_SKILLS_STATUS 12
 
 // Moves screen
-#define PSS_LABEL_WINDOW_MOVES_POWER_ACC 14 // Also contains the power and accuracy values
-#define PSS_LABEL_WINDOW_MOVES_APPEAL_JAM 15
-#define PSS_LABEL_WINDOW_PROMPT_RELEARN 16
+#define PSS_LABEL_WINDOW_MOVES_POWER_ACC 13 // Also contains the power and accuracy values
+#define PSS_LABEL_WINDOW_MOVES_APPEAL_JAM 14
+#define PSS_LABEL_WINDOW_PROMPT_RELEARN 15
 
 // Above/below the pokemon's portrait (left)
-#define PSS_LABEL_WINDOW_PORTRAIT_DEX_NUMBER 17
-#define PSS_LABEL_WINDOW_PORTRAIT_NICKNAME 18 // The upper name
-#define PSS_LABEL_WINDOW_PORTRAIT_SPECIES 19 // The lower name
-#define PSS_LABEL_WINDOW_END 20
-
-// dynamic stat type labels for the skills screen
+#define PSS_LABEL_WINDOW_PORTRAIT_DEX_NUMBER 16
+#define PSS_LABEL_WINDOW_PORTRAIT_NICKNAME 17 // The upper name
+#define PSS_LABEL_WINDOW_PORTRAIT_SPECIES 18 // The lower name
+#define PSS_LABEL_WINDOW_END 19
 
 // Dynamic fields for the Pokémon Info page
 #define PSS_DATA_WINDOW_INFO_ORIGINAL_TRAINER 0
@@ -99,7 +96,6 @@
 #define PSS_DATA_WINDOW_SKILLS_STATS_LEFT 2 // HP, Attack, Defense
 #define PSS_DATA_WINDOW_SKILLS_STATS_RIGHT 3 // Sp. Attack, Sp. Defense, Speed
 #define PSS_DATA_WINDOW_EXP 4 // Exp, next level
-// #define PSS_LABEL_WINDOW_SKILLS_STATS_TYPE 5
 
 // Dynamic fields for the Battle Moves and Contest Moves pages.
 #define PSS_DATA_WINDOW_MOVE_NAMES 0
@@ -199,8 +195,6 @@ ALIGNED(4) static EWRAM_DATA u8 sAnimDelayTaskId = 0;
 EWRAM_DATA MainCallback gInitialSummaryScreenCallback = NULL; // stores callback from the first time the screen is opened from the party or PC menu
 
 // forward declarations
-static u8 IncrementSkillsStatsMode(u8 mode);
-static void ClearStatLabel(void);
 static bool8 LoadGraphics(void);
 static void CB2_InitSummaryScreen(void);
 static void InitBGs(void);
@@ -328,7 +322,7 @@ static void CB2_PssChangePokemonNickname(void);
 static void ShowCancelOrUtilityPrompt(s16 mode);
 static void ClearUtilityPrompt(void);
 static void ShowMonSkillsInfo(u8 taskId, s16 mode);
-static void WriteToStatsTilemapBuffer(u32 length, u32 block);
+static void WriteToStatsTilemapBuffer(u32 length, u32 block, u32 statsCoordX, u32 statsCoordY);
 static void ClearRelearnPrompt(void);
 static void ShowRelearnPrompt(void);
 void ExtractMonSkillStatsData(struct Pokemon *mon, struct PokeSummary *sum);
@@ -337,6 +331,8 @@ void ExtractMonSkillEvData(struct Pokemon *mon, struct PokeSummary *sum);
 void PrintTextOnWindow(u8 windowId, const u8 *string, u8 x, u8 y, u8 lineSpacing, u8 colorId);
 void PrintTextOnWindowWithFont(u8 windowId, const u8 *string, u8 x, u8 y, u8 lineSpacing, u8 colorId, u32 fontId);
 u8 AddWindowFromTemplateList(const struct WindowTemplate *template, u8 templateId);
+static u8 IncrementSkillsStatsMode(u8 mode);
+static void ClearStatLabel(u32 length, u32 statsCoordX, u32 statsCoordY);
 
 static const struct BgTemplate sBgTemplates[] =
 {
@@ -1620,50 +1616,50 @@ static void CloseSummaryScreen(u8 taskId)
 // Update skills page tilemap
 static void ChangeStatLabel(s16 mode)
 {
-    u32 STATS_BLOCK = 169;
-    u32 EVS_BLOCK = 218;
-    u32 IVS_BLOCK = 221;
+    u32 statsBlock = 169;
+    u32 ivsBlock = 221;
+    u32 evsBlock = 218;
+
+    u32 statsCoordX = 44;
+    u32 statsCoordY = 102;
 
     u32 statsLength = 3;
     u32 ivEvLength = 2;
 
-    ClearStatLabel();
+    ClearStatLabel(statsLength, statsCoordX, statsCoordY);
 
     switch (mode)
     {
     case SUMMARY_MODE_SKILLS_STATS:
-        WriteToStatsTilemapBuffer(statsLength, STATS_BLOCK);
+        WriteToStatsTilemapBuffer(statsLength, statsBlock, statsCoordX, statsCoordY);
         break;
     case SUMMARY_MODE_SKILLS_IVS:
-        WriteToStatsTilemapBuffer(ivEvLength, IVS_BLOCK);
+        WriteToStatsTilemapBuffer(ivEvLength, ivsBlock, statsCoordX, statsCoordY);
         break;
     case SUMMARY_MODE_SKILLS_EVS:
-        WriteToStatsTilemapBuffer(ivEvLength, EVS_BLOCK);
+        WriteToStatsTilemapBuffer(ivEvLength, evsBlock, statsCoordX, statsCoordY);
         break;
     }
     CopyBgTilemapBufferToVram(1);
 }
 
-static void WriteToStatsTilemapBuffer(u32 length, u32 block)
+static void WriteToStatsTilemapBuffer(u32 length, u32 block, u32 statsCoordX, u32 statsCoordY)
 {
-    u32 STATS_COORD_X = 44;
-    u32 STATS_COORD_Y = 102;
     u32 i;
 
     for (i = 0; i <= length; i++)
-        FillBgTilemapBufferRect(1, block + i, STATS_COORD_X + i, STATS_COORD_Y, 1, 1, 2);
-        
+        FillBgTilemapBufferRect(1, block + i, statsCoordX + i, statsCoordY, 1, 1, 2);
 }
 
-static void ClearStatLabel(void)
+static void ClearStatLabel(u32 length, u32 statsCoordX, u32 statsCoordY)
 {
-    u32 STATS_CORD_X = 44;
-    u32 STATS_CORD_Y = 102;
-    u32 STATS_BLANK_BLOCK = 1241;
+    u32 blankStatsBlock = 1241;
 
-    FillBgTilemapBufferRect(1, STATS_BLANK_BLOCK, STATS_CORD_X + 3, STATS_CORD_Y, 1, 1, 2);
-    FillBgTilemapBufferRect(1, STATS_BLANK_BLOCK, STATS_CORD_X + 4, STATS_CORD_Y, 1, 1, 2);
-    FillBgTilemapBufferRect(1, STATS_BLANK_BLOCK, STATS_CORD_X + 5, STATS_CORD_Y, 1, 1, 2);
+    u32 i;
+    u32 blankOffset = 3;
+
+    for (i = 0; i <= length; i++)
+        FillBgTilemapBufferRect(1, blankStatsBlock, statsCoordX + blankOffset + i, statsCoordY, 1, 1, 2);
 }
 
 static void Task_HandleInput(u8 taskId)
@@ -1894,7 +1890,6 @@ static void ChangeSummaryPokemon(u8 taskId, s8 delta)
                 ClearWindowTilemap(PSS_LABEL_WINDOW_POKEMON_SKILLS_STATUS);
                 ScheduleBgCopyTilemapToVram(0);
                 HandleStatusTilemap(0, 2);
-                // ChangeStatLabel(SUMMARY_MODE_SKILLS_STATS);
             }
             sMonSummaryScreen->curMonIndex = monId;
             gTasks[taskId].data[0] = 0;
@@ -3166,8 +3161,6 @@ static void PrintAOrBButtonIcon(u8 windowId, bool8 bButton, u32 x)
 
 static void PrintPageNamesAndStats(void)
 {
-    // int stringXPos;
-    // int iconXPos;
     int statsXPos;
 
     PrintTextOnWindow(PSS_LABEL_WINDOW_POKEMON_INFO_TITLE, gText_PkmnInfo, 2, 1, 0, 1);
@@ -3208,7 +3201,6 @@ static void PutPageWindowTilemaps(u8 page)
     ClearWindowTilemap(PSS_LABEL_WINDOW_POKEMON_SKILLS_TITLE);
     ClearWindowTilemap(PSS_LABEL_WINDOW_BATTLE_MOVES_TITLE);
     ClearWindowTilemap(PSS_LABEL_WINDOW_CONTEST_MOVES_TITLE);
-    // ShowClearRelearnPrompt();
 
     switch (page)
     {
@@ -3816,7 +3808,6 @@ static void PrintBattleMoves(void)
     if (sMonSummaryScreen->mode == SUMMARY_MODE_SELECT_MOVE)
     {
         PrintNewMoveDetailsOrCancelText();
-        // ClearWindowTilemap(PSS_LABEL_WINDOW_PROMPT_RELEARN);
         if (sMonSummaryScreen->firstMoveIndex == MAX_MON_MOVES)
         {
             if (sMonSummaryScreen->newMove != MOVE_NONE)
@@ -3827,9 +3818,6 @@ static void PrintBattleMoves(void)
             PrintMoveDetails(sMonSummaryScreen->summary.moves[sMonSummaryScreen->firstMoveIndex]);
         }
     }
-
-    // if (ShouldShowMoveRelearner())
-        // PutWindowTilemap(PSS_LABEL_WINDOW_PROMPT_RELEARN);
 }
 
 static void Task_PrintBattleMoves(u8 taskId)
@@ -3957,12 +3945,8 @@ static void PrintContestMoves(void)
     if (sMonSummaryScreen->mode == SUMMARY_MODE_SELECT_MOVE)
     {
         PrintNewMoveDetailsOrCancelText();
-        // ClearWindowTilemap(PSS_LABEL_WINDOW_PROMPT_RELEARN);
         PrintContestMoveDescription(sMonSummaryScreen->firstMoveIndex);
     }
-
-    // if (ShouldShowMoveRelearner())
-        // PutWindowTilemap(PSS_LABEL_WINDOW_PROMPT_RELEARN);
 }
 
 static void Task_PrintContestMoves(u8 taskId)
