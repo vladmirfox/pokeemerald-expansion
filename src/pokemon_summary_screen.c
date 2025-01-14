@@ -199,12 +199,6 @@ ALIGNED(4) static EWRAM_DATA u8 sAnimDelayTaskId = 0;
 EWRAM_DATA MainCallback gInitialSummaryScreenCallback = NULL; // stores callback from the first time the screen is opened from the party or PC menu
 
 // forward declarations
-void PrintTextOnWindow(u8 windowId, const u8 *string, u8 x, u8 y, u8 lineSpacing, u8 colorId);
-void PrintTextOnWindowWithFont(u8 windowId, const u8 *string, u8 x, u8 y, u8 lineSpacing, u8 colorId, u32 fontId);
-u8 AddWindowFromTemplateList(const struct WindowTemplate *template, u8 templateId);
-static void WriteToStatsTilemapBuffer(u32 length, u32 block);
-static void ClearRelearnPrompt(void);
-static void ShowRelearnPrompt(void);
 static u8 IncrementSkillsStatsMode(u8 mode);
 static void ClearStatLabel(void);
 static bool8 LoadGraphics(void);
@@ -328,15 +322,21 @@ static void KeepMoveSelectorVisible(u8);
 static void SummaryScreen_DestroyAnimDelayTask(void);
 static bool32 ShouldShowMoveRelearner(void);
 static bool32 ShouldShowRename(void);
-static void ShowCancelOrUtilityPrompt(s16 mode);
-static inline void ClearUtilityPrompt(void);
-static void ShowMonSkillsInfo(u8 taskId, s16 mode);
-void ExtractMonSkillStatsData(struct Pokemon *mon, struct PokeSummary *sum);
-void ExtractMonSkillIvData(struct Pokemon *mon, struct PokeSummary *sum);
-void ExtractMonSkillEvData(struct Pokemon *mon, struct PokeSummary *sum);
 static void BufferLeftColumnIvEvStats(void);
 static void CB2_ReturnToSummaryScreenFromNamingScreen(void);
 static void CB2_PssChangePokemonNickname(void);
+static void ShowCancelOrUtilityPrompt(s16 mode);
+static void ClearUtilityPrompt(void);
+static void ShowMonSkillsInfo(u8 taskId, s16 mode);
+static void WriteToStatsTilemapBuffer(u32 length, u32 block);
+static void ClearRelearnPrompt(void);
+static void ShowRelearnPrompt(void);
+void ExtractMonSkillStatsData(struct Pokemon *mon, struct PokeSummary *sum);
+void ExtractMonSkillIvData(struct Pokemon *mon, struct PokeSummary *sum);
+void ExtractMonSkillEvData(struct Pokemon *mon, struct PokeSummary *sum);
+void PrintTextOnWindow(u8 windowId, const u8 *string, u8 x, u8 y, u8 lineSpacing, u8 colorId);
+void PrintTextOnWindowWithFont(u8 windowId, const u8 *string, u8 x, u8 y, u8 lineSpacing, u8 colorId, u32 fontId);
+u8 AddWindowFromTemplateList(const struct WindowTemplate *template, u8 templateId);
 
 static const struct BgTemplate sBgTemplates[] =
 {
@@ -2138,7 +2138,7 @@ static void PssScrollRightEnd(u8 taskId) // display right
 static void PssScrollLeft(u8 taskId) // Scroll left
 {
     s16 *data = gTasks[taskId].data;
-    // to fix a specific lag in writing to that spot
+    // to fix a specific lag in writing to the stat label
     if (sMonSummaryScreen->currPageIndex == PSS_PAGE_SKILLS)
         ChangeStatLabel(SUMMARY_MODE_SKILLS_STATS);
     if (data[0] == 0)
@@ -2341,9 +2341,6 @@ static void ChangeSelectedMove(s16 *taskData, s8 direction, u8 *moveIndexPtr)
 static void CloseMoveSelectMode(u8 taskId)
 {
     DestroyMoveSelectorSprites(SPRITE_ARR_ID_MOVE_SELECTOR1);
-    // ClearWindowTilemap(PSS_LABEL_WINDOW_PROMPT_SWITCH);
-    // ClearWindowTilemap(PSS_LABEL_WINDOW_PROMPT_UTILITY);
-    // PutWindowTilemap(PSS_LABEL_WINDOW_PROMPT_UTILITY);
     if (sMonSummaryScreen->lockMovesFlag || sMonSummaryScreen->mode != SUMMARY_MODE_NORMAL)
     {
         sMonSummaryScreen->mode = SUMMARY_MODE_NORMAL;
@@ -3173,10 +3170,10 @@ static void PrintPageNamesAndStats(void)
     // int iconXPos;
     int statsXPos;
 
-    PrintTextOnWindow(PSS_LABEL_WINDOW_POKEMON_INFO_TITLE, gText_PkmnInfo, 2, 0, 0, 1);
-    PrintTextOnWindow(PSS_LABEL_WINDOW_POKEMON_SKILLS_TITLE, gText_PkmnSkills, 2, 0, 0, 1);
-    PrintTextOnWindow(PSS_LABEL_WINDOW_BATTLE_MOVES_TITLE, gText_BattleMoves, 2, 0, 0, 1);
-    PrintTextOnWindow(PSS_LABEL_WINDOW_CONTEST_MOVES_TITLE, gText_ContestMoves, 2, 0, 0, 1);
+    PrintTextOnWindow(PSS_LABEL_WINDOW_POKEMON_INFO_TITLE, gText_PkmnInfo, 2, 1, 0, 1);
+    PrintTextOnWindow(PSS_LABEL_WINDOW_POKEMON_SKILLS_TITLE, gText_PkmnSkills, 2, 1, 0, 1);
+    PrintTextOnWindow(PSS_LABEL_WINDOW_BATTLE_MOVES_TITLE, gText_BattleMoves, 2, 1, 0, 1);
+    PrintTextOnWindow(PSS_LABEL_WINDOW_CONTEST_MOVES_TITLE, gText_ContestMoves, 2, 1, 0, 1);
 
     ShowCancelOrUtilityPrompt(SUMMARY_MODE_NORMAL);
 
@@ -4649,7 +4646,7 @@ static inline void ShowCancelOrUtilityPrompt(s16 mode)
         iconXPos = 0;
 
     PrintAOrBButtonIcon(PSS_LABEL_WINDOW_PROMPT_UTILITY, FALSE, iconXPos);
-    PrintTextOnWindow(PSS_LABEL_WINDOW_PROMPT_UTILITY, promptText, stringXPos, 0, 0, 0);
+    PrintTextOnWindow(PSS_LABEL_WINDOW_PROMPT_UTILITY, promptText, stringXPos, 1, 0, 0);
 }
 
 static void CB2_ReturnToSummaryScreenFromNamingScreen(void)
