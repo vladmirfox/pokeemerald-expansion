@@ -44,7 +44,7 @@ TEST("Compression test: tileset fastSmol")
     CycleCountStart();
     LZDecompressWram(compFile, compBuffer);
     u32 timeTaken = CycleCountEnd();
-    DebugPrintf("Time Tileset Smol: %u", timeTaken);
+    DebugPrintf("Time Tileset fastSmol: %u", timeTaken);
 
     u32 val1 = 0;
     u32 val2 = 0;
@@ -794,6 +794,545 @@ TEST("Compression test: large mode 5")
     LZDecompressWram(compFile, compBuffer);
     u32 timeTaken = CycleCountEnd();
     DebugPrintf("Large mode 5: %u", timeTaken);
+
+    u32 val1 = 0;
+    u32 val2 = 0;
+    bool32 areEqual = TRUE;
+    for (u32 i = 0; i < imageSize/4; i++)
+    {
+        val1 = origFile[i];
+        val2 = compBuffer[i];
+        if (val1 != val2)
+        {
+            areEqual = FALSE;
+            break;
+        }
+    }
+
+    EXPECT_EQ(areEqual, TRUE);
+
+    Free(compBuffer);
+}
+
+TEST("Compression test: small mode 0 lz")
+{
+    static const u32 origFile[] = INCBIN_U32("test/compression/small_mode_0.4bpp");
+    static const u32 compFile[] = INCBIN_U32("test/compression/small_mode_0.4bpp.lz");
+    u32 imageSize = GetDecompressedDataSize(compFile);
+    u32 *compBuffer = Alloc(imageSize);
+    CycleCountStart();
+    LZDecompressWram(compFile, compBuffer);
+    u32 timeTaken = CycleCountEnd();
+    DebugPrintf("Small mode 0 lz: %u", timeTaken);
+
+    u32 val1 = 0;
+    u32 val2 = 0;
+    bool32 areEqual = TRUE;
+    for (u32 i = 0; i < imageSize/4; i++)
+    {
+        val1 = origFile[i];
+        val2 = compBuffer[i];
+        if (val1 != val2)
+        {
+            areEqual = FALSE;
+            break;
+        }
+    }
+
+    EXPECT_EQ(areEqual, TRUE);
+
+    Free(compBuffer);
+}
+TEST("Compression test: medium mode 0 lz")
+{
+    static const u32 origFile[] = INCBIN_U32("test/compression/medium_mode_0.4bpp");
+    static const u32 compFile[] = INCBIN_U32("test/compression/medium_mode_0.4bpp.lz");
+    u32 imageSize = GetDecompressedDataSize(compFile);
+    u32 *compBuffer = Alloc(imageSize);
+    CycleCountStart();
+    LZDecompressWram(compFile, compBuffer);
+    u32 timeTaken = CycleCountEnd();
+    DebugPrintf("Medium mode 0 lz: %u", timeTaken);
+
+    u32 val1 = 0;
+    u32 val2 = 0;
+    bool32 areEqual = TRUE;
+    for (u32 i = 0; i < imageSize/4; i++)
+    {
+        val1 = origFile[i];
+        val2 = compBuffer[i];
+        if (val1 != val2)
+        {
+            areEqual = FALSE;
+            break;
+        }
+    }
+
+    EXPECT_EQ(areEqual, TRUE);
+
+    Free(compBuffer);
+}
+
+TEST("Compression test: large mode 0 lz")
+{
+    static const u32 origFile[] = INCBIN_U32("test/compression/large_mode_0.4bpp");
+    static const u32 compFile[] = INCBIN_U32("test/compression/large_mode_0.4bpp.lz");
+    u32 imageSize = GetDecompressedDataSize(compFile);
+    u32 *compBuffer = Alloc(imageSize);
+    CycleCountStart();
+    LZDecompressWram(compFile, compBuffer);
+    u32 timeTaken = CycleCountEnd();
+    DebugPrintf("Large mode 0 lz: %u", timeTaken);
+
+    u32 val1 = 0;
+    u32 val2 = 0;
+    bool32 areEqual = TRUE;
+    for (u32 i = 0; i < imageSize/4; i++)
+    {
+        val1 = origFile[i];
+        val2 = compBuffer[i];
+        if (val1 != val2)
+        {
+            areEqual = FALSE;
+            break;
+        }
+    }
+
+    EXPECT_EQ(areEqual, TRUE);
+
+    Free(compBuffer);
+}
+
+TEST("Compression test: small mode 1 lz")
+{
+    static const u32 origFile[] = INCBIN_U32("test/compression/small_mode_1.4bpp");
+    static const u32 compFile[] = INCBIN_U32("test/compression/small_mode_1.4bpp.lz");
+    u32 imageSize = GetDecompressedDataSize(compFile);
+    u32 *compBuffer = Alloc(imageSize);
+    CycleCountStart();
+    LZDecompressWram(compFile, compBuffer);
+    u32 timeTaken = CycleCountEnd();
+    DebugPrintf("Small mode 1 lz: %u", timeTaken);
+
+    u32 val1 = 0;
+    u32 val2 = 0;
+    bool32 areEqual = TRUE;
+    for (u32 i = 0; i < imageSize/4; i++)
+    {
+        val1 = origFile[i];
+        val2 = compBuffer[i];
+        if (val1 != val2)
+        {
+            areEqual = FALSE;
+            break;
+        }
+    }
+
+    EXPECT_EQ(areEqual, TRUE);
+
+    Free(compBuffer);
+}
+
+TEST("Compression test: medium mode 1 lz")
+{
+    static const u32 origFile[] = INCBIN_U32("test/compression/medium_mode_1.4bpp");
+    static const u32 compFile[] = INCBIN_U32("test/compression/medium_mode_1.4bpp.lz");
+    u32 imageSize = GetDecompressedDataSize(compFile);
+    u32 *compBuffer = Alloc(imageSize);
+    CycleCountStart();
+    LZDecompressWram(compFile, compBuffer);
+    u32 timeTaken = CycleCountEnd();
+    DebugPrintf("Medium mode 1 lz: %u", timeTaken);
+
+    u32 val1 = 0;
+    u32 val2 = 0;
+    bool32 areEqual = TRUE;
+    for (u32 i = 0; i < imageSize/4; i++)
+    {
+        val1 = origFile[i];
+        val2 = compBuffer[i];
+        if (val1 != val2)
+        {
+            areEqual = FALSE;
+            break;
+        }
+    }
+
+    EXPECT_EQ(areEqual, TRUE);
+
+    Free(compBuffer);
+}
+
+TEST("Compression test: large mode 1 lz")
+{
+    static const u32 origFile[] = INCBIN_U32("test/compression/large_mode_1.4bpp");
+    static const u32 compFile[] = INCBIN_U32("test/compression/large_mode_1.4bpp.lz");
+    u32 imageSize = GetDecompressedDataSize(compFile);
+    u32 *compBuffer = Alloc(imageSize);
+    CycleCountStart();
+    LZDecompressWram(compFile, compBuffer);
+    u32 timeTaken = CycleCountEnd();
+    DebugPrintf("Large mode 1 lz: %u", timeTaken);
+
+    u32 val1 = 0;
+    u32 val2 = 0;
+    bool32 areEqual = TRUE;
+    for (u32 i = 0; i < imageSize/4; i++)
+    {
+        val1 = origFile[i];
+        val2 = compBuffer[i];
+        if (val1 != val2)
+        {
+            areEqual = FALSE;
+            break;
+        }
+    }
+
+    EXPECT_EQ(areEqual, TRUE);
+
+    Free(compBuffer);
+}
+
+TEST("Compression test: small mode 2 lz")
+{
+    static const u32 origFile[] = INCBIN_U32("test/compression/small_mode_2.4bpp");
+    static const u32 compFile[] = INCBIN_U32("test/compression/small_mode_2.4bpp.lz");
+    u32 imageSize = GetDecompressedDataSize(compFile);
+    u32 *compBuffer = Alloc(imageSize);
+    CycleCountStart();
+    LZDecompressWram(compFile, compBuffer);
+    u32 timeTaken = CycleCountEnd();
+    DebugPrintf("Small mode 2 lz: %u", timeTaken);
+
+    u32 val1 = 0;
+    u32 val2 = 0;
+    bool32 areEqual = TRUE;
+    for (u32 i = 0; i < imageSize/4; i++)
+    {
+        val1 = origFile[i];
+        val2 = compBuffer[i];
+        if (val1 != val2)
+        {
+            areEqual = FALSE;
+            break;
+        }
+    }
+
+    EXPECT_EQ(areEqual, TRUE);
+
+    Free(compBuffer);
+}
+
+TEST("Compression test: medium mode 2 lz")
+{
+    static const u32 origFile[] = INCBIN_U32("test/compression/medium_mode_2.4bpp");
+    static const u32 compFile[] = INCBIN_U32("test/compression/medium_mode_2.4bpp.lz");
+    u32 imageSize = GetDecompressedDataSize(compFile);
+    u32 *compBuffer = Alloc(imageSize);
+    CycleCountStart();
+    LZDecompressWram(compFile, compBuffer);
+    u32 timeTaken = CycleCountEnd();
+    DebugPrintf("Medium mode 2 lz: %u", timeTaken);
+
+    u32 val1 = 0;
+    u32 val2 = 0;
+    bool32 areEqual = TRUE;
+    for (u32 i = 0; i < imageSize/4; i++)
+    {
+        val1 = origFile[i];
+        val2 = compBuffer[i];
+        if (val1 != val2)
+        {
+            areEqual = FALSE;
+            break;
+        }
+    }
+
+    EXPECT_EQ(areEqual, TRUE);
+
+    Free(compBuffer);
+}
+
+TEST("Compression test: large mode 2 lz")
+{
+    static const u32 origFile[] = INCBIN_U32("test/compression/large_mode_2.4bpp");
+    static const u32 compFile[] = INCBIN_U32("test/compression/large_mode_2.4bpp.lz");
+    u32 imageSize = GetDecompressedDataSize(compFile);
+    u32 *compBuffer = Alloc(imageSize);
+    CycleCountStart();
+    LZDecompressWram(compFile, compBuffer);
+    u32 timeTaken = CycleCountEnd();
+    DebugPrintf("Large mode 2 lz: %u", timeTaken);
+
+    u32 val1 = 0;
+    u32 val2 = 0;
+    bool32 areEqual = TRUE;
+    for (u32 i = 0; i < imageSize/4; i++)
+    {
+        val1 = origFile[i];
+        val2 = compBuffer[i];
+        if (val1 != val2)
+        {
+            areEqual = FALSE;
+            break;
+        }
+    }
+
+    EXPECT_EQ(areEqual, TRUE);
+
+    Free(compBuffer);
+}
+
+TEST("Compression test: small mode 3 lz")
+{
+    static const u32 origFile[] = INCBIN_U32("test/compression/small_mode_3.4bpp");
+    static const u32 compFile[] = INCBIN_U32("test/compression/small_mode_3.4bpp.lz");
+    u32 imageSize = GetDecompressedDataSize(compFile);
+    u32 *compBuffer = Alloc(imageSize);
+    CycleCountStart();
+    LZDecompressWram(compFile, compBuffer);
+    u32 timeTaken = CycleCountEnd();
+    DebugPrintf("Small mode 3 lz: %u", timeTaken);
+
+    u32 val1 = 0;
+    u32 val2 = 0;
+    bool32 areEqual = TRUE;
+    for (u32 i = 0; i < imageSize/4; i++)
+    {
+        val1 = origFile[i];
+        val2 = compBuffer[i];
+        if (val1 != val2)
+        {
+            areEqual = FALSE;
+            break;
+        }
+    }
+
+    EXPECT_EQ(areEqual, TRUE);
+
+    Free(compBuffer);
+}
+
+TEST("Compression test: medium mode 3 lz")
+{
+    static const u32 origFile[] = INCBIN_U32("test/compression/medium_mode_3.4bpp");
+    static const u32 compFile[] = INCBIN_U32("test/compression/medium_mode_3.4bpp.lz");
+    u32 imageSize = GetDecompressedDataSize(compFile);
+    u32 *compBuffer = Alloc(imageSize);
+    CycleCountStart();
+    LZDecompressWram(compFile, compBuffer);
+    u32 timeTaken = CycleCountEnd();
+    DebugPrintf("Medium mode 3 lz: %u", timeTaken);
+
+    u32 val1 = 0;
+    u32 val2 = 0;
+    bool32 areEqual = TRUE;
+    for (u32 i = 0; i < imageSize/4; i++)
+    {
+        val1 = origFile[i];
+        val2 = compBuffer[i];
+        if (val1 != val2)
+        {
+            areEqual = FALSE;
+            break;
+        }
+    }
+
+    EXPECT_EQ(areEqual, TRUE);
+
+    Free(compBuffer);
+}
+
+TEST("Compression test: large mode 3 lz")
+{
+    static const u32 origFile[] = INCBIN_U32("test/compression/large_mode_3.4bpp");
+    static const u32 compFile[] = INCBIN_U32("test/compression/large_mode_3.4bpp.lz");
+    u32 imageSize = GetDecompressedDataSize(compFile);
+    u32 *compBuffer = Alloc(imageSize);
+    CycleCountStart();
+    LZDecompressWram(compFile, compBuffer);
+    u32 timeTaken = CycleCountEnd();
+    DebugPrintf("Large mode 3 lz: %u", timeTaken);
+
+    u32 val1 = 0;
+    u32 val2 = 0;
+    bool32 areEqual = TRUE;
+    for (u32 i = 0; i < imageSize/4; i++)
+    {
+        val1 = origFile[i];
+        val2 = compBuffer[i];
+        if (val1 != val2)
+        {
+            areEqual = FALSE;
+            break;
+        }
+    }
+
+    EXPECT_EQ(areEqual, TRUE);
+
+    Free(compBuffer);
+}
+
+TEST("Compression test: small mode 4 lz")
+{
+    static const u32 origFile[] = INCBIN_U32("test/compression/small_mode_4.4bpp");
+    static const u32 compFile[] = INCBIN_U32("test/compression/small_mode_4.4bpp.lz");
+    u32 imageSize = GetDecompressedDataSize(compFile);
+    u32 *compBuffer = Alloc(imageSize);
+    CycleCountStart();
+    LZDecompressWram(compFile, compBuffer);
+    u32 timeTaken = CycleCountEnd();
+    DebugPrintf("Small mode 4 lz: %u", timeTaken);
+
+    u32 val1 = 0;
+    u32 val2 = 0;
+    bool32 areEqual = TRUE;
+    for (u32 i = 0; i < imageSize/4; i++)
+    {
+        val1 = origFile[i];
+        val2 = compBuffer[i];
+        if (val1 != val2)
+        {
+            areEqual = FALSE;
+            break;
+        }
+    }
+
+    EXPECT_EQ(areEqual, TRUE);
+
+    Free(compBuffer);
+}
+
+TEST("Compression test: medium mode 4 lz")
+{
+    static const u32 origFile[] = INCBIN_U32("test/compression/medium_mode_4.4bpp");
+    static const u32 compFile[] = INCBIN_U32("test/compression/medium_mode_4.4bpp.lz");
+    u32 imageSize = GetDecompressedDataSize(compFile);
+    u32 *compBuffer = Alloc(imageSize);
+    CycleCountStart();
+    LZDecompressWram(compFile, compBuffer);
+    u32 timeTaken = CycleCountEnd();
+    DebugPrintf("Medium mode 4 lz: %u", timeTaken);
+
+    u32 val1 = 0;
+    u32 val2 = 0;
+    bool32 areEqual = TRUE;
+    for (u32 i = 0; i < imageSize/4; i++)
+    {
+        val1 = origFile[i];
+        val2 = compBuffer[i];
+        if (val1 != val2)
+        {
+            areEqual = FALSE;
+            break;
+        }
+    }
+
+    EXPECT_EQ(areEqual, TRUE);
+
+    Free(compBuffer);
+}
+
+TEST("Compression test: large mode 4 lz")
+{
+    static const u32 origFile[] = INCBIN_U32("test/compression/large_mode_4.4bpp");
+    static const u32 compFile[] = INCBIN_U32("test/compression/large_mode_4.4bpp.lz");
+    u32 imageSize = GetDecompressedDataSize(compFile);
+    u32 *compBuffer = Alloc(imageSize);
+    CycleCountStart();
+    LZDecompressWram(compFile, compBuffer);
+    u32 timeTaken = CycleCountEnd();
+    DebugPrintf("Large mode 4 lz: %u", timeTaken);
+
+    u32 val1 = 0;
+    u32 val2 = 0;
+    bool32 areEqual = TRUE;
+    for (u32 i = 0; i < imageSize/4; i++)
+    {
+        val1 = origFile[i];
+        val2 = compBuffer[i];
+        if (val1 != val2)
+        {
+            areEqual = FALSE;
+            break;
+        }
+    }
+
+    EXPECT_EQ(areEqual, TRUE);
+
+    Free(compBuffer);
+}
+
+TEST("Compression test: small mode 5 lz")
+{
+    static const u32 origFile[] = INCBIN_U32("test/compression/small_mode_5.4bpp");
+    static const u32 compFile[] = INCBIN_U32("test/compression/small_mode_5.4bpp.lz");
+    u32 imageSize = GetDecompressedDataSize(compFile);
+    u32 *compBuffer = Alloc(imageSize);
+    CycleCountStart();
+    LZDecompressWram(compFile, compBuffer);
+    u32 timeTaken = CycleCountEnd();
+    DebugPrintf("Small mode 5 lz: %u", timeTaken);
+
+    u32 val1 = 0;
+    u32 val2 = 0;
+    bool32 areEqual = TRUE;
+    for (u32 i = 0; i < imageSize/4; i++)
+    {
+        val1 = origFile[i];
+        val2 = compBuffer[i];
+        if (val1 != val2)
+        {
+            areEqual = FALSE;
+            break;
+        }
+    }
+
+    EXPECT_EQ(areEqual, TRUE);
+
+    Free(compBuffer);
+}
+
+TEST("Compression test: medium mode 5 lz")
+{
+    static const u32 origFile[] = INCBIN_U32("test/compression/medium_mode_5.4bpp");
+    static const u32 compFile[] = INCBIN_U32("test/compression/medium_mode_5.4bpp.lz");
+    u32 imageSize = GetDecompressedDataSize(compFile);
+    u32 *compBuffer = Alloc(imageSize);
+    CycleCountStart();
+    LZDecompressWram(compFile, compBuffer);
+    u32 timeTaken = CycleCountEnd();
+    DebugPrintf("Medium mode 5 lz: %u", timeTaken);
+
+    u32 val1 = 0;
+    u32 val2 = 0;
+    bool32 areEqual = TRUE;
+    for (u32 i = 0; i < imageSize/4; i++)
+    {
+        val1 = origFile[i];
+        val2 = compBuffer[i];
+        if (val1 != val2)
+        {
+            areEqual = FALSE;
+            break;
+        }
+    }
+
+    EXPECT_EQ(areEqual, TRUE);
+
+    Free(compBuffer);
+}
+
+TEST("Compression test: large mode 5 lz")
+{
+    static const u32 origFile[] = INCBIN_U32("test/compression/large_mode_5.4bpp");
+    static const u32 compFile[] = INCBIN_U32("test/compression/large_mode_5.4bpp.lz");
+    u32 imageSize = GetDecompressedDataSize(compFile);
+    u32 *compBuffer = Alloc(imageSize);
+    CycleCountStart();
+    LZDecompressWram(compFile, compBuffer);
+    u32 timeTaken = CycleCountEnd();
+    DebugPrintf("Large mode 5 lz: %u", timeTaken);
 
     u32 val1 = 0;
     u32 val2 = 0;
