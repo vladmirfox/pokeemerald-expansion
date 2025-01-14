@@ -428,43 +428,71 @@ void DecodeLOtANS(const u32 *data, const u32 *pFreqs, u8 *resultVec, u32 count)
     SwitchToArmCallLOtANS(data, &stuff, maskTable, (void *) funcBuffer);
 }
 
+__attribute__((target("arm"))) __attribute__((noinline, no_reorder)) __attribute__((optimize("-O3"))) void DecodeSymtANSLoop(const u32 *data, struct DecodeStuff *stuff, u8 *maskTable)
+{
+    u32 currBits = data[sReadIndex];
+    u32 bitIndex = sBitIndex;
+
+    u16 * resultVec_16 = (u16*)(stuff->resultVec);
+    u16 * resultVecEnd = &resultVec_16[stuff->count];
+
+    do
+    {
+        u32 symbol = 0;
+        for (u32 currNibble = 0; currNibble < 4; currNibble++)
+        {
+            symbol += stuff->symbolTable[sCurrState] << (currNibble*4);
+            u32 currK = stuff->ykTable[sCurrState].kVal;
+            u32 nextState = stuff->ykTable[sCurrState].yVal;
+            nextState += (currBits >> bitIndex) & (0xff >> (8-currK)); // Masktable is slower here for some reason.
+            if (bitIndex + currK < 32)
+            {
+                bitIndex += currK;
+            }
+            else if (bitIndex + currK == 32)
+            {
+                currBits = data[++sReadIndex];
+                bitIndex = 0;
+            }
+            else if ((bitIndex + currK) > 32)
+            {
+                currBits = data[++sReadIndex];
+                u32 remainder = bitIndex + currK - 32;
+                nextState += (currBits & ((1u << remainder) - 1)) << (currK - remainder);
+                bitIndex = remainder;
+            }
+            sCurrState = nextState - 64;
+        }
+        *resultVec_16++ = symbol;
+    } while (resultVec_16 < resultVecEnd);
+
+    sBitIndex = bitIndex;
+}
+
+__attribute__((target("arm"))) __attribute__((noinline, no_reorder)) void SwitchToArmCallDecodeSymtANS(const u32 *data, struct DecodeStuff *stuff, u8 *maskTable, void (*decodeFunction)(const u32 *data, struct DecodeStuff *stuff, u8 *maskTable))
+{
+    decodeFunction(data, stuff, maskTable);
+}
+
 void DecodeSymtANS(const u32 *data, const u32 *pFreqs, u16 *resultVec, u32 count)
 {
     struct DecodeYK *ykTable = sMemoryAllocated;
     u32 *symbolTable = sMemoryAllocated + (TANS_TABLE_SIZE*sizeof(struct DecodeYK));
     BuildDecompressionTable(pFreqs, ykTable, symbolTable);
-    u32 currBits = data[sReadIndex];
-    for (u32 currSym = 0; currSym < count; currSym++)
-    {
-        u32 symbol = 0;
-        for (u32 currNibble = 0; currNibble < 4; currNibble++)
-        {
-            symbol += symbolTable[sCurrState] << (currNibble*4);
-            u32 currK = ykTable[sCurrState].kVal;
-            u32 nextState = ykTable[sCurrState].yVal;
-            nextState += (currBits >> sBitIndex) & (0xff >> (8-currK));
-            if (sBitIndex + currK < 32)
-            {
-                sBitIndex += currK;
-            }
-            else if (sBitIndex + currK == 32)
-            {
-                sReadIndex += 1;
-                currBits = data[sReadIndex];
-                sBitIndex = 0;
-            }
-            else if ((sBitIndex + currK) > 32)
-            {
-                sReadIndex += 1;
-                currBits = data[sReadIndex];
-                u32 remainder = sBitIndex + currK - 32;
-                nextState += (currBits & ((1u << remainder) - 1)) << (currK - remainder);
-                sBitIndex = remainder;
-            }
-            sCurrState = nextState - 64;
-        }
-        resultVec[currSym] = symbol;
-    }
+
+    u8 maskTable[8];
+    SetMaskTable(maskTable);
+
+    struct DecodeStuff stuff;
+
+    stuff.ykTable = ykTable;
+    stuff.symbolTable = symbolTable;
+    stuff.count = count;
+    stuff.resultVec = resultVec;
+
+    u32 funcBuffer[300];
+    CopyFuncToIwram(funcBuffer, DecodeSymtANSLoop, SwitchToArmCallDecodeSymtANS);
+    SwitchToArmCallDecodeSymtANS(data, &stuff, maskTable, (void *) funcBuffer);
 }
 
 // -O3 saves us almost 30k cycles compared to -O2
