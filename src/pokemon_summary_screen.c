@@ -1922,6 +1922,13 @@ static void Task_ChangeSummaryMon(u8 taskId)
     case 4:
         if (ExtractMonDataToSummaryStruct(&sMonSummaryScreen->currentMon) == FALSE)
             return;
+        else
+        {
+            if (ShouldShowMoveRelearner())
+                ShowRelearnPrompt();
+            else
+                ClearRelearnPrompt();
+        }
         break;
     case 5:
         RemoveAndCreateMonMarkingsSprite(&sMonSummaryScreen->currentMon);
@@ -2207,6 +2214,11 @@ static void SwitchToMoveSelection(u8 taskId)
         ClearWindowTilemap(PSS_LABEL_WINDOW_POKEMON_SKILLS_STATUS);
     HandlePowerAccTilemap(9, -3);
     HandleAppealJamTilemap(9, -3, move);
+
+    if (ShouldShowMoveRelearner())
+        ShowRelearnPrompt();
+    else
+        ClearRelearnPrompt();
 
     TilemapFiveMovesDisplay(sMonSummaryScreen->bgTilemapBuffers[PSS_PAGE_BATTLE_MOVES][0], 3, FALSE);
     TilemapFiveMovesDisplay(sMonSummaryScreen->bgTilemapBuffers[PSS_PAGE_CONTEST_MOVES][0], 1, FALSE);
@@ -3233,11 +3245,7 @@ static void PutPageWindowTilemaps(u8 page)
         }
 
         if (ShouldShowMoveRelearner())
-        {
-            PlaySE(SE_M_REVERSAL);
             ShowRelearnPrompt();
-        }
-
         else
             ClearRelearnPrompt();
         break;
@@ -3251,12 +3259,7 @@ static void PutPageWindowTilemaps(u8 page)
         }
 
         if (ShouldShowMoveRelearner())
-        {
-            PlaySE(SE_M_REVERSAL);
             ShowRelearnPrompt();
-        }
-            
-
         else
             ClearRelearnPrompt();
         break;
@@ -4557,6 +4560,7 @@ static inline bool32 ShouldShowMoveRelearner(void)
 {
     return (P_SUMMARY_SCREEN_MOVE_RELEARNER
          && !sMonSummaryScreen->lockMovesFlag
+         && !sMonSummaryScreen->isBoxMon
          && sMonSummaryScreen->mode != SUMMARY_MODE_BOX
          && sMonSummaryScreen->mode != SUMMARY_MODE_BOX_CURSOR
          && sMonSummaryScreen->relearnableMovesNum > 0
@@ -4569,6 +4573,7 @@ static inline bool32 ShouldShowRename(void)
     return (P_SUMMARY_SCREEN_RENAME
          && !sMonSummaryScreen->lockMovesFlag
          && !sMonSummaryScreen->summary.isEgg
+         && !sMonSummaryScreen->isBoxMon
          && sMonSummaryScreen->mode != SUMMARY_MODE_BOX
          && sMonSummaryScreen->mode != SUMMARY_MODE_BOX_CURSOR
          && !InBattleFactory()
@@ -4578,8 +4583,7 @@ static inline bool32 ShouldShowRename(void)
 
 static inline void ShowRelearnPrompt(void)
 {
-    if (ShouldShowMoveRelearner() 
-        && sMonSummaryScreen->mode != SUMMARY_MODE_LOCK_MOVES
+    if (sMonSummaryScreen->mode != SUMMARY_MODE_LOCK_MOVES
         && (sMonSummaryScreen->currPageIndex == PSS_PAGE_BATTLE_MOVES
             || sMonSummaryScreen->currPageIndex == PSS_PAGE_CONTEST_MOVES))
     {
