@@ -59,7 +59,7 @@
 #define PSS_LABEL_WINDOW_CONTEST_MOVES_TITLE 3
 
 // Button control text (upper right)
-#define PSS_LABEL_WINDOW_PROMPT_UTILITY 4 // Also handles the "Rename" and "IVs"/"EVs" prompts if P_SUMMARY_SCREEN_RENAME and P_SUMMARY_SCREEN_IV_INFO are true, respectively
+#define PSS_LABEL_WINDOW_PROMPT_UTILITY 4 // Also handles the "Rename" and "IVs"/"EVs" prompts if P_SUMMARY_SCREEN_RENAME and P_SUMMARY_SCREEN_IV_EV_INFO are true, respectively
 #define PSS_LABEL_WINDOW_PROMPT_SWITCH 5
 #define PSS_DATA_WINDOW_UNUSED 6
 
@@ -1707,7 +1707,7 @@ static void Task_HandleInput(u8 taskId)
             }
             if (sMonSummaryScreen->currPageIndex == PSS_PAGE_SKILLS)
             {
-                if (P_SUMMARY_SCREEN_IV_INFO)
+                if (P_SUMMARY_SCREEN_IV_EV_INFO)
                 {
                     ShowMonSkillsInfo(taskId, IncrementSkillsStatsMode(sMonSummaryScreen->mode));
                     PlaySE(SE_SELECT);
@@ -1957,7 +1957,7 @@ static void Task_ChangeSummaryMon(u8 taskId)
             ShowCancelOrUtilityPrompt(SUMMARY_MODE_NORMAL);
             PutWindowTilemap(PSS_LABEL_WINDOW_PROMPT_UTILITY);
         }
-        if (P_SUMMARY_SCREEN_IV_INFO && sMonSummaryScreen->currPageIndex == PSS_PAGE_SKILLS)
+        if (P_SUMMARY_SCREEN_IV_EV_INFO && sMonSummaryScreen->currPageIndex == PSS_PAGE_SKILLS)
         {   
             FillWindowPixelBuffer(PSS_LABEL_WINDOW_PROMPT_UTILITY, PIXEL_FILL(0));
             sMonSummaryScreen->mode = SUMMARY_MODE_SKILLS_STATS;
@@ -3216,7 +3216,7 @@ static void PutPageWindowTilemaps(u8 page)
         PutWindowTilemap(PSS_LABEL_WINDOW_POKEMON_SKILLS_STATS_LEFT);
         PutWindowTilemap(PSS_LABEL_WINDOW_POKEMON_SKILLS_STATS_RIGHT);
         PutWindowTilemap(PSS_LABEL_WINDOW_POKEMON_SKILLS_EXP);
-        if (P_SUMMARY_SCREEN_IV_INFO)
+        if (P_SUMMARY_SCREEN_IV_EV_INFO)
             PutWindowTilemap(PSS_LABEL_WINDOW_PROMPT_UTILITY);
         break;
     case PSS_PAGE_BATTLE_MOVES:
@@ -4596,7 +4596,7 @@ static inline void ShowCancelOrUtilityPrompt(s16 mode)
         else 
             promptText = gText_Cancel2;
     }
-    else if (sMonSummaryScreen->currPageIndex == PSS_PAGE_SKILLS && P_SUMMARY_SCREEN_IV_INFO)
+    else if (sMonSummaryScreen->currPageIndex == PSS_PAGE_SKILLS && P_SUMMARY_SCREEN_IV_EV_INFO)
     {
         if (mode == SUMMARY_MODE_SKILLS_STATS)
             promptText = gText_SkillPageIvs;
