@@ -329,14 +329,15 @@ generated: $(AUTO_GEN_TARGETS)
 %.pal: ;
 %.aif: ;
 
-%.1bpp:   %.png  ; $(GFX) $< $@
-%.4bpp:   %.png  ; $(GFX) $< $@
-%.8bpp:   %.png  ; $(GFX) $< $@
-%.gbapal: %.pal  ; $(GFX) $< $@
-%.gbapal: %.png  ; $(GFX) $< $@
-%.lz:     %      ; $(GFX) $< $@
-%.smol:   %      ; $(SMOL) -w $< $@
-%.rl:     %      ; $(GFX) $< $@
+%.1bpp:     %.png  ; $(GFX) $< $@
+%.4bpp:     %.png  ; $(GFX) $< $@
+%.8bpp:     %.png  ; $(GFX) $< $@
+%.gbapal:   %.pal  ; $(GFX) $< $@
+%.gbapal:   %.png  ; $(GFX) $< $@
+%.lz:       %      ; $(GFX) $< $@
+%.fastSmol: %      ; $(SMOL) -w $< $@ false false false
+%.smol:     %      ; $(SMOL) -w $< $@
+%.rl:       %      ; $(GFX) $< $@
 
 clean-generated:
 	-rm -f $(AUTO_GEN_TARGETS)
