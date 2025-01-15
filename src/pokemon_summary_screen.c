@@ -318,6 +318,7 @@ static void KeepMoveSelectorVisible(u8);
 static void SummaryScreen_DestroyAnimDelayTask(void);
 static bool32 ShouldShowMoveRelearner(void);
 static bool32 ShouldShowRename(void);
+static bool32 ShouldShowIvEvPrompt(void);
 static void BufferLeftColumnIvEvStats(void);
 static void CB2_ReturnToSummaryScreenFromNamingScreen(void);
 static void CB2_PssChangePokemonNickname(void);
@@ -1634,6 +1635,9 @@ static void CloseSummaryScreen(u8 taskId)
 // Update skills page tilemap
 static void ChangeStatLabel(s16 mode)
 {
+    if (!P_SUMMARY_SCREEN_IV_EV_TILESET)
+        return;
+
     u32 statsBlock = 169;
     u32 ivsBlock = 221;
     u32 evsBlock = 218;
@@ -1725,7 +1729,7 @@ static void Task_HandleInput(u8 taskId)
             }
             if (sMonSummaryScreen->currPageIndex == PSS_PAGE_SKILLS)
             {
-                if (P_SUMMARY_SCREEN_IV_EV_INFO)
+                if (ShouldShowIvEvPrompt())
                 {
                     ShowMonSkillsInfo(taskId, IncrementSkillsStatsMode(sMonSummaryScreen->skillsPageMode));
                     PlaySE(SE_SELECT);
@@ -1978,7 +1982,7 @@ static void Task_ChangeSummaryMon(u8 taskId)
         LimitEggSummaryPageDisplay();
         if (P_SUMMARY_SCREEN_RENAME && sMonSummaryScreen->currPageIndex == PSS_PAGE_INFO)
             ShowUtilityPrompt(SUMMARY_MODE_NORMAL);
-        if (P_SUMMARY_SCREEN_IV_EV_INFO && sMonSummaryScreen->currPageIndex == PSS_PAGE_SKILLS)
+        if (ShouldShowIvEvPrompt() && sMonSummaryScreen->currPageIndex == PSS_PAGE_SKILLS)
         {   
             sMonSummaryScreen->skillsPageMode = SUMMARY_SKILLS_MODE_STATS;
             ChangeStatLabel(SUMMARY_SKILLS_MODE_STATS);
@@ -3232,7 +3236,7 @@ static void PutPageWindowTilemaps(u8 page)
         PutWindowTilemap(PSS_LABEL_WINDOW_POKEMON_SKILLS_STATS_LEFT);
         PutWindowTilemap(PSS_LABEL_WINDOW_POKEMON_SKILLS_STATS_RIGHT);
         PutWindowTilemap(PSS_LABEL_WINDOW_POKEMON_SKILLS_EXP);
-        if (P_SUMMARY_SCREEN_IV_EV_INFO)
+        if (ShouldShowIvEvPrompt())
             PutWindowTilemap(PSS_LABEL_WINDOW_PROMPT_UTILITY);
         break;
     case PSS_PAGE_BATTLE_MOVES:
@@ -3287,7 +3291,7 @@ static void ClearPageWindowTilemaps(u8 page)
         ClearWindowTilemap(PSS_LABEL_WINDOW_POKEMON_SKILLS_STATS_LEFT);
         ClearWindowTilemap(PSS_LABEL_WINDOW_POKEMON_SKILLS_STATS_RIGHT);
         ClearWindowTilemap(PSS_LABEL_WINDOW_POKEMON_SKILLS_EXP);
-        if (P_SUMMARY_SCREEN_IV_EV_INFO)
+        if (ShouldShowIvEvPrompt())
             ClearPageWindowTilemaps(PSS_LABEL_WINDOW_PROMPT_UTILITY);
         break;
     case PSS_PAGE_BATTLE_MOVES:
@@ -3640,7 +3644,8 @@ static void PrintSkillsPageText(void)
 {
     PrintHeldItemName();
     PrintRibbonCount();
-    ShowUtilityPrompt(SUMMARY_SKILLS_MODE_STATS);
+    if(ShouldShowIvEvPrompt())
+        ShowUtilityPrompt(SUMMARY_SKILLS_MODE_STATS);
     BufferLeftColumnStats();
     PrintLeftColumnStats();
     BufferRightColumnStats();
@@ -4589,6 +4594,21 @@ static inline bool32 ShouldShowRename(void)
          && GetPlayerIDAsU32() == sMonSummaryScreen->summary.OTID);
 }
 
+static inline bool32 ShouldShowIvEvPrompt(void)
+{
+    if (P_SUMMARY_SCREEN_IV_EV_BOX_ONLY == TRUE)
+    {
+        return ((P_SUMMARY_SCREEN_IV_EV_INFO == TRUE || FlagGet(P_FLAG_IV_EV_INFO))
+            && (sMonSummaryScreen->mode == SUMMARY_MODE_BOX
+                || sMonSummaryScreen->mode == SUMMARY_MODE_BOX_CURSOR));
+    }
+    else if (P_SUMMARY_SCREEN_IV_EV_BOX_ONLY == FALSE) {
+        return (P_SUMMARY_SCREEN_IV_EV_INFO == TRUE || FlagGet(P_FLAG_IV_EV_INFO));
+    }
+    else
+        return FALSE;
+}
+
 static inline void ClearUtilityPrompt(void)
 {
     ClearWindowTilemap(PSS_LABEL_WINDOW_PROMPT_UTILITY);
@@ -4598,7 +4618,7 @@ static inline void ClearUtilityPrompt(void)
 
 static inline void ShowUtilityPrompt(s16 mode)
 {
-    const u8* promptText;
+    const u8* promptText = NULL;
     const u8* gText_SkillPageIvs = COMPOUND_STRING("IVs");
     const u8* gText_SkillPageEvs = COMPOUND_STRING("EVs");
     const u8* gText_SkillPageStats = COMPOUND_STRING("STATS");
@@ -4607,30 +4627,31 @@ static inline void ShowUtilityPrompt(s16 mode)
     {
         if (ShouldShowRename())
             promptText = gText_Rename;
-        else 
+        else
             promptText = gText_Cancel2;
     }
-    else if (sMonSummaryScreen->currPageIndex == PSS_PAGE_SKILLS && P_SUMMARY_SCREEN_IV_EV_INFO)
+    else if (sMonSummaryScreen->currPageIndex == PSS_PAGE_SKILLS)
     {
-        if (mode == SUMMARY_SKILLS_MODE_STATS)
-            promptText = gText_SkillPageIvs;
-        else if (mode == SUMMARY_SKILLS_MODE_IVS)
-            promptText = gText_SkillPageEvs;
-        else if (mode == SUMMARY_SKILLS_MODE_EVS)
-            promptText = gText_SkillPageStats;
-        else
+        if (ShouldShowIvEvPrompt())
         {
-            ClearUtilityPrompt();
-            return;
+            if (mode == SUMMARY_SKILLS_MODE_STATS)
+                promptText = gText_SkillPageIvs;
+            else if (mode == SUMMARY_SKILLS_MODE_IVS)
+                promptText = gText_SkillPageEvs;
+            else if (mode == SUMMARY_SKILLS_MODE_EVS)
+                promptText = gText_SkillPageStats;
         }
     }
-    else if (sMonSummaryScreen->currPageIndex == PSS_PAGE_BATTLE_MOVES 
+    else if (sMonSummaryScreen->currPageIndex == PSS_PAGE_BATTLE_MOVES
              || sMonSummaryScreen->currPageIndex == PSS_PAGE_CONTEST_MOVES)
+    {
         if (mode == SUMMARY_MODE_SELECT_MOVE && !sMonSummaryScreen->lockMovesFlag)
             promptText = gText_Switch;
         else
             promptText = gText_Info;
-    else
+    }
+
+    if (promptText == NULL)
     {
         ClearUtilityPrompt();
         return;
