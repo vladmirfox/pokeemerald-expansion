@@ -137,6 +137,6 @@ AI_SINGLE_BATTLE_TEST("AI_FLAG_PREDICT_SWITCH: AI would switch out in Focus Punc
     }
 }
 
-// This might be for a follow-up PR
+// This will be for a follow-up PR
 TO_DO_BATTLE_TEST("AI_FLAG_PREDICT_SWITCH: AI will score against predicted incoming mon when switch predicted")
 TO_DO_BATTLE_TEST("AI_FLAG_PREDICT_SWITCH: AI would switch out in predicted-incoming-mon scenario");
