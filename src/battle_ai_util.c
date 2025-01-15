@@ -489,17 +489,6 @@ bool32 IsDamageMoveUnusable(u32 battlerAtk, u32 battlerDef, u32 move, u32 moveTy
         if (!gDisableStructs[battlerAtk].isFirstTurn)
             return TRUE;
         break;
-    case EFFECT_FOCUS_PUNCH:
-        if (IsBattlerPredictedToSwitch(battlerDef))
-            return FALSE;
-        if (HasDamagingMove(battlerDef) && !((gBattleMons[battlerAtk].status2 & STATUS2_SUBSTITUTE)
-         || IsBattlerIncapacitated(battlerDef, aiData->abilities[battlerDef])
-         || gBattleMons[battlerDef].status2 & (STATUS2_INFATUATION | STATUS2_CONFUSION)))
-            return TRUE;
-        // If AI could Sub and doesn't have a Sub, don't Punch yet
-        if (HasMoveEffect(battlerAtk, EFFECT_SUBSTITUTE) && !(gBattleMons[battlerAtk].status2 & STATUS2_SUBSTITUTE))
-            return TRUE;
-        break;
     }
 
     return FALSE;
