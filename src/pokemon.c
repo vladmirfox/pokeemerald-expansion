@@ -4450,9 +4450,10 @@ u32 GetGMaxTargetSpecies(u32 species)
     return species;
 }
 
-static bool32 DoesMonMeetAdditionalConditions(struct Pokemon *mon, const struct EvolutionParam *params, u32 heldItem, bool32 *consumeItem)
+static bool32 DoesMonMeetAdditionalConditions(struct Pokemon *mon, const struct EvolutionParam *params, struct Pokemon *tradePartner, bool32 *consumeItem)
 {
     u32 i, j;
+    u32 heldItem = GetMonData(mon, MON_DATA_HELD_ITEM);
     u32 gender = GetMonGender(mon);
     u32 friendship = GetMonData(mon, MON_DATA_FRIENDSHIP, 0);
     u32 attack = GetMonData(mon, MON_DATA_ATK, 0);
@@ -4465,11 +4466,34 @@ static bool32 DoesMonMeetAdditionalConditions(struct Pokemon *mon, const struct 
     u32 conditionRemovesItem = FALSE;
     u32 evolutionTracker = GetMonData(mon, MON_DATA_EVOLUTION_TRACKER, 0);
 
+    u32 partnerSpecies, partnerHeldItem, partnerHoldEffect;
+    if (tradePartner != NULL)
+    {
+        partnerSpecies = GetMonData(tradePartner, MON_DATA_SPECIES, 0);
+        partnerHeldItem = GetMonData(tradePartner, MON_DATA_HELD_ITEM, 0);
+
+        if (partnerHeldItem == ITEM_ENIGMA_BERRY_E_READER)
+        #if FREE_ENIGMA_BERRY == FALSE
+            partnerHoldEffect = gSaveBlock1Ptr->enigmaBerry.holdEffect;
+        #else
+            partnerHoldEffect = 0;
+        #endif //FREE_ENIGMA_BERRY
+        else
+            partnerHoldEffect = ItemId_GetHoldEffect(partnerHeldItem);
+    }
+    else
+    {
+        partnerSpecies = SPECIES_NONE;
+        partnerHeldItem = ITEM_NONE;
+        partnerHoldEffect = HOLD_EFFECT_NONE;
+    }
+
     // Check for additional conditions (only if the primary method passes). Skips if there's no additional conditions.
     for (i = 0; params != NULL && params[i].condition != CONDITIONS_END; i++)
     {
+        enum EvolutionConditions condition = params[i].condition;
         u32 currentCondition = FALSE;
-        switch(params[i].condition)
+        switch(condition)
         {
         // Gen 2
         case IF_GENDER:
@@ -4547,6 +4571,11 @@ static bool32 DoesMonMeetAdditionalConditions(struct Pokemon *mon, const struct 
             if (MonKnowsMove(mon, params[i].arg))
                 currentCondition = TRUE;
             break;
+        // Gen 5
+        case IF_TRADE_PARTNER_SPECIES:
+            if (params[i].arg == partnerSpecies && partnerHoldEffect != HOLD_EFFECT_PREVENT_EVOLVE)
+                currentCondition = TRUE;
+            break;
         // Gen 6
         case IF_TYPE_IN_PARTY:
             for (j = 0; j < PARTY_SIZE; j++)
@@ -4608,6 +4637,8 @@ static bool32 DoesMonMeetAdditionalConditions(struct Pokemon *mon, const struct 
             if (mon == GetFirstLiveMon() && gFollowerSteps >= params[i].arg)
                 currentCondition = TRUE;
             break;
+        case CONDITIONS_END:
+            break;
         }
         if (currentCondition == FALSE)
             return FALSE;
@@ -4625,33 +4656,12 @@ u16 GetEvolutionTargetSpecies(struct Pokemon *mon, enum EvolutionMode mode, u16 
     u32 species = GetMonData(mon, MON_DATA_SPECIES, 0);
     u32 heldItem = GetMonData(mon, MON_DATA_HELD_ITEM, 0);
     u32 level = GetMonData(mon, MON_DATA_LEVEL, 0);
-    u32 holdEffect, partnerSpecies, partnerHeldItem, partnerHoldEffect;
+    u32 holdEffect;
     bool32 consumeItem = FALSE;
     const struct Evolution *evolutions = GetSpeciesEvolutions(species);
 
     if (evolutions == NULL)
         return SPECIES_NONE;
-
-    if (tradePartner != NULL)
-    {
-        partnerSpecies = GetMonData(tradePartner, MON_DATA_SPECIES, 0);
-        partnerHeldItem = GetMonData(tradePartner, MON_DATA_HELD_ITEM, 0);
-
-        if (partnerHeldItem == ITEM_ENIGMA_BERRY_E_READER)
-        #if FREE_ENIGMA_BERRY == FALSE
-            partnerHoldEffect = gSaveBlock1Ptr->enigmaBerry.holdEffect;
-        #else
-            partnerHoldEffect = 0;
-        #endif //FREE_ENIGMA_BERRY
-        else
-            partnerHoldEffect = ItemId_GetHoldEffect(partnerHeldItem);
-    }
-    else
-    {
-        partnerSpecies = SPECIES_NONE;
-        partnerHeldItem = ITEM_NONE;
-        partnerHoldEffect = HOLD_EFFECT_NONE;
-    }
 
     if (heldItem == ITEM_ENIGMA_BERRY_E_READER)
     #if FREE_ENIGMA_BERRY == FALSE
@@ -4695,7 +4705,7 @@ u16 GetEvolutionTargetSpecies(struct Pokemon *mon, enum EvolutionMode mode, u16 
                 break;
             }
 
-            if (conditionsMet && DoesMonMeetAdditionalConditions(mon, evolutions[i].params, heldItem, &consumeItem))
+            if (conditionsMet && DoesMonMeetAdditionalConditions(mon, evolutions[i].params, NULL, &consumeItem))
             {
                 // All checks passed, so stop checking the rest of the evolutions.
                 // This is different from vanilla where the loop continues.
@@ -4723,7 +4733,7 @@ u16 GetEvolutionTargetSpecies(struct Pokemon *mon, enum EvolutionMode mode, u16 
                 break;
             }
 
-            if (conditionsMet && DoesMonMeetAdditionalConditions(mon, evolutions[i].params, heldItem, &consumeItem))
+            if (conditionsMet && DoesMonMeetAdditionalConditions(mon, evolutions[i].params, NULL, &consumeItem))
             {
                 // All checks passed, so stop checking the rest of the evolutions.
                 // This is different from vanilla where the loop continues.
@@ -4745,13 +4755,9 @@ u16 GetEvolutionTargetSpecies(struct Pokemon *mon, enum EvolutionMode mode, u16 
             case EVO_TRADE:
                 conditionsMet = TRUE;
                 break;
-            case EVO_TRADE_SPECIFIC_MON:
-                if (evolutions[i].param == partnerSpecies && partnerHoldEffect != HOLD_EFFECT_PREVENT_EVOLVE)
-                    conditionsMet = TRUE;
-                break;
             }
 
-            if (conditionsMet && DoesMonMeetAdditionalConditions(mon, evolutions[i].params, heldItem, &consumeItem))
+            if (conditionsMet && DoesMonMeetAdditionalConditions(mon, evolutions[i].params, tradePartner, &consumeItem))
             {
                 // All checks passed, so stop checking the rest of the evolutions.
                 // This is different from vanilla where the loop continues.
@@ -4777,7 +4783,7 @@ u16 GetEvolutionTargetSpecies(struct Pokemon *mon, enum EvolutionMode mode, u16 
                 break;
             }
 
-            if (conditionsMet && DoesMonMeetAdditionalConditions(mon, evolutions[i].params, heldItem, &consumeItem))
+            if (conditionsMet && DoesMonMeetAdditionalConditions(mon, evolutions[i].params, NULL, &consumeItem))
             {
                 // All checks passed, so stop checking the rest of the evolutions.
                 // This is different from vanilla where the loop continues.
@@ -4803,7 +4809,7 @@ u16 GetEvolutionTargetSpecies(struct Pokemon *mon, enum EvolutionMode mode, u16 
                 break;
             }
 
-            if (conditionsMet && DoesMonMeetAdditionalConditions(mon, evolutions[i].params, heldItem, &consumeItem))
+            if (conditionsMet && DoesMonMeetAdditionalConditions(mon, evolutions[i].params, NULL, &consumeItem))
             {
                 // All checks passed, so stop checking the rest of the evolutions.
                 // This is different from vanilla where the loop continues.
@@ -4842,7 +4848,7 @@ u16 GetEvolutionTargetSpecies(struct Pokemon *mon, enum EvolutionMode mode, u16 
                 break;
             }
 
-            if (conditionsMet && DoesMonMeetAdditionalConditions(mon, evolutions[i].params, heldItem, &consumeItem))
+            if (conditionsMet && DoesMonMeetAdditionalConditions(mon, evolutions[i].params, NULL, &consumeItem))
             {
                 // All checks passed, so stop checking the rest of the evolutions.
                 // This is different from vanilla where the loop continues.

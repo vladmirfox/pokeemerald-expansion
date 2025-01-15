@@ -265,6 +265,8 @@ enum EvolutionConditions {
     IF_IN_MAP,                          // The player is currently in the specific map.
     IF_IN_MAPSEC,                       // The player is currently in the specific map sector.
     IF_KNOWS_MOVE,                      // The Pokémon knows specific move.
+    // Gen 5
+    IF_TRADE_PARTNER_SPECIES,           // The Pokémon is traded for a specific species.
     // Gen 6
     IF_TYPE_IN_PARTY,                   // The party contains a Pokémon of the specified type.
     IF_WEATHER,                         // It is currently the specific weather in the current map.
@@ -289,7 +291,6 @@ enum EvolutionMethods {
     EVO_ITEM,                   // specified item is used on Pokémon
     EVO_LEVEL_NINJASK,          // Pokémon reaches the specified level (special value for Ninjask)
     EVO_LEVEL_SHEDINJA,         // Pokémon reaches the specified level (special value for Shedinja)
-    EVO_TRADE_SPECIFIC_MON,     // Pokémon is traded for a specified Pokémon
     EVO_CRITICAL_HITS,          // Pokémon performs specified number of critical hits in one battle
     EVO_SCRIPT_TRIGGER_DMG,     // Pokémon has specified HP below max, then player interacts trigger
     EVO_DARK_SCROLL,            // interacts with Scroll of Darkness

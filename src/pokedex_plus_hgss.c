@@ -6583,12 +6583,10 @@ static void PrintEvolutionTargetSpeciesAndMethod(u8 taskId, u16 species, u8 dept
         case EVO_LEVEL_DARK_TYPE_MON_IN_PARTY:
             StringExpandPlaceholders(gStringVar4, sText_EVO_LEVEL_DARK_TYPE_MON_IN_PARTY );
             break;
-        */
         case EVO_TRADE_SPECIFIC_MON:
             StringCopy(gStringVar2, GetSpeciesName(evolutions[i].param)); //mon name
             StringExpandPlaceholders(gStringVar4, sText_EVO_TRADE_SPECIFIC_MON );
             break;
-        /*
         case EVO_SPECIFIC_MAP:
             mapHeader = Overworld_GetMapHeaderByGroupAndId(evolutions[i].param >> 8, evolutions[i].param & 0xFF);
             GetMapName(gStringVar2, mapHeader->regionMapSectionId, 0);
