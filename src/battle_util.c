@@ -8449,19 +8449,19 @@ u32 GetMoveTarget(u16 move, u8 setTarget)
         }
         else
         {
-            u32 temp = 0;
+            u32 battlerAbilityOnField = 0;
 
             targetBattler = SetRandomTarget(gBattlerAttacker);
             if (moveType == TYPE_ELECTRIC && GetBattlerAbility(targetBattler) != ABILITY_LIGHTNING_ROD)
             {
                 if (B_REDIRECT_ABILITY_ALLIES >= GEN_4)
-                    temp = IsAbilityOnField(ABILITY_LIGHTNING_ROD);
+                    battlerAbilityOnField = IsAbilityOnField(ABILITY_LIGHTNING_ROD);
                 else
-                    temp = IsAbilityOnOpposingSide(targetBattler, ABILITY_LIGHTNING_ROD);
+                    battlerAbilityOnField = IsAbilityOnOpposingSide(targetBattler, ABILITY_LIGHTNING_ROD);
 
-                if (temp > 0)
+                if (battlerAbilityOnField > 0)
                 {
-                    targetBattler = temp - 1;
+                    targetBattler = battlerAbilityOnField - 1;
                     RecordAbilityBattle(targetBattler, gBattleMons[targetBattler].ability);
                     gSpecialStatuses[targetBattler].lightningRodRedirected = TRUE;
                 }
@@ -8469,13 +8469,13 @@ u32 GetMoveTarget(u16 move, u8 setTarget)
             else if (moveType == TYPE_WATER && GetBattlerAbility(targetBattler) != ABILITY_STORM_DRAIN)
             {
                 if (B_REDIRECT_ABILITY_ALLIES >= GEN_4)
-                    temp = IsAbilityOnField(ABILITY_STORM_DRAIN);
+                    battlerAbilityOnField = IsAbilityOnField(ABILITY_STORM_DRAIN);
                 else
-                    temp = IsAbilityOnOpposingSide(targetBattler, ABILITY_STORM_DRAIN);
+                    battlerAbilityOnField = IsAbilityOnOpposingSide(targetBattler, ABILITY_STORM_DRAIN);
 
-                if (temp > 0)
+                if (battlerAbilityOnField > 0)
                 {
-                    targetBattler = temp - 1;
+                    targetBattler = battlerAbilityOnField - 1;
                     RecordAbilityBattle(targetBattler, gBattleMons[targetBattler].ability);
                     gSpecialStatuses[targetBattler].lightningRodRedirected = TRUE;
                 }
