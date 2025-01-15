@@ -105,8 +105,8 @@ bool32 IsAiBattlerPredictingAbility(u32 battlerId)
 bool32 IsBattlerPredictedToSwitch(u32 battler)
 {
     // Check for prediction flag on AI, whether they're using those predictions this turn, and whether the AI thinks the player should switch
-    if (AI_THINKING_STRUCT->aiFlags[B_POSITION_OPPONENT_LEFT] & AI_FLAG_PREDICT_SWITCH
-        || AI_THINKING_STRUCT->aiFlags[B_POSITION_OPPONENT_RIGHT] & AI_FLAG_PREDICT_SWITCH)
+    if (AI_THINKING_STRUCT->aiFlags[AI_DATA->battlerDoingPrediction] & AI_FLAG_PREDICT_SWITCH
+        || AI_THINKING_STRUCT->aiFlags[AI_DATA->battlerDoingPrediction] & AI_FLAG_PREDICT_SWITCH)
      {
         if (AI_DATA->predictingSwitch && AI_DATA->shouldSwitch & (1u << battler))
             return TRUE;

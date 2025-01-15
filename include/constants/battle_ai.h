@@ -51,7 +51,7 @@
 #define AI_FLAG_DOUBLE_ACE_POKEMON          (1 << 20)  // AI has *two* Ace Pokémon. The last two Pokémons in the party won't be used unless they're the last ones remaining. Goes well in battles where the trainer ID equals to twins, couples, etc.
 #define AI_FLAG_WEIGH_ABILITY_PREDICTION    (1 << 21)  // AI will predict player's ability based on aiRating
 #define AI_FLAG_PREFER_HIGHEST_DAMAGE_MOVE  (1 << 22)  // AI adds score to highest damage move regardless of accuracy or secondary effect
-#define AI_FLAG_PREDICT_SWITCH              (1 << 23)  // AI will predict the player's switches and switchins based on how it would handle the situation. Recommend using AI_FLAG_OMNISCIENT. Only works for singles.
+#define AI_FLAG_PREDICT_SWITCH              (1 << 23)  // AI will predict the player's switches and switchins based on how it would handle the situation. Recommend using AI_FLAG_OMNISCIENT
 
 #define AI_FLAG_COUNT                       24
 

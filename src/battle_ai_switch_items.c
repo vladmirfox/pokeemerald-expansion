@@ -40,7 +40,7 @@ static void InitializeSwitchinCandidate(struct Pokemon *mon)
 u32 GetThinkingBattler(u32 battler)
 {
     if (AI_DATA->aiSwitchPredictionInProgress)
-        return GetBattlerAtPosition(BATTLE_OPPOSITE(GetBattlerAtPosition(battler)));
+        return AI_DATA->battlerDoingPrediction;
     return battler;
 }
 
