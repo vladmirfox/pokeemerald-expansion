@@ -5272,6 +5272,10 @@ static s32 AI_PredictSwitch(u32 battlerAtk, u32 battlerDef, u32 move, s32 score)
         //     ADJUST_SCORE(GOOD_EFFECT);
         break;
 
+    case EFFECT_FOCUS_PUNCH:
+        ADJUST_SCORE(DECENT_EFFECT);
+        break;
+
     // Free setup (U-Turn etc. handled in Check Viability by ShouldPivot)
     case EFFECT_BOLT_BEAK:
     case EFFECT_LIGHT_SCREEN:
