@@ -89,7 +89,7 @@ AI_SINGLE_BATTLE_TEST("AI_FLAG_PREDICT_SWITCH: AI can use Focus Punch on predict
         OPPONENT(SPECIES_BRELOOM) { Moves(MOVE_FOCUS_PUNCH, MOVE_TACKLE); }
         OPPONENT(SPECIES_BRELOOM);
     } WHEN {
-        TURN { SWITCH(player, 1); EXPECT_MOVE(opponent, MOVE_FOCUS_PUNCH); }
+        TURN { SWITCH(player, 1); EXPECT_MOVE(opponent, MOVE_FOCUS_PUNCH); SEND_OUT(player, 0); }
     }
 }
 
