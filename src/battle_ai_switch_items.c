@@ -197,7 +197,7 @@ static bool32 ShouldSwitchIfHasBadOdds(u32 battler)
             && gBattleMons[battler].hp >= gBattleMons[battler].maxHP / 4)))
     {
         // 50% chance to stay in regardless
-        if (RandomPercentage(RNG_AI_SWITCH_HASBADODDS, 50))
+        if (RandomPercentage(RNG_AI_SWITCH_HASBADODDS, 50) || AI_DATA->aiSwitchPredictionInProgress)
             return FALSE;
 
         // Switch mon out
@@ -217,7 +217,7 @@ static bool32 ShouldSwitchIfHasBadOdds(u32 battler)
                 return FALSE;
 
             // 50% chance to stay in regardless
-            if (RandomPercentage(RNG_AI_SWITCH_HASBADODDS, 50))
+            if (RandomPercentage(RNG_AI_SWITCH_HASBADODDS, 50) || AI_DATA->aiSwitchPredictionInProgress)
                 return FALSE;
 
             // Switch mon out
@@ -347,7 +347,7 @@ static bool32 FindMonThatAbsorbsOpponentsMove(u32 battler)
 
     if (!(AI_THINKING_STRUCT->aiFlags[GetThinkingBattler(battler)] & AI_FLAG_SMART_SWITCHING))
         return FALSE;
-    if (HasSuperEffectiveMoveAgainstOpponents(battler, TRUE) && RandomPercentage(RNG_AI_SWITCH_ABSORBING, 66))
+    if (HasSuperEffectiveMoveAgainstOpponents(battler, TRUE) && (RandomPercentage(RNG_AI_SWITCH_ABSORBING, 66) || AI_DATA->aiSwitchPredictionInProgress))
         return FALSE;
 
     if (IsDoubleBattle())
@@ -761,7 +761,7 @@ static bool32 FindMonWithFlagsAndSuperEffective(u32 battler, u16 flags, u32 perc
                 if (move == 0)
                     continue;
 
-                if (AI_GetMoveEffectiveness(move, battler, battlerIn1) >= AI_EFFECTIVENESS_x2 && RandomPercentage(RNG_AI_SWITCH_SE_DEFENSIVE, percentChance))
+                if (AI_GetMoveEffectiveness(move, battler, battlerIn1) >= AI_EFFECTIVENESS_x2 && (RandomPercentage(RNG_AI_SWITCH_SE_DEFENSIVE, percentChance) || AI_DATA->aiSwitchPredictionInProgress))
                     return SetSwitchinAndSwitch(battler, i);
             }
         }
@@ -859,7 +859,7 @@ static bool32 ShouldSwitchIfEncored(u32 battler)
         return FALSE;
 
     // Switch out 50% of the time otherwise
-    else if (RandomPercentage(RNG_AI_SWITCH_ENCORE, 50) && AI_DATA->mostSuitableMonId[battler] != PARTY_SIZE)
+    else if ((RandomPercentage(RNG_AI_SWITCH_ENCORE, 50) || AI_DATA->aiSwitchPredictionInProgress) && AI_DATA->mostSuitableMonId[battler] != PARTY_SIZE)
         return SetSwitchinAndSwitch(battler, PARTY_SIZE);
 
     return FALSE;
@@ -897,7 +897,7 @@ static bool32 ShouldSwitchIfAttackingStatsLowered(u32 battler)
         // 50% chance if attack at -2 and have a good candidate mon
         else if (attackingStage == DEFAULT_STAT_STAGE - 2)
         {
-            if (AI_DATA->mostSuitableMonId[battler] != PARTY_SIZE && RandomPercentage(RNG_AI_SWITCH_STATS_LOWERED, 50))
+            if (AI_DATA->mostSuitableMonId[battler] != PARTY_SIZE && (RandomPercentage(RNG_AI_SWITCH_STATS_LOWERED, 50) || AI_DATA->aiSwitchPredictionInProgress))
                 return SetSwitchinAndSwitch(battler, PARTY_SIZE);
         }
         // If at -3 or worse, switch out regardless
@@ -914,7 +914,7 @@ static bool32 ShouldSwitchIfAttackingStatsLowered(u32 battler)
         // 50% chance if attack at -2 and have a good candidate mon
         else if (spAttackingStage == DEFAULT_STAT_STAGE - 2)
         {
-            if (AI_DATA->mostSuitableMonId[battler] != PARTY_SIZE && RandomPercentage(RNG_AI_SWITCH_STATS_LOWERED, 50))
+            if (AI_DATA->mostSuitableMonId[battler] != PARTY_SIZE && (RandomPercentage(RNG_AI_SWITCH_STATS_LOWERED, 50) || AI_DATA->aiSwitchPredictionInProgress))
                 return SetSwitchinAndSwitch(battler, PARTY_SIZE);
         }
         // If at -3 or worse, switch out regardless
