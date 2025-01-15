@@ -106,14 +106,6 @@ AI_SINGLE_BATTLE_TEST("AI_FLAG_PREDICT_SWITCH: AI would switch out in Focus Punc
     }
 }
 
-TO_DO_BATTLE_TEST("AI_FLAG_PREDICT_SWITCH: AI will use stat boosting moves on predicted switch");
-TO_DO_BATTLE_TEST("AI_FLAG_PREDICT_SWITCH: AI would switch out in boosting move scenario");
-
-TO_DO_BATTLE_TEST("AI_FLAG_PREDICT_SWITCH: AI will use Subsitute on predicted switch");
-TO_DO_BATTLE_TEST("AI_FLAG_PREDICT_SWITCH: AI would switch out in Substitute scenario");
-
-
-
 // This might be for a follow-up PR
 TO_DO_BATTLE_TEST("AI_FLAG_PREDICT_SWITCH: AI will score against predicted incoming mon when switch predicted")
 TO_DO_BATTLE_TEST("AI_FLAG_PREDICT_SWITCH: AI would switch out in predicted-incoming-mon scenario");
