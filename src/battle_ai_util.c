@@ -4213,19 +4213,3 @@ void IncreaseSubstituteMoveScore(u32 battlerAtk, u32 battlerDef, u32 move, s32 *
     if (AI_DATA->hpPercents[battlerAtk] > 70)
         ADJUST_SCORE_PTR(WEAK_EFFECT);
 }
-
-s32 AdjustFocusPunchScore(u32 battlerAtk, u32 battlerDef, s32 score, s32 adjustment)
-{
-    struct AiLogicData *aiData = AI_DATA;
-    u32 effectiveness = aiData->effectiveness[battlerAtk][battlerDef][AI_THINKING_STRUCT->movesetIndex];
-
-    if (aiData->abilities[battlerDef] == ABILITY_WONDER_GUARD && effectiveness < AI_EFFECTIVENESS_x2)
-        ADJUST_SCORE(adjustment);
-    else if (HasDamagingMove(battlerDef) && !((gBattleMons[battlerAtk].status2 & STATUS2_SUBSTITUTE)
-        || IsBattlerIncapacitated(battlerDef, aiData->abilities[battlerDef])
-        || gBattleMons[battlerDef].status2 & (STATUS2_INFATUATION | STATUS2_CONFUSION)))
-        ADJUST_SCORE(adjustment);
-    else if (HasMoveEffect(battlerAtk, EFFECT_SUBSTITUTE) && !(gBattleMons[battlerAtk].status2 & STATUS2_SUBSTITUTE))
-        ADJUST_SCORE(adjustment);
-    return score;
-}
