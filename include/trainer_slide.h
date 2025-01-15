@@ -3,10 +3,11 @@
 
 #include "constants/trainer_slide.h"
 
+
 struct MessageStatus
 {
-    u32 messageInitalized : TRAINER_SLIDE_BITS;
-    u32 messagePlayed : TRAINER_SLIDE_BITS;
+    u32 messageInitalized[TRAINER_SLIDE_ARRAY_SIZE];
+    u32 messagePlayed[TRAINER_SLIDE_ARRAY_SIZE];
 };
 
 enum TrainerSlideTargets ShouldDoTrainerSlide(u32, enum TrainerSlideType);

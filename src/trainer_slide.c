@@ -37,8 +37,6 @@
 #include "trainer_slide.h"
 #include "battle_message.h"
 
-STATIC_ASSERT(sizeof(gBattleStruct->slideMessageStatus) <= (2 * TRAINER_SLIDE_BITS), Too_Many_Trainer_Slides_Add_More_Members);
-
 static u32 BattlerHPPercentage(u32, u32, u32);
 static u32 GetEnemyMonCount(u32, u32, bool32);
 static bool32 DoesTrainerHaveSlideMessage(enum DifficultyLevel, u32, u32);
@@ -371,21 +369,32 @@ void TryInitalizeTrainerSlideEnemyMonUnaffected(u32 target)
 
 bool32 IsTrainerSlideInitialized(enum TrainerSlideType slideId)
 {
-    return (gBattleStruct->slideMessageStatus.messageInitalized & (1 << slideId)) != 0;
+    u32 arrayIndex = slideId / TRAINER_SLIDES_PER_ARRAY;
+    u32 bitPosition = slideId % TRAINER_SLIDES_PER_ARRAY;
+
+    return (gBattleStruct->slideMessageStatus.messageInitalized[arrayIndex] & (1 << bitPosition)) != 0;
 }
 
 bool32 IsTrainerSlidePlayed(enum TrainerSlideType slideId)
 {
-    return (gBattleStruct->slideMessageStatus.messagePlayed & (1 << slideId)) != 0;
+    u32 arrayIndex = slideId / TRAINER_SLIDES_PER_ARRAY;
+    u32 bitPosition = slideId % TRAINER_SLIDES_PER_ARRAY;
+
+    return (gBattleStruct->slideMessageStatus.messagePlayed[arrayIndex] & (1 << bitPosition)) != 0;
 }
 
 void InitalizeTrainerSlide(enum TrainerSlideType slideId)
 {
-    gBattleStruct->slideMessageStatus.messageInitalized |= (1 << slideId);
+    u32 arrayIndex = slideId / TRAINER_SLIDES_PER_ARRAY;
+    u32 bitPosition = slideId % TRAINER_SLIDES_PER_ARRAY;
+
+    gBattleStruct->slideMessageStatus.messageInitalized[arrayIndex] |= (1 << bitPosition);
 }
 
 void MarkTrainerSlideAsPlayed(enum TrainerSlideType slideId)
 {
-    gBattleStruct->slideMessageStatus.messagePlayed |= (1 << slideId);
-}
+    u32 arrayIndex = slideId / TRAINER_SLIDES_PER_ARRAY;
+    u32 bitPosition = slideId % TRAINER_SLIDES_PER_ARRAY;
 
+    gBattleStruct->slideMessageStatus.messagePlayed[arrayIndex] |= (1 << bitPosition);
+}
