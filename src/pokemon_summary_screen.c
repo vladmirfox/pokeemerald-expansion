@@ -3243,10 +3243,11 @@ static void PutPageWindowTilemaps(u8 page)
             if (sMonSummaryScreen->newMove != MOVE_NONE || sMonSummaryScreen->firstMoveIndex != MAX_MON_MOVES)
                 PutWindowTilemap(PSS_LABEL_WINDOW_MOVES_POWER_ACC);
         }
-
-        if (ShouldShowMoveRelearner())
-            PutWindowTilemap(PSS_LABEL_WINDOW_PROMPT_RELEARN);
-
+        else
+        {
+            if (ShouldShowMoveRelearner())
+                PutWindowTilemap(PSS_LABEL_WINDOW_PROMPT_RELEARN);  
+        }
         break;
     case PSS_PAGE_CONTEST_MOVES:
         PutWindowTilemap(PSS_LABEL_WINDOW_CONTEST_MOVES_TITLE);
@@ -3256,9 +3257,12 @@ static void PutPageWindowTilemaps(u8 page)
             if (sMonSummaryScreen->newMove != MOVE_NONE || sMonSummaryScreen->firstMoveIndex != MAX_MON_MOVES)
                 PutWindowTilemap(PSS_LABEL_WINDOW_MOVES_APPEAL_JAM);
         }
-
-        if (ShouldShowMoveRelearner())
-            PutWindowTilemap(PSS_LABEL_WINDOW_PROMPT_RELEARN);
+        else
+        {
+            if (ShouldShowMoveRelearner())
+                PutWindowTilemap(PSS_LABEL_WINDOW_PROMPT_RELEARN);  
+        }
+        break;
     }
 
     for (i = 0; i < ARRAY_COUNT(sMonSummaryScreen->windowIds); i++)
