@@ -274,9 +274,10 @@ enum EvolutionConditions {
     // Gen 8
     IF_NATURE,                          // The Pokémon has a specific nature.
     IF_RECOIL_DAMAGE_GE,                // The Pokémon suffered at least certain amount of non-fainting recoil damage.
+    IF_CRITICAL_HITS_GE,                // The Pokémon performed the specified number of critical hits in one battle at least.
     IF_USED_MOVE_TWENTY_TIMES,          // The Pokémon has used a move for at least 20 times.
-    IF_DEFEAT_THREE_WITH_ITEM,          // The Pokémon defeated 3 Pokémon of the same species holding the specified item.
     // Gen 9
+    IF_DEFEAT_THREE_WITH_ITEM,          // The Pokémon defeated 3 Pokémon of the same species holding the specified item.
     IF_PID_MODULO_100_GT,               // The Pokémon's personality value's modulo by 100 is greater than the defined value.
     IF_PID_MODULO_100_EQ,               // The Pokémon's personality value's modulo by 100 is equal than the defined value.
     IF_PID_MODULO_100_LT,               // The Pokémon's personality value's modulo by 100 is lower than the defined value.
@@ -291,12 +292,12 @@ enum EvolutionMethods {
     EVO_ITEM,                   // specified item is used on Pokémon
     EVO_LEVEL_NINJASK,          // Pokémon reaches the specified level (special value for Ninjask)
     EVO_LEVEL_SHEDINJA,         // Pokémon reaches the specified level (special value for Shedinja)
-    EVO_CRITICAL_HITS,          // Pokémon performs specified number of critical hits in one battle
     EVO_SCRIPT_TRIGGER_DMG,     // Pokémon has specified HP below max, then player interacts trigger
     EVO_DARK_SCROLL,            // interacts with Scroll of Darkness
     EVO_WATER_SCROLL,           // interacts with Scroll of Waters
     EVO_LEVEL_BATTLE_ONLY,      // Pokémon reaches the specified level, in battle only
     EVO_ITEM_COUNT_999,         // Pokémon levels up after trainer has collected 999 of a specific item
+    EVO_BATTLE_END,             // Battle ends, doesn't need to level up
 };
 
 enum EvolutionMode {

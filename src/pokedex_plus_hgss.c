@@ -6600,11 +6600,11 @@ static void PrintEvolutionTargetSpeciesAndMethod(u8 taskId, u16 species, u8 dept
             ConvertIntToDecimalStringN(gStringVar2, evolutions[i].param, STR_CONV_MODE_LEADING_ZEROS, EVO_SCREEN_LVL_DIGITS); //level
             StringExpandPlaceholders(gStringVar4, sText_EVO_LEVEL_NATURE_LOW_KEY);
             break;
-        */
         case EVO_CRITICAL_HITS:
             ConvertIntToDecimalStringN(gStringVar2, evolutions[i].param, STR_CONV_MODE_LEADING_ZEROS, EVO_SCREEN_CRITS_DIGITS); //crits
             StringExpandPlaceholders(gStringVar4, sText_EVO_CRITICAL_HITS);
             break;
+        */
         case EVO_SCRIPT_TRIGGER_DMG:
             ConvertIntToDecimalStringN(gStringVar2, evolutions[i].param, STR_CONV_MODE_LEADING_ZEROS, EVO_SCREEN_DMG_DIGITS); //damage
             StringExpandPlaceholders(gStringVar4, sText_EVO_SCRIPT_TRIGGER_DMG);

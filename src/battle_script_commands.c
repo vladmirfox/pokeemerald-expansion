@@ -2015,7 +2015,7 @@ static void Cmd_critcalc(void)
             }
         }
 
-        // Counter for EVO_CRITICAL_HITS.
+        // Counter for IF_CRITICAL_HITS_GE evolution condition.
         if (gSpecialStatuses[battlerDef].criticalHit && GetBattlerSide(gBattlerAttacker) == B_SIDE_PLAYER
          && !(gBattleTypeFlags & BATTLE_TYPE_MULTI && GetBattlerPosition(gBattlerAttacker) == B_POSITION_PLAYER_LEFT))
             gPartyCriticalHits[partySlot]++;

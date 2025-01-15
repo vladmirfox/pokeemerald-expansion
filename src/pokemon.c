@@ -4450,7 +4450,7 @@ u32 GetGMaxTargetSpecies(u32 species)
     return species;
 }
 
-static bool32 DoesMonMeetAdditionalConditions(struct Pokemon *mon, const struct EvolutionParam *params, struct Pokemon *tradePartner, bool32 *consumeItem)
+static bool32 DoesMonMeetAdditionalConditions(struct Pokemon *mon, const struct EvolutionParam *params, struct Pokemon *tradePartner, bool32 *consumeItem, u32 partyId)
 {
     u32 i, j;
     u32 heldItem = GetMonData(mon, MON_DATA_HELD_ITEM);
@@ -4612,15 +4612,19 @@ static bool32 DoesMonMeetAdditionalConditions(struct Pokemon *mon, const struct 
             if (evolutionTracker >= params[i].arg)
                 currentCondition = TRUE;
             break;
+        case IF_CRITICAL_HITS_GE:
+            if (partyId != PARTY_SIZE && gPartyCriticalHits[partyId] >= params[i].arg)
+            currentCondition = TRUE;
+            break;
         case IF_USED_MOVE_TWENTY_TIMES:
             if (evolutionTracker >= 20)
                 currentCondition = TRUE;
             break;
+        // Gen 9
         case IF_DEFEAT_THREE_WITH_ITEM:
             if (evolutionTracker >= 3)
                 currentCondition = TRUE;
             break;
-        // Gen 9
         case IF_PID_MODULO_100_GT:
             if ((personality % 100) > params[i].arg)
                 currentCondition = TRUE;
@@ -4705,7 +4709,7 @@ u16 GetEvolutionTargetSpecies(struct Pokemon *mon, enum EvolutionMode mode, u16 
                 break;
             }
 
-            if (conditionsMet && DoesMonMeetAdditionalConditions(mon, evolutions[i].params, NULL, &consumeItem))
+            if (conditionsMet && DoesMonMeetAdditionalConditions(mon, evolutions[i].params, NULL, &consumeItem, PARTY_SIZE))
             {
                 // All checks passed, so stop checking the rest of the evolutions.
                 // This is different from vanilla where the loop continues.
@@ -4733,7 +4737,7 @@ u16 GetEvolutionTargetSpecies(struct Pokemon *mon, enum EvolutionMode mode, u16 
                 break;
             }
 
-            if (conditionsMet && DoesMonMeetAdditionalConditions(mon, evolutions[i].params, NULL, &consumeItem))
+            if (conditionsMet && DoesMonMeetAdditionalConditions(mon, evolutions[i].params, NULL, &consumeItem, PARTY_SIZE))
             {
                 // All checks passed, so stop checking the rest of the evolutions.
                 // This is different from vanilla where the loop continues.
@@ -4757,7 +4761,7 @@ u16 GetEvolutionTargetSpecies(struct Pokemon *mon, enum EvolutionMode mode, u16 
                 break;
             }
 
-            if (conditionsMet && DoesMonMeetAdditionalConditions(mon, evolutions[i].params, tradePartner, &consumeItem))
+            if (conditionsMet && DoesMonMeetAdditionalConditions(mon, evolutions[i].params, tradePartner, &consumeItem, PARTY_SIZE))
             {
                 // All checks passed, so stop checking the rest of the evolutions.
                 // This is different from vanilla where the loop continues.
@@ -4783,7 +4787,7 @@ u16 GetEvolutionTargetSpecies(struct Pokemon *mon, enum EvolutionMode mode, u16 
                 break;
             }
 
-            if (conditionsMet && DoesMonMeetAdditionalConditions(mon, evolutions[i].params, NULL, &consumeItem))
+            if (conditionsMet && DoesMonMeetAdditionalConditions(mon, evolutions[i].params, NULL, &consumeItem, PARTY_SIZE))
             {
                 // All checks passed, so stop checking the rest of the evolutions.
                 // This is different from vanilla where the loop continues.
@@ -4803,13 +4807,12 @@ u16 GetEvolutionTargetSpecies(struct Pokemon *mon, enum EvolutionMode mode, u16 
 
             switch (evolutions[i].method)
             {
-            case EVO_CRITICAL_HITS:
-                if (gPartyCriticalHits[evolutionItem] >= evolutions[i].param)
+                case EVO_BATTLE_END:
                     conditionsMet = TRUE;
-                break;
+                    break;
             }
 
-            if (conditionsMet && DoesMonMeetAdditionalConditions(mon, evolutions[i].params, NULL, &consumeItem))
+            if (conditionsMet && DoesMonMeetAdditionalConditions(mon, evolutions[i].params, NULL, &consumeItem, evolutionItem))
             {
                 // All checks passed, so stop checking the rest of the evolutions.
                 // This is different from vanilla where the loop continues.
@@ -4848,7 +4851,7 @@ u16 GetEvolutionTargetSpecies(struct Pokemon *mon, enum EvolutionMode mode, u16 
                 break;
             }
 
-            if (conditionsMet && DoesMonMeetAdditionalConditions(mon, evolutions[i].params, NULL, &consumeItem))
+            if (conditionsMet && DoesMonMeetAdditionalConditions(mon, evolutions[i].params, NULL, &consumeItem, PARTY_SIZE))
             {
                 // All checks passed, so stop checking the rest of the evolutions.
                 // This is different from vanilla where the loop continues.
