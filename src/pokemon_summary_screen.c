@@ -2259,7 +2259,8 @@ static void Task_HandleInput_MoveSelect(u8 taskId)
         }
         else if (JOY_NEW(A_BUTTON))
         {
-            if (sMonSummaryScreen->newMove == MOVE_NONE && sMonSummaryScreen->firstMoveIndex == MAX_MON_MOVES)
+            if (sMonSummaryScreen->lockMovesFlag == TRUE
+                || (sMonSummaryScreen->newMove == MOVE_NONE && sMonSummaryScreen->firstMoveIndex == MAX_MON_MOVES))
             {
                 PlaySE(SE_SELECT);
                 ShowUtilityPrompt(SUMMARY_MODE_NORMAL);
