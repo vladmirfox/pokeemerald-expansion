@@ -412,7 +412,10 @@ static void SetBattlerAiMovesData(struct AiLogicData *aiData, u32 battlerAtk, u3
     u16 *moves;
     u32 battlerDef, moveIndex, move;
     u32 rollType = GetDmgRollType(battlerAtk);
+    SaveBattlerData(battlerAtk);
     moves = GetMovesArray(battlerAtk);
+
+    SetBattlerData(battlerAtk);
 
     // Simulate dmg for both ai controlled mons and for player controlled mons.
     for (battlerDef = 0; battlerDef < battlersCount; battlerDef++)
@@ -420,6 +423,8 @@ static void SetBattlerAiMovesData(struct AiLogicData *aiData, u32 battlerAtk, u3
         if (battlerAtk == battlerDef || !IsBattlerAlive(battlerDef))
             continue;
 
+        SaveBattlerData(battlerDef);
+        SetBattlerData(battlerDef);
         for (moveIndex = 0; moveIndex < MAX_MON_MOVES; moveIndex++)
         {
             struct SimulatedDamage dmg = {0};
@@ -437,7 +442,9 @@ static void SetBattlerAiMovesData(struct AiLogicData *aiData, u32 battlerAtk, u3
             aiData->simulatedDmg[battlerAtk][battlerDef][moveIndex] = dmg;
             aiData->effectiveness[battlerAtk][battlerDef][moveIndex] = effectiveness;
         }
+        RestoreBattlerData(battlerDef);
     }
+    RestoreBattlerData(battlerAtk);
 }
 
 void SetAiLogicDataForTurn(struct AiLogicData *aiData)
