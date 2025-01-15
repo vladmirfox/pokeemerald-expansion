@@ -233,6 +233,7 @@ void HandleAction_UseMove(void)
         for (battler = 0; battler < gBattlersCount; battler++)
         {
             if ((B_REDIRECT_ABILITY_ALLIES >= GEN_4 || !IsAlly(gBattlerAttacker, battler))
+                && battler != gBattlerAttacker
                 && gBattleStruct->moveTarget[gBattlerAttacker] != battler
                 && ((GetBattlerAbility(battler) == ABILITY_LIGHTNING_ROD && moveType == TYPE_ELECTRIC)
                  || (GetBattlerAbility(battler) == ABILITY_STORM_DRAIN && moveType == TYPE_WATER))
@@ -8458,7 +8459,7 @@ u32 GetMoveTarget(u16 move, u8 setTarget)
 
                 if (temp > 0)
                 {
-                    targetBattler = temp;
+                    targetBattler = temp - 1;
                     RecordAbilityBattle(targetBattler, gBattleMons[targetBattler].ability);
                     gSpecialStatuses[targetBattler].lightningRodRedirected = TRUE;
                 }
@@ -8472,7 +8473,7 @@ u32 GetMoveTarget(u16 move, u8 setTarget)
 
                 if (temp > 0)
                 {
-                    targetBattler = temp;
+                    targetBattler = temp - 1;
                     RecordAbilityBattle(targetBattler, gBattleMons[targetBattler].ability);
                     gSpecialStatuses[targetBattler].lightningRodRedirected = TRUE;
                 }
