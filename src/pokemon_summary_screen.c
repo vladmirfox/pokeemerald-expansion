@@ -1978,18 +1978,11 @@ static void Task_ChangeSummaryMon(u8 taskId)
         PrintPageSpecificText(sMonSummaryScreen->currPageIndex);
         LimitEggSummaryPageDisplay();
         if (P_SUMMARY_SCREEN_RENAME && sMonSummaryScreen->currPageIndex == PSS_PAGE_INFO)
-        {
-            FillWindowPixelBuffer(PSS_LABEL_WINDOW_PROMPT_UTILITY, PIXEL_FILL(0));
             ShowUtilityPrompt(SUMMARY_MODE_NORMAL);
-            PutWindowTilemap(PSS_LABEL_WINDOW_PROMPT_UTILITY);
-        }
         if (P_SUMMARY_SCREEN_IV_EV_INFO && sMonSummaryScreen->currPageIndex == PSS_PAGE_SKILLS)
         {   
-            FillWindowPixelBuffer(PSS_LABEL_WINDOW_PROMPT_UTILITY, PIXEL_FILL(0));
             sMonSummaryScreen->skillsPageMode = SUMMARY_SKILLS_MODE_STATS;
-            ShowUtilityPrompt(SUMMARY_SKILLS_MODE_STATS);
             ChangeStatLabel(SUMMARY_SKILLS_MODE_STATS);
-            PutWindowTilemap(PSS_LABEL_WINDOW_PROMPT_UTILITY);
         }
         break;
     case 12:
@@ -3296,7 +3289,8 @@ static void ClearPageWindowTilemaps(u8 page)
         ClearWindowTilemap(PSS_LABEL_WINDOW_POKEMON_SKILLS_STATS_LEFT);
         ClearWindowTilemap(PSS_LABEL_WINDOW_POKEMON_SKILLS_STATS_RIGHT);
         ClearWindowTilemap(PSS_LABEL_WINDOW_POKEMON_SKILLS_EXP);
-        ClearPageWindowTilemaps(PSS_LABEL_WINDOW_PROMPT_UTILITY);
+        if (P_SUMMARY_SCREEN_IV_EV_INFO)
+            ClearPageWindowTilemaps(PSS_LABEL_WINDOW_PROMPT_UTILITY);
         break;
     case PSS_PAGE_BATTLE_MOVES:
         if (sMonSummaryScreen->mode == SUMMARY_MODE_SELECT_MOVE)
@@ -3307,7 +3301,7 @@ static void ClearPageWindowTilemaps(u8 page)
                 gSprites[sMonSummaryScreen->categoryIconSpriteId].invisible = TRUE;
             }
             if (ShouldShowMoveRelearner())
-                ClearWindowTilemap(PSS_LABEL_WINDOW_PROMPT_RELEARN);
+                ClearRelearnPrompt();
         }
         break;
     case PSS_PAGE_CONTEST_MOVES:
@@ -3317,7 +3311,7 @@ static void ClearPageWindowTilemaps(u8 page)
                 ClearWindowTilemap(PSS_LABEL_WINDOW_MOVES_APPEAL_JAM);
                
             if (ShouldShowMoveRelearner())
-                ClearWindowTilemap(PSS_LABEL_WINDOW_PROMPT_RELEARN);
+                ClearRelearnPrompt();
         }
         break;
     }
