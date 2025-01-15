@@ -2220,8 +2220,15 @@ static void SwitchToMoveSelection(u8 taskId)
     HandlePowerAccTilemap(9, -3);
     HandleAppealJamTilemap(9, -3, move);
 
-    if (ShouldShowMoveRelearner())
-        ClearWindowTilemap(PSS_LABEL_WINDOW_PROMPT_RELEARN);
+    if (!sMonSummaryScreen->lockMovesFlag)
+    {
+        if (ShouldShowMoveRelearner())
+            ClearWindowTilemap(PSS_LABEL_WINDOW_PROMPT_RELEARN);
+        
+        ShowUtilityPrompt(SUMMARY_MODE_SELECT_MOVE);
+    }
+    else
+        ShowUtilityPrompt(SUMMARY_MODE_NORMAL);
 
     TilemapFiveMovesDisplay(sMonSummaryScreen->bgTilemapBuffers[PSS_PAGE_BATTLE_MOVES][0], 3, FALSE);
     TilemapFiveMovesDisplay(sMonSummaryScreen->bgTilemapBuffers[PSS_PAGE_CONTEST_MOVES][0], 1, FALSE);
@@ -2232,10 +2239,6 @@ static void SwitchToMoveSelection(u8 taskId)
     ScheduleBgCopyTilemapToVram(1);
     ScheduleBgCopyTilemapToVram(2);
     CreateMoveSelectorSprites(SPRITE_ARR_ID_MOVE_SELECTOR1);
-    if (!sMonSummaryScreen->lockMovesFlag)
-        ShowUtilityPrompt(SUMMARY_MODE_SELECT_MOVE);
-    else
-        ShowUtilityPrompt(SUMMARY_MODE_NORMAL);
     gTasks[taskId].func = Task_HandleInput_MoveSelect;
 }
 
@@ -3246,7 +3249,7 @@ static void PutPageWindowTilemaps(u8 page)
         else
         {
             if (ShouldShowMoveRelearner())
-                PutWindowTilemap(PSS_LABEL_WINDOW_PROMPT_RELEARN);  
+                PutWindowTilemap(PSS_LABEL_WINDOW_PROMPT_RELEARN);
         }
         break;
     case PSS_PAGE_CONTEST_MOVES:
@@ -3260,7 +3263,7 @@ static void PutPageWindowTilemaps(u8 page)
         else
         {
             if (ShouldShowMoveRelearner())
-                PutWindowTilemap(PSS_LABEL_WINDOW_PROMPT_RELEARN);  
+                PutWindowTilemap(PSS_LABEL_WINDOW_PROMPT_RELEARN);
         }
         break;
     }
