@@ -61,7 +61,7 @@
 // Button control text (upper right)
 #define PSS_LABEL_WINDOW_PROMPT_UTILITY 4 // Also handles the "Rename" and "IVs"/"EVs" prompts if P_SUMMARY_SCREEN_RENAME and P_SUMMARY_SCREEN_IV_EV_INFO are true, respectively
 #define PSS_LABEL_WINDOW_PROMPT_SWITCH 5
-#define PSS_DATA_WINDOW_UNUSED 6
+#define PSS_LABEL_WINDOW_UNUSED1 6
 
 // Info screen
 #define PSS_LABEL_WINDOW_POKEMON_INFO_RENTAL 7
@@ -458,6 +458,15 @@ static const struct WindowTemplate sSummaryTemplate[] =
         .height = 2,
         .paletteNum = 7,
         .baseBlock = 121,
+    },
+    [PSS_LABEL_WINDOW_UNUSED1] = {
+        .bg = 0,
+        .tilemapLeft = 11,
+        .tilemapTop = 4,
+        .width = 0,
+        .height = 2,
+        .paletteNum = 6,
+        .baseBlock = 137,
     },
     [PSS_LABEL_WINDOW_POKEMON_INFO_RENTAL] = {
         .bg = 0,
