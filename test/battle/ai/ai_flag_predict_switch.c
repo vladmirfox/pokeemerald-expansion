@@ -52,6 +52,33 @@ AI_SINGLE_BATTLE_TEST("AI_FLAG_PREDICT_SWITCH: AI would switch out in Wonder Gua
     }
 }
 
+AI_SINGLE_BATTLE_TEST("AI_FLAG_PREDICT_SWITCH: AI will use hit escape moves on predicted switches")
+{
+    PASSES_RANDOMLY(5, 10, RNG_AI_PREDICT_SWITCH);
+    GIVEN {
+        AI_FLAGS(AI_FLAG_CHECK_BAD_MOVE | AI_FLAG_TRY_TO_FAINT | AI_FLAG_CHECK_VIABILITY | AI_FLAG_OMNISCIENT | AI_FLAG_SMART_SWITCHING | AI_FLAG_SMART_MON_CHOICES | AI_FLAG_PREDICT_SWITCH);
+        PLAYER(SPECIES_BRONZONG) { Moves(MOVE_PSYCHIC); }
+        PLAYER(SPECIES_CONKELDURR) { Moves(MOVE_HAMMER_ARM); }
+        OPPONENT(SPECIES_TYRANITAR) { Moves(MOVE_U_TURN, MOVE_CRUNCH); }
+        OPPONENT(SPECIES_TYRANITAR) { Moves(MOVE_U_TURN, MOVE_CRUNCH); }
+    } WHEN {
+        TURN { SWITCH(player, 1); EXPECT_MOVE(opponent, MOVE_U_TURN); }
+    }
+}
+
+AI_SINGLE_BATTLE_TEST("AI_FLAG_PREDICT_SWITCH: AI would switch out in hit escape scenario")
+{
+    GIVEN {
+        AI_FLAGS(AI_FLAG_CHECK_BAD_MOVE | AI_FLAG_TRY_TO_FAINT | AI_FLAG_CHECK_VIABILITY | AI_FLAG_OMNISCIENT | AI_FLAG_SMART_SWITCHING | AI_FLAG_SMART_MON_CHOICES);
+        PLAYER(SPECIES_TYRANITAR) { Moves(MOVE_U_TURN, MOVE_CRUNCH); }
+        PLAYER(SPECIES_TYRANITAR) { Moves(MOVE_U_TURN, MOVE_CRUNCH); }
+        OPPONENT(SPECIES_BRONZONG) { Moves(MOVE_PSYCHIC); }
+        OPPONENT(SPECIES_CONKELDURR) { Moves(MOVE_HAMMER_ARM); }
+    } WHEN {
+        TURN { EXPECT_SWITCH(opponent, 1); MOVE(player, MOVE_U_TURN); SEND_OUT(player, 1); }
+    }
+}
+
 AI_SINGLE_BATTLE_TEST("AI_FLAG_PREDICT_SWITCH: AI can use Focus Punch on predicted switches")
 {
     PASSES_RANDOMLY(5, 10, RNG_AI_PREDICT_SWITCH);
@@ -79,10 +106,14 @@ AI_SINGLE_BATTLE_TEST("AI_FLAG_PREDICT_SWITCH: AI would switch out in Focus Punc
     }
 }
 
-TO_DO_BATTLE_TEST("AI_FLAG_PREDICT_SWITCH: AI will use hit escape moves on predicted switches");
-TO_DO_BATTLE_TEST("AI_FLAG_PREDICT_SWITCH: AI would switch out in hit escape scenario")
-TO_DO_BATTLE_TEST("AI_FLAG_PREDICT_SWITCH: AI will use Substitute on predicted switches");
+TO_DO_BATTLE_TEST("AI_FLAG_PREDICT_SWITCH: AI will use stat boosting moves on predicted switch");
+TO_DO_BATTLE_TEST("AI_FLAG_PREDICT_SWITCH: AI would switch out in boosting move scenario");
+
+TO_DO_BATTLE_TEST("AI_FLAG_PREDICT_SWITCH: AI will use Subsitute on predicted switch");
 TO_DO_BATTLE_TEST("AI_FLAG_PREDICT_SWITCH: AI would switch out in Substitute scenario");
 
+
+
+// This might be for a follow-up PR
 TO_DO_BATTLE_TEST("AI_FLAG_PREDICT_SWITCH: AI will score against predicted incoming mon when switch predicted")
 TO_DO_BATTLE_TEST("AI_FLAG_PREDICT_SWITCH: AI would switch out in predicted-incoming-mon scenario");

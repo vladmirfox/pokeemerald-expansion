@@ -4213,10 +4213,12 @@ void SetupAISwitchingData(u32 battler, bool32 isAiRisky)
     // AI's predicting data
     if ((AI_THINKING_STRUCT->aiFlags[battler] & AI_FLAG_PREDICT_SWITCH))
     {
+        AI_DATA->aiSwitchPredictionInProgress = TRUE;
         AI_DATA->mostSuitableMonId[opposingBattler] = GetMostSuitableMonToSwitchInto(opposingBattler, isAiRisky);
         if (ShouldSwitch(opposingBattler))
             AI_DATA->shouldSwitch |= (1u << opposingBattler);
-
+        AI_DATA->aiSwitchPredictionInProgress = FALSE;
+        
         // Determine whether AI will use predictions this turn
         AI_DATA->predictingSwitch = RandomPercentage(RNG_AI_PREDICT_SWITCH, 50);
     }
