@@ -2242,7 +2242,10 @@ static void SwitchToMoveSelection(u8 taskId)
     ScheduleBgCopyTilemapToVram(2);
     CreateMoveSelectorSprites(SPRITE_ARR_ID_MOVE_SELECTOR1);
     ClearRelearnPrompt();
-    ShowCancelOrUtilityPrompt(SUMMARY_MODE_NORMAL);
+    if (!sMonSummaryScreen->lockMovesFlag)
+        ShowCancelOrUtilityPrompt(SUMMARY_MODE_SELECT_MOVE);
+    else
+        ShowCancelOrUtilityPrompt(SUMMARY_MODE_NORMAL);
     gTasks[taskId].func = Task_HandleInput_MoveSelect;
 }
 
@@ -2273,7 +2276,7 @@ static void Task_HandleInput_MoveSelect(u8 taskId)
             else if (HasMoreThanOneMove() == TRUE)
             {
                 PlaySE(SE_SELECT);
-                ShowCancelOrUtilityPrompt(SUMMARY_MODE_NORMAL);
+                ShowCancelOrUtilityPrompt(SUMMARY_MODE_SELECT_MOVE);
                 SwitchToMovePositionSwitchMode(taskId);
             }
             else
@@ -4642,8 +4645,9 @@ static inline void ShowCancelOrUtilityPrompt(s16 mode)
             return;
         }
     }
-    else if (sMonSummaryScreen->currPageIndex > PSS_PAGE_SKILLS)
-        if (mode == SUMMARY_MODE_SELECT_MOVE || !sMonSummaryScreen->lockMovesFlag)
+    else if (sMonSummaryScreen->currPageIndex == PSS_PAGE_BATTLE_MOVES 
+             || sMonSummaryScreen->currPageIndex == PSS_PAGE_CONTEST_MOVES)
+        if (mode == SUMMARY_MODE_SELECT_MOVE && !sMonSummaryScreen->lockMovesFlag)
             promptText = gText_Switch;
         else
             promptText = gText_Info;
