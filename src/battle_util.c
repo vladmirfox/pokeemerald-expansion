@@ -232,7 +232,7 @@ void HandleAction_UseMove(void)
         // Find first battler that redirects the move (in turn order)
         for (battler = 0; battler < gBattlersCount; battler++)
         {
-            if ((B_REDIRECT_ABILITY_ALLIES >= GEN_5 || !IsAlly(gBattlerAttacker, battler))
+            if ((B_REDIRECT_ABILITY_ALLIES >= GEN_4 || !IsAlly(gBattlerAttacker, battler))
                 && gBattleStruct->moveTarget[gBattlerAttacker] != battler
                 && ((GetBattlerAbility(battler) == ABILITY_LIGHTNING_ROD && moveType == TYPE_ELECTRIC)
                  || (GetBattlerAbility(battler) == ABILITY_STORM_DRAIN && moveType == TYPE_WATER))
@@ -8451,7 +8451,7 @@ u32 GetMoveTarget(u16 move, u8 setTarget)
             targetBattler = SetRandomTarget(gBattlerAttacker);
             if (moveType == TYPE_ELECTRIC && GetBattlerAbility(targetBattler) != ABILITY_LIGHTNING_ROD)
             {
-                if (B_REDIRECT_ABILITY_ALLIES >= GEN_5)
+                if (B_REDIRECT_ABILITY_ALLIES >= GEN_4)
                     temp = IsAbilityOnField(ABILITY_LIGHTNING_ROD);
                 else
                     temp = IsAbilityOnOpposingSide(targetBattler, ABILITY_LIGHTNING_ROD);
@@ -8465,7 +8465,7 @@ u32 GetMoveTarget(u16 move, u8 setTarget)
             }
             else if (moveType == TYPE_WATER && GetBattlerAbility(targetBattler) != ABILITY_STORM_DRAIN)
             {
-                if (B_REDIRECT_ABILITY_ALLIES >= GEN_5)
+                if (B_REDIRECT_ABILITY_ALLIES >= GEN_4)
                     temp = IsAbilityOnField(ABILITY_STORM_DRAIN);
                 else
                     temp = IsAbilityOnOpposingSide(targetBattler, ABILITY_STORM_DRAIN);
