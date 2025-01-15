@@ -772,7 +772,7 @@ static void LoadAreaUnknownGraphics(void)
         .size = sizeof(sPokedexAreaScreen->areaUnknownGraphicsBuffer),
         .tag = TAG_AREA_UNKNOWN,
     };
-    LZ77UnCompWram(gPokedexAreaScreenAreaUnknown_Gfx, sPokedexAreaScreen->areaUnknownGraphicsBuffer);
+    DecompressDataWithHeaderWram(gPokedexAreaScreenAreaUnknown_Gfx, sPokedexAreaScreen->areaUnknownGraphicsBuffer);
     LoadSpriteSheet(&spriteSheet);
     LoadSpritePalette(&sAreaUnknownSpritePalette);
 }
