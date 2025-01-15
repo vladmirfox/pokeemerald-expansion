@@ -59,30 +59,31 @@
 #define PSS_LABEL_WINDOW_CONTEST_MOVES_TITLE 3
 
 // Button control text (upper right)
-#define PSS_LABEL_WINDOW_PROMPT_UTILITY 4 // Also handles the "Rename" and "IVs"/"EVs" prompts if P_SUMMARY_SCREEN_RENAME and P_SUMMARY_SCREEN_IV_EV_INFO are true, respectively
-#define PSS_LABEL_WINDOW_PROMPT_SWITCH 5
-#define PSS_LABEL_WINDOW_UNUSED1 6
+#define PSS_LABEL_WINDOW_PROMPT_UTILITY 4 // Handles "Switch", "Info", and "Cancel" prompts. Also handles the "Rename" and "IVs"/"EVs"/"STATS" prompts if P_SUMMARY_SCREEN_RENAME and P_SUMMARY_SCREEN_IV_EV_INFO are true, respectively
+#define PSS_LABEL_WINDOW_PROMPT_INFO 5
+#define PSS_LABEL_WINDOW_PROMPT_SWITCH 6
+#define PSS_LABEL_WINDOW_UNUSED1 7
 
 // Info screen
-#define PSS_LABEL_WINDOW_POKEMON_INFO_RENTAL 7
-#define PSS_LABEL_WINDOW_POKEMON_INFO_TYPE 8
+#define PSS_LABEL_WINDOW_POKEMON_INFO_RENTAL 8
+#define PSS_LABEL_WINDOW_POKEMON_INFO_TYPE 9
 
 // Skills screen
-#define PSS_LABEL_WINDOW_POKEMON_SKILLS_STATS_LEFT 9 // HP, Attack, Defense
-#define PSS_LABEL_WINDOW_POKEMON_SKILLS_STATS_RIGHT 10 // Sp. Attack, Sp. Defense, Speed
-#define PSS_LABEL_WINDOW_POKEMON_SKILLS_EXP 11 // EXP, Next Level
-#define PSS_LABEL_WINDOW_POKEMON_SKILLS_STATUS 12
+#define PSS_LABEL_WINDOW_POKEMON_SKILLS_STATS_LEFT 10 // HP, Attack, Defense
+#define PSS_LABEL_WINDOW_POKEMON_SKILLS_STATS_RIGHT 11 // Sp. Attack, Sp. Defense, Speed
+#define PSS_LABEL_WINDOW_POKEMON_SKILLS_EXP 12 // EXP, Next Level
+#define PSS_LABEL_WINDOW_POKEMON_SKILLS_STATUS 13
 
 // Moves screen
-#define PSS_LABEL_WINDOW_MOVES_POWER_ACC 13 // Also contains the power and accuracy values
-#define PSS_LABEL_WINDOW_MOVES_APPEAL_JAM 14
-#define PSS_LABEL_WINDOW_PROMPT_RELEARN 15
+#define PSS_LABEL_WINDOW_MOVES_POWER_ACC 14 // Also contains the power and accuracy values
+#define PSS_LABEL_WINDOW_MOVES_APPEAL_JAM 15
+#define PSS_LABEL_WINDOW_PROMPT_RELEARN 16
 
 // Above/below the pokemon's portrait (left)
-#define PSS_LABEL_WINDOW_PORTRAIT_DEX_NUMBER 16
-#define PSS_LABEL_WINDOW_PORTRAIT_NICKNAME 17 // The upper name
-#define PSS_LABEL_WINDOW_PORTRAIT_SPECIES 18 // The lower name
-#define PSS_LABEL_WINDOW_END 19
+#define PSS_LABEL_WINDOW_PORTRAIT_DEX_NUMBER 17
+#define PSS_LABEL_WINDOW_PORTRAIT_NICKNAME 18 // The upper name
+#define PSS_LABEL_WINDOW_PORTRAIT_SPECIES 19 // The lower name
+#define PSS_LABEL_WINDOW_END 20
 
 // Dynamic fields for the Pokémon Info page
 #define PSS_DATA_WINDOW_INFO_ORIGINAL_TRAINER 0
@@ -449,6 +450,15 @@ static const struct WindowTemplate sSummaryTemplate[] =
         .height = 2,
         .paletteNum = 7,
         .baseBlock = 89,
+    },
+    [PSS_LABEL_WINDOW_PROMPT_INFO] = {
+        .bg = 0,
+        .tilemapLeft = 22,
+        .tilemapTop = 0,
+        .width = 8,
+        .height = 2,
+        .paletteNum = 7,
+        .baseBlock = 105,
     },
     [PSS_LABEL_WINDOW_PROMPT_SWITCH] = {
         .bg = 0,
