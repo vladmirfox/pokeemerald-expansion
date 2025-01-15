@@ -3757,6 +3757,48 @@ static void BufferStat(u8 *dst, u8 statIndex, u32 stat, u32 strId, u32 n)
     DynamicPlaceholderTextUtil_SetPlaceholderPtr(strId, dst);
 }
 
+static const u8 *GetLetterGrade(u32 stat)
+{
+    static const u8 gText_GradeF[] = _("F");
+    static const u8 gText_GradeD[] = _("D");
+    static const u8 gText_GradeC[] = _("C");
+    static const u8 gText_GradeB[] = _("B");
+    static const u8 gText_GradeA[] = _("A");
+    static const u8 gText_GradeS[] = _("S");
+    
+    if (stat > 0 && stat <= 15)
+        return gText_GradeD;
+    else if (stat > 15 && stat <= 25)
+        return gText_GradeC;
+    else if (stat > 26 && stat <= 29)
+        return gText_GradeB;
+    else if (stat == 30)
+        return gText_GradeA;
+    else if (stat == 31)
+        return gText_GradeS;
+    else
+        return gText_GradeF;
+}
+
+static void BufferLetterGrade(u8 *dst, u8 statIndex, u32 stat, u32 strId, u32 n)
+{
+    static const u8 sTextNatureDown[] = _("{COLOR}{08}");
+    static const u8 sTextNatureUp[] = _("{COLOR}{05}");
+    static const u8 sTextNatureNeutral[] = _("{COLOR}{01}");
+
+    if (statIndex == 0 || !SUMMARY_SCREEN_NATURE_COLORS || gNaturesInfo[sMonSummaryScreen->summary.mintNature].statUp == gNaturesInfo[sMonSummaryScreen->summary.mintNature].statDown)
+        StringCopy(dst, sTextNatureNeutral);
+    else if (statIndex == gNaturesInfo[sMonSummaryScreen->summary.mintNature].statUp)
+        StringCopy(dst, sTextNatureUp);
+    else if (statIndex == gNaturesInfo[sMonSummaryScreen->summary.mintNature].statDown)
+        StringCopy(dst, sTextNatureDown);
+    else
+        StringCopy(dst, sTextNatureNeutral);
+
+    StringAppend(dst, GetLetterGrade(stat));
+    DynamicPlaceholderTextUtil_SetPlaceholderPtr(strId, dst);
+}
+
 static void BufferLeftColumnStats(void)
 {
     u8 *currentHPString = Alloc(20);
@@ -3765,10 +3807,12 @@ static void BufferLeftColumnStats(void)
     u8 *defenseString = Alloc(20);
 
     DynamicPlaceholderTextUtil_Reset();
+
     BufferStat(currentHPString, 0, sMonSummaryScreen->summary.currentHP, 0, 3);
     BufferStat(maxHPString, 0, sMonSummaryScreen->summary.maxHP, 1, 3);
     BufferStat(attackString, STAT_ATK, sMonSummaryScreen->summary.atk, 2, 7);
     BufferStat(defenseString, STAT_DEF, sMonSummaryScreen->summary.def, 3, 7);
+
     DynamicPlaceholderTextUtil_ExpandPlaceholders(gStringVar4, sStatsLeftColumnLayout);
 
     Free(currentHPString);
@@ -3782,11 +3826,22 @@ static void BufferLeftColumnIvEvStats(void)
     u8 *hpIvEvString = Alloc(20);
     u8 *attackIvEvString = Alloc(20);
     u8 *defenseIvEvString = Alloc(20);
-
+    
     DynamicPlaceholderTextUtil_Reset();
-    BufferStat(hpIvEvString, STAT_HP, sMonSummaryScreen->summary.currentHP, 0, 7);
-    BufferStat(attackIvEvString, STAT_ATK, sMonSummaryScreen->summary.atk, 1, 7);
-    BufferStat(defenseIvEvString, STAT_DEF, sMonSummaryScreen->summary.def, 2, 7);
+
+    if (P_SUMMARY_SCREEN_IV_EV_VALUES == FALSE && sMonSummaryScreen->skillsPageMode == SUMMARY_SKILLS_MODE_IVS)
+    {
+        BufferLetterGrade(hpIvEvString, 0, sMonSummaryScreen->summary.currentHP, 0, 3);
+        BufferLetterGrade(attackIvEvString, STAT_ATK, sMonSummaryScreen->summary.atk, 1, 7);
+        BufferLetterGrade(defenseIvEvString, STAT_DEF, sMonSummaryScreen->summary.def, 2, 7);
+    }
+    else
+    {
+        BufferStat(hpIvEvString, STAT_HP, sMonSummaryScreen->summary.currentHP, 0, 7);
+        BufferStat(attackIvEvString, STAT_ATK, sMonSummaryScreen->summary.atk, 1, 7);
+        BufferStat(defenseIvEvString, STAT_DEF, sMonSummaryScreen->summary.def, 2, 7);
+    }
+
     DynamicPlaceholderTextUtil_ExpandPlaceholders(gStringVar4, sStatsLeftIVEVColumnLayout);
 
     Free(hpIvEvString);
@@ -3796,21 +3851,46 @@ static void BufferLeftColumnIvEvStats(void)
 
 static void PrintLeftColumnStats(void)
 {
-    PrintTextOnWindow(AddWindowFromTemplateList(sPageSkillsTemplate, PSS_DATA_WINDOW_SKILLS_STATS_LEFT), gStringVar4, 4, 1, 0, 0);
+    int x;
+    
+    if (sMonSummaryScreen->skillsPageMode == SUMMARY_SKILLS_MODE_IVS && P_SUMMARY_SCREEN_IV_EV_VALUES == FALSE)
+        x = GetStringRightAlignXOffset(FONT_NORMAL, gStringVar4, 46);
+    else
+        x = 4;
+
+    PrintTextOnWindow(AddWindowFromTemplateList(sPageSkillsTemplate, PSS_DATA_WINDOW_SKILLS_STATS_LEFT), gStringVar4, x, 1, 0, 0);
 }
 
 static void BufferRightColumnStats(void)
 {
     DynamicPlaceholderTextUtil_Reset();
-    BufferStat(gStringVar1, STAT_SPATK, sMonSummaryScreen->summary.spatk, 0, 3);
-    BufferStat(gStringVar2, STAT_SPDEF, sMonSummaryScreen->summary.spdef, 1, 3);
-    BufferStat(gStringVar3, STAT_SPEED, sMonSummaryScreen->summary.speed, 2, 3);
+
+    if (P_SUMMARY_SCREEN_IV_EV_VALUES == FALSE && sMonSummaryScreen->skillsPageMode == SUMMARY_SKILLS_MODE_IVS)
+    {
+        BufferLetterGrade(gStringVar1, STAT_SPATK, sMonSummaryScreen->summary.spatk, 0, 3);
+        BufferLetterGrade(gStringVar2, STAT_SPDEF, sMonSummaryScreen->summary.spdef, 1, 3);
+        BufferLetterGrade(gStringVar3, STAT_SPEED, sMonSummaryScreen->summary.speed, 2, 3);
+    }
+    else
+    {
+        BufferStat(gStringVar1, STAT_SPATK, sMonSummaryScreen->summary.spatk, 0, 3);
+        BufferStat(gStringVar2, STAT_SPDEF, sMonSummaryScreen->summary.spdef, 1, 3);
+        BufferStat(gStringVar3, STAT_SPEED, sMonSummaryScreen->summary.speed, 2, 3);
+    }
+    
     DynamicPlaceholderTextUtil_ExpandPlaceholders(gStringVar4, sStatsRightColumnLayout);
 }
 
 static void PrintRightColumnStats(void)
 {
-    PrintTextOnWindow(AddWindowFromTemplateList(sPageSkillsTemplate, PSS_DATA_WINDOW_SKILLS_STATS_RIGHT), gStringVar4, 2, 1, 0, 0);
+    int x;
+    
+    if (sMonSummaryScreen->skillsPageMode == SUMMARY_SKILLS_MODE_IVS && P_SUMMARY_SCREEN_IV_EV_VALUES == FALSE)
+        x = GetStringRightAlignXOffset(FONT_NORMAL, gStringVar4, 20);
+    else
+        x = 2;
+
+    PrintTextOnWindow(AddWindowFromTemplateList(sPageSkillsTemplate, PSS_DATA_WINDOW_SKILLS_STATS_RIGHT), gStringVar4, x, 1, 0, 0);
 }
 
 static void PrintExpPointsNextLevel(void)
