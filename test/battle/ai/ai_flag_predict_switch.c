@@ -2,7 +2,7 @@
 #include "test/battle.h"
 #include "battle_ai_util.h"
 
-AI_SINGLE_BATTLE_TEST("AI_FLAG_PREDICT_SWITCH: AI will predict switches with Pursuit")
+AI_SINGLE_BATTLE_TEST("AI_FLAG_PREDICT_SWITCH: AI will predict use Pursuit on predicted switches")
 {
     PASSES_RANDOMLY(5, 10, RNG_AI_PREDICT_SWITCH);
     GIVEN {
