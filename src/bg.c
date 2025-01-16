@@ -3,6 +3,7 @@
 #include "bg.h"
 #include "dma3.h"
 #include "gpu_regs.h"
+#include "malloc.h"
 #include "menu.h"
 
 #define DISPCNT_ALL_BG_AND_MODE_BITS    (DISPCNT_BG_ALL_ON | 0x7)
@@ -882,6 +883,7 @@ void DecompressAndCopyToBgTilemapBuffer(u32 bg, const u32 *src, u32 mode, u32 de
     void *buffer = malloc_and_decompress(src, NULL);
 
     CopyToBgTilemapBuffer(bg, buffer, mode, destOffset);
+    Free(buffer);
 }
 
 void CopyBgTilemapBufferToVram(u32 bg)
