@@ -697,10 +697,10 @@ static void SetShopMenuCallback(void (* callback)(void))
     sMartInfo.callback = callback;
 }
 
-static u8 GetNumberOfBadges(void)
+static u32 GetNumberOfBadges(void)
 {
-    u16 badgeFlag;
-    u8 count = 0;
+    u32 badgeFlag;
+    u32 count = 0;
     
     for (badgeFlag = FLAG_BADGE01_GET; badgeFlag < FLAG_BADGE01_GET + NUM_BADGES; badgeFlag++)
     {
@@ -713,8 +713,8 @@ static u8 GetNumberOfBadges(void)
 
 static void SetShopItemsForSale(const u16 *items)
 {
-    u16 i = 0;
-    u8 badgeCount = GetNumberOfBadges();
+    u32 i = 0;
+    u32 badgeCount = GetNumberOfBadges();
 
     if (items == NULL)
         sMartInfo.itemList = sShopInventories[badgeCount];
