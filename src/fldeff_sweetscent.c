@@ -69,13 +69,17 @@ void StartSweetScentFieldEffect(void)
     FieldEffectActiveListRemove(FLDEFF_SWEET_SCENT);
 }
 
-static void FreeDestroyTask(u32 taskId)
+static void *GetPalBufferPtr(u32 taskId)
 {
     u32 palBuffer;
 
     LoadWordFromTwoHalfwords((u16 *)&gTasks[taskId].tPalBuffer1, &palBuffer);
-    Free((void *) palBuffer);
+    return (void *) palBuffer;
+}
 
+static void FreeDestroyTask(u32 taskId)
+{
+    Free(GetPalBufferPtr(taskId));
     DestroyTask(taskId);
 }
 
@@ -110,7 +114,7 @@ static void FailSweetScentEncounter(u8 taskId)
 {
     if (!gPaletteFade.active)
     {
-        CpuFastCopy(gDecompressionBuffer, gPlttBufferUnfaded, PLTT_SIZE);
+        CpuFastCopy(GetPalBufferPtr(taskId), gPlttBufferUnfaded, PLTT_SIZE);
         SetWeatherPalStateIdle();
         ScriptContext_SetupScript(EventScript_FailSweetScent);
         FreeDestroyTask(taskId);
