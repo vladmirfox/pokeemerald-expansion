@@ -69,7 +69,7 @@
 #define P_SUMMARY_SCREEN_IV_EV_BOX_ONLY  FALSE              // If TRUE, will allow player to cycle through the Stats, IVs, and EVs in the summary screen skills page, but only in the PC storage box.
 #define P_SUMMARY_SCREEN_IV_EV_TILESET   FALSE              // If TRUE, loads an alternate tileset to allow changing the "STATS" label in the summary screen skills page. Note: if it's still loading the alternate tileset after changing this and recompiling, you may need a `make clean` before compilation.
 #define P_SUMMARY_SCREEN_IV_EV_VALUES    FALSE              // If TRUE, will show the actual IV value instead of the letter grade.
-#define P_SUMMARY_SCREEN_IV_ONLY         FALSE               // If TRUE, will only show IV info in the summary screen.
+#define P_SUMMARY_SCREEN_IV_ONLY         FALSE              // If TRUE, will only show IV info in the summary screen.
 #define P_SUMMARY_SCREEN_EV_ONLY         FALSE              // If TRUE, will only show EV info in the summary screen.
 
 // Learnset helper toggles
