@@ -290,8 +290,7 @@ enum EvolutionMethods {
     EVO_LEVEL,                  // Pokémon reaches the specified level
     EVO_TRADE,                  // Pokémon is traded
     EVO_ITEM,                   // specified item is used on Pokémon
-    EVO_LEVEL_NINJASK,          // Pokémon reaches the specified level (special value for Ninjask)
-    EVO_LEVEL_SHEDINJA,         // Pokémon reaches the specified level (special value for Shedinja)
+    EVO_SPLIT_FROM_EVO,         // A clone is generated and evolved when another evolution happens
     EVO_SCRIPT_TRIGGER_DMG,     // Pokémon has specified HP below max, then player interacts trigger
     EVO_DARK_SCROLL,            // interacts with Scroll of Darkness
     EVO_WATER_SCROLL,           // interacts with Scroll of Waters
