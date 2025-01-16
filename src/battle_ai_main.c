@@ -670,6 +670,55 @@ static inline bool32 ShouldConsiderMoveForBattler(u32 battlerAi, u32 battlerDef,
 
 static inline void BattleAI_DoAIProcessing(struct AI_ThinkingStruct *aiThink, u32 battlerAi, u32 battlerDef)
 {
+
+    // battlerDef needs to be treated as AI_DATA->mostSuitableMonId[battlerDef] if AI_DATA->shouldSwitch |= (1u << battlerDef);
+    // damage calcs for this *new* battler are also going to need to be run as the old battler is switching out
+
+    u16 *moves;
+    u32 moveIndex, move;
+    u32 rollType = GetDmgRollType(battlerAi);
+    moves = GetMovesArray(battlerAi);
+    struct BattlePokemon switchingOutBattleMon;
+
+    // Store AI_DATA from switching-out battler
+    u8 moveAccuracySwitchingBattler[4];
+    struct SimulatedDamage simulatedDmgSwitchingBattler[4];
+    u8 effectivenessSwitchingBattler[4];
+
+    if (IsBattlerPredictedToSwitch(battlerDef))
+    {
+        // Store gBattleMons[battlerDef] and old calcs
+        switchingOutBattleMon = gBattleMons[battlerDef];
+        for (moveIndex = 0; moveIndex < MAX_MON_MOVES; moveIndex++)
+        {
+            moveAccuracySwitchingBattler[moveIndex] = AI_DATA->moveAccuracy[battlerAi][battlerDef][moveIndex];
+            effectivenessSwitchingBattler[moveIndex] = AI_DATA->effectiveness[battlerAi][battlerDef][moveIndex];
+            simulatedDmgSwitchingBattler[moveIndex] = AI_DATA->simulatedDmg[battlerAi][battlerDef][moveIndex];
+        }
+
+        // Get battle mon for AI_DATA->mostSuitableMonId[battlerDef]
+        struct Pokemon *party = GetBattlerParty(battlerDef);
+        PokemonToBattleMon(&party[AI_DATA->mostSuitableMonId[battlerDef]], &gBattleMons[battlerDef]);
+
+        // Run calcs with new battler
+        for (moveIndex = 0; moveIndex < MAX_MON_MOVES; moveIndex++)
+        {
+            struct SimulatedDamage dmg = {0};
+            u8 effectiveness = AI_EFFECTIVENESS_x0;
+            move = moves[moveIndex];
+
+            if (move != MOVE_NONE
+             && move != MOVE_UNAVAILABLE
+             && !(AI_DATA->moveLimitations[battlerAi] & (1u << moveIndex)))
+            {
+                dmg = AI_CalcDamage(move, battlerAi, battlerDef, &effectiveness, TRUE, AI_GetWeather(AI_DATA), rollType);
+                AI_DATA->moveAccuracy[battlerAi][battlerDef][moveIndex] = Ai_SetMoveAccuracy(AI_DATA, battlerAi, battlerDef, move);
+            }
+            AI_DATA->simulatedDmg[battlerAi][battlerDef][moveIndex] = dmg;
+            AI_DATA->effectiveness[battlerAi][battlerDef][moveIndex] = effectiveness;
+        }
+    }
+
     do
     {
         if (gBattleMons[battlerAi].pp[aiThink->movesetIndex] == 0)
@@ -699,6 +748,18 @@ static inline void BattleAI_DoAIProcessing(struct AI_ThinkingStruct *aiThink, u3
         }
         aiThink->movesetIndex++;
     } while (aiThink->movesetIndex < MAX_MON_MOVES && !(aiThink->aiAction & AI_ACTION_DO_NOT_ATTACK));
+
+    if (IsBattlerPredictedToSwitch(battlerDef))
+    {
+        // Restore gBattleMons[battlerDef] and old calcs
+        gBattleMons[battlerDef] = switchingOutBattleMon;
+        for (moveIndex = 0; moveIndex < MAX_MON_MOVES; moveIndex++)
+        {
+            AI_DATA->simulatedDmg[battlerAi][battlerDef][moveIndex] = simulatedDmgSwitchingBattler[moveIndex];
+            AI_DATA->effectiveness[battlerAi][battlerDef][moveIndex] = effectivenessSwitchingBattler[moveIndex];
+            AI_DATA->moveAccuracy[battlerAi][battlerDef][moveIndex] = moveAccuracySwitchingBattler[moveIndex];
+        }
+    }
 
     aiThink->movesetIndex = 0;
 }
