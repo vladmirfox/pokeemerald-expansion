@@ -2192,16 +2192,16 @@ const struct SpeciesInfo gSpeciesInfoGen6[] =
         .formChangeTable = sFurfrouFormChangeTable,                                                     \
     }
 
-    [SPECIES_FURFROU_NATURAL] =        FURFROU_MISC_INFO(Natural,       FALSE, 48, 3, 56, 0, 0),
-    [SPECIES_FURFROU_HEART] =     FURFROU_MISC_INFO(HeartTrim,     FALSE, 56, 2, 56, 1, 0),
-    [SPECIES_FURFROU_STAR] =      FURFROU_MISC_INFO(StarTrim,      FALSE, 56, 2, 64, 1, 0),
-    [SPECIES_FURFROU_DIAMOND] =   FURFROU_MISC_INFO(DiamondTrim,   FALSE, 48, 2, 56, 1, 0),
+    [SPECIES_FURFROU_NATURAL]   = FURFROU_MISC_INFO(Natural,       FALSE, 48, 3, 56, 0, 0),
+    [SPECIES_FURFROU_HEART]     = FURFROU_MISC_INFO(HeartTrim,     FALSE, 56, 2, 56, 1, 0),
+    [SPECIES_FURFROU_STAR]      = FURFROU_MISC_INFO(StarTrim,      FALSE, 56, 2, 64, 1, 0),
+    [SPECIES_FURFROU_DIAMOND]   = FURFROU_MISC_INFO(DiamondTrim,   FALSE, 48, 2, 56, 1, 0),
     [SPECIES_FURFROU_DEBUTANTE] = FURFROU_MISC_INFO(DebutanteTrim, TRUE,  48, 2, 56, 1, 2),
-    [SPECIES_FURFROU_MATRON] =    FURFROU_MISC_INFO(MatronTrim,    FALSE, 48, 2, 56, 1, 2),
-    [SPECIES_FURFROU_DANDY] =     FURFROU_MISC_INFO(DandyTrim,     FALSE, 48, 2, 56, 1, 1),
-    [SPECIES_FURFROU_LA_REINE] =  FURFROU_MISC_INFO(LaReineTrim,   FALSE, 48, 2, 56, 1, 0),
-    [SPECIES_FURFROU_KABUKI] =    FURFROU_MISC_INFO(KabukiTrim,    FALSE, 56, 2, 56, 1, 0),
-    [SPECIES_FURFROU_PHARAOH] =   FURFROU_MISC_INFO(PharaohTrim,   FALSE, 48, 2, 56, 1, 0),
+    [SPECIES_FURFROU_MATRON]    = FURFROU_MISC_INFO(MatronTrim,    FALSE, 48, 2, 56, 1, 2),
+    [SPECIES_FURFROU_DANDY]     = FURFROU_MISC_INFO(DandyTrim,     FALSE, 48, 2, 56, 1, 1),
+    [SPECIES_FURFROU_LA_REINE]  = FURFROU_MISC_INFO(LaReineTrim,   FALSE, 48, 2, 56, 1, 0),
+    [SPECIES_FURFROU_KABUKI]    = FURFROU_MISC_INFO(KabukiTrim,    FALSE, 56, 2, 56, 1, 0),
+    [SPECIES_FURFROU_PHARAOH]   = FURFROU_MISC_INFO(PharaohTrim,   FALSE, 48, 2, 56, 1, 0),
 #endif //P_FAMILY_FURFROU
 
 #if P_FAMILY_ESPURR
