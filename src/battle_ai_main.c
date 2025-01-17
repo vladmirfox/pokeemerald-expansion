@@ -506,7 +506,6 @@ void BattleAI_DoAIProcessing_PredictedSwitchin(struct AI_ThinkingStruct *aiThink
 
     FreeRestoreBattleMons(savedBattleMons);
     SetBattlerAiData(battlerAtk, AI_DATA);
-
 }
 
 static u32 ChooseMoveOrAction_Singles(u32 battlerAi)
