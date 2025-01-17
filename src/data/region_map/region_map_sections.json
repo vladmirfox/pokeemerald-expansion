@@ -706,7 +706,7 @@
       "height": 1
     },
     {
-      "map_section": "MAPSEC_PALLET_TOWN",
+      "map_section": "MAPSEC_WYRMSHIRE",
       "name": "PALLET TOWN",
       "x": 0,
       "y": 0,
@@ -714,7 +714,7 @@
       "height": 1
     },
     {
-      "map_section": "MAPSEC_VIRIDIAN_CITY",
+      "map_section": "MAPSEC_GREENSFIELD",
       "name": "VIRIDIAN CITY",
       "x": 0,
       "y": 0,
@@ -722,7 +722,7 @@
       "height": 1
     },
     {
-      "map_section": "MAPSEC_PEWTER_CITY",
+      "map_section": "MAPSEC_MARINA_PORT",
       "name": "PEWTER CITY",
       "x": 0,
       "y": 0,
@@ -730,7 +730,7 @@
       "height": 1
     },
     {
-      "map_section": "MAPSEC_CERULEAN_CITY",
+      "map_section": "MAPSEC_IRONFORGE_CITY",
       "name": "CERULEAN CITY",
       "x": 0,
       "y": 0,
@@ -746,7 +746,7 @@
       "height": 1
     },
     {
-      "map_section": "MAPSEC_VERMILION_CITY",
+      "map_section": "MAPSEC_FORT_VALORITE",
       "name": "VERMILION CITY",
       "x": 0,
       "y": 0,
@@ -754,7 +754,7 @@
       "height": 1
     },
     {
-      "map_section": "MAPSEC_CELADON_CITY",
+      "map_section": "MAPSEC_MYSTERIA",
       "name": "CELADON CITY",
       "x": 0,
       "y": 0,
@@ -762,7 +762,7 @@
       "height": 1
     },
     {
-      "map_section": "MAPSEC_FUCHSIA_CITY",
+      "map_section": "MAPSEC_FORTUNA_CITY",
       "name": "FUCHSIA CITY",
       "x": 0,
       "y": 0,
@@ -770,7 +770,7 @@
       "height": 1
     },
     {
-      "map_section": "MAPSEC_CINNABAR_ISLAND",
+      "map_section": "MAPSEC_GREAT_DESERT",
       "name": "CINNABAR ISLAND",
       "x": 0,
       "y": 0,
@@ -778,7 +778,7 @@
       "height": 1
     },
     {
-      "map_section": "MAPSEC_INDIGO_PLATEAU",
+      "map_section": "MAPSEC_DESERT_OASIS",
       "name": "INDIGO PLATEAU",
       "x": 0,
       "y": 0,
@@ -786,7 +786,7 @@
       "height": 1
     },
     {
-      "map_section": "MAPSEC_SAFFRON_CITY",
+      "map_section": "MAPSEC_CYNDERHAIL_SECT",
       "name": "SAFFRON CITY",
       "x": 0,
       "y": 0,
@@ -1061,7 +1061,7 @@
       "height": 1
     },
     {
-      "map_section": "MAPSEC_KANTO_VICTORY_ROAD",
+      "map_section": "MAPSEC_SHINRYU_PATH",
       "name": "VICTORY ROAD",
       "name_clone": true,
       "x": 0,
@@ -1103,7 +1103,7 @@
       "height": 1
     },
     {
-      "map_section": "MAPSEC_POKEMON_LEAGUE",
+      "map_section": "MAPSEC_SHINRYU_PAGODA",
       "name": "POKéMON LEAGUE",
       "x": 0,
       "y": 0,
