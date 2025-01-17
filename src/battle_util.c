@@ -3507,21 +3507,15 @@ u8 AtkCanceller_UnableToUseMove(u32 moveType)
         case CANCELLER_PARALYSED: // paralysis
             if (!gBattleStruct->isAtkCancelerForCalledMove
              && gBattleMons[gBattlerAttacker].status1 & STATUS1_PARALYSIS
+             && !(B_MAGIC_GUARD >= GEN_4 && GetBattlerAbility(gBattlerAttacker) == ABILITY_MAGIC_GUARD)
              && !RandomPercentage(RNG_PARALYSIS, 75))
             {
-                if (GetBattlerAbility(gBattlerAttacker) == ABILITY_MAGIC_GUARD && B_MAGIC_GUARD >= GEN_4)
-                {
-                    // Don't get fully paralyzed
-                }
-                else
-                {
-                    gProtectStructs[gBattlerAttacker].prlzImmobility = TRUE;
-                    // This is removed in FRLG and Emerald for some reason
-                    //CancelMultiTurnMoves(gBattlerAttacker);
-                    gBattlescriptCurrInstr = BattleScript_MoveUsedIsParalyzed;
-                    gHitMarker |= HITMARKER_UNABLE_TO_USE_MOVE;
-                    effect = 1;
-                }
+                gProtectStructs[gBattlerAttacker].prlzImmobility = TRUE;
+                // This is removed in FRLG and Emerald for some reason
+                //CancelMultiTurnMoves(gBattlerAttacker);
+                gBattlescriptCurrInstr = BattleScript_MoveUsedIsParalyzed;
+                gHitMarker |= HITMARKER_UNABLE_TO_USE_MOVE;
+                effect = 1;
             }
             gBattleStruct->atkCancellerTracker++;
             break;
