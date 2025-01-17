@@ -95,7 +95,7 @@
 #define MAPSEC_IRONFORGE_CITY               0x5B
 #define MAPSEC_LAVENDER_TOWN                0x5C
 #define MAPSEC_FORT_VALORITE                0x5D
-#define MAPSEC_MYSTEREA                     0x5E
+#define MAPSEC_MYSTERIA                     0x5E
 #define MAPSEC_FORTUNA_CITY                 0x5F
 #define MAPSEC_GREAT_DESERT                 0x60
 #define MAPSEC_DESERT_OASIS                 0x61
