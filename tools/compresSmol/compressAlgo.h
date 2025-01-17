@@ -146,7 +146,7 @@ std::vector<unsigned int> readFileAsUInt(std::string filePath);
 
 size_t getCompressedSize(CompressedImage *pImage);
 
-std::vector<ShortCopy> getShortCopies(std::vector<unsigned char> input, size_t minLength);
+std::vector<ShortCopy> getShortCopies(std::vector<unsigned short> input, size_t minLength);
 bool verifyShortCopies(std::vector<ShortCopy> *pCopies, std::vector<unsigned short> *pImage);
 
 std::vector<unsigned char> getNormalizedCounts(std::vector<size_t> input);
@@ -174,7 +174,7 @@ size_t decodeNibbles(std::vector<DecodeCol> decodeTable, std::vector<unsigned in
 bool compareVectorsShort(std::vector<unsigned short> *pVec1, std::vector<unsigned short> *pVec2);
 
 bool verifyCompressionShort(CompressedImage *pInput, std::vector<unsigned short> *pImage);
-bool verifyBytesShort(std::vector<unsigned char> *pLoVec, std::vector<unsigned char> *pSymVec, std::vector<unsigned short> *pImage);
+bool verifyBytesShort(std::vector<unsigned char> *pLoVec, std::vector<unsigned short> *pSymVec, std::vector<unsigned short> *pImage);
 bool verifyUIntVecShort(std::vector<unsigned int> *pInput, std::vector<unsigned short> *pImage);
 
 std::vector<unsigned short> readRawDataVecs(std::vector<unsigned int> *pInput);

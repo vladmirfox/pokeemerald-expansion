@@ -1951,7 +1951,7 @@ void *malloc_and_decompress(const void *src, u32 *size)
 
     ptr = Alloc(*size);
     if (ptr)
-        LZDecompressWram(src, ptr);
+        DecompressDataWithHeaderWram(src, ptr);
     return ptr;
 }
 
