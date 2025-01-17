@@ -407,14 +407,35 @@ static u32 Ai_SetMoveAccuracy(struct AiLogicData *aiData, u32 battlerAtk, u32 ba
     return accuracy;
 }
 
+static void CalcBattlerAiMovesData(struct AiLogicData *aiData, u32 battlerAtk, u32 battlerDef, u32 weather)
+{
+    u32 moveIndex, move;
+    u32 rollType = GetDmgRollType(battlerAtk);
+    u16 *moves = GetMovesArray(battlerAtk);
+
+    for (moveIndex = 0; moveIndex < MAX_MON_MOVES; moveIndex++)
+    {
+        struct SimulatedDamage dmg = {0};
+        u8 effectiveness = AI_EFFECTIVENESS_x0;
+        move = moves[moveIndex];
+
+        if (move != MOVE_NONE
+            && move != MOVE_UNAVAILABLE
+            //&& !IsBattleMoveStatus(move)  /* we want to get effectiveness and accuracy of status moves */
+            && !(aiData->moveLimitations[battlerAtk] & (1u << moveIndex)))
+        {
+            dmg = AI_CalcDamage(move, battlerAtk, battlerDef, &effectiveness, TRUE, weather, rollType);
+            aiData->moveAccuracy[battlerAtk][battlerDef][moveIndex] = Ai_SetMoveAccuracy(aiData, battlerAtk, battlerDef, move);
+        }
+        aiData->simulatedDmg[battlerAtk][battlerDef][moveIndex] = dmg;
+        aiData->effectiveness[battlerAtk][battlerDef][moveIndex] = effectiveness;
+    }
+}
+
 static void SetBattlerAiMovesData(struct AiLogicData *aiData, u32 battlerAtk, u32 battlersCount, u32 weather)
 {
-    u16 *moves;
-    u32 battlerDef, moveIndex, move;
-    u32 rollType = GetDmgRollType(battlerAtk);
+    u32 battlerDef;
     SaveBattlerData(battlerAtk);
-    moves = GetMovesArray(battlerAtk);
-
     SetBattlerData(battlerAtk);
 
     // Simulate dmg for both ai controlled mons and for player controlled mons.
@@ -425,23 +446,7 @@ static void SetBattlerAiMovesData(struct AiLogicData *aiData, u32 battlerAtk, u3
 
         SaveBattlerData(battlerDef);
         SetBattlerData(battlerDef);
-        for (moveIndex = 0; moveIndex < MAX_MON_MOVES; moveIndex++)
-        {
-            struct SimulatedDamage dmg = {0};
-            u8 effectiveness = AI_EFFECTIVENESS_x0;
-            move = moves[moveIndex];
-
-            if (move != MOVE_NONE
-             && move != MOVE_UNAVAILABLE
-             //&& !IsBattleMoveStatus(move)  /* we want to get effectiveness and accuracy of status moves */
-             && !(aiData->moveLimitations[battlerAtk] & (1u << moveIndex)))
-            {
-                dmg = AI_CalcDamage(move, battlerAtk, battlerDef, &effectiveness, TRUE, weather, rollType);
-                aiData->moveAccuracy[battlerAtk][battlerDef][moveIndex] = Ai_SetMoveAccuracy(aiData, battlerAtk, battlerDef, move);
-            }
-            aiData->simulatedDmg[battlerAtk][battlerDef][moveIndex] = dmg;
-            aiData->effectiveness[battlerAtk][battlerDef][moveIndex] = effectiveness;
-        }
+        CalcBattlerAiMovesData(aiData, battlerAtk, battlerDef, weather);
         RestoreBattlerData(battlerDef);
     }
     RestoreBattlerData(battlerAtk);
@@ -483,6 +488,27 @@ void SetAiLogicDataForTurn(struct AiLogicData *aiData)
     AI_DATA->aiCalcInProgress = FALSE;
 }
 
+void BattleAI_DoAIProcessing_PredictedSwitchin(struct AI_ThinkingStruct *aiThink, u32 battlerAtk, u32 battlerDef)
+{
+    struct Pokemon *party = GetBattlerParty(battlerDef);
+    struct BattlePokemon switchinCandidate;
+    PokemonToBattleMon(&party[AI_DATA->mostSuitableMonId[battlerDef]], &switchinCandidate);
+
+    // Saves, sets, restores
+    struct BattlePokemon *savedBattleMons = AllocSaveBattleMons();
+    gBattleMons[battlerDef] = switchinCandidate;
+
+    SetBattlerAiData(battlerAtk, AI_DATA);
+    CalcBattlerAiMovesData(AI_DATA, battlerAtk, battlerDef, AI_GetWeather(AI_DATA));
+
+    // Regular processing with new battler
+    BattleAI_DoAIProcessing(aiThink, battlerAtk, battlerDef);
+
+    FreeRestoreBattleMons(savedBattleMons);
+    SetBattlerAiData(battlerAtk, AI_DATA);
+
+}
+
 static u32 ChooseMoveOrAction_Singles(u32 battlerAi)
 {
     u8 currentMoveArray[MAX_MON_MOVES];
@@ -496,7 +522,10 @@ static u32 ChooseMoveOrAction_Singles(u32 battlerAi)
     {
         if (flags & 1)
         {
-            BattleAI_DoAIProcessing(AI_THINKING_STRUCT, battlerAi, gBattlerTarget);
+            if (IsBattlerPredictedToSwitch(gBattlerTarget))
+                BattleAI_DoAIProcessing_PredictedSwitchin(AI_THINKING_STRUCT, battlerAi, gBattlerTarget);
+            else
+                BattleAI_DoAIProcessing(AI_THINKING_STRUCT, battlerAi, gBattlerTarget);
         }
         flags >>= 1;
         AI_THINKING_STRUCT->aiLogicId++;
@@ -576,7 +605,10 @@ static u32 ChooseMoveOrAction_Doubles(u32 battlerAi)
             {
                 if (flags & 1)
                 {
-                    BattleAI_DoAIProcessing(AI_THINKING_STRUCT, battlerAi, gBattlerTarget);
+                    if (IsBattlerPredictedToSwitch(gBattlerTarget))
+                        BattleAI_DoAIProcessing_PredictedSwitchin(AI_THINKING_STRUCT, battlerAi, gBattlerTarget);
+                    else
+                        BattleAI_DoAIProcessing(AI_THINKING_STRUCT, battlerAi, gBattlerTarget);
                 }
                 flags >>= 1;
                 AI_THINKING_STRUCT->aiLogicId++;
@@ -670,55 +702,6 @@ static inline bool32 ShouldConsiderMoveForBattler(u32 battlerAi, u32 battlerDef,
 
 static inline void BattleAI_DoAIProcessing(struct AI_ThinkingStruct *aiThink, u32 battlerAi, u32 battlerDef)
 {
-
-    // battlerDef needs to be treated as AI_DATA->mostSuitableMonId[battlerDef] if AI_DATA->shouldSwitch |= (1u << battlerDef);
-    // damage calcs for this *new* battler are also going to need to be run as the old battler is switching out
-
-    u16 *moves;
-    u32 moveIndex, move;
-    u32 rollType = GetDmgRollType(battlerAi);
-    moves = GetMovesArray(battlerAi);
-    struct BattlePokemon switchingOutBattleMon;
-
-    // Store AI_DATA from switching-out battler
-    u8 moveAccuracySwitchingBattler[4];
-    struct SimulatedDamage simulatedDmgSwitchingBattler[4];
-    u8 effectivenessSwitchingBattler[4];
-
-    if (IsBattlerPredictedToSwitch(battlerDef))
-    {
-        // Store gBattleMons[battlerDef] and old calcs
-        switchingOutBattleMon = gBattleMons[battlerDef];
-        for (moveIndex = 0; moveIndex < MAX_MON_MOVES; moveIndex++)
-        {
-            moveAccuracySwitchingBattler[moveIndex] = AI_DATA->moveAccuracy[battlerAi][battlerDef][moveIndex];
-            effectivenessSwitchingBattler[moveIndex] = AI_DATA->effectiveness[battlerAi][battlerDef][moveIndex];
-            simulatedDmgSwitchingBattler[moveIndex] = AI_DATA->simulatedDmg[battlerAi][battlerDef][moveIndex];
-        }
-
-        // Get battle mon for AI_DATA->mostSuitableMonId[battlerDef]
-        struct Pokemon *party = GetBattlerParty(battlerDef);
-        PokemonToBattleMon(&party[AI_DATA->mostSuitableMonId[battlerDef]], &gBattleMons[battlerDef]);
-
-        // Run calcs with new battler
-        for (moveIndex = 0; moveIndex < MAX_MON_MOVES; moveIndex++)
-        {
-            struct SimulatedDamage dmg = {0};
-            u8 effectiveness = AI_EFFECTIVENESS_x0;
-            move = moves[moveIndex];
-
-            if (move != MOVE_NONE
-             && move != MOVE_UNAVAILABLE
-             && !(AI_DATA->moveLimitations[battlerAi] & (1u << moveIndex)))
-            {
-                dmg = AI_CalcDamage(move, battlerAi, battlerDef, &effectiveness, TRUE, AI_GetWeather(AI_DATA), rollType);
-                AI_DATA->moveAccuracy[battlerAi][battlerDef][moveIndex] = Ai_SetMoveAccuracy(AI_DATA, battlerAi, battlerDef, move);
-            }
-            AI_DATA->simulatedDmg[battlerAi][battlerDef][moveIndex] = dmg;
-            AI_DATA->effectiveness[battlerAi][battlerDef][moveIndex] = effectiveness;
-        }
-    }
-
     do
     {
         if (gBattleMons[battlerAi].pp[aiThink->movesetIndex] == 0)
@@ -748,18 +731,6 @@ static inline void BattleAI_DoAIProcessing(struct AI_ThinkingStruct *aiThink, u3
         }
         aiThink->movesetIndex++;
     } while (aiThink->movesetIndex < MAX_MON_MOVES && !(aiThink->aiAction & AI_ACTION_DO_NOT_ATTACK));
-
-    if (IsBattlerPredictedToSwitch(battlerDef))
-    {
-        // Restore gBattleMons[battlerDef] and old calcs
-        gBattleMons[battlerDef] = switchingOutBattleMon;
-        for (moveIndex = 0; moveIndex < MAX_MON_MOVES; moveIndex++)
-        {
-            AI_DATA->simulatedDmg[battlerAi][battlerDef][moveIndex] = simulatedDmgSwitchingBattler[moveIndex];
-            AI_DATA->effectiveness[battlerAi][battlerDef][moveIndex] = effectivenessSwitchingBattler[moveIndex];
-            AI_DATA->moveAccuracy[battlerAi][battlerDef][moveIndex] = moveAccuracySwitchingBattler[moveIndex];
-        }
-    }
 
     aiThink->movesetIndex = 0;
 }
