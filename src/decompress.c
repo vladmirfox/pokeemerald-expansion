@@ -7,8 +7,6 @@
 #include "text.h"
 #include "menu.h"
 
-EWRAM_DATA ALIGNED(4) u8 gDecompressionBuffer[0x4000] = {0};
-
 void LZDecompressWram(const u32 *src, void *dest)
 {
     LZ77UnCompWram(src, dest);
@@ -88,20 +86,22 @@ u32 LoadCompressedSpriteSheetByTemplate(const struct SpriteTemplate *template, s
     return ret;
 }
 
-void LoadCompressedSpritePalette(const struct CompressedSpritePalette *src)
+u32 LoadCompressedSpritePalette(const struct CompressedSpritePalette *src)
 {
-    LoadCompressedSpritePaletteWithTag(src->data, src->tag);
+    return LoadCompressedSpritePaletteWithTag(src->data, src->tag);
 }
 
-void LoadCompressedSpritePaletteWithTag(const u32 *pal, u16 tag)
+u32 LoadCompressedSpritePaletteWithTag(const u32 *pal, u16 tag)
 {
+    u32 index;
     struct SpritePalette dest;
     void *buffer = malloc_and_decompress(pal, NULL);
 
     dest.data = buffer;
     dest.tag = tag;
-    LoadSpritePalette(&dest);
+    index = LoadSpritePalette(&dest);
     Free(buffer);
+    return index;
 }
 
 void LoadCompressedSpritePaletteOverrideBuffer(const struct CompressedSpritePalette *src, void *buffer)

@@ -5,8 +5,6 @@
 
 #define MAX_DECOMPRESSION_BUFFER_SIZE 0x4000
 
-extern u8 ALIGNED(4) gDecompressionBuffer[MAX_DECOMPRESSION_BUFFER_SIZE];
-
 void LZDecompressWram(const u32 *src, void *dest);
 void LZDecompressVram(const u32 *src, void *dest);
 
@@ -17,8 +15,8 @@ u32 LoadCompressedSpriteSheetByTemplate(const struct SpriteTemplate *template, s
 u32 LoadCompressedSpriteSheetOverrideBuffer(const struct CompressedSpriteSheet *src, void *buffer);
 bool8 LoadCompressedSpriteSheetUsingHeap(const struct CompressedSpriteSheet *src);
 
-void LoadCompressedSpritePalette(const struct CompressedSpritePalette *src);
-void LoadCompressedSpritePaletteWithTag(const u32 *pal, u16 tag);
+u32 LoadCompressedSpritePalette(const struct CompressedSpritePalette *src);
+u32 LoadCompressedSpritePaletteWithTag(const u32 *pal, u16 tag);
 void LoadCompressedSpritePaletteOverrideBuffer(const struct CompressedSpritePalette *src, void *buffer);
 bool8 LoadCompressedSpritePaletteUsingHeap(const struct CompressedSpritePalette *src);
 
