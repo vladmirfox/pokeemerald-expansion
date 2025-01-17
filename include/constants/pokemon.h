@@ -274,6 +274,7 @@ enum EvolutionConditions {
     // Gen 8
     IF_NATURE,                          // The Pokémon has a specific nature.
     IF_RECOIL_DAMAGE_GE,                // The Pokémon suffered at least certain amount of non-fainting recoil damage.
+    IF_CURRENT_DAMAGE_GE,               // The Pokémon has the specified difference of HP from its Max HP.
     IF_CRITICAL_HITS_GE,                // The Pokémon performed the specified number of critical hits in one battle at least.
     IF_USED_MOVE_TWENTY_TIMES,          // The Pokémon has used a move for at least 20 times.
     // Gen 9
@@ -291,9 +292,7 @@ enum EvolutionMethods {
     EVO_TRADE,                  // Pokémon is traded
     EVO_ITEM,                   // specified item is used on Pokémon
     EVO_SPLIT_FROM_EVO,         // A clone is generated and evolved when another evolution happens
-    EVO_SCRIPT_TRIGGER_DMG,     // Pokémon has specified HP below max, then player interacts trigger
-    EVO_DARK_SCROLL,            // interacts with Scroll of Darkness
-    EVO_WATER_SCROLL,           // interacts with Scroll of Waters
+    EVO_SCRIPT_TRIGGER,         // Player interacts with an overworld trigger
     EVO_LEVEL_BATTLE_ONLY,      // Pokémon reaches the specified level, in battle only
     EVO_ITEM_COUNT_999,         // Pokémon levels up after trainer has collected 999 of a specific item
     EVO_BATTLE_END,             // Battle ends, doesn't need to level up

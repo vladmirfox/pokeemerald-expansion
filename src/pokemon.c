@@ -4612,9 +4612,16 @@ static bool32 DoesMonMeetAdditionalConditions(struct Pokemon *mon, const struct 
             if (evolutionTracker >= params[i].arg)
                 currentCondition = TRUE;
             break;
+        case IF_CURRENT_DAMAGE_GE:
+        {
+            u32 currentHp = GetMonData(mon, MON_DATA_HP, NULL);
+            if (currentHp != 0 && (GetMonData(mon, MON_DATA_MAX_HP, NULL) - currentHp >= params[i].arg))
+                currentCondition = TRUE;
+            break;
+        }
         case IF_CRITICAL_HITS_GE:
             if (partyId != PARTY_SIZE && gPartyCriticalHits[partyId] >= params[i].arg)
-            currentCondition = TRUE;
+                currentCondition = TRUE;
             break;
         case IF_USED_MOVE_TWENTY_TIMES:
             if (evolutionTracker >= 20)
@@ -4828,21 +4835,8 @@ u16 GetEvolutionTargetSpecies(struct Pokemon *mon, enum EvolutionMode mode, u16 
 
             switch (evolutions[i].method)
             {
-            case EVO_SCRIPT_TRIGGER_DMG:
-            {
-                u16 currentHp = GetMonData(mon, MON_DATA_HP, NULL);
-                if (evolutionItem == EVO_SCRIPT_TRIGGER_DMG
-                    && currentHp != 0
-                    && (GetMonData(mon, MON_DATA_MAX_HP, NULL) - currentHp >= evolutions[i].param))
-                    conditionsMet = TRUE;
-                break;
-            }
-            case EVO_DARK_SCROLL:
-                if (evolutionItem == EVO_DARK_SCROLL)
-                    conditionsMet = TRUE;
-                break;
-            case EVO_WATER_SCROLL:
-                if (evolutionItem == EVO_WATER_SCROLL)
+            case EVO_SCRIPT_TRIGGER:
+                if (gSpecialVar_0x8000 == evolutions[i].param)
                     conditionsMet = TRUE;
                 break;
             }
@@ -6698,13 +6692,12 @@ void RemoveIVIndexFromList(u8 *ivs, u8 selectedIv)
 void TrySpecialOverworldEvo(void)
 {
     u8 i;
-    u8 evoMethod = gSpecialVar_0x8000;
     u16 canStopEvo = gSpecialVar_0x8001;
     u16 tryMultiple = gSpecialVar_0x8002;
 
     for (i = 0; i < PARTY_SIZE; i++)
     {
-        u16 targetSpecies = GetEvolutionTargetSpecies(&gPlayerParty[i], EVO_MODE_OVERWORLD_SPECIAL, evoMethod, SPECIES_NONE);
+        u16 targetSpecies = GetEvolutionTargetSpecies(&gPlayerParty[i], EVO_MODE_OVERWORLD_SPECIAL, 0, SPECIES_NONE);
         if (targetSpecies != SPECIES_NONE && !(sTriedEvolving & (1u << i)))
         {
             sTriedEvolving |= 1u << i;
