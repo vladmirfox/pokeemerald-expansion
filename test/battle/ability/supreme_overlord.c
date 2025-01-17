@@ -95,7 +95,7 @@ SINGLE_BATTLE_TEST("Supreme Overlord does not boost attack if party members are 
 SINGLE_BATTLE_TEST("Supreme Overlord's message displays correctly after all battlers fainted - Player")
 {
     GIVEN {
-        ASSUME(gMovesInfo[MOVE_EXPLOSION].effect == EFFECT_EXPLOSION);
+        ASSUME(GetMoveEffect(MOVE_EXPLOSION) == EFFECT_EXPLOSION);
         PLAYER(SPECIES_WOBBUFFET) { HP(1);}
         PLAYER(SPECIES_KINGAMBIT) { Ability(ABILITY_SUPREME_OVERLORD); }
         OPPONENT(SPECIES_WOBBUFFET);
@@ -106,17 +106,17 @@ SINGLE_BATTLE_TEST("Supreme Overlord's message displays correctly after all batt
         HP_BAR(opponent, hp: 0);
         ANIMATION(ANIM_TYPE_MOVE, MOVE_EXPLOSION, opponent);
         // Everyone faints.
-        MESSAGE("Go! Kingambit!");
+        SEND_IN_MESSAGE("Kingambit");
+        MESSAGE("2 sent out Wobbuffet!");
         ABILITY_POPUP(player, ABILITY_SUPREME_OVERLORD);
         MESSAGE("Kingambit gained strength from the fallen!");
-        MESSAGE("2 sent out Wobbuffet!");
     }
 }
 
 SINGLE_BATTLE_TEST("Supreme Overlord's message displays correctly after all battlers fainted - Opponent")
 {
     GIVEN {
-        ASSUME(gMovesInfo[MOVE_EXPLOSION].effect == EFFECT_EXPLOSION);
+        ASSUME(GetMoveEffect(MOVE_EXPLOSION) == EFFECT_EXPLOSION);
         PLAYER(SPECIES_WOBBUFFET);
         PLAYER(SPECIES_WOBBUFFET);
         OPPONENT(SPECIES_WOBBUFFET) { HP(1);}
@@ -127,9 +127,9 @@ SINGLE_BATTLE_TEST("Supreme Overlord's message displays correctly after all batt
         HP_BAR(player, hp: 0);
         ANIMATION(ANIM_TYPE_MOVE, MOVE_EXPLOSION, player);
         // Everyone faints.
-        MESSAGE("Go! Wobbuffet!");
+        SEND_IN_MESSAGE("Wobbuffet");
         MESSAGE("2 sent out Kingambit!");
         ABILITY_POPUP(opponent, ABILITY_SUPREME_OVERLORD);
-        MESSAGE("Foe Kingambit gained strength from the fallen!");
+        MESSAGE("The opposing Kingambit gained strength from the fallen!");
     }
 }

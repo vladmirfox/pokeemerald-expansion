@@ -5,6 +5,7 @@
 #include "battle_interface.h"
 #include "battle_scripts.h"
 #include "battle_script_commands.h"
+#include "battle_gimmick.h"
 #include "data.h"
 #include "event_data.h"
 #include "graphics.h"
@@ -22,7 +23,7 @@
 #include "constants/items.h"
 #include "constants/moves.h"
 
-static u8 GetMaxPowerTier(u16 move);
+static u8 GetMaxPowerTier(u32 move);
 
 struct GMaxMove
 {
@@ -33,71 +34,61 @@ struct GMaxMove
 
 static const struct GMaxMove sGMaxMoveTable[] =
 {
-    {SPECIES_VENUSAUR_GIGANTAMAX,                   TYPE_GRASS,      MOVE_G_MAX_VINE_LASH},
-    {SPECIES_BLASTOISE_GIGANTAMAX,                  TYPE_WATER,      MOVE_G_MAX_CANNONADE},
-    {SPECIES_CHARIZARD_GIGANTAMAX,                  TYPE_FIRE,       MOVE_G_MAX_WILDFIRE},
-    {SPECIES_BUTTERFREE_GIGANTAMAX,                 TYPE_BUG,        MOVE_G_MAX_BEFUDDLE},
-    {SPECIES_PIKACHU_GIGANTAMAX,                    TYPE_ELECTRIC,   MOVE_G_MAX_VOLT_CRASH},
-    {SPECIES_MEOWTH_GIGANTAMAX,                     TYPE_NORMAL,     MOVE_G_MAX_GOLD_RUSH},
-    {SPECIES_MACHAMP_GIGANTAMAX,                    TYPE_FIGHTING,   MOVE_G_MAX_CHI_STRIKE},
-    {SPECIES_GENGAR_GIGANTAMAX,                     TYPE_GHOST,      MOVE_G_MAX_TERROR},
-    {SPECIES_KINGLER_GIGANTAMAX,                    TYPE_WATER,      MOVE_G_MAX_FOAM_BURST},
-    {SPECIES_LAPRAS_GIGANTAMAX,                     TYPE_ICE,        MOVE_G_MAX_RESONANCE},
-    {SPECIES_EEVEE_GIGANTAMAX,                      TYPE_NORMAL,     MOVE_G_MAX_CUDDLE},
-    {SPECIES_SNORLAX_GIGANTAMAX,                    TYPE_NORMAL,     MOVE_G_MAX_REPLENISH},
-    {SPECIES_GARBODOR_GIGANTAMAX,                   TYPE_POISON,     MOVE_G_MAX_MALODOR},
-    {SPECIES_MELMETAL_GIGANTAMAX,                   TYPE_STEEL,      MOVE_G_MAX_MELTDOWN},
-    {SPECIES_RILLABOOM_GIGANTAMAX,                  TYPE_GRASS,      MOVE_G_MAX_DRUM_SOLO},
-    {SPECIES_CINDERACE_GIGANTAMAX,                  TYPE_FIRE,       MOVE_G_MAX_FIREBALL},
-    {SPECIES_INTELEON_GIGANTAMAX,                   TYPE_WATER,      MOVE_G_MAX_HYDROSNIPE},
-    {SPECIES_CORVIKNIGHT_GIGANTAMAX,                TYPE_FLYING,     MOVE_G_MAX_WIND_RAGE},
-    {SPECIES_ORBEETLE_GIGANTAMAX,                   TYPE_PSYCHIC,    MOVE_G_MAX_GRAVITAS},
-    {SPECIES_DREDNAW_GIGANTAMAX,                    TYPE_WATER,      MOVE_G_MAX_STONESURGE},
-    {SPECIES_COALOSSAL_GIGANTAMAX,                  TYPE_ROCK,       MOVE_G_MAX_VOLCALITH},
-    {SPECIES_FLAPPLE_GIGANTAMAX,                    TYPE_GRASS,      MOVE_G_MAX_TARTNESS},
-    {SPECIES_APPLETUN_GIGANTAMAX,                   TYPE_GRASS,      MOVE_G_MAX_SWEETNESS},
-    {SPECIES_SANDACONDA_GIGANTAMAX,                 TYPE_GROUND,     MOVE_G_MAX_SANDBLAST},
-    {SPECIES_TOXTRICITY_AMPED_GIGANTAMAX,           TYPE_ELECTRIC,   MOVE_G_MAX_STUN_SHOCK},
-    {SPECIES_TOXTRICITY_LOW_KEY_GIGANTAMAX,         TYPE_ELECTRIC,   MOVE_G_MAX_STUN_SHOCK},
-    {SPECIES_CENTISKORCH_GIGANTAMAX,                TYPE_FIRE,       MOVE_G_MAX_CENTIFERNO},
-    {SPECIES_HATTERENE_GIGANTAMAX,                  TYPE_FAIRY,      MOVE_G_MAX_SMITE},
-    {SPECIES_GRIMMSNARL_GIGANTAMAX,                 TYPE_DARK,       MOVE_G_MAX_SNOOZE},
-    {SPECIES_ALCREMIE_GIGANTAMAX,                   TYPE_FAIRY,      MOVE_G_MAX_FINALE},
-    {SPECIES_COPPERAJAH_GIGANTAMAX,                 TYPE_STEEL,      MOVE_G_MAX_STEELSURGE},
-    {SPECIES_DURALUDON_GIGANTAMAX,                  TYPE_DRAGON,     MOVE_G_MAX_DEPLETION},
-    {SPECIES_URSHIFU_SINGLE_STRIKE_STYLE_GIGANTAMAX,TYPE_DARK,       MOVE_G_MAX_ONE_BLOW},
-    {SPECIES_URSHIFU_RAPID_STRIKE_STYLE_GIGANTAMAX, TYPE_WATER,      MOVE_G_MAX_RAPID_FLOW},
+    {SPECIES_VENUSAUR_GMAX,                   TYPE_GRASS,      MOVE_G_MAX_VINE_LASH},
+    {SPECIES_BLASTOISE_GMAX,                  TYPE_WATER,      MOVE_G_MAX_CANNONADE},
+    {SPECIES_CHARIZARD_GMAX,                  TYPE_FIRE,       MOVE_G_MAX_WILDFIRE},
+    {SPECIES_BUTTERFREE_GMAX,                 TYPE_BUG,        MOVE_G_MAX_BEFUDDLE},
+    {SPECIES_PIKACHU_GMAX,                    TYPE_ELECTRIC,   MOVE_G_MAX_VOLT_CRASH},
+    {SPECIES_MEOWTH_GMAX,                     TYPE_NORMAL,     MOVE_G_MAX_GOLD_RUSH},
+    {SPECIES_MACHAMP_GMAX,                    TYPE_FIGHTING,   MOVE_G_MAX_CHI_STRIKE},
+    {SPECIES_GENGAR_GMAX,                     TYPE_GHOST,      MOVE_G_MAX_TERROR},
+    {SPECIES_KINGLER_GMAX,                    TYPE_WATER,      MOVE_G_MAX_FOAM_BURST},
+    {SPECIES_LAPRAS_GMAX,                     TYPE_ICE,        MOVE_G_MAX_RESONANCE},
+    {SPECIES_EEVEE_GMAX,                      TYPE_NORMAL,     MOVE_G_MAX_CUDDLE},
+    {SPECIES_SNORLAX_GMAX,                    TYPE_NORMAL,     MOVE_G_MAX_REPLENISH},
+    {SPECIES_GARBODOR_GMAX,                   TYPE_POISON,     MOVE_G_MAX_MALODOR},
+    {SPECIES_MELMETAL_GMAX,                   TYPE_STEEL,      MOVE_G_MAX_MELTDOWN},
+    {SPECIES_RILLABOOM_GMAX,                  TYPE_GRASS,      MOVE_G_MAX_DRUM_SOLO},
+    {SPECIES_CINDERACE_GMAX,                  TYPE_FIRE,       MOVE_G_MAX_FIREBALL},
+    {SPECIES_INTELEON_GMAX,                   TYPE_WATER,      MOVE_G_MAX_HYDROSNIPE},
+    {SPECIES_CORVIKNIGHT_GMAX,                TYPE_FLYING,     MOVE_G_MAX_WIND_RAGE},
+    {SPECIES_ORBEETLE_GMAX,                   TYPE_PSYCHIC,    MOVE_G_MAX_GRAVITAS},
+    {SPECIES_DREDNAW_GMAX,                    TYPE_WATER,      MOVE_G_MAX_STONESURGE},
+    {SPECIES_COALOSSAL_GMAX,                  TYPE_ROCK,       MOVE_G_MAX_VOLCALITH},
+    {SPECIES_FLAPPLE_GMAX,                    TYPE_GRASS,      MOVE_G_MAX_TARTNESS},
+    {SPECIES_APPLETUN_GMAX,                   TYPE_GRASS,      MOVE_G_MAX_SWEETNESS},
+    {SPECIES_SANDACONDA_GMAX,                 TYPE_GROUND,     MOVE_G_MAX_SANDBLAST},
+    {SPECIES_TOXTRICITY_AMPED_GMAX,           TYPE_ELECTRIC,   MOVE_G_MAX_STUN_SHOCK},
+    {SPECIES_TOXTRICITY_LOW_KEY_GMAX,         TYPE_ELECTRIC,   MOVE_G_MAX_STUN_SHOCK},
+    {SPECIES_CENTISKORCH_GMAX,                TYPE_FIRE,       MOVE_G_MAX_CENTIFERNO},
+    {SPECIES_HATTERENE_GMAX,                  TYPE_FAIRY,      MOVE_G_MAX_SMITE},
+    {SPECIES_GRIMMSNARL_GMAX,                 TYPE_DARK,       MOVE_G_MAX_SNOOZE},
+    {SPECIES_ALCREMIE_GMAX,                   TYPE_FAIRY,      MOVE_G_MAX_FINALE},
+    {SPECIES_COPPERAJAH_GMAX,                 TYPE_STEEL,      MOVE_G_MAX_STEELSURGE},
+    {SPECIES_DURALUDON_GMAX,                  TYPE_DRAGON,     MOVE_G_MAX_DEPLETION},
+    {SPECIES_URSHIFU_SINGLE_STRIKE_GMAX,TYPE_DARK,       MOVE_G_MAX_ONE_BLOW},
+    {SPECIES_URSHIFU_RAPID_STRIKE_GMAX, TYPE_WATER,      MOVE_G_MAX_RAPID_FLOW},
 };
 
-// forward declarations
-static void SpriteCb_DynamaxTrigger(struct Sprite *);
-
-// Returns whether a battler is Dynamaxed.
-bool32 IsDynamaxed(u16 battlerId)
-{
-    if (gBattleStruct->dynamax.dynamaxed[battlerId]
-        /*|| IsRaidBoss(battlerId)*/)
-        return TRUE;
-    return FALSE;
-}
-
 // Returns whether a battler can Dynamax.
-bool32 CanDynamax(u16 battlerId)
+bool32 CanDynamax(u32 battler)
 {
-    u16 species = gBattleMons[battlerId].species;
-    u16 holdEffect = ItemId_GetHoldEffect(gBattleMons[battlerId].item);
+    u16 species = gBattleMons[battler].species;
+    u16 holdEffect = GetBattlerHoldEffect(battler, FALSE);
 
-    // Check if Dynamax battle flag is set. This needs to be defined in include/config/battle.h
-    #if B_FLAG_DYNAMAX_BATTLE != 0
-    if (!FlagGet(B_FLAG_DYNAMAX_BATTLE))
-    #endif
+    // Prevents Zigzagoon from dynamaxing in vanilla.
+    if (gBattleTypeFlags & BATTLE_TYPE_FIRST_BATTLE && GetBattlerSide(battler) == B_SIDE_OPPONENT)
         return FALSE;
-
 
     // Check if Player has a Dynamax Band.
-    if ((GetBattlerPosition(battlerId) == B_POSITION_PLAYER_LEFT || (!(gBattleTypeFlags & BATTLE_TYPE_MULTI) && GetBattlerPosition(battlerId) == B_POSITION_PLAYER_RIGHT))
-          && !CheckBagHasItem(ITEM_DYNAMAX_BAND, 1))
-        return FALSE;
+    if (!TESTING && (GetBattlerPosition(battler) == B_POSITION_PLAYER_LEFT
+        || (!(gBattleTypeFlags & BATTLE_TYPE_MULTI) && GetBattlerPosition(battler) == B_POSITION_PLAYER_RIGHT)))
+    {
+        if (!CheckBagHasItem(ITEM_DYNAMAX_BAND, 1))
+            return FALSE;
+        if (B_FLAG_DYNAMAX_BATTLE == 0 || (B_FLAG_DYNAMAX_BATTLE != 0 && !FlagGet(B_FLAG_DYNAMAX_BATTLE)))
+            return FALSE;
+    }
 
     // Check if species isn't allowed to Dynamax.
     if (GET_BASE_SPECIES_ID(species) == SPECIES_ZACIAN
@@ -105,18 +96,24 @@ bool32 CanDynamax(u16 battlerId)
         || GET_BASE_SPECIES_ID(species) == SPECIES_ETERNATUS)
         return FALSE;
 
-    // Cannot Dynamax if you can Mega Evolve or use a Z-Move
-    if (holdEffect == HOLD_EFFECT_MEGA_STONE || holdEffect == HOLD_EFFECT_Z_CRYSTAL)
+    // Check if Trainer has already Dynamaxed.
+    if (HasTrainerUsedGimmick(battler, GIMMICK_DYNAMAX))
         return FALSE;
 
-    // Cannot Dynamax if your side has already or will Dynamax.
-    if (gBattleStruct->dynamax.alreadyDynamaxed[GetBattlerSide(battlerId)]
-        || gBattleStruct->dynamax.dynamaxed[BATTLE_PARTNER(battlerId)]
-        || gBattleStruct->dynamax.toDynamax & gBitTable[BATTLE_PARTNER(battlerId)])
+    // Check if AI battler is intended to Dynamaxed.
+    if (!ShouldTrainerBattlerUseGimmick(battler, GIMMICK_DYNAMAX))
+        return FALSE;
+
+    // Check if battler has another gimmick active.
+    if (GetActiveGimmick(battler) != GIMMICK_NONE)
+        return FALSE;
+
+    // Check if battler is holding a Z-Crystal or Mega Stone.
+    if (!TESTING && (holdEffect == HOLD_EFFECT_Z_CRYSTAL || holdEffect == HOLD_EFFECT_MEGA_STONE))  // tests make this check already
         return FALSE;
 
     // TODO: Cannot Dynamax in a Max Raid if you don't have Dynamax Energy.
-    // if (gBattleTypeFlags & BATTLE_TYPE_RAID && gBattleStruct->raid.dynamaxEnergy != battlerId)
+    // if (gBattleTypeFlags & BATTLE_TYPE_RAID && gBattleStruct->raid.dynamaxEnergy != battler)
     //    return FALSE;
 
     // No checks failed, all set!
@@ -124,102 +121,106 @@ bool32 CanDynamax(u16 battlerId)
 }
 
 // Returns whether a battler is transformed into a Gigantamax form.
-bool32 IsGigantamaxed(u16 battlerId)
+bool32 IsGigantamaxed(u32 battler)
 {
-    struct Pokemon *mon = &GetSideParty(GetBattlerSide(battlerId))[gBattlerPartyIndexes[battlerId]];
-    if ((gSpeciesInfo[gBattleMons[battlerId].species].isGigantamax) && GetMonData(mon, MON_DATA_GIGANTAMAX_FACTOR))
+    struct Pokemon *mon = GetPartyBattlerData(battler);
+    if ((gSpeciesInfo[gBattleMons[battler].species].isGigantamax) && GetMonData(mon, MON_DATA_GIGANTAMAX_FACTOR))
         return TRUE;
     return FALSE;
 }
 
 // Applies the HP Multiplier for Dynamaxed Pokemon and Raid Bosses.
-void ApplyDynamaxHPMultiplier(u32 battler, struct Pokemon* mon)
+void ApplyDynamaxHPMultiplier(struct Pokemon* mon)
 {
     if (GetMonData(mon, MON_DATA_SPECIES) == SPECIES_SHEDINJA)
         return;
     else
     {
-        u32 scale = 150 + 5 * GetMonData(mon, MON_DATA_DYNAMAX_LEVEL);
-        u32 hp = (GetMonData(mon, MON_DATA_HP) * scale + 99) / 100;
-        u32 maxHP = (GetMonData(mon, MON_DATA_MAX_HP) * scale + 99) / 100;
+        uq4_12_t multiplier = GetDynamaxLevelHPMultiplier(GetMonData(mon, MON_DATA_DYNAMAX_LEVEL), FALSE);
+        u32 hp = UQ_4_12_TO_INT((GetMonData(mon, MON_DATA_HP) * multiplier) + UQ_4_12_ROUND);
+        u32 maxHP = UQ_4_12_TO_INT((GetMonData(mon, MON_DATA_MAX_HP) * multiplier) + UQ_4_12_ROUND);
         SetMonData(mon, MON_DATA_HP, &hp);
         SetMonData(mon, MON_DATA_MAX_HP, &maxHP);
     }
 }
 
 // Returns the non-Dynamax HP of a Pokemon.
-u16 GetNonDynamaxHP(u16 battlerId)
+u16 GetNonDynamaxHP(u32 battler)
 {
-    if (!IsDynamaxed(battlerId) || gBattleMons[battlerId].species == SPECIES_SHEDINJA)
-        return gBattleMons[battlerId].hp;
+    if (GetActiveGimmick(battler) != GIMMICK_DYNAMAX || gBattleMons[battler].species == SPECIES_SHEDINJA)
+        return gBattleMons[battler].hp;
     else
     {
-        u16 mult = UQ_4_12(1.0/1.5); // placeholder
-        u16 hp = UQ_4_12_TO_INT((gBattleMons[battlerId].hp * mult) + UQ_4_12_ROUND);
+        struct Pokemon *mon = GetPartyBattlerData(battler);
+        uq4_12_t mult = GetDynamaxLevelHPMultiplier(GetMonData(mon, MON_DATA_DYNAMAX_LEVEL), TRUE);
+        u32 hp = UQ_4_12_TO_INT((gBattleMons[battler].hp * mult) + UQ_4_12_ROUND);
         return hp;
     }
 }
 
 // Returns the non-Dynamax Max HP of a Pokemon.
-u16 GetNonDynamaxMaxHP(u32 battlerId)
+u16 GetNonDynamaxMaxHP(u32 battler)
 {
-    if (!IsDynamaxed(battlerId) || gBattleMons[battlerId].species == SPECIES_SHEDINJA)
-        return gBattleMons[battlerId].maxHP;
+    if (GetActiveGimmick(battler) != GIMMICK_DYNAMAX || gBattleMons[battler].species == SPECIES_SHEDINJA)
+        return gBattleMons[battler].maxHP;
     else
     {
-        u16 mult = UQ_4_12(1.0/1.5); // placeholder
-        u16 maxHP = UQ_4_12_TO_INT((gBattleMons[battlerId].maxHP * mult) + UQ_4_12_ROUND);
+        struct Pokemon *mon = GetPartyBattlerData(battler);
+        uq4_12_t mult = GetDynamaxLevelHPMultiplier(GetMonData(mon, MON_DATA_DYNAMAX_LEVEL), TRUE);
+        u32 maxHP = UQ_4_12_TO_INT((gBattleMons[battler].maxHP * mult) + UQ_4_12_ROUND);
         return maxHP;
     }
 }
 
 // Sets flags used for Dynamaxing and checks Gigantamax forms.
-void PrepareBattlerForDynamax(u16 battlerId)
+void ActivateDynamax(u32 battler)
 {
-    u8 side = GetBattlerSide(battlerId);
-
-    gBattleStruct->dynamax.alreadyDynamaxed[side] = TRUE;
-    gBattleStruct->dynamax.dynamaxed[battlerId] = TRUE;
-    gBattleStruct->dynamax.dynamaxTurns[battlerId] = DYNAMAX_TURNS_COUNT;
+    // Set appropriate use flags.
+    SetActiveGimmick(battler, GIMMICK_DYNAMAX);
+    SetGimmickAsActivated(battler, GIMMICK_DYNAMAX);
+    gBattleStruct->dynamax.dynamaxTurns[battler] = DYNAMAX_TURNS_COUNT;
 
     // Substitute is removed upon Dynamaxing.
-    gBattleMons[battlerId].status2 &= ~STATUS2_SUBSTITUTE;
-    ClearBehindSubstituteBit(battlerId);
+    gBattleMons[battler].status2 &= ~STATUS2_SUBSTITUTE;
+    ClearBehindSubstituteBit(battler);
 
     // Choiced Moves are reset upon Dynamaxing.
-    gBattleStruct->choicedMove[battlerId] = MOVE_NONE;
+    gBattleStruct->choicedMove[battler] = MOVE_NONE;
 
     // Try Gigantamax form change.
-    if (!(gBattleMons[battlerId].status2 & STATUS2_TRANSFORMED)) // Ditto cannot Gigantamax.
-        TryBattleFormChange(battlerId, FORM_CHANGE_BATTLE_GIGANTAMAX);
+    if (!(gBattleMons[battler].status2 & STATUS2_TRANSFORMED)) // Ditto cannot Gigantamax.
+        TryBattleFormChange(battler, FORM_CHANGE_BATTLE_GIGANTAMAX);
+
+    BattleScriptExecute(BattleScript_DynamaxBegins);
 }
 
 // Unsets the flags used for Dynamaxing and reverts max HP if needed.
-void UndoDynamax(u16 battlerId)
+void UndoDynamax(u32 battler)
 {
-    u8 side = GetBattlerSide(battlerId);
-    u8 monId = gBattlerPartyIndexes[battlerId];
+    u8 side = GetBattlerSide(battler);
+    u8 monId = gBattlerPartyIndexes[battler];
 
     // Revert HP if battler is still Dynamaxed.
-    if (IsDynamaxed(battlerId))
+    if (GetActiveGimmick(battler) == GIMMICK_DYNAMAX)
     {
         struct Pokemon *mon = (side == B_SIDE_PLAYER) ? &gPlayerParty[monId] : &gEnemyParty[monId];
-        u16 mult = UQ_4_12(1.0/1.5); // placeholder
-        gBattleMons[battlerId].hp = UQ_4_12_TO_INT((GetMonData(mon, MON_DATA_HP) * mult + 1) + UQ_4_12_ROUND); // round up
-        SetMonData(mon, MON_DATA_HP, &gBattleMons[battlerId].hp);
+        uq4_12_t mult = GetDynamaxLevelHPMultiplier(GetMonData(mon, MON_DATA_DYNAMAX_LEVEL), TRUE);
+        gBattleMons[battler].hp = UQ_4_12_TO_INT((GetMonData(mon, MON_DATA_HP) * mult + 1) + UQ_4_12_ROUND); // round up
+        SetMonData(mon, MON_DATA_HP, &gBattleMons[battler].hp);
+        CalculateMonStats(mon);
     }
 
     // Makes sure there are no Dynamax flags set, including on switch / faint.
-    gBattleStruct->dynamax.dynamaxed[battlerId] = FALSE;
-    gBattleStruct->dynamax.dynamaxTurns[battlerId] = 0;
+    SetActiveGimmick(battler, GIMMICK_NONE);
+    gBattleStruct->dynamax.dynamaxTurns[battler] = 0;
 
     // Undo form change if needed.
-    if (IsGigantamaxed(battlerId))
-        TryBattleFormChange(battlerId, FORM_CHANGE_END_BATTLE);
+    if (IsGigantamaxed(battler))
+        TryBattleFormChange(battler, FORM_CHANGE_END_BATTLE);
 }
 
 // Certain moves are blocked by Max Guard that normally ignore protection.
-bool32 IsMoveBlockedByMaxGuard(u16 move)
+bool32 IsMoveBlockedByMaxGuard(u32 move)
 {
     switch (move)
     {
@@ -238,10 +239,10 @@ bool32 IsMoveBlockedByMaxGuard(u16 move)
 }
 
 // Weight-based moves (and some other moves in Raids) are blocked by Dynamax.
-bool32 IsMoveBlockedByDynamax(u16 move)
+bool32 IsMoveBlockedByDynamax(u32 move)
 {
     // TODO: Certain moves are banned in raids.
-    switch (gMovesInfo[move].effect)
+    switch (GetMoveEffect(move))
     {
         case EFFECT_HEAT_CRASH:
         case EFFECT_LOW_KICK:
@@ -250,26 +251,17 @@ bool32 IsMoveBlockedByDynamax(u16 move)
     return FALSE;
 }
 
-// Returns whether a move should be converted into a Max Move.
-bool32 ShouldUseMaxMove(u16 battlerId, u16 baseMove)
-{
-    // TODO: Raid bosses do not always use Max Moves.
-    // if (IsRaidBoss(battlerId))
-    //   return !IsRaidBossUsingRegularMove(battlerId, baseMove);
-    return IsDynamaxed(battlerId) || gBattleStruct->dynamax.toDynamax & gBitTable[battlerId];
-}
-
-static u16 GetTypeBasedMaxMove(u16 battlerId, u16 type)
+static u16 GetTypeBasedMaxMove(u32 battler, u32 type)
 {
     // Gigantamax check
     u32 i;
-    u16 species = gBattleMons[battlerId].species;
-    u16 targetSpecies = SPECIES_NONE;
+    u32 species = gBattleMons[battler].species;
+    u32 targetSpecies = species;
 
     if (!gSpeciesInfo[species].isGigantamax)
-        targetSpecies = GetBattleFormChangeTargetSpecies(battlerId, FORM_CHANGE_BATTLE_GIGANTAMAX);
+        targetSpecies = GetBattleFormChangeTargetSpecies(battler, FORM_CHANGE_BATTLE_GIGANTAMAX);
 
-    if (targetSpecies != SPECIES_NONE)
+    if (targetSpecies != species)
         species = targetSpecies;
 
     if (gSpeciesInfo[species].isGigantamax)
@@ -288,9 +280,12 @@ static u16 GetTypeBasedMaxMove(u16 battlerId, u16 type)
 }
 
 // Returns the appropriate Max Move or G-Max Move for a battler to use.
-u16 GetMaxMove(u16 battlerId, u16 baseMove)
+u16 GetMaxMove(u32 battler, u32 baseMove)
 {
-    u16 move = baseMove;
+    u32 moveType;
+    SetTypeBeforeUsingMove(baseMove, battler);
+    moveType = GetBattleMoveType(baseMove);
+
     if (baseMove == MOVE_NONE) // for move display
     {
         return MOVE_NONE;
@@ -299,22 +294,14 @@ u16 GetMaxMove(u16 battlerId, u16 baseMove)
     {
         return MOVE_STRUGGLE;
     }
-    else if (gMovesInfo[baseMove].category == DAMAGE_CATEGORY_STATUS)
+    else if (GetMoveCategory(baseMove) == DAMAGE_CATEGORY_STATUS)
     {
-        move = MOVE_MAX_GUARD;
-    }
-    else if (gBattleStruct->dynamicMoveType)
-    {
-        move = GetTypeBasedMaxMove(battlerId, gBattleStruct->dynamicMoveType & DYNAMIC_TYPE_MASK);
-        gBattleStruct->dynamax.categories[battlerId] = gMovesInfo[baseMove].category;
+        return MOVE_MAX_GUARD;
     }
     else
     {
-        move = GetTypeBasedMaxMove(battlerId, gMovesInfo[baseMove].type);
-        gBattleStruct->dynamax.categories[battlerId] = gMovesInfo[baseMove].category;
+        return GetTypeBasedMaxMove(battler, moveType);
     }
-
-    return move;
 }
 
 // First value is for Fighting, Poison and Multi-Attack. The second is for everything else.
@@ -331,11 +318,11 @@ enum
 };
 
 // Gets the base power of a Max Move.
-u8 GetMaxMovePower(u16 move)
+u8 GetMaxMovePower(u32 move)
 {
     u8 tier;
     // G-Max Drum Solo, G-Max Hydrosnipe, and G-Max Fireball always have 160 base power.
-    if (gMovesInfo[GetMaxMove(gBattlerAttacker, move)].argument == MAX_EFFECT_FIXED_POWER)
+    if (GetMoveMaxEffect(GetMaxMove(gBattlerAttacker, move)) == MAX_EFFECT_FIXED_POWER)
         return 160;
 
     // Exceptions to all other rules below:
@@ -348,8 +335,9 @@ u8 GetMaxMovePower(u16 move)
     }
 
     tier = GetMaxPowerTier(move);
-    if (gMovesInfo[move].type == TYPE_FIGHTING
-     || gMovesInfo[move].type == TYPE_POISON
+    u32 moveType = GetMoveType(move);
+    if (moveType == TYPE_FIGHTING
+     || moveType == TYPE_POISON
      || move == MOVE_MULTI_ATTACK)
     {
         switch (tier)
@@ -382,11 +370,12 @@ u8 GetMaxMovePower(u16 move)
     }
 }
 
-static u8 GetMaxPowerTier(u16 move)
+static u8 GetMaxPowerTier(u32 move)
 {
-    if (gMovesInfo[move].strikeCount >= 2 && gMovesInfo[move].strikeCount <= 5)
+    u32 strikeCount = GetMoveStrikeCount(move);
+    if (strikeCount >= 2 && strikeCount <= 5)
     {
-        switch(gMovesInfo[move].power)
+        switch(GetMovePower(move))
         {
             case 0 ... 25:  return MAX_POWER_TIER_2;
             case 26 ... 30: return MAX_POWER_TIER_3;
@@ -397,7 +386,7 @@ static u8 GetMaxPowerTier(u16 move)
         }
     }
 
-    switch (gMovesInfo[move].effect)
+    switch (GetMoveEffect(move))
     {
         case EFFECT_BIDE:
         case EFFECT_SUPER_FANG:
@@ -418,7 +407,6 @@ static u8 GetMaxPowerTier(u16 move)
         case EFFECT_NATURAL_GIFT:
         case EFFECT_MIRROR_COAT:
         case EFFECT_FINAL_GAMBIT:
-        //case EFFECT_DRAGON_DARTS:
             return MAX_POWER_TIER_2;
         case EFFECT_OHKO:
         case EFFECT_RETURN:
@@ -428,13 +416,13 @@ static u8 GetMaxPowerTier(u16 move)
         case EFFECT_GYRO_BALL:
             return MAX_POWER_TIER_5;
         case EFFECT_MAGNITUDE:
-        case EFFECT_VARY_POWER_BASED_ON_HP:
+        case EFFECT_POWER_BASED_ON_TARGET_HP:
             return MAX_POWER_TIER_6;
         case EFFECT_FLAIL:
         case EFFECT_LOW_KICK:
             return MAX_POWER_TIER_7;
         case EFFECT_MULTI_HIT:
-            switch(gMovesInfo[move].power)
+            switch(GetMovePower(move))
             {
                 case 0 ... 15:    return MAX_POWER_TIER_1;
                 case 16 ... 18:   return MAX_POWER_TIER_2;
@@ -444,7 +432,7 @@ static u8 GetMaxPowerTier(u16 move)
             }
     }
 
-    switch (gMovesInfo[move].power)
+    switch (GetMovePower(move))
     {
         case 0 ... 40:    return MAX_POWER_TIER_1;
         case 45 ... 50:   return MAX_POWER_TIER_2;
@@ -458,7 +446,7 @@ static u8 GetMaxPowerTier(u16 move)
 }
 
 // Returns whether a move is a Max Move or not.
-bool32 IsMaxMove(u16 move)
+bool32 IsMaxMove(u32 move)
 {
     return move >= FIRST_MAX_MOVE && move <= LAST_MAX_MOVE;
 }
@@ -484,9 +472,9 @@ void ChooseDamageNonTypesString(u8 type)
 }
 
 // Returns the status effect that should be applied by a G-Max Move.
-static u32 GetMaxMoveStatusEffect(u16 move)
+static u32 GetMaxMoveStatusEffect(u32 move)
 {
-    u8 maxEffect = gMovesInfo[move].argument;
+    u8 maxEffect = GetMoveMaxEffect(move);
     switch (maxEffect)
     {
         // Status 1
@@ -523,11 +511,11 @@ static u32 GetMaxMoveStatusEffect(u16 move)
 void BS_UpdateDynamax(void)
 {
     NATIVE_ARGS();
-    u16 battler = gBattleScripting.battler;
-    struct Pokemon *mon = &GetSideParty(GetBattlerSide(battler))[gBattlerPartyIndexes[battler]];
+    u32 battler = gBattleScripting.battler;
+    struct Pokemon *mon = GetPartyBattlerData(battler);
 
     if (!IsGigantamaxed(battler)) // RecalcBattlerStats will get called on form change.
-        RecalcBattlerStats(battler, mon);
+        RecalcBattlerStats(battler, mon, GetActiveGimmick(battler) == GIMMICK_DYNAMAX);
 
     UpdateHealthboxAttribute(gHealthboxSpriteIds[battler], mon, HEALTHBOX_ALL);
     gBattlescriptCurrInstr = cmd->nextInstr;
@@ -538,10 +526,10 @@ void BS_SetMaxMoveEffect(void)
 {
     NATIVE_ARGS();
     u16 effect = 0;
-    u8 maxEffect = gMovesInfo[gCurrentMove].argument;
+    u8 maxEffect = GetMoveMaxEffect(gCurrentMove);
 
     // Don't continue if the move didn't land.
-    if (gMoveResultFlags & MOVE_RESULT_NO_EFFECT)
+    if (gBattleStruct->moveResultFlags[gBattlerTarget] & MOVE_RESULT_NO_EFFECT)
     {
         gBattlescriptCurrInstr = cmd->nextInstr;
         return;
@@ -557,7 +545,7 @@ void BS_SetMaxMoveEffect(void)
             if (!NoAliveMonsForEitherParty())
             {
                 // Max Effects are ordered by stat ID.
-                SET_STATCHANGER(gMovesInfo[gCurrentMove].argument, 1, FALSE);
+                SET_STATCHANGER(maxEffect, 1, FALSE);
                 BattleScriptPush(gBattlescriptCurrInstr + 1);
                 gBattlescriptCurrInstr = BattleScript_EffectRaiseStatAllies;
                 effect++;
@@ -585,7 +573,7 @@ void BS_SetMaxMoveEffect(void)
                         break;
                     default:
                         // Max Effects are ordered by stat ID.
-                        statId = gMovesInfo[gCurrentMove].argument - MAX_EFFECT_LOWER_ATTACK + 1;
+                        statId = maxEffect - MAX_EFFECT_LOWER_ATTACK + 1;
                         break;
                 }
                 SET_STATCHANGER(statId, stage, TRUE);
@@ -603,19 +591,19 @@ void BS_SetMaxMoveEffect(void)
             switch (maxEffect)
             {
                 case MAX_EFFECT_SUN:
-                    weather = ENUM_WEATHER_SUN;
+                    weather = BATTLE_WEATHER_SUN;
                     msg = B_MSG_STARTED_SUNLIGHT;
                     break;
                 case MAX_EFFECT_RAIN:
-                    weather = ENUM_WEATHER_RAIN;
+                    weather = BATTLE_WEATHER_RAIN;
                     msg = B_MSG_STARTED_RAIN;
                     break;
                 case MAX_EFFECT_SANDSTORM:
-                    weather = ENUM_WEATHER_SANDSTORM;
+                    weather = BATTLE_WEATHER_SANDSTORM;
                     msg = B_MSG_STARTED_SANDSTORM;
                     break;
                 case MAX_EFFECT_HAIL:
-                    weather = ENUM_WEATHER_HAIL;
+                    weather = BATTLE_WEATHER_HAIL;
                     msg = B_MSG_STARTED_HAIL;
                     break;
             }
@@ -634,7 +622,7 @@ void BS_SetMaxMoveEffect(void)
         case MAX_EFFECT_PSYCHIC_TERRAIN:
         {
             u32 statusFlag = 0;
-            switch (gMovesInfo[gCurrentMove].argument)
+            switch (GetMoveEffectArg_MoveProperty(gCurrentMove))
             {
                 case MAX_EFFECT_MISTY_TERRAIN:
                     statusFlag = STATUS_FIELD_MISTY_TERRAIN;
@@ -675,11 +663,12 @@ void BS_SetMaxMoveEffect(void)
             u8 side = GetBattlerSide(gBattlerTarget);
             if (!(gSideStatuses[side] & SIDE_STATUS_DAMAGE_NON_TYPES))
             {
+                u32 moveType = GetMoveType(gCurrentMove);
                 gSideStatuses[side] |= SIDE_STATUS_DAMAGE_NON_TYPES;
                 gSideTimers[side].damageNonTypesTimer = 5; // damage is dealt for 4 turns, ends on 5th
-                gSideTimers[side].damageNonTypesType = gMovesInfo[gCurrentMove].type;
+                gSideTimers[side].damageNonTypesType = moveType;
                 BattleScriptPush(gBattlescriptCurrInstr + 1);
-                ChooseDamageNonTypesString(gMovesInfo[gCurrentMove].type);
+                ChooseDamageNonTypesString(moveType);
                 gBattlescriptCurrInstr = BattleScript_DamageNonTypesStarts;
                 effect++;
             }
@@ -775,7 +764,7 @@ void BS_SetMaxMoveEffect(void)
         {
             static const u8 sSnoozeEffects[] = {TRUE, FALSE};
             if (!(gStatuses3[gBattlerTarget] & STATUS3_YAWN)
-                && CanSleep(gBattlerTarget)
+                && CanBeSlept(gBattlerTarget, GetBattlerAbility(gBattlerTarget), BLOCKED_BY_SLEEP_CLAUSE)
                 && RandomElement(RNG_G_MAX_SNOOZE, sSnoozeEffects)) // 50% chance of success
             {
                 gStatuses3[gBattlerTarget] |= STATUS3_YAWN_TURN(2);
@@ -881,7 +870,7 @@ void BS_TrySetStatus1(void)
     switch (status1)
     {
         case STATUS1_POISON:
-            if (CanBePoisoned(gBattlerAttacker, gBattlerTarget))
+            if (CanBePoisoned(gBattlerAttacker, gBattlerTarget, GetBattlerAbility(gBattlerTarget)))
             {
                 gBattleMons[gBattlerTarget].status1 |= STATUS1_POISON;
                 gBattleCommunication[MULTISTRING_CHOOSER] = 0;
@@ -889,7 +878,7 @@ void BS_TrySetStatus1(void)
             }
             break;
         case STATUS1_PARALYSIS:
-            if (CanBeParalyzed(gBattlerTarget))
+            if (CanBeParalyzed(gBattlerTarget, GetBattlerAbility(gBattlerTarget)))
             {
                 gBattleMons[gBattlerTarget].status1 |= STATUS1_PARALYSIS;
                 gBattleCommunication[MULTISTRING_CHOOSER] = 3;
@@ -897,12 +886,14 @@ void BS_TrySetStatus1(void)
             }
             break;
         case STATUS1_SLEEP:
-            if (CanSleep(gBattlerTarget))
+            if (CanBeSlept(gBattlerTarget, GetBattlerAbility(gBattlerTarget), BLOCKED_BY_SLEEP_CLAUSE))
             {
                 if (B_SLEEP_TURNS >= GEN_5)
                     gBattleMons[gBattlerTarget].status1 |=  STATUS1_SLEEP_TURN((Random() % 3) + 2);
                 else
                     gBattleMons[gBattlerTarget].status1 |=  STATUS1_SLEEP_TURN((Random() % 4) + 3);
+
+                TryActivateSleepClause(gBattlerTarget, gBattlerPartyIndexes[gBattlerTarget]);
                 gBattleCommunication[MULTISTRING_CHOOSER] = 4;
                 effect++;
             }
@@ -987,32 +978,14 @@ void BS_TrySetStatus2(void)
     }
 }
 
-// Applies the endturn damage effect associated with the "Damage Non-" G-Max moves.
-void BS_DamageNonTypes(void)
-{
-    NATIVE_ARGS();
-    u8 side = GetBattlerSide(gBattlerAttacker);
-    gBattleMoveDamage = 0;
-    if (gSideTimers[side].damageNonTypesTimer
-        && !IS_BATTLER_OF_TYPE(gBattlerAttacker, gSideTimers[side].damageNonTypesType)
-        && IsBattlerAlive(gBattlerAttacker)
-        && GetBattlerAbility(gBattlerAttacker) != ABILITY_MAGIC_GUARD)
-    {
-        gBattleMoveDamage = GetNonDynamaxMaxHP(gBattlerAttacker) / 6;
-        if (gBattleMoveDamage == 0)
-            gBattleMoveDamage = 1;
-    }
-    gBattlescriptCurrInstr = cmd->nextInstr;
-}
-
 // Heals one-sixth of the target's HP, including for Dynamaxed targets.
 void BS_HealOneSixth(void)
 {
     NATIVE_ARGS(const u8* failInstr);
-    gBattleMoveDamage = gBattleMons[gBattlerTarget].maxHP / 6;
-    if (gBattleMoveDamage == 0)
-        gBattleMoveDamage = 1;
-    gBattleMoveDamage *= -1;
+    gBattleStruct->moveDamage[gBattlerTarget] = gBattleMons[gBattlerTarget].maxHP / 6;
+    if (gBattleStruct->moveDamage[gBattlerTarget] == 0)
+        gBattleStruct->moveDamage[gBattlerTarget] = 1;
+    gBattleStruct->moveDamage[gBattlerTarget] *= -1;
 
     if (gBattleMons[gBattlerTarget].hp == gBattleMons[gBattlerTarget].maxHP)
         gBattlescriptCurrInstr = cmd->failInstr;    // fail
@@ -1048,201 +1021,8 @@ void BS_TryRecycleBerry(void)
 void BS_JumpIfDynamaxed(void)
 {
     NATIVE_ARGS(const u8 *jumpInstr);
-    if (IsDynamaxed(gBattlerTarget))
+    if ((GetActiveGimmick(gBattlerTarget) == GIMMICK_DYNAMAX))
         gBattlescriptCurrInstr = cmd->jumpInstr;
     else
         gBattlescriptCurrInstr = cmd->nextInstr;
 }
-
-// DYNAMAX TRIGGER:
-static const u8 ALIGNED(4) sDynamaxTriggerGfx[] = INCBIN_U8("graphics/battle_interface/dynamax_trigger.4bpp");
-static const u16 sDynamaxTriggerPal[] = INCBIN_U16("graphics/battle_interface/dynamax_trigger.gbapal");
-
-static const struct SpriteSheet sSpriteSheet_DynamaxTrigger =
-{
-    sDynamaxTriggerGfx, sizeof(sDynamaxTriggerGfx), TAG_DYNAMAX_TRIGGER_TILE
-};
-static const struct SpritePalette sSpritePalette_DynamaxTrigger =
-{
-    sDynamaxTriggerPal, TAG_DYNAMAX_TRIGGER_PAL
-};
-
-static const struct OamData sOamData_DynamaxTrigger =
-{
-    .y = 0,
-    .affineMode = 0,
-    .objMode = 0,
-    .mosaic = 0,
-    .bpp = 0,
-    .shape = ST_OAM_SQUARE,
-    .x = 0,
-    .matrixNum = 0,
-    .size = 2,
-    .tileNum = 0,
-    .priority = 1,
-    .paletteNum = 0,
-    .affineParam = 0,
-};
-
-static const union AnimCmd sSpriteAnim_DynamaxTriggerOff[] =
-{
-    ANIMCMD_FRAME(0, 0),
-    ANIMCMD_END
-};
-
-static const union AnimCmd sSpriteAnim_DynamaxTriggerOn[] =
-{
-    ANIMCMD_FRAME(16, 0),
-    ANIMCMD_END
-};
-
-static const union AnimCmd *const sSpriteAnimTable_DynamaxTrigger[] =
-{
-    sSpriteAnim_DynamaxTriggerOff,
-    sSpriteAnim_DynamaxTriggerOn,
-};
-
-static const struct SpriteTemplate sSpriteTemplate_DynamaxTrigger =
-{
-    .tileTag = TAG_DYNAMAX_TRIGGER_TILE,
-    .paletteTag = TAG_DYNAMAX_TRIGGER_PAL,
-    .oam = &sOamData_DynamaxTrigger,
-    .anims = sSpriteAnimTable_DynamaxTrigger,
-    .images = NULL,
-    .affineAnims = gDummySpriteAffineAnimTable,
-    .callback = SpriteCb_DynamaxTrigger
-};
-
-// Dynamax Evolution Trigger icon functions.
-void ChangeDynamaxTriggerSprite(u8 spriteId, u8 animId)
-{
-    StartSpriteAnim(&gSprites[spriteId], animId);
-}
-
-#define SINGLES_DYNAMAX_TRIGGER_POS_X_OPTIMAL (30)
-#define SINGLES_DYNAMAX_TRIGGER_POS_X_PRIORITY (31)
-#define SINGLES_DYNAMAX_TRIGGER_POS_X_SLIDE (15)
-#define SINGLES_DYNAMAX_TRIGGER_POS_Y_DIFF (-11)
-
-#define DOUBLES_DYNAMAX_TRIGGER_POS_X_OPTIMAL (30)
-#define DOUBLES_DYNAMAX_TRIGGER_POS_X_PRIORITY (31)
-#define DOUBLES_DYNAMAX_TRIGGER_POS_X_SLIDE (15)
-#define DOUBLES_DYNAMAX_TRIGGER_POS_Y_DIFF (-4)
-
-#define tBattler    data[0]
-#define tHide       data[1]
-
-void CreateDynamaxTriggerSprite(u8 battlerId, u8 palId)
-{
-    LoadSpritePalette(&sSpritePalette_DynamaxTrigger);
-    if (GetSpriteTileStartByTag(TAG_DYNAMAX_TRIGGER_TILE) == 0xFFFF)
-        LoadSpriteSheet(&sSpriteSheet_DynamaxTrigger);
-    if (gBattleStruct->dynamax.triggerSpriteId == 0xFF)
-    {
-        if (gBattleTypeFlags & BATTLE_TYPE_DOUBLE)
-            gBattleStruct->dynamax.triggerSpriteId = CreateSprite(&sSpriteTemplate_DynamaxTrigger,
-                                                             gSprites[gHealthboxSpriteIds[battlerId]].x - DOUBLES_DYNAMAX_TRIGGER_POS_X_SLIDE,
-                                                             gSprites[gHealthboxSpriteIds[battlerId]].y - DOUBLES_DYNAMAX_TRIGGER_POS_Y_DIFF, 0);
-        else
-            gBattleStruct->dynamax.triggerSpriteId = CreateSprite(&sSpriteTemplate_DynamaxTrigger,
-                                                             gSprites[gHealthboxSpriteIds[battlerId]].x - SINGLES_DYNAMAX_TRIGGER_POS_X_SLIDE,
-                                                             gSprites[gHealthboxSpriteIds[battlerId]].y - SINGLES_DYNAMAX_TRIGGER_POS_Y_DIFF, 0);
-    }
-    gSprites[gBattleStruct->dynamax.triggerSpriteId].tBattler = battlerId;
-    gSprites[gBattleStruct->dynamax.triggerSpriteId].tHide = FALSE;
-
-    ChangeDynamaxTriggerSprite(gBattleStruct->dynamax.triggerSpriteId, palId);
-}
-
-static void SpriteCb_DynamaxTrigger(struct Sprite *sprite)
-{
-    s32 xSlide, xPriority, xOptimal;
-    s32 yDiff;
-
-    if (gBattleTypeFlags & BATTLE_TYPE_DOUBLE)
-    {
-        xSlide = DOUBLES_DYNAMAX_TRIGGER_POS_X_SLIDE;
-        xPriority = DOUBLES_DYNAMAX_TRIGGER_POS_X_PRIORITY;
-        xOptimal = DOUBLES_DYNAMAX_TRIGGER_POS_X_OPTIMAL;
-        yDiff = DOUBLES_DYNAMAX_TRIGGER_POS_Y_DIFF;
-    }
-    else
-    {
-        xSlide = SINGLES_DYNAMAX_TRIGGER_POS_X_SLIDE;
-        xPriority = SINGLES_DYNAMAX_TRIGGER_POS_X_PRIORITY;
-        xOptimal = SINGLES_DYNAMAX_TRIGGER_POS_X_OPTIMAL;
-        yDiff = SINGLES_DYNAMAX_TRIGGER_POS_Y_DIFF;
-    }
-
-    if (sprite->tHide)
-    {
-        if (sprite->x != gSprites[gHealthboxSpriteIds[sprite->tBattler]].x - xSlide)
-            sprite->x++;
-
-        if (sprite->x >= gSprites[gHealthboxSpriteIds[sprite->tBattler]].x - xPriority)
-            sprite->oam.priority = 2;
-        else
-            sprite->oam.priority = 1;
-
-        sprite->y = gSprites[gHealthboxSpriteIds[sprite->tBattler]].y - yDiff;
-        sprite->y2 = gSprites[gHealthboxSpriteIds[sprite->tBattler]].y2 - yDiff;
-        if (sprite->x == gSprites[gHealthboxSpriteIds[sprite->tBattler]].x - xSlide)
-            DestroyDynamaxTriggerSprite();
-    }
-    else
-    {
-        if (sprite->x != gSprites[gHealthboxSpriteIds[sprite->tBattler]].x - xOptimal)
-            sprite->x--;
-
-        if (sprite->x >= gSprites[gHealthboxSpriteIds[sprite->tBattler]].x - xPriority)
-            sprite->oam.priority = 2;
-        else
-            sprite->oam.priority = 1;
-
-        sprite->y = gSprites[gHealthboxSpriteIds[sprite->tBattler]].y - yDiff;
-        sprite->y2 = gSprites[gHealthboxSpriteIds[sprite->tBattler]].y2 - yDiff;
-    }
-}
-
-bool32 IsDynamaxTriggerSpriteActive(void)
-{
-    if (GetSpriteTileStartByTag(TAG_DYNAMAX_TRIGGER_TILE) == 0xFFFF)
-        return FALSE;
-    else if (IndexOfSpritePaletteTag(TAG_DYNAMAX_TRIGGER_PAL) != 0xFF)
-        return TRUE;
-    else
-        return FALSE;
-}
-
-void HideDynamaxTriggerSprite(void)
-{
-    if (gBattleStruct->dynamax.triggerSpriteId >= MAX_SPRITES)
-        return;
-    ChangeDynamaxTriggerSprite(gBattleStruct->dynamax.triggerSpriteId, 0);
-    gSprites[gBattleStruct->dynamax.triggerSpriteId].tHide = TRUE;
-}
-
-void DestroyDynamaxTriggerSprite(void)
-{
-    FreeSpritePaletteByTag(TAG_DYNAMAX_TRIGGER_PAL);
-    FreeSpriteTilesByTag(TAG_DYNAMAX_TRIGGER_TILE);
-    if (gBattleStruct->dynamax.triggerSpriteId != 0xFF)
-        DestroySprite(&gSprites[gBattleStruct->dynamax.triggerSpriteId]);
-    gBattleStruct->dynamax.triggerSpriteId = 0xFF;
-}
-
-#undef tBattler
-#undef tHide
-
-// data fields for healthboxMain
-// oam.affineParam holds healthboxRight spriteId
-#define hMain_DynamaxIndicatorId    data[3]
-#define hMain_HealthBarSpriteId     data[5]
-#define hMain_Battler               data[6]
-#define hMain_Data7                 data[7]
-
-// data fields for healthboxRight
-#define hOther_HealthBoxSpriteId    data[5]
-
-// data fields for healthbar
-#define hBar_HealthBoxSpriteId      data[5]
