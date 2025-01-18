@@ -198,7 +198,7 @@ static bool32 ShouldSwitchIfHasBadOdds(u32 battler)
     {
         // 50% chance to stay in regardless
         if (RandomPercentage(RNG_AI_SWITCH_HASBADODDS, 50) || AI_DATA->aiSwitchPredictionInProgress)
-            return FALSE;
+            return TRUE;
 
         // Switch mon out
         return SetSwitchinAndSwitch(battler, PARTY_SIZE);
@@ -218,7 +218,7 @@ static bool32 ShouldSwitchIfHasBadOdds(u32 battler)
 
             // 50% chance to stay in regardless
             if (RandomPercentage(RNG_AI_SWITCH_HASBADODDS, 50) || AI_DATA->aiSwitchPredictionInProgress)
-                return FALSE;
+                return TRUE;
 
             // Switch mon out
             return SetSwitchinAndSwitch(battler, PARTY_SIZE);

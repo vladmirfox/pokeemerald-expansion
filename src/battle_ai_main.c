@@ -488,24 +488,23 @@ void SetAiLogicDataForTurn(struct AiLogicData *aiData)
     AI_DATA->aiCalcInProgress = FALSE;
 }
 
-void BattleAI_DoAIProcessing_PredictedSwitchin(struct AI_ThinkingStruct *aiThink, u32 battlerAtk, u32 battlerDef)
+void BattleAI_DoAIProcessing_PredictedSwitchin(struct AI_ThinkingStruct *aiThink, struct AiLogicData *aiData, u32 battlerAtk, u32 battlerDef)
 {
     struct Pokemon *party = GetBattlerParty(battlerDef);
-    struct BattlePokemon switchinCandidate;
-    PokemonToBattleMon(&party[AI_DATA->mostSuitableMonId[battlerDef]], &switchinCandidate);
-
-    // Saves, sets, restores
     struct BattlePokemon *savedBattleMons = AllocSaveBattleMons();
-    gBattleMons[battlerDef] = switchinCandidate;
+    struct BattlePokemon switchinCandidate;
 
-    SetBattlerAiData(battlerAtk, AI_DATA);
-    CalcBattlerAiMovesData(AI_DATA, battlerAtk, battlerDef, AI_GetWeather(AI_DATA));
+    PokemonToBattleMon(&party[aiData->mostSuitableMonId[battlerDef]], &switchinCandidate);
+    gBattleMons[battlerDef] = switchinCandidate;
+    SetBattlerAiData(battlerDef, aiData);
+    CalcBattlerAiMovesData(aiData, battlerAtk, battlerDef, AI_GetWeather(aiData));
 
     // Regular processing with new battler
     BattleAI_DoAIProcessing(aiThink, battlerAtk, battlerDef);
 
     FreeRestoreBattleMons(savedBattleMons);
-    SetBattlerAiData(battlerAtk, AI_DATA);
+    SetBattlerAiData(battlerDef, aiData);
+    CalcBattlerAiMovesData(aiData, battlerAtk, battlerDef, AI_GetWeather(aiData));
 }
 
 static u32 ChooseMoveOrAction_Singles(u32 battlerAi)
@@ -522,7 +521,7 @@ static u32 ChooseMoveOrAction_Singles(u32 battlerAi)
         if (flags & 1)
         {
             if (IsBattlerPredictedToSwitch(gBattlerTarget))
-                BattleAI_DoAIProcessing_PredictedSwitchin(AI_THINKING_STRUCT, battlerAi, gBattlerTarget);
+                BattleAI_DoAIProcessing_PredictedSwitchin(AI_THINKING_STRUCT, AI_DATA, battlerAi, gBattlerTarget);
             else
                 BattleAI_DoAIProcessing(AI_THINKING_STRUCT, battlerAi, gBattlerTarget);
         }
@@ -605,7 +604,7 @@ static u32 ChooseMoveOrAction_Doubles(u32 battlerAi)
                 if (flags & 1)
                 {
                     if (IsBattlerPredictedToSwitch(gBattlerTarget))
-                        BattleAI_DoAIProcessing_PredictedSwitchin(AI_THINKING_STRUCT, battlerAi, gBattlerTarget);
+                        BattleAI_DoAIProcessing_PredictedSwitchin(AI_THINKING_STRUCT, AI_DATA, battlerAi, gBattlerTarget);
                     else
                         BattleAI_DoAIProcessing(AI_THINKING_STRUCT, battlerAi, gBattlerTarget);
                 }
