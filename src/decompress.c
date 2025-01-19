@@ -327,7 +327,7 @@ static void BuildDecompressionTable(const u32 *packedFreqs, struct DecodeYK *tab
 
     TABLE_TYPE *tableAsU16 = (void *) table;
 
-    for (u32 i = 0; i < 16; i++)
+    for (u8 i = 0; i < 16; i++)
     {
         const TABLE_TYPE *srcTemplate;
 
@@ -515,9 +515,11 @@ static void BuildDecompressionTable(const u32 *packedFreqs, struct DecodeYK *tab
 static EWRAM_DATA u8 sCurrSymbol = 0;
 static EWRAM_DATA u8 sBitIndex = 0;
 static EWRAM_DATA u32 sReadIndex = 0;
-static IWRAM_DATA u32 sCurrState = 0;
+static EWRAM_DATA u32 sCurrState = 0;
 // Order of allocated memory- ykTable, symbolTable(these go first, because are always aligned), symSize, loSize(last, because not aligned)
 static EWRAM_DATA void *sMemoryAllocated;
+//  Mask table for reading data from a bitstream for tANS decoding
+static IWRAM_INIT u32 sMaskTable[] = {0, 1, 3, 7, 15, 31, 63};
 
 struct DecodeHelperStruct
 {
@@ -528,16 +530,16 @@ struct DecodeHelperStruct
 };
 
 //  Dark Egg magic
-static inline void CopyFuncToIwram(void *funcBuffer, void *_funcStartAddress, void *_funcEndAdress)
+static inline void CopyFuncToIwram(void *funcBuffer, void *funcStartAddress, void *funcEndAdress)
 {
-    CpuCopy32(_funcStartAddress, funcBuffer, _funcEndAdress - _funcStartAddress);
+    CpuCopy32(funcStartAddress, funcBuffer, funcEndAdress - funcStartAddress);
 }
 
 //  Inner loop of tANS decoding for Lengths and Offset data for decompression instructions, uses u8 data sizes
 //  Basic process for decoding a tANS encoded value is to read the current symbol from the decoding table, then calculate the next state
 //  from the y and k values for the current state and add the value read from the next k bits in the bitstream
 // - O3 saves cycles
-__attribute__((target("arm"))) __attribute__((noinline, no_reorder)) __attribute__((optimize("-O3"))) static void DecodeLOtANSLoop(const u32 *data, struct DecodeHelperStruct *decodeHelper, u8 *maskTable)
+__attribute__((target("arm"))) __attribute__((noinline, no_reorder)) __attribute__((optimize("-O3"))) static void DecodeLOtANSLoop(const u32 *data, struct DecodeHelperStruct *decodeHelper, u32 *maskTable)
 {
     u32 readIndex = sReadIndex;
     u32 currBits = data[readIndex];
@@ -558,13 +560,9 @@ __attribute__((target("arm"))) __attribute__((noinline, no_reorder)) __attribute
             if (bitIndex >= 32)
             {
                 currBits = data[++readIndex];
-                if (bitIndex == 32)
+                bitIndex -= 32;
+                if (bitIndex != 0)
                 {
-                    bitIndex = 0;
-                }
-                else
-                {
-                    bitIndex -= 32;
                     sCurrState += (currBits & ((1u << bitIndex) - 1)) << (currK - bitIndex);
                 }
             }
@@ -577,23 +575,9 @@ __attribute__((target("arm"))) __attribute__((noinline, no_reorder)) __attribute
 }
 
 //  Dark Egg magic
-__attribute__((target("arm"))) __attribute__((no_reorder)) static void SwitchToArmCallLOtANS(const u32 *data, struct DecodeHelperStruct *decodeHelper, u8 *maskTable, void (*decodeFunction)(const u32 *data, struct DecodeHelperStruct *decodeHelper, u8 *maskTable))
+__attribute__((target("arm"))) __attribute__((no_reorder)) static void SwitchToArmCallLOtANS(const u32 *data, struct DecodeHelperStruct *decodeHelper, u32 *maskTable, void (*decodeFunction)(const u32 *data, struct DecodeHelperStruct *decodeHelper, u32 *maskTable))
 {
     decodeFunction(data, decodeHelper, maskTable);
-}
-
-//  Mask table for reading data from a bitstream for tANS decoding
-// fastest in IWRAM, all masks are assigned separately, because we don't want to waste time on memset
-static inline void SetMaskTable(u8 *maskTable)
-{
-    maskTable[0] = 0;
-    maskTable[1] = 1;
-    maskTable[2] = 3;
-    maskTable[3] = 7;
-    maskTable[4] = 15;
-    maskTable[5] = 31;
-    maskTable[6] = 63;
-    maskTable[7] = 0; // This mask doesn't really 'exist', but because the memory is aligned to 4 now, the compiler can generate 2 ldr/str instructions instead of strb/strh
 }
 
 //  Function that decodes tANS encoded LO data, resulting data is u8 values
@@ -602,9 +586,6 @@ static void DecodeLOtANS(const u32 *data, const u32 *pFreqs, u8 *resultVec, u32 
     struct DecodeYK *ykTable = sMemoryAllocated;
     u8 *symbolTable = sMemoryAllocated + (TANS_TABLE_SIZE*sizeof(struct DecodeYK));
     BuildDecompressionTable(pFreqs, ykTable, symbolTable);
-
-    u8 maskTable[8];
-    SetMaskTable(maskTable);
 
     struct DecodeHelperStruct decodeHelper;
     decodeHelper.resultVec = resultVec;
@@ -615,10 +596,10 @@ static void DecodeLOtANS(const u32 *data, const u32 *pFreqs, u8 *resultVec, u32 
     u32 funcBuffer[200];
 
     CopyFuncToIwram(funcBuffer, DecodeLOtANSLoop, SwitchToArmCallLOtANS);
-    SwitchToArmCallLOtANS(data, &decodeHelper, maskTable, (void *) funcBuffer);
+    SwitchToArmCallLOtANS(data, &decodeHelper, sMaskTable, (void *) funcBuffer);
 }
 
-__attribute__((target("arm"))) __attribute__((noinline, no_reorder)) __attribute__((optimize("-O3"))) static void DecodeSymtANSLoop(const u32 *data, struct DecodeHelperStruct *stuff, u8 *maskTable)
+__attribute__((target("arm"))) __attribute__((noinline, no_reorder)) __attribute__((optimize("-O3"))) static void DecodeSymtANSLoop(const u32 *data, struct DecodeHelperStruct *stuff, u32 *maskTable)
 {
     u32 currBits = data[sReadIndex];
     u32 bitIndex = sBitIndex;
@@ -659,7 +640,7 @@ __attribute__((target("arm"))) __attribute__((noinline, no_reorder)) __attribute
     sBitIndex = bitIndex;
 }
 
-__attribute__((target("arm"))) __attribute__((no_reorder)) static void SwitchToArmCallDecodeSymtANS(const u32 *data, struct DecodeHelperStruct *stuff, u8 *maskTable, void (*decodeFunction)(const u32 *data, struct DecodeHelperStruct *stuff, u8 *maskTable))
+__attribute__((target("arm"))) __attribute__((no_reorder)) static void SwitchToArmCallDecodeSymtANS(const u32 *data, struct DecodeHelperStruct *stuff, u32 *maskTable, void (*decodeFunction)(const u32 *data, struct DecodeHelperStruct *stuff, u32 *maskTable))
 {
     decodeFunction(data, stuff, maskTable);
 }
@@ -670,9 +651,6 @@ static void DecodeSymtANS(const u32 *data, const u32 *pFreqs, u16 *resultVec, u3
     u8 *symbolTable = sMemoryAllocated + (TANS_TABLE_SIZE*sizeof(struct DecodeYK));
     BuildDecompressionTable(pFreqs, ykTable, symbolTable);
 
-    u8 maskTable[8];
-    SetMaskTable(maskTable);
-
     struct DecodeHelperStruct stuff;
 
     stuff.ykTable = ykTable;
@@ -682,14 +660,14 @@ static void DecodeSymtANS(const u32 *data, const u32 *pFreqs, u16 *resultVec, u3
 
     u32 funcBuffer[300];
     CopyFuncToIwram(funcBuffer, DecodeSymtANSLoop, SwitchToArmCallDecodeSymtANS);
-    SwitchToArmCallDecodeSymtANS(data, &stuff, maskTable, (void *) funcBuffer);
+    SwitchToArmCallDecodeSymtANS(data, &stuff, sMaskTable, (void *) funcBuffer);
 }
 
 //  Inner loop of tANS decoding for delta encoded symbol data, uses u16 data size
 //  Basic process for decoding a tANS encoded value is to read the current symbol from the decoding table, then calculate the next state
 //  from the y and k values for the current state and add the value read from the next k bits in the bitstream
 // -O3 saves us almost 30k cycles compared to -O2
-__attribute__((target("arm"))) __attribute__((noinline, no_reorder)) __attribute__((optimize("-O3"))) static void DecodeSymDeltatANSLoop(const u32 *data, struct DecodeHelperStruct *decodeHelper, u8 *maskTable)
+__attribute__((target("arm"))) __attribute__((noinline, no_reorder)) __attribute__((optimize("-O3"))) static void DecodeSymDeltatANSLoop(const u32 *data, struct DecodeHelperStruct *decodeHelper, u32 *maskTable)
 {
     data += sReadIndex;
     const u32 *dataCmpPtr = data;
@@ -713,16 +691,14 @@ __attribute__((target("arm"))) __attribute__((noinline, no_reorder)) __attribute
             sCurrState = decodeHelper->ykTable[sCurrState].yVal - 64;
             sCurrState += (currBits >> bitIndex) & maskTable[currK];
             bitIndex += currK;
-            if (bitIndex > 32)
+            if (bitIndex >= 32)
             {
                 currBits = *data++;
                 bitIndex -= 32;
-                sCurrState += (currBits & ((1u << bitIndex) - 1)) << (currK - bitIndex);
-            }
-            else if (bitIndex == 32)
-            {
-                currBits = *data++;
-                bitIndex = 0;
+                if (bitIndex != 0)
+                {
+                    sCurrState += (currBits & ((1u << bitIndex) - 1)) << (currK - bitIndex);
+                }
             }
         }
 
@@ -735,7 +711,7 @@ __attribute__((target("arm"))) __attribute__((noinline, no_reorder)) __attribute
 }
 
 //  Dark Egg magic
-__attribute__((target("arm"))) __attribute__((no_reorder)) static void SwitchToArmCallSymDeltaANS(const u32 *data, struct DecodeHelperStruct *decodeHelper, u8 *maskTable, void (*decodeFunction)(const u32 *data, struct DecodeHelperStruct *decodeHelper, u8 *maskTable))
+__attribute__((target("arm"))) __attribute__((no_reorder)) static void SwitchToArmCallSymDeltaANS(const u32 *data, struct DecodeHelperStruct *decodeHelper, u32 *maskTable, void (*decodeFunction)(const u32 *data, struct DecodeHelperStruct *decodeHelper, u32 *maskTable))
 {
     decodeFunction(data, decodeHelper, maskTable);
 }
@@ -745,9 +721,6 @@ static void DecodeSymDeltatANS(const u32 *data, const u32 *pFreqs, u16 *resultVe
     struct DecodeYK *ykTable = sMemoryAllocated;
     u8 *symbolTable = sMemoryAllocated + (TANS_TABLE_SIZE*sizeof(struct DecodeYK));
     BuildDecompressionTable(pFreqs, ykTable, symbolTable);
-
-    u8 maskTable[8];
-    SetMaskTable(maskTable);
 
     // We want to store in packs of 2, so count needs to be divisible by 2
     u32 remainingCount = count % 2;
@@ -760,7 +733,7 @@ static void DecodeSymDeltatANS(const u32 *data, const u32 *pFreqs, u16 *resultVe
 
     u32 funcBuffer[400];
     CopyFuncToIwram(funcBuffer, DecodeSymDeltatANSLoop, SwitchToArmCallSymDeltaANS);
-    SwitchToArmCallSymDeltaANS(data, &decodeHelper, maskTable, (void *) funcBuffer);
+    SwitchToArmCallSymDeltaANS(data, &decodeHelper, sMaskTable, (void *) funcBuffer);
 
     u32 currBits = data[sReadIndex];
     for (int i = 0; i < remainingCount; i++)
@@ -772,7 +745,7 @@ static void DecodeSymDeltatANS(const u32 *data, const u32 *pFreqs, u16 *resultVe
             symbol += sCurrSymbol << (currNibble*4);
             u32 currK = ykTable[sCurrState].kVal;
             u32 nextState = ykTable[sCurrState].yVal;
-            nextState += (currBits >> sBitIndex) & maskTable[currK];
+            nextState += (currBits >> sBitIndex) & sMaskTable[currK];
             if (sBitIndex + currK < 32)
             {
                 sBitIndex += currK;
