@@ -189,7 +189,6 @@ int main(int argc, char *argv[])
         size_t rawSizes = 0;
         size_t totalImages = 0;
         size_t invalidImages = 0;
-        ImagePrinter printer;
         /*
         std::vector<size_t> largeModeSizes(6);
         std::vector<std::string> largeModeNames(6);

@@ -122,11 +122,6 @@ struct InputSettings {
 
 struct DataVecs {
     std::vector<unsigned char> loVec;
-    std::vector<unsigned char> symVec;
-};
-
-struct DataVecsNew {
-    std::vector<unsigned char> loVec;
     std::vector<unsigned short> symVec;
 };
 
@@ -135,12 +130,6 @@ void analyzeImages(std::vector<CompressedImage> *allImages, std::mutex *imageMut
 CompressedImage processImage(std::string fileName, InputSettings settings);
 CompressedImage processImageFrames(std::string fileName, InputSettings settings);
 CompressedImage processImageData(std::vector<unsigned char> input, InputSettings settings, std::string fileName);
-
-class ImagePrinter {
-    bool printedHeaders = false;
-public:
-    void printImage(CompressedImage *image);
-};
 
 std::vector<unsigned int> readFileAsUInt(std::string filePath);
 
@@ -156,8 +145,6 @@ int findInitialState(EncodeCol encodeCol, unsigned char firstSymbol);
 CompressedImage fillCompressVec(std::vector<unsigned char> loVec, std::vector<unsigned char> symVec, size_t lengthMod, bool loEncoded, bool symEncoded, bool symDelta, size_t byteSize, CompressionMode mode);
 CompressedImage fillCompressVecNew(std::vector<unsigned char> loVec, std::vector<unsigned short> symVec, CompressionMode mode, size_t imageBytes);
 std::vector<ShortCompressionInstruction> getShortInstructions(std::vector<ShortCopy> copies, size_t lengthMod);
-std::vector<unsigned char> getLosFromInstructions(std::vector<CompressionInstruction> instructions);
-std::vector<unsigned char> getSymsFromInstructions(std::vector<CompressionInstruction> instructions);
 std::vector<unsigned char> getLosFromInstructions(std::vector<ShortCompressionInstruction> instructions);
 std::vector<unsigned short> getSymsFromInstructions(std::vector<ShortCompressionInstruction> instructions);
 std::vector<int> unpackFrequencies(unsigned int pInts[3]);
@@ -167,7 +154,7 @@ std::vector<unsigned int> getUIntVecFromData(CompressedImage *pImage);
 
 std::vector<unsigned short> decodeBytesShort(std::vector<unsigned char> *pLoVec, std::vector<unsigned short> *pSymVec);
 std::vector<unsigned short> decodeImageShort(CompressedImage *pInput);
-DataVecsNew decodeDataVectorsNew(CompressedImage *pInput);
+DataVecs decodeDataVectorsNew(CompressedImage *pInput);
 
 size_t decodeNibbles(std::vector<DecodeCol> decodeTable, std::vector<unsigned int> *bits, int *currState, std::vector<unsigned char> *nibbleVec, size_t currBitIndex, size_t numNibbles);
 

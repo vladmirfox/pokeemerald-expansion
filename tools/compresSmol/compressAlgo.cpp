@@ -178,7 +178,6 @@ void ShortCompressionInstruction::buildBytes()
     }
 }
 
-
 void CompressionInstruction::buildBytes()
 {
     std::vector<unsigned char> currBytes;
@@ -274,50 +273,6 @@ std::vector<unsigned short> getSymsFromInstructions(std::vector<ShortCompression
     return symvec;
 }
 
-std::vector<unsigned char> getLosFromInstructions(std::vector<CompressionInstruction> instructions)
-{
-    std::vector<unsigned char> loVec;
-    for (CompressionInstruction instruction : instructions)
-    {
-        size_t readIndex = 0;
-
-        unsigned char currByte = instruction.bytes[readIndex];
-        loVec.push_back(currByte);
-        readIndex++;
-        //  Extract length
-        if ((currByte & 0x80) == 0x80)
-        {
-            loVec.push_back(instruction.bytes[readIndex]);
-            readIndex++;
-        }
-
-        //  Extract offset
-        currByte = instruction.bytes[readIndex];
-        loVec.push_back(currByte);
-        readIndex++;
-        if ((currByte & 0x80) == 0x80)
-        {
-            loVec.push_back(instruction.bytes[readIndex]);
-            readIndex++;
-        }
-    }
-    return loVec;
-}
-
-std::vector<unsigned char> getSymsFromInstructions(std::vector<CompressionInstruction> instructions)
-{
-    std::vector<unsigned char> symVec;
-    for (CompressionInstruction instruction : instructions)
-    {
-        if (instruction.offset != 0)
-            symVec.push_back(instruction.firstSymbol);
-        else
-            for (unsigned char uc : instruction.symbols)
-                symVec.push_back(uc);
-    }
-    return symVec;
-}
-
 std::vector<unsigned short> decodeBytesShort(std::vector<unsigned char> *pLoVec, std::vector<unsigned short> *pSymVec)
 {
     std::vector<unsigned short> decodedImage;
@@ -355,66 +310,6 @@ std::vector<unsigned short> decodeBytesShort(std::vector<unsigned char> *pLoVec,
                 decodedImage.push_back((*pSymVec)[symIndex]);
                 symIndex++;
             }
-        }
-    }
-    return decodedImage;
-}
-
-std::vector<unsigned char> decodeBytes(std::vector<unsigned char> *pLoVec, std::vector<unsigned char> *pSymVec, size_t lengthMod)
-{
-    std::vector<unsigned char> decodedImage;
-    size_t loIndex = 0;
-    size_t symIndex = 0;
-    size_t runCount = 0;
-    size_t runPixels = 0;
-    size_t copyCount = 0;
-    size_t copyPixels = 0;
-    size_t rawCount = 0;
-    size_t rawPixels = 0;
-    while (loIndex < pLoVec->size())
-    {
-        size_t currLength = 0;
-        size_t currOffset = 0;
-        currLength += (*pLoVec)[loIndex] & 0x7f;
-        loIndex++;
-        if (((*pLoVec)[loIndex-1] & 0x80) == 0x80)
-        {
-            currLength += (*pLoVec)[loIndex] << 7;
-            loIndex++;
-        }
-        currOffset += (*pLoVec)[loIndex] & 0x7f;
-        loIndex++;
-        if (((*pLoVec)[loIndex-1] & 0x80) == 0x80)
-        {
-            currOffset += (*pLoVec)[loIndex] << 7;
-            loIndex++;
-        }
-        if (currLength != 0)
-        {
-            decodedImage.push_back((*pSymVec)[symIndex]);
-            symIndex++;
-            for (size_t i = 0; i < currLength; i++)
-                decodedImage.push_back(decodedImage[decodedImage.size() - currOffset]);
-            if (currOffset == 1)
-            {
-                runCount++;
-                runPixels += currLength;
-            }
-            else
-            {
-                copyCount++;
-                copyPixels += currLength;
-            }
-        }
-        else
-        {
-            for (size_t i = 0; i < currOffset; i++)
-            {
-                decodedImage.push_back((*pSymVec)[symIndex]);
-                symIndex++;
-            }
-            rawCount++;
-            rawPixels += currOffset;
         }
     }
     return decodedImage;
@@ -461,11 +356,13 @@ CompressedImage processImage(std::string fileName, InputSettings settings)
     std::vector<unsigned char> input = readFileAsUC(fileName);
     if (settings.useFrames)
     {
+        /*
         //  Determine number of frames
         size_t totalPixels = input.size()*2;
         //  Split input and append
         size_t smallFrames = totalPixels/OVERWORLD_16X16;
         size_t largeFrames = totalPixels/OVERWORLD_32X32;
+        */
     }
     else
     {
@@ -481,7 +378,6 @@ CompressedImage processImageFrames(std::string fileName, InputSettings settings)
     std::vector<std::vector<unsigned char>> allInputs(4);
     size_t totalSize = input.size();
     size_t partialSize = totalSize/4;
-    size_t currIndex = 0;
     size_t subIndex = 0;
     size_t inputIndex = 0;
     std::vector<size_t> frameOffsets;
@@ -724,11 +620,11 @@ bool verifyCompressionShort(CompressedImage *pInput, std::vector<unsigned short>
 
 std::vector<unsigned short> decodeImageShort(CompressedImage *pInput)
 {
-    DataVecsNew dataVecs = decodeDataVectorsNew(pInput);
+    DataVecs dataVecs = decodeDataVectorsNew(pInput);
     return decodeBytesShort(&dataVecs.loVec, &dataVecs.symVec);
 }
 
-DataVecsNew decodeDataVectorsNew(CompressedImage *pInput)
+DataVecs decodeDataVectorsNew(CompressedImage *pInput)
 {
     CompressedImage headerValues = readNewHeader(&pInput->headers);
     size_t loSize = headerValues.loSize;
@@ -823,7 +719,7 @@ DataVecsNew decodeDataVectorsNew(CompressedImage *pInput)
             for (size_t j = 0; j < 4; j++)
                 symVec[i] += (unsigned short)symNibbles[i*4 + j] << (j*4);
 
-    DataVecsNew returnData;
+    DataVecs returnData;
     returnData.loVec = loVec;
     returnData.symVec = symVec;
     return returnData;
@@ -855,16 +751,6 @@ ShortCopy::ShortCopy(size_t index, size_t length, size_t offset, std::vector<uns
     this->length = length;
     this->offset = offset;
     this->usSequence = usSequence;
-}
-
-void ImagePrinter::printImage(CompressedImage *image)
-{
-    if (!printedHeaders)
-    {
-        printf("ImagePath LZsize NUsize LOencoded LOdelta SYMencoded SYMdelta\n");
-        printedHeaders = true;
-    }
-    printf("%s %zu %zu\n", image->fileName.c_str(), image->lzSize, image->compressedSize);
 }
 
 std::vector<unsigned char> getNormalizedCounts(std::vector<size_t> input)
