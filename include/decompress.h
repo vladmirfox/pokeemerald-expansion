@@ -41,7 +41,7 @@ struct SpriteSheetHeader {
     u32 framesPerComponent:16;
 };
 
-struct DecodeYK {
+struct __attribute__((packed, aligned(2))) DecodeYK {
     u8 yVal;
     u8 kVal;
 };
@@ -59,7 +59,6 @@ enum CompressionMode {
 
 extern struct DecodeYK ykTemplate[2*TANS_TABLE_SIZE];
 
-void UnpackFrequencies(const u32 *packedFreqs, u32 *freqs);
 
 void DecompressDataWithHeaderVram(const u32 *src, void *dest);
 void DecompressDataWithHeaderWram(const u32 *src, void *dest);
@@ -68,16 +67,6 @@ void DecompressDataWithHeaderWram(const u32 *src, void *dest);
 //void DecompressSubFrame(const u32 *src, void *dest, u32 frameId);
 
 void SmolDecompressData(const struct SmolHeader *header, const u32 *data, void *dest);
-
-void BuildDecompressionTable(const u32 *freqs, struct DecodeYK *ykTable, u32 *symbolTable);
-
-void DecodeLOtANS(const u32 *data, const u32 *pFreqs, u8 *resultVec, u32 count);
-
-void DecodeSymtANS(const u32 *data, const u32 *pFreqs, u16 *resultVec, u32 count);
-
-void DecodeSymDeltatANS(const u32 *data, const u32 *pFreqs, u16 *resultVec, u32 count);
-
-void DecodeInstructions(u32 headerLoSize, u8 *loVec, u16 *symVec, void *dest);
 
 bool32 isModeLoEncoded(enum CompressionMode mode);
 bool32 isModeSymEncoded(enum CompressionMode mode);
