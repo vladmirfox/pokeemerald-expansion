@@ -1961,7 +1961,9 @@ static void Task_ChangeSummaryMon(u8 taskId)
             ChangeStatLabel(SUMMARY_SKILLS_MODE_STATS);
         }
         if (ExtractMonDataToSummaryStruct(&sMonSummaryScreen->currentMon) == FALSE)
+        {
             return;
+        }     
         else
         {
             if (P_SUMMARY_SCREEN_MOVE_RELEARNER
@@ -2248,7 +2250,9 @@ static void SwitchToMoveSelection(u8 taskId)
         ShowUtilityPrompt(SUMMARY_MODE_SELECT_MOVE);
     }
     else
+    {
         ShowUtilityPrompt(SUMMARY_MODE_NORMAL);
+    }
 
     TilemapFiveMovesDisplay(sMonSummaryScreen->bgTilemapBuffers[PSS_PAGE_BATTLE_MOVES][0], 3, FALSE);
     TilemapFiveMovesDisplay(sMonSummaryScreen->bgTilemapBuffers[PSS_PAGE_CONTEST_MOVES][0], 1, FALSE);
@@ -4709,7 +4713,9 @@ static inline void ShowUtilityPrompt(s16 mode)
                     promptText = gText_SkillPageEvs;
             }
             else if (mode == SUMMARY_SKILLS_MODE_EVS)
+            {
                 promptText = gText_SkillPageStats;
+            }
         }
     }
     else if (sMonSummaryScreen->currPageIndex == PSS_PAGE_BATTLE_MOVES
