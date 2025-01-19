@@ -1001,7 +1001,7 @@ void SetMapVarsToTrainerB(void)
 }
 
 // expects parameters have been loaded correctly with TrainerBattleLoadArgs
-const u8 *BattleSetup_ConfigureTrainerBattle(const u8* data)
+const u8 *BattleSetup_ConfigureTrainerBattle(const u8 *data)
 {
     switch (TRAINER_BATTLE_PARAM.mode)
     {
