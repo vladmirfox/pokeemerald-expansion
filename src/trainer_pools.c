@@ -62,12 +62,8 @@ static u32 DefaultAcePickFunction(const struct Trainer *trainer, u8 *poolIndexAr
     u32 arrayIndex = 0;
     u32 monIndex = POOL_SLOT_DISABLED;
     //  monIndex is set to 255 if nothing has been chosen yet, this gives an upper limit on pool size of 255
-    if (monIndex == POOL_SLOT_DISABLED
-    && (((partyIndex == monsCount - 1)
-      || (partyIndex == monsCount - 2
-       && battleTypeFlags & BATTLE_TYPE_DOUBLE))
-       && (rules->tagMaxMembers[1] == POOL_MEMBER_COUNT_UNLIMITED
-        || rules->tagMaxMembers[1] >= 1)))
+    if (((partyIndex == monsCount - 1) || (partyIndex == monsCount - 2 && battleTypeFlags & BATTLE_TYPE_DOUBLE))
+     && (rules->tagMaxMembers[1] == POOL_MEMBER_COUNT_UNLIMITED || rules->tagMaxMembers[1] >= 1))
     {
         //  Find required + ace tags
         bool32 foundRequiredTag = FALSE;
@@ -114,45 +110,42 @@ static u32 DefaultOtherPickFunction(const struct Trainer *trainer, u8 *poolIndex
     u32 arrayIndex = 0;
     u32 monIndex = POOL_SLOT_DISABLED;
     //  monIndex is set to 255 if nothing has been chosen yet, this gives an upper limit on pool size of 255
-    if (monIndex == POOL_SLOT_DISABLED)
+    //  Find required tag
+    bool32 foundRequiredTag = FALSE;
+    u32 firstUnpickedIndex = POOL_SLOT_DISABLED;
+    for (u32 currIndex = 0; currIndex < trainer->poolSize; currIndex++)
     {
-        //  Find required tag
-        bool32 foundRequiredTag = FALSE;
-        u32 firstUnpickedIndex = POOL_SLOT_DISABLED;
-        for (u32 currIndex = 0; currIndex < trainer->poolSize; currIndex++)
+        if (poolIndexArray[currIndex] != POOL_SLOT_DISABLED
+         && !(trainer->party[poolIndexArray[currIndex]].tags & (1u << POOL_TAG_LEAD))
+         && !(trainer->party[poolIndexArray[currIndex]].tags & (1u << POOL_TAG_ACE)))
         {
-            if (poolIndexArray[currIndex] != POOL_SLOT_DISABLED
-             && !(trainer->party[poolIndexArray[currIndex]].tags & (1u << POOL_TAG_LEAD))
-             && !(trainer->party[poolIndexArray[currIndex]].tags & (1u << POOL_TAG_ACE)))
+            if (firstUnpickedIndex == POOL_SLOT_DISABLED)
+                firstUnpickedIndex = currIndex;
+            //  Start from index 2, since lead and ace has special handling
+            for (u32 currTag = 2; currTag < POOL_NUM_TAGS; currTag++)
             {
-                if (firstUnpickedIndex == POOL_SLOT_DISABLED)
-                    firstUnpickedIndex = currIndex;
-                //  Start from index 2, since lead and ace has special handling
-                for (u32 currTag = 2; currTag < POOL_NUM_TAGS; currTag++)
+                if (rules->tagRequired[currTag]
+                 && trainer->party[poolIndexArray[currIndex]].tags & (1u << currTag))
                 {
-                    if (rules->tagRequired[currTag]
-                     && trainer->party[poolIndexArray[currIndex]].tags & (1u << currTag))
-                    {
-                        arrayIndex = currIndex;
-                        foundRequiredTag = TRUE;
-                        break;
-                    }
+                    arrayIndex = currIndex;
+                    foundRequiredTag = TRUE;
+                    break;
                 }
             }
-            if (foundRequiredTag)
-                break;
         }
-        //  If a combination of required + ace wasn't found, apply the first found lead
         if (foundRequiredTag)
-        {
-            monIndex = poolIndexArray[arrayIndex];
-            poolIndexArray[arrayIndex] = POOL_SLOT_DISABLED;
-        }
-        else if (firstUnpickedIndex != POOL_SLOT_DISABLED)
-        {
-            monIndex = poolIndexArray[firstUnpickedIndex];
-            poolIndexArray[firstUnpickedIndex] = POOL_SLOT_DISABLED;
-        }
+            break;
+    }
+    //  If a combination of required + ace wasn't found, apply the first found lead
+    if (foundRequiredTag)
+    {
+        monIndex = poolIndexArray[arrayIndex];
+        poolIndexArray[arrayIndex] = POOL_SLOT_DISABLED;
+    }
+    else if (firstUnpickedIndex != POOL_SLOT_DISABLED)
+    {
+        monIndex = poolIndexArray[firstUnpickedIndex];
+        poolIndexArray[firstUnpickedIndex] = POOL_SLOT_DISABLED;
     }
     return monIndex;
 }
