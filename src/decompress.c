@@ -333,7 +333,13 @@ static void BuildDecompressionTable(const u32 *packedFreqs, struct DecodeYK *tab
 
         switch (freqs[i]) {
         case 0:
+            break;
         default:
+            CpuCopy16(&sYkTemplate[freqs[i]], tableAsU16, freqs[i] * 2);
+            tableAsU16 += freqs[i];
+
+            memset(symbolTable, i, freqs[i]);
+            symbolTable += freqs[i];
             break;
         case 1:
             srcTemplate = (TABLE_TYPE *)(&sYkTemplate[1]);
@@ -500,156 +506,6 @@ static void BuildDecompressionTable(const u32 *packedFreqs, struct DecodeYK *tab
             REP(3, 3, *tableAsU16++ = *srcTemplate++;)
             REP(3, 3, *symbolTable++ = i;);
             break;
-        case 34:
-            srcTemplate = (TABLE_TYPE *)(&sYkTemplate[34]);
-            REP(3, 4, *tableAsU16++ = *srcTemplate++;)
-            REP(3, 4, *symbolTable++ = i;);
-            break;
-        case 35:
-            srcTemplate = (TABLE_TYPE *)(&sYkTemplate[35]);
-            REP(3, 5, *tableAsU16++ = *srcTemplate++;)
-            REP(3, 5, *symbolTable++ = i;);
-            break;
-        case 36:
-            srcTemplate = (TABLE_TYPE *)(&sYkTemplate[36]);
-            REP(3, 6, *tableAsU16++ = *srcTemplate++;)
-            REP(3, 6, *symbolTable++ = i;);
-            break;
-        case 37:
-            srcTemplate = (TABLE_TYPE *)(&sYkTemplate[37]);
-            REP(3, 7, *tableAsU16++ = *srcTemplate++;)
-            REP(3, 7, *symbolTable++ = i;);
-            break;
-        case 38:
-            srcTemplate = (TABLE_TYPE *)(&sYkTemplate[38]);
-            REP(3, 8, *tableAsU16++ = *srcTemplate++;)
-            REP(3, 8, *symbolTable++ = i;);
-            break;
-        case 39:
-            srcTemplate = (TABLE_TYPE *)(&sYkTemplate[39]);
-            REP(3, 9, *tableAsU16++ = *srcTemplate++;)
-            REP(3, 9, *symbolTable++ = i;);
-            break;
-        case 40:
-            srcTemplate = (TABLE_TYPE *)(&sYkTemplate[40]);
-            REP(4, 0, *tableAsU16++ = *srcTemplate++;)
-            REP(4, 0, *symbolTable++ = i;);
-            break;
-        case 41:
-            srcTemplate = (TABLE_TYPE *)(&sYkTemplate[41]);
-            REP(4, 1, *tableAsU16++ = *srcTemplate++;)
-            REP(4, 1, *symbolTable++ = i;);
-            break;
-        case 42:
-            srcTemplate = (TABLE_TYPE *)(&sYkTemplate[42]);
-            REP(4, 2, *tableAsU16++ = *srcTemplate++;)
-            REP(4, 2, *symbolTable++ = i;);
-            break;
-        case 43:
-            srcTemplate = (TABLE_TYPE *)(&sYkTemplate[43]);
-            REP(4, 3, *tableAsU16++ = *srcTemplate++;)
-            REP(4, 3, *symbolTable++ = i;);
-            break;
-        case 44:
-            srcTemplate = (TABLE_TYPE *)(&sYkTemplate[44]);
-            REP(4, 4, *tableAsU16++ = *srcTemplate++;)
-            REP(4, 4, *symbolTable++ = i;);
-            break;
-        case 45:
-            srcTemplate = (TABLE_TYPE *)(&sYkTemplate[45]);
-            REP(4, 5, *tableAsU16++ = *srcTemplate++;)
-            REP(4, 5, *symbolTable++ = i;);
-            break;
-        case 46:
-            srcTemplate = (TABLE_TYPE *)(&sYkTemplate[46]);
-            REP(4, 6, *tableAsU16++ = *srcTemplate++;)
-            REP(4, 6, *symbolTable++ = i;);
-            break;
-        case 47:
-            srcTemplate = (TABLE_TYPE *)(&sYkTemplate[47]);
-            REP(4, 7, *tableAsU16++ = *srcTemplate++;)
-            REP(4, 7, *symbolTable++ = i;);
-            break;
-        case 48:
-            srcTemplate = (TABLE_TYPE *)(&sYkTemplate[48]);
-            REP(4, 8, *tableAsU16++ = *srcTemplate++;)
-            REP(4, 8, *symbolTable++ = i;);
-            break;
-        case 49:
-            srcTemplate = (TABLE_TYPE *)(&sYkTemplate[49]);
-            REP(4, 9, *tableAsU16++ = *srcTemplate++;)
-            REP(4, 9, *symbolTable++ = i;);
-            break;
-        case 50:
-            srcTemplate = (TABLE_TYPE *)(&sYkTemplate[50]);
-            REP(5, 0, *tableAsU16++ = *srcTemplate++;)
-            REP(5, 0, *symbolTable++ = i;);
-            break;
-        case 51:
-            srcTemplate = (TABLE_TYPE *)(&sYkTemplate[51]);
-            REP(5, 1, *tableAsU16++ = *srcTemplate++;)
-            REP(5, 1, *symbolTable++ = i;);
-            break;
-        case 52:
-            srcTemplate = (TABLE_TYPE *)(&sYkTemplate[52]);
-            REP(5, 2, *tableAsU16++ = *srcTemplate++;)
-            REP(5, 2, *symbolTable++ = i;);
-            break;
-        case 53:
-            srcTemplate = (TABLE_TYPE *)(&sYkTemplate[53]);
-            REP(5, 3, *tableAsU16++ = *srcTemplate++;)
-            REP(5, 3, *symbolTable++ = i;);
-            break;
-        case 54:
-            srcTemplate = (TABLE_TYPE *)(&sYkTemplate[54]);
-            REP(5, 4, *tableAsU16++ = *srcTemplate++;)
-            REP(5, 4, *symbolTable++ = i;);
-            break;
-        case 55:
-            srcTemplate = (TABLE_TYPE *)(&sYkTemplate[55]);
-            REP(5, 5, *tableAsU16++ = *srcTemplate++;)
-            REP(5, 5, *symbolTable++ = i;);
-            break;
-        case 56:
-            srcTemplate = (TABLE_TYPE *)(&sYkTemplate[56]);
-            REP(5, 6, *tableAsU16++ = *srcTemplate++;)
-            REP(5, 6, *symbolTable++ = i;);
-            break;
-        case 57:
-            srcTemplate = (TABLE_TYPE *)(&sYkTemplate[57]);
-            REP(5, 7, *tableAsU16++ = *srcTemplate++;)
-            REP(5, 7, *symbolTable++ = i;);
-            break;
-        case 58:
-            srcTemplate = (TABLE_TYPE *)(&sYkTemplate[58]);
-            REP(5, 8, *tableAsU16++ = *srcTemplate++;)
-            REP(5, 8, *symbolTable++ = i;);
-            break;
-        case 59:
-            srcTemplate = (TABLE_TYPE *)(&sYkTemplate[59]);
-            REP(5, 9, *tableAsU16++ = *srcTemplate++;)
-            REP(5, 9, *symbolTable++ = i;);
-            break;
-        case 60:
-            srcTemplate = (TABLE_TYPE *)(&sYkTemplate[60]);
-            REP(6, 0, *tableAsU16++ = *srcTemplate++;)
-            REP(6, 0, *symbolTable++ = i;);
-            break;
-        case 61:
-            srcTemplate = (TABLE_TYPE *)(&sYkTemplate[61]);
-            REP(6, 1, *tableAsU16++ = *srcTemplate++;)
-            REP(6, 1, *symbolTable++ = i;);
-            break;
-        case 62:
-            srcTemplate = (TABLE_TYPE *)(&sYkTemplate[62]);
-            REP(6, 2, *tableAsU16++ = *srcTemplate++;)
-            REP(6, 2, *symbolTable++ = i;);
-            break;
-        case 63:
-            srcTemplate = (TABLE_TYPE *)(&sYkTemplate[63]);
-            REP(6, 3, *tableAsU16++ = *srcTemplate++;)
-            REP(6, 3, *symbolTable++ = i;);
-            break;
         }
     }
 
@@ -721,7 +577,7 @@ __attribute__((target("arm"))) __attribute__((noinline, no_reorder)) __attribute
 }
 
 //  Dark Egg magic
-__attribute__((target("arm"))) __attribute__((noinline, no_reorder)) static void SwitchToArmCallLOtANS(const u32 *data, struct DecodeHelperStruct *decodeHelper, u8 *maskTable, void (*decodeFunction)(const u32 *data, struct DecodeHelperStruct *decodeHelper, u8 *maskTable))
+__attribute__((target("arm"))) __attribute__((no_reorder)) static void SwitchToArmCallLOtANS(const u32 *data, struct DecodeHelperStruct *decodeHelper, u8 *maskTable, void (*decodeFunction)(const u32 *data, struct DecodeHelperStruct *decodeHelper, u8 *maskTable))
 {
     decodeFunction(data, decodeHelper, maskTable);
 }
@@ -803,7 +659,7 @@ __attribute__((target("arm"))) __attribute__((noinline, no_reorder)) __attribute
     sBitIndex = bitIndex;
 }
 
-__attribute__((target("arm"))) __attribute__((noinline, no_reorder)) static void SwitchToArmCallDecodeSymtANS(const u32 *data, struct DecodeHelperStruct *stuff, u8 *maskTable, void (*decodeFunction)(const u32 *data, struct DecodeHelperStruct *stuff, u8 *maskTable))
+__attribute__((target("arm"))) __attribute__((no_reorder)) static void SwitchToArmCallDecodeSymtANS(const u32 *data, struct DecodeHelperStruct *stuff, u8 *maskTable, void (*decodeFunction)(const u32 *data, struct DecodeHelperStruct *stuff, u8 *maskTable))
 {
     decodeFunction(data, stuff, maskTable);
 }
@@ -879,7 +735,7 @@ __attribute__((target("arm"))) __attribute__((noinline, no_reorder)) __attribute
 }
 
 //  Dark Egg magic
-__attribute__((target("arm"))) __attribute__((noinline, no_reorder)) static void SwitchToArmCallSymDeltaANS(const u32 *data, struct DecodeHelperStruct *decodeHelper, u8 *maskTable, void (*decodeFunction)(const u32 *data, struct DecodeHelperStruct *decodeHelper, u8 *maskTable))
+__attribute__((target("arm"))) __attribute__((no_reorder)) static void SwitchToArmCallSymDeltaANS(const u32 *data, struct DecodeHelperStruct *decodeHelper, u8 *maskTable, void (*decodeFunction)(const u32 *data, struct DecodeHelperStruct *decodeHelper, u8 *maskTable))
 {
     decodeFunction(data, decodeHelper, maskTable);
 }
@@ -967,61 +823,62 @@ static inline void Copy16(const void *_src, void *_dst, u32 size)
 //      Insert the current value from the Symbol vector into current result position <length> times, then advance symbol vector by 1
 //  If length is 0:
 //      Insert <offset> number of symbols from the symbol vector into the result vector and advance the symbol vector position by <offset>
-__attribute__((target("arm"))) __attribute__((noinline, no_reorder)) static void DecodeInstructions(u32 headerLoSize, u8 *loVec, u16 *symVec, void *dest)
+__attribute__((target("arm"))) __attribute__((noinline, no_reorder)) static void DecodeInstructions(u32 headerLoSize, u8 *loVec, u16 *symVec, u16 *dest)
 {
-    u32 loIndex = 0;
-    u32 symIndex = 0;
-    while (loIndex < headerLoSize)
+    u8 *loVecEnd = loVec + headerLoSize;
+    do
     {
-        u32 currLength = loVec[loIndex] & FIRST_LO_MASK;
-        if (loVec[loIndex] & CONTINUE_BIT)
+        u32 currLength = *loVec & FIRST_LO_MASK;
+        if (*loVec & CONTINUE_BIT)
         {
-            currLength += loVec[loIndex+1] << 7;
-            loIndex += 2;
+            currLength += loVec[1] << 7;
+            loVec += 2;
         }
         else
         {
-            loIndex++;
+            loVec++;
         }
 
-        u32 currOffset = loVec[loIndex] & FIRST_LO_MASK;
-        if (loVec[loIndex] & CONTINUE_BIT)
+        u32 currOffset = *loVec & FIRST_LO_MASK;
+        if (*loVec & CONTINUE_BIT)
         {
-            currOffset += loVec[loIndex+1] << 7;
-            loIndex += 2;
+            currOffset += loVec[1] << 7;
+            loVec += 2;
         }
         else
         {
-            loIndex++;
+            loVec++;
         }
 
         if (currLength != 0)
         {
-            *(u16 *)(dest) = symVec[symIndex];
-            dest = (void *)(dest + 2);
+            *dest++ = *symVec;
             if (currOffset == 1)
             {
-                Fill16(symVec[symIndex], dest, currLength);
-                dest = (void *)(dest + currLength*2);
+                Fill16(*symVec, dest, currLength);
+                dest += currLength;
             }
             else
             {
-                Copy16((void *)(dest - currOffset*2), dest, currLength);
-                dest = (void *)(dest + currLength*2);
+                u16 *from = dest - currOffset;
+                u16 *to = dest + currLength;
+                do {
+                    *dest++ = *from++;
+                } while (dest != to);
             }
-            symIndex++;
+            symVec++;
         }
         else
         {
-            Copy16(&symVec[symIndex], dest, currOffset);
-            dest = (void *)(dest + currOffset*2);
-            symIndex += currOffset;
+            Copy16(symVec, dest, currOffset);
+            dest += currOffset;
+            symVec += currOffset;
         }
-    }
+    } while (loVec < loVecEnd);
 }
 
 //  Dark Egg magic
-__attribute__((target("arm"))) __attribute__((noinline, no_reorder)) static void SwitchToArmCallDecodeInstructions(u32 headerLoSize, u8 *loVec, u16 *symVec, void *dest, void (*decodeFunction)(u32 headerLoSize, u8 *loVec, u16 *symVec, void *dest))
+__attribute__((target("arm"))) __attribute__((no_reorder)) static void SwitchToArmCallDecodeInstructions(u32 headerLoSize, u8 *loVec, u16 *symVec, void *dest, void (*decodeFunction)(u32 headerLoSize, u8 *loVec, u16 *symVec, void *dest))
 {
     decodeFunction(headerLoSize, loVec, symVec, dest);
 }
@@ -1029,7 +886,7 @@ __attribute__((target("arm"))) __attribute__((noinline, no_reorder)) static void
 //  Dark Egg magic
 static void DecodeInstructionsIwram(u32 headerLoSize, u8 *loVec, u16 *symVec, void *dest)
 {
-    u32 funcBuffer[200];
+    u32 funcBuffer[150];
 
     CopyFuncToIwram(funcBuffer, DecodeInstructions, SwitchToArmCallDecodeInstructions);
     SwitchToArmCallDecodeInstructions(headerLoSize, loVec, symVec, dest, (void *) funcBuffer);
