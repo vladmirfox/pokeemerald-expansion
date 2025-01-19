@@ -323,7 +323,6 @@ static void BufferLeftColumnIvEvStats(void);
 static void CB2_ReturnToSummaryScreenFromNamingScreen(void);
 static void CB2_PssChangePokemonNickname(void);
 static void ShowUtilityPrompt(s16 mode);
-static void ClearUtilityPrompt(void);
 static void ShowMonSkillsInfo(u8 taskId, s16 mode);
 static void WriteToStatsTilemapBuffer(u32 length, u32 block, u32 statsCoordX, u32 statsCoordY);
 void ExtractMonSkillStatsData(struct Pokemon *mon, struct PokeSummary *sum);
@@ -4663,23 +4662,15 @@ static inline bool32 ShouldShowIvEvPrompt(void)
 {
     if (P_SUMMARY_SCREEN_IV_EV_BOX_ONLY == TRUE)
     {
-        return ((P_SUMMARY_SCREEN_IV_EV_INFO == TRUE || FlagGet(P_FLAG_IV_EV_INFO))
+        return (P_SUMMARY_SCREEN_IV_EV_INFO == TRUE || FlagGet(P_FLAG_IV_EV_INFO))
             && (sMonSummaryScreen->mode == SUMMARY_MODE_BOX
-                || sMonSummaryScreen->mode == SUMMARY_MODE_BOX_CURSOR));
+                || sMonSummaryScreen->mode == SUMMARY_MODE_BOX_CURSOR);
     }
-    else if (P_SUMMARY_SCREEN_IV_EV_BOX_ONLY == FALSE) {
+    else if (P_SUMMARY_SCREEN_IV_EV_BOX_ONLY == FALSE) 
         return (P_SUMMARY_SCREEN_IV_EV_INFO == TRUE || FlagGet(P_FLAG_IV_EV_INFO));
-    }
     else
         return FALSE;
 }
-
-static inline void ClearUtilityPrompt(void)
-{
-    ClearWindowTilemap(PSS_LABEL_WINDOW_PROMPT_UTILITY);
-    FillWindowPixelBuffer(PSS_LABEL_WINDOW_PROMPT_UTILITY, PIXEL_FILL(0));
-}
-
 
 static inline void ShowUtilityPrompt(s16 mode)
 {
@@ -4728,7 +4719,8 @@ static inline void ShowUtilityPrompt(s16 mode)
 
     if (promptText == NULL)
     {
-        ClearUtilityPrompt();
+        ClearWindowTilemap(PSS_LABEL_WINDOW_PROMPT_UTILITY);
+        FillWindowPixelBuffer(PSS_LABEL_WINDOW_PROMPT_UTILITY, PIXEL_FILL(0));
         return;
     }
 
