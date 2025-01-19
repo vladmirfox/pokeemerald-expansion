@@ -1768,7 +1768,7 @@ static u8 IncrementSkillsStatsMode(u8 mode)
     switch (mode)
     {
     case SUMMARY_SKILLS_MODE_STATS:
-        if (P_SUMMARY_SCREEN_EV_ONLY == TRUE)
+        if (P_SUMMARY_SCREEN_EV_ONLY)
         {
             sMonSummaryScreen->skillsPageMode = SUMMARY_SKILLS_MODE_EVS;
             return SUMMARY_SKILLS_MODE_EVS;
@@ -1780,7 +1780,7 @@ static u8 IncrementSkillsStatsMode(u8 mode)
         }
 
     case SUMMARY_SKILLS_MODE_IVS:
-        if (P_SUMMARY_SCREEN_IV_ONLY == TRUE)
+        if (P_SUMMARY_SCREEN_IV_ONLY)
         {
             sMonSummaryScreen->skillsPageMode = SUMMARY_SKILLS_MODE_STATS;
             return SUMMARY_SKILLS_MODE_STATS;
@@ -3774,7 +3774,7 @@ static void BufferStat(u8 *dst, u8 statIndex, u32 stat, u32 strId, u32 n)
     else
         txtPtr = StringCopy(dst, sTextNatureNeutral);
 
-    if (P_SUMMARY_SCREEN_IV_EV_VALUES == FALSE 
+    if (!P_SUMMARY_SCREEN_IV_EV_VALUES 
         && sMonSummaryScreen->skillsPageMode == SUMMARY_SKILLS_MODE_IVS)
         StringAppend(dst, GetLetterGrade(stat));
     else 
@@ -3851,7 +3851,7 @@ static void PrintLeftColumnStats(void)
 {
     int x;
     
-    if (sMonSummaryScreen->skillsPageMode == SUMMARY_SKILLS_MODE_IVS && P_SUMMARY_SCREEN_IV_EV_VALUES == FALSE)
+    if (sMonSummaryScreen->skillsPageMode == SUMMARY_SKILLS_MODE_IVS && !P_SUMMARY_SCREEN_IV_EV_VALUES)
         x = GetStringRightAlignXOffset(FONT_NORMAL, gStringVar4, 46);
     else
         x = 4;
@@ -3874,7 +3874,7 @@ static void PrintRightColumnStats(void)
 {
     int x;
     
-    if (sMonSummaryScreen->skillsPageMode == SUMMARY_SKILLS_MODE_IVS && P_SUMMARY_SCREEN_IV_EV_VALUES == FALSE)
+    if (sMonSummaryScreen->skillsPageMode == SUMMARY_SKILLS_MODE_IVS && !P_SUMMARY_SCREEN_IV_EV_VALUES)
         x = GetStringRightAlignXOffset(FONT_NORMAL, gStringVar4, 20);
     else
         x = 2;
@@ -4665,15 +4665,14 @@ static inline bool32 ShouldShowRename(void)
 
 static inline bool32 ShouldShowIvEvPrompt(void)
 {
-    if (P_SUMMARY_SCREEN_IV_EV_BOX_ONLY == TRUE)
+    if (P_SUMMARY_SCREEN_IV_EV_BOX_ONLY)
     {
-        return (P_SUMMARY_SCREEN_IV_EV_INFO == TRUE || FlagGet(P_FLAG_IV_EV_INFO))
-            && (sMonSummaryScreen->mode == SUMMARY_MODE_BOX
-                || sMonSummaryScreen->mode == SUMMARY_MODE_BOX_CURSOR);
+        return (P_SUMMARY_SCREEN_IV_EV_INFO || FlagGet(P_FLAG_IV_EV_INFO))
+            && (sMonSummaryScreen->mode == SUMMARY_MODE_BOX|| sMonSummaryScreen->mode == SUMMARY_MODE_BOX_CURSOR);
     }
-    else if (P_SUMMARY_SCREEN_IV_EV_BOX_ONLY == FALSE)
+    else if (!P_SUMMARY_SCREEN_IV_EV_BOX_ONLY)
     {
-        return (P_SUMMARY_SCREEN_IV_EV_INFO == TRUE || FlagGet(P_FLAG_IV_EV_INFO));
+        return (P_SUMMARY_SCREEN_IV_EV_INFO || FlagGet(P_FLAG_IV_EV_INFO));
     }
     return FALSE;
 }
@@ -4698,14 +4697,14 @@ static inline void ShowUtilityPrompt(s16 mode)
         {
             if (mode == SUMMARY_SKILLS_MODE_STATS)
             {
-                if (P_SUMMARY_SCREEN_EV_ONLY == TRUE)
+                if (P_SUMMARY_SCREEN_EV_ONLY)
                     promptText = gText_SkillPageEvs;
                 else
                     promptText = gText_SkillPageIvs;
             }
             else if (mode == SUMMARY_SKILLS_MODE_IVS)
             {
-                if (P_SUMMARY_SCREEN_IV_ONLY == TRUE)
+                if (P_SUMMARY_SCREEN_IV_ONLY)
                     promptText = gText_SkillPageStats;
                 else
                     promptText = gText_SkillPageEvs;
