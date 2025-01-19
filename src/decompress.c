@@ -597,7 +597,6 @@ static void DecodeLOtANS(const u32 *data, const u32 *pFreqs, u8 *resultVec, u32 
 
     u32 funcBuffer[400];
 
-    //DebugPrintf("Address: %d count: %d", (s32) resultVec, count);
     CopyFuncToIwram(funcBuffer, DecodeLOtANSLoop, SwitchToArmCallLOtANS);
     SwitchToArmCallLOtANS(data, &decodeHelper, sMaskTable, (void *) funcBuffer);
 
@@ -614,7 +613,7 @@ static void DecodeLOtANS(const u32 *data, const u32 *pFreqs, u8 *resultVec, u32 
             sBitIndex += currK;
             if (sBitIndex >= 32)
             {
-                currBits = *sDataPtr++;
+                currBits = *(++sDataPtr);
                 sBitIndex -= 32;
                 if (sBitIndex != 0)
                 {
@@ -767,7 +766,7 @@ static void DecodeSymDeltatANS(const u32 *data, const u32 *pFreqs, u16 *resultVe
             sBitIndex += currK;
             if (sBitIndex >= 32)
             {
-                currBits = *data++;
+                currBits = *(++sDataPtr);
                 sBitIndex -= 32;
                 if (sBitIndex != 0)
                 {
