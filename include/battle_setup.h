@@ -49,12 +49,6 @@ extern u16 gPartnerTrainerId;
 
 #define TRAINER_BATTLE_PARAM gTrainerBattleParameter.params
 
-#define DebugPrintTrainerParams(battleParameter) DebugPrintfLevel(MGBA_LOG_DEBUG, "\nisDouble: %d\nplayMusicA: %d\nplayMusicB: %d\nisRematch: %d\nmode: %d\nlocalIdA: %d\ntrainerA: %d\nintroA: %x\ndefeatA: %x\neventA: %x\nlocalIdB: %d\ntrainerB: %d\nintroB: %x\ndefeatB: %x\neventB: %x\nvictory: %x\nnotBattle:%x\n", \
-        battleParameter->params.isDoubleBattle, battleParameter->params.playMusicA, battleParameter->params.playMusicB, battleParameter->params.isRematch, battleParameter->params.mode, \
-        battleParameter->params.objEventLocalIdA, battleParameter->params.opponentA, battleParameter->params.introTextA, battleParameter->params.defeatTextA, battleParameter->params.battleScriptRetAddrA, \
-        battleParameter->params.objEventLocalIdB, battleParameter->params.opponentB, battleParameter->params.introTextB, battleParameter->params.defeatTextB, battleParameter->params.battleScriptRetAddrB, \
-        battleParameter->params.victoryText, battleParameter->params.cannotBattleText)
-
 void BattleSetup_StartWildBattle(void);
 void BattleSetup_StartDoubleWildBattle(void);
 void BattleSetup_StartBattlePikeWildBattle(void);
