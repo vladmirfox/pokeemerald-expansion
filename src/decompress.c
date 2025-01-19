@@ -514,7 +514,7 @@ static void BuildDecompressionTable(const u32 *packedFreqs, struct DecodeYK *tab
 
 static EWRAM_DATA u8 sCurrSymbol = 0;
 static EWRAM_DATA u8 sBitIndex = 0;
-static EWRAM_DATA u32 sReadIndex = 0;
+static EWRAM_DATA const u32 *sDataPtr = 0;
 static EWRAM_DATA u32 sCurrState = 0;
 // Order of allocated memory- ykTable, symbolTable(these go first, because are always aligned), symSize, loSize(last, because not aligned)
 static EWRAM_DATA void *sMemoryAllocated;
@@ -541,9 +541,6 @@ static inline void CopyFuncToIwram(void *funcBuffer, void *funcStartAddress, voi
 // - O3 saves cycles
 __attribute__((target("arm"))) __attribute__((noinline, no_reorder)) __attribute__((optimize("-O3"))) static void DecodeLOtANSLoop(const u32 *data, struct DecodeHelperStruct *decodeHelper, u32 *maskTable)
 {
-    data += sReadIndex;
-    const u32 *dataCmpPtr = data;
-
     u32 currBits = *data++;
     u32 bitIndex = sBitIndex;
     u8 * resultVec = (u8*)(decodeHelper->resultVec);
@@ -574,7 +571,7 @@ __attribute__((target("arm"))) __attribute__((noinline, no_reorder)) __attribute
     } while (resultVec_u16 < (u16 *) resultVecEnd);
 
     sBitIndex = bitIndex;
-    sReadIndex += ((data - 1) - dataCmpPtr);
+    sDataPtr = data - 1;
 }
 
 //  Dark Egg magic
@@ -606,7 +603,7 @@ static void DecodeLOtANS(const u32 *data, const u32 *pFreqs, u8 *resultVec, u32 
 
     if (remainingCount)
     {
-        u32 currBits = data[sReadIndex];
+        u32 currBits = *sDataPtr;
         u32 symbol = 0;
         for (u32 currNibble = 0; currNibble < 2; currNibble++)
         {
@@ -617,7 +614,7 @@ static void DecodeLOtANS(const u32 *data, const u32 *pFreqs, u8 *resultVec, u32 
             sBitIndex += currK;
             if (sBitIndex >= 32)
             {
-                currBits = data[++sReadIndex];
+                currBits = *sDataPtr++;
                 sBitIndex -= 32;
                 if (sBitIndex != 0)
                 {
@@ -631,7 +628,7 @@ static void DecodeLOtANS(const u32 *data, const u32 *pFreqs, u8 *resultVec, u32 
 
 __attribute__((target("arm"))) __attribute__((noinline, no_reorder)) __attribute__((optimize("-O3"))) static void DecodeSymtANSLoop(const u32 *data, struct DecodeHelperStruct *stuff, u32 *maskTable)
 {
-    u32 currBits = data[sReadIndex];
+    u32 currBits = *data++;
     u32 bitIndex = sBitIndex;
 
     u16 * resultVec_16 = (u16*)(stuff->resultVec);
@@ -642,32 +639,26 @@ __attribute__((target("arm"))) __attribute__((noinline, no_reorder)) __attribute
         u32 symbol = 0;
         for (u32 currNibble = 0; currNibble < 4; currNibble++)
         {
-            symbol += stuff->symbolTable[sCurrState] << (currNibble*4);
+            symbol |= stuff->symbolTable[sCurrState] << (currNibble*4);
             u32 currK = stuff->ykTable[sCurrState].kVal;
-            u32 nextState = stuff->ykTable[sCurrState].yVal;
-            nextState += (currBits >> bitIndex) & (0xff >> (8-currK)); // Masktable is slower here for some reason.
-            if (bitIndex + currK < 32)
+            sCurrState = stuff->ykTable[sCurrState].yVal - 64;
+            sCurrState += (currBits >> bitIndex) & maskTable[currK]; // Masktable is slower here for some reason.
+            bitIndex += currK;
+            if (bitIndex >= 32)
             {
-                bitIndex += currK;
+                currBits = *data++;
+                bitIndex -= 32;
+                if (bitIndex != 0)
+                {
+                    sCurrState += (currBits & ((1u << bitIndex) - 1)) << (currK - bitIndex);
+                }
             }
-            else if (bitIndex + currK == 32)
-            {
-                currBits = data[++sReadIndex];
-                bitIndex = 0;
-            }
-            else if ((bitIndex + currK) > 32)
-            {
-                currBits = data[++sReadIndex];
-                u32 remainder = bitIndex + currK - 32;
-                nextState += (currBits & ((1u << remainder) - 1)) << (currK - remainder);
-                bitIndex = remainder;
-            }
-            sCurrState = nextState - 64;
         }
         *resultVec_16++ = symbol;
     } while (resultVec_16 < resultVecEnd);
 
     sBitIndex = bitIndex;
+    sDataPtr = data - 1;
 }
 
 __attribute__((target("arm"))) __attribute__((no_reorder)) static void SwitchToArmCallDecodeSymtANS(const u32 *data, struct DecodeHelperStruct *stuff, u32 *maskTable, void (*decodeFunction)(const u32 *data, struct DecodeHelperStruct *stuff, u32 *maskTable))
@@ -699,9 +690,6 @@ static void DecodeSymtANS(const u32 *data, const u32 *pFreqs, u16 *resultVec, u3
 // -O3 saves us almost 30k cycles compared to -O2
 __attribute__((target("arm"))) __attribute__((noinline, no_reorder)) __attribute__((optimize("-O3"))) static void DecodeSymDeltatANSLoop(const u32 *data, struct DecodeHelperStruct *decodeHelper, u32 *maskTable)
 {
-    data += sReadIndex;
-    const u32 *dataCmpPtr = data;
-
     u32 currBits = *data++;
     u32 currSymbol = 0;
     u32 bitIndex = sBitIndex;
@@ -737,7 +725,7 @@ __attribute__((target("arm"))) __attribute__((noinline, no_reorder)) __attribute
     } while (resultVec_32 < (u32 *) resultVecEnd);
     sBitIndex = bitIndex;
     sCurrSymbol = currSymbol;
-    sReadIndex += ((data - 1) - dataCmpPtr);
+    sDataPtr = data - 1;
 }
 
 //  Dark Egg magic
@@ -767,7 +755,7 @@ static void DecodeSymDeltatANS(const u32 *data, const u32 *pFreqs, u16 *resultVe
 
     if (remainingCount)
     {
-        u32 currBits = data[sReadIndex];
+        u32 currBits = *sDataPtr;
         u32 symbol = 0;
         for (u32 currNibble = 0; currNibble < 4; currNibble++)
         {
@@ -913,32 +901,32 @@ void SmolDecompressData(const struct SmolHeader *header, const u32 *data, void *
     const u32 *pLoFreqs;
     const u32 *pSymFreqs;
 
-    sReadIndex = 0;
     //  Use different decoding flows depending on which mode the data is compressed with
     switch (header->mode)
     {
         case ENCODE_LO:
-            pLoFreqs = &data[sReadIndex];
-            sReadIndex += 3;
+            pLoFreqs = &data[0];
+            data += 3;
             break;
         case ENCODE_DELTA_SYMS:
         case ENCODE_SYMS:
-            pSymFreqs = &data[sReadIndex];
-            sReadIndex += 3;
+            pSymFreqs = &data[0];
+            data += 3;
             break;
         case ENCODE_BOTH:
         case ENCODE_BOTH_DELTA_SYMS:
-            pLoFreqs = &data[sReadIndex];
-            pSymFreqs = &data[sReadIndex + 3];
-            sReadIndex += 6;
+            pLoFreqs = &data[0];
+            pSymFreqs = &data[3];
+            data += 6;
             break;
     }
 
+    sDataPtr = data;
     sBitIndex = 0;
     //  Decode tANS encoded LO data, mode 3, 4 and 5
     if (loEncoded)
     {
-        DecodeLOtANS(data, pLoFreqs, loVec, headerLoSize);
+        DecodeLOtANS(sDataPtr, pLoFreqs, loVec, headerLoSize);
         leftoverPos += 12;
     }
     //  Decode tANS encoded symbol data, mode 1, 2, 4 and 5
@@ -946,10 +934,10 @@ void SmolDecompressData(const struct SmolHeader *header, const u32 *data, void *
     {
         //  Symbols are delta encoded, mode 2 and 5
         if (symDelta)
-            DecodeSymDeltatANS(data, pSymFreqs, symVec, headerSymSize);
+            DecodeSymDeltatANS(sDataPtr, pSymFreqs, symVec, headerSymSize);
         //  Symbols are not delta encoded, mode 1 and 4
         else
-            DecodeSymtANS(data, pSymFreqs, symVec, headerSymSize);
+            DecodeSymtANS(sDataPtr, pSymFreqs, symVec, headerSymSize);
         leftoverPos += 12;
     }
 
