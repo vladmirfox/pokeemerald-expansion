@@ -9,7 +9,7 @@
 EWRAM_DATA ALIGNED(4) u8 gDecompressionBuffer[0x4000] = {0};
 
 //  Helper struct to build the tANS decode tables without having to do calculations at run-time
-static const struct DecodeYK sYkTemplate[2*TANS_TABLE_SIZE] = {
+ALIGNED(4) static const struct DecodeYK sYkTemplate[2*TANS_TABLE_SIZE] = {
     [0] = {0, 0},
     [1] = {1<<6, 6},
     [2] = {2<<5, 5},
@@ -300,22 +300,366 @@ void DecompressDataWithHeaderWram(const u32 *src, void *dest)
     }
 }
 
+#define REP0(X)
+#define REP1(X) X
+#define REP2(X) REP1(X) X
+#define REP3(X) REP2(X) X
+#define REP4(X) REP3(X) X
+#define REP5(X) REP4(X) X
+#define REP6(X) REP5(X) X
+#define REP7(X) REP6(X) X
+#define REP8(X) REP7(X) X
+#define REP9(X) REP8(X) X
+#define REP10(X) REP9(X) X
+
+#define REP(TENS,ONES,X) \
+  REP##TENS(REP10(X)) \
+  REP##ONES(X)
+
+
 //  Build the tANS decompression table from the specified frequencies and the precomputed helper struct
-void BuildDecompressionTable(const u32 *packedFreqs, struct DecodeYK *table, u32 *symbolTable)
+void BuildDecompressionTable(const u32 *packedFreqs, struct DecodeYK *table, u8 *symbolTable)
 {
     u32 freqs[16];
-    u32 currCol = 0;
+
     UnpackFrequencies(packedFreqs, freqs);
+
+    #define TABLE_TYPE u16
+
+    TABLE_TYPE *tableAsU16 = (void *) table;
+
+    //TestStr();
+
     for (u32 i = 0; i < 16; i++)
     {
-        if (freqs[i] != 0)
-        {
-            CpuCopy32(&sYkTemplate[freqs[i]], &table[currCol], freqs[i]*sizeof(struct DecodeYK));
-            for (u32 j = 0; j < freqs[i]; j++)
-                symbolTable[currCol + j] = i;
-            currCol += freqs[i];
+        const TABLE_TYPE *srcTemplate;
+        switch (freqs[i]) {
+        case 0:
+            break;
+        case 1:
+            srcTemplate = (TABLE_TYPE *)(&sYkTemplate[1]);
+            REP(0, 1, *tableAsU16++ = *srcTemplate++;)
+            REP(0, 1, *symbolTable++ = i;);
+            break;
+        case 2:
+            srcTemplate = (TABLE_TYPE *)(&sYkTemplate[2]);
+            REP(0, 2, *tableAsU16++ = *srcTemplate++;)
+            REP(0, 2, *symbolTable++ = i;);
+            break;
+        case 3:
+            srcTemplate = (TABLE_TYPE *)(&sYkTemplate[3]);
+            REP(0, 3, *tableAsU16++ = *srcTemplate++;)
+            REP(0, 3, *symbolTable++ = i;);
+            break;
+        case 4:
+            srcTemplate = (TABLE_TYPE *)(&sYkTemplate[4]);
+            REP(0, 4, *tableAsU16++ = *srcTemplate++;)
+            REP(0, 4, *symbolTable++ = i;);
+            break;
+        case 5:
+            srcTemplate = (TABLE_TYPE *)(&sYkTemplate[5]);
+            REP(0, 5, *tableAsU16++ = *srcTemplate++;)
+            REP(0, 5, *symbolTable++ = i;);
+            break;
+        case 6:
+            srcTemplate = (TABLE_TYPE *)(&sYkTemplate[6]);
+            REP(0, 6, *tableAsU16++ = *srcTemplate++;)
+            REP(0, 6, *symbolTable++ = i;);
+            break;
+        case 7:
+            srcTemplate = (TABLE_TYPE *)(&sYkTemplate[7]);
+            REP(0, 7, *tableAsU16++ = *srcTemplate++;)
+            REP(0, 7, *symbolTable++ = i;);
+            break;
+        case 8:
+            srcTemplate = (TABLE_TYPE *)(&sYkTemplate[8]);
+            REP(0, 8, *tableAsU16++ = *srcTemplate++;)
+            REP(0, 8, *symbolTable++ = i;);
+            break;
+        case 9:
+            srcTemplate = (TABLE_TYPE *)(&sYkTemplate[9]);
+            REP(0, 9, *tableAsU16++ = *srcTemplate++;)
+            REP(0, 9, *symbolTable++ = i;);
+            break;
+        case 10:
+            srcTemplate = (TABLE_TYPE *)(&sYkTemplate[10]);
+            REP(1, 0, *tableAsU16++ = *srcTemplate++;)
+            REP(1, 0, *symbolTable++ = i;);
+            break;
+        case 11:
+            srcTemplate = (TABLE_TYPE *)(&sYkTemplate[11]);
+            REP(1, 1, *tableAsU16++ = *srcTemplate++;)
+            REP(1, 1, *symbolTable++ = i;);
+            break;
+        case 12:
+            srcTemplate = (TABLE_TYPE *)(&sYkTemplate[12]);
+            REP(1, 2, *tableAsU16++ = *srcTemplate++;)
+            REP(1, 2, *symbolTable++ = i;);
+            break;
+        case 13:
+            srcTemplate = (TABLE_TYPE *)(&sYkTemplate[13]);
+            REP(1, 3, *tableAsU16++ = *srcTemplate++;)
+            REP(1, 3, *symbolTable++ = i;);
+            break;
+        case 14:
+            srcTemplate = (TABLE_TYPE *)(&sYkTemplate[14]);
+            REP(1, 4, *tableAsU16++ = *srcTemplate++;)
+            REP(1, 4, *symbolTable++ = i;);
+            break;
+        case 15:
+            srcTemplate = (TABLE_TYPE *)(&sYkTemplate[15]);
+            REP(1, 5, *tableAsU16++ = *srcTemplate++;)
+            REP(1, 5, *symbolTable++ = i;);
+            break;
+        case 16:
+            srcTemplate = (TABLE_TYPE *)(&sYkTemplate[16]);
+            REP(1, 6, *tableAsU16++ = *srcTemplate++;)
+            REP(1, 6, *symbolTable++ = i;);
+            break;
+        case 17:
+            srcTemplate = (TABLE_TYPE *)(&sYkTemplate[17]);
+            REP(1, 7, *tableAsU16++ = *srcTemplate++;)
+            REP(1, 7, *symbolTable++ = i;);
+            break;
+        case 18:
+            srcTemplate = (TABLE_TYPE *)(&sYkTemplate[18]);
+            REP(1, 8, *tableAsU16++ = *srcTemplate++;)
+            REP(1, 8, *symbolTable++ = i;);
+            break;
+        case 19:
+            srcTemplate = (TABLE_TYPE *)(&sYkTemplate[19]);
+            REP(1, 9, *tableAsU16++ = *srcTemplate++;)
+            REP(1, 9, *symbolTable++ = i;);
+            break;
+        case 20:
+            srcTemplate = (TABLE_TYPE *)(&sYkTemplate[20]);
+            REP(2, 0, *tableAsU16++ = *srcTemplate++;)
+            REP(2, 0, *symbolTable++ = i;);
+            break;
+        case 21:
+            srcTemplate = (TABLE_TYPE *)(&sYkTemplate[21]);
+            REP(2, 1, *tableAsU16++ = *srcTemplate++;)
+            REP(2, 1, *symbolTable++ = i;);
+            break;
+        case 22:
+            srcTemplate = (TABLE_TYPE *)(&sYkTemplate[22]);
+            REP(2, 2, *tableAsU16++ = *srcTemplate++;)
+            REP(2, 2, *symbolTable++ = i;);
+            break;
+        case 23:
+            srcTemplate = (TABLE_TYPE *)(&sYkTemplate[23]);
+            REP(2, 3, *tableAsU16++ = *srcTemplate++;)
+            REP(2, 3, *symbolTable++ = i;);
+            break;
+        case 24:
+            srcTemplate = (TABLE_TYPE *)(&sYkTemplate[24]);
+            REP(2, 4, *tableAsU16++ = *srcTemplate++;)
+            REP(2, 4, *symbolTable++ = i;);
+            break;
+        case 25:
+            srcTemplate = (TABLE_TYPE *)(&sYkTemplate[25]);
+            REP(2, 5, *tableAsU16++ = *srcTemplate++;)
+            REP(2, 5, *symbolTable++ = i;);
+            break;
+        case 26:
+            srcTemplate = (TABLE_TYPE *)(&sYkTemplate[26]);
+            REP(2, 6, *tableAsU16++ = *srcTemplate++;)
+            REP(2, 6, *symbolTable++ = i;);
+            break;
+        case 27:
+            srcTemplate = (TABLE_TYPE *)(&sYkTemplate[27]);
+            REP(2, 7, *tableAsU16++ = *srcTemplate++;)
+            REP(2, 7, *symbolTable++ = i;);
+            break;
+        case 28:
+            srcTemplate = (TABLE_TYPE *)(&sYkTemplate[28]);
+            REP(2, 8, *tableAsU16++ = *srcTemplate++;)
+            REP(2, 8, *symbolTable++ = i;);
+            break;
+        case 29:
+            srcTemplate = (TABLE_TYPE *)(&sYkTemplate[29]);
+            REP(2, 9, *tableAsU16++ = *srcTemplate++;)
+            REP(2, 9, *symbolTable++ = i;);
+            break;
+        case 30:
+            srcTemplate = (TABLE_TYPE *)(&sYkTemplate[30]);
+            REP(3, 0, *tableAsU16++ = *srcTemplate++;)
+            REP(3, 0, *symbolTable++ = i;);
+            break;
+        case 31:
+            srcTemplate = (TABLE_TYPE *)(&sYkTemplate[31]);
+            REP(3, 1, *tableAsU16++ = *srcTemplate++;)
+            REP(3, 1, *symbolTable++ = i;);
+            break;
+        case 32:
+            srcTemplate = (TABLE_TYPE *)(&sYkTemplate[32]);
+            REP(3, 2, *tableAsU16++ = *srcTemplate++;)
+            REP(3, 2, *symbolTable++ = i;);
+            break;
+        case 33:
+            srcTemplate = (TABLE_TYPE *)(&sYkTemplate[33]);
+            REP(3, 3, *tableAsU16++ = *srcTemplate++;)
+            REP(3, 3, *symbolTable++ = i;);
+            break;
+        case 34:
+            srcTemplate = (TABLE_TYPE *)(&sYkTemplate[34]);
+            REP(3, 4, *tableAsU16++ = *srcTemplate++;)
+            REP(3, 4, *symbolTable++ = i;);
+            break;
+        case 35:
+            srcTemplate = (TABLE_TYPE *)(&sYkTemplate[35]);
+            REP(3, 5, *tableAsU16++ = *srcTemplate++;)
+            REP(3, 5, *symbolTable++ = i;);
+            break;
+        case 36:
+            srcTemplate = (TABLE_TYPE *)(&sYkTemplate[36]);
+            REP(3, 6, *tableAsU16++ = *srcTemplate++;)
+            REP(3, 6, *symbolTable++ = i;);
+            break;
+        case 37:
+            srcTemplate = (TABLE_TYPE *)(&sYkTemplate[37]);
+            REP(3, 7, *tableAsU16++ = *srcTemplate++;)
+            REP(3, 7, *symbolTable++ = i;);
+            break;
+        case 38:
+            srcTemplate = (TABLE_TYPE *)(&sYkTemplate[38]);
+            REP(3, 8, *tableAsU16++ = *srcTemplate++;)
+            REP(3, 8, *symbolTable++ = i;);
+            break;
+        case 39:
+            srcTemplate = (TABLE_TYPE *)(&sYkTemplate[39]);
+            REP(3, 9, *tableAsU16++ = *srcTemplate++;)
+            REP(3, 9, *symbolTable++ = i;);
+            break;
+        case 40:
+            srcTemplate = (TABLE_TYPE *)(&sYkTemplate[40]);
+            REP(4, 0, *tableAsU16++ = *srcTemplate++;)
+            REP(4, 0, *symbolTable++ = i;);
+            break;
+        case 41:
+            srcTemplate = (TABLE_TYPE *)(&sYkTemplate[41]);
+            REP(4, 1, *tableAsU16++ = *srcTemplate++;)
+            REP(4, 1, *symbolTable++ = i;);
+            break;
+        case 42:
+            srcTemplate = (TABLE_TYPE *)(&sYkTemplate[42]);
+            REP(4, 2, *tableAsU16++ = *srcTemplate++;)
+            REP(4, 2, *symbolTable++ = i;);
+            break;
+        case 43:
+            srcTemplate = (TABLE_TYPE *)(&sYkTemplate[43]);
+            REP(4, 3, *tableAsU16++ = *srcTemplate++;)
+            REP(4, 3, *symbolTable++ = i;);
+            break;
+        case 44:
+            srcTemplate = (TABLE_TYPE *)(&sYkTemplate[44]);
+            REP(4, 4, *tableAsU16++ = *srcTemplate++;)
+            REP(4, 4, *symbolTable++ = i;);
+            break;
+        case 45:
+            srcTemplate = (TABLE_TYPE *)(&sYkTemplate[45]);
+            REP(4, 5, *tableAsU16++ = *srcTemplate++;)
+            REP(4, 5, *symbolTable++ = i;);
+            break;
+        case 46:
+            srcTemplate = (TABLE_TYPE *)(&sYkTemplate[46]);
+            REP(4, 6, *tableAsU16++ = *srcTemplate++;)
+            REP(4, 6, *symbolTable++ = i;);
+            break;
+        case 47:
+            srcTemplate = (TABLE_TYPE *)(&sYkTemplate[47]);
+            REP(4, 7, *tableAsU16++ = *srcTemplate++;)
+            REP(4, 7, *symbolTable++ = i;);
+            break;
+        case 48:
+            srcTemplate = (TABLE_TYPE *)(&sYkTemplate[48]);
+            REP(4, 8, *tableAsU16++ = *srcTemplate++;)
+            REP(4, 8, *symbolTable++ = i;);
+            break;
+        case 49:
+            srcTemplate = (TABLE_TYPE *)(&sYkTemplate[49]);
+            REP(4, 9, *tableAsU16++ = *srcTemplate++;)
+            REP(4, 9, *symbolTable++ = i;);
+            break;
+        case 50:
+            srcTemplate = (TABLE_TYPE *)(&sYkTemplate[50]);
+            REP(5, 0, *tableAsU16++ = *srcTemplate++;)
+            REP(5, 0, *symbolTable++ = i;);
+            break;
+        case 51:
+            srcTemplate = (TABLE_TYPE *)(&sYkTemplate[51]);
+            REP(5, 1, *tableAsU16++ = *srcTemplate++;)
+            REP(5, 1, *symbolTable++ = i;);
+            break;
+        case 52:
+            srcTemplate = (TABLE_TYPE *)(&sYkTemplate[52]);
+            REP(5, 2, *tableAsU16++ = *srcTemplate++;)
+            REP(5, 2, *symbolTable++ = i;);
+            break;
+        case 53:
+            srcTemplate = (TABLE_TYPE *)(&sYkTemplate[53]);
+            REP(5, 3, *tableAsU16++ = *srcTemplate++;)
+            REP(5, 3, *symbolTable++ = i;);
+            break;
+        case 54:
+            srcTemplate = (TABLE_TYPE *)(&sYkTemplate[54]);
+            REP(5, 4, *tableAsU16++ = *srcTemplate++;)
+            REP(5, 4, *symbolTable++ = i;);
+            break;
+        case 55:
+            srcTemplate = (TABLE_TYPE *)(&sYkTemplate[55]);
+            REP(5, 5, *tableAsU16++ = *srcTemplate++;)
+            REP(5, 5, *symbolTable++ = i;);
+            break;
+        case 56:
+            srcTemplate = (TABLE_TYPE *)(&sYkTemplate[56]);
+            REP(5, 6, *tableAsU16++ = *srcTemplate++;)
+            REP(5, 6, *symbolTable++ = i;);
+            break;
+        case 57:
+            srcTemplate = (TABLE_TYPE *)(&sYkTemplate[57]);
+            REP(5, 7, *tableAsU16++ = *srcTemplate++;)
+            REP(5, 7, *symbolTable++ = i;);
+            break;
+        case 58:
+            srcTemplate = (TABLE_TYPE *)(&sYkTemplate[58]);
+            REP(5, 8, *tableAsU16++ = *srcTemplate++;)
+            REP(5, 8, *symbolTable++ = i;);
+            break;
+        case 59:
+            srcTemplate = (TABLE_TYPE *)(&sYkTemplate[59]);
+            REP(5, 9, *tableAsU16++ = *srcTemplate++;)
+            REP(5, 9, *symbolTable++ = i;);
+            break;
+        case 60:
+            srcTemplate = (TABLE_TYPE *)(&sYkTemplate[60]);
+            REP(6, 0, *tableAsU16++ = *srcTemplate++;)
+            REP(6, 0, *symbolTable++ = i;);
+            break;
+        case 61:
+            srcTemplate = (TABLE_TYPE *)(&sYkTemplate[61]);
+            REP(6, 1, *tableAsU16++ = *srcTemplate++;)
+            REP(6, 1, *symbolTable++ = i;);
+            break;
+        case 62:
+            srcTemplate = (TABLE_TYPE *)(&sYkTemplate[62]);
+            REP(6, 2, *tableAsU16++ = *srcTemplate++;)
+            REP(6, 2, *symbolTable++ = i;);
+            break;
+        case 63:
+            srcTemplate = (TABLE_TYPE *)(&sYkTemplate[63]);
+            REP(6, 3, *tableAsU16++ = *srcTemplate++;)
+            REP(6, 3, *symbolTable++ = i;);
+            break;
+        case 64:
+            srcTemplate = (TABLE_TYPE *)(&sYkTemplate[64]);
+            REP(6, 4, *tableAsU16++ = *srcTemplate++;)
+            REP(6, 4, *symbolTable++ = i;);
+            break;
         }
     }
+
+    #undef TABLE_TYPE
 }
 
 static EWRAM_DATA u8 sCurrSymbol = 0;
@@ -328,7 +672,7 @@ static EWRAM_DATA void *sMemoryAllocated;
 struct DecodeHelperStruct
 {
     void *resultVec; // u16 for SymDelta, u8 for LOtANS
-    u32 *symbolTable;
+    u8 *symbolTable;
     struct DecodeYK *ykTable;
     u32 count;
 };
@@ -336,7 +680,7 @@ struct DecodeHelperStruct
 //  Dark Egg magic
 static inline void CopyFuncToIwram(void *funcBuffer, void *_funcStartAddress, void *_funcEndAdress)
 {
-    CpuFastCopy(_funcStartAddress, funcBuffer, _funcEndAdress - _funcStartAddress);
+    CpuCopy32(_funcStartAddress, funcBuffer, _funcEndAdress - _funcStartAddress);
 }
 
 //  Inner loop of tANS decoding for Lengths and Offset data for decompression instructions, uses u8 data sizes
@@ -406,7 +750,7 @@ static inline void SetMaskTable(u8 *maskTable)
 void DecodeLOtANS(const u32 *data, const u32 *pFreqs, u8 *resultVec, u32 count)
 {
     struct DecodeYK *ykTable = sMemoryAllocated;
-    u32 *symbolTable = sMemoryAllocated + (TANS_TABLE_SIZE*sizeof(struct DecodeYK));
+    u8 *symbolTable = sMemoryAllocated + (TANS_TABLE_SIZE*sizeof(struct DecodeYK));
     BuildDecompressionTable(pFreqs, ykTable, symbolTable);
 
     u8 maskTable[8];
@@ -424,7 +768,7 @@ void DecodeLOtANS(const u32 *data, const u32 *pFreqs, u8 *resultVec, u32 count)
     SwitchToArmCallLOtANS(data, &decodeHelper, maskTable, (void *) funcBuffer);
 }
 
-__attribute__((target("arm"))) __attribute__((noinline, no_reorder)) __attribute__((optimize("-O3"))) void DecodeSymtANSLoop(const u32 *data, struct DecodeStuff *stuff, u8 *maskTable)
+__attribute__((target("arm"))) __attribute__((noinline, no_reorder)) __attribute__((optimize("-O3"))) void DecodeSymtANSLoop(const u32 *data, struct DecodeHelperStruct *stuff, u8 *maskTable)
 {
     u32 currBits = data[sReadIndex];
     u32 bitIndex = sBitIndex;
@@ -465,7 +809,7 @@ __attribute__((target("arm"))) __attribute__((noinline, no_reorder)) __attribute
     sBitIndex = bitIndex;
 }
 
-__attribute__((target("arm"))) __attribute__((noinline, no_reorder)) void SwitchToArmCallDecodeSymtANS(const u32 *data, struct DecodeStuff *stuff, u8 *maskTable, void (*decodeFunction)(const u32 *data, struct DecodeStuff *stuff, u8 *maskTable))
+__attribute__((target("arm"))) __attribute__((noinline, no_reorder)) void SwitchToArmCallDecodeSymtANS(const u32 *data, struct DecodeHelperStruct *stuff, u8 *maskTable, void (*decodeFunction)(const u32 *data, struct DecodeHelperStruct *stuff, u8 *maskTable))
 {
     decodeFunction(data, stuff, maskTable);
 }
@@ -473,13 +817,13 @@ __attribute__((target("arm"))) __attribute__((noinline, no_reorder)) void Switch
 void DecodeSymtANS(const u32 *data, const u32 *pFreqs, u16 *resultVec, u32 count)
 {
     struct DecodeYK *ykTable = sMemoryAllocated;
-    u32 *symbolTable = sMemoryAllocated + (TANS_TABLE_SIZE*sizeof(struct DecodeYK));
+    u8 *symbolTable = sMemoryAllocated + (TANS_TABLE_SIZE*sizeof(struct DecodeYK));
     BuildDecompressionTable(pFreqs, ykTable, symbolTable);
 
     u8 maskTable[8];
     SetMaskTable(maskTable);
 
-    struct DecodeStuff stuff;
+    struct DecodeHelperStruct stuff;
 
     stuff.ykTable = ykTable;
     stuff.symbolTable = symbolTable;
@@ -511,31 +855,10 @@ __attribute__((target("arm"))) __attribute__((noinline, no_reorder)) __attribute
     {
         u32 symbol = 0;
 
-        for (u32 currNibble = 0; currNibble < 4; currNibble++)
+        for (u32 currNibble = 0; currNibble < 8; currNibble++)
         {
             currSymbol = (currSymbol + decodeHelper->symbolTable[sCurrState]) & 0xf;
-            symbol += currSymbol << (currNibble*4);
-            u32 currK = decodeHelper->ykTable[sCurrState].kVal;
-            sCurrState = decodeHelper->ykTable[sCurrState].yVal - 64;
-            sCurrState += (currBits >> bitIndex) & maskTable[currK];
-            bitIndex += currK;
-            if (bitIndex > 32)
-            {
-                currBits = *data++;
-                bitIndex -= 32;
-                sCurrState += (currBits & ((1u << bitIndex) - 1)) << (currK - bitIndex);
-            }
-            else if (bitIndex == 32)
-            {
-                currBits = *data++;
-                bitIndex = 0;
-            }
-        }
-
-        for (u32 currNibble = 0; currNibble < 4; currNibble++)
-        {
-            currSymbol = (currSymbol + decodeHelper->symbolTable[sCurrState]) & 0xf;
-            symbol |= (currSymbol << (currNibble*4)) << 0x10;
+            symbol |= currSymbol << (currNibble*4);
             u32 currK = decodeHelper->ykTable[sCurrState].kVal;
             sCurrState = decodeHelper->ykTable[sCurrState].yVal - 64;
             sCurrState += (currBits >> bitIndex) & maskTable[currK];
@@ -570,7 +893,7 @@ __attribute__((target("arm"))) __attribute__((noinline, no_reorder)) void Switch
 void DecodeSymDeltatANS(const u32 *data, const u32 *pFreqs, u16 *resultVec, u32 count)
 {
     struct DecodeYK *ykTable = sMemoryAllocated;
-    u32 *symbolTable = sMemoryAllocated + (TANS_TABLE_SIZE*sizeof(struct DecodeYK));
+    u8 *symbolTable = sMemoryAllocated + (TANS_TABLE_SIZE*sizeof(struct DecodeYK));
     BuildDecompressionTable(pFreqs, ykTable, symbolTable);
 
     u8 maskTable[8];
@@ -622,20 +945,20 @@ void DecodeSymDeltatANS(const u32 *data, const u32 *pFreqs, u16 *resultVec, u32 
     }
 }
 
-static inline void Copy16(void *_src, void *_dst, u32 size)
-{
-    u16 *src = _src;
-    u16 *dst = _dst;
-    for (u32 i = 0; i < size; i++) {
-        dst[i] = src[i];
-    }
-}
-
 static inline void Fill16(u16 value, void *_dst, u32 size)
 {
     u16 *dst = _dst;
     for (u32 i = 0; i < size; i++) {
         dst[i] = value;
+    }
+}
+
+static inline void Copy16(const void *_src, void *_dst, u32 size)
+{
+    const u16 *src = _src;
+    u16 *dst = _dst;
+    for (u32 i = 0; i < size; i++) {
+        dst[i] = src[i];
     }
 }
 

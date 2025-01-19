@@ -41,7 +41,7 @@ struct SpriteSheetHeader {
     u32 framesPerComponent:16;
 };
 
-struct DecodeYK {
+struct __attribute__((packed, aligned(2))) DecodeYK {
     u8 yVal;
     u8 kVal;
 };
@@ -69,7 +69,7 @@ void DecompressDataWithHeaderWram(const u32 *src, void *dest);
 
 void SmolDecompressData(const struct SmolHeader *header, const u32 *data, void *dest);
 
-void BuildDecompressionTable(const u32 *freqs, struct DecodeYK *ykTable, u32 *symbolTable);
+void BuildDecompressionTable(const u32 *freqs, struct DecodeYK *ykTable, u8 *symbolTable);
 
 void DecodeLOtANS(const u32 *data, const u32 *pFreqs, u8 *resultVec, u32 count);
 
