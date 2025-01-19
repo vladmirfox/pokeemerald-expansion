@@ -1963,7 +1963,7 @@ static void Task_ChangeSummaryMon(u8 taskId)
         if (ExtractMonDataToSummaryStruct(&sMonSummaryScreen->currentMon) == FALSE)
         {
             return;
-        }     
+        }
         else
         {
             if (P_SUMMARY_SCREEN_MOVE_RELEARNER
@@ -2125,8 +2125,6 @@ static void ChangePage(u8 taskId, s8 delta)
     {
         ShowUtilityPrompt(SUMMARY_MODE_NORMAL);
     }
-        
-
 }
 
 static void PssScrollRight(u8 taskId) // Scroll right
