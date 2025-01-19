@@ -2120,7 +2120,10 @@ static void ChangePage(u8 taskId, s8 delta)
         BufferRightColumnStats();
     }
     else
+    {
         ShowUtilityPrompt(SUMMARY_MODE_NORMAL);
+    }
+        
 
 }
 
@@ -4666,10 +4669,11 @@ static inline bool32 ShouldShowIvEvPrompt(void)
             && (sMonSummaryScreen->mode == SUMMARY_MODE_BOX
                 || sMonSummaryScreen->mode == SUMMARY_MODE_BOX_CURSOR);
     }
-    else if (P_SUMMARY_SCREEN_IV_EV_BOX_ONLY == FALSE) 
+    else if (P_SUMMARY_SCREEN_IV_EV_BOX_ONLY == FALSE)
+    {
         return (P_SUMMARY_SCREEN_IV_EV_INFO == TRUE || FlagGet(P_FLAG_IV_EV_INFO));
-    else
-        return FALSE;
+    }
+    return FALSE;
 }
 
 static inline void ShowUtilityPrompt(s16 mode)
