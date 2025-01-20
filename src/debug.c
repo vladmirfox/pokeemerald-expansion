@@ -1170,6 +1170,29 @@ static void DebugAction_DestroyExtraWindow(u8 taskId)
     UnfreezeObjectEvents();
 }
 
+
+static const u16 sLocationFlags[] =
+{
+    FLAG_VISITED_LITTLEROOT_TOWN,
+    FLAG_VISITED_OLDALE_TOWN,
+    FLAG_VISITED_DEWFORD_TOWN,
+    FLAG_VISITED_LAVARIDGE_TOWN,
+    FLAG_VISITED_FALLARBOR_TOWN,
+    FLAG_VISITED_VERDANTURF_TOWN,
+    FLAG_VISITED_PACIFIDLOG_TOWN,
+    FLAG_VISITED_PETALBURG_CITY,
+    FLAG_VISITED_SLATEPORT_CITY,
+    FLAG_VISITED_MAUVILLE_CITY,
+    FLAG_VISITED_RUSTBORO_CITY,
+    FLAG_VISITED_FORTREE_CITY,
+    FLAG_VISITED_LILYCOVE_CITY,
+    FLAG_VISITED_MOSSDEEP_CITY,
+    FLAG_VISITED_SOOTOPOLIS_CITY,
+    FLAG_VISITED_EVER_GRANDE_CITY,
+    FLAG_LANDMARK_POKEMON_LEAGUE,
+    FLAG_LANDMARK_BATTLE_FRONTIER,
+};
+
 static u8 Debug_CheckToggleFlags(u8 id)
 {
     u8 result = FALSE;
@@ -1192,34 +1215,26 @@ static u8 Debug_CheckToggleFlags(u8 id)
             result = FlagGet(FLAG_SYS_B_DASH);
             break;
         case DEBUG_FLAGVAR_MENU_ITEM_TOGGLE_LOCATIONS:
-            result = FlagGet(FLAG_VISITED_LITTLEROOT_TOWN) &&
-                FlagGet(FLAG_VISITED_OLDALE_TOWN) &&
-                FlagGet(FLAG_VISITED_DEWFORD_TOWN) &&
-                FlagGet(FLAG_VISITED_LAVARIDGE_TOWN) &&
-                FlagGet(FLAG_VISITED_FALLARBOR_TOWN) &&
-                FlagGet(FLAG_VISITED_VERDANTURF_TOWN) &&
-                FlagGet(FLAG_VISITED_PACIFIDLOG_TOWN) &&
-                FlagGet(FLAG_VISITED_PETALBURG_CITY) &&
-                FlagGet(FLAG_VISITED_SLATEPORT_CITY) &&
-                FlagGet(FLAG_VISITED_MAUVILLE_CITY) &&
-                FlagGet(FLAG_VISITED_RUSTBORO_CITY) &&
-                FlagGet(FLAG_VISITED_FORTREE_CITY) &&
-                FlagGet(FLAG_VISITED_LILYCOVE_CITY) &&
-                FlagGet(FLAG_VISITED_MOSSDEEP_CITY) &&
-                FlagGet(FLAG_VISITED_SOOTOPOLIS_CITY) &&
-                FlagGet(FLAG_VISITED_EVER_GRANDE_CITY) &&
-                FlagGet(FLAG_LANDMARK_POKEMON_LEAGUE) &&
-                FlagGet(FLAG_LANDMARK_BATTLE_FRONTIER);
+            result = TRUE;
+            for (u32 i = 0; i < ARRAY_COUNT(sLocationFlags); i++)
+            {
+                if (!FlagGet(sLocationFlags[i]))
+                {
+                    result = FALSE;
+                    break;
+                }
+            }
             break;
         case DEBUG_FLAGVAR_MENU_ITEM_TOGGLE_BADGES_ALL:
-            result = FlagGet(FLAG_BADGE01_GET) &&
-                FlagGet(FLAG_BADGE02_GET) &&
-                FlagGet(FLAG_BADGE03_GET) &&
-                FlagGet(FLAG_BADGE04_GET) &&
-                FlagGet(FLAG_BADGE05_GET) &&
-                FlagGet(FLAG_BADGE06_GET) &&
-                FlagGet(FLAG_BADGE07_GET) &&
-                FlagGet(FLAG_BADGE08_GET);
+            result = TRUE;
+            for (u32 i = 0; i < ARRAY_COUNT(gBadgeFlags); i++)
+            {
+                if (!FlagGet(gBadgeFlags[i]))
+                {
+                    result = FALSE;
+                    break;
+                }
+            }
             break;
         case DEBUG_FLAGVAR_MENU_ITEM_TOGGLE_GAME_CLEAR:
             result = FlagGet(FLAG_SYS_GAME_CLEAR);
@@ -2499,77 +2514,33 @@ static void DebugAction_FlagsVars_RunningShoes(u8 taskId)
 
 static void DebugAction_FlagsVars_ToggleFlyFlags(u8 taskId)
 {
-    if (FlagGet(FLAG_LANDMARK_BATTLE_FRONTIER))
+    if (FlagGet(sLocationFlags[ARRAY_COUNT(sLocationFlags) - 1]))
     {
         PlaySE(SE_PC_OFF);
-        FlagClear(FLAG_VISITED_LITTLEROOT_TOWN);
-        FlagClear(FLAG_VISITED_OLDALE_TOWN);
-        FlagClear(FLAG_VISITED_DEWFORD_TOWN);
-        FlagClear(FLAG_VISITED_LAVARIDGE_TOWN);
-        FlagClear(FLAG_VISITED_FALLARBOR_TOWN);
-        FlagClear(FLAG_VISITED_VERDANTURF_TOWN);
-        FlagClear(FLAG_VISITED_PACIFIDLOG_TOWN);
-        FlagClear(FLAG_VISITED_PETALBURG_CITY);
-        FlagClear(FLAG_VISITED_SLATEPORT_CITY);
-        FlagClear(FLAG_VISITED_MAUVILLE_CITY);
-        FlagClear(FLAG_VISITED_RUSTBORO_CITY);
-        FlagClear(FLAG_VISITED_FORTREE_CITY);
-        FlagClear(FLAG_VISITED_LILYCOVE_CITY);
-        FlagClear(FLAG_VISITED_MOSSDEEP_CITY);
-        FlagClear(FLAG_VISITED_SOOTOPOLIS_CITY);
-        FlagClear(FLAG_VISITED_EVER_GRANDE_CITY);
-        FlagClear(FLAG_LANDMARK_POKEMON_LEAGUE);
-        FlagClear(FLAG_LANDMARK_BATTLE_FRONTIER);
+        for (u32 i = 0; i < ARRAY_COUNT(sLocationFlags); i++)
+            FlagClear(sLocationFlags[i]);
     }
     else
     {
         PlaySE(SE_PC_LOGIN);
-        FlagSet(FLAG_VISITED_LITTLEROOT_TOWN);
-        FlagSet(FLAG_VISITED_OLDALE_TOWN);
-        FlagSet(FLAG_VISITED_DEWFORD_TOWN);
-        FlagSet(FLAG_VISITED_LAVARIDGE_TOWN);
-        FlagSet(FLAG_VISITED_FALLARBOR_TOWN);
-        FlagSet(FLAG_VISITED_VERDANTURF_TOWN);
-        FlagSet(FLAG_VISITED_PACIFIDLOG_TOWN);
-        FlagSet(FLAG_VISITED_PETALBURG_CITY);
-        FlagSet(FLAG_VISITED_SLATEPORT_CITY);
-        FlagSet(FLAG_VISITED_MAUVILLE_CITY);
-        FlagSet(FLAG_VISITED_RUSTBORO_CITY);
-        FlagSet(FLAG_VISITED_FORTREE_CITY);
-        FlagSet(FLAG_VISITED_LILYCOVE_CITY);
-        FlagSet(FLAG_VISITED_MOSSDEEP_CITY);
-        FlagSet(FLAG_VISITED_SOOTOPOLIS_CITY);
-        FlagSet(FLAG_VISITED_EVER_GRANDE_CITY);
-        FlagSet(FLAG_LANDMARK_POKEMON_LEAGUE);
-        FlagSet(FLAG_LANDMARK_BATTLE_FRONTIER);
+        for (u32 i = 0; i < ARRAY_COUNT(sLocationFlags); i++)
+            FlagSet(sLocationFlags[i]);
     }
 }
 
 static void DebugAction_FlagsVars_ToggleBadgeFlags(u8 taskId)
 {
-    if (FlagGet(FLAG_BADGE08_GET))
+    if (FlagGet(gBadgeFlags[ARRAY_COUNT(gBadgeFlags) - 1]))
     {
         PlaySE(SE_PC_OFF);
-        FlagClear(FLAG_BADGE01_GET);
-        FlagClear(FLAG_BADGE02_GET);
-        FlagClear(FLAG_BADGE03_GET);
-        FlagClear(FLAG_BADGE04_GET);
-        FlagClear(FLAG_BADGE05_GET);
-        FlagClear(FLAG_BADGE06_GET);
-        FlagClear(FLAG_BADGE07_GET);
-        FlagClear(FLAG_BADGE08_GET);
+        for (u32 i = 0; i < ARRAY_COUNT(gBadgeFlags); i++)
+            FlagClear(gBadgeFlags[i]);
     }
     else
     {
         PlaySE(SE_PC_LOGIN);
-        FlagSet(FLAG_BADGE01_GET);
-        FlagSet(FLAG_BADGE02_GET);
-        FlagSet(FLAG_BADGE03_GET);
-        FlagSet(FLAG_BADGE04_GET);
-        FlagSet(FLAG_BADGE05_GET);
-        FlagSet(FLAG_BADGE06_GET);
-        FlagSet(FLAG_BADGE07_GET);
-        FlagSet(FLAG_BADGE08_GET);
+        for (u32 i = 0; i < ARRAY_COUNT(gBadgeFlags); i++)
+            FlagSet(gBadgeFlags[i]);
     }
 }
 
