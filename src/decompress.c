@@ -16,7 +16,7 @@ struct __attribute__((packed, aligned(2))) DecodeYK {
 };
 
 //  Helper struct to build the tANS decode tables without having to do calculations at run-time
-ALIGNED(4) static const struct DecodeYK sYkTemplate[2*TANS_TABLE_SIZE] = {
+static const struct DecodeYK sYkTemplate[2*TANS_TABLE_SIZE] = {
     [0] = {0, 0},
     [1] = {6, (1 << 6) - 64},
     [2] = {5, (2 << 5) - 64},
@@ -146,6 +146,7 @@ ALIGNED(4) static const struct DecodeYK sYkTemplate[2*TANS_TABLE_SIZE] = {
     [126] = {0, 126 - 64},
     [127] = {0, 127 - 64},
 };
+
 // Checks if `ptr` is likely LZ77 data
 // Checks word-alignment, min/max size, and header byte
 // Returns uncompressed size if true, 0 otherwise
@@ -514,12 +515,12 @@ static void BuildDecompressionTable(const u32 *packedFreqs, struct DecodeYK *tab
     }
 }
 
-static EWRAM_DATA u8 sCurrSymbol = 0;
-static EWRAM_DATA u8 sBitIndex = 0;
-static EWRAM_DATA const u32 *sDataPtr = 0;
-static EWRAM_DATA u32 sCurrState = 0;
-// Order of allocated memory- ykTable, symbolTable(these go first, because are always aligned), symSize, loSize(last, because not aligned)
-static EWRAM_DATA void *sMemoryAllocated;
+static IWRAM_DATA u8 sCurrSymbol = 0;
+static IWRAM_DATA u8 sBitIndex = 0;
+static IWRAM_DATA const u32 *sDataPtr = 0;
+static IWRAM_DATA u32 sCurrState = 0;
+// Order of allocated memory- ykTable, symbolTable(these go first, because are always aligned), symSize, loSize
+static IWRAM_DATA void *sMemoryAllocated;
 //  Mask table for reading data from a bitstream for tANS decoding
 static IWRAM_INIT u32 sMaskTable[] = {0, 1, 3, 7, 15, 31, 63};
 
@@ -531,10 +532,12 @@ struct DecodeHelperStruct
     u32 count;
 };
 
+extern void FastUnsafeCopy32(void *, const void *, u32 size);
+
 //  Dark Egg magic
 static inline void CopyFuncToIwram(void *funcBuffer, void *funcStartAddress, void *funcEndAdress)
 {
-    CpuCopy32(funcStartAddress, funcBuffer, funcEndAdress - funcStartAddress);
+    FastUnsafeCopy32(funcBuffer, funcStartAddress, funcEndAdress - funcStartAddress);
 }
 
 //  Inner loop of tANS decoding for Lengths and Offset data for decompression instructions, uses u8 data sizes
@@ -784,7 +787,7 @@ static void DecodeSymDeltatANS(const u32 *data, const u32 *pFreqs, u16 *resultVe
     }
 }
 
-static inline void Fill16(u16 value, void *_dst, u32 size)
+static inline void Fill16(u16 value, u16 *_dst, u32 size)
 {
     u16 *dst = _dst;
     for (u32 i = 0; i < size; i++) {
@@ -898,7 +901,7 @@ void SmolDecompressData(const struct SmolHeader *header, const u32 *data, void *
     //  This is apparently needed due to Game Freak sending bullshit down the decompression pipeline
     if (header->loSize == 0 || header->symSize == 0)
         return;
-    u8 *leftoverPos = (u8 *)data;
+    const u8 *leftoverPos = (u8 *)data;
 
     sCurrState = header->initialState;
     // Allocate also for ykTable and symbolTable
@@ -914,8 +917,6 @@ void SmolDecompressData(const struct SmolHeader *header, const u32 *data, void *
     bool32 symEncoded = isModeSymEncoded(header->mode);
     bool32 symDelta = isModeSymDelta(header->mode);
 
-
-
     const u32 *pLoFreqs;
     const u32 *pSymFreqs;
 
@@ -924,22 +925,21 @@ void SmolDecompressData(const struct SmolHeader *header, const u32 *data, void *
     {
         case ENCODE_LO:
             pLoFreqs = &data[0];
-            data += 3;
+            sDataPtr = &data[3];
             break;
         case ENCODE_DELTA_SYMS:
         case ENCODE_SYMS:
             pSymFreqs = &data[0];
-            data += 3;
+            sDataPtr = &data[3];
             break;
         case ENCODE_BOTH:
         case ENCODE_BOTH_DELTA_SYMS:
             pLoFreqs = &data[0];
             pSymFreqs = &data[3];
-            data += 6;
+            sDataPtr = &data[6];
             break;
     }
 
-    sDataPtr = data;
     sBitIndex = 0;
     //  Decode tANS encoded LO data, mode 3, 4 and 5
     if (loEncoded)
