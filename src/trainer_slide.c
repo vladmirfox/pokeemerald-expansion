@@ -37,19 +37,20 @@
 #include "trainer_slide.h"
 #include "battle_message.h"
 
-static u32 BattlerHPPercentage(u32, u32, u32);
-static u32 GetEnemyMonCount(u32, u32, bool32);
-static bool32 DoesTrainerHaveSlideMessage(enum DifficultyLevel, u32, u32);
-static bool32 ShouldRunTrainerSlidePlayerLandsFirstCriticalHit(enum TrainerSlideType);
+static u32 BattlerHPPercentage(u32 battler, u32 operation, u32 threshold);
+static u32 GetEnemyMonCount(u32 firstId, u32 lastId, bool32 onlyAlive);
+static bool32 DoesTrainerHaveSlideMessage(enum DifficultyLevel difficulty, u32 trainerId, u32 slideId);
+static bool32 ShouldRunTrainerSlidePlayerLandsFirstCriticalHit(enum TrainerSlideType slideId);
 static bool32 ShouldRunTrainerSlideEnemyLandsFirstCriticalHit(enum TrainerSlideType slideId);
-static bool32 ShouldRunTrainerSlidePlayerLandsFirstSuperEffectiveHit(u32, enum TrainerSlideType);
-static bool32 ShouldRunTrainerSlidePlayerLandsFirstSTABMove(u32, u32, enum TrainerSlideType);
-static bool32 ShouldRunTrainerSlidePlayerLandsFirstDown(u32, u32);
-static bool32 ShouldRunTrainerSlideEnemyMonUnaffected(u32, u32, enum TrainerSlideType);
-static bool32 ShouldRunTrainerSlideLastSwitchIn(u32);
-static bool32 ShouldRunTrainerSlideLastLowHp(u32, u32, u32);
-static void SetTrainerSlideParamters(u32, u32*, u32*, u32*, u32*);
-static bool32 IsSlideInitalizedOrPlayed(enum TrainerSlideType);
+static bool32 ShouldRunTrainerSlidePlayerLandsFirstSuperEffectiveHit(u32 battler, enum TrainerSlideType slideId);
+static bool32 ShouldRunTrainerSlidePlayerLandsFirstSTABMove(u32 firstId, u32 lastId, enum TrainerSlideType slideId);
+static bool32 ShouldRunTrainerSlidePlayerLandsFirstDown(u32 firstId, u32 lastId);
+static bool32 ShouldRunTrainerSlideEnemyMonUnaffected(u32 firstId, u32 lastId, enum TrainerSlideType slideId);
+static bool32 ShouldRunTrainerSlideLastSwitchIn(u32 battler);
+static bool32 ShouldRunTrainerSlideLastHalfHP(u32 firstId, u32 lastId, u32 battler);
+static bool32 ShouldRunTrainerSlideLastLowHp(u32 firstId, u32 lastId, u32 battler);
+static void SetTrainerSlideParamters(u32 battler, u32* firstId, u32* lastId, u32* trainerId, u32* retValue);
+static bool32 IsSlideInitalizedOrPlayed(enum TrainerSlideType slideId);
 
 static const u8* const sTrainerSlides[DIFFICULTY_COUNT][TRAINERS_COUNT][TRAINER_SLIDE_COUNT] =
 {
