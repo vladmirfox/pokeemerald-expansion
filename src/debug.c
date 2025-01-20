@@ -517,7 +517,6 @@ static const u8 sDebugText_Util_WarpToMap_SelMax[] =         _("{STR_VAR_1} / {S
 static const u8 sDebugText_Util_Weather_ID[] =               _("Weather ID: {STR_VAR_3}\n{STR_VAR_1}\n{STR_VAR_2}");
 // Flags/Vars Menu
 static const u8 sDebugText_FlagsVars_Flag[] =                _("Flag: {STR_VAR_1}{CLEAR_TO 90}\n{STR_VAR_2}{CLEAR_TO 90}\n{STR_VAR_3}");
-static const u8 sDebugText_FlagsVars_FlagHex[] =             _("{STR_VAR_1}{CLEAR_TO 90}\n0x{STR_VAR_2}{CLEAR_TO 90}");
 static const u8 sDebugText_FlagsVars_VariableHex[] =         _("{STR_VAR_1}{CLEAR_TO 90}\n0x{STR_VAR_2}{CLEAR_TO 90}");
 static const u8 sDebugText_FlagsVars_Variable[] =            _("Var: {STR_VAR_1}{CLEAR_TO 90}\nVal: {STR_VAR_3}{CLEAR_TO 90}\n{STR_VAR_2}");
 static const u8 sDebugText_FlagsVars_VariableValueSet[] =    _("Var: {STR_VAR_1}{CLEAR_TO 90}\nVal: {STR_VAR_3}{CLEAR_TO 90}\n{STR_VAR_2}");
@@ -2186,6 +2185,20 @@ static void DebugAction_Util_Script_8(u8 taskId)
 
 // *******************************
 // Actions Flags and Vars
+static void DebugAction_FlagsVars_Refresh(u32 flag, u32 digit, u8 windowId)
+{
+    ConvertIntToDecimalStringN(gStringVar1, flag, STR_CONV_MODE_LEADING_ZEROS, DEBUG_NUMBER_DIGITS_FLAGS);
+    ConvertIntToHexStringN(gStringVar2, flag, STR_CONV_MODE_LEFT_ALIGN, 3);
+    StringExpandPlaceholders(gStringVar1, COMPOUND_STRING("{STR_VAR_1}{CLEAR_TO 90}\n0x{STR_VAR_2}{CLEAR_TO 90}"));
+    if (FlagGet(flag))
+        StringCopyPadded(gStringVar2, sDebugText_True, CHAR_SPACE, 15);
+    else
+        StringCopyPadded(gStringVar2, sDebugText_False, CHAR_SPACE, 15);
+    StringCopy(gStringVar3, gText_DigitIndicator[digit]);
+    StringExpandPlaceholders(gStringVar4, sDebugText_FlagsVars_Flag);
+    AddTextPrinterParameterized(windowId, DEBUG_MENU_FONT, gStringVar4, 0, 0, 0, NULL);
+}
+
 static void DebugAction_FlagsVars_Flags(u8 taskId)
 {
     u8 windowId;
@@ -2201,16 +2214,7 @@ static void DebugAction_FlagsVars_Flags(u8 taskId)
     CopyWindowToVram(windowId, COPYWIN_FULL);
 
     // Display initial flag
-    ConvertIntToDecimalStringN(gStringVar1, 1, STR_CONV_MODE_LEADING_ZEROS, DEBUG_NUMBER_DIGITS_FLAGS);
-    ConvertIntToHexStringN(gStringVar2, 1, STR_CONV_MODE_LEFT_ALIGN, 3);
-    StringExpandPlaceholders(gStringVar1, sDebugText_FlagsVars_FlagHex);
-    if (FlagGet(FLAG_TEMP_1))
-        StringCopyPadded(gStringVar2, sDebugText_True, CHAR_SPACE, 15);
-    else
-        StringCopyPadded(gStringVar2, sDebugText_False, CHAR_SPACE, 15);
-    StringCopy(gStringVar3, gText_DigitIndicator[0]);
-    StringExpandPlaceholders(gStringVar4, sDebugText_FlagsVars_Flag);
-    AddTextPrinterParameterized(windowId, DEBUG_MENU_FONT, gStringVar4, 0, 0, 0, NULL);
+    DebugAction_FlagsVars_Refresh(1, 0, windowId);
 
     gTasks[taskId].func = DebugAction_FlagsVars_FlagsSelect;
     gTasks[taskId].tSubWindowId = windowId;
@@ -2236,16 +2240,7 @@ static void DebugAction_FlagsVars_FlagsSelect(u8 taskId)
 
     if (JOY_NEW(DPAD_ANY) || JOY_NEW(A_BUTTON))
     {
-        ConvertIntToDecimalStringN(gStringVar1, gTasks[taskId].tInput, STR_CONV_MODE_LEADING_ZEROS, DEBUG_NUMBER_DIGITS_FLAGS);
-        ConvertIntToHexStringN(gStringVar2, gTasks[taskId].tInput, STR_CONV_MODE_LEFT_ALIGN, 3);
-        StringExpandPlaceholders(gStringVar1, sDebugText_FlagsVars_FlagHex);
-        if (FlagGet(gTasks[taskId].tInput) == TRUE)
-            StringCopyPadded(gStringVar2, sDebugText_True, CHAR_SPACE, 15);
-        else
-            StringCopyPadded(gStringVar2, sDebugText_False, CHAR_SPACE, 15);
-        StringCopy(gStringVar3, gText_DigitIndicator[gTasks[taskId].tDigit]);
-        StringExpandPlaceholders(gStringVar4, sDebugText_FlagsVars_Flag);
-        AddTextPrinterParameterized(gTasks[taskId].tSubWindowId, DEBUG_MENU_FONT, gStringVar4, 0, 0, 0, NULL);
+        DebugAction_FlagsVars_Refresh(gTasks[taskId].tInput, gTasks[taskId].tDigit, gTasks[taskId].tSubWindowId);
     }
 }
 
@@ -2669,6 +2664,17 @@ static void DebugAction_FlagsVars_CatchingOnOff(u8 taskId)
 #define tItemId    data[5]
 #define tSpriteId  data[6]
 
+static void DebugAction_Give_Item_Refresh(u32 itemId, u32 digit, u8 windowId)
+{
+    StringCopy(gStringVar2, gText_DigitIndicator[digit]);
+    u8* end = CopyItemName(itemId, gStringVar1);
+    WrapFontIdToFit(gStringVar1, end, DEBUG_MENU_FONT, WindowWidthPx(windowId));
+    StringCopyPadded(gStringVar1, gStringVar1, CHAR_SPACE, 15);
+    ConvertIntToDecimalStringN(gStringVar3, itemId, STR_CONV_MODE_LEADING_ZEROS, DEBUG_NUMBER_DIGITS_ITEMS);
+    StringExpandPlaceholders(gStringVar4, sDebugText_ItemID);
+    AddTextPrinterParameterized(windowId, DEBUG_MENU_FONT, gStringVar4, 0, 0, 0, NULL);
+}
+
 static void DebugAction_Give_Item(u8 taskId)
 {
     u8 windowId;
@@ -2684,13 +2690,7 @@ static void DebugAction_Give_Item(u8 taskId)
     CopyWindowToVram(windowId, COPYWIN_FULL);
 
     // Display initial item
-    StringCopy(gStringVar2, gText_DigitIndicator[0]);
-    ConvertIntToDecimalStringN(gStringVar3, 1, STR_CONV_MODE_LEADING_ZEROS, DEBUG_NUMBER_DIGITS_ITEMS);
-    u8* end = CopyItemName(1, gStringVar1);
-    WrapFontIdToFit(gStringVar1, end, DEBUG_MENU_FONT, WindowWidthPx(windowId));
-    StringCopyPadded(gStringVar1, gStringVar1, CHAR_SPACE, 15);
-    StringExpandPlaceholders(gStringVar4, sDebugText_ItemID);
-    AddTextPrinterParameterized(windowId, DEBUG_MENU_FONT, gStringVar4, 0, 0, 0, NULL);
+    DebugAction_Give_Item_Refresh(1, 0, windowId);
 
     gTasks[taskId].func = DebugAction_Give_Item_SelectId;
     gTasks[taskId].tSubWindowId = windowId;
@@ -2702,25 +2702,22 @@ static void DebugAction_Give_Item(u8 taskId)
     gSprites[gTasks[taskId].tSpriteId].oam.priority = 0;
 }
 
+static void DestroyItemIcon(u8 taskId)
+{
+    FreeSpriteTilesByTag(ITEM_TAG);                             //Destroy item icon
+    FreeSpritePaletteByTag(ITEM_TAG);                           //Destroy item icon
+    FreeSpriteOamMatrix(&gSprites[gTasks[taskId].tSpriteId]);   //Destroy item icon
+    DestroySprite(&gSprites[gTasks[taskId].tSpriteId]);         //Destroy item icon
+}
+
 static void DebugAction_Give_Item_SelectId(u8 taskId)
 {
     if (JOY_NEW(DPAD_ANY))
     {
         PlaySE(SE_SELECT);
         Debug_HandleInput_Numeric(taskId, 1, ITEMS_COUNT - 1, DEBUG_NUMBER_DIGITS_ITEMS);
-
-        StringCopy(gStringVar2, gText_DigitIndicator[gTasks[taskId].tDigit]);
-        u8* end = CopyItemName(gTasks[taskId].tInput, gStringVar1);
-        WrapFontIdToFit(gStringVar1, end, DEBUG_MENU_FONT, WindowWidthPx(gTasks[taskId].tSubWindowId));
-        StringCopyPadded(gStringVar1, gStringVar1, CHAR_SPACE, 15);
-        ConvertIntToDecimalStringN(gStringVar3, gTasks[taskId].tInput, STR_CONV_MODE_LEADING_ZEROS, DEBUG_NUMBER_DIGITS_ITEMS);
-        StringExpandPlaceholders(gStringVar4, sDebugText_ItemID);
-        AddTextPrinterParameterized(gTasks[taskId].tSubWindowId, DEBUG_MENU_FONT, gStringVar4, 0, 0, 0, NULL);
-
-        FreeSpriteTilesByTag(ITEM_TAG);                             //Destroy item icon
-        FreeSpritePaletteByTag(ITEM_TAG);                           //Destroy item icon
-        FreeSpriteOamMatrix(&gSprites[gTasks[taskId].tSpriteId]);   //Destroy item icon
-        DestroySprite(&gSprites[gTasks[taskId].tSpriteId]);         //Destroy item icon
+        DebugAction_Give_Item_Refresh(gTasks[taskId].tInput, gTasks[taskId].tDigit, gTasks[taskId].tSubWindowId);
+        DestroyItemIcon(taskId);
         gTasks[taskId].tSpriteId = AddItemIconSprite(ITEM_TAG, ITEM_TAG, gTasks[taskId].tInput);
         gSprites[gTasks[taskId].tSpriteId].x2 = DEBUG_NUMBER_ICON_X+10;
         gSprites[gTasks[taskId].tSpriteId].y2 = DEBUG_NUMBER_ICON_Y+10;
@@ -2743,10 +2740,7 @@ static void DebugAction_Give_Item_SelectId(u8 taskId)
     }
     else if (JOY_NEW(B_BUTTON))
     {
-        FreeSpriteTilesByTag(ITEM_TAG);                             //Destroy item icon
-        FreeSpritePaletteByTag(ITEM_TAG);                           //Destroy item icon
-        FreeSpriteOamMatrix(&gSprites[gTasks[taskId].tSpriteId]);   //Destroy item icon
-        DestroySprite(&gSprites[gTasks[taskId].tSpriteId]);         //Destroy item icon
+        DestroyItemIcon(taskId);
 
         PlaySE(SE_SELECT);
         DebugAction_DestroyExtraWindow(taskId);
@@ -2771,10 +2765,7 @@ static void DebugAction_Give_Item_SelectQuantity(u8 taskId)
 
     if (JOY_NEW(A_BUTTON))
     {
-        FreeSpriteTilesByTag(ITEM_TAG);                             //Destroy item icon
-        FreeSpritePaletteByTag(ITEM_TAG);                           //Destroy item icon
-        FreeSpriteOamMatrix(&gSprites[gTasks[taskId].tSpriteId]);   //Destroy item icon
-        DestroySprite(&gSprites[gTasks[taskId].tSpriteId]);         //Destroy item icon
+        DestroyItemIcon(taskId);
 
         PlaySE(MUS_LEVEL_UP);
         AddBagItem(itemId, gTasks[taskId].tInput);
@@ -2782,10 +2773,7 @@ static void DebugAction_Give_Item_SelectQuantity(u8 taskId)
     }
     else if (JOY_NEW(B_BUTTON))
     {
-        FreeSpriteTilesByTag(ITEM_TAG);                             //Destroy item icon
-        FreeSpritePaletteByTag(ITEM_TAG);                           //Destroy item icon
-        FreeSpriteOamMatrix(&gSprites[gTasks[taskId].tSpriteId]);   //Destroy item icon
-        DestroySprite(&gSprites[gTasks[taskId].tSpriteId]);         //Destroy item icon
+        DestroyItemIcon(taskId);
 
         PlaySE(SE_SELECT);
         DebugAction_DestroyExtraWindow(taskId);
@@ -2914,7 +2902,7 @@ static void DebugAction_Give_Pokemon_SelectId(u8 taskId)
         Debug_HandleInput_Numeric(taskId, 1, NUM_SPECIES - 1, DEBUG_NUMBER_DIGITS_ITEMS);
 
         StringCopy(gStringVar2, gText_DigitIndicator[gTasks[taskId].tDigit]);
-        u8 *end = StringCopy(gStringVar1, GetSpeciesName(gTasks[taskId].tInput)); //CopyItemName(gTasks[taskId].tInput, gStringVar1);
+        u8 *end = StringCopy(gStringVar1, GetSpeciesName(gTasks[taskId].tInput));
         WrapFontIdToFit(gStringVar1, end, DEBUG_MENU_FONT, WindowWidthPx(gTasks[taskId].tSubWindowId));
         StringCopyPadded(gStringVar1, gStringVar1, CHAR_SPACE, 15);
         ConvertIntToDecimalStringN(gStringVar3, gTasks[taskId].tInput, STR_CONV_MODE_LEADING_ZEROS, DEBUG_NUMBER_DIGITS_ITEMS);
