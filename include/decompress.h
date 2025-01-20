@@ -41,11 +41,6 @@ struct SpriteSheetHeader {
     u32 framesPerComponent:16;
 };
 
-struct __attribute__((packed, aligned(2))) DecodeYK {
-    u8 yVal;
-    u8 kVal;
-};
-
 enum CompressionMode {
     BASE_ONLY = 0,
     ENCODE_SYMS = 1,
@@ -56,8 +51,6 @@ enum CompressionMode {
     IS_FRAME_CONTAINER = 6,
     MODE_LZ77 = 16,
 };
-
-extern struct DecodeYK ykTemplate[2*TANS_TABLE_SIZE];
 
 
 void DecompressDataWithHeaderVram(const u32 *src, void *dest);

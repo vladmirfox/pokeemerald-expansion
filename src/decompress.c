@@ -8,9 +8,16 @@
 
 EWRAM_DATA ALIGNED(4) u8 gDecompressionBuffer[0x4000] = {0};
 
+#define TABLE_TYPE u16
+
+struct __attribute__((packed, aligned(2))) DecodeYK {
+    u8 yVal;
+    u8 kVal;
+};
+
 //  Helper struct to build the tANS decode tables without having to do calculations at run-time
 ALIGNED(4) static const struct DecodeYK sYkTemplate[2*TANS_TABLE_SIZE] = {
-    [0] = {0 - 64, 0},
+    [0] = {0, 0},
     [1] = {(1 << 6) - 64, 6},
     [2] = {(2 << 5) - 64, 5},
     [3] = {(3 << 5) - 64, 5},
@@ -323,8 +330,6 @@ static void BuildDecompressionTable(const u32 *packedFreqs, struct DecodeYK *tab
 
     UnpackFrequencies(packedFreqs, freqs);
 
-    #define TABLE_TYPE u16
-
     TABLE_TYPE *tableAsU16 = (void *) table;
 
     for (u8 i = 0; i < 16; i++)
@@ -335,7 +340,7 @@ static void BuildDecompressionTable(const u32 *packedFreqs, struct DecodeYK *tab
         case 0:
             break;
         default:
-            CpuCopy16(&sYkTemplate[freqs[i]], tableAsU16, freqs[i] * 2);
+            CpuCopy16(&sYkTemplate[freqs[i]], tableAsU16, freqs[i] * sizeof(TABLE_TYPE));
             tableAsU16 += freqs[i];
 
             memset(symbolTable, i, freqs[i]);
@@ -508,8 +513,6 @@ static void BuildDecompressionTable(const u32 *packedFreqs, struct DecodeYK *tab
             break;
         }
     }
-
-    #undef TABLE_TYPE
 }
 
 static EWRAM_DATA u8 sCurrSymbol = 0;
@@ -553,8 +556,9 @@ __attribute__((target("arm"))) __attribute__((noinline, no_reorder)) __attribute
         for (u32 currNibble = 0; currNibble < 4; currNibble++)
         {
             symbol |= decodeHelper->symbolTable[sCurrState] << (currNibble*4);
-            u32 currK = decodeHelper->ykTable[sCurrState].kVal;
-            sCurrState = decodeHelper->ykTable[sCurrState].yVal;
+            TABLE_TYPE ykVals = *(TABLE_TYPE *)(&decodeHelper->ykTable[sCurrState]);
+            u32 currK = ykVals >> 8;
+            sCurrState = ykVals & 0xFF;
             sCurrState += (currBits >> bitIndex) & maskTable[currK];
             bitIndex += currK;
             if (bitIndex >= 32)
@@ -625,22 +629,23 @@ static void DecodeLOtANS(const u32 *data, const u32 *pFreqs, u8 *resultVec, u32 
     }
 }
 
-__attribute__((target("arm"))) __attribute__((noinline, no_reorder)) __attribute__((optimize("-O3"))) static void DecodeSymtANSLoop(const u32 *data, struct DecodeHelperStruct *stuff, u32 *maskTable)
+__attribute__((target("arm"))) __attribute__((noinline, no_reorder)) __attribute__((optimize("-O3"))) static void DecodeSymtANSLoop(const u32 *data, struct DecodeHelperStruct *decodeHelper, u32 *maskTable)
 {
     u32 currBits = *data++;
     u32 bitIndex = sBitIndex;
 
-    u16 * resultVec_16 = (u16*)(stuff->resultVec);
-    u16 * resultVecEnd = &resultVec_16[stuff->count];
+    u16 * resultVec_16 = (u16*)(decodeHelper->resultVec);
+    u16 * resultVecEnd = &resultVec_16[decodeHelper->count];
 
     do
     {
         u32 symbol = 0;
         for (u32 currNibble = 0; currNibble < 4; currNibble++)
         {
-            symbol |= stuff->symbolTable[sCurrState] << (currNibble*4);
-            u32 currK = stuff->ykTable[sCurrState].kVal;
-            sCurrState = stuff->ykTable[sCurrState].yVal;
+            symbol |= decodeHelper->symbolTable[sCurrState] << (currNibble*4);
+            TABLE_TYPE ykVals = *(TABLE_TYPE *)(&decodeHelper->ykTable[sCurrState]);
+            u32 currK = ykVals >> 8;
+            sCurrState = ykVals & 0xFF;
             sCurrState += (currBits >> bitIndex) & maskTable[currK];
             bitIndex += currK;
             if (bitIndex >= 32)
@@ -704,8 +709,9 @@ __attribute__((target("arm"))) __attribute__((noinline, no_reorder)) __attribute
         {
             currSymbol = (currSymbol + decodeHelper->symbolTable[sCurrState]) & 0xf;
             symbol |= currSymbol << (currNibble*4);
-            u32 currK = decodeHelper->ykTable[sCurrState].kVal;
-            sCurrState = decodeHelper->ykTable[sCurrState].yVal;
+            TABLE_TYPE ykVals = *(TABLE_TYPE *)(&decodeHelper->ykTable[sCurrState]);
+            u32 currK = ykVals >> 8;
+            sCurrState = ykVals & 0xff;
             sCurrState += ((currBits >> bitIndex) & maskTable[currK]);
             bitIndex += currK;
 
@@ -908,6 +914,8 @@ void SmolDecompressData(const struct SmolHeader *header, const u32 *data, void *
     bool32 loEncoded = isModeLoEncoded(header->mode);
     bool32 symEncoded = isModeSymEncoded(header->mode);
     bool32 symDelta = isModeSymDelta(header->mode);
+
+
 
     const u32 *pLoFreqs;
     const u32 *pSymFreqs;
