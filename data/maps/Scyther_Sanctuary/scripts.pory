@@ -58,28 +58,7 @@ text Tessa_PostScytherF1 {
     walk_down*8
  }
 
-script Initiate_Battle_Scyther_Sanctuary {
-    lockall
-    releaseall
-    applymovement(1,NPC_faceplayer)
-    waitmovement(1)
-    lockall
-    msgbox(Tessa_PreScytherF1)
-    msgbox(Tessa_PreScytherF2)
-    msgbox(Tessa_PreScytherF3)
-    releaseall
-    applymovement(1,NPC_faceup)
-    waitmovement(1)
-    lockall
-    releaseall
-    applymovement(4,TalkDown)
-    waitmovement(4)
-    lockall
-    msgbox(Orm_PreScytherF)
-
-    
-    msgbox("This is where the double battle will go!")
-
+ script DefeatedOrm1 {
     releaseall
     applymovement(4,TalkDown)
     waitmovement(4)
@@ -106,6 +85,31 @@ script Initiate_Battle_Scyther_Sanctuary {
     removeobject(1)
     lockall
     releaseall
+ }
+
+script Initiate_Battle_Scyther_Sanctuary {
+    lockall
+    releaseall
+    applymovement(1,NPC_faceplayer)
+    waitmovement(1)
+    lockall
+    msgbox(Tessa_PreScytherF1)
+    msgbox(Tessa_PreScytherF2)
+    msgbox(Tessa_PreScytherF3)
+    releaseall
+    applymovement(1,NPC_faceup)
+    waitmovement(1)
+    lockall
+    releaseall
+    applymovement(4,TalkDown)
+    waitmovement(4)
+    lockall
+    msgbox(Orm_PreScytherF)
+
+    
+    msgbox("This is where the double battle will go!")
+
+    
 
 
 }
