@@ -527,9 +527,9 @@ static IWRAM_INIT u32 sMaskTable[] = {0, 1, 3, 7, 15, 31, 63};
 struct DecodeHelperStruct
 {
     void *resultVec; // u16 for SymDelta, u8 for LOtANS
+    void *resultVecEnd;
     u8 *symbolTable;
     struct DecodeYK *ykTable;
-    u32 count;
 };
 
 extern void FastUnsafeCopy32(void *, const void *, u32 size);
@@ -550,7 +550,7 @@ __attribute__((target("arm"))) __attribute__((noinline, no_reorder)) __attribute
     u32 bitIndex = sBitIndex;
     u8 * resultVec = (u8*)(decodeHelper->resultVec);
     u16 *resultVec_u16 = (u16 *) resultVec;
-    u8 * resultVecEnd = &resultVec[decodeHelper->count];
+    u8 * resultVecEnd = (u8*)(decodeHelper->resultVecEnd);
 
     do
     {
@@ -599,7 +599,7 @@ static void DecodeLOtANS(const u32 *data, const u32 *pFreqs, u8 *resultVec, u32 
     decodeHelper.resultVec = resultVec;
     decodeHelper.ykTable = ykTable;
     //decodeHelper.symbolTable = symbolTable;
-    decodeHelper.count = count - remainingCount;
+    decodeHelper.resultVecEnd = &resultVec[count - remainingCount];
 
     u32 funcBuffer[400];
 
@@ -637,7 +637,7 @@ __attribute__((target("arm"))) __attribute__((noinline, no_reorder)) __attribute
     u32 bitIndex = sBitIndex;
 
     u16 * resultVec_16 = (u16*)(decodeHelper->resultVec);
-    u16 * resultVecEnd = &resultVec_16[decodeHelper->count];
+    u16 * resultVecEnd = (u16*)(decodeHelper->resultVecEnd);
 
     do
     {
@@ -682,8 +682,8 @@ static void DecodeSymtANS(const u32 *data, const u32 *pFreqs, u16 *resultVec, u3
 
     stuff.ykTable = ykTable;
     stuff.symbolTable = symbolTable;
-    stuff.count = count;
     stuff.resultVec = resultVec;
+    stuff.resultVecEnd = &resultVec[count];
 
     u32 funcBuffer[300];
     CopyFuncToIwram(funcBuffer, DecodeSymtANSLoop, SwitchToArmCallDecodeSymtANS);
@@ -699,9 +699,8 @@ __attribute__((target("arm"))) __attribute__((noinline, no_reorder)) __attribute
     u32 currBits = *data++;
     u32 currSymbol = 0;
     u32 bitIndex = sBitIndex;
-    u16 * resultVec_16 = (u16*)(decodeHelper->resultVec);
     u32 * resultVec_32 = (u32*)(decodeHelper->resultVec); // Since we're doing 2 symbols at one time we store as word which is faster than storing two halfwords.
-    u16 * resultVecEnd = &resultVec_16[decodeHelper->count];
+    u16 * resultVecEnd = (u16*)(decodeHelper->resultVecEnd);
 
     do
     {
@@ -754,8 +753,8 @@ static void DecodeSymDeltatANS(const u32 *data, const u32 *pFreqs, u16 *resultVe
 
     decodeHelper.ykTable = ykTable;
     decodeHelper.symbolTable = symbolTable;
-    decodeHelper.count = count - remainingCount;
     decodeHelper.resultVec = resultVec;
+    decodeHelper.resultVecEnd = &resultVec[count - remainingCount];
 
     u32 funcBuffer[400];
     CopyFuncToIwram(funcBuffer, DecodeSymDeltatANSLoop, SwitchToArmCallSymDeltaANS);
