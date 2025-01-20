@@ -152,6 +152,7 @@ struct DamageCalculationData
     u32 updateFlags:1;
     u32 padding:2;
 };
+_Static_assert(sizeof(struct DamageCalculationData) <= 4);
 
 void HandleAction_ThrowBall(void);
 bool32 IsAffectedByFollowMe(u32 battlerAtk, u32 defSide, u32 move);
