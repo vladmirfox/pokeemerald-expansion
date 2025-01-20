@@ -150,6 +150,9 @@ AI_SINGLE_BATTLE_TEST("AI_FLAG_PREDICT_SWITCH: AI would switch out in predicted-
 
 AI_SINGLE_BATTLE_TEST("AI_FLAG_PREDICT_SWITCH: AI would normally choose prediction-informed move against mon in predicted-incoming-mon scenario")
 {
+    // The test "AI_FLAG_PREDICT_SWITCH | AI_FLAG_PREDICT_INCOMING_MON: AI will score against predicted incoming mon when switch predicted" is evaluating whether the AI targets the incoming mon.
+    // This test makes sure the move that we are using to evaluate that, MOVE_SPORE, is actually what the AI would use against the incoming mon under normal circumstances.
+    // If both of these tests fail, prediction is still working, it just means the move scoring no longer has Breloom using Spore against the target in a vaccuum, so that test needs to be adjusted.
     GIVEN {
         AI_FLAGS(AI_FLAG_CHECK_BAD_MOVE | AI_FLAG_TRY_TO_FAINT | AI_FLAG_CHECK_VIABILITY | AI_FLAG_OMNISCIENT | AI_FLAG_SMART_SWITCHING | AI_FLAG_SMART_MON_CHOICES | AI_FLAG_PREDICT_SWITCH);
         PLAYER(SPECIES_TYRANITAR) { Moves(MOVE_EARTHQUAKE, MOVE_CRUNCH); }
