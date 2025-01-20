@@ -15084,7 +15084,7 @@ static void Cmd_switchoutabilities(void)
 
             gBattleMons[battler].status1 = 0;
             BtlController_EmitSetMonData(battler, BUFFER_A, REQUEST_STATUS_BATTLE,
-                                         1u << gBattleStruct->battlerPartyIndexes[battler]),
+                                         1u << gBattleStruct->battlerPartyIndexes[battler],
                                          sizeof(gBattleMons[battler].status1),
                                          &gBattleMons[battler].status1);
             MarkBattlerForControllerExec(battler);
@@ -15096,7 +15096,7 @@ static void Cmd_switchoutabilities(void)
             if (regenerate > gBattleMons[battler].maxHP)
                 regenerate = gBattleMons[battler].maxHP;
             BtlController_EmitSetMonData(battler, BUFFER_A, REQUEST_HP_BATTLE,
-                                         1u << gBattleStruct->battlerPartyIndexes[battler]),
+                                         1u << gBattleStruct->battlerPartyIndexes[battler],
                                          sizeof(regenerate),
                                          &regenerate);
             MarkBattlerForControllerExec(battler);
