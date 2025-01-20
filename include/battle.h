@@ -363,7 +363,6 @@ struct AiLogicData
     u8 shouldSwitch; // Stores result of ShouldSwitch, which decides whether a mon should be switched out
     u8 aiCalcInProgress:1;
     u8 battlerDoingPrediction; // Stores which battler is currently running its prediction calcs
-    u8 switchoutHitsToKO[MAX_BATTLERS_COUNT]; // Tracks number of hits to KO predicted switchout using moves that target switchout (ie. Pursuit)
 };
 
 struct AI_ThinkingStruct
