@@ -100,6 +100,7 @@ enum UtilDebugMenu
     DEBUG_UTIL_MENU_ITEM_EXPANSION_VER,
     DEBUG_UTIL_MENU_ITEM_BERRY_FUNCTIONS,
     DEBUG_UTIL_MENU_ITEM_EWRAM_COUNTERS,
+    DEBUG_UTIL_MENU_ITEM_STEVEN_MULTI,
 };
 
 enum GivePCBagDebugMenu
@@ -293,6 +294,9 @@ struct DebugMonData
     u8  mon_ev_speed;
     u8  mon_ev_satk;
     u8  mon_ev_sdef;
+    u8  teraType;
+    u8  dynamaxLevel:7;
+    u8  gmaxFactor:1;
 };
 
 struct DebugMenuListData
@@ -378,6 +382,7 @@ static void DebugAction_Util_CheatStart(u8 taskId);
 static void DebugAction_Util_ExpansionVersion(u8 taskId);
 static void DebugAction_Util_BerryFunctions(u8 taskId);
 static void DebugAction_Util_CheckEWRAMCounters(u8 taskId);
+static void DebugAction_Util_Steven_Multi(u8 taskId);
 
 static void DebugAction_OpenPCBagFillMenu(u8 taskId);
 static void DebugAction_PCBag_Fill_PCBoxes_Fast(u8 taskId);
@@ -434,6 +439,9 @@ static void DebugAction_Give_Pokemon_SelectLevel(u8 taskId);
 static void DebugAction_Give_Pokemon_SelectShiny(u8 taskId);
 static void DebugAction_Give_Pokemon_SelectNature(u8 taskId);
 static void DebugAction_Give_Pokemon_SelectAbility(u8 taskId);
+static void DebugAction_Give_Pokemon_SelectTeraType(u8 taskId);
+static void DebugAction_Give_Pokemon_SelectDynamaxLevel(u8 taskId);
+static void DebugAction_Give_Pokemon_SelectGigantamaxFactor(u8 taskId);
 static void DebugAction_Give_Pokemon_SelectIVs(u8 taskId);
 static void DebugAction_Give_Pokemon_SelectEVs(u8 taskId);
 static void DebugAction_Give_Pokemon_ComplexCreateMon(u8 taskId);
@@ -483,6 +491,7 @@ extern const u8 Debug_CheckROMSpace[];
 extern const u8 Debug_BoxFilledMessage[];
 extern const u8 Debug_ShowExpansionVersion[];
 extern const u8 Debug_EventScript_EWRAMCounters[];
+extern const u8 Debug_EventScript_Steven_Multi[];
 
 extern const u8 Debug_BerryPestsDisabled[];
 extern const u8 Debug_BerryWeedsDisabled[];
@@ -511,14 +520,14 @@ static const u8 sDebugText_Give[] =          _("Give X…{CLEAR_TO 110}{RIGHT_AR
 static const u8 sDebugText_Sound[] =         _("Sound…{CLEAR_TO 110}{RIGHT_ARROW}");
 static const u8 sDebugText_Cancel[] =        _("Cancel");
 // Script menu
-static const u8 sDebugText_Util_Script_1[] = _("Script 1");
-static const u8 sDebugText_Util_Script_2[] = _("Script 2");
-static const u8 sDebugText_Util_Script_3[] = _("Script 3");
-static const u8 sDebugText_Util_Script_4[] = _("Script 4");
-static const u8 sDebugText_Util_Script_5[] = _("Script 5");
-static const u8 sDebugText_Util_Script_6[] = _("Script 6");
-static const u8 sDebugText_Util_Script_7[] = _("Script 7");
-static const u8 sDebugText_Util_Script_8[] = _("Script 8");
+static const u8 sDebugText_Util_Script_1[] =     _("Script 1");
+static const u8 sDebugText_Util_Script_2[] =     _("Script 2");
+static const u8 sDebugText_Util_Script_3[] =     _("Script 3");
+static const u8 sDebugText_Util_Script_4[] =     _("Script 4");
+static const u8 sDebugText_Util_Script_5[] =     _("Script 5");
+static const u8 sDebugText_Util_Script_6[] =     _("Script 6");
+static const u8 sDebugText_Util_Script_7[] =     _("Script 7");
+static const u8 sDebugText_Util_Script_8[] =     _("Script 8");
 // Util Menu
 static const u8 sDebugText_Util_FlyToMap[] =                 _("Fly to map…{CLEAR_TO 110}{RIGHT_ARROW}");
 static const u8 sDebugText_Util_WarpToMap[] =                _("Warp to map warp…{CLEAR_TO 110}{RIGHT_ARROW}");
@@ -541,6 +550,7 @@ static const u8 sDebugText_Util_CheatStart[] =               _("Cheat start");
 static const u8 sDebugText_Util_ExpansionVersion[] =         _("Expansion Version");
 static const u8 sDebugText_Util_BerryFunctions[] =           _("Berry Functions…{CLEAR_TO 110}{RIGHT_ARROW}");
 static const u8 sDebugText_Util_EWRAMCounters[] =            _("EWRAM Counters…{CLEAR_TO 110}{RIGHT_ARROW}");
+static const u8 sDebugText_Util_Steven_Multi[] =             _("Steven Multi");
 // PC/Bag Menu
 static const u8 sDebugText_PCBag_Fill[] =                    _("Fill…{CLEAR_TO 110}{RIGHT_ARROW}");
 static const u8 sDebugText_PCBag_Fill_Pc_Fast[] =            _("Fill PC Boxes Fast");
@@ -631,6 +641,9 @@ static const u8 sDebugText_PokemonLevel[] =             _("Level:{CLEAR_TO 90}\n
 static const u8 sDebugText_PokemonShiny[] =             _("Shiny:{CLEAR_TO 90}\n   {STR_VAR_2}{CLEAR_TO 90}\n{CLEAR_TO 90}\n{CLEAR_TO 90}");
 static const u8 sDebugText_PokemonNature[] =            _("Nature ID: {STR_VAR_3}{CLEAR_TO 90}\n{STR_VAR_1}{CLEAR_TO 90}\n{CLEAR_TO 90}\n{STR_VAR_2}{CLEAR_TO 90}");
 static const u8 sDebugText_PokemonAbility[] =           _("Ability Num: {STR_VAR_3}{CLEAR_TO 90}\n{STR_VAR_1}{CLEAR_TO 90}\n{CLEAR_TO 90}\n{STR_VAR_2}{CLEAR_TO 90}");
+static const u8 sDebugText_PokemonTeraType[] =          _("Tera Type: {STR_VAR_3}{CLEAR_TO 90}\n{STR_VAR_1}{CLEAR_TO 90}\n{CLEAR_TO 90}\n{STR_VAR_2}{CLEAR_TO 90}");
+static const u8 sDebugText_PokemonDynamaxLevel[] =      _("Dmax Lvl:{CLEAR_TO 90}\n{STR_VAR_1}{CLEAR_TO 90}\n{CLEAR_TO 90}\n{STR_VAR_2}{CLEAR_TO 90}");
+static const u8 sDebugText_PokemonGmaxFactor[] =        _("Gmax Factor:{CLEAR_TO 90}\n   {STR_VAR_2}{CLEAR_TO 90}\n{CLEAR_TO 90}\n{CLEAR_TO 90}");
 static const u8 sDebugText_PokemonIVs[] =               _("All IVs:{CLEAR_TO 90}\n    {STR_VAR_3}{CLEAR_TO 90}\n{CLEAR_TO 90}\n{STR_VAR_2}{CLEAR_TO 90}");
 static const u8 sDebugText_PokemonEVs[] =               _("All EVs:{CLEAR_TO 90}\n    {STR_VAR_3}{CLEAR_TO 90}\n{CLEAR_TO 90}\n{STR_VAR_2}{CLEAR_TO 90}");
 static const u8 sDebugText_IV_HP[] =                    _("IV HP:{CLEAR_TO 90}\n    {STR_VAR_3}{CLEAR_TO 90}\n{CLEAR_TO 90}\n{STR_VAR_2}{CLEAR_TO 90}");
@@ -732,6 +745,7 @@ static const struct ListMenuItem sDebugMenu_Items_Utilities[] =
     [DEBUG_UTIL_MENU_ITEM_EXPANSION_VER]   = {sDebugText_Util_ExpansionVersion, DEBUG_UTIL_MENU_ITEM_EXPANSION_VER},
     [DEBUG_UTIL_MENU_ITEM_BERRY_FUNCTIONS] = {sDebugText_Util_BerryFunctions,   DEBUG_UTIL_MENU_ITEM_BERRY_FUNCTIONS},
     [DEBUG_UTIL_MENU_ITEM_EWRAM_COUNTERS]  = {sDebugText_Util_EWRAMCounters,    DEBUG_UTIL_MENU_ITEM_EWRAM_COUNTERS},
+    [DEBUG_UTIL_MENU_ITEM_STEVEN_MULTI]    = {sDebugText_Util_Steven_Multi,     DEBUG_UTIL_MENU_ITEM_STEVEN_MULTI},
 };
 
 static const struct ListMenuItem sDebugMenu_Items_PCBag[] =
@@ -904,6 +918,7 @@ static void (*const sDebugMenu_Actions_Utilities[])(u8) =
     [DEBUG_UTIL_MENU_ITEM_EXPANSION_VER]   = DebugAction_Util_ExpansionVersion,
     [DEBUG_UTIL_MENU_ITEM_BERRY_FUNCTIONS] = DebugAction_Util_BerryFunctions,
     [DEBUG_UTIL_MENU_ITEM_EWRAM_COUNTERS]  = DebugAction_Util_CheckEWRAMCounters,
+    [DEBUG_UTIL_MENU_ITEM_STEVEN_MULTI]    = DebugAction_Util_Steven_Multi,
 };
 
 static void (*const sDebugMenu_Actions_PCBag[])(u8) =
@@ -1240,6 +1255,32 @@ static void Debug_DestroyMenu_Full_Script(u8 taskId, const u8 *script)
     LockPlayerFieldControls();
     FreezeObjectEvents();
     ScriptContext_SetupScript(script);
+}
+
+static void Debug_HandleInput_Numeric(u8 taskId, s32 min, s32 max, u32 digits)
+{
+    if (JOY_NEW(DPAD_UP))
+    {
+        gTasks[taskId].tInput += sPowersOfTen[gTasks[taskId].tDigit];
+        if (gTasks[taskId].tInput > max)
+            gTasks[taskId].tInput = max;
+    }
+    if (JOY_NEW(DPAD_DOWN))
+    {
+        gTasks[taskId].tInput -= sPowersOfTen[gTasks[taskId].tDigit];
+        if (gTasks[taskId].tInput < min)
+            gTasks[taskId].tInput = min;
+    }
+    if (JOY_NEW(DPAD_LEFT))
+    {
+        if (gTasks[taskId].tDigit > 0)
+            gTasks[taskId].tDigit -= 1;
+    }
+    if (JOY_NEW(DPAD_RIGHT))
+    {
+        if (gTasks[taskId].tDigit < digits - 1)
+            gTasks[taskId].tDigit += 1;
+    }
 }
 
 static void DebugAction_Cancel(u8 taskId)
@@ -1951,28 +1992,7 @@ static void DebugAction_Util_Warp_SelectMapGroup(u8 taskId)
     if (JOY_NEW(DPAD_ANY))
     {
         PlaySE(SE_SELECT);
-        if (JOY_NEW(DPAD_UP))
-        {
-            gTasks[taskId].tInput += sPowersOfTen[gTasks[taskId].tDigit];
-            if (gTasks[taskId].tInput > LAST_MAP_GROUP)
-                gTasks[taskId].tInput = LAST_MAP_GROUP;
-        }
-        if (JOY_NEW(DPAD_DOWN))
-        {
-            gTasks[taskId].tInput -= sPowersOfTen[gTasks[taskId].tDigit];
-            if (gTasks[taskId].tInput < 0)
-                gTasks[taskId].tInput = 0;
-        }
-        if (JOY_NEW(DPAD_LEFT))
-        {
-            if (gTasks[taskId].tDigit > 0)
-                gTasks[taskId].tDigit -= 1;
-        }
-        if (JOY_NEW(DPAD_RIGHT))
-        {
-            if (gTasks[taskId].tDigit < 2)
-                gTasks[taskId].tDigit += 1;
-        }
+        Debug_HandleInput_Numeric(taskId, 0, LAST_MAP_GROUP, 3);
 
         ConvertIntToDecimalStringN(gStringVar1, gTasks[taskId].tInput, STR_CONV_MODE_LEADING_ZEROS, 3);
         ConvertIntToDecimalStringN(gStringVar2, LAST_MAP_GROUP, STR_CONV_MODE_LEADING_ZEROS, 3);
@@ -2012,28 +2032,7 @@ static void DebugAction_Util_Warp_SelectMap(u8 taskId)
     if (JOY_NEW(DPAD_ANY))
     {
         PlaySE(SE_SELECT);
-        if (JOY_NEW(DPAD_UP))
-        {
-            gTasks[taskId].tInput += sPowersOfTen[gTasks[taskId].tDigit];
-            if (gTasks[taskId].tInput > max_value - 1)
-                gTasks[taskId].tInput = max_value - 1;
-        }
-        if (JOY_NEW(DPAD_DOWN))
-        {
-            gTasks[taskId].tInput -= sPowersOfTen[gTasks[taskId].tDigit];
-            if (gTasks[taskId].tInput < 0)
-                gTasks[taskId].tInput = 0;
-        }
-        if (JOY_NEW(DPAD_LEFT))
-        {
-            if (gTasks[taskId].tDigit > 0)
-                gTasks[taskId].tDigit -= 1;
-        }
-        if (JOY_NEW(DPAD_RIGHT))
-        {
-            if (gTasks[taskId].tDigit < 2)
-                gTasks[taskId].tDigit += 1;
-        }
+        Debug_HandleInput_Numeric(taskId, 0, max_value - 1, 3);
 
         ConvertIntToDecimalStringN(gStringVar1, gTasks[taskId].tInput, STR_CONV_MODE_LEADING_ZEROS, (max_value >= 100) ? 3 : 2);
         ConvertIntToDecimalStringN(gStringVar2, MAP_GROUP_COUNT[gTasks[taskId].tMapGroup] - 1, STR_CONV_MODE_LEADING_ZEROS, (max_value >= 100) ? 3 : 2);
@@ -2257,29 +2256,7 @@ static void DebugAction_Util_Weather_SelectId(u8 taskId)
     if (JOY_NEW(DPAD_ANY))
     {
         PlaySE(SE_SELECT);
-
-        if (JOY_NEW(DPAD_UP))
-        {
-            gTasks[taskId].tInput += sPowersOfTen[gTasks[taskId].tDigit];
-            if (gTasks[taskId].tInput > WEATHER_ROUTE123_CYCLE)
-                gTasks[taskId].tInput = WEATHER_ROUTE123_CYCLE;
-        }
-        if (JOY_NEW(DPAD_DOWN))
-        {
-            gTasks[taskId].tInput -= sPowersOfTen[gTasks[taskId].tDigit];
-            if (gTasks[taskId].tInput < WEATHER_NONE)
-                gTasks[taskId].tInput = WEATHER_NONE;
-        }
-        if (JOY_NEW(DPAD_LEFT))
-        {
-            if (gTasks[taskId].tDigit > 0)
-                gTasks[taskId].tDigit -= 1;
-        }
-        if (JOY_NEW(DPAD_RIGHT))
-        {
-            if (gTasks[taskId].tDigit < 2)
-                gTasks[taskId].tDigit += 1;
-        }
+        Debug_HandleInput_Numeric(taskId, WEATHER_NONE, WEATHER_COUNT - 1, 3);
 
         StringCopy(gStringVar2, gText_DigitIndicator[gTasks[taskId].tDigit]);
         ConvertIntToDecimalStringN(gStringVar3, gTasks[taskId].tInput, STR_CONV_MODE_LEADING_ZEROS, 2);
@@ -2366,6 +2343,11 @@ static void DebugAction_Util_ExpansionVersion(u8 taskId)
     Debug_DestroyMenu_Full(taskId);
     LockPlayerFieldControls();
     ScriptContext_SetupScript(Debug_ShowExpansionVersion);
+}
+
+static void DebugAction_Util_Steven_Multi(u8 taskId)
+{
+    Debug_DestroyMenu_Full_Script(taskId, Debug_EventScript_Steven_Multi);
 }
 
 void BufferExpansionVersion(struct ScriptContext *ctx)
@@ -2474,34 +2456,8 @@ static void DebugAction_FlagsVars_FlagsSelect(u8 taskId)
         return;
     }
 
-    if (JOY_NEW(DPAD_UP))
-    {
-        PlaySE(SE_SELECT);
-        gTasks[taskId].tInput += sPowersOfTen[gTasks[taskId].tDigit];
-        if (gTasks[taskId].tInput >= FLAGS_COUNT)
-            gTasks[taskId].tInput = FLAGS_COUNT - 1;
-    }
-    if (JOY_NEW(DPAD_DOWN))
-    {
-        PlaySE(SE_SELECT);
-        gTasks[taskId].tInput -= sPowersOfTen[gTasks[taskId].tDigit];
-        if (gTasks[taskId].tInput < 1)
-            gTasks[taskId].tInput = 1;
-    }
-    if (JOY_NEW(DPAD_LEFT))
-    {
-        PlaySE(SE_SELECT);
-        gTasks[taskId].tDigit -= 1;
-        if (gTasks[taskId].tDigit < 0)
-            gTasks[taskId].tDigit = 0;
-    }
-    if (JOY_NEW(DPAD_RIGHT))
-    {
-        PlaySE(SE_SELECT);
-        gTasks[taskId].tDigit += 1;
-        if (gTasks[taskId].tDigit > DEBUG_NUMBER_DIGITS_FLAGS - 1)
-            gTasks[taskId].tDigit = DEBUG_NUMBER_DIGITS_FLAGS - 1;
-    }
+    PlaySE(SE_SELECT);
+    Debug_HandleInput_Numeric(taskId, 1, FLAGS_COUNT - 1, DEBUG_NUMBER_DIGITS_FLAGS);
 
     if (JOY_NEW(DPAD_ANY) || JOY_NEW(A_BUTTON))
     {
@@ -2553,30 +2509,7 @@ static void DebugAction_FlagsVars_Vars(u8 taskId)
 
 static void DebugAction_FlagsVars_Select(u8 taskId)
 {
-    if (JOY_NEW(DPAD_UP))
-    {
-        gTasks[taskId].tInput += sPowersOfTen[gTasks[taskId].tDigit];
-        if (gTasks[taskId].tInput > VARS_END)
-            gTasks[taskId].tInput = VARS_END;
-    }
-    if (JOY_NEW(DPAD_DOWN))
-    {
-        gTasks[taskId].tInput -= sPowersOfTen[gTasks[taskId].tDigit];
-        if (gTasks[taskId].tInput < VARS_START)
-            gTasks[taskId].tInput = VARS_START;
-    }
-    if (JOY_NEW(DPAD_LEFT))
-    {
-        gTasks[taskId].tDigit -= 1;
-        if (gTasks[taskId].tDigit < 0)
-            gTasks[taskId].tDigit = 0;
-    }
-    if (JOY_NEW(DPAD_RIGHT))
-    {
-        gTasks[taskId].tDigit += 1;
-        if (gTasks[taskId].tDigit > DEBUG_NUMBER_DIGITS_VARIABLES - 1)
-            gTasks[taskId].tDigit = DEBUG_NUMBER_DIGITS_VARIABLES - 1;
-    }
+    Debug_HandleInput_Numeric(taskId, VARS_START, VARS_END, DEBUG_NUMBER_DIGITS_VARIABLES);
 
     if (JOY_NEW(DPAD_ANY))
     {
@@ -2999,29 +2932,7 @@ static void DebugAction_Give_Item_SelectId(u8 taskId)
     if (JOY_NEW(DPAD_ANY))
     {
         PlaySE(SE_SELECT);
-
-        if (JOY_NEW(DPAD_UP))
-        {
-            gTasks[taskId].tInput += sPowersOfTen[gTasks[taskId].tDigit];
-            if (gTasks[taskId].tInput >= ITEMS_COUNT)
-                gTasks[taskId].tInput = ITEMS_COUNT - 1;
-        }
-        if (JOY_NEW(DPAD_DOWN))
-        {
-            gTasks[taskId].tInput -= sPowersOfTen[gTasks[taskId].tDigit];
-            if (gTasks[taskId].tInput < 1)
-                gTasks[taskId].tInput = 1;
-        }
-        if (JOY_NEW(DPAD_LEFT))
-        {
-            if (gTasks[taskId].tDigit > 0)
-                gTasks[taskId].tDigit -= 1;
-        }
-        if (JOY_NEW(DPAD_RIGHT))
-        {
-            if (gTasks[taskId].tDigit < DEBUG_NUMBER_DIGITS_ITEMS - 1)
-                gTasks[taskId].tDigit += 1;
-        }
+        Debug_HandleInput_Numeric(taskId, 1, ITEMS_COUNT - 1, DEBUG_NUMBER_DIGITS_ITEMS);
 
         StringCopy(gStringVar2, gText_DigitIndicator[gTasks[taskId].tDigit]);
         u8* end = CopyItemName(gTasks[taskId].tInput, gStringVar1);
@@ -3074,29 +2985,7 @@ static void DebugAction_Give_Item_SelectQuantity(u8 taskId)
     if (JOY_NEW(DPAD_ANY))
     {
         PlaySE(SE_SELECT);
-
-        if (JOY_NEW(DPAD_UP))
-        {
-            gTasks[taskId].tInput += sPowersOfTen[gTasks[taskId].tDigit];
-            if (gTasks[taskId].tInput > MAX_BAG_ITEM_CAPACITY)
-                gTasks[taskId].tInput = MAX_BAG_ITEM_CAPACITY;
-        }
-        if (JOY_NEW(DPAD_DOWN))
-        {
-            gTasks[taskId].tInput -= sPowersOfTen[gTasks[taskId].tDigit];
-            if (gTasks[taskId].tInput < 1)
-                gTasks[taskId].tInput = 1;
-        }
-        if (JOY_NEW(DPAD_LEFT))
-        {
-            if (gTasks[taskId].tDigit > 0)
-                gTasks[taskId].tDigit -= 1;
-        }
-        if (JOY_NEW(DPAD_RIGHT))
-        {
-            if (gTasks[taskId].tDigit < MAX_ITEM_DIGITS)
-                gTasks[taskId].tDigit += 1;
-        }
+        Debug_HandleInput_Numeric(taskId, 1, MAX_BAG_ITEM_CAPACITY, MAX_ITEM_DIGITS);
 
         StringCopy(gStringVar2, gText_DigitIndicator[gTasks[taskId].tDigit]);
         ConvertIntToDecimalStringN(gStringVar1, gTasks[taskId].tInput, STR_CONV_MODE_LEADING_ZEROS, DEBUG_NUMBER_DIGITS_ITEM_QUANTITY);
@@ -3139,6 +3028,9 @@ static void ResetMonDataStruct(struct DebugMonData *sDebugMonData)
     sDebugMonData->isShiny          = FALSE;
     sDebugMonData->nature           = 0;
     sDebugMonData->abilityNum       = 0;
+    sDebugMonData->teraType         = TYPE_NONE;
+    sDebugMonData->dynamaxLevel     = 0;
+    sDebugMonData->gmaxFactor       = FALSE;
     sDebugMonData->mon_iv_hp        = 0;
     sDebugMonData->mon_iv_atk       = 0;
     sDebugMonData->mon_iv_def       = 0;
@@ -3244,29 +3136,7 @@ static void DebugAction_Give_Pokemon_SelectId(u8 taskId)
     if (JOY_NEW(DPAD_ANY))
     {
         PlaySE(SE_SELECT);
-
-        if (JOY_NEW(DPAD_UP))
-        {
-            gTasks[taskId].tInput += sPowersOfTen[gTasks[taskId].tDigit];
-            if (gTasks[taskId].tInput >= NUM_SPECIES)
-                gTasks[taskId].tInput = NUM_SPECIES - 1;
-        }
-        if (JOY_NEW(DPAD_DOWN))
-        {
-            gTasks[taskId].tInput -= sPowersOfTen[gTasks[taskId].tDigit];
-            if (gTasks[taskId].tInput < 1)
-                gTasks[taskId].tInput = 1;
-        }
-        if (JOY_NEW(DPAD_LEFT))
-        {
-            if (gTasks[taskId].tDigit > 0)
-                gTasks[taskId].tDigit -= 1;
-        }
-        if (JOY_NEW(DPAD_RIGHT))
-        {
-            if (gTasks[taskId].tDigit < DEBUG_NUMBER_DIGITS_ITEMS - 1)
-                gTasks[taskId].tDigit += 1;
-        }
+        Debug_HandleInput_Numeric(taskId, 1, NUM_SPECIES - 1, DEBUG_NUMBER_DIGITS_ITEMS);
 
         StringCopy(gStringVar2, gText_DigitIndicator[gTasks[taskId].tDigit]);
         u8 *end = StringCopy(gStringVar1, GetSpeciesName(gTasks[taskId].tInput)); //CopyItemName(gTasks[taskId].tInput, gStringVar1);
@@ -3312,29 +3182,7 @@ static void DebugAction_Give_Pokemon_SelectLevel(u8 taskId)
     if (JOY_NEW(DPAD_ANY))
     {
         PlaySE(SE_SELECT);
-
-        if (JOY_NEW(DPAD_UP))
-        {
-            gTasks[taskId].tInput += sPowersOfTen[gTasks[taskId].tDigit];
-            if (gTasks[taskId].tInput > MAX_LEVEL)
-                gTasks[taskId].tInput = MAX_LEVEL;
-        }
-        if (JOY_NEW(DPAD_DOWN))
-        {
-            gTasks[taskId].tInput -= sPowersOfTen[gTasks[taskId].tDigit];
-            if (gTasks[taskId].tInput < 1)
-                gTasks[taskId].tInput = 1;
-        }
-        if (JOY_NEW(DPAD_LEFT))
-        {
-            if (gTasks[taskId].tDigit > 0)
-                gTasks[taskId].tDigit -= 1;
-        }
-        if (JOY_NEW(DPAD_RIGHT))
-        {
-            if (gTasks[taskId].tDigit < 2)
-                gTasks[taskId].tDigit += 1;
-        }
+        Debug_HandleInput_Numeric(taskId, 1, MAX_LEVEL, 3);
 
         StringCopy(gStringVar2, gText_DigitIndicator[gTasks[taskId].tDigit]);
         ConvertIntToDecimalStringN(gStringVar1, gTasks[taskId].tInput, STR_CONV_MODE_LEADING_ZEROS, 3);
@@ -3429,8 +3277,8 @@ static void DebugAction_Give_Pokemon_SelectNature(u8 taskId)
         if (JOY_NEW(DPAD_UP))
         {
             gTasks[taskId].tInput += sPowersOfTen[gTasks[taskId].tDigit];
-            if (gTasks[taskId].tInput > NUM_NATURES-1)
-                gTasks[taskId].tInput = NUM_NATURES-1;
+            if (gTasks[taskId].tInput > NUM_NATURES - 1)
+                gTasks[taskId].tInput = NUM_NATURES - 1;
         }
         if (JOY_NEW(DPAD_DOWN))
         {
@@ -3519,6 +3367,132 @@ static void DebugAction_Give_Pokemon_SelectAbility(u8 taskId)
         StringCopy(gStringVar2, gText_DigitIndicator[gTasks[taskId].tDigit]);
         ConvertIntToDecimalStringN(gStringVar3, gTasks[taskId].tInput, STR_CONV_MODE_LEADING_ZEROS, 2);
         StringCopyPadded(gStringVar3, gStringVar3, CHAR_SPACE, 15);
+        StringCopy(gStringVar1, gTypesInfo[0].name);
+        StringExpandPlaceholders(gStringVar4, sDebugText_PokemonTeraType);
+        AddTextPrinterParameterized(gTasks[taskId].tSubWindowId, DEBUG_MENU_FONT, gStringVar4, 0, 0, 0, NULL);
+
+        gTasks[taskId].func = DebugAction_Give_Pokemon_SelectTeraType;
+    }
+    else if (JOY_NEW(B_BUTTON))
+    {
+        PlaySE(SE_SELECT);
+        Free(sDebugMonData);
+        DebugAction_DestroyExtraWindow(taskId);
+    }
+}
+
+static void DebugAction_Give_Pokemon_SelectTeraType(u8 taskId)
+{
+    if (JOY_NEW(DPAD_ANY))
+    {
+        PlaySE(SE_SELECT);
+
+        if (JOY_NEW(DPAD_UP))
+        {
+            gTasks[taskId].tInput += sPowersOfTen[gTasks[taskId].tDigit];
+            if (gTasks[taskId].tInput > NUMBER_OF_MON_TYPES - 1)
+                gTasks[taskId].tInput = NUMBER_OF_MON_TYPES - 1;
+        }
+        if (JOY_NEW(DPAD_DOWN))
+        {
+            gTasks[taskId].tInput -= sPowersOfTen[gTasks[taskId].tDigit];
+            if (gTasks[taskId].tInput < 0)
+                gTasks[taskId].tInput = 0;
+        }
+
+        StringCopy(gStringVar2, gText_DigitIndicator[gTasks[taskId].tDigit]);
+        ConvertIntToDecimalStringN(gStringVar3, gTasks[taskId].tInput, STR_CONV_MODE_LEADING_ZEROS, 2);
+        StringCopyPadded(gStringVar3, gStringVar3, CHAR_SPACE, 15);
+        StringCopy(gStringVar1, gTypesInfo[gTasks[taskId].tInput].name);
+        StringExpandPlaceholders(gStringVar4, sDebugText_PokemonTeraType);
+        AddTextPrinterParameterized(gTasks[taskId].tSubWindowId, DEBUG_MENU_FONT, gStringVar4, 0, 0, 0, NULL);
+    }
+
+    if (JOY_NEW(A_BUTTON))
+    {
+        sDebugMonData->teraType = gTasks[taskId].tInput;
+        gTasks[taskId].tInput = 0;
+        gTasks[taskId].tDigit = 0;
+
+        StringCopy(gStringVar2, gText_DigitIndicator[gTasks[taskId].tDigit]);
+        ConvertIntToDecimalStringN(gStringVar1, gTasks[taskId].tInput, STR_CONV_MODE_LEADING_ZEROS, 2);
+        StringCopyPadded(gStringVar1, gStringVar1, CHAR_SPACE, 15);
+        StringExpandPlaceholders(gStringVar4, sDebugText_PokemonDynamaxLevel);
+        AddTextPrinterParameterized(gTasks[taskId].tSubWindowId, DEBUG_MENU_FONT, gStringVar4, 0, 0, 0, NULL);
+
+        gTasks[taskId].func = DebugAction_Give_Pokemon_SelectDynamaxLevel;
+    }
+    else if (JOY_NEW(B_BUTTON))
+    {
+        PlaySE(SE_SELECT);
+        Free(sDebugMonData);
+        DebugAction_DestroyExtraWindow(taskId);
+    }
+}
+
+static void DebugAction_Give_Pokemon_SelectDynamaxLevel(u8 taskId)
+{
+    if (JOY_NEW(DPAD_ANY))
+    {
+        PlaySE(SE_SELECT);
+        Debug_HandleInput_Numeric(taskId, 0, MAX_DYNAMAX_LEVEL, 2);
+
+        StringCopy(gStringVar2, gText_DigitIndicator[gTasks[taskId].tDigit]);
+        ConvertIntToDecimalStringN(gStringVar1, gTasks[taskId].tInput, STR_CONV_MODE_LEADING_ZEROS, 2);
+        StringCopyPadded(gStringVar1, gStringVar1, CHAR_SPACE, 15);
+        StringExpandPlaceholders(gStringVar4, sDebugText_PokemonDynamaxLevel);
+        AddTextPrinterParameterized(gTasks[taskId].tSubWindowId, DEBUG_MENU_FONT, gStringVar4, 0, 0, 0, NULL);
+    }
+
+    if (JOY_NEW(A_BUTTON))
+    {
+        sDebugMonData->dynamaxLevel = gTasks[taskId].tInput;
+        gTasks[taskId].tInput = 0;
+        gTasks[taskId].tDigit = 0;
+
+        ConvertIntToDecimalStringN(gStringVar3, gTasks[taskId].tInput, STR_CONV_MODE_LEADING_ZEROS, 0);
+        StringCopyPadded(gStringVar3, gStringVar3, CHAR_SPACE, 15);
+        StringCopyPadded(gStringVar2, sDebugText_False, CHAR_SPACE, 15);
+        StringExpandPlaceholders(gStringVar4, sDebugText_PokemonGmaxFactor);
+        AddTextPrinterParameterized(gTasks[taskId].tSubWindowId, DEBUG_MENU_FONT, gStringVar4, 0, 0, 0, NULL);
+
+        gTasks[taskId].func = DebugAction_Give_Pokemon_SelectGigantamaxFactor;
+    }
+    else if (JOY_NEW(B_BUTTON))
+    {
+        PlaySE(SE_SELECT);
+        Free(sDebugMonData);
+        FreeMonIconPalettes();
+        FreeAndDestroyMonIconSprite(&gSprites[gTasks[taskId].tSpriteId]);
+        DebugAction_DestroyExtraWindow(taskId);
+    }
+}
+
+static void DebugAction_Give_Pokemon_SelectGigantamaxFactor(u8 taskId)
+{
+    static const u8 *txtStr;
+
+    if (JOY_NEW(DPAD_ANY))
+    {
+        PlaySE(SE_SELECT);
+        gTasks[taskId].tInput ^= JOY_NEW(DPAD_UP | DPAD_DOWN) > 0;
+        txtStr = (gTasks[taskId].tInput == TRUE) ? sDebugText_True : sDebugText_False;
+        StringCopyPadded(gStringVar2, txtStr, CHAR_SPACE, 15);
+        ConvertIntToDecimalStringN(gStringVar3, gTasks[taskId].tInput, STR_CONV_MODE_LEADING_ZEROS, 0);
+        StringCopyPadded(gStringVar3, gStringVar3, CHAR_SPACE, 15);
+        StringExpandPlaceholders(gStringVar4, sDebugText_PokemonGmaxFactor);
+        AddTextPrinterParameterized(gTasks[taskId].tSubWindowId, DEBUG_MENU_FONT, gStringVar4, 0, 0, 0, NULL);
+    }
+
+    if (JOY_NEW(A_BUTTON))
+    {
+        sDebugMonData->gmaxFactor = gTasks[taskId].tInput;
+        gTasks[taskId].tInput = 0;
+        gTasks[taskId].tDigit = 0;
+
+        StringCopy(gStringVar2, gText_DigitIndicator[gTasks[taskId].tDigit]);
+        ConvertIntToDecimalStringN(gStringVar3, gTasks[taskId].tInput, STR_CONV_MODE_LEADING_ZEROS, 2);
+        StringCopyPadded(gStringVar3, gStringVar3, CHAR_SPACE, 15);
         StringExpandPlaceholders(gStringVar4, sDebugText_IV_HP);
         AddTextPrinterParameterized(gTasks[taskId].tSubWindowId, DEBUG_MENU_FONT, gStringVar4, 0, 0, 0, NULL);
 
@@ -3537,29 +3511,7 @@ static void DebugAction_Give_Pokemon_SelectIVs(u8 taskId)
     if (JOY_NEW(DPAD_ANY))
     {
         PlaySE(SE_SELECT);
-
-        if (JOY_NEW(DPAD_UP))
-        {
-            gTasks[taskId].tInput += sPowersOfTen[gTasks[taskId].tDigit];
-            if (gTasks[taskId].tInput > MAX_PER_STAT_IVS)
-                gTasks[taskId].tInput = MAX_PER_STAT_IVS;
-        }
-        if (JOY_NEW(DPAD_DOWN))
-        {
-            gTasks[taskId].tInput -= sPowersOfTen[gTasks[taskId].tDigit];
-            if (gTasks[taskId].tInput < 0)
-                gTasks[taskId].tInput = 0;
-        }
-        if (JOY_NEW(DPAD_LEFT))
-        {
-            if (gTasks[taskId].tDigit > 0)
-                gTasks[taskId].tDigit -= 1;
-        }
-        if (JOY_NEW(DPAD_RIGHT))
-        {
-            if (gTasks[taskId].tDigit < 2)
-                gTasks[taskId].tDigit += 1;
-        }
+        Debug_HandleInput_Numeric(taskId, 0, MAX_PER_STAT_IVS, 3);
 
         StringCopy(gStringVar2, gText_DigitIndicator[gTasks[taskId].tDigit]);
         ConvertIntToDecimalStringN(gStringVar3, gTasks[taskId].tInput, STR_CONV_MODE_LEADING_ZEROS, 2);
@@ -3687,29 +3639,7 @@ static void DebugAction_Give_Pokemon_SelectEVs(u8 taskId)
     if (JOY_NEW(DPAD_ANY))
     {
         PlaySE(SE_SELECT);
-
-        if (JOY_NEW(DPAD_UP))
-        {
-            gTasks[taskId].tInput += sPowersOfTen[gTasks[taskId].tDigit];
-            if (gTasks[taskId].tInput > MAX_PER_STAT_EVS)
-                gTasks[taskId].tInput = MAX_PER_STAT_EVS;
-        }
-        if (JOY_NEW(DPAD_DOWN))
-        {
-            gTasks[taskId].tInput -= sPowersOfTen[gTasks[taskId].tDigit];
-            if (gTasks[taskId].tInput < 0)
-                gTasks[taskId].tInput = 0;
-        }
-        if (JOY_NEW(DPAD_LEFT))
-        {
-            if (gTasks[taskId].tDigit > 0)
-                gTasks[taskId].tDigit -= 1;
-        }
-        if (JOY_NEW(DPAD_RIGHT))
-        {
-            if (gTasks[taskId].tDigit < 3)
-                gTasks[taskId].tDigit += 1;
-        }
+        Debug_HandleInput_Numeric(taskId, 0, MAX_PER_STAT_EVS, 4);
 
         StringCopy(gStringVar2, gText_DigitIndicator[gTasks[taskId].tDigit]);
         ConvertIntToDecimalStringN(gStringVar3, gTasks[taskId].tInput, STR_CONV_MODE_LEADING_ZEROS, 3);
@@ -3849,29 +3779,7 @@ static void DebugAction_Give_Pokemon_Move(u8 taskId)
     if (JOY_NEW(DPAD_ANY))
     {
         PlaySE(SE_SELECT);
-
-        if (JOY_NEW(DPAD_UP))
-        {
-            gTasks[taskId].tInput += sPowersOfTen[gTasks[taskId].tDigit];
-            if (gTasks[taskId].tInput >= MOVES_COUNT)
-                gTasks[taskId].tInput = MOVES_COUNT - 1;
-        }
-        if (JOY_NEW(DPAD_DOWN))
-        {
-            gTasks[taskId].tInput -= sPowersOfTen[gTasks[taskId].tDigit];
-            if (gTasks[taskId].tInput < 0)
-                gTasks[taskId].tInput = 0;
-        }
-        if (JOY_NEW(DPAD_LEFT))
-        {
-            if (gTasks[taskId].tDigit > 0)
-                gTasks[taskId].tDigit -= 1;
-        }
-        if (JOY_NEW(DPAD_RIGHT))
-        {
-            if (gTasks[taskId].tDigit < 3)
-                gTasks[taskId].tDigit += 1;
-        }
+        Debug_HandleInput_Numeric(taskId, 0, MOVES_COUNT - 1, 4);
 
         StringCopy(gStringVar2, gText_DigitIndicator[gTasks[taskId].tDigit]);
         u8 *end = StringCopy(gStringVar1, GetMoveName(gTasks[taskId].tInput));
@@ -3983,6 +3891,9 @@ static void DebugAction_Give_Pokemon_ComplexCreateMon(u8 taskId) //https://githu
     bool8 isShiny   = sDebugMonData->isShiny;
     u8 nature       = sDebugMonData->nature;
     u8 abilityNum   = sDebugMonData->abilityNum;
+    u32 teraType    = sDebugMonData->teraType;
+    u32 dmaxLevel   = sDebugMonData->dynamaxLevel;
+    u32 gmaxFactor  = sDebugMonData->gmaxFactor;
     moves[0]        = sDebugMonData->mon_move_0;
     moves[1]        = sDebugMonData->mon_move_1;
     moves[2]        = sDebugMonData->mon_move_2;
@@ -4003,16 +3914,27 @@ static void DebugAction_Give_Pokemon_ComplexCreateMon(u8 taskId) //https://githu
     //Nature
     if (nature == NUM_NATURES || nature == 0xFF)
         nature = Random() % NUM_NATURES;
-    CreateMonWithNature(&mon, species, level, 32, nature);
+    CreateMonWithNature(&mon, species, level, USE_RANDOM_IVS, nature);
 
     //Shininess
     SetMonData(&mon, MON_DATA_IS_SHINY, &isShiny);
+
+    // Gigantamax factor
+    SetMonData(&mon, MON_DATA_GIGANTAMAX_FACTOR, &gmaxFactor);
+
+    // Dynamax Level
+    SetMonData(&mon, MON_DATA_DYNAMAX_LEVEL, &dmaxLevel);
+
+    // tera type
+    if (teraType >= NUMBER_OF_MON_TYPES)
+        teraType = TYPE_NONE;
+    SetMonData(&mon, MON_DATA_TERA_TYPE, &teraType);
 
     //IVs
     for (i = 0; i < NUM_STATS; i++)
     {
         iv_val = IVs[i];
-        if (iv_val != 32 && iv_val != 0xFF)
+        if (iv_val != USE_RANDOM_IVS && iv_val != 0xFF)
             SetMonData(&mon, MON_DATA_HP_IV + i, &iv_val);
     }
 
@@ -4027,18 +3949,18 @@ static void DebugAction_Give_Pokemon_ComplexCreateMon(u8 taskId) //https://githu
     //Moves
     for (i = 0; i < MAX_MON_MOVES; i++)
     {
-        if (moves[i] == 0 || moves[i] == 0xFF || moves[i] >= MOVES_COUNT)
+        if (moves[i] == MOVE_NONE || moves[i] == 0xFF || moves[i] >= MOVES_COUNT)
             continue;
 
         SetMonMoveSlot(&mon, moves[i], i);
     }
 
     //Ability
-    if (abilityNum == 0xFF || GetAbilityBySpecies(species, abilityNum) == 0)
+    if (abilityNum == 0xFF || GetAbilityBySpecies(species, abilityNum) == ABILITY_NONE)
     {
         do {
-            abilityNum = Random() % 3;  // includes hidden abilities
-        } while (GetAbilityBySpecies(species, abilityNum) == 0);
+            abilityNum = Random() % NUM_ABILITY_SLOTS;  // includes hidden abilities
+        } while (GetAbilityBySpecies(species, abilityNum) == ABILITY_NONE);
     }
 
     SetMonData(&mon, MON_DATA_ABILITY_NUM, &abilityNum);
@@ -4056,7 +3978,9 @@ static void DebugAction_Give_Pokemon_ComplexCreateMon(u8 taskId) //https://githu
     }
 
     if (i >= PARTY_SIZE)
+    {
         sentToPc = CopyMonToPC(&mon);
+    }
     else
     {
         sentToPc = MON_GIVEN_TO_PARTY;
@@ -4314,31 +4238,10 @@ static void DebugAction_Sound_SE_SelectId(u8 taskId)
 {
     if (JOY_NEW(DPAD_ANY))
     {
-        if (JOY_NEW(DPAD_UP))
-        {
-            gTasks[taskId].tInput += sPowersOfTen[gTasks[taskId].tDigit];
-            if (gTasks[taskId].tInput > END_SE)
-                gTasks[taskId].tInput = END_SE;
-        }
-        if (JOY_NEW(DPAD_DOWN))
-        {
-            gTasks[taskId].tInput -= sPowersOfTen[gTasks[taskId].tDigit];
-            if (gTasks[taskId].tInput < 1)
-                gTasks[taskId].tInput = 1;
-        }
-        if (JOY_NEW(DPAD_LEFT))
-        {
-            if (gTasks[taskId].tDigit > 0)
-                gTasks[taskId].tDigit -= 1;
-        }
-        if (JOY_NEW(DPAD_RIGHT))
-        {
-            if (gTasks[taskId].tDigit < DEBUG_NUMBER_DIGITS_ITEMS - 1)
-                gTasks[taskId].tDigit += 1;
-        }
+        Debug_HandleInput_Numeric(taskId, 1, END_SE, DEBUG_NUMBER_DIGITS_ITEMS);
 
         StringCopy(gStringVar2, gText_DigitIndicator[gTasks[taskId].tDigit]);
-        StringCopyPadded(gStringVar1, sSENames[gTasks[taskId].tInput-1], CHAR_SPACE, 35);
+        StringCopyPadded(gStringVar1, sSENames[gTasks[taskId].tInput - 1], CHAR_SPACE, 35);
         ConvertIntToDecimalStringN(gStringVar3, gTasks[taskId].tInput, STR_CONV_MODE_LEADING_ZEROS, DEBUG_NUMBER_DIGITS_ITEMS);
         StringExpandPlaceholders(gStringVar4, sDebugText_Sound_SFX_ID);
         AddTextPrinterParameterized(gTasks[taskId].tSubWindowId, DEBUG_MENU_FONT, gStringVar4, 0, 0, 0, NULL);
@@ -4396,31 +4299,10 @@ static void DebugAction_Sound_MUS_SelectId(u8 taskId)
 {
     if (JOY_NEW(DPAD_ANY))
     {
-        if (JOY_NEW(DPAD_UP))
-        {
-            gTasks[taskId].tInput += sPowersOfTen[gTasks[taskId].tDigit];
-            if (gTasks[taskId].tInput > END_MUS)
-                gTasks[taskId].tInput = END_MUS;
-        }
-        if (JOY_NEW(DPAD_DOWN))
-        {
-            gTasks[taskId].tInput -= sPowersOfTen[gTasks[taskId].tDigit];
-            if (gTasks[taskId].tInput < START_MUS)
-                gTasks[taskId].tInput = START_MUS;
-        }
-        if (JOY_NEW(DPAD_LEFT))
-        {
-            if (gTasks[taskId].tDigit > 0)
-                gTasks[taskId].tDigit -= 1;
-        }
-        if (JOY_NEW(DPAD_RIGHT))
-        {
-            if (gTasks[taskId].tDigit < DEBUG_NUMBER_DIGITS_ITEMS - 1)
-                gTasks[taskId].tDigit += 1;
-        }
+        Debug_HandleInput_Numeric(taskId, START_MUS, END_MUS, DEBUG_NUMBER_DIGITS_ITEMS);
 
         StringCopy(gStringVar2, gText_DigitIndicator[gTasks[taskId].tDigit]);
-        StringCopyPadded(gStringVar1, sBGMNames[gTasks[taskId].tInput-START_MUS], CHAR_SPACE, 35);
+        StringCopyPadded(gStringVar1, sBGMNames[gTasks[taskId].tInput - START_MUS], CHAR_SPACE, 35);
         ConvertIntToDecimalStringN(gStringVar3, gTasks[taskId].tInput, STR_CONV_MODE_LEADING_ZEROS, DEBUG_NUMBER_DIGITS_ITEMS);
         StringExpandPlaceholders(gStringVar4, sDebugText_Sound_Music_ID);
         AddTextPrinterParameterized(gTasks[taskId].tSubWindowId, DEBUG_MENU_FONT, gStringVar4, 0, 0, 0, NULL);
