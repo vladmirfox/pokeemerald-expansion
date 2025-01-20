@@ -10,134 +10,134 @@ EWRAM_DATA ALIGNED(4) u8 gDecompressionBuffer[0x4000] = {0};
 
 //  Helper struct to build the tANS decode tables without having to do calculations at run-time
 ALIGNED(4) static const struct DecodeYK sYkTemplate[2*TANS_TABLE_SIZE] = {
-    [0] = {0, 0},
-    [1] = {1<<6, 6},
-    [2] = {2<<5, 5},
-    [3] = {3<<5, 5},
-    [4] = {4<<4, 4},
-    [5] = {5<<4, 4},
-    [6] = {6<<4, 4},
-    [7] = {7<<4, 4},
-    [8] = {8<<3, 3},
-    [9] = {9<<3, 3},
-    [10] = {10<<3, 3},
-    [11] = {11<<3, 3},
-    [12] = {12<<3, 3},
-    [13] = {13<<3, 3},
-    [14] = {14<<3, 3},
-    [15] = {15<<3, 3},
-    [16] = {16<<2, 2},
-    [17] = {17<<2, 2},
-    [18] = {18<<2, 2},
-    [19] = {19<<2, 2},
-    [20] = {20<<2, 2},
-    [21] = {21<<2, 2},
-    [22] = {22<<2, 2},
-    [23] = {23<<2, 2},
-    [24] = {24<<2, 2},
-    [25] = {25<<2, 2},
-    [26] = {26<<2, 2},
-    [27] = {27<<2, 2},
-    [28] = {28<<2, 2},
-    [29] = {29<<2, 2},
-    [30] = {30<<2, 2},
-    [31] = {31<<2, 2},
-    [32] = {32<<1, 1},
-    [33] = {33<<1, 1},
-    [34] = {34<<1, 1},
-    [35] = {35<<1, 1},
-    [36] = {36<<1, 1},
-    [37] = {37<<1, 1},
-    [38] = {38<<1, 1},
-    [39] = {39<<1, 1},
-    [40] = {40<<1, 1},
-    [41] = {41<<1, 1},
-    [42] = {42<<1, 1},
-    [43] = {43<<1, 1},
-    [44] = {44<<1, 1},
-    [45] = {45<<1, 1},
-    [46] = {46<<1, 1},
-    [47] = {47<<1, 1},
-    [48] = {48<<1, 1},
-    [49] = {49<<1, 1},
-    [50] = {50<<1, 1},
-    [51] = {51<<1, 1},
-    [52] = {52<<1, 1},
-    [53] = {53<<1, 1},
-    [54] = {54<<1, 1},
-    [55] = {55<<1, 1},
-    [56] = {56<<1, 1},
-    [57] = {57<<1, 1},
-    [58] = {58<<1, 1},
-    [59] = {59<<1, 1},
-    [60] = {60<<1, 1},
-    [61] = {61<<1, 1},
-    [62] = {62<<1, 1},
-    [63] = {63<<1, 1},
-    [64] = {64, 0},
-    [65] = {65, 0},
-    [66] = {66, 0},
-    [67] = {67, 0},
-    [68] = {68, 0},
-    [69] = {69, 0},
-    [70] = {70, 0},
-    [71] = {71, 0},
-    [72] = {72, 0},
-    [73] = {73, 0},
-    [74] = {74, 0},
-    [75] = {75, 0},
-    [76] = {76, 0},
-    [77] = {77, 0},
-    [78] = {78, 0},
-    [79] = {79, 0},
-    [80] = {80, 0},
-    [81] = {81, 0},
-    [82] = {82, 0},
-    [83] = {83, 0},
-    [84] = {84, 0},
-    [85] = {85, 0},
-    [86] = {86, 0},
-    [87] = {87, 0},
-    [88] = {88, 0},
-    [89] = {89, 0},
-    [90] = {90, 0},
-    [91] = {91, 0},
-    [92] = {92, 0},
-    [93] = {93, 0},
-    [94] = {94, 0},
-    [95] = {95, 0},
-    [96] = {96, 0},
-    [97] = {97, 0},
-    [98] = {98, 0},
-    [99] = {99, 0},
-    [100] = {100, 0},
-    [101] = {101, 0},
-    [102] = {102, 0},
-    [103] = {103, 0},
-    [104] = {104, 0},
-    [105] = {105, 0},
-    [106] = {106, 0},
-    [107] = {107, 0},
-    [108] = {108, 0},
-    [109] = {109, 0},
-    [110] = {110, 0},
-    [111] = {111, 0},
-    [112] = {112, 0},
-    [113] = {113, 0},
-    [114] = {114, 0},
-    [115] = {115, 0},
-    [116] = {116, 0},
-    [117] = {117, 0},
-    [118] = {118, 0},
-    [119] = {119, 0},
-    [120] = {120, 0},
-    [121] = {121, 0},
-    [122] = {122, 0},
-    [123] = {123, 0},
-    [124] = {124, 0},
-    [125] = {125, 0},
-    [126] = {126, 0},
-    [127] = {127, 0},
+    [0] = {0 - 64, 0},
+    [1] = {(1 << 6) - 64, 6},
+    [2] = {(2 << 5) - 64, 5},
+    [3] = {(3 << 5) - 64, 5},
+    [4] = {(4 << 4) - 64, 4},
+    [5] = {(5 << 4) - 64, 4},
+    [6] = {(6 << 4) - 64, 4},
+    [7] = {(7 << 4) - 64, 4},
+    [8] = {(8 << 3) - 64, 3},
+    [9] = {(9 << 3) - 64, 3},
+    [10] = {(10 << 3) - 64, 3},
+    [11] = {(11 << 3) - 64, 3},
+    [12] = {(12 << 3) - 64, 3},
+    [13] = {(13 << 3) - 64, 3},
+    [14] = {(14 << 3) - 64, 3},
+    [15] = {(15 << 3) - 64, 3},
+    [16] = {(16 << 2) - 64, 2},
+    [17] = {(17 << 2) - 64, 2},
+    [18] = {(18 << 2) - 64, 2},
+    [19] = {(19 << 2) - 64, 2},
+    [20] = {(20 << 2) - 64, 2},
+    [21] = {(21 << 2) - 64, 2},
+    [22] = {(22 << 2) - 64, 2},
+    [23] = {(23 << 2) - 64, 2},
+    [24] = {(24 << 2) - 64, 2},
+    [25] = {(25 << 2) - 64, 2},
+    [26] = {(26 << 2) - 64, 2},
+    [27] = {(27 << 2) - 64, 2},
+    [28] = {(28 << 2) - 64, 2},
+    [29] = {(29 << 2) - 64, 2},
+    [30] = {(30 << 2) - 64, 2},
+    [31] = {(31 << 2) - 64, 2},
+    [32] = {(32 << 1) - 64, 1},
+    [33] = {(33 << 1) - 64, 1},
+    [34] = {(34 << 1) - 64, 1},
+    [35] = {(35 << 1) - 64, 1},
+    [36] = {(36 << 1) - 64, 1},
+    [37] = {(37 << 1) - 64, 1},
+    [38] = {(38 << 1) - 64, 1},
+    [39] = {(39 << 1) - 64, 1},
+    [40] = {(40 << 1) - 64, 1},
+    [41] = {(41 << 1) - 64, 1},
+    [42] = {(42 << 1) - 64, 1},
+    [43] = {(43 << 1) - 64, 1},
+    [44] = {(44 << 1) - 64, 1},
+    [45] = {(45 << 1) - 64, 1},
+    [46] = {(46 << 1) - 64, 1},
+    [47] = {(47 << 1) - 64, 1},
+    [48] = {(48 << 1) - 64, 1},
+    [49] = {(49 << 1) - 64, 1},
+    [50] = {(50 << 1) - 64, 1},
+    [51] = {(51 << 1) - 64, 1},
+    [52] = {(52 << 1) - 64, 1},
+    [53] = {(53 << 1) - 64, 1},
+    [54] = {(54 << 1) - 64, 1},
+    [55] = {(55 << 1) - 64, 1},
+    [56] = {(56 << 1) - 64, 1},
+    [57] = {(57 << 1) - 64, 1},
+    [58] = {(58 << 1) - 64, 1},
+    [59] = {(59 << 1) - 64, 1},
+    [60] = {(60 << 1) - 64, 1},
+    [61] = {(61 << 1) - 64, 1},
+    [62] = {(62 << 1) - 64, 1},
+    [63] = {(63 << 1) - 64, 1},
+    [64] = {64 - 64, 0},
+    [65] = {65 - 64, 0},
+    [66] = {66 - 64, 0},
+    [67] = {67 - 64, 0},
+    [68] = {68 - 64, 0},
+    [69] = {69 - 64, 0},
+    [70] = {70 - 64, 0},
+    [71] = {71 - 64, 0},
+    [72] = {72 - 64, 0},
+    [73] = {73 - 64, 0},
+    [74] = {74 - 64, 0},
+    [75] = {75 - 64, 0},
+    [76] = {76 - 64, 0},
+    [77] = {77 - 64, 0},
+    [78] = {78 - 64, 0},
+    [79] = {79 - 64, 0},
+    [80] = {80 - 64, 0},
+    [81] = {81 - 64, 0},
+    [82] = {82 - 64, 0},
+    [83] = {83 - 64, 0},
+    [84] = {84 - 64, 0},
+    [85] = {85 - 64, 0},
+    [86] = {86 - 64, 0},
+    [87] = {87 - 64, 0},
+    [88] = {88 - 64, 0},
+    [89] = {89 - 64, 0},
+    [90] = {90 - 64, 0},
+    [91] = {91 - 64, 0},
+    [92] = {92 - 64, 0},
+    [93] = {93 - 64, 0},
+    [94] = {94 - 64, 0},
+    [95] = {95 - 64, 0},
+    [96] = {96 - 64, 0},
+    [97] = {97 - 64, 0},
+    [98] = {98 - 64, 0},
+    [99] = {99 - 64, 0},
+    [100] = {100 - 64, 0},
+    [101] = {101 - 64, 0},
+    [102] = {102 - 64, 0},
+    [103] = {103 - 64, 0},
+    [104] = {104 - 64, 0},
+    [105] = {105 - 64, 0},
+    [106] = {106 - 64, 0},
+    [107] = {107 - 64, 0},
+    [108] = {108 - 64, 0},
+    [109] = {109 - 64, 0},
+    [110] = {110 - 64, 0},
+    [111] = {111 - 64, 0},
+    [112] = {112 - 64, 0},
+    [113] = {113 - 64, 0},
+    [114] = {114 - 64, 0},
+    [115] = {115 - 64, 0},
+    [116] = {116 - 64, 0},
+    [117] = {117 - 64, 0},
+    [118] = {118 - 64, 0},
+    [119] = {119 - 64, 0},
+    [120] = {120 - 64, 0},
+    [121] = {121 - 64, 0},
+    [122] = {122 - 64, 0},
+    [123] = {123 - 64, 0},
+    [124] = {124 - 64, 0},
+    [125] = {125 - 64, 0},
+    [126] = {126 - 64, 0},
+    [127] = {127 - 64, 0},
 };
 
 // Checks if `ptr` is likely LZ77 data
@@ -554,7 +554,7 @@ __attribute__((target("arm"))) __attribute__((noinline, no_reorder)) __attribute
         {
             symbol |= decodeHelper->symbolTable[sCurrState] << (currNibble*4);
             u32 currK = decodeHelper->ykTable[sCurrState].kVal;
-            sCurrState = decodeHelper->ykTable[sCurrState].yVal - 64;
+            sCurrState = decodeHelper->ykTable[sCurrState].yVal;
             sCurrState += (currBits >> bitIndex) & maskTable[currK];
             bitIndex += currK;
             if (bitIndex >= 32)
@@ -608,7 +608,7 @@ static void DecodeLOtANS(const u32 *data, const u32 *pFreqs, u8 *resultVec, u32 
         {
             symbol |= symbolTable[sCurrState] << (currNibble*4);
             u32 currK = ykTable[sCurrState].kVal;
-            sCurrState = ykTable[sCurrState].yVal - 64;
+            sCurrState = ykTable[sCurrState].yVal;
             sCurrState += (currBits >> sBitIndex) & sMaskTable[currK];
             sBitIndex += currK;
             if (sBitIndex >= 32)
@@ -640,7 +640,7 @@ __attribute__((target("arm"))) __attribute__((noinline, no_reorder)) __attribute
         {
             symbol |= stuff->symbolTable[sCurrState] << (currNibble*4);
             u32 currK = stuff->ykTable[sCurrState].kVal;
-            sCurrState = stuff->ykTable[sCurrState].yVal - 64;
+            sCurrState = stuff->ykTable[sCurrState].yVal;
             sCurrState += (currBits >> bitIndex) & maskTable[currK]; // Masktable is slower here for some reason.
             bitIndex += currK;
             if (bitIndex >= 32)
@@ -705,9 +705,10 @@ __attribute__((target("arm"))) __attribute__((noinline, no_reorder)) __attribute
             currSymbol = (currSymbol + decodeHelper->symbolTable[sCurrState]) & 0xf;
             symbol |= currSymbol << (currNibble*4);
             u32 currK = decodeHelper->ykTable[sCurrState].kVal;
-            sCurrState = decodeHelper->ykTable[sCurrState].yVal - 64;
-            sCurrState += (currBits >> bitIndex) & maskTable[currK];
+            sCurrState = decodeHelper->ykTable[sCurrState].yVal;
+            sCurrState += ((currBits >> bitIndex) & maskTable[currK]);
             bitIndex += currK;
+
             if (bitIndex >= 32)
             {
                 currBits = *data++;
@@ -761,7 +762,7 @@ static void DecodeSymDeltatANS(const u32 *data, const u32 *pFreqs, u16 *resultVe
             sCurrSymbol = (sCurrSymbol + symbolTable[sCurrState]) & 0xf;
             symbol |= sCurrSymbol << (currNibble*4);
             u32 currK = ykTable[sCurrState].kVal;
-            sCurrState = ykTable[sCurrState].yVal - 64;
+            sCurrState = ykTable[sCurrState].yVal;
             sCurrState += (currBits >> sBitIndex) & sMaskTable[currK];
             sBitIndex += currK;
             if (sBitIndex >= 32)
@@ -806,31 +807,41 @@ static inline void Copy16(const void *_src, void *_dst, u32 size)
 //      Insert the current value from the Symbol vector into current result position <length> times, then advance symbol vector by 1
 //  If length is 0:
 //      Insert <offset> number of symbols from the symbol vector into the result vector and advance the symbol vector position by <offset>
-__attribute__((target("arm"))) __attribute__((noinline, no_reorder)) static void DecodeInstructions(u32 headerLoSize, u8 *loVec, u16 *symVec, u16 *dest)
+__attribute__((target("arm"))) __attribute__((noinline, no_reorder)) __attribute__((optimize("-O3"))) static void DecodeInstructions(u32 headerLoSize, u8 *loVec, u16 *symVec, u16 *dest)
 {
     u8 *loVecEnd = loVec + headerLoSize;
     do
     {
-        u32 currLength = *loVec & FIRST_LO_MASK;
-        if (*loVec & CONTINUE_BIT)
-        {
-            currLength += loVec[1] << 7;
-            loVec += 2;
-        }
-        else
-        {
-            loVec++;
-        }
+        u32 currOffset, currLength;
 
-        u32 currOffset = *loVec & FIRST_LO_MASK;
-        if (*loVec & CONTINUE_BIT)
+        if (loVec[0] & CONTINUE_BIT)
         {
-            currOffset += loVec[1] << 7;
-            loVec += 2;
+            currLength = (loVec[0] & FIRST_LO_MASK) | (loVec[1] << 7);
+            currOffset = loVec[2] & FIRST_LO_MASK;
+            if (loVec[2] & CONTINUE_BIT)
+            {
+                currOffset |= loVec[3] << 7;
+                loVec += 4;
+            }
+            else
+            {
+                loVec += 3;
+            }
         }
         else
         {
-            loVec++;
+            currLength = loVec[0] & FIRST_LO_MASK;
+            currOffset = loVec[1] & FIRST_LO_MASK;
+
+            if (loVec[1] & CONTINUE_BIT)
+            {
+                currOffset |= (loVec[2] << 7);
+                loVec += 3;
+            }
+            else
+            {
+                loVec += 2;
+            }
         }
 
         if (currLength != 0)
@@ -843,6 +854,7 @@ __attribute__((target("arm"))) __attribute__((noinline, no_reorder)) static void
             }
             else
             {
+                // Copy16 is slower in this case.
                 u16 *from = dest - currOffset;
                 u16 *to = dest + currLength;
                 do {
@@ -869,7 +881,7 @@ __attribute__((target("arm"))) __attribute__((no_reorder)) static void SwitchToA
 //  Dark Egg magic
 static void DecodeInstructionsIwram(u32 headerLoSize, u8 *loVec, u16 *symVec, void *dest)
 {
-    u32 funcBuffer[150];
+    u32 funcBuffer[350];
 
     CopyFuncToIwram(funcBuffer, DecodeInstructions, SwitchToArmCallDecodeInstructions);
     SwitchToArmCallDecodeInstructions(headerLoSize, loVec, symVec, dest, (void *) funcBuffer);
