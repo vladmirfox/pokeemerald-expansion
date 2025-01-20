@@ -447,7 +447,7 @@ CompressedImage processImageData(std::vector<unsigned char> input, InputSettings
             continue;
         }
         CompressionMode mode = BASE_ONLY;
-        //std::vector<CompressionMode> modesToUse = {BASE_ONLY};
+        //std::vector<CompressionMode> modesToUse = {ENCODE_SYMS};
         std::vector<CompressionMode> modesToUse = {BASE_ONLY, ENCODE_SYMS, ENCODE_DELTA_SYMS, ENCODE_LO, ENCODE_BOTH, ENCODE_BOTH_DELTA_SYMS};
         if (fileName.find("test/compression/") != std::string::npos)
         {
@@ -463,6 +463,8 @@ CompressedImage processImageData(std::vector<unsigned char> input, InputSettings
                 modesToUse = {ENCODE_BOTH};
             else if (fileName.find("mode_5.4bpp") != std::string::npos)
                 modesToUse = {ENCODE_BOTH_DELTA_SYMS};
+            else if (fileName.find("test/compression/table_") != std::string::npos)
+                modesToUse = {ENCODE_SYMS};
 
             if (modesToUse.size() == 1)
             {
@@ -490,7 +492,7 @@ CompressedImage processImageData(std::vector<unsigned char> input, InputSettings
               || mode == ENCODE_DELTA_SYMS
               || mode == ENCODE_BOTH_DELTA_SYMS))
                 continue;
-            CompressedImage image = fillCompressVecNew(loVec, symVec, mode,rawBase.size());
+            CompressedImage image = fillCompressVecNew(loVec, symVec, mode,rawBase.size(), fileName);
             if (!verifyCompressionShort(&image, &usBase))
             {
                 compressionFail = true;
@@ -994,7 +996,7 @@ bool isModeSymDelta(CompressionMode mode)
     return false;
 }
 
-CompressedImage fillCompressVecNew(std::vector<unsigned char> loVec, std::vector<unsigned short> symVec, CompressionMode mode, size_t imageBytes)
+CompressedImage fillCompressVecNew(std::vector<unsigned char> loVec, std::vector<unsigned short> symVec, CompressionMode mode, size_t imageBytes, std::string name)
 {
     CompressedImage image;
     bool loEncoded = isModeLoEncoded(mode);
@@ -1050,6 +1052,7 @@ CompressedImage fillCompressVecNew(std::vector<unsigned char> loVec, std::vector
         for (unsigned char uc : symNibbles)
             symCounts[uc]++;
         std::vector<unsigned char> freqsToUse = getNormalizedCounts(symCounts);
+        freqsToUse = getTestFreqs(freqsToUse, name);
         std::vector<unsigned int> freqs = getFreqWriteInts(freqsToUse);
         image.symFreqs[0] = freqs[0];
         image.symFreqs[1] = freqs[1];
@@ -1319,4 +1322,235 @@ void deltaDecode(std::vector<unsigned char> *buffer, int length)
         (*buffer)[i] = (delta+last) & 0xf;
         last = (*buffer)[i];
     }
+}
+
+std::vector<unsigned char> getTestFreqs(std::vector<unsigned char> freqs, std::string name)
+{
+    if (name.find("test/compression/table_") == std::string::npos)
+        return freqs;
+    if (name.find("table_63_1") != std::string::npos)
+    {
+        freqs.clear();
+        freqs.resize(16);
+        freqs[0] = 63;
+        freqs[1] = 1;
+    }
+    if (name.find("table_62_2") != std::string::npos)
+    {
+        freqs.clear();
+        freqs.resize(16);
+        freqs[0] = 62;
+        freqs[1] = 2;
+    }
+    if (name.find("table_61_3") != std::string::npos)
+    {
+        freqs.clear();
+        freqs.resize(16);
+        freqs[0] = 61;
+        freqs[1] = 3;
+    }
+    if (name.find("table_60_4") != std::string::npos)
+    {
+        freqs.clear();
+        freqs.resize(16);
+        freqs[0] = 60;
+        freqs[1] = 4;
+    }
+    if (name.find("table_59_5") != std::string::npos)
+    {
+        freqs.clear();
+        freqs.resize(16);
+        freqs[0] = 59;
+        freqs[1] = 5;
+    }
+    if (name.find("table_58_6") != std::string::npos)
+    {
+        freqs.clear();
+        freqs.resize(16);
+        freqs[0] = 58;
+        freqs[1] = 6;
+    }
+    if (name.find("table_57_7") != std::string::npos)
+    {
+        freqs.clear();
+        freqs.resize(16);
+        freqs[0] = 57;
+        freqs[1] = 7;
+    }
+    if (name.find("table_56_8") != std::string::npos)
+    {
+        freqs.clear();
+        freqs.resize(16);
+        freqs[0] = 56;
+        freqs[1] = 8;
+    }
+    if (name.find("table_55_9") != std::string::npos)
+    {
+        freqs.clear();
+        freqs.resize(16);
+        freqs[0] = 55;
+        freqs[1] = 9;
+    }
+    if (name.find("table_54_10") != std::string::npos)
+    {
+        freqs.clear();
+        freqs.resize(16);
+        freqs[0] = 54;
+        freqs[1] = 10;
+    }
+    if (name.find("table_53_11") != std::string::npos)
+    {
+        freqs.clear();
+        freqs.resize(16);
+        freqs[0] = 53;
+        freqs[1] = 11;
+    }
+    if (name.find("table_52_12") != std::string::npos)
+    {
+        freqs.clear();
+        freqs.resize(16);
+        freqs[0] = 52;
+        freqs[1] = 12;
+    }
+    if (name.find("table_51_13") != std::string::npos)
+    {
+        freqs.clear();
+        freqs.resize(16);
+        freqs[0] = 51;
+        freqs[1] = 13;
+    }
+    if (name.find("table_50_14") != std::string::npos)
+    {
+        freqs.clear();
+        freqs.resize(16);
+        freqs[0] = 50;
+        freqs[1] = 14;
+    }
+    if (name.find("table_49_15") != std::string::npos)
+    {
+        freqs.clear();
+        freqs.resize(16);
+        freqs[0] = 49;
+        freqs[1] = 15;
+    }
+    if (name.find("table_48_16") != std::string::npos)
+    {
+        freqs.clear();
+        freqs.resize(16);
+        freqs[0] = 48;
+        freqs[1] = 16;
+    }
+    if (name.find("table_47_17") != std::string::npos)
+    {
+        freqs.clear();
+        freqs.resize(16);
+        freqs[0] = 47;
+        freqs[1] = 17;
+    }
+    if (name.find("table_46_18") != std::string::npos)
+    {
+        freqs.clear();
+        freqs.resize(16);
+        freqs[0] = 46;
+        freqs[1] = 18;
+    }
+    if (name.find("table_45_19") != std::string::npos)
+    {
+        freqs.clear();
+        freqs.resize(16);
+        freqs[0] = 45;
+        freqs[1] = 19;
+    }
+    if (name.find("table_44_20") != std::string::npos)
+    {
+        freqs.clear();
+        freqs.resize(16);
+        freqs[0] = 44;
+        freqs[1] = 20;
+    }
+    if (name.find("table_43_21") != std::string::npos)
+    {
+        freqs.clear();
+        freqs.resize(16);
+        freqs[0] = 43;
+        freqs[1] = 21;
+    }
+    if (name.find("table_42_22") != std::string::npos)
+    {
+        freqs.clear();
+        freqs.resize(16);
+        freqs[0] = 42;
+        freqs[1] = 22;
+    }
+    if (name.find("table_41_23") != std::string::npos)
+    {
+        freqs.clear();
+        freqs.resize(16);
+        freqs[0] = 41;
+        freqs[1] = 23;
+    }
+    if (name.find("table_40_24") != std::string::npos)
+    {
+        freqs.clear();
+        freqs.resize(16);
+        freqs[0] = 40;
+        freqs[1] = 24;
+    }
+    if (name.find("table_39_25") != std::string::npos)
+    {
+        freqs.clear();
+        freqs.resize(16);
+        freqs[0] = 39;
+        freqs[1] = 25;
+    }
+    if (name.find("table_38_26") != std::string::npos)
+    {
+        freqs.clear();
+        freqs.resize(16);
+        freqs[0] = 38;
+        freqs[1] = 26;
+    }
+    if (name.find("table_37_27") != std::string::npos)
+    {
+        freqs.clear();
+        freqs.resize(16);
+        freqs[0] = 37;
+        freqs[1] = 27;
+    }
+    if (name.find("table_36_28") != std::string::npos)
+    {
+        freqs.clear();
+        freqs.resize(16);
+        freqs[0] = 36;
+        freqs[1] = 28;
+    }
+    if (name.find("table_35_29") != std::string::npos)
+    {
+        freqs.clear();
+        freqs.resize(16);
+        freqs[0] = 35;
+        freqs[1] = 29;
+    }
+    if (name.find("table_34_30") != std::string::npos)
+    {
+        freqs.clear();
+        freqs.resize(16);
+        freqs[0] = 34;
+        freqs[1] = 30;
+    }
+    if (name.find("table_33_31") != std::string::npos)
+    {
+        freqs.clear();
+        freqs.resize(16);
+        freqs[0] = 33;
+        freqs[1] = 31;
+    }
+    if (name.find("table_32_32") != std::string::npos)
+    {
+        freqs.clear();
+        freqs.resize(16);
+        freqs[0] = 32;
+        freqs[1] = 32;
+    }
+    return freqs;
 }

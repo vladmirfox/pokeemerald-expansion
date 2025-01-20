@@ -1412,3 +1412,867 @@ TEST("Compression test: large mode 5 lz")
 
     Free(compBuffer);
 }
+
+TEST("Compression test: table generation 63 1")
+{
+    static const u32 origFile[] = INCBIN_U32("test/compression/table_63_1.4bpp");
+    static const u32 compFile[] = INCBIN_U32("test/compression/table_63_1.4bpp.smol");
+    u32 imageSize = GetDecompressedDataSize(compFile);
+    u32 *compBuffer = Alloc(imageSize);
+    DecompressDataWithHeaderWram(compFile, compBuffer);
+
+    u32 val1 = 0;
+    u32 val2 = 0;
+    bool32 areEqual = TRUE;
+    for (u32 i = 0; i < imageSize/4; i++)
+    {
+        val1 = origFile[i];
+        val2 = compBuffer[i];
+        if (val1 != val2)
+        {
+            areEqual = FALSE;
+            break;
+        }
+    }
+
+    EXPECT_EQ(areEqual, TRUE);
+
+    Free(compBuffer);
+}
+
+TEST("Compression test: table generation 62 2")
+{
+    static const u32 origFile[] = INCBIN_U32("test/compression/table_62_2.4bpp");
+    static const u32 compFile[] = INCBIN_U32("test/compression/table_62_2.4bpp.smol");
+    u32 imageSize = GetDecompressedDataSize(compFile);
+    u32 *compBuffer = Alloc(imageSize);
+    DecompressDataWithHeaderWram(compFile, compBuffer);
+
+    u32 val1 = 0;
+    u32 val2 = 0;
+    bool32 areEqual = TRUE;
+    for (u32 i = 0; i < imageSize/4; i++)
+    {
+        val1 = origFile[i];
+        val2 = compBuffer[i];
+        if (val1 != val2)
+        {
+            areEqual = FALSE;
+            break;
+        }
+    }
+
+    EXPECT_EQ(areEqual, TRUE);
+
+    Free(compBuffer);
+}
+
+TEST("Compression test: table generation 61 3")
+{
+    static const u32 origFile[] = INCBIN_U32("test/compression/table_61_3.4bpp");
+    static const u32 compFile[] = INCBIN_U32("test/compression/table_61_3.4bpp.smol");
+    u32 imageSize = GetDecompressedDataSize(compFile);
+    u32 *compBuffer = Alloc(imageSize);
+    DecompressDataWithHeaderWram(compFile, compBuffer);
+
+    u32 val1 = 0;
+    u32 val2 = 0;
+    bool32 areEqual = TRUE;
+    for (u32 i = 0; i < imageSize/4; i++)
+    {
+        val1 = origFile[i];
+        val2 = compBuffer[i];
+        if (val1 != val2)
+        {
+            areEqual = FALSE;
+            break;
+        }
+    }
+
+    EXPECT_EQ(areEqual, TRUE);
+
+    Free(compBuffer);
+}
+
+TEST("Compression test: table generation 60 4")
+{
+    static const u32 origFile[] = INCBIN_U32("test/compression/table_60_4.4bpp");
+    static const u32 compFile[] = INCBIN_U32("test/compression/table_60_4.4bpp.smol");
+    u32 imageSize = GetDecompressedDataSize(compFile);
+    u32 *compBuffer = Alloc(imageSize);
+    DecompressDataWithHeaderWram(compFile, compBuffer);
+
+    u32 val1 = 0;
+    u32 val2 = 0;
+    bool32 areEqual = TRUE;
+    for (u32 i = 0; i < imageSize/4; i++)
+    {
+        val1 = origFile[i];
+        val2 = compBuffer[i];
+        if (val1 != val2)
+        {
+            areEqual = FALSE;
+            break;
+        }
+    }
+
+    EXPECT_EQ(areEqual, TRUE);
+
+    Free(compBuffer);
+}
+
+TEST("Compression test: table generation 59 5")
+{
+    static const u32 origFile[] = INCBIN_U32("test/compression/table_59_5.4bpp");
+    static const u32 compFile[] = INCBIN_U32("test/compression/table_59_5.4bpp.smol");
+    u32 imageSize = GetDecompressedDataSize(compFile);
+    u32 *compBuffer = Alloc(imageSize);
+    DecompressDataWithHeaderWram(compFile, compBuffer);
+
+    u32 val1 = 0;
+    u32 val2 = 0;
+    bool32 areEqual = TRUE;
+    for (u32 i = 0; i < imageSize/4; i++)
+    {
+        val1 = origFile[i];
+        val2 = compBuffer[i];
+        if (val1 != val2)
+        {
+            areEqual = FALSE;
+            break;
+        }
+    }
+
+    EXPECT_EQ(areEqual, TRUE);
+
+    Free(compBuffer);
+}
+
+TEST("Compression test: table generation 58 6")
+{
+    static const u32 origFile[] = INCBIN_U32("test/compression/table_58_6.4bpp");
+    static const u32 compFile[] = INCBIN_U32("test/compression/table_58_6.4bpp.smol");
+    u32 imageSize = GetDecompressedDataSize(compFile);
+    u32 *compBuffer = Alloc(imageSize);
+    DecompressDataWithHeaderWram(compFile, compBuffer);
+
+    u32 val1 = 0;
+    u32 val2 = 0;
+    bool32 areEqual = TRUE;
+    for (u32 i = 0; i < imageSize/4; i++)
+    {
+        val1 = origFile[i];
+        val2 = compBuffer[i];
+        if (val1 != val2)
+        {
+            areEqual = FALSE;
+            break;
+        }
+    }
+
+    EXPECT_EQ(areEqual, TRUE);
+
+    Free(compBuffer);
+}
+
+TEST("Compression test: table generation 57 7")
+{
+    static const u32 origFile[] = INCBIN_U32("test/compression/table_57_7.4bpp");
+    static const u32 compFile[] = INCBIN_U32("test/compression/table_57_7.4bpp.smol");
+    u32 imageSize = GetDecompressedDataSize(compFile);
+    u32 *compBuffer = Alloc(imageSize);
+    DecompressDataWithHeaderWram(compFile, compBuffer);
+
+    u32 val1 = 0;
+    u32 val2 = 0;
+    bool32 areEqual = TRUE;
+    for (u32 i = 0; i < imageSize/4; i++)
+    {
+        val1 = origFile[i];
+        val2 = compBuffer[i];
+        if (val1 != val2)
+        {
+            areEqual = FALSE;
+            break;
+        }
+    }
+
+    EXPECT_EQ(areEqual, TRUE);
+
+    Free(compBuffer);
+}
+
+TEST("Compression test: table generation 56 8")
+{
+    static const u32 origFile[] = INCBIN_U32("test/compression/table_56_8.4bpp");
+    static const u32 compFile[] = INCBIN_U32("test/compression/table_56_8.4bpp.smol");
+    u32 imageSize = GetDecompressedDataSize(compFile);
+    u32 *compBuffer = Alloc(imageSize);
+    DecompressDataWithHeaderWram(compFile, compBuffer);
+
+    u32 val1 = 0;
+    u32 val2 = 0;
+    bool32 areEqual = TRUE;
+    for (u32 i = 0; i < imageSize/4; i++)
+    {
+        val1 = origFile[i];
+        val2 = compBuffer[i];
+        if (val1 != val2)
+        {
+            areEqual = FALSE;
+            break;
+        }
+    }
+
+    EXPECT_EQ(areEqual, TRUE);
+
+    Free(compBuffer);
+}
+
+TEST("Compression test: table generation 55 9")
+{
+    static const u32 origFile[] = INCBIN_U32("test/compression/table_55_9.4bpp");
+    static const u32 compFile[] = INCBIN_U32("test/compression/table_55_9.4bpp.smol");
+    u32 imageSize = GetDecompressedDataSize(compFile);
+    u32 *compBuffer = Alloc(imageSize);
+    DecompressDataWithHeaderWram(compFile, compBuffer);
+
+    u32 val1 = 0;
+    u32 val2 = 0;
+    bool32 areEqual = TRUE;
+    for (u32 i = 0; i < imageSize/4; i++)
+    {
+        val1 = origFile[i];
+        val2 = compBuffer[i];
+        if (val1 != val2)
+        {
+            areEqual = FALSE;
+            break;
+        }
+    }
+
+    EXPECT_EQ(areEqual, TRUE);
+
+    Free(compBuffer);
+}
+
+TEST("Compression test: table generation 54 10")
+{
+    static const u32 origFile[] = INCBIN_U32("test/compression/table_54_10.4bpp");
+    static const u32 compFile[] = INCBIN_U32("test/compression/table_54_10.4bpp.smol");
+    u32 imageSize = GetDecompressedDataSize(compFile);
+    u32 *compBuffer = Alloc(imageSize);
+    DecompressDataWithHeaderWram(compFile, compBuffer);
+
+    u32 val1 = 0;
+    u32 val2 = 0;
+    bool32 areEqual = TRUE;
+    for (u32 i = 0; i < imageSize/4; i++)
+    {
+        val1 = origFile[i];
+        val2 = compBuffer[i];
+        if (val1 != val2)
+        {
+            areEqual = FALSE;
+            break;
+        }
+    }
+
+    EXPECT_EQ(areEqual, TRUE);
+
+    Free(compBuffer);
+}
+
+TEST("Compression test: table generation 53 11")
+{
+    static const u32 origFile[] = INCBIN_U32("test/compression/table_53_11.4bpp");
+    static const u32 compFile[] = INCBIN_U32("test/compression/table_53_11.4bpp.smol");
+    u32 imageSize = GetDecompressedDataSize(compFile);
+    u32 *compBuffer = Alloc(imageSize);
+    DecompressDataWithHeaderWram(compFile, compBuffer);
+
+    u32 val1 = 0;
+    u32 val2 = 0;
+    bool32 areEqual = TRUE;
+    for (u32 i = 0; i < imageSize/4; i++)
+    {
+        val1 = origFile[i];
+        val2 = compBuffer[i];
+        if (val1 != val2)
+        {
+            areEqual = FALSE;
+            break;
+        }
+    }
+
+    EXPECT_EQ(areEqual, TRUE);
+
+    Free(compBuffer);
+}
+
+TEST("Compression test: table generation 52 12")
+{
+    static const u32 origFile[] = INCBIN_U32("test/compression/table_52_12.4bpp");
+    static const u32 compFile[] = INCBIN_U32("test/compression/table_52_12.4bpp.smol");
+    u32 imageSize = GetDecompressedDataSize(compFile);
+    u32 *compBuffer = Alloc(imageSize);
+    DecompressDataWithHeaderWram(compFile, compBuffer);
+
+    u32 val1 = 0;
+    u32 val2 = 0;
+    bool32 areEqual = TRUE;
+    for (u32 i = 0; i < imageSize/4; i++)
+    {
+        val1 = origFile[i];
+        val2 = compBuffer[i];
+        if (val1 != val2)
+        {
+            areEqual = FALSE;
+            break;
+        }
+    }
+
+    EXPECT_EQ(areEqual, TRUE);
+
+    Free(compBuffer);
+}
+
+TEST("Compression test: table generation 51 13")
+{
+    static const u32 origFile[] = INCBIN_U32("test/compression/table_51_13.4bpp");
+    static const u32 compFile[] = INCBIN_U32("test/compression/table_51_13.4bpp.smol");
+    u32 imageSize = GetDecompressedDataSize(compFile);
+    u32 *compBuffer = Alloc(imageSize);
+    DecompressDataWithHeaderWram(compFile, compBuffer);
+
+    u32 val1 = 0;
+    u32 val2 = 0;
+    bool32 areEqual = TRUE;
+    for (u32 i = 0; i < imageSize/4; i++)
+    {
+        val1 = origFile[i];
+        val2 = compBuffer[i];
+        if (val1 != val2)
+        {
+            areEqual = FALSE;
+            break;
+        }
+    }
+
+    EXPECT_EQ(areEqual, TRUE);
+
+    Free(compBuffer);
+}
+
+TEST("Compression test: table generation 50 14")
+{
+    static const u32 origFile[] = INCBIN_U32("test/compression/table_50_14.4bpp");
+    static const u32 compFile[] = INCBIN_U32("test/compression/table_50_14.4bpp.smol");
+    u32 imageSize = GetDecompressedDataSize(compFile);
+    u32 *compBuffer = Alloc(imageSize);
+    DecompressDataWithHeaderWram(compFile, compBuffer);
+
+    u32 val1 = 0;
+    u32 val2 = 0;
+    bool32 areEqual = TRUE;
+    for (u32 i = 0; i < imageSize/4; i++)
+    {
+        val1 = origFile[i];
+        val2 = compBuffer[i];
+        if (val1 != val2)
+        {
+            areEqual = FALSE;
+            break;
+        }
+    }
+
+    EXPECT_EQ(areEqual, TRUE);
+
+    Free(compBuffer);
+}
+
+TEST("Compression test: table generation 49 15")
+{
+    static const u32 origFile[] = INCBIN_U32("test/compression/table_49_15.4bpp");
+    static const u32 compFile[] = INCBIN_U32("test/compression/table_49_15.4bpp.smol");
+    u32 imageSize = GetDecompressedDataSize(compFile);
+    u32 *compBuffer = Alloc(imageSize);
+    DecompressDataWithHeaderWram(compFile, compBuffer);
+
+    u32 val1 = 0;
+    u32 val2 = 0;
+    bool32 areEqual = TRUE;
+    for (u32 i = 0; i < imageSize/4; i++)
+    {
+        val1 = origFile[i];
+        val2 = compBuffer[i];
+        if (val1 != val2)
+        {
+            areEqual = FALSE;
+            break;
+        }
+    }
+
+    EXPECT_EQ(areEqual, TRUE);
+
+    Free(compBuffer);
+}
+
+TEST("Compression test: table generation 48 16")
+{
+    static const u32 origFile[] = INCBIN_U32("test/compression/table_48_16.4bpp");
+    static const u32 compFile[] = INCBIN_U32("test/compression/table_48_16.4bpp.smol");
+    u32 imageSize = GetDecompressedDataSize(compFile);
+    u32 *compBuffer = Alloc(imageSize);
+    DecompressDataWithHeaderWram(compFile, compBuffer);
+
+    u32 val1 = 0;
+    u32 val2 = 0;
+    bool32 areEqual = TRUE;
+    for (u32 i = 0; i < imageSize/4; i++)
+    {
+        val1 = origFile[i];
+        val2 = compBuffer[i];
+        if (val1 != val2)
+        {
+            areEqual = FALSE;
+            break;
+        }
+    }
+
+    EXPECT_EQ(areEqual, TRUE);
+
+    Free(compBuffer);
+}
+
+TEST("Compression test: table generation 47 17")
+{
+    static const u32 origFile[] = INCBIN_U32("test/compression/table_47_17.4bpp");
+    static const u32 compFile[] = INCBIN_U32("test/compression/table_47_17.4bpp.smol");
+    u32 imageSize = GetDecompressedDataSize(compFile);
+    u32 *compBuffer = Alloc(imageSize);
+    DecompressDataWithHeaderWram(compFile, compBuffer);
+
+    u32 val1 = 0;
+    u32 val2 = 0;
+    bool32 areEqual = TRUE;
+    for (u32 i = 0; i < imageSize/4; i++)
+    {
+        val1 = origFile[i];
+        val2 = compBuffer[i];
+        if (val1 != val2)
+        {
+            areEqual = FALSE;
+            break;
+        }
+    }
+
+    EXPECT_EQ(areEqual, TRUE);
+
+    Free(compBuffer);
+}
+
+TEST("Compression test: table generation 46 18")
+{
+    static const u32 origFile[] = INCBIN_U32("test/compression/table_46_18.4bpp");
+    static const u32 compFile[] = INCBIN_U32("test/compression/table_46_18.4bpp.smol");
+    u32 imageSize = GetDecompressedDataSize(compFile);
+    u32 *compBuffer = Alloc(imageSize);
+    DecompressDataWithHeaderWram(compFile, compBuffer);
+
+    u32 val1 = 0;
+    u32 val2 = 0;
+    bool32 areEqual = TRUE;
+    for (u32 i = 0; i < imageSize/4; i++)
+    {
+        val1 = origFile[i];
+        val2 = compBuffer[i];
+        if (val1 != val2)
+        {
+            areEqual = FALSE;
+            break;
+        }
+    }
+
+    EXPECT_EQ(areEqual, TRUE);
+
+    Free(compBuffer);
+}
+
+TEST("Compression test: table generation 45 19")
+{
+    static const u32 origFile[] = INCBIN_U32("test/compression/table_45_19.4bpp");
+    static const u32 compFile[] = INCBIN_U32("test/compression/table_45_19.4bpp.smol");
+    u32 imageSize = GetDecompressedDataSize(compFile);
+    u32 *compBuffer = Alloc(imageSize);
+    DecompressDataWithHeaderWram(compFile, compBuffer);
+
+    u32 val1 = 0;
+    u32 val2 = 0;
+    bool32 areEqual = TRUE;
+    for (u32 i = 0; i < imageSize/4; i++)
+    {
+        val1 = origFile[i];
+        val2 = compBuffer[i];
+        if (val1 != val2)
+        {
+            areEqual = FALSE;
+            break;
+        }
+    }
+
+    EXPECT_EQ(areEqual, TRUE);
+
+    Free(compBuffer);
+}
+
+TEST("Compression test: table generation 44 20")
+{
+    static const u32 origFile[] = INCBIN_U32("test/compression/table_44_20.4bpp");
+    static const u32 compFile[] = INCBIN_U32("test/compression/table_44_20.4bpp.smol");
+    u32 imageSize = GetDecompressedDataSize(compFile);
+    u32 *compBuffer = Alloc(imageSize);
+    DecompressDataWithHeaderWram(compFile, compBuffer);
+
+    u32 val1 = 0;
+    u32 val2 = 0;
+    bool32 areEqual = TRUE;
+    for (u32 i = 0; i < imageSize/4; i++)
+    {
+        val1 = origFile[i];
+        val2 = compBuffer[i];
+        if (val1 != val2)
+        {
+            areEqual = FALSE;
+            break;
+        }
+    }
+
+    EXPECT_EQ(areEqual, TRUE);
+
+    Free(compBuffer);
+}
+
+TEST("Compression test: table generation 43 21")
+{
+    static const u32 origFile[] = INCBIN_U32("test/compression/table_43_21.4bpp");
+    static const u32 compFile[] = INCBIN_U32("test/compression/table_43_21.4bpp.smol");
+    u32 imageSize = GetDecompressedDataSize(compFile);
+    u32 *compBuffer = Alloc(imageSize);
+    DecompressDataWithHeaderWram(compFile, compBuffer);
+
+    u32 val1 = 0;
+    u32 val2 = 0;
+    bool32 areEqual = TRUE;
+    for (u32 i = 0; i < imageSize/4; i++)
+    {
+        val1 = origFile[i];
+        val2 = compBuffer[i];
+        if (val1 != val2)
+        {
+            areEqual = FALSE;
+            break;
+        }
+    }
+
+    EXPECT_EQ(areEqual, TRUE);
+
+    Free(compBuffer);
+}
+
+TEST("Compression test: table generation 42 22")
+{
+    static const u32 origFile[] = INCBIN_U32("test/compression/table_42_22.4bpp");
+    static const u32 compFile[] = INCBIN_U32("test/compression/table_42_22.4bpp.smol");
+    u32 imageSize = GetDecompressedDataSize(compFile);
+    u32 *compBuffer = Alloc(imageSize);
+    DecompressDataWithHeaderWram(compFile, compBuffer);
+
+    u32 val1 = 0;
+    u32 val2 = 0;
+    bool32 areEqual = TRUE;
+    for (u32 i = 0; i < imageSize/4; i++)
+    {
+        val1 = origFile[i];
+        val2 = compBuffer[i];
+        if (val1 != val2)
+        {
+            areEqual = FALSE;
+            break;
+        }
+    }
+
+    EXPECT_EQ(areEqual, TRUE);
+
+    Free(compBuffer);
+}
+
+TEST("Compression test: table generation 41 23")
+{
+    static const u32 origFile[] = INCBIN_U32("test/compression/table_41_23.4bpp");
+    static const u32 compFile[] = INCBIN_U32("test/compression/table_41_23.4bpp.smol");
+    u32 imageSize = GetDecompressedDataSize(compFile);
+    u32 *compBuffer = Alloc(imageSize);
+    DecompressDataWithHeaderWram(compFile, compBuffer);
+
+    u32 val1 = 0;
+    u32 val2 = 0;
+    bool32 areEqual = TRUE;
+    for (u32 i = 0; i < imageSize/4; i++)
+    {
+        val1 = origFile[i];
+        val2 = compBuffer[i];
+        if (val1 != val2)
+        {
+            areEqual = FALSE;
+            break;
+        }
+    }
+
+    EXPECT_EQ(areEqual, TRUE);
+
+    Free(compBuffer);
+}
+
+TEST("Compression test: table generation 40 24")
+{
+    static const u32 origFile[] = INCBIN_U32("test/compression/table_40_24.4bpp");
+    static const u32 compFile[] = INCBIN_U32("test/compression/table_40_24.4bpp.smol");
+    u32 imageSize = GetDecompressedDataSize(compFile);
+    u32 *compBuffer = Alloc(imageSize);
+    DecompressDataWithHeaderWram(compFile, compBuffer);
+
+    u32 val1 = 0;
+    u32 val2 = 0;
+    bool32 areEqual = TRUE;
+    for (u32 i = 0; i < imageSize/4; i++)
+    {
+        val1 = origFile[i];
+        val2 = compBuffer[i];
+        if (val1 != val2)
+        {
+            areEqual = FALSE;
+            break;
+        }
+    }
+
+    EXPECT_EQ(areEqual, TRUE);
+
+    Free(compBuffer);
+}
+
+TEST("Compression test: table generation 39 25")
+{
+    static const u32 origFile[] = INCBIN_U32("test/compression/table_39_25.4bpp");
+    static const u32 compFile[] = INCBIN_U32("test/compression/table_39_25.4bpp.smol");
+    u32 imageSize = GetDecompressedDataSize(compFile);
+    u32 *compBuffer = Alloc(imageSize);
+    DecompressDataWithHeaderWram(compFile, compBuffer);
+
+    u32 val1 = 0;
+    u32 val2 = 0;
+    bool32 areEqual = TRUE;
+    for (u32 i = 0; i < imageSize/4; i++)
+    {
+        val1 = origFile[i];
+        val2 = compBuffer[i];
+        if (val1 != val2)
+        {
+            areEqual = FALSE;
+            break;
+        }
+    }
+
+    EXPECT_EQ(areEqual, TRUE);
+
+    Free(compBuffer);
+}
+
+TEST("Compression test: table generation 38 26")
+{
+    static const u32 origFile[] = INCBIN_U32("test/compression/table_38_26.4bpp");
+    static const u32 compFile[] = INCBIN_U32("test/compression/table_38_26.4bpp.smol");
+    u32 imageSize = GetDecompressedDataSize(compFile);
+    u32 *compBuffer = Alloc(imageSize);
+    DecompressDataWithHeaderWram(compFile, compBuffer);
+
+    u32 val1 = 0;
+    u32 val2 = 0;
+    bool32 areEqual = TRUE;
+    for (u32 i = 0; i < imageSize/4; i++)
+    {
+        val1 = origFile[i];
+        val2 = compBuffer[i];
+        if (val1 != val2)
+        {
+            areEqual = FALSE;
+            break;
+        }
+    }
+
+    EXPECT_EQ(areEqual, TRUE);
+
+    Free(compBuffer);
+}
+
+TEST("Compression test: table generation 37 27")
+{
+    static const u32 origFile[] = INCBIN_U32("test/compression/table_37_27.4bpp");
+    static const u32 compFile[] = INCBIN_U32("test/compression/table_37_27.4bpp.smol");
+    u32 imageSize = GetDecompressedDataSize(compFile);
+    u32 *compBuffer = Alloc(imageSize);
+    DecompressDataWithHeaderWram(compFile, compBuffer);
+
+    u32 val1 = 0;
+    u32 val2 = 0;
+    bool32 areEqual = TRUE;
+    for (u32 i = 0; i < imageSize/4; i++)
+    {
+        val1 = origFile[i];
+        val2 = compBuffer[i];
+        if (val1 != val2)
+        {
+            areEqual = FALSE;
+            break;
+        }
+    }
+
+    EXPECT_EQ(areEqual, TRUE);
+
+    Free(compBuffer);
+}
+
+TEST("Compression test: table generation 36 28")
+{
+    static const u32 origFile[] = INCBIN_U32("test/compression/table_36_28.4bpp");
+    static const u32 compFile[] = INCBIN_U32("test/compression/table_36_28.4bpp.smol");
+    u32 imageSize = GetDecompressedDataSize(compFile);
+    u32 *compBuffer = Alloc(imageSize);
+    DecompressDataWithHeaderWram(compFile, compBuffer);
+
+    u32 val1 = 0;
+    u32 val2 = 0;
+    bool32 areEqual = TRUE;
+    for (u32 i = 0; i < imageSize/4; i++)
+    {
+        val1 = origFile[i];
+        val2 = compBuffer[i];
+        if (val1 != val2)
+        {
+            areEqual = FALSE;
+            break;
+        }
+    }
+
+    EXPECT_EQ(areEqual, TRUE);
+
+    Free(compBuffer);
+}
+
+TEST("Compression test: table generation 35 29")
+{
+    static const u32 origFile[] = INCBIN_U32("test/compression/table_35_29.4bpp");
+    static const u32 compFile[] = INCBIN_U32("test/compression/table_35_29.4bpp.smol");
+    u32 imageSize = GetDecompressedDataSize(compFile);
+    u32 *compBuffer = Alloc(imageSize);
+    DecompressDataWithHeaderWram(compFile, compBuffer);
+
+    u32 val1 = 0;
+    u32 val2 = 0;
+    bool32 areEqual = TRUE;
+    for (u32 i = 0; i < imageSize/4; i++)
+    {
+        val1 = origFile[i];
+        val2 = compBuffer[i];
+        if (val1 != val2)
+        {
+            areEqual = FALSE;
+            break;
+        }
+    }
+
+    EXPECT_EQ(areEqual, TRUE);
+
+    Free(compBuffer);
+}
+
+TEST("Compression test: table generation 34 30")
+{
+    static const u32 origFile[] = INCBIN_U32("test/compression/table_34_30.4bpp");
+    static const u32 compFile[] = INCBIN_U32("test/compression/table_34_30.4bpp.smol");
+    u32 imageSize = GetDecompressedDataSize(compFile);
+    u32 *compBuffer = Alloc(imageSize);
+    DecompressDataWithHeaderWram(compFile, compBuffer);
+
+    u32 val1 = 0;
+    u32 val2 = 0;
+    bool32 areEqual = TRUE;
+    for (u32 i = 0; i < imageSize/4; i++)
+    {
+        val1 = origFile[i];
+        val2 = compBuffer[i];
+        if (val1 != val2)
+        {
+            areEqual = FALSE;
+            break;
+        }
+    }
+
+    EXPECT_EQ(areEqual, TRUE);
+
+    Free(compBuffer);
+}
+
+TEST("Compression test: table generation 33 31")
+{
+    static const u32 origFile[] = INCBIN_U32("test/compression/table_33_31.4bpp");
+    static const u32 compFile[] = INCBIN_U32("test/compression/table_33_31.4bpp.smol");
+    u32 imageSize = GetDecompressedDataSize(compFile);
+    u32 *compBuffer = Alloc(imageSize);
+    DecompressDataWithHeaderWram(compFile, compBuffer);
+
+    u32 val1 = 0;
+    u32 val2 = 0;
+    bool32 areEqual = TRUE;
+    for (u32 i = 0; i < imageSize/4; i++)
+    {
+        val1 = origFile[i];
+        val2 = compBuffer[i];
+        if (val1 != val2)
+        {
+            areEqual = FALSE;
+            break;
+        }
+    }
+
+    EXPECT_EQ(areEqual, TRUE);
+
+    Free(compBuffer);
+}
+
+TEST("Compression test: table generation 32 32")
+{
+    static const u32 origFile[] = INCBIN_U32("test/compression/table_32_32.4bpp");
+    static const u32 compFile[] = INCBIN_U32("test/compression/table_32_32.4bpp.smol");
+    u32 imageSize = GetDecompressedDataSize(compFile);
+    u32 *compBuffer = Alloc(imageSize);
+    DecompressDataWithHeaderWram(compFile, compBuffer);
+
+    u32 val1 = 0;
+    u32 val2 = 0;
+    bool32 areEqual = TRUE;
+    for (u32 i = 0; i < imageSize/4; i++)
+    {
+        val1 = origFile[i];
+        val2 = compBuffer[i];
+        if (val1 != val2)
+        {
+            areEqual = FALSE;
+            break;
+        }
+    }
+
+    EXPECT_EQ(areEqual, TRUE);
+
+    Free(compBuffer);
+}
