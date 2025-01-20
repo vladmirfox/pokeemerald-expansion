@@ -77,6 +77,8 @@ SINGLE_BATTLE_TEST("Trainer Slide: Player Lands First Super Effective Hit")
 
     GIVEN {
         ASSUME(GetMoveType(MOVE_BITE) == TYPE_DARK);
+        ASSUME(gSpeciesInfo[SPECIES_WOBBUFFET].types[0] == TYPE_PSYCHIC);
+        ASSUME(gSpeciesInfo[SPECIES_WOBBUFFET].types[0] == TYPE_PSYCHIC);
         PLAYER(SPECIES_WOBBUFFET);
         OPPONENT(SPECIES_WOBBUFFET);
     } WHEN {
@@ -139,10 +141,12 @@ SINGLE_BATTLE_TEST("Trainer Slide: Last Half Hp")
 {
     gBattleTestRunnerState->data.recordedBattle.opponentA = TRAINER_SLIDE_LAST_HALF_HP;
     GIVEN {
-        PLAYER(SPECIES_WOBBUFFET) { Attack(515);}
+        ASSUME(gMovesInfo[MOVE_SUPER_FANG].effect == EFFECT_SUPER_FANG);
+        ASSUME(gSpeciesInfo[SPECIES_WOBBUFFET].baseHP == 190);
+        PLAYER(SPECIES_WOBBUFFET);
         OPPONENT(SPECIES_WOBBUFFET);
     } WHEN {
-        TURN { MOVE(player, MOVE_LIQUIDATION); }
+        TURN { MOVE(player, MOVE_SUPER_FANG); }
     } SCENE {
         MESSAGE("Enemy last Mon has < 51% HP.{PAUSE_UNTIL_PRESS}");
     }
