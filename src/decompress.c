@@ -11,142 +11,141 @@ EWRAM_DATA ALIGNED(4) u8 gDecompressionBuffer[0x4000] = {0};
 #define TABLE_TYPE u16
 
 struct __attribute__((packed, aligned(2))) DecodeYK {
-    u8 yVal;
     u8 kVal;
+    u8 yVal;
 };
 
 //  Helper struct to build the tANS decode tables without having to do calculations at run-time
 ALIGNED(4) static const struct DecodeYK sYkTemplate[2*TANS_TABLE_SIZE] = {
     [0] = {0, 0},
-    [1] = {(1 << 6) - 64, 6},
-    [2] = {(2 << 5) - 64, 5},
-    [3] = {(3 << 5) - 64, 5},
-    [4] = {(4 << 4) - 64, 4},
-    [5] = {(5 << 4) - 64, 4},
-    [6] = {(6 << 4) - 64, 4},
-    [7] = {(7 << 4) - 64, 4},
-    [8] = {(8 << 3) - 64, 3},
-    [9] = {(9 << 3) - 64, 3},
-    [10] = {(10 << 3) - 64, 3},
-    [11] = {(11 << 3) - 64, 3},
-    [12] = {(12 << 3) - 64, 3},
-    [13] = {(13 << 3) - 64, 3},
-    [14] = {(14 << 3) - 64, 3},
-    [15] = {(15 << 3) - 64, 3},
-    [16] = {(16 << 2) - 64, 2},
-    [17] = {(17 << 2) - 64, 2},
-    [18] = {(18 << 2) - 64, 2},
-    [19] = {(19 << 2) - 64, 2},
-    [20] = {(20 << 2) - 64, 2},
-    [21] = {(21 << 2) - 64, 2},
-    [22] = {(22 << 2) - 64, 2},
-    [23] = {(23 << 2) - 64, 2},
-    [24] = {(24 << 2) - 64, 2},
-    [25] = {(25 << 2) - 64, 2},
-    [26] = {(26 << 2) - 64, 2},
-    [27] = {(27 << 2) - 64, 2},
-    [28] = {(28 << 2) - 64, 2},
-    [29] = {(29 << 2) - 64, 2},
-    [30] = {(30 << 2) - 64, 2},
-    [31] = {(31 << 2) - 64, 2},
-    [32] = {(32 << 1) - 64, 1},
-    [33] = {(33 << 1) - 64, 1},
-    [34] = {(34 << 1) - 64, 1},
-    [35] = {(35 << 1) - 64, 1},
-    [36] = {(36 << 1) - 64, 1},
-    [37] = {(37 << 1) - 64, 1},
-    [38] = {(38 << 1) - 64, 1},
-    [39] = {(39 << 1) - 64, 1},
-    [40] = {(40 << 1) - 64, 1},
-    [41] = {(41 << 1) - 64, 1},
-    [42] = {(42 << 1) - 64, 1},
-    [43] = {(43 << 1) - 64, 1},
-    [44] = {(44 << 1) - 64, 1},
-    [45] = {(45 << 1) - 64, 1},
-    [46] = {(46 << 1) - 64, 1},
-    [47] = {(47 << 1) - 64, 1},
-    [48] = {(48 << 1) - 64, 1},
-    [49] = {(49 << 1) - 64, 1},
-    [50] = {(50 << 1) - 64, 1},
-    [51] = {(51 << 1) - 64, 1},
-    [52] = {(52 << 1) - 64, 1},
-    [53] = {(53 << 1) - 64, 1},
-    [54] = {(54 << 1) - 64, 1},
-    [55] = {(55 << 1) - 64, 1},
-    [56] = {(56 << 1) - 64, 1},
-    [57] = {(57 << 1) - 64, 1},
-    [58] = {(58 << 1) - 64, 1},
-    [59] = {(59 << 1) - 64, 1},
-    [60] = {(60 << 1) - 64, 1},
-    [61] = {(61 << 1) - 64, 1},
-    [62] = {(62 << 1) - 64, 1},
-    [63] = {(63 << 1) - 64, 1},
-    [64] = {64 - 64, 0},
-    [65] = {65 - 64, 0},
-    [66] = {66 - 64, 0},
-    [67] = {67 - 64, 0},
-    [68] = {68 - 64, 0},
-    [69] = {69 - 64, 0},
-    [70] = {70 - 64, 0},
-    [71] = {71 - 64, 0},
-    [72] = {72 - 64, 0},
-    [73] = {73 - 64, 0},
-    [74] = {74 - 64, 0},
-    [75] = {75 - 64, 0},
-    [76] = {76 - 64, 0},
-    [77] = {77 - 64, 0},
-    [78] = {78 - 64, 0},
-    [79] = {79 - 64, 0},
-    [80] = {80 - 64, 0},
-    [81] = {81 - 64, 0},
-    [82] = {82 - 64, 0},
-    [83] = {83 - 64, 0},
-    [84] = {84 - 64, 0},
-    [85] = {85 - 64, 0},
-    [86] = {86 - 64, 0},
-    [87] = {87 - 64, 0},
-    [88] = {88 - 64, 0},
-    [89] = {89 - 64, 0},
-    [90] = {90 - 64, 0},
-    [91] = {91 - 64, 0},
-    [92] = {92 - 64, 0},
-    [93] = {93 - 64, 0},
-    [94] = {94 - 64, 0},
-    [95] = {95 - 64, 0},
-    [96] = {96 - 64, 0},
-    [97] = {97 - 64, 0},
-    [98] = {98 - 64, 0},
-    [99] = {99 - 64, 0},
-    [100] = {100 - 64, 0},
-    [101] = {101 - 64, 0},
-    [102] = {102 - 64, 0},
-    [103] = {103 - 64, 0},
-    [104] = {104 - 64, 0},
-    [105] = {105 - 64, 0},
-    [106] = {106 - 64, 0},
-    [107] = {107 - 64, 0},
-    [108] = {108 - 64, 0},
-    [109] = {109 - 64, 0},
-    [110] = {110 - 64, 0},
-    [111] = {111 - 64, 0},
-    [112] = {112 - 64, 0},
-    [113] = {113 - 64, 0},
-    [114] = {114 - 64, 0},
-    [115] = {115 - 64, 0},
-    [116] = {116 - 64, 0},
-    [117] = {117 - 64, 0},
-    [118] = {118 - 64, 0},
-    [119] = {119 - 64, 0},
-    [120] = {120 - 64, 0},
-    [121] = {121 - 64, 0},
-    [122] = {122 - 64, 0},
-    [123] = {123 - 64, 0},
-    [124] = {124 - 64, 0},
-    [125] = {125 - 64, 0},
-    [126] = {126 - 64, 0},
-    [127] = {127 - 64, 0},
+    [1] = {6, (1 << 6) - 64},
+    [2] = {5, (2 << 5) - 64},
+    [3] = {5, (3 << 5) - 64},
+    [4] = {4, (4 << 4) - 64},
+    [5] = {4, (5 << 4) - 64},
+    [6] = {4, (6 << 4) - 64},
+    [7] = {4, (7 << 4) - 64},
+    [8] = {3, (8 << 3) - 64},
+    [9] = {3, (9 << 3) - 64},
+    [10] = {3, (10 << 3) - 64},
+    [11] = {3, (11 << 3) - 64},
+    [12] = {3, (12 << 3) - 64},
+    [13] = {3, (13 << 3) - 64},
+    [14] = {3, (14 << 3) - 64},
+    [15] = {3, (15 << 3) - 64},
+    [16] = {2, (16 << 2) - 64},
+    [17] = {2, (17 << 2) - 64},
+    [18] = {2, (18 << 2) - 64},
+    [19] = {2, (19 << 2) - 64},
+    [20] = {2, (20 << 2) - 64},
+    [21] = {2, (21 << 2) - 64},
+    [22] = {2, (22 << 2) - 64},
+    [23] = {2, (23 << 2) - 64},
+    [24] = {2, (24 << 2) - 64},
+    [25] = {2, (25 << 2) - 64},
+    [26] = {2, (26 << 2) - 64},
+    [27] = {2, (27 << 2) - 64},
+    [28] = {2, (28 << 2) - 64},
+    [29] = {2, (29 << 2) - 64},
+    [30] = {2, (30 << 2) - 64},
+    [31] = {2, (31 << 2) - 64},
+    [32] = {1, (32 << 1) - 64},
+    [33] = {1, (33 << 1) - 64},
+    [34] = {1, (34 << 1) - 64},
+    [35] = {1, (35 << 1) - 64},
+    [36] = {1, (36 << 1) - 64},
+    [37] = {1, (37 << 1) - 64},
+    [38] = {1, (38 << 1) - 64},
+    [39] = {1, (39 << 1) - 64},
+    [40] = {1, (40 << 1) - 64},
+    [41] = {1, (41 << 1) - 64},
+    [42] = {1, (42 << 1) - 64},
+    [43] = {1, (43 << 1) - 64},
+    [44] = {1, (44 << 1) - 64},
+    [45] = {1, (45 << 1) - 64},
+    [46] = {1, (46 << 1) - 64},
+    [47] = {1, (47 << 1) - 64},
+    [48] = {1, (48 << 1) - 64},
+    [49] = {1, (49 << 1) - 64},
+    [50] = {1, (50 << 1) - 64},
+    [51] = {1, (51 << 1) - 64},
+    [52] = {1, (52 << 1) - 64},
+    [53] = {1, (53 << 1) - 64},
+    [54] = {1, (54 << 1) - 64},
+    [55] = {1, (55 << 1) - 64},
+    [56] = {1, (56 << 1) - 64},
+    [57] = {1, (57 << 1) - 64},
+    [58] = {1, (58 << 1) - 64},
+    [59] = {1, (59 << 1) - 64},
+    [60] = {1, (60 << 1) - 64},
+    [61] = {1, (61 << 1) - 64},
+    [62] = {1, (62 << 1) - 64},
+    [63] = {1, (63 << 1) - 64},
+    [64] = {0, 64 - 64},
+    [65] = {0, 65 - 64},
+    [66] = {0, 66 - 64},
+    [67] = {0, 67 - 64},
+    [68] = {0, 68 - 64},
+    [69] = {0, 69 - 64},
+    [70] = {0, 70 - 64},
+    [71] = {0, 71 - 64},
+    [72] = {0, 72 - 64},
+    [73] = {0, 73 - 64},
+    [74] = {0, 74 - 64},
+    [75] = {0, 75 - 64},
+    [76] = {0, 76 - 64},
+    [77] = {0, 77 - 64},
+    [78] = {0, 78 - 64},
+    [79] = {0, 79 - 64},
+    [80] = {0, 80 - 64},
+    [81] = {0, 81 - 64},
+    [82] = {0, 82 - 64},
+    [83] = {0, 83 - 64},
+    [84] = {0, 84 - 64},
+    [85] = {0, 85 - 64},
+    [86] = {0, 86 - 64},
+    [87] = {0, 87 - 64},
+    [88] = {0, 88 - 64},
+    [89] = {0, 89 - 64},
+    [90] = {0, 90 - 64},
+    [91] = {0, 91 - 64},
+    [92] = {0, 92 - 64},
+    [93] = {0, 93 - 64},
+    [94] = {0, 94 - 64},
+    [95] = {0, 95 - 64},
+    [96] = {0, 96 - 64},
+    [97] = {0, 97 - 64},
+    [98] = {0, 98 - 64},
+    [99] = {0, 99 - 64},
+    [100] = {0, 100 - 64},
+    [101] = {0, 101 - 64},
+    [102] = {0, 102 - 64},
+    [103] = {0, 103 - 64},
+    [104] = {0, 104 - 64},
+    [105] = {0, 105 - 64},
+    [106] = {0, 106 - 64},
+    [107] = {0, 107 - 64},
+    [108] = {0, 108 - 64},
+    [109] = {0, 109 - 64},
+    [110] = {0, 110 - 64},
+    [111] = {0, 111 - 64},
+    [112] = {0, 112 - 64},
+    [113] = {0, 113 - 64},
+    [114] = {0, 114 - 64},
+    [115] = {0, 115 - 64},
+    [116] = {0, 116 - 64},
+    [117] = {0, 117 - 64},
+    [118] = {0, 118 - 64},
+    [119] = {0, 119 - 64},
+    [120] = {0, 120 - 64},
+    [121] = {0, 121 - 64},
+    [122] = {0, 122 - 64},
+    [123] = {0, 123 - 64},
+    [124] = {0, 124 - 64},
+    [125] = {0, 125 - 64},
+    [126] = {0, 126 - 64},
+    [127] = {0, 127 - 64},
 };
-
 // Checks if `ptr` is likely LZ77 data
 // Checks word-alignment, min/max size, and header byte
 // Returns uncompressed size if true, 0 otherwise
@@ -314,7 +313,7 @@ static inline void UnpackFrequenciesLoop(const u32 *packedFreqs, u16 *freqs, u32
     freqs[15] += (packedFreqs[i] & PARTIAL_FREQ_MASK) >> (30 - 2*i);
 }
 
-static void UnpackFrequencies(const u32 *packedFreqs, u16 *freqs)
+static inline void UnpackFrequencies(const u32 *packedFreqs, u16 *freqs)
 {
     freqs[15] = 0;
 
@@ -542,7 +541,7 @@ static inline void CopyFuncToIwram(void *funcBuffer, void *funcStartAddress, voi
 //  Basic process for decoding a tANS encoded value is to read the current symbol from the decoding table, then calculate the next state
 //  from the y and k values for the current state and add the value read from the next k bits in the bitstream
 // - O3 saves cycles
-__attribute__((target("arm"))) __attribute__((noinline, no_reorder)) __attribute__((optimize("-O3"))) static void DecodeLOtANSLoop(const u32 *data, struct DecodeHelperStruct *decodeHelper, u32 *maskTable)
+__attribute__((target("arm"))) __attribute__((noinline, no_reorder)) __attribute__((optimize("-O3"))) static void DecodeLOtANSLoop(const u32 *data, struct DecodeHelperStruct *decodeHelper, u8 *symbolTable)
 {
     u32 currBits = *data++;
     u32 bitIndex = sBitIndex;
@@ -555,11 +554,11 @@ __attribute__((target("arm"))) __attribute__((noinline, no_reorder)) __attribute
         u32 symbol = 0;
         for (u32 currNibble = 0; currNibble < 4; currNibble++)
         {
-            symbol |= decodeHelper->symbolTable[sCurrState] << (currNibble*4);
+            symbol |= symbolTable[sCurrState] << (currNibble*4);
             TABLE_TYPE ykVals = *(TABLE_TYPE *)(&decodeHelper->ykTable[sCurrState]);
-            u32 currK = ykVals >> 8;
-            sCurrState = ykVals & 0xFF;
-            sCurrState += (currBits >> bitIndex) & maskTable[currK];
+            u32 currK = ykVals & 0xFF;
+            sCurrState = ykVals >> 8;
+            sCurrState += (currBits >> bitIndex) & sMaskTable[currK];
             bitIndex += currK;
             if (bitIndex >= 32)
             {
@@ -579,9 +578,9 @@ __attribute__((target("arm"))) __attribute__((noinline, no_reorder)) __attribute
 }
 
 //  Dark Egg magic
-__attribute__((target("arm"))) __attribute__((no_reorder)) static void SwitchToArmCallLOtANS(const u32 *data, struct DecodeHelperStruct *decodeHelper, u32 *maskTable, void (*decodeFunction)(const u32 *data, struct DecodeHelperStruct *decodeHelper, u32 *maskTable))
+__attribute__((target("arm"))) __attribute__((no_reorder)) static void SwitchToArmCallLOtANS(const u32 *data, struct DecodeHelperStruct *decodeHelper, u8 *symbolTable, void (*decodeFunction)(const u32 *data, struct DecodeHelperStruct *decodeHelper, u8 *symbolTable))
 {
-    decodeFunction(data, decodeHelper, maskTable);
+    decodeFunction(data, decodeHelper, symbolTable);
 }
 
 //  Function that decodes tANS encoded LO data, resulting data is u8 values
@@ -596,13 +595,13 @@ static void DecodeLOtANS(const u32 *data, const u32 *pFreqs, u8 *resultVec, u32 
     struct DecodeHelperStruct decodeHelper;
     decodeHelper.resultVec = resultVec;
     decodeHelper.ykTable = ykTable;
-    decodeHelper.symbolTable = symbolTable;
+    //decodeHelper.symbolTable = symbolTable;
     decodeHelper.count = count - remainingCount;
 
     u32 funcBuffer[400];
 
     CopyFuncToIwram(funcBuffer, DecodeLOtANSLoop, SwitchToArmCallLOtANS);
-    SwitchToArmCallLOtANS(data, &decodeHelper, sMaskTable, (void *) funcBuffer);
+    SwitchToArmCallLOtANS(data, &decodeHelper, symbolTable, (void *) funcBuffer);
 
     if (remainingCount)
     {
@@ -644,8 +643,8 @@ __attribute__((target("arm"))) __attribute__((noinline, no_reorder)) __attribute
         {
             symbol |= decodeHelper->symbolTable[sCurrState] << (currNibble*4);
             TABLE_TYPE ykVals = *(TABLE_TYPE *)(&decodeHelper->ykTable[sCurrState]);
-            u32 currK = ykVals >> 8;
-            sCurrState = ykVals & 0xFF;
+            u32 currK = ykVals & 0xFF;
+            sCurrState = ykVals >> 8;
             sCurrState += (currBits >> bitIndex) & maskTable[currK];
             bitIndex += currK;
             if (bitIndex >= 32)
@@ -710,8 +709,8 @@ __attribute__((target("arm"))) __attribute__((noinline, no_reorder)) __attribute
             currSymbol = (currSymbol + decodeHelper->symbolTable[sCurrState]) & 0xf;
             symbol |= currSymbol << (currNibble*4);
             TABLE_TYPE ykVals = *(TABLE_TYPE *)(&decodeHelper->ykTable[sCurrState]);
-            u32 currK = ykVals >> 8;
-            sCurrState = ykVals & 0xff;
+            u32 currK = ykVals & 0xFF;
+            sCurrState = ykVals >> 8;
             sCurrState += ((currBits >> bitIndex) & maskTable[currK]);
             bitIndex += currK;
 
