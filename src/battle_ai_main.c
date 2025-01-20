@@ -717,16 +717,18 @@ static inline void BattleAI_DoAIProcessing(struct AI_ThinkingStruct *aiThink, u3
 
 void BattleAI_DoAIProcessing_PredictedSwitchin(struct AI_ThinkingStruct *aiThink, struct AiLogicData *aiData, u32 battlerAtk, u32 battlerDef)
 {
-    struct Pokemon *party = GetBattlerParty(battlerDef);
     struct BattlePokemon switchoutCandidate = gBattleMons[battlerDef];
-    struct BattlePokemon *savedBattleMons = AllocSaveBattleMons();
-    struct BattlePokemon switchinCandidate;
     struct SimulatedDamage simulatedDamageSwitchout[4];
-    struct SimulatedDamage simulatedDamageSwitchin[4];
     u8 effectivenessSwitchout[4];
-    u8 effectivenessSwitchin[4];
     u8 moveAccuracySwitchout[4];
+
+    struct BattlePokemon switchinCandidate;
+    struct SimulatedDamage simulatedDamageSwitchin[4];
+    u8 effectivenessSwitchin[4];
     u8 moveAccuracySwitchin[4];
+
+    struct Pokemon *party = GetBattlerParty(battlerDef);
+    struct BattlePokemon *savedBattleMons = AllocSaveBattleMons();
     u32 moveIndex;
 
     // Store battler moves data to save time over recalculating it
@@ -758,11 +760,12 @@ void BattleAI_DoAIProcessing_PredictedSwitchin(struct AI_ThinkingStruct *aiThink
         {
             if (IsChaseEffect(gMovesInfo[aiThink->moveConsidered].effect))
             {
-
+                // Save new switchin data
                 simulatedDamageSwitchin[aiThink->movesetIndex] = aiData->simulatedDmg[battlerAtk][battlerDef][aiThink->movesetIndex];
                 effectivenessSwitchin[aiThink->movesetIndex] = aiData->effectiveness[battlerAtk][battlerDef][aiThink->movesetIndex];
                 moveAccuracySwitchin[aiThink->movesetIndex] = aiData->moveAccuracy[battlerAtk][battlerDef][aiThink->movesetIndex];
 
+                // Restore old switchout data
                 gBattleMons[battlerDef] = switchoutCandidate;
                 SetBattlerAiData(battlerDef, aiData);
                 aiData->simulatedDmg[battlerAtk][battlerDef][aiThink->movesetIndex] = simulatedDamageSwitchout[aiThink->movesetIndex];
@@ -780,12 +783,12 @@ void BattleAI_DoAIProcessing_PredictedSwitchin(struct AI_ThinkingStruct *aiThink
                         aiThink->score[aiThink->movesetIndex]);
                 }
 
+                // Restore new switchin data
                 gBattleMons[battlerDef] = switchinCandidate;
                 SetBattlerAiData(battlerDef, aiData);
                 aiData->simulatedDmg[battlerAtk][battlerDef][aiThink->movesetIndex] = simulatedDamageSwitchin[aiThink->movesetIndex];
                 aiData->effectiveness[battlerAtk][battlerDef][aiThink->movesetIndex] = effectivenessSwitchin[aiThink->movesetIndex];
                 aiData->moveAccuracy[battlerAtk][battlerDef][aiThink->movesetIndex] = moveAccuracySwitchin[aiThink->movesetIndex];
-
             }
             
             else
