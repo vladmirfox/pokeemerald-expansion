@@ -35,7 +35,7 @@ Expansion has a few "composite" AI flags. This means that these flags have no un
 
 `AI_FLAG_SMART_TRAINER` is expansion's version of a "smart AI". It includes everything in `AI_FLAG_BASIC_TRAINER` along with `AI_FLAG_SMART_SWITCHING` (make smart decisions about when to switch), `AI_FLAG_SMART_MON_CHOICES` (make smart decisions about what mon to send in after a switch / KO), and `AI_FLAG_OMNISCIENT` (awareness of what moves, items, and abilities the player's mons have to better inform decisions). Expansion will keep this updated to represent the most objectively intelligent behaviour our flags are capable of producing.
 
-`AI_FLAG_PREDICT` will enable all of the prediction flags at once, so the AI can perform as well as possible. It is best paired with the flags in `AI_FLAG_SMART_TRAINER` for optimal behaviour. This currently includes `AI_FLAG_PREDICT_SWITCH` and `AI_FLAG_PREDICT_INCOMING_MON`, but will likely be expanded in the future. 
+`AI_FLAG_PREDICTION` will enable all of the prediction flags at once, so the AI can perform as well as possible. It is best paired with the flags in `AI_FLAG_SMART_TRAINER` for optimal behaviour. This currently includes `AI_FLAG_PREDICT_SWITCH` and `AI_FLAG_PREDICT_INCOMING_MON`, but will likely be expanded in the future. 
 
 Expansion has LOADS of flags, which will be covered in the rest of this guide. If you don't want to engage with detailed trainer AI tuning though, you can just use these two composite flags, and trust that expansion will keep their contents updated to always represent the most standard and the smartest behaviour we can.
 

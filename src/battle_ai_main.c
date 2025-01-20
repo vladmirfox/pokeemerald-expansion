@@ -484,6 +484,7 @@ void SetAiLogicDataForTurn(struct AiLogicData *aiData)
             continue;
 
         SetBattlerAiMovesData(aiData, battlerAtk, battlersCount, weather);
+        aiData->switchoutHitsToKO[battlerAtk] = 255;
     }
     AI_DATA->aiCalcInProgress = FALSE;
 }
@@ -496,6 +497,7 @@ void BattleAI_DoAIProcessing_PredictedSwitchin(struct AI_ThinkingStruct *aiThink
     struct SimulatedDamage simulatedDamageSwitchout[4];
     u8 effectivenessSwitchout[4];
     u8 moveAccuracySwitchout[4];
+    u8 hitsToKOSwitchout;
     u32 moveIndex;
 
     // Store battler moves data to save time over recalculating it
@@ -504,6 +506,14 @@ void BattleAI_DoAIProcessing_PredictedSwitchin(struct AI_ThinkingStruct *aiThink
         simulatedDamageSwitchout[moveIndex] = aiData->simulatedDmg[battlerAtk][battlerDef][moveIndex];
         effectivenessSwitchout[moveIndex] = aiData->effectiveness[battlerAtk][battlerDef][moveIndex];
         moveAccuracySwitchout[moveIndex] = aiData->moveAccuracy[battlerAtk][battlerDef][moveIndex];
+
+        // Also reuse loop to store chase move hits to KO switching out mon if applicable
+        if (IsChaseEffect(gMovesInfo[gBattleMons[battlerAtk].moves[moveIndex]].effect))
+        {
+            hitsToKOSwitchout = GetNoOfHitsToKOBattler(battlerAtk, battlerDef, moveIndex);
+            if (hitsToKOSwitchout != 0 && hitsToKOSwitchout < AI_DATA->switchoutHitsToKO[battlerDef])
+                AI_DATA->switchoutHitsToKO[battlerDef] = GetNoOfHitsToKOBattler(battlerAtk, battlerDef, moveIndex);
+        }
     }
 
     // Get battler and move data for predicted switchin
@@ -5333,7 +5343,10 @@ static s32 AI_PredictSwitch(u32 battlerAtk, u32 battlerDef, u32 move, s32 score)
     switch (moveEffect)
     {
     case EFFECT_PURSUIT:
-        ADJUST_SCORE(GOOD_EFFECT);
+        if (AI_DATA->switchoutHitsToKO[battlerDef] == 2)
+            ADJUST_SCORE(GOOD_EFFECT);
+        else if (AI_DATA->switchoutHitsToKO[battlerDef] == 1)
+            ADJUST_SCORE(BEST_EFFECT);
         // else if (IsPredictedToUsePursuitableMove(battlerDef, battlerAtk) && !MoveWouldHitFirst(move, battlerAtk, battlerDef)) //Pursuit against fast U-Turn
         //     ADJUST_SCORE(GOOD_EFFECT);
         break;
