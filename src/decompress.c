@@ -641,7 +641,7 @@ __attribute__((target("arm"))) __attribute__((noinline, no_reorder)) __attribute
             symbol |= stuff->symbolTable[sCurrState] << (currNibble*4);
             u32 currK = stuff->ykTable[sCurrState].kVal;
             sCurrState = stuff->ykTable[sCurrState].yVal;
-            sCurrState += (currBits >> bitIndex) & maskTable[currK]; // Masktable is slower here for some reason.
+            sCurrState += (currBits >> bitIndex) & maskTable[currK];
             bitIndex += currK;
             if (bitIndex >= 32)
             {
