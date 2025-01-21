@@ -745,7 +745,7 @@ static void CB2_EndScriptedWildBattle(void)
     }
 }
 
-u8 BattleSetup_GetTerrainId(void)
+enum BattleTerrain BattleSetup_GetTerrainId(void)
 {
     u16 tileBehavior;
     s16 x, y;

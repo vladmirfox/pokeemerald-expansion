@@ -167,7 +167,7 @@ enum FlagsVarsDebugMenu
     DEBUG_FLAGVAR_MENU_ITEM_TOGGLE_CATCHING,
 };
 
-enum BattleType
+enum DebugBattleType
 {
     DEBUG_BATTLE_0_MENU_ITEM_WILD,
     DEBUG_BATTLE_0_MENU_ITEM_WILD_DOUBLE,
@@ -176,7 +176,7 @@ enum BattleType
     DEBUG_BATTLE_0_MENU_ITEM_MULTI,
 };
 
-enum BattleAIFlags
+enum DebugBattleAIFlags
 {
     DEBUG_BATTLE_1_MENU_ITEM_AI_FLAG_00,
     DEBUG_BATTLE_1_MENU_ITEM_AI_FLAG_01,
@@ -199,7 +199,7 @@ enum BattleAIFlags
     DEBUG_BATTLE_1_MENU_ITEM_CONTINUE,
 };
 
-enum BattleTerrain
+enum DebugBattleTerrain
 {
     DEBUG_BATTLE_2_MENU_ITEM_TERRAIN_0,
     DEBUG_BATTLE_2_MENU_ITEM_TERRAIN_1,
@@ -309,7 +309,7 @@ struct DebugBattleData
 {
     u8 submenu;
     u8 battleType;
-    u8 battleTerrain;
+    enum BattleTerrain battleTerrain;
     bool8 aiFlags[AI_FLAG_COUNT];
 };
 
