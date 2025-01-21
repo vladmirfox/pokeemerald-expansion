@@ -8,6 +8,12 @@
 
 EWRAM_DATA ALIGNED(4) u8 gDecompressionBuffer[0x4000] = {0};
 
+//  === WARNING === WARNING === WARNING ===
+//  === No user serviceable code before ===
+//  === the SpecialPokePic function, do ===
+//  === not modify code unless magician ===
+//  === WARNING === WARNING === WARNING ===
+
 #define TABLE_READ_K(tableVal)((tableVal & 7))
 #define TABLE_READ_SYMBOL(tableVal)((tableVal & 0xFF) >> 3)
 #define TABLE_READ_Y(tableVal)((tableVal >> 8) & 0xFF)
