@@ -405,10 +405,10 @@ ARM_FUNC __attribute__((noinline, no_reorder)) __attribute__((optimize("-O3"))) 
     do
     {
         u32 symbol = 0;
-        for (u32 currNibble = 0; currNibble < 4; currNibble++)
+
         {
             u32 ykVals = ykTable[sCurrState];
-            symbol |= TABLE_READ_SYMBOL(ykVals) << (currNibble*4);
+            symbol |= TABLE_READ_SYMBOL(ykVals) << (0*4);
             u32 currK = TABLE_READ_K(ykVals);
             sCurrState = TABLE_READ_Y(ykVals);
             sCurrState += (currBits >> bitIndex) & TABLE_READ_MASK(ykVals);
@@ -421,8 +421,117 @@ ARM_FUNC __attribute__((noinline, no_reorder)) __attribute__((optimize("-O3"))) 
                 {
                     sCurrState += (currBits & ((1u << bitIndex) - 1)) << (currK - bitIndex);
                 }
+
+                {
+                    u32 ykVals = ykTable[sCurrState];
+                    symbol |= TABLE_READ_SYMBOL(ykVals) << (1*4);
+                    u32 currK = TABLE_READ_K(ykVals);
+                    sCurrState = TABLE_READ_Y(ykVals);
+                    sCurrState += (currBits >> bitIndex) & TABLE_READ_MASK(ykVals);
+                    bitIndex += currK;
+                }
+                {
+                    u32 ykVals = ykTable[sCurrState];
+                    symbol |= TABLE_READ_SYMBOL(ykVals) << (2*4);
+                    u32 currK = TABLE_READ_K(ykVals);
+                    sCurrState = TABLE_READ_Y(ykVals);
+                    sCurrState += (currBits >> bitIndex) & TABLE_READ_MASK(ykVals);
+                    bitIndex += currK;
+                }
+                {
+                    u32 ykVals = ykTable[sCurrState];
+                    symbol |= TABLE_READ_SYMBOL(ykVals) << (3*4);
+                    u32 currK = TABLE_READ_K(ykVals);
+                    sCurrState = TABLE_READ_Y(ykVals);
+                    sCurrState += (currBits >> bitIndex) & TABLE_READ_MASK(ykVals);
+                    bitIndex += currK;
+                }
+                goto LOOP_STORE;
             }
         }
+        {
+            u32 ykVals = ykTable[sCurrState];
+            symbol |= TABLE_READ_SYMBOL(ykVals) << (1*4);
+            u32 currK = TABLE_READ_K(ykVals);
+            sCurrState = TABLE_READ_Y(ykVals);
+            sCurrState += (currBits >> bitIndex) & TABLE_READ_MASK(ykVals);
+            bitIndex += currK;
+            if (bitIndex >= 32)
+            {
+                currBits = *data++;
+                bitIndex -= 32;
+                if (bitIndex != 0)
+                {
+                    sCurrState += (currBits & ((1u << bitIndex) - 1)) << (currK - bitIndex);
+                }
+
+                {
+                    u32 ykVals = ykTable[sCurrState];
+                    symbol |= TABLE_READ_SYMBOL(ykVals) << (2*4);
+                    u32 currK = TABLE_READ_K(ykVals);
+                    sCurrState = TABLE_READ_Y(ykVals);
+                    sCurrState += (currBits >> bitIndex) & TABLE_READ_MASK(ykVals);
+                    bitIndex += currK;
+                }
+                {
+                    u32 ykVals = ykTable[sCurrState];
+                    symbol |= TABLE_READ_SYMBOL(ykVals) << (3*4);
+                    u32 currK = TABLE_READ_K(ykVals);
+                    sCurrState = TABLE_READ_Y(ykVals);
+                    sCurrState += (currBits >> bitIndex) & TABLE_READ_MASK(ykVals);
+                    bitIndex += currK;
+                }
+                goto LOOP_STORE;
+            }
+        }
+        {
+            u32 ykVals = ykTable[sCurrState];
+            symbol |= TABLE_READ_SYMBOL(ykVals) << (2*4);
+            u32 currK = TABLE_READ_K(ykVals);
+            sCurrState = TABLE_READ_Y(ykVals);
+            sCurrState += (currBits >> bitIndex) & TABLE_READ_MASK(ykVals);
+            bitIndex += currK;
+            if (bitIndex >= 32)
+            {
+                currBits = *data++;
+                bitIndex -= 32;
+                if (bitIndex != 0)
+                {
+                    sCurrState += (currBits & ((1u << bitIndex) - 1)) << (currK - bitIndex);
+                }
+
+                {
+                    u32 ykVals = ykTable[sCurrState];
+                    symbol |= TABLE_READ_SYMBOL(ykVals) << (3*4);
+                    u32 currK = TABLE_READ_K(ykVals);
+                    sCurrState = TABLE_READ_Y(ykVals);
+                    sCurrState += (currBits >> bitIndex) & TABLE_READ_MASK(ykVals);
+                    bitIndex += currK;
+                }
+                goto LOOP_STORE;
+            }
+        }
+        {
+            u32 ykVals = ykTable[sCurrState];
+            symbol |= TABLE_READ_SYMBOL(ykVals) << (3*4);
+            u32 currK = TABLE_READ_K(ykVals);
+            sCurrState = TABLE_READ_Y(ykVals);
+            sCurrState += (currBits >> bitIndex) & TABLE_READ_MASK(ykVals);
+            bitIndex += currK;
+            if (bitIndex >= 32)
+            {
+                currBits = *data++;
+                bitIndex -= 32;
+                if (bitIndex != 0)
+                {
+                    sCurrState += (currBits & ((1u << bitIndex) - 1)) << (currK - bitIndex);
+                }
+
+
+            }
+        }
+
+LOOP_STORE:
         *resultVec_u16++ = symbol;
     } while (resultVec_u16 < (u16 *) resultVecEnd);
 
@@ -522,6 +631,27 @@ static void DecodeSymtANS(const u32 *data, const u32 *pFreqs, u16 *resultVec, u3
     SwitchToArmCallDecodeSymtANS(data, sWorkingYkTable, resultVec, &resultVec[count], (void *) funcBuffer);
 }
 
+#define ANS_LOOP_MAIN(nibble)   \
+{ \
+    u32 ykVals = ykTable[sCurrState]; \
+    currK = TABLE_READ_K(ykVals); \
+    currSymbol = (currSymbol + TABLE_READ_SYMBOL(ykVals)) & 0xf; \
+    symbol |= currSymbol << (nibble*4); \
+    sCurrState = TABLE_READ_Y(ykVals); \
+    sCurrState += ((currBits >> bitIndex) & TABLE_READ_MASK(ykVals)); \
+    bitIndex += currK; \
+}
+
+#define ANS_LOOP_BITADVANCE() \
+{   \
+    currBits = *data++; \
+    bitIndex -= 32; \
+    if (bitIndex != 0)  \
+    {   \
+        sCurrState += (currBits & ((1u << bitIndex) - 1)) << (currK - bitIndex); \
+    } \
+}
+
 //  Inner loop of tANS decoding for delta encoded symbol data, uses u16 data size
 //  Basic process for decoding a tANS encoded value is to read the current symbol from the decoding table, then calculate the next state
 //  from the y and k values for the current state and add the value read from the next k bits in the bitstream
@@ -536,28 +666,134 @@ ARM_FUNC __attribute__((noinline, no_reorder)) __attribute__((optimize("-O3"))) 
     do
     {
         u32 symbol = 0;
+        u32 currK;
 
-        for (u32 currNibble = 0; currNibble < 8; currNibble++)
         {
-            u32 ykVals = ykTable[sCurrState];
-            u32 currK = TABLE_READ_K(ykVals);
-            currSymbol = (currSymbol + TABLE_READ_SYMBOL(ykVals)) & 0xf;
-            symbol |= currSymbol << (currNibble*4);
-            sCurrState = TABLE_READ_Y(ykVals);
-            sCurrState += ((currBits >> bitIndex) & TABLE_READ_MASK(ykVals));
-            bitIndex += currK;
+            ANS_LOOP_MAIN(0);
 
             if (bitIndex >= 32)
             {
-                currBits = *data++;
-                bitIndex -= 32;
-                if (bitIndex != 0)
-                {
-                    sCurrState += (currBits & ((1u << bitIndex) - 1)) << (currK - bitIndex);
-                }
+                ANS_LOOP_BITADVANCE();
+
+                ANS_LOOP_MAIN(1);
+                ANS_LOOP_MAIN(2);
+                ANS_LOOP_MAIN(3);
+                ANS_LOOP_MAIN(4);
+
+                goto NIBBLE_5;
+            }
+        }
+        {
+            ANS_LOOP_MAIN(1);
+
+            if (bitIndex >= 32)
+            {
+                ANS_LOOP_BITADVANCE();
+
+                ANS_LOOP_MAIN(2);
+                ANS_LOOP_MAIN(3);
+                ANS_LOOP_MAIN(4);
+                ANS_LOOP_MAIN(5);
+
+                goto NIBBLE_6;
+            }
+        }
+        {
+            ANS_LOOP_MAIN(2);
+
+            if (bitIndex >= 32)
+            {
+                ANS_LOOP_BITADVANCE();
+
+                ANS_LOOP_MAIN(3);
+                ANS_LOOP_MAIN(4);
+                ANS_LOOP_MAIN(5);
+                ANS_LOOP_MAIN(6);
+
+                goto NIBBLE_7;
+            }
+        }
+        {
+            ANS_LOOP_MAIN(3);
+
+            if (bitIndex >= 32)
+            {
+                ANS_LOOP_BITADVANCE();
+
+                ANS_LOOP_MAIN(4);
+                ANS_LOOP_MAIN(5);
+                ANS_LOOP_MAIN(6);
+                ANS_LOOP_MAIN(7);
+
+                goto LOOP_STORE;
+            }
+        }
+    NIBBLE_4:
+        {
+            ANS_LOOP_MAIN(4);
+
+            if (bitIndex >= 32)
+            {
+                ANS_LOOP_BITADVANCE();
+
+                ANS_LOOP_MAIN(5);
+                ANS_LOOP_MAIN(6);
+                ANS_LOOP_MAIN(7);
+
+                goto LOOP_STORE;
+            }
+        }
+    NIBBLE_5:
+        {
+            ANS_LOOP_MAIN(5);
+
+            if (bitIndex >= 32)
+            {
+                ANS_LOOP_BITADVANCE();
+
+                ANS_LOOP_MAIN(6);
+                ANS_LOOP_MAIN(7);
+
+                goto LOOP_STORE;
+            }
+        }
+    NIBBLE_6:
+        {
+            ANS_LOOP_MAIN(6);
+
+            if (bitIndex >= 32)
+            {
+                ANS_LOOP_BITADVANCE();
+
+                ANS_LOOP_MAIN(7);
+
+                goto LOOP_STORE;
+            }
+        }
+    NIBBLE_7:
+        {
+            ANS_LOOP_MAIN(7);
+
+            if (bitIndex >= 32)
+            {
+                ANS_LOOP_BITADVANCE();
+
+                *resultVec_32++ = (symbol);
+                if (resultVec_32 >= (u32 *) resultVecEnd)
+                    break;
+
+                symbol = 0;
+
+                ANS_LOOP_MAIN(0);
+                ANS_LOOP_MAIN(1);
+                ANS_LOOP_MAIN(2);
+                ANS_LOOP_MAIN(3);
+
+                goto NIBBLE_4;
             }
         }
 
+    LOOP_STORE:
         *resultVec_32++ = (symbol);
 
     } while (resultVec_32 < (u32 *) resultVecEnd);
@@ -579,7 +815,7 @@ static void DecodeSymDeltatANS(const u32 *data, const u32 *pFreqs, u16 *resultVe
     // We want to store in packs of 2, so count needs to be divisible by 2
     u32 remainingCount = count % 2;
 
-    u32 funcBuffer[400];
+    u32 funcBuffer[450];
     CopyFuncToIwram(funcBuffer, DecodeSymDeltatANSLoop, SwitchToArmCallSymDeltaANS);
     SwitchToArmCallSymDeltaANS(data, sWorkingYkTable, resultVec, &resultVec[count - remainingCount], (void *) funcBuffer);
 
