@@ -278,25 +278,15 @@ struct DebugMonData
     bool8 isShiny:1;
     u8 nature:5;
     u8 abilityNum:2;
-    u8  mon_iv_hp;
-    u8  mon_iv_atk;
-    u8  mon_iv_def;
-    u8  mon_iv_speed;
-    u8  mon_iv_satk;
-    u8  mon_iv_sdef;
+    u8 monIVs[NUM_STATS];
     u16 mon_move_0;
     u16 mon_move_1;
     u16 mon_move_2;
     u16 mon_move_3;
-    u8  mon_ev_hp;
-    u8  mon_ev_atk;
-    u8  mon_ev_def;
-    u8  mon_ev_speed;
-    u8  mon_ev_satk;
-    u8  mon_ev_sdef;
-    u8  teraType;
-    u8  dynamaxLevel:7;
-    u8  gmaxFactor:1;
+    u8 monEVs[NUM_STATS];
+    u8 teraType;
+    u8 dynamaxLevel:7;
+    u8 gmaxFactor:1;
 };
 
 struct DebugMenuListData
@@ -531,20 +521,8 @@ static const u8 sDebugText_PokemonAbility[] =           _("Ability Num: {STR_VAR
 static const u8 sDebugText_PokemonTeraType[] =          _("Tera Type: {STR_VAR_3}{CLEAR_TO 90}\n{STR_VAR_1}{CLEAR_TO 90}\n{CLEAR_TO 90}\n{STR_VAR_2}{CLEAR_TO 90}");
 static const u8 sDebugText_PokemonDynamaxLevel[] =      _("Dmax Lvl:{CLEAR_TO 90}\n{STR_VAR_1}{CLEAR_TO 90}\n{CLEAR_TO 90}\n{STR_VAR_2}{CLEAR_TO 90}");
 static const u8 sDebugText_PokemonGmaxFactor[] =        _("Gmax Factor:{CLEAR_TO 90}\n   {STR_VAR_2}{CLEAR_TO 90}\n{CLEAR_TO 90}\n{CLEAR_TO 90}");
-static const u8 sDebugText_PokemonIVs[] =               _("All IVs:{CLEAR_TO 90}\n    {STR_VAR_3}{CLEAR_TO 90}\n{CLEAR_TO 90}\n{STR_VAR_2}{CLEAR_TO 90}");
-static const u8 sDebugText_PokemonEVs[] =               _("All EVs:{CLEAR_TO 90}\n    {STR_VAR_3}{CLEAR_TO 90}\n{CLEAR_TO 90}\n{STR_VAR_2}{CLEAR_TO 90}");
-static const u8 sDebugText_IV_HP[] =                    _("IV HP:{CLEAR_TO 90}\n    {STR_VAR_3}{CLEAR_TO 90}\n{CLEAR_TO 90}\n{STR_VAR_2}{CLEAR_TO 90}");
-static const u8 sDebugText_IV_Attack[] =                _("IV Attack:{CLEAR_TO 90}\n    {STR_VAR_3}{CLEAR_TO 90}\n{CLEAR_TO 90}\n{STR_VAR_2}{CLEAR_TO 90}");
-static const u8 sDebugText_IV_Defense[] =               _("IV Defense:{CLEAR_TO 90}\n    {STR_VAR_3}{CLEAR_TO 90}\n{CLEAR_TO 90}\n{STR_VAR_2}{CLEAR_TO 90}");
-static const u8 sDebugText_IV_Speed[] =                 _("IV Speed:{CLEAR_TO 90}\n    {STR_VAR_3}{CLEAR_TO 90}\n{CLEAR_TO 90}\n{STR_VAR_2}{CLEAR_TO 90}");
-static const u8 sDebugText_IV_SpAttack[] =              _("IV Sp. Attack:{CLEAR_TO 90}\n    {STR_VAR_3}{CLEAR_TO 90}\n{CLEAR_TO 90}\n{STR_VAR_2}{CLEAR_TO 90}");
-static const u8 sDebugText_IV_SpDefense[] =             _("IV Sp. Defense:{CLEAR_TO 90}\n    {STR_VAR_3}{CLEAR_TO 90}\n{CLEAR_TO 90}\n{STR_VAR_2}{CLEAR_TO 90}");
-static const u8 sDebugText_EV_HP[] =                    _("EV HP:{CLEAR_TO 90}\n    {STR_VAR_3}{CLEAR_TO 90}\n{CLEAR_TO 90}\n{STR_VAR_2}{CLEAR_TO 90}");
-static const u8 sDebugText_EV_Attack[] =                _("EV Attack:{CLEAR_TO 90}\n    {STR_VAR_3}{CLEAR_TO 90}\n{CLEAR_TO 90}\n{STR_VAR_2}{CLEAR_TO 90}");
-static const u8 sDebugText_EV_Defense[] =               _("EV Defense:{CLEAR_TO 90}\n    {STR_VAR_3}{CLEAR_TO 90}\n{CLEAR_TO 90}\n{STR_VAR_2}{CLEAR_TO 90}");
-static const u8 sDebugText_EV_Speed[] =                 _("EV Speed:{CLEAR_TO 90}\n    {STR_VAR_3}{CLEAR_TO 90}\n{CLEAR_TO 90}\n{STR_VAR_2}{CLEAR_TO 90}");
-static const u8 sDebugText_EV_SpAttack[] =              _("EV Sp. Attack:{CLEAR_TO 90}\n    {STR_VAR_3}{CLEAR_TO 90}\n{CLEAR_TO 90}\n{STR_VAR_2}{CLEAR_TO 90}");
-static const u8 sDebugText_EV_SpDefense[] =             _("EV Sp. Defense:{CLEAR_TO 90}\n    {STR_VAR_3}{CLEAR_TO 90}\n{CLEAR_TO 90}\n{STR_VAR_2}{CLEAR_TO 90}");
+static const u8 sDebugText_IVs[] =                      _("IV {STR_VAR_1}:{CLEAR_TO 90}\n    {STR_VAR_3}{CLEAR_TO 90}\n{CLEAR_TO 90}\n{STR_VAR_2}{CLEAR_TO 90}");
+static const u8 sDebugText_EVs[] =                      _("EV {STR_VAR_1}:{CLEAR_TO 90}\n    {STR_VAR_3}{CLEAR_TO 90}\n{CLEAR_TO 90}\n{STR_VAR_2}{CLEAR_TO 90}");
 static const u8 sDebugText_PokemonMove_0[] =            _("Move 0: {STR_VAR_3}{CLEAR_TO 90}\n{STR_VAR_1}{CLEAR_TO 90}\n{CLEAR_TO 90}\n{STR_VAR_2}{CLEAR_TO 90}");
 static const u8 sDebugText_PokemonMove_1[] =            _("Move 1: {STR_VAR_3}{CLEAR_TO 90}\n{STR_VAR_1}{CLEAR_TO 90}\n{CLEAR_TO 90}\n{STR_VAR_2}{CLEAR_TO 90}");
 static const u8 sDebugText_PokemonMove_2[] =            _("Move 2: {STR_VAR_3}{CLEAR_TO 90}\n{STR_VAR_1}{CLEAR_TO 90}\n{CLEAR_TO 90}\n{STR_VAR_2}{CLEAR_TO 90}");
@@ -1992,7 +1970,7 @@ static void DebugAction_Util_CheckROMSpace(u8 taskId)
     ScriptContext_SetupScript(Debug_CheckROMSpace);
 }
 
-static const u8 sWeatherNames[22][24] = {
+static const u8 sWeatherNames[WEATHER_COUNT][24] = {
     [WEATHER_NONE]               = _("NONE"),
     [WEATHER_SUNNY_CLOUDS]       = _("SUNNY CLOUDS"),
     [WEATHER_SUNNY]              = _("SUNNY"),
@@ -2763,18 +2741,11 @@ static void ResetMonDataStruct(struct DebugMonData *sDebugMonData)
     sDebugMonData->teraType         = TYPE_NONE;
     sDebugMonData->dynamaxLevel     = 0;
     sDebugMonData->gmaxFactor       = FALSE;
-    sDebugMonData->mon_iv_hp        = 0;
-    sDebugMonData->mon_iv_atk       = 0;
-    sDebugMonData->mon_iv_def       = 0;
-    sDebugMonData->mon_iv_speed     = 0;
-    sDebugMonData->mon_iv_satk      = 0;
-    sDebugMonData->mon_iv_sdef      = 0;
-    sDebugMonData->mon_ev_hp        = 0;
-    sDebugMonData->mon_ev_atk       = 0;
-    sDebugMonData->mon_ev_def       = 0;
-    sDebugMonData->mon_ev_speed     = 0;
-    sDebugMonData->mon_ev_satk      = 0;
-    sDebugMonData->mon_ev_sdef      = 0;
+    for (u32 i = 0; i < NUM_STATS; i++)
+    {
+        sDebugMonData->monIVs[i] = 0;
+        sDebugMonData->monEVs[i] = 0;
+    }
 }
 
 #define tIsComplex  data[5]
@@ -3191,6 +3162,16 @@ static void DebugAction_Give_Pokemon_SelectDynamaxLevel(u8 taskId)
     }
 }
 
+static void Debug_Display_StatInfo(const u8* text, u32 stat, u32 value, u32 digit, u8 windowId)
+{
+    StringCopy(gStringVar1, gStatNamesTable[stat]);
+    StringCopy(gStringVar2, gText_DigitIndicator[digit]);
+    ConvertIntToDecimalStringN(gStringVar3, value, STR_CONV_MODE_LEADING_ZEROS, 2);
+    StringCopyPadded(gStringVar3, gStringVar3, CHAR_SPACE, 15);
+    StringExpandPlaceholders(gStringVar4, text);
+    AddTextPrinterParameterized(windowId, DEBUG_MENU_FONT, gStringVar4, 0, 0, 0, NULL);
+}
+
 static void DebugAction_Give_Pokemon_SelectGigantamaxFactor(u8 taskId)
 {
     static const u8 *txtStr;
@@ -3212,13 +3193,7 @@ static void DebugAction_Give_Pokemon_SelectGigantamaxFactor(u8 taskId)
         sDebugMonData->gmaxFactor = gTasks[taskId].tInput;
         gTasks[taskId].tInput = 0;
         gTasks[taskId].tDigit = 0;
-
-        StringCopy(gStringVar2, gText_DigitIndicator[gTasks[taskId].tDigit]);
-        ConvertIntToDecimalStringN(gStringVar3, gTasks[taskId].tInput, STR_CONV_MODE_LEADING_ZEROS, 2);
-        StringCopyPadded(gStringVar3, gStringVar3, CHAR_SPACE, 15);
-        StringExpandPlaceholders(gStringVar4, sDebugText_IV_HP);
-        AddTextPrinterParameterized(gTasks[taskId].tSubWindowId, DEBUG_MENU_FONT, gStringVar4, 0, 0, 0, NULL);
-
+        Debug_Display_StatInfo(sDebugText_IVs, gTasks[taskId].tIterator, gTasks[taskId].tInput, gTasks[taskId].tDigit, gTasks[taskId].tSubWindowId);
         gTasks[taskId].func = DebugAction_Give_Pokemon_SelectIVs;
     }
     else if (JOY_NEW(B_BUTTON))
@@ -3235,58 +3210,14 @@ static void DebugAction_Give_Pokemon_SelectIVs(u8 taskId)
     {
         PlaySE(SE_SELECT);
         Debug_HandleInput_Numeric(taskId, 0, MAX_PER_STAT_IVS, 3);
-
-        StringCopy(gStringVar2, gText_DigitIndicator[gTasks[taskId].tDigit]);
-        ConvertIntToDecimalStringN(gStringVar3, gTasks[taskId].tInput, STR_CONV_MODE_LEADING_ZEROS, 2);
-        StringCopyPadded(gStringVar3, gStringVar3, CHAR_SPACE, 15);
-        switch (gTasks[taskId].tIterator)
-        {
-        case STAT_HP:
-            StringExpandPlaceholders(gStringVar4, sDebugText_IV_HP);
-            break;
-        case STAT_ATK:
-            StringExpandPlaceholders(gStringVar4, sDebugText_IV_Attack);
-            break;
-        case STAT_DEF:
-            StringExpandPlaceholders(gStringVar4, sDebugText_IV_Defense);
-            break;
-        case STAT_SPEED:
-            StringExpandPlaceholders(gStringVar4, sDebugText_IV_Speed);
-            break;
-        case STAT_SPATK:
-            StringExpandPlaceholders(gStringVar4, sDebugText_IV_SpAttack);
-            break;
-        case STAT_SPDEF:
-            StringExpandPlaceholders(gStringVar4, sDebugText_IV_SpDefense);
-            break;
-        }
-        AddTextPrinterParameterized(gTasks[taskId].tSubWindowId, DEBUG_MENU_FONT, gStringVar4, 0, 0, 0, NULL);
+        Debug_Display_StatInfo(sDebugText_IVs, gTasks[taskId].tIterator, gTasks[taskId].tInput, gTasks[taskId].tDigit, gTasks[taskId].tSubWindowId);
     }
 
     //If A or B button
     if (JOY_NEW(A_BUTTON))
     {
-        switch (gTasks[taskId].tIterator)
-        {
-        case STAT_HP:
-            sDebugMonData->mon_iv_hp = gTasks[taskId].tInput;
-            break;
-        case STAT_ATK:
-            sDebugMonData->mon_iv_atk = gTasks[taskId].tInput;
-            break;
-        case STAT_DEF:
-            sDebugMonData->mon_iv_def = gTasks[taskId].tInput;
-            break;
-        case STAT_SPEED:
-            sDebugMonData->mon_iv_speed = gTasks[taskId].tInput;
-            break;
-        case STAT_SPATK:
-            sDebugMonData->mon_iv_satk = gTasks[taskId].tInput;
-            break;
-        case STAT_SPDEF:
-            sDebugMonData->mon_iv_sdef = gTasks[taskId].tInput;
-            break;
-        }
+        // Set IVs for stat
+        sDebugMonData->monIVs[gTasks[taskId].tIterator] = gTasks[taskId].tInput;
 
         //Check if all IVs set
         if (gTasks[taskId].tIterator != NUM_STATS - 1)
@@ -3295,32 +3226,7 @@ static void DebugAction_Give_Pokemon_SelectIVs(u8 taskId)
             gTasks[taskId].tInput = 0;
             gTasks[taskId].tDigit = 0;
 
-            StringCopy(gStringVar2, gText_DigitIndicator[gTasks[taskId].tDigit]);
-            ConvertIntToDecimalStringN(gStringVar3, gTasks[taskId].tInput, STR_CONV_MODE_LEADING_ZEROS, 2);
-            StringCopyPadded(gStringVar3, gStringVar3, CHAR_SPACE, 15);
-            switch (gTasks[taskId].tIterator)
-            {
-            case STAT_HP:
-                StringExpandPlaceholders(gStringVar4, sDebugText_IV_HP);
-                break;
-            case STAT_ATK:
-                StringExpandPlaceholders(gStringVar4, sDebugText_IV_Attack);
-                break;
-            case STAT_DEF:
-                StringExpandPlaceholders(gStringVar4, sDebugText_IV_Defense);
-                break;
-            case STAT_SPEED:
-                StringExpandPlaceholders(gStringVar4, sDebugText_IV_Speed);
-                break;
-            case STAT_SPATK:
-                StringExpandPlaceholders(gStringVar4, sDebugText_IV_SpAttack);
-                break;
-            case STAT_SPDEF:
-                StringExpandPlaceholders(gStringVar4, sDebugText_IV_SpDefense);
-                break;
-            }
-            AddTextPrinterParameterized(gTasks[taskId].tSubWindowId, DEBUG_MENU_FONT, gStringVar4, 0, 0, 0, NULL);
-
+            Debug_Display_StatInfo(sDebugText_IVs, gTasks[taskId].tIterator, gTasks[taskId].tInput, gTasks[taskId].tDigit, gTasks[taskId].tSubWindowId);
             gTasks[taskId].func = DebugAction_Give_Pokemon_SelectIVs;
         }
         else
@@ -3329,11 +3235,7 @@ static void DebugAction_Give_Pokemon_SelectIVs(u8 taskId)
             gTasks[taskId].tDigit = 0;
             gTasks[taskId].tIterator = 0;
 
-            StringCopy(gStringVar2, gText_DigitIndicator[gTasks[taskId].tDigit]);
-            ConvertIntToDecimalStringN(gStringVar3, gTasks[taskId].tInput, STR_CONV_MODE_LEADING_ZEROS, 3);
-            StringCopyPadded(gStringVar3, gStringVar3, CHAR_SPACE, 15);
-            StringExpandPlaceholders(gStringVar4, sDebugText_EV_HP);
-            AddTextPrinterParameterized(gTasks[taskId].tSubWindowId, DEBUG_MENU_FONT, gStringVar4, 0, 0, 0, NULL);
+            Debug_Display_StatInfo(sDebugText_EVs, gTasks[taskId].tIterator, gTasks[taskId].tInput, gTasks[taskId].tDigit, gTasks[taskId].tSubWindowId);
             gTasks[taskId].func = DebugAction_Give_Pokemon_SelectEVs;
         }
     }
@@ -3347,12 +3249,10 @@ static void DebugAction_Give_Pokemon_SelectIVs(u8 taskId)
 
 static u32 GetDebugPokemonTotalEV(void)
 {
-    return (sDebugMonData->mon_ev_hp
-          + sDebugMonData->mon_ev_atk
-          + sDebugMonData->mon_ev_def
-          + sDebugMonData->mon_ev_speed
-          + sDebugMonData->mon_ev_satk
-          + sDebugMonData->mon_ev_sdef);
+    u32 totalEVs = 0;
+    for (u32 i = 0; i < NUM_STATS; i++)
+        totalEVs += sDebugMonData->monEVs[i];
+    return totalEVs;
 }
 
 static void DebugAction_Give_Pokemon_SelectEVs(u8 taskId)
@@ -3363,58 +3263,14 @@ static void DebugAction_Give_Pokemon_SelectEVs(u8 taskId)
     {
         PlaySE(SE_SELECT);
         Debug_HandleInput_Numeric(taskId, 0, MAX_PER_STAT_EVS, 4);
-
-        StringCopy(gStringVar2, gText_DigitIndicator[gTasks[taskId].tDigit]);
-        ConvertIntToDecimalStringN(gStringVar3, gTasks[taskId].tInput, STR_CONV_MODE_LEADING_ZEROS, 3);
-        StringCopyPadded(gStringVar3, gStringVar3, CHAR_SPACE, 15);
-        switch (gTasks[taskId].tIterator)
-        {
-        case STAT_HP:
-            StringExpandPlaceholders(gStringVar4, sDebugText_EV_HP);
-            break;
-        case STAT_ATK:
-            StringExpandPlaceholders(gStringVar4, sDebugText_EV_Attack);
-            break;
-        case STAT_DEF:
-            StringExpandPlaceholders(gStringVar4, sDebugText_EV_Defense);
-            break;
-        case STAT_SPEED:
-            StringExpandPlaceholders(gStringVar4, sDebugText_EV_Speed);
-            break;
-        case STAT_SPATK:
-            StringExpandPlaceholders(gStringVar4, sDebugText_EV_SpAttack);
-            break;
-        case STAT_SPDEF:
-            StringExpandPlaceholders(gStringVar4, sDebugText_EV_SpDefense);
-            break;
-        }
-        AddTextPrinterParameterized(gTasks[taskId].tSubWindowId, DEBUG_MENU_FONT, gStringVar4, 0, 0, 0, NULL);
+        Debug_Display_StatInfo(sDebugText_EVs, gTasks[taskId].tIterator, gTasks[taskId].tInput, gTasks[taskId].tDigit, gTasks[taskId].tSubWindowId);
     }
 
     //If A or B button
     if (JOY_NEW(A_BUTTON))
     {
-        switch (gTasks[taskId].tIterator)
-        {
-        case STAT_HP:
-            sDebugMonData->mon_ev_hp = gTasks[taskId].tInput;
-            break;
-        case STAT_ATK:
-            sDebugMonData->mon_ev_atk = gTasks[taskId].tInput;
-            break;
-        case STAT_DEF:
-            sDebugMonData->mon_ev_def = gTasks[taskId].tInput;
-            break;
-        case STAT_SPEED:
-            sDebugMonData->mon_ev_speed = gTasks[taskId].tInput;
-            break;
-        case STAT_SPATK:
-            sDebugMonData->mon_ev_satk = gTasks[taskId].tInput;
-            break;
-        case STAT_SPDEF:
-            sDebugMonData->mon_ev_sdef = gTasks[taskId].tInput;
-            break;
-        }
+        // Set EVs for stat
+        sDebugMonData->monEVs[gTasks[taskId].tIterator] = gTasks[taskId].tInput;
 
         //Check if all EVs set
         if (gTasks[taskId].tIterator != NUM_STATS - 1)
@@ -3422,33 +3278,7 @@ static void DebugAction_Give_Pokemon_SelectEVs(u8 taskId)
             gTasks[taskId].tIterator++;
             gTasks[taskId].tInput = 0;
             gTasks[taskId].tDigit = 0;
-
-            StringCopy(gStringVar2, gText_DigitIndicator[gTasks[taskId].tDigit]);
-            ConvertIntToDecimalStringN(gStringVar3, gTasks[taskId].tInput, STR_CONV_MODE_LEADING_ZEROS, 3);
-            StringCopyPadded(gStringVar3, gStringVar3, CHAR_SPACE, 15);
-            switch (gTasks[taskId].tIterator)
-            {
-            case STAT_HP:
-                StringExpandPlaceholders(gStringVar4, sDebugText_EV_HP);
-                break;
-            case STAT_ATK:
-                StringExpandPlaceholders(gStringVar4, sDebugText_EV_Attack);
-                break;
-            case STAT_DEF:
-                StringExpandPlaceholders(gStringVar4, sDebugText_EV_Defense);
-                break;
-            case STAT_SPEED:
-                StringExpandPlaceholders(gStringVar4, sDebugText_EV_Speed);
-                break;
-            case STAT_SPATK:
-                StringExpandPlaceholders(gStringVar4, sDebugText_EV_SpAttack);
-                break;
-            case STAT_SPDEF:
-                StringExpandPlaceholders(gStringVar4, sDebugText_EV_SpDefense);
-                break;
-            }
-            AddTextPrinterParameterized(gTasks[taskId].tSubWindowId, DEBUG_MENU_FONT, gStringVar4, 0, 0, 0, NULL);
-
+            Debug_Display_StatInfo(sDebugText_EVs, gTasks[taskId].tIterator, gTasks[taskId].tInput, gTasks[taskId].tDigit, gTasks[taskId].tSubWindowId);
             gTasks[taskId].func = DebugAction_Give_Pokemon_SelectEVs;
         }
         else
@@ -3459,20 +3289,13 @@ static void DebugAction_Give_Pokemon_SelectEVs(u8 taskId)
 
             if (totalEV > MAX_TOTAL_EVS)
             {
-                sDebugMonData->mon_ev_hp = 0;
-                sDebugMonData->mon_ev_atk = 0;
-                sDebugMonData->mon_ev_def = 0;
-                sDebugMonData->mon_ev_speed = 0;
-                sDebugMonData->mon_ev_satk = 0;
-                sDebugMonData->mon_ev_sdef = 0;
+                for (u32 i = 0; i < NUM_STATS; i++)
+                {
+                    sDebugMonData->monEVs[i] = 0;
+                }
 
                 PlaySE(SE_FAILURE);
-                StringCopy(gStringVar2, gText_DigitIndicator[gTasks[taskId].tDigit]);
-                ConvertIntToDecimalStringN(gStringVar3, gTasks[taskId].tInput, STR_CONV_MODE_LEADING_ZEROS, 3);
-                StringCopyPadded(gStringVar3, gStringVar3, CHAR_SPACE, 15);
-                StringExpandPlaceholders(gStringVar4, sDebugText_EV_HP);
-                AddTextPrinterParameterized(gTasks[taskId].tSubWindowId, DEBUG_MENU_FONT, gStringVar4, 0, 0, 0, NULL);
-
+                Debug_Display_StatInfo(sDebugText_EVs, gTasks[taskId].tIterator, gTasks[taskId].tInput, gTasks[taskId].tDigit, gTasks[taskId].tSubWindowId);
                 gTasks[taskId].func = DebugAction_Give_Pokemon_SelectEVs;
             }
             else
@@ -3605,9 +3428,9 @@ static void DebugAction_Give_Pokemon_ComplexCreateMon(u8 taskId) //https://githu
     struct Pokemon mon;
     u8 i;
     u16 moves[4];
-    u8 IVs[6];
+    u8 IVs[NUM_STATS];
     u8 iv_val;
-    u8 EVs[6];
+    u8 EVs[NUM_STATS];
     u8 ev_val;
     u16 species     = sDebugMonData->species;
     u8 level        = sDebugMonData->level;
@@ -3621,18 +3444,11 @@ static void DebugAction_Give_Pokemon_ComplexCreateMon(u8 taskId) //https://githu
     moves[1]        = sDebugMonData->mon_move_1;
     moves[2]        = sDebugMonData->mon_move_2;
     moves[3]        = sDebugMonData->mon_move_3;
-    IVs[0]          = sDebugMonData->mon_iv_hp;
-    IVs[1]          = sDebugMonData->mon_iv_atk;
-    IVs[2]          = sDebugMonData->mon_iv_def;
-    IVs[3]          = sDebugMonData->mon_iv_speed;
-    IVs[4]          = sDebugMonData->mon_iv_satk;
-    IVs[5]          = sDebugMonData->mon_iv_sdef;
-    EVs[0]          = sDebugMonData->mon_ev_hp;
-    EVs[1]          = sDebugMonData->mon_ev_atk;
-    EVs[2]          = sDebugMonData->mon_ev_def;
-    EVs[3]          = sDebugMonData->mon_ev_speed;
-    EVs[4]          = sDebugMonData->mon_ev_satk;
-    EVs[5]          = sDebugMonData->mon_ev_sdef;
+    for (u32 i = 0; i < NUM_STATS; i++)
+    {
+        EVs[i] = sDebugMonData->monEVs[i];
+        IVs[i] = sDebugMonData->monIVs[i];
+    }
 
     //Nature
     if (nature == NUM_NATURES || nature == 0xFF)
