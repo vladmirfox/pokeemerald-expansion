@@ -4040,11 +4040,12 @@ bool8 PokemonUseItemEffects(struct Pokemon *mon, u16 item, u8 partyIndex, u8 mov
 
                     case 7: // ITEM4_EVO_STONE
                         {
-                            u16 targetSpecies = GetEvolutionTargetSpecies(mon, EVO_MODE_ITEM_USE, item, NULL);
+                            bool32 canStopEvo = TRUE;
+                            u32 targetSpecies = GetEvolutionTargetSpecies(mon, EVO_MODE_ITEM_USE, item, NULL, &canStopEvo);
 
                             if (targetSpecies != SPECIES_NONE)
                             {
-                                BeginEvolutionScene(mon, targetSpecies, FALSE, partyIndex);
+                                BeginEvolutionScene(mon, targetSpecies, canStopEvo, partyIndex);
                                 return FALSE;
                             }
                         }
@@ -4642,7 +4643,7 @@ static bool32 DoesMonMeetAdditionalConditions(struct Pokemon *mon, const struct 
     return TRUE;
 }
 
-u16 GetEvolutionTargetSpecies(struct Pokemon *mon, enum EvolutionMode mode, u16 evolutionItem, struct Pokemon *tradePartner)
+u32 GetEvolutionTargetSpecies(struct Pokemon *mon, enum EvolutionMode mode, u16 evolutionItem, struct Pokemon *tradePartner, bool32 *canStopEvo)
 {
     int i;
     u32 targetSpecies = SPECIES_NONE;
@@ -4692,32 +4693,13 @@ u16 GetEvolutionTargetSpecies(struct Pokemon *mon, enum EvolutionMode mode, u16 
                 if (mode == EVO_MODE_BATTLE_ONLY && evolutions[i].param <= level)
                     conditionsMet = TRUE;
                 break;
-            }
-
-            if (conditionsMet && DoesMonMeetAdditionalConditions(mon, evolutions[i].params, NULL, &consumeItem, PARTY_SIZE))
-            {
-                // All checks passed, so stop checking the rest of the evolutions.
-                // This is different from vanilla where the loop continues.
-                // If you have overlapping evolutions, put the ones you want to happen first on top of the list.
-                targetSpecies = evolutions[i].targetSpecies;
-                break;
-            }
-        }
-        break;
-    case EVO_MODE_CANT_STOP:
-        for (i = 0; evolutions[i].method != EVOLUTIONS_END; i++)
-        {
-            bool32 conditionsMet = FALSE;
-            if (SanitizeSpeciesId(evolutions[i].targetSpecies) == SPECIES_NONE)
-                continue;
-
-            switch (evolutions[i].method)
-            {
             case EVO_ITEM_COUNT_999:
                 if (CheckBagHasItem(evolutions[i].param, 999))
                 {
                     conditionsMet = TRUE;
                     RemoveBagItem(evolutions[i].param, 999);
+                    if (canStopEvo != NULL)
+                        *canStopEvo = FALSE;
                 }
                 break;
             }
@@ -4778,6 +4760,8 @@ u16 GetEvolutionTargetSpecies(struct Pokemon *mon, enum EvolutionMode mode, u16 
                 // This is different from vanilla where the loop continues.
                 // If you have overlapping evolutions, put the ones you want to happen first on top of the list.
                 targetSpecies = evolutions[i].targetSpecies;
+                if (canStopEvo != NULL)
+                    *canStopEvo = FALSE;
                 break;
             }
         }
@@ -6672,12 +6656,12 @@ void RemoveIVIndexFromList(u8 *ivs, u8 selectedIv)
 void TrySpecialOverworldEvo(void)
 {
     u8 i;
-    u16 canStopEvo = gSpecialVar_0x8001;
+    bool32 canStopEvo = gSpecialVar_0x8001;
     u16 tryMultiple = gSpecialVar_0x8002;
 
     for (i = 0; i < PARTY_SIZE; i++)
     {
-        u16 targetSpecies = GetEvolutionTargetSpecies(&gPlayerParty[i], EVO_MODE_OVERWORLD_SPECIAL, 0, SPECIES_NONE);
+        u32 targetSpecies = GetEvolutionTargetSpecies(&gPlayerParty[i], EVO_MODE_OVERWORLD_SPECIAL, 0, SPECIES_NONE, &canStopEvo);
         if (targetSpecies != SPECIES_NONE && !(sTriedEvolving & (1u << i)))
         {
             sTriedEvolving |= 1u << i;

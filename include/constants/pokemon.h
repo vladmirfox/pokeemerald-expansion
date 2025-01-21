@@ -301,7 +301,6 @@ enum EvolutionMethods {
 
 enum EvolutionMode {
     EVO_MODE_NORMAL,
-    EVO_MODE_CANT_STOP,
     EVO_MODE_TRADE,
     EVO_MODE_ITEM_USE,
     EVO_MODE_ITEM_CHECK,         // If an Everstone is being held, still want to show that the stone *could* be used on that Pokémon to evolve
