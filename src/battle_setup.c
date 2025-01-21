@@ -45,7 +45,6 @@
 #include "constants/game_stat.h"
 #include "constants/items.h"
 #include "constants/songs.h"
-#include "constants/map_types.h"
 #include "constants/trainers.h"
 #include "constants/trainer_hill.h"
 #include "constants/weather.h"
@@ -745,7 +744,7 @@ static void CB2_EndScriptedWildBattle(void)
     }
 }
 
-u8 BattleSetup_GetTerrainId(void)
+enum BattleTerrain BattleSetup_GetTerrainId(void)
 {
     u16 tileBehavior;
     s16 x, y;
@@ -897,7 +896,7 @@ u8 GetTrainerBattleTransition(void)
     u8 enemyLevel;
     u8 playerLevel;
     u32 trainerId = SanitizeTrainerId(gTrainerBattleOpponent_A);
-    u32 trainerClass = GetTrainerClassFromId(gTrainerBattleOpponent_A);
+    enum TrainerClassID trainerClass = GetTrainerClassFromId(gTrainerBattleOpponent_A);
 
     if (DoesTrainerHaveMugshot(trainerId))
         return B_TRANSITION_MUGSHOT;
@@ -1742,8 +1741,8 @@ static bool32 UpdateRandomTrainerRematches(const struct RematchTrainer *table, u
 
     for (i = 0; i <= REMATCH_SPECIAL_TRAINER_START; i++)
     {
-        if (DoesCurrentMapMatchRematchTrainerMap(i,table,mapGroup,mapNum) && !IsRematchForbidden(i))
-            continue;
+        if (!DoesCurrentMapMatchRematchTrainerMap(i,table,mapGroup,mapNum) || IsRematchForbidden(i))
+            continue; // Only check permitted trainers within the current map.
 
         if (gSaveBlock1Ptr->trainerRematches[i] != 0)
         {

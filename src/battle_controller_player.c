@@ -138,10 +138,6 @@ static void (*const sPlayerBufferCommands[CONTROLLER_CMDS_COUNT])(u32 battler) =
     [CONTROLLER_CHOSENMONRETURNVALUE]     = PlayerHandleChosenMonReturnValue,
     [CONTROLLER_ONERETURNVALUE]           = PlayerHandleOneReturnValue,
     [CONTROLLER_ONERETURNVALUE_DUPLICATE] = PlayerHandleOneReturnValue_Duplicate,
-    [CONTROLLER_CLEARUNKVAR]              = BtlController_HandleClearUnkVar,
-    [CONTROLLER_SETUNKVAR]                = BtlController_HandleSetUnkVar,
-    [CONTROLLER_CLEARUNKFLAG]             = BtlController_HandleClearUnkFlag,
-    [CONTROLLER_TOGGLEUNKFLAG]            = BtlController_HandleToggleUnkFlag,
     [CONTROLLER_HITANIMATION]             = BtlController_HandleHitAnimation,
     [CONTROLLER_CANTSWITCH]               = BtlController_Empty,
     [CONTROLLER_PLAYSE]                   = BtlController_HandlePlaySE,
@@ -847,7 +843,7 @@ void HandleInputChooseMove(u32 battler)
             TryChangeZTrigger(battler, gMoveSelectionCursor[battler]);
         }
     }
-    else if (JOY_NEW(SELECT_BUTTON) && !gBattleStruct->zmove.viewing && !gBattleStruct->descriptionSubmenu)
+    else if (B_MOVE_REARRANGEMENT_IN_BATTLE < GEN_4 && JOY_NEW(SELECT_BUTTON) && !gBattleStruct->zmove.viewing && !gBattleStruct->descriptionSubmenu)
     {
         if (gNumberOfMovesToChoose > 1 && !(gBattleTypeFlags & BATTLE_TYPE_LINK))
         {
@@ -2047,7 +2043,7 @@ static void PlayerHandleChooseAction(u32 battler)
     if (B_SHOW_PARTNER_TARGET && gBattleTypeFlags & BATTLE_TYPE_INGAME_PARTNER && IsBattlerAlive(B_POSITION_PLAYER_RIGHT))
     {
         StringCopy(gStringVar1, COMPOUND_STRING("Partner will use:\n"));
-        u32 move = gBattleMons[B_POSITION_PLAYER_RIGHT].moves[*(gBattleStruct->chosenMovePositions + B_POSITION_PLAYER_RIGHT)];
+        u32 move = gBattleMons[B_POSITION_PLAYER_RIGHT].moves[gBattleStruct->chosenMovePositions[B_POSITION_PLAYER_RIGHT]];
         StringAppend(gStringVar1, GetMoveName(move));
         u32 moveTarget = GetBattlerMoveTargetType(B_POSITION_PLAYER_RIGHT, move);
         if (moveTarget == MOVE_TARGET_SELECTED)
@@ -2111,7 +2107,7 @@ void HandleChooseMoveAfterDma3(u32 battler)
 
 static void PlayerChooseMoveInBattlePalace(u32 battler)
 {
-    if (--*(gBattleStruct->arenaMindPoints + battler) == 0)
+    if (--gBattleStruct->arenaMindPoints[battler] == 0)
     {
         gBattlePalaceMoveSelectionRngValue = gRngValue;
         BtlController_EmitTwoReturnValues(battler, BUFFER_B, 10, ChooseMoveAndTargetInBattlePalace(battler));
@@ -2123,7 +2119,7 @@ void PlayerHandleChooseMove(u32 battler)
 {
     if (gBattleTypeFlags & BATTLE_TYPE_PALACE)
     {
-        *(gBattleStruct->arenaMindPoints + battler) = 8;
+        gBattleStruct->arenaMindPoints[battler] = 8;
         gBattlerControllerFuncs[battler] = PlayerChooseMoveInBattlePalace;
     }
     else

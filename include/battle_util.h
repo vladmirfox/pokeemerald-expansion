@@ -82,8 +82,6 @@ enum ItemEffect
     ITEMEFFECT_STATS_CHANGED, // For White Herb and Eject Pack
 };
 
-#define WEATHER_HAS_EFFECT ((!IsAbilityOnField(ABILITY_CLOUD_NINE) && !IsAbilityOnField(ABILITY_AIR_LOCK)))
-
 #define IS_WHOLE_SIDE_ALIVE(battler)    ((IsBattlerAlive(battler) && IsBattlerAlive(BATTLE_PARTNER(battler))))
 #define IS_ALIVE_AND_PRESENT(battler)   (IsBattlerAlive(battler) && IsBattlerSpritePresent(battler))
 
@@ -157,6 +155,7 @@ struct DamageCalculationData
     u32 updateFlags:1;
     u32 padding:2;
 };
+STATIC_ASSERT(sizeof(struct DamageCalculationData) <= 4, StructExceedsFourBytes);
 
 enum SleepClauseBlock
 {
@@ -248,6 +247,7 @@ uq4_12_t CalcTypeEffectivenessMultiplier(u32 move, u32 moveType, u32 battlerAtk,
 uq4_12_t CalcPartyMonTypeEffectivenessMultiplier(u16 move, u16 speciesDef, u16 abilityDef);
 uq4_12_t GetTypeModifier(u32 atkType, u32 defType);
 uq4_12_t GetOverworldTypeEffectiveness(struct Pokemon *mon, u8 moveType);
+void UpdateMoveResultFlags(uq4_12_t modifier, u16 *resultFlags);
 s32 GetStealthHazardDamage(enum TypeSideHazard hazardType, u32 battler);
 s32 GetStealthHazardDamageByTypesAndHP(enum TypeSideHazard hazardType, u8 type1, u8 type2, u32 maxHp);
 bool32 CanMegaEvolve(u32 battler);
@@ -342,5 +342,6 @@ u32 NumAffectedSpreadMoveTargets(void);
 bool32 IsPursuitTargetSet(void);
 void ClearPursuitValuesIfSet(u32 battler);
 void ClearPursuitValues(void);
+bool32 HasWeatherEffect(void);
 
 #endif // GUARD_BATTLE_UTIL_H
