@@ -267,7 +267,6 @@ void AnimConversion(struct Sprite *sprite);
 void AnimCuttingSlice(struct Sprite *sprite);
 void AnimThoughtBubble(struct Sprite *sprite);
 void AnimTranslateLinearSingleSineWave(struct Sprite *sprite);
-void AnimTeraStarstormBeamRings(struct Sprite *sprite);
 void AnimTeraStarstormStars(struct Sprite *sprite);
 void AnimGrantingStars(struct Sprite *sprite);
 void AnimFollowMeFinger(struct Sprite *sprite);

@@ -14,14 +14,14 @@ SINGLE_BATTLE_TEST("Tera Starstorm changes from Normal-type to Stellar-type if u
         OPPONENT(SPECIES_WOBBUFFET);
         //OPPONENT(SPECIES_MISDREAVUS);
     } WHEN {
-        //TURN { MOVE(player, MOVE_CHARGE_BEAM); }
-        TURN { MOVE(player, MOVE_TERA_STARSTORM); }
+        //TURN { MOVE(player, MOVE_AURORA_BEAM); }
+        TURN { MOVE(player, MOVE_TERA_STARSTORM); MOVE(opponent, MOVE_TERA_STARSTORM); }
         //TURN { MOVE(player, MOVE_BLOOD_MOON); }
     } SCENE {
-        MESSAGE("Terapagos used Tera Starstorm!");
-        ANIMATION(ANIM_TYPE_MOVE, MOVE_TERA_STARSTORM, player);
-        HP_BAR(opponent);
-        NOT { MESSAGE("It doesn't affect the opposing Misdreavus…"); }
+        //MESSAGE("Terapagos used Tera Starstorm!");
+        //ANIMATION(ANIM_TYPE_MOVE, MOVE_TERA_STARSTORM, player);
+        //HP_BAR(opponent);
+        //NOT { MESSAGE("It doesn't affect the opposing Misdreavus…"); }
     }
 }
 
@@ -34,7 +34,12 @@ DOUBLE_BATTLE_TEST("Tera Starstorm targets both opponents in a double battle if 
         OPPONENT(SPECIES_WOBBUFFET);
         OPPONENT(SPECIES_WYNAUT);
     } WHEN {
-        TURN { MOVE(playerLeft, MOVE_TERA_STARSTORM, target:opponentLeft); }
+        TURN {
+            MOVE(playerLeft, MOVE_TERA_STARSTORM, target:opponentLeft);
+            MOVE(playerRight, MOVE_TERA_STARSTORM, target:opponentLeft);
+            MOVE(opponentLeft, MOVE_TERA_STARSTORM, target:playerLeft);
+            MOVE(opponentRight, MOVE_TERA_STARSTORM, target:playerLeft);
+        }
     } SCENE {
         MESSAGE("Terapagos used Tera Starstorm!");
         ANIMATION(ANIM_TYPE_MOVE, MOVE_TERA_STARSTORM, playerLeft);

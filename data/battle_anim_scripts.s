@@ -18067,46 +18067,75 @@ gBattleAnimMove_RevivalBlessing::
 	goto gBattleAnimMove_LunarBlessing
 
 gBattleAnimMove_TeraStarstorm::
-	loadspritegfx ANIM_TAG_RAINBOW_RINGS
+	loadspritegfx ANIM_TAG_STARSTORM
 	loadspritegfx ANIM_TAG_YELLOW_STAR
 	loadspritegfx ANIM_TAG_IMPACT
 	call TeraStarstormCreateBeam
-        delay 1
+        delay 2
 	call TeraStarstormCreateBeam
-        delay 1
+        delay 2
 	call TeraStarstormCreateBeam
-        delay 1
+        delay 2
 	call TeraStarstormCreateBeam
-        delay 1
+        delay 2
 	call TeraStarstormCreateBeam
-        delay 1
+        delay 2
 	call TeraStarstormCreateBeam
-        delay 1
+        delay 2
 	call TeraStarstormCreateBeam
-        delay 1
+        delay 2
 	call TeraStarstormCreateBeam
-        delay 1
+        delay 2
 	call TeraStarstormCreateBeam
-        delay 1
-	createsprite gTeraStarSpriteTemplate, ANIM_BATTLER, 3, 0, 0, 0, 0, 60, 0, 1
-	delay 30
-	createsprite gTeraStarSpriteTemplate, ANIM_BATTLER, 3, 0, 0, 0, 0, 60, 0, 1
+        delay 2
+        jumpifmovetypeequal TYPE_STELLAR, TeraStarstormStellar
+        goto TeraStarstormSingle
+TeraStarstormStellar:
+        jumpifdoublebattle TeraStarstormDouble
+TeraStarstormSingle:
+	createsprite gTeraStarSpriteTemplate, ANIM_BATTLER, 3, 0, 0, 10, 0, 30, 0, 1
+	delay 5
+	createsprite gTeraStarSpriteTemplate, ANIM_BATTLER, 3, 0, 0, 0, 0, 30, 0, 1
+	delay 5
+	createsprite gTeraStarSpriteTemplate, ANIM_BATTLER, 3, 0, 0, -10, 0, 30, 0, 1
+        delay 5
+	createsprite gTeraStarSpriteTemplate, ANIM_BATTLER, 3, 0, 0, 5, -5, 30, 0, 1
+	delay 5
+	createsprite gTeraStarSpriteTemplate, ANIM_BATTLER, 3, 0, 0, 5, 5, 30, 0, 1
+	delay 5
+	createsprite gTeraStarSpriteTemplate, ANIM_BATTLER, 3, 0, 0, -5, 5, 30, 0, 1
 	waitforvisualfinish
 	end
+TeraStarstormDouble:
+	createsprite gTeraStarSpriteTemplate, ANIM_BATTLER, 3, 0, 0, 10, 0, 30, 0, 1
+	createsprite gTeraStarSpriteTemplate, ANIM_BATTLER, 3, 0, 0, 10, 0, 30, 1, 1
+	delay 5
+	createsprite gTeraStarSpriteTemplate, ANIM_BATTLER, 3, 0, 0, 0, 0, 30, 0, 1
+	createsprite gTeraStarSpriteTemplate, ANIM_BATTLER, 3, 0, 0, 0, 0, 30, 1, 1
+	delay 5
+	createsprite gTeraStarSpriteTemplate, ANIM_BATTLER, 3, 0, 0, -10, 0, 30, 0, 1
+	createsprite gTeraStarSpriteTemplate, ANIM_BATTLER, 3, 0, 0, -10, 0, 30, 1, 1
+        delay 5
+	createsprite gTeraStarSpriteTemplate, ANIM_BATTLER, 3, 0, 0, 5, -5, 30, 0, 1
+	createsprite gTeraStarSpriteTemplate, ANIM_BATTLER, 3, 0, 0, 5, -5, 30, 1, 1
+	delay 5
+	createsprite gTeraStarSpriteTemplate, ANIM_BATTLER, 3, 0, 0, 5, 5, 30, 0, 1
+	createsprite gTeraStarSpriteTemplate, ANIM_BATTLER, 3, 0, 0, 5, 5, 30, 1, 1
+	delay 5
+	createsprite gTeraStarSpriteTemplate, ANIM_BATTLER, 3, 0, 0, -5, 5, 30, 0, 1
+	createsprite gTeraStarSpriteTemplate, ANIM_BATTLER, 3, 0, 0, -5, 5, 30, 1, 1
+	playsewithpan SE_M_FAINT_ATTACK, SOUND_PAN_TARGET
+	waitforvisualfinish
+	end
+
 TeraStarstormCreateBeam::
-        createsprite gTeraStarstormBeamSpriteTemplate, ANIM_BATTLER, 1, -3, 0, 0, 0, 20, 0, 0
-        delay 1
-        createsprite gTeraStarstormBeamSpriteTemplate, ANIM_BATTLER, 1, 1, 0, 0, 0, 20, 0, 0
-        delay 1
-        createsprite gTeraStarstormBeamSpriteTemplate, ANIM_BATTLER, 1, 3, 0, 0, 0, 20, 0, 0
-        delay 1
-        createsprite gTeraStarstormBeamSpriteTemplate, ANIM_BATTLER, 1, -2, 0, 0, 0, 20, 0, 0
-        delay 1
-        createsprite gTeraStarstormBeamSpriteTemplate, ANIM_BATTLER, 1, 0, 0, 0, 0, 20, 0, 0
-        delay 1
-        createsprite gTeraStarstormBeamSpriteTemplate, ANIM_BATTLER, 1, -1, 0, 0, 0, 20, 0, 0
-        delay 1
-        createsprite gTeraStarstormBeamSpriteTemplate, ANIM_BATTLER, 1, 2, 0, 0, 0, 20, 0, 0
+        createsprite gTeraStarstormBeamSpriteTemplate, ANIM_BATTLER, 1, -3, 1, 0, 0, 20, 0, 0xffff
+        createsprite gTeraStarstormBeamSpriteTemplate, ANIM_BATTLER, 1, 1, 0, 0, 0, 20, 0, 0xffff
+        createsprite gTeraStarstormBeamSpriteTemplate, ANIM_BATTLER, 1, 3, -1, 0, 0, 20, 0, 0xffff
+        createsprite gTeraStarstormBeamSpriteTemplate, ANIM_BATTLER, 1, -2, 0, 0, 0, 20, 0, 0xffff
+        createsprite gTeraStarstormBeamSpriteTemplate, ANIM_BATTLER, 1, 0, 1, 0, 0, 20, 0, 0xffff
+        createsprite gTeraStarstormBeamSpriteTemplate, ANIM_BATTLER, 1, -1, -1, 0, 0, 20, 0, 0xffff
+        createsprite gTeraStarstormBeamSpriteTemplate, ANIM_BATTLER, 1, 2, 0, 0, 0, 20, 0, 0xffff
         return
 
 gBattleAnimMove_TeraBlast::
@@ -23134,7 +23163,7 @@ gBattleAnimMove_AuroraBeam::
 	waitbgfadein
 	end
 AuroraBeamCreateRings:
-	createsprite gAuroraBeamRingSpriteTemplate, ANIM_TARGET, 2, 20, 0, 0, 0, 300
+	createsprite gAuroraBeamRingSpriteTemplate, ANIM_TARGET, 2, 20, 0, 0, 0, 17
 	delay 1
 	createsprite gAuroraBeamRingSpriteTemplate, ANIM_TARGET, 2, 20, 0, 0, 0, 17
 	delay 1
