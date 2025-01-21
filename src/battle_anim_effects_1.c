@@ -30,8 +30,8 @@ static void AnimPetalDanceSmallFlower_Step(struct Sprite *);
 static void AnimRazorLeafParticle(struct Sprite *);
 static void AnimRazorLeafParticle_Step1(struct Sprite *);
 static void AnimRazorLeafParticle_Step2(struct Sprite *);
-static void AnimTeraStarstormBeamRings(struct Sprite *sprite);
-static void AnimTeraStarstormBeamRings_Step(struct Sprite *);
+static void AnimTeraStarstormBeam(struct Sprite *sprite);
+static void AnimTeraStarstormBeam_Step(struct Sprite *);
 static void AnimTeraStarstormStars_Step(struct Sprite *);
 static void AnimLeechSeed(struct Sprite *);
 static void AnimLeechSeed_Step(struct Sprite *);
@@ -4030,18 +4030,15 @@ const struct SpriteTemplate gTeraStarstormBeamSpriteTemplate =
     .anims = gDummySpriteAnimTable,
     .images = NULL,
     .affineAnims = gDummySpriteAffineAnimTable,
-    .callback = AnimTeraStarstormBeamRings,
+    .callback = AnimTeraStarstormBeam,
 };
 
 //  arg0: start offset x
 //  arg1: start offset y
-//  arg2:
-//  arg3:
-//  arg4:
-//  arg5:
-//  arg6:
-//  arg7:
-static void AnimTeraStarstormBeamRings(struct Sprite *sprite)
+//  arg2: end offset x
+//  arg3: end offset y
+//  arg4: duration
+static void AnimTeraStarstormBeam(struct Sprite *sprite)
 {
     gBattleAnimArgs[0] += 4;
     gBattleAnimArgs[1] -= 30;
@@ -4051,21 +4048,16 @@ static void AnimTeraStarstormBeamRings(struct Sprite *sprite)
     sprite->data[3] = 0;
     sprite->data[4] = -70;
     InitAnimLinearTranslation(sprite);
-    sprite->callback = AnimTeraStarstormBeamRings_Step;
+    sprite->callback = AnimTeraStarstormBeam_Step;
     sprite->affineAnimPaused = TRUE;
     sprite->callback(sprite);
 
 }
 
-static void AnimTeraStarstormBeamRings_Step(struct Sprite *sprite)
+static void AnimTeraStarstormBeam_Step(struct Sprite *sprite)
 {
     if (AnimTranslateLinear(sprite))
         DestroyAnimSprite(sprite);
-    if ((u16)gBattleAnimArgs[7] == 0xFFFF)
-    {
-        StartSpriteAnim(sprite, 1);
-        sprite->affineAnimPaused = FALSE;
-    }
 }
 
 const union AffineAnimCmd gTeraStarAffineAnimCmds[] = {
@@ -4077,6 +4069,13 @@ const union AffineAnimCmd *const gTeraStarAffineAnimTable[] = {
     gTeraStarAffineAnimCmds,
 };
 
+//  arg0: start offset x
+//  arg1: start offset y
+//  arg2: end offset x
+//  arg3: end offset y
+//  arg4: duration
+//  arg5: target partner
+//  arg6: ?????
 const struct SpriteTemplate gTeraStarSpriteTemplate =
 {
     .tileTag = ANIM_TAG_YELLOW_STAR,
@@ -4100,8 +4099,23 @@ void AnimTeraStarstormStars(struct Sprite *sprite)
     sprite->data[3] = sprite->y;
     if (gBattleAnimArgs[5] == 1)
     {
-        sprite->data[2] = GetBattlerSpriteCoord(gBattleAnimTarget, BATTLER_COORD_X_2) + gBattleAnimArgs[2] ;
-        sprite->data[4] = GetBattlerSpriteCoord(gBattleAnimTarget, BATTLER_COORD_Y_PIC_OFFSET) + gBattleAnimArgs[3] + 32;
+        u32 targetPartner;
+        if (GetBattlerSide(gBattleAnimTarget) == B_SIDE_PLAYER)
+        {
+            if (gBattleAnimTarget == 0)
+                targetPartner = 2;
+            else
+                targetPartner = 0;
+        }
+        else
+        {
+            if (gBattleAnimTarget == 1)
+                targetPartner = 3;
+            else
+                targetPartner = 1;
+        }
+        sprite->data[2] = GetBattlerSpriteCoord(targetPartner, BATTLER_COORD_X_2) + gBattleAnimArgs[2] ;
+        sprite->data[4] = GetBattlerSpriteCoord(targetPartner, BATTLER_COORD_Y_PIC_OFFSET) + gBattleAnimArgs[3] + 32;
     }
     else
     {
