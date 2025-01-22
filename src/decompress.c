@@ -878,10 +878,11 @@ ARM_FUNC __attribute__((noinline, no_reorder)) __attribute__((optimize("-O3"))) 
 
         if (currLength != 0)
         {
-            *dest++ = *symVec;
+            u16 symVecVal = *symVec;
+            *dest++ = *symVec++;
             if (currOffset == 1)
             {
-                Fill16(*symVec, dest, currLength);
+                Fill16(symVecVal, dest, currLength);
                 dest += currLength;
             }
             else
@@ -893,7 +894,6 @@ ARM_FUNC __attribute__((noinline, no_reorder)) __attribute__((optimize("-O3"))) 
                     *dest++ = *from++;
                 } while (dest != to);
             }
-            symVec++;
         }
         else
         {
