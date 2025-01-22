@@ -4433,7 +4433,7 @@ u32 GetGMaxTargetSpecies(u32 species)
     return species;
 }
 
-static bool32 DoesMonMeetAdditionalConditions(struct Pokemon *mon, const struct EvolutionParam *params, struct Pokemon *tradePartner, u32 partyId, bool32 *canStopEvo)
+bool32 DoesMonMeetAdditionalConditions(struct Pokemon *mon, const struct EvolutionParam *params, struct Pokemon *tradePartner, u32 partyId, bool32 *canStopEvo)
 {
     u32 i, j;
     u32 heldItem = GetMonData(mon, MON_DATA_HELD_ITEM);
