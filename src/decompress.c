@@ -845,9 +845,9 @@ static inline void Copy16(const void *_src, void *_dst, u32 size)
 //      Insert the current value from the Symbol vector into current result position <length> times, then advance symbol vector by 1
 //  If length is 0:
 //      Insert <offset> number of symbols from the symbol vector into the result vector and advance the symbol vector position by <offset>
-ARM_FUNC __attribute__((noinline, no_reorder)) __attribute__((optimize("-O3"))) static void DecodeInstructions(u32 headerLoSize, u8 *loVec, u16 *symVec, u16 *dest)
+ARM_FUNC __attribute__((noinline, no_reorder)) __attribute__((optimize("-O3"))) static void DecodeInstructions(u32 headerLoSize, const u8 *loVec, const u16 *symVec, u16 *dest)
 {
-    u8 *loVecEnd = loVec + headerLoSize;
+    const u8 *loVecEnd = loVec + headerLoSize;
     do
     {
         u32 currOffset, currLength;
@@ -911,13 +911,13 @@ ARM_FUNC __attribute__((noinline, no_reorder)) __attribute__((optimize("-O3"))) 
 }
 
 //  Dark Egg magic
-ARM_FUNC __attribute__((no_reorder)) static void SwitchToArmCallDecodeInstructions(u32 headerLoSize, u8 *loVec, u16 *symVec, void *dest, void (*decodeFunction)(u32 headerLoSize, u8 *loVec, u16 *symVec, void *dest))
+ARM_FUNC __attribute__((no_reorder)) static void SwitchToArmCallDecodeInstructions(u32 headerLoSize, const u8 *loVec, const u16 *symVec, void *dest, void (*decodeFunction)(u32 headerLoSize, const u8 *loVec, const u16 *symVec, void *dest))
 {
     decodeFunction(headerLoSize, loVec, symVec, dest);
 }
 
 //  Dark Egg magic
-static void DecodeInstructionsIwram(u32 headerLoSize, u8 *loVec, u16 *symVec, void *dest)
+static void DecodeInstructionsIwram(u32 headerLoSize, const u8 *loVec, const u16 *symVec, void *dest)
 {
     u32 funcBuffer[350];
 
@@ -998,7 +998,7 @@ void SmolDecompressData(const struct SmolHeader *header, const u32 *data, void *
     //  Symbol data is u16 aligned
     if (symEncoded == FALSE)
     {
-        DmaCopy16(3, leftoverPos, symVec, headerSymSize*2);
+        symVec = (void *) leftoverPos;
         leftoverPos += headerSymSize*2;
     }
 
@@ -1006,7 +1006,7 @@ void SmolDecompressData(const struct SmolHeader *header, const u32 *data, void *
     //  Despite the individual lo values being u8 aligned, the entire vector for the u8 values is u16 aligned
     if (loEncoded == FALSE)
     {
-        DmaCopy16(3, leftoverPos, loVec, alignedLoSize);
+        loVec = (void *) leftoverPos;
     }
 
     //  Actually decode the final data from loVec and symVec
