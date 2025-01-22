@@ -28,6 +28,7 @@
 #include "region_map.h"
 #include "pokemon.h"
 #include "reset_rtc_screen.h"
+#include "rtc.h"
 #include "scanline_effect.h"
 #include "shop.h"
 #include "sound.h"
@@ -204,11 +205,6 @@ static const u8 sText_EVO_Buttons_Decapped_PE[] = _("{DPAD_UPDOWN}Evos  {A_BUTTO
 static const u8 sText_EVO_Name[] = _("{STR_VAR_3}:");
 static const u8 sText_EVO_PreEvo[] = _("{STR_VAR_1} evolves from {STR_VAR_2}");
 static const u8 sText_EVO_PreEvo_PE_Mega[] = _("{STR_VAR_1} Mega Evolves with {STR_VAR_2}");
-static const u8 sText_EVO_FRIENDSHIP[] = _("{LV}{UP_ARROW}, high friendship");
-static const u8 sText_EVO_FRIENDSHIP_DAY[] = _("{LV}{UP_ARROW}, high friendship, day");
-static const u8 sText_EVO_FRIENDSHIP_NIGHT[] = _("{LV}{UP_ARROW}, high friendship, night");
-static const u8 sText_EVO_FRIENDSHIP_MOVE_TYPE[] = _("{LV}{UP_ARROW}, high friendship, {STR_VAR_2} move");
-static const u8 sText_EVO_LEVEL[] = _("{LV}{UP_ARROW} to {STR_VAR_2}");
 static const u8 sText_EVO_TRADE[] = _("Trading");
 static const u8 sText_EVO_TRADE_ITEM[] = _("Trading, holding {STR_VAR_2}");
 static const u8 sText_EVO_ITEM[] = _("{STR_VAR_2} is used");
@@ -228,14 +224,12 @@ static const u8 sText_EVO_LEVEL_DUSK[] = _("{LV}{UP_ARROW} to {STR_VAR_2}, dusk 
 static const u8 sText_EVO_LEVEL_ITEM_HOLD_DAY[] = _("{LV}{UP_ARROW}, holds {STR_VAR_2}, day");
 static const u8 sText_EVO_LEVEL_ITEM_HOLD_NIGHT[] = _("{LV}{UP_ARROW}, holds {STR_VAR_2}, night");
 static const u8 sText_EVO_MOVE[] = _("{LV}{UP_ARROW}, knows {STR_VAR_2}");
-static const u8 sText_EVO_MAPSEC[] = _("{LV}{UP_ARROW} on {STR_VAR_2}");
 static const u8 sText_EVO_ITEM_MALE[] = _("{STR_VAR_2} used on male");
 static const u8 sText_EVO_ITEM_FEMALE[] = _("{STR_VAR_2} used on female");
 static const u8 sText_EVO_LEVEL_RAIN[] = _("{LV}{UP_ARROW} to {STR_VAR_2} while raining");
 static const u8 sText_EVO_SPECIFIC_MON_IN_PARTY[] = _("{LV}{UP_ARROW} with {STR_VAR_2} in party");
 static const u8 sText_EVO_LEVEL_DARK_TYPE_MON_IN_PARTY[] = _("{LV}{UP_ARROW} with dark type in party");
 static const u8 sText_EVO_TRADE_SPECIFIC_MON[] = _("Traded for {STR_VAR_2}");
-static const u8 sText_EVO_SPECIFIC_MAP[] = _("{LV}{UP_ARROW} on {STR_VAR_2}");
 static const u8 sText_EVO_LEVEL_NATURE_AMPED[] = _("{LV}{UP_ARROW} to {STR_VAR_2}, Amped natures");
 static const u8 sText_EVO_LEVEL_NATURE_LOW_KEY[] = _("{LV}{UP_ARROW} to {STR_VAR_2}, Low Key natures");
 static const u8 sText_EVO_CRITICAL_HITS[] = _("Land {STR_VAR_2} critical hits in\nsingle battle");
@@ -6453,21 +6447,16 @@ static void PrintEvolutionTargetSpeciesAndMethod(u8 taskId, u16 species, u8 dept
 
         switch (evolutions[i].method)
         {
-        /*
-        case EVO_FRIENDSHIP:
-            ConvertIntToDecimalStringN(gStringVar2, 220, STR_CONV_MODE_LEADING_ZEROS, 3); //friendship value
-            StringExpandPlaceholders(gStringVar4, sText_EVO_FRIENDSHIP );
-            break;
-        case EVO_FRIENDSHIP_DAY:
-            StringExpandPlaceholders(gStringVar4, sText_EVO_FRIENDSHIP_DAY );
-            break;
-        case EVO_FRIENDSHIP_NIGHT:
-            StringExpandPlaceholders(gStringVar4, sText_EVO_FRIENDSHIP_NIGHT );
-            break;
-        */
         case EVO_LEVEL:
-            ConvertIntToDecimalStringN(gStringVar2, evolutions[i].param, STR_CONV_MODE_LEADING_ZEROS, EVO_SCREEN_LVL_DIGITS); //level
-            StringExpandPlaceholders(gStringVar4, sText_EVO_LEVEL );
+            if (evolutions[i].param > 1)
+            {
+                ConvertIntToDecimalStringN(gStringVar2, evolutions[i].param, STR_CONV_MODE_LEADING_ZEROS, EVO_SCREEN_LVL_DIGITS); //level
+                StringExpandPlaceholders(gStringVar4, COMPOUND_STRING("{LV}{UP_ARROW} to {STR_VAR_2}"));
+            }
+            else
+            {
+                StringCopy(gStringVar4, COMPOUND_STRING("{LV}{UP_ARROW}"));
+            }
             break;
         case EVO_TRADE:
             StringExpandPlaceholders(gStringVar4, sText_EVO_TRADE );
@@ -6551,14 +6540,6 @@ static void PrintEvolutionTargetSpeciesAndMethod(u8 taskId, u16 species, u8 dept
             StringCopy(gStringVar2, GetMoveName(evolutions[i].param));
             StringExpandPlaceholders(gStringVar4, sText_EVO_MOVE );
             break;
-        case EVO_LEVEL_MOVE_TYPE:
-            StringCopy(gStringVar2, gTypesInfo[evolutions[i].param].name);
-            StringExpandPlaceholders(gStringVar4, sText_EVO_FRIENDSHIP_MOVE_TYPE );
-            break;
-        case EVO_MAPSEC:
-            StringCopy(gStringVar2, gRegionMapEntries[evolutions[i].param].name);
-            StringExpandPlaceholders(gStringVar4, sText_EVO_MAPSEC );
-            break;
         case EVO_ITEM_MALE:
             item = evolutions[i].param; //item
             CopyItemName(item, gStringVar2); //item
@@ -6583,11 +6564,6 @@ static void PrintEvolutionTargetSpeciesAndMethod(u8 taskId, u16 species, u8 dept
         case EVO_TRADE_SPECIFIC_MON:
             StringCopy(gStringVar2, GetSpeciesName(evolutions[i].param)); //mon name
             StringExpandPlaceholders(gStringVar4, sText_EVO_TRADE_SPECIFIC_MON );
-            break;
-        case EVO_SPECIFIC_MAP:
-            mapHeader = Overworld_GetMapHeaderByGroupAndId(evolutions[i].param >> 8, evolutions[i].param & 0xFF);
-            GetMapName(gStringVar2, mapHeader->regionMapSectionId, 0);
-            StringExpandPlaceholders(gStringVar4, sText_EVO_SPECIFIC_MAP );
             break;
         case EVO_LEVEL_NATURE_AMPED:
             ConvertIntToDecimalStringN(gStringVar2, evolutions[i].param, STR_CONV_MODE_LEADING_ZEROS, EVO_SCREEN_LVL_DIGITS); //level
@@ -6662,6 +6638,112 @@ static void PrintEvolutionTargetSpeciesAndMethod(u8 taskId, u16 species, u8 dept
             StringExpandPlaceholders(gStringVar4, sText_EVO_UNKNOWN);
             break;
         }//Switch end
+
+        // Check for additional conditions (only if the primary method passes). Skips if there's no additional conditions.
+        for (j = 0; evolutions[i].params != NULL && evolutions[i].params[j].condition != CONDITIONS_END; j++)
+        {
+            enum EvolutionConditions condition = evolutions[i].params[j].condition;
+            switch(condition)
+            {
+            // Gen 2
+            case IF_GENDER:
+                break;
+            case IF_MIN_FRIENDSHIP:
+                StringAppend(gStringVar4, COMPOUND_STRING(", high friendship"));
+                break;
+            case IF_ATK_GT_DEF:
+                break;
+            case IF_ATK_EQ_DEF:
+                break;
+            case IF_ATK_LT_DEF:
+                break;
+            case IF_TIME:
+                switch(evolutions[i].params[j].arg1)
+                {
+                    case TIME_MORNING: StringAppend(gStringVar4, COMPOUND_STRING(", Morning")); break;
+                    case TIME_DAY:     StringAppend(gStringVar4, COMPOUND_STRING(", Day"));     break;
+                    case TIME_EVENING: StringAppend(gStringVar4, COMPOUND_STRING(", Evening")); break;
+                    case TIME_NIGHT:   StringAppend(gStringVar4, COMPOUND_STRING(", Night"));   break;
+                }
+                break;
+            case IF_NOT_TIME:
+                switch(evolutions[i].params[j].arg1)
+                {
+                    case TIME_MORNING: StringAppend(gStringVar4, COMPOUND_STRING(", NOT Morning")); break;
+                    case TIME_DAY:     StringAppend(gStringVar4, COMPOUND_STRING(", NOT Day"));     break;
+                    case TIME_EVENING: StringAppend(gStringVar4, COMPOUND_STRING(", NOT Evening")); break;
+                    case TIME_NIGHT:   StringAppend(gStringVar4, COMPOUND_STRING(", Day"));         break; // More intuitive than "NOT Night"
+                }
+                break;
+            case IF_HOLD_ITEM:
+                break;
+            // Gen 3
+            case IF_PID_UPPER_MODULO_10_GT:
+                break;
+            case IF_PID_UPPER_MODULO_10_EQ:
+                break;
+            case IF_PID_UPPER_MODULO_10_LT:
+                break;
+            case IF_MIN_BEAUTY:
+                break;
+            // Gen 4
+            case IF_SPECIES_IN_PARTY:
+                break;
+            case IF_IN_MAPSEC:
+                StringCopy(gStringVar2, gRegionMapEntries[evolutions[i].params[j].arg1].name);
+                StringAppend(gStringVar4, COMPOUND_STRING(" in "));
+                StringAppend(gStringVar4, gStringVar2);
+                break;
+            case IF_IN_MAP:
+                GetMapName(gStringVar2, Overworld_GetMapHeaderByGroupAndId(evolutions[i].params[j].arg1 >> 8, evolutions[i].params[j].arg1 & 0xFF)->regionMapSectionId, 0);
+                StringAppend(gStringVar4, COMPOUND_STRING(" in "));
+                StringAppend(gStringVar4, gStringVar2);
+                break;
+            case IF_KNOWS_MOVE:
+                break;
+            // Gen 5
+            case IF_TRADE_PARTNER_SPECIES:
+                break;
+            // Gen 6
+            case IF_TYPE_IN_PARTY:
+                break;
+            case IF_WEATHER:
+                break;
+            case IF_KNOWS_MOVE_TYPE:
+                StringAppend(gStringVar4, COMPOUND_STRING(", "));
+                StringAppend(gStringVar4, gTypesInfo[evolutions[i].params[j].arg1].name);
+                StringAppend(gStringVar4, COMPOUND_STRING(" move"));
+                break;
+            // Gen 8
+            case IF_NATURE:
+                break;
+            case IF_RECOIL_DAMAGE_GE:
+                break;
+            case IF_CURRENT_DAMAGE_GE:
+                break;
+            case IF_CRITICAL_HITS_GE:
+                break;
+            case IF_USED_MOVE_X_TIMES:
+                break;
+            // Gen 9
+            case IF_DEFEAT_X_WITH_ITEMS:
+                break;
+            case IF_PID_MODULO_100_GT:
+                break;
+            case IF_PID_MODULO_100_EQ:
+                break;
+            case IF_PID_MODULO_100_LT:
+                break;
+            case IF_MIN_OVERWORLD_STEPS:
+                break;
+            case IF_BAG_ITEM_COUNT:
+                break;
+            case CONDITIONS_END:
+                break;
+            }
+        }
+
+        StringAppend(gStringVar4, COMPOUND_STRING("."));
         PrintInfoScreenTextSmall(gStringVar4, base_x + depth_x*depth+base_x_offset, base_y + base_y_offset*(*depth_i)); //Print actual instructions
 
         (*depth_i)++;
