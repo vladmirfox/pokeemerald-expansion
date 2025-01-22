@@ -26,25 +26,26 @@
 #define LENGTH_MOD_MASK         0xf
 #define INITIAL_STATE_MASK      0x3f
 #define MODE_MASK               0x1f
-#define IMAGE_SIZE_MASK         0x7ff
-#define IMAGE_SIZE_OFFSET       5
-#define SYM_SIZE_MASK           0x7fff
-#define SYM_SIZE_OFFSET         17
+#define IMAGE_SIZE_MASK         0x3fff
+#define IMAGE_SIZE_OFFSET       4
+#define SYM_SIZE_MASK           0x3fff
+#define SYM_SIZE_OFFSET         18
 #define BITSTREAM_SIZE_MASK     0x1fff
 #define BITSTREAM_SIZE_OFFSET   6
 #define LO_SIZE_MASK            0x1fff
 #define LO_SIZE_OFFSET          19
 
-#define IMAGE_SIZE_MODIFIER     16
+#define IMAGE_SIZE_MODIFIER     4
 
 enum CompressionMode {
-    BASE_ONLY = 0,
-    ENCODE_SYMS = 1,
-    ENCODE_DELTA_SYMS = 2,
-    ENCODE_LO = 3,
-    ENCODE_BOTH = 4,
-    ENCODE_BOTH_DELTA_SYMS = 5,
-    IS_FRAME_CONTAINER = 6,
+    LZ77 = 0,
+    BASE_ONLY = 1,
+    ENCODE_SYMS = 2,
+    ENCODE_DELTA_SYMS = 3,
+    ENCODE_LO = 4,
+    ENCODE_BOTH = 5,
+    ENCODE_BOTH_DELTA_SYMS = 6,
+    IS_FRAME_CONTAINER = 7,
 };
 
 struct ShortCopy {

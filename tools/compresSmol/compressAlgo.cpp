@@ -852,9 +852,9 @@ std::vector<unsigned int> getNewHeaders(CompressionMode mode, size_t imageSize, 
         initialState = 0;
     std::vector<unsigned int> returnVec(2);
 
-    returnVec[0] += (unsigned int)mode;     //  5 bits
-    returnVec[0] += (imageSize/IMAGE_SIZE_MODIFIER) << IMAGE_SIZE_OFFSET;    //  12 bits
-    returnVec[0] += (symLength) << SYM_SIZE_OFFSET;    //  15 bits
+    returnVec[0] += (unsigned int)mode;     //  4 bits
+    returnVec[0] += (imageSize/IMAGE_SIZE_MODIFIER) << IMAGE_SIZE_OFFSET;    //  14 bits
+    returnVec[0] += (symLength) << SYM_SIZE_OFFSET;    //  14 bits
                                             //  32 total
 
     returnVec[1] += initialState;           //  6 bits

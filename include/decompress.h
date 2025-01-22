@@ -10,7 +10,7 @@
 #define FIRST_LO_MASK   0x7f
 #define CONTINUE_BIT    0x80
 
-#define SMOL_IMAGE_SIZE_MULTIPLIER 16
+#define SMOL_IMAGE_SIZE_MULTIPLIER 4
 
 
 extern u8 ALIGNED(4) gDecompressionBuffer[0x4000];
@@ -22,9 +22,9 @@ struct LZ77Header {
 };
 
 struct SmolHeader {
-    u32 mode:5;
-    u32 imageSize:12;
-    u32 symSize:15;
+    u32 mode:4;
+    u32 imageSize:14;
+    u32 symSize:14;
     u32 initialState:6;
     u32 bitstreamSize:13;
     u32 loSize:13;
@@ -36,20 +36,20 @@ union CompressionHeader {
 };
 
 struct SpriteSheetHeader {
-    u32 mode:5;
-    u32 numComponents:11;
+    u32 mode:4;
+    u32 numComponents:12;
     u32 framesPerComponent:16;
 };
 
 enum CompressionMode {
-    BASE_ONLY = 0,
-    ENCODE_SYMS = 1,
-    ENCODE_DELTA_SYMS = 2,
-    ENCODE_LO = 3,
-    ENCODE_BOTH = 4,
-    ENCODE_BOTH_DELTA_SYMS = 5,
-    IS_FRAME_CONTAINER = 6,
-    MODE_LZ77 = 16,
+    MODE_LZ77 = 0,
+    BASE_ONLY = 1,
+    ENCODE_SYMS = 2,
+    ENCODE_DELTA_SYMS = 3,
+    ENCODE_LO = 4,
+    ENCODE_BOTH = 5,
+    ENCODE_BOTH_DELTA_SYMS = 6,
+    IS_FRAME_CONTAINER = 7,
 };
 
 
