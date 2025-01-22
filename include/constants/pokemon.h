@@ -284,6 +284,7 @@ enum EvolutionConditions {
     IF_PID_MODULO_100_EQ,               // The Pokémon's personality value's modulo by 100 is equal than the defined value.
     IF_PID_MODULO_100_LT,               // The Pokémon's personality value's modulo by 100 is lower than the defined value.
     IF_MIN_OVERWORLD_STEPS,             // The Player has taken a specific amount of steps in the overworld with the Pokémon following them or in the first slot of the party.
+    IF_BAG_ITEM_COUNT,                  // The Player has the specific amount of an item in the bag. It then removes those items.
     CONDITIONS_END
 };
 
@@ -295,7 +296,6 @@ enum EvolutionMethods {
     EVO_SPLIT_FROM_EVO,         // A clone is generated and evolved when another evolution happens
     EVO_SCRIPT_TRIGGER,         // Player interacts with an overworld trigger
     EVO_LEVEL_BATTLE_ONLY,      // Pokémon reaches the specified level, in battle only
-    EVO_ITEM_COUNT_999,         // Pokémon levels up after trainer has collected 999 of a specific item
     EVO_BATTLE_END,             // Battle ends, doesn't need to level up
 };
 

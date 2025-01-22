@@ -6642,13 +6642,11 @@ static void PrintEvolutionTargetSpeciesAndMethod(u8 taskId, u16 species, u8 dept
             ConvertIntToDecimalStringN(gStringVar2, evolutions[i].param, STR_CONV_MODE_LEADING_ZEROS, 3);
             StringExpandPlaceholders(gStringVar4, sText_EVO_RECOIL_DAMAGE_FEMALE);
             break;
-        */
         case EVO_ITEM_COUNT_999:
             item = evolutions[i].param;
             CopyItemName(item, gStringVar2);
             StringExpandPlaceholders(gStringVar4, sText_EVO_ITEM_COUNT_999);
             break;
-        /*
          case EVO_DEFEAT_THREE_WITH_ITEM:
             item = evolutions[i].param;
             CopyItemName(item, gStringVar2);
