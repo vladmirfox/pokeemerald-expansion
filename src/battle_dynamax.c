@@ -722,7 +722,7 @@ void BS_SetMaxMoveEffect(void)
             if (!(gFieldStatuses & STATUS_FIELD_GRAVITY))
             {
                 gFieldStatuses |= STATUS_FIELD_GRAVITY;
-                gFieldTimers.gravityTimer = 5;
+                gFieldTimers.gravityTimer = gBattleTurnCounter + 5;
                 BattleScriptPush(gBattlescriptCurrInstr + 1);
                 gBattlescriptCurrInstr = BattleScript_EffectGravitySuccess;
                 effect++;

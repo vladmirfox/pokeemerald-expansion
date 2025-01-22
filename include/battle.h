@@ -245,8 +245,8 @@ struct SideTimer
     u8 mistBattlerId;
     u16 safeguardTimer;
     u8 safeguardBattlerId;
-    u16 spikesAmount;
-    u16 toxicSpikesAmount; // debug menu complains. might be better to solve there instead the space needed
+    u16 spikesAmount; // debug menu complains. might be better to solve there instead if possible
+    u16 toxicSpikesAmount;
     u16 stealthRockAmount;
     u16 stickyWebAmount;
     u8 stickyWebBattlerId;
@@ -288,7 +288,7 @@ struct WishFutureKnock
     u8 futureSightBattlerIndex[MAX_BATTLERS_COUNT];
     u8 futureSightPartyIndex[MAX_BATTLERS_COUNT];
     u16 futureSightMove[MAX_BATTLERS_COUNT];
-    u8 wishCounter[MAX_BATTLERS_COUNT];
+    u16 wishCounter[MAX_BATTLERS_COUNT];
     u8 wishPartyId[MAX_BATTLERS_COUNT];
     u8 weatherDuration;
     u8 knockedOffMons[NUM_BATTLE_SIDES]; // Each battler is represented by a bit.
