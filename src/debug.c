@@ -3378,7 +3378,7 @@ static void DebugAction_Give_Pokemon_ComplexCreateMon(u8 taskId) //https://githu
     int sentToPc;
     struct Pokemon mon;
     u8 i;
-    u16 moves[4];
+    u16 moves[MAX_MON_MOVES];
     u8 IVs[NUM_STATS];
     u8 iv_val;
     u8 EVs[NUM_STATS];
