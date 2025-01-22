@@ -811,7 +811,7 @@ static void DecodeSymDeltatANS(const u32 *data, const u32 *pFreqs, u16 *resultVe
     }
 }
 
-static inline void Fill16(u16 value, u16 *_dst, u32 size)
+static inline void Fill16(u16 value, void *_dst, u32 size)
 {
     u16 *dst = _dst;
     for (u32 i = 0; i < size; i++) {
