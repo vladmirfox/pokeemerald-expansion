@@ -37,6 +37,7 @@
 #include "recorded_battle.h"
 #include "rtc.h"
 #include "sound.h"
+#include "sprite.h"
 #include "string_util.h"
 #include "strings.h"
 #include "task.h"
@@ -676,7 +677,6 @@ const struct NatureInfo gNaturesInfo[NUM_NATURES] =
 };
 
 #include "data/graphics/pokemon.h"
-#include "data/pokemon_graphics/front_pic_anims.h"
 
 #include "data/pokemon/trainer_class_lookups.h"
 #include "data/pokemon/experience_tables.h"
@@ -706,7 +706,6 @@ const struct NatureInfo gNaturesInfo[NUM_NATURES] =
 #include "data/pokemon/form_species_tables.h"
 #include "data/pokemon/form_change_tables.h"
 #include "data/pokemon/form_change_table_pointers.h"
-#include "data/object_events/object_event_pic_tables_followers.h"
 
 #include "data/pokemon/species_info.h"
 
@@ -1689,7 +1688,7 @@ u16 GetUnionRoomTrainerPic(void)
     return FacilityClassToPicIndex(gUnionRoomFacilityClasses[arrId]);
 }
 
-u16 GetUnionRoomTrainerClass(void)
+enum TrainerClassID GetUnionRoomTrainerClass(void)
 {
     u8 linkId;
     u32 arrId;
@@ -3520,7 +3519,7 @@ u8 GetSecretBaseTrainerPicIndex(void)
     return gFacilityClassToPicIndex[facilityClass];
 }
 
-u8 GetSecretBaseTrainerClass(void)
+enum TrainerClassID GetSecretBaseTrainerClass(void)
 {
     u8 facilityClass = sSecretBaseFacilityClasses[gBattleResources->secretBase->gender][gBattleResources->secretBase->trainerId[0] % NUM_SECRET_BASE_CLASSES];
     return gFacilityClassToTrainerClass[facilityClass];
@@ -4425,7 +4424,7 @@ u32 GetGMaxTargetSpecies(u32 species)
 {
     const struct FormChange *formChanges = GetSpeciesFormChanges(species);
     u32 i;
-    for (i = 0; formChanges[i].method != FORM_CHANGE_TERMINATOR; i++)
+    for (i = 0; formChanges != NULL && formChanges[i].method != FORM_CHANGE_TERMINATOR; i++)
     {
         if (formChanges[i].method == FORM_CHANGE_BATTLE_GIGANTAMAX)
             return formChanges[i].targetSpecies;
@@ -5182,7 +5181,7 @@ void AdjustFriendship(struct Pokemon *mon, u8 event)
     {
         u8 friendshipLevel = 0;
         s16 friendship = GetMonData(mon, MON_DATA_FRIENDSHIP, 0);
-        u32 opponentTrainerClass = GetTrainerClassFromId(gTrainerBattleOpponent_A);
+        enum TrainerClassID opponentTrainerClass = GetTrainerClassFromId(gTrainerBattleOpponent_A);
 
         if (friendship > 99)
             friendshipLevel++;
@@ -5746,7 +5745,7 @@ u16 GetBattleBGM(void)
     }
     else if (gBattleTypeFlags & BATTLE_TYPE_TRAINER)
     {
-        u8 trainerClass;
+        enum TrainerClassID trainerClass;
 
         if (gBattleTypeFlags & BATTLE_TYPE_FRONTIER)
             trainerClass = GetFrontierOpponentClass(gTrainerBattleOpponent_A);
@@ -6588,6 +6587,7 @@ u32 GetFormChangeTargetSpeciesBoxMon(struct BoxPokemon *boxMon, u16 method, u32 
                         targetSpecies = formChanges[i].targetSpecies;
                     break;
                 case FORM_CHANGE_WITHDRAW:
+                case FORM_CHANGE_DEPOSIT:
                 case FORM_CHANGE_FAINT:
                 case FORM_CHANGE_DAYS_PASSED:
                     targetSpecies = formChanges[i].targetSpecies;
@@ -6623,7 +6623,7 @@ void TrySetDayLimitToFormChange(struct Pokemon *mon)
     u16 species = GetMonData(mon, MON_DATA_SPECIES, NULL);
     const struct FormChange *formChanges = GetSpeciesFormChanges(species);
 
-    for (i = 0; formChanges[i].method != FORM_CHANGE_TERMINATOR; i++)
+    for (i = 0; formChanges != NULL && formChanges[i].method != FORM_CHANGE_TERMINATOR; i++)
     {
         if (formChanges[i].method == FORM_CHANGE_DAYS_PASSED && species != formChanges[i].targetSpecies)
         {
@@ -6638,13 +6638,10 @@ bool32 DoesSpeciesHaveFormChangeMethod(u16 species, u16 method)
     u32 i;
     const struct FormChange *formChanges = GetSpeciesFormChanges(species);
 
-    if (formChanges != NULL)
+    for (i = 0; formChanges != NULL && formChanges[i].method != FORM_CHANGE_TERMINATOR; i++)
     {
-        for (i = 0; formChanges[i].method != FORM_CHANGE_TERMINATOR; i++)
-        {
-            if (method == formChanges[i].method && species != formChanges[i].targetSpecies)
-                return TRUE;
-        }
+        if (method == formChanges[i].method && species != formChanges[i].targetSpecies)
+            return TRUE;
     }
 
     return FALSE;
