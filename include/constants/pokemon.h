@@ -277,9 +277,9 @@ enum EvolutionConditions {
     IF_RECOIL_DAMAGE_GE,                // The Pokémon suffered at least certain amount of non-fainting recoil damage.
     IF_CURRENT_DAMAGE_GE,               // The Pokémon has the specified difference of HP from its Max HP.
     IF_CRITICAL_HITS_GE,                // The Pokémon performed the specified number of critical hits in one battle at least.
-    IF_USED_MOVE_TWENTY_TIMES,          // The Pokémon has used a move for at least 20 times.
+    IF_USED_MOVE_X_TIMES,               // The Pokémon has used a move for at least X amount of times.
     // Gen 9
-    IF_DEFEAT_THREE_WITH_ITEM,          // The Pokémon defeated 3 Pokémon of the same species holding the specified item.
+    IF_DEFEAT_X_WITH_ITEMS,             // The Pokémon defeated X amount of Pokémon of the specified species that are holding the specified item.
     IF_PID_MODULO_100_GT,               // The Pokémon's personality value's modulo by 100 is greater than the defined value.
     IF_PID_MODULO_100_EQ,               // The Pokémon's personality value's modulo by 100 is equal than the defined value.
     IF_PID_MODULO_100_LT,               // The Pokémon's personality value's modulo by 100 is lower than the defined value.

@@ -4484,7 +4484,7 @@ static bool32 DoesMonMeetAdditionalConditions(struct Pokemon *mon, const struct 
                 currentCondition = TRUE;
             break;
         case IF_MIN_FRIENDSHIP:
-            if (friendship >= params[i].arg)
+            if (friendship >= params[i].arg1)
                 currentCondition = TRUE;
             break;
         case IF_ATK_GT_DEF:
@@ -4500,15 +4500,15 @@ static bool32 DoesMonMeetAdditionalConditions(struct Pokemon *mon, const struct 
                 currentCondition = TRUE;
             break;
         case IF_TIME:
-            if (GetTimeOfDay() == params[i].arg)
+            if (GetTimeOfDay() == params[i].arg1)
                 currentCondition = TRUE;
             break;
         case IF_NOT_TIME:
-            if (GetTimeOfDay() != params[i].arg)
+            if (GetTimeOfDay() != params[i].arg1)
                 currentCondition = TRUE;
             break;
         case IF_HOLD_ITEM:
-            if (heldItem == params[i].arg)
+            if (heldItem == params[i].arg1)
             {
                 currentCondition = TRUE;
                 conditionRemovesItem = TRUE;
@@ -4516,26 +4516,26 @@ static bool32 DoesMonMeetAdditionalConditions(struct Pokemon *mon, const struct 
             break;
         // Gen 3
         case IF_PID_UPPER_MODULO_10_GT:
-            if ((upperPersonality % 10) > params[i].arg)
+            if ((upperPersonality % 10) > params[i].arg1)
                 currentCondition = TRUE;
             break;
         case IF_PID_UPPER_MODULO_10_EQ:
-            if ((upperPersonality % 10) == params[i].arg)
+            if ((upperPersonality % 10) == params[i].arg1)
                 currentCondition = TRUE;
             break;
         case IF_PID_UPPER_MODULO_10_LT:
-            if ((upperPersonality % 10) < params[i].arg)
+            if ((upperPersonality % 10) < params[i].arg1)
                 currentCondition = TRUE;
             break;
         case IF_MIN_BEAUTY:
-            if (beauty >= params[i].arg)
+            if (beauty >= params[i].arg1)
                 currentCondition = TRUE;
             break;
         // Gen 4
         case IF_SPECIES_IN_PARTY:
             for (j = 0; j < PARTY_SIZE; j++)
             {
-                if (GetMonData(&gPlayerParty[j], MON_DATA_SPECIES, NULL) == params[i].arg)
+                if (GetMonData(&gPlayerParty[j], MON_DATA_SPECIES, NULL) == params[i].arg1)
                 {
                     currentCondition = TRUE;
                     break;
@@ -4543,20 +4543,20 @@ static bool32 DoesMonMeetAdditionalConditions(struct Pokemon *mon, const struct 
             }
             break;
         case IF_IN_MAP:
-            if (params[i].arg == ((gSaveBlock1Ptr->location.mapGroup) << 8 | gSaveBlock1Ptr->location.mapNum))
+            if (params[i].arg1 == ((gSaveBlock1Ptr->location.mapGroup) << 8 | gSaveBlock1Ptr->location.mapNum))
                 currentCondition = TRUE;
             break;
         case IF_IN_MAPSEC:
-            if (gMapHeader.regionMapSectionId == params[i].arg)
+            if (gMapHeader.regionMapSectionId == params[i].arg1)
                 currentCondition = TRUE;
             break;
         case IF_KNOWS_MOVE:
-            if (MonKnowsMove(mon, params[i].arg))
+            if (MonKnowsMove(mon, params[i].arg1))
                 currentCondition = TRUE;
             break;
         // Gen 5
         case IF_TRADE_PARTNER_SPECIES:
-            if (params[i].arg == partnerSpecies && partnerHoldEffect != HOLD_EFFECT_PREVENT_EVOLVE)
+            if (params[i].arg1 == partnerSpecies && partnerHoldEffect != HOLD_EFFECT_PREVENT_EVOLVE)
                 currentCondition = TRUE;
             break;
         // Gen 6
@@ -4564,8 +4564,8 @@ static bool32 DoesMonMeetAdditionalConditions(struct Pokemon *mon, const struct 
             for (j = 0; j < PARTY_SIZE; j++)
             {
                 u16 currSpecies = GetMonData(&gPlayerParty[j], MON_DATA_SPECIES, NULL);
-                if (gSpeciesInfo[currSpecies].types[0] == params[i].arg
-                 || gSpeciesInfo[currSpecies].types[1] == params[i].arg)
+                if (gSpeciesInfo[currSpecies].types[0] == params[i].arg1
+                 || gSpeciesInfo[currSpecies].types[1] == params[i].arg1)
                 {
                     currentCondition = TRUE;
                     break;
@@ -4573,13 +4573,13 @@ static bool32 DoesMonMeetAdditionalConditions(struct Pokemon *mon, const struct 
             }
             break;
         case IF_WEATHER:
-            if (weather == params[i].arg)
+            if (weather == params[i].arg1)
                 currentCondition = TRUE;
             break;
         case IF_KNOWS_MOVE_TYPE:
             for (j = 0; j < MAX_MON_MOVES; j++)
             {
-                if (GetMoveType(GetMonData(mon, MON_DATA_MOVE1 + j, NULL)) == params[i].arg)
+                if (GetMoveType(GetMonData(mon, MON_DATA_MOVE1 + j, NULL)) == params[i].arg1)
                 {
                     currentCondition = TRUE;
                     break;
@@ -4588,47 +4588,46 @@ static bool32 DoesMonMeetAdditionalConditions(struct Pokemon *mon, const struct 
             break;
         // Gen 8
         case IF_NATURE:
-            if (nature == params[i].arg)
+            if (nature == params[i].arg1)
                 currentCondition = TRUE;
             break;
         case IF_RECOIL_DAMAGE_GE:
-            if (evolutionTracker >= params[i].arg)
+            if (evolutionTracker >= params[i].arg1)
                 currentCondition = TRUE;
             break;
         case IF_CURRENT_DAMAGE_GE:
         {
             u32 currentHp = GetMonData(mon, MON_DATA_HP, NULL);
-            if (currentHp != 0 && (GetMonData(mon, MON_DATA_MAX_HP, NULL) - currentHp >= params[i].arg))
+            if (currentHp != 0 && (GetMonData(mon, MON_DATA_MAX_HP, NULL) - currentHp >= params[i].arg1))
                 currentCondition = TRUE;
             break;
         }
         case IF_CRITICAL_HITS_GE:
-            if (partyId != PARTY_SIZE && gPartyCriticalHits[partyId] >= params[i].arg)
+            if (partyId != PARTY_SIZE && gPartyCriticalHits[partyId] >= params[i].arg1)
                 currentCondition = TRUE;
             break;
-        case IF_USED_MOVE_TWENTY_TIMES:
-            if (evolutionTracker >= 20)
+        case IF_USED_MOVE_X_TIMES:
+            if (evolutionTracker >= params[i].arg2)
                 currentCondition = TRUE;
-            break;
         // Gen 9
-        case IF_DEFEAT_THREE_WITH_ITEM:
-            if (evolutionTracker >= 3)
+        case IF_DEFEAT_X_WITH_ITEMS:
+            if (evolutionTracker >= params[i].arg3)
                 currentCondition = TRUE;
             break;
         case IF_PID_MODULO_100_GT:
-            if ((personality % 100) > params[i].arg)
+            if ((personality % 100) > params[i].arg1)
                 currentCondition = TRUE;
             break;
         case IF_PID_MODULO_100_EQ:
-            if ((personality % 100) == params[i].arg)
+            if ((personality % 100) == params[i].arg1)
                 currentCondition = TRUE;
             break;
         case IF_PID_MODULO_100_LT:
-            if ((personality % 100) < params[i].arg)
+            if ((personality % 100) < params[i].arg1)
                 currentCondition = TRUE;
             break;
         case IF_MIN_OVERWORLD_STEPS:
-            if (mon == GetFirstLiveMon() && gFollowerSteps >= params[i].arg)
+            if (mon == GetFirstLiveMon() && gFollowerSteps >= params[i].arg1)
                 currentCondition = TRUE;
             break;
         case CONDITIONS_END:
