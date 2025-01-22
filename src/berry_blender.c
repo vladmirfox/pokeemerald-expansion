@@ -1628,9 +1628,6 @@ static void PrintPlayerNames(void)
     }
 }
 
-// This is a small little addition, that basically speeds up the animation where all players' berries are thrown into the blender. Self-explanatory I hope!
-#define BERRY_BLENDER_THROW_ALL_BERRIES_AT_ONCE TRUE
-
 static void CB2_StartBlenderLocal(void)
 {
     s32 i, j;

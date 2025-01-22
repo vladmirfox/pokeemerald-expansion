@@ -60,7 +60,7 @@ u32 LoadCompressedSpriteSheet(const struct CompressedSpriteSheet *src)
 
 u32 LoadCompressedSpriteSheetOverrideBuffer(const struct CompressedSpriteSheet *src, void *buffer)
 {
-    LZ77UnCompWram(src->data, buffer);
+    LZDecompressWram(src->data, buffer);
     return DoLoadCompressedSpriteSheet(src, buffer);
 }
 
