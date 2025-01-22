@@ -817,7 +817,7 @@ static void DecodeSymDeltatANS(const u32 *data, const u32 *pFreqs, u16 *resultVe
     }
 }
 
-static inline void Fill16(u16 value, u16 *_dst, u32 size)
+static inline void Fill16(u16 value, void *_dst, u32 size)
 {
     u16 *dst = _dst;
     for (u32 i = 0; i < size; i++) {
@@ -884,10 +884,11 @@ ARM_FUNC __attribute__((noinline, no_reorder)) __attribute__((optimize("-O3"))) 
 
         if (currLength != 0)
         {
-            *dest++ = *symVec;
+            u16 symVecVal = *symVec;
+            *dest++ = *symVec++;
             if (currOffset == 1)
             {
-                Fill16(*symVec, dest, currLength);
+                Fill16(symVecVal, dest, currLength);
                 dest += currLength;
             }
             else
@@ -899,7 +900,6 @@ ARM_FUNC __attribute__((noinline, no_reorder)) __attribute__((optimize("-O3"))) 
                     *dest++ = *from++;
                 } while (dest != to);
             }
-            symVec++;
         }
         else
         {
