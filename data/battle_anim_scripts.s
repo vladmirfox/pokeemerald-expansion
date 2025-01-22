@@ -18070,35 +18070,38 @@ gBattleAnimMove_TeraStarstorm::
 	loadspritegfx ANIM_TAG_STARSTORM
 	loadspritegfx ANIM_TAG_YELLOW_STAR
 	loadspritegfx ANIM_TAG_IMPACT
+	fadetobg BG_COSMIC
+	waitbgfadein
+	playsewithpan SE_FALL, SOUND_PAN_ATTACKER
 	call TeraStarstormCreateBeam
-        delay 2
+	delay 2
 	call TeraStarstormCreateBeam
-        delay 2
+	delay 2
 	call TeraStarstormCreateBeam
-        delay 2
+	delay 2
 	call TeraStarstormCreateBeam
-        delay 2
+	delay 2
 	call TeraStarstormCreateBeam
-        delay 2
+	delay 2
 	call TeraStarstormCreateBeam
-        delay 2
+	delay 2
 	call TeraStarstormCreateBeam
-        delay 2
+	delay 2
 	call TeraStarstormCreateBeam
-        delay 2
+	delay 2
 	call TeraStarstormCreateBeam
-        delay 2
-        jumpifmovetypeequal TYPE_STELLAR, TeraStarstormStellar
-        goto TeraStarstormSingle
+	delay 2
+	jumpifmovetypeequal TYPE_STELLAR, TeraStarstormStellar
+	goto TeraStarstormSingle
 TeraStarstormStellar:
-        jumpifdoublebattle TeraStarstormDouble
+	jumpifdoublebattle TeraStarstormDouble
 TeraStarstormSingle:
 	createsprite gTeraStarSpriteTemplate, ANIM_BATTLER, 3, 0, 0, 10, 0, 30, 0, 1
 	delay 5
 	createsprite gTeraStarSpriteTemplate, ANIM_BATTLER, 3, 0, 0, 0, 0, 30, 0, 1
 	delay 5
 	createsprite gTeraStarSpriteTemplate, ANIM_BATTLER, 3, 0, 0, -10, 0, 30, 0, 1
-        delay 5
+	delay 5
 	createsprite gTeraStarSpriteTemplate, ANIM_BATTLER, 3, 0, 0, 5, -5, 30, 0, 1
 	delay 5
 	createsprite gTeraStarSpriteTemplate, ANIM_BATTLER, 3, 0, 0, 5, 5, 30, 0, 1
@@ -18114,6 +18117,8 @@ TeraStarstormSingle:
 	playsewithpan SE_M_ICY_WIND, SOUND_PAN_TARGET
 	delay 5
 	waitforvisualfinish
+	restorebg
+	waitbgfadeout
 	end
 TeraStarstormDouble:
 	createsprite gTeraStarSpriteTemplate, ANIM_BATTLER, 3, 0, 0, 10, 0, 30, 0, 1
@@ -18124,7 +18129,7 @@ TeraStarstormDouble:
 	delay 5
 	createsprite gTeraStarSpriteTemplate, ANIM_BATTLER, 3, 0, 0, -10, 0, 30, 0, 1
 	createsprite gTeraStarSpriteTemplate, ANIM_BATTLER, 3, 0, 0, -10, 0, 30, 1, 1
-        delay 5
+	delay 5
 	createsprite gTeraStarSpriteTemplate, ANIM_BATTLER, 3, 0, 0, 5, -5, 30, 0, 1
 	createsprite gTeraStarSpriteTemplate, ANIM_BATTLER, 3, 0, 0, 5, -5, 30, 1, 1
 	delay 5
@@ -18143,17 +18148,19 @@ TeraStarstormDouble:
 	playsewithpan SE_M_ICY_WIND, SOUND_PAN_TARGET
 	delay 5
 	waitforvisualfinish
+	restorebg
+	waitbgfadeout
 	end
 
 TeraStarstormCreateBeam::
-        createsprite gTeraStarstormBeamSpriteTemplate, ANIM_BATTLER, 1, -3, 1, 0, 0, 20
-        createsprite gTeraStarstormBeamSpriteTemplate, ANIM_BATTLER, 1, 1, 0, 0, 0, 20
-        createsprite gTeraStarstormBeamSpriteTemplate, ANIM_BATTLER, 1, 3, -1, 0, 0, 20
-        createsprite gTeraStarstormBeamSpriteTemplate, ANIM_BATTLER, 1, -2, 0, 0, 0, 20
-        createsprite gTeraStarstormBeamSpriteTemplate, ANIM_BATTLER, 1, 0, 1, 0, 0, 20
-        createsprite gTeraStarstormBeamSpriteTemplate, ANIM_BATTLER, 1, -1, -1, 0, 0, 20
-        createsprite gTeraStarstormBeamSpriteTemplate, ANIM_BATTLER, 1, 2, 0, 0, 0, 20
-        return
+	createsprite gTeraStarstormBeamSpriteTemplate, ANIM_BATTLER, 1, -3, 1, 0, 0, 20
+	createsprite gTeraStarstormBeamSpriteTemplate, ANIM_BATTLER, 1, 1, 0, 0, 0, 20
+	createsprite gTeraStarstormBeamSpriteTemplate, ANIM_BATTLER, 1, 3, -1, 0, 0, 20
+	createsprite gTeraStarstormBeamSpriteTemplate, ANIM_BATTLER, 1, -2, 0, 0, 0, 20
+	createsprite gTeraStarstormBeamSpriteTemplate, ANIM_BATTLER, 1, 0, 1, 0, 0, 20
+	createsprite gTeraStarstormBeamSpriteTemplate, ANIM_BATTLER, 1, -1, -1, 0, 0, 20
+	createsprite gTeraStarstormBeamSpriteTemplate, ANIM_BATTLER, 1, 2, 0, 0, 0, 20
+	return
 
 gBattleAnimMove_TeraBlast::
 gBattleAnimMove_OrderUp::
