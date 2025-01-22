@@ -206,29 +206,13 @@ static const u8 sText_EVO_Name[] = _("{STR_VAR_3}:");
 static const u8 sText_EVO_PreEvo[] = _("{STR_VAR_1} evolves from {STR_VAR_2}");
 static const u8 sText_EVO_PreEvo_PE_Mega[] = _("{STR_VAR_1} Mega Evolves with {STR_VAR_2}");
 static const u8 sText_EVO_TRADE[] = _("Trading");
-static const u8 sText_EVO_TRADE_ITEM[] = _("Trading, holding {STR_VAR_2}");
 static const u8 sText_EVO_ITEM[] = _("{STR_VAR_2} is used");
-static const u8 sText_EVO_LEVEL_ATK_GT_DEF[] = _("{LV}{UP_ARROW} to {STR_VAR_2}, Atk > Def");
-static const u8 sText_EVO_LEVEL_ATK_EQ_DEF[] = _("{LV}{UP_ARROW} to {STR_VAR_2}, Atk = Def");
-static const u8 sText_EVO_LEVEL_ATK_LT_DEF[] = _("{LV}{UP_ARROW} to {STR_VAR_2}, Atk < Def");
 static const u8 sText_EVO_LEVEL_SILCOON[] = _("{LV}{UP_ARROW} to {STR_VAR_2}, Silcoon persona");
 static const u8 sText_EVO_LEVEL_CASCOON[] = _("{LV}{UP_ARROW} to {STR_VAR_2}, Cascoon persona");
 static const u8 sText_EVO_LEVEL_NINJASK[] = _("{LV}{UP_ARROW} to {STR_VAR_2}");
 static const u8 sText_EVO_LEVEL_SHEDINJA[] = _("{LV}{UP_ARROW} to {STR_VAR_2}, party<6, 1x POKéBALL");
-static const u8 sText_EVO_BEAUTY[] = _("{LV}{UP_ARROW}, high beauty");
-static const u8 sText_EVO_LEVEL_FEMALE[] = _("{LV}{UP_ARROW} to {STR_VAR_2}, is female");
-static const u8 sText_EVO_LEVEL_MALE[] = _("{LV}{UP_ARROW} to {STR_VAR_2}, is male");
-static const u8 sText_EVO_LEVEL_NIGHT[] = _("{LV}{UP_ARROW} to {STR_VAR_2}, night");
-static const u8 sText_EVO_LEVEL_DAY[] = _("{LV}{UP_ARROW} to {STR_VAR_2}, day");
-static const u8 sText_EVO_LEVEL_DUSK[] = _("{LV}{UP_ARROW} to {STR_VAR_2}, dusk (5-6PM)");
-static const u8 sText_EVO_LEVEL_ITEM_HOLD_DAY[] = _("{LV}{UP_ARROW}, holds {STR_VAR_2}, day");
-static const u8 sText_EVO_LEVEL_ITEM_HOLD_NIGHT[] = _("{LV}{UP_ARROW}, holds {STR_VAR_2}, night");
 static const u8 sText_EVO_MOVE[] = _("{LV}{UP_ARROW}, knows {STR_VAR_2}");
-static const u8 sText_EVO_ITEM_MALE[] = _("{STR_VAR_2} used on male");
-static const u8 sText_EVO_ITEM_FEMALE[] = _("{STR_VAR_2} used on female");
 static const u8 sText_EVO_LEVEL_RAIN[] = _("{LV}{UP_ARROW} to {STR_VAR_2} while raining");
-static const u8 sText_EVO_SPECIFIC_MON_IN_PARTY[] = _("{LV}{UP_ARROW} with {STR_VAR_2} in party");
-static const u8 sText_EVO_LEVEL_DARK_TYPE_MON_IN_PARTY[] = _("{LV}{UP_ARROW} with dark type in party");
 static const u8 sText_EVO_TRADE_SPECIFIC_MON[] = _("Traded for {STR_VAR_2}");
 static const u8 sText_EVO_LEVEL_NATURE_AMPED[] = _("{LV}{UP_ARROW} to {STR_VAR_2}, Amped natures");
 static const u8 sText_EVO_LEVEL_NATURE_LOW_KEY[] = _("{LV}{UP_ARROW} to {STR_VAR_2}, Low Key natures");
@@ -238,7 +222,6 @@ static const u8 sText_EVO_DARK_SCROLL[] = _("ScrllOfDrknss is used");
 static const u8 sText_EVO_WATER_SCROLL[] = _("ScrollOfWatrs is used");
 static const u8 sText_EVO_LEVEL_ITEM_NIGHT[] = _("{STR_VAR_2} is used, night");
 static const u8 sText_EVO_LEVEL_ITEM_DAY[] = _("{STR_VAR_2} is used, day");
-static const u8 sText_EVO_LEVEL_ITEM_HOLD[] = _("{LV}{UP_ARROW}, holds {STR_VAR_2}");
 static const u8 sText_EVO_USE_MOVE_TWENTY_TIMES[] = _("{LV}{UP_ARROW} after 20x {STR_VAR_2}");
 static const u8 sText_EVO_RECOIL_DAMAGE_MALE[] = _("{LV}{UP_ARROW} with {STR_VAR_2} recoil, male");
 static const u8 sText_EVO_RECOIL_DAMAGE_FEMALE[] = _("{LV}{UP_ARROW} with {STR_VAR_2} recoil, female");
@@ -6459,33 +6442,14 @@ static void PrintEvolutionTargetSpeciesAndMethod(u8 taskId, u16 species, u8 dept
             }
             break;
         case EVO_TRADE:
-            StringExpandPlaceholders(gStringVar4, sText_EVO_TRADE );
+            StringExpandPlaceholders(gStringVar4, sText_EVO_TRADE);
             break;
-        /*
-        case EVO_TRADE_ITEM:
-            item = evolutions[i].param; //item
-            CopyItemName(item, gStringVar2); //item
-            StringExpandPlaceholders(gStringVar4, sText_EVO_TRADE_ITEM );
-            break;
-        */
         case EVO_ITEM:
             item = evolutions[i].param;
             CopyItemName(item, gStringVar2);
-            StringExpandPlaceholders(gStringVar4, sText_EVO_ITEM );
+            StringExpandPlaceholders(gStringVar4, sText_EVO_ITEM);
             break;
         /*
-        case EVO_LEVEL_ATK_GT_DEF:
-            ConvertIntToDecimalStringN(gStringVar2, evolutions[i].param, STR_CONV_MODE_LEADING_ZEROS, EVO_SCREEN_LVL_DIGITS); //level
-            StringExpandPlaceholders(gStringVar4, sText_EVO_LEVEL_ATK_GT_DEF );
-            break;
-        case EVO_LEVEL_ATK_EQ_DEF:
-            ConvertIntToDecimalStringN(gStringVar2, evolutions[i].param, STR_CONV_MODE_LEADING_ZEROS, EVO_SCREEN_LVL_DIGITS); //level
-            StringExpandPlaceholders(gStringVar4, sText_EVO_LEVEL_ATK_EQ_DEF );
-            break;
-        case EVO_LEVEL_ATK_LT_DEF:
-            ConvertIntToDecimalStringN(gStringVar2, evolutions[i].param, STR_CONV_MODE_LEADING_ZEROS, EVO_SCREEN_LVL_DIGITS); //level
-            StringExpandPlaceholders(gStringVar4, sText_EVO_LEVEL_ATK_LT_DEF );
-            break;
         case EVO_LEVEL_SILCOON:
             ConvertIntToDecimalStringN(gStringVar2, evolutions[i].param, STR_CONV_MODE_LEADING_ZEROS, EVO_SCREEN_LVL_DIGITS); //level
             StringExpandPlaceholders(gStringVar4, sText_EVO_LEVEL_SILCOON );
@@ -6502,76 +6466,17 @@ static void PrintEvolutionTargetSpeciesAndMethod(u8 taskId, u16 species, u8 dept
             ConvertIntToDecimalStringN(gStringVar2, evolutions[i].param, STR_CONV_MODE_LEADING_ZEROS, EVO_SCREEN_LVL_DIGITS); //level
             StringExpandPlaceholders(gStringVar4, sText_EVO_LEVEL_SHEDINJA );
             break;
-        case EVO_BEAUTY:
-            ConvertIntToDecimalStringN(gStringVar2, evolutions[i].param, STR_CONV_MODE_LEADING_ZEROS, 3); //beauty
-            StringExpandPlaceholders(gStringVar4, sText_EVO_BEAUTY );
-            break;
-        case EVO_LEVEL_FEMALE:
-            ConvertIntToDecimalStringN(gStringVar2, evolutions[i].param, STR_CONV_MODE_LEADING_ZEROS, EVO_SCREEN_LVL_DIGITS); //level
-            StringExpandPlaceholders(gStringVar4, sText_EVO_LEVEL_FEMALE );
-            break;
-        case EVO_LEVEL_MALE:
-            ConvertIntToDecimalStringN(gStringVar2, evolutions[i].param, STR_CONV_MODE_LEADING_ZEROS, EVO_SCREEN_LVL_DIGITS); //level
-            StringExpandPlaceholders(gStringVar4, sText_EVO_LEVEL_MALE );
-            break;
-        case EVO_LEVEL_NIGHT:
-            ConvertIntToDecimalStringN(gStringVar2, evolutions[i].param, STR_CONV_MODE_LEADING_ZEROS, EVO_SCREEN_LVL_DIGITS); //level
-            StringExpandPlaceholders(gStringVar4, sText_EVO_LEVEL_NIGHT );
-            break;
-        case EVO_LEVEL_DAY:
-            ConvertIntToDecimalStringN(gStringVar2, evolutions[i].param, STR_CONV_MODE_LEADING_ZEROS, EVO_SCREEN_LVL_DIGITS); //level
-            StringExpandPlaceholders(gStringVar4, sText_EVO_LEVEL_DAY );
-            break;
-        case EVO_LEVEL_DUSK:
-            ConvertIntToDecimalStringN(gStringVar2, evolutions[i].param, STR_CONV_MODE_LEADING_ZEROS, EVO_SCREEN_LVL_DIGITS); //level
-            StringExpandPlaceholders(gStringVar4, sText_EVO_LEVEL_DUSK );
-            break;
-        case EVO_LEVEL_ITEM_HOLD_DAY:
-            item = evolutions[i].param; //item
-            CopyItemName(item, gStringVar2); //item
-            StringExpandPlaceholders(gStringVar4, sText_EVO_LEVEL_ITEM_HOLD_DAY );
-            break;
-        case EVO_LEVEL_ITEM_HOLD_NIGHT:
-            item = evolutions[i].param; //item
-            CopyItemName(item, gStringVar2); //item
-            StringExpandPlaceholders(gStringVar4, sText_EVO_LEVEL_ITEM_HOLD_NIGHT );
-            break;
         case EVO_MOVE:
             StringCopy(gStringVar2, GetMoveName(evolutions[i].param));
             StringExpandPlaceholders(gStringVar4, sText_EVO_MOVE );
-            break;
-        case EVO_ITEM_MALE:
-            item = evolutions[i].param; //item
-            CopyItemName(item, gStringVar2); //item
-            StringExpandPlaceholders(gStringVar4, sText_EVO_ITEM_MALE );
-            break;
-        case EVO_ITEM_FEMALE:
-            item = evolutions[i].param; //item
-            CopyItemName(item, gStringVar2); //item
-            StringExpandPlaceholders(gStringVar4, sText_EVO_ITEM_FEMALE );
             break;
         case EVO_LEVEL_RAIN:
             //if (j == WEATHER_RAIN || j == WEATHER_RAIN_THUNDERSTORM || j == WEATHER_DOWNPOUR)
             StringExpandPlaceholders(gStringVar4, sText_EVO_LEVEL_RAIN );
             break;
-        case EVO_SPECIFIC_MON_IN_PARTY:
-            StringCopy(gStringVar2, GetSpeciesName(evolutions[i].param)); //mon name
-            StringExpandPlaceholders(gStringVar4, sText_EVO_SPECIFIC_MON_IN_PARTY );
-            break;
-        case EVO_LEVEL_DARK_TYPE_MON_IN_PARTY:
-            StringExpandPlaceholders(gStringVar4, sText_EVO_LEVEL_DARK_TYPE_MON_IN_PARTY );
-            break;
         case EVO_TRADE_SPECIFIC_MON:
             StringCopy(gStringVar2, GetSpeciesName(evolutions[i].param)); //mon name
             StringExpandPlaceholders(gStringVar4, sText_EVO_TRADE_SPECIFIC_MON );
-            break;
-        case EVO_LEVEL_NATURE_AMPED:
-            ConvertIntToDecimalStringN(gStringVar2, evolutions[i].param, STR_CONV_MODE_LEADING_ZEROS, EVO_SCREEN_LVL_DIGITS); //level
-            StringExpandPlaceholders(gStringVar4, sText_EVO_LEVEL_NATURE_AMPED);
-            break;
-        case EVO_LEVEL_NATURE_LOW_KEY:
-            ConvertIntToDecimalStringN(gStringVar2, evolutions[i].param, STR_CONV_MODE_LEADING_ZEROS, EVO_SCREEN_LVL_DIGITS); //level
-            StringExpandPlaceholders(gStringVar4, sText_EVO_LEVEL_NATURE_LOW_KEY);
             break;
         case EVO_CRITICAL_HITS:
             ConvertIntToDecimalStringN(gStringVar2, evolutions[i].param, STR_CONV_MODE_LEADING_ZEROS, EVO_SCREEN_CRITS_DIGITS); //crits
@@ -6590,21 +6495,6 @@ static void PrintEvolutionTargetSpeciesAndMethod(u8 taskId, u16 species, u8 dept
             item = evolutions[i].param;
             CopyItemName(item, gStringVar2);
             StringExpandPlaceholders(gStringVar4, sText_EVO_WATER_SCROLL );
-            break;
-        case EVO_ITEM_NIGHT:
-            item = evolutions[i].param;
-            CopyItemName(item, gStringVar2);
-            StringExpandPlaceholders(gStringVar4, sText_EVO_LEVEL_ITEM_NIGHT );
-            break;
-        case EVO_ITEM_DAY:
-            item = evolutions[i].param;
-            CopyItemName(item, gStringVar2);
-            StringExpandPlaceholders(gStringVar4, sText_EVO_LEVEL_ITEM_DAY );
-            break;
-        case EVO_LEVEL_ITEM_HOLD:
-            item = evolutions[i].param;
-            CopyItemName(item, gStringVar2);
-            StringExpandPlaceholders(gStringVar4, sText_EVO_LEVEL_ITEM_HOLD);
             break;
         case EVO_USE_MOVE_TWENTY_TIMES:
             StringCopy(gStringVar2, GetMoveName(evolutions[i].param));
@@ -6634,12 +6524,9 @@ static void PrintEvolutionTargetSpeciesAndMethod(u8 taskId, u16 species, u8 dept
             StringExpandPlaceholders(gStringVar4, sText_EVO_OVERWORLD_STEPS);
             break;
         */
-        default:
-            StringExpandPlaceholders(gStringVar4, sText_EVO_UNKNOWN);
-            break;
         }//Switch end
 
-        // Check for additional conditions (only if the primary method passes). Skips if there's no additional conditions.
+        // Check for additional conditions. Skips if there's no additional conditions.
         for (j = 0; evolutions[i].params != NULL && evolutions[i].params[j].condition != CONDITIONS_END; j++)
         {
             enum EvolutionConditions condition = evolutions[i].params[j].condition;
@@ -6647,15 +6534,23 @@ static void PrintEvolutionTargetSpeciesAndMethod(u8 taskId, u16 species, u8 dept
             {
             // Gen 2
             case IF_GENDER:
+                switch(evolutions[i].params[j].arg1)
+                {
+                    case MON_MALE:   StringAppend(gStringVar4, COMPOUND_STRING(", Male"));   break;
+                    case MON_FEMALE: StringAppend(gStringVar4, COMPOUND_STRING(", Female")); break;
+                }
                 break;
             case IF_MIN_FRIENDSHIP:
                 StringAppend(gStringVar4, COMPOUND_STRING(", high friendship"));
                 break;
             case IF_ATK_GT_DEF:
+                StringAppend(gStringVar4, COMPOUND_STRING(", Atk > Def"));
                 break;
             case IF_ATK_EQ_DEF:
+                StringAppend(gStringVar4, COMPOUND_STRING(", Atk = Def"));
                 break;
             case IF_ATK_LT_DEF:
+                StringAppend(gStringVar4, COMPOUND_STRING(", Atk < Def"));
                 break;
             case IF_TIME:
                 switch(evolutions[i].params[j].arg1)
@@ -6676,6 +6571,9 @@ static void PrintEvolutionTargetSpeciesAndMethod(u8 taskId, u16 species, u8 dept
                 }
                 break;
             case IF_HOLD_ITEM:
+                StringAppend(gStringVar4, COMPOUND_STRING(", holds "));
+                CopyItemName(evolutions[i].params[j].arg1, gStringVar2); //item
+                StringAppend(gStringVar4, gStringVar2);
                 break;
             // Gen 3
             case IF_PID_UPPER_MODULO_10_GT:
@@ -6685,18 +6583,22 @@ static void PrintEvolutionTargetSpeciesAndMethod(u8 taskId, u16 species, u8 dept
             case IF_PID_UPPER_MODULO_10_LT:
                 break;
             case IF_MIN_BEAUTY:
+                StringAppend(gStringVar4, COMPOUND_STRING(", high beauty"));
                 break;
             // Gen 4
             case IF_SPECIES_IN_PARTY:
+                StringAppend(gStringVar4, COMPOUND_STRING(", "));
+                StringAppend(gStringVar4, GetSpeciesName(evolutions[i].params[j].arg1)); //mon name
+                StringAppend(gStringVar4, COMPOUND_STRING(" in party"));
                 break;
             case IF_IN_MAPSEC:
-                StringCopy(gStringVar2, gRegionMapEntries[evolutions[i].params[j].arg1].name);
                 StringAppend(gStringVar4, COMPOUND_STRING(" in "));
+                StringCopy(gStringVar2, gRegionMapEntries[evolutions[i].params[j].arg1].name);
                 StringAppend(gStringVar4, gStringVar2);
                 break;
             case IF_IN_MAP:
-                GetMapName(gStringVar2, Overworld_GetMapHeaderByGroupAndId(evolutions[i].params[j].arg1 >> 8, evolutions[i].params[j].arg1 & 0xFF)->regionMapSectionId, 0);
                 StringAppend(gStringVar4, COMPOUND_STRING(" in "));
+                GetMapName(gStringVar2, Overworld_GetMapHeaderByGroupAndId(evolutions[i].params[j].arg1 >> 8, evolutions[i].params[j].arg1 & 0xFF)->regionMapSectionId, 0);
                 StringAppend(gStringVar4, gStringVar2);
                 break;
             case IF_KNOWS_MOVE:
@@ -6706,6 +6608,9 @@ static void PrintEvolutionTargetSpeciesAndMethod(u8 taskId, u16 species, u8 dept
                 break;
             // Gen 6
             case IF_TYPE_IN_PARTY:
+                StringAppend(gStringVar4, COMPOUND_STRING(", "));
+                StringAppend(gStringVar4, gTypesInfo[evolutions[i].params[j].arg1].name); //type name
+                StringAppend(gStringVar4, COMPOUND_STRING("-type in party"));
                 break;
             case IF_WEATHER:
                 break;
@@ -6716,8 +6621,18 @@ static void PrintEvolutionTargetSpeciesAndMethod(u8 taskId, u16 species, u8 dept
                 break;
             // Gen 8
             case IF_NATURE:
+                StringAppend(gStringVar4, COMPOUND_STRING(", "));
+                StringCopy(gStringVar2, gNaturesInfo[evolutions[i].params[j].arg1].name);
+                StringAppend(gStringVar4, gStringVar2);
+                StringAppend(gStringVar4, COMPOUND_STRING(" nature"));
                 break;
-            case IF_RECOIL_DAMAGE_GE:
+            case IF_AMPED_NATURE:
+                StringAppend(gStringVar4, COMPOUND_STRING(", Amped nature"));
+                break;
+            case IF_LOW_KEY_NATURE:
+                StringAppend(gStringVar4, COMPOUND_STRING(", Low-Key nature"));
+                break;
+           case IF_RECOIL_DAMAGE_GE:
                 break;
             case IF_CURRENT_DAMAGE_GE:
                 break;
