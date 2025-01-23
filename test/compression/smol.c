@@ -26,12 +26,32 @@ static bool32 DecompressImgPrintResults(const u32 *img, const u32 *orgImg, const
 {
     u32 imageSize = GetDecompressedDataSize(img);
     u32 *compBuffer = Alloc(imageSize);
-    CycleCountStart();
+#ifndef NDEBUG
+    if (T_COMPRESSION_SHOULD_PRINT)
+        CycleCountStart();
+#endif
     if (mode == COMPRESSION_FASTLZ)
         FastLZ77UnCompWram(img, compBuffer);
     else
         DecompressDataWithHeaderWram(img, compBuffer);
-    s32 timeTaken = CycleCountEnd();
+
+#ifndef NDEBUG
+    if (T_COMPRESSION_SHOULD_PRINT)
+    {
+        s32 timeTaken = CycleCountEnd();
+        const char *compModeStr;
+        if (mode == COMPRESSION_SMOL)
+            compModeStr = "Smol";
+        else if (mode == COMPRESSION_FASTSMOL)
+            compModeStr = "fastSmol";
+        else if (mode == COMPRESSION_LZ)
+            compModeStr = "LZ";
+        else
+            compModeStr = "fastLZ";
+
+        DebugPrintf("Time %s %s: %d         Size: %d", imgName, compModeStr, timeTaken, size);
+    }
+#endif
 
     bool32 areEqual = TRUE;
     for (u32 i = 0; i < imageSize/4; i++)
@@ -45,16 +65,6 @@ static bool32 DecompressImgPrintResults(const u32 *img, const u32 *orgImg, const
 
     Free(compBuffer);
 
-    if (T_COMPRESSION_SHOULD_PRINT)
-    {
-        const char *compModeStr;
-        if (mode == COMPRESSION_SMOL) compModeStr = "Smol";
-        else if (mode == COMPRESSION_FASTSMOL) compModeStr = "fastSmol";
-        else if (mode == COMPRESSION_LZ) compModeStr = "LZ";
-        else compModeStr = "fastLZ";
-
-        DebugPrintf("Time %s %s: %d         Size: %d", imgName, compModeStr, timeTaken, size);
-    }
 
     return areEqual;
 }
