@@ -935,7 +935,7 @@ static void DecodeInstructionsIwram(u32 headerLoSize, const u8 *loVec, const u16
 }
 
 //  Entrance point for smol compressed data
-void SmolDecompressData(const struct SmolHeader *header, const u32 *data, void *dest)
+static void SmolDecompressData(const struct SmolHeader *header, const u32 *data, void *dest)
 {
     //  This is apparently needed due to Game Freak sending bullshit down the decompression pipeline
     if (header->loSize == 0 || header->symSize == 0)
@@ -1025,7 +1025,7 @@ void SmolDecompressData(const struct SmolHeader *header, const u32 *data, void *
 }
 
 //  Helper functions for determining modes
-bool32 isModeLoEncoded(enum CompressionMode mode)
+static bool32 isModeLoEncoded(enum CompressionMode mode)
 {
     if (mode == ENCODE_LO
      || mode == ENCODE_BOTH
@@ -1034,7 +1034,7 @@ bool32 isModeLoEncoded(enum CompressionMode mode)
     return FALSE;
 }
 
-bool32 isModeSymEncoded(enum CompressionMode mode)
+static bool32 isModeSymEncoded(enum CompressionMode mode)
 {
     if (mode == ENCODE_SYMS
      || mode == ENCODE_DELTA_SYMS
@@ -1044,7 +1044,7 @@ bool32 isModeSymEncoded(enum CompressionMode mode)
     return FALSE;
 }
 
-bool32 isModeSymDelta(enum CompressionMode mode)
+static bool32 isModeSymDelta(enum CompressionMode mode)
 {
     if (mode == ENCODE_DELTA_SYMS
      || mode == ENCODE_BOTH_DELTA_SYMS)
