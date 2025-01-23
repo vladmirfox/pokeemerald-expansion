@@ -3,6 +3,8 @@
 
 #include "sprite.h"
 
+#define MAX_DECOMPRESSION_BUFFER_SIZE 0x4000
+
 #define TANS_TABLE_SIZE     64
 #define PACKED_FREQ_MASK    0x3F
 #define PARTIAL_FREQ_MASK   0xC0000000

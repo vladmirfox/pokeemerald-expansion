@@ -3650,13 +3650,7 @@ static void CreateWheelIconSprites(void)
     u8 i, j;
     u16 angle;
 
-==== BASE ====
-    LZ77UnCompWram(sSpriteSheet_WheelIcons.data, gDecompressionBuffer);
-    s.data = gDecompressionBuffer;
-    s.size = sSpriteSheet_WheelIcons.size;
-    s.tag  = sSpriteSheet_WheelIcons.tag;
-    LoadSpriteSheet(&s);
-==== BASE ====
+    LoadCompressedSpriteSheet(&sSpriteSheet_WheelIcons);
 
     angle = 15;
     for (i = 0; i < NUM_BOARD_COLORS; i++)
@@ -3696,14 +3690,7 @@ static void CreateInterfaceSprites(void)
     u8 i;
     for (i = 0; i < ARRAY_COUNT(sSpriteSheets_Interface) - 1; i++)
     {
-==== BASE ====
-        struct SpriteSheet s;
-        LZ77UnCompWram(sSpriteSheets_Interface[i].data, gDecompressionBuffer);
-        s.data = gDecompressionBuffer;
-        s.size = sSpriteSheets_Interface[i].size;
-        s.tag  = sSpriteSheets_Interface[i].tag;
-        LoadSpriteSheet(&s);
-==== BASE ====
+        LoadCompressedSpriteSheet(&sSpriteSheets_Interface[i]);
     }
     sRoulette->spriteIds[SPR_CREDIT] = CreateSprite(&sSpriteTemplate_Credit, 208, 16, 4);
     gSprites[sRoulette->spriteIds[SPR_CREDIT]].animPaused = TRUE;
@@ -3846,14 +3833,7 @@ static void SpriteCB_GridSquare(struct Sprite *sprite)
 static void CreateWheelCenterSprite(void)
 {
     u8 spriteId;
-==== BASE ====
-    struct SpriteSheet s;
-    LZ77UnCompWram(sSpriteSheet_WheelCenter.data, gDecompressionBuffer);
-    s.data = gDecompressionBuffer;
-    s.size = sSpriteSheet_WheelCenter.size;
-    s.tag = sSpriteSheet_WheelCenter.tag;
-    LoadSpriteSheet(&s);
-==== BASE ====
+    LoadCompressedSpriteSheet(&sSpriteSheet_WheelCenter);
     // This sprite id isn't saved because it doesn't need to be referenced again
     // but by virtue of creation order it's SPR_WHEEL_CENTER
     spriteId = CreateSprite(&sSpriteTemplate_WheelCenter, 116, 80, 81);
