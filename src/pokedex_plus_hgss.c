@@ -6551,10 +6551,11 @@ static void PrintEvolutionTargetSpeciesAndMethod(u8 taskId, u16 species, u8 dept
                 break;
             // Gen 3
             case IF_PID_UPPER_MODULO_10_GT:
-                break;
-            case IF_PID_UPPER_MODULO_10_EQ:
-                break;
-            case IF_PID_UPPER_MODULO_10_LT:
+            case IF_PID_UPPER_MODULO_10_LE:
+                StringAppend(gStringVar4, COMPOUND_STRING(", "));
+                ConvertIntToDecimalStringN(gStringVar2, evolutions[i].params[j].arg1 * 10, STR_CONV_MODE_LEFT_ALIGN, 3);
+                StringAppend(gStringVar4, gStringVar2);
+                StringAppend(gStringVar4, COMPOUND_STRING("% at random"));
                 break;
             case IF_MIN_BEAUTY:
                 StringAppend(gStringVar4, COMPOUND_STRING(", high beauty"));
