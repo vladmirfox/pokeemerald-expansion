@@ -545,6 +545,12 @@ static void DecodeLOtANS(const u32 *data, const u32 *pFreqs, u8 *resultVec, u32 
     }
 }
 
+// The reason this code is commented out, because it's exactly the same as `DecodeLOtANSLoop`(because it was optimized out for halfwords and not bytes).
+// If ever DecodeLOtANSLoop or DecodeSymtANSLoop were to change make sure to uncomment this code along with 'CopyFuncToIwram' call.
+/*
+
+/*
+
 ARM_FUNC __attribute__((noinline, no_reorder)) __attribute__((optimize("-O3"))) static void DecodeSymtANSLoop(const u32 *data, u32 *ykTable, u16 *resultVec, u16 *resultVecEnd)
 {
     u32 currBits = *data++;
@@ -578,6 +584,7 @@ ARM_FUNC __attribute__((noinline, no_reorder)) __attribute__((optimize("-O3"))) 
     sDataPtr = data - 1;
 }
 
+*/
 ARM_FUNC __attribute__((no_reorder)) static void SwitchToArmCallDecodeSymtANS(const u32 *data, u32 *ykTable, u16 *resultVec, u16 *resultVecEnd, void (*decodeFunction)(const u32 *data, u32 *ykTable, u16 *resultVec, u16 *resultVecEnd))
 {
     decodeFunction(data, ykTable, resultVec, resultVecEnd);
@@ -588,7 +595,8 @@ static void DecodeSymtANS(const u32 *data, const u32 *pFreqs, u16 *resultVec, u3
     BuildDecompressionTable(pFreqs, sWorkingYkTable);
 
     u32 funcBuffer[300];
-    CopyFuncToIwram(funcBuffer, DecodeSymtANSLoop, SwitchToArmCallDecodeSymtANS);
+    // CopyFuncToIwram(funcBuffer, DecodeSymtANSLoop, SwitchToArmCallDecodeSymtANS);
+    CopyFuncToIwram(funcBuffer, DecodeLOtANSLoop, SwitchToArmCallLOtANS);
     SwitchToArmCallDecodeSymtANS(data, sWorkingYkTable, resultVec, &resultVec[count], (void *) funcBuffer);
 }
 
