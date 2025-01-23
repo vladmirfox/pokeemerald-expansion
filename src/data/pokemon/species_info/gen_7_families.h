@@ -6749,6 +6749,15 @@ const struct SpeciesInfo gSpeciesInfoGen7[] =
         .iconPalIndex = 2,
         SHADOW(-1, 16, SHADOW_SIZE_L)
         FOOTPRINT(Necrozma)
+        OVERWORLD(
+            gObjectEventPic_NecrozmaUltra,
+            SIZE_32x32,
+            SHADOW_SIZE_M,
+            TRACKS_FOOT,
+            sAnimTable_Following,
+            gOverworldPalette_NecrozmaUltra,
+            gShinyOverworldPalette_NecrozmaUltra
+        )
         .isLegendary = TRUE,
         .isUltraBurst = TRUE,
         .cannotBeTraded = TRUE,
