@@ -20,6 +20,7 @@
 #include "field_specials.h"
 #include "fldeff.h"
 #include "region_map.h"
+#include "decompress.h"
 #include "constants/region_map_sections.h"
 #include "heal_location.h"
 #include "constants/field_specials.h"

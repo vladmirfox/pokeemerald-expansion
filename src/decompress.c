@@ -13,6 +13,13 @@
 //  === not modify code unless magician ===
 //  === WARNING === WARNING === WARNING ===
 
+static void SmolDecompressData(const struct SmolHeader *header, const u32 *data, void *dest);
+
+static bool32 isModeLoEncoded(enum CompressionMode mode);
+static bool32 isModeSymEncoded(enum CompressionMode mode);
+static bool32 isModeSymDelta(enum CompressionMode mode);
+
+
 #define TABLE_READ_K(tableVal)((tableVal & 7))
 #define TABLE_READ_SYMBOL(tableVal)((tableVal & 0xFF) >> 3)
 #define TABLE_READ_Y(tableVal)((tableVal >> 8) & 0xFF)
@@ -949,8 +956,8 @@ void SmolDecompressData(const struct SmolHeader *header, const u32 *data, void *
     bool32 symEncoded = isModeSymEncoded(header->mode);
     bool32 symDelta = isModeSymDelta(header->mode);
 
-    const u32 *pLoFreqs;
-    const u32 *pSymFreqs;
+    const u32 *pLoFreqs = NULL;
+    const u32 *pSymFreqs = NULL;
 
     //  Use different decoding flows depending on which mode the data is compressed with
     switch (header->mode)

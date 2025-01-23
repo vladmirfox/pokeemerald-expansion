@@ -55,15 +55,6 @@ enum CompressionMode {
 void DecompressDataWithHeaderVram(const u32 *src, void *dest);
 void DecompressDataWithHeaderWram(const u32 *src, void *dest);
 
-//  For decompressing a single part of a multi-part spritesheet
-//void DecompressSubFrame(const u32 *src, void *dest, u32 frameId);
-
-void SmolDecompressData(const struct SmolHeader *header, const u32 *data, void *dest);
-
-bool32 isModeLoEncoded(enum CompressionMode mode);
-bool32 isModeSymEncoded(enum CompressionMode mode);
-bool32 isModeSymDelta(enum CompressionMode mode);
-
 //  Default Decompression functions are below here
 u32 IsLZ77Data(const void *ptr, u32 minSize, u32 maxSize);
 
