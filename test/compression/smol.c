@@ -4,6 +4,13 @@
 #include "random.h"
 #include "sprite.h"
 #include "test/test.h"
+#include "config/test.h"
+#include "config/general.h"
+
+#ifdef NDEBUG
+void CycleCountStart();
+u32 CycleCountEnd();
+#endif
 
 enum
 {
@@ -38,13 +45,17 @@ static bool32 DecompressImgPrintResults(const u32 *img, const u32 *orgImg, const
 
     Free(compBuffer);
 
-    const char *compModeStr;
-    if (mode == COMPRESSION_SMOL) compModeStr = "Smol";
-    else if (mode == COMPRESSION_FASTSMOL) compModeStr = "fastSmol";
-    else if (mode == COMPRESSION_LZ) compModeStr = "LZ";
-    else compModeStr = "fastLZ";
+    if (T_COMPRESSION_SHOULD_PRINT)
+    {
+        const char *compModeStr;
+        if (mode == COMPRESSION_SMOL) compModeStr = "Smol";
+        else if (mode == COMPRESSION_FASTSMOL) compModeStr = "fastSmol";
+        else if (mode == COMPRESSION_LZ) compModeStr = "LZ";
+        else compModeStr = "fastLZ";
 
-    DebugPrintf("Time %s %s: %d         Size: %d", imgName, compModeStr, timeTaken, size);
+        DebugPrintf("Time %s %s: %d         Size: %d", imgName, compModeStr, timeTaken, size);
+    }
+
     return areEqual;
 }
 

@@ -189,15 +189,6 @@ int main(int argc, char *argv[])
         size_t rawSizes = 0;
         size_t totalImages = 0;
         size_t invalidImages = 0;
-        /*
-        std::vector<size_t> largeModeSizes(6);
-        std::vector<std::string> largeModeNames(6);
-        std::vector<size_t> smallModeSizes(6, 1 << 31);
-        std::vector<std::string> smallModeNames(6);
-        std::vector<size_t> mediumModeSizes(6, 1 << 31);
-        std::vector<std::string> mediumModeNames(6);
-        std::vector<size_t> modeCount(6);
-        */
         for (CompressedImage currImage : allImages)
         {
             totalImages++;
@@ -206,44 +197,6 @@ int main(int argc, char *argv[])
                 lzSizes += currImage.lzSize;
                 newSizes += currImage.compressedSize;
                 rawSizes += currImage.rawNumBytes;
-                /*
-                if (currImage.mode != IS_FRAME_CONTAINER)
-                {
-                    size_t index;
-                    switch (currImage.mode)
-                    {
-                        case BASE_ONLY:
-                            index = 0;
-                            break;
-                        case ENCODE_SYMS:
-                            index = 1;
-                            break;
-                        case ENCODE_DELTA_SYMS:
-                            index = 2;
-                            break;
-                        case ENCODE_LO:
-                            index = 3;
-                            break;
-                        case ENCODE_BOTH:
-                            index = 4;
-                            break;
-                        case ENCODE_BOTH_DELTA_SYMS:
-                            index = 5;
-                            break;
-                    }
-                    modeCount[index]++;
-                    if (largeModeSizes[index] < currImage.rawNumBytes)
-                    {
-                        largeModeSizes[index] = currImage.rawNumBytes;
-                        largeModeNames[index] = currImage.fileName;
-                    }
-                    if (smallModeSizes[index] > currImage.rawNumBytes)
-                    {
-                        smallModeSizes[index] = currImage.rawNumBytes;
-                        smallModeNames[index] = currImage.fileName;
-                    }
-                }
-                */
             }
             else
             {
@@ -252,60 +205,11 @@ int main(int argc, char *argv[])
             }
         }
 
-        /*
-        size_t averageSize = rawSizes/allImages.size();
-        for (CompressedImage currImage : allImages)
-        {
-            if (currImage.mode != IS_FRAME_CONTAINER)
-            {
-                int difference = (int)averageSize - currImage.rawNumBytes;
-                if (difference < 0)
-                    difference *= -1;
-                size_t index;
-                switch (currImage.mode)
-                {
-                    case BASE_ONLY:
-                        index = 0;
-                        break;
-                    case ENCODE_SYMS:
-                        index = 1;
-                        break;
-                    case ENCODE_DELTA_SYMS:
-                        index = 2;
-                        break;
-                    case ENCODE_LO:
-                        index = 3;
-                        break;
-                    case ENCODE_BOTH:
-                        index = 4;
-                        break;
-                    case ENCODE_BOTH_DELTA_SYMS:
-                        index = 5;
-                        break;
-                }
-                if (difference < mediumModeSizes[index])
-                {
-                    mediumModeSizes[index] = difference;
-                    mediumModeNames[index] = currImage.fileName;
-                }
-            }
-        }
-        */
-
         fprintf(stderr, "RawSize: %zu\n", rawSizes);
         fprintf(stderr, "LZsize: %zu\n", lzSizes);
         fprintf(stderr, "SmolSize: %zu\n", newSizes);
         fprintf(stderr, "Total Images: %zu\n", totalImages);
         fprintf(stderr, "Invalid Images: %zu\n", invalidImages);
-        /*
-        for (size_t i = 0; i < 6; i++)
-        {
-            fprintf(stderr, "Count %zu: %zu\n", i, modeCount[i]);
-            fprintf(stderr, "Small mode %zu: %s\n", i, smallModeNames[i].c_str());
-            fprintf(stderr, "Medium mode %zu: %s\n", i, mediumModeNames[i].c_str());
-            fprintf(stderr, "Large mode %zu: %s\n", i, largeModeNames[i].c_str());
-        }
-        */
     }
     if (option == WRITE)
     {
