@@ -245,8 +245,6 @@ struct Sprite
              u8 subspriteMode:2;
 
     /*0x43*/ u8 subpriority;
-             //u16 prevFrame;
-             //const u32 *spriteArray;
 };
 
 struct OamMatrix

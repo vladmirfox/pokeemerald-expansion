@@ -3,6 +3,7 @@
 #include "malloc.h"
 #include "bg.h"
 #include "blit.h"
+#include "decompress.h"
 
 // This global is set to 0 and never changed.
 COMMON_DATA u8 gTransparentTileNumber = 0;
