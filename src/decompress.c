@@ -304,7 +304,7 @@ void DecompressDataWithHeaderWram(const u32 *src, void *dest)
     switch (header.mode)
     {
         case MODE_LZ77:
-            LZ77UnCompWram(src, dest);
+            FastLZ77UnCompWram(src, dest);
             break;
         default:
             SmolDecompressData(&header, &src[2], dest);
@@ -552,7 +552,10 @@ static void DecodeLOtANS(const u32 *data, const u32 *pFreqs, u8 *resultVec, u32 
     }
 }
 
-ARM_FUNC __attribute__((noinline, no_reorder)) __attribute__((optimize("-O3"))) static void DecodeSymtANSLoop(const u32 *data, u32 *ykTable, u16 *resultVec, u16 *resultVecEnd)
+// The reason this function is UNUSED, because it's currently exactly the same as `DecodeLOtANSLoop`(as it was optimized out for halfwords and not bytes as it's technically designed).
+// If ever DecodeLOtANSLoop or DecodeSymtANSLoop were to change make sure to uncomment the 'CopyFuncToIwram' call.
+
+ARM_FUNC __attribute__((noinline, no_reorder)) __attribute__((optimize("-O3"))) UNUSED static void DecodeSymtANSLoop(const u32 *data, u32 *ykTable, u16 *resultVec, u16 *resultVecEnd)
 {
     u32 currBits = *data++;
     u32 bitIndex = sBitIndex;
@@ -595,7 +598,8 @@ static void DecodeSymtANS(const u32 *data, const u32 *pFreqs, u16 *resultVec, u3
     BuildDecompressionTable(pFreqs, sWorkingYkTable);
 
     u32 funcBuffer[300];
-    CopyFuncToIwram(funcBuffer, DecodeSymtANSLoop, SwitchToArmCallDecodeSymtANS);
+    // CopyFuncToIwram(funcBuffer, DecodeSymtANSLoop, SwitchToArmCallDecodeSymtANS);
+    CopyFuncToIwram(funcBuffer, DecodeLOtANSLoop, SwitchToArmCallLOtANS);
     SwitchToArmCallDecodeSymtANS(data, sWorkingYkTable, resultVec, &resultVec[count], (void *) funcBuffer);
 }
 
@@ -946,15 +950,6 @@ static void SmolDecompressData(const struct SmolHeader *header, const u32 *data,
 
     u32 headerLoSize = header->loSize;
     u32 headerSymSize = header->symSize;
-    u32 alignedLoSize = header->loSize % 2 == 1 ? headerLoSize + 1 : headerLoSize;
-    u32 alignedSymSize = header->symSize % 2 == 1 ? headerSymSize + 1 : headerSymSize;
-    // Everything needs to be aligned.
-    void *memoryAlloced = Alloc((alignedSymSize*2) + alignedLoSize);
-    u16 *symVec = memoryAlloced;
-    u8 *loVec = memoryAlloced + alignedSymSize*2;
-    bool32 loEncoded = isModeLoEncoded(header->mode);
-    bool32 symEncoded = isModeSymEncoded(header->mode);
-    bool32 symDelta = isModeSymDelta(header->mode);
 
     const u32 *pLoFreqs = NULL;
     const u32 *pSymFreqs = NULL;
@@ -962,6 +957,9 @@ static void SmolDecompressData(const struct SmolHeader *header, const u32 *data,
     //  Use different decoding flows depending on which mode the data is compressed with
     switch (header->mode)
     {
+        case BASE_ONLY: // Used by .fastSmol, there is no encoding there, so we can quickly decode all the instructions and quit.
+            DecodeInstructionsIwram(headerLoSize, leftoverPos + headerSymSize*2, (void *) leftoverPos, dest);
+            return;
         case ENCODE_LO:
             pLoFreqs = &data[0];
             sDataPtr = &data[3];
@@ -978,6 +976,17 @@ static void SmolDecompressData(const struct SmolHeader *header, const u32 *data,
             sDataPtr = &data[6];
             break;
     }
+
+    bool32 loEncoded = isModeLoEncoded(header->mode);
+    bool32 symEncoded = isModeSymEncoded(header->mode);
+    bool32 symDelta = isModeSymDelta(header->mode);
+
+    // Everything needs to be aligned.
+    u32 alignedLoSize = header->loSize % 2 == 1 ? headerLoSize + 1 : headerLoSize;
+    u32 alignedSymSize = header->symSize % 2 == 1 ? headerSymSize + 1 : headerSymSize;
+    void *memoryAlloced = Alloc((alignedSymSize*2) + alignedLoSize);
+    u16 *symVec = memoryAlloced;
+    u8 *loVec = memoryAlloced + alignedSymSize*2;
 
     sBitIndex = 0;
     //  Decode tANS encoded LO data, mode 3, 4 and 5

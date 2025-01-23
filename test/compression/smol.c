@@ -21,8 +21,6 @@ enum
     COMPRESSION_FASTLZ,
 };
 
-extern void FastLZ77UnCompWram(const u32 *src, void *dest);
-
 static bool32 DecompressImgPrintResults(const u32 *img, const u32 *orgImg, const char *imgName, s32 mode, s32 size)
 {
     u32 imageSize = GetDecompressedDataSize(img);
@@ -33,6 +31,8 @@ static bool32 DecompressImgPrintResults(const u32 *img, const u32 *orgImg, const
 #endif
     if (mode == COMPRESSION_FASTLZ)
         FastLZ77UnCompWram(img, compBuffer);
+    else if (mode == COMPRESSION_LZ)
+        LZ77UnCompWram(img, compBuffer);
     else
         DecompressDataWithHeaderWram(img, compBuffer);
 

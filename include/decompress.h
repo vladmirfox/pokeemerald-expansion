@@ -55,6 +55,9 @@ enum CompressionMode {
 void DecompressDataWithHeaderVram(const u32 *src, void *dest);
 void DecompressDataWithHeaderWram(const u32 *src, void *dest);
 
+// Lucky's fast lz decompression function
+void FastLZ77UnCompWram(const u32 *src, void *dest);
+
 //  Default Decompression functions are below here
 u32 IsLZ77Data(const void *ptr, u32 minSize, u32 maxSize);
 
