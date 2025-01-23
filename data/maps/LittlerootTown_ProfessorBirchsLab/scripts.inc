@@ -645,20 +645,20 @@ LittlerootTown_ProfessorBirchsLab_EventScript_BrendanTakeBreakFromFieldwork::
 
 LittlerootTown_ProfessorBirchsLab_EventScript_PC::
 	msgbox LittlerootTown_ProfessorBirchsLab_Text_PCUsedForResearch, MSGBOX_SIGN
-	givemon SPECIES_VENUSAUR_MEGA, 5
-	givemon SPECIES_CHARIZARD_MEGA_X, 5
-	givemon SPECIES_CHARIZARD_MEGA_Y, 5
-	givemon SPECIES_BLASTOISE_MEGA, 5
-	givemon SPECIES_PIDGEOT_MEGA, 5
-	givemon SPECIES_BEEDRILL_MEGA, 5
-	givemon SPECIES_SLOWBRO_MEGA, 5
+	@ givemon SPECIES_VENUSAUR_MEGA, 5
+	@ givemon SPECIES_CHARIZARD_MEGA_X, 5
+	@ givemon SPECIES_CHARIZARD_MEGA_Y, 5
+	@ givemon SPECIES_BLASTOISE_MEGA, 5
+	@ givemon SPECIES_PIDGEOT_MEGA, 5
+	@ givemon SPECIES_BEEDRILL_MEGA, 5
+	@ givemon SPECIES_SLOWBRO_MEGA, 5
 	givemon SPECIES_KANGASKHAN_MEGA, 5
-	givemon SPECIES_ALAKAZAM_MEGA, 5
+	@ givemon SPECIES_ALAKAZAM_MEGA, 5
 	givemon SPECIES_PINSIR_MEGA, 5
-	givemon SPECIES_AERODACTYL_MEGA, 5
-	givemon SPECIES_MEWTWO_MEGA_X, 5
+	@ givemon SPECIES_AERODACTYL_MEGA, 5
+	@ givemon SPECIES_MEWTWO_MEGA_X, 5
 	givemon SPECIES_MEWTWO_MEGA_Y, 5
-	givemon SPECIES_GENGAR_MEGA, 5
+	@ givemon SPECIES_GENGAR_MEGA, 5
 	givemon SPECIES_GYARADOS_MEGA, 5
 	givemon SPECIES_AMPHAROS_MEGA, 5
 	givemon SPECIES_STEELIX_MEGA, 5
