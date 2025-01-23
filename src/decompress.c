@@ -386,7 +386,7 @@ static IWRAM_DATA u32 sCurrState = 0;
 extern void FastUnsafeCopy32(void *, const void *, u32 size);
 
 //  Dark Egg magic
-static inline void CopyFuncToIwram(void *funcBuffer, void *funcStartAddress, void *funcEndAdress)
+static inline void CopyFuncToIwram(void *funcBuffer, const void *funcStartAddress, const void *funcEndAdress)
 {
     FastUnsafeCopy32(funcBuffer, funcStartAddress, funcEndAdress - funcStartAddress);
 }
@@ -766,7 +766,7 @@ static void DecodeSymDeltatANS(const u32 *data, const u32 *pFreqs, u16 *resultVe
         u32 currK;
         u32 *ykTable = sWorkingYkTable;
         const u32 *data = sDataPtr;
-        u32 currBits = *sDataPtr;
+        u32 currBits = *data++;
         u32 bitIndex = sBitIndex;
         u32 symbol = 0;
 
@@ -1271,4 +1271,20 @@ bool8 LoadCompressedSpritePaletteUsingHeap(const struct CompressedSpritePalette 
     LoadSpritePalette(&dest);
     Free(buffer);
     return FALSE;
+}
+
+extern const u32 LZ77UnCompWRAMOptimized[];
+extern const u32 LZ77UnCompWRAMOptimized_end[];
+
+ARM_FUNC static void SwitchToArmCallFastLZ77(const u32 *src, void *dest, void (*funcPtr)(const u32 *src, void *dest))
+{
+    funcPtr(src, dest);
+}
+
+void FastLZ77UnCompWram(const u32 *src, void *dest)
+{
+    u32 funcBuffer[200];
+
+    CopyFuncToIwram(funcBuffer, LZ77UnCompWRAMOptimized, LZ77UnCompWRAMOptimized_end);
+    SwitchToArmCallFastLZ77(src, dest, (void *) funcBuffer);
 }
