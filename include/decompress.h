@@ -12,9 +12,6 @@
 
 #define SMOL_IMAGE_SIZE_MULTIPLIER 4
 
-
-extern u8 ALIGNED(4) gDecompressionBuffer[0x4000];
-
 struct LZ77Header {
     u32 lz77IdBits:5;
     u32 padding:3;
@@ -68,13 +65,13 @@ bool32 isModeSymDelta(enum CompressionMode mode);
 //  Default Decompression functions are below here
 u32 IsLZ77Data(const void *ptr, u32 minSize, u32 maxSize);
 
-u16 LoadCompressedSpriteSheet(const struct CompressedSpriteSheet *src);
-u16 LoadCompressedSpriteSheetByTemplate(const struct SpriteTemplate *template, s32 offset);
-void LoadCompressedSpriteSheetOverrideBuffer(const struct CompressedSpriteSheet *src, void *buffer);
+u32 LoadCompressedSpriteSheet(const struct CompressedSpriteSheet *src);
+u32 LoadCompressedSpriteSheetByTemplate(const struct SpriteTemplate *template, s32 offset);
+u32 LoadCompressedSpriteSheetOverrideBuffer(const struct CompressedSpriteSheet *src, void *buffer);
 bool8 LoadCompressedSpriteSheetUsingHeap(const struct CompressedSpriteSheet *src);
 
-void LoadCompressedSpritePalette(const struct CompressedSpritePalette *src);
-void LoadCompressedSpritePaletteWithTag(const u32 *pal, u16 tag);
+u32 LoadCompressedSpritePalette(const struct CompressedSpritePalette *src);
+u32 LoadCompressedSpritePaletteWithTag(const u32 *pal, u16 tag);
 void LoadCompressedSpritePaletteOverrideBuffer(const struct CompressedSpritePalette *src, void *buffer);
 bool8 LoadCompressedSpritePaletteUsingHeap(const struct CompressedSpritePalette *src);
 

@@ -299,11 +299,6 @@ static const u16 sTrappingMoves[NUM_TRAPPING_MOVES] =
     MOVE_THUNDER_CAGE
 };
 
-static const u16 sBadgeFlags[8] = {
-    FLAG_BADGE01_GET, FLAG_BADGE02_GET, FLAG_BADGE03_GET, FLAG_BADGE04_GET,
-    FLAG_BADGE05_GET, FLAG_BADGE06_GET, FLAG_BADGE07_GET, FLAG_BADGE08_GET,
-};
-
 static const u16 sWhiteOutBadgeMoney[9] = { 8, 16, 24, 36, 48, 64, 80, 100, 120 };
 
 #define STAT_CHANGE_WORKED      0
@@ -1450,7 +1445,7 @@ static bool32 AccuracyCalcHelper(u32 move, u32 battler)
         effect = TRUE;
     }
 
-    if (WEATHER_HAS_EFFECT)
+    if (HasWeatherEffect())
     {
         if ((moveEffect == EFFECT_THUNDER || moveEffect == EFFECT_RAIN_ALWAYS_HIT)
             && IsBattlerWeatherAffected(battler, B_WEATHER_RAIN))
@@ -1539,11 +1534,11 @@ u32 GetTotalAccuracy(u32 battlerAtk, u32 battlerDef, u32 move, u32 atkAbility, u
     switch (defAbility)
     {
     case ABILITY_SAND_VEIL:
-        if (WEATHER_HAS_EFFECT && gBattleWeather & B_WEATHER_SANDSTORM)
+        if (HasWeatherEffect() && gBattleWeather & B_WEATHER_SANDSTORM)
             calc = (calc * 80) / 100; // 1.2 sand veil loss
         break;
     case ABILITY_SNOW_CLOAK:
-        if (WEATHER_HAS_EFFECT && (gBattleWeather & (B_WEATHER_HAIL | B_WEATHER_SNOW)))
+        if (HasWeatherEffect() && (gBattleWeather & (B_WEATHER_HAIL | B_WEATHER_SNOW)))
             calc = (calc * 80) / 100; // 1.2 snow cloak loss
         break;
     case ABILITY_TANGLED_FEET:
@@ -1595,7 +1590,7 @@ u32 GetTotalAccuracy(u32 battlerAtk, u32 battlerDef, u32 move, u32 atkAbility, u
     if (B_AFFECTION_MECHANICS == TRUE && GetBattlerAffectionHearts(battlerDef) == AFFECTION_FIVE_HEARTS)
         calc = (calc * 90) / 100;
 
-    if (WEATHER_HAS_EFFECT && gBattleWeather & B_WEATHER_FOG)
+    if (HasWeatherEffect() && gBattleWeather & B_WEATHER_FOG)
         calc = (calc * 60) / 100; // modified by 3/5
 
     return calc;
@@ -2307,7 +2302,7 @@ static u32 UpdateEffectivenessResultFlagsForDoubleSpreadMoves(u32 resultFlags)
 
 static inline bool32 TryStrongWindsWeakenAttack(u32 battlerDef, u32 moveType)
 {
-    if (gBattleWeather & B_WEATHER_STRONG_WINDS && WEATHER_HAS_EFFECT)
+    if (gBattleWeather & B_WEATHER_STRONG_WINDS && HasWeatherEffect())
     {
         if (GetMoveCategory(gCurrentMove) != DAMAGE_CATEGORY_STATUS
          && IS_BATTLER_OF_TYPE(battlerDef, TYPE_FLYING)
@@ -3795,10 +3790,6 @@ void SetMoveEffect(bool32 primary, bool32 certain)
                     BattleScriptPush(gBattlescriptCurrInstr + 1);
                     gBattlescriptCurrInstr = BattleScript_AllStatsUp;
                 }
-                break;
-            case MOVE_EFFECT_RAPID_SPIN:
-                BattleScriptPush(gBattlescriptCurrInstr + 1);
-                gBattlescriptCurrInstr = BattleScript_RapidSpinAway;
                 break;
             case MOVE_EFFECT_ATK_DEF_DOWN: // SuperPower
                 if (!NoAliveMonsForEitherParty())
@@ -6139,6 +6130,17 @@ static void Cmd_moveend(void)
             gBattleScripting.moveendState++;
             break;
         }
+        case MOVEEND_RAPID_SPIN:
+            if (gMovesInfo[gCurrentMove].effect == EFFECT_RAPID_SPIN
+             && !(gHitMarker & HITMARKER_UNABLE_TO_USE_MOVE)
+             && IsBattlerTurnDamaged(gBattlerTarget))
+            {
+                BattleScriptPushCursor();
+                gBattlescriptCurrInstr = BattleScript_RapidSpinAway;
+                effect = TRUE;
+            }
+            gBattleScripting.moveendState++;
+            break;
         case MOVEEND_ITEM_EFFECTS_ATTACKER:
             if (ItemBattleEffects(ITEMEFFECT_MOVE_END, gBattlerAttacker, FALSE))
                 effect = TRUE;
@@ -7692,7 +7694,7 @@ bool32 DoSwitchInAbilities(u32 battler)
 {
     return (TryPrimalReversion(battler)
          || AbilityBattleEffects(ABILITYEFFECT_ON_SWITCHIN, battler, 0, 0, 0)
-         || (gBattleWeather & B_WEATHER_ANY && WEATHER_HAS_EFFECT && AbilityBattleEffects(ABILITYEFFECT_ON_WEATHER, battler, 0, 0, 0))
+         || (gBattleWeather & B_WEATHER_ANY && HasWeatherEffect() && AbilityBattleEffects(ABILITYEFFECT_ON_WEATHER, battler, 0, 0, 0))
          || (gFieldStatuses & STATUS_FIELD_TERRAIN_ANY && AbilityBattleEffects(ABILITYEFFECT_ON_TERRAIN, battler, 0, 0, 0)));
 }
 
@@ -8319,9 +8321,9 @@ static void Cmd_getmoneyreward(void)
                     sPartyLevel = GetMonData(&gPlayerParty[i], MON_DATA_LEVEL);
             }
         }
-        for (count = 0, i = 0; i < ARRAY_COUNT(sBadgeFlags); i++)
+        for (count = 0, i = 0; i < ARRAY_COUNT(gBadgeFlags); i++)
         {
-            if (FlagGet(sBadgeFlags[i]) == TRUE)
+            if (FlagGet(gBadgeFlags[i]) == TRUE)
                 ++count;
         }
         money = sWhiteOutBadgeMoney[count] * sPartyLevel;
@@ -10721,7 +10723,7 @@ static void Cmd_various(void)
     {
         VARIOUS_ARGS();
         if (gSideStatuses[GetBattlerSide(battler)] & SIDE_STATUS_AURORA_VEIL
-            || !(WEATHER_HAS_EFFECT && gBattleWeather & (B_WEATHER_HAIL | B_WEATHER_SNOW)))
+            || !(HasWeatherEffect() && gBattleWeather & (B_WEATHER_HAIL | B_WEATHER_SNOW)))
         {
             gBattleStruct->moveResultFlags[gBattlerTarget] |= MOVE_RESULT_MISSED;
             gBattleCommunication[MULTISTRING_CHOOSER] = 0;
@@ -14161,14 +14163,14 @@ static void Cmd_recoverbasedonsunlight(void)
     {
         if (gCurrentMove == MOVE_SHORE_UP)
         {
-            if (WEATHER_HAS_EFFECT && gBattleWeather & B_WEATHER_SANDSTORM)
+            if (HasWeatherEffect() && gBattleWeather & B_WEATHER_SANDSTORM)
                 gBattleStruct->moveDamage[gBattlerAttacker] = 20 * GetNonDynamaxMaxHP(gBattlerAttacker) / 30;
             else
                 gBattleStruct->moveDamage[gBattlerAttacker] = GetNonDynamaxMaxHP(gBattlerAttacker) / 2;
         }
         else
         {
-            if (!(gBattleWeather & B_WEATHER_ANY) || !WEATHER_HAS_EFFECT || GetBattlerHoldEffect(gBattlerAttacker, TRUE) == HOLD_EFFECT_UTILITY_UMBRELLA)
+            if (!(gBattleWeather & B_WEATHER_ANY) || !HasWeatherEffect() || GetBattlerHoldEffect(gBattlerAttacker, TRUE) == HOLD_EFFECT_UTILITY_UMBRELLA)
                 gBattleStruct->moveDamage[gBattlerAttacker] = GetNonDynamaxMaxHP(gBattlerAttacker) / 2;
             else if (gBattleWeather & B_WEATHER_SUN)
                 gBattleStruct->moveDamage[gBattlerAttacker] = 20 * GetNonDynamaxMaxHP(gBattlerAttacker) / 30;
@@ -14417,7 +14419,6 @@ static void Cmd_setcharge(void)
         gDisableStructs[battler].chargeTimer = 2;
     else
         gDisableStructs[battler].chargeTimer = 0;
-    gBattlescriptCurrInstr++;
     gBattlescriptCurrInstr = cmd->nextInstr;
 }
 
