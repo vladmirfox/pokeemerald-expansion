@@ -49,6 +49,7 @@
 #include "constants/trainers.h"
 #include "constants/trainer_hill.h"
 #include "constants/weather.h"
+#include "wild_encounter.h"
 
 enum {
     TRANSITION_TYPE_NORMAL,
@@ -745,6 +746,8 @@ u8 BattleSetup_GetTerrainId(void)
     s16 x, y;
 
     PlayerGetDestCoords(&x, &y);
+    if (I_FISHING_ENVIRONMENT >= GEN_4 && gIsFishingEncounter)
+        GetXYCoordsOneStepInFrontOfPlayer(&x, &y);
     tileBehavior = MapGridGetMetatileBehaviorAt(x, y);
 
     if (MetatileBehavior_IsTallGrass(tileBehavior))
