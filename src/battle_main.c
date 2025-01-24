@@ -6028,30 +6028,30 @@ u32 GetDynamicMoveType(struct Pokemon *mon, u32 move, u32 battler, u8 *ateBoost)
         break;
     }
 
-    if (moveType == TYPE_NORMAL
-     && ((!gMain.inBattle || TrySetAteType(move, battler, ability))
-     && GetActiveGimmick(battler) != GIMMICK_DYNAMAX))
-    {
-        if (gMain.inBattle && ateBoost != NULL)
-            *ateBoost = TRUE;
-    }
-    else if (moveType != TYPE_NORMAL
-          && moveEffect != EFFECT_HIDDEN_POWER
-          && moveEffect != EFFECT_WEATHER_BALL
-          && ability == ABILITY_NORMALIZE
-          && GetActiveGimmick(battler) != GIMMICK_Z_MOVE)
-    {
-        if (gMain.inBattle && ateBoost != NULL && GetActiveGimmick(battler) != GIMMICK_DYNAMAX)
-            *ateBoost = TRUE;
-        return TYPE_NORMAL;
-    }
-    else if (gMovesInfo[move].soundMove && ability == ABILITY_LIQUID_VOICE)
+    if (IsSoundMove(move) && ability == ABILITY_LIQUID_VOICE)
     {
         return TYPE_WATER;
     }
     else if (moveEffect == EFFECT_AURA_WHEEL && species == SPECIES_MORPEKO_HANGRY)
     {
         return TYPE_DARK;
+    }
+    else if (moveType == TYPE_NORMAL
+        && ((!gMain.inBattle || TrySetAteType(move, battler, ability))
+        && GetActiveGimmick(battler) != GIMMICK_DYNAMAX))
+    {
+        if (gMain.inBattle && ateBoost != NULL)
+            *ateBoost = TRUE;
+    }
+    else if (moveType != TYPE_NORMAL
+        && moveEffect != EFFECT_HIDDEN_POWER
+        && moveEffect != EFFECT_WEATHER_BALL
+        && ability == ABILITY_NORMALIZE
+        && GetActiveGimmick(battler) != GIMMICK_Z_MOVE)
+    {
+        if (gMain.inBattle && ateBoost != NULL && GetActiveGimmick(battler) != GIMMICK_DYNAMAX)
+            *ateBoost = TRUE;
+        return TYPE_NORMAL;
     }
 
     return TYPE_NONE;
