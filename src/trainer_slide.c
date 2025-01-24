@@ -107,34 +107,34 @@ static u32 GetEnemyMonCount(u32 firstId, u32 lastId, bool32 onlyAlive)
     return count;
 }
 
-static const u8* const (*GetTrainerSlideArray(enum DifficultyLevel difficulty, u32 trainerId, u32 slideId))[TRAINER_SLIDE_COUNT]
+static const u8* const *GetTrainerSlideArray(enum DifficultyLevel difficulty, u32 trainerId, u32 slideId)
 {
     if (gBattleTypeFlags & BATTLE_TYPE_FRONTIER)
-        return &sFrontierTrainerSlides[difficulty][trainerId];
+        return sFrontierTrainerSlides[difficulty][trainerId];
     else if (TESTING)
-        return &sTestTrainerSlides[difficulty][trainerId];
+        return sTestTrainerSlides[difficulty][trainerId];
     else
-        return &sTrainerSlides[difficulty][trainerId];
+        return sTrainerSlides[difficulty][trainerId];
 }
 
 static bool32 DoesTrainerHaveSlideMessage(enum DifficultyLevel difficulty, u32 trainerId, u32 slideId)
 {
-    const u8* const (*trainerSlides)[TRAINER_SLIDE_COUNT] = GetTrainerSlideArray(difficulty, trainerId, slideId);
+    const u8* const *trainerSlides = GetTrainerSlideArray(difficulty, trainerId, slideId);
 
-    if ((*trainerSlides)[slideId] == NULL)
-        return ((*trainerSlides)[DIFFICULTY_NORMAL] != NULL);
+    if (trainerSlides[slideId] == NULL)
+        return (trainerSlides[DIFFICULTY_NORMAL] != NULL);
     else
         return TRUE;
 }
 
 void SetTrainerSlideMessage(enum DifficultyLevel difficulty, u32 trainerId, u32 slideId)
 {
-    const u8* const (*trainerSlides)[TRAINER_SLIDE_COUNT] = GetTrainerSlideArray(difficulty, trainerId, slideId);
+    const u8* const *trainerSlides = GetTrainerSlideArray(difficulty, trainerId, slideId);
 
-    if ((*trainerSlides)[slideId] != NULL)
-        gBattleStruct->trainerSlideMsg = (*trainerSlides)[slideId];
+    if (trainerSlides[slideId] != NULL)
+        gBattleStruct->trainerSlideMsg = trainerSlides[slideId];
     else
-        gBattleStruct->trainerSlideMsg = (*trainerSlides)[DIFFICULTY_NORMAL];
+        gBattleStruct->trainerSlideMsg = trainerSlides[DIFFICULTY_NORMAL];
 }
 
 static bool32 ShouldRunTrainerSlidePlayerLandsFirstCriticalHit(enum TrainerSlideType slideId)
