@@ -745,9 +745,11 @@ u8 BattleSetup_GetTerrainId(void)
     u16 tileBehavior;
     s16 x, y;
 
-    PlayerGetDestCoords(&x, &y);
     if (I_FISHING_ENVIRONMENT >= GEN_4 && gIsFishingEncounter)
         GetXYCoordsOneStepInFrontOfPlayer(&x, &y);
+    else
+        PlayerGetDestCoords(&x, &y);
+
     tileBehavior = MapGridGetMetatileBehaviorAt(x, y);
 
     if (MetatileBehavior_IsTallGrass(tileBehavior))
