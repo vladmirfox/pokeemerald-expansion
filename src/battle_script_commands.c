@@ -306,6 +306,16 @@ static const u16 sBadgeFlags[8] = {
 
 static const u16 sWhiteOutBadgeMoney[9] = { 8, 16, 24, 36, 48, 64, 80, 100, 120 };
 
+enum
+{
+    GIVEMON_CHECK_PARTY_SIZE = 0,
+    GIVEMON_ASK_ADD_TO_PARTY,
+    GIVEMON_HANDLE_INPUT,
+    GIVEMON_DO_CHOOSE_MON,
+    GIVEMON_HANDLE_CHOSEN_MON,
+    GIVEMON_GIVE_AND_SHOW_MSG,
+};
+
 #define STAT_CHANGE_WORKED      0
 #define STAT_CHANGE_DIDNT_WORK  1
 
@@ -15795,27 +15805,27 @@ static void Cmd_givecaughtmon(void)
 
     switch (gBattleCommunication[MULTIUSE_STATE])
     {
-    case 0:
-        if (CalculatePlayerPartyCount() == PARTY_SIZE)
+    case GIVEMON_CHECK_PARTY_SIZE:
+        if (CalculatePlayerPartyCount() == PARTY_SIZE && B_CATCH_SWAP_INTO_PARTY)
         {
             PrepareStringBattle(STRINGID_SENDCAUGHTMONPARTYORBOX, gBattlerAttacker);
             gBattleCommunication[MSG_DISPLAY] = 1;
-            gBattleCommunication[MULTIUSE_STATE]++;
+            gBattleCommunication[MULTIUSE_STATE] = GIVEMON_ASK_ADD_TO_PARTY;
         }
         else
         {
             gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_NO_MESSSAGE_SKIP;
-            gBattleCommunication[MULTIUSE_STATE] = 5;
+            gBattleCommunication[MULTIUSE_STATE] = GIVEMON_GIVE_AND_SHOW_MSG;
         }
         break;
-    case 1:
+    case GIVEMON_ASK_ADD_TO_PARTY:
         HandleBattleWindow(YESNOBOX_X_Y, 0);
         BattlePutTextOnWindow(gText_BattleYesNoChoice, B_WIN_YESNO);
-        gBattleCommunication[MULTIUSE_STATE]++;
+        gBattleCommunication[MULTIUSE_STATE] = GIVEMON_HANDLE_INPUT;
         gBattleCommunication[CURSOR_POSITION] = 0;
         BattleCreateYesNoCursorAt(0);
         break;
-    case 2:
+    case GIVEMON_HANDLE_INPUT:
         if (JOY_NEW(DPAD_UP) && gBattleCommunication[CURSOR_POSITION] != 0)
         {
             PlaySE(SE_SELECT);
@@ -15835,35 +15845,35 @@ static void Cmd_givecaughtmon(void)
             PlaySE(SE_SELECT);
             if (gBattleCommunication[CURSOR_POSITION] == 0)
             {
-                gBattleCommunication[MULTIUSE_STATE]++;
+                gBattleCommunication[MULTIUSE_STATE] = GIVEMON_DO_CHOOSE_MON;
             }
             else
             {
-                gBattleCommunication[MULTIUSE_STATE] = 5;
+                gBattleCommunication[MULTIUSE_STATE] = GIVEMON_GIVE_AND_SHOW_MSG;
             }
         }
         else if (JOY_NEW(B_BUTTON))
         {
             PlaySE(SE_SELECT);
-            gBattleCommunication[MULTIUSE_STATE] = 5;
+            gBattleCommunication[MULTIUSE_STATE] = GIVEMON_GIVE_AND_SHOW_MSG;
         }
         break;
-    case 3:
+    case GIVEMON_DO_CHOOSE_MON:
         if (!gPaletteFade.active)
         {
             BtlController_EmitChoosePokemon(gBattlerAttacker, BUFFER_A, PARTY_ACTION_SEND_MON_TO_BOX, PARTY_SIZE, ABILITY_NONE, gBattleStruct->battlerPartyOrders[gBattlerAttacker]);
             MarkBattlerForControllerExec(gBattlerAttacker);
-            gBattleCommunication[MULTIUSE_STATE]++;
+            gBattleCommunication[MULTIUSE_STATE] = GIVEMON_HANDLE_CHOSEN_MON;
         }
         break;
-    case 4:
+    case GIVEMON_HANDLE_CHOSEN_MON:
         if (gSelectedMonPartyId != PARTY_SIZE)
         {
             if (gSelectedMonPartyId > PARTY_SIZE)
             {
                 // Choosing Pokemon was cancelled
                 gSelectedMonPartyId = PARTY_SIZE;
-                gBattleCommunication[MULTIUSE_STATE]++;
+                gBattleCommunication[MULTIUSE_STATE] = GIVEMON_GIVE_AND_SHOW_MSG;
             }
             else
             {
@@ -15876,17 +15886,17 @@ static void Cmd_givecaughtmon(void)
                     gBattleStruct->itemLost[B_SIDE_PLAYER][gSelectedMonPartyId].originalItem = ITEM_NONE;
                     gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_SWAPPED_INTO_PARTY;
                     gSelectedMonPartyId = PARTY_SIZE;
-                    gBattleCommunication[MULTIUSE_STATE]++;
+                    gBattleCommunication[MULTIUSE_STATE] = GIVEMON_GIVE_AND_SHOW_MSG;
                 }
                 else
                 {
                     gSelectedMonPartyId = PARTY_SIZE;
-                    gBattleCommunication[MULTIUSE_STATE]++;
+                    gBattleCommunication[MULTIUSE_STATE] = GIVEMON_GIVE_AND_SHOW_MSG;
                 }
             }
         }
         break;
-    case 5:
+    case GIVEMON_GIVE_AND_SHOW_MSG:
         if (B_RESTORE_HELD_BATTLE_ITEMS >= GEN_9)
         {
             u16 lostItem = gBattleStruct->itemLost[B_SIDE_OPPONENT][gBattlerPartyIndexes[GetCatchingBattler()]].originalItem;
