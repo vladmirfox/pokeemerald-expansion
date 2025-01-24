@@ -6037,17 +6037,17 @@ u32 GetDynamicMoveType(struct Pokemon *mon, u32 move, u32 battler, u8 *ateBoost)
         return TYPE_DARK;
     }
     else if (moveType == TYPE_NORMAL
-        && ((!gMain.inBattle || TrySetAteType(move, battler, ability))
-        && GetActiveGimmick(battler) != GIMMICK_DYNAMAX))
+          && ((!gMain.inBattle || TrySetAteType(move, battler, ability))
+          && GetActiveGimmick(battler) != GIMMICK_DYNAMAX))
     {
         if (gMain.inBattle && ateBoost != NULL)
             *ateBoost = TRUE;
     }
     else if (moveType != TYPE_NORMAL
-        && moveEffect != EFFECT_HIDDEN_POWER
-        && moveEffect != EFFECT_WEATHER_BALL
-        && ability == ABILITY_NORMALIZE
-        && GetActiveGimmick(battler) != GIMMICK_Z_MOVE)
+          && moveEffect != EFFECT_HIDDEN_POWER
+          && moveEffect != EFFECT_WEATHER_BALL
+          && ability == ABILITY_NORMALIZE
+          && GetActiveGimmick(battler) != GIMMICK_Z_MOVE)
     {
         if (gMain.inBattle && ateBoost != NULL && GetActiveGimmick(battler) != GIMMICK_DYNAMAX)
             *ateBoost = TRUE;
