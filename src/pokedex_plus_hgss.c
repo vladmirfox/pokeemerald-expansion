@@ -562,7 +562,7 @@ static void PrintStatsScreen_Moves_Bottom(u8 taskId);
 static void PrintStatsScreen_Left(u8 taskId);
 static void PrintStatsScreen_Abilities(u8 taskId);
 static void PrintInfoScreenTextWhite(const u8* str, u8 left, u8 top);
-static void PrintInfoScreenTextSmall(const u8* str, u8 left, u8 top);
+static void PrintInfoScreenTextSmall(const u8* str, u8 fontId, u8 left, u8 top);
 static void PrintInfoScreenTextSmallWhite(const u8* str, u8 left, u8 top);
 static void Task_LoadEvolutionScreen(u8 taskId);
 static void Task_HandleEvolutionScreenInput(u8 taskId);
@@ -2622,7 +2622,7 @@ static void PrintMonDexNumAndName_2(u8 windowId, u8 fontId, const u8* str, u8 le
     color[0] = TEXT_COLOR_TRANSPARENT;
     color[1] = TEXT_DYNAMIC_COLOR_6;
     color[2] = TEXT_COLOR_LIGHT_GRAY;
-    AddTextPrinterParameterized4(windowId, fontId, left * 8 - 13, (top * 8) + 1, 0, 0, color, -1, str);
+    AddTextPrinterParameterized4(windowId, fontId, left * 8 - 13, (top * 8) + 1, 0, 0, color, TEXT_SKIP_DRAW, str);
 }
 
 // u16 ignored is passed but never used
@@ -4218,12 +4218,6 @@ static void SpriteCB_SlideCaughtMonToCenter(struct Sprite *sprite)
 #undef tPersonalityLo
 #undef tPersonalityHi
 
-
-
-
-
-
-
 //************************************
 //*                                  *
 //*        Print data                *
@@ -4247,14 +4241,14 @@ static void PrintInfoScreenTextWhite(const u8* str, u8 left, u8 top)
 
     AddTextPrinterParameterized4(0, FONT_NORMAL, left, top, 0, 0, color, TEXT_SKIP_DRAW, str);
 }
-static void PrintInfoScreenTextSmall(const u8* str, u8 left, u8 top)
+static void PrintInfoScreenTextSmall(const u8* str, u8 fontId, u8 left, u8 top)
 {
     u8 color[3];
     color[0] = TEXT_COLOR_TRANSPARENT;
     color[1] = TEXT_DYNAMIC_COLOR_6;
     color[2] = TEXT_COLOR_LIGHT_GRAY;
 
-    AddTextPrinterParameterized4(0, 0, left, top, 0, 0, color, 0, str);
+    AddTextPrinterParameterized4(0, fontId, left, top, 0, 0, color, 0, str);
 }
 static void UNUSED PrintInfoScreenTextSmallWhite(const u8* str, u8 left, u8 top)
 {
@@ -6183,7 +6177,7 @@ static void HandleTargetSpeciesPrintText(u32 targetSpecies, u32 base_x, u32 base
     else
         StringCopy(gStringVar3, gText_ThreeQuestionMarks); //show questionmarks instead of name
     StringExpandPlaceholders(gStringVar3, sText_EVO_Name); //evolution mon name
-    PrintInfoScreenTextSmall(gStringVar3, base_x, base_y + base_y_offset*base_i); //evolution mon name
+    PrintInfoScreenTextSmall(gStringVar3, FONT_SMALL, base_x, base_y + base_y_offset*base_i); //evolution mon name
 }
 
 static void HandleTargetSpeciesPrintIcon(u8 taskId, u16 targetSpecies, u8 base_i, u8 iterations)
@@ -6205,7 +6199,7 @@ static void CreateCaughtBallEvolutionScreen(u16 targetSpecies, u8 x, u8 y, u16 u
     else
     {
         //FillWindowPixelRect(0, PIXEL_FILL(0), x, y, 8, 16); //not sure why this was even here
-        PrintInfoScreenTextSmall(gText_OneDash, x+1, y-1);
+        PrintInfoScreenTextSmall(gText_OneDash, FONT_SMALL, x+1, y-1);
     }
 }
 
@@ -6229,7 +6223,7 @@ static void HandlePreEvolutionSpeciesPrint(u8 taskId, u16 preSpecies, u16 specie
 
     }
 
-    PrintInfoScreenTextSmall(gStringVar3, base_x, base_y + base_y_offset*base_i); //evolution mon name
+    PrintInfoScreenTextSmall(gStringVar3, FONT_SMALL, base_x, base_y + base_y_offset*base_i); //evolution mon name
 
     if (base_i < 3)
     {
@@ -6376,7 +6370,7 @@ static void PrintEvolutionTargetSpeciesAndMethod(u8 taskId, u16 species, u8 dept
         if (depth == 0)
         {
             StringExpandPlaceholders(gStringVar4, sText_EVO_NONE);
-            PrintInfoScreenTextSmall(gStringVar4, base_x-7-7, base_y + base_y_offset*(*depth_i));
+            PrintInfoScreenTextSmall(gStringVar4, FONT_SMALL, base_x-7-7, base_y + base_y_offset*(*depth_i));
         }
         return;
     }
@@ -6644,7 +6638,7 @@ static void PrintEvolutionTargetSpeciesAndMethod(u8 taskId, u16 species, u8 dept
         }
 
         StringAppend(gStringVar4, COMPOUND_STRING("."));
-        PrintInfoScreenTextSmall(gStringVar4, base_x + depth_x*depth+base_x_offset, base_y + base_y_offset*(*depth_i)); //Print actual instructions
+        PrintInfoScreenTextSmall(gStringVar4, GetFontIdToFit(gStringVar4, FONT_SMALL, 0, 137), base_x + depth_x*depth+base_x_offset, base_y + base_y_offset*(*depth_i)); //Print actual instructions
 
         (*depth_i)++;
         PrintEvolutionTargetSpeciesAndMethod(taskId, targetSpecies, depth+1, depth_i, alreadyPrintedIcons, icon_depth_i);
@@ -6955,7 +6949,7 @@ static void PrintForms(u8 taskId, u16 species)
     if (times == 0)
     {
         StringExpandPlaceholders(gStringVar4, sText_FORMS_NONE);
-        PrintInfoScreenTextSmall(gStringVar4, base_x, base_y + base_y_offset*times);
+        PrintInfoScreenTextSmall(gStringVar4, FONT_SMALL, base_x, base_y + base_y_offset*times);
     }
 }
 
