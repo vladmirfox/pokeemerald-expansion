@@ -151,6 +151,7 @@ endif
 AUTO_GEN_TARGETS :=
 include make_tools.mk
 # Tool executables
+SMOLTM       := $(TOOLS_DIR)/compresSmol/compresSmolTilemap$(EXE)
 SMOL         := $(TOOLS_DIR)/compresSmol/compresSmol$(EXE)
 GFX          := $(TOOLS_DIR)/gbagfx/gbagfx$(EXE)
 AIF          := $(TOOLS_DIR)/aif2pcm/aif2pcm$(EXE)
@@ -335,6 +336,7 @@ generated: $(AUTO_GEN_TARGETS)
 %.gbapal:   %.pal  ; $(GFX) $< $@
 %.gbapal:   %.png  ; $(GFX) $< $@
 %.lz:       %      ; $(GFX) $< $@
+%.smolTM:   %      ; $(SMOLTM) $< $@
 %.fastSmol: %      ; $(SMOL) -w $< $@ false false false
 %.smol:     %      ; $(SMOL) -w $< $@
 %.rl:       %      ; $(GFX) $< $@

@@ -46,6 +46,7 @@ enum CompressionMode {
     ENCODE_BOTH = 5,
     ENCODE_BOTH_DELTA_SYMS = 6,
     IS_FRAME_CONTAINER = 7,
+    IS_TILEMAP = 8,
 };
 
 struct ShortCopy {

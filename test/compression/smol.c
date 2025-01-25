@@ -19,6 +19,7 @@ enum
     COMPRESSION_FASTSMOL,
     COMPRESSION_LZ,
     COMPRESSION_FASTLZ,
+    COMPRESSION_SMOL_TILEMAP,
 };
 
 static bool32 DecompressImgPrintResults(const u32 *img, const u32 *orgImg, const char *imgName, s32 mode, s32 size)
@@ -47,6 +48,8 @@ static bool32 DecompressImgPrintResults(const u32 *img, const u32 *orgImg, const
             compModeStr = "fastSmol";
         else if (mode == COMPRESSION_LZ)
             compModeStr = "LZ";
+        else if (mode == COMPRESSION_SMOL_TILEMAP)
+            compModeStr = "smolTilemap";
         else
             compModeStr = "fastLZ";
 
@@ -6065,3 +6068,11 @@ TEST("Compression test: Mew fastSmol")
     EXPECT_EQ(areEqual, TRUE);
 }
 
+TEST("Compression test: tilemap")
+{
+    static const u32 origFile[] = INCBIN_U32("test/compression/tilemap.bin");
+    static const u32 compFile[] = INCBIN_U32("test/compression/tilemap.bin.smolTM");
+
+    bool32 areEqual = DecompressImgPrintResults(compFile, origFile, "Tilemap", COMPRESSION_SMOL_TILEMAP, sizeof(compFile));
+    EXPECT_EQ(areEqual, TRUE);
+}

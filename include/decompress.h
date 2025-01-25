@@ -29,15 +29,26 @@ struct SmolHeader {
     u32 loSize:13;
 };
 
-union CompressionHeader {
-    struct LZ77Header lz77;
-    struct SmolHeader smol;
-};
-
 struct SpriteSheetHeader {
     u32 mode:4;
     u32 numComponents:12;
     u32 framesPerComponent:16;
+};
+
+struct SmolTilemapHeader {
+    u32 mode:4;
+    u32 tilemapSize:14;
+    u32 symSize:14;
+    u32 tileNumberSize:11;
+    u32 flipSize:9;
+    u32 palSize:10;
+    u32 padding:2;
+};
+
+union CompressionHeader {
+    struct LZ77Header lz77;
+    struct SmolHeader smol;
+    struct SmolTilemapHeader smolTilemap;
 };
 
 enum CompressionMode {
@@ -49,6 +60,7 @@ enum CompressionMode {
     ENCODE_BOTH = 5,
     ENCODE_BOTH_DELTA_SYMS = 6,
     IS_FRAME_CONTAINER = 7,
+    IS_TILEMAP = 8,
 };
 
 
