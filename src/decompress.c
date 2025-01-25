@@ -1049,7 +1049,6 @@ static void SmolDecompressTilemap(const struct SmolTilemapHeader *header, const 
     {
     }
 
-
     DecodeInstructionsIwram(header->tileNumberSize, loVec, symVec, tileNumbers);
     //DecodeInstructionsIwram(header->flipSize, loVec, symVec, flips);
     //DecodeInstructionsIwram(header->palSize, loVec, symVec, pals);

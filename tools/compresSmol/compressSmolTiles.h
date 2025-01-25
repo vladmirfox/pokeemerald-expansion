@@ -46,6 +46,7 @@ struct CompressionResult
     CompressVectors palVecs;
     TileHeader header;
     std::vector<unsigned int> writeVec;
+    bool failed = false;
 };
 
 std::vector<unsigned short> readFileAsUS(std::string filePath);
