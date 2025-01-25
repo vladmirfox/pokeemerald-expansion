@@ -228,6 +228,16 @@ CodeCaughtEmAll_Text
 
 And that's it! Feel free to expand this in whatever way you wish, the pattern can just be repeated as much as you like, and you can made the code called from `GetCodeFeedback` do whatever you like.
 
+## Can I change the icon on the name entry screen?
+
+Absolutely! In `naming_screen.c`, look for the `NamingScreen_CreateCodeIcon` function. It's very short. There's one relevant line that needs to be changed:
+
+```
+spriteId = CreateObjectGraphicsSprite(OBJ_EVENT_GFX_MYSTERY_GIFT_MAN, SpriteCallbackDummy, 56, 37, 0);
+```
+
+Just swap out `OBJ_EVENT_GFX_MYSTERY_GIFT_MAN` for whatever event object sprite you'd like to use instead. You may need to adjust the position (the 56 and 37 in this example) depending on your sprite.
+
 ## What about a mystery gift setup?
 
 I'd like to cover this separately because it's best handled via `givemon` script commands, which means we don't do much in `GetCodeFeedback` other than return a unique identifier. I'm gonna reference @PCG06's mystery gift implementation which is based on this code entry system for a clean and really thorough example.
