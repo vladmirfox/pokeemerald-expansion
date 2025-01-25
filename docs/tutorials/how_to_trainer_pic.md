@@ -25,7 +25,7 @@ We will start with a graphic that we want to use for our new trainer pic. Unlike
 
 **Remember to limit yourself to 16 colors including transparency in the first slot!**
 
-Export the pallette and place into the same folder.
+Export the palette and place into the same folder.
 
 ### 2. Register the sprites
 Sadly, just putting the image files into the graphics folder is not enough. To use the sprites we have to register them by linking the graphic files.
