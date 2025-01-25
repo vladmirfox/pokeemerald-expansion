@@ -73,6 +73,57 @@ static bool32 DecompressImgPrintResults(const u32 *img, const u32 *orgImg, const
     return areEqual;
 }
 
+static bool32 DecompressTilemapPrintResults(const u32 *tilemap, const u16 *orgTilemap, const char *tilemapName, s32 mode, s32 size)
+{
+    u32 tilemapSize = GetDecompressedDataSize(tilemap);
+    u16 *compBuffer = Alloc(tilemapSize);
+#ifndef NDEBUG
+    if (T_COMPRESSION_SHOULD_PRINT)
+        CycleCountStart();
+#endif
+    if (mode == COMPRESSION_FASTLZ)
+        FastLZ77UnCompWram(tilemap, compBuffer);
+    else if (mode == COMPRESSION_LZ)
+        LZ77UnCompWram(tilemap, compBuffer);
+    else
+        DecompressDataWithHeaderWram(tilemap, compBuffer);
+
+#ifndef NDEBUG
+    if (T_COMPRESSION_SHOULD_PRINT)
+    {
+        s32 timeTaken = CycleCountEnd();
+        const char *compModeStr;
+        if (mode == COMPRESSION_SMOL)
+            compModeStr = "Smol";
+        else if (mode == COMPRESSION_FASTSMOL)
+            compModeStr = "fastSmol";
+        else if (mode == COMPRESSION_LZ)
+            compModeStr = "LZ";
+        else if (mode == COMPRESSION_SMOL_TILEMAP)
+            compModeStr = "smolTilemap";
+        else
+            compModeStr = "fastLZ";
+
+        DebugPrintf("Time %s %s: %d         Size: %d", tilemapName, compModeStr, timeTaken, size);
+    }
+#endif
+
+    bool32 areEqual = TRUE;
+    for (u32 i = 0; i < tilemapSize/2; i++)
+    {
+        if (orgTilemap[i] != compBuffer[i])
+        {
+            areEqual = FALSE;
+            break;
+        }
+    }
+
+    Free(compBuffer);
+
+
+    return areEqual;
+}
+
 TEST("Compression test: tileset smol")
 {
     static const u32 origFile[] = INCBIN_U32("test/compression/tilesetTest.4bpp");
@@ -6070,9 +6121,9 @@ TEST("Compression test: Mew fastSmol")
 
 TEST("Compression test: tilemap")
 {
-    static const u32 origFile[] = INCBIN_U32("test/compression/tilemap.bin");
+    static const u16 origFile[] = INCBIN_U16("test/compression/tilemap.bin");
     static const u32 compFile[] = INCBIN_U32("test/compression/tilemap.bin.smolTM");
 
-    bool32 areEqual = DecompressImgPrintResults(compFile, origFile, "Tilemap", COMPRESSION_SMOL_TILEMAP, sizeof(compFile));
+    bool32 areEqual = DecompressTilemapPrintResults(compFile, origFile, "Tilemap", COMPRESSION_SMOL_TILEMAP, sizeof(compFile));
     EXPECT_EQ(areEqual, TRUE);
 }

@@ -17,9 +17,9 @@ std::vector<unsigned short> readFileAsUS(std::string filePath)
     std::vector<unsigned char> ucVec(size);
     iStream.read((char*)(&ucVec[0]), size);
     iStream.close();
-    unsigned int *pUInt = reinterpret_cast<unsigned int *>(ucVec.data());
+    unsigned short *pUInt = reinterpret_cast<unsigned short *>(ucVec.data());
     std::vector<unsigned short> returnVec;
-    for (size_t i = 0; i < ucVec.size()/4; i++)
+    for (size_t i = 0; i < ucVec.size()/2; i++)
         returnVec.push_back(pUInt[i]);
     return returnVec;
 }
@@ -284,7 +284,9 @@ bool verifyTileCompression(std::vector<unsigned int> compression, std::vector<un
             tileNumbers.push_back(symVec[symIndex]);
             symIndex++;
             for (size_t i = 0; i < currLength; i++)
+            {
                 tileNumbers.push_back(tileNumbers[tileNumbers.size() - currOffset]);
+            }
         }
         else
         {
@@ -320,7 +322,9 @@ bool verifyTileCompression(std::vector<unsigned int> compression, std::vector<un
             flips.push_back(symVec[symIndex]);
             symIndex++;
             for (size_t i = 0; i < currLength; i++)
+            {
                 flips.push_back(flips[flips.size() - currOffset]);
+            }
         }
         else
         {
@@ -376,9 +380,13 @@ bool verifyTileCompression(std::vector<unsigned int> compression, std::vector<un
         return false;
     std::vector<unsigned short> fullVec;
     for (size_t i = 0; i < tileNumbers.size(); i++)
+    {
         fullVec.push_back(tileNumbers[i] + flips[i] + palIds[i]);
+    }
     for (size_t i = 0; i < fullVec.size(); i++)
+    {
         if (fullVec[i] != input[i])
             return false;
+    }
     return true;
 }
