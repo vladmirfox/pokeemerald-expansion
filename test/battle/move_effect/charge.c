@@ -134,7 +134,8 @@ SINGLE_BATTLE_TEST("Charge will not expire if it flinches twice in a row")
 {
     s16 damage[2];
     GIVEN {
-        PLAYER(SPECIES_WOBBUFFET);
+         ASSUME(gMovesInfo[MOVE_IRON_HEAD].additionalEffects[0].moveEffect == MOVE_EFFECT_FLINCH); 
+         PLAYER(SPECIES_WOBBUFFET);
          OPPONENT(SPECIES_WOBBUFFET) { Item(ITEM_LUM_BERRY); }
     } WHEN {
          TURN { MOVE(player, MOVE_THUNDERBOLT); }
