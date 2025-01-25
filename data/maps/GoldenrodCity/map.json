@@ -1,0 +1,513 @@
+{
+  "id": "MAP_GOLDENROD_CITY",
+  "name": "GoldenrodCity",
+  "layout": "LAYOUT_GOLDENROD_CITY",
+  "music": "MUS_ABANDONED_SHIP",
+  "region_map_section": "MAPSEC_GOLDENROD",
+  "requires_flash": false,
+  "weather": "WEATHER_NONE",
+  "map_type": "MAP_TYPE_CITY",
+  "allow_cycling": true,
+  "allow_escaping": false,
+  "allow_running": true,
+  "show_map_name": true,
+  "battle_scene": "MAP_BATTLE_SCENE_NORMAL",
+  "connections": [
+    {
+      "map": "MAP_ROUTE35",
+      "offset": 18,
+      "direction": "up"
+    },
+    {
+      "map": "MAP_ROUTE34",
+      "offset": 16,
+      "direction": "down"
+    }
+  ],
+  "object_events": [
+    {
+      "graphics_id": "OBJ_EVENT_GFX_FAT_MAN",
+      "x": 24,
+      "y": 47,
+      "elevation": 3,
+      "movement_type": "MOVEMENT_TYPE_FACE_DOWN",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "SlateportCity_EventScript_Woman2",
+      "flag": "0"
+    },
+    {
+      "graphics_id": "OBJ_EVENT_GFX_SPECIES(MACHOKE)",
+      "x": 25,
+      "y": 47,
+      "elevation": 0,
+      "movement_type": "MOVEMENT_TYPE_WALK_IN_PLACE_DOWN",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "Lavender_Machoke",
+      "flag": "0"
+    },
+    {
+      "graphics_id": "OBJ_EVENT_GFX_LASS",
+      "x": 17,
+      "y": 31,
+      "elevation": 0,
+      "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
+      "movement_range_x": 0,
+      "movement_range_y": 3,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "BattleFrontier_Lounge3_EventScript_Man",
+      "flag": "0"
+    },
+    {
+      "graphics_id": "OBJ_EVENT_GFX_WOMAN_2",
+      "x": 39,
+      "y": 17,
+      "elevation": 3,
+      "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
+      "movement_range_x": 1,
+      "movement_range_y": 1,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "OldaleTown_House1_EventScript_Woman",
+      "flag": "0"
+    },
+    {
+      "graphics_id": "OBJ_EVENT_GFX_MAN_2",
+      "x": 32,
+      "y": 26,
+      "elevation": 3,
+      "movement_type": "MOVEMENT_TYPE_FACE_LEFT",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "OldaleTown_EventScript_Girl",
+      "flag": "0"
+    },
+    {
+      "graphics_id": "OBJ_EVENT_GFX_SPECIES(HERACROSS)",
+      "x": 30,
+      "y": 26,
+      "elevation": 0,
+      "movement_type": "MOVEMENT_TYPE_WALK_IN_PLACE_RIGHT",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "Cherrygrove_Heracross",
+      "flag": "0"
+    },
+    {
+      "graphics_id": "OBJ_EVENT_GFX_TWIN",
+      "x": 48,
+      "y": 56,
+      "elevation": 3,
+      "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
+      "movement_range_x": 1,
+      "movement_range_y": 2,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "LittlerootTown_EventScript_Twin",
+      "flag": "0"
+    },
+    {
+      "graphics_id": "OBJ_EVENT_GFX_LITTLE_BOY",
+      "x": 9,
+      "y": 29,
+      "elevation": 3,
+      "movement_type": "MOVEMENT_TYPE_FACE_RIGHT",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "RustboroCity_EventScript_LittleBoy",
+      "flag": "0"
+    },
+    {
+      "graphics_id": "OBJ_EVENT_GFX_LITTLE_GIRL",
+      "x": 10,
+      "y": 29,
+      "elevation": 3,
+      "movement_type": "MOVEMENT_TYPE_FACE_LEFT",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "RustboroCity_EventScript_LittleGirl",
+      "flag": "0"
+    },
+    {
+      "graphics_id": "OBJ_EVENT_GFX_NINJA_BOY",
+      "x": 45,
+      "y": 49,
+      "elevation": 3,
+      "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "RustboroCity_EventScript_NinjaBoy",
+      "flag": "0"
+    },
+    {
+      "graphics_id": "OBJ_EVENT_GFX_MAN_4",
+      "x": 23,
+      "y": 16,
+      "elevation": 3,
+      "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
+      "movement_range_x": 0,
+      "movement_range_y": 1,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "RustboroCity_EventScript_Man2",
+      "flag": "0"
+    },
+    {
+      "graphics_id": "OBJ_EVENT_GFX_POKEFAN_M",
+      "x": 32,
+      "y": 64,
+      "elevation": 3,
+      "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "SlateportCity_House_EventScript_PokefanM",
+      "flag": "0"
+    },
+    {
+      "graphics_id": "OBJ_EVENT_GFX_YOUNGSTER",
+      "x": 14,
+      "y": 48,
+      "elevation": 3,
+      "movement_type": "MOVEMENT_TYPE_WANDER_LEFT_AND_RIGHT",
+      "movement_range_x": 1,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "MauvilleCity_EventScript_RichBoy",
+      "flag": "0"
+    },
+    {
+      "graphics_id": "OBJ_EVENT_GFX_GAMEBOY_KID",
+      "x": 31,
+      "y": 56,
+      "elevation": 3,
+      "movement_type": "MOVEMENT_TYPE_FACE_RIGHT",
+      "movement_range_x": 1,
+      "movement_range_y": 1,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "LilycoveCity_CoveLilyMotel_2F_EventScript_GameBoyKid",
+      "flag": "0"
+    },
+    {
+      "graphics_id": "OBJ_EVENT_GFX_GAMEBOY_KID",
+      "x": 32,
+      "y": 56,
+      "elevation": 3,
+      "movement_type": "MOVEMENT_TYPE_FACE_LEFT",
+      "movement_range_x": 1,
+      "movement_range_y": 1,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "LilycoveCity_CoveLilyMotel_2F_EventScript_GameBoyKid",
+      "flag": "0"
+    },
+    {
+      "graphics_id": "OBJ_EVENT_GFX_TEENKRYS",
+      "x": 12,
+      "y": 15,
+      "elevation": 0,
+      "movement_type": "MOVEMENT_TYPE_FACE_RIGHT",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "Cerulean_Krys",
+      "flag": "FLAG_TIME_PROGRESSION_9"
+    },
+    {
+      "graphics_id": "OBJ_EVENT_GFX_SPECIES(CHIKORITA)",
+      "x": 14,
+      "y": 15,
+      "elevation": 0,
+      "movement_type": "MOVEMENT_TYPE_WALK_IN_PLACE_LEFT",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "Cherrygrove_Chikorita",
+      "flag": "FLAG_TIME_PROGRESSION_9"
+    }
+  ],
+  "warp_events": [
+    {
+      "x": 28,
+      "y": 5,
+      "elevation": 0,
+      "dest_map": "MAP_JOHTO_GATE",
+      "dest_warp_id": "2"
+    },
+    {
+      "x": 27,
+      "y": 5,
+      "elevation": 0,
+      "dest_map": "MAP_JOHTO_GATE",
+      "dest_warp_id": "2"
+    },
+    {
+      "x": 52,
+      "y": 27,
+      "elevation": 0,
+      "dest_map": "MAP_JOHTO_STATION",
+      "dest_warp_id": "1"
+    },
+    {
+      "x": 22,
+      "y": 46,
+      "elevation": 0,
+      "dest_map": "MAP_GOLDENROD_CENTER",
+      "dest_warp_id": "1"
+    },
+    {
+      "x": 35,
+      "y": 46,
+      "elevation": 0,
+      "dest_map": "MAP_GOLDENROD_SHOP_F1",
+      "dest_warp_id": "0"
+    },
+    {
+      "x": 11,
+      "y": 27,
+      "elevation": 0,
+      "dest_map": "MAP_GOLDENROD_RADIO_F1",
+      "dest_warp_id": "0"
+    },
+    {
+      "x": 21,
+      "y": 36,
+      "elevation": 0,
+      "dest_map": "MAP_GOLDENROD_GAME_CORNER",
+      "dest_warp_id": "0"
+    },
+    {
+      "x": 19,
+      "y": 55,
+      "elevation": 0,
+      "dest_map": "MAP_GOLDENROD_TUNNEL_F1",
+      "dest_warp_id": "0"
+    },
+    {
+      "x": 22,
+      "y": 12,
+      "elevation": 0,
+      "dest_map": "MAP_GOLDENROD_TUNNEL_F1",
+      "dest_warp_id": "1"
+    },
+    {
+      "x": 52,
+      "y": 15,
+      "elevation": 0,
+      "dest_map": "MAP_GOLDENROD_GYM",
+      "dest_warp_id": "0"
+    },
+    {
+      "x": 50,
+      "y": 54,
+      "elevation": 0,
+      "dest_map": "MAP_GOLDENROD_BIKE_SHOP",
+      "dest_warp_id": "0"
+    },
+    {
+      "x": 34,
+      "y": 14,
+      "elevation": 0,
+      "dest_map": "MAP_GOLDENROD_FLOWER_SHOP",
+      "dest_warp_id": "0"
+    },
+    {
+      "x": 51,
+      "y": 7,
+      "elevation": 0,
+      "dest_map": "MAP_GOLDENROD_INTERIORS",
+      "dest_warp_id": "0"
+    },
+    {
+      "x": 18,
+      "y": 27,
+      "elevation": 0,
+      "dest_map": "MAP_GOLDENROD_INTERIORS",
+      "dest_warp_id": "1"
+    },
+    {
+      "x": 48,
+      "y": 36,
+      "elevation": 0,
+      "dest_map": "MAP_GOLDENROD_INTERIORS",
+      "dest_warp_id": "2"
+    },
+    {
+      "x": 13,
+      "y": 45,
+      "elevation": 0,
+      "dest_map": "MAP_GOLDENROD_INTERIORS",
+      "dest_warp_id": "3"
+    },
+    {
+      "x": 42,
+      "y": 52,
+      "elevation": 0,
+      "dest_map": "MAP_GOLDENROD_INTERIORS",
+      "dest_warp_id": "4"
+    },
+    {
+      "x": 33,
+      "y": 55,
+      "elevation": 0,
+      "dest_map": "MAP_GOLDENROD_INTERIORS",
+      "dest_warp_id": "10"
+    },
+    {
+      "x": 23,
+      "y": 46,
+      "elevation": 0,
+      "dest_map": "MAP_GOLDENROD_CENTER",
+      "dest_warp_id": "0"
+    },
+    {
+      "x": 29,
+      "y": 5,
+      "elevation": 0,
+      "dest_map": "MAP_JOHTO_GATE",
+      "dest_warp_id": "2"
+    },
+    {
+      "x": 10,
+      "y": 27,
+      "elevation": 0,
+      "dest_map": "MAP_GOLDENROD_RADIO_F1",
+      "dest_warp_id": "1"
+    },
+    {
+      "x": 21,
+      "y": 12,
+      "elevation": 0,
+      "dest_map": "MAP_GOLDENROD_TUNNEL_F1",
+      "dest_warp_id": "1"
+    },
+    {
+      "x": 18,
+      "y": 55,
+      "elevation": 0,
+      "dest_map": "MAP_GOLDENROD_TUNNEL_F1",
+      "dest_warp_id": "0"
+    },
+    {
+      "x": 34,
+      "y": 46,
+      "elevation": 0,
+      "dest_map": "MAP_GOLDENROD_SHOP_F1",
+      "dest_warp_id": "1"
+    }
+  ],
+  "coord_events": [
+
+  ],
+  "bg_events": [
+    {
+      "type": "sign",
+      "x": 54,
+      "y": 28,
+      "elevation": 0,
+      "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
+      "script": "PalletTown_Saffron_TrainSign"
+    },
+    {
+      "type": "sign",
+      "x": 24,
+      "y": 37,
+      "elevation": 0,
+      "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
+      "script": "NewBarkTown_Goldenrod_CasinoSign"
+    },
+    {
+      "type": "sign",
+      "x": 37,
+      "y": 47,
+      "elevation": 0,
+      "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
+      "script": "NewBarkTown_Goldenrod_DeptSign"
+    },
+    {
+      "type": "sign",
+      "x": 16,
+      "y": 56,
+      "elevation": 0,
+      "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
+      "script": "NewBarkTown_Goldenrod_UndergroundSign"
+    },
+    {
+      "type": "sign",
+      "x": 23,
+      "y": 13,
+      "elevation": 0,
+      "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
+      "script": "NewBarkTown_Goldenrod_UndergroundSign"
+    },
+    {
+      "type": "sign",
+      "x": 13,
+      "y": 28,
+      "elevation": 0,
+      "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
+      "script": "NewBarkTown_Goldenrod_RadioSign"
+    },
+    {
+      "type": "sign",
+      "x": 48,
+      "y": 15,
+      "elevation": 0,
+      "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
+      "script": "NewBarkTown_Goldenrod_GymSign"
+    },
+    {
+      "type": "sign",
+      "x": 33,
+      "y": 25,
+      "elevation": 0,
+      "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
+      "script": "NewBarkTown_Goldenrod_TownSign"
+    },
+    {
+      "type": "sign",
+      "x": 52,
+      "y": 55,
+      "elevation": 0,
+      "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
+      "script": "NewBarkTown_Goldenrod_SkateSign"
+    },
+    {
+      "type": "sign",
+      "x": 36,
+      "y": 15,
+      "elevation": 0,
+      "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
+      "script": "NewBarkTown_Goldenrod_FlowerSign"
+    },
+    {
+      "type": "sign",
+      "x": 21,
+      "y": 47,
+      "elevation": 0,
+      "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
+      "script": "OneIsland_Netcenter_TownSign"
+    }
+  ]
+}

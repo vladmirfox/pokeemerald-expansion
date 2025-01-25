@@ -410,27 +410,49 @@ ContestHall_EventScript_SetExitWarp::
 	return
 
 ContestHall_EventScript_SetExitWarpNormalContest::
-	warp MAP_LILYCOVE_CITY_CONTEST_LOBBY, 14, 4
+	goto ContestHall_EventScript_Exit
 	waitstate
 	end
 
 ContestHall_EventScript_SetExitWarpSuperContest::
-	warp MAP_LILYCOVE_CITY_CONTEST_LOBBY, 14, 4
+	goto ContestHall_EventScript_Exit
 	waitstate
 	end
 
 ContestHall_EventScript_SetExitWarpHyperContest::
-	warp MAP_LILYCOVE_CITY_CONTEST_LOBBY, 14, 4
+	goto ContestHall_EventScript_Exit
 	waitstate
 	end
 
 ContestHall_EventScript_SetExitWarpMasterContest::
-	warp MAP_LILYCOVE_CITY_CONTEST_LOBBY, 14, 4
+	goto ContestHall_EventScript_Exit
 	waitstate
 	end
 
 ContestHall_EventScript_SetExitWarpLinkContest::
+	goto ContestHall_EventScript_Exit
+	waitstate
+	end
+
+ContestHall_EventScript_Exit::
+	goto_if_eq VAR_SAFARI_LOCATION, 0, ContestHall_EventScript_Hoenn
+	goto_if_eq VAR_SAFARI_LOCATION, 1, ContestHall_EventScript_Kanto
+	goto_if_eq VAR_SAFARI_LOCATION, 2, ContestHall_EventScript_Johto
+	waitstate
+	end
+
+ContestHall_EventScript_Hoenn::
 	warp MAP_LILYCOVE_CITY_CONTEST_LOBBY, 15, 4
+	waitstate
+	end
+
+ContestHall_EventScript_Kanto::
+	warp MAP_VERMILION_CONTEST, 15, 4
+	waitstate
+	end
+
+ContestHall_EventScript_Johto::
+	warp MAP_OLIVINE_CONTEST, 15, 4
 	waitstate
 	end
 

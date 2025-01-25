@@ -1,0 +1,97 @@
+{
+  "id": "MAP_WHIRL_F1",
+  "name": "WhirlF1",
+  "layout": "LAYOUT_WHIRL_F1",
+  "music": "MUS_ABANDONED_SHIP",
+  "region_map_section": "MAPSEC_LITTLEROOT_TOWN",
+  "requires_flash": false,
+  "weather": "WEATHER_SHADE",
+  "map_type": "MAP_TYPE_UNDERGROUND",
+  "allow_cycling": true,
+  "allow_escaping": true,
+  "allow_running": true,
+  "show_map_name": true,
+  "battle_scene": "MAP_BATTLE_SCENE_NORMAL",
+  "connections": 0,
+  "object_events": [
+
+  ],
+  "warp_events": [
+    {
+      "x": 6,
+      "y": 7,
+      "elevation": 0,
+      "dest_map": "MAP_ROUTE41",
+      "dest_warp_id": "0"
+    },
+    {
+      "x": 5,
+      "y": 22,
+      "elevation": 0,
+      "dest_map": "MAP_ROUTE41",
+      "dest_warp_id": "1"
+    },
+    {
+      "x": 3,
+      "y": 50,
+      "elevation": 0,
+      "dest_map": "MAP_ROUTE41",
+      "dest_warp_id": "2"
+    },
+    {
+      "x": 7,
+      "y": 76,
+      "elevation": 0,
+      "dest_map": "MAP_ROUTE41",
+      "dest_warp_id": "3"
+    },
+    {
+      "x": 3,
+      "y": 3,
+      "elevation": 0,
+      "dest_map": "MAP_WHIRL_F2",
+      "dest_warp_id": "0"
+    },
+    {
+      "x": 17,
+      "y": 47,
+      "elevation": 0,
+      "dest_map": "MAP_WHIRL_F2",
+      "dest_warp_id": "1"
+    },
+    {
+      "x": 22,
+      "y": 32,
+      "elevation": 0,
+      "dest_map": "MAP_WHIRL_F2",
+      "dest_warp_id": "2"
+    },
+    {
+      "x": 3,
+      "y": 18,
+      "elevation": 0,
+      "dest_map": "MAP_WHIRL_F2",
+      "dest_warp_id": "3"
+    },
+    {
+      "x": 24,
+      "y": 18,
+      "elevation": 0,
+      "dest_map": "MAP_WHIRL_F2",
+      "dest_warp_id": "4"
+    },
+    {
+      "x": 7,
+      "y": 66,
+      "elevation": 0,
+      "dest_map": "MAP_WHIRL_F2",
+      "dest_warp_id": "5"
+    }
+  ],
+  "coord_events": [
+
+  ],
+  "bg_events": [
+
+  ]
+}

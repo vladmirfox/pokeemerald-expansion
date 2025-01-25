@@ -17,6 +17,15 @@ Route110_SeasideCyclingRoadNorthEntrance_EventScript_BikeCheck::
 	releaseall
 	end
 
+Route110_SeasideCyclingRoadNorthEntrance_EventScript_BikeCheckRight::
+	lockall
+	specialvar VAR_RESULT, GetPlayerAvatarBike
+	goto_if_eq VAR_RESULT, 0, Route110_SeasideCyclingRoadNorthEntrance_EventScript_NoBikeRight
+	setflag FLAG_SYS_CYCLING_ROAD
+	setvar VAR_TEMP_1, 1
+	releaseall
+	end
+
 Route110_SeasideCyclingRoadNorthEntrance_EventScript_NoBike::
 	msgbox Route110_SeasideCyclingRoadNorthEntrance_Text_TooDangerousToWalk, MSGBOX_DEFAULT
 	closemessage
@@ -25,8 +34,20 @@ Route110_SeasideCyclingRoadNorthEntrance_EventScript_NoBike::
 	releaseall
 	end
 
+Route110_SeasideCyclingRoadNorthEntrance_EventScript_NoBikeRight::
+	msgbox Route110_SeasideCyclingRoadNorthEntrance_Text_TooDangerousToWalk, MSGBOX_DEFAULT
+	closemessage
+	applymovement OBJ_EVENT_ID_PLAYER, Route110_SeasideCyclingRoadNorthEntrance_Movement_PushPlayerBackFromCounterRight
+	waitmovement 0
+	releaseall
+	end
+
 Route110_SeasideCyclingRoadNorthEntrance_Movement_PushPlayerBackFromCounter:
 	walk_left
+	step_end
+
+Route110_SeasideCyclingRoadNorthEntrance_Movement_PushPlayerBackFromCounterRight:
+	walk_right
 	step_end
 
 Route110_SeasideCyclingRoadNorthEntrance_EventScript_ClearCyclingRoad::

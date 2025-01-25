@@ -1,0 +1,76 @@
+{
+  "id": "MAP_RUINSOF_ALPH_F2",
+  "name": "RuinsofAlphF2",
+  "layout": "LAYOUT_RUINSOF_ALPH_F2",
+  "music": "MUS_ABANDONED_SHIP",
+  "region_map_section": "MAPSEC_LITTLEROOT_TOWN",
+  "requires_flash": false,
+  "weather": "WEATHER_SHADE",
+  "map_type": "MAP_TYPE_UNDERGROUND",
+  "allow_cycling": true,
+  "allow_escaping": true,
+  "allow_running": true,
+  "show_map_name": true,
+  "battle_scene": "MAP_BATTLE_SCENE_NORMAL",
+  "connections": 0,
+  "object_events": [
+
+  ],
+  "warp_events": [
+    {
+      "x": 66,
+      "y": 4,
+      "elevation": 0,
+      "dest_map": "MAP_UNION_CAVE_F1",
+      "dest_warp_id": "4"
+    },
+    {
+      "x": 66,
+      "y": 36,
+      "elevation": 0,
+      "dest_map": "MAP_RUINSOF_ALPH",
+      "dest_warp_id": "1"
+    },
+    {
+      "x": 38,
+      "y": 36,
+      "elevation": 0,
+      "dest_map": "MAP_RUINSOF_ALPH",
+      "dest_warp_id": "2"
+    },
+    {
+      "x": 38,
+      "y": 14,
+      "elevation": 0,
+      "dest_map": "MAP_RUINSOF_ALPH",
+      "dest_warp_id": "3"
+    },
+    {
+      "x": 10,
+      "y": 14,
+      "elevation": 0,
+      "dest_map": "MAP_RUINSOF_ALPH",
+      "dest_warp_id": "4"
+    },
+    {
+      "x": 10,
+      "y": 36,
+      "elevation": 0,
+      "dest_map": "MAP_RUINSOF_ALPH",
+      "dest_warp_id": "5"
+    },
+    {
+      "x": 10,
+      "y": 6,
+      "elevation": 0,
+      "dest_map": "MAP_RUINSOF_ALPH_F3",
+      "dest_warp_id": "0"
+    }
+  ],
+  "coord_events": [
+
+  ],
+  "bg_events": [
+
+  ]
+}

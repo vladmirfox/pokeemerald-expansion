@@ -2,7 +2,7 @@
   "id": "MAP_ROUTE119_WEATHER_INSTITUTE_2F",
   "name": "Route119_WeatherInstitute_2F",
   "layout": "LAYOUT_ROUTE119_WEATHER_INSTITUTE_2F",
-  "music": "MUS_RUSTBORO",
+  "music": "MUS_ROUTE119",
   "region_map_section": "MAPSEC_ROUTE_119",
   "requires_flash": false,
   "weather": "WEATHER_NONE",
@@ -12,10 +12,10 @@
   "allow_running": false,
   "show_map_name": false,
   "battle_scene": "MAP_BATTLE_SCENE_NORMAL",
-  "connections": null,
+  "connections": 0,
   "object_events": [
     {
-      "graphics_id": "OBJ_EVENT_GFX_AQUA_MEMBER_M",
+      "graphics_id": "OBJ_EVENT_GFX_ROCKETF",
       "x": 15,
       "y": 6,
       "elevation": 3,
@@ -28,7 +28,7 @@
       "flag": "FLAG_HIDE_ROUTE_119_TEAM_AQUA"
     },
     {
-      "graphics_id": "OBJ_EVENT_GFX_AQUA_MEMBER_M",
+      "graphics_id": "OBJ_EVENT_GFX_ROCKET",
       "x": 10,
       "y": 8,
       "elevation": 3,
@@ -41,7 +41,7 @@
       "flag": "FLAG_HIDE_ROUTE_119_TEAM_AQUA"
     },
     {
-      "graphics_id": "OBJ_EVENT_GFX_AQUA_MEMBER_F",
+      "graphics_id": "OBJ_EVENT_GFX_ARCHER",
       "x": 4,
       "y": 6,
       "elevation": 3,
@@ -93,7 +93,7 @@
       "flag": "FLAG_HIDE_WEATHER_INSTITUTE_2F_WORKERS"
     },
     {
-      "graphics_id": "OBJ_EVENT_GFX_AQUA_MEMBER_M",
+      "graphics_id": "OBJ_EVENT_GFX_ROCKET",
       "x": 16,
       "y": 6,
       "elevation": 3,
@@ -106,7 +106,7 @@
       "flag": "FLAG_HIDE_WEATHER_INSTITUTE_2F_AQUA_GRUNT_M"
     },
     {
-      "graphics_id": "OBJ_EVENT_GFX_AQUA_MEMBER_F",
+      "graphics_id": "OBJ_EVENT_GFX_ROCKETF",
       "x": 19,
       "y": 6,
       "elevation": 3,
@@ -128,6 +128,10 @@
       "dest_warp_id": "2"
     }
   ],
-  "coord_events": [],
-  "bg_events": []
+  "coord_events": [
+
+  ],
+  "bg_events": [
+
+  ]
 }

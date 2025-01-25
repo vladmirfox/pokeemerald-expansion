@@ -1,0 +1,311 @@
+{
+  "id": "MAP_DOTTED_HOLE_F1",
+  "name": "DottedHoleF1",
+  "layout": "LAYOUT_DOTTED_HOLE_F1",
+  "music": "MUS_MT_PYRE",
+  "region_map_section": "MAPSEC_DOTTED_HOLE",
+  "requires_flash": false,
+  "weather": "WEATHER_NONE",
+  "map_type": "MAP_TYPE_UNDERGROUND",
+  "allow_cycling": true,
+  "allow_escaping": false,
+  "allow_running": true,
+  "show_map_name": true,
+  "battle_scene": "MAP_BATTLE_SCENE_NORMAL",
+  "connections": [
+    {
+      "map": "MAP_DOTTED_HOLE_F2",
+      "offset": 0,
+      "direction": "dive"
+    },
+    {
+      "map": "MAP_DOTTED_HOLE_F2",
+      "offset": 0,
+      "direction": "dive"
+    }
+  ],
+  "object_events": [
+    {
+      "graphics_id": "OBJ_EVENT_GFX_TRICK_HOUSE_STATUE",
+      "x": 31,
+      "y": 53,
+      "elevation": 0,
+      "movement_type": "MOVEMENT_TYPE_NONE",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "DottedHole_WarpComeBack",
+      "flag": "0"
+    }
+  ],
+  "warp_events": [
+    {
+      "x": 8,
+      "y": 20,
+      "elevation": 0,
+      "dest_map": "MAP_RUIN_VALLEY",
+      "dest_warp_id": "0"
+    },
+    {
+      "x": 8,
+      "y": 9,
+      "elevation": 0,
+      "dest_map": "MAP_DOTTED_HOLE_F1",
+      "dest_warp_id": "2"
+    },
+    {
+      "x": 7,
+      "y": 34,
+      "elevation": 0,
+      "dest_map": "MAP_DOTTED_HOLE_F1",
+      "dest_warp_id": "1"
+    },
+    {
+      "x": 7,
+      "y": 31,
+      "elevation": 0,
+      "dest_map": "MAP_DOTTED_HOLE_F1",
+      "dest_warp_id": "4"
+    },
+    {
+      "x": 31,
+      "y": 14,
+      "elevation": 0,
+      "dest_map": "MAP_DOTTED_HOLE_F1",
+      "dest_warp_id": "3"
+    },
+    {
+      "x": 27,
+      "y": 14,
+      "elevation": 0,
+      "dest_map": "MAP_DOTTED_HOLE_F1",
+      "dest_warp_id": "6"
+    },
+    {
+      "x": 31,
+      "y": 35,
+      "elevation": 0,
+      "dest_map": "MAP_DOTTED_HOLE_F1",
+      "dest_warp_id": "5"
+    },
+    {
+      "x": 35,
+      "y": 35,
+      "elevation": 0,
+      "dest_map": "MAP_DOTTED_HOLE_F1",
+      "dest_warp_id": "8"
+    },
+    {
+      "x": 7,
+      "y": 55,
+      "elevation": 0,
+      "dest_map": "MAP_DOTTED_HOLE_F1",
+      "dest_warp_id": "7"
+    },
+    {
+      "x": 7,
+      "y": 59,
+      "elevation": 0,
+      "dest_map": "MAP_DOTTED_HOLE_F1",
+      "dest_warp_id": "10"
+    },
+    {
+      "x": 31,
+      "y": 55,
+      "elevation": 0,
+      "dest_map": "MAP_DOTTED_HOLE_F1",
+      "dest_warp_id": "9"
+    },
+    {
+      "x": 15,
+      "y": 7,
+      "elevation": 0,
+      "dest_map": "MAP_DOTTED_HOLE_F5",
+      "dest_warp_id": "1"
+    },
+    {
+      "x": 14,
+      "y": 7,
+      "elevation": 0,
+      "dest_map": "MAP_DOTTED_HOLE_F5",
+      "dest_warp_id": "1"
+    }
+  ],
+  "coord_events": [
+    {
+      "type": "trigger",
+      "x": 11,
+      "y": 34,
+      "elevation": 0,
+      "var": "VAR_TEMP_0",
+      "var_value": "0",
+      "script": "DottedHole_Wronghole"
+    },
+    {
+      "type": "trigger",
+      "x": 7,
+      "y": 38,
+      "elevation": 0,
+      "var": "VAR_TEMP_0",
+      "var_value": "0",
+      "script": "DottedHole_Wronghole"
+    },
+    {
+      "type": "trigger",
+      "x": 3,
+      "y": 34,
+      "elevation": 0,
+      "var": "VAR_TEMP_0",
+      "var_value": "0",
+      "script": "DottedHole_Wronghole"
+    },
+    {
+      "type": "trigger",
+      "x": 8,
+      "y": 9,
+      "elevation": 0,
+      "var": "VAR_TEMP_0",
+      "var_value": "0",
+      "script": "DottedHole_Wronghole"
+    },
+    {
+      "type": "trigger",
+      "x": 35,
+      "y": 14,
+      "elevation": 0,
+      "var": "VAR_TEMP_0",
+      "var_value": "0",
+      "script": "DottedHole_Wronghole"
+    },
+    {
+      "type": "trigger",
+      "x": 31,
+      "y": 18,
+      "elevation": 0,
+      "var": "VAR_TEMP_0",
+      "var_value": "0",
+      "script": "DottedHole_Wronghole"
+    },
+    {
+      "type": "trigger",
+      "x": 31,
+      "y": 11,
+      "elevation": 0,
+      "var": "VAR_TEMP_0",
+      "var_value": "0",
+      "script": "DottedHole_Wronghole"
+    },
+    {
+      "type": "trigger",
+      "x": 31,
+      "y": 39,
+      "elevation": 0,
+      "var": "VAR_TEMP_0",
+      "var_value": "0",
+      "script": "DottedHole_Wronghole"
+    },
+    {
+      "type": "trigger",
+      "x": 27,
+      "y": 35,
+      "elevation": 0,
+      "var": "VAR_TEMP_0",
+      "var_value": "0",
+      "script": "DottedHole_Wronghole"
+    },
+    {
+      "type": "trigger",
+      "x": 31,
+      "y": 32,
+      "elevation": 0,
+      "var": "VAR_TEMP_0",
+      "var_value": "0",
+      "script": "DottedHole_Wronghole"
+    },
+    {
+      "type": "trigger",
+      "x": 3,
+      "y": 55,
+      "elevation": 0,
+      "var": "VAR_TEMP_0",
+      "var_value": "0",
+      "script": "DottedHole_Wronghole"
+    },
+    {
+      "type": "trigger",
+      "x": 7,
+      "y": 52,
+      "elevation": 0,
+      "var": "VAR_TEMP_0",
+      "var_value": "0",
+      "script": "DottedHole_Wronghole"
+    },
+    {
+      "type": "trigger",
+      "x": 11,
+      "y": 55,
+      "elevation": 0,
+      "var": "VAR_TEMP_0",
+      "var_value": "0",
+      "script": "DottedHole_Wronghole"
+    },
+    {
+      "type": "trigger",
+      "x": 7,
+      "y": 31,
+      "elevation": 0,
+      "var": "VAR_TEMP_0",
+      "var_value": "0",
+      "script": "DottedHole_Right_1"
+    },
+    {
+      "type": "trigger",
+      "x": 27,
+      "y": 14,
+      "elevation": 0,
+      "var": "VAR_TEMP_0",
+      "var_value": "0",
+      "script": "DottedHole_Right_2"
+    },
+    {
+      "type": "trigger",
+      "x": 35,
+      "y": 35,
+      "elevation": 0,
+      "var": "VAR_TEMP_0",
+      "var_value": "0",
+      "script": "DottedHole_Right_3"
+    },
+    {
+      "type": "trigger",
+      "x": 7,
+      "y": 59,
+      "elevation": 0,
+      "var": "VAR_TEMP_0",
+      "var_value": "0",
+      "script": "DottedHole_Right_4"
+    },
+    {
+      "type": "trigger",
+      "x": 15,
+      "y": 6,
+      "elevation": 0,
+      "var": "VAR_TEMP_0",
+      "var_value": "0",
+      "script": "DottedHole_WarpF5"
+    },
+    {
+      "type": "trigger",
+      "x": 14,
+      "y": 6,
+      "elevation": 0,
+      "var": "VAR_TEMP_0",
+      "var_value": "0",
+      "script": "DottedHole_WarpF5"
+    }
+  ],
+  "bg_events": [
+
+  ]
+}

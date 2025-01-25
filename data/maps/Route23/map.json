@@ -1,0 +1,72 @@
+{
+  "id": "MAP_ROUTE23",
+  "name": "Route23",
+  "layout": "LAYOUT_ROUTE23",
+  "music": "MUS_RG_VICTORY_ROAD",
+  "region_map_section": "MAPSEC_ROUTE_23",
+  "requires_flash": false,
+  "weather": "WEATHER_NONE",
+  "map_type": "MAP_TYPE_ROUTE",
+  "allow_cycling": true,
+  "allow_escaping": true,
+  "allow_running": true,
+  "show_map_name": true,
+  "battle_scene": "MAP_BATTLE_SCENE_NORMAL",
+  "connections": [
+    {
+      "map": "MAP_INDIGO_PLATEAU",
+      "offset": 1,
+      "direction": "up"
+    },
+    {
+      "map": "MAP_ROUTE22",
+      "offset": 10,
+      "direction": "down"
+    },
+    {
+      "map": "MAP_MT_SILVER_F1",
+      "offset": -56,
+      "direction": "down"
+    }
+  ],
+  "object_events": [
+
+  ],
+  "warp_events": [
+    {
+      "x": 9,
+      "y": 28,
+      "elevation": 0,
+      "dest_map": "MAP_KANTO_VICTORY_ROAD",
+      "dest_warp_id": "0"
+    },
+    {
+      "x": 22,
+      "y": 28,
+      "elevation": 0,
+      "dest_map": "MAP_KANTO_VICTORY_ROAD_F2",
+      "dest_warp_id": "4"
+    }
+  ],
+  "coord_events": [
+
+  ],
+  "bg_events": [
+    {
+      "type": "sign",
+      "x": 20,
+      "y": 141,
+      "elevation": 0,
+      "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
+      "script": "PalletTown_Route23Sign"
+    },
+    {
+      "type": "sign",
+      "x": 7,
+      "y": 31,
+      "elevation": 0,
+      "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
+      "script": "PalletTown_VictoryRoadSign"
+    }
+  ]
+}

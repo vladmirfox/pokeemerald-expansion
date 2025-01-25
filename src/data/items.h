@@ -12967,6 +12967,23 @@ const struct Item gItemsInfo[] =
         .iconPalette = gItemIconPalette_Ruby,
     },
 
+    [ITEM_EMERALD] =
+    {
+        .name = _("Emerald"),
+        .pluralName = _("Emeralds"),
+        .price = 0,
+        .description = COMPOUND_STRING(
+            "A shiny green gem\n"
+            "that symbolizes\n"
+            "faith."),
+        .importance = 1,
+        .pocket = POCKET_KEY_ITEMS,
+        .type = ITEM_USE_BAG_MENU,
+        .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
+        .iconPic = gItemIcon_Gem,
+        .iconPalette = gItemIconPalette_SalacBerry,
+    },
+
     [ITEM_SAPPHIRE] =
     {
         .name = _("Sapphire"),

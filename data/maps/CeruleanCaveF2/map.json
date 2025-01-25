@@ -1,0 +1,75 @@
+{
+  "id": "MAP_CERULEAN_CAVE_F2",
+  "name": "CeruleanCaveF2",
+  "layout": "LAYOUT_CERULEAN_CAVE_F2",
+  "music": "MUS_RG_POKE_MANSION",
+  "region_map_section": "MAPSEC_CERULEAN_CAVE",
+  "requires_flash": false,
+  "weather": "WEATHER_NONE",
+  "map_type": "MAP_TYPE_UNDERGROUND",
+  "allow_cycling": true,
+  "allow_escaping": true,
+  "allow_running": true,
+  "show_map_name": false,
+  "battle_scene": "MAP_BATTLE_SCENE_NORMAL",
+  "connections": [
+    {
+      "map": "MAP_CERULEAN_CAVE_F2A",
+      "offset": 0,
+      "direction": "down"
+    }
+  ],
+  "object_events": [
+
+  ],
+  "warp_events": [
+    {
+      "x": 104,
+      "y": 14,
+      "elevation": 0,
+      "dest_map": "MAP_CERULEAN_CAVE_F1",
+      "dest_warp_id": "2"
+    },
+    {
+      "x": 36,
+      "y": 8,
+      "elevation": 0,
+      "dest_map": "MAP_CERULEAN_CAVE_F1",
+      "dest_warp_id": "3"
+    },
+    {
+      "x": 36,
+      "y": 9,
+      "elevation": 0,
+      "dest_map": "MAP_CERULEAN_CAVE_F1",
+      "dest_warp_id": "4"
+    },
+    {
+      "x": 16,
+      "y": 61,
+      "elevation": 0,
+      "dest_map": "MAP_CERULEAN_CAVE_F1",
+      "dest_warp_id": "5"
+    },
+    {
+      "x": 23,
+      "y": 25,
+      "elevation": 0,
+      "dest_map": "MAP_CERULEAN_CAVE_F1",
+      "dest_warp_id": "6"
+    },
+    {
+      "x": 9,
+      "y": 9,
+      "elevation": 0,
+      "dest_map": "MAP_CERULEAN_CAVE_F1",
+      "dest_warp_id": "7"
+    }
+  ],
+  "coord_events": [
+
+  ],
+  "bg_events": [
+
+  ]
+}

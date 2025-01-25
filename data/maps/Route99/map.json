@@ -1,0 +1,50 @@
+{
+  "id": "MAP_ROUTE99",
+  "name": "Route99",
+  "layout": "LAYOUT_ROUTE99",
+  "music": "MUS_ABANDONED_SHIP",
+  "region_map_section": "MAPSEC_LITTLEROOT_TOWN",
+  "requires_flash": false,
+  "weather": "WEATHER_NONE",
+  "map_type": "MAP_TYPE_ROUTE",
+  "allow_cycling": true,
+  "allow_escaping": true,
+  "allow_running": true,
+  "show_map_name": true,
+  "battle_scene": "MAP_BATTLE_SCENE_NORMAL",
+  "connections": [
+    {
+      "map": "MAP_CHERRYGROVE_CITY",
+      "offset": 12,
+      "direction": "right"
+    },
+    {
+      "map": "MAP_ROUTE32",
+      "offset": -41,
+      "direction": "left"
+    },
+    {
+      "map": "MAP_ROUTE113",
+      "offset": -41,
+      "direction": "down"
+    }
+  ],
+  "object_events": [
+
+  ],
+  "warp_events": [
+    {
+      "x": 25,
+      "y": 11,
+      "elevation": 0,
+      "dest_map": "MAP_ROUTE99CRYPT",
+      "dest_warp_id": "0"
+    }
+  ],
+  "coord_events": [
+
+  ],
+  "bg_events": [
+
+  ]
+}

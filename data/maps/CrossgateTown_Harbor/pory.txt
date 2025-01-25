@@ -1,0 +1,17 @@
+	script MultiRegionHarbor{
+	lock
+	faceplayer
+	msgbox("Ahoi!")
+	message("Where are we sailing to?")
+	multichoice(25, 5, CROSSGATE_MULTI_REGION, 0)
+    if (var(VAR_RESULT) == 0) {
+		}
+    elif (var(VAR_RESULT) == 1) {
+    multichoice(25, 5, CROSSGATE_MULTI_REGION_SEVII, 0)
+		}
+    elif (var(VAR_RESULT) == 2) {
+
+		}
+closemessage
+	}
+   

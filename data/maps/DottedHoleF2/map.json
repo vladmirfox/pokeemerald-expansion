@@ -1,0 +1,45 @@
+{
+  "id": "MAP_DOTTED_HOLE_F2",
+  "name": "DottedHoleF2",
+  "layout": "LAYOUT_DOTTED_HOLE_F2",
+  "music": "MUS_UNDERWATER",
+  "region_map_section": "MAPSEC_DOTTED_HOLE",
+  "requires_flash": false,
+  "weather": "WEATHER_UNDERWATER_BUBBLES",
+  "map_type": "MAP_TYPE_UNDERWATER",
+  "allow_cycling": true,
+  "allow_escaping": true,
+  "allow_running": true,
+  "show_map_name": false,
+  "battle_scene": "MAP_BATTLE_SCENE_NORMAL",
+  "connections": [
+    {
+      "map": "MAP_DOTTED_HOLE_F1",
+      "offset": 0,
+      "direction": "emerge"
+    },
+    {
+      "map": "MAP_DOTTED_HOLE_F1",
+      "offset": 0,
+      "direction": "emerge"
+    }
+  ],
+  "object_events": [
+
+  ],
+  "warp_events": [
+    {
+      "x": 43,
+      "y": 14,
+      "elevation": 0,
+      "dest_map": "MAP_DOTTED_HOLE_F3",
+      "dest_warp_id": "0"
+    }
+  ],
+  "coord_events": [
+
+  ],
+  "bg_events": [
+
+  ]
+}

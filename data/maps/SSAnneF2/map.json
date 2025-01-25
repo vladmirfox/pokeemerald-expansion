@@ -1,0 +1,230 @@
+{
+  "id": "MAP_SSANNE_F2",
+  "name": "SSAnneF2",
+  "layout": "LAYOUT_SSANNE_F2",
+  "music": "MUS_OCEANIC_MUSEUM",
+  "region_map_section": "MAPSEC_S_S_ANNE",
+  "requires_flash": false,
+  "weather": "WEATHER_NONE",
+  "map_type": "MAP_TYPE_INDOOR",
+  "allow_cycling": false,
+  "allow_escaping": false,
+  "allow_running": true,
+  "show_map_name": false,
+  "battle_scene": "MAP_BATTLE_SCENE_NORMAL",
+  "connections": 0,
+  "object_events": [
+
+  ],
+  "warp_events": [
+    {
+      "x": 4,
+      "y": 1,
+      "elevation": 0,
+      "dest_map": "MAP_SSANNE_F1",
+      "dest_warp_id": "0"
+    },
+    {
+      "x": 18,
+      "y": 1,
+      "elevation": 0,
+      "dest_map": "MAP_SSANNE_F1",
+      "dest_warp_id": "1"
+    },
+    {
+      "x": 32,
+      "y": 1,
+      "elevation": 0,
+      "dest_map": "MAP_SSANNE_F1",
+      "dest_warp_id": "2"
+    },
+    {
+      "x": 46,
+      "y": 1,
+      "elevation": 0,
+      "dest_map": "MAP_SSANNE_F1",
+      "dest_warp_id": "3"
+    },
+    {
+      "x": 4,
+      "y": 15,
+      "elevation": 0,
+      "dest_map": "MAP_SSANNE_F1",
+      "dest_warp_id": "4"
+    },
+    {
+      "x": 18,
+      "y": 15,
+      "elevation": 0,
+      "dest_map": "MAP_SSANNE_F1",
+      "dest_warp_id": "5"
+    },
+    {
+      "x": 32,
+      "y": 15,
+      "elevation": 0,
+      "dest_map": "MAP_SSANNE_F1",
+      "dest_warp_id": "6"
+    },
+    {
+      "x": 5,
+      "y": 35,
+      "elevation": 0,
+      "dest_map": "MAP_SSANNE_F1",
+      "dest_warp_id": "8"
+    },
+    {
+      "x": 19,
+      "y": 35,
+      "elevation": 0,
+      "dest_map": "MAP_SSANNE_F1",
+      "dest_warp_id": "9"
+    },
+    {
+      "x": 33,
+      "y": 35,
+      "elevation": 0,
+      "dest_map": "MAP_SSANNE_F1",
+      "dest_warp_id": "10"
+    },
+    {
+      "x": 47,
+      "y": 35,
+      "elevation": 0,
+      "dest_map": "MAP_SSANNE_F1",
+      "dest_warp_id": "11"
+    },
+    {
+      "x": 47,
+      "y": 21,
+      "elevation": 0,
+      "dest_map": "MAP_SSANNE_F1",
+      "dest_warp_id": "12"
+    },
+    {
+      "x": 4,
+      "y": 35,
+      "elevation": 0,
+      "dest_map": "MAP_SSANNE_F1",
+      "dest_warp_id": "8"
+    },
+    {
+      "x": 18,
+      "y": 35,
+      "elevation": 0,
+      "dest_map": "MAP_SSANNE_F1",
+      "dest_warp_id": "9"
+    },
+    {
+      "x": 32,
+      "y": 35,
+      "elevation": 0,
+      "dest_map": "MAP_SSANNE_F1",
+      "dest_warp_id": "10"
+    },
+    {
+      "x": 46,
+      "y": 35,
+      "elevation": 0,
+      "dest_map": "MAP_SSANNE_F1",
+      "dest_warp_id": "11"
+    },
+    {
+      "x": 46,
+      "y": 21,
+      "elevation": 0,
+      "dest_map": "MAP_SSANNE_F1",
+      "dest_warp_id": "12"
+    },
+    {
+      "x": 5,
+      "y": 49,
+      "elevation": 0,
+      "dest_map": "MAP_SSANNE_F1",
+      "dest_warp_id": "17"
+    },
+    {
+      "x": 19,
+      "y": 49,
+      "elevation": 0,
+      "dest_map": "MAP_SSANNE_F1",
+      "dest_warp_id": "18"
+    },
+    {
+      "x": 33,
+      "y": 49,
+      "elevation": 0,
+      "dest_map": "MAP_SSANNE_F1",
+      "dest_warp_id": "19"
+    },
+    {
+      "x": 47,
+      "y": 49,
+      "elevation": 0,
+      "dest_map": "MAP_SSANNE_F1",
+      "dest_warp_id": "20"
+    },
+    {
+      "x": 5,
+      "y": 63,
+      "elevation": 0,
+      "dest_map": "MAP_SSANNE_F1",
+      "dest_warp_id": "21"
+    },
+    {
+      "x": 19,
+      "y": 63,
+      "elevation": 0,
+      "dest_map": "MAP_SSANNE_F1",
+      "dest_warp_id": "22"
+    },
+    {
+      "x": 4,
+      "y": 49,
+      "elevation": 0,
+      "dest_map": "MAP_SSANNE_F1",
+      "dest_warp_id": "17"
+    },
+    {
+      "x": 18,
+      "y": 49,
+      "elevation": 0,
+      "dest_map": "MAP_SSANNE_F1",
+      "dest_warp_id": "18"
+    },
+    {
+      "x": 32,
+      "y": 49,
+      "elevation": 0,
+      "dest_map": "MAP_SSANNE_F1",
+      "dest_warp_id": "19"
+    },
+    {
+      "x": 46,
+      "y": 49,
+      "elevation": 0,
+      "dest_map": "MAP_SSANNE_F1",
+      "dest_warp_id": "20"
+    },
+    {
+      "x": 4,
+      "y": 63,
+      "elevation": 0,
+      "dest_map": "MAP_SSANNE_F1",
+      "dest_warp_id": "21"
+    },
+    {
+      "x": 18,
+      "y": 63,
+      "elevation": 0,
+      "dest_map": "MAP_SSANNE_F1",
+      "dest_warp_id": "22"
+    }
+  ],
+  "coord_events": [
+
+  ],
+  "bg_events": [
+
+  ]
+}

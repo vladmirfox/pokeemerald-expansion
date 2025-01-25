@@ -1,0 +1,76 @@
+{
+  "id": "MAP_ROUTE47F2",
+  "name": "Route47F2",
+  "layout": "LAYOUT_ROUTE47F2",
+  "music": "MUS_RG_SEVII_ROUTE",
+  "region_map_section": "MAPSEC_LITTLEROOT_TOWN",
+  "requires_flash": false,
+  "weather": "WEATHER_SHADE",
+  "map_type": "MAP_TYPE_UNDERGROUND",
+  "allow_cycling": true,
+  "allow_escaping": true,
+  "allow_running": true,
+  "show_map_name": false,
+  "battle_scene": "MAP_BATTLE_SCENE_NORMAL",
+  "connections": 0,
+  "object_events": [
+
+  ],
+  "warp_events": [
+    {
+      "x": 6,
+      "y": 27,
+      "elevation": 0,
+      "dest_map": "MAP_ROUTE47",
+      "dest_warp_id": "1"
+    },
+    {
+      "x": 6,
+      "y": 45,
+      "elevation": 0,
+      "dest_map": "MAP_ROUTE47",
+      "dest_warp_id": "2"
+    },
+    {
+      "x": 4,
+      "y": 13,
+      "elevation": 0,
+      "dest_map": "MAP_ROUTE47",
+      "dest_warp_id": "3"
+    },
+    {
+      "x": 3,
+      "y": 25,
+      "elevation": 0,
+      "dest_map": "MAP_ROUTE47F2",
+      "dest_warp_id": "4"
+    },
+    {
+      "x": 4,
+      "y": 38,
+      "elevation": 0,
+      "dest_map": "MAP_ROUTE47F2",
+      "dest_warp_id": "3"
+    },
+    {
+      "x": 9,
+      "y": 25,
+      "elevation": 0,
+      "dest_map": "MAP_ROUTE47F2",
+      "dest_warp_id": "6"
+    },
+    {
+      "x": 5,
+      "y": 4,
+      "elevation": 0,
+      "dest_map": "MAP_ROUTE47F2",
+      "dest_warp_id": "5"
+    }
+  ],
+  "coord_events": [
+
+  ],
+  "bg_events": [
+
+  ]
+}

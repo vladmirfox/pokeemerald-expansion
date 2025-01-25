@@ -1,0 +1,95 @@
+{
+  "id": "MAP_COBALT_BEACHA",
+  "name": "CobaltBeacha",
+  "layout": "LAYOUT_COBALT_BEACHA",
+  "music": "MUS_RG_ROUTE3",
+  "region_map_section": "MAPSEC_LITTLEROOT_TOWN",
+  "requires_flash": false,
+  "weather": "WEATHER_NONE",
+  "map_type": "MAP_TYPE_ROUTE",
+  "allow_cycling": true,
+  "allow_escaping": true,
+  "allow_running": true,
+  "show_map_name": false,
+  "battle_scene": "MAP_BATTLE_SCENE_NORMAL",
+  "connections": [
+    {
+      "map": "MAP_COBALT_BAY",
+      "offset": 40,
+      "direction": "up"
+    }
+  ],
+  "object_events": [
+    {
+      "graphics_id": "OBJ_EVENT_GFX_SS_TIDAL",
+      "x": 31,
+      "y": 27,
+      "elevation": 0,
+      "movement_type": "MOVEMENT_TYPE_NONE",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "NULL",
+      "flag": "0"
+    },
+    {
+      "graphics_id": "OBJ_EVENT_GFX_SAILOR",
+      "x": 34,
+      "y": 21,
+      "elevation": 5,
+      "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
+      "movement_range_x": 1,
+      "movement_range_y": 1,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "LilycoveCity_EventScript_RichBoy",
+      "flag": "0"
+    },
+    {
+      "graphics_id": "OBJ_EVENT_GFX_SAILOR",
+      "x": 30,
+      "y": 17,
+      "elevation": 3,
+      "movement_type": "MOVEMENT_TYPE_LOOK_AROUND",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "SlateportCity_Harbor_EventScript_Sailor",
+      "flag": "FLAG_HIDE_SLATEPORT_CITY_HARBOR_PATRONS"
+    }
+  ],
+  "warp_events": [
+    {
+      "x": 31,
+      "y": 25,
+      "elevation": 0,
+      "dest_map": "MAP_SSANNE_F1",
+      "dest_warp_id": "27"
+    }
+  ],
+  "coord_events": [
+    {
+      "type": "trigger",
+      "x": 31,
+      "y": 25,
+      "elevation": 0,
+      "var": "VAR_TEMP_0",
+      "var_value": "0",
+      "script": "CobaltBeacha_Warp"
+    },
+    {
+      "type": "trigger",
+      "x": 31,
+      "y": 25,
+      "elevation": 0,
+      "var": "VAR_TEMP_0",
+      "var_value": "0",
+      "script": "CobaltBeacha_Warp"
+    }
+  ],
+  "bg_events": [
+
+  ]
+}

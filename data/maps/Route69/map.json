@@ -1,0 +1,69 @@
+{
+  "id": "MAP_ROUTE69",
+  "name": "Route69",
+  "layout": "LAYOUT_ROUTE69",
+  "music": "MUS_ROUTE101",
+  "region_map_section": "MAPSEC_LITTLEROOT_TOWN",
+  "requires_flash": false,
+  "weather": "WEATHER_NONE",
+  "map_type": "MAP_TYPE_TOWN",
+  "allow_cycling": true,
+  "allow_escaping": true,
+  "allow_running": true,
+  "show_map_name": true,
+  "battle_scene": "MAP_BATTLE_SCENE_NORMAL",
+  "connections": [
+    {
+      "map": "MAP_RING_TOWN",
+      "offset": 6,
+      "direction": "down"
+    },
+    {
+      "map": "MAP_RING_LAKE",
+      "offset": 50,
+      "direction": "down"
+    },
+    {
+      "map": "MAP_ROUTE70",
+      "offset": 7,
+      "direction": "right"
+    },
+    {
+      "map": "MAP_ROUTE71",
+      "offset": 102,
+      "direction": "up"
+    }
+  ],
+  "object_events": [
+
+  ],
+  "warp_events": [
+    {
+      "x": 87,
+      "y": 12,
+      "elevation": 0,
+      "dest_map": "MAP_MT_PANULA_F1",
+      "dest_warp_id": "0"
+    },
+    {
+      "x": 109,
+      "y": 13,
+      "elevation": 0,
+      "dest_map": "MAP_MT_PANULA_F1",
+      "dest_warp_id": "1"
+    },
+    {
+      "x": 127,
+      "y": 30,
+      "elevation": 0,
+      "dest_map": "MAP_MT_PANULA_F3",
+      "dest_warp_id": "1"
+    }
+  ],
+  "coord_events": [
+
+  ],
+  "bg_events": [
+
+  ]
+}

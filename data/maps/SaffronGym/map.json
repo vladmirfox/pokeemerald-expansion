@@ -1,0 +1,335 @@
+{
+  "id": "MAP_SAFFRON_GYM",
+  "name": "SaffronGym",
+  "layout": "LAYOUT_SAFFRON_GYM",
+  "music": "MUS_GYM",
+  "region_map_section": "MAPSEC_SAFFRON_CITY",
+  "requires_flash": false,
+  "weather": "WEATHER_NONE",
+  "map_type": "MAP_TYPE_INDOOR",
+  "allow_cycling": false,
+  "allow_escaping": false,
+  "allow_running": true,
+  "show_map_name": false,
+  "battle_scene": "MAP_BATTLE_SCENE_NORMAL",
+  "connections": 0,
+  "object_events": [
+    {
+      "graphics_id": "OBJ_EVENT_GFX_TRICK_HOUSE_STATUE",
+      "x": 15,
+      "y": 29,
+      "elevation": 0,
+      "movement_type": "MOVEMENT_TYPE_NONE",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "NULL",
+      "flag": "0"
+    },
+    {
+      "graphics_id": "OBJ_EVENT_GFX_TRICK_HOUSE_STATUE",
+      "x": 18,
+      "y": 29,
+      "elevation": 0,
+      "movement_type": "MOVEMENT_TYPE_NONE",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "NULL",
+      "flag": "0"
+    },
+    {
+      "graphics_id": "OBJ_EVENT_GFX_SABRINA",
+      "x": 17,
+      "y": 13,
+      "elevation": 0,
+      "movement_type": "MOVEMENT_TYPE_NONE",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "NULL",
+      "flag": "0"
+    },
+    {
+      "graphics_id": "OBJ_EVENT_GFX_SPECIES(ALAKAZAM)",
+      "x": 19,
+      "y": 18,
+      "elevation": 0,
+      "movement_type": "MOVEMENT_TYPE_WALK_IN_PLACE_DOWN",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "NULL",
+      "flag": "0"
+    },
+    {
+      "graphics_id": "OBJ_EVENT_GFX_SPECIES(ALAKAZAM)",
+      "x": 15,
+      "y": 18,
+      "elevation": 0,
+      "movement_type": "MOVEMENT_TYPE_WALK_IN_PLACE_DOWN",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "NULL",
+      "flag": "0"
+    },
+    {
+      "graphics_id": "OBJ_EVENT_GFX_SPECIES(ESPEON)",
+      "x": 18,
+      "y": 13,
+      "elevation": 0,
+      "movement_type": "MOVEMENT_TYPE_WALK_IN_PLACE_DOWN",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "Cherrygrove_Espeon",
+      "flag": "0"
+    }
+  ],
+  "warp_events": [
+    {
+      "x": 17,
+      "y": 32,
+      "elevation": 0,
+      "dest_map": "MAP_SAFFRON_CITY",
+      "dest_warp_id": "17"
+    },
+    {
+      "x": 21,
+      "y": 29,
+      "elevation": 0,
+      "dest_map": "MAP_SAFFRON_GYM",
+      "dest_warp_id": "2"
+    },
+    {
+      "x": 32,
+      "y": 30,
+      "elevation": 0,
+      "dest_map": "MAP_SAFFRON_GYM",
+      "dest_warp_id": "1"
+    },
+    {
+      "x": 32,
+      "y": 26,
+      "elevation": 0,
+      "dest_map": "MAP_SAFFRON_GYM",
+      "dest_warp_id": "4"
+    },
+    {
+      "x": 32,
+      "y": 15,
+      "elevation": 0,
+      "dest_map": "MAP_SAFFRON_GYM",
+      "dest_warp_id": "3"
+    },
+    {
+      "x": 27,
+      "y": 26,
+      "elevation": 0,
+      "dest_map": "MAP_SAFFRON_GYM",
+      "dest_warp_id": "6"
+    },
+    {
+      "x": 32,
+      "y": 4,
+      "elevation": 0,
+      "dest_map": "MAP_SAFFRON_GYM",
+      "dest_warp_id": "5"
+    },
+    {
+      "x": 27,
+      "y": 30,
+      "elevation": 0,
+      "dest_map": "MAP_SAFFRON_GYM",
+      "dest_warp_id": "8"
+    },
+    {
+      "x": 7,
+      "y": 26,
+      "elevation": 0,
+      "dest_map": "MAP_SAFFRON_GYM",
+      "dest_warp_id": "7"
+    },
+    {
+      "x": 7,
+      "y": 30,
+      "elevation": 0,
+      "dest_map": "MAP_SAFFRON_GYM",
+      "dest_warp_id": "10"
+    },
+    {
+      "x": 7,
+      "y": 19,
+      "elevation": 0,
+      "dest_map": "MAP_SAFFRON_GYM",
+      "dest_warp_id": "9"
+    },
+    {
+      "x": 2,
+      "y": 30,
+      "elevation": 0,
+      "dest_map": "MAP_SAFFRON_GYM",
+      "dest_warp_id": "12"
+    },
+    {
+      "x": 20,
+      "y": 8,
+      "elevation": 0,
+      "dest_map": "MAP_SAFFRON_GYM",
+      "dest_warp_id": "11"
+    },
+    {
+      "x": 2,
+      "y": 26,
+      "elevation": 0,
+      "dest_map": "MAP_SAFFRON_GYM",
+      "dest_warp_id": "14"
+    },
+    {
+      "x": 32,
+      "y": 8,
+      "elevation": 0,
+      "dest_map": "MAP_SAFFRON_GYM",
+      "dest_warp_id": "13"
+    },
+    {
+      "x": 2,
+      "y": 19,
+      "elevation": 0,
+      "dest_map": "MAP_SAFFRON_GYM",
+      "dest_warp_id": "16"
+    },
+    {
+      "x": 7,
+      "y": 8,
+      "elevation": 0,
+      "dest_map": "MAP_SAFFRON_GYM",
+      "dest_warp_id": "15"
+    },
+    {
+      "x": 2,
+      "y": 15,
+      "elevation": 0,
+      "dest_map": "MAP_SAFFRON_GYM",
+      "dest_warp_id": "18"
+    },
+    {
+      "x": 32,
+      "y": 19,
+      "elevation": 0,
+      "dest_map": "MAP_SAFFRON_GYM",
+      "dest_warp_id": "17"
+    },
+    {
+      "x": 7,
+      "y": 15,
+      "elevation": 0,
+      "dest_map": "MAP_SAFFRON_GYM",
+      "dest_warp_id": "20"
+    },
+    {
+      "x": 14,
+      "y": 8,
+      "elevation": 0,
+      "dest_map": "MAP_SAFFRON_GYM",
+      "dest_warp_id": "19"
+    },
+    {
+      "x": 14,
+      "y": 4,
+      "elevation": 0,
+      "dest_map": "MAP_SAFFRON_GYM",
+      "dest_warp_id": "22"
+    },
+    {
+      "x": 27,
+      "y": 19,
+      "elevation": 0,
+      "dest_map": "MAP_SAFFRON_GYM",
+      "dest_warp_id": "21"
+    },
+    {
+      "x": 27,
+      "y": 15,
+      "elevation": 0,
+      "dest_map": "MAP_SAFFRON_GYM",
+      "dest_warp_id": "24"
+    },
+    {
+      "x": 27,
+      "y": 4,
+      "elevation": 0,
+      "dest_map": "MAP_SAFFRON_GYM",
+      "dest_warp_id": "23"
+    },
+    {
+      "x": 27,
+      "y": 8,
+      "elevation": 0,
+      "dest_map": "MAP_SAFFRON_GYM",
+      "dest_warp_id": "26"
+    },
+    {
+      "x": 2,
+      "y": 4,
+      "elevation": 0,
+      "dest_map": "MAP_SAFFRON_GYM",
+      "dest_warp_id": "25"
+    },
+    {
+      "x": 7,
+      "y": 4,
+      "elevation": 0,
+      "dest_map": "MAP_SAFFRON_GYM",
+      "dest_warp_id": "28"
+    },
+    {
+      "x": 20,
+      "y": 4,
+      "elevation": 0,
+      "dest_map": "MAP_SAFFRON_GYM",
+      "dest_warp_id": "27"
+    },
+    {
+      "x": 2,
+      "y": 8,
+      "elevation": 0,
+      "dest_map": "MAP_SAFFRON_GYM",
+      "dest_warp_id": "30"
+    },
+    {
+      "x": 17,
+      "y": 20,
+      "elevation": 0,
+      "dest_map": "MAP_SAFFRON_GYM",
+      "dest_warp_id": "29"
+    },
+    {
+      "x": 16,
+      "y": 32,
+      "elevation": 0,
+      "dest_map": "MAP_SAFFRON_CITY",
+      "dest_warp_id": "17"
+    },
+    {
+      "x": 19,
+      "y": 15,
+      "elevation": 0,
+      "dest_map": "MAP_SAFFRON_GYM",
+      "dest_warp_id": "1"
+    }
+  ],
+  "coord_events": [
+
+  ],
+  "bg_events": [
+
+  ]
+}

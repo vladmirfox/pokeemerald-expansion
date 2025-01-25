@@ -27,6 +27,11 @@
       "map": "MAP_UNDERWATER_ROUTE125",
       "offset": 0,
       "direction": "dive"
+    },
+    {
+      "map": "MAP_CINNIBAR_ISLAND",
+      "offset": -14,
+      "direction": "right"
     }
   ],
   "object_events": [
@@ -170,7 +175,9 @@
       "dest_warp_id": "0"
     }
   ],
-  "coord_events": [],
+  "coord_events": [
+
+  ],
   "bg_events": [
     {
       "type": "secret_base",

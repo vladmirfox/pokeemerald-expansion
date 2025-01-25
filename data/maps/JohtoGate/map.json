@@ -1,0 +1,289 @@
+{
+  "id": "MAP_JOHTO_GATE",
+  "name": "JohtoGate",
+  "layout": "LAYOUT_JOHTO_GATE",
+  "music": "MUS_RG_ROUTE1",
+  "region_map_section": "MAPSEC_LITTLEROOT_TOWN",
+  "requires_flash": false,
+  "weather": "WEATHER_NONE",
+  "map_type": "MAP_TYPE_INDOOR",
+  "allow_cycling": true,
+  "allow_escaping": true,
+  "allow_running": true,
+  "show_map_name": false,
+  "battle_scene": "MAP_BATTLE_SCENE_NORMAL",
+  "connections": 0,
+  "object_events": [
+    {
+      "graphics_id": "OBJ_EVENT_GFX_WORKER",
+      "x": 82,
+      "y": 4,
+      "elevation": 0,
+      "movement_type": "MOVEMENT_TYPE_NONE",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "Route25_Worker",
+      "flag": "0"
+    },
+    {
+      "graphics_id": "OBJ_EVENT_GFX_SPECIES(MACHOP)",
+      "x": 81,
+      "y": 5,
+      "elevation": 0,
+      "movement_type": "MOVEMENT_TYPE_WALK_IN_PLACE_DOWN",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "Vermilion_Machop",
+      "flag": "0"
+    },
+    {
+      "graphics_id": "OBJ_EVENT_GFX_SPECIES(MACHOKE)",
+      "x": 83,
+      "y": 5,
+      "elevation": 0,
+      "movement_type": "MOVEMENT_TYPE_WALK_IN_PLACE_DOWN",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "Lavender_Machoke",
+      "flag": "0"
+    }
+  ],
+  "warp_events": [
+    {
+      "x": 2,
+      "y": 24,
+      "elevation": 0,
+      "dest_map": "MAP_ROUTE38",
+      "dest_warp_id": "0"
+    },
+    {
+      "x": 14,
+      "y": 24,
+      "elevation": 0,
+      "dest_map": "MAP_ECRUTEAK_CITY",
+      "dest_warp_id": "0"
+    },
+    {
+      "x": 4,
+      "y": 9,
+      "elevation": 0,
+      "dest_map": "MAP_GOLDENROD_CITY",
+      "dest_warp_id": "0"
+    },
+    {
+      "x": 4,
+      "y": 1,
+      "elevation": 0,
+      "dest_map": "MAP_ROUTE35",
+      "dest_warp_id": "0"
+    },
+    {
+      "x": 26,
+      "y": 24,
+      "elevation": 0,
+      "dest_map": "MAP_ECRUTEAK_CITY",
+      "dest_warp_id": "1"
+    },
+    {
+      "x": 38,
+      "y": 24,
+      "elevation": 0,
+      "dest_map": "MAP_ROUTE42",
+      "dest_warp_id": "4"
+    },
+    {
+      "x": 17,
+      "y": 1,
+      "elevation": 0,
+      "dest_map": "MAP_ROUTE34",
+      "dest_warp_id": "0"
+    },
+    {
+      "x": 17,
+      "y": 9,
+      "elevation": 0,
+      "dest_map": "MAP_ILEX_FOREST",
+      "dest_warp_id": "0"
+    },
+    {
+      "x": 50,
+      "y": 24,
+      "elevation": 0,
+      "dest_map": "MAP_ILEX_FOREST",
+      "dest_warp_id": "2"
+    },
+    {
+      "x": 62,
+      "y": 24,
+      "elevation": 0,
+      "dest_map": "MAP_AZALEA_TOWN",
+      "dest_warp_id": "0"
+    },
+    {
+      "x": 77,
+      "y": 29,
+      "elevation": 0,
+      "dest_map": "MAP_ROUTE35",
+      "dest_warp_id": "2"
+    },
+    {
+      "x": 86,
+      "y": 24,
+      "elevation": 0,
+      "dest_map": "MAP_NATIONAL_PARK",
+      "dest_warp_id": "0"
+    },
+    {
+      "x": 2,
+      "y": 39,
+      "elevation": 0,
+      "dest_map": "MAP_NATIONAL_PARK",
+      "dest_warp_id": "1"
+    },
+    {
+      "x": 14,
+      "y": 39,
+      "elevation": 0,
+      "dest_map": "MAP_ROUTE36",
+      "dest_warp_id": "0"
+    },
+    {
+      "x": 30,
+      "y": 1,
+      "elevation": 0,
+      "dest_map": "MAP_ROUTE36",
+      "dest_warp_id": "1"
+    },
+    {
+      "x": 30,
+      "y": 9,
+      "elevation": 0,
+      "dest_map": "MAP_RUINSOF_ALPH",
+      "dest_warp_id": "11"
+    },
+    {
+      "x": 26,
+      "y": 39,
+      "elevation": 0,
+      "dest_map": "MAP_RUINSOF_ALPH",
+      "dest_warp_id": "12"
+    },
+    {
+      "x": 38,
+      "y": 39,
+      "elevation": 0,
+      "dest_map": "MAP_ROUTE32",
+      "dest_warp_id": "1"
+    },
+    {
+      "x": 98,
+      "y": 24,
+      "elevation": 0,
+      "dest_map": "MAP_ROUTE36",
+      "dest_warp_id": "3"
+    },
+    {
+      "x": 110,
+      "y": 24,
+      "elevation": 0,
+      "dest_map": "MAP_VIOLET_CITY",
+      "dest_warp_id": "0"
+    },
+    {
+      "x": 98,
+      "y": 39,
+      "elevation": 0,
+      "dest_map": "MAP_VIOLET_CITY",
+      "dest_warp_id": "1"
+    },
+    {
+      "x": 110,
+      "y": 39,
+      "elevation": 0,
+      "dest_map": "MAP_ROUTE31",
+      "dest_warp_id": "1"
+    },
+    {
+      "x": 43,
+      "y": 9,
+      "elevation": 0,
+      "dest_map": "MAP_ROUTE29",
+      "dest_warp_id": "0"
+    },
+    {
+      "x": 43,
+      "y": 1,
+      "elevation": 0,
+      "dest_map": "MAP_ROUTE46",
+      "dest_warp_id": "1"
+    },
+    {
+      "x": 56,
+      "y": 9,
+      "elevation": 0,
+      "dest_map": "MAP_MAHOGANY_TOWN",
+      "dest_warp_id": "0"
+    },
+    {
+      "x": 56,
+      "y": 1,
+      "elevation": 0,
+      "dest_map": "MAP_ROUTE43",
+      "dest_warp_id": "0"
+    },
+    {
+      "x": 69,
+      "y": 9,
+      "elevation": 0,
+      "dest_map": "MAP_ROUTE43",
+      "dest_warp_id": "2"
+    },
+    {
+      "x": 69,
+      "y": 1,
+      "elevation": 0,
+      "dest_map": "MAP_ROUTE43",
+      "dest_warp_id": "4"
+    },
+    {
+      "x": 82,
+      "y": 9,
+      "elevation": 0,
+      "dest_map": "MAP_ROUTE40",
+      "dest_warp_id": "0"
+    },
+    {
+      "x": 82,
+      "y": 1,
+      "elevation": 0,
+      "dest_map": "MAP_ROUTE40",
+      "dest_warp_id": "2"
+    },
+    {
+      "x": 95,
+      "y": 9,
+      "elevation": 0,
+      "dest_map": "MAP_ROUTE48",
+      "dest_warp_id": "0"
+    },
+    {
+      "x": 95,
+      "y": 1,
+      "elevation": 0,
+      "dest_map": "MAP_JOHTO_SAFARI",
+      "dest_warp_id": "0"
+    }
+  ],
+  "coord_events": [
+
+  ],
+  "bg_events": [
+
+  ]
+}

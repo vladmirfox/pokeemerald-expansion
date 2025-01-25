@@ -1,0 +1,468 @@
+{
+  "id": "MAP_KANTO_GATES",
+  "name": "KantoGates",
+  "layout": "LAYOUT_KANTO_GATES",
+  "music": "MUS_RG_ROUTE1",
+  "region_map_section": "MAPSEC_LITTLEROOT_TOWN",
+  "requires_flash": false,
+  "weather": "WEATHER_NONE",
+  "map_type": "MAP_TYPE_INDOOR",
+  "allow_cycling": true,
+  "allow_escaping": false,
+  "allow_running": true,
+  "show_map_name": false,
+  "battle_scene": "MAP_BATTLE_SCENE_NORMAL",
+  "connections": 0,
+  "object_events": [
+    {
+      "graphics_id": "OBJ_EVENT_GFX_MYSTERY_GIFT_MAN",
+      "x": 56,
+      "y": 18,
+      "elevation": 0,
+      "movement_type": "MOVEMENT_TYPE_NONE",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "NULL",
+      "flag": "0"
+    },
+    {
+      "graphics_id": "OBJ_EVENT_GFX_MYSTERY_GIFT_MAN",
+      "x": 56,
+      "y": 24,
+      "elevation": 0,
+      "movement_type": "MOVEMENT_TYPE_FACE_UP",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "NULL",
+      "flag": "0"
+    },
+    {
+      "graphics_id": "OBJ_EVENT_GFX_MYSTERY_GIFT_MAN",
+      "x": 32,
+      "y": 18,
+      "elevation": 0,
+      "movement_type": "MOVEMENT_TYPE_NONE",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "NULL",
+      "flag": "0"
+    },
+    {
+      "graphics_id": "OBJ_EVENT_GFX_MYSTERY_GIFT_MAN",
+      "x": 32,
+      "y": 24,
+      "elevation": 0,
+      "movement_type": "MOVEMENT_TYPE_FACE_UP",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "NULL",
+      "flag": "0"
+    },
+    {
+      "graphics_id": "OBJ_EVENT_GFX_MYSTERY_GIFT_MAN",
+      "x": 20,
+      "y": 5,
+      "elevation": 0,
+      "movement_type": "MOVEMENT_TYPE_FACE_LEFT",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "NULL",
+      "flag": "0"
+    },
+    {
+      "graphics_id": "OBJ_EVENT_GFX_MYSTERY_GIFT_MAN",
+      "x": 14,
+      "y": 5,
+      "elevation": 0,
+      "movement_type": "MOVEMENT_TYPE_FACE_RIGHT",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "NULL",
+      "flag": "0"
+    },
+    {
+      "graphics_id": "OBJ_EVENT_GFX_MYSTERY_GIFT_MAN",
+      "x": 1,
+      "y": 5,
+      "elevation": 0,
+      "movement_type": "MOVEMENT_TYPE_FACE_RIGHT",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "NULL",
+      "flag": "0"
+    },
+    {
+      "graphics_id": "OBJ_EVENT_GFX_MYSTERY_GIFT_MAN",
+      "x": 7,
+      "y": 5,
+      "elevation": 0,
+      "movement_type": "MOVEMENT_TYPE_FACE_LEFT",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "NULL",
+      "flag": "0"
+    }
+  ],
+  "warp_events": [
+    {
+      "x": 2,
+      "y": 24,
+      "elevation": 0,
+      "dest_map": "MAP_ROUTE11",
+      "dest_warp_id": "0"
+    },
+    {
+      "x": 14,
+      "y": 24,
+      "elevation": 0,
+      "dest_map": "MAP_ROUTE12",
+      "dest_warp_id": "0"
+    },
+    {
+      "x": 4,
+      "y": 1,
+      "elevation": 0,
+      "dest_map": "MAP_SAFFRON_CITY",
+      "dest_warp_id": "0"
+    },
+    {
+      "x": 4,
+      "y": 9,
+      "elevation": 0,
+      "dest_map": "MAP_ROUTE6",
+      "dest_warp_id": "0"
+    },
+    {
+      "x": 26,
+      "y": 24,
+      "elevation": 0,
+      "dest_map": "MAP_SAFFRON_CITY",
+      "dest_warp_id": "2"
+    },
+    {
+      "x": 38,
+      "y": 24,
+      "elevation": 0,
+      "dest_map": "MAP_ROUTE8",
+      "dest_warp_id": "0"
+    },
+    {
+      "x": 62,
+      "y": 24,
+      "elevation": 0,
+      "dest_map": "MAP_SAFFRON_CITY",
+      "dest_warp_id": "3"
+    },
+    {
+      "x": 50,
+      "y": 24,
+      "elevation": 0,
+      "dest_map": "MAP_ROUTE7",
+      "dest_warp_id": "0"
+    },
+    {
+      "x": 17,
+      "y": 9,
+      "elevation": 0,
+      "dest_map": "MAP_SAFFRON_CITY",
+      "dest_warp_id": "4"
+    },
+    {
+      "x": 17,
+      "y": 1,
+      "elevation": 0,
+      "dest_map": "MAP_ROUTE5",
+      "dest_warp_id": "0"
+    },
+    {
+      "x": 82,
+      "y": 9,
+      "elevation": 0,
+      "dest_map": "MAP_ROUTE15",
+      "dest_warp_id": "0"
+    },
+    {
+      "x": 70,
+      "y": 9,
+      "elevation": 0,
+      "dest_map": "MAP_FUCHSIA_CITY",
+      "dest_warp_id": "0"
+    },
+    {
+      "x": 86,
+      "y": 24,
+      "elevation": 0,
+      "dest_map": "MAP_ROUTE18",
+      "dest_warp_id": "0"
+    },
+    {
+      "x": 74,
+      "y": 24,
+      "elevation": 0,
+      "dest_map": "MAP_ROUTE18",
+      "dest_warp_id": "1"
+    },
+    {
+      "x": 57,
+      "y": 39,
+      "elevation": 0,
+      "dest_map": "MAP_ROUTE16",
+      "dest_warp_id": "0"
+    },
+    {
+      "x": 69,
+      "y": 39,
+      "elevation": 0,
+      "dest_map": "MAP_ROUTE16",
+      "dest_warp_id": "1"
+    },
+    {
+      "x": 30,
+      "y": 1,
+      "elevation": 0,
+      "dest_map": "MAP_ROUTE2",
+      "dest_warp_id": "0"
+    },
+    {
+      "x": 30,
+      "y": 9,
+      "elevation": 0,
+      "dest_map": "MAP_VIRIDIAN_FOREST",
+      "dest_warp_id": "0"
+    },
+    {
+      "x": 43,
+      "y": 1,
+      "elevation": 0,
+      "dest_map": "MAP_VIRIDIAN_FOREST",
+      "dest_warp_id": "1"
+    },
+    {
+      "x": 43,
+      "y": 9,
+      "elevation": 0,
+      "dest_map": "MAP_ROUTE2",
+      "dest_warp_id": "3"
+    },
+    {
+      "x": 56,
+      "y": 1,
+      "elevation": 0,
+      "dest_map": "MAP_ROUTE2",
+      "dest_warp_id": "1"
+    },
+    {
+      "x": 56,
+      "y": 9,
+      "elevation": 0,
+      "dest_map": "MAP_ROUTE2",
+      "dest_warp_id": "2"
+    },
+    {
+      "x": 17,
+      "y": 39,
+      "elevation": 0,
+      "dest_map": "MAP_ROUTE19",
+      "dest_warp_id": "0"
+    },
+    {
+      "x": 17,
+      "y": 31,
+      "elevation": 0,
+      "dest_map": "MAP_FUCHSIA_CITY",
+      "dest_warp_id": "1"
+    }
+  ],
+  "coord_events": [
+    {
+      "type": "trigger",
+      "x": 16,
+      "y": 5,
+      "elevation": 0,
+      "var": "VAR_GIVE_TEA",
+      "var_value": "0",
+      "script": "KantoGates_NoTeaFromCerulean"
+    },
+    {
+      "type": "trigger",
+      "x": 17,
+      "y": 5,
+      "elevation": 0,
+      "var": "VAR_GIVE_TEA",
+      "var_value": "0",
+      "script": "KantoGates_NoTeaFromCerulean"
+    },
+    {
+      "type": "trigger",
+      "x": 18,
+      "y": 5,
+      "elevation": 0,
+      "var": "VAR_GIVE_TEA",
+      "var_value": "0",
+      "script": "KantoGates_NoTeaFromCerulean"
+    },
+    {
+      "type": "trigger",
+      "x": 3,
+      "y": 5,
+      "elevation": 0,
+      "var": "VAR_GIVE_TEA",
+      "var_value": "0",
+      "script": "KantoGates_NoTeaFromVermilion"
+    },
+    {
+      "type": "trigger",
+      "x": 4,
+      "y": 5,
+      "elevation": 0,
+      "var": "VAR_GIVE_TEA",
+      "var_value": "0",
+      "script": "KantoGates_NoTeaFromVermilion"
+    },
+    {
+      "type": "trigger",
+      "x": 5,
+      "y": 5,
+      "elevation": 0,
+      "var": "VAR_GIVE_TEA",
+      "var_value": "0",
+      "script": "KantoGates_NoTeaFromVermilion"
+    },
+    {
+      "type": "trigger",
+      "x": 32,
+      "y": 20,
+      "elevation": 0,
+      "var": "VAR_GIVE_TEA",
+      "var_value": "0",
+      "script": "KantoGates_NoTeaFromLavender"
+    },
+    {
+      "type": "trigger",
+      "x": 32,
+      "y": 21,
+      "elevation": 0,
+      "var": "VAR_GIVE_TEA",
+      "var_value": "0",
+      "script": "KantoGates_NoTeaFromLavender"
+    },
+    {
+      "type": "trigger",
+      "x": 32,
+      "y": 22,
+      "elevation": 0,
+      "var": "VAR_GIVE_TEA",
+      "var_value": "0",
+      "script": "KantoGates_NoTeaFromLavender"
+    },
+    {
+      "type": "trigger",
+      "x": 56,
+      "y": 20,
+      "elevation": 0,
+      "var": "VAR_GIVE_TEA",
+      "var_value": "0",
+      "script": "KantoGates_NoTeaFromCeladon"
+    },
+    {
+      "type": "trigger",
+      "x": 56,
+      "y": 21,
+      "elevation": 0,
+      "var": "VAR_GIVE_TEA",
+      "var_value": "0",
+      "script": "KantoGates_NoTeaFromCeladon"
+    },
+    {
+      "type": "trigger",
+      "x": 56,
+      "y": 22,
+      "elevation": 0,
+      "var": "VAR_GIVE_TEA",
+      "var_value": "0",
+      "script": "KantoGates_NoTeaFromCeladon"
+    }
+  ],
+  "bg_events": [
+    {
+      "type": "sign",
+      "x": 2,
+      "y": 5,
+      "elevation": 0,
+      "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
+      "script": "KantoGates_Guard"
+    },
+    {
+      "type": "sign",
+      "x": 6,
+      "y": 5,
+      "elevation": 0,
+      "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
+      "script": "KantoGates_Guard"
+    },
+    {
+      "type": "sign",
+      "x": 15,
+      "y": 5,
+      "elevation": 0,
+      "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
+      "script": "KantoGates_Guard"
+    },
+    {
+      "type": "sign",
+      "x": 19,
+      "y": 5,
+      "elevation": 0,
+      "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
+      "script": "KantoGates_Guard"
+    },
+    {
+      "type": "sign",
+      "x": 32,
+      "y": 19,
+      "elevation": 0,
+      "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
+      "script": "KantoGates_Guard"
+    },
+    {
+      "type": "sign",
+      "x": 32,
+      "y": 23,
+      "elevation": 0,
+      "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
+      "script": "KantoGates_Guard"
+    },
+    {
+      "type": "sign",
+      "x": 56,
+      "y": 23,
+      "elevation": 0,
+      "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
+      "script": "KantoGates_Guard"
+    },
+    {
+      "type": "sign",
+      "x": 56,
+      "y": 19,
+      "elevation": 0,
+      "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
+      "script": "KantoGates_Guard"
+    }
+  ]
+}

@@ -1,0 +1,70 @@
+{
+  "id": "MAP_FIVE_ISLE_MEADOW",
+  "name": "FiveIsleMeadow",
+  "layout": "LAYOUT_FIVE_ISLE_MEADOW",
+  "music": "MUS_RG_SEVII_ROUTE",
+  "region_map_section": "MAPSEC_FIVE_ISLE_MEADOW",
+  "requires_flash": false,
+  "weather": "WEATHER_NONE",
+  "map_type": "MAP_TYPE_ROUTE",
+  "allow_cycling": true,
+  "allow_escaping": true,
+  "allow_running": true,
+  "show_map_name": true,
+  "battle_scene": "MAP_BATTLE_SCENE_NORMAL",
+  "connections": [
+    {
+      "map": "MAP_FIVE_ISLAND",
+      "offset": 0,
+      "direction": "left"
+    },
+    {
+      "map": "MAP_MEMORIAL_PILLAR",
+      "offset": 20,
+      "direction": "right"
+    }
+  ],
+  "object_events": [
+    {
+      "graphics_id": "OBJ_EVENT_GFX_CUTTABLE_TREE",
+      "x": 7,
+      "y": 9,
+      "elevation": 3,
+      "movement_type": "MOVEMENT_TYPE_LOOK_AROUND",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "EventScript_CutTree",
+      "flag": "FLAG_TEMP_11"
+    },
+    {
+      "graphics_id": "OBJ_EVENT_GFX_ROCKET",
+      "x": 11,
+      "y": 22,
+      "elevation": 0,
+      "movement_type": "MOVEMENT_TYPE_NONE",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "RocketHideoutF4_EventScript_Guard",
+      "flag": "FLAG_RECEIVED_HM_DIVE"
+    }
+  ],
+  "warp_events": [
+    {
+      "x": 11,
+      "y": 21,
+      "elevation": 0,
+      "dest_map": "MAP_ROCKET_WAREHOUSE",
+      "dest_warp_id": "0"
+    }
+  ],
+  "coord_events": [
+
+  ],
+  "bg_events": [
+
+  ]
+}

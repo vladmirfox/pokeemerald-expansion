@@ -214,7 +214,23 @@
 #define MAPSEC_ALTERING_CAVE                0xD2
 #define MAPSEC_NAVEL_ROCK                   0xD3
 #define MAPSEC_TRAINER_HILL                 0xD4
-#define MAPSEC_NONE                         0xD5
+#define MAPSEC_NEWBARK                      0xD5
+#define MAPSEC_CHERRYGROVE                  0xD6
+#define MAPSEC_VIOLET                       0xD8
+#define MAPSEC_AZALEA                       0xD9
+#define MAPSEC_GOLDENROD                    0xDA
+#define MAPSEC_OLIVINE                      0xDB
+#define MAPSEC_CYANWOOD                     0xDC
+#define MAPSEC_ECRUTEAK                     0xDD
+#define MAPSEC_MAHOGANY                     0xDE
+#define MAPSEC_BLACKTHORN                   0xDF
+#define MAPSEC_LAKE_OF_RAGE                 0xE0
+#define MAPSEC_ROUTE_32                     0xE1
+#define MAPSEC_CROSSGATE                    0xE2
+#define MAPSEC_BLUEFIN                      0xE3
+#define MAPSEC_BATTLE_TOWER                 0xE4
+#define MAPSEC_ROUTE_28                     0xE5
+#define MAPSEC_NONE                         0xE6
 
 #define METLOC_SPECIAL_EGG                  0xFD
 #define METLOC_IN_GAME_TRADE                0xFE

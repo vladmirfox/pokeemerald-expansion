@@ -1,0 +1,101 @@
+{
+  "id": "MAP_GREEN_PATH",
+  "name": "GreenPath",
+  "layout": "LAYOUT_GREEN_PATH",
+  "music": "MUS_RG_SEVII_ROUTE",
+  "region_map_section": "MAPSEC_GREEN_PATH",
+  "requires_flash": false,
+  "weather": "WEATHER_NONE",
+  "map_type": "MAP_TYPE_ROUTE",
+  "allow_cycling": true,
+  "allow_escaping": true,
+  "allow_running": true,
+  "show_map_name": true,
+  "battle_scene": "MAP_BATTLE_SCENE_NORMAL",
+  "connections": [
+    {
+      "map": "MAP_WATER_PATH",
+      "offset": 0,
+      "direction": "right"
+    },
+    {
+      "map": "MAP_OUTCAST_ISLAND",
+      "offset": 0,
+      "direction": "up"
+    }
+  ],
+  "object_events": [
+
+  ],
+  "warp_events": [
+    {
+      "x": 64,
+      "y": 9,
+      "elevation": 0,
+      "dest_map": "MAP_PATTERN_BUSH_F1",
+      "dest_warp_id": "0"
+    },
+    {
+      "x": 63,
+      "y": 9,
+      "elevation": 0,
+      "dest_map": "MAP_PATTERN_BUSH_F1",
+      "dest_warp_id": "2"
+    },
+    {
+      "x": 46,
+      "y": 9,
+      "elevation": 0,
+      "dest_map": "MAP_PATTERN_BUSH_F1",
+      "dest_warp_id": "1"
+    },
+    {
+      "x": 45,
+      "y": 9,
+      "elevation": 0,
+      "dest_map": "MAP_PATTERN_BUSH_F1",
+      "dest_warp_id": "1"
+    }
+  ],
+  "coord_events": [
+    {
+      "type": "trigger",
+      "x": 64,
+      "y": 9,
+      "elevation": 0,
+      "var": "VAR_TEMP_0",
+      "var_value": "0",
+      "script": "GreenPath_PatternIn"
+    },
+    {
+      "type": "trigger",
+      "x": 63,
+      "y": 9,
+      "elevation": 0,
+      "var": "VAR_TEMP_0",
+      "var_value": "0",
+      "script": "GreenPath_PatternIn"
+    },
+    {
+      "type": "trigger",
+      "x": 46,
+      "y": 9,
+      "elevation": 0,
+      "var": "VAR_TEMP_0",
+      "var_value": "0",
+      "script": "GreenPath_PatternOut"
+    },
+    {
+      "type": "trigger",
+      "x": 45,
+      "y": 9,
+      "elevation": 0,
+      "var": "VAR_TEMP_0",
+      "var_value": "0",
+      "script": "GreenPath_PatternOut"
+    }
+  ],
+  "bg_events": [
+
+  ]
+}

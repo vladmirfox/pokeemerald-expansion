@@ -1,0 +1,77 @@
+{
+  "id": "MAP_CANYON_ENTRANCE",
+  "name": "CanyonEntrance",
+  "layout": "LAYOUT_CANYON_ENTRANCE",
+  "music": "MUS_ROUTE113",
+  "region_map_section": "MAPSEC_SEVAULT_CANYON",
+  "requires_flash": false,
+  "weather": "WEATHER_NONE",
+  "map_type": "MAP_TYPE_ROUTE",
+  "allow_cycling": true,
+  "allow_escaping": true,
+  "allow_running": true,
+  "show_map_name": true,
+  "battle_scene": "MAP_BATTLE_SCENE_NORMAL",
+  "connections": [
+    {
+      "map": "MAP_SEVEN_ISLAND",
+      "offset": 0,
+      "direction": "up"
+    },
+    {
+      "map": "MAP_SEAVAULT_CANYON",
+      "offset": 20,
+      "direction": "right"
+    }
+  ],
+  "object_events": [
+    {
+      "graphics_id": "OBJ_EVENT_GFX_HIKER",
+      "x": 9,
+      "y": 25,
+      "elevation": 0,
+      "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
+      "movement_range_x": 0,
+      "movement_range_y": 3,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "BattleFrontier_Lounge3_EventScript_Man",
+      "flag": "0"
+    },
+    {
+      "graphics_id": "OBJ_EVENT_GFX_ROCKET",
+      "x": 14,
+      "y": 28,
+      "elevation": 0,
+      "movement_type": "MOVEMENT_TYPE_FACE_RIGHT",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "RocketHideoutF4_EventScript_Guard",
+      "flag": "FLAG_RECEIVED_HM_DIVE"
+    },
+    {
+      "graphics_id": "OBJ_EVENT_GFX_ROCKETF",
+      "x": 15,
+      "y": 28,
+      "elevation": 0,
+      "movement_type": "MOVEMENT_TYPE_FACE_LEFT",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "RocketHideoutF4_EventScript_Guard",
+      "flag": "FLAG_RECEIVED_HM_DIVE"
+    }
+  ],
+  "warp_events": [
+
+  ],
+  "coord_events": [
+
+  ],
+  "bg_events": [
+
+  ]
+}
