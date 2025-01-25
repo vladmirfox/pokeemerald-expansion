@@ -12419,15 +12419,15 @@ const struct SpeciesInfo gSpeciesInfoGen3[] =
         SHADOW(-1, 11, SHADOW_SIZE_XL_BATTLE_ONLY)
         FOOTPRINT(Kyogre)
         #if OW_POKEMON_OBJECT_EVENTS && OW_BATTLE_ONLY_FORMS
-        OVERWORLD(
-            gObjectEventPic_KyogrePrimal,
-            SIZE_64x64,
-            SHADOW_SIZE_M,
-            TRACKS_NONE,
-            sAnimTable_Following,
-            gOverworldPalette_KyogrePrimal,
-            gShinyOverworldPalette_KyogrePrimal
-        )
+            OVERWORLD(
+                gObjectEventPic_KyogrePrimal,
+                SIZE_64x64,
+                SHADOW_SIZE_M,
+                TRACKS_NONE,
+                sAnimTable_Following,
+                gOverworldPalette_KyogrePrimal,
+                gShinyOverworldPalette_KyogrePrimal
+            )
         #endif //OW_POKEMON_OBJECT_EVENTS && OW_BATTLE_ONLY_FORMS
         .isLegendary = TRUE,
         .isPrimalReversion = TRUE,
