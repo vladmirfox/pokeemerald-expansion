@@ -9,6 +9,21 @@
 
 #include "data/battle_pool_rules.h"
 
+static void HasRequiredTag(const struct Trainer *trainer, u8* poolIndexArray, struct PoolRules *rules, u32 *arrayIndex, bool32 *foundRequiredTag, u32 currIndex)
+{
+    //  Start from index 2, since lead and ace has special handling
+    for (u32 currTag = 2; currTag < POOL_NUM_TAGS; currTag++)
+    {
+        if (rules->tagRequired[currTag]
+         && trainer->party[poolIndexArray[currIndex]].tags & (1u << currTag))
+        {
+            *arrayIndex = currIndex;
+            *foundRequiredTag = TRUE;
+            break;
+        }
+    }
+}
+
 static u32 DefaultLeadPickFunction(const struct Trainer *trainer, u8 *poolIndexArray, u32 partyIndex, u32 monsCount, u32 battleTypeFlags, struct PoolRules *rules)
 {
     u32 arrayIndex = 0;
@@ -28,16 +43,7 @@ static u32 DefaultLeadPickFunction(const struct Trainer *trainer, u8 *poolIndexA
                 if (firstLeadIndex == POOL_SLOT_DISABLED)
                     firstLeadIndex = currIndex;
                 //  Start from index 2, since lead and ace has special handling
-                for (u32 currTag = 2; currTag < POOL_NUM_TAGS; currTag++)
-                {
-                    if (rules->tagRequired[currTag]
-                     && trainer->party[poolIndexArray[currIndex]].tags & (1u << currTag))
-                    {
-                        arrayIndex = currIndex;
-                        foundRequiredTag = TRUE;
-                        break;
-                    }
-                }
+                HasRequiredTag(trainer, poolIndexArray, rules, &arrayIndex, &foundRequiredTag, currIndex);
             }
             if (foundRequiredTag)
                 break;
@@ -75,17 +81,7 @@ static u32 DefaultAcePickFunction(const struct Trainer *trainer, u8 *poolIndexAr
             {
                 if (firstAceIndex == POOL_SLOT_DISABLED)
                     firstAceIndex = currIndex;
-                //  Start from index 2, since lead and ace has special handling
-                for (u32 currTag = 2; currTag < POOL_NUM_TAGS; currTag++)
-                {
-                    if (rules->tagRequired[currTag]
-                     && trainer->party[poolIndexArray[currIndex]].tags & (1u << currTag))
-                    {
-                        arrayIndex = currIndex;
-                        foundRequiredTag = TRUE;
-                        break;
-                    }
-                }
+                HasRequiredTag(trainer, poolIndexArray, rules, &arrayIndex, &foundRequiredTag, currIndex);
             }
             if (foundRequiredTag)
                 break;
@@ -121,17 +117,7 @@ static u32 DefaultOtherPickFunction(const struct Trainer *trainer, u8 *poolIndex
         {
             if (firstUnpickedIndex == POOL_SLOT_DISABLED)
                 firstUnpickedIndex = currIndex;
-            //  Start from index 2, since lead and ace has special handling
-            for (u32 currTag = 2; currTag < POOL_NUM_TAGS; currTag++)
-            {
-                if (rules->tagRequired[currTag]
-                 && trainer->party[poolIndexArray[currIndex]].tags & (1u << currTag))
-                {
-                    arrayIndex = currIndex;
-                    foundRequiredTag = TRUE;
-                    break;
-                }
-            }
+            HasRequiredTag(trainer, poolIndexArray, rules, &arrayIndex, &foundRequiredTag, currIndex);
         }
         if (foundRequiredTag)
             break;
