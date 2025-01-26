@@ -1027,7 +1027,7 @@ AI_SINGLE_BATTLE_TEST("Switch AI: AI won't switch in ace mon after U-Turn if oth
     }
 }
 
-AI_SINGLE_BATTLE_TEST("Wombat")
+AI_SINGLE_BATTLE_TEST("AI_FLAG_SMART_SWITCHING: AI won't switch in absorbing mon immediately after sending out new mon")
 {
     GIVEN {
         AI_FLAGS(AI_FLAG_CHECK_BAD_MOVE | AI_FLAG_TRY_TO_FAINT | AI_FLAG_CHECK_VIABILITY | AI_FLAG_SMART_SWITCHING | AI_FLAG_SMART_MON_CHOICES | AI_FLAG_OMNISCIENT);
