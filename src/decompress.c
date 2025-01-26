@@ -1037,15 +1037,37 @@ static void SmolDecompressData(const struct SmolHeader *header, const u32 *data,
     Free(memoryAlloced);
 }
 
-static void DeltaDecodeTileNumbers(u16 *tileNumbers, u32 length)
+ARM_FUNC __attribute__((section(".iwram.code"))) __attribute__((noinline)) __attribute__((optimize("-O3"))) static void TilemapLoop(u32 arraySize, u16 *combinedVec, u16 *dest)
 {
+    u16 *tileNumbers = combinedVec;
+    u32 *tileNumbers_32 = (void *) tileNumbers;
+    u16 *flips = &combinedVec[arraySize];
+    u16 *pals = &combinedVec[2*arraySize];
     u32 prevVal = 0;
-    for (u32 i = 0; i < length; i++)
+    u32 *dest32 = (void *) dest;
+    u16 *to = dest + arraySize;
+    do
     {
-        u32 delta = tileNumbers[i];
-        tileNumbers[i] = (prevVal + delta) & 0x3ff;
-        prevVal = tileNumbers[i];
-    }
+        u32 dstVal1, dstVal2, tileNum32;
+        tileNum32 = *tileNumbers_32++;
+
+        prevVal = (prevVal + (tileNum32 & 0xFFFF)) & 0x3ff;
+        dstVal1 = prevVal | *flips++ | *pals++;
+
+        prevVal = (prevVal + (tileNum32 >> 16)) & 0x3ff;
+        dstVal1 |= (prevVal | *flips++ | *pals++) << 16;
+
+        tileNum32 = *tileNumbers_32++;
+
+        prevVal = (prevVal + (tileNum32 & 0xFFFF)) & 0x3ff;
+        dstVal2 = prevVal | *flips++ | *pals++;
+
+        prevVal = (prevVal + (tileNum32 >> 16)) & 0x3ff;
+        dstVal2 |= (prevVal | *flips++ | *pals++) << 16;
+
+        *dest32++ = dstVal1;
+        *dest32++ = dstVal2;
+    } while (dest32 != (void *) to);
 }
 
 static void SmolDecompressTilemap(const struct SmolTilemapHeader *header, const u32 *data, u16 *dest)
@@ -1057,15 +1079,11 @@ static void SmolDecompressTilemap(const struct SmolTilemapHeader *header, const 
     u16 *symVec = (u16 *)data;
 
     DecodeInstructionsIwram(header->tileNumberSize + header->flipSize + header->palSize, loVec, symVec, combinedVec);
+
     u32 arraySize = header->tilemapSize/2;
-    DeltaDecodeTileNumbers(combinedVec, arraySize);
-    u16 *tileNumbers = combinedVec;
-    u16 *flips = &combinedVec[arraySize];
-    u16 *pals = &combinedVec[2*arraySize];
-    for (u32 i = 0; i < arraySize; i++)
-    {
-        *dest++ = *tileNumbers++ | *flips++ | *pals++;
-    }
+
+    TilemapLoop(arraySize, combinedVec, dest);
+
     Free(combinedVec);
 }
 
