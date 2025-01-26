@@ -4139,29 +4139,6 @@ static void AnimTeraStarstormStars_Step(struct Sprite *sprite)
     }
 }
 
-/*
-void AnimTranslateLinearLine(struct Sprite *sprite)
-{
-    InitSpritePosToAnimAttacker(sprite, TRUE);
-    if (GetBattlerSide(gBattleAnimAttacker) != B_SIDE_PLAYER)
-        gBattleAnimArgs[2] = -gBattleAnimArgs[2];
-
-    sprite->data[0] = gBattleAnimArgs[4];
-
-    //  Double battle offset calc, TODO
-
-    sprite->data[2] = GetBattlerSpriteCoord(gBattleAnimTarget, BATTLER_COORD_X_2) + gBattleAnimArgs[2];
-    sprite->data[4] = GetBattlerSpriteCoord(gBattleAnimTarget, BATTLER_COORD_Y_PIC_OFFSET) + gBattleAnimArgs[3];
-    InitAnimLinearTranslation(sprite);
-}
-
-static void AnimTranslateLinearLine_Step(struct Sprite *)
-{
-
-
-}
-*/
-
 // Animates a sprite that moves linearly from one location to another, with a
 // single-cycle sine wave added to the y position along the way.
 // Used by Razor Leaf and Magical Leaf.
