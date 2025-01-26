@@ -3625,7 +3625,7 @@ static void CancellerPowderStatus(u32 *effect)
             gBattleStruct->moveDamage[gBattlerAttacker] = GetNonDynamaxMaxHP(gBattlerAttacker) / 4;
 
         if (GetActiveGimmick(gBattlerAttacker) != GIMMICK_Z_MOVE
-            || HasTrainerUsedGimmick(gBattlerAttacker, GIMMICK_Z_MOVE))
+         || HasTrainerUsedGimmick(gBattlerAttacker, GIMMICK_Z_MOVE))
             gBattlescriptCurrInstr = BattleScript_MoveUsedPowder;
         gHitMarker |= HITMARKER_UNABLE_TO_USE_MOVE;
         *effect = 1;
