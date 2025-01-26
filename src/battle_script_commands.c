@@ -308,7 +308,7 @@ static const u16 sWhiteOutBadgeMoney[9] = { 8, 16, 24, 36, 48, 64, 80, 100, 120 
 
 enum GiveCaughtMonStates
 {
-    GIVECAUGHTMON_CHECK_PARTY_SIZE = 0,
+    GIVECAUGHTMON_CHECK_PARTY_SIZE,
     GIVECAUGHTMON_ASK_ADD_TO_PARTY,
     GIVECAUGHTMON_HANDLE_INPUT,
     GIVECAUGHTMON_DO_CHOOSE_MON,
@@ -15807,7 +15807,7 @@ static void Cmd_givecaughtmon(void)
     switch (state)
     {
     case GIVECAUGHTMON_CHECK_PARTY_SIZE:
-        if (CalculatePlayerPartyCount() == PARTY_SIZE && B_CATCH_SWAP_INTO_PARTY)
+        if (CalculatePlayerPartyCount() == PARTY_SIZE && B_CATCH_SWAP_INTO_PARTY >= GEN_7)
         {
             PrepareStringBattle(STRINGID_SENDCAUGHTMONPARTYORBOX, gBattlerAttacker);
             gBattleCommunication[MSG_DISPLAY] = 1;
