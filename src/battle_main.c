@@ -4778,7 +4778,7 @@ u32 GetBattlerTotalSpeedStatArgs(u32 battler, u32 ability, u32 holdEffect)
     // various effects
     if (gSideStatuses[GetBattlerSide(battler)] & SIDE_STATUS_TAILWIND)
         speed *= 2;
-    if (gDisableStructs[battler].unbrudenActive)
+    if (gDisableStructs[battler].unburdenActive)
         speed *= 2;
 
     // paralysis drop

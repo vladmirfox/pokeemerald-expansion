@@ -3051,7 +3051,7 @@ static void CheckSetUnburden(u8 battler)
 {
     if (GetBattlerAbility(battler) == ABILITY_UNBURDEN)
     {
-        gDisableStructs[battler].unbrudenActive = TRUE;
+        gDisableStructs[battler].unburdenActive = TRUE;
         RecordAbilityBattle(battler, ABILITY_UNBURDEN);
     }
 }
@@ -3074,7 +3074,7 @@ void StealTargetItem(u8 battlerStealer, u8 battlerItem)
         RecordItemEffectBattle(battlerStealer, ItemId_GetHoldEffect(gLastUsedItem));
         gBattleMons[battlerStealer].item = gLastUsedItem;
 
-        gDisableStructs[battlerStealer].unbrudenActive = FALSE;
+        gDisableStructs[battlerStealer].unburdenActive = FALSE;
         BtlController_EmitSetMonData(battlerStealer, BUFFER_A, REQUEST_HELDITEM_BATTLE, 0, sizeof(gLastUsedItem), &gLastUsedItem); // set attacker item
         MarkBattlerForControllerExec(battlerStealer);
     }
@@ -8606,7 +8606,7 @@ static void BestowItem(u32 battlerAtk, u32 battlerDef)
     gBattleMons[battlerDef].item = gLastUsedItem;
     BtlController_EmitSetMonData(battlerDef, BUFFER_A, REQUEST_HELDITEM_BATTLE, 0, sizeof(gBattleMons[battlerDef].item), &gBattleMons[battlerDef].item);
     MarkBattlerForControllerExec(battlerDef);
-    gDisableStructs[battlerDef].unbrudenActive = FALSE;
+    gDisableStructs[battlerDef].unburdenActive = FALSE;
 }
 
 // Called by Cmd_removeitem. itemId represents the item that was removed, not being given.
@@ -14658,8 +14658,8 @@ static void Cmd_tryswapitems(void)
             }
             else if (oldItemAtk == ITEM_NONE && *newItemAtk != ITEM_NONE)
             {
-                if (GetBattlerAbility(gBattlerAttacker) == ABILITY_UNBURDEN && gDisableStructs[gBattlerAttacker].unbrudenActive)
-                    gDisableStructs[gBattlerAttacker].unbrudenActive = FALSE;
+                if (GetBattlerAbility(gBattlerAttacker) == ABILITY_UNBURDEN && gDisableStructs[gBattlerAttacker].unburdenActive)
+                    gDisableStructs[gBattlerAttacker].unburdenActive = FALSE;
 
                 gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_ITEM_SWAP_TAKEN; // nothing -> <- target's item
             }
