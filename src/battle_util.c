@@ -3135,8 +3135,9 @@ static inline bool32 TryFormChangeBeforeMove(void)
     return TRUE;
 }
 
-static inline bool32 TryActivatePowderStatus(u32 move, u32 partnerMove)
+static inline bool32 TryActivatePowderStatus(u32 move)
 {
+    u32 partnerMove = gBattleMons[BATTLE_PARTNER(gBattlerAttacker)].moves[gBattleStruct->chosenMovePositions[BATTLE_PARTNER(gBattlerAttacker)]];
     if (GetBattleMoveType(move) == TYPE_FIRE && !gBattleStruct->pledgeMove)
         return TRUE;
     if (move == MOVE_FIRE_PLEDGE && partnerMove == MOVE_GRASS_PLEDGE)
@@ -3561,8 +3562,7 @@ static void CancellerWeatherPrimal(u32 *effect)
     if (HasWeatherEffect() && GetMovePower(gCurrentMove) > 0)
     {
         u32 moveType = GetBattleMoveType(gCurrentMove);
-        u32 partnerMove = gBattleMons[BATTLE_PARTNER(gBattlerAttacker)].moves[gBattleStruct->chosenMovePositions[BATTLE_PARTNER(gBattlerAttacker)]];
-        if (moveType == TYPE_FIRE && (gBattleWeather & B_WEATHER_RAIN_PRIMAL) && (B_POWDER_RAIN >= GEN_7 || !TryActivatePowderStatus(gCurrentMove, partnerMove)))
+        if (moveType == TYPE_FIRE && (gBattleWeather & B_WEATHER_RAIN_PRIMAL) && (B_POWDER_RAIN >= GEN_7 || !TryActivatePowderStatus(gCurrentMove)))
         {
             gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_PRIMAL_WEATHER_FIZZLED_BY_RAIN;
             *effect = 1;
@@ -3618,8 +3618,7 @@ static void CancellerPowderStatus(u32 *effect)
 {
     if (gBattleMons[gBattlerAttacker].status2 & STATUS2_POWDER)
     {
-        u32 partnerMove = gBattleMons[BATTLE_PARTNER(gBattlerAttacker)].moves[gBattleStruct->chosenMovePositions[BATTLE_PARTNER(gBattlerAttacker)]];
-        if (TryActivatePowderStatus(gCurrentMove, partnerMove))
+        if (TryActivatePowderStatus(gCurrentMove))
         {
             gProtectStructs[gBattlerAttacker].powderSelfDmg = TRUE;
             if (GetBattlerAbility(gBattlerAttacker) != ABILITY_MAGIC_GUARD)
