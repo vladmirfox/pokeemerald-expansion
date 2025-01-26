@@ -365,6 +365,7 @@ struct AiLogicData
     u8 shouldSwitch; // Stores result of ShouldSwitch, which decides whether a mon should be switched out
     u8 aiCalcInProgress:1;
     u8 battlerDoingPrediction; // Stores which battler is currently running its prediction calcs
+    u16 lastTurnSentOutMon[MAX_BATTLERS_COUNT]; // Tracks the last turn a new mon was sent out in each battler slot
 };
 
 struct AI_ThinkingStruct
