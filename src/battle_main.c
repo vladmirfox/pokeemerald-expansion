@@ -3777,6 +3777,7 @@ static void TryDoEventsBeforeFirstTurn(void)
         #endif // TESTING
 
         gBattleStruct->speedTieBreaks = RandomUniform(RNG_SPEED_TIE, 0, Factorial(MAX_BATTLERS_COUNT) - 1);
+        gBattleTurnCounter = 0;
 
         for (i = 0; i < gBattlersCount; i++)
             gBattlerByTurnOrder[i] = i;
@@ -3901,7 +3902,6 @@ static void TryDoEventsBeforeFirstTurn(void)
         gBattleScripting.moveendState = 0;
         gBattleStruct->faintedActionsState = 0;
         gBattleStruct->turnCountersTracker = 0;
-        gBattleTurnCounter = 0;
 
         memset(gQueuedStatBoosts, 0, sizeof(gQueuedStatBoosts));
         SetShellSideArmCategory();
