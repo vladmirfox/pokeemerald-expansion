@@ -2899,7 +2899,7 @@ const struct ObjectEventGraphicsInfo *GetObjectEventGraphicsInfo(u16 graphicsId)
     if (graphicsId > OBJ_EVENT_GFX_SPECIES_MASK)
     {
         form = graphicsId >> OBJ_EVENT_GFX_SPECIES_BITS;
-        graphicsId = graphicsId & OBJ_EVENT_GFX_SPECIES_MASK;
+        graphicsId = (graphicsId - (graphicsId >= OBJ_EVENT_GFX_MON_BASE + SPECIES_SHINY_TAG ? SPECIES_SHINY_TAG : 0)) & OBJ_EVENT_GFX_SPECIES_MASK;
     }
 
     if (graphicsId == OBJ_EVENT_GFX_BARD)
