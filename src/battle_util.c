@@ -3619,7 +3619,7 @@ static void CancellerPowderStatus(u32 *effect)
     if (gBattleMons[gBattlerAttacker].status2 & STATUS2_POWDER)
     {
         u32 partnerMove = gBattleMons[BATTLE_PARTNER(gBattlerAttacker)].moves[gBattleStruct->chosenMovePositions[BATTLE_PARTNER(gBattlerAttacker)]];
-        if (TryActivatePowderStatus(gCurrentMove, move))
+        if (TryActivatePowderStatus(gCurrentMove, partnerMove))
         {
             gProtectStructs[gBattlerAttacker].powderSelfDmg = TRUE;
             if (GetBattlerAbility(gBattlerAttacker) != ABILITY_MAGIC_GUARD)
