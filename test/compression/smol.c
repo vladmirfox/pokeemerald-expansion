@@ -6145,3 +6145,30 @@ TEST("Compression test: tilemap fastLZ")
     bool32 areEqual = DecompressTilemapPrintResults(compFile, origFile, "Tilemap", COMPRESSION_FASTLZ, sizeof(compFile));
     EXPECT_EQ(areEqual, TRUE);
 }
+
+TEST("Compression test: tilemap large smolTM")
+{
+    static const u16 origFile[] = INCBIN_U16("test/compression/tilemap.large.bin");
+    static const u32 compFile[] = INCBIN_U32("test/compression/tilemap.large.bin.smolTM");
+
+    bool32 areEqual = DecompressTilemapPrintResults(compFile, origFile, "Tilemap large", COMPRESSION_SMOL_TILEMAP, sizeof(compFile));
+    EXPECT_EQ(areEqual, TRUE);
+}
+
+TEST("Compression test: tilemap large LZ")
+{
+    static const u16 origFile[] = INCBIN_U16("test/compression/tilemap.large.bin");
+    static const u32 compFile[] = INCBIN_U32("test/compression/tilemap.large.bin.lz");
+
+    bool32 areEqual = DecompressTilemapPrintResults(compFile, origFile, "Tilemap large ", COMPRESSION_LZ, sizeof(compFile));
+    EXPECT_EQ(areEqual, TRUE);
+}
+
+TEST("Compression test: tilemap large fastLZ")
+{
+    static const u16 origFile[] = INCBIN_U16("test/compression/tilemap.large.bin");
+    static const u32 compFile[] = INCBIN_U32("test/compression/tilemap.large.bin.lz");
+
+    bool32 areEqual = DecompressTilemapPrintResults(compFile, origFile, "Tilemap large", COMPRESSION_FASTLZ, sizeof(compFile));
+    EXPECT_EQ(areEqual, TRUE);
+}
