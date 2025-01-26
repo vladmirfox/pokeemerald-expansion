@@ -2698,8 +2698,8 @@ static void Cmd_critmessage(void)
         {
             PrepareStringBattle(STRINGID_CRITICALHIT, gBattlerAttacker);
 
-            TryInitalizeTrainerSlideEnemyLandsFirstCriticalHit(gBattlerTarget);
-            TryInitalizeTrainerSlidePlayerLandsFirstCriticalHit(gBattlerTarget);
+            TryInitializeTrainerSlideEnemyLandsFirstCriticalHit(gBattlerTarget);
+            TryInitializeTrainerSlidePlayerLandsFirstCriticalHit(gBattlerTarget);
 
             gBattleCommunication[MSG_DISPLAY] = 1;
         }
@@ -2846,7 +2846,7 @@ static void Cmd_resultmessage(void)
                 stringId = STRINGID_SUPEREFFECTIVE;
             }
             if (stringId == STRINGID_SUPEREFFECTIVE || stringId == STRINGID_SUPEREFFECTIVETWOFOES)
-                TryInitalizeTrainerSlidePlayerLandsFirstSuperEffectiveHit(gBattlerTarget);
+                TryInitializeTrainerSlidePlayerLandsFirstSuperEffectiveHit(gBattlerTarget);
             break;
         case MOVE_RESULT_NOT_VERY_EFFECTIVE:
             if (IsDoubleSpreadMove())
