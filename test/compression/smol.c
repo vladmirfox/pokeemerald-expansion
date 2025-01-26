@@ -6119,11 +6119,29 @@ TEST("Compression test: Mew fastSmol")
     EXPECT_EQ(areEqual, TRUE);
 }
 
-TEST("Compression test: tilemap")
+TEST("Compression test: tilemap smolTM")
 {
     static const u16 origFile[] = INCBIN_U16("test/compression/tilemap.bin");
     static const u32 compFile[] = INCBIN_U32("test/compression/tilemap.bin.smolTM");
 
     bool32 areEqual = DecompressTilemapPrintResults(compFile, origFile, "Tilemap", COMPRESSION_SMOL_TILEMAP, sizeof(compFile));
+    EXPECT_EQ(areEqual, TRUE);
+}
+
+TEST("Compression test: tilemap LZ")
+{
+    static const u16 origFile[] = INCBIN_U16("test/compression/tilemap.bin");
+    static const u32 compFile[] = INCBIN_U32("test/compression/tilemap.bin.lz");
+
+    bool32 areEqual = DecompressTilemapPrintResults(compFile, origFile, "Tilemap", COMPRESSION_LZ, sizeof(compFile));
+    EXPECT_EQ(areEqual, TRUE);
+}
+
+TEST("Compression test: tilemap fastLZ")
+{
+    static const u16 origFile[] = INCBIN_U16("test/compression/tilemap.bin");
+    static const u32 compFile[] = INCBIN_U32("test/compression/tilemap.bin.lz");
+
+    bool32 areEqual = DecompressTilemapPrintResults(compFile, origFile, "Tilemap", COMPRESSION_FASTLZ, sizeof(compFile));
     EXPECT_EQ(areEqual, TRUE);
 }
