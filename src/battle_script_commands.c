@@ -8027,7 +8027,6 @@ static void Cmd_returntoball(void)
 
 static void LearnCombinedNewMoves(u32 monId, u16 *learnMove)
 {
-    CMD_ARGS(const u8 *learnedMovePtr, const u8 *nothingToLearnPtr, bool8 isFirstMove);
 
     u32 currLvl = GetMonData(&gPlayerParty[monId], MON_DATA_LEVEL);
 
@@ -8053,7 +8052,9 @@ static void Cmd_handlelearnnewmove(void)
     u32 monId = gBattleStruct->expGetterMonId;
 
     if (B_LEVEL_UP_NOTIFICATION >= GEN_9)
+    {
         LearnCombinedNewMoves(monId, &learnMove);
+    }        
     else
     {
         learnMove = MonTryLearningNewMove(&gPlayerParty[monId], cmd->isFirstMove);
