@@ -197,7 +197,7 @@ static u8 DoJumpSpecialSpriteMovement(struct Sprite *);
 static void CreateLevitateMovementTask(struct ObjectEvent *);
 static void DestroyLevitateMovementTask(u8);
 static bool8 GetFollowerInfo(u32 *species, bool32 *shiny, bool32 *female);
-static u8 LoadDynamicFollowerPalette(u32 species, bool32 shiny, bool32 female);
+static u32 LoadDynamicFollowerPalette(u32 species, bool32 shiny, bool32 female);
 static const struct ObjectEventGraphicsInfo *SpeciesToGraphicsInfo(u32 species, bool32 shiny, bool32 female);
 static bool8 NpcTakeStep(struct Sprite *);
 static bool8 IsElevationMismatchAt(u8, s16, s16);
@@ -1806,7 +1806,7 @@ static void UNUSED MakeSpriteTemplateFromObjectEventTemplate(const struct Object
 
 // Loads information from graphicsId, with shininess separate
 // also can write palette tag to the template
-static u8 LoadDynamicFollowerPaletteFromGraphicsId(u16 graphicsId, struct SpriteTemplate *template)
+static u32 LoadDynamicFollowerPaletteFromGraphicsId(u16 graphicsId, struct SpriteTemplate *template)
 {
     u16 species = graphicsId & OBJ_EVENT_MON_SPECIES_MASK;
     bool32 shiny = graphicsId & OBJ_EVENT_MON_SHINY;
@@ -1979,7 +1979,7 @@ static const struct ObjectEventGraphicsInfo *SpeciesToGraphicsInfo(u32 species, 
 }
 
 // Find, or load, the palette for the specified pokemon info
-static u8 LoadDynamicFollowerPalette(u32 species, bool32 shiny, bool32 female)
+static u32 LoadDynamicFollowerPalette(u32 species, bool32 shiny, bool32 female)
 {
     u32 paletteNum;
     // Use standalone palette, unless entry is OOB or NULL (fallback to front-sprite-based)
