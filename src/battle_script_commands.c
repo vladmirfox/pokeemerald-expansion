@@ -8074,7 +8074,7 @@ static void Cmd_handlelearnnewmove(void)
         u32 battler = GetBattlerAtPosition(B_POSITION_PLAYER_LEFT);
 
         if (gBattlerPartyIndexes[battler] == monId
-                && !(gBattleMons[battler].status2 & STATUS2_TRANSFORMED))
+            && !(gBattleMons[battler].status2 & STATUS2_TRANSFORMED))
         {
             GiveMoveToBattleMon(&gBattleMons[battler], learnMove);
         }
@@ -8082,7 +8082,7 @@ static void Cmd_handlelearnnewmove(void)
         {
             battler = GetBattlerAtPosition(B_POSITION_PLAYER_RIGHT);
             if (gBattlerPartyIndexes[battler] == monId
-                    && !(gBattleMons[battler].status2 & STATUS2_TRANSFORMED))
+                && !(gBattleMons[battler].status2 & STATUS2_TRANSFORMED))
             {
                 GiveMoveToBattleMon(&gBattleMons[battler], learnMove);
             }
