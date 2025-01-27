@@ -8022,6 +8022,7 @@ static void Cmd_returntoball(void)
 
 static void LearnCombinedNewMoves(u32 monId, u16 *learnMove)
 {
+    CMD_ARGS(bool8 isFirstMove);
 
     u32 currLvl = GetMonData(&gPlayerParty[monId], MON_DATA_LEVEL);
 
