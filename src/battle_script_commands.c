@@ -4994,7 +4994,6 @@ static void Cmd_getexp(void)
                 gBattleResources->beforeLvlUp->stats[STAT_SPDEF] = GetMonData(&gPlayerParty[*expMonId], MON_DATA_SPDEF);
                 gBattleResources->beforeLvlUp->level             = currLvl;
 
-
                 BtlController_EmitExpUpdate(gBattleStruct->expGetterBattlerId, BUFFER_A, *expMonId, gBattleStruct->battlerExpReward);
                 MarkBattlerForControllerExec(gBattleStruct->expGetterBattlerId);
             }
@@ -8054,7 +8053,7 @@ static void Cmd_handlelearnnewmove(void)
     if (B_LEVEL_UP_NOTIFICATION >= GEN_9)
     {
         LearnCombinedNewMoves(monId, &learnMove);
-    }        
+    }
     else
     {
         learnMove = MonTryLearningNewMove(&gPlayerParty[monId], cmd->isFirstMove);
