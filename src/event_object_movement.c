@@ -2026,7 +2026,7 @@ static u8 LoadDynamicFollowerPalette(u32 species, bool32 shiny, bool32 female)
     || (!shiny && gSpeciesInfo[species].overworldShinyPalette))
     {
         struct SpritePalette spritePalette;
-        u16 palTag = species + shiny ? OBJ_EVENT_MON_SHINY : 0;
+        u16 palTag = species + (shiny ? OBJ_EVENT_MON_SHINY : 0);
         if (female && gSpeciesInfo[species].overworldShinyPaletteFemale != NULL)
             palTag += OBJ_EVENT_MON_FEMALE;
         // palette already loaded
@@ -2049,7 +2049,6 @@ static u8 LoadDynamicFollowerPalette(u32 species, bool32 shiny, bool32 female)
             else
                 spritePalette.data = gSpeciesInfo[species].overworldPalette;
         }
-
 
         // Check if pal data must be decompressed
         if (IsLZ77Data(spritePalette.data, PLTT_SIZE_4BPP, PLTT_SIZE_4BPP))
