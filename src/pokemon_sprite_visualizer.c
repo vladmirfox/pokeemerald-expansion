@@ -1310,7 +1310,7 @@ void CB2_Pokemon_Sprite_Visualizer(void)
             gSprites[data->iconspriteId].oam.priority = 0;
 
             //Follower Sprite
-            data->followerspriteId = CreateObjectGraphicsSprite(OBJ_EVENT_GFX_MON_BASE + species, SpriteCB_Follower, VISUALIZER_FOLLOWER_X, VISUALIZER_FOLLOWER_Y, 0);
+            data->followerspriteId = CreateObjectGraphicsSprite(OBJ_EVENT_MON + species, SpriteCB_Follower, VISUALIZER_FOLLOWER_X, VISUALIZER_FOLLOWER_Y, 0);
             gSprites[data->followerspriteId].oam.priority = 0;
             gSprites[data->followerspriteId].anims = sAnims_Follower;
 
@@ -2001,12 +2001,15 @@ static void ReloadPokemonSprites(struct PokemonSpriteVisualizer *data)
     gSprites[data->iconspriteId].oam.priority = 0;
 
     //Follower Sprite
-    u16 graphicsId = (OBJ_EVENT_GFX_MON_BASE + species) & OBJ_EVENT_GFX_SPECIES_MASK;
+    u16 graphicsId = species + OBJ_EVENT_MON;
     struct FollowerSpriteVisualizerData followerData;
     followerData.currentmonId = graphicsId;
     followerData.isFemale = data->isFemale;
     followerData.isShiny = data->isShiny;
-    graphicsId |= data->isFemale << OBJ_EVENT_GFX_SPECIES_BITS;
+    if (data->isShiny)
+        graphicsId += OBJ_EVENT_MON_SHINY;
+    if (data->isFemale)
+        graphicsId += OBJ_EVENT_MON_FEMALE;
     data->followerspriteId = CreateObjectGraphicsFollowerSpriteForVisualizer(graphicsId,
                                                         SpriteCB_Follower,
                                                         VISUALIZER_FOLLOWER_X,
