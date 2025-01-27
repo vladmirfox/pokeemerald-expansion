@@ -478,9 +478,10 @@
 	.byte \battler
 	.endm
 
-	.macro switchinanim battler:req, dontClearSubstitute:req
+	.macro switchinanim battler:req, dontClearTransform:req, dontClearSubstitute:req
 	.byte 0x4e
 	.byte \battler
+	.byte \dontClearTransform
 	.byte \dontClearSubstitute
 	.endm
 
@@ -1461,8 +1462,9 @@
 	.endm
 
 	@ Used by effects that may proc Symbiosis but do not call removeitem.
-	.macro trysymbiosis
+	.macro trysymbiosis battler:req
 	callnative BS_TrySymbiosis
+    .byte \battler
 	.endm
 
 	@ returns B_SIDE_x to gBattleCommunication[0]
@@ -1520,8 +1522,8 @@
 	.4byte \jumpInstr
 	.endm
 
-	.macro jumpifargument argument:req, jumpInstr:req
-	callnative BS_JumpIfArgument
+	.macro jumpifmovepropertyargument argument:req, jumpInstr:req
+	callnative BS_JumpIfMovePropertyArgument
 	.byte \argument
 	.4byte \jumpInstr
 	.endm
@@ -2337,11 +2339,11 @@
 	.endm
 
 	.macro swapsidestatuses
-	various BS_ATTACKER, VARIOUS_SWAP_SIDE_STATUSES
+	callnative BS_CourtChangeSwapSideStatuses
 	.endm
 
 	.macro swapstats stat:req
-	various BS_ATTACKER, VARIOUS_SWAP_STATS
+	callnative BS_SwapStats
 	.byte \stat
 	.endm
 

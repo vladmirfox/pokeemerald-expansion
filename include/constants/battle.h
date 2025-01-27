@@ -86,7 +86,7 @@
 
 #define WILD_DOUBLE_BATTLE ((gBattleTypeFlags & BATTLE_TYPE_DOUBLE && !(gBattleTypeFlags & (BATTLE_TYPE_LINK | BATTLE_TYPE_TRAINER))))
 #define RECORDED_WILD_BATTLE ((gBattleTypeFlags & BATTLE_TYPE_RECORDED) && !(gBattleTypeFlags & (BATTLE_TYPE_TRAINER | BATTLE_TYPE_FRONTIER)))
-#define BATTLE_TWO_VS_ONE_OPPONENT ((gBattleTypeFlags & BATTLE_TYPE_INGAME_PARTNER && gTrainerBattleOpponent_B == 0xFFFF))
+#define BATTLE_TWO_VS_ONE_OPPONENT ((gBattleTypeFlags & BATTLE_TYPE_INGAME_PARTNER && TRAINER_BATTLE_PARAM.opponentB == 0xFFFF))
 #define BATTLE_TYPE_HAS_AI          (BATTLE_TYPE_TRAINER | BATTLE_TYPE_FIRST_BATTLE | BATTLE_TYPE_SAFARI | BATTLE_TYPE_ROAMER | BATTLE_TYPE_INGAME_PARTNER)
 
 // Battle Outcome defines
@@ -253,6 +253,13 @@
 #define SIDE_STATUS_SCREEN_ANY     (SIDE_STATUS_REFLECT | SIDE_STATUS_LIGHTSCREEN | SIDE_STATUS_AURORA_VEIL)
 #define SIDE_STATUS_PLEDGE_ANY     (SIDE_STATUS_RAINBOW | SIDE_STATUS_SEA_OF_FIRE | SIDE_STATUS_SWAMP)
 
+// Used for damaging entry hazards based on type
+enum TypeSideHazard
+{
+    TYPE_SIDE_HAZARD_POINTED_STONES = TYPE_ROCK,
+    TYPE_SIDE_HAZARD_SHARP_STEEL    = TYPE_STEEL,
+};
+
 // Field affecting statuses.
 #define STATUS_FIELD_MAGIC_ROOM                     (1 << 0)
 #define STATUS_FIELD_TRICK_ROOM                     (1 << 1)
@@ -282,44 +289,38 @@
 #define MOVE_RESULT_FOE_ENDURED_AFFECTION (1 << 9)
 #define MOVE_RESULT_NO_EFFECT             (MOVE_RESULT_MISSED | MOVE_RESULT_DOESNT_AFFECT_FOE | MOVE_RESULT_FAILED)
 
-// Battle Weather flags
-#define B_WEATHER_NONE                0
-#define B_WEATHER_RAIN_TEMPORARY      (1 << 0)
-#define B_WEATHER_RAIN_DOWNPOUR       (1 << 1)  // unused
-#define B_WEATHER_RAIN_PERMANENT      (1 << 2)
-#define B_WEATHER_RAIN_PRIMAL         (1 << 3)
-#define B_WEATHER_RAIN                (B_WEATHER_RAIN_TEMPORARY | B_WEATHER_RAIN_DOWNPOUR | B_WEATHER_RAIN_PERMANENT | B_WEATHER_RAIN_PRIMAL)
-#define B_WEATHER_SANDSTORM_TEMPORARY (1 << 4)
-#define B_WEATHER_SANDSTORM_PERMANENT (1 << 5)
-#define B_WEATHER_SANDSTORM           (B_WEATHER_SANDSTORM_TEMPORARY | B_WEATHER_SANDSTORM_PERMANENT)
-#define B_WEATHER_SUN_TEMPORARY       (1 << 6)
-#define B_WEATHER_SUN_PERMANENT       (1 << 7)
-#define B_WEATHER_SUN_PRIMAL          (1 << 8)
-#define B_WEATHER_SUN                 (B_WEATHER_SUN_TEMPORARY | B_WEATHER_SUN_PERMANENT | B_WEATHER_SUN_PRIMAL)
-#define B_WEATHER_HAIL_TEMPORARY      (1 << 9)
-#define B_WEATHER_HAIL_PERMANENT      (1 << 10)
-#define B_WEATHER_HAIL                (B_WEATHER_HAIL_TEMPORARY | B_WEATHER_HAIL_PERMANENT)
-#define B_WEATHER_STRONG_WINDS        (1 << 11)
-#define B_WEATHER_ANY                 (B_WEATHER_RAIN | B_WEATHER_SANDSTORM | B_WEATHER_SUN | B_WEATHER_HAIL | B_WEATHER_STRONG_WINDS | B_WEATHER_SNOW | B_WEATHER_FOG)
-#define B_WEATHER_PRIMAL_ANY          (B_WEATHER_RAIN_PRIMAL | B_WEATHER_SUN_PRIMAL | B_WEATHER_STRONG_WINDS)
-#define B_WEATHER_SNOW_TEMPORARY      (1 << 12)
-#define B_WEATHER_SNOW_PERMANENT      (1 << 13)
-#define B_WEATHER_SNOW                (B_WEATHER_SNOW_TEMPORARY | B_WEATHER_SNOW_PERMANENT)
-#define B_WEATHER_FOG_TEMPORARY       (1 << 14)
-#define B_WEATHER_FOG_PERMANENT       (1 << 15)
-#define B_WEATHER_FOG                 (B_WEATHER_FOG_TEMPORARY | B_WEATHER_FOG_PERMANENT)
+enum BattleWeather
+{
+    BATTLE_WEATHER_RAIN,
+    BATTLE_WEATHER_RAIN_PRIMAL,
+    BATTLE_WEATHER_RAIN_DOWNPOUR,
+    BATTLE_WEATHER_SUN,
+    BATTLE_WEATHER_SUN_PRIMAL,
+    BATTLE_WEATHER_SANDSTORM,
+    BATTLE_WEATHER_HAIL,
+    BATTLE_WEATHER_SNOW,
+    BATTLE_WEATHER_FOG,
+    BATTLE_WEATHER_STRONG_WINDS,
+    BATTLE_WEATHER_COUNT,
+};
 
-// Battle Weather as enum
-#define ENUM_WEATHER_NONE                 0
-#define ENUM_WEATHER_RAIN                 1
-#define ENUM_WEATHER_SUN                  2
-#define ENUM_WEATHER_SANDSTORM            3
-#define ENUM_WEATHER_HAIL                 4
-#define ENUM_WEATHER_SUN_PRIMAL           5
-#define ENUM_WEATHER_RAIN_PRIMAL          6
-#define ENUM_WEATHER_STRONG_WINDS         7
-#define ENUM_WEATHER_SNOW                 8
-#define ENUM_WEATHER_FOG                  9
+// Battle Weather flags
+#define B_WEATHER_NONE          0
+#define B_WEATHER_RAIN_NORMAL   (1 << BATTLE_WEATHER_RAIN)
+#define B_WEATHER_RAIN_PRIMAL   (1 << BATTLE_WEATHER_RAIN_PRIMAL)
+#define B_WEATHER_RAIN_DOWNPOUR (1 << BATTLE_WEATHER_RAIN_DOWNPOUR)  // unused
+#define B_WEATHER_RAIN          (B_WEATHER_RAIN_NORMAL | B_WEATHER_RAIN_PRIMAL | B_WEATHER_RAIN_DOWNPOUR)
+#define B_WEATHER_SUN_NORMAL    (1 << BATTLE_WEATHER_SUN)
+#define B_WEATHER_SUN_PRIMAL    (1 << BATTLE_WEATHER_SUN_PRIMAL)
+#define B_WEATHER_SUN           (B_WEATHER_SUN_NORMAL | B_WEATHER_SUN_PRIMAL)
+#define B_WEATHER_SANDSTORM     (1 << BATTLE_WEATHER_SANDSTORM)
+#define B_WEATHER_HAIL          (1 << BATTLE_WEATHER_HAIL)
+#define B_WEATHER_SNOW          (1 << BATTLE_WEATHER_SNOW)
+#define B_WEATHER_FOG           (1 << BATTLE_WEATHER_FOG)
+#define B_WEATHER_STRONG_WINDS  (1 << BATTLE_WEATHER_STRONG_WINDS)
+
+#define B_WEATHER_ANY           (B_WEATHER_RAIN | B_WEATHER_SANDSTORM | B_WEATHER_SUN | B_WEATHER_HAIL | B_WEATHER_STRONG_WINDS | B_WEATHER_SNOW | B_WEATHER_FOG)
+#define B_WEATHER_PRIMAL_ANY    (B_WEATHER_RAIN_PRIMAL | B_WEATHER_SUN_PRIMAL | B_WEATHER_STRONG_WINDS)
 
 // Move Effects
 #define MOVE_EFFECT_SLEEP               1
@@ -363,59 +364,58 @@
 #define MOVE_EFFECT_PREVENT_ESCAPE      33
 #define MOVE_EFFECT_NIGHTMARE           34
 #define MOVE_EFFECT_ALL_STATS_UP        35
-#define MOVE_EFFECT_RAPID_SPIN          36
-#define MOVE_EFFECT_REMOVE_STATUS       37
-#define MOVE_EFFECT_ATK_DEF_DOWN        38
-#define MOVE_EFFECT_ATK_PLUS_2          39
-#define MOVE_EFFECT_DEF_PLUS_2          40
-#define MOVE_EFFECT_SPD_PLUS_2          41
-#define MOVE_EFFECT_SP_ATK_PLUS_2       42
-#define MOVE_EFFECT_SP_DEF_PLUS_2       43
-#define MOVE_EFFECT_ACC_PLUS_2          44
-#define MOVE_EFFECT_EVS_PLUS_2          45
-#define MOVE_EFFECT_ATK_MINUS_2         46
-#define MOVE_EFFECT_DEF_MINUS_2         47
-#define MOVE_EFFECT_SPD_MINUS_2         48
-#define MOVE_EFFECT_SP_ATK_MINUS_2      49
-#define MOVE_EFFECT_SP_DEF_MINUS_2      50
-#define MOVE_EFFECT_ACC_MINUS_2         51
-#define MOVE_EFFECT_EVS_MINUS_2         52
-#define MOVE_EFFECT_SCALE_SHOT          53
-#define MOVE_EFFECT_THRASH              54
-#define MOVE_EFFECT_KNOCK_OFF           55
-#define MOVE_EFFECT_DEF_SPDEF_DOWN      56
-#define MOVE_EFFECT_CLEAR_SMOG          57
-#define MOVE_EFFECT_SMACK_DOWN          58
-#define MOVE_EFFECT_FLAME_BURST         59
-#define MOVE_EFFECT_FEINT               60
-#define MOVE_EFFECT_SPECTRAL_THIEF      61
-#define MOVE_EFFECT_V_CREATE            62
-#define MOVE_EFFECT_HAPPY_HOUR          63
-#define MOVE_EFFECT_CORE_ENFORCER       64
-#define MOVE_EFFECT_THROAT_CHOP         65
-#define MOVE_EFFECT_INCINERATE          66
-#define MOVE_EFFECT_BUG_BITE            67
-#define MOVE_EFFECT_RECOIL_HP_25        68
-#define MOVE_EFFECT_TRAP_BOTH           69
-#define MOVE_EFFECT_ROUND               70
-#define MOVE_EFFECT_STOCKPILE_WORE_OFF  71
-#define MOVE_EFFECT_DIRE_CLAW           72
-#define MOVE_EFFECT_STEALTH_ROCK        73
-#define MOVE_EFFECT_SPIKES              74
-#define MOVE_EFFECT_SYRUP_BOMB          75
-#define MOVE_EFFECT_FLORAL_HEALING      76
-#define MOVE_EFFECT_SECRET_POWER        77
-#define MOVE_EFFECT_PSYCHIC_NOISE       78
-#define MOVE_EFFECT_TERA_BLAST          79
-#define MOVE_EFFECT_ORDER_UP            80
-#define MOVE_EFFECT_ION_DELUGE          81
-#define MOVE_EFFECT_AROMATHERAPY        82 // No functionality yet
-#define MOVE_EFFECT_HAZE                83
-#define MOVE_EFFECT_LEECH_SEED          84
-#define MOVE_EFFECT_REFLECT             85
-#define MOVE_EFFECT_LIGHT_SCREEN        86
-#define MOVE_EFFECT_SALT_CURE           87
-#define MOVE_EFFECT_EERIE_SPELL         88
+#define MOVE_EFFECT_REMOVE_STATUS       36
+#define MOVE_EFFECT_ATK_DEF_DOWN        37
+#define MOVE_EFFECT_ATK_PLUS_2          38
+#define MOVE_EFFECT_DEF_PLUS_2          39
+#define MOVE_EFFECT_SPD_PLUS_2          40
+#define MOVE_EFFECT_SP_ATK_PLUS_2       41
+#define MOVE_EFFECT_SP_DEF_PLUS_2       42
+#define MOVE_EFFECT_ACC_PLUS_2          43
+#define MOVE_EFFECT_EVS_PLUS_2          44
+#define MOVE_EFFECT_ATK_MINUS_2         45
+#define MOVE_EFFECT_DEF_MINUS_2         46
+#define MOVE_EFFECT_SPD_MINUS_2         47
+#define MOVE_EFFECT_SP_ATK_MINUS_2      48
+#define MOVE_EFFECT_SP_DEF_MINUS_2      49
+#define MOVE_EFFECT_ACC_MINUS_2         50
+#define MOVE_EFFECT_EVS_MINUS_2         51
+#define MOVE_EFFECT_SCALE_SHOT          52
+#define MOVE_EFFECT_THRASH              53
+#define MOVE_EFFECT_KNOCK_OFF           54
+#define MOVE_EFFECT_DEF_SPDEF_DOWN      55
+#define MOVE_EFFECT_CLEAR_SMOG          56
+#define MOVE_EFFECT_SMACK_DOWN          57
+#define MOVE_EFFECT_FLAME_BURST         58
+#define MOVE_EFFECT_FEINT               59
+#define MOVE_EFFECT_SPECTRAL_THIEF      60
+#define MOVE_EFFECT_V_CREATE            61
+#define MOVE_EFFECT_HAPPY_HOUR          62
+#define MOVE_EFFECT_CORE_ENFORCER       63
+#define MOVE_EFFECT_THROAT_CHOP         64
+#define MOVE_EFFECT_INCINERATE          65
+#define MOVE_EFFECT_BUG_BITE            66
+#define MOVE_EFFECT_RECOIL_HP_25        67
+#define MOVE_EFFECT_TRAP_BOTH           68
+#define MOVE_EFFECT_ROUND               69
+#define MOVE_EFFECT_STOCKPILE_WORE_OFF  70
+#define MOVE_EFFECT_DIRE_CLAW           71
+#define MOVE_EFFECT_STEALTH_ROCK        72
+#define MOVE_EFFECT_SPIKES              73
+#define MOVE_EFFECT_SYRUP_BOMB          74
+#define MOVE_EFFECT_FLORAL_HEALING      75
+#define MOVE_EFFECT_SECRET_POWER        76
+#define MOVE_EFFECT_PSYCHIC_NOISE       77
+#define MOVE_EFFECT_TERA_BLAST          78
+#define MOVE_EFFECT_ORDER_UP            79
+#define MOVE_EFFECT_ION_DELUGE          80
+#define MOVE_EFFECT_AROMATHERAPY        81 // No functionality yet
+#define MOVE_EFFECT_HAZE                82
+#define MOVE_EFFECT_LEECH_SEED          83
+#define MOVE_EFFECT_REFLECT             84
+#define MOVE_EFFECT_LIGHT_SCREEN        85
+#define MOVE_EFFECT_SALT_CURE           86
+#define MOVE_EFFECT_EERIE_SPELL         87
 
 #define NUM_MOVE_EFFECTS                88
 
@@ -520,7 +520,7 @@
 #define MOVE_TARGET_ALLY                (1 << 7)
 #define MOVE_TARGET_ALL_BATTLERS        ((1 << 8) | MOVE_TARGET_USER) // No functionality for status moves
 
-// For the second argument of GetMoveTarget, when no target override is needed
+// For the second argument of GetBattleMoveTarget, when no target override is needed
 #define NO_TARGET_OVERRIDE 0
 
 // Constants for Parental Bond

@@ -216,8 +216,6 @@ enum CmdVarious
     VARIOUS_SAVE_BATTLER_ITEM,
     VARIOUS_RESTORE_BATTLER_ITEM,
     VARIOUS_BATTLER_ITEM_TO_LAST_USED_ITEM,
-    VARIOUS_SWAP_SIDE_STATUSES,
-    VARIOUS_SWAP_STATS,
 };
 
 // Cmd_manipulatedamage
@@ -286,6 +284,7 @@ enum MoveEndEffects
     MOVEEND_MULTIHIT_MOVE,
     MOVEEND_DEFROST,
     MOVEEND_RECOIL,
+    MOVEEND_RAPID_SPIN,
     MOVEEND_ITEM_EFFECTS_ATTACKER,
     MOVEEND_MAGICIAN, // Occurs after final multi-hit strike, and after other items/abilities would activate
     MOVEEND_RED_CARD, // Red Card triggers before Eject Pack
