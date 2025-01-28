@@ -46,16 +46,14 @@
 #define MAPCURSOR_X_MAX (MAPCURSOR_X_MIN + MAP_WIDTH - 1)
 #define MAPCURSOR_Y_MAX (MAPCURSOR_Y_MIN + MAP_HEIGHT - 1)
 
-#define SCROLL_Y_SIZE       0x3C
-#define MINIMAL_SCROLL_Y    -0x34
-#define MAXIMAL_SCROLL_Y    MINIMAL_SCROLL_Y + (2 * SCROLL_Y_SIZE)
+#define MINIMAL_SCROLL_X        -0x2C
+#define MAXIMAL_SCROLL_X        0xAC
 
-#define SCROLL_X_SIZE       0x78
-#define MINIMAL_SCROLL_X    -0x2C
-#define MAXIMAL_SCROLL_X    MINIMAL_SCROLL_X + (2 * SCROLL_X_SIZE)
+#define MINIMAL_SCROLL_Y        -0x34
+#define MAXIMAL_SCROLL_Y        0x3C
 
 #define INCREMENT               5
-#define BACKGROUND_INCREMENT    INCREMENT * 0X01E0
+#define BACKGROUND_INCREMENT    INCREMENT * 0X0100
 
 #define MINIMAL_OFFSET_SCROLL_X 0x0000
 #define MAXIMAL_OFFSET_SCROLL_X 0xF000
@@ -133,6 +131,7 @@ static void SpriteCB_FlyDestIcon(struct Sprite *sprite);
 static void CB_FadeInFlyMap(void);
 static void CB_HandleFlyMapInput(void);
 static void CB_ExitFlyMap(void);
+static bool8 ScrollMap(s16 unitX, s16 unitY);
 static void Task_scroll_right(u8 taskId);
 static void Task_scroll_left(u8 taskId);
 static void Task_scroll_up(u8 taskId);
@@ -704,90 +703,80 @@ u8 DoRegionMapInputCallback(void)
     return sRegionMap->inputCallback();
 }
 
+static bool8 ScrollMap(s16 unitX, s16 unitY)
+{
+    bool8 deleteTask = FALSE;
+
+    u16 initialScrollX = GetGpuReg(REG_OFFSET_BG2X_L);
+    u16 initialScrollY = GetGpuReg(REG_OFFSET_BG2Y_L);
+
+    s16 incrementX = unitX * BACKGROUND_INCREMENT;
+    s16 incrementY = unitY * BACKGROUND_INCREMENT;
+
+    u16 newScrollX = incrementX + initialScrollX;
+    u16 newScrollY = incrementY + initialScrollY;
+
+    positionX += -unitX * INCREMENT;
+    positionY += -unitY * INCREMENT;
+
+    if (incrementX != 0) {
+        if (((MAXIMAL_OFFSET_SCROLL_X - initialScrollX) <= incrementX) && (incrementX > 0)) {
+            SetGpuReg(REG_OFFSET_BG2X_L, MAXIMAL_OFFSET_SCROLL_X);
+            deleteTask = TRUE;
+        }
+        else if (((initialScrollX - MINIMAL_OFFSET_SCROLL_X) <= -incrementX) && (incrementX < 0)) {
+            SetGpuReg(REG_OFFSET_BG2X_L, MINIMAL_OFFSET_SCROLL_X);
+            deleteTask = TRUE;
+        }
+        else {
+            SetGpuReg(REG_OFFSET_BG2X_L, newScrollX);
+        }
+    }
+    
+    if (incrementY != 0) {
+        if (((MAXIMAL_OFFSET_SCROLL_Y - initialScrollY) <= incrementY) && (incrementY > 0)) {
+            SetGpuReg(REG_OFFSET_BG2Y_L, MAXIMAL_OFFSET_SCROLL_Y);
+            deleteTask = TRUE;
+        }
+        else if (((initialScrollY - MINIMAL_OFFSET_SCROLL_Y) <= -incrementY) && (incrementY < 0)) {
+            SetGpuReg(REG_OFFSET_BG2Y_L, MINIMAL_OFFSET_SCROLL_Y);
+            deleteTask = TRUE;
+        }
+        else {
+            SetGpuReg(REG_OFFSET_BG2Y_L, newScrollY);
+        }
+    }
+
+    return deleteTask;
+}
+
 static void Task_scroll_right(u8 taskId)
 {
-    s16 position = sRegionMap->playerIconSprite->x;
-    u16 scroll = GetGpuReg(REG_OFFSET_BG2X_L);
-    scroll += BACKGROUND_INCREMENT;
-    position -= INCREMENT;
-
-    if (scroll < MAXIMAL_OFFSET_SCROLL_X) {
-        sRegionMap->playerIconSprite->x = position;
-        SetGpuReg(REG_OFFSET_BG2X_L, scroll);
-    }
-    else {
-        sRegionMap->playerIconSprite->x = MINIMAL_SCROLL_X;
-        SetGpuReg(REG_OFFSET_BG2X_L, MAXIMAL_OFFSET_SCROLL_X);
-        //DestroyTask(taskId);
-    }
-
+    bool8 deleteTask = ScrollMap(1, 0);
     DestroyTask(taskId);
 }
 
 static void Task_scroll_left(u8 taskId)
 {
-    s16 position = sRegionMap->playerIconSprite->x;
-    u16 scroll = GetGpuReg(REG_OFFSET_BG2X_L);
-    position += INCREMENT;
-
-    if (scroll > BACKGROUND_INCREMENT) {
-        scroll -= BACKGROUND_INCREMENT;
-        sRegionMap->playerIconSprite->x = position;
-        SetGpuReg(REG_OFFSET_BG2X_L, scroll);
-    }
-    else {
-        sRegionMap->playerIconSprite->x = MAXIMAL_SCROLL_X;
-        SetGpuReg(REG_OFFSET_BG2X_L, MINIMAL_OFFSET_SCROLL_X);
-        //DestroyTask(taskId);
-    }
-
+    bool8 deleteTask = ScrollMap(-1, 0);
     DestroyTask(taskId);
 }
 
 static void Task_scroll_down(u8 taskId)
 {
-    s16 position = sRegionMap->playerIconSprite->y;
-    u16 scroll = GetGpuReg(REG_OFFSET_BG2Y_L);
-    scroll += BACKGROUND_INCREMENT;
-    position -= INCREMENT;
-
-    if (scroll < MAXIMAL_OFFSET_SCROLL_Y) {
-        sRegionMap->playerIconSprite->y = position;
-        SetGpuReg(REG_OFFSET_BG2Y_L, scroll);
-    }
-    else {
-        sRegionMap->playerIconSprite->y = MINIMAL_SCROLL_Y;
-        SetGpuReg(REG_OFFSET_BG2Y_L, MAXIMAL_OFFSET_SCROLL_Y);
-        //DestroyTask(taskId);
-    }
-
+    bool8 deleteTask = ScrollMap(0, 1);
     DestroyTask(taskId);
 }
 
 static void Task_scroll_up(u8 taskId)
 {
-    s16 position = sRegionMap->playerIconSprite->y;
-    u16 scroll = GetGpuReg(REG_OFFSET_BG2Y_L);
-    position += INCREMENT;
-
-    if (scroll > BACKGROUND_INCREMENT) {
-        scroll -= BACKGROUND_INCREMENT;
-        //sRegionMap->playerIconSprite->y = position;
-        SetGpuReg(REG_OFFSET_BG2Y_L, scroll);
-    }
-    else {
-        //sRegionMap->playerIconSprite->y = MAXIMAL_SCROLL_Y;
-        SetGpuReg(REG_OFFSET_BG2Y_L, MINIMAL_OFFSET_SCROLL_Y);
-        //DestroyTask(taskId);
-    }
-
+    bool8 deleteTask = ScrollMap(0, -1);
     DestroyTask(taskId);
 }
 
 static u8 ProcessRegionMapInput_Full(void)
 {
     u8 input;
-    u8 taskId;
 
     input = MAP_INPUT_NONE;
     sRegionMap->cursorDeltaX = 0;
@@ -799,7 +788,7 @@ static u8 ProcessRegionMapInput_Full(void)
             input = MAP_INPUT_MOVE_START;
         }
         else {
-            taskId = CreateTask(Task_scroll_up, 1);
+            CreateTask(Task_scroll_up, 1);
             input = MAP_INPUT_MOVE_START;
         }
         
@@ -811,7 +800,7 @@ static u8 ProcessRegionMapInput_Full(void)
             input = MAP_INPUT_MOVE_START;
         }
         else {
-            taskId = CreateTask(Task_scroll_down, 1);
+            CreateTask(Task_scroll_down, 1);
             input = MAP_INPUT_MOVE_START;
         }
     }
@@ -823,7 +812,7 @@ static u8 ProcessRegionMapInput_Full(void)
             input = MAP_INPUT_MOVE_START;
         }
         else {
-            taskId = CreateTask(Task_scroll_left, 1);
+            CreateTask(Task_scroll_left, 1);
             input = MAP_INPUT_MOVE_START;
         }
     }
@@ -836,7 +825,7 @@ static u8 ProcessRegionMapInput_Full(void)
             input = MAP_INPUT_MOVE_START;
         }
         else {
-            taskId = CreateTask(Task_scroll_right, 1);
+            CreateTask(Task_scroll_right, 1);
             input = MAP_INPUT_MOVE_START;
         }
         
