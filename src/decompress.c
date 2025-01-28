@@ -1039,34 +1039,26 @@ static void SmolDecompressData(const struct SmolHeader *header, const u32 *data,
 
 static void DeltaDecodeTileNumbers(u16 *tileNumbers, u32 length)
 {
-    u32 prevVal = 0;
+    u16 prevVal = 0;
     for (u32 i = 0; i < length; i++)
     {
         u32 delta = tileNumbers[i];
-        tileNumbers[i] = (prevVal + delta) & 0x3ff;
+        tileNumbers[i] = (prevVal + delta);
         prevVal = tileNumbers[i];
     }
 }
 
 static void SmolDecompressTilemap(const struct SmolTilemapHeader *header, const u32 *data, u16 *dest)
 {
-    u16 *combinedVec = Alloc(header->tilemapSize * 3);
+    u16 *deltaDest = dest;
     u32 loOffset = header->symSize*2 + 2*(header->symSize % 2);
     u8 *loVec = (u8 *)data;
     loVec = &loVec[loOffset];
     u16 *symVec = (u16 *)data;
 
-    DecodeInstructionsIwram(header->tileNumberSize + header->flipSize + header->palSize, loVec, symVec, combinedVec);
+    DecodeInstructionsIwram(header->tileNumberSize, loVec, symVec, dest);
     u32 arraySize = header->tilemapSize/2;
-    DeltaDecodeTileNumbers(combinedVec, arraySize);
-    u16 *tileNumbers = combinedVec;
-    u16 *flips = &combinedVec[arraySize];
-    u16 *pals = &combinedVec[2*arraySize];
-    for (u32 i = 0; i < arraySize; i++)
-    {
-        *dest++ = *tileNumbers++ | *flips++ | *pals++;
-    }
-    Free(combinedVec);
+    DeltaDecodeTileNumbers(deltaDest, arraySize);
 }
 
 //  Helper functions for determining modes

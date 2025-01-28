@@ -24,52 +24,36 @@ std::vector<unsigned short> readFileAsUS(std::string filePath)
     return returnVec;
 }
 
-CompressionResult compressTileset(std::string fileName)
-{
-    CompressionResult result;
-    result.tilemapSize = 0;
-    std::vector<unsigned short> tiles = readFileAsUS(fileName);
-    if (tiles.size() == 0)
-        return result;
-    result.tilemapSize = tiles.size()*2;
-    std::vector<unsigned short> tileNums(tiles.size());
-    std::vector<unsigned short> flips(tiles.size());
-    std::vector<unsigned short> pals(tiles.size());
-    for (size_t i = 0; i < tiles.size(); i++)
-    {
-        tileNums[i] = tiles[i] & 0b1111111111;
-        flips[i] = ((tiles[i] >> 10) & 0x3) << 10;
-        pals[i] = (tiles[i] >> 12) << 12;
-    }
-    deltaEncodeTileNums(&tileNums);
-    result.tileVecs = compressVector(&tileNums);
-    result.flipVecs = compressVector(&flips);
-    result.palVecs = compressVector(&pals);
-    result.compressedSize += result.tileVecs.loVec.size();
-    result.compressedSize += result.tileVecs.symVec.size()*2;
-    result.compressedSize += result.flipVecs.loVec.size();
-    result.compressedSize += result.flipVecs.symVec.size()*2;
-    result.compressedSize += result.palVecs.loVec.size();
-    result.compressedSize += result.palVecs.symVec.size()*2;
-    result.header = getHeader(result);
-    result.writeVec = getWriteVecs(result);
-    if (!verifyTileCompression(result.writeVec, tiles))
-    {
-        fprintf(stderr, "Tilemap verification failed for %s\n", fileName.c_str());
-        result.failed = true;
-    }
-    return result;
-}
-
 void deltaEncodeTileNums(std::vector<unsigned short> *pTileNums)
 {
     unsigned short prevVal = 0;
     for (size_t i = 0; i < pTileNums->size(); i++)
     {
         unsigned short current = (*pTileNums)[i];
-        (*pTileNums)[i] = (current - prevVal) & 0b1111111111;
+        (*pTileNums)[i] = (current - prevVal);
         prevVal = current;
     }
+}
+
+CompressionResult compressTileset(std::string fileName)
+{
+    CompressionResult result;
+    result.tilemapSize = 0;
+    std::vector<unsigned short> tiles = readFileAsUS(fileName);
+    std::vector<unsigned short> origTiles = tiles;
+    if (tiles.size() == 0)
+        return result;
+    result.tilemapSize = tiles.size()*2;
+    deltaEncodeTileNums(&tiles);
+    result.vecs = compressVector(&tiles);
+    result.header = getHeader(result);
+    result.writeVec = getWriteVecs(result);
+    if (!verifyTileCompression(result.writeVec, origTiles))
+    {
+        fprintf(stderr, "Tilemap verification failed for %s\n", fileName.c_str());
+        result.failed = true;
+    }
+    return result;
 }
 
 void deltaDecodeTileNums(std::vector<unsigned short> *pTileNums)
@@ -78,7 +62,7 @@ void deltaDecodeTileNums(std::vector<unsigned short> *pTileNums)
     for (size_t i = 0; i < pTileNums->size(); i++)
     {
         unsigned short delta = (*pTileNums)[i];
-        (*pTileNums)[i] = (delta + prevVal) & 0b1111111111;
+        (*pTileNums)[i] = (delta + prevVal);
         prevVal = (*pTileNums)[i];
     }
 }
@@ -143,30 +127,17 @@ size_t getTotalSize(std::vector<CompressVectors> *input)
     return totalSize;
 }
 
-std::vector<unsigned short> decodeCompression(std::vector<CompressVectors> input)
-{
-    std::vector<unsigned short> decoded;
-    std::vector<unsigned short> tileNums = decodeBytesShort(&(input[0].loVec), &(input[0].symVec));
-    std::vector<unsigned short> flips = decodeBytesShort(&(input[1].loVec), &(input[1].symVec));
-    std::vector<unsigned short> pals = decodeBytesShort(&(input[2].loVec), &(input[2].symVec));
-    return decoded;
-}
-
 TileHeader getHeader(CompressionResult compression)
 {
     TileHeader header;
     header.mode = IS_TILEMAP;
     header.tilemapSize = compression.tilemapSize;
-    header.symbolSize = compression.tileVecs.symVec.size() + compression.flipVecs.symVec.size() + compression.palVecs.symVec.size();
-    header.tileNumberSize = compression.tileVecs.loVec.size();
-    header.flipSize = compression.flipVecs.loVec.size();
-    header.palSize = compression.palVecs.loVec.size();
+    header.symbolSize = compression.vecs.symVec.size();
+    header.loSize = compression.vecs.loVec.size();
     header.header[0] = header.mode;
     header.header[0] |= header.tilemapSize << 4;
     header.header[0] |= header.symbolSize << 18;
-    header.header[1] = header.tileNumberSize;
-    header.header[1] |= header.flipSize << 11;
-    header.header[1] |= header.palSize << 20;
+    header.header[1] = header.loSize;
     return header;
 }
 
@@ -177,16 +148,9 @@ std::vector<unsigned int> getWriteVecs(CompressionResult compression)
     returnVec.push_back(compression.header.header[1]);
     unsigned int tempInt = 0;
     bool containsData = false;
-    std::vector<unsigned int> allSymbols;
-    for (unsigned short val : compression.tileVecs.symVec)
-        allSymbols.push_back(val);
-    for (unsigned short val : compression.flipVecs.symVec)
-        allSymbols.push_back(val);
-    for (unsigned short val : compression.palVecs.symVec)
-        allSymbols.push_back(val);
     for (size_t i = 0; i < compression.header.symbolSize; i++)
     {
-        unsigned int currData = allSymbols[i];
+        unsigned int currData = compression.vecs.symVec[i];
         if (containsData)
             currData = currData << 16;
         tempInt += currData;
@@ -202,17 +166,10 @@ std::vector<unsigned int> getWriteVecs(CompressionResult compression)
         returnVec.push_back(tempInt);
     containsData = false;
     tempInt = 0;
-    std::vector<unsigned int> allLOs;
-    for (unsigned short val : compression.tileVecs.loVec)
-        allLOs.push_back(val);
-    for (unsigned short val : compression.flipVecs.loVec)
-        allLOs.push_back(val);
-    for (unsigned short val : compression.palVecs.loVec)
-        allLOs.push_back(val);
-    size_t totalLOs = compression.header.tileNumberSize + compression.header.flipSize + compression.header.palSize;
+    size_t totalLOs = compression.header.loSize;
     for (size_t i = 0; i < totalLOs; i++)
     {
-        unsigned int currData = allLOs[i] << (8*(i % 4));
+        unsigned int currData = compression.vecs.loVec[i] << (8*(i % 4));
         tempInt += currData;
         containsData = true;
         if ((i+1) % 4 == 0)
@@ -235,9 +192,7 @@ TileHeader readTileHeader(unsigned int *data)
     header.mode = (CompressionMode)(data[0] & 0xf);
     header.tilemapSize = (data[0] >> 4) & 0x3fff;
     header.symbolSize = (data[0] >> 18) & 0x3fff;
-    header.tileNumberSize = data[1] & 0b11111111111;
-    header.flipSize = (data[1] >> 11) & 0b111111111;
-    header.palSize = (data[1] >> 20) & 0b1111111111;
+    header.loSize = data[1];
     return header;
 }
 
@@ -245,8 +200,6 @@ bool verifyTileCompression(std::vector<unsigned int> compression, std::vector<un
 {
     TileHeader header = readTileHeader(compression.data());
     std::vector<unsigned short> tileNumbers;
-    std::vector<unsigned short> flips;
-    std::vector<unsigned short> palIds;
     std::vector<unsigned short> symVec;
     std::vector<unsigned char> loVec;
     for (size_t i = 2; i < compression.size(); i++)
@@ -261,7 +214,7 @@ bool verifyTileCompression(std::vector<unsigned int> compression, std::vector<un
     size_t loCount = 0;
     size_t symIndex = 0;
     size_t loStartIndex = header.symbolSize*2 + (header.symbolSize % 2) * 2;
-    while (loCount < header.tileNumberSize)
+    while (loCount < header.loSize)
     {
         size_t currLength = loVec[loStartIndex + loCount];
         loCount++;
@@ -297,96 +250,15 @@ bool verifyTileCompression(std::vector<unsigned int> compression, std::vector<un
             }
         }
     }
-    loStartIndex += loCount;
-    loCount = 0;
-    while (loCount < header.flipSize)
-    {
-        size_t currLength = loVec[loStartIndex + loCount];
-        loCount++;
-        if (currLength & LO_CONTINUE_BIT)
-        {
-            currLength -= LO_CONTINUE_BIT;
-            currLength += loVec[loStartIndex + loCount] << 7;
-            loCount++;
-        }
-        size_t currOffset = loVec[loStartIndex + loCount];
-        loCount++;
-        if (currOffset & LO_CONTINUE_BIT)
-        {
-            currOffset -= LO_CONTINUE_BIT;
-            currOffset += loVec[loStartIndex + loCount] << 7;
-            loCount++;
-        }
-        if (currLength != 0)
-        {
-            flips.push_back(symVec[symIndex]);
-            symIndex++;
-            for (size_t i = 0; i < currLength; i++)
-            {
-                flips.push_back(flips[flips.size() - currOffset]);
-            }
-        }
-        else
-        {
-            for (size_t i = 0; i < currOffset; i++)
-            {
-                flips.push_back(symVec[symIndex]);
-                symIndex++;
-            }
-        }
-    }
-    loStartIndex += loCount;
-    loCount = 0;
-    while (loCount < header.palSize)
-    {
-        size_t currLength = loVec[loStartIndex + loCount];
-        loCount++;
-        if (currLength & LO_CONTINUE_BIT)
-        {
-            currLength -= LO_CONTINUE_BIT;
-            currLength += loVec[loStartIndex + loCount] << 7;
-            loCount++;
-        }
-        size_t currOffset = loVec[loStartIndex + loCount];
-        loCount++;
-        if (currOffset & LO_CONTINUE_BIT)
-        {
-            currOffset -= LO_CONTINUE_BIT;
-            currOffset += loVec[loStartIndex + loCount] << 7;
-            loCount++;
-        }
-        if (currLength != 0)
-        {
-            palIds.push_back(symVec[symIndex]);
-            symIndex++;
-            for (size_t i = 0; i < currLength; i++)
-                palIds.push_back(palIds[palIds.size() - currOffset]);
-        }
-        else
-        {
-            for (size_t i = 0; i < currOffset; i++)
-            {
-                palIds.push_back(symVec[symIndex]);
-                symIndex++;
-            }
-        }
-    }
-    loStartIndex += loCount;
-    loCount = 0;
+
     deltaDecodeTileNums(&tileNumbers);
-    if (tileNumbers.size() != input.size()
-     || flips.size() != input.size()
-     || palIds.size() != input.size())
+    if (tileNumbers.size() != input.size())
         return false;
     std::vector<unsigned short> fullVec;
     for (size_t i = 0; i < tileNumbers.size(); i++)
-    {
-        fullVec.push_back(tileNumbers[i] + flips[i] + palIds[i]);
-    }
+        fullVec.push_back(tileNumbers[i]);
     for (size_t i = 0; i < fullVec.size(); i++)
-    {
         if (fullVec[i] != input[i])
             return false;
-    }
     return true;
 }

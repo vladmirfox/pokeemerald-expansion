@@ -39,10 +39,7 @@ struct SmolTilemapHeader {
     u32 mode:4;
     u32 tilemapSize:14;
     u32 symSize:14;
-    u32 tileNumberSize:11;
-    u32 flipSize:9;
-    u32 palSize:10;
-    u32 padding:2;
+    u32 tileNumberSize;
 };
 
 union CompressionHeader {
