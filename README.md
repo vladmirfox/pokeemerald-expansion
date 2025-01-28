@@ -198,9 +198,3 @@ Also, *please follow the Pull Request template and feel free to discuss how the 
     - Fixed overworld snow effect.
 
 There are some mechanics, moves and abilities that are missing and being developed. Check [the project's milestones](https://github.com/rh-hideout/pokeemerald-expansion/milestones) and our [issues page](https://github.com/rh-hideout/pokeemerald-expansion/issues) to see which ones.
-
-
-## Mega Evolution Overworld Sprite Credits:
-- [princess-phoenix](https://www.deviantart.com/princess-phoenix)
-- [larryturbo](https://www.deviantart.com/larryturbo)
-- [kidkatt](https://www.deviantart.com/kidkatt)
