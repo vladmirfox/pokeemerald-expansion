@@ -25,9 +25,7 @@ struct TileHeader
     CompressionMode mode;
     unsigned int tilemapSize;
     unsigned int symbolSize;
-    unsigned int tileNumberSize;
-    unsigned int flipSize;
-    unsigned int palSize;
+    unsigned int loSize;
     unsigned int header[2];
 };
 
@@ -41,9 +39,7 @@ struct CompressionResult
 {
     size_t tilemapSize;
     size_t compressedSize = 0;
-    CompressVectors tileVecs;
-    CompressVectors flipVecs;
-    CompressVectors palVecs;
+    CompressVectors vecs;
     TileHeader header;
     std::vector<unsigned int> writeVec;
     bool failed = false;
@@ -62,7 +58,5 @@ size_t getTotalSize(std::vector<CompressVectors> *input);
 TileHeader getHeader(CompressionResult compression);
 TileHeader readTileHeader(unsigned int *data);
 std::vector<unsigned int> getWriteVecs(CompressionResult compression);
-
-std::vector<unsigned short> decodeCompression(std::vector<CompressVectors> input);
 
 bool verifyTileCompression(std::vector<unsigned int> compression, std::vector<unsigned short> input);

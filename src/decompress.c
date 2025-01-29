@@ -864,6 +864,7 @@ static inline void Copy16(const void *_src, void *_dst, u32 size)
 //      Insert <offset> number of symbols from the symbol vector into the result vector and advance the symbol vector position by <offset>
 ARM_FUNC __attribute__((noinline, no_reorder)) __attribute__((optimize("-O3"))) static void DecodeInstructions(u32 headerLoSize, const u8 *loVec, const u16 *symVec, u16 *dest)
 {
+    //u32 prevVal = 0;
     const u8 *loVecEnd = loVec + headerLoSize;
     do
     {
@@ -1037,54 +1038,65 @@ static void SmolDecompressData(const struct SmolHeader *header, const u32 *data,
     Free(memoryAlloced);
 }
 
-ARM_FUNC __attribute__((section(".iwram.code"))) __attribute__((noinline)) __attribute__((optimize("-O3"))) static void TilemapLoop(u32 arraySize, u16 *combinedVec, u16 *dest)
+ARM_FUNC __attribute__((noinline, no_reorder)) __attribute__((optimize("-O3"))) static void DeltaDecodeTileNumbers(u16 *tileNumbers, u32 arraySize)
 {
-    u16 *tileNumbers = combinedVec;
-    u32 *tileNumbers_32 = (void *) tileNumbers;
-    u16 *flips = &combinedVec[arraySize];
-    u16 *pals = &combinedVec[2*arraySize];
     u32 prevVal = 0;
-    u32 *dest32 = (void *) dest;
-    u16 *to = dest + arraySize;
+    u32 reminder = arraySize % 8;
+    u16 *dst = tileNumbers + (arraySize - reminder);
     do
     {
-        u32 dstVal1, dstVal2, tileNum32;
-        tileNum32 = *tileNumbers_32++;
+        prevVal += *tileNumbers;
+        *tileNumbers++ = prevVal;
 
-        prevVal = (prevVal + (tileNum32 & 0xFFFF)) & 0x3ff;
-        dstVal1 = prevVal | *flips++ | *pals++;
+        prevVal += *tileNumbers;
+        *tileNumbers++ = prevVal;
 
-        prevVal = (prevVal + (tileNum32 >> 16)) & 0x3ff;
-        dstVal1 |= (prevVal | *flips++ | *pals++) << 16;
+        prevVal += *tileNumbers;
+        *tileNumbers++ = prevVal;
 
-        tileNum32 = *tileNumbers_32++;
+        prevVal += *tileNumbers;
+        *tileNumbers++ = prevVal;
 
-        prevVal = (prevVal + (tileNum32 & 0xFFFF)) & 0x3ff;
-        dstVal2 = prevVal | *flips++ | *pals++;
+        prevVal += *tileNumbers;
+        *tileNumbers++ = prevVal;
 
-        prevVal = (prevVal + (tileNum32 >> 16)) & 0x3ff;
-        dstVal2 |= (prevVal | *flips++ | *pals++) << 16;
+        prevVal += *tileNumbers;
+        *tileNumbers++ = prevVal;
 
-        *dest32++ = dstVal1;
-        *dest32++ = dstVal2;
-    } while (dest32 != (void *) to);
+        prevVal += *tileNumbers;
+        *tileNumbers++ = prevVal;
+
+        prevVal += *tileNumbers;
+        *tileNumbers++ = prevVal;
+    } while (tileNumbers != dst);
+
+    for (u32 i = 0; i < reminder; i++)
+    {
+        prevVal += *tileNumbers;
+        *tileNumbers++ = prevVal;
+    }
+}
+
+ARM_FUNC __attribute__((no_reorder)) static void SwitchToArmCallDecodeTileNumbers(u16 *tileNumbers, u32 arraySize, void (*decodeFunction)(u16 *tileNumbers, u32 arraySize))
+{
+    decodeFunction(tileNumbers, arraySize);
 }
 
 static void SmolDecompressTilemap(const struct SmolTilemapHeader *header, const u32 *data, u16 *dest)
 {
-    u16 *combinedVec = Alloc(header->tilemapSize * 3);
+    u16 *deltaDest = dest;
     u32 loOffset = header->symSize*2 + 2*(header->symSize % 2);
     u8 *loVec = (u8 *)data;
     loVec = &loVec[loOffset];
     u16 *symVec = (u16 *)data;
 
-    DecodeInstructionsIwram(header->tileNumberSize + header->flipSize + header->palSize, loVec, symVec, combinedVec);
-
+    DecodeInstructionsIwram(header->tileNumberSize, loVec, symVec, dest);
     u32 arraySize = header->tilemapSize/2;
 
-    TilemapLoop(arraySize, combinedVec, dest);
+    u32 funcBuffer[100];
 
-    Free(combinedVec);
+    CopyFuncToIwram(funcBuffer, DeltaDecodeTileNumbers, SwitchToArmCallDecodeTileNumbers);
+    SwitchToArmCallDecodeTileNumbers(deltaDest, arraySize, (void *) funcBuffer);
 }
 
 //  Helper functions for determining modes
