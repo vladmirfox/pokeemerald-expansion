@@ -1037,15 +1037,48 @@ static void SmolDecompressData(const struct SmolHeader *header, const u32 *data,
     Free(memoryAlloced);
 }
 
-static void DeltaDecodeTileNumbers(u16 *tileNumbers, u32 length)
+ARM_FUNC __attribute__((noinline, no_reorder)) __attribute__((optimize("-O3"))) static void DeltaDecodeTileNumbers(u16 *tileNumbers, u32 arraySize)
 {
-    u16 prevVal = 0;
-    for (u32 i = 0; i < length; i++)
+    u32 prevVal = 0;
+    u32 reminder = arraySize % 8;
+    u16 *dst = tileNumbers + (arraySize - reminder);
+    do
     {
-        u32 delta = tileNumbers[i];
-        tileNumbers[i] = (prevVal + delta);
-        prevVal = tileNumbers[i];
+        prevVal += *tileNumbers;
+        *tileNumbers++ = prevVal;
+
+        prevVal += *tileNumbers;
+        *tileNumbers++ = prevVal;
+
+        prevVal += *tileNumbers;
+        *tileNumbers++ = prevVal;
+
+        prevVal += *tileNumbers;
+        *tileNumbers++ = prevVal;
+
+        prevVal += *tileNumbers;
+        *tileNumbers++ = prevVal;
+
+        prevVal += *tileNumbers;
+        *tileNumbers++ = prevVal;
+
+        prevVal += *tileNumbers;
+        *tileNumbers++ = prevVal;
+
+        prevVal += *tileNumbers;
+        *tileNumbers++ = prevVal;
+    } while (tileNumbers != dst);
+
+    for (u32 i = 0; i < reminder; i++)
+    {
+        prevVal += *tileNumbers;
+        *tileNumbers++ = prevVal;
     }
+}
+
+ARM_FUNC __attribute__((no_reorder)) static void SwitchToArmCallDecodeTileNumbers(u16 *tileNumbers, u32 arraySize, void (*decodeFunction)(u16 *tileNumbers, u32 arraySize))
+{
+    decodeFunction(tileNumbers, arraySize);
 }
 
 static void SmolDecompressTilemap(const struct SmolTilemapHeader *header, const u32 *data, u16 *dest)
@@ -1058,7 +1091,11 @@ static void SmolDecompressTilemap(const struct SmolTilemapHeader *header, const 
 
     DecodeInstructionsIwram(header->tileNumberSize, loVec, symVec, dest);
     u32 arraySize = header->tilemapSize/2;
-    DeltaDecodeTileNumbers(deltaDest, arraySize);
+
+    u32 funcBuffer[100];
+
+    CopyFuncToIwram(funcBuffer, DeltaDecodeTileNumbers, SwitchToArmCallDecodeTileNumbers);
+    SwitchToArmCallDecodeTileNumbers(deltaDest, arraySize, (void *) funcBuffer);
 }
 
 //  Helper functions for determining modes
