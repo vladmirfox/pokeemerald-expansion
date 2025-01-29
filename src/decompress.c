@@ -864,7 +864,6 @@ static inline void Copy16(const void *_src, void *_dst, u32 size)
 //      Insert <offset> number of symbols from the symbol vector into the result vector and advance the symbol vector position by <offset>
 ARM_FUNC __attribute__((noinline, no_reorder)) __attribute__((optimize("-O3"))) static void DecodeInstructions(u32 headerLoSize, const u8 *loVec, const u16 *symVec, u16 *dest)
 {
-    //u32 prevVal = 0;
     const u8 *loVecEnd = loVec + headerLoSize;
     do
     {
