@@ -57,20 +57,20 @@ typedef s32 (*AiScoreFunc)(u32, u32, u32, s32);
 #define SET_SCORE(battler, movesetIndex, val) \
     do \
     { \
-    if (TESTING) \
-    { \
-        TestRunner_Battle_AISetScore(__FILE__, __LINE__, battler, movesetIndex, val); \
-    } \
+        if (TESTING) \
+        { \
+            TestRunner_Battle_AISetScore(__FILE__, __LINE__, battler, movesetIndex, val); \
+        } \
         AI_THINKING_STRUCT->score[movesetIndex] = val; \
     } while (0) \
 
 #define ADJUST_SCORE(val) \
     do \
     { \
-    if (TESTING) \
-    { \
-        TestRunner_Battle_AIAdjustScore(__FILE__, __LINE__, battlerAtk, AI_THINKING_STRUCT->movesetIndex, val); \
-    } \
+        if (TESTING) \
+        { \
+            TestRunner_Battle_AIAdjustScore(__FILE__, __LINE__, battlerAtk, AI_THINKING_STRUCT->movesetIndex, val); \
+        } \
         score += val; \
     } while (0) \
 
@@ -78,9 +78,9 @@ typedef s32 (*AiScoreFunc)(u32, u32, u32, s32);
     do \
     { \
     if (TESTING) \
-    { \
-        TestRunner_Battle_AIAdjustScore(__FILE__, __LINE__, battlerAtk, AI_THINKING_STRUCT->movesetIndex, val); \
-    } \
+        { \
+            TestRunner_Battle_AIAdjustScore(__FILE__, __LINE__, battlerAtk, AI_THINKING_STRUCT->movesetIndex, val); \
+        } \
         score += val; \
         return score; \
     } while (0) \
@@ -88,10 +88,10 @@ typedef s32 (*AiScoreFunc)(u32, u32, u32, s32);
 #define ADJUST_SCORE_PTR(val) \
     do \
     { \
-    if (TESTING) \
-    { \
-        TestRunner_Battle_AIAdjustScore(__FILE__, __LINE__, battlerAtk, AI_THINKING_STRUCT->movesetIndex, val); \
-    } \
+        if (TESTING) \
+        { \
+            TestRunner_Battle_AIAdjustScore(__FILE__, __LINE__, battlerAtk, AI_THINKING_STRUCT->movesetIndex, val); \
+        } \
         (*score) += val; \
     } while (0) \
 
