@@ -9693,7 +9693,7 @@ BattleScript_EffectMaxMove::
 	resultmessage
 	waitmessage B_WAIT_TIME_LONG
 	tryfaintmon BS_TARGET
-	setmaxmoveeffect
+	setadditionaleffects
 	moveendall
 	end
 
