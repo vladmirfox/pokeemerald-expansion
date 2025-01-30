@@ -190,20 +190,3 @@ SINGLE_BATTLE_TEST("(Gulp Missile) Transformed Cramorant Gulping lowers defense 
         HP_BAR(opponent);
     }
 }
-
-SINGLE_BATTLE_TEST("xxx (Gulp Missile) If base Cramorant hits target with Surf it transforms into Gorging form if max HP is under 1/2")
-{
-    GIVEN {
-        PLAYER(SPECIES_CRAMORANT) { HP(120); MaxHP(250); Ability(ABILITY_GULP_MISSILE); }
-        OPPONENT(SPECIES_GEODUDE) { Ability(ABILITY_STURDY); }
-    } WHEN {
-        TURN { MOVE(player, MOVE_SURF); }
-        TURN { MOVE(player, MOVE_SURF); }
-    } SCENE {
-        ANIMATION(ANIM_TYPE_MOVE, MOVE_SURF, player);
-        HP_BAR(opponent);
-        ABILITY_POPUP(player, ABILITY_GULP_MISSILE);
-    } THEN {
-        EXPECT_EQ(player->species, SPECIES_CRAMORANT_GORGING);
-    }
-}

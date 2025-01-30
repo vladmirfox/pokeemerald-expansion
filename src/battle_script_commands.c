@@ -13860,7 +13860,7 @@ static void Cmd_tryspiteppreduce(void)
         {
             s32 ppToDeduct = B_PP_REDUCED_BY_SPITE >= GEN_4 ? 4 : (Random() & 3) + 2;
             // G-Max Depletion only deducts 2 PP.
-            if (IsMaxMove(gCurrentMove) && GetMoveMaxEffect(gCurrentMove) == MAX_EFFECT_SPITE)
+            if (IsMaxMove(gCurrentMove) && GetArgumentMoveEffect(gCurrentMove) == MAX_EFFECT_SPITE)
                 ppToDeduct = 2;
 
             if (gBattleMons[gBattlerTarget].pp[i] < ppToDeduct)
@@ -18302,4 +18302,211 @@ void BS_SwapStats(void)
     }
     PREPARE_STAT_BUFFER(gBattleTextBuff1, stat);
     gBattlescriptCurrInstr = cmd->nextInstr;
+}
+
+static u32 GetStatusFromMoveEffect(u32 move)
+{
+    u8 maxEffect = GetArgumentMoveEffect(move);
+    switch (maxEffect)
+    {
+        // Status 1
+        case MAX_EFFECT_PARALYZE_FOES:
+            return STATUS1_PARALYSIS;
+        case MAX_EFFECT_POISON_FOES:
+            return STATUS1_POISON;
+        case MAX_EFFECT_POISON_PARALYZE_FOES:
+        {
+            static const u8 sStunShockEffects[] = {STATUS1_PARALYSIS, STATUS1_POISON};
+            return RandomElement(RNG_G_MAX_STUN_SHOCK, sStunShockEffects);
+        }
+        case MAX_EFFECT_EFFECT_SPORE_FOES:
+        {
+            static const u8 sBefuddleEffects[] = {STATUS1_PARALYSIS, STATUS1_POISON, STATUS1_SLEEP};
+            return RandomElement(RNG_G_MAX_BEFUDDLE, sBefuddleEffects);
+        }
+        // Status 2
+        case MAX_EFFECT_CONFUSE_FOES:
+        case MAX_EFFECT_CONFUSE_FOES_PAY_DAY:
+            return STATUS2_CONFUSION;
+        case MAX_EFFECT_INFATUATE_FOES:
+            return STATUS2_INFATUATION;
+        case MAX_EFFECT_MEAN_LOOK:
+            return STATUS2_ESCAPE_PREVENTION;
+        case MAX_EFFECT_TORMENT_FOES:
+            return STATUS2_TORMENT;
+        default:
+            return STATUS1_NONE;
+    }
+}
+
+void BS_TrySetStatus1(void)
+{
+    NATIVE_ARGS(const u8 *failInstr);
+    u32 effect = 0;
+    u32 status1 = GetStatusFromMoveEffect(gCurrentMove);
+
+    switch (status1)
+    {
+        case STATUS1_POISON:
+            if (CanBePoisoned(gBattlerAttacker, gBattlerTarget, GetBattlerAbility(gBattlerTarget)))
+            {
+                gBattleMons[gBattlerTarget].status1 |= STATUS1_POISON;
+                gBattleCommunication[MULTISTRING_CHOOSER] = 0;
+                effect++;
+            }
+            break;
+        case STATUS1_PARALYSIS:
+            if (CanBeParalyzed(gBattlerTarget, GetBattlerAbility(gBattlerTarget)))
+            {
+                gBattleMons[gBattlerTarget].status1 |= STATUS1_PARALYSIS;
+                gBattleCommunication[MULTISTRING_CHOOSER] = 3;
+                effect++;
+            }
+            break;
+        case STATUS1_SLEEP:
+            if (CanBeSlept(gBattlerTarget, GetBattlerAbility(gBattlerTarget), BLOCKED_BY_SLEEP_CLAUSE))
+            {
+                if (B_SLEEP_TURNS >= GEN_5)
+                    gBattleMons[gBattlerTarget].status1 |=  STATUS1_SLEEP_TURN((Random() % 3) + 2);
+                else
+                    gBattleMons[gBattlerTarget].status1 |=  STATUS1_SLEEP_TURN((Random() % 4) + 3);
+
+                TryActivateSleepClause(gBattlerTarget, gBattlerPartyIndexes[gBattlerTarget]);
+                gBattleCommunication[MULTISTRING_CHOOSER] = 4;
+                effect++;
+            }
+            break;
+    }
+    if (effect)
+    {
+        gEffectBattler = gBattlerTarget;
+        BtlController_EmitSetMonData(gBattlerTarget, BUFFER_A, REQUEST_STATUS_BATTLE, 0, sizeof(gBattleMons[gBattlerTarget].status1), &gBattleMons[gBattlerTarget].status1);
+        MarkBattlerForControllerExec(gBattlerTarget);
+        gBattlescriptCurrInstr = cmd->nextInstr;
+    }
+    else
+    {
+        gBattlescriptCurrInstr = cmd->failInstr;
+    }
+}
+
+void BS_TrySetStatus2(void)
+{
+    NATIVE_ARGS(const u8 *failInstr);
+    u8 effect = 0;
+    u32 status2 = GetStatusFromMoveEffect(gCurrentMove);
+    switch (status2)
+    {
+        case STATUS2_CONFUSION:
+            if (CanBeConfused(gBattlerTarget))
+            {
+                gBattleMons[gBattlerTarget].status2 |= STATUS2_CONFUSION_TURN(((Random()) % 4) + 2);
+                gBattleCommunication[MULTISTRING_CHOOSER] = 0;
+                gBattleCommunication[MULTIUSE_STATE] = 1;
+                effect++;
+            }
+            break;
+        case STATUS2_INFATUATION:
+        {
+            u8 atkGender = GetGenderFromSpeciesAndPersonality(gBattleMons[gBattlerAttacker].species, gBattleMons[gBattlerAttacker].personality);
+            u8 defGender = GetGenderFromSpeciesAndPersonality(gBattleMons[gBattlerTarget].species, gBattleMons[gBattlerTarget].personality);
+            if (!(gBattleMons[gBattlerTarget].status2 & STATUS2_INFATUATION)
+                && gBattleMons[gBattlerTarget].ability != ABILITY_OBLIVIOUS
+                && !IsAbilityOnSide(gBattlerTarget, ABILITY_AROMA_VEIL)
+                && atkGender != defGender
+                && atkGender != MON_GENDERLESS
+                && defGender != MON_GENDERLESS)
+            {
+                gBattleMons[gBattlerTarget].status2 |= STATUS2_INFATUATED_WITH(gBattlerAttacker);
+                gBattleCommunication[MULTISTRING_CHOOSER] = 1;
+                gBattleCommunication[MULTIUSE_STATE] = 2;
+                effect++;
+            }
+            break;
+        }
+        case STATUS2_ESCAPE_PREVENTION:
+            if (!(gBattleMons[gBattlerTarget].status2 & STATUS2_ESCAPE_PREVENTION))
+            {
+                gBattleMons[gBattlerTarget].status2 |= STATUS2_ESCAPE_PREVENTION;
+                gDisableStructs[gBattlerTarget].battlerPreventingEscape = gBattlerAttacker;
+                gBattleCommunication[MULTISTRING_CHOOSER] = 2;
+                effect++;
+            }
+            break;
+        case STATUS2_TORMENT:
+            if (!(gBattleMons[gBattlerTarget].status2 & STATUS2_TORMENT)
+                && !IsAbilityOnSide(gBattlerTarget, ABILITY_AROMA_VEIL))
+            {
+                gBattleMons[gBattlerTarget].status2 |= STATUS2_TORMENT;
+                gDisableStructs[gBattlerTarget].tormentTimer = 3; // 3 turns excluding current turn
+                gBattleCommunication[MULTISTRING_CHOOSER] = 3;
+                effect++;
+            }
+            break;
+    }
+    if (effect)
+    {
+        gEffectBattler = gBattlerTarget;
+        gBattlescriptCurrInstr = cmd->nextInstr;
+    }
+    else
+    {
+        gBattlescriptCurrInstr = cmd->failInstr;
+    }
+}
+
+// Heals one-sixth of the target's HP, including for Dynamaxed targets.
+void BS_HealOneSixth(void)
+{
+    NATIVE_ARGS(const u8* failInstr);
+    gBattleStruct->moveDamage[gBattlerTarget] = gBattleMons[gBattlerTarget].maxHP / 6;
+    if (gBattleStruct->moveDamage[gBattlerTarget] == 0)
+        gBattleStruct->moveDamage[gBattlerTarget] = 1;
+    gBattleStruct->moveDamage[gBattlerTarget] *= -1;
+
+    if (gBattleMons[gBattlerTarget].hp == gBattleMons[gBattlerTarget].maxHP)
+        gBattlescriptCurrInstr = cmd->failInstr;    // fail
+    else
+        gBattlescriptCurrInstr = cmd->nextInstr;    // can heal
+}
+
+// Recycles the target's item if it is specifically holding a berry.
+void BS_TryRecycleBerry(void)
+{
+    NATIVE_ARGS(const u8 *failInstr);
+    u16* usedHeldItem = &gBattleStruct->usedHeldItems[gBattlerPartyIndexes[gBattlerTarget]][GetBattlerSide(gBattlerTarget)];
+    if (gBattleMons[gBattlerTarget].item == ITEM_NONE
+        && gBattleStruct->changedItems[gBattlerTarget] == ITEM_NONE   // Will not inherit an item
+        && ItemId_GetPocket(*usedHeldItem) == POCKET_BERRIES)
+    {
+        gLastUsedItem = *usedHeldItem;
+        *usedHeldItem = ITEM_NONE;
+        gBattleMons[gBattlerTarget].item = gLastUsedItem;
+
+        BtlController_EmitSetMonData(gBattlerTarget, BUFFER_A, REQUEST_HELDITEM_BATTLE, 0, sizeof(gBattleMons[gBattlerTarget].item), &gBattleMons[gBattlerTarget].item);
+        MarkBattlerForControllerExec(gBattlerTarget);
+
+        gBattlescriptCurrInstr = cmd->nextInstr;
+    }
+    else
+    {
+        gBattlescriptCurrInstr = cmd->failInstr;
+    }
+}
+
+// Sets up sharp steel on the target's side.
+void BS_SetSteelsurge(void)
+{
+    NATIVE_ARGS(const u8 *failInstr);
+    u8 targetSide = GetBattlerSide(gBattlerTarget);
+    if (gSideStatuses[targetSide] & SIDE_STATUS_STEELSURGE)
+    {
+        gBattlescriptCurrInstr = cmd->failInstr;
+    }
+    else
+    {
+        gSideStatuses[targetSide] |= SIDE_STATUS_STEELSURGE;
+        gSideTimers[targetSide].steelsurgeAmount = 1;
+        gBattlescriptCurrInstr = cmd->nextInstr;
+    }
 }

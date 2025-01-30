@@ -21670,7 +21670,7 @@ const struct MoveInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .target = MOVE_TARGET_SELECTED,
         .priority = 0,
         .category = DAMAGE_CATEGORY_PHYSICAL,
-        .argument = { .maxEffect = MAX_EFFECT_EFFECT_SPORE_FOES },
+        .argument = { .argMoveEffect = MAX_EFFECT_EFFECT_SPORE_FOES },
         .battleAnimScript = gBattleAnimMove_GMaxBefuddle,
         .additionalEffects = ADDITIONAL_EFFECTS({
             .moveEffect = MAX_EFFECT_EFFECT_SPORE_FOES,
@@ -21691,7 +21691,7 @@ const struct MoveInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .target = MOVE_TARGET_SELECTED,
         .priority = 0,
         .category = DAMAGE_CATEGORY_PHYSICAL,
-        .argument = { .maxEffect = MAX_EFFECT_PARALYZE_FOES },
+        .argument = { .argMoveEffect = MAX_EFFECT_PARALYZE_FOES },
         .battleAnimScript = gBattleAnimMove_GMaxVoltCrash,
         .additionalEffects = ADDITIONAL_EFFECTS({
             .moveEffect = MAX_EFFECT_PARALYZE_FOES,
@@ -21712,7 +21712,7 @@ const struct MoveInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .target = MOVE_TARGET_SELECTED,
         .priority = 0,
         .category = DAMAGE_CATEGORY_PHYSICAL,
-        .argument = { .maxEffect = MAX_EFFECT_CONFUSE_FOES_PAY_DAY },
+        .argument = { .argMoveEffect = MAX_EFFECT_CONFUSE_FOES_PAY_DAY },
         .battleAnimScript = gBattleAnimMove_GMaxGoldRush,
         .additionalEffects = ADDITIONAL_EFFECTS({
             .moveEffect = MAX_EFFECT_CONFUSE_FOES_PAY_DAY,
@@ -21753,7 +21753,7 @@ const struct MoveInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .target = MOVE_TARGET_SELECTED,
         .priority = 0,
         .category = DAMAGE_CATEGORY_PHYSICAL,
-        .argument = { .maxEffect = MAX_EFFECT_MEAN_LOOK },
+        .argument = { .argMoveEffect = MAX_EFFECT_MEAN_LOOK },
         .battleAnimScript = gBattleAnimMove_GMaxTerror,
         .additionalEffects = ADDITIONAL_EFFECTS({
             .moveEffect = MAX_EFFECT_MEAN_LOOK,
@@ -21814,7 +21814,7 @@ const struct MoveInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .target = MOVE_TARGET_SELECTED,
         .priority = 0,
         .category = DAMAGE_CATEGORY_PHYSICAL,
-        .argument = { .maxEffect = MAX_EFFECT_INFATUATE_FOES },
+        .argument = { .argMoveEffect = MAX_EFFECT_INFATUATE_FOES },
         .battleAnimScript = gBattleAnimMove_GMaxCuddle,
         .additionalEffects = ADDITIONAL_EFFECTS({
             .moveEffect = MAX_EFFECT_INFATUATE_FOES,
@@ -21855,7 +21855,7 @@ const struct MoveInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .target = MOVE_TARGET_SELECTED,
         .priority = 0,
         .category = DAMAGE_CATEGORY_PHYSICAL,
-        .argument = { .maxEffect = MAX_EFFECT_POISON_FOES },
+        .argument = { .argMoveEffect = MAX_EFFECT_POISON_FOES },
         .battleAnimScript = gBattleAnimMove_GMaxMalodor,
         .additionalEffects = ADDITIONAL_EFFECTS({
             .moveEffect = MAX_EFFECT_POISON_FOES,
@@ -21876,7 +21876,7 @@ const struct MoveInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .target = MOVE_TARGET_SELECTED,
         .priority = 0,
         .category = DAMAGE_CATEGORY_PHYSICAL,
-        .argument = { .maxEffect = MAX_EFFECT_TORMENT_FOES },
+        .argument = { .argMoveEffect = MAX_EFFECT_TORMENT_FOES },
         .battleAnimScript = gBattleAnimMove_GMaxMeltdown,
         .additionalEffects = ADDITIONAL_EFFECTS({
             .moveEffect = MAX_EFFECT_TORMENT_FOES,
@@ -22100,7 +22100,7 @@ const struct MoveInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .target = MOVE_TARGET_SELECTED,
         .priority = 0,
         .category = DAMAGE_CATEGORY_PHYSICAL,
-        .argument = { .maxEffect = MAX_EFFECT_POISON_PARALYZE_FOES },
+        .argument = { .argMoveEffect = MAX_EFFECT_POISON_PARALYZE_FOES },
         .battleAnimScript = gBattleAnimMove_GMaxStunShock,
         .additionalEffects = ADDITIONAL_EFFECTS({
             .moveEffect = MAX_EFFECT_POISON_PARALYZE_FOES,
@@ -22141,7 +22141,7 @@ const struct MoveInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .target = MOVE_TARGET_SELECTED,
         .priority = 0,
         .category = DAMAGE_CATEGORY_PHYSICAL,
-        .argument = { .maxEffect = MAX_EFFECT_CONFUSE_FOES },
+        .argument = { .argMoveEffect = MAX_EFFECT_CONFUSE_FOES },
         .battleAnimScript = gBattleAnimMove_GMaxSmite,
         .additionalEffects = ADDITIONAL_EFFECTS({
             .moveEffect = MAX_EFFECT_CONFUSE_FOES,
@@ -22243,7 +22243,7 @@ const struct MoveInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .target = MOVE_TARGET_SELECTED,
         .priority = 0,
         .category = DAMAGE_CATEGORY_PHYSICAL,
-        .argument = { .maxEffect = MAX_EFFECT_BYPASS_PROTECT },
+        .argument = { .argMoveEffect = MAX_EFFECT_BYPASS_PROTECT },
         .battleAnimScript = gBattleAnimMove_GMaxOneBlow,
     },
 
@@ -22259,7 +22259,7 @@ const struct MoveInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .target = MOVE_TARGET_SELECTED,
         .priority = 0,
         .category = DAMAGE_CATEGORY_PHYSICAL,
-        .argument = { .maxEffect = MAX_EFFECT_BYPASS_PROTECT },
+        .argument = { .argMoveEffect = MAX_EFFECT_BYPASS_PROTECT },
         .battleAnimScript = gBattleAnimMove_GMaxRapidFlow,
     },
 };
