@@ -468,12 +468,14 @@ static const u8 *ExpandPlaceholder_StringVar3(void)
     return gStringVar3;
 }
 
+static const u8 sText_ExpandedPlaceholder_Kun[] = _("");
+static const u8 sText_ExpandedPlaceholder_Chan[] = _("");
 static const u8 *ExpandPlaceholder_KunChan(void)
 {
     if (gSaveBlock2Ptr->playerGender == MALE)
-        return gText_ExpandedPlaceholder_Kun;
+        return sText_ExpandedPlaceholder_Kun;
     else
-        return gText_ExpandedPlaceholder_Chan;
+        return sText_ExpandedPlaceholder_Chan;
 }
 
 static const u8 *ExpandPlaceholder_RivalName(void)
@@ -484,39 +486,10 @@ static const u8 *ExpandPlaceholder_RivalName(void)
         return gText_ExpandedPlaceholder_Brendan;
 }
 
-static const u8 *ExpandPlaceholder_Version(void)
-{
-    return gText_ExpandedPlaceholder_Emerald;
-}
-
+static const u8 sText_ExpandedPlaceholder_Aqua[] = _("AQUA");
 static const u8 *ExpandPlaceholder_Aqua(void)
 {
-    return gText_ExpandedPlaceholder_Aqua;
-}
-
-static const u8 *ExpandPlaceholder_Magma(void)
-{
-    return gText_ExpandedPlaceholder_Magma;
-}
-
-static const u8 *ExpandPlaceholder_Archie(void)
-{
-    return gText_ExpandedPlaceholder_Archie;
-}
-
-static const u8 *ExpandPlaceholder_Maxie(void)
-{
-    return gText_ExpandedPlaceholder_Maxie;
-}
-
-static const u8 *ExpandPlaceholder_Kyogre(void)
-{
-    return gText_ExpandedPlaceholder_Kyogre;
-}
-
-static const u8 *ExpandPlaceholder_Groudon(void)
-{
-    return gText_ExpandedPlaceholder_Groudon;
+    return sText_ExpandedPlaceholder_Aqua;
 }
 
 const u8 *GetExpandedPlaceholder(u32 id)
@@ -532,13 +505,7 @@ const u8 *GetExpandedPlaceholder(u32 id)
         [PLACEHOLDER_ID_STRING_VAR_3] = ExpandPlaceholder_StringVar3,
         [PLACEHOLDER_ID_KUN]          = ExpandPlaceholder_KunChan,
         [PLACEHOLDER_ID_RIVAL]        = ExpandPlaceholder_RivalName,
-        [PLACEHOLDER_ID_VERSION]      = ExpandPlaceholder_Version,
         [PLACEHOLDER_ID_AQUA]         = ExpandPlaceholder_Aqua,
-        [PLACEHOLDER_ID_MAGMA]        = ExpandPlaceholder_Magma,
-        [PLACEHOLDER_ID_ARCHIE]       = ExpandPlaceholder_Archie,
-        [PLACEHOLDER_ID_MAXIE]        = ExpandPlaceholder_Maxie,
-        [PLACEHOLDER_ID_KYOGRE]       = ExpandPlaceholder_Kyogre,
-        [PLACEHOLDER_ID_GROUDON]      = ExpandPlaceholder_Groudon,
     };
 
     if (id >= ARRAY_COUNT(funcs))
