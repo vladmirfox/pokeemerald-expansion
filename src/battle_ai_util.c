@@ -2398,8 +2398,8 @@ static inline bool32 IsMoveSleepClauseTrigger(u32 move)
         const struct AdditionalEffect *additionalEffect = GetMoveAdditionalEffectById(move, i);
         switch (additionalEffect->moveEffect)
         {
-        case MAX_EFFECT_EFFECT_SPORE_FOES:
-        case MAX_EFFECT_YAWN_FOE:
+        case MOVE_EFFECT_EFFECT_SPORE_FOES:
+        case MOVE_EFFECT_YAWN_FOE:
             return TRUE;
         }
     }

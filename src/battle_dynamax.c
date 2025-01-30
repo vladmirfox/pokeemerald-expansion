@@ -322,7 +322,7 @@ u8 GetMaxMovePower(u32 move)
 {
     u8 tier;
     // G-Max Drum Solo, G-Max Hydrosnipe, and G-Max Fireball always have 160 base power.
-    if (GetArgumentMoveEffect(GetMaxMove(gBattlerAttacker, move)) == MAX_EFFECT_FIXED_POWER)
+    if (GetArgumentMoveEffect(GetMaxMove(gBattlerAttacker, move)) == MOVE_EFFECT_FIXED_POWER)
         return 160;
 
     // Exceptions to all other rules below:

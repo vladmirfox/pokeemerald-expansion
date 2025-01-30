@@ -21251,7 +21251,7 @@ const struct MoveInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .category = DAMAGE_CATEGORY_PHYSICAL,
         .battleAnimScript = gBattleAnimMove_MaxFlare,
         .additionalEffects = ADDITIONAL_EFFECTS({
-            .moveEffect = MAX_EFFECT_SUN,
+            .moveEffect = MOVE_EFFECT_SUN,
             .chance = 100,
             .sheerForceBoost = SHEER_FORCE_NO_BOOST,
         }),
@@ -21271,7 +21271,7 @@ const struct MoveInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .category = DAMAGE_CATEGORY_PHYSICAL,
         .battleAnimScript = gBattleAnimMove_MaxFlutterby,
         .additionalEffects = ADDITIONAL_EFFECTS({
-            .moveEffect = MAX_EFFECT_LOWER_SP_ATK,
+            .moveEffect = MOVE_EFFECT_LOWER_SP_ATK,
             .chance = 100,
             .sheerForceBoost = SHEER_FORCE_NO_BOOST,
         }),
@@ -21291,7 +21291,7 @@ const struct MoveInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .category = DAMAGE_CATEGORY_PHYSICAL,
         .battleAnimScript = gBattleAnimMove_MaxLightning,
         .additionalEffects = ADDITIONAL_EFFECTS({
-            .moveEffect = MAX_EFFECT_ELECTRIC_TERRAIN,
+            .moveEffect = MOVE_EFFECT_ELECTRIC_TERRAIN,
             .chance = 100,
             .sheerForceBoost = SHEER_FORCE_NO_BOOST,
         }),
@@ -21311,7 +21311,7 @@ const struct MoveInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .category = DAMAGE_CATEGORY_PHYSICAL,
         .battleAnimScript = gBattleAnimMove_MaxStrike,
         .additionalEffects = ADDITIONAL_EFFECTS({
-            .moveEffect = MAX_EFFECT_LOWER_SPEED,
+            .moveEffect = MOVE_EFFECT_LOWER_SPEED,
             .chance = 100,
             .sheerForceBoost = SHEER_FORCE_NO_BOOST,
         }),
@@ -21331,7 +21331,7 @@ const struct MoveInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .category = DAMAGE_CATEGORY_PHYSICAL,
         .battleAnimScript = gBattleAnimMove_MaxKnuckle,
         .additionalEffects = ADDITIONAL_EFFECTS({
-            .moveEffect = MAX_EFFECT_RAISE_TEAM_ATTACK,
+            .moveEffect = MOVE_EFFECT_RAISE_TEAM_ATTACK,
             .chance = 100,
             .sheerForceBoost = SHEER_FORCE_NO_BOOST,
         }),
@@ -21351,7 +21351,7 @@ const struct MoveInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .category = DAMAGE_CATEGORY_PHYSICAL,
         .battleAnimScript = gBattleAnimMove_MaxPhantasm,
         .additionalEffects = ADDITIONAL_EFFECTS({
-            .moveEffect = MAX_EFFECT_LOWER_DEFENSE,
+            .moveEffect = MOVE_EFFECT_LOWER_DEFENSE,
             .chance = 100,
             .sheerForceBoost = SHEER_FORCE_NO_BOOST,
         }),
@@ -21371,7 +21371,7 @@ const struct MoveInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .category = DAMAGE_CATEGORY_PHYSICAL,
         .battleAnimScript = gBattleAnimMove_MaxHailstorm,
         .additionalEffects = ADDITIONAL_EFFECTS({
-            .moveEffect = MAX_EFFECT_HAIL,
+            .moveEffect = MOVE_EFFECT_HAIL,
             .chance = 100,
             .sheerForceBoost = SHEER_FORCE_NO_BOOST,
         }),
@@ -21391,7 +21391,7 @@ const struct MoveInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .category = DAMAGE_CATEGORY_PHYSICAL,
         .battleAnimScript = gBattleAnimMove_MaxOoze,
         .additionalEffects = ADDITIONAL_EFFECTS({
-            .moveEffect = MAX_EFFECT_RAISE_TEAM_SP_ATK,
+            .moveEffect = MOVE_EFFECT_RAISE_TEAM_SP_ATK,
             .chance = 100,
             .sheerForceBoost = SHEER_FORCE_NO_BOOST,
         }),
@@ -21411,7 +21411,7 @@ const struct MoveInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .category = DAMAGE_CATEGORY_PHYSICAL,
         .battleAnimScript = gBattleAnimMove_MaxGeyser,
         .additionalEffects = ADDITIONAL_EFFECTS({
-            .moveEffect = MAX_EFFECT_RAIN,
+            .moveEffect = MOVE_EFFECT_RAIN,
             .chance = 100,
             .sheerForceBoost = SHEER_FORCE_NO_BOOST,
         }),
@@ -21431,7 +21431,7 @@ const struct MoveInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .category = DAMAGE_CATEGORY_PHYSICAL,
         .battleAnimScript = gBattleAnimMove_MaxAirstream,
         .additionalEffects = ADDITIONAL_EFFECTS({
-            .moveEffect = MAX_EFFECT_RAISE_TEAM_SPEED,
+            .moveEffect = MOVE_EFFECT_RAISE_TEAM_SPEED,
             .chance = 100,
             .sheerForceBoost = SHEER_FORCE_NO_BOOST,
         }),
@@ -21451,7 +21451,7 @@ const struct MoveInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .category = DAMAGE_CATEGORY_PHYSICAL,
         .battleAnimScript = gBattleAnimMove_MaxStarfall,
         .additionalEffects = ADDITIONAL_EFFECTS({
-            .moveEffect = MAX_EFFECT_MISTY_TERRAIN,
+            .moveEffect = MOVE_EFFECT_MISTY_TERRAIN,
             .chance = 100,
             .sheerForceBoost = SHEER_FORCE_NO_BOOST,
         }),
@@ -21471,7 +21471,7 @@ const struct MoveInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .category = DAMAGE_CATEGORY_PHYSICAL,
         .battleAnimScript = gBattleAnimMove_MaxWyrmwind,
         .additionalEffects = ADDITIONAL_EFFECTS({
-            .moveEffect = MAX_EFFECT_LOWER_ATTACK,
+            .moveEffect = MOVE_EFFECT_LOWER_ATTACK,
             .chance = 100,
             .sheerForceBoost = SHEER_FORCE_NO_BOOST,
         }),
@@ -21491,7 +21491,7 @@ const struct MoveInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .category = DAMAGE_CATEGORY_PHYSICAL,
         .battleAnimScript = gBattleAnimMove_MaxMindstorm,
         .additionalEffects = ADDITIONAL_EFFECTS({
-            .moveEffect = MAX_EFFECT_PSYCHIC_TERRAIN,
+            .moveEffect = MOVE_EFFECT_PSYCHIC_TERRAIN,
             .chance = 100,
             .sheerForceBoost = SHEER_FORCE_NO_BOOST,
         }),
@@ -21511,7 +21511,7 @@ const struct MoveInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .category = DAMAGE_CATEGORY_PHYSICAL,
         .battleAnimScript = gBattleAnimMove_MaxRockfall,
         .additionalEffects = ADDITIONAL_EFFECTS({
-            .moveEffect = MAX_EFFECT_SANDSTORM,
+            .moveEffect = MOVE_EFFECT_SANDSTORM,
             .chance = 100,
             .sheerForceBoost = SHEER_FORCE_NO_BOOST,
         }),
@@ -21532,7 +21532,7 @@ const struct MoveInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .skyBattleBanned = B_EXTRAPOLATED_MOVE_FLAGS,
         .battleAnimScript = gBattleAnimMove_MaxQuake,
         .additionalEffects = ADDITIONAL_EFFECTS({
-            .moveEffect = MAX_EFFECT_RAISE_TEAM_SP_DEF,
+            .moveEffect = MOVE_EFFECT_RAISE_TEAM_SP_DEF,
             .chance = 100,
             .sheerForceBoost = SHEER_FORCE_NO_BOOST,
         }),
@@ -21552,7 +21552,7 @@ const struct MoveInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .category = DAMAGE_CATEGORY_PHYSICAL,
         .battleAnimScript = gBattleAnimMove_MaxDarkness,
         .additionalEffects = ADDITIONAL_EFFECTS({
-            .moveEffect = MAX_EFFECT_LOWER_SP_DEF,
+            .moveEffect = MOVE_EFFECT_LOWER_SP_DEF,
             .chance = 100,
             .sheerForceBoost = SHEER_FORCE_NO_BOOST,
         }),
@@ -21572,7 +21572,7 @@ const struct MoveInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .category = DAMAGE_CATEGORY_PHYSICAL,
         .battleAnimScript = gBattleAnimMove_MaxOvergrowth,
         .additionalEffects = ADDITIONAL_EFFECTS({
-            .moveEffect = MAX_EFFECT_GRASSY_TERRAIN,
+            .moveEffect = MOVE_EFFECT_GRASSY_TERRAIN,
             .chance = 100,
             .sheerForceBoost = SHEER_FORCE_NO_BOOST,
         }),
@@ -21592,7 +21592,7 @@ const struct MoveInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .category = DAMAGE_CATEGORY_PHYSICAL,
         .battleAnimScript = gBattleAnimMove_MaxSteelspike,
         .additionalEffects = ADDITIONAL_EFFECTS({
-            .moveEffect = MAX_EFFECT_RAISE_TEAM_DEFENSE,
+            .moveEffect = MOVE_EFFECT_RAISE_TEAM_DEFENSE,
             .chance = 100,
             .sheerForceBoost = SHEER_FORCE_NO_BOOST,
         }),
@@ -21612,7 +21612,7 @@ const struct MoveInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .category = DAMAGE_CATEGORY_PHYSICAL,
         .battleAnimScript = gBattleAnimMove_GMaxVineLash,
         .additionalEffects = ADDITIONAL_EFFECTS({
-            .moveEffect = MAX_EFFECT_VINE_LASH,
+            .moveEffect = MOVE_EFFECT_VINE_LASH,
             .chance = 100,
             .sheerForceBoost = SHEER_FORCE_NO_BOOST,
         }),
@@ -21632,7 +21632,7 @@ const struct MoveInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .category = DAMAGE_CATEGORY_PHYSICAL,
         .battleAnimScript = gBattleAnimMove_GMaxWildfire,
         .additionalEffects = ADDITIONAL_EFFECTS({
-            .moveEffect = MAX_EFFECT_WILDFIRE,
+            .moveEffect = MOVE_EFFECT_WILDFIRE,
             .chance = 100,
             .sheerForceBoost = SHEER_FORCE_NO_BOOST,
         }),
@@ -21652,7 +21652,7 @@ const struct MoveInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .category = DAMAGE_CATEGORY_PHYSICAL,
         .battleAnimScript = gBattleAnimMove_GMaxCannonade,
         .additionalEffects = ADDITIONAL_EFFECTS({
-            .moveEffect = MAX_EFFECT_CANNONADE,
+            .moveEffect = MOVE_EFFECT_CANNONADE,
             .chance = 100,
             .sheerForceBoost = SHEER_FORCE_NO_BOOST,
         }),
@@ -21670,10 +21670,10 @@ const struct MoveInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .target = MOVE_TARGET_SELECTED,
         .priority = 0,
         .category = DAMAGE_CATEGORY_PHYSICAL,
-        .argument = { .argMoveEffect = MAX_EFFECT_EFFECT_SPORE_FOES },
+        .argument = { .argMoveEffect = MOVE_EFFECT_EFFECT_SPORE_FOES },
         .battleAnimScript = gBattleAnimMove_GMaxBefuddle,
         .additionalEffects = ADDITIONAL_EFFECTS({
-            .moveEffect = MAX_EFFECT_EFFECT_SPORE_FOES,
+            .moveEffect = MOVE_EFFECT_EFFECT_SPORE_FOES,
             .chance = 100,
             .sheerForceBoost = SHEER_FORCE_NO_BOOST,
         }),
@@ -21691,10 +21691,10 @@ const struct MoveInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .target = MOVE_TARGET_SELECTED,
         .priority = 0,
         .category = DAMAGE_CATEGORY_PHYSICAL,
-        .argument = { .argMoveEffect = MAX_EFFECT_PARALYZE_FOES },
+        .argument = { .argMoveEffect = MOVE_EFFECT_PARALYZE_FOES },
         .battleAnimScript = gBattleAnimMove_GMaxVoltCrash,
         .additionalEffects = ADDITIONAL_EFFECTS({
-            .moveEffect = MAX_EFFECT_PARALYZE_FOES,
+            .moveEffect = MOVE_EFFECT_PARALYZE_FOES,
             .chance = 100,
             .sheerForceBoost = SHEER_FORCE_NO_BOOST,
         }),
@@ -21712,10 +21712,10 @@ const struct MoveInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .target = MOVE_TARGET_SELECTED,
         .priority = 0,
         .category = DAMAGE_CATEGORY_PHYSICAL,
-        .argument = { .argMoveEffect = MAX_EFFECT_CONFUSE_FOES_PAY_DAY },
+        .argument = { .argMoveEffect = MOVE_EFFECT_CONFUSE_FOES_PAY_DAY },
         .battleAnimScript = gBattleAnimMove_GMaxGoldRush,
         .additionalEffects = ADDITIONAL_EFFECTS({
-            .moveEffect = MAX_EFFECT_CONFUSE_FOES_PAY_DAY,
+            .moveEffect = MOVE_EFFECT_CONFUSE_FOES_PAY_DAY,
             .chance = 100,
             .sheerForceBoost = SHEER_FORCE_NO_BOOST,
         }),
@@ -21735,7 +21735,7 @@ const struct MoveInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .category = DAMAGE_CATEGORY_PHYSICAL,
         .battleAnimScript = gBattleAnimMove_GMaxChiStrike,
         .additionalEffects = ADDITIONAL_EFFECTS({
-            .moveEffect = MAX_EFFECT_CRIT_PLUS,
+            .moveEffect = MOVE_EFFECT_CRIT_PLUS,
             .chance = 100,
             .sheerForceBoost = SHEER_FORCE_NO_BOOST,
         }),
@@ -21753,10 +21753,10 @@ const struct MoveInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .target = MOVE_TARGET_SELECTED,
         .priority = 0,
         .category = DAMAGE_CATEGORY_PHYSICAL,
-        .argument = { .argMoveEffect = MAX_EFFECT_MEAN_LOOK },
+        .argument = { .argMoveEffect = MOVE_EFFECT_MEAN_LOOK },
         .battleAnimScript = gBattleAnimMove_GMaxTerror,
         .additionalEffects = ADDITIONAL_EFFECTS({
-            .moveEffect = MAX_EFFECT_MEAN_LOOK,
+            .moveEffect = MOVE_EFFECT_MEAN_LOOK,
             .chance = 100,
             .sheerForceBoost = SHEER_FORCE_NO_BOOST,
         }),
@@ -21776,7 +21776,7 @@ const struct MoveInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .category = DAMAGE_CATEGORY_PHYSICAL,
         .battleAnimScript = gBattleAnimMove_GMaxFoamBurst,
         .additionalEffects = ADDITIONAL_EFFECTS({
-            .moveEffect = MAX_EFFECT_LOWER_SPEED_2_FOES,
+            .moveEffect = MOVE_EFFECT_LOWER_SPEED_2_FOES,
             .chance = 100,
             .sheerForceBoost = SHEER_FORCE_NO_BOOST,
         }),
@@ -21796,7 +21796,7 @@ const struct MoveInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .category = DAMAGE_CATEGORY_PHYSICAL,
         .battleAnimScript = gBattleAnimMove_GMaxResonance,
         .additionalEffects = ADDITIONAL_EFFECTS({
-            .moveEffect = MAX_EFFECT_AURORA_VEIL,
+            .moveEffect = MOVE_EFFECT_AURORA_VEIL,
             .chance = 100,
             .sheerForceBoost = SHEER_FORCE_NO_BOOST,
         }),
@@ -21814,10 +21814,10 @@ const struct MoveInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .target = MOVE_TARGET_SELECTED,
         .priority = 0,
         .category = DAMAGE_CATEGORY_PHYSICAL,
-        .argument = { .argMoveEffect = MAX_EFFECT_INFATUATE_FOES },
+        .argument = { .argMoveEffect = MOVE_EFFECT_INFATUATE_FOES },
         .battleAnimScript = gBattleAnimMove_GMaxCuddle,
         .additionalEffects = ADDITIONAL_EFFECTS({
-            .moveEffect = MAX_EFFECT_INFATUATE_FOES,
+            .moveEffect = MOVE_EFFECT_INFATUATE_FOES,
             .chance = 100,
             .sheerForceBoost = SHEER_FORCE_NO_BOOST,
         }),
@@ -21837,7 +21837,7 @@ const struct MoveInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .category = DAMAGE_CATEGORY_PHYSICAL,
         .battleAnimScript = gBattleAnimMove_GMaxReplenish,
         .additionalEffects = ADDITIONAL_EFFECTS({
-            .moveEffect = MAX_EFFECT_RECYCLE_BERRIES,
+            .moveEffect = MOVE_EFFECT_RECYCLE_BERRIES,
             .chance = 100,
             .sheerForceBoost = SHEER_FORCE_NO_BOOST,
         }),
@@ -21855,10 +21855,10 @@ const struct MoveInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .target = MOVE_TARGET_SELECTED,
         .priority = 0,
         .category = DAMAGE_CATEGORY_PHYSICAL,
-        .argument = { .argMoveEffect = MAX_EFFECT_POISON_FOES },
+        .argument = { .argMoveEffect = MOVE_EFFECT_POISON_FOES },
         .battleAnimScript = gBattleAnimMove_GMaxMalodor,
         .additionalEffects = ADDITIONAL_EFFECTS({
-            .moveEffect = MAX_EFFECT_POISON_FOES,
+            .moveEffect = MOVE_EFFECT_POISON_FOES,
             .chance = 100,
             .sheerForceBoost = SHEER_FORCE_NO_BOOST,
         }),
@@ -21876,10 +21876,10 @@ const struct MoveInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .target = MOVE_TARGET_SELECTED,
         .priority = 0,
         .category = DAMAGE_CATEGORY_PHYSICAL,
-        .argument = { .argMoveEffect = MAX_EFFECT_TORMENT_FOES },
+        .argument = { .argMoveEffect = MOVE_EFFECT_TORMENT_FOES },
         .battleAnimScript = gBattleAnimMove_GMaxMeltdown,
         .additionalEffects = ADDITIONAL_EFFECTS({
-            .moveEffect = MAX_EFFECT_TORMENT_FOES,
+            .moveEffect = MOVE_EFFECT_TORMENT_FOES,
             .chance = 100,
             .sheerForceBoost = SHEER_FORCE_NO_BOOST,
         }),
@@ -21900,7 +21900,7 @@ const struct MoveInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .ignoresTargetAbility = TRUE,
         .battleAnimScript = gBattleAnimMove_GMaxDrumSolo,
         .additionalEffects = ADDITIONAL_EFFECTS({
-            .moveEffect = MAX_EFFECT_FIXED_POWER,
+            .moveEffect = MOVE_EFFECT_FIXED_POWER,
             .chance = 100,
             .sheerForceBoost = SHEER_FORCE_NO_BOOST,
         }),
@@ -21921,7 +21921,7 @@ const struct MoveInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .ignoresTargetAbility = TRUE,
         .battleAnimScript = gBattleAnimMove_GMaxFireball,
         .additionalEffects = ADDITIONAL_EFFECTS({
-            .moveEffect = MAX_EFFECT_FIXED_POWER,
+            .moveEffect = MOVE_EFFECT_FIXED_POWER,
             .chance = 100,
             .sheerForceBoost = SHEER_FORCE_NO_BOOST,
         }),
@@ -21942,7 +21942,7 @@ const struct MoveInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .ignoresTargetAbility = TRUE,
         .battleAnimScript = gBattleAnimMove_GMaxHydrosnipe,
         .additionalEffects = ADDITIONAL_EFFECTS({
-            .moveEffect = MAX_EFFECT_FIXED_POWER,
+            .moveEffect = MOVE_EFFECT_FIXED_POWER,
             .chance = 100,
             .sheerForceBoost = SHEER_FORCE_NO_BOOST,
         }),
@@ -21962,7 +21962,7 @@ const struct MoveInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .category = DAMAGE_CATEGORY_PHYSICAL,
         .battleAnimScript = gBattleAnimMove_GMaxWindRage,
         .additionalEffects = ADDITIONAL_EFFECTS({
-            .moveEffect = MAX_EFFECT_DEFOG,
+            .moveEffect = MOVE_EFFECT_DEFOG,
             .chance = 100,
             .sheerForceBoost = SHEER_FORCE_NO_BOOST,
         }),
@@ -21982,7 +21982,7 @@ const struct MoveInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .category = DAMAGE_CATEGORY_PHYSICAL,
         .battleAnimScript = gBattleAnimMove_GMaxGravitas,
         .additionalEffects = ADDITIONAL_EFFECTS({
-            .moveEffect = MAX_EFFECT_GRAVITY,
+            .moveEffect = MOVE_EFFECT_GRAVITY,
             .chance = 100,
             .sheerForceBoost = SHEER_FORCE_NO_BOOST,
         }),
@@ -22002,7 +22002,7 @@ const struct MoveInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .category = DAMAGE_CATEGORY_PHYSICAL,
         .battleAnimScript = gBattleAnimMove_GMaxStonesurge,
         .additionalEffects = ADDITIONAL_EFFECTS({
-            .moveEffect = MAX_EFFECT_STEALTH_ROCK,
+            .moveEffect = MOVE_EFFECT_STEALTH_ROCK,
             .chance = 100,
             .sheerForceBoost = SHEER_FORCE_NO_BOOST,
         }),
@@ -22022,7 +22022,7 @@ const struct MoveInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .category = DAMAGE_CATEGORY_PHYSICAL,
         .battleAnimScript = gBattleAnimMove_GMaxVolcalith,
         .additionalEffects = ADDITIONAL_EFFECTS({
-            .moveEffect = MAX_EFFECT_VOLCALITH,
+            .moveEffect = MOVE_EFFECT_VOLCALITH,
             .chance = 100,
             .sheerForceBoost = SHEER_FORCE_NO_BOOST,
         }),
@@ -22042,7 +22042,7 @@ const struct MoveInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .category = DAMAGE_CATEGORY_PHYSICAL,
         .battleAnimScript = gBattleAnimMove_GMaxTartness,
         .additionalEffects = ADDITIONAL_EFFECTS({
-            .moveEffect = MAX_EFFECT_LOWER_EVASIVENESS_FOES,
+            .moveEffect = MOVE_EFFECT_LOWER_EVASIVENESS_FOES,
             .chance = 100,
             .sheerForceBoost = SHEER_FORCE_NO_BOOST,
         }),
@@ -22062,7 +22062,7 @@ const struct MoveInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .category = DAMAGE_CATEGORY_PHYSICAL,
         .battleAnimScript = gBattleAnimMove_GMaxSweetness,
         .additionalEffects = ADDITIONAL_EFFECTS({
-            .moveEffect = MAX_EFFECT_AROMATHERAPY,
+            .moveEffect = MOVE_EFFECT_AROMATHERAPY,
             .chance = 100,
             .sheerForceBoost = SHEER_FORCE_NO_BOOST,
         }),
@@ -22082,7 +22082,7 @@ const struct MoveInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .category = DAMAGE_CATEGORY_PHYSICAL,
         .battleAnimScript = gBattleAnimMove_GMaxSandblast,
         .additionalEffects = ADDITIONAL_EFFECTS({
-            .moveEffect = MAX_EFFECT_SANDBLAST_FOES,
+            .moveEffect = MOVE_EFFECT_SANDBLAST_FOES,
             .chance = 100,
             .sheerForceBoost = SHEER_FORCE_NO_BOOST,
         }),
@@ -22100,10 +22100,10 @@ const struct MoveInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .target = MOVE_TARGET_SELECTED,
         .priority = 0,
         .category = DAMAGE_CATEGORY_PHYSICAL,
-        .argument = { .argMoveEffect = MAX_EFFECT_POISON_PARALYZE_FOES },
+        .argument = { .argMoveEffect = MOVE_EFFECT_POISON_PARALYZE_FOES },
         .battleAnimScript = gBattleAnimMove_GMaxStunShock,
         .additionalEffects = ADDITIONAL_EFFECTS({
-            .moveEffect = MAX_EFFECT_POISON_PARALYZE_FOES,
+            .moveEffect = MOVE_EFFECT_POISON_PARALYZE_FOES,
             .chance = 100,
             .sheerForceBoost = SHEER_FORCE_NO_BOOST,
         }),
@@ -22123,7 +22123,7 @@ const struct MoveInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .category = DAMAGE_CATEGORY_PHYSICAL,
         .battleAnimScript = gBattleAnimMove_GMaxCentiferno,
         .additionalEffects = ADDITIONAL_EFFECTS({
-            .moveEffect = MAX_EFFECT_FIRE_SPIN_FOES,
+            .moveEffect = MOVE_EFFECT_FIRE_SPIN_FOES,
             .chance = 100,
             .sheerForceBoost = SHEER_FORCE_NO_BOOST,
         }),
@@ -22141,10 +22141,10 @@ const struct MoveInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .target = MOVE_TARGET_SELECTED,
         .priority = 0,
         .category = DAMAGE_CATEGORY_PHYSICAL,
-        .argument = { .argMoveEffect = MAX_EFFECT_CONFUSE_FOES },
+        .argument = { .argMoveEffect = MOVE_EFFECT_CONFUSE_FOES },
         .battleAnimScript = gBattleAnimMove_GMaxSmite,
         .additionalEffects = ADDITIONAL_EFFECTS({
-            .moveEffect = MAX_EFFECT_CONFUSE_FOES,
+            .moveEffect = MOVE_EFFECT_CONFUSE_FOES,
             .chance = 100,
             .sheerForceBoost = SHEER_FORCE_NO_BOOST,
         }),
@@ -22165,7 +22165,7 @@ const struct MoveInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .category = DAMAGE_CATEGORY_PHYSICAL,
         .battleAnimScript = gBattleAnimMove_GMaxSnooze,
         .additionalEffects = ADDITIONAL_EFFECTS({
-            .moveEffect = MAX_EFFECT_YAWN_FOE,
+            .moveEffect = MOVE_EFFECT_YAWN_FOE,
             .chance = 100,
             .sheerForceBoost = SHEER_FORCE_NO_BOOST,
         }),
@@ -22185,7 +22185,7 @@ const struct MoveInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .category = DAMAGE_CATEGORY_PHYSICAL,
         .battleAnimScript = gBattleAnimMove_GMaxFinale,
         .additionalEffects = ADDITIONAL_EFFECTS({
-            .moveEffect = MAX_EFFECT_HEAL_TEAM,
+            .moveEffect = MOVE_EFFECT_HEAL_TEAM,
             .chance = 100,
             .sheerForceBoost = SHEER_FORCE_NO_BOOST,
         }),
@@ -22205,7 +22205,7 @@ const struct MoveInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .category = DAMAGE_CATEGORY_PHYSICAL,
         .battleAnimScript = gBattleAnimMove_GMaxSteelsurge,
         .additionalEffects = ADDITIONAL_EFFECTS({
-            .moveEffect = MAX_EFFECT_STEELSURGE,
+            .moveEffect = MOVE_EFFECT_STEELSURGE,
             .chance = 100,
             .sheerForceBoost = SHEER_FORCE_NO_BOOST,
         }),
@@ -22225,7 +22225,7 @@ const struct MoveInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .category = DAMAGE_CATEGORY_PHYSICAL,
         .battleAnimScript = gBattleAnimMove_GMaxDepletion,
         .additionalEffects = ADDITIONAL_EFFECTS({
-            .moveEffect = MAX_EFFECT_SPITE,
+            .moveEffect = MOVE_EFFECT_SPITE,
             .chance = 100,
             .sheerForceBoost = SHEER_FORCE_NO_BOOST,
         }),
@@ -22243,7 +22243,7 @@ const struct MoveInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .target = MOVE_TARGET_SELECTED,
         .priority = 0,
         .category = DAMAGE_CATEGORY_PHYSICAL,
-        .argument = { .argMoveEffect = MAX_EFFECT_BYPASS_PROTECT },
+        .argument = { .argMoveEffect = MOVE_EFFECT_BYPASS_PROTECT },
         .battleAnimScript = gBattleAnimMove_GMaxOneBlow,
     },
 
@@ -22259,7 +22259,7 @@ const struct MoveInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .target = MOVE_TARGET_SELECTED,
         .priority = 0,
         .category = DAMAGE_CATEGORY_PHYSICAL,
-        .argument = { .argMoveEffect = MAX_EFFECT_BYPASS_PROTECT },
+        .argument = { .argMoveEffect = MOVE_EFFECT_BYPASS_PROTECT },
         .battleAnimScript = gBattleAnimMove_GMaxRapidFlow,
     },
 };

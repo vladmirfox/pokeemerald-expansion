@@ -9269,16 +9269,16 @@ void AnimTask_GetWeatherToSet(u8 taskId)
 {
     switch (GetArgumentMoveEffect(gCurrentMove))
     {
-        case MAX_EFFECT_SUN:
+        case MOVE_EFFECT_SUN:
             gBattleAnimArgs[ARG_RET_ID] = ANIM_WEATHER_SUN;
             break;
-        case MAX_EFFECT_RAIN:
+        case MOVE_EFFECT_RAIN:
             gBattleAnimArgs[ARG_RET_ID] = ANIM_WEATHER_RAIN;
             break;
-        case MAX_EFFECT_SANDSTORM:
+        case MOVE_EFFECT_SANDSTORM:
             gBattleAnimArgs[ARG_RET_ID] = ANIM_WEATHER_SANDSTORM;
             break;
-        case MAX_EFFECT_HAIL:
+        case MOVE_EFFECT_HAIL:
             gBattleAnimArgs[ARG_RET_ID] = ANIM_WEATHER_HAIL;
             break;
     }
