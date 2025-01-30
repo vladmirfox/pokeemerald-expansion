@@ -5849,7 +5849,6 @@ u32 GetDynamicMoveType(struct Pokemon *mon, u32 move, u32 battler, u8 *ateBoost)
     if (move == MOVE_STRUGGLE)
         return TYPE_NORMAL;
 
-
     if (monInBattle)
     {
         species = gBattleMons[battler].species;
