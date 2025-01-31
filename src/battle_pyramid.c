@@ -983,26 +983,28 @@ static void SetPickupItem(void)
 {
     int i;
     int itemIndex;
-    int rand;
+    int randVal;
     u8 id;
     u32 lvlMode = gSaveBlock2Ptr->frontier.lvlMode;
     u32 floor = gSaveBlock2Ptr->frontier.curChallengeBattleNum;
     u32 round = (gSaveBlock2Ptr->frontier.pyramidWinStreaks[lvlMode] / FRONTIER_STAGES_PER_CHALLENGE) % TOTAL_PYRAMID_ROUNDS;
+    rng_value_t rand;
 
     if (round >= TOTAL_PYRAMID_ROUNDS)
         round = TOTAL_PYRAMID_ROUNDS - 1;
 
     id = GetPyramidFloorTemplateId();
     itemIndex = (gSpecialVar_LastTalked - sPyramidFloorTemplates[id].numTrainers) - 1;
-    rand = gSaveBlock2Ptr->frontier.pyramidRandoms[itemIndex / 2];
-    SeedRng2(rand);
+    rand = LocalRandomSeed(gSaveBlock2Ptr->frontier.pyramidRandoms[itemIndex / 2]);
 
-    for (i = 0; i < itemIndex + 1; i++)
-        rand = Random2() % 100;
+    for (i = 0; i < itemIndex; i++)
+        LocalRandom(&rand);
+
+    randVal = LocalRandom(&rand) % 100;
 
     for (i = sPickupItemOffsets[floor]; i < ARRAY_COUNT(sPickupItemSlots); i++)
     {
-        if (rand < sPickupItemSlots[i][0])
+        if (randVal < sPickupItemSlots[i][0])
             break;
     }
 
