@@ -351,7 +351,7 @@ SINGLE_BATTLE_TEST("Intimidate activates when it's no longer affected by Neutral
     }
 }
 
-DOUBLE_BATTLE_TEST("xxx")
+DOUBLE_BATTLE_TEST("Intimidate will correctly decrease the attack of the second mon after Protosynthesis activated")
 {
     GIVEN {
         PLAYER(SPECIES_WOBBUFFET) { Item(ITEM_EJECT_PACK); }
