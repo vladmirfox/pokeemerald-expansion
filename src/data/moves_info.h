@@ -21271,7 +21271,7 @@ const struct MoveInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .category = DAMAGE_CATEGORY_PHYSICAL,
         .battleAnimScript = gBattleAnimMove_MaxFlutterby,
         .additionalEffects = ADDITIONAL_EFFECTS({
-            .moveEffect = MOVE_EFFECT_LOWER_SP_ATK,
+            .moveEffect = MOVE_EFFECT_LOWER_SP_ATK_FOES,
             .chance = 100,
             .sheerForceBoost = SHEER_FORCE_NO_BOOST,
         }),
@@ -21311,7 +21311,7 @@ const struct MoveInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .category = DAMAGE_CATEGORY_PHYSICAL,
         .battleAnimScript = gBattleAnimMove_MaxStrike,
         .additionalEffects = ADDITIONAL_EFFECTS({
-            .moveEffect = MOVE_EFFECT_LOWER_SPEED,
+            .moveEffect = MOVE_EFFECT_LOWER_SPEED_FOES,
             .chance = 100,
             .sheerForceBoost = SHEER_FORCE_NO_BOOST,
         }),
@@ -21351,7 +21351,7 @@ const struct MoveInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .category = DAMAGE_CATEGORY_PHYSICAL,
         .battleAnimScript = gBattleAnimMove_MaxPhantasm,
         .additionalEffects = ADDITIONAL_EFFECTS({
-            .moveEffect = MOVE_EFFECT_LOWER_DEFENSE,
+            .moveEffect = MOVE_EFFECT_LOWER_DEFENSE_FOES,
             .chance = 100,
             .sheerForceBoost = SHEER_FORCE_NO_BOOST,
         }),
@@ -21471,7 +21471,7 @@ const struct MoveInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .category = DAMAGE_CATEGORY_PHYSICAL,
         .battleAnimScript = gBattleAnimMove_MaxWyrmwind,
         .additionalEffects = ADDITIONAL_EFFECTS({
-            .moveEffect = MOVE_EFFECT_LOWER_ATTACK,
+            .moveEffect = MOVE_EFFECT_LOWER_ATTACK_FOES,
             .chance = 100,
             .sheerForceBoost = SHEER_FORCE_NO_BOOST,
         }),
@@ -21552,7 +21552,7 @@ const struct MoveInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .category = DAMAGE_CATEGORY_PHYSICAL,
         .battleAnimScript = gBattleAnimMove_MaxDarkness,
         .additionalEffects = ADDITIONAL_EFFECTS({
-            .moveEffect = MOVE_EFFECT_LOWER_SP_DEF,
+            .moveEffect = MOVE_EFFECT_LOWER_SP_DEF_FOES,
             .chance = 100,
             .sheerForceBoost = SHEER_FORCE_NO_BOOST,
         }),
