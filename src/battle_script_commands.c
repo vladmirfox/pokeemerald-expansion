@@ -6091,30 +6091,25 @@ static void Cmd_moveend(void)
                     gBattleScripting.moveendState++;
                     break;
                 }
-                else if (targetAbility == ABILITY_SUCTION_CUPS)
+
+                effect = TRUE;
+                BattleScriptPushCursor();
+                if (targetAbility == ABILITY_SUCTION_CUPS)
                 {
-                    BattleScriptPushCursor();
                     gBattlescriptCurrInstr = BattleScript_AbilityPreventsPhasingOutRet;
-                    effect = TRUE;
                 }
                 else if (gStatuses3[gBattlerTarget] & STATUS3_ROOTED)
                 {
-                    BattleScriptPushCursor();
                     gBattlescriptCurrInstr = BattleScript_PrintMonIsRootedRet;
-                    effect = TRUE;
                 }
                 else if (GetActiveGimmick(gBattlerTarget) == GIMMICK_DYNAMAX)
                 {
-                    BattleScriptPushCursor();
                     gBattlescriptCurrInstr = BattleScript_HitSwitchTargetDynamaxed;
-                    effect = TRUE;
                 }
                 else
                 {
                     gBattleScripting.switchCase = B_SWITCH_HIT;
-                    BattleScriptPushCursor();
                     gBattlescriptCurrInstr = BattleScript_TryHitSwitchTarget;
-                    effect = TRUE;
                 }
             }
             gBattleScripting.moveendState++;

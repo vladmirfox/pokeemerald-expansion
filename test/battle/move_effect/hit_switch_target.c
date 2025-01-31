@@ -75,7 +75,7 @@ SINGLE_BATTLE_TEST("Dragon Tail switches the target after Rocky Helmet and Iron 
     PASSES_RANDOMLY(1, 2, RNG_FORCE_RANDOM_SWITCH);
     GIVEN {
         PLAYER(SPECIES_WOBBUFFET);
-        OPPONENT(SPECIES_TOGEDEMARU) { Ability(ABILITY_IRON_BARBS); Item(ITEM_ROCKY_HELMET); };
+        OPPONENT(SPECIES_TOGEDEMARU) { Ability(ABILITY_IRON_BARBS); Item(ITEM_ROCKY_HELMET); }
         OPPONENT(SPECIES_WOBBUFFET);
         OPPONENT(SPECIES_CHARMANDER);
     } WHEN {
@@ -96,7 +96,6 @@ SINGLE_BATTLE_TEST("Dragon Tail effect will fails against Guard Dog ability")
         PLAYER(SPECIES_WOBBUFFET);
         OPPONENT(SPECIES_OKIDOGI) { Ability(ABILITY_GUARD_DOG); }
         OPPONENT(SPECIES_CHARMANDER);
-        OPPONENT(SPECIES_CHARMANDER);
     } WHEN {
         TURN { MOVE(player, MOVE_DRAGON_TAIL); }
     } SCENE {
@@ -110,7 +109,6 @@ SINGLE_BATTLE_TEST("Dragon Tail effect will fails against Suction Cups ability")
     GIVEN {
         PLAYER(SPECIES_WOBBUFFET);
         OPPONENT(SPECIES_OCTILLERY) { Ability(ABILITY_SUCTION_CUPS); }
-        OPPONENT(SPECIES_CHARMANDER);
         OPPONENT(SPECIES_CHARMANDER);
     } WHEN {
         TURN { MOVE(player, MOVE_DRAGON_TAIL); }
