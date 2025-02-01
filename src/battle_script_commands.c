@@ -4552,10 +4552,10 @@ void SetMoveEffect(bool32 primary, bool32 certain)
                     gBattlescriptCurrInstr = BattleScript_EffectTryReducePP;
                 }
                 break;
-            case MOVE_EFFECT_PARALYZE_FOES:
-            case MOVE_EFFECT_POISON_FOES:
-            case MOVE_EFFECT_POISON_PARALYZE_FOES:
-            case MOVE_EFFECT_EFFECT_SPORE_FOES:
+            case MOVE_EFFECT_PARALYZE_SIDE:
+            case MOVE_EFFECT_POISON_SIDE:
+            case MOVE_EFFECT_POISON_PARALYZE_SIDE:
+            case MOVE_EFFECT_EFFECT_SPORE_SIDE:
                 BattleScriptPush(gBattlescriptCurrInstr + 1);
                 gBattlescriptCurrInstr = BattleScript_EffectStatus1Foes;
                 break;
@@ -18299,16 +18299,16 @@ static u32 GetStatusFromMoveEffect(u32 move)
     switch (maxEffect)
     {
         // Status 1
-        case MOVE_EFFECT_PARALYZE_FOES:
+        case MOVE_EFFECT_PARALYZE_SIDE:
             return STATUS1_PARALYSIS;
-        case MOVE_EFFECT_POISON_FOES:
+        case MOVE_EFFECT_POISON_SIDE:
             return STATUS1_POISON;
-        case MOVE_EFFECT_POISON_PARALYZE_FOES:
+        case MOVE_EFFECT_POISON_PARALYZE_SIDE:
         {
             static const u8 sStunShockEffects[] = {STATUS1_PARALYSIS, STATUS1_POISON};
             return RandomElement(RNG_G_MAX_STUN_SHOCK, sStunShockEffects);
         }
-        case MOVE_EFFECT_EFFECT_SPORE_FOES:
+        case MOVE_EFFECT_EFFECT_SPORE_SIDE:
         {
             static const u8 sBefuddleEffects[] = {STATUS1_PARALYSIS, STATUS1_POISON, STATUS1_SLEEP};
             return RandomElement(RNG_G_MAX_BEFUDDLE, sBefuddleEffects);
