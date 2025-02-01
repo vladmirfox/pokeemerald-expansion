@@ -683,7 +683,7 @@ SINGLE_BATTLE_TEST("(DYNAMAX) Max Strike lowers single opponent's speed")
 {
     GIVEN {
         // Fails?: ASSUME(GetMaxMove(B_POSITION_PLAYER_LEFT, MOVE_TACKLE) == MOVE_MAX_STRIKE);
-        ASSUME(MoveHasAdditionalEffect(MOVE_MAX_STRIKE, MOVE_EFFECT_LOWER_SPEED_FOES));
+        ASSUME(MoveHasAdditionalEffect(MOVE_MAX_STRIKE, MOVE_EFFECT_LOWER_SPEED_SIDE));
         OPPONENT(SPECIES_WOBBUFFET) { Speed(100); }
         PLAYER(SPECIES_WOBBUFFET) { Speed(80); }
     } WHEN {
@@ -707,7 +707,7 @@ SINGLE_BATTLE_TEST("(DYNAMAX) Max Strike lowers single opponent's speed")
 DOUBLE_BATTLE_TEST("(DYNAMAX) Max Strike lowers both opponents' speed")
 {
     GIVEN {
-        ASSUME(MoveHasAdditionalEffect(MOVE_MAX_STRIKE, MOVE_EFFECT_LOWER_SPEED_FOES));
+        ASSUME(MoveHasAdditionalEffect(MOVE_MAX_STRIKE, MOVE_EFFECT_LOWER_SPEED_SIDE));
         PLAYER(SPECIES_WOBBUFFET) { Speed(80); }
         PLAYER(SPECIES_WOBBUFFET) { Speed(79); }
         OPPONENT(SPECIES_WOBBUFFET) {Speed(100); }
@@ -1202,7 +1202,22 @@ DOUBLE_BATTLE_TEST("(DYNAMAX) G-Max Terror traps both opponents")
     }
 }
 
-TO_DO_BATTLE_TEST("(DYNAMAX) Baton Pass passes G-Max Terror's escape prevention effect");
+SINGLE_BATTLE_TEST("(DYNAMAX) Baton Pass passes G-Max Terror's escape prevention effect")
+{
+    GIVEN {
+        ASSUME(MoveHasAdditionalEffect(MOVE_G_MAX_TERROR, MOVE_EFFECT_MEAN_LOOK));
+        PLAYER(SPECIES_GENGAR) { GigantamaxFactor(TRUE); }
+        OPPONENT(SPECIES_WOBBUFFET);
+        OPPONENT(SPECIES_WYNAUT);
+    } WHEN {
+        TURN { MOVE(player, MOVE_LICK, gimmick: GIMMICK_DYNAMAX); MOVE(opponent, MOVE_BATON_PASS); SEND_OUT(opponent, 1); }
+    } SCENE {
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_G_MAX_TERROR, player);
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_BATON_PASS, opponent);
+    } THEN {
+        EXPECT(opponent->status2 & STATUS2_ESCAPE_PREVENTION);
+    }
+}
 
 DOUBLE_BATTLE_TEST("(DYNAMAX) G-Max Meltdown torments both opponents for 3 turns")
 {

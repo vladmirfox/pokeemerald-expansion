@@ -4346,29 +4346,29 @@ void SetMoveEffect(bool32 primary, bool32 certain)
                     gBattlescriptCurrInstr = BattleScript_EffectRaiseStatAllies;
                 }
                 break;
-            case MOVE_EFFECT_LOWER_ATTACK_FOES:
-            case MOVE_EFFECT_LOWER_DEFENSE_FOES:
-            case MOVE_EFFECT_LOWER_SPEED_FOES:
-            case MOVE_EFFECT_LOWER_SP_ATK_FOES:
-            case MOVE_EFFECT_LOWER_SP_DEF_FOES:
-            case MOVE_EFFECT_LOWER_SPEED_2_FOES:
-            case MOVE_EFFECT_LOWER_EVASIVENESS_FOES:
+            case MOVE_EFFECT_LOWER_ATTACK_SIDE:
+            case MOVE_EFFECT_LOWER_DEFENSE_SIDE:
+            case MOVE_EFFECT_LOWER_SPEED_SIDE:
+            case MOVE_EFFECT_LOWER_SP_ATK_SIDE:
+            case MOVE_EFFECT_LOWER_SP_DEF_SIDE:
+            case MOVE_EFFECT_LOWER_SPEED_2_SIDE:
+            case MOVE_EFFECT_LOWER_EVASIVENESS_SIDE:
                 if (!NoAliveMonsForEitherParty())
                 {
                     u32 statId = 0;
                     u32 stage = 1;
                     switch (gBattleScripting.moveEffect)
                     {
-                        case MOVE_EFFECT_LOWER_SPEED_2_FOES:
+                        case MOVE_EFFECT_LOWER_SPEED_2_SIDE:
                             statId = STAT_SPEED;
                             stage = 2;
                             break;
-                        case MOVE_EFFECT_LOWER_EVASIVENESS_FOES:
+                        case MOVE_EFFECT_LOWER_EVASIVENESS_SIDE:
                             statId = STAT_EVASION;
                             break;
                         default:
                             // Max Effects are ordered by stat ID.
-                            statId = gBattleScripting.moveEffect - MOVE_EFFECT_LOWER_ATTACK_FOES + 1;
+                            statId = gBattleScripting.moveEffect - MOVE_EFFECT_LOWER_ATTACK_SIDE + 1;
                             break;
                     }
                     SET_STATCHANGER(statId, stage, TRUE);
