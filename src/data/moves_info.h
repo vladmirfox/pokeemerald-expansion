@@ -21694,7 +21694,7 @@ const struct MoveInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .argument = { .argMoveEffect = MOVE_EFFECT_PARALYZE_SIDE },
         .battleAnimScript = gBattleAnimMove_GMaxVoltCrash,
         .additionalEffects = ADDITIONAL_EFFECTS({
-            .moveEffect = MOVE_EFFECT_PARALYZE_FOES,
+            .moveEffect = MOVE_EFFECT_PARALYZE_SIDE,
             .chance = 100,
             .sheerForceBoost = SHEER_FORCE_NO_BOOST,
         }),
