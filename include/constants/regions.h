@@ -4,10 +4,9 @@
 // Core-series regions
 enum Region
 {
-    REGION_NONE,
+    REGION_HOENN, // Default region for maps
     REGION_KANTO,
     REGION_JOHTO,
-    REGION_HOENN,
     REGION_SINNOH,
     REGION_UNOVA,
     REGION_KALOS,
