@@ -4568,7 +4568,7 @@ void SetMoveEffect(bool32 primary, bool32 certain)
                 BattleScriptPush(gBattlescriptCurrInstr + 1);
                 gBattlescriptCurrInstr = BattleScript_EffectEffectSporeSide;
                 break;
-            case MOVE_EFFECT_CONFUSE_FOES_PAY_DAY:
+            case MOVE_EFFECT_CONFUSE_SIDE_PAY_DAY:
                 if (gBattleTypeFlags & BATTLE_TYPE_TRAINER)
                 {
                     u32 payday = gPaydayMoney;
@@ -4578,12 +4578,21 @@ void SetMoveEffect(bool32 primary, bool32 certain)
                     gBattleCommunication[CURSOR_POSITION] = 1; // add "Coins scattered." message
                 }
                 // fall through
-            case MOVE_EFFECT_CONFUSE_FOES:
-            case MOVE_EFFECT_INFATUATE_FOES:
-            case MOVE_EFFECT_TORMENT_FOES:
+            case MOVE_EFFECT_CONFUSE_SIDE:
+                BattleScriptPush(gBattlescriptCurrInstr + 1);
+                gBattlescriptCurrInstr = BattleScript_EffectConfuseSide;
+                break;
+            case MOVE_EFFECT_INFATUATE_SIDE:
+                BattleScriptPush(gBattlescriptCurrInstr + 1);
+                gBattlescriptCurrInstr = BattleScript_EffectInfatuateSide;
+                break;
+            case MOVE_EFFECT_TORMENT_SIDE:
+                BattleScriptPush(gBattlescriptCurrInstr + 1);
+                gBattlescriptCurrInstr = BattleScript_EffectTormentSide;
+                break;
             case MOVE_EFFECT_MEAN_LOOK:
                 BattleScriptPush(gBattlescriptCurrInstr + 1);
-                gBattlescriptCurrInstr = BattleScript_EffectStatus2Foes;
+                gBattlescriptCurrInstr = BattleScript_EffectMeanLookSide;
                 break;
             case MOVE_EFFECT_CRIT_PLUS:
                 gBattleStruct->bonusCritStages[gBattlerAttacker]++;
@@ -18302,41 +18311,6 @@ void BS_SwapStats(void)
     gBattlescriptCurrInstr = cmd->nextInstr;
 }
 
-static u32 GetStatusFromMoveEffect(u32 move)
-{
-    u8 maxEffect = GetArgumentMoveEffect(move);
-    switch (maxEffect)
-    {
-        // Status 1
-        case MOVE_EFFECT_PARALYZE_SIDE:
-            return STATUS1_PARALYSIS;
-        case MOVE_EFFECT_POISON_SIDE:
-            return STATUS1_POISON;
-        case MOVE_EFFECT_POISON_PARALYZE_SIDE:
-        {
-            static const u8 sStunShockEffects[] = {STATUS1_PARALYSIS, STATUS1_POISON};
-            return RandomElement(RNG_G_MAX_STUN_SHOCK, sStunShockEffects);
-        }
-        case MOVE_EFFECT_EFFECT_SPORE_SIDE:
-        {
-            static const u8 sBefuddleEffects[] = {STATUS1_PARALYSIS, STATUS1_POISON, STATUS1_SLEEP};
-            return RandomElement(RNG_G_MAX_BEFUDDLE, sBefuddleEffects);
-        }
-        // Status 2
-        case MOVE_EFFECT_CONFUSE_FOES:
-        case MOVE_EFFECT_CONFUSE_FOES_PAY_DAY:
-            return STATUS2_CONFUSION;
-        case MOVE_EFFECT_INFATUATE_FOES:
-            return STATUS2_INFATUATION;
-        case MOVE_EFFECT_MEAN_LOOK:
-            return STATUS2_ESCAPE_PREVENTION;
-        case MOVE_EFFECT_TORMENT_FOES:
-            return STATUS2_TORMENT;
-        default:
-            return STATUS1_NONE;
-    }
-}
-
 static void TrySetParalysis(const u8 *nextInstr, const u8 *failInstr)
 {
     if (CanBeParalyzed(gBattlerTarget, GetBattlerAbility(gBattlerTarget)))
@@ -18433,62 +18407,77 @@ void BS_TrySetEffectSpore(void)
         TrySetSleep(cmd->nextInstr, cmd->failInstr);
 }
 
-void BS_TrySetStatus2(void)
+void BS_TrySetConfusion(void)
 {
     NATIVE_ARGS(const u8 *failInstr);
-    u8 effect = 0;
-    u32 status2 = GetStatusFromMoveEffect(gCurrentMove);
-    switch (status2)
+
+    if (CanBeConfused(gBattlerTarget))
     {
-        case STATUS2_CONFUSION:
-            if (CanBeConfused(gBattlerTarget))
-            {
-                gBattleMons[gBattlerTarget].status2 |= STATUS2_CONFUSION_TURN(((Random()) % 4) + 2);
-                gBattleCommunication[MULTISTRING_CHOOSER] = 0;
-                gBattleCommunication[MULTIUSE_STATE] = 1;
-                effect++;
-            }
-            break;
-        case STATUS2_INFATUATION:
-        {
-            u8 atkGender = GetGenderFromSpeciesAndPersonality(gBattleMons[gBattlerAttacker].species, gBattleMons[gBattlerAttacker].personality);
-            u8 defGender = GetGenderFromSpeciesAndPersonality(gBattleMons[gBattlerTarget].species, gBattleMons[gBattlerTarget].personality);
-            if (!(gBattleMons[gBattlerTarget].status2 & STATUS2_INFATUATION)
-                && gBattleMons[gBattlerTarget].ability != ABILITY_OBLIVIOUS
-                && !IsAbilityOnSide(gBattlerTarget, ABILITY_AROMA_VEIL)
-                && atkGender != defGender
-                && atkGender != MON_GENDERLESS
-                && defGender != MON_GENDERLESS)
-            {
-                gBattleMons[gBattlerTarget].status2 |= STATUS2_INFATUATED_WITH(gBattlerAttacker);
-                gBattleCommunication[MULTISTRING_CHOOSER] = 1;
-                gBattleCommunication[MULTIUSE_STATE] = 2;
-                effect++;
-            }
-            break;
-        }
-        case STATUS2_ESCAPE_PREVENTION:
-            if (!(gBattleMons[gBattlerTarget].status2 & STATUS2_ESCAPE_PREVENTION))
-            {
-                gBattleMons[gBattlerTarget].status2 |= STATUS2_ESCAPE_PREVENTION;
-                gDisableStructs[gBattlerTarget].battlerPreventingEscape = gBattlerAttacker;
-                gBattleCommunication[MULTISTRING_CHOOSER] = 2;
-                effect++;
-            }
-            break;
-        case STATUS2_TORMENT:
-            if (!(gBattleMons[gBattlerTarget].status2 & STATUS2_TORMENT)
-                && !IsAbilityOnSide(gBattlerTarget, ABILITY_AROMA_VEIL))
-            {
-                gBattleMons[gBattlerTarget].status2 |= STATUS2_TORMENT;
-                gDisableStructs[gBattlerTarget].tormentTimer = 3; // 3 turns excluding current turn
-                gBattleCommunication[MULTISTRING_CHOOSER] = 3;
-                effect++;
-            }
-            break;
+        gBattleMons[gBattlerTarget].status2 |= STATUS2_CONFUSION_TURN(((Random()) % 4) + 2);
+        gBattleCommunication[MULTISTRING_CHOOSER] = 0;
+        gBattleCommunication[MULTIUSE_STATE] = 1;
+        gEffectBattler = gBattlerTarget;
+        gBattlescriptCurrInstr = cmd->nextInstr;
     }
-    if (effect)
+    else
     {
+        gBattlescriptCurrInstr = cmd->failInstr;
+    }
+}
+
+void BS_TrySetInfatuation(void)
+{
+    NATIVE_ARGS(const u8 *failInstr);
+
+    u32 atkGender = GetGenderFromSpeciesAndPersonality(gBattleMons[gBattlerAttacker].species, gBattleMons[gBattlerAttacker].personality);
+    u32 defGender = GetGenderFromSpeciesAndPersonality(gBattleMons[gBattlerTarget].species, gBattleMons[gBattlerTarget].personality);
+    if (!(gBattleMons[gBattlerTarget].status2 & STATUS2_INFATUATION)
+        && gBattleMons[gBattlerTarget].ability != ABILITY_OBLIVIOUS
+        && !IsAbilityOnSide(gBattlerTarget, ABILITY_AROMA_VEIL)
+        && atkGender != defGender
+        && atkGender != MON_GENDERLESS
+        && defGender != MON_GENDERLESS)
+    {
+        gBattleMons[gBattlerTarget].status2 |= STATUS2_INFATUATED_WITH(gBattlerAttacker);
+        gBattleCommunication[MULTISTRING_CHOOSER] = 1;
+        gBattleCommunication[MULTIUSE_STATE] = 2;
+        gEffectBattler = gBattlerTarget;
+        gBattlescriptCurrInstr = cmd->nextInstr;
+    }
+    else
+    {
+        gBattlescriptCurrInstr = cmd->failInstr;
+    }
+}
+
+void BS_TrySetEscapePrevention(void)
+{
+    NATIVE_ARGS(const u8 *failInstr);
+
+    if (!(gBattleMons[gBattlerTarget].status2 & STATUS2_ESCAPE_PREVENTION))
+    {
+        gBattleMons[gBattlerTarget].status2 |= STATUS2_ESCAPE_PREVENTION;
+        gDisableStructs[gBattlerTarget].battlerPreventingEscape = gBattlerAttacker;
+        gBattleCommunication[MULTISTRING_CHOOSER] = 2;
+        gEffectBattler = gBattlerTarget;
+        gBattlescriptCurrInstr = cmd->nextInstr;
+    }
+    else
+    {
+        gBattlescriptCurrInstr = cmd->failInstr;
+    }
+}
+
+void BS_TrySetTorment(void)
+{
+    NATIVE_ARGS(const u8 *failInstr);
+
+    if (!(gBattleMons[gBattlerTarget].status2 & STATUS2_TORMENT)
+     && !IsAbilityOnSide(gBattlerTarget, ABILITY_AROMA_VEIL))
+    {
+        gBattleMons[gBattlerTarget].status2 |= STATUS2_TORMENT;
+        gDisableStructs[gBattlerTarget].tormentTimer = 3; // 3 turns excluding current turn
+        gBattleCommunication[MULTISTRING_CHOOSER] = 3;
         gEffectBattler = gBattlerTarget;
         gBattlescriptCurrInstr = cmd->nextInstr;
     }

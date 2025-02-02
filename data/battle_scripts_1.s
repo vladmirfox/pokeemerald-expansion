@@ -9843,41 +9843,81 @@ BattleScript_EffectSporeSideEnd:
 	restoretarget
 	goto BattleScript_MoveEnd
 
-BattleScript_EffectStatus2Foes::
+BattleScript_EffectConfuseSide::
 	savetarget
 	copybyte sBATTLER, gBattlerTarget
-BattleScript_Status2FoesLoop:
-	jumpifabsent BS_TARGET, BattleScript_Status2FoesIncrement
-	trysetstatus2 BattleScript_Status2FoesIncrement
-	jumpifbyte CMP_EQUAL, gBattleCommunication, 1, BattleScript_DoConfuseAnim
-	jumpifbyte CMP_EQUAL, gBattleCommunication, 2, BattleScript_DoInfatuationAnim
-BattleScript_Status2FoesPrintMessage:
+BattleScript_ConfuseSideLoop:
+	jumpifabsent BS_TARGET, BattleScript_ConfuseSideIncrement
+	trysetconfusion BattleScript_ConfuseSideIncrement
+	status2animation BS_EFFECT_BATTLER, STATUS2_CONFUSION
+BattleScript_ConfuseSidePrintMessage:
 	printfromtable gStatus2StringIds
 	waitmessage B_WAIT_TIME_LONG
-BattleScript_Status2FoesIncrement:
-	jumpifbytenotequal gBattlerTarget, sBATTLER, BattleScript_Status2FoesEnd
-	setallytonexttarget BattleScript_Status2FoesLoop
-BattleScript_Status2FoesEnd:
+BattleScript_ConfuseSideIncrement:
+	jumpifbytenotequal gBattlerTarget, sBATTLER, BattleScript_ConfuseSideEnd
+	setallytonexttarget BattleScript_ConfuseSideLoop
+BattleScript_ConfuseSideEnd:
 	restoretarget
 	jumpifbyte CMP_EQUAL, gBattleCommunication + 1, 1, BattleScript_PrintCoinsScattered @ Gold Rush
 	goto BattleScript_MoveEnd
 
-BattleScript_DoConfuseAnim:
-	status2animation BS_EFFECT_BATTLER, STATUS2_CONFUSION
-	goto BattleScript_Status2FoesPrintMessage
-
-BattleScript_DoInfatuationAnim:
-	status2animation BS_EFFECT_BATTLER, STATUS2_INFATUATION
-	goto BattleScript_Status2FoesPrintMessage
-
 BattleScript_PrintCoinsScattered:
 	printstring STRINGID_COINSSCATTERED
+	goto BattleScript_MoveEnd
+
+BattleScript_EffectInfatuateSide::
+	savetarget
+	copybyte sBATTLER, gBattlerTarget
+BattleScript_InfatuateSideLoop:
+	jumpifabsent BS_TARGET, BattleScript_InfatuateSideIncrement
+	trysetinfatuation BattleScript_InfatuateSideIncrement
+	status2animation BS_EFFECT_BATTLER, STATUS2_INFATUATION
+BattleScript_InfatuateSidePrintMessage:
+	printfromtable gStatus2StringIds
+	waitmessage B_WAIT_TIME_LONG
+BattleScript_InfatuateSideIncrement:
+	jumpifbytenotequal gBattlerTarget, sBATTLER, BattleScript_InfatuateSideEnd
+	setallytonexttarget BattleScript_InfatuateSideLoop
+BattleScript_InfatuateSideEnd:
+	restoretarget
+	goto BattleScript_MoveEnd
+
+BattleScript_EffectTormentSide::
+	savetarget
+	copybyte sBATTLER, gBattlerTarget
+BattleScript_TormentSideLoop:
+	jumpifabsent BS_TARGET, BattleScript_TormentSideIncrement
+	trysettorment BattleScript_TormentSideIncrement
+BattleScript_TormentSidePrintMessage:
+	printfromtable gStatus2StringIds
+	waitmessage B_WAIT_TIME_LONG
+BattleScript_TormentSideIncrement:
+	jumpifbytenotequal gBattlerTarget, sBATTLER, BattleScript_TormentSideEnd
+	setallytonexttarget BattleScript_TormentSideLoop
+BattleScript_TormentSideEnd:
+	restoretarget
 	goto BattleScript_MoveEnd
 
 BattleScript_TormentEnds::
 	printstring STRINGID_TORMENTEDNOMORE
 	waitmessage B_WAIT_TIME_LONG
 	end2
+
+BattleScript_EffectMeanLookSide::
+	savetarget
+	copybyte sBATTLER, gBattlerTarget
+BattleScript_MeanLookSideLoop:
+	jumpifabsent BS_TARGET, BattleScript_MeanLookSideIncrement
+	trysetescapeprevention BattleScript_MeanLookSideIncrement
+BattleScript_MeanLookSidePrintMessage:
+	printfromtable gStatus2StringIds
+	waitmessage B_WAIT_TIME_LONG
+BattleScript_MeanLookSideIncrement:
+	jumpifbytenotequal gBattlerTarget, sBATTLER, BattleScript_MeanLookSideEnd
+	setallytonexttarget BattleScript_MeanLookSideLoop
+BattleScript_MeanLookSideEnd:
+	restoretarget
+	goto BattleScript_MoveEnd
 
 BattleScript_EffectRaiseCritAlliesAnim::
 	savetarget

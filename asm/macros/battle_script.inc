@@ -1575,8 +1575,23 @@
 	.4byte \ptr
 	.endm
 
-	.macro trysetstatus2, ptr:req
-	callnative BS_TrySetStatus2
+	.macro trysetconfusion, ptr:req
+	callnative BS_TrySetConfusion
+	.4byte \ptr
+	.endm
+
+	.macro trysetinfatuation, ptr:req
+	callnative BS_TrySetInfatuation
+	.4byte \ptr
+	.endm
+
+	.macro trysetescapeprevention, ptr:req
+	callnative BS_TrySetEscapePrevention
+	.4byte \ptr
+	.endm
+
+	.macro trysettorment, ptr:req
+	callnative BS_TrySetTorment
 	.4byte \ptr
 	.endm
 
