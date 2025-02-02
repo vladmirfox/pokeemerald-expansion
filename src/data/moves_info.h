@@ -21670,7 +21670,6 @@ const struct MoveInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .target = MOVE_TARGET_SELECTED,
         .priority = 0,
         .category = DAMAGE_CATEGORY_PHYSICAL,
-        .argument = { .argMoveEffect = MOVE_EFFECT_EFFECT_SPORE_SIDE },
         .battleAnimScript = gBattleAnimMove_GMaxBefuddle,
         .additionalEffects = ADDITIONAL_EFFECTS({
             .moveEffect = MOVE_EFFECT_EFFECT_SPORE_SIDE,
@@ -21691,7 +21690,6 @@ const struct MoveInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .target = MOVE_TARGET_SELECTED,
         .priority = 0,
         .category = DAMAGE_CATEGORY_PHYSICAL,
-        .argument = { .argMoveEffect = MOVE_EFFECT_PARALYZE_SIDE },
         .battleAnimScript = gBattleAnimMove_GMaxVoltCrash,
         .additionalEffects = ADDITIONAL_EFFECTS({
             .moveEffect = MOVE_EFFECT_PARALYZE_SIDE,
@@ -21855,7 +21853,6 @@ const struct MoveInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .target = MOVE_TARGET_SELECTED,
         .priority = 0,
         .category = DAMAGE_CATEGORY_PHYSICAL,
-        .argument = { .argMoveEffect = MOVE_EFFECT_POISON_SIDE },
         .battleAnimScript = gBattleAnimMove_GMaxMalodor,
         .additionalEffects = ADDITIONAL_EFFECTS({
             .moveEffect = MOVE_EFFECT_POISON_SIDE,
@@ -22100,7 +22097,6 @@ const struct MoveInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .target = MOVE_TARGET_SELECTED,
         .priority = 0,
         .category = DAMAGE_CATEGORY_PHYSICAL,
-        .argument = { .argMoveEffect = MOVE_EFFECT_POISON_PARALYZE_SIDE },
         .battleAnimScript = gBattleAnimMove_GMaxStunShock,
         .additionalEffects = ADDITIONAL_EFFECTS({
             .moveEffect = MOVE_EFFECT_POISON_PARALYZE_SIDE,

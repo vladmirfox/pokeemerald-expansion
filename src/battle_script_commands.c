@@ -4553,11 +4553,20 @@ void SetMoveEffect(bool32 primary, bool32 certain)
                 }
                 break;
             case MOVE_EFFECT_PARALYZE_SIDE:
+                BattleScriptPush(gBattlescriptCurrInstr + 1);
+                gBattlescriptCurrInstr = BattleScript_EffectParalyzeSide;
+                break;
             case MOVE_EFFECT_POISON_SIDE:
+                BattleScriptPush(gBattlescriptCurrInstr + 1);
+                gBattlescriptCurrInstr = BattleScript_EffectPoisonSide;
+                break;
             case MOVE_EFFECT_POISON_PARALYZE_SIDE:
+                BattleScriptPush(gBattlescriptCurrInstr + 1);
+                gBattlescriptCurrInstr = BattleScript_EffectPoisonParalyzeSide;
+                break;
             case MOVE_EFFECT_EFFECT_SPORE_SIDE:
                 BattleScriptPush(gBattlescriptCurrInstr + 1);
-                gBattlescriptCurrInstr = BattleScript_EffectStatus1Foes;
+                gBattlescriptCurrInstr = BattleScript_EffectEffectSporeSide;
                 break;
             case MOVE_EFFECT_CONFUSE_FOES_PAY_DAY:
                 if (gBattleTypeFlags & BATTLE_TYPE_TRAINER)
@@ -18328,55 +18337,100 @@ static u32 GetStatusFromMoveEffect(u32 move)
     }
 }
 
-void BS_TrySetStatus1(void)
+static void TrySetParalysis(const u8 *nextInstr, const u8 *failInstr)
 {
-    NATIVE_ARGS(const u8 *failInstr);
-    u32 effect = 0;
-    u32 status1 = GetStatusFromMoveEffect(gCurrentMove);
-
-    switch (status1)
+    if (CanBeParalyzed(gBattlerTarget, GetBattlerAbility(gBattlerTarget)))
     {
-        case STATUS1_POISON:
-            if (CanBePoisoned(gBattlerAttacker, gBattlerTarget, GetBattlerAbility(gBattlerTarget)))
-            {
-                gBattleMons[gBattlerTarget].status1 |= STATUS1_POISON;
-                gBattleCommunication[MULTISTRING_CHOOSER] = 0;
-                effect++;
-            }
-            break;
-        case STATUS1_PARALYSIS:
-            if (CanBeParalyzed(gBattlerTarget, GetBattlerAbility(gBattlerTarget)))
-            {
-                gBattleMons[gBattlerTarget].status1 |= STATUS1_PARALYSIS;
-                gBattleCommunication[MULTISTRING_CHOOSER] = 3;
-                effect++;
-            }
-            break;
-        case STATUS1_SLEEP:
-            if (CanBeSlept(gBattlerTarget, GetBattlerAbility(gBattlerTarget), BLOCKED_BY_SLEEP_CLAUSE))
-            {
-                if (B_SLEEP_TURNS >= GEN_5)
-                    gBattleMons[gBattlerTarget].status1 |=  STATUS1_SLEEP_TURN((Random() % 3) + 2);
-                else
-                    gBattleMons[gBattlerTarget].status1 |=  STATUS1_SLEEP_TURN((Random() % 4) + 3);
-
-                TryActivateSleepClause(gBattlerTarget, gBattlerPartyIndexes[gBattlerTarget]);
-                gBattleCommunication[MULTISTRING_CHOOSER] = 4;
-                effect++;
-            }
-            break;
-    }
-    if (effect)
-    {
+        gBattleMons[gBattlerTarget].status1 |= STATUS1_PARALYSIS;
+        gBattleCommunication[MULTISTRING_CHOOSER] = 3;
         gEffectBattler = gBattlerTarget;
         BtlController_EmitSetMonData(gBattlerTarget, BUFFER_A, REQUEST_STATUS_BATTLE, 0, sizeof(gBattleMons[gBattlerTarget].status1), &gBattleMons[gBattlerTarget].status1);
         MarkBattlerForControllerExec(gBattlerTarget);
-        gBattlescriptCurrInstr = cmd->nextInstr;
+        gBattlescriptCurrInstr = nextInstr;
     }
     else
     {
-        gBattlescriptCurrInstr = cmd->failInstr;
+        gBattlescriptCurrInstr = failInstr;
     }
+}
+
+static void TrySetPoison(const u8 *nextInstr, const u8 *failInstr)
+{
+    if (CanBePoisoned(gBattlerAttacker, gBattlerTarget, GetBattlerAbility(gBattlerTarget)))
+    {
+        gBattleMons[gBattlerTarget].status1 |= STATUS1_POISON;
+        gBattleCommunication[MULTISTRING_CHOOSER] = 0;
+        gEffectBattler = gBattlerTarget;
+        BtlController_EmitSetMonData(gBattlerTarget, BUFFER_A, REQUEST_STATUS_BATTLE, 0, sizeof(gBattleMons[gBattlerTarget].status1), &gBattleMons[gBattlerTarget].status1);
+        MarkBattlerForControllerExec(gBattlerTarget);
+        gBattlescriptCurrInstr = nextInstr;
+    }
+    else
+    {
+        gBattlescriptCurrInstr = failInstr;
+    }
+}
+
+static void TrySetSleep(const u8 *nextInstr, const u8 *failInstr)
+{
+    if (CanBeSlept(gBattlerTarget, GetBattlerAbility(gBattlerTarget), BLOCKED_BY_SLEEP_CLAUSE))
+    {
+        if (B_SLEEP_TURNS >= GEN_5)
+            gBattleMons[gBattlerTarget].status1 |=  STATUS1_SLEEP_TURN((Random() % 3) + 2);
+        else
+            gBattleMons[gBattlerTarget].status1 |=  STATUS1_SLEEP_TURN((Random() % 4) + 3);
+
+        TryActivateSleepClause(gBattlerTarget, gBattlerPartyIndexes[gBattlerTarget]);
+        gBattleCommunication[MULTISTRING_CHOOSER] = 4;
+        gEffectBattler = gBattlerTarget;
+        BtlController_EmitSetMonData(gBattlerTarget, BUFFER_A, REQUEST_STATUS_BATTLE, 0, sizeof(gBattleMons[gBattlerTarget].status1), &gBattleMons[gBattlerTarget].status1);
+        MarkBattlerForControllerExec(gBattlerTarget);
+        gBattlescriptCurrInstr = nextInstr;
+    }
+    else
+    {
+        gBattlescriptCurrInstr = failInstr;
+    }
+}
+
+void BS_TrySetParalysis(void)
+{
+    NATIVE_ARGS(const u8 *failInstr);
+    TrySetParalysis(cmd->nextInstr, cmd->failInstr);
+}
+
+void BS_TrySetPoison(void)
+{
+    NATIVE_ARGS(const u8 *failInstr);
+    TrySetPoison(cmd->nextInstr, cmd->failInstr);
+}
+
+void BS_TrySetPoisonParalyzis(void)
+{
+    NATIVE_ARGS(const u8 *failInstr);
+
+    static const u32 sStunShockEffects[] = {STATUS1_PARALYSIS, STATUS1_POISON};
+    u32 status = RandomElement(RNG_G_MAX_STUN_SHOCK, sStunShockEffects);
+
+    if (status == STATUS1_PARALYSIS)
+        TrySetParalysis(cmd->nextInstr, cmd->failInstr);
+    else
+        TrySetPoison(cmd->nextInstr, cmd->failInstr);
+}
+
+void BS_TrySetEffectSpore(void)
+{
+    NATIVE_ARGS(const u8 *failInstr);
+
+    static const u32 sBefuddleEffects[] = {STATUS1_PARALYSIS, STATUS1_POISON, STATUS1_SLEEP};
+    u32 status = RandomElement(RNG_G_MAX_BEFUDDLE, sBefuddleEffects);
+
+    if (status == STATUS1_PARALYSIS)
+        TrySetParalysis(cmd->nextInstr, cmd->failInstr);
+    else if (status == STATUS1_POISON)
+        TrySetPoison(cmd->nextInstr, cmd->failInstr);
+    else
+        TrySetSleep(cmd->nextInstr, cmd->failInstr);
 }
 
 void BS_TrySetStatus2(void)

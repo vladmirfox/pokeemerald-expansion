@@ -9767,22 +9767,79 @@ BattleScript_EffectTryReducePP::
 	waitmessage B_WAIT_TIME_LONG
 	goto BattleScript_MoveEnd
 
-BattleScript_EffectStatus1Foes::
+BattleScript_EffectParalyzeSide::
 	savetarget
 	copybyte sBATTLER, gBattlerTarget
-BattleScript_Status1FoesLoop:
-	jumpifabsent BS_TARGET, BattleScript_Status1FoesIncrement
-	trysetstatus1 BattleScript_Status1FoesIncrement
+BattleScript_ParalyzeSideLoop:
+	jumpifabsent BS_TARGET, BattleScript_ParalyzeSideIncrement
+	trysetparalysis BattleScript_ParalyzeSideIncrement
 	statusanimation BS_TARGET
 	updatestatusicon BS_TARGET
 	printfromtable gStatusConditionsStringIds
 	waitmessage B_WAIT_TIME_LONG
 	updatestatusicon BS_EFFECT_BATTLER
 	waitstate
-BattleScript_Status1FoesIncrement:
-	jumpifbytenotequal gBattlerTarget, sBATTLER, BattleScript_Status1FoesEnd
-	setallytonexttarget BattleScript_Status1FoesLoop
-BattleScript_Status1FoesEnd:
+BattleScript_ParalyzeSideIncrement:
+	jumpifbytenotequal gBattlerTarget, sBATTLER, BattleScript_ParalyzeSideEnd
+	setallytonexttarget BattleScript_ParalyzeSideLoop
+BattleScript_ParalyzeSideEnd:
+	restoretarget
+	goto BattleScript_MoveEnd
+
+BattleScript_EffectPoisonSide::
+	savetarget
+	copybyte sBATTLER, gBattlerTarget
+BattleScript_PoisonSideLoop:
+	jumpifabsent BS_TARGET, BattleScript_PoisonSideIncrement
+	trysetpoison BattleScript_PoisonSideIncrement
+	statusanimation BS_TARGET
+	updatestatusicon BS_TARGET
+	printfromtable gStatusConditionsStringIds
+	waitmessage B_WAIT_TIME_LONG
+	updatestatusicon BS_EFFECT_BATTLER
+	waitstate
+BattleScript_PoisonSideIncrement:
+	jumpifbytenotequal gBattlerTarget, sBATTLER, BattleScript_PoisonSideEnd
+	setallytonexttarget BattleScript_PoisonSideLoop
+BattleScript_PoisonSideEnd:
+	restoretarget
+	goto BattleScript_MoveEnd
+
+BattleScript_EffectPoisonParalyzeSide::
+	savetarget
+	copybyte sBATTLER, gBattlerTarget
+BattleScript_PoisonParalyzeSideLoop:
+	jumpifabsent BS_TARGET, BattleScript_PoisonParalyzeSideIncrement
+	trysetpoisonparalysis BattleScript_PoisonParalyzeSideIncrement
+	statusanimation BS_TARGET
+	updatestatusicon BS_TARGET
+	printfromtable gStatusConditionsStringIds
+	waitmessage B_WAIT_TIME_LONG
+	updatestatusicon BS_EFFECT_BATTLER
+	waitstate
+BattleScript_PoisonParalyzeSideIncrement:
+	jumpifbytenotequal gBattlerTarget, sBATTLER, BattleScript_PoisonParalyzeSideEnd
+	setallytonexttarget BattleScript_PoisonParalyzeSideLoop
+BattleScript_PoisonParalyzeSideEnd:
+	restoretarget
+	goto BattleScript_MoveEnd
+
+BattleScript_EffectEffectSporeSide::
+	savetarget
+	copybyte sBATTLER, gBattlerTarget
+BattleScript_EffectSporeSideLoop:
+	jumpifabsent BS_TARGET, BattleScript_EffectSporeSideIncrement
+	tryseteffectspore BattleScript_EffectSporeSideIncrement
+	statusanimation BS_TARGET
+	updatestatusicon BS_TARGET
+	printfromtable gStatusConditionsStringIds
+	waitmessage B_WAIT_TIME_LONG
+	updatestatusicon BS_EFFECT_BATTLER
+	waitstate
+BattleScript_EffectSporeSideIncrement:
+	jumpifbytenotequal gBattlerTarget, sBATTLER, BattleScript_EffectSporeSideEnd
+	setallytonexttarget BattleScript_EffectSporeSideLoop
+BattleScript_EffectSporeSideEnd:
 	restoretarget
 	goto BattleScript_MoveEnd
 
