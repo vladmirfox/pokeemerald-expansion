@@ -87,9 +87,6 @@ TEST("(Daycare) Shellos' form is always based on the mother's form")
 TEST("(Daycare) Pokémon with regional forms give the correct offspring")
 {
     u32 region = 0, offspring = 0, species1 = 0, item1 = 0, species2 = 0, item2 = 0;
-    ASSUME(P_FAMILY_MEOWTH == TRUE);
-    ASSUME(P_ALOLAN_FORMS == TRUE);
-    ASSUME(P_GALARIAN_FORMS == TRUE);
 
     ZeroPlayerPartyMons();
 
@@ -149,6 +146,9 @@ TEST("(Daycare) Pokémon with regional forms give the correct offspring")
         PARAMETRIZE { offspring=SPECIES_WOOPER_PALDEA; species1=SPECIES_WOOPER;        item1=ITEM_NONE;      species2=SPECIES_WOOPER_PALDEA, item2=ITEM_EVERSTONE; }
         PARAMETRIZE { offspring=SPECIES_WOOPER;        species1=SPECIES_CLODSIRE;      item1=ITEM_EVERSTONE; species2=SPECIES_QUAGSIRE,      item2=ITEM_EVERSTONE; }
     }
+    ASSUME(IsSpeciesEnabled(species1) == TRUE);
+    ASSUME(IsSpeciesEnabled(species2) == TRUE);
+    ASSUME(IsSpeciesEnabled(offspring) == TRUE);
 
     VarSet(VAR_0x8000, species1);
     VarSet(VAR_0x8001, item1);
