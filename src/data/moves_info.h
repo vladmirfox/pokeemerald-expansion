@@ -22234,7 +22234,7 @@ const struct MoveInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .target = MOVE_TARGET_SELECTED,
         .priority = 0,
         .category = DAMAGE_CATEGORY_PHYSICAL,
-        .argument = { .argMoveEffect = MOVE_EFFECT_BYPASS_PROTECT },
+        .ignoresProtect = TRUE,
         .battleAnimScript = gBattleAnimMove_GMaxOneBlow,
     },
 
@@ -22250,7 +22250,7 @@ const struct MoveInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .target = MOVE_TARGET_SELECTED,
         .priority = 0,
         .category = DAMAGE_CATEGORY_PHYSICAL,
-        .argument = { .argMoveEffect = MOVE_EFFECT_BYPASS_PROTECT },
+        .ignoresProtect = TRUE,
         .battleAnimScript = gBattleAnimMove_GMaxRapidFlow,
     },
 };
