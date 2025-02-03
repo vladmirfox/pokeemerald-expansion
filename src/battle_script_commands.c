@@ -4506,8 +4506,8 @@ void SetMoveEffect(bool32 primary, bool32 certain)
                     gBattlescriptCurrInstr = BattleScript_EffectGravitySuccess;
                 }
                 break;
-            case MOVE_EFFECT_SANDBLAST_FOES:
-            case MOVE_EFFECT_FIRE_SPIN_FOES:
+            case MOVE_EFFECT_SANDBLAST_SIDE:
+            case MOVE_EFFECT_FIRE_SPIN_SIDE:
             {
                 // Affects both opponents, but doesn't print strings so we can handle it here.
                 u8 battler;
@@ -4524,7 +4524,7 @@ void SetMoveEffect(bool32 primary, bool32 certain)
                             gDisableStructs[battler].wrapTurns = (Random() % 2) + 4;
                         // The Wrap effect does not expire when the user switches, so here's some cheese.
                         gBattleStruct->wrappedBy[battler] = gBattlerTarget;
-                        if (gBattleScripting.moveEffect == MOVE_EFFECT_SANDBLAST_FOES)
+                        if (gBattleScripting.moveEffect == MOVE_EFFECT_SANDBLAST_SIDE)
                             gBattleStruct->wrappedMove[battler] = MOVE_SAND_TOMB;
                         else
                             gBattleStruct->wrappedMove[battler] = MOVE_FIRE_SPIN;
@@ -4568,7 +4568,7 @@ void SetMoveEffect(bool32 primary, bool32 certain)
                 BattleScriptPush(gBattlescriptCurrInstr + 1);
                 gBattlescriptCurrInstr = BattleScript_EffectEffectSporeSide;
                 break;
-            case MOVE_EFFECT_CONFUSE_SIDE_PAY_DAY:
+            case MOVE_EFFECT_CONFUSE_PAY_DAY_SIDE:
                 if (gBattleTypeFlags & BATTLE_TYPE_TRAINER)
                 {
                     u32 payday = gPaydayMoney;
@@ -4590,11 +4590,11 @@ void SetMoveEffect(bool32 primary, bool32 certain)
                 BattleScriptPush(gBattlescriptCurrInstr + 1);
                 gBattlescriptCurrInstr = BattleScript_EffectTormentSide;
                 break;
-            case MOVE_EFFECT_MEAN_LOOK:
+            case MOVE_EFFECT_PREVENT_ESCAPE_SIDE:
                 BattleScriptPush(gBattlescriptCurrInstr + 1);
                 gBattlescriptCurrInstr = BattleScript_EffectMeanLookSide;
                 break;
-            case MOVE_EFFECT_CRIT_PLUS:
+            case MOVE_EFFECT_CRIT_PLUS_SIDE:
                 gBattleStruct->bonusCritStages[gBattlerAttacker]++;
                 gBattleStruct->bonusCritStages[BATTLE_PARTNER(gBattlerAttacker)]++;
                 BattleScriptPush(gBattlescriptCurrInstr + 1);
@@ -13867,7 +13867,7 @@ static void Cmd_tryspiteppreduce(void)
         {
             s32 ppToDeduct = B_PP_REDUCED_BY_SPITE >= GEN_4 ? 4 : (Random() & 3) + 2;
             // G-Max Depletion only deducts 2 PP.
-            if (IsMaxMove(gCurrentMove) && GetArgumentMoveEffect(gCurrentMove) == MOVE_EFFECT_SPITE)
+            if (IsMaxMove(gCurrentMove) && MoveHasAdditionalEffect(gCurrentMove, MOVE_EFFECT_SPITE))
                 ppToDeduct = 2;
 
             if (gBattleMons[gBattlerTarget].pp[i] < ppToDeduct)
@@ -18429,14 +18429,10 @@ void BS_TrySetInfatuation(void)
 {
     NATIVE_ARGS(const u8 *failInstr);
 
-    u32 atkGender = GetGenderFromSpeciesAndPersonality(gBattleMons[gBattlerAttacker].species, gBattleMons[gBattlerAttacker].personality);
-    u32 defGender = GetGenderFromSpeciesAndPersonality(gBattleMons[gBattlerTarget].species, gBattleMons[gBattlerTarget].personality);
     if (!(gBattleMons[gBattlerTarget].status2 & STATUS2_INFATUATION)
         && gBattleMons[gBattlerTarget].ability != ABILITY_OBLIVIOUS
         && !IsAbilityOnSide(gBattlerTarget, ABILITY_AROMA_VEIL)
-        && atkGender != defGender
-        && atkGender != MON_GENDERLESS
-        && defGender != MON_GENDERLESS)
+        && AreBattlersOfOppositeGender(gBattlerAttacker, gBattlerTarget))
     {
         gBattleMons[gBattlerTarget].status2 |= STATUS2_INFATUATED_WITH(gBattlerAttacker);
         gBattleCommunication[MULTISTRING_CHOOSER] = 1;

@@ -23,7 +23,7 @@
 #include "constants/items.h"
 #include "constants/moves.h"
 
-static u8 GetMaxPowerTier(u32 move);
+static u32 GetMaxPowerTier(u32 move);
 
 struct GMaxMove
 {
@@ -318,11 +318,11 @@ enum
 };
 
 // Gets the base power of a Max Move.
-u8 GetMaxMovePower(u32 move)
+u32 GetMaxMovePower(u32 move)
 {
-    u8 tier;
+    u32 tier;
     // G-Max Drum Solo, G-Max Hydrosnipe, and G-Max Fireball always have 160 base power.
-    if (GetArgumentMoveEffect(GetMaxMove(gBattlerAttacker, move)) == MOVE_EFFECT_FIXED_POWER)
+    if (MoveHasAdditionalEffect(move, MOVE_EFFECT_FIXED_POWER))
         return 160;
 
     // Exceptions to all other rules below:
@@ -370,7 +370,7 @@ u8 GetMaxMovePower(u32 move)
     }
 }
 
-static u8 GetMaxPowerTier(u32 move)
+static u32 GetMaxPowerTier(u32 move)
 {
     u32 strikeCount = GetMoveStrikeCount(move);
     if (strikeCount >= 2 && strikeCount <= 5)

@@ -551,7 +551,6 @@ extern const u8 BattleScript_EffectConfuseSide[];
 extern const u8 BattleScript_EffectInfatuateSide[];
 extern const u8 BattleScript_EffectTormentSide[];
 extern const u8 BattleScript_EffectMeanLookSide[];
-
 extern const u8 BattleScript_TormentEnds[];
 extern const u8 BattleScript_EffectRaiseCritAlliesAnim[];
 extern const u8 BattleScript_EffectHealOneSixthAllies[];

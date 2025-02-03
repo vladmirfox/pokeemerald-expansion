@@ -9267,21 +9267,15 @@ void AnimTask_DynamaxGrowth(u8 taskId) // from CFRU
 
 void AnimTask_GetWeatherToSet(u8 taskId)
 {
-    switch (GetArgumentMoveEffect(gCurrentMove))
-    {
-        case MOVE_EFFECT_SUN:
-            gBattleAnimArgs[ARG_RET_ID] = ANIM_WEATHER_SUN;
-            break;
-        case MOVE_EFFECT_RAIN:
-            gBattleAnimArgs[ARG_RET_ID] = ANIM_WEATHER_RAIN;
-            break;
-        case MOVE_EFFECT_SANDSTORM:
-            gBattleAnimArgs[ARG_RET_ID] = ANIM_WEATHER_SANDSTORM;
-            break;
-        case MOVE_EFFECT_HAIL:
-            gBattleAnimArgs[ARG_RET_ID] = ANIM_WEATHER_HAIL;
-            break;
-    }
+    if (MoveHasAdditionalEffect(gCurrentMove, MOVE_EFFECT_SUN))
+        gBattleAnimArgs[ARG_RET_ID] = ANIM_WEATHER_SUN;
+    else if (MoveHasAdditionalEffect(gCurrentMove, MOVE_EFFECT_RAIN))
+        gBattleAnimArgs[ARG_RET_ID] = ANIM_WEATHER_RAIN;
+    else if (MoveHasAdditionalEffect(gCurrentMove, MOVE_EFFECT_SANDSTORM))
+        gBattleAnimArgs[ARG_RET_ID] = ANIM_WEATHER_SANDSTORM;
+    else if (MoveHasAdditionalEffect(gCurrentMove, MOVE_EFFECT_HAIL))
+        gBattleAnimArgs[ARG_RET_ID] = ANIM_WEATHER_HAIL;
+
     DestroyAnimVisualTask(taskId);
 }
 
