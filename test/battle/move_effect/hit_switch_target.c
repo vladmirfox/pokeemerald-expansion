@@ -90,7 +90,7 @@ SINGLE_BATTLE_TEST("Dragon Tail switches the target after Rocky Helmet and Iron 
     }
 }
 
-SINGLE_BATTLE_TEST("Dragon Tail effect fails against target with Guard Dog ability")
+SINGLE_BATTLE_TEST("Dragon Tail effect fails against target with Guard Dog")
 {
     GIVEN {
         PLAYER(SPECIES_WOBBUFFET);
@@ -104,7 +104,7 @@ SINGLE_BATTLE_TEST("Dragon Tail effect fails against target with Guard Dog abili
     }
 }
 
-SINGLE_BATTLE_TEST("Dragon Tail effect fails against Suction Cups ability")
+SINGLE_BATTLE_TEST("Dragon Tail effect fails against target with Suction Cups")
 {
     GIVEN {
         PLAYER(SPECIES_WOBBUFFET);

@@ -69,7 +69,7 @@ SINGLE_BATTLE_TEST("Roar fails if replacements fainted")
     }
 }
 
-SINGLE_BATTLE_TEST("Roar fails against target with Guard Dog ability")
+SINGLE_BATTLE_TEST("Roar fails against target with Guard Dog")
 {
     GIVEN {
         PLAYER(SPECIES_WOBBUFFET);
@@ -87,7 +87,7 @@ SINGLE_BATTLE_TEST("Roar fails against target with Guard Dog ability")
     }
 }
 
-SINGLE_BATTLE_TEST("Roar fails to switch out target with Suction Cups ability")
+SINGLE_BATTLE_TEST("Roar fails to switch out target with Suction Cups")
 {
     GIVEN {
         PLAYER(SPECIES_WOBBUFFET);
