@@ -2701,12 +2701,7 @@ static bool32 AnyUsefulStatIsRaised(u32 battler)
 
 struct Pokemon *GetPartyBattlerPartyData(u32 battlerId, u32 switchBattler)
 {
-    struct Pokemon *mon;
-    if (GetBattlerSide(battlerId) == B_SIDE_PLAYER)
-        mon = &gPlayerParty[switchBattler];
-    else
-        mon = &gEnemyParty[switchBattler];
-    return mon;
+    return &GetBattlerParty(battlerId)[switchBattler];
 }
 
 static bool32 PartyBattlerShouldAvoidHazards(u32 currBattler, u32 switchBattler)
