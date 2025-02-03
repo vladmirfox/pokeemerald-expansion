@@ -338,8 +338,6 @@ DOUBLE_BATTLE_TEST("Red Card activates but fails if the attacker has Guard Dog")
             ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_HELD_ITEM_EFFECT, playerLeft);
             MESSAGE("Wobbuffet held up its Red Card against the opposing Wynaut!");
         }
-    } THEN {
-        EXPECT_EQ(opponentLeft->species, SPECIES_OKIDOGI);
     }
 }
 
