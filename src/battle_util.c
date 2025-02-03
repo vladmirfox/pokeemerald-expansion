@@ -4229,44 +4229,99 @@ static void ChooseStatBoostAnimation(u32 battler)
 #undef ANIM_STAT_ACC
 #undef ANIM_STAT_EVASION
 
-u32 CanAbilityBlockMove(u32 battlerAtk, u32 battlerDef, u32 move, u32 abilityDef)
+bool32 CanAbilityBlockMove(u32 battlerAtk, u32 battlerDef, u32 move, u32 abilityDef, bool32 runScript)
 {
-    enum MoveBlocked effect = MOVE_BLOCKED_BY_NO_ABILITY;
-
+    const u8 *battleScriptBlocksMove = NULL;
+    u32 atkPriority = AI_DATA->aiCalcInProgress ? GetBattleMovePriority(battlerAtk, move) : GetChosenMovePriority(battlerAtk);
+    u32 moveTarget = GetBattlerMoveTargetType(battlerAtk, move);
+    u32 battlerAbility = battlerDef;
+    
     switch (abilityDef)
     {
     case ABILITY_SOUNDPROOF:
-        if (IsSoundMove(move) && !(GetBattlerMoveTargetType(battlerAtk, move) & MOVE_TARGET_USER))
-            effect = MOVE_BLOCKED_BY_SOUNDPROOF_OR_BULLETPROOF;
+        if (IsSoundMove(move) && !(moveTarget & MOVE_TARGET_USER))
+        {
+            if (gBattleMons[battlerAtk].status2 & STATUS2_MULTIPLETURNS)
+                gHitMarker |= HITMARKER_NO_PPDEDUCT;
+            battleScriptBlocksMove = BattleScript_SoundproofProtected;
+        }
         break;
     case ABILITY_BULLETPROOF:
         if (IsBallisticMove(move))
-            effect = MOVE_BLOCKED_BY_SOUNDPROOF_OR_BULLETPROOF;
+        {
+            if (gBattleMons[battlerAtk].status2 & STATUS2_MULTIPLETURNS)
+                gHitMarker |= HITMARKER_NO_PPDEDUCT;
+            battleScriptBlocksMove = BattleScript_SoundproofProtected;
+        }
         break;
     case ABILITY_DAZZLING:
     case ABILITY_QUEENLY_MAJESTY:
     case ABILITY_ARMOR_TAIL:
-        if (GetBattlerSide(battlerAtk) != GetBattlerSide(battlerDef))
+        if (!IsAlly(battlerAtk, battlerDef))
         {
-            u32 priority = AI_DATA->aiCalcInProgress ? GetBattleMovePriority(battlerAtk, move) : GetChosenMovePriority(battlerAtk);
-            if (priority > 0)
-                effect = MOVE_BLOCKED_BY_DAZZLING;
+            if (atkPriority > 0)
+            {
+                if (gBattleMons[battlerAtk].status2 & STATUS2_MULTIPLETURNS)
+                    gHitMarker |= HITMARKER_NO_PPDEDUCT;
+                battleScriptBlocksMove = BattleScript_DazzlingProtected;
+            }
         }
         break;
     case ABILITY_GOOD_AS_GOLD:
         if (IsBattleMoveStatus(move))
         {
-            u32 moveTarget = GetBattlerMoveTargetType(battlerAtk, move);
             if (!(moveTarget & MOVE_TARGET_OPPONENTS_FIELD) && !(moveTarget & MOVE_TARGET_ALL_BATTLERS))
-                effect = MOVE_BLOCKED_BY_GOOD_AS_GOLD;
+                battleScriptBlocksMove = BattleScript_GoodAsGoldActivates;
+        }
+        break;
+    case ABILITY_PRANKSTER:
+        if (atkPriority > 0
+         && BlocksPrankster(move, battlerAtk, battlerDef, TRUE)
+         && !(IsBattleMoveStatus(move) && (gLastUsedAbility == ABILITY_MAGIC_BOUNCE || gProtectStructs[battlerDef].bounceMove)))
+        {
+            if (!IsDoubleBattle()
+                    || !(moveTarget & (MOVE_TARGET_BOTH | MOVE_TARGET_FOES_AND_ALLY)))
+                CancelMultiTurnMoves(battlerAtk); // Don't cancel moves that can hit two targets bc one target might not be protected
+            battleScriptBlocksMove = BattleScript_DarkTypePreventsPrankster;
+            
+            
+            effect = 1;
         }
         break;
     }
 
-    if (!effect)
-        effect = CanPartnerAbilityBlockMove(battlerAtk, battlerDef, move, GetBattlerAbility(BATTLE_PARTNER(battlerDef)));
 
-    return effect;
+    // Check def partner ability
+    if (IsDoubleBattle() && IsBattlerAlive(BATTLE_PARTNER(battlerDef))
+    {
+        switch (GetBattlerAbility(BATTLE_PARTNER(battlerDef)))
+        {
+        case ABILITY_DAZZLING:
+        case ABILITY_QUEENLY_MAJESTY:
+        case ABILITY_ARMOR_TAIL:
+            if (!IsAlly(battlerAtk, battlerDef))
+            {
+                if (atkPriority > 0)
+                {
+                    if (gBattleMons[battlerAtk].status2 & STATUS2_MULTIPLETURNS)
+                        gHitMarker |= HITMARKER_NO_PPDEDUCT;
+                    battlerAbility = BATTLE_PARTNER(battlerDef);
+                    battleScriptBlocksMove = BattleScript_DazzlingProtected;
+                }
+            }
+            break;
+        }
+    }
+    
+    if (battleScriptBlocksMove == NULL)
+        return FALSE;
+    
+    if (runScript)
+    {
+        gBattleScripting.battler = gBattlerAbility = battlerAbility;
+        gBattlescriptCurrInstr = battleScriptBlocksMove;
+    }
+    return TRUE;
 }
 
 u32 CanPartnerAbilityBlockMove(u32 battlerAtk, u32 battlerDef, u32 move, u32 abilityDef)
@@ -5470,50 +5525,12 @@ u32 AbilityBattleEffects(u32 caseID, u32 battler, u32 ability, u32 special, u32 
         }
         break;
     case ABILITYEFFECT_WOULD_BLOCK:
-        effect = CanAbilityBlockMove(gBattlerAttacker, battler, move, gLastUsedAbility);
-        if (effect && gLastUsedAbility != 0xFFFF)
+        if (CanAbilityBlockMove(gBattlerAttacker, battler, move, gLastUsedAbility, FALSE)
+                && gLastUsedAbility != 0xFFFF)
             RecordAbilityBattle(battler, gLastUsedAbility);
         break;
     case ABILITYEFFECT_MOVES_BLOCK:
-        {
-            effect = CanAbilityBlockMove(gBattlerAttacker, battler, move, gLastUsedAbility);
-            const u8 * battleScriptBlocksMove = NULL;
-            switch (effect)
-            {
-            case MOVE_BLOCKED_BY_SOUNDPROOF_OR_BULLETPROOF:
-                if (gBattleMons[gBattlerAttacker].status2 & STATUS2_MULTIPLETURNS)
-                    gHitMarker |= HITMARKER_NO_PPDEDUCT;
-                battleScriptBlocksMove = BattleScript_SoundproofProtected;
-                break;
-            case MOVE_BLOCKED_BY_DAZZLING:
-            case MOVE_BLOCKED_BY_PARTNER_DAZZLING:
-                if (effect == MOVE_BLOCKED_BY_PARTNER_DAZZLING)
-                    gBattleScripting.battler = BATTLE_PARTNER(battler);
-                else
-                    gBattleScripting.battler = battler;
-                if (gBattleMons[gBattlerAttacker].status2 & STATUS2_MULTIPLETURNS)
-                    gHitMarker |= HITMARKER_NO_PPDEDUCT;
-                battleScriptBlocksMove = BattleScript_DazzlingProtected;
-                break;
-            case MOVE_BLOCKED_BY_GOOD_AS_GOLD:
-                battleScriptBlocksMove = BattleScript_GoodAsGoldActivates;
-                break;
-            default:
-                if (GetChosenMovePriority(gBattlerAttacker) > 0
-                 && BlocksPrankster(move, gBattlerAttacker, gBattlerTarget, TRUE)
-                 && !(IsBattleMoveStatus(move) && (gLastUsedAbility == ABILITY_MAGIC_BOUNCE || gProtectStructs[gBattlerTarget].bounceMove)))
-                {
-                    if (!IsDoubleBattle()
-                    || !(GetBattlerMoveTargetType(gBattlerAttacker, move) & (MOVE_TARGET_BOTH | MOVE_TARGET_FOES_AND_ALLY)))
-                        CancelMultiTurnMoves(gBattlerAttacker); // Don't cancel moves that can hit two targets bc one target might not be protected
-                    gBattleScripting.battler = gBattlerAbility = gBattlerTarget;
-                    battleScriptBlocksMove = BattleScript_DarkTypePreventsPrankster;
-                    effect = 1;
-                }
-            }
-            if (effect)
-                gBattlescriptCurrInstr = battleScriptBlocksMove;
-        }
+        effect = CanAbilityBlockMove(gBattlerAttacker, battler, move, gLastUsedAbility, TRUE);
         break;
     case ABILITYEFFECT_WOULD_ABSORB:
         effect = CanAbilityAbsorbMove(gBattlerAttacker, battler, gLastUsedAbility, move, moveType);
