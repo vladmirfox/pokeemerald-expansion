@@ -37,6 +37,20 @@ static void InitializeSwitchinCandidate(struct Pokemon *mon)
     AI_DATA->switchinCandidate.hypotheticalStatus = FALSE;
 }
 
+u32 GetSwitchChance(enum ShouldSwitchScenario shouldSwitchScenario)
+{
+    // Modify these cases if you want unique behaviour based on other data (trainer class, difficulty, etc.)
+    switch(shouldSwitchScenario)
+    {
+        case SHOULD_SWITCH_HASBADODDS:
+            return SHOULD_SWITCH_HASBADODDS_PERCENTAGE;
+        case SHOULD_SWITCH_TRUANT:
+            return SHOULD_SWITCH_TRUANT_PERCENTAGE;
+        default:
+            return 100;
+    }
+}
+
 u32 GetThinkingBattler(u32 battler)
 {
     if (AI_DATA->aiSwitchPredictionInProgress)
@@ -198,7 +212,7 @@ static bool32 ShouldSwitchIfHasBadOdds(u32 battler)
             && gBattleMons[battler].hp >= gBattleMons[battler].maxHP / 4)))
     {
         // 50% chance to stay in regardless
-        if (RandomPercentage(RNG_AI_SWITCH_HASBADODDS, 50) && !AI_DATA->aiSwitchPredictionInProgress)
+        if (RandomPercentage(RNG_AI_SWITCH_HASBADODDS, (100 - GetSwitchChance(SHOULD_SWITCH_HASBADODDS))) && !AI_DATA->aiSwitchPredictionInProgress)
             return FALSE;
 
         // Switch mon out
@@ -218,7 +232,7 @@ static bool32 ShouldSwitchIfHasBadOdds(u32 battler)
                 return FALSE;
 
             // 50% chance to stay in regardless
-            if (RandomPercentage(RNG_AI_SWITCH_HASBADODDS, 50) && !AI_DATA->aiSwitchPredictionInProgress)
+            if (RandomPercentage(RNG_AI_SWITCH_HASBADODDS, (100 - GetSwitchChance(SHOULD_SWITCH_HASBADODDS))) && !AI_DATA->aiSwitchPredictionInProgress)
                 return FALSE;
 
             // Switch mon out
@@ -237,7 +251,8 @@ static bool32 ShouldSwitchIfTruant(u32 battler)
         && gBattleMons[battler].hp >= gBattleMons[battler].maxHP / 2
         && AI_DATA->mostSuitableMonId[battler] != PARTY_SIZE)
     {
-        return SetSwitchinAndSwitch(battler, PARTY_SIZE);
+        if (RandomPercentage(RNG_AI_SWITCH_TRUANT, GetSwitchChance(SHOULD_SWITCH_TRUANT)))
+            return SetSwitchinAndSwitch(battler, PARTY_SIZE);
     }
     return FALSE;
 }
