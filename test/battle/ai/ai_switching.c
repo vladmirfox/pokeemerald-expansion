@@ -520,6 +520,7 @@ AI_SINGLE_BATTLE_TEST("AI_FLAG_SMART_SWITCHING: AI will switch out if mon would 
 
 AI_SINGLE_BATTLE_TEST("Switch AI: AI will switch out if it can't deal damage to a mon with Wonder Guard")
 {
+    PASSES_RANDOMLY(SHOULD_SWITCH_WONDER_GUARD_PERCENTAGE, 100, RNG_AI_SWITCH_WONDER_GUARD);
     GIVEN {
         ASSUME(gSpeciesInfo[SPECIES_SHEDINJA].types[0] == TYPE_BUG);
         ASSUME(gSpeciesInfo[SPECIES_SHEDINJA].types[1] == TYPE_GHOST);
@@ -539,6 +540,7 @@ AI_SINGLE_BATTLE_TEST("Switch AI: AI will switch out if it can't deal damage to 
 
 AI_SINGLE_BATTLE_TEST("AI_FLAG_SMART_SWITCHING: AI will switch out if it can't deal damage to a mon with Wonder Guard")
 {
+    PASSES_RANDOMLY(SHOULD_SWITCH_WONDER_GUARD_PERCENTAGE, 100, RNG_AI_SWITCH_WONDER_GUARD);
     GIVEN {
         ASSUME(gSpeciesInfo[SPECIES_SHEDINJA].types[0] == TYPE_BUG);
         ASSUME(gSpeciesInfo[SPECIES_SHEDINJA].types[1] == TYPE_GHOST);
