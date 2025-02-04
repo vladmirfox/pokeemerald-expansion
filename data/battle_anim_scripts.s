@@ -13242,7 +13242,7 @@ gBattleAnimMove_MagicPowder::
 gBattleAnimMove_DragonDarts::
 	loadspritegfx ANIM_TAG_DREEPY_SHINY
 	loadspritegfx ANIM_TAG_DREEPY
-    loadspritegfx ANIM_TAG_AIR_WAVE
+	loadspritegfx ANIM_TAG_AIR_WAVE
 	loadspritegfx ANIM_TAG_EXPLOSION
 	playsewithpan SE_FALL, SOUND_PAN_ATTACKER
 	createdragondartsprite ANIM_TARGET, 2, 0x0, 0x0, 0x19
