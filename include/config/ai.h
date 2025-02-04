@@ -8,6 +8,6 @@
 #define SHOULD_SWITCH_HASBADODDS_PERCENTAGE 50
 
 // AI prediction chances
-
+#define PREDICT_SWITCH_CHANCE 50
 
 #endif // GUARD_CONFIG_AI_H
