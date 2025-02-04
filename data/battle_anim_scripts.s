@@ -18215,10 +18215,54 @@ TeraStarstormCreateBeam::
 	createsprite gTeraStarstormBeamSpriteTemplate, ANIM_BATTLER, 1, 2, 0, 0, 0, 20
 	return
 
+gBattleAnimMove_TachyonCutter::
+	loadspritegfx ANIM_TAG_CUT
+	loadspritegfx ANIM_TAG_BUBBLE
+	createsprite gTachyonCutterSpriteTemplate, ANIM_ATTACKER, 2, 40, -32, 0
+	createsprite gTachyonCutterSpriteTemplate, ANIM_ATTACKER, 2, 40, -32, 1
+	playsewithpan SE_M_RAZOR_WIND2, SOUND_PAN_ATTACKER
+	waitforvisualfinish
+	end
+
+gBattleAnimMove_SaltCure::
+	loadspritegfx ANIM_TAG_SALT_PARTICLE
+	createsprite gSaltCureThrowSpriteTemplate, ANIM_TARGET, 2, 20, 0, 0, 0, 35, -25
+	delay 5
+	createsprite gSaltCureThrowSpriteTemplate, ANIM_TARGET, 2, 20, 0, -5, -5, 35, -25
+	delay 5
+	createsprite gSaltCureThrowSpriteTemplate, ANIM_TARGET, 2, 20, 0, -5, 5, 35, -25
+	delay 5
+	createsprite gSaltCureThrowSpriteTemplate, ANIM_TARGET, 2, 20, 0, 5, 5, 35, -25
+	delay 5
+	createsprite gSaltCureThrowSpriteTemplate, ANIM_TARGET, 2, 20, 0, 5, -5, 35, -25
+	delay 5
+	createsprite gSaltCureThrowSpriteTemplate, ANIM_TARGET, 2, 20, 0, -10, -10, 35, -25
+	delay 5
+	createsprite gSaltCureThrowSpriteTemplate, ANIM_TARGET, 2, 20, 0, -10, 10, 35, -25
+	delay 5
+	createsprite gSaltCureThrowSpriteTemplate, ANIM_TARGET, 2, 20, 0, 10, 10, 35, -25
+	playsewithpan SE_M_ICY_WIND, SOUND_PAN_TARGET
+	delay 5
+	createsprite gSaltCureThrowSpriteTemplate, ANIM_TARGET, 2, 20, 0, 10, -10, 35, -25
+	playsewithpan SE_M_ICY_WIND, SOUND_PAN_TARGET
+	delay 5
+	playsewithpan SE_M_ICY_WIND, SOUND_PAN_TARGET
+	delay 5
+	playsewithpan SE_M_ICY_WIND, SOUND_PAN_TARGET
+	delay 5
+	playsewithpan SE_M_ICY_WIND, SOUND_PAN_TARGET
+	delay 5
+	playsewithpan SE_M_ICY_WIND, SOUND_PAN_TARGET
+	delay 5
+	playsewithpan SE_M_ICY_WIND, SOUND_PAN_TARGET
+	delay 5
+	waitforvisualfinish
+	goto gBattleAnimGeneral_SaltCureDamage
+	end
+
 gBattleAnimMove_TeraBlast::
 gBattleAnimMove_OrderUp::
 gBattleAnimMove_GlaiveRush::
-gBattleAnimMove_SaltCure::
 gBattleAnimMove_TripleDive::
 gBattleAnimMove_Doodle::
 gBattleAnimMove_Ruination::
@@ -18233,7 +18277,6 @@ gBattleAnimMove_MagicalTorque::
 gBattleAnimMove_Psyblade::
 gBattleAnimMove_MatchaGotcha::
 gBattleAnimMove_MightyCleave::
-gBattleAnimMove_TachyonCutter::
 gBattleAnimMove_SupercellSlam::
 	end @to do
 
@@ -28927,7 +28970,15 @@ General_AffectionHangedOn_3Hearts:
 	end
 
 gBattleAnimGeneral_SaltCureDamage::
-	goto gBattleAnimStatus_Freeze
+	playsewithpan SE_M_ICY_WIND, 0
+	loadspritegfx ANIM_TAG_ICE_CUBE
+	monbg ANIM_DEF_PARTNER
+	splitbgprio ANIM_TARGET
+	waitplaysewithpan SE_M_HAIL, SOUND_PAN_TARGET, 17
+	createvisualtask AnimTask_FrozenIceCube, 2
+	waitforvisualfinish
+	clearmonbg ANIM_DEF_PARTNER
+	end
 
 gBattleAnimGeneral_Rainbow::
 	call RainDrops

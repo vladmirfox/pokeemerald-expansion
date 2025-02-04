@@ -1026,3 +1026,14 @@ void AnimTask_SeismicTossBgAccelerateDownAtEnd(u8 taskId)
         DestroyAnimVisualTask(taskId);
     }
 }
+
+const struct SpriteTemplate gSaltCureThrowSpriteTemplate =
+{
+    .tileTag = ANIM_TAG_SALT_PARTICLE,
+    .paletteTag = ANIM_TAG_SALT_PARTICLE,
+    .oam = &gOamData_AffineOff_ObjNormal_16x16,
+    .anims = gDummySpriteAnimTable,
+    .images = NULL,
+    .affineAnims = gDummySpriteAffineAnimTable,
+    .callback = AnimThrowProjectile,
+};
