@@ -2293,7 +2293,7 @@ static void Cmd_attackanimation(void)
         }
 
         // handle special move animations
-        if (gMovesInfo[gCurrentMove] == EFFECT_EXPANDING_FORCE && moveTarget & MOVE_TARGET_BOTH)
+        if (gMovesInfo[gCurrentMove].effect == EFFECT_EXPANDING_FORCE && moveTarget & MOVE_TARGET_BOTH)
             gBattleScripting.animTurn = 1;
 
         if (!(gMoveResultFlags & MOVE_RESULT_NO_EFFECT))
