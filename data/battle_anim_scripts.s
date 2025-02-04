@@ -18257,7 +18257,7 @@ gBattleAnimMove_SaltCure::
 	playsewithpan SE_M_ICY_WIND, SOUND_PAN_TARGET
 	delay 5
 	waitforvisualfinish
-	goto gBattleAnimGeneral_SaltCureDamage
+	call gBattleAnimGeneral_SaltCureDamage
 	end
 
 gBattleAnimMove_TeraBlast::
@@ -28970,14 +28970,40 @@ General_AffectionHangedOn_3Hearts:
 	end
 
 gBattleAnimGeneral_SaltCureDamage::
-	playsewithpan SE_M_ICY_WIND, 0
-	loadspritegfx ANIM_TAG_ICE_CUBE
-	monbg ANIM_DEF_PARTNER
-	splitbgprio ANIM_TARGET
-	waitplaysewithpan SE_M_HAIL, SOUND_PAN_TARGET, 17
-	createvisualtask AnimTask_FrozenIceCube, 2
+	loadspritegfx ANIM_TAG_SALT_PARTICLE
+	createsprite gSaltCureCrystalSpriteTemplate, ANIM_TARGET, 2, -10, -10, 1
+	playsewithpan SE_M_ICY_WIND, SOUND_PAN_TARGET
+	delay 4
+	createsprite gSaltCureCrystalSpriteTemplate, ANIM_TARGET, 2, 10, 20, 1
+	playsewithpan SE_M_ICY_WIND, SOUND_PAN_TARGET
+	delay 4
+	createsprite gSaltCureCrystalSpriteTemplate, ANIM_TARGET, 2, -29, 0, 1
+	playsewithpan SE_M_ICY_WIND, SOUND_PAN_TARGET
+	delay 4
+	createsprite gSaltCureCrystalSpriteTemplate, ANIM_TARGET, 2, 29, -20, 1
+	playsewithpan SE_M_ICY_WIND, SOUND_PAN_TARGET
+	delay 4
+	createsprite gSaltCureCrystalSpriteTemplate, ANIM_TARGET, 2, -5, 10, 1
+	playsewithpan SE_M_ICY_WIND, SOUND_PAN_TARGET
+	delay 4
+	createsprite gSaltCureCrystalSpriteTemplate, ANIM_TARGET, 2, 17, -12, 1
+	playsewithpan SE_M_ICY_WIND, SOUND_PAN_TARGET
+	delay 4
+	createsprite gSaltCureCrystalSpriteTemplate, ANIM_TARGET, 2, -20, 0, 1
+	playsewithpan SE_M_ICY_WIND, SOUND_PAN_TARGET
+	delay 4
+	createsprite gSaltCureCrystalSpriteTemplate, ANIM_TARGET, 2, -15, 15, 1
+	playsewithpan SE_M_ICY_WIND, SOUND_PAN_TARGET
+	delay 4
+	createsprite gSaltCureCrystalSpriteTemplate, ANIM_TARGET, 2, 26, -5, 1
+	playsewithpan SE_M_ICY_WIND, SOUND_PAN_TARGET
+	delay 4
+	createsprite gSaltCureCrystalSpriteTemplate, ANIM_TARGET, 2, 0, 0, 1
+	playsewithpan SE_M_ICY_WIND, SOUND_PAN_TARGET
+	delay 4
+	createsprite gSaltCureCrystalSpriteTemplate, ANIM_TARGET, 2, 20, 2, 1
+	playsewithpan SE_M_ICY_WIND, SOUND_PAN_TARGET
 	waitforvisualfinish
-	clearmonbg ANIM_DEF_PARTNER
 	end
 
 gBattleAnimGeneral_Rainbow::

@@ -1037,3 +1037,14 @@ const struct SpriteTemplate gSaltCureThrowSpriteTemplate =
     .affineAnims = gDummySpriteAffineAnimTable,
     .callback = AnimThrowProjectile,
 };
+
+const struct SpriteTemplate gSaltCureCrystalSpriteTemplate =
+{
+    .tileTag = ANIM_TAG_SALT_PARTICLE,
+    .paletteTag = ANIM_TAG_SALT_PARTICLE,
+    .oam = &gOamData_AffineNormal_ObjBlend_16x16,
+    .anims = gAnims_IceCrystalLarge,
+    .images = NULL,
+    .affineAnims = gAffineAnims_IceCrystalHit,
+    .callback = AnimIceEffectParticle,
+};
