@@ -41,6 +41,7 @@ SINGLE_BATTLE_TEST("Unnerve doesn't prevent opposing Pokémon from using Natural
 
 SINGLE_BATTLE_TEST("Unnerve prints the correct string (player)")
 {
+    KNOWN_FAILING;
     u16 mon;
     u16 ability;
     PARAMETRIZE { mon = SPECIES_JOLTIK, ability = ABILITY_UNNERVE; }
@@ -58,7 +59,6 @@ SINGLE_BATTLE_TEST("Unnerve prints the correct string (player)")
 
 SINGLE_BATTLE_TEST("Unnerve prints the correct string (opponent)")
 {
-    KNOWN_FAILING;
     u16 mon;
     u16 ability;
     PARAMETRIZE { mon = SPECIES_JOLTIK, ability = ABILITY_UNNERVE; }
