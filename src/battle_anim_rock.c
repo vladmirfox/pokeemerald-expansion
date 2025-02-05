@@ -1027,17 +1027,6 @@ void AnimTask_SeismicTossBgAccelerateDownAtEnd(u8 taskId)
     }
 }
 
-const struct SpriteTemplate gSaltCureThrowSpriteTemplate =
-{
-    .tileTag = ANIM_TAG_SALT_PARTICLE,
-    .paletteTag = ANIM_TAG_SALT_PARTICLE,
-    .oam = &gOamData_AffineOff_ObjNormal_16x16,
-    .anims = gDummySpriteAnimTable,
-    .images = NULL,
-    .affineAnims = gDummySpriteAffineAnimTable,
-    .callback = AnimThrowProjectile,
-};
-
 const struct SpriteTemplate gSaltCureCrystalSpriteTemplate =
 {
     .tileTag = ANIM_TAG_SALT_PARTICLE,
@@ -1047,4 +1036,15 @@ const struct SpriteTemplate gSaltCureCrystalSpriteTemplate =
     .images = NULL,
     .affineAnims = gAffineAnims_IceCrystalHit,
     .callback = AnimIceEffectParticle,
+};
+
+const struct SpriteTemplate gSaltCureSwirlSpriteTemplate =
+{
+    .tileTag = ANIM_TAG_SALT_PARTICLE,
+    .paletteTag = ANIM_TAG_SALT_PARTICLE,
+    .oam = &gOamData_AffineNormal_ObjBlend_16x16,
+    .anims = gAnims_WaterMudOrb,
+    .images = NULL,
+    .affineAnims = gAffineAnims_Whirlpool,
+    .callback = AnimParticleInVortex,
 };

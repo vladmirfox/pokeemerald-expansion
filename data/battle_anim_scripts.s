@@ -18226,39 +18226,35 @@ gBattleAnimMove_TachyonCutter::
 
 gBattleAnimMove_SaltCure::
 	loadspritegfx ANIM_TAG_SALT_PARTICLE
-	createsprite gSaltCureThrowSpriteTemplate, ANIM_TARGET, 2, 20, 0, 0, 0, 35, -25
-	delay 5
-	createsprite gSaltCureThrowSpriteTemplate, ANIM_TARGET, 2, 20, 0, -5, -5, 35, -25
-	delay 5
-	createsprite gSaltCureThrowSpriteTemplate, ANIM_TARGET, 2, 20, 0, -5, 5, 35, -25
-	delay 5
-	createsprite gSaltCureThrowSpriteTemplate, ANIM_TARGET, 2, 20, 0, 5, 5, 35, -25
-	delay 5
-	createsprite gSaltCureThrowSpriteTemplate, ANIM_TARGET, 2, 20, 0, 5, -5, 35, -25
-	delay 5
-	createsprite gSaltCureThrowSpriteTemplate, ANIM_TARGET, 2, 20, 0, -10, -10, 35, -25
-	delay 5
-	createsprite gSaltCureThrowSpriteTemplate, ANIM_TARGET, 2, 20, 0, -10, 10, 35, -25
-	delay 5
-	createsprite gSaltCureThrowSpriteTemplate, ANIM_TARGET, 2, 20, 0, 10, 10, 35, -25
+	loadspritegfx ANIM_TAG_WATER_ORB
+	call SaltCureEffect
+	call SaltCureEffect
+	call SaltCureEffect
 	playsewithpan SE_M_ICY_WIND, SOUND_PAN_TARGET
-	delay 5
-	createsprite gSaltCureThrowSpriteTemplate, ANIM_TARGET, 2, 20, 0, 10, -10, 35, -25
-	playsewithpan SE_M_ICY_WIND, SOUND_PAN_TARGET
-	delay 5
-	playsewithpan SE_M_ICY_WIND, SOUND_PAN_TARGET
-	delay 5
-	playsewithpan SE_M_ICY_WIND, SOUND_PAN_TARGET
-	delay 5
-	playsewithpan SE_M_ICY_WIND, SOUND_PAN_TARGET
-	delay 5
-	playsewithpan SE_M_ICY_WIND, SOUND_PAN_TARGET
-	delay 5
-	playsewithpan SE_M_ICY_WIND, SOUND_PAN_TARGET
-	delay 5
 	waitforvisualfinish
 	call gBattleAnimGeneral_SaltCureDamage
 	end
+
+SaltCureEffect:
+	createsprite gSaltCureSwirlSpriteTemplate, ANIM_TARGET, 2, 0, 28, 384, 50, 8, 50, ANIM_TARGET
+	delay 2
+	playsewithpan SE_M_ICY_WIND, SOUND_PAN_TARGET
+	createsprite gSaltCureSwirlSpriteTemplate, ANIM_TARGET, 2, 0, 32, 240, 40, 11, -46, ANIM_TARGET
+	delay 2
+	playsewithpan SE_M_ICY_WIND, SOUND_PAN_TARGET
+	createsprite gSaltCureSwirlSpriteTemplate, ANIM_TARGET, 2, 0, 33, 416, 40, 4, 42, ANIM_TARGET
+	delay 2
+	playsewithpan SE_M_ICY_WIND, SOUND_PAN_TARGET
+	createsprite gSaltCureSwirlSpriteTemplate, ANIM_TARGET, 2, 0, 31, 288, 45, 6, -42, ANIM_TARGET
+	delay 2
+	playsewithpan SE_M_ICY_WIND, SOUND_PAN_TARGET
+	createsprite gSaltCureSwirlSpriteTemplate, ANIM_TARGET, 2, 0, 28, 448, 45, 11, 46, ANIM_TARGET
+	delay 2
+	playsewithpan SE_M_ICY_WIND, SOUND_PAN_TARGET
+	createsprite gSaltCureSwirlSpriteTemplate, ANIM_TARGET, 2, 0, 33, 464, 50, 10, -50, ANIM_TARGET
+	delay 2
+	playsewithpan SE_M_ICY_WIND, SOUND_PAN_TARGET
+	return
 
 gBattleAnimMove_TeraBlast::
 gBattleAnimMove_OrderUp::
