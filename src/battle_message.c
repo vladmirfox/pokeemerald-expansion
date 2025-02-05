@@ -3095,6 +3095,7 @@ u32 BattleStringExpandPlaceholders(const u8 *src, u8 *dst, u32 dstSize)
                     toCpy = sText_Opposing2;
                 break;
             case B_TXT_DEF_TEAM1:
+                MgbaPrintf(MGBA_LOG_WARN, "Stuff %u", gBattlerTarget);
                 if (GetBattlerSide(gBattlerTarget) == B_SIDE_PLAYER)
                     toCpy = sText_Your1;
                 else
