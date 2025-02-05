@@ -4257,14 +4257,11 @@ bool32 CanAbilityBlockMove(u32 battlerAtk, u32 battlerDef, u32 move, u32 ability
     case ABILITY_DAZZLING:
     case ABILITY_QUEENLY_MAJESTY:
     case ABILITY_ARMOR_TAIL:
-        if (!IsAlly(battlerAtk, battlerDef))
+        if (atkPriority > 0 && !IsAlly(battlerAtk, battlerDef))
         {
-            if (atkPriority > 0)
-            {
-                if (gBattleMons[battlerAtk].status2 & STATUS2_MULTIPLETURNS)
-                    gHitMarker |= HITMARKER_NO_PPDEDUCT;
-                battleScriptBlocksMove = BattleScript_DazzlingProtected;
-            }
+            if (gBattleMons[battlerAtk].status2 & STATUS2_MULTIPLETURNS)
+                gHitMarker |= HITMARKER_NO_PPDEDUCT;
+            battleScriptBlocksMove = BattleScript_DazzlingProtected;
         }
         break;
     case ABILITY_GOOD_AS_GOLD:
@@ -4285,15 +4282,12 @@ bool32 CanAbilityBlockMove(u32 battlerAtk, u32 battlerDef, u32 move, u32 ability
         case ABILITY_DAZZLING:
         case ABILITY_QUEENLY_MAJESTY:
         case ABILITY_ARMOR_TAIL:
-            if (!IsAlly(battlerAtk, battlerDef))
+            if (atkPriority > 0 && !IsAlly(battlerAtk, BATTLE_PARTNER(battlerDef)))
             {
-                if (atkPriority > 0)
-                {
-                    if (gBattleMons[battlerAtk].status2 & STATUS2_MULTIPLETURNS)
-                        gHitMarker |= HITMARKER_NO_PPDEDUCT;
-                    battlerAbility = BATTLE_PARTNER(battlerDef);
-                    battleScriptBlocksMove = BattleScript_DazzlingProtected;
-                }
+                if (gBattleMons[battlerAtk].status2 & STATUS2_MULTIPLETURNS)
+                    gHitMarker |= HITMARKER_NO_PPDEDUCT;
+                battlerAbility = BATTLE_PARTNER(battlerDef);
+                battleScriptBlocksMove = BattleScript_DazzlingProtected;
             }
             break;
         }
