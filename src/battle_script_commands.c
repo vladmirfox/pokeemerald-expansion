@@ -3119,9 +3119,9 @@ static inline bool32 TrySetLightScreen(u32 battler)
     {
         gSideStatuses[side] |= SIDE_STATUS_LIGHTSCREEN;
         if (GetBattlerHoldEffect(battler, TRUE) == HOLD_EFFECT_LIGHT_CLAY)
-            gSideTimers[side].lightscreenTimer = 8;
+            gSideTimers[side].lightscreenTimer = gBattleTurnCounter + 8;
         else
-            gSideTimers[side].lightscreenTimer = 5;
+            gSideTimers[side].lightscreenTimer = gBattleTurnCounter + 5;
         gSideTimers[side].lightscreenBattlerId = battler;
 
         if (IsDoubleBattle() && CountAliveMonsInBattle(BATTLE_ALIVE_SIDE, battler) == 2)
