@@ -16,15 +16,20 @@ struct WildPokemonInfo
     const struct WildPokemon *wildPokemon;
 };
 
-struct WildPokemonHeader
+struct WildEncounterTypes
 {
-    u8 mapGroup;
-    u8 mapNum;
     const struct WildPokemonInfo *landMonsInfo;
     const struct WildPokemonInfo *waterMonsInfo;
     const struct WildPokemonInfo *rockSmashMonsInfo;
     const struct WildPokemonInfo *hiddenMonsInfo;
     const struct WildPokemonInfo *fishingMonsInfo;
+};
+
+struct WildPokemonHeader
+{
+    u8 mapGroup;
+    u8 mapNum;
+    const struct WildEncounterTypes encounterTypes[4];
 };
 
 extern const struct WildPokemonHeader gWildMonHeaders[];

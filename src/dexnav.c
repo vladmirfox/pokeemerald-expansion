@@ -36,6 +36,7 @@
 #include "pokemon_summary_screen.h"
 #include "random.h"
 #include "region_map.h"
+#include "rtc.h"
 #include "scanline_effect.h"
 #include "script.h"
 #include "script_pokemon_util.h"
@@ -1728,31 +1729,36 @@ static bool8 CapturedAllLandMons(u16 headerId)
 {
     u16 i, species;
     int count = 0;
-    const struct WildPokemonInfo* landMonsInfo = gWildMonHeaders[headerId].landMonsInfo;
-        
-    if (landMonsInfo != NULL)
-    {        
-        for (i = 0; i < LAND_WILD_COUNT; ++i)
-        {
-            species = landMonsInfo->wildPokemon[i].species;
-            if (species != SPECIES_NONE)
-            {
-                if (!GetSetPokedexFlag(SpeciesToNationalPokedexNum(species), FLAG_GET_CAUGHT))
-                    break;
-                
-                count++;
-            }
-        }
-
-        if (i >= LAND_WILD_COUNT && count > 0) //All land mons caught
-            return TRUE;
-    }
-    else
+    int time;
+    
+    for (time = 0; time <= TIME_NIGHT; time++)
     {
-        return TRUE;    //technically, no mon data means you caught them all
+        const struct WildPokemonInfo* landMonsInfo = gWildMonHeaders[headerId].encounterTypes[time].landMonsInfo;
+            
+        if (landMonsInfo != NULL)
+        {        
+            for (i = 0; i < LAND_WILD_COUNT; ++i)
+            {
+                species = landMonsInfo->wildPokemon[i].species;
+                if (species != SPECIES_NONE)
+                {
+                    if (!GetSetPokedexFlag(SpeciesToNationalPokedexNum(species), FLAG_GET_CAUGHT))
+                        break;
+                    
+                    count++;
+                }
+            }
+
+            if (i >= LAND_WILD_COUNT && count > 0) //All land mons caught
+                return TRUE;
+        }
+        else
+        {
+            return TRUE;    //technically, no mon data means you caught them all
+        }
     }
 
-    return FALSE;
+        return FALSE;
 }
 
 //Checks if all Pokemon that can be encountered while surfing have been capture
@@ -1761,27 +1767,32 @@ static bool8 CapturedAllWaterMons(u16 headerId)
     u32 i;
     u16 species;
     u8 count = 0;
-    const struct WildPokemonInfo* waterMonsInfo = gWildMonHeaders[headerId].waterMonsInfo;
-
-    if (waterMonsInfo != NULL)
+    int time;
+    
+    for (time = 0; time <= TIME_NIGHT; time++)
     {
-        for (i = 0; i < WATER_WILD_COUNT; ++i)
+        const struct WildPokemonInfo* waterMonsInfo = gWildMonHeaders[headerId][time].waterMonsInfo;
+
+        if (waterMonsInfo != NULL)
         {
-            species = waterMonsInfo->wildPokemon[i].species;
-            if (species != SPECIES_NONE)
+            for (i = 0; i < WATER_WILD_COUNT; ++i)
             {
-                count++;
-                if (!GetSetPokedexFlag(SpeciesToNationalPokedexNum(species), FLAG_GET_CAUGHT))
-                    break;
+                species = waterMonsInfo->wildPokemon[i].species;
+                if (species != SPECIES_NONE)
+                {
+                    count++;
+                    if (!GetSetPokedexFlag(SpeciesToNationalPokedexNum(species), FLAG_GET_CAUGHT))
+                        break;
+                }
             }
-        }
 
-        if (i >= WATER_WILD_COUNT && count > 0)
-            return TRUE;
-    }
-    else
-    {
-        return TRUE;    //technically, no mon data means you caught them all
+            if (i >= WATER_WILD_COUNT && count > 0)
+                return TRUE;
+        }
+        else
+        {
+            return TRUE;    //technically, no mon data means you caught them all
+        }
     }
 
     return FALSE;
@@ -1792,27 +1803,32 @@ static bool8 CapturedAllHiddenMons(u16 headerId)
     u32 i;
     u16 species;
     u8 count = 0;
-    const struct WildPokemonInfo* hiddenMonsInfo = gWildMonHeaders[headerId].hiddenMonsInfo;
+    int time;
     
-    if (hiddenMonsInfo != NULL)
+    for (time = 0; time <= TIME_NIGHT; time++)
     {
-        for (i = 0; i < HIDDEN_WILD_COUNT; ++i)
+        const struct WildPokemonInfo* hiddenMonsInfo = gWildMonHeaders[headerId][time].hiddenMonsInfo;
+        
+        if (hiddenMonsInfo != NULL)
         {
-            species = hiddenMonsInfo->wildPokemon[i].species;
-            if (species != SPECIES_NONE)
+            for (i = 0; i < HIDDEN_WILD_COUNT; ++i)
             {
-                count++;
-                if (!GetSetPokedexFlag(SpeciesToNationalPokedexNum(species), FLAG_GET_CAUGHT))
-                    break;
+                species = hiddenMonsInfo->wildPokemon[i].species;
+                if (species != SPECIES_NONE)
+                {
+                    count++;
+                    if (!GetSetPokedexFlag(SpeciesToNationalPokedexNum(species), FLAG_GET_CAUGHT))
+                        break;
+                }
             }
-        }
 
-        if (i >= HIDDEN_WILD_COUNT && count > 0)
-            return TRUE;
-    }
-    else
-    {
-        return TRUE;    //technically, no mon data means you caught them all
+            if (i >= HIDDEN_WILD_COUNT && count > 0)
+                return TRUE;
+        }
+        else
+        {
+            return TRUE;    //technically, no mon data means you caught them all
+        }
     }
 
     return FALSE;
