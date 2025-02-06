@@ -1751,10 +1751,10 @@
 	callnative BS_RemoveTerrain
 	.endm
 
-    .macro tryspectralthiefsteal jumpInstr:req
-    callnative BS_TrySpectralThiefSteal
+	.macro tryspectralthiefsteal jumpInstr:req
+	callnative BS_TrySpectralThiefSteal
 	.4byte \jumpInstr
-    .endm
+	.endm
 
 	.macro spectralthiefprintstats
 	callnative BS_SpectralThiefPrintStats
