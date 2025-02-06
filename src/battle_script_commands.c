@@ -17585,6 +17585,12 @@ void BS_TrySpectralThiefSteal(void)
 {
     NATIVE_ARGS(const u8 *jumpInstr);
 
+    if (gMoveResultFlags & MOVE_RESULT_NO_EFFECT)
+    {
+        gBattlescriptCurrInstr = cmd->nextInstr;
+        return;
+    }
+
     bool32 contrary = GetBattlerAbility(gBattlerAttacker) == ABILITY_CONTRARY;
     gBattleStruct->stolenStats[0] = 0; // Stats to steal.
     gBattleScripting.animArg1 = 0;
