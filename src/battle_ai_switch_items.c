@@ -48,6 +48,8 @@ u32 GetSwitchChance(enum ShouldSwitchScenario shouldSwitchScenario)
             return SHOULD_SWITCH_TRUANT_PERCENTAGE;
         case SHOULD_SWITCH_WONDER_GUARD:
             return SHOULD_SWITCH_WONDER_GUARD_PERCENTAGE;
+        case SHOULD_SWITCH_ABSORBS_MOVE:
+            return SHOULD_SWITCH_ABSORBS_MOVE_PERCENTAGE;
         default:
             return 100;
     }
@@ -365,7 +367,7 @@ static bool32 FindMonThatAbsorbsOpponentsMove(u32 battler)
 
     if (!(AI_THINKING_STRUCT->aiFlags[GetThinkingBattler(battler)] & AI_FLAG_SMART_SWITCHING))
         return FALSE;
-    if (HasSuperEffectiveMoveAgainstOpponents(battler, TRUE) && (RandomPercentage(RNG_AI_SWITCH_ABSORBING, 66) || AI_DATA->aiSwitchPredictionInProgress))
+    if (HasSuperEffectiveMoveAgainstOpponents(battler, TRUE) && (RandomPercentage(RNG_AI_SWITCH_ABSORBING_STAY_IN, STAY_IN_ABSORBING_PERCENTAGE) || AI_DATA->aiSwitchPredictionInProgress))
         return FALSE;
 
     if (IsDoubleBattle())
@@ -450,7 +452,7 @@ static bool32 FindMonThatAbsorbsOpponentsMove(u32 battler)
         for (j = 0; j < numAbsorbingAbilities; j++)
         {
             // Found a mon
-            if (absorbingTypeAbilities[j] == monAbility)
+            if (absorbingTypeAbilities[j] == monAbility && RandomPercentage(RNG_AI_SWITCH_ABSORBING, GetSwitchChance(SHOULD_SWITCH_ABSORBS_MOVE)))
                 return SetSwitchinAndSwitch(battler, i);
         }
     }

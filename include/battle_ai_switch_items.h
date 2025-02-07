@@ -6,6 +6,7 @@ enum ShouldSwitchScenario
     SHOULD_SWITCH_HASBADODDS,
     SHOULD_SWITCH_TRUANT,
     SHOULD_SWITCH_WONDER_GUARD,
+    SHOULD_SWITCH_ABSORBS_MOVE,
 };
 
 void GetAIPartyIndexes(u32 battlerId, s32 *firstId, s32 *lastId);
