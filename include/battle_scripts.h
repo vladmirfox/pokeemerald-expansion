@@ -822,7 +822,6 @@ extern const u8 BattleScript_MoveEffectLightScreen[];
 extern const u8 BattleScript_MoveEffectReflect[];
 extern const u8 BattleScript_MoveEffectLeechSeed[];
 extern const u8 BattleScript_MoveEffectHaze[];
-extern const u8 BattleScript_EffectSparklySwirl[];
 extern const u8 BattleScript_MoveEffectIonDeluge[];
 extern const u8 BattleScript_EffectHyperspaceFury[];
 extern const u8 BattleScript_EffectAuraWheel[];
