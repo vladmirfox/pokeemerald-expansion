@@ -5165,6 +5165,7 @@ static void TurnValuesCleanUp(bool8 var0)
                     gBattleMons[i].status2 &= ~STATUS2_RECHARGE;
             }
             gBattleStruct->canPickupItem &= ~(1u << i);
+            gBattleStruct->dynamicMoveType = 0;
         }
 
         if (gDisableStructs[i].substituteHP == 0)
@@ -5362,7 +5363,6 @@ static void CheckChangingTurnOrderEffects(void)
     TryClearRageAndFuryCutter();
     gCurrentTurnActionNumber = 0;
     gCurrentActionFuncId = gActionsByTurnOrder[0];
-    gBattleStruct->dynamicMoveType = 0;
     gBattleStruct->effectsBeforeUsingMoveDone = FALSE;
     gBattleStruct->focusPunchBattlers = 0;
     for (i = 0; i < MAX_BATTLERS_COUNT; i++)
@@ -6061,13 +6061,14 @@ u32 GetDynamicMoveType(struct Pokemon *mon, u32 move, u32 battler, u8 *ateBoost)
     return TYPE_NONE;
 }
 
-void SetTypeBeforeUsingMove(u32 move, u32 battler)
+void SetTypeBeforeUsingMove(u32 move, u32 battler, bool32 resetType)
 {
     u32 moveType;
     u32 heldItem = gBattleMons[battler].item;
     u32 holdEffect = GetBattlerHoldEffect(battler, TRUE);
 
-    gBattleStruct->dynamicMoveType = 0;
+    if (resetType)
+        gBattleStruct->dynamicMoveType = 0;
     gBattleStruct->ateBoost[battler] = FALSE;
     gSpecialStatuses[battler].gemBoost = FALSE;
 

@@ -197,7 +197,7 @@ void HandleAction_UseMove(void)
     }
 
     // Set dynamic move type.
-    SetTypeBeforeUsingMove(gChosenMove, gBattlerAttacker);
+    SetTypeBeforeUsingMove(gChosenMove, gBattlerAttacker, TRUE);
     moveType = GetMoveType(gCurrentMove);
 
     // check Z-Move used
@@ -703,7 +703,6 @@ void HandleAction_ActionFinished(void)
     gMoveResultFlags = 0;
     gBattleScripting.animTurn = 0;
     gBattleScripting.animTargetsHit = 0;
-    gBattleStruct->dynamicMoveType = 0;
     gBattleScripting.moveendState = 0;
     gBattleCommunication[3] = 0;
     gBattleCommunication[4] = 0;
@@ -3034,7 +3033,7 @@ bool32 HandleWishPerishSongOnTurnEnd(void)
 
                 party = GetSideParty(GetBattlerSide(gBattlerAttacker));
                 if (&party[gWishFutureKnock.futureSightPartyIndex[gBattlerTarget]] == &party[gBattlerPartyIndexes[gBattlerAttacker]])
-                    SetTypeBeforeUsingMove(gCurrentMove, gBattlerAttacker);
+                    SetTypeBeforeUsingMove(gCurrentMove, gBattlerAttacker, FALSE);
 
                 BattleScriptExecute(BattleScript_MonTookFutureAttack);
 
@@ -6233,7 +6232,7 @@ u32 AbilityBattleEffects(u32 caseID, u32 battler, u32 ability, u32 special, u32 
 
                 // Edge case for dance moves that hit multiply targets
                 gHitMarker &= ~HITMARKER_NO_ATTACKSTRING;
-                SetTypeBeforeUsingMove(gCalledMove, battler);
+                SetTypeBeforeUsingMove(gCalledMove, battler, TRUE);
 
                 // Make sure that the target isn't an ally - if it is, target the original user
                 if (GetBattlerSide(gBattlerTarget) == GetBattlerSide(gBattlerAttacker))
