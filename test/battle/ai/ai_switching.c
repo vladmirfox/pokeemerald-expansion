@@ -430,7 +430,7 @@ AI_SINGLE_BATTLE_TEST("AI_FLAG_SMART_SWITCHING: AI will switch in trapping mon m
     u32 aiSmartSwitchingFlag = 0;
     PARAMETRIZE { aiSmartSwitchingFlag = 0; }
     PARAMETRIZE { aiSmartSwitchingFlag = AI_FLAG_SMART_SWITCHING; }
-
+    PASSES_RANDOMLY(SHOULD_SWITCH_TRAPPER_PERCENTAGE, 100, RNG_AI_SWITCH_TRAPPER);
     GIVEN {
         ASSUME(gSpeciesInfo[SPECIES_GOLURK].types[0] == TYPE_GROUND);
         ASSUME(gSpeciesInfo[SPECIES_GOLURK].types[1] == TYPE_GHOST);
@@ -488,6 +488,7 @@ AI_SINGLE_BATTLE_TEST("AI won't use trapping behaviour if player only has 1 mon 
 
 AI_SINGLE_BATTLE_TEST("AI will trap player using Trace if player has a trapper")
 {
+    PASSES_RANDOMLY(SHOULD_SWITCH_TRAPPER_PERCENTAGE, 100, RNG_AI_SWITCH_TRAPPER);
     GIVEN {
         AI_FLAGS(AI_FLAG_CHECK_BAD_MOVE | AI_FLAG_CHECK_VIABILITY | AI_FLAG_TRY_TO_FAINT | AI_FLAG_OMNISCIENT | AI_FLAG_SMART_SWITCHING);
         PLAYER(SPECIES_DUGTRIO) { Ability(ABILITY_ARENA_TRAP); Moves(MOVE_ROCK_TOMB); }

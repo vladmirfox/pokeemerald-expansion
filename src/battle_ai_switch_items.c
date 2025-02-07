@@ -42,14 +42,16 @@ u32 GetSwitchChance(enum ShouldSwitchScenario shouldSwitchScenario)
     // Modify these cases if you want unique behaviour based on other data (trainer class, difficulty, etc.)
     switch(shouldSwitchScenario)
     {
-        case SHOULD_SWITCH_HASBADODDS:
-            return SHOULD_SWITCH_HASBADODDS_PERCENTAGE;
-        case SHOULD_SWITCH_TRUANT:
-            return SHOULD_SWITCH_TRUANT_PERCENTAGE;
         case SHOULD_SWITCH_WONDER_GUARD:
             return SHOULD_SWITCH_WONDER_GUARD_PERCENTAGE;
         case SHOULD_SWITCH_ABSORBS_MOVE:
             return SHOULD_SWITCH_ABSORBS_MOVE_PERCENTAGE;
+        case SHOULD_SWITCH_TRAPPER:
+            return SHOULD_SWITCH_TRAPPER_PERCENTAGE;
+        case SHOULD_SWITCH_TRUANT:
+            return SHOULD_SWITCH_TRUANT_PERCENTAGE;
+        case SHOULD_SWITCH_HASBADODDS:
+            return SHOULD_SWITCH_HASBADODDS_PERCENTAGE;
         default:
             return 100;
     }
@@ -505,7 +507,7 @@ static bool32 ShouldSwitchIfTrapperInParty(u32 battler)
         if (CanAbilityTrapOpponent(monAbility, opposingBattler) || (CanAbilityTrapOpponent(AI_GetBattlerAbility(opposingBattler), opposingBattler) && monAbility == ABILITY_TRACE))
         {
             // If mon in slot i is the most suitable switchin candidate, then it's a trapper than wins 1v1
-            if (i == AI_DATA->mostSuitableMonId[battler])
+            if (i == AI_DATA->mostSuitableMonId[battler] && RandomPercentage(RNG_AI_SWITCH_TRAPPER, GetSwitchChance(SHOULD_SWITCH_TRAPPER)))
                 return SetSwitchinAndSwitch(battler, PARTY_SIZE);
         }
     }
