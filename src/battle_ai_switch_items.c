@@ -2235,7 +2235,7 @@ static inline bool32 ShouldSwitchIfDifferentTerrain(u32 battler, u32 terrainFlag
     
     // otherwise, find a mon with surge ability to switch into
     GetSurgeAbilityFromStatusFlag(terrainFlag, &possibleAbilities[0]);
-    i = FindMonWithAbilities(battler, possibleAbilities, 1, 0);
+    i = FindMonWithAbilities(battler, possibleAbilities, 2, 0);
     if (i != PARTY_SIZE) {
         return SetSwitchinAndSwitch(battler, PARTY_SIZE);
     }
