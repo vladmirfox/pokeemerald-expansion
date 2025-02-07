@@ -416,7 +416,7 @@
 #define MOVE_EFFECT_SALT_CURE           85
 #define MOVE_EFFECT_EERIE_SPELL         86
 
-#define NUM_MOVE_EFFECTS                88
+#define NUM_MOVE_EFFECTS                87
 
 #define MOVE_EFFECT_AFFECTS_USER        0x2000
 #define MOVE_EFFECT_CERTAIN             0x4000
