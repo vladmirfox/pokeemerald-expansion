@@ -518,7 +518,7 @@ static bool32 ShouldSwitchIfBadlyStatused(u32 battler)
             switchMon = TRUE;
 
             // If we don't have a good switchin, not worth switching
-            if(AI_DATA->mostSuitableMonId[battler]== PARTY_SIZE)
+            if (AI_DATA->mostSuitableMonId[battler] == PARTY_SIZE)
                 switchMon = FALSE;
 
             // Check if Active Pokemon can KO opponent instead of switching
