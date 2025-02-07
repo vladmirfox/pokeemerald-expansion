@@ -52,6 +52,8 @@ u32 GetSwitchChance(enum ShouldSwitchScenario shouldSwitchScenario)
             return SHOULD_SWITCH_FREE_TURN_PERCENTAGE;
         case SHOULD_SWITCH_TRUANT:
             return SHOULD_SWITCH_TRUANT_PERCENTAGE;
+        case SHOULD_SWITCH_ALL_MOVES_BAD:
+            return SHOULD_SWITCH_ALL_MOVES_BAD_PERCENTAGE;
         case SHOULD_SWITCH_HASBADODDS:
             return SHOULD_SWITCH_HASBADODDS_PERCENTAGE;
         default:
@@ -294,7 +296,9 @@ static bool32 ShouldSwitchIfAllMovesBad(u32 battler)
         }
     }
 
-    return SetSwitchinAndSwitch(battler, PARTY_SIZE);
+    if (RandomPercentage(RNG_AI_SWITCH_ALL_MOVES_BAD, GetSwitchChance(SHOULD_SWITCH_ALL_MOVES_BAD)))
+        return SetSwitchinAndSwitch(battler, PARTY_SIZE);
+    return FALSE;
 }
 
 static bool32 FindMonThatHitsWonderGuard(u32 battler)
