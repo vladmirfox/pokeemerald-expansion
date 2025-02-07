@@ -551,7 +551,8 @@ static bool32 ShouldSwitchIfBadlyStatused(u32 battler)
 
         // Secondary Damage
         if (monAbility != ABILITY_MAGIC_GUARD
-            && !AiExpectsToFaintPlayer(battler))
+            && !AiExpectsToFaintPlayer(battler)
+            && AI_DATA->mostSuitableMonId[battler] != PARTY_SIZE)
         {
             //Toxic
             if (((gBattleMons[battler].status1 & STATUS1_TOXIC_COUNTER) >= STATUS1_TOXIC_TURN(2))
@@ -578,7 +579,8 @@ static bool32 ShouldSwitchIfBadlyStatused(u32 battler)
 
         // Infatuation
         if (gBattleMons[battler].status2 & STATUS2_INFATUATION
-            && !AiExpectsToFaintPlayer(battler))
+            && !AiExpectsToFaintPlayer(battler)
+            && AI_DATA->mostSuitableMonId[battler] != PARTY_SIZE)
             switchMon = TRUE;
     }
 
