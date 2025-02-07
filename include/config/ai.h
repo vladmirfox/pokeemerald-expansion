@@ -8,6 +8,7 @@
 // AI smart switching chances; if you want more complex behaviour, modify GetSwitchChance
 #define SHOULD_SWITCH_ABSORBS_MOVE_PERCENTAGE 100
 #define SHOULD_SWITCH_TRAPPER_PERCENTAGE 100
+#define SHOULD_SWITCH_FREE_TURN_PERCENTAGE 100
 #define STAY_IN_ABSORBING_PERCENTAGE 66
 #define SHOULD_SWITCH_HASBADODDS_PERCENTAGE 50
 
