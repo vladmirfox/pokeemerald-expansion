@@ -1392,9 +1392,7 @@ DOUBLE_BATTLE_TEST("(DYNAMAX) G-Max Sweetness cures allies' status conditions")
     } SCENE {
         MESSAGE("Appletun used G-Max Sweetness!");
         STATUS_ICON(playerLeft, none: TRUE);
-        //MESSAGE("Appletun's status returned to normal!");
         STATUS_ICON(playerRight, none: TRUE);
-        //MESSAGE("Applin's status returned to normal!");
     } THEN {
         for (j = 0; j < PARTY_SIZE; j++)
             EXPECT_EQ(GetMonData(&gPlayerParty[0], MON_DATA_STATUS), STATUS1_NONE);
