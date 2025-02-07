@@ -7953,7 +7953,7 @@ static void Cmd_openpartyscreen(void)
             }
             else
             {
-                u32 battlerOpposite = GetBattlerAtPosition(BATTLE_OPPOSITE(GetBattlerPosition(battler)));
+                u32 battlerOpposite = GetOppositeBattlerPosition(battler);
                 if (gAbsentBattlerFlags & (1u << battlerOpposite))
                     battlerOpposite ^= BIT_FLANK;
 
@@ -13170,7 +13170,7 @@ static void Cmd_updatestatusicon(void)
         }
         if ((IsDoubleBattle()))
         {
-            battler = GetBattlerAtPosition(BATTLE_PARTNER(GetBattlerPosition(gBattlerAttacker)));
+            battler = GetPartnerBattlerPosition(gBattlerAttacker);
             if (!(gAbsentBattlerFlags & (1u << battler)))
             {
                 BtlController_EmitStatusIconUpdate(battler, BUFFER_A, gBattleMons[battler].status1, gBattleMons[battler].status2);
@@ -13937,7 +13937,7 @@ static void Cmd_healpartystatus(void)
     CMD_ARGS();
 
     u32 zero = 0;
-    u32 partner = GetBattlerAtPosition(BATTLE_PARTNER(GetBattlerPosition(gBattlerAttacker)));
+    u32 partner = GetPartnerBattlerPosition(gBattlerAttacker);
     u8 toHeal = 0;
     struct Pokemon *party = GetBattlerParty(gBattlerAttacker);
     s32 i;
@@ -14886,7 +14886,7 @@ static void Cmd_trysethelpinghand(void)
 {
     CMD_ARGS(const u8 *failInstr);
 
-    gBattlerTarget = GetBattlerAtPosition(BATTLE_PARTNER(GetBattlerPosition(gBattlerAttacker)));
+    gBattlerTarget = GetPartnerBattlerPosition(gBattlerAttacker);
 
     if (IsDoubleBattle()
         && !(gAbsentBattlerFlags & (1u << gBattlerTarget))
@@ -15711,7 +15711,7 @@ static void Cmd_pursuitdoubles(void)
 {
     CMD_ARGS(const u8 *failInstr);
 
-    u32 battler = GetBattlerAtPosition(BATTLE_PARTNER(GetBattlerPosition(gBattlerAttacker)));
+    u32 battler = GetPartnerBattlerPosition(gBattlerAttacker);
 
     if (IsDoubleBattle()
         && !(gAbsentBattlerFlags & (1u << battler))

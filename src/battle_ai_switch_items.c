@@ -245,7 +245,7 @@ static bool32 ShouldSwitchIfTruant(u32 battler)
 static bool32 ShouldSwitchIfAllMovesBad(u32 battler)
 {
     u32 moveIndex;
-    u32 opposingBattler = GetBattlerAtPosition(BATTLE_OPPOSITE(GetBattlerPosition(battler)));
+    u32 opposingBattler = GetOppositeBattlerPosition(battler);
     u32 aiMove;
 
     // Switch if no moves affect opponents
@@ -276,7 +276,7 @@ static bool32 ShouldSwitchIfAllMovesBad(u32 battler)
 
 static bool32 FindMonThatHitsWonderGuard(u32 battler)
 {
-    u32 opposingBattler = GetBattlerAtPosition(BATTLE_OPPOSITE(GetBattlerPosition(battler)));
+    u32 opposingBattler = GetOppositeBattlerPosition(battler);
     s32 i, j;
     s32 firstId;
     s32 lastId; // + 1
@@ -338,7 +338,7 @@ static bool32 FindMonThatAbsorbsOpponentsMove(u32 battler)
     s32 lastId;
     struct Pokemon *party;
     u16 monAbility;
-    u32 opposingBattler = GetBattlerAtPosition(BATTLE_OPPOSITE(GetBattlerPosition(battler)));
+    u32 opposingBattler = GetOppositeBattlerPosition(battler);
     u32 incomingMove = AI_DATA->lastUsedMove[opposingBattler];
     u32 incomingType = GetMoveType(incomingMove);
     u32 predictedMove = incomingMove; // Update for move prediction
@@ -354,10 +354,10 @@ static bool32 FindMonThatAbsorbsOpponentsMove(u32 battler)
     if (IsDoubleBattle())
     {
         battlerIn1 = battler;
-        if (gAbsentBattlerFlags & (1u << GetBattlerAtPosition(BATTLE_PARTNER(GetBattlerPosition(battler)))))
+        if (gAbsentBattlerFlags & (1u << GetPartnerBattlerPosition(battler)))
             battlerIn2 = battler;
         else
-            battlerIn2 = GetBattlerAtPosition(BATTLE_PARTNER(GetBattlerPosition(battler)));
+            battlerIn2 = GetPartnerBattlerPosition(battler);
     }
     else
     {
@@ -442,7 +442,7 @@ static bool32 FindMonThatAbsorbsOpponentsMove(u32 battler)
 
 static bool32 ShouldSwitchIfOpponentChargingOrInvulnerable(u32 battler)
 {
-    u32 opposingBattler = GetBattlerAtPosition(BATTLE_OPPOSITE(GetBattlerPosition(battler)));
+    u32 opposingBattler = GetOppositeBattlerPosition(battler);
     u32 incomingMove = AI_DATA->lastUsedMove[opposingBattler];
     bool32 isOpposingBattlerChargingOrInvulnerable = (IsSemiInvulnerable(opposingBattler, incomingMove) || IsTwoTurnNotSemiInvulnerableMove(opposingBattler, incomingMove));
 
@@ -462,7 +462,7 @@ static bool32 ShouldSwitchIfTrapperInParty(u32 battler)
     struct Pokemon *party;
     s32 i;
     u16 monAbility;
-    s32 opposingBattler =  GetBattlerAtPosition(BATTLE_OPPOSITE(GetBattlerPosition(battler)));
+    s32 opposingBattler =  GetOppositeBattlerPosition(battler);
 
     // Only use this if AI_FLAG_SMART_SWITCHING is set for the trainer
     if (!(AI_THINKING_STRUCT->aiFlags[GetThinkingBattler(battler)] & AI_FLAG_SMART_SWITCHING))
@@ -718,10 +718,10 @@ static bool32 FindMonWithFlagsAndSuperEffective(u32 battler, u16 flags, u32 perc
     if (IsDoubleBattle())
     {
         battlerIn1 = battler;
-        if (gAbsentBattlerFlags & (1u << GetBattlerAtPosition(BATTLE_PARTNER(GetBattlerPosition(battler)))))
+        if (gAbsentBattlerFlags & (1u << GetPartnerBattlerPosition(battler)))
             battlerIn2 = battler;
         else
-            battlerIn2 = GetBattlerAtPosition(BATTLE_PARTNER(GetBattlerPosition(battler)));
+            battlerIn2 = GetPartnerBattlerPosition(battler);
     }
     else
     {
@@ -793,10 +793,10 @@ static bool32 CanMonSurviveHazardSwitchin(u32 battler)
         if (IsDoubleBattle())
         {
             battlerIn1 = battler;
-            if (gAbsentBattlerFlags & (1u << GetBattlerAtPosition(BATTLE_PARTNER(GetBattlerPosition(battler)))))
+            if (gAbsentBattlerFlags & (1u << GetPartnerBattlerPosition(battler)))
                 battlerIn2 = battler;
             else
-                battlerIn2 = GetBattlerAtPosition(BATTLE_PARTNER(GetBattlerPosition(battler)));
+                battlerIn2 = GetPartnerBattlerPosition(battler);
         }
         else
         {
@@ -844,7 +844,7 @@ static bool32 CanMonSurviveHazardSwitchin(u32 battler)
 static bool32 ShouldSwitchIfEncored(u32 battler)
 {
     u32 encoredMove = gDisableStructs[battler].encoredMove;
-    u32 opposingBattler = GetBattlerAtPosition(BATTLE_OPPOSITE(GetBattlerPosition(battler)));
+    u32 opposingBattler = GetOppositeBattlerPosition(battler);
 
     // Only use this if AI_FLAG_SMART_SWITCHING is set for the trainer
     if (!(AI_THINKING_STRUCT->aiFlags[GetThinkingBattler(battler)] & AI_FLAG_SMART_SWITCHING))
@@ -1551,7 +1551,7 @@ static u32 GetSwitchinHitsToKO(s32 damageTaken, u32 battler)
     u32 hitsToKO = 0, singleUseItemHeal = 0;
     u16 maxHP = AI_DATA->switchinCandidate.battleMon.maxHP, item = AI_DATA->switchinCandidate.battleMon.item, heldItemEffect = ItemId_GetHoldEffect(item);
     u8 weatherDuration = gWishFutureKnock.weatherDuration, holdEffectParam = ItemId_GetHoldEffectParam(item);
-    u32 opposingBattler = GetBattlerAtPosition(BATTLE_OPPOSITE(GetBattlerPosition(battler)));
+    u32 opposingBattler = GetOppositeBattlerPosition(battler);
     u32 opposingAbility = gBattleMons[opposingBattler].ability, ability = AI_DATA->switchinCandidate.battleMon.ability;
     bool32 usedSingleUseHealingItem = FALSE, opponentCanBreakMold = IsMoldBreakerTypeAbility(opposingBattler, opposingAbility);
     s32 currentHP = startingHP;
@@ -1996,10 +1996,10 @@ u32 GetMostSuitableMonToSwitchInto(u32 battler, enum SwitchType switchType)
     if (IsDoubleBattle())
     {
         battlerIn1 = battler;
-        if (gAbsentBattlerFlags & (1u << GetBattlerAtPosition(BATTLE_PARTNER(GetBattlerPosition(battler)))))
+        if (gAbsentBattlerFlags & (1u << GetPartnerBattlerPosition(battler)))
             battlerIn2 = battler;
         else
-            battlerIn2 = GetBattlerAtPosition(BATTLE_PARTNER(GetBattlerPosition(battler)));
+            battlerIn2 = GetPartnerBattlerPosition(battler);
 
         opposingBattler = BATTLE_OPPOSITE(battlerIn1);
         if (gAbsentBattlerFlags & (1u << opposingBattler))
@@ -2007,7 +2007,7 @@ u32 GetMostSuitableMonToSwitchInto(u32 battler, enum SwitchType switchType)
     }
     else
     {
-        opposingBattler = GetBattlerAtPosition(BATTLE_OPPOSITE(GetBattlerPosition(battler)));
+        opposingBattler = GetOppositeBattlerPosition(battler);
         battlerIn1 = battler;
         battlerIn2 = battler;
     }
