@@ -29,7 +29,7 @@ SINGLE_BATTLE_TEST("Spectral Thief steals opponents boost before attacking", s16
     }
 }
 
-SINGLE_BATTLE_TEST("Spectral Thies can't steals opponents boost if target is immune")
+SINGLE_BATTLE_TEST("Spectral Thief can't steal opponent's boost if target is immune")
 {
     GIVEN {
         ASSUME(gMovesInfo[MOVE_SWORDS_DANCE].effect == EFFECT_ATTACK_UP_2);
