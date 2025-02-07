@@ -1147,7 +1147,7 @@ DOUBLE_BATTLE_TEST("Sleep Clause: Sleep clause is deactivated when a sleeping mo
         ANIMATION(ANIM_TYPE_STATUS, B_ANIM_STATUS_SLP, playerRight);
         MESSAGE("Wobbuffet fell asleep!");
         MESSAGE("Appletun used G-Max Sweetness!");
-        MESSAGE("Wobbuffet's status returned to normal!");
+        //MESSAGE("Wobbuffet's status returned to normal!");
         MESSAGE("The opposing Wobbuffet used Spore!");
         ANIMATION(ANIM_TYPE_MOVE, MOVE_SPORE, opponentRight);
         ANIMATION(ANIM_TYPE_STATUS, B_ANIM_STATUS_SLP, playerRight);

@@ -4623,7 +4623,7 @@ void SetMoveEffect(bool32 primary, bool32 certain)
                 break;
             case MOVE_EFFECT_AROMATHERAPY:
                 BattleScriptPush(gBattlescriptCurrInstr + 1);
-                gBattlescriptCurrInstr = BattleScript_EffectCureStatusAllies;
+                gBattlescriptCurrInstr = BattleScript_EffectHealBell_FromHeal;
                 break;
             case MOVE_EFFECT_RECYCLE_BERRIES:
             {

@@ -4066,10 +4066,11 @@ BattleScript_EffectHealBell::
 	attackcanceler
 	attackstring
 	ppreduce
-	healpartystatus
-	waitstate
 	attackanimation
 	waitanimation
+BattleScript_EffectHealBell_FromHeal::
+	healpartystatus
+	waitstate
 	printfromtable gPartyStatusHealStringIds
 	waitmessage B_WAIT_TIME_LONG
 	jumpifnotmove MOVE_HEAL_BELL, BattleScript_PartyHealEnd
@@ -9952,29 +9953,6 @@ BattleScript_HealOneSixthAlliesIncrement:
 BattleScript_HealOneSixthAlliesEnd:
 	restoretarget
 	goto BattleScript_MoveEnd
-
-BattleScript_EffectCureStatusAllies::
-	jumpifteamhealthy BS_ATTACKER, BattleScript_MoveEnd
-	savetarget
-	copybyte gBattlerTarget, gBattlerAttacker
-BattleScript_CureStatusAlliesLoop:
-	jumpifabsent BS_TARGET, BattleScript_CureStatusAlliesIncrement
-	jumpifstatus BS_TARGET, STATUS1_ANY, BattleScript_CureStatusActivate
-BattleScript_CureStatusAlliesIncrement:
-	jumpifbytenotequal gBattlerTarget, gBattlerAttacker, BattleScript_CureStatusAlliesEnd
-	setallytonexttarget BattleScript_CureStatusAlliesLoop
-BattleScript_CureStatusAlliesEnd:
-	restoretarget
-	goto BattleScript_MoveEnd
-
-BattleScript_CureStatusActivate:
-	curestatus BS_TARGET
-	updatestatusicon BS_TARGET
-	swapattackerwithtarget
-	printstring STRINGID_PKMNSTATUSNORMAL
-	waitmessage B_WAIT_TIME_LONG
-	swapattackerwithtarget
-	goto BattleScript_CureStatusAlliesIncrement
 
 BattleScript_EffectRecycleBerriesAllies::
 	savetarget
