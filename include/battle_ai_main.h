@@ -3,6 +3,7 @@
 
 
 typedef s32 (*AiScoreFunc)(u32, u32, u32, s32);
+typedef bool32 (*AiSwitchFunc)(u32);
 
 #define UNKNOWN_NO_OF_HITS UINT32_MAX
 
@@ -115,6 +116,8 @@ void Ai_InitPartyStruct(void);
 void Ai_UpdateSwitchInData(u32 battler);
 void Ai_UpdateFaintData(u32 battler);
 void SetAiLogicDataForTurn(struct AiLogicData *aiData);
-void ResetDynamicAiFunc(void);
+void ResetDynamicAiFunctions(void);
+
+extern AiSwitchFunc gDynamicAiSwitchFunc;
 
 #endif // GUARD_BATTLE_AI_MAIN_H

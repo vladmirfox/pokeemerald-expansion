@@ -1747,7 +1747,7 @@ static void FreeRestoreBattleData(void)
     FreeMonSpritesGfx();
     FreeBattleSpritesData();
     FreeBattleResources();
-    ResetDynamicAiFunc();
+    ResetDynamicAiFunctions();
 }
 
 void CB2_QuitRecordedBattle(void)
@@ -5667,7 +5667,7 @@ static void FreeResetData_ReturnToOvOrDoEvolutions(void)
         {
             ZeroEnemyPartyMons();
         }
-        ResetDynamicAiFunc();
+        ResetDynamicAiFunctions();
         FreeMonSpritesGfx();
         FreeBattleResources();
         FreeBattleSpritesData();
