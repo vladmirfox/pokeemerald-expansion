@@ -1,6 +1,66 @@
 import json
 import enum
 
+#todo: don't forget to add hidden mons!
+
+#C string vars
+define                = "#define"
+ENCOUNTER_CHANCE      = "ENCOUNTER_CHANCE"
+SLOT                  = "SLOT"
+TOTAL                 = "TOTAL"
+
+LAND_MONS             = "land_mons"
+WATER_MONS            = "water_mons"
+ROCK_SMASH_MONS       = "rock_smash_mons"
+FISHING_MONS          = "fishing_mons"
+LAND_MONS_LABEL       = "LandMons"
+WATER_MONS_LABEL      = "WaterMons"
+ROCK_SMASH_MONS_LABEL = "RockSmashMons"
+FISHING_MONS_LABEL    = "FishingMons"
+
+GOOD_ROD              = "good_rod"
+GOOD_ROD_FIRST_INDEX  = 2
+GOOD_ROD_LAST_INDEX   = 4
+OLD_ROD               = "old_rod"
+OLD_ROD_FIRST_INDEX   = 0
+OLD_ROD_LAST_INDEX    = 1
+SUPER_ROD             = "super_rod"
+SUPER_ROD_FIRST_INDEX = 5
+SUPER_ROD_LAST_INDEX  = 9
+
+TIME_MORNING_LABEL = "Morning"
+TIME_MORNING_GROUP = "time_morning"
+TIME_MORNING_INDEX = 0
+TIME_DAY_LABEL     = "Day"
+TIME_DAY_GROUP     = "time_day"
+TIME_DAY_INDEX     = 1
+TIME_EVENING_LABEL = "Evening"
+TIME_EVENING_GROUP = "time_evening"
+TIME_EVENING_INDEX = 2
+TIME_NIGHT_LABEL   = "Night"
+TIME_NIGHT_GROUP   = "time_night"
+TIME_NIGHT_INDEX   = 3
+
+#struct building blocks
+baseStruct   = "const struct WildPokemon"
+structName   = ""
+structTime   = ""
+structInfo   = "Info"
+structHeader = "Header"
+structAssign = "[] ="
+
+baseStructString = ""
+baseStructName   = ""
+
+#map header data variables
+hLabel = ""
+hForMaps = True
+
+#encounter rate variables
+eLandMons      = []
+eWaterMons     = []
+eRockSmashMons = []
+eFishingMons   = []
 
 def ImportWildEncounterFile():
     print("hello")
@@ -8,33 +68,6 @@ def ImportWildEncounterFile():
 
     wFile = open("wild_encounters.json")
     wData = json.load(wFile)
-
-    #C string vars
-    define = "#define"
-    ENCOUNTER_CHANCE = "ENCOUNTER_CHANCE"
-    SLOT = "SLOT"
-    TOTAL = "TOTAL"
-    LAND_MONS = "land_mons"
-    WATER_MONS = "water_mons"
-    ROCK_SMASH_MONS = "rock_smash_mons"
-    FISHING_MONS = "fishing_mons"
-    GOOD_ROD = "GOOD_ROD"
-    OLD_ROD = "OLD_ROD"
-    SUPER_ROD = "SUPER_ROD"
-
-    #header data variables
-    hLabel = ""
-    hForMaps = True
-
-    #encounter rate variables
-    eLandMons      = []
-    eWaterMons     = []
-    eRockSmashMons = []
-    eFishingMons   = []
-
-    #struct variables
-    sMapName   = ""
-    sBaseLabel = ""
 
     i = 0
     for data in wData["wild_encounter_groups"]:
@@ -58,75 +91,72 @@ def ImportWildEncounterFile():
                 elif field["type"] == FISHING_MONS:
                     eFishingMons = field["encounter_rates"]
                     eFishingMons.append(field["groups"])
+        """
+            rateCount = 0
+            for percent in eLandMons:
+                if rateCount == 0:
+                    print(f"{define} {ENCOUNTER_CHANCE}_{LAND_MONS.upper()}_{SLOT}_{rateCount} {percent}")
+                else:
+                    print(
+                        f"{define} {ENCOUNTER_CHANCE}_{LAND_MONS.upper()}_{SLOT}_{rateCount} {ENCOUNTER_CHANCE}_{LAND_MONS.upper()}_{SLOT}_{rateCount - 1} + {percent}"
+                    )
 
+                if rateCount + 1 == len(eLandMons):
+                    print(
+                        f"{define} {ENCOUNTER_CHANCE}_{LAND_MONS.upper()}_{TOTAL} ({ENCOUNTER_CHANCE}_{LAND_MONS.upper()}_{SLOT}_{rateCount})"
+                    )
+                rateCount += 1
+            
+            rateCount = 0
+            for percent in eWaterMons:
+                if rateCount == 0:
+                    print(f"{define} {ENCOUNTER_CHANCE}_{WATER_MONS.upper()}_{SLOT}_{rateCount} {percent}")
+                else:
+                    print(
+                        f"{define} {ENCOUNTER_CHANCE}_{WATER_MONS.upper()}_{SLOT}_{rateCount} {ENCOUNTER_CHANCE}_{WATER_MONS.upper()}_{SLOT}_{rateCount - 1} + {percent}"
+                    )
 
-        #for group in wEncounters:
+                if rateCount + 1 == len(eWaterMons):
+                    print(
+                        f"{define} {ENCOUNTER_CHANCE}_{WATER_MONS.upper()}_{TOTAL} ({ENCOUNTER_CHANCE}_{WATER_MONS.upper()}_{SLOT}_{rateCount})"
+                    )
+                rateCount += 1
+
+            rateCount = 0
+            for percent in eRockSmashMons:
+                if rateCount == 0:
+                    print(f"{define} {ENCOUNTER_CHANCE}_{ROCK_SMASH_MONS.upper()}_{SLOT}_{rateCount} {percent}")
+                else:
+                    print(
+                        f"{define} {ENCOUNTER_CHANCE}_{ROCK_SMASH_MONS.upper()}_{SLOT}_{rateCount} {ENCOUNTER_CHANCE}_{ROCK_SMASH_MONS.upper()}_{SLOT}_{rateCount - 1} + {percent}"
+                    )
+                
+                if rateCount + 1 == len(eRockSmashMons):
+                    print(
+                        f"{define} {ENCOUNTER_CHANCE}_{ROCK_SMASH_MONS.upper()}_{TOTAL} ({ENCOUNTER_CHANCE}_{ROCK_SMASH_MONS.upper()}_{SLOT}_{rateCount})"
+                    )
+                rateCount += 1
+
+            for rodRate in eFishingMons[-1]:
+                for rodPercentIndex in eFishingMons[-1][rodRate]:
+                    if rodPercentIndex == OLD_ROD_FIRST_INDEX or rodPercentIndex == GOOD_ROD_FIRST_INDEX or rodPercentIndex == SUPER_ROD_FIRST_INDEX:
+                        print(
+                            f"{define} {ENCOUNTER_CHANCE}_{FISHING_MONS.upper()}_{rodRate.upper()}_{SLOT}_{rodPercentIndex} {eFishingMons[rodPercentIndex]}"
+                        )
+                    else:
+                        print(
+                            f"{define} {ENCOUNTER_CHANCE}_{FISHING_MONS.upper()}_{rodRate.upper()}_{SLOT}_{rodPercentIndex} {ENCOUNTER_CHANCE}_{FISHING_MONS.upper()}_{rodRate.upper()}_{SLOT}_{rodPercentIndex - 1} + {eFishingMons[rodPercentIndex]}"
+                        )
+                    
+                    if rodPercentIndex == OLD_ROD_LAST_INDEX or rodPercentIndex == GOOD_ROD_LAST_INDEX or rodPercentIndex == SUPER_ROD_LAST_INDEX:
+                        print(
+                            f"{define} {ENCOUNTER_CHANCE}_{FISHING_MONS.upper()}_{rodRate.upper()}_{TOTAL} ({ENCOUNTER_CHANCE}_{FISHING_MONS.upper()}_{rodRate.upper()}_{SLOT}_{rodPercentIndex})"
+                        )
+        """
+
+        for encounter in wEncounters:
+            print(encounter)
         i += 1
-
-    rateCount = 0
-    for percent in eLandMons:
-        if rateCount == 0:
-            print(f"{define} {ENCOUNTER_CHANCE}_{LAND_MONS.upper()}_{SLOT}_{rateCount} {percent}")
-        else:
-            print(
-                f"{define} {ENCOUNTER_CHANCE}_{LAND_MONS.upper()}_{SLOT}_{rateCount} {ENCOUNTER_CHANCE}_{LAND_MONS.upper()}_{SLOT}_{rateCount - 1} + {percent}"
-            )
-
-        if rateCount + 1 == len(eLandMons):
-            print(
-                f"{define} {ENCOUNTER_CHANCE}_{LAND_MONS.upper()}_{TOTAL} ({ENCOUNTER_CHANCE}_{LAND_MONS.upper()}_{SLOT}_{rateCount})"
-            )
-
-        rateCount += 1
-    
-    rateCount = 0
-    for percent in eWaterMons:
-        if rateCount == 0:
-            print(f"{define} {ENCOUNTER_CHANCE}_{WATER_MONS.upper()}_{SLOT}_{rateCount} {percent}")
-        else:
-            print(
-                f"{define} {ENCOUNTER_CHANCE}_{WATER_MONS.upper()}_{SLOT}_{rateCount} {ENCOUNTER_CHANCE}_{WATER_MONS.upper()}_{SLOT}_{rateCount - 1} + {percent}"
-            )
-
-        if rateCount + 1 == len(eWaterMons):
-            print(
-                f"{define} {ENCOUNTER_CHANCE}_{WATER_MONS.upper()}_{TOTAL} ({ENCOUNTER_CHANCE}_{WATER_MONS.upper()}_{SLOT}_{rateCount})"
-            )
-
-        rateCount += 1
-
-    rateCount = 0
-    for percent in eRockSmashMons:
-        if rateCount == 0:
-            print(f"{define} {ENCOUNTER_CHANCE}_{ROCK_SMASH_MONS.upper()}_{SLOT}_{rateCount} {percent}")
-        else:
-            print(
-                f"{define} {ENCOUNTER_CHANCE}_{ROCK_SMASH_MONS.upper()}_{SLOT}_{rateCount} {ENCOUNTER_CHANCE}_{ROCK_SMASH_MONS.upper()}_{SLOT}_{rateCount - 1} + {percent}"
-            )
-        
-        if rateCount + 1 == len(eRockSmashMons):
-            print(
-                f"{define} {ENCOUNTER_CHANCE}_{ROCK_SMASH_MONS.upper()}_{TOTAL} ({ENCOUNTER_CHANCE}_{ROCK_SMASH_MONS.upper()}_{SLOT}_{rateCount})"
-            )
-
-        rateCount += 1
-
-    rateCount = 0
-    for percent in eFishingMons:
-        if rateCount == 0:
-            print(f"{define} {ENCOUNTER_CHANCE}_{FISHING_MONS.upper()}_{SLOT}_{rateCount} {percent}")
-        else:
-            print(
-                f"{define} {ENCOUNTER_CHANCE}_{FISHING_MONS.upper()}_{SLOT}_{rateCount} {ENCOUNTER_CHANCE}_{FISHING_MONS.upper()}_{SLOT}_{rateCount - 1} + {percent}"
-            )
-        
-        if rateCount + 1 == len(eFishingMons):
-            print(
-                f"{define} {ENCOUNTER_CHANCE}_{FISHING_MONS.upper()}_{TOTAL} ({ENCOUNTER_CHANCE}_{FISHING_MONS.upper()}_{SLOT}_{rateCount})"
-            )
-
-        rateCount += 1
-
 
 ImportWildEncounterFile()
 
