@@ -5,7 +5,7 @@ def GetWildEncounterFile():
     print("hello")
     print("finding wild_encounter.json...")
 
-    wFile = open("../src/data/wild_encounters_long.json")
+    wFile = open("../src/data/wild_encounters.json.bak")
     wData = json.load(wFile)
     
     j = 0
@@ -14,10 +14,7 @@ def GetWildEncounterFile():
 
         i = 0
         for map in wEncounters:
-            if j == 0:
-                print(map["map"])
-            else:
-                print(map["base_label"])
+            print(map["base_label"])
             map["encounter_times"] = [
                 [],
                 GetMonTable(wEncounters[i]),
@@ -51,9 +48,41 @@ def GetMonTable(mons):
 
 def IsMonTable(monTable):
     return (monTable == "land_mons" 
-        or monTable == "water_mons" 
-        or monTable =="rock_smash_mons"
-        or monTable == "fishing_mons")
+        or monTable ==  "water_mons" 
+        or monTable ==  "rock_smash_mons"
+        or monTable ==  "fishing_mons")
 
 
 GetWildEncounterFile()
+"""
+const struct WildPokemon gRoute101_LandMons_Day[] =
+{
+    { 2, 2, SPECIES_WURMPLE },
+    { 2, 2, SPECIES_POOCHYENA },
+    { 2, 2, SPECIES_WURMPLE },
+    { 3, 3, SPECIES_WURMPLE },
+    { 3, 3, SPECIES_POOCHYENA },
+    { 3, 3, SPECIES_POOCHYENA },
+    { 3, 3, SPECIES_WURMPLE },
+    { 3, 3, SPECIES_POOCHYENA },
+    { 2, 2, SPECIES_ZIGZAGOON },
+    { 2, 2, SPECIES_ZIGZAGOON },
+    { 3, 3, SPECIES_ZIGZAGOON },
+    { 3, 3, SPECIES_ZIGZAGOON },
+};
+
+const struct WildPokemonInfo gRoute101_LandMonsInfo_Day= { 20, gRoute101_LandMons_Day};
+const struct WildPokemonHeader gWildMonHeaders[] =
+{
+    {
+        .mapGroup = MAP_GROUP(ROUTE101),
+        .mapNum = MAP_NUM(ROUTE101),
+        .encounterTypes[0] = 
+            .landMonsInfo = &gRoute101_LandMonsInfo_Day,
+            .waterMonsInfo = NULL,
+            .rockSmashMonsInfo = NULL,
+            .fishingMonsInfo = NULL,
+            .hiddenMonsInfo = NULL,
+    },
+}
+"""
