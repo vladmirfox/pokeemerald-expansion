@@ -18,7 +18,6 @@ SINGLE_BATTLE_TEST("Electrify makes the target's move Electric-type for the rema
 
 DOUBLE_BATTLE_TEST("Electrify makes the target's move Electric-type for the remainder of the turn (double move)")
 {
-    KNOWN_FAILING;
     GIVEN {
         ASSUME(gSpeciesInfo[SPECIES_SANDSLASH].types[0] == TYPE_GROUND || gSpeciesInfo[SPECIES_SANDSLASH].types[1] == TYPE_GROUND);
         ASSUME(gMovesInfo[MOVE_TACKLE].type != TYPE_ELECTRIC);

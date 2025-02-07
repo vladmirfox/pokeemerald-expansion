@@ -363,7 +363,7 @@ bool32 MovesWithCategoryUnusable(u32 attacker, u32 target, u32 category)
             && GetBattleMoveCategory(moves[i]) == category
             && !(unusable & (1u << i)))
         {
-            SetTypeBeforeUsingMove(moves[i], attacker, TRUE);
+            SetTypeBeforeUsingMove(moves[i], attacker);
             moveType = GetMoveType(moves[i]);
             if (CalcTypeEffectivenessMultiplier(moves[i], moveType, attacker, target, AI_DATA->abilities[target], FALSE) != 0)
                 usable |= 1u << i;
@@ -653,7 +653,7 @@ struct SimulatedDamage AI_CalcDamage(u32 move, u32 battlerAtk, u32 battlerDef, u
     }
 
     SetMoveDamageCategory(battlerAtk, battlerDef, move);
-    SetTypeBeforeUsingMove(move, battlerAtk, TRUE);
+    SetTypeBeforeUsingMove(move, battlerAtk);
     moveType = GetMoveType(move);
     effectivenessMultiplier = CalcTypeEffectivenessMultiplier(move, moveType, battlerAtk, battlerDef, aiData->abilities[battlerDef], FALSE);
 
@@ -1040,7 +1040,7 @@ uq4_12_t AI_GetTypeEffectiveness(u32 move, u32 battlerAtk, u32 battlerDef)
     SetBattlerData(battlerDef);
 
     gBattleStruct->dynamicMoveType = 0;
-    SetTypeBeforeUsingMove(move, battlerAtk, TRUE);
+    SetTypeBeforeUsingMove(move, battlerAtk);
     moveType = GetMoveType(move);
     typeEffectiveness = CalcTypeEffectivenessMultiplier(move, moveType, battlerAtk, battlerDef, AI_DATA->abilities[battlerDef], FALSE);
 

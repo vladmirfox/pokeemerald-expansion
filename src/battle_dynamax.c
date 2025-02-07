@@ -283,7 +283,7 @@ static u16 GetTypeBasedMaxMove(u32 battler, u32 type)
 u16 GetMaxMove(u32 battler, u32 baseMove)
 {
     u32 moveType;
-    SetTypeBeforeUsingMove(baseMove, battler, TRUE);
+    SetTypeBeforeUsingMove(baseMove, battler);
     moveType = GetMoveType(baseMove);
 
     if (baseMove == MOVE_NONE) // for move display

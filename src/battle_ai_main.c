@@ -721,7 +721,7 @@ static s32 AI_CheckBadMove(u32 battlerAtk, u32 battlerDef, u32 move, s32 score)
     if (IS_TARGETING_PARTNER(battlerAtk, battlerDef))
         return score;
 
-    SetTypeBeforeUsingMove(move, battlerAtk, TRUE);
+    SetTypeBeforeUsingMove(move, battlerAtk);
     moveType = GetMoveType(move);
 
     if (gMovesInfo[move].powderMove && !IsAffectedByPowder(battlerDef, aiData->abilities[battlerDef], aiData->holdEffects[battlerDef]))
@@ -2642,7 +2642,7 @@ static s32 AI_DoubleBattle(u32 battlerAtk, u32 battlerDef, u32 move, s32 score)
     bool32 partnerHasBadAbility = (gAbilitiesInfo[atkPartnerAbility].aiRating < 0);
     u32 predictedMove = aiData->lastUsedMove[battlerDef];
 
-    SetTypeBeforeUsingMove(move, battlerAtk, TRUE);
+    SetTypeBeforeUsingMove(move, battlerAtk);
     moveType = GetMoveType(move);
 
     // check what effect partner is using
@@ -4971,7 +4971,7 @@ static s32 AI_HPAware(u32 battlerAtk, u32 battlerDef, u32 move, s32 score)
     u32 effect = gMovesInfo[move].effect;
     u32 moveType = 0;
 
-    SetTypeBeforeUsingMove(move, battlerAtk, TRUE);
+    SetTypeBeforeUsingMove(move, battlerAtk);
     moveType = GetMoveType(move);
 
     if (IS_TARGETING_PARTNER(battlerAtk, battlerDef))
