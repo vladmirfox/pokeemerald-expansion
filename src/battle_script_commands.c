@@ -1872,7 +1872,7 @@ static inline u32 GetHoldEffectCritChanceIncrease(u32 battler, u32 holdEffect)
 
 #define CRITICAL_HIT_BLOCKED -1
 #define CRITICAL_HIT_ALWAYS  -2
-s32 CalcCritChanceStageArgs(u32 battlerAtk, u32 battlerDef, u32 move, bool32 recordAbility, u32 abilityAtk, u32 abilityDef, u32 holdEffectAtk)
+s32 CalcCritChanceStage(u32 battlerAtk, u32 battlerDef, u32 move, bool32 recordAbility, u32 abilityAtk, u32 abilityDef, u32 holdEffectAtk)
 {
     s32 critChance = 0;
 
@@ -1916,27 +1916,17 @@ s32 CalcCritChanceStageArgs(u32 battlerAtk, u32 battlerDef, u32 move, bool32 rec
     return critChance;
 }
 
-s32 CalcCritChanceStage(u32 battlerAtk, u32 battlerDef, u32 move, bool32 recordAbility)
-{
-    u32 abilityAtk = GetBattlerAbility(gBattlerAttacker);
-    u32 abilityDef = GetBattlerAbility(gBattlerTarget);
-    u32 holdEffectAtk = GetBattlerHoldEffect(battlerAtk, TRUE);
-    return CalcCritChanceStageArgs(battlerAtk, battlerDef, move, recordAbility, abilityAtk, abilityDef, holdEffectAtk);
-}
-
 // Bulbapedia: https://bulbapedia.bulbagarden.net/wiki/Critical_hit#Generation_I
 // Crit chance = Threshold / 256, Threshold maximum of 255
 // Threshold = Base Speed / 2
 // High crit move = 8 * (Base Speed / 2)
 // Focus Energy = 4 * (Base Speed / 2)
-s32 CalcCritChanceStageGen1(u32 battlerAtk, u32 battlerDef, u32 move, bool32 recordAbility)
+s32 CalcCritChanceStageGen1(u32 battlerAtk, u32 battlerDef, u32 move, bool32 recordAbility, u32 abilityAtk, u32 abilityDef, u32 holdEffectAtk)
 {
     s32 critChance = 0;
     s32 moveCritStage = gMovesInfo[gCurrentMove].criticalHitStage;
     s32 bonusCritStage = gBattleStruct->bonusCritStages[battlerAtk]; // G-Max Chi Strike
-    u32 holdEffectCritStage = GetHoldEffectCritChanceIncrease(battlerAtk, GetBattlerHoldEffect(battlerAtk, TRUE));
-    u32 abilityAtk = GetBattlerAbility(battlerAtk);
-    u32 abilityDef = GetBattlerAbility(battlerDef);
+    u32 holdEffectCritStage = GetHoldEffectCritChanceIncrease(battlerAtk, holdEffectAtk);
     u16 baseSpeed = gSpeciesInfo[gBattleMons[battlerAtk].species].baseSpeed;
 
     critChance = baseSpeed / 2;
@@ -1997,11 +1987,14 @@ static void Cmd_critcalc(void)
 
     u16 partySlot;
     s32 critChance;
+    u32 abilityAtk = GetBattlerAbility(gBattlerAttacker);
+    u32 abilityDef = GetBattlerAbility(gBattlerTarget);
+    u32 holdEffectAtk = GetBattlerHoldEffect(gBattlerAttacker, TRUE);
 
     if (GetGenConfig(GEN_CONFIG_CRIT_CHANCE) == GEN_1)
-        critChance = CalcCritChanceStageGen1(gBattlerAttacker, gBattlerTarget, gCurrentMove, TRUE);
+        critChance = CalcCritChanceStageGen1(gBattlerAttacker, gBattlerTarget, gCurrentMove, TRUE, abilityAtk, abilityDef, holdEffectAtk);
     else
-        critChance = CalcCritChanceStage(gBattlerAttacker, gBattlerTarget, gCurrentMove, TRUE);
+        critChance = CalcCritChanceStage(gBattlerAttacker, gBattlerTarget, gCurrentMove, TRUE, abilityAtk, abilityDef, holdEffectAtk);
 
     gPotentialItemEffectBattler = gBattlerAttacker;
 
