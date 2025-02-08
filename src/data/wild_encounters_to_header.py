@@ -11,6 +11,15 @@ SLOT                  = "SLOT"
 TOTAL                 = "TOTAL"
 NULL                  = "NULL"
 
+#encounter group header types
+WILD_MON                 = "gWildMon"
+wildMonCount             = 0
+BATTLE_PIKE_MON          = "gBattlePikeWildMon"
+battlePikeMonCount       = 0
+BATTLE_PYRAMID_MON       = "gBattlePyramidWildMon"
+battlePyramidMonCount    = 0
+
+#mon encounter group types
 LAND_MONS             = "land_mons"
 LAND_MONS_LABEL       = "LandMons"
 WATER_MONS            = "water_mons"
@@ -20,6 +29,7 @@ ROCK_SMASH_MONS_LABEL = "RockSmashMons"
 FISHING_MONS          = "fishing_mons"
 FISHING_MONS_LABEL    = "FishingMons"
 
+#fishing encounter data
 GOOD_ROD              = "good_rod"
 GOOD_ROD_FIRST_INDEX  = 2
 GOOD_ROD_LAST_INDEX   = 4
@@ -102,22 +112,26 @@ def ImportWildEncounterFile():
     global eWaterMons
     global eRockSmashMons
     global eFishingMons
+    global wildMonCount
+    global battlePikeMonCount
+    global battlePyramidMonCount
 
     wFile = open("wild_encounters.json")
     wData = json.load(wFile)
 
-    i = 0
+    global headerIndex
+    headerIndex = 0
     for data in wData["wild_encounter_groups"]:
         #print(data)
-        wEncounters = wData["wild_encounter_groups"][i]["encounters"]
+        wEncounters = wData["wild_encounter_groups"][headerIndex]["encounters"]
 
         if data == "label":
-            hLabel = wData["wild_encounter_groups"][i]["label"]
+            hLabel = wData["wild_encounter_groups"][headerIndex]["label"]
         if data == "for_maps":
-            hForMaps = wData["wild_encounter_groups"][i]["for_maps"]
+            hForMaps = wData["wild_encounter_groups"][headerIndex]["for_maps"]
     
-        if i == 0:
-            wFields = wData["wild_encounter_groups"][i]["fields"]
+        if headerIndex == 0:
+            wFields = wData["wild_encounter_groups"][headerIndex]["fields"]
             for field in wFields:
                 if field["type"] == LAND_MONS:
                     eLandMons = field["encounter_rates"]
@@ -200,6 +214,13 @@ def ImportWildEncounterFile():
 
             structLabel = encounter["base_label"]
 
+            if "Pyramid" in structLabel:
+                battlePyramidMonCount += 1
+            if "Pike" in structLabel:
+                battlePikeMonCount += 1
+            else:
+                wildMonCount += 1
+
             headersArray = []
             for time in encounter["encounter_times"]:
                 if TIME_MORNING in time:
@@ -244,21 +265,22 @@ def ImportWildEncounterFile():
                                     infoStructRate = areaTable[monTable][group]
                         
                         baseStructLabel = f"{baseStruct} {structLabel}_{structMonType}_{structTime}{structArrayAssign}"
-                        
-                        #print("\n")
-                        #print(baseStructLabel)
-                        #print("{")
-                        #PrintStructContent(baseStructContent)
-                        #print("}")
-                        
+                        """
+                        print("\n")
+                        print(baseStructLabel)
+                        print("{")
+                        PrintStructContent(baseStructContent)
+                        print("}")
+                        """
                         infoStructString = f"{baseStruct}{structInfo} {structLabel}_{structMonType}{structInfo}_{structTime} = {{ {infoStructRate}, {structLabel}_{structMonType}_{structTime} }};"
                         #print(infoStructString)
-                    AssembleMonHeader()
-            for stat in headerStructContent[structLabel]:
-                print(headerStructContent[structLabel][stat])
 
-                        
-        i += 1
+                    AssembleMonHeaderContent()
+
+
+        headerIndex += 1
+    PrintWildMonHeadersContent()
+    
 
 
 def PrintStructContent(contentList):
@@ -267,13 +289,14 @@ def PrintStructContent(contentList):
     return
 
 
-def AssembleMonHeader():
+def AssembleMonHeaderContent():
     tempDict = {}
 
     SetupMonInfoVars()
     
     if structLabel not in headerStructContent:
         headerStructContent[structLabel] = {}
+        headerStructContent[structLabel]["headerType"] = GetWildMonHeadersLabel()
         headerStructContent[structLabel]["mapGroup"] = structMap
         headerStructContent[structLabel]["mapNum"] = structMap
         headerStructContent[structLabel]["encounter_types"] = []
@@ -307,6 +330,60 @@ def SetupMonInfoVars():
         fishingMonsInfo = NULL
     else:
         fishingMonsInfo = f"&{fishingMonsInfo}"
+    
+
+def PrintWildMonHeadersContent():
+    tabStr = "    "
+
+    totalMons = wildMonCount + battlePikeMonCount + battlePyramidMonCount
+
+    labelCount = 0
+    for label in headerStructContent:
+        if labelCount in [0, totalMons - (battlePyramidMonCount + battlePikeMonCount), totalMons - battlePikeMonCount]:
+            print(headerStructContent[label]["headerType"])
+
+        print(tabStr + "{")
+        for stat in headerStructContent[label]:
+            mapData = headerStructContent[label][stat]
+
+            if stat == "mapGroup":
+                print(f"{tabStr}{tabStr}.mapGroup = {mapData},")
+            elif stat == "mapNum":
+                print(f"{tabStr}{tabStr}.mapNum = {mapData},")
+
+            if type(headerStructContent[label][stat]) == list:
+
+                infoCount = 0
+                infoIndex = 0
+                for monInfo in headerStructContent[label][stat]:
+                    if infoCount in [0, 4, 8, 12]:
+                        print(f"{tabStr}{tabStr}.encounterTypes[{infoIndex}] =")
+                        print(tabStr + tabStr + "{")
+                        print(f"{tabStr}{tabStr}{tabStr}.landMonsInfo = {monInfo},")
+                        infoIndex += 1
+                    elif infoCount in [1, 5, 9, 13]:
+                        print(f"{tabStr}{tabStr}{tabStr}.waterMonsInfo = {monInfo},")
+                    elif infoCount in [2, 6, 10, 14]:
+                        print(f"{tabStr}{tabStr}{tabStr}.rockSmashMonsInfo = {monInfo},")
+                    elif infoCount in [3, 7, 11, 15]:
+                        print(f"{tabStr}{tabStr}{tabStr}.fishMonsInfo = {monInfo},")
+                        print(tabStr + tabStr + "},")
+                    
+                    infoCount += 1
+        labelCount += 1
+
+        print(tabStr + "},")
+        if labelCount in [wildMonCount, battlePyramidMonCount + wildMonCount, totalMons + 1]:
+            print("};")
+
+
+def GetWildMonHeadersLabel():
+    if headerIndex == 0:
+        return f"{baseStruct}{structHeader} {WILD_MON}{structHeader}s {structArrayAssign}" + "\n{"
+    elif headerIndex == 1:
+        return f"{baseStruct}{structHeader} {BATTLE_PYRAMID_MON}{structHeader}s {structArrayAssign}" + "\n{"
+    elif headerIndex == 2:
+        return f"{baseStruct}{structHeader} {BATTLE_PIKE_MON}{structHeader}s {structArrayAssign}" + "\n{"
     
 
 
