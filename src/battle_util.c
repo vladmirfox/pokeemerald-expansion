@@ -1009,7 +1009,6 @@ const u8* CheckSkyDropState(u32 battler, enum SkyDropState skyDropState)
             // Set confused status
             gBattleMons[otherSkyDropper].status2 |= STATUS2_CONFUSION_TURN(((Random()) % 4) + 2);
 
-            // If this CancelMultiTurnMoves is occuring due to attackcanceller
             if (skyDropState == STATE_ATTACKCANCELLER_CHECK)
             {
                 gBattleStruct->skyDropTargets[battler] = SKY_DROP_RELEASED_TARGET;
@@ -1025,7 +1024,7 @@ const u8* CheckSkyDropState(u32 battler, enum SkyDropState skyDropState)
                 gBattlerAttacker = otherSkyDropper;
                 result = BattleScript_ThrashConfuses;
             }
-            else if (skyDropState == STATE_STATUS_CONDITION) // Freeze / Sleep
+            else if (skyDropState == STATE_STATUS_CONDITION)
             {
                 gBattlerAttacker = otherSkyDropper;
                 BattleScriptPush(gBattlescriptCurrInstr + 1);
