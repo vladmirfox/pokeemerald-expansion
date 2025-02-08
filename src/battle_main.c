@@ -4055,10 +4055,9 @@ void BattleTurnPassed(void)
     {
         gChosenActionByBattler[i] = B_ACTION_NONE;
         gChosenMoveByBattler[i] = MOVE_NONE;
+        gBattleStruct->monToSwitchIntoId[i] = PARTY_SIZE;
+        gStatuses4[i] &= ~STATUS4_ELECTRIFIED;
     }
-
-    for (i = 0; i < MAX_BATTLERS_COUNT; i++)
-        *(gBattleStruct->monToSwitchIntoId + i) = PARTY_SIZE;
 
     *(&gBattleStruct->absentBattlerFlags) = gAbsentBattlerFlags;
     BattlePutTextOnWindow(gText_EmptyString3, B_WIN_MSG);
@@ -6067,6 +6066,7 @@ void SetTypeBeforeUsingMove(u32 move, u32 battler)
     u32 heldItem = gBattleMons[battler].item;
     u32 holdEffect = GetBattlerHoldEffect(battler, TRUE);
 
+    gBattleStruct->dynamicMoveType = 0;
     gBattleStruct->ateBoost[battler] = FALSE;
     gSpecialStatuses[battler].gemBoost = FALSE;
 
