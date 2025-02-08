@@ -10275,6 +10275,7 @@ static void Cmd_various(void)
                 gBattlescriptCurrInstr = cmd->failInstr;
             else
             {
+                SetTypeBeforeUsingMove(gCalledMove, gBattlerTarget);
                 gEffectBattler = gBattleStruct->lastMoveTarget[gBattlerTarget];
                 gHitMarker &= ~HITMARKER_ATTACKSTRING_PRINTED;
                 gBattleStruct->atkCancellerTracker = 0;

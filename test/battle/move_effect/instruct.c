@@ -219,7 +219,6 @@ DOUBLE_BATTLE_TEST("Instruct-called moves keep their priority")
 
 DOUBLE_BATTLE_TEST("Instructed move will be absorbed by Lightning Rod if it turns into an Electric Type move")
 {
-    KNOWN_FAILING;
     GIVEN {
         PLAYER(SPECIES_WOBBUFFET);
         PLAYER(SPECIES_WYNAUT);
