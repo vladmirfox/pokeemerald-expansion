@@ -18,6 +18,7 @@
 #define SHOULD_SWITCH_HASBADODDS_PERCENTAGE                     50
 #define SHOULD_SWITCH_ENCORE_STATUS_PERCENTAGE                  100
 #define SHOULD_SWITCH_ENCORE_DAMAGE_PERCENTAGE                  50
+#define SHOULD_SWITCH_CHOICE_LOCKED_PERCENTAGE                  100 // Only if locked into status move
 
 // AI smart switching chances for bad statuses
 #define SHOULD_SWITCH_PERISH_SONG_PERCENTAGE                    100

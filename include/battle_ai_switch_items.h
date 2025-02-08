@@ -29,6 +29,7 @@ enum ShouldSwitchScenario
     SHOULD_SWITCH_REGENERATOR_STATS_RAISED,
     SHOULD_SWITCH_ENCORE_STATUS,
     SHOULD_SWITCH_ENCORE_DAMAGE,
+    SHOULD_SWITCH_CHOICE_LOCKED,
 };
 
 void GetAIPartyIndexes(u32 battlerId, s32 *firstId, s32 *lastId);

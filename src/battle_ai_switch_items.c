@@ -94,6 +94,8 @@ u32 GetSwitchChance(enum ShouldSwitchScenario shouldSwitchScenario)
             return SHOULD_SWITCH_ENCORE_STATUS_PERCENTAGE;
         case SHOULD_SWITCH_ENCORE_DAMAGE:
             return SHOULD_SWITCH_ENCORE_DAMAGE_PERCENTAGE;
+        case SHOULD_SWITCH_CHOICE_LOCKED:
+            return SHOULD_SWITCH_CHOICE_LOCKED_PERCENTAGE;
         default:
             return 100;
     }
@@ -943,7 +945,7 @@ static bool32 ShouldSwitchIfBadChoiceLock(u32 battler)
 
     if (HOLD_EFFECT_CHOICE(holdEffect) && gBattleMons[battler].ability != ABILITY_KLUTZ)
     {
-        if (GetMoveCategory(gLastUsedMove) == DAMAGE_CATEGORY_STATUS)
+        if (GetMoveCategory(gLastUsedMove) == DAMAGE_CATEGORY_STATUS && RandomPercentage(RNG_AI_SWITCH_CHOICE_LOCKED, GetSwitchChance(SHOULD_SWITCH_CHOICE_LOCKED)))
             return SetSwitchinAndSwitch(battler, PARTY_SIZE);
     }
 
