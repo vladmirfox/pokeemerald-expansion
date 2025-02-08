@@ -78,6 +78,18 @@ u32 GetSwitchChance(enum ShouldSwitchScenario shouldSwitchScenario)
             return SHOULD_SWITCH_INFATUATION_PERCENTAGE;
         case SHOULD_SWITCH_HASBADODDS:
             return SHOULD_SWITCH_HASBADODDS_PERCENTAGE;
+        case SHOULD_SWITCH_NATURAL_CURE_STRONG:
+            return SHOULD_SWITCH_NATURAL_CURE_STRONG_PERCENTAGE;
+        case SHOULD_SWITCH_NATURAL_CURE_STRONG_STATS_RAISED:
+            return SHOULD_SWITCH_NATURAL_CURE_STRONG_STATS_RAISED_PERCENTAGE;
+        case SHOULD_SWITCH_NATURAL_CURE_WEAK:
+            return SHOULD_SWITCH_NATURAL_CURE_WEAK_PERCENTAGE;
+        case SHOULD_SWITCH_NATURAL_CURE_WEAK_STATS_RAISED:
+            return SHOULD_SWITCH_NATURAL_CURE_WEAK_STATS_RAISED_PERCENTAGE;
+        case SHOULD_SWITCH_REGENERATOR:
+            return SHOULD_SWITCH_REGENERATOR_PERCENTAGE;
+        case SHOULD_SWITCH_REGENERATOR_STATS_RAISED:
+            return SHOULD_SWITCH_REGENERATOR_STATS_RAISED_PERCENTAGE;
         default:
             return 100;
     }
@@ -651,13 +663,13 @@ static bool32 ShouldSwitchIfAbilityBenefit(u32 battler)
             //Attempt to cure bad ailment
             if (gBattleMons[battler].status1 & (STATUS1_SLEEP | STATUS1_FREEZE | STATUS1_TOXIC_POISON)
                 && AI_DATA->mostSuitableMonId[battler] != PARTY_SIZE
-                && (hasStatRaised ? RandomPercentage(RNG_AI_SWITCH_NATURAL_CURE, 10) : RandomPercentage(RNG_AI_SWITCH_NATURAL_CURE, 66)))
+                && (hasStatRaised ? RandomPercentage(RNG_AI_SWITCH_NATURAL_CURE, GetSwitchChance(SHOULD_SWITCH_NATURAL_CURE_STRONG_STATS_RAISED)) : RandomPercentage(RNG_AI_SWITCH_NATURAL_CURE, GetSwitchChance(SHOULD_SWITCH_NATURAL_CURE_STRONG))))
                 break;
             //Attempt to cure lesser ailment
             if ((gBattleMons[battler].status1 & STATUS1_ANY)
                 && (gBattleMons[battler].hp >= gBattleMons[battler].maxHP / 2)
                 && AI_DATA->mostSuitableMonId[battler] != PARTY_SIZE
-                && (hasStatRaised ? RandomPercentage(RNG_AI_SWITCH_NATURAL_CURE, 10) : RandomPercentage(RNG_AI_SWITCH_NATURAL_CURE, 25)))
+                && (hasStatRaised ? RandomPercentage(RNG_AI_SWITCH_NATURAL_CURE, GetSwitchChance(SHOULD_SWITCH_NATURAL_CURE_WEAK_STATS_RAISED)) : RandomPercentage(RNG_AI_SWITCH_NATURAL_CURE, GetSwitchChance(SHOULD_SWITCH_NATURAL_CURE_WEAK))))
                 break;
 
             return FALSE;
@@ -668,7 +680,7 @@ static bool32 ShouldSwitchIfAbilityBenefit(u32 battler)
                 return FALSE;
             if ((gBattleMons[battler].hp <= ((gBattleMons[battler].maxHP * 2) / 3))
                  && AI_DATA->mostSuitableMonId[battler] != PARTY_SIZE
-                 && (hasStatRaised ? RandomPercentage(RNG_AI_SWITCH_REGENERATOR, 20) : RandomPercentage(RNG_AI_SWITCH_REGENERATOR, 50)))
+                 && (hasStatRaised ? RandomPercentage(RNG_AI_SWITCH_REGENERATOR, GetSwitchChance(SHOULD_SWITCH_REGENERATOR_STATS_RAISED)) : RandomPercentage(RNG_AI_SWITCH_REGENERATOR, GetSwitchChance(SHOULD_SWITCH_REGENERATOR))))
                 break;
 
             return FALSE;

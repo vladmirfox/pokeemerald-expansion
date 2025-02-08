@@ -14,7 +14,7 @@
 #define SHOULD_SWITCH_ABSORBS_MOVE_PERCENTAGE                   100
 #define SHOULD_SWITCH_TRAPPER_PERCENTAGE                        100
 #define SHOULD_SWITCH_FREE_TURN_PERCENTAGE                      100
-#define STAY_IN_ABSORBING_PERCENTAGE                            66
+#define STAY_IN_ABSORBING_PERCENTAGE                            66  // Chance to stay in if outgoing mon has super effective move against player, will prevent switching out for an absorber with this likelihood
 #define SHOULD_SWITCH_HASBADODDS_PERCENTAGE                     50
 
 // AI smart switching chances for bad statuses
@@ -29,6 +29,14 @@
 #define SHOULD_SWITCH_SEEDED_PERCENTAGE                         25
 #define SHOULD_SWITCH_SEEDED_STATS_RAISED_PERCENTAGE            10
 #define SHOULD_SWITCH_INFATUATION_PERCENTAGE                    100
+
+// AI smart switching chances for beneficial abilities
+#define SHOULD_SWITCH_NATURAL_CURE_STRONG_PERCENTAGE                66
+#define SHOULD_SWITCH_NATURAL_CURE_STRONG_STATS_RAISED_PERCENTAGE   10
+#define SHOULD_SWITCH_NATURAL_CURE_WEAK_PERCENTAGE                  25
+#define SHOULD_SWITCH_NATURAL_CURE_WEAK_STATS_RAISED_PERCENTAGE     10
+#define SHOULD_SWITCH_REGENERATOR_PERCENTAGE                        50
+#define SHOULD_SWITCH_REGENERATOR_STATS_RAISED_PERCENTAGE           20
 
 // AI prediction chances
 #define PREDICT_SWITCH_CHANCE                                   50
