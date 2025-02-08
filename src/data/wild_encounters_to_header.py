@@ -1,5 +1,6 @@
 import json
 import enum
+from json.encoder import INFINITY
 
 #todo: don't forget to add hidden mons!
 
@@ -8,14 +9,15 @@ define                = "#define"
 ENCOUNTER_CHANCE      = "ENCOUNTER_CHANCE"
 SLOT                  = "SLOT"
 TOTAL                 = "TOTAL"
+NULL                  = "NULL"
 
 LAND_MONS             = "land_mons"
-WATER_MONS            = "water_mons"
-ROCK_SMASH_MONS       = "rock_smash_mons"
-FISHING_MONS          = "fishing_mons"
 LAND_MONS_LABEL       = "LandMons"
+WATER_MONS            = "water_mons"
 WATER_MONS_LABEL      = "WaterMons"
+ROCK_SMASH_MONS       = "rock_smash_mons"
 ROCK_SMASH_MONS_LABEL = "RockSmashMons"
+FISHING_MONS          = "fishing_mons"
 FISHING_MONS_LABEL    = "FishingMons"
 
 GOOD_ROD              = "good_rod"
@@ -28,33 +30,48 @@ SUPER_ROD             = "super_rod"
 SUPER_ROD_FIRST_INDEX = 5
 SUPER_ROD_LAST_INDEX  = 9
 
+TIME_MORNING       = "time_morning"
 TIME_MORNING_LABEL = "Morning"
-TIME_MORNING_GROUP = "time_morning"
 TIME_MORNING_INDEX = 0
+TIME_DAY           = "time_day"
 TIME_DAY_LABEL     = "Day"
-TIME_DAY_GROUP     = "time_day"
 TIME_DAY_INDEX     = 1
+TIME_EVENING       = "time_evening"
 TIME_EVENING_LABEL = "Evening"
-TIME_EVENING_GROUP = "time_evening"
 TIME_EVENING_INDEX = 2
+TIME_NIGHT         = "time_night"
 TIME_NIGHT_LABEL   = "Night"
-TIME_NIGHT_GROUP   = "time_night"
 TIME_NIGHT_INDEX   = 3
 
 #struct building blocks
-baseStruct   = "const struct WildPokemon"
-structName   = ""
-structTime   = ""
-structInfo   = "Info"
-structHeader = "Header"
-structAssign = "[] ="
+baseStruct    = "const struct WildPokemon"
+structLabel   = ""
+structMonType = ""
+structTime    = ""
+structMap     = ""
 
-baseStructString = ""
-baseStructName   = ""
+structInfo    = "Info"
+structHeader  = "Header"
+structArrayAssign   = "[] ="
+
+baseStructLabel     = ""
+baseStructContent   = []
+infoStructString     = ""
+infoStructRate      = 0
+infoStructContent   = []
+headerStructLabel   = ""
+headerStructContent = {}
 
 #map header data variables
 hLabel = ""
 hForMaps = True
+headersArray = []
+
+#headersArrayItems
+landMonsInfo      = ""
+waterMonsInfo     = ""
+rockSmashMonsInfo = ""
+fishingMonsInfo   = ""
 
 #encounter rate variables
 eLandMons      = []
@@ -65,6 +82,26 @@ eFishingMons   = []
 def ImportWildEncounterFile():
     print("hello")
     print("finding wild_encounter.json...")
+    global landMonsInfo
+    global waterMonsInfo 
+    global rockSmashMonsInfo 
+    global fishingMonsInfo
+    global structLabel 
+    global structMonType 
+    global structTime
+    global structMap 
+    global baseStructLabel 
+    global baseStructContent 
+    global infoStructString 
+    global infoStructRate
+    global headerStructLabel
+    global headerStructContent
+    global hLabel
+    global headersArray
+    global eLandMons
+    global eWaterMons
+    global eRockSmashMons
+    global eFishingMons
 
     wFile = open("wild_encounters.json")
     wData = json.load(wFile)
@@ -91,6 +128,7 @@ def ImportWildEncounterFile():
                 elif field["type"] == FISHING_MONS:
                     eFishingMons = field["encounter_rates"]
                     eFishingMons.append(field["groups"])
+        
         """
             rateCount = 0
             for percent in eLandMons:
@@ -153,10 +191,124 @@ def ImportWildEncounterFile():
                             f"{define} {ENCOUNTER_CHANCE}_{FISHING_MONS.upper()}_{rodRate.upper()}_{TOTAL} ({ENCOUNTER_CHANCE}_{FISHING_MONS.upper()}_{rodRate.upper()}_{SLOT}_{rodPercentIndex})"
                         )
         """
-
+        
         for encounter in wEncounters:
-            print(encounter)
+            if "map" in encounter:
+                structMap = encounter["map"]
+            else:
+                structMap = encounter["base_label"]
+
+            structLabel = encounter["base_label"]
+
+            headersArray = []
+            for time in encounter["encounter_times"]:
+                if TIME_MORNING in time:
+                    structTime = TIME_MORNING_LABEL
+                elif TIME_DAY in time:
+                    structTime = TIME_DAY_LABEL
+                elif TIME_EVENING in time:
+                    structTime = TIME_EVENING_LABEL
+                elif TIME_NIGHT in time:
+                    structTime = TIME_NIGHT_LABEL
+                else:
+                    structTime = ""
+
+                landMonsInfo      = ""
+                waterMonsInfo     = ""
+                rockSmashMonsInfo = ""
+                fishingMonsInfo   = ""
+                for encounterTable in time:
+                    for areaTable in time[encounterTable]:
+                        if LAND_MONS in areaTable:
+                            structMonType = LAND_MONS_LABEL
+                            landMonsInfo = f"{structLabel}_{structMonType}{structInfo}_{structTime}"
+                        elif WATER_MONS in areaTable:
+                            structMonType = WATER_MONS_LABEL
+                            waterMonsInfo = f"{structLabel}_{structMonType}{structInfo}_{structTime}"
+                        elif ROCK_SMASH_MONS in areaTable:
+                            structMonType = ROCK_SMASH_MONS_LABEL
+                            rockSmashMonsInfo = f"{structLabel}_{structMonType}{structInfo}_{structTime}"
+                        elif FISHING_MONS in areaTable:
+                            structMonType = FISHING_MONS_LABEL
+                            fishingMonsInfo = f"{structLabel}_{structMonType}{structInfo}_{structTime}"
+                        else:
+                            structMonType = ""
+                        
+                        baseStructContent = []
+                        for monTable in areaTable:
+                            for group in areaTable[monTable]:
+                                if "mons" in group:
+                                    for mon in areaTable[monTable][group]:
+                                        baseStructContent.append(list(mon.values()))
+                                if "encounter_rate" in group:
+                                    infoStructRate = areaTable[monTable][group]
+                        
+                        baseStructLabel = f"{baseStruct} {structLabel}_{structMonType}_{structTime}{structArrayAssign}"
+                        
+                        #print("\n")
+                        #print(baseStructLabel)
+                        #print("{")
+                        #PrintStructContent(baseStructContent)
+                        #print("}")
+                        
+                        infoStructString = f"{baseStruct}{structInfo} {structLabel}_{structMonType}{structInfo}_{structTime} = {{ {infoStructRate}, {structLabel}_{structMonType}_{structTime} }};"
+                        #print(infoStructString)
+                    AssembleMonHeader()
+            for stat in headerStructContent[structLabel]:
+                print(headerStructContent[structLabel][stat])
+
+                        
         i += 1
+
+
+def PrintStructContent(contentList):
+    for monList in contentList:
+        print(f"    {{ {monList[0]}, {monList[1]}, {monList[2]} }},")
+    return
+
+
+def AssembleMonHeader():
+    tempDict = {}
+
+    SetupMonInfoVars()
+    
+    if structLabel not in headerStructContent:
+        headerStructContent[structLabel] = {}
+        headerStructContent[structLabel]["mapGroup"] = structMap
+        headerStructContent[structLabel]["mapNum"] = structMap
+        headerStructContent[structLabel]["encounter_types"] = []
+
+    headerStructContent[structLabel]["encounter_types"].append(landMonsInfo)
+    headerStructContent[structLabel]["encounter_types"].append(waterMonsInfo)
+    headerStructContent[structLabel]["encounter_types"].append(rockSmashMonsInfo)
+    headerStructContent[structLabel]["encounter_types"].append(fishingMonsInfo)
+
+
+
+def SetupMonInfoVars():
+    global landMonsInfo
+    global waterMonsInfo 
+    global rockSmashMonsInfo 
+    global fishingMonsInfo
+
+    if landMonsInfo == "":
+        landMonsInfo = NULL
+    else:
+        landMonsInfo = f"&{landMonsInfo}"
+    if waterMonsInfo == "":
+        waterMonsInfo = NULL
+    else:
+        waterMonsInfo = f"&{waterMonsInfo}"
+    if rockSmashMonsInfo == "":
+        rockSmashMonsInfo = NULL
+    else:
+        rockSmashMonsInfo = f"&{rockSmashMonsInfo}"
+    if fishingMonsInfo == "":
+        fishingMonsInfo = NULL
+    else:
+        fishingMonsInfo = f"&{fishingMonsInfo}"
+    
+
 
 ImportWildEncounterFile()
 
@@ -221,7 +373,7 @@ const struct WildPokemonInfo gRoute101_LandMonsInfo_Day= { 20, gRoute101_LandMon
 const struct WildPokemonHeader gWildMonHeaders[] =
 {
     {
-        .mapGroup = MAP_GROUP(ROUTE101),
+        .mapGroup = MAP(ROUTE101),
         .mapNum = MAP_NUM(ROUTE101),
         .encounterTypes[0] = 
             .landMonsInfo = &gRoute101_LandMonsInfo_Day,
