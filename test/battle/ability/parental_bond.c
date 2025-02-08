@@ -134,8 +134,8 @@ SINGLE_BATTLE_TEST("Parental Bond-converted moves only hit once on Lightning Rod
 SINGLE_BATTLE_TEST("Parental Bond has no affect on multi hit moves and they still hit twice 37.5/35% of the time")
 {
     u32 genConfig, passes, trials;
-    PARAMETRIZE { genConfig = GEN_4; passes = 3; trials = 8; }
-    PARAMETRIZE { genConfig = GEN_5; passes = 7; trials = 20; }
+    PARAMETRIZE { genConfig = GEN_4; passes = 3; trials = 8; }  // 37.5%
+    PARAMETRIZE { genConfig = GEN_5; passes = 7; trials = 20; } // 35%
     PASSES_RANDOMLY(passes, trials, RNG_HITS);
 
     GIVEN {
@@ -163,8 +163,8 @@ SINGLE_BATTLE_TEST("Parental Bond has no affect on multi hit moves and they stil
 SINGLE_BATTLE_TEST("Parental Bond has no affect on multi hit moves and they still hit thrice 37.5/35% of the time")
 {
     u32 genConfig, passes, trials;
-    PARAMETRIZE { genConfig = GEN_4; passes = 3; trials = 8; }
-    PARAMETRIZE { genConfig = GEN_5; passes = 7; trials = 20; }
+    PARAMETRIZE { genConfig = GEN_4; passes = 3; trials = 8; }  // 37.5%
+    PARAMETRIZE { genConfig = GEN_5; passes = 7; trials = 20; } // 35%
     PASSES_RANDOMLY(passes, trials, RNG_HITS);
 
     GIVEN {
@@ -193,8 +193,8 @@ SINGLE_BATTLE_TEST("Parental Bond has no affect on multi hit moves and they stil
 SINGLE_BATTLE_TEST("Parental Bond has no affect on multi hit moves and they still hit four times 12.5/15% of the time")
 {
     u32 genConfig, passes, trials;
-    PARAMETRIZE { genConfig = GEN_4; passes = 1; trials = 8; }
-    PARAMETRIZE { genConfig = GEN_5; passes = 3; trials = 20; }
+    PARAMETRIZE { genConfig = GEN_4; passes = 1; trials = 8; }  // 12.5%
+    PARAMETRIZE { genConfig = GEN_5; passes = 3; trials = 20; } // 15%
     PASSES_RANDOMLY(passes, trials, RNG_HITS);
 
     GIVEN {
@@ -224,8 +224,8 @@ SINGLE_BATTLE_TEST("Parental Bond has no affect on multi hit moves and they stil
 SINGLE_BATTLE_TEST("Parental Bond has no affect on multi hit moves and they still hit five times 12.5/15% of the time")
 {
     u32 genConfig, passes, trials;
-    PARAMETRIZE { genConfig = GEN_4; passes = 1; trials = 8; }
-    PARAMETRIZE { genConfig = GEN_5; passes = 3; trials = 20; }
+    PARAMETRIZE { genConfig = GEN_4; passes = 1; trials = 8; }  // 12.5%
+    PARAMETRIZE { genConfig = GEN_5; passes = 3; trials = 20; } // 15%
     PASSES_RANDOMLY(passes, trials, RNG_HITS);
 
     GIVEN {

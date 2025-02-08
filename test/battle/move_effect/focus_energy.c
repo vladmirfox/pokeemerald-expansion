@@ -6,7 +6,7 @@ ASSUMPTIONS
     ASSUME(gMovesInfo[MOVE_FOCUS_ENERGY].effect == EFFECT_FOCUS_ENERGY);
 }
 
-SINGLE_BATTLE_TEST("Focus Energy increases the user's critical hit ratio by 2 stages (Gen 2+)")
+SINGLE_BATTLE_TEST("Focus Energy increases the user's critical hit ratio by 2 stages (Gen 3+)")
 {
     u32 genConfig, chance;
     PARAMETRIZE { genConfig = GEN_2; chance = 4; }

@@ -21,7 +21,7 @@ SINGLE_BATTLE_TEST("Dragon Cheer fails in a single battle")
 DOUBLE_BATTLE_TEST("Dragon Cheer increases critical hit ratio by one on non Dragon types")
 {
     u32 genConfig = 0;
-    for (u32 j = GEN_2; j < GEN_LATEST + 1; j++)
+    for (u32 j = GEN_2; j <= GEN_9; j++)
         PARAMETRIZE { genConfig = j; }
     PASSES_RANDOMLY(1, 8, RNG_CRITICAL_HIT);
     GIVEN {
