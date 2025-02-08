@@ -54,6 +54,28 @@ u32 GetSwitchChance(enum ShouldSwitchScenario shouldSwitchScenario)
             return SHOULD_SWITCH_TRUANT_PERCENTAGE;
         case SHOULD_SWITCH_ALL_MOVES_BAD:
             return SHOULD_SWITCH_ALL_MOVES_BAD_PERCENTAGE;
+        case SHOULD_SWITCH_PERISH_SONG:
+            return SHOULD_SWITCH_PERISH_SONG_PERCENTAGE;
+        case SHOULD_SWITCH_YAWN:
+            return SHOULD_SWITCH_YAWN_PERCENTAGE;
+        case SHOULD_SWITCH_BADLY_POISONED:
+            return SHOULD_SWITCH_BADLY_POISONED_PERCENTAGE;
+        case SHOULD_SWITCH_BADLY_POISONED_STATS_RAISED:
+            return SHOULD_SWITCH_BADLY_POISONED_STATS_RAISED_PERCENTAGE;
+        case SHOULD_SWITCH_CURSED:
+            return SHOULD_SWITCH_CURSED_PERCENTAGE;
+        case SHOULD_SWITCH_CURSED_STATS_RAISED:
+            return SHOULD_SWITCH_CURSED_STATS_RAISED_PERCENTAGE;
+        case SHOULD_SWITCH_NIGHTMARE:
+            return SHOULD_SWITCH_NIGHTMARE_PERCENTAGE;
+        case SHOULD_SWITCH_NIGHTMARE_STATS_RAISED:
+            return SHOULD_SWITCH_NIGHTMARE_STATS_RAISED_PERCENTAGE;
+        case SHOULD_SWITCH_SEEDED:
+            return SHOULD_SWITCH_SEEDED_PERCENTAGE;
+        case SHOULD_SWITCH_SEEDED_STATS_RAISED:
+            return SHOULD_SWITCH_SEEDED_STATS_RAISED_PERCENTAGE;
+        case SHOULD_SWITCH_INFATUATION:
+            return SHOULD_SWITCH_INFATUATION_PERCENTAGE;
         case SHOULD_SWITCH_HASBADODDS:
             return SHOULD_SWITCH_HASBADODDS_PERCENTAGE;
         default:
@@ -532,15 +554,17 @@ static bool32 ShouldSwitchIfBadlyStatused(u32 battler)
     //Perish Song
     if (gStatuses3[battler] & STATUS3_PERISH_SONG
         && gDisableStructs[battler].perishSongTimer == 0
-        && monAbility != ABILITY_SOUNDPROOF)
-        switchMon = TRUE;
+        && monAbility != ABILITY_SOUNDPROOF
+        && RandomPercentage(RNG_AI_SWITCH_PERISH_SONG, GetSwitchChance(SHOULD_SWITCH_PERISH_SONG)))
+        return SetSwitchinAndSwitch(battler, PARTY_SIZE);
 
     if (AI_THINKING_STRUCT->aiFlags[GetThinkingBattler(battler)] & AI_FLAG_SMART_SWITCHING)
     {
         //Yawn
         if (gStatuses3[battler] & STATUS3_YAWN
             && CanBeSlept(battler, monAbility, BLOCKED_BY_SLEEP_CLAUSE)
-            && gBattleMons[battler].hp > gBattleMons[battler].maxHP / 3)
+            && gBattleMons[battler].hp > gBattleMons[battler].maxHP / 3
+            && RandomPercentage(RNG_AI_SWITCH_YAWN, GetSwitchChance(SHOULD_SWITCH_YAWN)))
         {
             switchMon = TRUE;
 
@@ -570,6 +594,9 @@ static bool32 ShouldSwitchIfBadlyStatused(u32 battler)
                 && !(gBattleMons[battler].status2 & STATUS2_FORESIGHT)
                 && !(gStatuses3[battler] & STATUS3_MIRACLE_EYED))
                 switchMon = FALSE;
+            
+            if (switchMon)
+                return SetSwitchinAndSwitch(battler, PARTY_SIZE);
         }
 
         // Secondary Damage
@@ -580,35 +607,33 @@ static bool32 ShouldSwitchIfBadlyStatused(u32 battler)
             if (((gBattleMons[battler].status1 & STATUS1_TOXIC_COUNTER) >= STATUS1_TOXIC_TURN(2))
                 && gBattleMons[battler].hp >= (gBattleMons[battler].maxHP / 3)
                 && AI_DATA->mostSuitableMonId[battler] != PARTY_SIZE
-                && (hasStatRaised ? RandomPercentage(RNG_AI_SWITCH_BADLY_POISONED, 20) : RandomPercentage(RNG_AI_SWITCH_BADLY_POISONED, 50)))
-                switchMon = TRUE;
+                && (hasStatRaised ? RandomPercentage(RNG_AI_SWITCH_BADLY_POISONED, GetSwitchChance(SHOULD_SWITCH_BADLY_POISONED_STATS_RAISED)) : RandomPercentage(RNG_AI_SWITCH_BADLY_POISONED, GetSwitchChance(SHOULD_SWITCH_BADLY_POISONED))))
+                return SetSwitchinAndSwitch(battler, PARTY_SIZE);
 
             //Cursed
             if (gBattleMons[battler].status2 & STATUS2_CURSED
-                && (hasStatRaised ? RandomPercentage(RNG_AI_SWITCH_CURSED, 20) : RandomPercentage(RNG_AI_SWITCH_CURSED, 50)))
-                switchMon = TRUE;
+                && (hasStatRaised ? RandomPercentage(RNG_AI_SWITCH_CURSED, GetSwitchChance(SHOULD_SWITCH_CURSED_STATS_RAISED)) : RandomPercentage(RNG_AI_SWITCH_CURSED, GetSwitchChance(SHOULD_SWITCH_CURSED))))
+                return SetSwitchinAndSwitch(battler, PARTY_SIZE);
 
             //Nightmare
             if (gBattleMons[battler].status2 & STATUS2_NIGHTMARE
-                && (hasStatRaised ? RandomPercentage(RNG_AI_SWITCH_NIGHTMARE, 15) : RandomPercentage(RNG_AI_SWITCH_NIGHTMARE, 33)))
-                switchMon = TRUE;
+                && (hasStatRaised ? RandomPercentage(RNG_AI_SWITCH_NIGHTMARE, GetSwitchChance(SHOULD_SWITCH_NIGHTMARE_STATS_RAISED)) : RandomPercentage(RNG_AI_SWITCH_NIGHTMARE, GetSwitchChance(SHOULD_SWITCH_NIGHTMARE))))
+                return SetSwitchinAndSwitch(battler, PARTY_SIZE);
 
             //Leech Seed
             if (gStatuses3[battler] & STATUS3_LEECHSEED
-                && (hasStatRaised ? RandomPercentage(RNG_AI_SWITCH_SEEDED, 10) : RandomPercentage(RNG_AI_SWITCH_SEEDED, 25)))
-                switchMon = TRUE;
+                && (hasStatRaised ? RandomPercentage(RNG_AI_SWITCH_SEEDED, GetSwitchChance(SHOULD_SWITCH_SEEDED_STATS_RAISED)) : RandomPercentage(RNG_AI_SWITCH_SEEDED, GetSwitchChance(SHOULD_SWITCH_SEEDED))))
+                return SetSwitchinAndSwitch(battler, PARTY_SIZE);
         }
 
         // Infatuation
         if (gBattleMons[battler].status2 & STATUS2_INFATUATION
-            && !AiExpectsToFaintPlayer(battler))
-            switchMon = TRUE;
+            && !AiExpectsToFaintPlayer(battler)
+            && RandomPercentage(RNG_AI_SWITCH_INFATUATION, GetSwitchChance(SHOULD_SWITCH_INFATUATION)))
+            return SetSwitchinAndSwitch(battler, PARTY_SIZE);
     }
 
-    if (switchMon)
-        return SetSwitchinAndSwitch(battler, PARTY_SIZE);
-    else
-        return FALSE;
+    return FALSE;
 }
 
 static bool32 ShouldSwitchIfAbilityBenefit(u32 battler)
