@@ -1222,7 +1222,7 @@ static void Cmd_attackcanceler(void)
             gBattlescriptCurrInstr = BattleScript_FailedFromAtkString;
 
         if (!gBattleMoveEffects[effect].twoTurnEffect || (gBattleMons[gBattlerAttacker].status2 & STATUS2_MULTIPLETURNS))
-            CancelMultiTurnMoves(gBattlerAttacker);
+            CancelMultiTurnMoves(gBattlerAttacker, STATE_ATTACKCANCELLER_CHECK);
         return;
     }
 
@@ -1322,7 +1322,7 @@ static void Cmd_attackcanceler(void)
     {
         if (IsMoveMakingContact(gCurrentMove, gBattlerAttacker))
             gProtectStructs[gBattlerAttacker].touchedProtectLike = TRUE;
-        CancelMultiTurnMoves(gBattlerAttacker);
+        CancelMultiTurnMoves(gBattlerAttacker, STATE_ATTACKCANCELLER_CHECK);
         gBattleStruct->moveResultFlags[gBattlerTarget] |= MOVE_RESULT_MISSED;
         gLastLandedMoves[gBattlerTarget] = 0;
         gLastHitByType[gBattlerTarget] = 0;
@@ -3248,7 +3248,7 @@ void SetMoveEffect(bool32 primary, bool32 certain)
             if (!CanBeSlept(gEffectBattler, GetBattlerAbility(gEffectBattler), BLOCKED_BY_SLEEP_CLAUSE) && !gBattleStruct->battlerState[gEffectBattler].sleepClauseEffectExempt)
                 break;
 
-            cancelMultiTurnMovesResult = CancelMultiTurnMoves(gEffectBattler);
+            cancelMultiTurnMovesResult = CancelMultiTurnMoves(gEffectBattler, STATE_STATUS_CONDITION);
             if (cancelMultiTurnMovesResult)
                 gBattlescriptCurrInstr = cancelMultiTurnMovesResult;
             statusChanged = TRUE;
@@ -3342,7 +3342,7 @@ void SetMoveEffect(bool32 primary, bool32 certain)
             if (!CanBeFrozen(gEffectBattler))
                 break;
 
-            cancelMultiTurnMovesResult = CancelMultiTurnMoves(gEffectBattler);
+            cancelMultiTurnMovesResult = CancelMultiTurnMoves(gEffectBattler, STATE_STATUS_CONDITION);
             if (cancelMultiTurnMovesResult)
                 gBattlescriptCurrInstr = cancelMultiTurnMovesResult;
             statusChanged = TRUE;
@@ -4311,7 +4311,7 @@ void SetMoveEffect(bool32 primary, bool32 certain)
                         }
 
                         if (gBattleMons[gBattlerTarget].pp[i] == 0 && gBattleStruct->skyDropTargets[gBattlerTarget] == 0xFF)
-                            CancelMultiTurnMoves(gBattlerTarget);
+                            CancelMultiTurnMoves(gBattlerTarget, STATE_NORMAL);
 
                         BattleScriptPush(gBattlescriptCurrInstr + 1);
                         gBattlescriptCurrInstr = BattleScript_MoveEffectEerieSpell;
@@ -7324,7 +7324,7 @@ static void Cmd_moveend(void)
               && MoveHasAdditionalEffectSelf(gCurrentMove, MOVE_EFFECT_THRASH)           // If we're rampaging
               && gBattleStruct->moveResultFlags[gBattlerTarget] & MOVE_RESULT_NO_EFFECT  // And it is unusable
               && (gBattleMons[gBattlerAttacker].status2 & STATUS2_LOCK_CONFUSE) != STATUS2_LOCK_CONFUSE_TURN(1))  // And won't end this turn
-                CancelMultiTurnMoves(gBattlerAttacker); // Cancel it
+                CancelMultiTurnMoves(gBattlerAttacker, STATE_NORMAL); // Cancel it
 
             if (gBattleStruct->savedAttackerCount > 0)
             {
@@ -10145,7 +10145,7 @@ static void Cmd_various(void)
         VARIOUS_ARGS();
         // Cancel all multiturn moves of IN_AIR Pokemon except those being targeted by Sky Drop.
         if (gStatuses3[battler] & STATUS3_ON_AIR && !(gStatuses3[battler] & STATUS3_SKY_DROPPED))
-            CancelMultiTurnMoves(battler);
+            CancelMultiTurnMoves(battler, STATE_GRAVITY_ON_AIRBORNE);
 
         gStatuses3[battler] &= ~(STATUS3_MAGNET_RISE | STATUS3_TELEKINESIS | STATUS3_ON_AIR | STATUS3_SKY_DROPPED);
         break;
@@ -10206,7 +10206,7 @@ static void Cmd_various(void)
     {
         VARIOUS_ARGS();
         const u8 *result;
-        result = CancelMultiTurnMoves(battler);
+        result = CancelMultiTurnMoves(battler, STATE_CANCEL_MULTI_TURN_MOVES);
         if (result)
         {
             gBattlescriptCurrInstr = result;
@@ -13919,7 +13919,7 @@ static void Cmd_tryspiteppreduce(void)
 
             // Don't cut off Sky Drop if pp is brought to zero.
             if (gBattleMons[gBattlerTarget].pp[i] == 0 && gBattleStruct->skyDropTargets[gBattlerTarget] == 0xFF)
-                CancelMultiTurnMoves(gBattlerTarget);
+                CancelMultiTurnMoves(gBattlerTarget, STATE_NORMAL);
         }
         else
         {
@@ -14127,7 +14127,7 @@ static void Cmd_handlerollout(void)
 
     if (gBattleStruct->moveResultFlags[gBattlerTarget] & MOVE_RESULT_NO_EFFECT)
     {
-        CancelMultiTurnMoves(gBattlerAttacker);
+        CancelMultiTurnMoves(gBattlerAttacker, STATE_NORMAL);
         gBattlescriptCurrInstr = BattleScript_MoveMissedPause;
     }
     else
