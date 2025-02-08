@@ -1931,45 +1931,31 @@ s32 CalcCritChanceStage(u32 battlerAtk, u32 battlerDef, u32 move, bool32 recordA
 // Focus Energy = 4 * (Base Speed / 2)
 s32 CalcCritChanceStageGen1(u32 battlerAtk, u32 battlerDef, u32 move, bool32 recordAbility)
 {
-    // Vanilla
-    u32 focusEnergyScaler = 4;
-    u32 highCritRatioScaler = 8;
-
-    // Not vanilla
-    u32 superLuckScaler = 4;
-    u32 scopeLensScaler = 4;
-    u32 luckyPunchScaler = 8;
-    u32 farfetchdLeekScaler = 8;
-
     s32 critChance = 0;
     s32 moveCritStage = gMovesInfo[gCurrentMove].criticalHitStage;
     s32 bonusCritStage = gBattleStruct->bonusCritStages[battlerAtk]; // G-Max Chi Strike
+    u32 holdEffectCritStage = GetHoldEffectCritChanceIncrease(battlerAtk, GetBattlerHoldEffect(battlerAtk, TRUE));
     u32 abilityAtk = GetBattlerAbility(battlerAtk);
     u32 abilityDef = GetBattlerAbility(battlerDef);
-    u32 holdEffectAtk = GetBattlerHoldEffect(battlerAtk, TRUE);
     u16 baseSpeed = gSpeciesInfo[gBattleMons[battlerAtk].species].baseSpeed;
 
     critChance = baseSpeed / 2;
 
     // Crit scaling
     if (moveCritStage > 0)
-        critChance = critChance * highCritRatioScaler * moveCritStage;
+        critChance *= 8 * moveCritStage;
 
     if (bonusCritStage > 0)
-        critChance = critChance * bonusCritStage;
+        critChance *= bonusCritStage;
 
     if ((gBattleMons[battlerAtk].status2 & STATUS2_FOCUS_ENERGY_ANY) != 0)
-        critChance = critChance * focusEnergyScaler;
+        critChance *= 4;
 
-    if (holdEffectAtk == HOLD_EFFECT_SCOPE_LENS)
-        critChance = critChance * scopeLensScaler;
-    else if (holdEffectAtk == HOLD_EFFECT_LUCKY_PUNCH && gBattleMons[battlerAtk].species == SPECIES_CHANSEY)
-        critChance = critChance * luckyPunchScaler;
-    else if (IsBattlerLeekAffected(battlerAtk, holdEffectAtk))
-        critChance = critChance * farfetchdLeekScaler;
+    if (holdEffectCritStage > 0)
+        critChance *= 4 * holdEffectCritStage;
 
     if (abilityAtk == ABILITY_SUPER_LUCK)
-        critChance = critChance * superLuckScaler;
+        critChance *= 4;
 
     if (critChance > 255)
         critChance = 255;
