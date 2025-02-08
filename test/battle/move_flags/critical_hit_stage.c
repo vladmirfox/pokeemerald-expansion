@@ -6,8 +6,8 @@ SINGLE_BATTLE_TEST("criticalHitStage set to 1 increases critical hits occur at a
     u32 j, genConfig = 0, passes = 0, trials = 0;
 
     PARAMETRIZE { genConfig = GEN_1; passes = 1; trials = 2; }     // 50% with Wobbuffet's base speed
-    for (j = GEN_2; j < GEN_9 + 1; j++) {
-        PARAMETRIZE { genConfig = GEN_2; passes = 1; trials = 8; } // ~78.1% with Chansey's base speed
+    for (j = GEN_2; j <= GEN_9; j++) {
+        PARAMETRIZE { genConfig = GEN_2; passes = 1; trials = 8; }
     }
     PASSES_RANDOMLY(passes, trials, RNG_CRITICAL_HIT);
     GIVEN {

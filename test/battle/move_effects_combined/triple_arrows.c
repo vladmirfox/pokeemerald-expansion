@@ -46,10 +46,13 @@ SINGLE_BATTLE_TEST("Triple Arrows makes the foe flinch 30% of the time")
 
 SINGLE_BATTLE_TEST("Triple Arrows has an increased critical hit ratio")
 {
-    u32 genConfig = 0;
-    for (u32 j = GEN_2; j < GEN_LATEST + 1; j++)
-        PARAMETRIZE { genConfig = j; }
-    PASSES_RANDOMLY(1, 8, RNG_CRITICAL_HIT);
+    u32 j, genConfig = 0, passes = 0, trials = 0;
+
+    PARAMETRIZE { genConfig = GEN_1; passes = 1; trials = 2; }     // 50% with Wobbuffet's base speed
+    for (j = GEN_2; j <= GEN_9; j++) {
+        PARAMETRIZE { genConfig = GEN_2; passes = 1; trials = 8; }
+    }
+    PASSES_RANDOMLY(passes, trials, RNG_CRITICAL_HIT);
     GIVEN {
         WITH_CONFIG(GEN_CONFIG_CRIT_CHANCE, genConfig);
         ASSUME(gMovesInfo[MOVE_TRIPLE_ARROWS].criticalHitStage == 1);

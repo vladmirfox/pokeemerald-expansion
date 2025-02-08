@@ -1938,8 +1938,10 @@ s32 CalcCritChanceStageGen1(u32 battlerAtk, u32 battlerDef, u32 move, bool32 rec
     if (bonusCritStage > 0)
         critChance *= bonusCritStage;
 
-    if ((gBattleMons[battlerAtk].status2 & STATUS2_FOCUS_ENERGY_ANY) != 0)
+    if (gBattleMons[battlerAtk].status2 & STATUS2_FOCUS_ENERGY)
         critChance *= 4;
+    else if (gBattleMons[battlerAtk].status2 & STATUS2_DRAGON_CHEER)
+        critChance *= 2;
 
     if (holdEffectCritStage > 0)
         critChance *= 4 * holdEffectCritStage;
@@ -12580,7 +12582,10 @@ static void Cmd_setfocusenergy(void)
     }
     else
     {
-        gBattleMons[battler].status2 |= STATUS2_FOCUS_ENERGY;
+        if (GetGenConfig(GEN_CONFIG_FOCUS_ENERGY_CRIT_RATIO) >= GEN_3)
+            gBattleMons[battler].status2 |= STATUS2_FOCUS_ENERGY;
+        else
+            gBattleMons[battler].status2 |= STATUS2_DRAGON_CHEER;
         gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_GETTING_PUMPED;
     }
     gBattlescriptCurrInstr = cmd->nextInstr;
