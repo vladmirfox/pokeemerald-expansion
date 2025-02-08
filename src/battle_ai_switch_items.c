@@ -90,6 +90,10 @@ u32 GetSwitchChance(enum ShouldSwitchScenario shouldSwitchScenario)
             return SHOULD_SWITCH_REGENERATOR_PERCENTAGE;
         case SHOULD_SWITCH_REGENERATOR_STATS_RAISED:
             return SHOULD_SWITCH_REGENERATOR_STATS_RAISED_PERCENTAGE;
+        case SHOULD_SWITCH_ENCORE_STATUS:
+            return SHOULD_SWITCH_ENCORE_STATUS_PERCENTAGE;
+        case SHOULD_SWITCH_ENCORE_DAMAGE:
+            return SHOULD_SWITCH_ENCORE_DAMAGE_PERCENTAGE;
         default:
             return 100;
     }
@@ -919,7 +923,7 @@ static bool32 ShouldSwitchIfEncored(u32 battler)
         return FALSE;
 
     // Switch out if status move
-    if (GetMoveCategory(encoredMove) == DAMAGE_CATEGORY_STATUS)
+    if (GetMoveCategory(encoredMove) == DAMAGE_CATEGORY_STATUS && RandomPercentage(RNG_AI_SWITCH_ENCORE, GetSwitchChance(SHOULD_SWITCH_ENCORE_STATUS)))
         return SetSwitchinAndSwitch(battler, PARTY_SIZE);
 
     // Stay in if effective move
@@ -927,7 +931,7 @@ static bool32 ShouldSwitchIfEncored(u32 battler)
         return FALSE;
 
     // Switch out 50% of the time otherwise
-    else if ((RandomPercentage(RNG_AI_SWITCH_ENCORE, 50) || AI_DATA->aiSwitchPredictionInProgress) && AI_DATA->mostSuitableMonId[battler] != PARTY_SIZE)
+    else if ((RandomPercentage(RNG_AI_SWITCH_ENCORE, GetSwitchChance(SHOULD_SWITCH_ENCORE_DAMAGE)) || AI_DATA->aiSwitchPredictionInProgress) && AI_DATA->mostSuitableMonId[battler] != PARTY_SIZE)
         return SetSwitchinAndSwitch(battler, PARTY_SIZE);
 
     return FALSE;

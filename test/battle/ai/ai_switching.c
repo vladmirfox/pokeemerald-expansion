@@ -851,6 +851,7 @@ AI_SINGLE_BATTLE_TEST("Switch AI: AI will switch out if it has <= 66% HP remaini
 
 AI_SINGLE_BATTLE_TEST("AI_FLAG_SMART_SWITCHING: AI will switch out if it has been Encore'd into a status move")
 {
+    PASSES_RANDOMLY(SHOULD_SWITCH_ENCORE_STATUS_PERCENTAGE, 100, RNG_AI_SWITCH_ENCORE);
     GIVEN {
         ASSUME(GetMoveEffect(MOVE_ENCORE) == EFFECT_ENCORE);
         AI_FLAGS(AI_FLAG_CHECK_BAD_MOVE | AI_FLAG_CHECK_VIABILITY | AI_FLAG_TRY_TO_FAINT | AI_FLAG_SMART_SWITCHING);
@@ -880,7 +881,7 @@ AI_SINGLE_BATTLE_TEST("AI_FLAG_SMART_SWITCHING: AI will stay in if Encore'd into
 AI_SINGLE_BATTLE_TEST("AI_FLAG_SMART_SWITCHING: AI will switch out if Encore'd into neutral move with good switchin 50% of the time")
 {
     KNOWN_FAILING; // AI still switches even if ShouldSwitch is set to immediately return FALSE, something external seems to be triggering this
-    PASSES_RANDOMLY(50, 100, RNG_AI_SWITCH_ENCORE);
+    PASSES_RANDOMLY(SHOULD_SWITCH_ENCORE_DAMAGE_PERCENTAGE, 100, RNG_AI_SWITCH_ENCORE);
     GIVEN {
         ASSUME(GetMoveEffect(MOVE_ENCORE) == EFFECT_ENCORE);
         AI_FLAGS(AI_FLAG_CHECK_BAD_MOVE | AI_FLAG_CHECK_VIABILITY | AI_FLAG_TRY_TO_FAINT | AI_FLAG_SMART_SWITCHING);
