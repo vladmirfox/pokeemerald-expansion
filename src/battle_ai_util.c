@@ -3158,7 +3158,7 @@ bool32 AnyPartyMemberStatused(u32 battlerId, bool32 checkSoundproof)
     if (IsDoubleBattle())
     {
         battlerOnField1 = gBattlerPartyIndexes[battlerId];
-        battlerOnField2 = gBattlerPartyIndexes[GetPartnerBattlerPosition(battlerId)];
+        battlerOnField2 = gBattlerPartyIndexes[GetPartnerBattler(battlerId)];
         // Check partner's status
         if ((B_HEAL_BELL_SOUNDPROOF == GEN_5 || AI_DATA->abilities[BATTLE_PARTNER(battlerId)] != ABILITY_SOUNDPROOF || !checkSoundproof)
          && GetMonData(&party[battlerOnField2], MON_DATA_STATUS) != STATUS1_NONE)
@@ -3582,7 +3582,7 @@ s32 CountUsablePartyMons(u32 battlerId)
     if (IsDoubleBattle())
     {
         battlerOnField1 = gBattlerPartyIndexes[battlerId];
-        battlerOnField2 = gBattlerPartyIndexes[GetPartnerBattlerPosition(battlerId)];
+        battlerOnField2 = gBattlerPartyIndexes[GetPartnerBattler(battlerId)];
     }
     else // In singles there's only one battlerId by side.
     {

@@ -1214,12 +1214,12 @@ static inline u32 GetBattlerAtPosition(u32 position)
     return battler;
 }
 
-static inline u32 GetPartnerBattlerPosition(u32 battler)
+static inline u32 GetPartnerBattler(u32 battler)
 {
     return GetBattlerAtPosition(BATTLE_PARTNER(GetBattlerPosition(battler)));
 }
 
-static inline u32 GetOppositeBattlerPosition(u32 battler)
+static inline u32 GetOppositeBattler(u32 battler)
 {
     return GetBattlerAtPosition(BATTLE_OPPOSITE(GetBattlerPosition(battler)));
 }
@@ -1229,7 +1229,7 @@ static inline u32 GetBattlerSide(u32 battler)
     return GetBattlerPosition(battler) & BIT_SIDE;
 }
 
-static inline u32 GetBattlerSidePosition(u32 battler)
+static inline u32 GetOpposingSideBattler(u32 battler)
 {
     return GetBattlerAtPosition(BATTLE_OPPOSITE(GetBattlerSide(battler)));
 }

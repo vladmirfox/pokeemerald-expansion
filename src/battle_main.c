@@ -4147,7 +4147,7 @@ enum
 
 void SetupAISwitchingData(u32 battler, enum SwitchType switchType)
 {
-    s32 opposingBattler = GetOppositeBattlerPosition(battler);
+    s32 opposingBattler = GetOppositeBattler(battler);
 
     // AI's predicting data
     if ((AI_THINKING_STRUCT->aiFlags[battler] & AI_FLAG_PREDICT_SWITCH))
@@ -4360,38 +4360,38 @@ static void HandleTurnActionSelectionState(void)
                     break;
                 case B_ACTION_CANCEL_PARTNER:
                     gBattleCommunication[battler] = STATE_WAIT_SET_BEFORE_ACTION;
-                    gBattleCommunication[GetPartnerBattlerPosition(battler)] = STATE_BEFORE_ACTION_CHOSEN;
+                    gBattleCommunication[GetPartnerBattler(battler)] = STATE_BEFORE_ACTION_CHOSEN;
                     RecordedBattle_ClearBattlerAction(battler, 1);
-                    if (gBattleMons[GetPartnerBattlerPosition(battler)].status2 & STATUS2_MULTIPLETURNS
-                        || gBattleMons[GetPartnerBattlerPosition(battler)].status2 & STATUS2_RECHARGE)
+                    if (gBattleMons[GetPartnerBattler(battler)].status2 & STATUS2_MULTIPLETURNS
+                        || gBattleMons[GetPartnerBattler(battler)].status2 & STATUS2_RECHARGE)
                     {
                         BtlController_EmitEndBounceEffect(battler, BUFFER_A);
                         MarkBattlerForControllerExec(battler);
                         return;
                     }
-                    else if (gChosenActionByBattler[GetPartnerBattlerPosition(battler)] == B_ACTION_SWITCH)
+                    else if (gChosenActionByBattler[GetPartnerBattler(battler)] == B_ACTION_SWITCH)
                     {
-                        RecordedBattle_ClearBattlerAction(GetPartnerBattlerPosition(battler), 2);
+                        RecordedBattle_ClearBattlerAction(GetPartnerBattler(battler), 2);
                     }
-                    else if (gChosenActionByBattler[GetPartnerBattlerPosition(battler)] == B_ACTION_RUN)
+                    else if (gChosenActionByBattler[GetPartnerBattler(battler)] == B_ACTION_RUN)
                     {
-                        RecordedBattle_ClearBattlerAction(GetPartnerBattlerPosition(battler), 1);
+                        RecordedBattle_ClearBattlerAction(GetPartnerBattler(battler), 1);
                     }
-                    else if (gChosenActionByBattler[GetPartnerBattlerPosition(battler)] == B_ACTION_USE_MOVE
-                             && (gProtectStructs[GetPartnerBattlerPosition(battler)].noValidMoves
-                                || gDisableStructs[GetPartnerBattlerPosition(battler)].encoredMove))
+                    else if (gChosenActionByBattler[GetPartnerBattler(battler)] == B_ACTION_USE_MOVE
+                             && (gProtectStructs[GetPartnerBattler(battler)].noValidMoves
+                                || gDisableStructs[GetPartnerBattler(battler)].encoredMove))
                     {
-                        RecordedBattle_ClearBattlerAction(GetPartnerBattlerPosition(battler), 1);
+                        RecordedBattle_ClearBattlerAction(GetPartnerBattler(battler), 1);
                     }
                     else if (gBattleTypeFlags & BATTLE_TYPE_PALACE
-                             && gChosenActionByBattler[GetPartnerBattlerPosition(battler)] == B_ACTION_USE_MOVE)
+                             && gChosenActionByBattler[GetPartnerBattler(battler)] == B_ACTION_USE_MOVE)
                     {
                         gRngValue = gBattlePalaceMoveSelectionRngValue;
-                        RecordedBattle_ClearBattlerAction(GetPartnerBattlerPosition(battler), 1);
+                        RecordedBattle_ClearBattlerAction(GetPartnerBattler(battler), 1);
                     }
                     else
                     {
-                        RecordedBattle_ClearBattlerAction(GetPartnerBattlerPosition(battler), 3);
+                        RecordedBattle_ClearBattlerAction(GetPartnerBattler(battler), 3);
                     }
 
                     gBattleStruct->gimmick.toActivate &= ~((1u << BATTLE_PARTNER(GetBattlerPosition(battler))));

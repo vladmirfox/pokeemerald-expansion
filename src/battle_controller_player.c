@@ -688,7 +688,7 @@ void HandleInputChooseMove(u32 battler)
         if (moveTarget & MOVE_TARGET_USER)
             gMultiUsePlayerCursor = battler;
         else
-            gMultiUsePlayerCursor = GetBattlerSidePosition(battler);
+            gMultiUsePlayerCursor = GetOpposingSideBattler(battler);
 
         if (!gBattleResources->bufferA[battler][1]) // not a double battle
         {
