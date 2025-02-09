@@ -350,7 +350,7 @@ struct AiLogicData
     u16 partnerMove;
     u16 speedStats[MAX_BATTLERS_COUNT]; // Speed stats for all battles, calculated only once, same way as damages
     struct SimulatedDamage simulatedDmg[MAX_BATTLERS_COUNT][MAX_BATTLERS_COUNT][MAX_MON_MOVES]; // attacker, target, moveIndex
-    u8 effectiveness[MAX_BATTLERS_COUNT][MAX_BATTLERS_COUNT][MAX_MON_MOVES]; // attacker, target, moveIndex
+    uq4_12_t effectiveness[MAX_BATTLERS_COUNT][MAX_BATTLERS_COUNT][MAX_MON_MOVES]; // attacker, target, moveIndex
     u8 moveAccuracy[MAX_BATTLERS_COUNT][MAX_BATTLERS_COUNT][MAX_MON_MOVES]; // attacker, target, moveIndex
     u8 moveLimitations[MAX_BATTLERS_COUNT];
     u8 monToSwitchInId[MAX_BATTLERS_COUNT]; // ID of the mon to switch in.
@@ -686,7 +686,6 @@ struct BattleStruct
     u8 safariCatchFactor;
     u8 linkBattleVsSpriteId_V; // The letter "V"
     u8 linkBattleVsSpriteId_S; // The letter "S"
-    u8 formToChangeInto;
     u8 chosenMovePositions[MAX_BATTLERS_COUNT];
     u8 stateIdAfterSelScript[MAX_BATTLERS_COUNT];
     u8 prevSelectedPartySlot;
@@ -784,6 +783,7 @@ struct BattleStruct
     u8 ballSwapped:1; // Used for the last used ball feature
     u8 throwingPokeBall:1;
     u8 ballSpriteIds[2];    // item gfx, window gfx
+    u8 moveInfoSpriteId; // move info, window gfx
     u8 appearedInBattle; // Bitfield to track which Pokemon appeared in battle. Used for Burmy's form change
     u8 skyDropTargets[MAX_BATTLERS_COUNT]; // For Sky Drop, to account for if multiple Pokemon use Sky Drop in a double battle.
     // When using a move which hits multiple opponents which is then bounced by a target, we need to make sure, the move hits both opponents, the one with bounce, and the one without.
@@ -807,8 +807,6 @@ struct BattleStruct
     u8 dauntlessShieldBoost[NUM_BATTLE_SIDES];
     u8 supersweetSyrup[NUM_BATTLE_SIDES];
     u8 supremeOverlordCounter[MAX_BATTLERS_COUNT];
-    u8 quickClawRandom[MAX_BATTLERS_COUNT];
-    u8 quickDrawRandom[MAX_BATTLERS_COUNT];
     u8 shellSideArmCategory[MAX_BATTLERS_COUNT][MAX_BATTLERS_COUNT];
     u8 speedTieBreaks; // MAX_BATTLERS_COUNT! values.
     u8 categoryOverride; // for Z-Moves and Max Moves
@@ -1189,6 +1187,18 @@ extern bool8 gLastUsedBallMenuPresent;
 extern u8 gPartyCriticalHits[PARTY_SIZE];
 extern u8 gCategoryIconSpriteId;
 
+static inline bool32 IsBattlerAlive(u32 battler)
+{
+    if (gBattleMons[battler].hp == 0)
+        return FALSE;
+    else if (battler >= gBattlersCount)
+        return FALSE;
+    else if (gAbsentBattlerFlags & (1u << battler))
+        return FALSE;
+    else
+        return TRUE;
+}
+
 static inline bool32 IsBattlerTurnDamaged(u32 battler)
 {
     return gSpecialStatuses[battler].physicalDmg != 0
@@ -1249,11 +1259,6 @@ static inline bool32 IsBattlerInvalidForSpreadMove(u32 battlerAtk, u32 battlerDe
     return battlerDef == battlerAtk
         || !IsBattlerAlive(battlerDef)
         || (battlerDef == BATTLE_PARTNER(battlerAtk) && (moveTarget == MOVE_TARGET_BOTH));
-}
-
-static inline bool32 MoveResultHasEffect(u32 battler)
-{
-    return !(gBattleStruct->moveResultFlags[battler] & MOVE_RESULT_NO_EFFECT);
 }
 
 #endif // GUARD_BATTLE_H
