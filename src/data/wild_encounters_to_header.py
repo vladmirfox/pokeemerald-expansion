@@ -13,9 +13,9 @@ TOTAL                 = "TOTAL"
 NULL                  = "NULL"
 
 #encounter group header types
-WILD_MON                 = "gWildMon"
-BATTLE_PIKE_MON          = "gBattlePikeWildMon"
-BATTLE_PYRAMID_MON       = "gBattlePyramidWildMon"
+WILD_MON              = "gWildMon"
+BATTLE_PIKE_MON       = "gBattlePikeWildMon"
+BATTLE_PYRAMID_MON    = "gBattlePyramidWildMon"
 
 #mon encounter group types
 LAND_MONS             = "land_mons"
