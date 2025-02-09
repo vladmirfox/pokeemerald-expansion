@@ -1677,16 +1677,29 @@ static u16 GetSwitchinTypeMatchup(u32 opposingBattler, struct BattlePokemon batt
 static u32 GetSwitchinCandidate(u32 switchinCategory, u32 battler, int firstId, int lastId)
 {
     int i;
-    u8 bits[PARTY_SIZE] = {0, 1, 2, 3, 4, 5};
+    u32 bits[PARTY_SIZE];
+    u32 start;
 
     // Randomize between eligible mons
     if (AI_THINKING_STRUCT->aiFlags[GetThinkingBattler(battler)] & AI_FLAG_RANDOMIZE_SWITCHIN)
     {
-        Shuffle8(bits, PARTY_SIZE * sizeof(u8));
-        for (i = 0; i < PARTY_SIZE; i++)
+        start = RandomUniform(RNG_AI_RANDOM_SWITCHIN, 0, 5);
+        DebugPrintf("Start: %d", start);
+        for (i = 0; i < ARRAY_COUNT(bits); i++)
         {
-            if (switchinCategory & (1 << bits[i]))
-                return i;
+            bits[i] = ((start + i) % 6);
+            DebugPrintf("bits: %d", bits[i]);
+        }
+
+        DebugPrintf("Switchincategory: %d", switchinCategory);
+
+        for (i = firstId; i < lastId; i++) 
+        {
+            if ((switchinCategory & (1u << bits[i])) > 0)
+            {
+                DebugPrintf("Switch into slot: %d", bits[i]);
+                return bits[i];
+            }
         }
     }
 
@@ -1827,7 +1840,7 @@ static u32 GetBestMonIntegrated(struct Pokemon *party, int firstId, int lastId, 
         typeMatchup = GetSwitchinTypeMatchup(opposingBattler, AI_DATA->switchinCandidate.battleMon);
 
         // Track max hits to KO and set defensive mon
-        if(hitsToKOAI > maxHitsToKO)
+        if(hitsToKOAI >= maxHitsToKO)
         {
             maxHitsToKO = hitsToKOAI;
             if(maxHitsToKO > defensiveMonHitKOThreshold)
