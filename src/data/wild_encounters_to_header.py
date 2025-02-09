@@ -2,7 +2,7 @@ import json
 import enum
 
 #todo: add hidden mons!
-#todo: make info groups into an array so parsing is much easier
+#todo: get parsing working now that infos are in arrays (by time, not encounter type)
 #todo: test with origin/upcoming
 
 #C string vars
@@ -50,6 +50,7 @@ TIME_EVENING_INDEX = 2
 TIME_NIGHT         = "time_night"
 TIME_NIGHT_LABEL   = "Night"
 TIME_NIGHT_INDEX   = 3
+TOTAL_TIME_STAGES  = TIME_NIGHT_INDEX + 1
 
 #struct building blocks
 baseStruct    = "const struct WildPokemon"
@@ -92,7 +93,7 @@ eFishingMons   = []
 
 
 #debug output control
-printEncounterHeaders = True
+printEncounterHeaders = False
 printEncounterRateMacros = False
 printEncounterStructsInfoString = False
 printEncounterStructs = False
@@ -225,6 +226,9 @@ def ImportWildEncounterFile():
                 
         headerIndex += 1
     PrintWildMonHeadersContent()
+    for group in headerStructTable:
+        for label in headerStructTable[group]:
+            print(headerStructTable[group][label])
 
 
 def PrintStructContent(contentList):
@@ -236,6 +240,7 @@ def PrintStructContent(contentList):
 def AssembleMonHeaderContent():
     SetupMonInfoVars()
     tempHeaderLabel = GetWildMonHeadersLabel()
+    tempHeaderTimeIndex = GetTimeIndexFromString(structTime)
     
     if tempHeaderLabel not in headerStructTable:
         headerStructTable[tempHeaderLabel] = {}
@@ -249,11 +254,20 @@ def AssembleMonHeaderContent():
         headerStructTable[tempHeaderLabel][structLabel]["mapNum"] = structMap
         headerStructTable[tempHeaderLabel][structLabel]["encounterCount"] = encounterCount[headerIndex]
         headerStructTable[tempHeaderLabel][structLabel]["encounter_types"] = []
+        #headerStructTable[tempHeaderLabel][structLabel]["encounter_types"][TIME_MORNING_INDEX] = []
+        #headerStructTable[tempHeaderLabel][structLabel]["encounter_types"][TIME_DAY_INDEX] = []
+        #headerStructTable[tempHeaderLabel][structLabel]["encounter_types"][TIME_EVENING_INDEX] = []
+        #headerStructTable[tempHeaderLabel][structLabel]["encounter_types"][TIME_NIGHT_INDEX] = []
 
-    headerStructTable[tempHeaderLabel][structLabel]["encounter_types"].append(landMonsInfo)
-    headerStructTable[tempHeaderLabel][structLabel]["encounter_types"].append(waterMonsInfo)
-    headerStructTable[tempHeaderLabel][structLabel]["encounter_types"].append(rockSmashMonsInfo)
-    headerStructTable[tempHeaderLabel][structLabel]["encounter_types"].append(fishingMonsInfo)
+        i = 0
+        while i <= TIME_NIGHT_INDEX:
+            headerStructTable[tempHeaderLabel][structLabel]["encounter_types"].append([])
+            i += 1
+
+    headerStructTable[tempHeaderLabel][structLabel]["encounter_types"][tempHeaderTimeIndex].append(landMonsInfo)
+    headerStructTable[tempHeaderLabel][structLabel]["encounter_types"][tempHeaderTimeIndex].append(waterMonsInfo)
+    headerStructTable[tempHeaderLabel][structLabel]["encounter_types"][tempHeaderTimeIndex].append(rockSmashMonsInfo)
+    headerStructTable[tempHeaderLabel][structLabel]["encounter_types"][tempHeaderTimeIndex].append(fishingMonsInfo)
 
     #headerStructTable[tempHeaderLabel].update(headerStructContent[structLabel])
 
@@ -424,6 +438,19 @@ def GetTimeStrFromIndex(index):
         return TIME_NIGHT.upper()
     else:
         return index
+
+
+def GetTimeIndexFromString(string):
+    if string.lower() == TIME_MORNING or string == TIME_MORNING_LABEL:
+        return TIME_MORNING_INDEX
+    elif string.lower() == TIME_DAY or string == TIME_DAY_LABEL:
+        return TIME_DAY_INDEX
+    elif string.lower() == TIME_EVENING or string == TIME_EVENING_LABEL:
+        return TIME_EVENING_INDEX
+    elif string.lower() == TIME_NIGHT or string == TIME_NIGHT_LABEL:
+        return TIME_NIGHT_INDEX
+    else:
+        return string
 
 
 ImportWildEncounterFile()
