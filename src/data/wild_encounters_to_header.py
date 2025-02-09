@@ -2,7 +2,7 @@ import json
 import enum
 
 #todo: add hidden mons!
-#todo: get parsing working now that infos are in arrays (by time, not encounter type)
+#todo: add encounter group type indices
 #todo: test with origin/upcoming
 
 #C string vars
@@ -20,12 +20,19 @@ BATTLE_PYRAMID_MON       = "gBattlePyramidWildMon"
 #mon encounter group types
 LAND_MONS             = "land_mons"
 LAND_MONS_LABEL       = "LandMons"
+# add index here
 WATER_MONS            = "water_mons"
 WATER_MONS_LABEL      = "WaterMons"
+# add index here
 ROCK_SMASH_MONS       = "rock_smash_mons"
 ROCK_SMASH_MONS_LABEL = "RockSmashMons"
+# add index here
 FISHING_MONS          = "fishing_mons"
 FISHING_MONS_LABEL    = "FishingMons"
+# add index here
+HIDDEN_MONS           = "hidden_mons"
+HIDDEN_MONS_LABEL     = "HiddenMons"
+# add index here
 
 #fishing encounter data
 GOOD_ROD              = "good_rod"
@@ -103,6 +110,7 @@ def ImportWildEncounterFile():
     global waterMonsInfo 
     global rockSmashMonsInfo 
     global fishingMonsInfo
+    global hiddenMonsInfo
     global structLabel 
     global structMonType 
     global structTime
@@ -185,6 +193,7 @@ def ImportWildEncounterFile():
                 waterMonsInfo     = ""
                 rockSmashMonsInfo = ""
                 fishingMonsInfo   = ""
+                hiddenMonsInfo    = ""
                 for encounterTable in time:
                     for areaTable in time[encounterTable]:
                         if LAND_MONS in areaTable:
@@ -200,6 +209,7 @@ def ImportWildEncounterFile():
                             structMonType = FISHING_MONS_LABEL
                             fishingMonsInfo = f"{structLabel}_{structMonType}{structInfo}_{structTime}"
                         else:
+                            hiddenMonsInfo = ""
                             structMonType = ""
                         
                         baseStructContent = []
@@ -226,9 +236,11 @@ def ImportWildEncounterFile():
                 
         headerIndex += 1
     PrintWildMonHeadersContent()
+    """
     for group in headerStructTable:
         for label in headerStructTable[group]:
             print(headerStructTable[group][label])
+    """
 
 
 def PrintStructContent(contentList):
@@ -268,6 +280,7 @@ def AssembleMonHeaderContent():
     headerStructTable[tempHeaderLabel][structLabel]["encounter_types"][tempHeaderTimeIndex].append(waterMonsInfo)
     headerStructTable[tempHeaderLabel][structLabel]["encounter_types"][tempHeaderTimeIndex].append(rockSmashMonsInfo)
     headerStructTable[tempHeaderLabel][structLabel]["encounter_types"][tempHeaderTimeIndex].append(fishingMonsInfo)
+    headerStructTable[tempHeaderLabel][structLabel]["encounter_types"][tempHeaderTimeIndex].append(hiddenMonsInfo)
 
     #headerStructTable[tempHeaderLabel].update(headerStructContent[structLabel])
 
@@ -277,6 +290,7 @@ def SetupMonInfoVars():
     global waterMonsInfo 
     global rockSmashMonsInfo 
     global fishingMonsInfo
+    global hiddenMonsInfo
 
     if landMonsInfo == "":
         landMonsInfo = NULL
@@ -294,6 +308,11 @@ def SetupMonInfoVars():
         fishingMonsInfo = NULL
     else:
         fishingMonsInfo = f"&{fishingMonsInfo}"
+    if hiddenMonsInfo == "":
+        hiddenMonsInfo = NULL
+    else:
+        hiddenMonsInfo = f"&{hiddenMonsInfo}"
+
     
 
 def PrintWildMonHeadersContent():
@@ -322,10 +341,14 @@ def PrintWildMonHeadersContent():
                         PrintEncounterHeaders(tabStr + tabStr + "{")
 
                         infoCount = 0
-                        infoIndex = 0
                         for monInfo in headerStructTable[group][label][stat]:
-                            timeStr = GetTimeStrFromIndex(infoIndex)
-
+                            infoIndex = 0
+                            for timeGroup in headerStructTable[group][label][stat][infoIndex]:
+                                print(GetTimeStrFromIndex(infoCount), stat, infoIndex)
+                                print(monInfo[infoIndex])
+                                infoIndex += 1
+                            infoCount += 1
+                        """
                             if infoCount in [0, 4, 8, 12]:
                                 PrintEncounterHeaders(f"{tabStr}{tabStr}{tabStr}[{timeStr}] = ")
                                 infoIndex += 1
@@ -340,8 +363,7 @@ def PrintWildMonHeadersContent():
                                 PrintEncounterHeaders(f"{tabStr}{tabStr}{tabStr}{tabStr}.fishMonsInfo = {monInfo},")
                                 PrintEncounterHeaders(tabStr + tabStr + tabStr + "},")
 
-                            infoCount += 1
-
+                        """
                         PrintEncounterHeaders(tabStr + tabStr + "},")
                 PrintEncounterHeaders(tabStr + "},")
                 labelCount += 1
