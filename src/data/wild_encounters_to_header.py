@@ -1,5 +1,5 @@
 import json
-import enum
+from enum import Enum
 
 #todo: add hidden mons!
 #todo: add encounter group type indices
@@ -20,19 +20,20 @@ BATTLE_PYRAMID_MON    = "gBattlePyramidWildMon"
 #mon encounter group types
 LAND_MONS             = "land_mons"
 LAND_MONS_LABEL       = "LandMons"
-# add index here
+LAND_MONS_INDEX       = 0
 WATER_MONS            = "water_mons"
 WATER_MONS_LABEL      = "WaterMons"
-# add index here
+WATER_MONS_INDEX      = 1
 ROCK_SMASH_MONS       = "rock_smash_mons"
 ROCK_SMASH_MONS_LABEL = "RockSmashMons"
-# add index here
+ROCK_SMASH_MONS_INDEX = 2
 FISHING_MONS          = "fishing_mons"
 FISHING_MONS_LABEL    = "FishingMons"
-# add index here
+FISHING_MONS_INDEX    = 3
 HIDDEN_MONS           = "hidden_mons"
 HIDDEN_MONS_LABEL     = "HiddenMons"
-# add index here
+HIDDEN_MONS_INDEX     = 4
+MONS_INFO_TOTAL       = HIDDEN_MONS_INDEX + 1
 
 #fishing encounter data
 GOOD_ROD              = "good_rod"
@@ -100,10 +101,11 @@ eFishingMons   = []
 
 
 #debug output control
-printEncounterHeaders = False
-printEncounterRateMacros = False
-printEncounterStructsInfoString = False
-printEncounterStructs = False
+printEncounterHeaders = True
+printEncounterRateMacros = True
+printEncounterStructsInfoString = True
+printEncounterStructs = True
+
 
 def ImportWildEncounterFile():
     global landMonsInfo
@@ -129,6 +131,8 @@ def ImportWildEncounterFile():
     global eFishingMons
     global encounterCount
     global headerIndex
+    global tabStr
+    tabStr = "    "
 
     wFile = open("wild_encounters.json")
     wData = json.load(wFile)
@@ -165,6 +169,7 @@ def ImportWildEncounterFile():
                     eFishingMons.append(field["groups"])
 
             PrintEncounterRateMacros()
+            print()
         
         for encounter in wEncounters:
             if "map" in encounter:
@@ -223,11 +228,11 @@ def ImportWildEncounterFile():
                         
                         baseStructLabel = f"{baseStruct} {structLabel}_{structMonType}_{structTime}{structArrayAssign}"
                         if printEncounterStructs:
-                            print("\n")
+                            print()
                             print(baseStructLabel)
                             print("{")
                             PrintStructContent(baseStructContent)
-                            print("}")
+                            print("};")
                         if printEncounterStructsInfoString:
                             infoStructString = f"{baseStruct}{structInfo} {structLabel}_{structMonType}{structInfo}_{structTime} = {{ {infoStructRate}, {structLabel}_{structMonType}_{structTime} }};"
                             print(infoStructString)
@@ -245,7 +250,7 @@ def ImportWildEncounterFile():
 
 def PrintStructContent(contentList):
     for monList in contentList:
-        print(f"    {{ {monList[0]}, {monList[1]}, {monList[2]} }},")
+        print(f"{tabStr}{{ {monList[0]}, {monList[1]}, {monList[2]} }},")
     return
 
 
@@ -266,10 +271,6 @@ def AssembleMonHeaderContent():
         headerStructTable[tempHeaderLabel][structLabel]["mapNum"] = structMap
         headerStructTable[tempHeaderLabel][structLabel]["encounterCount"] = encounterCount[headerIndex]
         headerStructTable[tempHeaderLabel][structLabel]["encounter_types"] = []
-        #headerStructTable[tempHeaderLabel][structLabel]["encounter_types"][TIME_MORNING_INDEX] = []
-        #headerStructTable[tempHeaderLabel][structLabel]["encounter_types"][TIME_DAY_INDEX] = []
-        #headerStructTable[tempHeaderLabel][structLabel]["encounter_types"][TIME_EVENING_INDEX] = []
-        #headerStructTable[tempHeaderLabel][structLabel]["encounter_types"][TIME_NIGHT_INDEX] = []
 
         i = 0
         while i <= TIME_NIGHT_INDEX:
@@ -316,7 +317,7 @@ def SetupMonInfoVars():
     
 
 def PrintWildMonHeadersContent():
-    tabStr = "    "
+    global tabStr
 
     groupCount = 0
     for group in headerStructTable:
@@ -332,7 +333,7 @@ def PrintWildMonHeadersContent():
                     mapData = headerStructTable[group][label][stat]
 
                     if stat == "mapGroup":
-                        PrintEncounterHeaders(f"{tabStr}{tabStr}.mapGroup = {mapData},")
+                        PrintEncounterHeaders(f"{tabStr}{tabStr}.mapGroup = {GetMapGroupEnum(mapData)},")
                     elif stat == "mapNum":
                         PrintEncounterHeaders(f"{tabStr}{tabStr}.mapNum = {mapData},")
 
@@ -343,27 +344,15 @@ def PrintWildMonHeadersContent():
                         infoCount = 0
                         for monInfo in headerStructTable[group][label][stat]:
                             infoIndex = 0
+                            PrintEncounterHeaders(f"{tabStr}{tabStr}{tabStr}[{GetTimeStrFromIndex(infoCount)}] = ")
                             for timeGroup in headerStructTable[group][label][stat][infoIndex]:
-                                print(GetTimeStrFromIndex(infoCount), stat, infoIndex)
-                                print(monInfo[infoIndex])
+                                if infoIndex == 0:
+                                    PrintEncounterHeaders(tabStr + tabStr + tabStr + "{")
+                                PrintEncounterHeaders(f"{tabStr}{tabStr}{tabStr}{tabStr}{GetIMonInfoStringFromIndex(infoIndex)} = {monInfo[infoIndex]},")
+                                if infoIndex == MONS_INFO_TOTAL - 1:    
+                                    PrintEncounterHeaders(tabStr + tabStr + tabStr + "},")
                                 infoIndex += 1
                             infoCount += 1
-                        """
-                            if infoCount in [0, 4, 8, 12]:
-                                PrintEncounterHeaders(f"{tabStr}{tabStr}{tabStr}[{timeStr}] = ")
-                                infoIndex += 1
-
-                                PrintEncounterHeaders(tabStr + tabStr + tabStr + "{")
-                                PrintEncounterHeaders(f"{tabStr}{tabStr}{tabStr}{tabStr}.landMonsInfo = {monInfo},")
-                            elif infoCount in [1, 5, 9, 13]:
-                                PrintEncounterHeaders(f"{tabStr}{tabStr}{tabStr}{tabStr}.waterMonsInfo = {monInfo},")
-                            elif infoCount in [2, 6, 10, 14]:
-                                PrintEncounterHeaders(f"{tabStr}{tabStr}{tabStr}{tabStr}.rockSmashMonsInfo = {monInfo},")
-                            elif infoCount in [3, 7, 11, 15]:
-                                PrintEncounterHeaders(f"{tabStr}{tabStr}{tabStr}{tabStr}.fishMonsInfo = {monInfo},")
-                                PrintEncounterHeaders(tabStr + tabStr + tabStr + "},")
-
-                        """
                         PrintEncounterHeaders(tabStr + tabStr + "},")
                 PrintEncounterHeaders(tabStr + "},")
                 labelCount += 1
@@ -458,8 +447,7 @@ def GetTimeStrFromIndex(index):
         return TIME_EVENING.upper()
     elif index == TIME_NIGHT_INDEX:
         return TIME_NIGHT.upper()
-    else:
-        return index
+    return index
 
 
 def GetTimeIndexFromString(string):
@@ -471,8 +459,26 @@ def GetTimeIndexFromString(string):
         return TIME_EVENING_INDEX
     elif string.lower() == TIME_NIGHT or string == TIME_NIGHT_LABEL:
         return TIME_NIGHT_INDEX
-    else:
-        return string
+    return string
+
+
+def GetIMonInfoStringFromIndex(index):
+    if index == LAND_MONS_INDEX:
+        return ".landMonsInfo"
+    elif index == WATER_MONS_INDEX:
+        return ".waterMonsInfo"
+    elif index == ROCK_SMASH_MONS_INDEX:
+        return ".rockSmashMonsInfo"
+    elif index == FISHING_MONS_INDEX:
+        return ".fishingMonsInfo"
+    elif index == HIDDEN_MONS_INDEX:
+        return ".hiddenMonsInfo"
+    return index
+
+def GetMapGroupEnum(string):
+    if "MAP_" in string:
+        return "MAP_GROUP(" + string[4:-1] + ")"
+    return string
 
 
 ImportWildEncounterFile()
