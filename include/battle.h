@@ -365,8 +365,6 @@ struct AiLogicData
     u8 shouldSwitch; // Stores result of ShouldSwitch, which decides whether a mon should be switched out
     u8 aiCalcInProgress:1;
     u8 battlerDoingPrediction; // Stores which battler is currently running its prediction calcs
-    u16 startTurnSpecies[MAX_BATTLERS_COUNT]; // Stores species the AI has in play at start of turn
-    u16 endTurnSpecies[MAX_BATTLERS_COUNT]; // Stores species the AI has in play at end of turn
 };
 
 struct AI_ThinkingStruct
@@ -820,6 +818,7 @@ struct BattleStruct
     u8 pursuitSwitchByMove:1;
     u8 pursuitStoredSwitch; // Stored id for the Pursuit target's switch
     s32 battlerExpReward;
+    u16 prevTurnSpecies[MAX_BATTLERS_COUNT]; // Stores species the AI has in play at start of turn
 
     // Simultaneous hp reduction for spread moves
     s32 moveDamage[MAX_BATTLERS_COUNT];

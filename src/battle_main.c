@@ -3934,7 +3934,6 @@ static void HandleEndTurn_ContinueBattle(void)
             gBattleMons[i].status2 &= ~STATUS2_FLINCHED;
             if ((gBattleMons[i].status1 & STATUS1_SLEEP) && (gBattleMons[i].status2 & STATUS2_MULTIPLETURNS))
                 CancelMultiTurnMoves(i);
-            AI_DATA->endTurnSpecies[i] = gBattleMons[i].species;
         }
         gBattleStruct->turnEffectsTracker = 0;
         gBattleStruct->turnEffectsBattlerId = 0;
@@ -4159,16 +4158,17 @@ void SetupAISwitchingData(u32 battler, enum SwitchType switchType)
         if (ShouldSwitch(opposingBattler))
             AI_DATA->shouldSwitch |= (1u << opposingBattler);
         AI_DATA->aiSwitchPredictionInProgress = FALSE;
+        gBattleStruct->prevTurnSpecies[opposingBattler] = gBattleMons[opposingBattler].species;
 
         // Determine whether AI will use predictions this turn
         AI_DATA->predictingSwitch = RandomPercentage(RNG_AI_PREDICT_SWITCH, 50);
     }
 
     // AI's data
-    AI_DATA->startTurnSpecies[battler] = gBattleMons[battler].species;
     AI_DATA->mostSuitableMonId[battler] = GetMostSuitableMonToSwitchInto(battler, switchType);
     if (ShouldSwitch(battler))
         AI_DATA->shouldSwitch |= (1u << battler);
+    gBattleStruct->prevTurnSpecies[battler] = gBattleMons[battler].species;
 }
 
 static void HandleTurnActionSelectionState(void)
