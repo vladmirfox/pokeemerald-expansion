@@ -8397,26 +8397,6 @@ static void Cmd_returntoball(void)
     gBattlescriptCurrInstr = cmd->nextInstr;
 }
 
-static void LearnCombinedNewMoves(u32 monId, u16 *learnMove)
-{
-    CMD_ARGS(bool8 isFirstMove);
-
-    u32 currLvl = GetMonData(&gPlayerParty[monId], MON_DATA_LEVEL);
-
-    while (gBattleResources->beforeLvlUp->level <= currLvl)
-    {
-        *learnMove = MonTryLearningNewMoveAtLevel(&gPlayerParty[monId], cmd->isFirstMove, gBattleResources->beforeLvlUp->level);
-
-        while (*learnMove == MON_ALREADY_KNOWS_MOVE)
-            *learnMove = MonTryLearningNewMoveAtLevel(&gPlayerParty[monId], FALSE, gBattleResources->beforeLvlUp->level);
-
-        if (*learnMove != MOVE_NONE)
-            break;
-
-        gBattleResources->beforeLvlUp->level++;
-    }
-}
-
 static void Cmd_handlelearnnewmove(void)
 {
     CMD_ARGS(const u8 *learnedMovePtr, const u8 *nothingToLearnPtr, bool8 isFirstMove);
@@ -8426,7 +8406,20 @@ static void Cmd_handlelearnnewmove(void)
 
     if (B_LEVEL_UP_NOTIFICATION >= GEN_9)
     {
-        LearnCombinedNewMoves(monId, &learnMove);
+        u32 currLvl = GetMonData(&gPlayerParty[monId], MON_DATA_LEVEL);
+
+        while (gBattleResources->beforeLvlUp->level <= currLvl)
+        {
+            learnMove = MonTryLearningNewMoveAtLevel(&gPlayerParty[monId], cmd->isFirstMove, gBattleResources->beforeLvlUp->level);
+
+            while (learnMove == MON_ALREADY_KNOWS_MOVE)
+                learnMove = MonTryLearningNewMoveAtLevel(&gPlayerParty[monId], FALSE, gBattleResources->beforeLvlUp->level);
+
+            if (learnMove != MOVE_NONE)
+                break;
+
+            gBattleResources->beforeLvlUp->level++;
+        }
     }
     else
     {
