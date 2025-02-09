@@ -30,6 +30,7 @@ static bool32 AI_ShouldHeal(u32 battler, u32 healAmount);
 static bool32 AI_OpponentCanFaintAiWithMod(u32 battler, u32 healAmount);
 static u32 GetSwitchinHazardsDamage(u32 battler, struct BattlePokemon *battleMon);
 static bool32 CanAbilityTrapOpponent(u16 ability, u32 opponent);
+static u32 FindMonWithAbilities(u32 battler, u16 *abilities, u32 abilityCount, u32 percentChance);
 
 static void InitializeSwitchinCandidate(struct Pokemon *mon)
 {
@@ -55,6 +56,43 @@ static bool32 IsAceMon(u32 battler, u32 monPartyId)
             && (monPartyId == CalculateEnemyPartyCount()-1 || monPartyId == CalculateEnemyPartyCount()-2))
         return TRUE;
     return FALSE;
+}
+
+static inline bool32 IsPartyMonOnFieldOrChosenToSwitch(u32 partyIndex, u32 battlerIn1, u32 battlerIn2)
+{
+    if (partyIndex == gBattlerPartyIndexes[battlerIn1]
+            || partyIndex == gBattlerPartyIndexes[battlerIn2])
+        return TRUE;
+    if (partyIndex == gBattleStruct->monToSwitchIntoId[battlerIn1]
+            || partyIndex == gBattleStruct->monToSwitchIntoId[battlerIn2])
+        return TRUE;
+    return FALSE;
+}
+
+static inline u32 GetActiveBattlerIds(u32 battler, u8 *battlerIn1, u8 *battlerIn2)
+{
+    u32 opposingBattler = 0;
+    u32 battlerPosition = GetBattlerPosition(battler);
+    if (IsDoubleBattle())
+    {
+        *battlerIn1 = battler;
+        if (gAbsentBattlerFlags & (1u << GetBattlerAtPosition(BATTLE_PARTNER(battlerPosition))))
+            *battlerIn2 = battler;
+        else
+            *battlerIn2 = GetBattlerAtPosition(BATTLE_PARTNER(battlerPosition));
+
+        opposingBattler = BATTLE_OPPOSITE(*battlerIn1);
+        if (gAbsentBattlerFlags & (1u << opposingBattler))
+            opposingBattler ^= BIT_FLANK;
+    }
+    else
+    {
+        opposingBattler = GetBattlerAtPosition(BATTLE_OPPOSITE(battlerPosition));
+        *battlerIn1 = battler;
+        *battlerIn2 = battler;
+    }
+    
+    return opposingBattler;
 }
 
 void GetAIPartyIndexes(u32 battler, s32 *firstId, s32 *lastId)
@@ -334,17 +372,13 @@ static bool32 FindMonThatAbsorbsOpponentsMove(u32 battler)
     u8 battlerIn1, battlerIn2;
     u8 numAbsorbingAbilities = 0;
     u16 absorbingTypeAbilities[3]; // Array size is maximum number of absorbing abilities for a single type
-    s32 firstId;
-    s32 lastId;
-    struct Pokemon *party;
-    u16 monAbility;
     u32 opposingBattler = GetBattlerAtPosition(BATTLE_OPPOSITE(GetBattlerPosition(battler)));
     u32 incomingMove = AI_DATA->lastUsedMove[opposingBattler];
     u32 incomingType = GetMoveType(incomingMove);
     u32 predictedMove = incomingMove; // Update for move prediction
     u32 predictedType = GetMoveType(predictedMove);
     bool32 isOpposingBattlerChargingOrInvulnerable = (IsSemiInvulnerable(opposingBattler, incomingMove) || IsTwoTurnNotSemiInvulnerableMove(opposingBattler, incomingMove));
-    s32 i, j;
+    s32 i;
 
     if (!(AI_THINKING_STRUCT->aiFlags[GetThinkingBattler(battler)] & AI_FLAG_SMART_SWITCHING))
         return FALSE;
@@ -354,19 +388,7 @@ static bool32 FindMonThatAbsorbsOpponentsMove(u32 battler)
     if (HasSuperEffectiveMoveAgainstOpponents(battler, TRUE) && (RandomPercentage(RNG_AI_SWITCH_ABSORBING, 66) || AI_DATA->aiSwitchPredictionInProgress))
         return FALSE;
 
-    if (IsDoubleBattle())
-    {
-        battlerIn1 = battler;
-        if (gAbsentBattlerFlags & (1u << GetBattlerAtPosition(BATTLE_PARTNER(GetBattlerPosition(battler)))))
-            battlerIn2 = battler;
-        else
-            battlerIn2 = GetBattlerAtPosition(BATTLE_PARTNER(GetBattlerPosition(battler)));
-    }
-    else
-    {
-        battlerIn1 = battler;
-        battlerIn2 = battler;
-    }
+    GetActiveBattlerIds(battler, &battlerIn1, &battlerIn2);
 
     // Create an array of possible absorb abilities so the AI considers all of them
     if (predictedType == TYPE_FIRE)
@@ -411,35 +433,12 @@ static bool32 FindMonThatAbsorbsOpponentsMove(u32 battler)
         if (gBattleMons[battler].ability == absorbingTypeAbilities[i])
             return FALSE;
     }
-
-    // Check party for mon with ability that absorbs move
-    GetAIPartyIndexes(battler, &firstId, &lastId);
-    party = GetBattlerParty(battler);
-
-    for (i = firstId; i < lastId; i++)
-    {
-        if (!IsValidForBattle(&party[i]))
-            continue;
-        if (i == gBattlerPartyIndexes[battlerIn1])
-            continue;
-        if (i == gBattlerPartyIndexes[battlerIn2])
-            continue;
-        if (i == gBattleStruct->monToSwitchIntoId[battlerIn1])
-            continue;
-        if (i == gBattleStruct->monToSwitchIntoId[battlerIn2])
-            continue;
-        if (IsAceMon(battler, i))
-            continue;
-
-        monAbility = GetMonAbility(&party[i]);
-
-        for (j = 0; j < numAbsorbingAbilities; j++)
-        {
-            // Found a mon
-            if (absorbingTypeAbilities[j] == monAbility)
-                return SetSwitchinAndSwitch(battler, i);
-        }
+    
+    i = FindMonWithAbilities(battler, absorbingTypeAbilities, numAbsorbingAbilities, 0);
+    if (i != PARTY_SIZE) {
+        return SetSwitchinAndSwitch(battler, i);
     }
+
     return FALSE;
 }
 
@@ -698,7 +697,7 @@ static bool32 AreStatsRaised(u32 battler)
 
 static bool32 FindMonWithFlagsAndSuperEffective(u32 battler, u16 flags, u32 percentChance)
 {
-    u32 battlerIn1, battlerIn2;
+    u8 battlerIn1, battlerIn2;
     s32 firstId;
     s32 lastId; // + 1
     struct Pokemon *party;
@@ -718,20 +717,7 @@ static bool32 FindMonWithFlagsAndSuperEffective(u32 battler, u16 flags, u32 perc
     if (IsBattleMoveStatus(gLastLandedMoves[battler]))
         return FALSE;
 
-    if (IsDoubleBattle())
-    {
-        battlerIn1 = battler;
-        if (gAbsentBattlerFlags & (1u << GetBattlerAtPosition(BATTLE_PARTNER(GetBattlerPosition(battler)))))
-            battlerIn2 = battler;
-        else
-            battlerIn2 = GetBattlerAtPosition(BATTLE_PARTNER(GetBattlerPosition(battler)));
-    }
-    else
-    {
-        battlerIn1 = battler;
-        battlerIn2 = battler;
-    }
-
+    GetActiveBattlerIds(battler, &battlerIn1, &battlerIn2);
     GetAIPartyIndexes(battler, &firstId, &lastId);
     party = GetBattlerParty(battler);
 
@@ -743,13 +729,7 @@ static bool32 FindMonWithFlagsAndSuperEffective(u32 battler, u16 flags, u32 perc
 
         if (!IsValidForBattle(&party[i]))
             continue;
-        if (i == gBattlerPartyIndexes[battlerIn1])
-            continue;
-        if (i == gBattlerPartyIndexes[battlerIn2])
-            continue;
-        if (i == gBattleStruct->monToSwitchIntoId[battlerIn1])
-            continue;
-        if (i == gBattleStruct->monToSwitchIntoId[battlerIn2])
+        if (IsPartyMonOnFieldOrChosenToSwitch(i, battlerIn1, battlerIn2))
             continue;
         if (IsAceMon(battler, i))
             continue;
@@ -779,7 +759,7 @@ static bool32 FindMonWithFlagsAndSuperEffective(u32 battler, u16 flags, u32 perc
 
 static bool32 CanMonSurviveHazardSwitchin(u32 battler)
 {
-    u32 battlerIn1, battlerIn2;
+    u8 battlerIn1, battlerIn2;
     u32 hazardDamage = 0, battlerHp = gBattleMons[battler].hp;
     u32 ability = AI_DATA->abilities[battler], aiMove;
     s32 firstId, lastId, i, j;
@@ -793,20 +773,7 @@ static bool32 CanMonSurviveHazardSwitchin(u32 battler)
     // Battler will faint to hazards, check to see if another mon can clear them
     if (hazardDamage > battlerHp)
     {
-        if (IsDoubleBattle())
-        {
-            battlerIn1 = battler;
-            if (gAbsentBattlerFlags & (1u << GetBattlerAtPosition(BATTLE_PARTNER(GetBattlerPosition(battler)))))
-                battlerIn2 = battler;
-            else
-                battlerIn2 = GetBattlerAtPosition(BATTLE_PARTNER(GetBattlerPosition(battler)));
-        }
-        else
-        {
-            battlerIn1 = battler;
-            battlerIn2 = battler;
-        }
-
+        GetActiveBattlerIds(battler, &battlerIn1, &battlerIn2);
         GetAIPartyIndexes(battler, &firstId, &lastId);
         party = GetBattlerParty(battler);
 
@@ -814,13 +781,7 @@ static bool32 CanMonSurviveHazardSwitchin(u32 battler)
         {
             if (!IsValidForBattle(&party[i]))
                 continue;
-            if (i == gBattlerPartyIndexes[battlerIn1])
-                continue;
-            if (i == gBattlerPartyIndexes[battlerIn2])
-                continue;
-            if (i == gBattleStruct->monToSwitchIntoId[battlerIn1])
-                continue;
-            if (i == gBattleStruct->monToSwitchIntoId[battlerIn2])
+            if (IsPartyMonOnFieldOrChosenToSwitch(i, battlerIn1, battlerIn2))
                 continue;
             if (IsAceMon(battler, i))
                 continue;
@@ -933,7 +894,7 @@ static bool32 ShouldSwitchIfAttackingStatsLowered(u32 battler)
 
 bool32 ShouldSwitch(u32 battler)
 {
-    u32 battlerIn1, battlerIn2;
+    u8 battlerIn1, battlerIn2;
     s32 firstId;
     s32 lastId; // + 1
     struct Pokemon *party;
@@ -954,22 +915,7 @@ bool32 ShouldSwitch(u32 battler)
         return FALSE;
 
     availableToSwitch = 0;
-
-    if (IsDoubleBattle())
-    {
-        u32 partner = GetBattlerAtPosition(BATTLE_PARTNER(GetBattlerAtPosition(battler)));
-        battlerIn1 = battler;
-        if (gAbsentBattlerFlags & (1u << partner))
-            battlerIn2 = battler;
-        else
-            battlerIn2 = partner;
-    }
-    else
-    {
-        battlerIn1 = battler;
-        battlerIn2 = battler;
-    }
-
+    GetActiveBattlerIds(battler, &battlerIn1, &battlerIn2);
     GetAIPartyIndexes(battler, &firstId, &lastId);
     party = GetBattlerParty(battler);
 
@@ -977,13 +923,7 @@ bool32 ShouldSwitch(u32 battler)
     {
         if (!IsValidForBattle(&party[i]))
             continue;
-        if (i == gBattlerPartyIndexes[battlerIn1])
-            continue;
-        if (i == gBattlerPartyIndexes[battlerIn2])
-            continue;
-        if (i == gBattleStruct->monToSwitchIntoId[battlerIn1])
-            continue;
-        if (i == gBattleStruct->monToSwitchIntoId[battlerIn2])
+        if (IsPartyMonOnFieldOrChosenToSwitch(i, battlerIn1, battlerIn2))
             continue;
         if (IsAceMon(battler, i))
             continue;
@@ -992,7 +932,12 @@ bool32 ShouldSwitch(u32 battler)
     }
 
     if (availableToSwitch == 0)
-            return FALSE;
+        return FALSE;
+
+    // custom switching logic
+    // NOTE: needs to always end with `return SetSwitchinAndSwitch` or `return FALSE`
+    if (gDynamicAiSwitchFunc != NULL && gDynamicAiSwitchFunc(battler))
+        return TRUE;
 
     // NOTE: The sequence of the below functions matter! Do not change unless you have carefully considered the outcome.
     // Since the order is sequencial, and some of these functions prompt switch to specific party members.
@@ -1076,7 +1021,6 @@ void AI_TrySwitchOrUseItem(u32 battler)
     u8 battlerIn1, battlerIn2;
     s32 firstId;
     s32 lastId; // + 1
-    u8 battlerPosition = GetBattlerPosition(battler);
     party = GetBattlerParty(battler);
 
     if (gBattleTypeFlags & BATTLE_TYPE_TRAINER)
@@ -1089,30 +1033,14 @@ void AI_TrySwitchOrUseItem(u32 battler)
                 s32 monToSwitchId = AI_DATA->mostSuitableMonId[battler];
                 if (monToSwitchId == PARTY_SIZE)
                 {
-                    if (!IsDoubleBattle())
-                    {
-                        battlerIn1 = GetBattlerAtPosition(battlerPosition);
-                        battlerIn2 = battlerIn1;
-                    }
-                    else
-                    {
-                        battlerIn1 = GetBattlerAtPosition(battlerPosition);
-                        battlerIn2 = GetBattlerAtPosition(BATTLE_PARTNER(battlerPosition));
-                    }
-
+                    GetActiveBattlerIds(battler, &battlerIn1, &battlerIn2);
                     GetAIPartyIndexes(battler, &firstId, &lastId);
 
                     for (monToSwitchId = (lastId-1); monToSwitchId >= firstId; monToSwitchId--)
                     {
                         if (!IsValidForBattle(&party[monToSwitchId]))
                             continue;
-                        if (monToSwitchId == gBattlerPartyIndexes[battlerIn1])
-                            continue;
-                        if (monToSwitchId == gBattlerPartyIndexes[battlerIn2])
-                            continue;
-                        if (monToSwitchId == gBattleStruct->monToSwitchIntoId[battlerIn1])
-                            continue;
-                        if (monToSwitchId == gBattleStruct->monToSwitchIntoId[battlerIn2])
+                        if (IsPartyMonOnFieldOrChosenToSwitch(monToSwitchId, battlerIn1, battlerIn2))
                             continue;
                         if (IsAceMon(battler, monToSwitchId))
                             continue;
@@ -1795,11 +1723,7 @@ static u32 GetBestMonIntegrated(struct Pokemon *party, int firstId, int lastId, 
     for (i = firstId; i < lastId; i++)
     {
         // Check mon validity
-        if (!IsValidForBattle(&party[i])
-            || gBattlerPartyIndexes[battlerIn1] == i
-            || gBattlerPartyIndexes[battlerIn2] == i
-            || i == gBattleStruct->monToSwitchIntoId[battlerIn1]
-            || i == gBattleStruct->monToSwitchIntoId[battlerIn2])
+        if (!IsValidForBattle(&party[i]) || IsPartyMonOnFieldOrChosenToSwitch(i, battlerIn1, battlerIn2))
         {
             continue;
         }
@@ -1969,14 +1893,8 @@ static u32 GetNextMonInParty(struct Pokemon *party, int firstId, int lastId, u32
     for (i = firstId; i < lastId; i++)
     {
         // Check mon validity
-        if (!IsValidForBattle(&party[i])
-            || gBattlerPartyIndexes[battlerIn1] == i
-            || gBattlerPartyIndexes[battlerIn2] == i
-            || i == gBattleStruct->monToSwitchIntoId[battlerIn1]
-            || i == gBattleStruct->monToSwitchIntoId[battlerIn2])
-        {
+        if (!IsValidForBattle(&party[i]) || IsPartyMonOnFieldOrChosenToSwitch(i, battlerIn1, battlerIn2))
             continue;
-        }
         return i;
     }
     return PARTY_SIZE;
@@ -1986,7 +1904,7 @@ u32 GetMostSuitableMonToSwitchInto(u32 battler, enum SwitchType switchType)
 {
     u32 opposingBattler = 0;
     u32 bestMonId = PARTY_SIZE;
-    u32 battlerIn1 = 0, battlerIn2 = 0;
+    u8 battlerIn1 = 0, battlerIn2 = 0;
     s32 firstId = 0;
     s32 lastId = 0; // + 1
     struct Pokemon *party;
@@ -1996,25 +1914,7 @@ u32 GetMostSuitableMonToSwitchInto(u32 battler, enum SwitchType switchType)
     if (gBattleTypeFlags & BATTLE_TYPE_ARENA)
         return gBattlerPartyIndexes[battler] + 1;
 
-    if (IsDoubleBattle())
-    {
-        battlerIn1 = battler;
-        if (gAbsentBattlerFlags & (1u << GetBattlerAtPosition(BATTLE_PARTNER(GetBattlerPosition(battler)))))
-            battlerIn2 = battler;
-        else
-            battlerIn2 = GetBattlerAtPosition(BATTLE_PARTNER(GetBattlerPosition(battler)));
-
-        opposingBattler = BATTLE_OPPOSITE(battlerIn1);
-        if (gAbsentBattlerFlags & (1u << opposingBattler))
-            opposingBattler ^= BIT_FLANK;
-    }
-    else
-    {
-        opposingBattler = GetBattlerAtPosition(BATTLE_OPPOSITE(GetBattlerPosition(battler)));
-        battlerIn1 = battler;
-        battlerIn2 = battler;
-    }
-
+    opposingBattler = GetActiveBattlerIds(battler, &battlerIn1, &battlerIn2);
     GetAIPartyIndexes(battler, &firstId, &lastId);
     party = GetBattlerParty(battler);
 
@@ -2040,10 +1940,7 @@ u32 GetMostSuitableMonToSwitchInto(u32 battler, enum SwitchType switchType)
         for (i = firstId; i < lastId; i++)
         {
             if (!IsValidForBattle(&party[i])
-                || gBattlerPartyIndexes[battlerIn1] == i
-                || gBattlerPartyIndexes[battlerIn2] == i
-                || i == gBattleStruct->monToSwitchIntoId[battlerIn1]
-                || i == gBattleStruct->monToSwitchIntoId[battlerIn2]
+                || IsPartyMonOnFieldOrChosenToSwitch(i, battlerIn1, battlerIn2)
                 || (GetMonAbility(&party[i]) == ABILITY_TRUANT && IsTruantMonVulnerable(battler, opposingBattler))) // While not really invalid per se, not really wise to switch into this mon.
             {
                 invalidMons |= 1u << i;
@@ -2239,4 +2136,116 @@ static bool32 AI_OpponentCanFaintAiWithMod(u32 battler, u32 healAmount)
         }
     }
     return FALSE;
+}
+
+// Function to find a party member with an ability from a set
+// if `percentChance` is non-zero, the party member will be chosen based on that percentage change
+static u32 FindMonWithAbilities(u32 battler, u16 *abilities, u32 abilityCount, u32 percentChance)
+{
+    u8 battlerIn1, battlerIn2;
+    s32 firstId;
+    s32 lastId; // + 1
+    struct Pokemon *party;
+    s32 i, j;
+    
+    GetActiveBattlerIds(battler, &battlerIn1, &battlerIn2);
+    GetAIPartyIndexes(battler, &firstId, &lastId);
+
+    party = GetBattlerParty(battler);
+    for (i = firstId; i < lastId; i++) {
+        if (!IsValidForBattle(&party[i]))
+            continue;
+        if (IsPartyMonOnFieldOrChosenToSwitch(i, battlerIn1, battlerIn2))
+            continue;
+        if (IsAceMon(battler, i))
+            continue;
+        for (j = 0; j < abilityCount; j++) {
+            if (GetMonAbility(&party[i]) == abilities[j]) {
+                // mon has ability
+                if (percentChance && (Random() % 100 > percentChance))
+                    continue;
+                // we found a mon.
+                return i;
+            }
+        }
+    }
+    return PARTY_SIZE;
+}
+
+// =======================
+// Dynamic switch AI logic functions
+
+struct TerrainParams {
+    u32 flag;
+    u16 move;
+    u16 abilities[2];
+};
+static const struct TerrainParams sTerrainFlagsToParam[] = {
+    /*  flag                                move                surge */
+    {.flag = STATUS_FIELD_GRASSY_TERRAIN,  .move = MOVE_GRASSY_TERRAIN,  .abilities = {ABILITY_GRASSY_SURGE,   ABILITY_NONE}},
+    {.flag = STATUS_FIELD_MISTY_TERRAIN,   .move = MOVE_MISTY_TERRAIN,   .abilities = {ABILITY_MISTY_SURGE,    ABILITY_NONE}},
+    {.flag = STATUS_FIELD_ELECTRIC_TERRAIN,.move = MOVE_ELECTRIC_TERRAIN,.abilities = {ABILITY_ELECTRIC_SURGE, ABILITY_HADRON_ENGINE}},
+    {.flag = STATUS_FIELD_PSYCHIC_TERRAIN, .move = MOVE_PSYCHIC_TERRAIN, .abilities = {ABILITY_PSYCHIC_SURGE,  ABILITY_NONE}},
+};
+
+static inline u32 GetTerrainMoveFromStatusFlag(u32 terrainFlag)
+{
+    u32 i;
+    for (i = 0; i < NELEMS(sTerrainFlagsToParam); i++)
+    {
+        if (sTerrainFlagsToParam[i].flag & terrainFlag)
+            return sTerrainFlagsToParam[i].move;
+    }
+    return MOVE_NONE;
+}
+
+static inline void GetSurgeAbilityFromStatusFlag(u32 terrainFlag, u16 *abilitiesOut)
+{
+    u32 i, j;
+    for (i = 0; i < NELEMS(sTerrainFlagsToParam); i++)
+    {
+        if (sTerrainFlagsToParam[i].flag)
+        {
+            for (j = 0; j < 2; j++)
+            {
+                abilitiesOut[j] = sTerrainFlagsToParam[i].abilities[j];
+            }
+        }
+    }
+}
+
+// Terrain Specialists - switch into a mon that sets the desired terrain if its not present
+static inline bool32 ShouldSwitchIfDifferentTerrain(u32 battler, u32 terrainFlag)
+{
+    u32 terrainMove, i;
+    u16 possibleAbilities[2] = {0};  // electric surge + hadron engine
+    
+    // don't switch if terrain already active
+    if (gFieldStatuses & terrainFlag)
+        return FALSE;
+    
+    // dont switch if we're going to faint the player
+    if (AiExpectsToFaintPlayer(battler))
+        return FALSE;
+    
+    // terrain is different. check if we're planning to use that terrain move
+    terrainMove = GetTerrainMoveFromStatusFlag(terrainFlag);
+    if (terrainMove == MOVE_NONE)
+        return FALSE;
+    
+    if (IsDoubleBattle() && GetAIChosenMove(BATTLE_PARTNER(battler)) == terrainMove)
+        return FALSE;
+    
+    // otherwise, find a mon with surge ability to switch into
+    GetSurgeAbilityFromStatusFlag(terrainFlag, &possibleAbilities[0]);
+    i = FindMonWithAbilities(battler, possibleAbilities, 2, 0);
+    if (i != PARTY_SIZE) {
+        return SetSwitchinAndSwitch(battler, PARTY_SIZE);
+    }
+    return FALSE;
+}
+
+bool32 ShouldSwitchIntoElectricTerrain(u32 battler)
+{
+    return ShouldSwitchIfDifferentTerrain(battler, STATUS_FIELD_ELECTRIC_TERRAIN);
 }
