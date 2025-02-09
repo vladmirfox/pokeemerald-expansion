@@ -1691,21 +1691,18 @@ static u32 GetSwitchinCandidate(u32 switchinCategory, u32 battler, int firstId, 
     // Randomize between eligible mons
     if (AI_THINKING_STRUCT->aiFlags[GetThinkingBattler(battler)] & AI_FLAG_RANDOMIZE_SWITCHIN)
     {
+        // Randomize the order of eligible party indexes
         start = RandomUniformExcept(RNG_AI_RANDOM_SWITCHIN, 0, PARTY_SIZE - 1, NotEligibleToSwitch);
-        DebugPrintf("Start: %d", start);
         for (i = 0; i < ARRAY_COUNT(bits); i++)
         {
             bits[i] = ((start + i) % PARTY_SIZE);
-            DebugPrintf("bits: %d", bits[i]);
         }
 
-        DebugPrintf("Switchincategory: %d", switchinCategory);
-
+        // Return the first mon in this random order that meets the category's criteria
         for (i = firstId; i < lastId; i++) 
         {
             if ((switchinCategory & (1u << bits[i])) > 0)
             {
-                DebugPrintf("Switch into slot: %d", bits[i]);
                 return bits[i];
             }
         }
