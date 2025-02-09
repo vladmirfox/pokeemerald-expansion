@@ -133,7 +133,6 @@ def ImportWildEncounterFile():
     
     #print(len(encounterCount))
 
-    
     for data in wData["wild_encounter_groups"]:
         #print(data)
 
@@ -225,14 +224,9 @@ def ImportWildEncounterFile():
 
                     AssembleMonHeaderContent()
                 
-        #print(encounterCount[headerIndex])
         headerIndex += 1
     PrintWildMonHeadersContent()
-    """
-    for group in headerStructTable:
-        for label in headerStructTable[group]:
-            print(headerStructTable[group][label])
-    """
+
 
 def PrintStructContent(contentList):
     for monList in contentList:
@@ -347,6 +341,7 @@ def GetWildMonHeadersLabel():
 def PrintEncounterHeaders(content):
     if printEncounterHeaders:
         print(content)
+
 
 def PrintEncounterRateMacros():
     if printEncounterRateMacros:
