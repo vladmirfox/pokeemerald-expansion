@@ -1674,6 +1674,14 @@ static u16 GetSwitchinTypeMatchup(u32 opposingBattler, struct BattlePokemon batt
     return typeEffectiveness;
 }
 
+static bool32 NotEligibleToSwitch(u32 index)
+{
+    if (gEligibleSwitchingMons[index] == 0)
+        return TRUE;
+    else
+        return FALSE;
+}
+
 static u32 GetSwitchinCandidate(u32 switchinCategory, u32 battler, int firstId, int lastId)
 {
     int i;
@@ -1683,11 +1691,11 @@ static u32 GetSwitchinCandidate(u32 switchinCategory, u32 battler, int firstId, 
     // Randomize between eligible mons
     if (AI_THINKING_STRUCT->aiFlags[GetThinkingBattler(battler)] & AI_FLAG_RANDOMIZE_SWITCHIN)
     {
-        start = RandomUniform(RNG_AI_RANDOM_SWITCHIN, 0, PARTY_SIZE - 1);
+        start = RandomUniformExcept(RNG_AI_RANDOM_SWITCHIN, 0, PARTY_SIZE - 1, NotEligibleToSwitch);
         DebugPrintf("Start: %d", start);
         for (i = 0; i < ARRAY_COUNT(bits); i++)
         {
-            bits[i] = ((start + i) % 6);
+            bits[i] = ((start + i) % PARTY_SIZE);
             DebugPrintf("bits: %d", bits[i]);
         }
 
@@ -1827,7 +1835,10 @@ static u32 GetBestMonIntegrated(struct Pokemon *party, int firstId, int lastId, 
             continue;
         }
         else
+        {
+            gEligibleSwitchingMons[i] = 1;
             aliveCount++;
+        }
 
         InitializeSwitchinCandidate(&party[i]);
 

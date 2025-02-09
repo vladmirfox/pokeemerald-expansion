@@ -1029,7 +1029,10 @@ AI_SINGLE_BATTLE_TEST("Switch AI: AI won't switch in ace mon after U-Turn if oth
 
 AI_SINGLE_BATTLE_TEST("AI_FLAG_RANDOMIZE_SWITCHIN: AI will randomly choose between eligible switchin candidates of the same category")
 {
-    PASSES_RANDOMLY(10, 50, RNG_AI_RANDOM_SWITCHIN);
+    u32 trials; // Two trial counts to ensure randomization is scalable
+    PARAMETRIZE { trials = 30; }
+    PARAMETRIZE { trials = 50; }
+    PASSES_RANDOMLY(10, trials, RNG_AI_RANDOM_SWITCHIN);
     GIVEN {
         AI_FLAGS(AI_FLAG_CHECK_BAD_MOVE | AI_FLAG_TRY_TO_FAINT | AI_FLAG_CHECK_VIABILITY | AI_FLAG_SMART_SWITCHING | AI_FLAG_SMART_MON_CHOICES | AI_FLAG_RANDOMIZE_SWITCHIN);
         PLAYER(SPECIES_ZIGZAGOON) { Moves(MOVE_PROTECT, MOVE_TACKLE); }
@@ -1037,8 +1040,11 @@ AI_SINGLE_BATTLE_TEST("AI_FLAG_RANDOMIZE_SWITCHIN: AI will randomly choose betwe
         OPPONENT(SPECIES_ZIGZAGOON) { Moves(MOVE_CLOSE_COMBAT); }
         OPPONENT(SPECIES_ZIGZAGOON) { Moves(MOVE_CLOSE_COMBAT); }
         OPPONENT(SPECIES_ZIGZAGOON) { Moves(MOVE_CLOSE_COMBAT); }
-        OPPONENT(SPECIES_ZIGZAGOON) { Moves(MOVE_CLOSE_COMBAT); }
-        OPPONENT(SPECIES_ZIGZAGOON) { Moves(MOVE_CLOSE_COMBAT); }
+        if (trials == 50)
+        {
+            OPPONENT(SPECIES_ZIGZAGOON) { Moves(MOVE_CLOSE_COMBAT); }
+            OPPONENT(SPECIES_ZIGZAGOON) { Moves(MOVE_CLOSE_COMBAT); }
+        }
     } WHEN {
         TURN { MOVE(player, MOVE_PROTECT); EXPECT_MOVE(opponent, MOVE_EXPLOSION); EXPECT_SEND_OUT(opponent, 3); }
     }
