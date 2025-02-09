@@ -297,7 +297,6 @@ def PrintWildMonHeadersContent():
                     PrintEncounterHeaders(headerStructTable[group][label]["headerType"])
 
                 PrintEncounterHeaders(tabStr + "{")
-                infoIndex = 0
                 for stat in headerStructTable[group][label]:
                     mapData = headerStructTable[group][label][stat]
 
@@ -308,12 +307,18 @@ def PrintWildMonHeadersContent():
 
                     if type(headerStructTable[group][label][stat]) == list:
                         PrintEncounterHeaders(f"{tabStr}{tabStr}.encounterTypes =")
-                        PrintEncounterHeaders(f"{tabStr}{tabStr}{tabStr}[{infoIndex}] = ")
-                        PrintEncounterHeaders(tabStr + tabStr + tabStr + "{")
+                        PrintEncounterHeaders(tabStr + tabStr + "{")
 
                         infoCount = 0
+                        infoIndex = 0
                         for monInfo in headerStructTable[group][label][stat]:
+                            timeStr = GetTimeStrFromIndex(infoIndex)
+
                             if infoCount in [0, 4, 8, 12]:
+                                PrintEncounterHeaders(f"{tabStr}{tabStr}{tabStr}[{timeStr}] = ")
+                                infoIndex += 1
+
+                                PrintEncounterHeaders(tabStr + tabStr + tabStr + "{")
                                 PrintEncounterHeaders(f"{tabStr}{tabStr}{tabStr}{tabStr}land.MonsInfo = {monInfo},")
                             elif infoCount in [1, 5, 9, 13]:
                                 PrintEncounterHeaders(f"{tabStr}{tabStr}{tabStr}{tabStr}.waterMonsInfo = {monInfo},")
@@ -322,9 +327,10 @@ def PrintWildMonHeadersContent():
                             elif infoCount in [3, 7, 11, 15]:
                                 PrintEncounterHeaders(f"{tabStr}{tabStr}{tabStr}{tabStr}.fishMonsInfo = {monInfo},")
                                 PrintEncounterHeaders(tabStr + tabStr + tabStr + "},")
-                            
+
                             infoCount += 1
-                    infoIndex += 1
+
+                        PrintEncounterHeaders(tabStr + tabStr + "},")
                 PrintEncounterHeaders(tabStr + "},")
                 labelCount += 1
         groupCount += 1
@@ -409,10 +415,23 @@ def PrintEncounterRateMacros():
                     )
 
 
+def GetTimeStrFromIndex(index):
+    if index == TIME_MORNING_INDEX:
+        return TIME_MORNING.upper()
+    elif index == TIME_DAY_INDEX:
+        return TIME_DAY.upper()
+    elif index == TIME_EVENING_INDEX:
+        return TIME_EVENING.upper()
+    elif index == TIME_NIGHT_INDEX:
+        return TIME_NIGHT.upper()
+    else:
+        return index
+
+
 ImportWildEncounterFile()
 
 
-"""
+""" !!!! EXAMPLE TEXT !!!!
 #define ENCOUNTER_CHANCE_LAND_MONS_SLOT_0 20 
 #define ENCOUNTER_CHANCE_LAND_MONS_SLOT_1 ENCOUNTER_CHANCE_LAND_MONS_SLOT_0 + 20
 #define ENCOUNTER_CHANCE_LAND_MONS_SLOT_2 ENCOUNTER_CHANCE_LAND_MONS_SLOT_1 + 10
