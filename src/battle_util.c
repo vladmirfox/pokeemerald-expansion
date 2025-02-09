@@ -996,7 +996,7 @@ const u8* CheckSkyDropState(u32 battler, enum SkyDropState skyDropState)
     // If target was sky dropped in the middle of Outrage/Thrash/Petal Dance,
     // confuse them upon release and display "confused by fatigue" message & animation.
     // Don't do this if this CancelMultiTurnMoves is caused by falling asleep via Yawn.
-    if (gBattleMons[otherSkyDropper].status2 & STATUS2_LOCK_CONFUSE && gBattleStruct->turnEffectsTracker != 24)
+    if (gBattleMons[otherSkyDropper].status2 & STATUS2_LOCK_CONFUSE && skyDropState != STATE_STATUS_YAWN)
     {
         gBattleMons[otherSkyDropper].status2 &= ~(STATUS2_LOCK_CONFUSE);
 
@@ -2690,7 +2690,7 @@ u8 DoBattlerEndTurnEffects(void)
                  && battlerAbility != ABILITY_INSOMNIA && !UproarWakeUpCheck(battler)
                  && !IsLeafGuardProtected(battler, battlerAbility))
                 {
-                    CancelMultiTurnMoves(battler, STATE_NORMAL);
+                    CancelMultiTurnMoves(battler, STATE_STATUS_YAWN);
                     gEffectBattler = gBattlerTarget = battler;
                     if (IsBattlerTerrainAffected(battler, STATUS_FIELD_ELECTRIC_TERRAIN))
                     {
