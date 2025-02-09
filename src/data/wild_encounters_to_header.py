@@ -1,6 +1,5 @@
 import json
 import enum
-from json.encoder import INFINITY
 
 #todo: don't forget to add hidden mons!
 
@@ -71,11 +70,14 @@ infoStructRate      = 0
 infoStructContent   = []
 headerStructLabel   = ""
 headerStructContent = {}
+headerStructTable   = {}
+
+headerIndex = 0
 
 #map header data variables
 hLabel = ""
 hForMaps = True
-headersArray = []
+headersArray = [headerIndex]
 
 #headersArrayItems
 landMonsInfo      = ""
@@ -89,9 +91,14 @@ eWaterMons     = []
 eRockSmashMons = []
 eFishingMons   = []
 
+
+#debug output control
+printEncounterHeaders = False
+printEncounterRateMacros = False
+printEncounterStructsInfoString = True
+printEncounterStructs = False
+
 def ImportWildEncounterFile():
-    print("hello")
-    print("finding wild_encounter.json...")
     global landMonsInfo
     global waterMonsInfo 
     global rockSmashMonsInfo 
@@ -112,17 +119,24 @@ def ImportWildEncounterFile():
     global eWaterMons
     global eRockSmashMons
     global eFishingMons
-    global wildMonCount
-    global battlePikeMonCount
-    global battlePyramidMonCount
+    global encounterCount
+    global headerIndex
 
     wFile = open("wild_encounters.json")
     wData = json.load(wFile)
 
-    global headerIndex
-    headerIndex = 0
+    encounterCount = []
+    groupCount = 0
+    while groupCount < len(wData["wild_encounter_groups"]):
+        encounterCount.append(0)
+        groupCount += 1
+    
+    #print(len(encounterCount))
+
+    
     for data in wData["wild_encounter_groups"]:
         #print(data)
+
         wEncounters = wData["wild_encounter_groups"][headerIndex]["encounters"]
 
         if data == "label":
@@ -142,69 +156,8 @@ def ImportWildEncounterFile():
                 elif field["type"] == FISHING_MONS:
                     eFishingMons = field["encounter_rates"]
                     eFishingMons.append(field["groups"])
-        
-        """
-            rateCount = 0
-            for percent in eLandMons:
-                if rateCount == 0:
-                    print(f"{define} {ENCOUNTER_CHANCE}_{LAND_MONS.upper()}_{SLOT}_{rateCount} {percent}")
-                else:
-                    print(
-                        f"{define} {ENCOUNTER_CHANCE}_{LAND_MONS.upper()}_{SLOT}_{rateCount} {ENCOUNTER_CHANCE}_{LAND_MONS.upper()}_{SLOT}_{rateCount - 1} + {percent}"
-                    )
 
-                if rateCount + 1 == len(eLandMons):
-                    print(
-                        f"{define} {ENCOUNTER_CHANCE}_{LAND_MONS.upper()}_{TOTAL} ({ENCOUNTER_CHANCE}_{LAND_MONS.upper()}_{SLOT}_{rateCount})"
-                    )
-                rateCount += 1
-            
-            rateCount = 0
-            for percent in eWaterMons:
-                if rateCount == 0:
-                    print(f"{define} {ENCOUNTER_CHANCE}_{WATER_MONS.upper()}_{SLOT}_{rateCount} {percent}")
-                else:
-                    print(
-                        f"{define} {ENCOUNTER_CHANCE}_{WATER_MONS.upper()}_{SLOT}_{rateCount} {ENCOUNTER_CHANCE}_{WATER_MONS.upper()}_{SLOT}_{rateCount - 1} + {percent}"
-                    )
-
-                if rateCount + 1 == len(eWaterMons):
-                    print(
-                        f"{define} {ENCOUNTER_CHANCE}_{WATER_MONS.upper()}_{TOTAL} ({ENCOUNTER_CHANCE}_{WATER_MONS.upper()}_{SLOT}_{rateCount})"
-                    )
-                rateCount += 1
-
-            rateCount = 0
-            for percent in eRockSmashMons:
-                if rateCount == 0:
-                    print(f"{define} {ENCOUNTER_CHANCE}_{ROCK_SMASH_MONS.upper()}_{SLOT}_{rateCount} {percent}")
-                else:
-                    print(
-                        f"{define} {ENCOUNTER_CHANCE}_{ROCK_SMASH_MONS.upper()}_{SLOT}_{rateCount} {ENCOUNTER_CHANCE}_{ROCK_SMASH_MONS.upper()}_{SLOT}_{rateCount - 1} + {percent}"
-                    )
-                
-                if rateCount + 1 == len(eRockSmashMons):
-                    print(
-                        f"{define} {ENCOUNTER_CHANCE}_{ROCK_SMASH_MONS.upper()}_{TOTAL} ({ENCOUNTER_CHANCE}_{ROCK_SMASH_MONS.upper()}_{SLOT}_{rateCount})"
-                    )
-                rateCount += 1
-
-            for rodRate in eFishingMons[-1]:
-                for rodPercentIndex in eFishingMons[-1][rodRate]:
-                    if rodPercentIndex == OLD_ROD_FIRST_INDEX or rodPercentIndex == GOOD_ROD_FIRST_INDEX or rodPercentIndex == SUPER_ROD_FIRST_INDEX:
-                        print(
-                            f"{define} {ENCOUNTER_CHANCE}_{FISHING_MONS.upper()}_{rodRate.upper()}_{SLOT}_{rodPercentIndex} {eFishingMons[rodPercentIndex]}"
-                        )
-                    else:
-                        print(
-                            f"{define} {ENCOUNTER_CHANCE}_{FISHING_MONS.upper()}_{rodRate.upper()}_{SLOT}_{rodPercentIndex} {ENCOUNTER_CHANCE}_{FISHING_MONS.upper()}_{rodRate.upper()}_{SLOT}_{rodPercentIndex - 1} + {eFishingMons[rodPercentIndex]}"
-                        )
-                    
-                    if rodPercentIndex == OLD_ROD_LAST_INDEX or rodPercentIndex == GOOD_ROD_LAST_INDEX or rodPercentIndex == SUPER_ROD_LAST_INDEX:
-                        print(
-                            f"{define} {ENCOUNTER_CHANCE}_{FISHING_MONS.upper()}_{rodRate.upper()}_{TOTAL} ({ENCOUNTER_CHANCE}_{FISHING_MONS.upper()}_{rodRate.upper()}_{SLOT}_{rodPercentIndex})"
-                        )
-        """
+            PrintEncounterRateMacros()
         
         for encounter in wEncounters:
             if "map" in encounter:
@@ -213,13 +166,8 @@ def ImportWildEncounterFile():
                 structMap = encounter["base_label"]
 
             structLabel = encounter["base_label"]
-
-            if "Pyramid" in structLabel:
-                battlePyramidMonCount += 1
-            if "Pike" in structLabel:
-                battlePikeMonCount += 1
-            else:
-                wildMonCount += 1
+            #print(headerIndex)
+            encounterCount[headerIndex] += 1
 
             headersArray = []
             for time in encounter["encounter_times"]:
@@ -265,23 +213,26 @@ def ImportWildEncounterFile():
                                     infoStructRate = areaTable[monTable][group]
                         
                         baseStructLabel = f"{baseStruct} {structLabel}_{structMonType}_{structTime}{structArrayAssign}"
-                        """
-                        print("\n")
-                        print(baseStructLabel)
-                        print("{")
-                        PrintStructContent(baseStructContent)
-                        print("}")
-                        """
-                        infoStructString = f"{baseStruct}{structInfo} {structLabel}_{structMonType}{structInfo}_{structTime} = {{ {infoStructRate}, {structLabel}_{structMonType}_{structTime} }};"
-                        #print(infoStructString)
+                        if printEncounterStructs:
+                            print("\n")
+                            print(baseStructLabel)
+                            print("{")
+                            PrintStructContent(baseStructContent)
+                            print("}")
+                        if printEncounterStructsInfoString:
+                            infoStructString = f"{baseStruct}{structInfo} {structLabel}_{structMonType}{structInfo}_{structTime} = {{ {infoStructRate}, {structLabel}_{structMonType}_{structTime} }};"
+                            print(infoStructString)
 
                     AssembleMonHeaderContent()
-
-
+                
+        #print(encounterCount[headerIndex])
         headerIndex += 1
     PrintWildMonHeadersContent()
-    
-
+    """
+    for group in headerStructTable:
+        for label in headerStructTable[group]:
+            print(headerStructTable[group][label])
+    """
 
 def PrintStructContent(contentList):
     for monList in contentList:
@@ -290,22 +241,28 @@ def PrintStructContent(contentList):
 
 
 def AssembleMonHeaderContent():
-    tempDict = {}
-
     SetupMonInfoVars()
+    tempHeaderLabel = GetWildMonHeadersLabel()
     
-    if structLabel not in headerStructContent:
-        headerStructContent[structLabel] = {}
-        headerStructContent[structLabel]["headerType"] = GetWildMonHeadersLabel()
-        headerStructContent[structLabel]["mapGroup"] = structMap
-        headerStructContent[structLabel]["mapNum"] = structMap
-        headerStructContent[structLabel]["encounter_types"] = []
+    if tempHeaderLabel not in headerStructTable:
+        headerStructTable[tempHeaderLabel] = {}
+        headerStructTable[tempHeaderLabel]["groupNum"] = headerIndex
 
-    headerStructContent[structLabel]["encounter_types"].append(landMonsInfo)
-    headerStructContent[structLabel]["encounter_types"].append(waterMonsInfo)
-    headerStructContent[structLabel]["encounter_types"].append(rockSmashMonsInfo)
-    headerStructContent[structLabel]["encounter_types"].append(fishingMonsInfo)
+    if structLabel not in headerStructTable[tempHeaderLabel]:
+        #print(structLabel)
+        headerStructTable[tempHeaderLabel][structLabel] = {}
+        headerStructTable[tempHeaderLabel][structLabel]["headerType"] = GetWildMonHeadersLabel()
+        headerStructTable[tempHeaderLabel][structLabel]["mapGroup"] = structMap
+        headerStructTable[tempHeaderLabel][structLabel]["mapNum"] = structMap
+        headerStructTable[tempHeaderLabel][structLabel]["encounterCount"] = encounterCount[headerIndex]
+        headerStructTable[tempHeaderLabel][structLabel]["encounter_types"] = []
 
+    headerStructTable[tempHeaderLabel][structLabel]["encounter_types"].append(landMonsInfo)
+    headerStructTable[tempHeaderLabel][structLabel]["encounter_types"].append(waterMonsInfo)
+    headerStructTable[tempHeaderLabel][structLabel]["encounter_types"].append(rockSmashMonsInfo)
+    headerStructTable[tempHeaderLabel][structLabel]["encounter_types"].append(fishingMonsInfo)
+
+    #headerStructTable[tempHeaderLabel].update(headerStructContent[structLabel])
 
 
 def SetupMonInfoVars():
@@ -335,56 +292,124 @@ def SetupMonInfoVars():
 def PrintWildMonHeadersContent():
     tabStr = "    "
 
-    totalMons = wildMonCount + battlePikeMonCount + battlePyramidMonCount
+    groupCount = 0
+    for group in headerStructTable:
+        labelCount = 0
+        for label in headerStructTable[group]:
+            if label != "groupNum":
+                if labelCount == 0:
+                    PrintEncounterHeaders("\n")
+                    PrintEncounterHeaders(headerStructTable[group][label]["headerType"])
 
-    labelCount = 0
-    for label in headerStructContent:
-        if labelCount in [0, totalMons - (battlePyramidMonCount + battlePikeMonCount), totalMons - battlePikeMonCount]:
-            print(headerStructContent[label]["headerType"])
+                PrintEncounterHeaders(tabStr + "{")
+                for stat in headerStructTable[group][label]:
+                    mapData = headerStructTable[group][label][stat]
 
-        print(tabStr + "{")
-        for stat in headerStructContent[label]:
-            mapData = headerStructContent[label][stat]
+                    if stat == "mapGroup":
+                        PrintEncounterHeaders(f"{tabStr}{tabStr}.mapGroup = {mapData},")
+                    elif stat == "mapNum":
+                        PrintEncounterHeaders(f"{tabStr}{tabStr}.mapNum = {mapData},")
 
-            if stat == "mapGroup":
-                print(f"{tabStr}{tabStr}.mapGroup = {mapData},")
-            elif stat == "mapNum":
-                print(f"{tabStr}{tabStr}.mapNum = {mapData},")
+                    if type(headerStructTable[group][label][stat]) == list:
 
-            if type(headerStructContent[label][stat]) == list:
-
-                infoCount = 0
-                infoIndex = 0
-                for monInfo in headerStructContent[label][stat]:
-                    if infoCount in [0, 4, 8, 12]:
-                        print(f"{tabStr}{tabStr}.encounterTypes[{infoIndex}] =")
-                        print(tabStr + tabStr + "{")
-                        print(f"{tabStr}{tabStr}{tabStr}.landMonsInfo = {monInfo},")
-                        infoIndex += 1
-                    elif infoCount in [1, 5, 9, 13]:
-                        print(f"{tabStr}{tabStr}{tabStr}.waterMonsInfo = {monInfo},")
-                    elif infoCount in [2, 6, 10, 14]:
-                        print(f"{tabStr}{tabStr}{tabStr}.rockSmashMonsInfo = {monInfo},")
-                    elif infoCount in [3, 7, 11, 15]:
-                        print(f"{tabStr}{tabStr}{tabStr}.fishMonsInfo = {monInfo},")
-                        print(tabStr + tabStr + "},")
-                    
-                    infoCount += 1
-        labelCount += 1
-
-        print(tabStr + "},")
-        if labelCount in [wildMonCount, battlePyramidMonCount + wildMonCount, totalMons + 1]:
-            print("};")
+                        infoCount = 0
+                        infoIndex = 0
+                        for monInfo in headerStructTable[group][label][stat]:
+                            if infoCount in [0, 4, 8, 12]:
+                                PrintEncounterHeaders(f"{tabStr}{tabStr}.encounterTypes[{infoIndex}] =")
+                                PrintEncounterHeaders(tabStr + tabStr + "{")
+                                PrintEncounterHeaders(f"{tabStr}{tabStr}{tabStr}land.MonsInfo = {monInfo},")
+                                infoIndex += 1
+                            elif infoCount in [1, 5, 9, 13]:
+                                PrintEncounterHeaders(f"{tabStr}{tabStr}{tabStr}.waterMonsInfo = {monInfo},")
+                            elif infoCount in [2, 6, 10, 14]:
+                                PrintEncounterHeaders(f"{tabStr}{tabStr}{tabStr}.rockSmashMonsInfo = {monInfo},")
+                            elif infoCount in [3, 7, 11, 15]:
+                                PrintEncounterHeaders(f"{tabStr}{tabStr}{tabStr}.fishMonsInfo = {monInfo},")
+                                PrintEncounterHeaders(tabStr + tabStr + "},")
+                            
+                            infoCount += 1
+                PrintEncounterHeaders(tabStr + "},")
+                labelCount += 1
+        groupCount += 1
+        PrintEncounterHeaders("};")
 
 
 def GetWildMonHeadersLabel():
     if headerIndex == 0:
-        return f"{baseStruct}{structHeader} {WILD_MON}{structHeader}s {structArrayAssign}" + "\n{"
+        return f"{baseStruct}{structHeader} {WILD_MON}{structHeader}s{structArrayAssign}" + "\n{"
     elif headerIndex == 1:
-        return f"{baseStruct}{structHeader} {BATTLE_PYRAMID_MON}{structHeader}s {structArrayAssign}" + "\n{"
+        return f"{baseStruct}{structHeader} {BATTLE_PYRAMID_MON}{structHeader}s{structArrayAssign}" + "\n{"
     elif headerIndex == 2:
-        return f"{baseStruct}{structHeader} {BATTLE_PIKE_MON}{structHeader}s {structArrayAssign}" + "\n{"
+        return f"{baseStruct}{structHeader} {BATTLE_PIKE_MON}{structHeader}s{structArrayAssign}" + "\n{"
     
+
+def PrintEncounterHeaders(content):
+    if printEncounterHeaders:
+        print(content)
+
+def PrintEncounterRateMacros():
+    if printEncounterRateMacros:
+        rateCount = 0
+        for percent in eLandMons:
+            if rateCount == 0:
+                print(f"{define} {ENCOUNTER_CHANCE}_{LAND_MONS.upper()}_{SLOT}_{rateCount} {percent}")
+            else:
+                print(
+                    f"{define} {ENCOUNTER_CHANCE}_{LAND_MONS.upper()}_{SLOT}_{rateCount} {ENCOUNTER_CHANCE}_{LAND_MONS.upper()}_{SLOT}_{rateCount - 1} + {percent}"
+                )
+
+            if rateCount + 1 == len(eLandMons):
+                print(
+                    f"{define} {ENCOUNTER_CHANCE}_{LAND_MONS.upper()}_{TOTAL} ({ENCOUNTER_CHANCE}_{LAND_MONS.upper()}_{SLOT}_{rateCount})"
+                )
+            rateCount += 1
+
+        rateCount = 0
+        for percent in eWaterMons:
+            if rateCount == 0:
+                print(f"{define} {ENCOUNTER_CHANCE}_{WATER_MONS.upper()}_{SLOT}_{rateCount} {percent}")
+            else:
+                print(
+                    f"{define} {ENCOUNTER_CHANCE}_{WATER_MONS.upper()}_{SLOT}_{rateCount} {ENCOUNTER_CHANCE}_{WATER_MONS.upper()}_{SLOT}_{rateCount - 1} + {percent}"
+                )
+
+            if rateCount + 1 == len(eWaterMons):
+                print(
+                    f"{define} {ENCOUNTER_CHANCE}_{WATER_MONS.upper()}_{TOTAL} ({ENCOUNTER_CHANCE}_{WATER_MONS.upper()}_{SLOT}_{rateCount})"
+                )
+            rateCount += 1
+
+        rateCount = 0
+        for percent in eRockSmashMons:
+            if rateCount == 0:
+                print(f"{define} {ENCOUNTER_CHANCE}_{ROCK_SMASH_MONS.upper()}_{SLOT}_{rateCount} {percent}")
+            else:
+                print(
+                    f"{define} {ENCOUNTER_CHANCE}_{ROCK_SMASH_MONS.upper()}_{SLOT}_{rateCount} {ENCOUNTER_CHANCE}_{ROCK_SMASH_MONS.upper()}_{SLOT}_{rateCount - 1} + {percent}"
+                )
+            
+            if rateCount + 1 == len(eRockSmashMons):
+                print(
+                    f"{define} {ENCOUNTER_CHANCE}_{ROCK_SMASH_MONS.upper()}_{TOTAL} ({ENCOUNTER_CHANCE}_{ROCK_SMASH_MONS.upper()}_{SLOT}_{rateCount})"
+                )
+            rateCount += 1
+
+        for rodRate in eFishingMons[-1]:
+            for rodPercentIndex in eFishingMons[-1][rodRate]:
+                if rodPercentIndex == OLD_ROD_FIRST_INDEX or rodPercentIndex == GOOD_ROD_FIRST_INDEX or rodPercentIndex == SUPER_ROD_FIRST_INDEX:
+                    print(
+                        f"{define} {ENCOUNTER_CHANCE}_{FISHING_MONS.upper()}_{rodRate.upper()}_{SLOT}_{rodPercentIndex} {eFishingMons[rodPercentIndex]}"
+                    )
+                else:
+                    print(
+                        f"{define} {ENCOUNTER_CHANCE}_{FISHING_MONS.upper()}_{rodRate.upper()}_{SLOT}_{rodPercentIndex} {ENCOUNTER_CHANCE}_{FISHING_MONS.upper()}_{rodRate.upper()}_{SLOT}_{rodPercentIndex - 1} + {eFishingMons[rodPercentIndex]}"
+                    )
+                
+                if rodPercentIndex == OLD_ROD_LAST_INDEX or rodPercentIndex == GOOD_ROD_LAST_INDEX or rodPercentIndex == SUPER_ROD_LAST_INDEX:
+                    print(
+                        f"{define} {ENCOUNTER_CHANCE}_{FISHING_MONS.upper()}_{rodRate.upper()}_{TOTAL} ({ENCOUNTER_CHANCE}_{FISHING_MONS.upper()}_{rodRate.upper()}_{SLOT}_{rodPercentIndex})"
+                    )
 
 
 ImportWildEncounterFile()
