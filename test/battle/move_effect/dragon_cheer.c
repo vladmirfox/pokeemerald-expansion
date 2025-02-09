@@ -23,8 +23,8 @@ DOUBLE_BATTLE_TEST("Dragon Cheer increases critical hit ratio by 1 on non-Dragon
     bool32 useDragonCheer = 0;
     u32 genConfig = 0, chance = 0;
     for (u32 j = GEN_1; j <= GEN_9; j++) {
-        PARAMETRIZE { genConfig = j; useDragonCheer = FALSE; chance = j >= GEN_7 ? 24 : 16;} // 6.25% with Wobbuffet's base speed
-        PARAMETRIZE { genConfig = j; useDragonCheer = TRUE;  chance = 8;}  // 12.5% with Wobbuffet's base speed
+        PARAMETRIZE { genConfig = j; useDragonCheer = FALSE; chance = j >= GEN_7 ? 24 : 16; } // 6.25% with Wobbuffet's base speed
+        PARAMETRIZE { genConfig = j; useDragonCheer = TRUE;  chance = 8; }  // 12.5% with Wobbuffet's base speed
     }
     PASSES_RANDOMLY(1, chance, RNG_CRITICAL_HIT);
     GIVEN {
@@ -54,11 +54,11 @@ DOUBLE_BATTLE_TEST("Dragon Cheer increases critical hit ratio by 2 on Dragon typ
 {
     bool32 useDragonCheer;
     u32 genConfig, passes, trials;
-    PARAMETRIZE { genConfig = GEN_1; useDragonCheer = FALSE; passes = 25; trials = 256;} //  ~9.77% with Dratini's base speed
-    PARAMETRIZE { genConfig = GEN_1; useDragonCheer = TRUE;  passes = 25; trials = 64;}  // ~39.06% with Dratini's base speed
+    PARAMETRIZE { genConfig = GEN_1; useDragonCheer = FALSE; passes = 25; trials = 256; } //  ~9.77% with Dratini's base speed
+    PARAMETRIZE { genConfig = GEN_1; useDragonCheer = TRUE;  passes = 25; trials = 64; }  // ~39.06% with Dratini's base speed
     for (u32 j = GEN_2; j <= GEN_9; j++) {
-        PARAMETRIZE { genConfig = j; useDragonCheer = FALSE; passes = 1; trials = j >= GEN_7 ? 24 : 16;} // ~4.16%/6.25%
-        PARAMETRIZE { genConfig = j; useDragonCheer = TRUE;  passes = 1; trials = j >= GEN_6 ? 2 : 4;}   // 50%/25%
+        PARAMETRIZE { genConfig = j; useDragonCheer = FALSE; passes = 1; trials = j >= GEN_7 ? 24 : 16; } // ~4.16%/6.25%
+        PARAMETRIZE { genConfig = j; useDragonCheer = TRUE;  passes = 1; trials = j >= GEN_6 ? 2 : 4; }   // 50%/25%
     }
     PASSES_RANDOMLY(passes, trials, RNG_CRITICAL_HIT);
     GIVEN {
