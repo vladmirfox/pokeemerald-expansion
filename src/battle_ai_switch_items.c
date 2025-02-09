@@ -1676,7 +1676,7 @@ static u16 GetSwitchinTypeMatchup(u32 opposingBattler, struct BattlePokemon batt
 
 static bool32 NotEligibleToSwitch(u32 index)
 {
-    if (gEligibleSwitchingMons[index] == 0)
+    if (!(gEligibleSwitchingMons & (1u << index)))
         return TRUE;
     else
         return FALSE;
@@ -1836,7 +1836,7 @@ static u32 GetBestMonIntegrated(struct Pokemon *party, int firstId, int lastId, 
         }
         else
         {
-            gEligibleSwitchingMons[i] = 1;
+            gEligibleSwitchingMons |= (1u << i);
             aliveCount++;
         }
 
