@@ -1046,6 +1046,6 @@ AI_SINGLE_BATTLE_TEST("AI_FLAG_RANDOMIZE_SWITCHIN: AI will randomly choose betwe
             OPPONENT(SPECIES_ZIGZAGOON) { Moves(MOVE_CLOSE_COMBAT); }
         }
     } WHEN {
-        TURN { MOVE(player, MOVE_PROTECT); EXPECT_MOVE(opponent, MOVE_EXPLOSION); EXPECT_SEND_OUT(opponent, 3); }
+        TURN { MOVE(player, MOVE_PROTECT); EXPECT_MOVE(opponent, MOVE_EXPLOSION); EXPECT_SEND_OUT(opponent, 2); }
     }
 }
