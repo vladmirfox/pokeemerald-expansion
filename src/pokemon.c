@@ -1992,6 +1992,7 @@ u16 MonTryLearningNewMoveAtLevel(struct Pokemon *mon, bool32 firstMove, u32 leve
     if (firstMove)
     {
         sLearningMoveTableID = 0;
+
         while (learnset[sLearningMoveTableID].level != level)
         {
             sLearningMoveTableID++;
@@ -1999,12 +2000,14 @@ u16 MonTryLearningNewMoveAtLevel(struct Pokemon *mon, bool32 firstMove, u32 leve
                 return MOVE_NONE;
         }
     }
+
     if (learnset[sLearningMoveTableID].level == level)
     {
         gMoveToLearn = learnset[sLearningMoveTableID].move;
         sLearningMoveTableID++;
         retVal = GiveMoveToMon(mon, gMoveToLearn);
     }
+
     return retVal;
 }
 
@@ -7034,7 +7037,7 @@ u32 GetRegionalFormByRegion(u32 species, u32 region)
         {
             if (firstFoundSpecies == 0)
                 firstFoundSpecies = formTable[formId];
-            
+
             if (IsSpeciesRegionalFormFromRegion(formTable[formId], region))
                 return formTable[formId];
         }
