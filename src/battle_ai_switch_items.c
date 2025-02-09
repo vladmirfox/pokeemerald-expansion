@@ -1683,7 +1683,7 @@ static u32 GetSwitchinCandidate(u32 switchinCategory, u32 battler, int firstId, 
     // Randomize between eligible mons
     if (AI_THINKING_STRUCT->aiFlags[GetThinkingBattler(battler)] & AI_FLAG_RANDOMIZE_SWITCHIN)
     {
-        start = RandomUniform(RNG_AI_RANDOM_SWITCHIN, 0, 5);
+        start = RandomUniform(RNG_AI_RANDOM_SWITCHIN, 0, PARTY_SIZE - 1);
         DebugPrintf("Start: %d", start);
         for (i = 0; i < ARRAY_COUNT(bits); i++)
         {
