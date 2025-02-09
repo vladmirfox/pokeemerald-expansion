@@ -319,7 +319,7 @@ def PrintWildMonHeadersContent():
                                 infoIndex += 1
 
                                 PrintEncounterHeaders(tabStr + tabStr + tabStr + "{")
-                                PrintEncounterHeaders(f"{tabStr}{tabStr}{tabStr}{tabStr}land.MonsInfo = {monInfo},")
+                                PrintEncounterHeaders(f"{tabStr}{tabStr}{tabStr}{tabStr}landMonsInfo = {monInfo},")
                             elif infoCount in [1, 5, 9, 13]:
                                 PrintEncounterHeaders(f"{tabStr}{tabStr}{tabStr}{tabStr}.waterMonsInfo = {monInfo},")
                             elif infoCount in [2, 6, 10, 14]:
