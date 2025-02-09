@@ -1676,7 +1676,7 @@ static u16 GetSwitchinTypeMatchup(u32 opposingBattler, struct BattlePokemon batt
 
 static bool32 NotEligibleToSwitch(u32 index)
 {
-    if (!(gEligibleSwitchingMons & (1u << index)))
+    if (!(AI_DATA->switchinCandidateEligible & (1u << index)))
         return TRUE;
     else
         return FALSE;
@@ -1811,6 +1811,7 @@ static u32 GetBestMonIntegrated(struct Pokemon *party, int firstId, int lastId, 
     u32 aiMove, hitsToKOAI, maxHitsToKO = 0;
     u16 bestResist = UQ_4_12(1.0), bestResistEffective = UQ_4_12(1.0), typeMatchup;
     bool32 isFreeSwitch = IsFreeSwitch(switchType, battlerIn1, opposingBattler), isSwitchinFirst, canSwitchinWin1v1;
+    AI_DATA->switchinCandidateEligible = 0;
 
     // Iterate through mons
     for (i = firstId; i < lastId; i++)
@@ -1833,7 +1834,7 @@ static u32 GetBestMonIntegrated(struct Pokemon *party, int firstId, int lastId, 
         }
         else
         {
-            gEligibleSwitchingMons |= (1u << i);
+            AI_DATA->switchinCandidateEligible |= (1u << i);
             aliveCount++;
         }
 

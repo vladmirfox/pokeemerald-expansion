@@ -365,6 +365,7 @@ struct AiLogicData
     u8 shouldSwitch; // Stores result of ShouldSwitch, which decides whether a mon should be switched out
     u8 aiCalcInProgress:1;
     u8 battlerDoingPrediction; // Stores which battler is currently running its prediction calcs
+    u8 switchinCandidateEligible; // Tracks which switchin candidates are valid
 };
 
 struct AI_ThinkingStruct
