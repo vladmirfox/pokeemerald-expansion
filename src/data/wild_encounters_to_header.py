@@ -1,7 +1,9 @@
 import json
 import enum
 
-#todo: don't forget to add hidden mons!
+#todo: add hidden mons!
+#todo: fix array assignment syntax (example at bottom updated)
+#todo: test with origin/upcoming
 
 #C string vars
 define                = "#define"
@@ -93,9 +95,9 @@ eFishingMons   = []
 
 
 #debug output control
-printEncounterHeaders = False
+printEncounterHeaders = True
 printEncounterRateMacros = False
-printEncounterStructsInfoString = True
+printEncounterStructsInfoString = False
 printEncounterStructs = False
 
 def ImportWildEncounterFile():
@@ -466,18 +468,21 @@ const struct WildPokemon gRoute101_LandMons_Day[] =
     { 3, 3, SPECIES_ZIGZAGOON },
 };
 
-const struct WildPokemonInfo gRoute101_LandMonsInfo_Day= { 20, gRoute101_LandMons_Day};
+const struct WildPokemonInfo gRoute101_LandMonsInfo_Day= { 20, gRoute101_LandMons_Day };
 const struct WildPokemonHeader gWildMonHeaders[] =
 {
     {
         .mapGroup = MAP(ROUTE101),
         .mapNum = MAP_NUM(ROUTE101),
-        .encounterTypes[0] = 
-            .landMonsInfo = &gRoute101_LandMonsInfo_Day,
-            .waterMonsInfo = NULL,
-            .rockSmashMonsInfo = NULL,
-            .fishingMonsInfo = NULL,
-            .hiddenMonsInfo = NULL,
+        .encounterTypes = 
+            [TIME_DAY] = 
+            {
+                .landMonsInfo = &gRoute101_LandMonsInfo_Day,
+                .waterMonsInfo = NULL,
+                .rockSmashMonsInfo = NULL,
+                .fishingMonsInfo = NULL,
+                .hiddenMonsInfo = NULL,
+            }
     },
 }
 """
