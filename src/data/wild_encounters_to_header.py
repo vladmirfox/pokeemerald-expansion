@@ -2,6 +2,7 @@ import json
 import enum
 
 #todo: add hidden mons!
+#todo: make info groups into an array so parsing is much easier
 #todo: test with origin/upcoming
 
 #C string vars
@@ -13,11 +14,8 @@ NULL                  = "NULL"
 
 #encounter group header types
 WILD_MON                 = "gWildMon"
-wildMonCount             = 0
 BATTLE_PIKE_MON          = "gBattlePikeWildMon"
-battlePikeMonCount       = 0
 BATTLE_PYRAMID_MON       = "gBattlePyramidWildMon"
-battlePyramidMonCount    = 0
 
 #mon encounter group types
 LAND_MONS             = "land_mons"
