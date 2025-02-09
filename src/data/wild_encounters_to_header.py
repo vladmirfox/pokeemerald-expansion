@@ -2,7 +2,6 @@ import json
 import enum
 
 #todo: add hidden mons!
-#todo: fix array assignment syntax (example at bottom updated)
 #todo: test with origin/upcoming
 
 #C string vars
@@ -298,6 +297,7 @@ def PrintWildMonHeadersContent():
                     PrintEncounterHeaders(headerStructTable[group][label]["headerType"])
 
                 PrintEncounterHeaders(tabStr + "{")
+                infoIndex = 0
                 for stat in headerStructTable[group][label]:
                     mapData = headerStructTable[group][label][stat]
 
@@ -307,24 +307,24 @@ def PrintWildMonHeadersContent():
                         PrintEncounterHeaders(f"{tabStr}{tabStr}.mapNum = {mapData},")
 
                     if type(headerStructTable[group][label][stat]) == list:
+                        PrintEncounterHeaders(f"{tabStr}{tabStr}.encounterTypes =")
+                        PrintEncounterHeaders(f"{tabStr}{tabStr}{tabStr}[{infoIndex}] = ")
+                        PrintEncounterHeaders(tabStr + tabStr + tabStr + "{")
 
                         infoCount = 0
-                        infoIndex = 0
                         for monInfo in headerStructTable[group][label][stat]:
                             if infoCount in [0, 4, 8, 12]:
-                                PrintEncounterHeaders(f"{tabStr}{tabStr}.encounterTypes[{infoIndex}] =")
-                                PrintEncounterHeaders(tabStr + tabStr + "{")
-                                PrintEncounterHeaders(f"{tabStr}{tabStr}{tabStr}land.MonsInfo = {monInfo},")
-                                infoIndex += 1
+                                PrintEncounterHeaders(f"{tabStr}{tabStr}{tabStr}{tabStr}land.MonsInfo = {monInfo},")
                             elif infoCount in [1, 5, 9, 13]:
-                                PrintEncounterHeaders(f"{tabStr}{tabStr}{tabStr}.waterMonsInfo = {monInfo},")
+                                PrintEncounterHeaders(f"{tabStr}{tabStr}{tabStr}{tabStr}.waterMonsInfo = {monInfo},")
                             elif infoCount in [2, 6, 10, 14]:
-                                PrintEncounterHeaders(f"{tabStr}{tabStr}{tabStr}.rockSmashMonsInfo = {monInfo},")
+                                PrintEncounterHeaders(f"{tabStr}{tabStr}{tabStr}{tabStr}.rockSmashMonsInfo = {monInfo},")
                             elif infoCount in [3, 7, 11, 15]:
-                                PrintEncounterHeaders(f"{tabStr}{tabStr}{tabStr}.fishMonsInfo = {monInfo},")
-                                PrintEncounterHeaders(tabStr + tabStr + "},")
+                                PrintEncounterHeaders(f"{tabStr}{tabStr}{tabStr}{tabStr}.fishMonsInfo = {monInfo},")
+                                PrintEncounterHeaders(tabStr + tabStr + tabStr + "},")
                             
                             infoCount += 1
+                    infoIndex += 1
                 PrintEncounterHeaders(tabStr + "},")
                 labelCount += 1
         groupCount += 1
