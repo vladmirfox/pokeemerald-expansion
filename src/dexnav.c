@@ -1517,9 +1517,10 @@ static u8 DexNavGeneratePotential(u8 searchLevel)
 static u8 GetEncounterLevelFromMapData(u16 species, u8 environment)
 {
     u16 headerId = GetCurrentMapWildMonHeaderId();
-    const struct WildPokemonInfo *landMonsInfo = gWildMonHeaders[headerId].landMonsInfo;
-    const struct WildPokemonInfo *waterMonsInfo = gWildMonHeaders[headerId].waterMonsInfo;
-    const struct WildPokemonInfo *hiddenMonsInfo = gWildMonHeaders[headerId].hiddenMonsInfo;
+    u32 timeDay =  GetTimeOfDay();
+    const struct WildPokemonInfo *landMonsInfo = gWildMonHeaders[headerId].encounterTypes[timeDay].landMonsInfo;
+    const struct WildPokemonInfo *waterMonsInfo = gWildMonHeaders[headerId].encounterTypes[timeDay].waterMonsInfo;
+    const struct WildPokemonInfo *hiddenMonsInfo = gWildMonHeaders[headerId].encounterTypes[timeDay].hiddenMonsInfo;
     u8 min = 100;
     u8 max = 0;
     u8 i;
@@ -1771,7 +1772,7 @@ static bool8 CapturedAllWaterMons(u16 headerId)
     
     for (time = 0; time <= TIME_NIGHT; time++)
     {
-        const struct WildPokemonInfo* waterMonsInfo = gWildMonHeaders[headerId][time].waterMonsInfo;
+        const struct WildPokemonInfo* waterMonsInfo = gWildMonHeaders[headerId].encounterTypes[time].waterMonsInfo;
 
         if (waterMonsInfo != NULL)
         {
@@ -1807,7 +1808,7 @@ static bool8 CapturedAllHiddenMons(u16 headerId)
     
     for (time = 0; time <= TIME_NIGHT; time++)
     {
-        const struct WildPokemonInfo* hiddenMonsInfo = gWildMonHeaders[headerId][time].hiddenMonsInfo;
+        const struct WildPokemonInfo* hiddenMonsInfo = gWildMonHeaders[headerId].encounterTypes[time].hiddenMonsInfo;
         
         if (hiddenMonsInfo != NULL)
         {
@@ -1953,9 +1954,11 @@ static void DexNavLoadEncounterData(void)
     u16 species;
     u32 i;
     u16 headerId = GetCurrentMapWildMonHeaderId();
-    const struct WildPokemonInfo* landMonsInfo = gWildMonHeaders[headerId].landMonsInfo;
-    const struct WildPokemonInfo* waterMonsInfo = gWildMonHeaders[headerId].waterMonsInfo;
-    const struct WildPokemonInfo* hiddenMonsInfo = gWildMonHeaders[headerId].hiddenMonsInfo;
+    u32 timeDay = GetTimeOfDay();
+
+    const struct WildPokemonInfo* landMonsInfo = gWildMonHeaders[headerId].encounterTypes[timeDay].landMonsInfo;
+    const struct WildPokemonInfo* waterMonsInfo = gWildMonHeaders[headerId].encounterTypes[timeDay].waterMonsInfo;
+    const struct WildPokemonInfo* hiddenMonsInfo = gWildMonHeaders[headerId].encounterTypes[timeDay].hiddenMonsInfo;
     
     // nop struct data
     memset(sDexNavUiDataPtr->landSpecies, 0, sizeof(sDexNavUiDataPtr->landSpecies));
@@ -2509,6 +2512,7 @@ static void Task_DexNavMain(u8 taskId)
 bool8 TryFindHiddenPokemon(void)
 {
     u16 *stepPtr = GetVarPointer(DN_VAR_STEP_COUNTER);
+    u32 timeDay = GetTimeOfDay();
     
     if (DEXNAV_ENABLED == 0
             || !FlagGet(DN_FLAG_DETECTOR_MODE)
@@ -2530,7 +2534,7 @@ bool8 TryFindHiddenPokemon(void)
         u16 species;
         u8 environment;
         u8 taskId;
-        const struct WildPokemonInfo* hiddenMonsInfo = gWildMonHeaders[headerId].hiddenMonsInfo;
+        const struct WildPokemonInfo* hiddenMonsInfo = gWildMonHeaders[headerId].encounterTypes[timeDay].hiddenMonsInfo;
         bool8 isHiddenMon = FALSE;
         
         // while you can still technically find hidden pokemon if there are not hidden-only pokemon on a map,
@@ -2555,7 +2559,7 @@ bool8 TryFindHiddenPokemon(void)
             }
             else
             {
-                species = gWildMonHeaders[headerId].landMonsInfo->wildPokemon[ChooseWildMonIndex_Land()].species;
+                species = gWildMonHeaders[headerId].encounterTypes[timeDay].landMonsInfo->wildPokemon[ChooseWildMonIndex_Land()].species;
                 environment = ENCOUNTER_TYPE_LAND;
             }
             break;
@@ -2573,7 +2577,7 @@ bool8 TryFindHiddenPokemon(void)
                 }
                 else
                 {
-                    species = gWildMonHeaders[headerId].waterMonsInfo->wildPokemon[ChooseWildMonIndex_WaterRock()].species;
+                    species = gWildMonHeaders[headerId].encounterTypes[timeDay].waterMonsInfo->wildPokemon[ChooseWildMonIndex_WaterRock()].species;
                     environment = ENCOUNTER_TYPE_WATER;
 
                 }

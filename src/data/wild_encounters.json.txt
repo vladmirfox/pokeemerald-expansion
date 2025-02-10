@@ -24,60 +24,58 @@
 
 
 ## for encounter in wild_encounter_group.encounters
-## for time in encounter.encounter_times
-## for monTable in time
-{% if existsIn(monTable, "land_mons") %}
-const struct WildPokemon {{ encounter.base_label }}_LandMons{% if loop.parent.index1 == 1 %}_Morning{% else if loop.parent.index1 == 2 %}_Day{% else if loop.parent.index1 == 3 %}_Evening{% else if loop.parent.index1 == 4 %}_Night{% endif %}[] =
+{% if existsIn(encounter, "land_mons") %}
+const struct WildPokemon {{ encounter.base_label }}_LandMons[] =
 {
-## for wild_mon in monTable.land_mons.mons
+## for wild_mon in encounter.land_mons.mons
     { {{ wild_mon.min_level }}, {{ wild_mon.max_level }}, {{ wild_mon.species }} },
 ## endfor
 };
 
-const struct WildPokemonInfo {{ encounter.base_label }}_LandMonsInfo{% if loop.parent.index1 == 1 %}_Morning{% else if loop.parent.index1 == 2 %}_Day{% else if loop.parent.index1 == 3 %}_Evening{% else if loop.parent.index1 == 4 %}_Night{% endif %} = { {{ monTable.land_mons.encounter_rate}}, {{ encounter.base_label }}_LandMons{% if loop.parent.index1 == 1 %}_Morning{% else if loop.parent.index1 == 2 %}_Day{% else if loop.parent.index1 == 3 %}_Evening{% else if loop.parent.index1 == 4 %}_Night{% endif %} };
+const struct WildPokemonInfo {{ encounter.base_label }}_LandMonsInfo = { {{encounter.land_mons.encounter_rate}}, {{ encounter.base_label }}_LandMons };
 {% endif %}
-{% if existsIn(monTable, "water_mons") %}
-const struct WildPokemon {{ encounter.base_label }}_WaterMons{% if loop.parent.index1 == 1 %}_Morning{% else if loop.parent.index1 == 2 %}_Day{% else if loop.parent.index1 == 3 %}_Evening{% else if loop.parent.index1 == 4 %}_Night{% endif %}[] =
+{% if existsIn(encounter, "water_mons") %}
+const struct WildPokemon {{ encounter.base_label }}_WaterMons[] =
 {
-## for wild_mon in monTable.water_mons.mons
+## for wild_mon in encounter.water_mons.mons
     { {{ wild_mon.min_level }}, {{ wild_mon.max_level }}, {{ wild_mon.species }} },
 ## endfor
 };
 
-const struct WildPokemonInfo {{ encounter.base_label }}_WaterMonsInfo{% if loop.parent.index1 == 1 %}_Morning{% else if loop.parent.index1 == 2 %}_Day{% else if loop.parent.index1 == 3 %}_Evening{% else if loop.parent.index1 == 4 %}_Night{% endif %} = { {{ monTable.water_mons.encounter_rate}}, {{ encounter.base_label }}_WaterMons{% if loop.parent.index1 == 1 %}_Morning{% else if loop.parent.index1 == 2 %}_Day{% else if loop.parent.index1 == 3 %}_Evening{% else if loop.parent.index1 == 4 %}_Night{% endif %} };
+const struct WildPokemonInfo {{ encounter.base_label }}_WaterMonsInfo = { {{encounter.water_mons.encounter_rate}}, {{ encounter.base_label }}_WaterMons };
 {% endif %}
-{% if existsIn(monTable, "rock_smash_mons") %}
-const struct WildPokemon {{ encounter.base_label }}_RockSmashMons{% if loop.parent.index1 == 1 %}_Morning{% else if loop.parent.index1 == 2 %}_Day{% else if loop.parent.index1 == 3 %}_Evening{% else if loop.parent.index1 == 4 %}_Night{% endif %}[] =
+{% if existsIn(encounter, "rock_smash_mons") %}
+const struct WildPokemon {{ encounter.base_label }}_RockSmashMons[] =
 {
-## for wild_mon in monTable.rock_smash_mons.mons
+## for wild_mon in encounter.rock_smash_mons.mons
     { {{ wild_mon.min_level }}, {{ wild_mon.max_level }}, {{ wild_mon.species }} },
 ## endfor
 };
 
-const struct WildPokemonInfo {{ encounter.base_label }}_RockSmashMonsInfo{% if loop.parent.index1 == 1 %}_Morning{% else if loop.parent.index1 == 2 %}_Day{% else if loop.parent.index1 == 3 %}_Evening{% else if loop.parent.index1 == 4 %}_Night{% endif %} = { {{ monTable.rock_smash_mons.encounter_rate}}, {{ encounter.base_label }}_RockSmashMons{% if loop.parent.index1 == 1 %}_Morning{% else if loop.parent.index1 == 2 %}_Day{% else if loop.parent.index1 == 3 %}_Evening{% else if loop.parent.index1 == 4 %}_Night{% endif %} };
+const struct WildPokemonInfo {{ encounter.base_label }}_RockSmashMonsInfo = { {{encounter.rock_smash_mons.encounter_rate}}, {{ encounter.base_label }}_RockSmashMons };
 {% endif %}
-{% if existsIn(monTable, "fishing_mons") %}
-const struct WildPokemon {{ encounter.base_label }}_FishingMons{% if loop.parent.index1 == 1 %}_Morning{% else if loop.parent.index1 == 2 %}_Day{% else if loop.parent.index1 == 3 %}_Evening{% else if loop.parent.index1 == 4 %}_Night{% endif %}[] =
+{% if existsIn(encounter, "fishing_mons") %}
+const struct WildPokemon {{ encounter.base_label }}_FishingMons[] =
 {
-## for wild_mon in monTable.fishing_mons.mons
+## for wild_mon in encounter.fishing_mons.mons
     { {{ wild_mon.min_level }}, {{ wild_mon.max_level }}, {{ wild_mon.species }} },
 ## endfor
 };
 
-const struct WildPokemonInfo {{ encounter.base_label }}_FishingMonsInfo{% if loop.parent.index1 == 1 %}_Morning{% else if loop.parent.index1 == 2 %}_Day{% else if loop.parent.index1 == 3 %}_Evening{% else if loop.parent.index1 == 4 %}_Night{% endif %} = { {{ monTable.fishing_mons.encounter_rate}}, {{ encounter.base_label }}_FishingMons{% if loop.parent.index1 == 1 %}_Morning{% else if loop.parent.index1 == 2 %}_Day{% else if loop.parent.index1 == 3 %}_Evening{% else if loop.parent.index1 == 4 %}_Night{% endif %} };
+const struct WildPokemonInfo {{ encounter.base_label }}_FishingMonsInfo = { {{encounter.fishing_mons.encounter_rate}}, {{ encounter.base_label }}_FishingMons };
 {% endif %}
-{% if existsIn(monTable, "hidden_mons") %}
-const struct WildPokemon {{ encounter.base_label }}_HiddenMons{% if loop.parent.index1 == 1 %}_Morning{% else if loop.parent.index1 == 2 %}_Day{% else if loop.parent.index1 == 3 %}_Evening{% else if loop.parent.index1 == 4 %}_Night{% endif %}[] =
+
+{% if existsIn(encounter, "hidden_mons") %}
+const struct WildPokemon {{ encounter.base_label }}_HiddenMons[] =
 {
-## for wild_mon in monTable.hidden_mons.mons
+## for wild_mon in encounter.hidden_mons.mons
     { {{ wild_mon.min_level }}, {{ wild_mon.max_level }}, {{ wild_mon.species }} },
 ## endfor
 };
 
-const struct WildPokemonInfo {{ encounter.base_label }}_HiddenMonsInfo{% if loop.parent.index1 == 1 %}_Morning{% else if loop.parent.index1 == 2 %}_Day{% else if loop.parent.index1 == 3 %}_Evening{% else if loop.parent.index1 == 4 %}_Night{% endif %} = { {{ monTable.hidden_mons.encounter_rate}}, {{ encounter.base_label }}_HiddenMons{% if loop.parent.index1 == 1 %}_Morning{% else if loop.parent.index1 == 2 %}_Day{% else if loop.parent.index1 == 3 %}_Evening{% else if loop.parent.index1 == 4 %}_Night{% endif %} };
+const struct WildPokemonInfo {{ encounter.base_label }}_HiddenMonsInfo = { {{encounter.hidden_mons.encounter_rate}}, {{ encounter.base_label }}_HiddenMons };
 {% endif %}
-## endfor
-## endfor
+
 ## endfor
 const struct WildPokemonHeader {{ wild_encounter_group.label }}[] =
 {
@@ -85,16 +83,11 @@ const struct WildPokemonHeader {{ wild_encounter_group.label }}[] =
     {
         .mapGroup = {% if wild_encounter_group.for_maps %}MAP_GROUP({{ removePrefix(encounter.map, "MAP_") }}){% else %}0{% endif %},
         .mapNum = {% if wild_encounter_group.for_maps %}MAP_NUM({{ removePrefix(encounter.map, "MAP_") }}){% else %}{{ loop.index1 }}{% endif %},
-## for time in encounter.encounter_times
-## for monTable in time
-        .encounterTypes[{{ loop.index }}] = 
-            .landMonsInfo = {% if existsIn(monTable, "land_mons") %}&{{ encounter.base_label }}_LandMonsInfo{% if loop.parent.index1 == 1 %}_Morning{% else if loop.parent.index1 == 2 %}_Day{% else if loop.parent.index1 == 3 %}_Evening{% else if loop.parent.index1 == 4 %}_Night{% endif %}{% else %}NULL{% endif %},
-            .waterMonsInfo = {% if existsIn(monTable, "water_mons") %}&{{ encounter.base_label }}_WaterMonsInfo{% if loop.parent.index1 == 1 %}_Morning{% else if loop.parent.index1 == 2 %}_Day{% else if loop.parent.index1 == 3 %}_Evening{% else if loop.parent.index1 == 4 %}_Night{% endif %}{% else %}NULL{% endif %},
-            .rockSmashMonsInfo = {% if existsIn(monTable, "rock_smash_mons") %}&{{ encounter.base_label }}_RockSmashMonsInfo{% if loop.parent.index1 == 1 %}_Morning{% else if loop.parent.index1 == 2 %}_Day{% else if loop.parent.index1 == 3 %}_Evening{% else if loop.parent.index1 == 4 %}_Night{% endif %}{% else %}NULL{% endif %},
-            .fishingMonsInfo = {% if existsIn(monTable, "fishing_mons") %}&{{ encounter.base_label }}_FishingMonsInfo{% if loop.parent.index1 == 1 %}_Morning{% else if loop.parent.index1 == 2 %}_Day{% else if loop.parent.index1 == 3 %}_Evening{% else if loop.parent.index1 == 4 %}_Night{% endif %}{% else %}NULL{% endif %},
-            .hiddenMonsInfo = {% if existsIn(monTable, "hidden_mons") %}&{{ encounter.base_label }}_HiddenMonsInfo{% if loop.parent.index1 == 1 %}_Morning{% else if loop.parent.index1 == 2 %}_Day{% else if loop.parent.index1 == 3 %}_Evening{% else if loop.parent.index1 == 4 %}_Night{% endif %}{% else %}NULL{% endif %},
-## endfor
-## endfor
+        .landMonsInfo = {% if existsIn(encounter, "land_mons") %}&{{ encounter.base_label }}_LandMonsInfo{% else %}NULL{% endif %},
+        .waterMonsInfo = {% if existsIn(encounter, "water_mons") %}&{{ encounter.base_label }}_WaterMonsInfo{% else %}NULL{% endif %},
+        .rockSmashMonsInfo = {% if existsIn(encounter, "rock_smash_mons") %}&{{ encounter.base_label }}_RockSmashMonsInfo{% else %}NULL{% endif %},
+        .fishingMonsInfo = {% if existsIn(encounter, "fishing_mons") %}&{{ encounter.base_label }}_FishingMonsInfo{% else %}NULL{% endif %},
+        .hiddenMonsInfo = {% if existsIn(encounter, "hidden_mons") %}&{{ encounter.base_label }}_HiddenMonsInfo{% else %}NULL{% endif %},
     },
 ## endfor
     {

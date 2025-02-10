@@ -3,6 +3,8 @@
 
 #include "constants/wild_encounter.h"
 
+#define MON_INFO_SECTIONS_TOTAL 5
+
 struct WildPokemon
 {
     u8 minLevel;
@@ -21,15 +23,15 @@ struct WildEncounterTypes
     const struct WildPokemonInfo *landMonsInfo;
     const struct WildPokemonInfo *waterMonsInfo;
     const struct WildPokemonInfo *rockSmashMonsInfo;
-    const struct WildPokemonInfo *hiddenMonsInfo;
     const struct WildPokemonInfo *fishingMonsInfo;
+    const struct WildPokemonInfo *hiddenMonsInfo;
 };
 
 struct WildPokemonHeader
 {
     u8 mapGroup;
     u8 mapNum;
-    const struct WildEncounterTypes encounterTypes[4];
+    const struct WildEncounterTypes encounterTypes[MON_INFO_SECTIONS_TOTAL];
 };
 
 extern const struct WildPokemonHeader gWildMonHeaders[];

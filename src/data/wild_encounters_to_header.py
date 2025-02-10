@@ -11,6 +11,8 @@ ENCOUNTER_CHANCE      = "ENCOUNTER_CHANCE"
 SLOT                  = "SLOT"
 TOTAL                 = "TOTAL"
 NULL                  = "NULL"
+UNDEFINED             = "UNDEFINED"
+MAP_UNDEFINED         = "MAP_UNDEFINED"
 
 #encounter group header types
 WILD_MON              = "gWildMon"
@@ -129,6 +131,7 @@ def ImportWildEncounterFile():
     global eWaterMons
     global eRockSmashMons
     global eFishingMons
+    global encounterTotalCount
     global encounterCount
     global headerIndex
     global tabStr
@@ -137,13 +140,15 @@ def ImportWildEncounterFile():
     wFile = open("wild_encounters.json")
     wData = json.load(wFile)
 
+    encounterTotalCount = []
     encounterCount = []
     groupCount = 0
     while groupCount < len(wData["wild_encounter_groups"]):
+        encounterTotalCount.append(0)
         encounterCount.append(0)
         groupCount += 1
-    
-    #print(len(encounterCount))
+        
+    #print(len(encounterTotalCount))
 
     for data in wData["wild_encounter_groups"]:
         #print(data)
@@ -168,9 +173,9 @@ def ImportWildEncounterFile():
                     eFishingMons = field["encounter_rates"]
                     eFishingMons.append(field["groups"])
 
+            print('#include "rtc.h" \n')
             PrintEncounterRateMacros()
             print()
-        
         for encounter in wEncounters:
             if "map" in encounter:
                 structMap = encounter["map"]
@@ -178,7 +183,10 @@ def ImportWildEncounterFile():
                 structMap = encounter["base_label"]
 
             structLabel = encounter["base_label"]
-            #print(headerIndex)
+            
+            if encounterTotalCount[headerIndex] != len(wEncounters):
+                encounterTotalCount[headerIndex] = len(wEncounters)
+            
             encounterCount[headerIndex] += 1
 
             headersArray = []
@@ -255,6 +263,8 @@ def PrintStructContent(contentList):
 
 
 def AssembleMonHeaderContent():
+    global structLabel
+
     SetupMonInfoVars()
     tempHeaderLabel = GetWildMonHeadersLabel()
     tempHeaderTimeIndex = GetTimeIndexFromString(structTime)
@@ -269,7 +279,7 @@ def AssembleMonHeaderContent():
         headerStructTable[tempHeaderLabel][structLabel]["headerType"] = GetWildMonHeadersLabel()
         headerStructTable[tempHeaderLabel][structLabel]["mapGroup"] = structMap
         headerStructTable[tempHeaderLabel][structLabel]["mapNum"] = structMap
-        headerStructTable[tempHeaderLabel][structLabel]["encounterCount"] = encounterCount[headerIndex]
+        headerStructTable[tempHeaderLabel][structLabel]["encounterTotalCount"] = encounterTotalCount[headerIndex]
         headerStructTable[tempHeaderLabel][structLabel]["encounter_types"] = []
 
         i = 0
@@ -335,7 +345,7 @@ def PrintWildMonHeadersContent():
                     if stat == "mapGroup":
                         PrintEncounterHeaders(f"{tabStr}{tabStr}.mapGroup = {GetMapGroupEnum(mapData)},")
                     elif stat == "mapNum":
-                        PrintEncounterHeaders(f"{tabStr}{tabStr}.mapNum = {mapData},")
+                        PrintEncounterHeaders(f"{tabStr}{tabStr}.mapNum = {GetMapGroupEnum(mapData, labelCount + 1)},")
 
                     if type(headerStructTable[group][label][stat]) == list:
                         PrintEncounterHeaders(f"{tabStr}{tabStr}.encounterTypes =")
@@ -349,12 +359,34 @@ def PrintWildMonHeadersContent():
                                 if infoIndex == 0:
                                     PrintEncounterHeaders(tabStr + tabStr + tabStr + "{")
                                 PrintEncounterHeaders(f"{tabStr}{tabStr}{tabStr}{tabStr}{GetIMonInfoStringFromIndex(infoIndex)} = {monInfo[infoIndex]},")
-                                if infoIndex == MONS_INFO_TOTAL - 1:    
+                                if infoIndex == MONS_INFO_TOTAL - 1:
                                     PrintEncounterHeaders(tabStr + tabStr + tabStr + "},")
                                 infoIndex += 1
                             infoCount += 1
                         PrintEncounterHeaders(tabStr + tabStr + "},")
                 PrintEncounterHeaders(tabStr + "},")
+                if labelCount + 1 == headerStructTable[group][label]["encounterTotalCount"]:
+                    PrintEncounterHeaders(tabStr + "{")
+                    PrintEncounterHeaders(f"{tabStr}{tabStr}.mapGroup = {GetMapGroupEnum(MAP_UNDEFINED)},")
+                    PrintEncounterHeaders(f"{tabStr}{tabStr}.mapNum = {GetMapGroupEnum(MAP_UNDEFINED, labelCount + 1)},")
+
+                    nullCount = 0
+                    while nullCount <= TIME_NIGHT_INDEX:
+                        if nullCount == 0:
+                            PrintEncounterHeaders(f"{tabStr}{tabStr}.encounterTypes =")
+                            PrintEncounterHeaders(tabStr + tabStr + "{")
+                        nullIndex = 0
+                        PrintEncounterHeaders(f"{tabStr}{tabStr}{tabStr}[{GetTimeStrFromIndex(nullCount)}] = ")
+                        while nullIndex <= MONS_INFO_TOTAL - 1:
+                            if nullIndex == 0:
+                                PrintEncounterHeaders(tabStr + tabStr + tabStr + "{")
+                            PrintEncounterHeaders(f"{tabStr}{tabStr}{tabStr}{tabStr}{GetIMonInfoStringFromIndex(nullIndex)} = NULL,")
+                            if nullIndex == MONS_INFO_TOTAL - 1:
+                                PrintEncounterHeaders(tabStr + tabStr + tabStr + "},")
+                            nullIndex += 1
+                        nullCount += 1
+                    PrintEncounterHeaders(tabStr + tabStr + "},")
+                    PrintEncounterHeaders(tabStr + "},")
                 labelCount += 1
         groupCount += 1
         PrintEncounterHeaders("};")
@@ -475,10 +507,12 @@ def GetIMonInfoStringFromIndex(index):
         return ".hiddenMonsInfo"
     return index
 
-def GetMapGroupEnum(string):
-    if "MAP_" in string:
-        return "MAP_GROUP(" + string[4:-1] + ")"
-    return string
+def GetMapGroupEnum(string, index = 0):
+    if "MAP_" in string and index == 0:
+        return "MAP_GROUP(" + string[4:len(string)] + ")"
+    elif "MAP_" in string and index != 0:
+        return "MAP_NUM(" + string[4:len(string)] + ")"
+    return index
 
 
 ImportWildEncounterFile()
