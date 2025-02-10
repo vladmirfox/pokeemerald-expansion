@@ -1,8 +1,6 @@
 import json
-from enum import Enum
 
-#todo: add hidden mons!
-#todo: add encounter group type indices
+
 #todo: test with origin/upcoming
 
 #C string vars
