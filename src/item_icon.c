@@ -171,7 +171,6 @@ static inline bool32 IsItemIdFromHM(u32 itemId)
     return FALSE;
 }
 
-// NUM_TECHNICAL_MACHINES
 const void *GetItemIconPic(u16 itemId)
 {
     if (itemId == ITEM_LIST_END)
