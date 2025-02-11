@@ -620,9 +620,6 @@ static void PrintForms(u8 taskId, u16 species);
 static void Task_SwitchScreensFromFormsScreen(u8 taskId);
 static void Task_ExitFormsScreen(u8 taskId);
 
-// Area screen
-static void LoadHGSSScreenSelectBarSubmenu(void);
-
 //Physical/Special/Status category icon
 static u8 ShowCategoryIcon(u32 category);
 static void DestroyCategoryIcon(void);
@@ -3997,7 +3994,6 @@ static void Task_LoadAreaScreen(u8 taskId)
     case 1:
         LoadPokedexBgPalette(sPokedexView->isSearchResults);
         SetGpuReg(REG_OFFSET_BG1CNT, BGCNT_PRIORITY(0) | BGCNT_CHARBASE(0) | BGCNT_SCREENBASE(13) | BGCNT_16COLOR | BGCNT_TXT256x256);
-        LoadHGSSScreenSelectBarSubmenu();
         gMain.state++;
         break;
     case 2:
@@ -8614,10 +8610,4 @@ static void PrintSearchParameterTitle(u32 y, const u8 *str)
 static void ClearSearchParameterBoxText(void)
 {
     ClearSearchMenuRect(144, 8, 96, 96);
-}
-
-static void LoadHGSSScreenSelectBarSubmenu(void)
-{
-    CopyToBgTilemapBuffer(1, sPokedexPlusHGSS_ScreenSelectBarSubmenu_Tilemap, 0, 0);
-    CopyBgTilemapBufferToVram(1);
 }
