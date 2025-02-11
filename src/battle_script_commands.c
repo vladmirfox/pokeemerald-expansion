@@ -14194,7 +14194,7 @@ static void Cmd_jumpifnodamage(void)
 {
     CMD_ARGS(const u8 *jumpInstr);
 
-    if (gProtectStructs[gBattlerAttacker].physicalDmg || gProtectStructs[gBattlerAttacker].specialDmg)
+    if (IsBattlerTurnDamaged(gBattlerAttacker))
         gBattlescriptCurrInstr = cmd->nextInstr;
     else
         gBattlescriptCurrInstr = cmd->jumpInstr;
