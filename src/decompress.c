@@ -14,6 +14,7 @@
 //  === WARNING === WARNING === WARNING ===
 
 static void SmolDecompressData(const struct SmolHeader *header, const u32 *data, void *dest);
+static void SmolDecompressTilemap(const struct SmolTilemapHeader *header, const u32 *data, u16 *dest);
 
 static bool32 isModeLoEncoded(enum CompressionMode mode);
 static bool32 isModeSymEncoded(enum CompressionMode mode);
@@ -282,15 +283,15 @@ void HandleLoadSpecialPokePic(bool32 isFrontPic, void *dest, s32 species, u32 pe
 //  VRAM version
 void DecompressDataWithHeaderVram(const u32 *src, void *dest)
 {
-    struct SmolHeader header;
+    union CompressionHeader header;
     CpuCopy32(src, &header, 8);
-    switch (header.mode)
+    switch (header.smol.mode)
     {
         case MODE_LZ77:
             LZ77UnCompVram(src, dest);
             break;
         default:
-            SmolDecompressData(&header, &src[2], dest);
+            SmolDecompressData(&header.smol, &src[2], dest);
     }
 }
 
@@ -299,15 +300,18 @@ void DecompressDataWithHeaderVram(const u32 *src, void *dest)
 //  WRAM version
 void DecompressDataWithHeaderWram(const u32 *src, void *dest)
 {
-    struct SmolHeader header;
+    union CompressionHeader header;
     CpuCopy32(src, &header, 8);
-    switch (header.mode)
+    switch (header.smol.mode)
     {
         case MODE_LZ77:
             FastLZ77UnCompWram(src, dest);
             break;
+        case IS_TILEMAP:
+            SmolDecompressTilemap(&header.smolTilemap, &src[2], dest);
+            break;
         default:
-            SmolDecompressData(&header, &src[2], dest);
+            SmolDecompressData(&header.smol, &src[2], dest);
     }
 }
 
@@ -1033,6 +1037,67 @@ static void SmolDecompressData(const struct SmolHeader *header, const u32 *data,
     Free(memoryAlloced);
 }
 
+ARM_FUNC __attribute__((noinline, no_reorder)) __attribute__((optimize("-O3"))) static void DeltaDecodeTileNumbers(u16 *tileNumbers, u32 arraySize)
+{
+    u32 prevVal = 0;
+    u32 reminder = arraySize % 8;
+    u16 *dst = tileNumbers + (arraySize - reminder);
+    do
+    {
+        prevVal += *tileNumbers;
+        *tileNumbers++ = prevVal;
+
+        prevVal += *tileNumbers;
+        *tileNumbers++ = prevVal;
+
+        prevVal += *tileNumbers;
+        *tileNumbers++ = prevVal;
+
+        prevVal += *tileNumbers;
+        *tileNumbers++ = prevVal;
+
+        prevVal += *tileNumbers;
+        *tileNumbers++ = prevVal;
+
+        prevVal += *tileNumbers;
+        *tileNumbers++ = prevVal;
+
+        prevVal += *tileNumbers;
+        *tileNumbers++ = prevVal;
+
+        prevVal += *tileNumbers;
+        *tileNumbers++ = prevVal;
+    } while (tileNumbers != dst);
+
+    for (u32 i = 0; i < reminder; i++)
+    {
+        prevVal += *tileNumbers;
+        *tileNumbers++ = prevVal;
+    }
+}
+
+ARM_FUNC __attribute__((no_reorder)) static void SwitchToArmCallDecodeTileNumbers(u16 *tileNumbers, u32 arraySize, void (*decodeFunction)(u16 *tileNumbers, u32 arraySize))
+{
+    decodeFunction(tileNumbers, arraySize);
+}
+
+static void SmolDecompressTilemap(const struct SmolTilemapHeader *header, const u32 *data, u16 *dest)
+{
+    u16 *deltaDest = dest;
+    u32 loOffset = header->symSize*2 + 2*(header->symSize % 2);
+    u8 *loVec = (u8 *)data;
+    loVec = &loVec[loOffset];
+    u16 *symVec = (u16 *)data;
+
+    DecodeInstructionsIwram(header->tileNumberSize, loVec, symVec, dest);
+    u32 arraySize = header->tilemapSize/2;
+
+    u32 funcBuffer[100];
+
+    CopyFuncToIwram(funcBuffer, DeltaDecodeTileNumbers, SwitchToArmCallDecodeTileNumbers);
+    SwitchToArmCallDecodeTileNumbers(deltaDest, arraySize, (void *) funcBuffer);
+}
+
 //  Helper functions for determining modes
 static bool32 isModeLoEncoded(enum CompressionMode mode)
 {
@@ -1260,6 +1325,8 @@ u32 GetDecompressedDataSize(const u32 *ptr)
     {
         case MODE_LZ77:
             return header->lz77.size;
+        case IS_TILEMAP:
+            return header->smolTilemap.tilemapSize;
         default:
             return header->smol.imageSize*SMOL_IMAGE_SIZE_MULTIPLIER;
     }
