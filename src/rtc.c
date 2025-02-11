@@ -4,6 +4,8 @@
 #include "strings.h"
 #include "text.h"
 #include "fake_rtc.h"
+#include "sound.h"
+#include "constants/songs.h"
 
 // iwram bss
 static u16 sErrorStatus;
@@ -420,4 +422,26 @@ void FormatDecimalTimeWithoutSeconds(u8 *txtPtr, s8 hour, s8 minute, bool32 is24
 
     *txtPtr++ = EOS;
     *txtPtr = EOS;
+}
+
+u32 TryIncrementTimeOfDay(u32 timeOfDay)
+{
+    if (timeOfDay == TIME_NIGHT)
+    {
+        // PlaySE(SE_M_REVERSAL);
+        return TIME_MORNING;
+    }
+    // PlaySE(SE_M_REVERSAL);
+    return timeOfDay + 1;
+}
+
+u32 TryDecrementTimeOfDay(u32 timeOfDay)
+{
+    if (timeOfDay == TIME_MORNING)
+    {
+        // PlaySE(SE_M_LICK);
+        return TIME_NIGHT;
+    }
+    // PlaySE(SE_M_LICK);
+    return timeOfDay - 1;
 }
