@@ -18,6 +18,5 @@ void CB2_OpenPokedex(void);
 void PrintMonMeasurements(u16 species, u32 owned);
 u8* ConvertMonHeightToString(u32 height);
 u8* ConvertMonWeightToString(u32 weight);
-void LoadAreaScreenAfterTimeChange(u8 taskId);
 
 #endif // GUARD_POKEDEX_H

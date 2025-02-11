@@ -116,7 +116,6 @@ static void CreateAreaUnknownSprites(void);
 static void Task_HandlePokedexAreaScreenInput(u8);
 static void ResetPokedexAreaMapBg(void);
 static void DestroyAreaScreenSprites(void);
-static void LoadHGSSScreenSelectBarSubmenu(void);
 static void ShowEncounterInfoLabel(void);
 static void ShowAreaUnknownLabel(void);
 static void ClearEncounterInfoLabel(void);
@@ -125,7 +124,6 @@ bool32 ShouldShowAreaUnknownLabel(void);
 
 static const u32 sAreaGlow_Pal[] = INCBIN_U32("graphics/pokedex/area_glow.gbapal");
 static const u32 sAreaGlow_Gfx[] = INCBIN_U32("graphics/pokedex/area_glow.4bpp.lz");
-static const u32 sPokedexPlusHGSS_ScreenSelectBarSubmenu_Tilemap[] = INCBIN_U32("graphics/pokedex/hgss/SelectBar.bin.lz");
 
 static const u16 sSpeciesHiddenFromAreaScreen[] = { SPECIES_WYNAUT };
 
@@ -219,7 +217,7 @@ static const struct SpriteTemplate sAreaUnknownSpriteTemplate =
     .callback = SpriteCallbackDummy
 };
 
-static const u8 sFontColor_Black[3] = {TEXT_COLOR_TRANSPARENT, TEXT_COLOR_WHITE, 5};
+static const u8 sFontColor_AreaInfo[3] = {TEXT_COLOR_TRANSPARENT, TEXT_COLOR_WHITE, 5};
 static const struct WindowTemplate sTimeOfDayWindowTemplate =
 {
     .bg = 1,
@@ -646,7 +644,7 @@ static void ShowEncounterInfoLabel(void)
     DrawTextBorderInner(sPokedexAreaScreen->infoWindowId, 0x242, 12);
     FillWindowPixelBuffer(sPokedexAreaScreen->infoWindowId, PIXEL_FILL(7));
     PutWindowTilemap(sPokedexAreaScreen->infoWindowId);
-    AddTextPrinterParameterized4(sPokedexAreaScreen->infoWindowId, FONT_NORMAL, stringXPos, 0, 0, 0, sFontColor_Black, TEXT_SKIP_DRAW, gText_TimeOfDay);
+    AddTextPrinterParameterized4(sPokedexAreaScreen->infoWindowId, FONT_NORMAL, stringXPos, 0, 0, 0, sFontColor_AreaInfo, TEXT_SKIP_DRAW, gText_TimeOfDay);
     CopyWindowToVram(sPokedexAreaScreen->infoWindowId, COPYWIN_FULL);
 }
 
@@ -659,7 +657,7 @@ static void ShowAreaUnknownLabel(void)
     DrawTextBorderInner(sPokedexAreaScreen->unknownWindowId, 0x242, 12);
     FillWindowPixelBuffer(sPokedexAreaScreen->unknownWindowId, PIXEL_FILL(7));
     PutWindowTilemap(sPokedexAreaScreen->unknownWindowId);
-    AddTextPrinterParameterized4(sPokedexAreaScreen->unknownWindowId, FONT_NORMAL, stringXPos, 0, 0, 0, sFontColor_Black, TEXT_SKIP_DRAW, gText_AreaUnknown);
+    AddTextPrinterParameterized4(sPokedexAreaScreen->unknownWindowId, FONT_NORMAL, stringXPos, 0, 0, 0, sFontColor_AreaInfo, TEXT_SKIP_DRAW, gText_AreaUnknown);
     CopyWindowToVram(sPokedexAreaScreen->unknownWindowId, COPYWIN_FULL);
 }
 
@@ -748,9 +746,6 @@ static void Task_ShowPokedexAreaScreen(u8 taskId)
         BeginNormalPaletteFade(PALETTES_ALL & ~(0x14), 0, 16, 0, RGB_BLACK);
         break;
     case 10:
-        if (POKEDEX_PLUS_HGSS)
-            LoadHGSSScreenSelectBarSubmenu();
-
         SetGpuReg(REG_OFFSET_BLDCNT, BLDCNT_TGT1_BG0 | BLDCNT_EFFECT_BLEND | BLDCNT_TGT2_BG0 | BLDCNT_TGT2_ALL);
         StartAreaGlow();
         if (OW_TIME_OF_DAY_ENCOUNTERS)
@@ -761,6 +756,8 @@ static void Task_ShowPokedexAreaScreen(u8 taskId)
                 ShowAreaUnknownLabel();
             }
         }
+        //if (POKEDEX_PLUS_HGSS)
+        //    LoadHGSSScreenSelectBarSubmenu();
         ShowBg(2);
         ShowBg(3); // TryShowPokedexAreaMap will have done this already
         SetGpuRegBits(REG_OFFSET_DISPCNT, DISPCNT_OBJ_ON);
@@ -942,10 +939,4 @@ static void CreateAreaUnknownSprites(void)
             }
         }
     }
-}
-
-static void LoadHGSSScreenSelectBarSubmenu(void)
-{
-    CopyToBgTilemapBuffer(1, sPokedexPlusHGSS_ScreenSelectBarSubmenu_Tilemap, 0, 0);
-    CopyBgTilemapBufferToVram(1);
 }
