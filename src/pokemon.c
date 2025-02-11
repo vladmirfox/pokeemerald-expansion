@@ -20,6 +20,7 @@
 #include "field_weather.h"
 #include "graphics.h"
 #include "item.h"
+#include "item_use.h"
 #include "caps.h"
 #include "link.h"
 #include "main.h"
@@ -932,12 +933,6 @@ static const s8 sFriendshipEventModifiers[][3] =
 };
 
 #define HM_MOVES_END 0xFFFF
-
-static const u16 sHMMoves[] =
-{
-    MOVE_CUT, MOVE_FLY, MOVE_SURF, MOVE_STRENGTH, MOVE_FLASH,
-    MOVE_ROCK_SMASH, MOVE_WATERFALL, MOVE_DIVE, HM_MOVES_END
-};
 
 static const struct SpeciesItem sAlteringCaveWildMonHeldItems[] =
 {
@@ -5887,9 +5882,9 @@ bool8 IsMoveHM(u16 move)
     if (P_CAN_FORGET_HIDDEN_MOVE)
         return FALSE;
 
-    while (sHMMoves[i] != HM_MOVES_END)
+    while (gHMMoves[i] != GetHMMovesArrayLength())
     {
-        if (sHMMoves[i++] == move)
+        if (gHMMoves[i++] == move)
             return TRUE;
     }
     return FALSE;
@@ -7033,7 +7028,7 @@ u32 GetRegionalFormByRegion(u32 species, u32 region)
         {
             if (firstFoundSpecies == 0)
                 firstFoundSpecies = formTable[formId];
-            
+
             if (IsSpeciesRegionalFormFromRegion(formTable[formId], region))
                 return formTable[formId];
         }
