@@ -5085,7 +5085,7 @@ static bool8 CalculateMoves(void)
     u32 TMHM_MovesArrayLength = GetTMHMMovesArrayLength();
 
     if (sStatsMoves == NULL)
-        sStatsMoves = (u16*)AllocZeroed(sizeof(u16) * EGG_MOVES_ARRAY_COUNT + MAX_LEVEL_UP_MOVES + TMHM_MovesArrayLength);
+        sStatsMoves = (u16*)AllocZeroed(sizeof(u16) * (EGG_MOVES_ARRAY_COUNT + MAX_LEVEL_UP_MOVES + TMHM_MovesArrayLength));
     if (sStatsMovesTMHM_ID == NULL)
         sStatsMovesTMHM_ID = (u16*)AllocZeroed(sizeof(u16) * TMHM_MovesArrayLength);
 
