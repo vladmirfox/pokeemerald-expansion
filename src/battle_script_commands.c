@@ -7963,7 +7963,7 @@ static void Cmd_openpartyscreen(void)
             }
             else
             {
-                u32 battlerOpposite = GetOppositeBattler(battler);
+                u32 battlerOpposite = GetBattlerAtPosition(BATTLE_OPPOSITE(GetBattlerPosition(battler)));
                 if (gAbsentBattlerFlags & (1u << battlerOpposite))
                     battlerOpposite ^= BIT_FLANK;
 
@@ -13180,7 +13180,7 @@ static void Cmd_updatestatusicon(void)
         }
         if ((IsDoubleBattle()))
         {
-            battler = GetPartnerBattler(gBattlerAttacker);
+            battler = GetBattlerAtPosition(BATTLE_PARTNER(GetBattlerPosition(gBattlerAttacker)));
             if (!(gAbsentBattlerFlags & (1u << battler)))
             {
                 BtlController_EmitStatusIconUpdate(battler, BUFFER_A, gBattleMons[battler].status1, gBattleMons[battler].status2);
@@ -13946,9 +13946,10 @@ static void Cmd_healpartystatus(void)
 {
     CMD_ARGS();
 
-    u32 i, zero, = 0;
-    u32 partner = GetPartnerBattler(gBattlerAttacker);
+    u32 i = 0;
+    u32 zero = 0;
     u32 toHeal = 0;
+    u32 partner = GetBattlerAtPosition(BATTLE_PARTNER(GetBattlerPosition(gBattlerAttacker)));
     struct Pokemon *party = GetBattlerParty(gBattlerAttacker);
     bool32 isSoundMove = IsSoundMove(gCurrentMove);
 
@@ -14877,7 +14878,7 @@ static void Cmd_trysethelpinghand(void)
 {
     CMD_ARGS(const u8 *failInstr);
 
-    gBattlerTarget = GetPartnerBattler(gBattlerAttacker);
+    gBattlerTarget = GetBattlerAtPosition(BATTLE_PARTNER(GetBattlerPosition(gBattlerAttacker)));
 
     if (IsDoubleBattle()
         && !(gAbsentBattlerFlags & (1u << gBattlerTarget))
@@ -15702,7 +15703,7 @@ static void Cmd_pursuitdoubles(void)
 {
     CMD_ARGS(const u8 *failInstr);
 
-    u32 battler = GetPartnerBattler(gBattlerAttacker);
+    u32 battler = GetBattlerAtPosition(BATTLE_PARTNER(GetBattlerPosition(gBattlerAttacker)));
 
     if (IsDoubleBattle()
         && !(gAbsentBattlerFlags & (1u << battler))
@@ -16270,6 +16271,8 @@ static void Cmd_displaydexinfo(void)
     switch (gBattleCommunication[0])
     {
     case 0:
+        FREE_AND_SET_NULL(gBattleResources->aiData);
+
         BeginNormalPaletteFade(PALETTES_ALL, 0, 0, 16, RGB_BLACK);
         gBattleCommunication[0]++;
         break;
@@ -16309,8 +16312,9 @@ static void Cmd_displaydexinfo(void)
         }
         break;
     case 5:
-        if (!gPaletteFade.active)
+        if (!gPaletteFade.active) {
             gBattlescriptCurrInstr = cmd->nextInstr;
+        }
         break;
     }
 }
