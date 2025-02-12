@@ -11,6 +11,7 @@
 #include "graphics.h"
 #include "international_string_util.h"
 #include "item.h"
+#include "item_use.h"
 #include "item_icon.h"
 #include "main.h"
 #include "malloc.h"
@@ -322,9 +323,8 @@ static EWRAM_DATA u16 sLastSelectedPokemon = 0;
 static EWRAM_DATA u8 sPokeBallRotation = 0;
 static EWRAM_DATA struct PokedexListItem *sPokedexListItem = NULL;
 //Pokedex Plus HGSS_Ui
-#define MOVES_COUNT_TOTAL (EGG_MOVES_ARRAY_COUNT + MAX_LEVEL_UP_MOVES + NUM_TECHNICAL_MACHINES + NUM_HIDDEN_MACHINES)
-EWRAM_DATA static u16 sStatsMoves[MOVES_COUNT_TOTAL] = {0};
-EWRAM_DATA static u16 sStatsMovesTMHM_ID[NUM_TECHNICAL_MACHINES + NUM_HIDDEN_MACHINES] = {0};
+EWRAM_DATA static u16 *sStatsMoves = NULL;
+EWRAM_DATA static u16 *sStatsMovesTMHM_ID = NULL;
 
 
 struct SearchOptionText
@@ -5069,19 +5069,25 @@ static void PrintStatsScreen_DestroyMoveItemIcon(u8 taskId)
 
 static bool8 CalculateMoves(void)
 {
-    u16 species = NationalPokedexNumToSpeciesHGSS(sPokedexListItem->dexNum);
+    u32 species = NationalPokedexNumToSpeciesHGSS(sPokedexListItem->dexNum);
     const u16 *teachableLearnset = GetSpeciesTeachableLearnset(species);
 
     u16 statsMovesEgg[EGG_MOVES_ARRAY_COUNT] = {0};
     u16 statsMovesLevelUp[MAX_LEVEL_UP_MOVES] = {0};
-    u16 move;
+    u32 move;
 
-    u8 numEggMoves = 0;
-    u8 numLevelUpMoves = 0;
-    u8 numTMHMMoves = 0;
-    u8 numTutorMoves = 0;
-    u16 movesTotal = 0;
-    u8 i,j;
+    u32 numEggMoves = 0;
+    u32 numLevelUpMoves = 0;
+    u32 numTMHMMoves = 0;
+    u32 numTutorMoves = 0;
+    u32 movesTotal = 0;
+    u32 i,j;
+    u32 TMHM_MovesArrayLength = GetTMHMMovesArrayLength();
+
+    if (sStatsMoves == NULL)
+        sStatsMoves = (u16*)AllocZeroed(sizeof(u16) * (EGG_MOVES_ARRAY_COUNT + MAX_LEVEL_UP_MOVES + TMHM_MovesArrayLength));
+    if (sStatsMovesTMHM_ID == NULL)
+        sStatsMovesTMHM_ID = (u16*)AllocZeroed(sizeof(u16) * TMHM_MovesArrayLength);
 
     // Mega pokemon don't have distinct learnsets from their base form; so use base species for calculation
     if (species >= SPECIES_VENUSAUR_MEGA && species <= SPECIES_GROUDON_PRIMAL)
@@ -5108,11 +5114,11 @@ static bool8 CalculateMoves(void)
     for (i = 0; teachableLearnset[i] != MOVE_UNAVAILABLE; i++)
     {
         move = teachableLearnset[i];
-        for (j = 0; j < NUM_TECHNICAL_MACHINES + NUM_HIDDEN_MACHINES; j++)
+        for (j = 0; j < TMHM_MovesArrayLength; j++)
         {
-            if (ItemIdToBattleMoveId(ITEM_TM01 + j) == move)
+            if (gTMHMMoves[j] == move)
             {
-                sStatsMovesTMHM_ID[numTMHMMoves] = (ITEM_TM01 + j);
+                sStatsMovesTMHM_ID[numTMHMMoves] = gTMHMMoves[j];
                 numTMHMMoves++;
 
                 sStatsMoves[movesTotal] = move;
@@ -5125,13 +5131,13 @@ static bool8 CalculateMoves(void)
     for (i = 0; teachableLearnset[i] != MOVE_UNAVAILABLE; i++)
     {
         move = teachableLearnset[i];
-        for (j = 0; j < NUM_TECHNICAL_MACHINES + NUM_HIDDEN_MACHINES; j++)
+        for (j = 0; j < TMHM_MovesArrayLength; j++)
         {
-            if (ItemIdToBattleMoveId(ITEM_TM01 + j) == move)
+            if (gTMHMMoves[j] == move)
                 break;
         }
 
-        if (j >= NUM_TECHNICAL_MACHINES + NUM_HIDDEN_MACHINES)
+        if (j >= TMHM_MovesArrayLength)
         {
             numTutorMoves++;
 
@@ -6158,7 +6164,7 @@ static void Task_HandleEvolutionScreenInput(u8 taskId)
             u16 dexNum          = SpeciesToNationalPokedexNum(targetSpecies);
             if (sPokedexView->isSearchResults && sPokedexView->originalSearchSelectionNum == 0)
                 sPokedexView->originalSearchSelectionNum = sPokedexListItem->dexNum;
-                
+
             sPokedexListItem->dexNum = dexNum;
             sPokedexListItem->seen   = GetSetPokedexFlag(dexNum, FLAG_GET_SEEN);
             sPokedexListItem->owned  = GetSetPokedexFlag(dexNum, FLAG_GET_CAUGHT);
@@ -6668,6 +6674,17 @@ static void Task_SwitchScreensFromEvolutionScreen(u8 taskId)
     u8 i;
     if (!gPaletteFade.active)
     {
+        if (sStatsMoves != NULL)
+        {
+            Free(sStatsMoves);
+            sStatsMoves = NULL;
+        }
+        if (sStatsMovesTMHM_ID != NULL)
+        {
+            Free(sStatsMovesTMHM_ID);
+            sStatsMovesTMHM_ID = NULL;
+        }
+
         FreeMonIconPalettes();                                          //Destroy pokemon icon sprite
         FreeAndDestroyMonIconSprite(&gSprites[gTasks[taskId].data[4]]); //Destroy pokemon icon sprite
         for (i = 1; i <= gTasks[taskId].data[3]; i++)

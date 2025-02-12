@@ -45,6 +45,7 @@
 #include "constants/items.h"
 #include "constants/songs.h"
 #include "constants/map_types.h"
+#include "constants/tms_hms.h"
 
 static void SetUpItemUseCallback(u8);
 static void FieldCB_UseItemOnField(void);
@@ -100,6 +101,30 @@ EWRAM_DATA static void(*sItemUseOnFieldCB)(u8 taskId) = NULL;
 
 // Below is set TRUE by UseRegisteredKeyItemOnField
 #define tUsingRegisteredKeyItem  data[3]
+
+#define TM_MOVE(name) MOVE_##name,
+#define HM_MOVE(name) MOVE_##name,
+
+const u16 gTMHMMoves[] =
+{
+    FOREACH_TM(TM_MOVE)
+    FOREACH_HM(HM_MOVE)
+};
+
+const u16 gHMMoves[] =
+{
+    FOREACH_HM(HM_MOVE)
+};
+
+u32 GetTMHMMovesArrayLength(void)
+{
+    return ARRAY_COUNT(gTMHMMoves);
+}
+
+u32 GetHMMovesArrayLength(void)
+{
+    return ARRAY_COUNT(gHMMoves);
+}
 
 // UB here if an item with type ITEM_USE_MAIL or ITEM_USE_BAG_MENU uses SetUpItemUseCallback
 // Never occurs in vanilla, but can occur with improperly created items
