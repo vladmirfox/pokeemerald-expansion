@@ -12,6 +12,7 @@
 #include "gpu_regs.h"
 #include "graphics.h"
 #include "main.h"
+#include "malloc.h"
 #include "m4a.h"
 #include "palette.h"
 #include "pokemon.h"
@@ -369,12 +370,7 @@ void LaunchBattleAnimation(u32 animType, u32 animId)
         InitPrioritiesForVisibleBattlers();
         UpdateOamPriorityInAllHealthboxes(0, sAnimHideHpBoxes);
         for (i = 0; i < MAX_BATTLERS_COUNT; i++)
-        {
-            if (GetBattlerSide(i) != B_SIDE_PLAYER)
-                gAnimBattlerSpecies[i] = GetMonData(&gEnemyParty[gBattlerPartyIndexes[i]], MON_DATA_SPECIES);
-            else
-                gAnimBattlerSpecies[i] = GetMonData(&gPlayerParty[gBattlerPartyIndexes[i]], MON_DATA_SPECIES);
-        }
+            gAnimBattlerSpecies[i] = GetMonData(GetPartyBattlerData(i), MON_DATA_SPECIES);
     }
     else
     {
@@ -1570,17 +1566,15 @@ void LoadMoveBg(u16 bgId)
 {
     if (IsContest())
     {
+        void *decompressionBuffer = Alloc(0x800);
         const u32 *tilemap = gBattleAnimBackgroundTable[bgId].tilemap;
-        void *dmaSrc;
-        void *dmaDest;
 
-        LZDecompressWram(tilemap, gDecompressionBuffer);
-        RelocateBattleBgPal(GetBattleBgPaletteNum(), (void *)gDecompressionBuffer, 0x100, FALSE);
-        dmaSrc = gDecompressionBuffer;
-        dmaDest = (void *)BG_SCREEN_ADDR(26);
-        DmaCopy32(3, dmaSrc, dmaDest, 0x800);
+        LZDecompressWram(tilemap, decompressionBuffer);
+        RelocateBattleBgPal(GetBattleBgPaletteNum(), decompressionBuffer, 0x100, FALSE);
+        DmaCopy32(3, decompressionBuffer, (void *)BG_SCREEN_ADDR(26), 0x800);
         LZDecompressVram(gBattleAnimBackgroundTable[bgId].image, (void *)BG_SCREEN_ADDR(4));
         LoadCompressedPalette(gBattleAnimBackgroundTable[bgId].palette, BG_PLTT_ID(GetBattleBgPaletteNum()), PLTT_SIZE_4BPP);
+        Free(decompressionBuffer);
     }
     else
     {
