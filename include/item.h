@@ -91,9 +91,9 @@ u32 GetItemStatus2Mask(u16 itemId);
 /* Expands to:
  * enum
  * {
- *   ITEM_TM_FOCUS_PUNCH,
+ *   ITEM_TM_FOCUS_PUNCH = ITEM_TM01,
  *   ...
- *   ITEM_HM_CUT,
+ *   ITEM_HM_CUT = ITEM_HM08,
  *   ...
  * }; */
 #define ENUM_TM(n, id) CAT(ITEM_TM_, id) = CAT(ITEM_TM, n),
