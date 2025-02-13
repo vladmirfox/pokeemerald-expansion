@@ -993,7 +993,7 @@ const u8* CheckSkyDropState(u32 battler, enum SkyDropState skyDropState)
     // If target was sky dropped in the middle of Outrage/Thrash/Petal Dance,
     // confuse them upon release and display "confused by fatigue" message & animation.
     // Don't do this if this CancelMultiTurnMoves is caused by falling asleep via Yawn.
-    if (gBattleMons[otherSkyDropper].status2 & STATUS2_LOCK_CONFUSE && skyDropState != STATE_STATUS_YAWN)
+    if (gBattleMons[otherSkyDropper].status2 & STATUS2_LOCK_CONFUSE && skyDropState != SKY_DROP_STATUS_YAWN)
     {
         gBattleMons[otherSkyDropper].status2 &= ~(STATUS2_LOCK_CONFUSE);
 
@@ -1006,22 +1006,22 @@ const u8* CheckSkyDropState(u32 battler, enum SkyDropState skyDropState)
             // Set confused status
             gBattleMons[otherSkyDropper].status2 |= STATUS2_CONFUSION_TURN(((Random()) % 4) + 2);
 
-            if (skyDropState == STATE_ATTACKCANCELLER_CHECK)
+            if (skyDropState == SKY_DROP_ATTACKCANCELLER_CHECK)
             {
                 gBattleStruct->skyDropTargets[battler] = SKY_DROP_RELEASED_TARGET;
             }
-            else if (skyDropState == STATE_GRAVITY_ON_AIRBORNE)
+            else if (skyDropState == SKY_DROP_GRAVITY_ON_AIRBORNE)
             {
                 // Reapplying STATUS3_SKY_DROPPED allows for avoiding unecessary messages when Gravity is applied to the target.
                 gBattleStruct->skyDropTargets[battler] = SKY_DROP_RELEASED_TARGET;
                 gStatuses3[otherSkyDropper] |= STATUS3_SKY_DROPPED;
             }
-            else if (skyDropState == STATE_CANCEL_MULTI_TURN_MOVES)
+            else if (skyDropState == SKY_DROP_CANCEL_MULTI_TURN_MOVES)
             {
                 gBattlerAttacker = otherSkyDropper;
                 result = BattleScript_ThrashConfuses;
             }
-            else if (skyDropState == STATE_STATUS_CONDITION)
+            else if (skyDropState == SKY_DROP_STATUS_FREEZE_SLEEP)
             {
                 gBattlerAttacker = otherSkyDropper;
                 BattleScriptPush(gBattlescriptCurrInstr + 1);
@@ -1257,7 +1257,7 @@ u32 TrySetCantSelectMoveBattleScript(u32 battler)
 
     if (DYNAMAX_BYPASS_CHECK && GetActiveGimmick(battler) != GIMMICK_Z_MOVE && move == gLastMoves[battler] && move != MOVE_STRUGGLE && (gBattleMons[battler].status2 & STATUS2_TORMENT))
     {
-        CancelMultiTurnMoves(battler, STATE_NORMAL);
+        CancelMultiTurnMoves(battler, SKY_DROP_IGNORE);
         if (gBattleTypeFlags & BATTLE_TYPE_PALACE)
         {
             gPalaceSelectionBattleScripts[battler] = BattleScript_SelectingTormentedMoveInPalace;
@@ -2571,7 +2571,7 @@ u8 DoBattlerEndTurnEffects(void)
                     gBattleMons[battler].status2 -= STATUS2_UPROAR_TURN(1);  // uproar timer goes down
                     if (WasUnableToUseMove(battler))
                     {
-                        CancelMultiTurnMoves(battler, STATE_NORMAL);
+                        CancelMultiTurnMoves(battler, SKY_DROP_IGNORE);
                         gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_UPROAR_ENDS;
                     }
                     else if (gBattleMons[battler].status2 & STATUS2_UPROAR)
@@ -2582,7 +2582,7 @@ u8 DoBattlerEndTurnEffects(void)
                     else
                     {
                         gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_UPROAR_ENDS;
-                        CancelMultiTurnMoves(battler, STATE_NORMAL);
+                        CancelMultiTurnMoves(battler, SKY_DROP_IGNORE);
                     }
                     BattleScriptExecute(BattleScript_PrintUproarOverTurns);
                     effect = 1;
@@ -2597,7 +2597,7 @@ u8 DoBattlerEndTurnEffects(void)
             {
                 gBattleMons[battler].status2 -= STATUS2_LOCK_CONFUSE_TURN(1);
                 if (WasUnableToUseMove(battler))
-                    CancelMultiTurnMoves(battler, STATE_NORMAL);
+                    CancelMultiTurnMoves(battler, SKY_DROP_IGNORE);
                 else if (!(gBattleMons[battler].status2 & STATUS2_LOCK_CONFUSE)
                  && (gBattleMons[battler].status2 & STATUS2_MULTIPLETURNS))
                 {
@@ -2688,7 +2688,7 @@ u8 DoBattlerEndTurnEffects(void)
                  && battlerAbility != ABILITY_INSOMNIA && !UproarWakeUpCheck(battler)
                  && !IsLeafGuardProtected(battler, battlerAbility))
                 {
-                    CancelMultiTurnMoves(battler, STATE_STATUS_YAWN);
+                    CancelMultiTurnMoves(battler, SKY_DROP_STATUS_YAWN);
                     gEffectBattler = gBattlerTarget = battler;
                     if (IsBattlerTerrainAffected(battler, STATUS_FIELD_ELECTRIC_TERRAIN))
                     {
@@ -2998,7 +2998,7 @@ bool32 HandleWishPerishSongOnTurnEnd(void)
             s32 i;
 
             for (i = 0; i < gBattlersCount; i++)
-                CancelMultiTurnMoves(i, STATE_NORMAL);
+                CancelMultiTurnMoves(i, SKY_DROP_IGNORE);
 
             gBattlescriptCurrInstr = BattleScript_ArenaDoJudgment;
             BattleScriptExecute(BattleScript_ArenaDoJudgment);
@@ -3184,7 +3184,7 @@ static void CancellerRecharge(u32 *effect)
     {
         gBattleMons[gBattlerAttacker].status2 &= ~STATUS2_RECHARGE;
         gDisableStructs[gBattlerAttacker].rechargeTimer = 0;
-        CancelMultiTurnMoves(gBattlerAttacker, STATE_ATTACKCANCELLER_CHECK);
+        CancelMultiTurnMoves(gBattlerAttacker, SKY_DROP_ATTACKCANCELLER_CHECK);
         gBattlescriptCurrInstr = BattleScript_MoveUsedMustRecharge;
         gHitMarker |= HITMARKER_UNABLE_TO_USE_MOVE;
         *effect = 1;
@@ -3319,7 +3319,7 @@ static void CancellerTruant(u32 *effect)
 {
     if (GetBattlerAbility(gBattlerAttacker) == ABILITY_TRUANT && gDisableStructs[gBattlerAttacker].truantCounter)
     {
-        CancelMultiTurnMoves(gBattlerAttacker, STATE_ATTACKCANCELLER_CHECK);
+        CancelMultiTurnMoves(gBattlerAttacker, SKY_DROP_ATTACKCANCELLER_CHECK);
         gHitMarker |= HITMARKER_UNABLE_TO_USE_MOVE;
         gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_LOAFING;
         gBattlerAbility = gBattlerAttacker;
@@ -3334,7 +3334,7 @@ static void CancellerFlinch(u32 *effect)
     if (gBattleMons[gBattlerAttacker].status2 & STATUS2_FLINCHED)
     {
         gProtectStructs[gBattlerAttacker].flinchImmobility = TRUE;
-        CancelMultiTurnMoves(gBattlerAttacker, STATE_ATTACKCANCELLER_CHECK);
+        CancelMultiTurnMoves(gBattlerAttacker, SKY_DROP_ATTACKCANCELLER_CHECK);
         gBattlescriptCurrInstr = BattleScript_MoveUsedFlinched;
         gHitMarker |= HITMARKER_UNABLE_TO_USE_MOVE;
         *effect = 1;
@@ -3355,7 +3355,7 @@ static void CancellerInLove(u32 *effect)
             BattleScriptPush(BattleScript_MoveUsedIsInLoveCantAttack);
             gHitMarker |= HITMARKER_UNABLE_TO_USE_MOVE;
             gProtectStructs[gBattlerAttacker].loveImmobility = TRUE;
-            CancelMultiTurnMoves(gBattlerAttacker, STATE_ATTACKCANCELLER_CHECK);
+            CancelMultiTurnMoves(gBattlerAttacker, SKY_DROP_ATTACKCANCELLER_CHECK);
         }
         gBattlescriptCurrInstr = BattleScript_MoveUsedIsInLove;
         *effect = 1;
@@ -3368,7 +3368,7 @@ static void CancellerDisabled(u32 *effect)
     {
         gProtectStructs[gBattlerAttacker].usedDisabledMove = TRUE;
         gBattleScripting.battler = gBattlerAttacker;
-        CancelMultiTurnMoves(gBattlerAttacker, STATE_ATTACKCANCELLER_CHECK);
+        CancelMultiTurnMoves(gBattlerAttacker, SKY_DROP_ATTACKCANCELLER_CHECK);
         gBattlescriptCurrInstr = BattleScript_MoveUsedIsDisabled;
         gHitMarker |= HITMARKER_UNABLE_TO_USE_MOVE;
         *effect = 1;
@@ -3381,7 +3381,7 @@ static void CancellerHealBlocked(u32 *effect)
     {
         gProtectStructs[gBattlerAttacker].usedHealBlockedMove = TRUE;
         gBattleScripting.battler = gBattlerAttacker;
-        CancelMultiTurnMoves(gBattlerAttacker, STATE_ATTACKCANCELLER_CHECK);
+        CancelMultiTurnMoves(gBattlerAttacker, SKY_DROP_ATTACKCANCELLER_CHECK);
         gBattlescriptCurrInstr = BattleScript_MoveUsedHealBlockPrevents;
         gHitMarker |= HITMARKER_UNABLE_TO_USE_MOVE;
         *effect = 1;
@@ -3394,7 +3394,7 @@ static void CancellerGravity(u32 *effect)
     {
         gProtectStructs[gBattlerAttacker].usedGravityPreventedMove = TRUE;
         gBattleScripting.battler = gBattlerAttacker;
-        CancelMultiTurnMoves(gBattlerAttacker, STATE_ATTACKCANCELLER_CHECK);
+        CancelMultiTurnMoves(gBattlerAttacker, SKY_DROP_ATTACKCANCELLER_CHECK);
         gBattlescriptCurrInstr = BattleScript_MoveUsedGravityPrevents;
         gHitMarker |= HITMARKER_UNABLE_TO_USE_MOVE;
         *effect = 1;
@@ -3406,7 +3406,7 @@ static void CancellerThroatChop(u32 *effect)
     if (GetActiveGimmick(gBattlerAttacker) != GIMMICK_Z_MOVE && gDisableStructs[gBattlerAttacker].throatChopTimer && IsSoundMove(gCurrentMove))
     {
         gProtectStructs[gBattlerAttacker].usedThroatChopPreventedMove = TRUE;
-        CancelMultiTurnMoves(gBattlerAttacker, STATE_ATTACKCANCELLER_CHECK);
+        CancelMultiTurnMoves(gBattlerAttacker, SKY_DROP_ATTACKCANCELLER_CHECK);
         gBattlescriptCurrInstr = BattleScript_MoveUsedIsThroatChopPrevented;
         gHitMarker |= HITMARKER_UNABLE_TO_USE_MOVE;
         *effect = 1;
@@ -3418,7 +3418,7 @@ static void CancellerTaunted(u32 *effect)
     if (GetActiveGimmick(gBattlerAttacker) != GIMMICK_Z_MOVE && gDisableStructs[gBattlerAttacker].tauntTimer && IsBattleMoveStatus(gCurrentMove))
     {
         gProtectStructs[gBattlerAttacker].usedTauntedMove = TRUE;
-        CancelMultiTurnMoves(gBattlerAttacker, STATE_ATTACKCANCELLER_CHECK);
+        CancelMultiTurnMoves(gBattlerAttacker, SKY_DROP_ATTACKCANCELLER_CHECK);
         gBattlescriptCurrInstr = BattleScript_MoveUsedIsTaunted;
         gHitMarker |= HITMARKER_UNABLE_TO_USE_MOVE;
         *effect = 1;
@@ -3430,7 +3430,7 @@ static void CancellerImprisoned(u32 *effect)
     if (GetActiveGimmick(gBattlerAttacker) != GIMMICK_Z_MOVE && GetImprisonedMovesCount(gBattlerAttacker, gCurrentMove))
     {
         gProtectStructs[gBattlerAttacker].usedImprisonedMove = TRUE;
-        CancelMultiTurnMoves(gBattlerAttacker, STATE_ATTACKCANCELLER_CHECK);
+        CancelMultiTurnMoves(gBattlerAttacker, SKY_DROP_ATTACKCANCELLER_CHECK);
         gBattlescriptCurrInstr = BattleScript_MoveUsedIsImprisoned;
         gHitMarker |= HITMARKER_UNABLE_TO_USE_MOVE;
         *effect = 1;
@@ -3489,7 +3489,7 @@ static void CancellerParalysed(u32 *effect)
     {
         gProtectStructs[gBattlerAttacker].prlzImmobility = TRUE;
         // This is removed in FRLG and Emerald for some reason
-        //CancelMultiTurnMoves(gBattlerAttacker, STATE_ATTACKCANCELLER_CHECK);
+        //CancelMultiTurnMoves(gBattlerAttacker, SKY_DROP_ATTACKCANCELLER_CHECK);
         gBattlescriptCurrInstr = BattleScript_MoveUsedIsParalyzed;
         gHitMarker |= HITMARKER_UNABLE_TO_USE_MOVE;
         *effect = 1;
@@ -3657,7 +3657,7 @@ static void CancellerPsychicTerrain(u32 *effect)
         && GetMoveTarget(gCurrentMove) != MOVE_TARGET_OPPONENTS_FIELD
         && GetBattlerSide(gBattlerAttacker) != GetBattlerSide(gBattlerTarget))
     {
-        CancelMultiTurnMoves(gBattlerAttacker, STATE_ATTACKCANCELLER_CHECK);
+        CancelMultiTurnMoves(gBattlerAttacker, SKY_DROP_ATTACKCANCELLER_CHECK);
         gBattlescriptCurrInstr = BattleScript_MoveUsedPsychicTerrainPrevents;
         gHitMarker |= HITMARKER_UNABLE_TO_USE_MOVE;
         *effect = 1;
@@ -5603,7 +5603,7 @@ u32 AbilityBattleEffects(u32 caseID, u32 battler, u32 ability, u32 special, u32 
         {
             if (!IsDoubleBattle()
             || !(GetBattlerMoveTargetType(gBattlerAttacker, move) & (MOVE_TARGET_BOTH | MOVE_TARGET_FOES_AND_ALLY)))
-                CancelMultiTurnMoves(gBattlerAttacker, STATE_ATTACKCANCELLER_CHECK); // Don't cancel moves that can hit two targets bc one target might not be protected
+                CancelMultiTurnMoves(gBattlerAttacker, SKY_DROP_ATTACKCANCELLER_CHECK); // Don't cancel moves that can hit two targets bc one target might not be protected
             gBattleScripting.battler = gBattlerAbility = gBattlerTarget;
             gBattlescriptCurrInstr = BattleScript_DarkTypePreventsPrankster;
             effect = 1;
