@@ -198,5 +198,38 @@ SINGLE_BATTLE_TEST("Shell Bell does not activate on Future Sight if the original
     }
 }
 
+DOUBLE_BATTLE_TEST("Shell Bell heals accumulated damage for spread moves")
+{
+    s16 opponentLeftDamage;
+    s16 opponentRightDamage;
+    s16 playerRightDamage;
+    s16 shellBellHeal;
+
+    const u16 maxHp = 200;
+    const u16 initHp = 1;
+    GIVEN {
+        PLAYER(SPECIES_ARIADOS) { MaxHP(maxHp); HP(initHp); Item(ITEM_SHELL_BELL); }
+        PLAYER(SPECIES_WOBBUFFET) {}
+        OPPONENT(SPECIES_GYARADOS) {}
+        OPPONENT(SPECIES_CHANSEY) {}
+    } WHEN {
+        TURN {
+            MOVE(playerLeft, MOVE_DISCHARGE);
+        }
+    } SCENE {
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_DISCHARGE, playerLeft);
+        HP_BAR(opponentLeft, captureDamage: &opponentLeftDamage);
+        HP_BAR(playerRight, captureDamage: &playerRightDamage);
+        HP_BAR(opponentRight, captureDamage: &opponentRightDamage);
+        
+        HP_BAR(playerLeft, captureDamage: &shellBellHeal);
+    } THEN {
+        const s16 totalDamage = opponentLeftDamage
+            + playerRightDamage + opponentRightDamage;
+        EXPECT_EQ(shellBellHeal, -totalDamage / 8);
+        EXPECT_EQ(playerLeft->hp, initHp + (totalDamage / 8));
+    }
+}
+
 TO_DO_BATTLE_TEST("If a Pokémon steals a Shell Bell with Thief or Covet, it will recover HP for the use of that move that stole the Shell Bell")
 TO_DO_BATTLE_TEST("If a Pokémon steals a Shell Bell with Magician, it will recover HP for the use of that move that stole the Shell Bell")
