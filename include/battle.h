@@ -1246,7 +1246,11 @@ static inline bool32 IsDoubleSpreadMove(void)
  *               - This should be TRUE at the start of the move being used
  *               - but FALSE mid-move (e.g. checking the resultmessage), as the spread move may have fainted previous target(s)
  */
-static inline bool32 IsBattlerInvalidForSpreadMove(u32 battlerAtk, u32 battlerDef, u32 moveTarget, bool32 checkAlive)
+enum CheckAlive {
+    CHECK_BATTLER_ALIVE,
+    IGNORE_BATTLER_ALIVE,
+};
+static inline bool32 IsBattlerInvalidForSpreadMove(u32 battlerAtk, u32 battlerDef, u32 moveTarget, enum CheckAlive checkAlive)
 {
     if (battlerDef == battlerAtk)
         return TRUE;
@@ -1261,7 +1265,7 @@ static inline bool32 BattlerMoveHadEffect(u32 battler, u32 moveTarget)
     u32 i;
     for (i = 0; i < gBattlersCount; i++)
     {
-        if (IsBattlerInvalidForSpreadMove(battler, i, moveTarget, FALSE))
+        if (IsBattlerInvalidForSpreadMove(battler, i, moveTarget, IGNORE_BATTLER_ALIVE))
             continue;
         if (gBattleStruct->moveResultFlags[i] & MOVE_RESULT_NO_EFFECT)
             return FALSE;
