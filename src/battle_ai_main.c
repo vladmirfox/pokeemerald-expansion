@@ -3308,7 +3308,7 @@ static u32 AI_CalcHoldEffectMoveScore(u32 battlerAtk, u32 battlerDef, u32 move)
     {
         u32 moveAcc = aiData->moveAccuracy[battlerAtk][battlerDef][AI_THINKING_STRUCT->movesetIndex];
 
-        if (moveAcc < BLUNDER_POLICY_ACCURACY_THRESHOLD)
+        if (moveAcc <= BLUNDER_POLICY_ACCURACY_THRESHOLD)
         {
             ADJUST_SCORE(GOOD_EFFECT);
         }
