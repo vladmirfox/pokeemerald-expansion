@@ -11743,12 +11743,12 @@ u32 GetBattlerMoveTargetType(u32 battler, u32 move)
 
 bool32 CanTargetBattler(u32 battlerAtk, u32 battlerDef, u16 move)
 {
-    if (IsBattlerAlly(battlerAtk, battlerDef))
-        return FALSE;
-
-    if (GetMoveEffect(move) == EFFECT_HIT_ENEMY_HEAL_ALLY && gStatuses3[battlerAtk] & STATUS3_HEAL_BLOCK)
+    if (GetMoveEffect(move) == EFFECT_HIT_ENEMY_HEAL_ALLY
+    &&  IsBattlerAlly(battlerAtk, battlerDef)
+    &&  gStatuses3[battlerAtk] & STATUS3_HEAL_BLOCK)
         return FALSE;   // Pokémon affected by Heal Block cannot target allies with Pollen Puff
-    if ((GetActiveGimmick(battlerAtk) == GIMMICK_DYNAMAX || IsGimmickSelected(battlerAtk, GIMMICK_DYNAMAX)))
+    if (IsBattlerAlly(battlerAtk, battlerDef) && (GetActiveGimmick(battlerAtk) == GIMMICK_DYNAMAX
+                                               || IsGimmickSelected(battlerAtk, GIMMICK_DYNAMAX)))
         return FALSE;
 
     return TRUE;
