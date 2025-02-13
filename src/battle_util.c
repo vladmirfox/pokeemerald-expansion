@@ -983,9 +983,6 @@ const u8* CheckSkyDropState(u32 battler, enum SkyDropState skyDropState)
 {
     const u8 *result = NULL;
 
-    if (gBattleStruct->skyDropTargets[battler] == SKY_DROP_NO_TARGET || gStatuses3[battler] & STATUS3_SKY_DROPPED)
-        return result;
-
     u8 otherSkyDropper = gBattleStruct->skyDropTargets[battler];
     gStatuses3[otherSkyDropper] &= ~(STATUS3_SKY_DROPPED | STATUS3_ON_AIR);
 
@@ -1064,7 +1061,8 @@ const u8* CancelMultiTurnMoves(u32 battler, enum SkyDropState skyDropState)
     if (!(gStatuses3[battler] & STATUS3_SKY_DROPPED))
         gStatuses3[battler] &= ~(STATUS3_SEMI_INVULNERABLE);
 
-    result = CheckSkyDropState(battler, skyDropState);
+    if (gBattleStruct->skyDropTargets[battler] != SKY_DROP_NO_TARGET && !(gStatuses3[battler] & STATUS3_SKY_DROPPED))
+        result = CheckSkyDropState(battler, skyDropState);
 
     gDisableStructs[battler].rolloutTimer = 0;
     gDisableStructs[battler].furyCutterCounter = 0;
