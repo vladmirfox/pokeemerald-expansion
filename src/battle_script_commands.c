@@ -10847,7 +10847,7 @@ static void Cmd_various(void)
     case VARIOUS_SET_ARG_TO_BATTLE_DAMAGE:
     {
         VARIOUS_ARGS();
-        gBattleStruct->moveDamage[gBattlerTarget] = GetMoveFixedDamage(gCurrentMove);
+        gBattleStruct->moveDamage[gBattlerTarget] = min(GetMoveFixedDamage(gCurrentMove), gBattleMons[gBattlerTarget].hp);
         break;
     }
     case VARIOUS_TRY_AUTOTOMIZE:

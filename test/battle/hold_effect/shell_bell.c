@@ -231,5 +231,42 @@ DOUBLE_BATTLE_TEST("Shell Bell heals accumulated damage for spread moves")
     }
 }
 
+SINGLE_BATTLE_TEST("Shell Bell restores 1/8 HP at move end, one strike")
+{
+    const u16 maxHp = 200;
+    u16 hp, opponentHp;
+    u16 hpGainFromDamage, hpGainActual;
+
+    PARAMETRIZE { hp = maxHp; opponentHp = maxHp; }
+    PARAMETRIZE { hp = maxHp - 1; opponentHp = maxHp; }
+    PARAMETRIZE { hp = maxHp / 2; opponentHp = maxHp; }
+    PARAMETRIZE { hp = maxHp; opponentHp = 24; }        // dragon rage only does 24 dmg, only heal 3 HP instead of 5
+    PARAMETRIZE { hp = maxHp - 1; opponentHp = 24; }    // dragon rage only does 24 dmg, only heal 3 HP instead of 5
+    PARAMETRIZE { hp = maxHp / 2; opponentHp = 24; }    // dragon rage only does 24 dmg, only heal 3 HP instead of 5
+    PARAMETRIZE { hp = maxHp; opponentHp = 1; }
+    PARAMETRIZE { hp = maxHp - 1; opponentHp = 1; }
+    PARAMETRIZE { hp = maxHp / 2; opponentHp = 1; }
+
+    hpGainFromDamage = max(1, min(40, opponentHp) / 8);
+    hpGainActual = min(maxHp - hp, hpGainFromDamage);
+
+    GIVEN {
+        PLAYER(SPECIES_WOBBUFFET) { MaxHP(maxHp); HP(hp); Item(ITEM_SHELL_BELL); }
+        OPPONENT(SPECIES_WOBBUFFET) { MaxHP(maxHp); HP(opponentHp); }
+    } WHEN {
+        TURN { MOVE(player, MOVE_DRAGON_RAGE); }
+    } SCENE {
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_DRAGON_RAGE, player);
+        HP_BAR(opponent);
+        if (hp < maxHp) {
+            HP_BAR(player, damage: -hpGainActual);
+        } else {
+            NOT HP_BAR(player);
+        }
+    } THEN {
+        EXPECT_EQ(player->hp, hp + hpGainActual);
+    }
+}
+
 TO_DO_BATTLE_TEST("If a Pokémon steals a Shell Bell with Thief or Covet, it will recover HP for the use of that move that stole the Shell Bell")
 TO_DO_BATTLE_TEST("If a Pokémon steals a Shell Bell with Magician, it will recover HP for the use of that move that stole the Shell Bell")
