@@ -251,6 +251,8 @@ SINGLE_BATTLE_TEST("Shell Bell restores 1/8 HP at move end, one strike")
     hpGainActual = min(maxHp - hp, hpGainFromDamage);
 
     GIVEN {
+        ASSUME(GetMoveEffect(MOVE_DRAGON_RAGE) == EFFECT_FIXED_DAMAGE_ARG);
+        ASSUME(GetMoveFixedDamage(MOVE_DRAGON_RAGE) == 40);
         PLAYER(SPECIES_WOBBUFFET) { MaxHP(maxHp); HP(hp); Item(ITEM_SHELL_BELL); }
         OPPONENT(SPECIES_WOBBUFFET) { MaxHP(maxHp); HP(opponentHp); }
     } WHEN {

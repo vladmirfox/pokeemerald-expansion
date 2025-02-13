@@ -1656,7 +1656,7 @@ static void AccuracyCheck(bool32 recalcDragonDarts, const u8 *nextInstr, const u
                 break;
 
             if ((!calcSpreadMove && battlerDef != gBattlerTarget)
-             || IsBattlerInvalidForSpreadMove(gBattlerAttacker, battlerDef, moveTarget)
+             || IsBattlerInvalidForSpreadMove(gBattlerAttacker, battlerDef, moveTarget, TRUE)
              || (gBattleStruct->noResultString[battlerDef] && gBattleStruct->noResultString[battlerDef] != DO_ACCURACY_CHECK))
                 continue;
 
@@ -1989,7 +1989,7 @@ static void Cmd_critcalc(void)
         if (!calcSpreadMoveDamage && battlerDef != gBattlerTarget)
             continue;
 
-        if (IsBattlerInvalidForSpreadMove(gBattlerAttacker, battlerDef, moveTarget)
+        if (IsBattlerInvalidForSpreadMove(gBattlerAttacker, battlerDef, moveTarget, TRUE)
          || gBattleStruct->noResultString[battlerDef]
          || gBattleStruct->moveResultFlags[battlerDef] & MOVE_RESULT_NO_EFFECT)
             continue;
@@ -2060,7 +2060,7 @@ static void Cmd_damagecalc(void)
         u32 battlerDef;
         for (battlerDef = 0; battlerDef < gBattlersCount; battlerDef++)
         {
-            if (IsBattlerInvalidForSpreadMove(gBattlerAttacker, battlerDef, moveTarget)
+            if (IsBattlerInvalidForSpreadMove(gBattlerAttacker, battlerDef, moveTarget, TRUE)
              || gBattleStruct->noResultString[battlerDef]
              || gBattleStruct->moveResultFlags[battlerDef] & MOVE_RESULT_NO_EFFECT)
                 continue;
@@ -2125,7 +2125,7 @@ static void Cmd_adjustdamage(void)
         if (!calcSpreadMoveDamage && battlerDef != gBattlerTarget)
             continue;
 
-        if (IsBattlerInvalidForSpreadMove(gBattlerAttacker, battlerDef, moveTarget)
+        if (IsBattlerInvalidForSpreadMove(gBattlerAttacker, battlerDef, moveTarget, TRUE)
          || gBattleStruct->noResultString[battlerDef])
             continue;
 
@@ -2371,7 +2371,7 @@ static bool32 ProcessPreAttackAnimationFuncs(void)
         {
             for (u32 battlerDef = 0; battlerDef < gBattlersCount; battlerDef++)
             {
-                if (IsBattlerInvalidForSpreadMove(gBattlerAttacker, battlerDef, moveTarget)
+                if (IsBattlerInvalidForSpreadMove(gBattlerAttacker, battlerDef, moveTarget, TRUE)
                  || (battlerDef == BATTLE_PARTNER(gBattlerAttacker) && !(moveTarget & MOVE_TARGET_FOES_AND_ALLY))
                  || (gBattleStruct->noResultString[battlerDef] && gBattleStruct->noResultString[battlerDef] != DO_ACCURACY_CHECK))
                     continue;
@@ -2383,7 +2383,7 @@ static bool32 ProcessPreAttackAnimationFuncs(void)
 
         for (u32 battlerDef = 0; battlerDef < gBattlersCount; battlerDef++)
         {
-            if (IsBattlerInvalidForSpreadMove(gBattlerAttacker, battlerDef, moveTarget)
+            if (IsBattlerInvalidForSpreadMove(gBattlerAttacker, battlerDef, moveTarget, TRUE)
              || (battlerDef == BATTLE_PARTNER(gBattlerAttacker) && !(moveTarget & MOVE_TARGET_FOES_AND_ALLY))
              || (gBattleStruct->noResultString[battlerDef] && gBattleStruct->noResultString[battlerDef] != DO_ACCURACY_CHECK))
                 continue;
