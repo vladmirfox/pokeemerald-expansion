@@ -185,8 +185,6 @@ SINGLE_BATTLE_TEST("Reflect Type defaults to Normal type for the user's 1st and 
 SINGLE_BATTLE_TEST("Reflect Type fails if the user is Terastallized")
 {
     GIVEN {
-        ASSUME(gSpeciesInfo[SPECIES_POLIWRATH].types[0] == TYPE_WATER);
-        ASSUME(gSpeciesInfo[SPECIES_POLIWRATH].types[1] == TYPE_FIGHTING);
         PLAYER(SPECIES_ARCANINE) { TeraType(TYPE_NORMAL); }
         OPPONENT(SPECIES_POLIWRATH);
     } WHEN {
@@ -204,8 +202,8 @@ SINGLE_BATTLE_TEST("Reflect Type fails if the user is Terastallized")
 SINGLE_BATTLE_TEST("Reflect Type succeeds against a Terastallized target and copies its Tera type")
 {
     GIVEN {
-        ASSUME(gSpeciesInfo[SPECIES_POLIWRATH].types[0] == TYPE_WATER);
-        ASSUME(gSpeciesInfo[SPECIES_POLIWRATH].types[1] == TYPE_FIGHTING);
+        ASSUME(gSpeciesInfo[SPECIES_POLIWRATH].types[0] != TYPE_NORMAL);
+        ASSUME(gSpeciesInfo[SPECIES_POLIWRATH].types[1] != TYPE_NORMAL);
         PLAYER(SPECIES_ARCANINE) { TeraType(TYPE_NORMAL); }
         OPPONENT(SPECIES_POLIWRATH);
     } WHEN {
