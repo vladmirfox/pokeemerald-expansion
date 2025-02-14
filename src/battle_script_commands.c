@@ -2017,7 +2017,7 @@ static inline void CalculateAndSetMoveDamage(struct DamageCalculationData *damag
     gBattleStruct->moveDamage[battlerDef] = CalculateMoveDamage(damageCalcData, 0);
 
     // Slighly hacky but we need to check move result flags for Distortion Match up as well but it can only be done after damage calc
-    if (gBattleStruct->moveResultFlags[battlerDef] & MOVE_RESULT_NO_EFFECT)
+    if (gSpecialStatuses[battlerDef].distortedTypeMatchups && gBattleStruct->moveResultFlags[battlerDef] & MOVE_RESULT_NO_EFFECT)
     {
         gSpecialStatuses[battlerDef].distortedTypeMatchups = FALSE;
         gSpecialStatuses[battlerDef].teraShellAbilityDone = FALSE;
