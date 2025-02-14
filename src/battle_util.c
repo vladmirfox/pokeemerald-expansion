@@ -126,7 +126,7 @@ bool32 IsAffectedByFollowMe(u32 battlerAtk, u32 defSide, u32 move)
 
 bool32 HandleMoveTargetRedirection(void)
 {
-    u32 var = MAX_BATTLERS_COUNT;
+    u32 battlerOrder = MAX_BATTLERS_COUNT;
     u16 moveTarget = GetBattlerMoveTargetType(gBattlerAttacker, gCurrentMove);
     u32 moveType = GetMoveType(gCurrentMove);
     u32 side = BATTLE_OPPOSITE(GetBattlerSide(gBattlerAttacker));
@@ -155,16 +155,16 @@ bool32 HandleMoveTargetRedirection(void)
                 && gBattleStruct->moveTarget[gBattlerAttacker] != battler
                 && ((ability == ABILITY_LIGHTNING_ROD && moveType == TYPE_ELECTRIC)
                  || (ability == ABILITY_STORM_DRAIN && moveType == TYPE_WATER))
-                && GetBattlerTurnOrderNum(battler) < var
+                && GetBattlerTurnOrderNum(battler) < battlerOrder
                 && gMovesInfo[gCurrentMove].effect != EFFECT_SNIPE_SHOT
                 && gMovesInfo[gCurrentMove].effect != EFFECT_PLEDGE
                 && GetBattlerAbility(gBattlerAttacker) != ABILITY_PROPELLER_TAIL
                 && GetBattlerAbility(gBattlerAttacker) != ABILITY_STALWART)
             {
-                var = GetBattlerTurnOrderNum(battler);
+                battlerOrder = GetBattlerTurnOrderNum(battler);
             }
         }
-        if (var == MAX_BATTLERS_COUNT)
+        if (battlerOrder == MAX_BATTLERS_COUNT)
         {
             if (moveTarget & MOVE_TARGET_RANDOM)
             {
@@ -193,7 +193,7 @@ bool32 HandleMoveTargetRedirection(void)
         else
         {
             u16 battlerAbility;
-            battler = gBattlerByTurnOrder[var];
+            battler = gBattlerByTurnOrder[battlerOrder];
             battlerAbility = GetBattlerAbility(battler);
 
             RecordAbilityBattle(battler, gBattleMons[battler].ability);
