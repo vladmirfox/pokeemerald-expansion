@@ -247,7 +247,8 @@ void FollowMe(struct ObjectEvent* npc, u8 state, bool8 ignoreScriptActive)
             gTasks[taskId].data[0] = 0;
             gTasks[taskId].data[2] = follower->currentCoords.x;
             gTasks[taskId].data[3] = follower->currentCoords.y;
-            goto RESET;
+            ObjectEventClearHeldMovementIfFinished(follower);
+            return;
         }
         else if (gSaveBlock2Ptr->follower.comeOutDoorStairs == 2)
         {
@@ -273,25 +274,33 @@ void FollowMe(struct ObjectEvent* npc, u8 state, bool8 ignoreScriptActive)
     dir = DetermineFollowerDirection(player, follower);
 
     if (dir == DIR_NONE)
-        goto RESET;
+    {
+        ObjectEventClearHeldMovementIfFinished(follower);
+        return;
+    }
 
     newState = DetermineFollowerState(follower, state, dir);
     if (newState == MOVEMENT_INVALID)
-        goto RESET;
+    {
+        ObjectEventClearHeldMovementIfFinished(follower);
+        return;
+    }
 
     if (gSaveBlock2Ptr->follower.createSurfBlob == 1) //Get on Surf Blob
     {
         gSaveBlock2Ptr->follower.createSurfBlob = 2;
         gPlayerAvatar.preventStep = TRUE; //Wait for finish
         SetSurfJump();
-        goto RESET;
+        ObjectEventClearHeldMovementIfFinished(follower);
+        return;
     }
     else if (gSaveBlock2Ptr->follower.createSurfBlob == 3) //Get off Surf Blob
     {
         gSaveBlock2Ptr->follower.createSurfBlob = 0;
         gPlayerAvatar.preventStep = TRUE; //Wait for finish
         SetSurfDismount();
-        goto RESET;
+        ObjectEventClearHeldMovementIfFinished(follower);
+        return;
     }
 
     ObjectEventClearHeldMovementIfActive(follower);
@@ -305,7 +314,6 @@ void FollowMe(struct ObjectEvent* npc, u8 state, bool8 ignoreScriptActive)
         gPlayerAvatar.preventStep = TRUE;   //allow follower to catch up
     }
 
-RESET:
     ObjectEventClearHeldMovementIfFinished(follower);
 }
 
