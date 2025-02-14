@@ -3188,9 +3188,9 @@ bool8 ScrCmd_updatefollowingmon(struct ScriptContext *ctx)
 
 bool8 ScrCmd_ballfollowingmon(struct ScriptContext *ctx)
 {
-    u16 species;
-    bool8 shiny;
-    u8 form;
+    u32 species;
+    bool32 shiny;
+    bool32 female;
 
     if (OW_POKEMON_OBJECT_EVENTS == FALSE
      || OW_FOLLOWERS_ENABLED == FALSE
