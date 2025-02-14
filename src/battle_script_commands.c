@@ -8623,6 +8623,9 @@ static void Cmd_hitanimation(void)
         u32 battlerDef;
         for (battlerDef = 0; battlerDef < gBattlersCount; battlerDef++)
         {
+            if (IsBattlerInvalidForSpreadMove(gBattlerAttacker, battlerDef, moveTarget, IGNORE_BATTLER_ALIVE))
+                continue;
+
             if (gBattleStruct->moveResultFlags[battlerDef] & MOVE_RESULT_NO_EFFECT
              || gBattleStruct->noResultString[battlerDef])
                 continue;
