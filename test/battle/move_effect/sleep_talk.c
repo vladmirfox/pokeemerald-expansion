@@ -32,7 +32,6 @@ SINGLE_BATTLE_TEST("Sleep Talk fails if not asleep")
     }
 }
 
-
 SINGLE_BATTLE_TEST("Sleep Talk works if user has Comatose")
 {
 

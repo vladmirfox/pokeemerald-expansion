@@ -29,7 +29,6 @@ SINGLE_BATTLE_TEST("Snore fails if not asleep")
     }
 }
 
-
 SINGLE_BATTLE_TEST("Snore works if user has Comatose")
 {
 
