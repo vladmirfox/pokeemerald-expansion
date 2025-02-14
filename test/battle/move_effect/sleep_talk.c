@@ -3,10 +3,10 @@
 
 ASSUMPTIONS
 {
-    ASSUME(gMovesInfo[MOVE_SLEEP_TALK].effect == EFFECT_SLEEP_TALK);
-    ASSUME(gMovesInfo[MOVE_RAZOR_WIND].sleepTalkBanned == TRUE);
-    ASSUME(gMovesInfo[MOVE_FLY].sleepTalkBanned == TRUE);
-    ASSUME(gMovesInfo[MOVE_DIG].sleepTalkBanned == TRUE);
+    ASSUME(GetMoveEffect(MOVE_SLEEP_TALK) == EFFECT_SLEEP_TALK);
+    ASSUME(IsMoveSleepTalkBanned(MOVE_RAZOR_WIND));
+    ASSUME(IsMoveSleepTalkBanned(MOVE_FLY));
+    ASSUME(IsMoveSleepTalkBanned(MOVE_DIG));
 }
 
 SINGLE_BATTLE_TEST("Sleep Talk fails if not asleep")
@@ -14,7 +14,7 @@ SINGLE_BATTLE_TEST("Sleep Talk fails if not asleep")
     u32 status;
     PARAMETRIZE { status = STATUS1_SLEEP; }
     PARAMETRIZE { status = STATUS1_NONE; }
-    
+
     GIVEN {
         PLAYER(SPECIES_WOBBUFFET) { Status1(status); Moves(MOVE_SLEEP_TALK, MOVE_TACKLE, MOVE_POUND, MOVE_SCRATCH); }
         OPPONENT(SPECIES_WOBBUFFET);
@@ -35,7 +35,7 @@ SINGLE_BATTLE_TEST("Sleep Talk fails if not asleep")
 
 SINGLE_BATTLE_TEST("Sleep Talk works if user has Comatose")
 {
-    
+
     GIVEN {
         PLAYER(SPECIES_KOMALA) { Moves(MOVE_SLEEP_TALK, MOVE_TACKLE, MOVE_POUND, MOVE_SCRATCH); }
         OPPONENT(SPECIES_WOBBUFFET);
