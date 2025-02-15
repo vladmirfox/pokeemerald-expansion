@@ -65,6 +65,7 @@ static u32 GetFlingPowerFromItemId(u32 itemId);
 static void SetRandomMultiHitCounter();
 static u32 GetBattlerItemHoldEffectParam(u32 battler, u32 item);
 static bool32 CanBeInfinitelyConfused(u32 battler);
+
 ARM_FUNC NOINLINE static uq4_12_t PercentToUQ4_12(u32 percent);
 ARM_FUNC NOINLINE static uq4_12_t PercentToUQ4_12_Floored(u32 percent);
 
@@ -201,10 +202,10 @@ static const struct BattleWeatherInfo sBattleWeatherInfo[BATTLE_WEATHER_COUNT] =
     },
 };
 
-static u8 CalcBeatUpPower(void)
+static u32 CalcBeatUpPower(void)
 {
-    u8 basePower;
-    u16 species;
+    u32 basePower;
+    u32 species;
     struct Pokemon *party = GetBattlerParty(gBattlerAttacker);
 
     // Party slot is incremented by the battle script for Beat Up after this damage calculation
@@ -212,6 +213,18 @@ static u8 CalcBeatUpPower(void)
     basePower = (gSpeciesInfo[species].baseAttack / 10) + 5;
 
     return basePower;
+}
+
+static bool32 ShouldTeraShellDistortTypeMatchups(u32 move, u32 battlerDef, u32 abilityDef)
+{
+    if (!gSpecialStatuses[battlerDef].distortedTypeMatchups
+     && gBattleMons[battlerDef].species == SPECIES_TERAPAGOS_TERASTAL
+     && gBattleMons[battlerDef].hp == gBattleMons[battlerDef].maxHP
+     && !IsBattleMoveStatus(move)
+     && abilityDef == ABILITY_TERA_SHELL)
+        return TRUE;
+
+    return FALSE;
 }
 
 bool32 IsAffectedByFollowMe(u32 battlerAtk, u32 defSide, u32 move)

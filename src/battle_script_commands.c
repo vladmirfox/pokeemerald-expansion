@@ -1147,18 +1147,6 @@ bool32 ProteanTryChangeType(u32 battler, u32 ability, u32 move, u32 moveType)
     return FALSE;
 }
 
-bool32 ShouldTeraShellDistortTypeMatchups(u32 move, u32 battlerDef, u32 abilityDef)
-{
-    if (!gSpecialStatuses[battlerDef].distortedTypeMatchups
-     && gBattleMons[battlerDef].species == SPECIES_TERAPAGOS_TERASTAL
-     && gBattleMons[battlerDef].hp == gBattleMons[battlerDef].maxHP
-     && !IsBattleMoveStatus(move)
-     && abilityDef == ABILITY_TERA_SHELL)
-        return TRUE;
-
-    return FALSE;
-}
-
 bool32 IsMoveNotAllowedInSkyBattles(u32 move)
 {
     return (gBattleStruct->isSkyBattle && IsMoveSkyBattleBanned(gCurrentMove));
@@ -2016,7 +2004,7 @@ static inline void CalculateAndSetMoveDamage(struct DamageCalculationData *damag
     damageCalcData->isCrit = gSpecialStatuses[battlerDef].criticalHit;
     gBattleStruct->moveDamage[battlerDef] = CalculateMoveDamage(damageCalcData, 0);
 
-    // Slighly hacky but we need to check move result flags for Distortion Match up as well but it can only be done after damage calc
+    // Slighly hacky but we need to check move result flags for distortion match-up as well but it can only be done after damage calcs
     if (gSpecialStatuses[battlerDef].distortedTypeMatchups && gBattleStruct->moveResultFlags[battlerDef] & MOVE_RESULT_NO_EFFECT)
     {
         gSpecialStatuses[battlerDef].distortedTypeMatchups = FALSE;
