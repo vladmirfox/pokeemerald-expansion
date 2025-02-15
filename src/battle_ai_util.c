@@ -1096,8 +1096,8 @@ s32 AI_WhoStrikesFirst(u32 battlerAI, u32 battler, u32 moveConsidered)
 
     u32 predictedMove = AI_DATA->lastUsedMove[battler];
 
-    s8 aiPriority = GetBattleMovePriority(battlerAI, moveConsidered);
-    s8 playerPriority = GetBattleMovePriority(battler, predictedMove);
+    s8 aiPriority = GetMovePriority(AI, moveConsidered);
+    s8 playerPriority = GetMovePriority(battler, predictedMove);
 
     if (aiPriority > playerPriority)
         return AI_IS_SLOWER;
