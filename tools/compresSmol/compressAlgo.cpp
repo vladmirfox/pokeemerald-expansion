@@ -605,8 +605,8 @@ DataVecs decodeDataVectorsNew(CompressedImage *pInput)
     std::vector<int> loFreqs = unpackFrequencies(&pInput->loFreqs[0]);
     std::vector<int> symFreqs = unpackFrequencies(&pInput->symFreqs[0]);
     std::vector<unsigned char> symbols = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15};
-    std::vector<DecodeCol> loDecode(TANS_TABLE_SIZE);
-    std::vector<DecodeCol> symDecode(TANS_TABLE_SIZE);
+    std::vector<DecodeCol> loDecode;
+    std::vector<DecodeCol> symDecode;
 
     std::vector<unsigned char> loVec(loSize);
     std::vector<unsigned short> symVec(symSize);
@@ -615,39 +615,11 @@ DataVecs decodeDataVectorsNew(CompressedImage *pInput)
 
     if (loEncoded)
     {
-        size_t currCol = 0;
-        for (size_t i = 0; i < 16; i++)
-        {
-            for (size_t j = 0; j < loFreqs[i]; j++)
-            {
-                loDecode[currCol].state = TANS_TABLE_SIZE + currCol;
-                loDecode[currCol].symbol = i;
-                loDecode[currCol].y = loFreqs[i] + j;
-                int currK = 0;
-                while ((loDecode[currCol].y << currK) < TANS_TABLE_SIZE)
-                    currK++;
-                loDecode[currCol].k = currK;
-                currCol++;
-            }
-        }
+        loDecode = createDecodingTable(symbols, loFreqs);
     }
     if (symEncoded)
     {
-        size_t currCol = 0;
-        for (size_t i = 0; i < 16; i++)
-        {
-            for (size_t j = 0; j < symFreqs[i]; j++)
-            {
-                symDecode[currCol].state = TANS_TABLE_SIZE + currCol;
-                symDecode[currCol].symbol = i;
-                symDecode[currCol].y = symFreqs[i] + j;
-                int currK = 0;
-                while ((symDecode[currCol].y << currK) < TANS_TABLE_SIZE)
-                    currK++;
-                symDecode[currCol].k = currK;
-                currCol++;
-            }
-        }
+        symDecode = createDecodingTable(symbols, symFreqs);
     }
 
     std::vector<unsigned int> allBits(pInput->tANSbits.size()*32);
@@ -722,7 +694,7 @@ ShortCopy::ShortCopy(size_t index, size_t length, size_t offset, std::vector<uns
     this->usSequence = usSequence;
 }
 
-std::vector<unsigned char> getNormalizedCounts(std::vector<size_t> input)
+std::vector<int> getNormalizedCounts(std::vector<size_t> input)
 {
     std::vector<int> tempVec(16);
     for (size_t i = 0; i < input.size(); i++)
@@ -742,13 +714,13 @@ std::vector<unsigned char> getNormalizedCounts(std::vector<size_t> input)
                 tempVec[i]++;
                 break;
             }
-    std::vector<unsigned char> returnVec(16);
+    std::vector<int> returnVec(16);
     for (size_t i = 0; i < 16; i++)
         returnVec[i] = tempVec[i];
     return returnVec;
 }
 
-std::vector<unsigned int> getFreqWriteInts(std::vector<unsigned char> input)
+std::vector<unsigned int> getFreqWriteInts(std::vector<int> input)
 {
     std::vector<unsigned int> returnVec(3);
     for (size_t i = 0; i < 5; i++)
@@ -972,8 +944,8 @@ CompressedImage fillCompressVecNew(std::vector<unsigned char> loVec, std::vector
 
     std::vector<unsigned char> loNibbles(2*loVec.size());
     std::vector<unsigned char> symNibbles(4*symVec.size());
-    std::vector<DecodeCol> loDecode(TANS_TABLE_SIZE);
-    std::vector<DecodeCol> symDecode(TANS_TABLE_SIZE);
+    std::vector<DecodeCol> loDecode;
+    std::vector<DecodeCol> symDecode;
     std::vector<unsigned char> symbols = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15};
     if (loEncoded)
     {
@@ -985,26 +957,12 @@ CompressedImage fillCompressVecNew(std::vector<unsigned char> loVec, std::vector
         std::vector<size_t> loCounts(16);
         for (unsigned char uc : loNibbles)
             loCounts[uc]++;
-        std::vector<unsigned char> freqsToUse = getNormalizedCounts(loCounts);
-        std::vector<unsigned int> freqs = getFreqWriteInts(freqsToUse);
+        std::vector<int> loFreqs = getNormalizedCounts(loCounts);
+        std::vector<unsigned int> freqs = getFreqWriteInts(loFreqs);
         image.loFreqs[0] = freqs[0];
         image.loFreqs[1] = freqs[1];
         image.loFreqs[2] = freqs[2];
-        size_t currCol = 0;
-        for (size_t i = 0; i < 16; i++)
-        {
-            for (size_t j = 0; j < freqsToUse[i]; j++)
-            {
-                loDecode[currCol].state = TANS_TABLE_SIZE + currCol;
-                loDecode[currCol].symbol = i;
-                loDecode[currCol].y = freqsToUse[i] + j;
-                int currK = 0;
-                while ((loDecode[currCol].y << currK) < TANS_TABLE_SIZE)
-                    currK++;
-                loDecode[currCol].k = currK;
-                currCol++;
-            }
-        }
+        loDecode = createDecodingTable(symbols, loFreqs);
     }
     if (symEncoded)
     {
@@ -1018,27 +976,13 @@ CompressedImage fillCompressVecNew(std::vector<unsigned char> loVec, std::vector
             deltaEncode(&symNibbles, symNibbles.size());
         for (unsigned char uc : symNibbles)
             symCounts[uc]++;
-        std::vector<unsigned char> freqsToUse = getNormalizedCounts(symCounts);
-        freqsToUse = getTestFreqs(freqsToUse, name);
-        std::vector<unsigned int> freqs = getFreqWriteInts(freqsToUse);
+        std::vector<int> symFreqs = getNormalizedCounts(symCounts);
+        symFreqs = getTestFreqs(symFreqs, name);
+        std::vector<unsigned int> freqs = getFreqWriteInts(symFreqs);
         image.symFreqs[0] = freqs[0];
         image.symFreqs[1] = freqs[1];
         image.symFreqs[2] = freqs[2];
-        size_t currCol = 0;
-        for (size_t i = 0; i < 16; i++)
-        {
-            for (size_t j = 0; j < freqsToUse[i]; j++)
-            {
-                symDecode[currCol].state = TANS_TABLE_SIZE + currCol;
-                symDecode[currCol].symbol = i;
-                symDecode[currCol].y = freqsToUse[i] + j;
-                int currK = 0;
-                while ((symDecode[currCol].y << currK) < TANS_TABLE_SIZE)
-                    currK++;
-                symDecode[currCol].k = currK;
-                currCol++;
-            }
-        }
+        symDecode = createDecodingTable(symbols, symFreqs);
     }
     int currState = -1;
     std::vector<unsigned int> bitstream;
@@ -1291,7 +1235,7 @@ void deltaDecode(std::vector<unsigned char> *buffer, int length)
     }
 }
 
-std::vector<unsigned char> getTestFreqs(std::vector<unsigned char> freqs, std::string name)
+std::vector<int> getTestFreqs(std::vector<int> freqs, std::string name)
 {
     if (name.find("test/compression/table_") == std::string::npos)
         return freqs;

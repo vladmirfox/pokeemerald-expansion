@@ -140,8 +140,8 @@ size_t getCompressedSize(CompressedImage *pImage);
 std::vector<ShortCopy> getShortCopies(std::vector<unsigned short> input, size_t minLength);
 bool verifyShortCopies(std::vector<ShortCopy> *pCopies, std::vector<unsigned short> *pImage);
 
-std::vector<unsigned char> getNormalizedCounts(std::vector<size_t> input);
-std::vector<unsigned int> getFreqWriteInts(std::vector<unsigned char> input);
+std::vector<int> getNormalizedCounts(std::vector<size_t> input);
+std::vector<unsigned int> getFreqWriteInts(std::vector<int> input);
 std::vector<unsigned int> getNewHeaders(CompressionMode mode, size_t imageSize, size_t symLength, int initialState, size_t bitstreamSize, size_t loLength);
 int findInitialState(EncodeCol encodeCol, unsigned char firstSymbol);
 CompressedImage fillCompressVecNew(std::vector<unsigned char> loVec, std::vector<unsigned short> symVec, CompressionMode mode, size_t imageBytes, std::string name);
@@ -174,5 +174,5 @@ bool isModeSymDelta(CompressionMode mode);
 void deltaEncode(std::vector<unsigned char> *buffer, int length);
 void deltaDecode(std::vector<unsigned char> *buffer, int length);
 
-std::vector<unsigned char> getTestFreqs(std::vector<unsigned char> freqs, std::string name);
+std::vector<int> getTestFreqs(std::vector<int> freqs, std::string name);
 #endif

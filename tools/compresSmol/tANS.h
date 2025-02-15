@@ -9,6 +9,8 @@
 #include <cmath>
 #include <sstream>
 
+#define TANS_TABLE_SIZE 64
+
 struct DecodeCol {
     int state;
     unsigned char symbol;
@@ -49,26 +51,13 @@ std::vector<EncodeCol> createEncodingTable(std::vector<DecodeCol> decodeTable, s
 EncodedData encodeData(std::vector<unsigned char> input, std::vector<EncodeCol> encodingTable);
 std::vector<unsigned char> decodeData(EncodedData *data, std::vector<DecodeCol> decodeTable, int numChars);
 
-std::vector<unsigned char> findSymbols(std::vector<unsigned char> input);
-std::vector<int> countSymbols(std::vector<unsigned char> input, std::vector<unsigned char> symbols);
 std::vector<int> normalizeCounts(std::vector<int> counts, int tableSize);
 std::vector<int> normalizeCounts(std::vector<int> counts, int tableSize, bool fillZeros);
-void sortCount(std::vector<int> *counts, std::vector<unsigned char> *symbols);
 
 void printEncodeTable(std::vector<EncodeCol> encodeTable, std::vector<unsigned char> symbols);
 void printDecodeTable(std::vector<DecodeCol> decodeTable);
-void printCounts(std::vector<int> count);
-void printSymbols(std::vector<unsigned char> symbols);
 
-std::vector<unsigned char> readFileAsNibbles(std::string filePath);
 int getFileSize(std::string filePath);
-bool areVectorsEqual(std::vector<unsigned char> input, std::vector<unsigned char> output);
 int encodeSingleSymbol(EncodeCol currEncodeCol, unsigned char symbol, std::vector<unsigned int> *bitstream);
-
-std::string getStringFromUCvec(std::vector<unsigned char> input);
-std::vector<unsigned char> getUCvecFromString(std::string input);
-unsigned char getUCfromChar(char input);
-char getCharFromUC(unsigned char input);
-
 
 #endif
