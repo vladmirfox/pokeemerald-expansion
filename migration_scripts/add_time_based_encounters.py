@@ -5,7 +5,7 @@ def GetWildEncounterFile():
     print("hello")
     print("finding wild_encounter.json...")
 
-    wFile = open("../src/data/wild_encounters.json.bak")
+    wFile = open("../src/data/wild_encounters.json")
     wData = json.load(wFile)
 
     true = True
@@ -15,16 +15,16 @@ def GetWildEncounterFile():
     for group in wData["wild_encounter_groups"]:
         wEncounters = wData["wild_encounter_groups"][j]["encounters"]
 
-        if "encounterTableGroups" in wData["wild_encounter_groups"][j]:
+        if "use_encounter_group_arrays" in wData["wild_encounter_groups"][j]:
             print("wild_encounters.json is already converted!")
             return
         else:
-            wData["wild_encounter_groups"][j]["encounterTableGroups"] = true
+            wData["wild_encounter_groups"][j]["use_encounter_group_arrays"] = true
 
         i = 0
         for map in wEncounters:
             print(map["base_label"])
-            map["encounter_times"] = [
+            map["encounter_array"] = [
                 dict(time_morning = []),
                 dict(time_day = GetMonTable(wEncounters[i])),
                 dict(time_evening = []),
