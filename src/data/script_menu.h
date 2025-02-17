@@ -942,15 +942,11 @@ const u8 *const gStdStrings[] =
     [STDSTRING_BATTLE_PYRAMID] = gText_BattlePyramid,
     //For bigger bag
     #if (MORE_POCKETS == TRUE)
-    {
-        [STDSTRING_MEDICINE] = gText_Medicine,
-        [STDSTRING_BATTLEITEMS] = gText_BattleItems,
-        [STDSTRING_POWERUPITEMS] = gText_PowerUp,
-    }
+    [STDSTRING_MEDICINE] = gText_Medicine,
+    [STDSTRING_BATTLEITEMS] = gText_BattleItems,
+    [STDSTRING_POWERUPITEMS] = gText_PowerUp,
     #elif (MORE_POCKETS == MEDICINE_ONLY)
-    {
-        [STDSTRING_MEDICINE] = gText_Medicine,
-    }
+    [STDSTRING_MEDICINE] = gText_Medicine,
     #endif
 };
 

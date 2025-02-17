@@ -1034,15 +1034,11 @@ struct SaveBlock1
     /*0x790*/ struct ItemSlot bagPocket_Berries[BAG_BERRIES_COUNT];
     //For the 3 extra pockets.
     #if (MORE_POCKETS == TRUE)
-    {
-        struct ItemSlot bagPocket_Medicine[BAG_MEDICINE_COUNT];
-        struct ItemSlot bagPocket_BattleItems[BAG_BATTLEITEMS_COUNT];
-        struct ItemSlot bagPocket_PowerUp[BAG_POWERUP_COUNT];
-    }
+    struct ItemSlot bagPocket_Medicine[BAG_MEDICINE_COUNT];
+    struct ItemSlot bagPocket_BattleItems[BAG_BATTLEITEMS_COUNT];
+    struct ItemSlot bagPocket_PowerUp[BAG_POWERUP_COUNT];
     #elif (MORE_POCKETS == MEDICINE_ONLY)
-    {
-        struct ItemSlot bagPocket_Medicine[BAG_MEDICINE_COUNT];
-    }
+    struct ItemSlot bagPocket_Medicine[BAG_MEDICINE_COUNT];
     #endif
 
 

@@ -59,22 +59,18 @@
 #define SECRET_BASES_COUNT 20
 #define POKE_NEWS_COUNT 16
 #define PC_ITEMS_COUNT 50
-#define BAG_ITEMS_COUNT 30 //Check if this # does anything, is 40 in Asparagus_Eduardo's original change
+#define BAG_ITEMS_COUNT 30 //Check adding to this # overloads save, is 40 in Asparagus_Eduardo's original change
 #define BAG_KEYITEMS_COUNT 30
 #define BAG_POKEBALLS_COUNT 16
 #define BAG_TMHM_COUNT 64
 #define BAG_BERRIES_COUNT 46
 //Defines the 3 extra pockets.
-#if (MORE_POCKETS == TRUE)
-{
-    #define BAG_MEDICINE_COUNT 34 
-    #define BAG_BATTLEITEMS_COUNT 47
-    #define BAG_POWERUP_COUNT 18 
-}
-#elif (MORE_POCKETS == MEDICINE_ONLY)
-{
-    #define BAG_MEDICINE_COUNT 34
-}
+#if (MORE_POCKETS == TRUE) 
+#define BAG_MEDICINE_COUNT 34 
+#define BAG_BATTLEITEMS_COUNT 47
+#define BAG_POWERUP_COUNT 18 
+#elif (MORE_POCKETS == MEDICINE_ONLY) 
+#define BAG_MEDICINE_COUNT 34
 #endif
 
 

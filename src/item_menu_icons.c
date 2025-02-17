@@ -112,36 +112,30 @@ static const union AnimCmd sSpriteAnim_Bag_KeyItems[] =
 static const union AnimCmd *const sBagSpriteAnimTable[] =
 {
     #if(MORE_POCKETS == TRUE)
-    {
-        [POCKET_NONE]       = sSpriteAnim_Bag_Closed,
-        [POCKET_ITEMS]      = sSpriteAnim_Bag_Items,
-        [POCKET_MEDICINE]   = sSpriteAnim_Bag_Medicine,
-        [POCKET_POKE_BALLS] = sSpriteAnim_Bag_Pokeballs,
-        [POCKET_BATTLE_ITEMS] = sSpriteAnim_Bag_BattleItems,
-        [POCKET_BERRIES]    = sSpriteAnim_Bag_Berries,
-        [POCKET_POWER_UP]   = sSpriteAnim_Bag_PowerUp,
-        [POCKET_TM_HM]      = sSpriteAnim_Bag_TMsHMs,
-        [POCKET_KEY_ITEMS]  = sSpriteAnim_Bag_KeyItems,
-    }
+    [POCKET_NONE]       = sSpriteAnim_Bag_Closed,
+    [POCKET_ITEMS]      = sSpriteAnim_Bag_Items,
+    [POCKET_MEDICINE]   = sSpriteAnim_Bag_Medicine,
+    [POCKET_POKE_BALLS] = sSpriteAnim_Bag_Pokeballs,
+    [POCKET_BATTLE_ITEMS] = sSpriteAnim_Bag_BattleItems,
+    [POCKET_BERRIES]    = sSpriteAnim_Bag_Berries,
+    [POCKET_POWER_UP]   = sSpriteAnim_Bag_PowerUp,
+    [POCKET_TM_HM]      = sSpriteAnim_Bag_TMsHMs,
+    [POCKET_KEY_ITEMS]  = sSpriteAnim_Bag_KeyItems,
     #elif (MORE_POCKETS == MEDICINE_ONLY)
-    {
-        [POCKET_NONE]       = sSpriteAnim_Bag_Closed,
-        [POCKET_ITEMS]      = sSpriteAnim_Bag_Items,
-        [POCKET_MEDICINE]   = sSpriteAnim_Bag_Medicine,
-        [POCKET_POKE_BALLS] = sSpriteAnim_Bag_Pokeballs,
-        [POCKET_BERRIES]    = sSpriteAnim_Bag_Berries,
-        [POCKET_TM_HM]      = sSpriteAnim_Bag_TMsHMs,
-        [POCKET_KEY_ITEMS]  = sSpriteAnim_Bag_KeyItems,
-    }
-    #else
-    {
-        [POCKET_NONE]       = sSpriteAnim_Bag_Closed,
-        [POCKET_ITEMS]      = sSpriteAnim_Bag_Items,
-        [POCKET_POKE_BALLS] = sSpriteAnim_Bag_Pokeballs,
-        [POCKET_TM_HM]      = sSpriteAnim_Bag_TMsHMs,
-        [POCKET_BERRIES]    = sSpriteAnim_Bag_Berries,
-        [POCKET_KEY_ITEMS]  = sSpriteAnim_Bag_KeyItems,
-    }
+    [POCKET_NONE]       = sSpriteAnim_Bag_Closed,
+    [POCKET_ITEMS]      = sSpriteAnim_Bag_Items,
+    [POCKET_MEDICINE]   = sSpriteAnim_Bag_Medicine,
+    [POCKET_POKE_BALLS] = sSpriteAnim_Bag_Pokeballs,
+    [POCKET_BERRIES]    = sSpriteAnim_Bag_Berries,
+    [POCKET_TM_HM]      = sSpriteAnim_Bag_TMsHMs,
+    [POCKET_KEY_ITEMS]  = sSpriteAnim_Bag_KeyItems,
+    #else 
+    [POCKET_NONE]       = sSpriteAnim_Bag_Closed,
+    [POCKET_ITEMS]      = sSpriteAnim_Bag_Items,
+    [POCKET_POKE_BALLS] = sSpriteAnim_Bag_Pokeballs,
+    [POCKET_TM_HM]      = sSpriteAnim_Bag_TMsHMs,
+    [POCKET_BERRIES]    = sSpriteAnim_Bag_Berries,
+    [POCKET_KEY_ITEMS]  = sSpriteAnim_Bag_KeyItems,
     #endif
 };
 
