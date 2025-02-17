@@ -17708,9 +17708,6 @@ void BS_AllySwitchFailChance(void)
 void BS_SetDynamicMoveCategory(void)
 {
     NATIVE_ARGS();
-    u32 effect = GetMoveEffect(gCurrentMove);
-    if (!((effect == EFFECT_TERA_BLAST && GetActiveGimmick(gBattlerAttacker) != GIMMICK_TERA)
-            || (effect == EFFECT_TERA_STARSTORM && GetActiveGimmick(gBattlerAttacker) != GIMMICK_TERA && gBattleMons[gBattlerAttacker].species == SPECIES_TERAPAGOS_STELLAR)))
 
     switch (GetMoveEffect(gCurrentMove))
     {
@@ -17729,7 +17726,6 @@ void BS_SetDynamicMoveCategory(void)
 
     gBattlescriptCurrInstr = cmd->nextInstr;
 }
-
 
 void BS_RunStatChangeItems(void)
 {
