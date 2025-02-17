@@ -940,6 +940,14 @@ const u8 *const gStdStrings[] =
     [STDSTRING_BATTLE_ARENA] = gText_BattleArena,
     [STDSTRING_BATTLE_PIKE] = gText_BattlePike,
     [STDSTRING_BATTLE_PYRAMID] = gText_BattlePyramid,
+    //For bigger bag
+    #if (MORE_POCKETS == TRUE)
+    {
+        [STDSTRING_MEDICINE] = gText_Medicine,
+        [STDSTRING_BATTLEITEMS] = gText_BattleItems,
+        [STDSTRING_POWERUPITEMS] = gText_PowerUp,
+    }
+    #endif
 };
 
 static const u8 sLinkServicesMultichoiceIds[] =

@@ -59,11 +59,27 @@
 #define SECRET_BASES_COUNT 20
 #define POKE_NEWS_COUNT 16
 #define PC_ITEMS_COUNT 50
-#define BAG_ITEMS_COUNT 30
+#define BAG_ITEMS_COUNT 30 //Check if this # does anything, is 40 in Asparagus_Eduardo's original change
 #define BAG_KEYITEMS_COUNT 30
 #define BAG_POKEBALLS_COUNT 16
 #define BAG_TMHM_COUNT 64
 #define BAG_BERRIES_COUNT 46
+//Defines the 3 extra pockets, allows their stuff to return to the items pocket if not activated
+#if (MORE_POCKETS == TRUE)
+{
+    #define BAG_MEDICINE_COUNT 34 
+    #define BAG_BATTLEITEMS_COUNT 47
+    #define BAG_POWERUP_COUNT 18 
+}
+#else
+{
+    #define BAG_MEDICINE_COUNT == BAG_ITEMS_COUNT
+    #define BAG_BATTLEITEMS_COUNT == BAG_ITEMS_COUNT
+    #define BAG_POWERUP_COUNT == BAG_ITEMS_COUNT 
+}
+#endif
+
+
 #define OBJECT_EVENT_TEMPLATES_COUNT 64
 #define DECOR_MAX_SECRET_BASE 16
 #define DECOR_MAX_PLAYERS_HOUSE 12

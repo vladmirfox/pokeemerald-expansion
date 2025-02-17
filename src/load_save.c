@@ -28,6 +28,12 @@ struct LoadedSaveData
  /*0x0130*/ struct ItemSlot TMsHMs[BAG_TMHM_COUNT];
  /*0x0230*/ struct ItemSlot berries[BAG_BERRIES_COUNT];
  /*0x02E8*/ struct Mail mail[MAIL_COUNT];
+ #if (MORE_POCKETS == TRUE) {
+    /*0x0230*/ struct ItemSlot medicine[BAG_MEDICINE_COUNT];
+    /*0x0230*/ struct ItemSlot battleItems[BAG_BATTLEITEMS_COUNT];
+    /*0x0230*/ struct ItemSlot powerUp[BAG_POWERUP_COUNT];
+}
+#endif
 };
 
 // EWRAM DATA
@@ -279,8 +285,24 @@ void LoadPlayerBag(void)
     // load mail.
     for (i = 0; i < MAIL_COUNT; i++)
         gLoadedSaveData.mail[i] = gSaveBlock1Ptr->mail[i];
+    
+    #if (MORE_POCKETS == TRUE) {
+        // load player medicine.
+        for (i = 0; i < BAG_MEDICINE_COUNT; i++)
+            gLoadedSaveData.medicine[i] = gSaveBlock1Ptr->bagPocket_Medicine[i];
+        
+        // load player battle items.
+        for (i = 0; i < BAG_BATTLEITEMS_COUNT; i++)
+            gLoadedSaveData.battleItems[i] = gSaveBlock1Ptr->bagPocket_BattleItems[i];
 
+        // load player power up.
+        for (i = 0; i < BAG_POWERUP_COUNT; i++)
+            gLoadedSaveData.powerUp[i] = gSaveBlock1Ptr->bagPocket_PowerUp[i];
+    }
+    #endif
+    
     gLastEncryptionKey = gSaveBlock2Ptr->encryptionKey;
+ 
 }
 
 void SavePlayerBag(void)
@@ -312,6 +334,20 @@ void SavePlayerBag(void)
     for (i = 0; i < MAIL_COUNT; i++)
         gSaveBlock1Ptr->mail[i] = gLoadedSaveData.mail[i];
 
+    #if (MORE_POCKETS == TRUE) {
+        // save player medicine.
+        for (i = 0; i < BAG_MEDICINE_COUNT; i++)
+            gSaveBlock1Ptr->bagPocket_Medicine[i] = gLoadedSaveData.medicine[i];            
+        // save player battle items.
+        for (i = 0; i < BAG_BATTLEITEMS_COUNT; i++)
+            gSaveBlock1Ptr->bagPocket_BattleItems[i] = gLoadedSaveData.battleItems[i];
+    
+        // save player power up.
+        for (i = 0; i < BAG_POWERUP_COUNT; i++)
+            gSaveBlock1Ptr->bagPocket_PowerUp[i] = gLoadedSaveData.powerUp[i];    
+    }
+    #endif
+    
     encryptionKeyBackup = gSaveBlock2Ptr->encryptionKey;
     gSaveBlock2Ptr->encryptionKey = gLastEncryptionKey;
     ApplyNewEncryptionKeyToBagItems(encryptionKeyBackup);

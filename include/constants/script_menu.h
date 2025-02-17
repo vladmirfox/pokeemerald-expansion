@@ -165,6 +165,12 @@
 #define STDSTRING_BATTLE_ARENA     27
 #define STDSTRING_BATTLE_PIKE      28
 #define STDSTRING_BATTLE_PYRAMID   29
+//For bag expansion
+#define STDSTRING_MEDICINE         30
+#define STDSTRING_BATTLEITEMS      31
+#define STDSTRING_POWERUPITEMS     32
+
+
 
 // Dynamic Multichoice Callbacks
 

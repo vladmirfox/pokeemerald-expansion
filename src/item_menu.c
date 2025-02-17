@@ -114,6 +114,11 @@ struct ListBuffer2 {
 
 struct TempWallyBag {
     struct ItemSlot bagPocket_Items[BAG_ITEMS_COUNT];
+    #if (MORE_POCKETS == TRUE)
+    {
+        struct ItemSlot bagPocket_Medicine[BAG_MEDICINE_COUNT];
+    }
+    #endif
     struct ItemSlot bagPocket_PokeBalls[BAG_POKEBALLS_COUNT];
     u16 cursorPosition[POCKETS_COUNT];
     u16 scrollPosition[POCKETS_COUNT];
@@ -749,6 +754,14 @@ static bool8 SetupBagMenu(void)
     case 13:
         PrintPocketNames(gPocketNamesStringsTable[gBagPosition.pocket], 0);
         CopyPocketNameToWindow(0);
+        #if (MORE_POCKETS == TRUE)
+        {
+            BagMenu_DrawPocketIndicatorSquare(0, 0);
+            BagMenu_DrawPocketIndicatorSquare(5, 0);
+            BagMenu_DrawPocketIndicatorSquare(6, 0);
+            BagMenu_DrawPocketIndicatorSquare(7, 0);
+        }
+        #endif
         DrawPocketIndicatorSquare(gBagPosition.pocket, TRUE);
         gMain.state++;
         break;
@@ -1427,10 +1440,21 @@ static void DrawItemListBgRow(u8 y)
 
 static void DrawPocketIndicatorSquare(u8 x, bool8 isCurrentPocket)
 {
-    if (!isCurrentPocket)
-        FillBgTilemapBufferRect_Palette0(2, 0x1017, x + 5, 3, 1, 1);
-    else
-        FillBgTilemapBufferRect_Palette0(2, 0x102B, x + 5, 3, 1, 1);
+    #if (MORE_POCKETS == TRUE)
+    {
+        if (!isCurrentPocket) //Check if x+4 breaks anything
+            FillBgTilemapBufferRect_Palette0(2, 0x1017, x + 4, 3, 1, 1);
+        else
+            FillBgTilemapBufferRect_Palette0(2, 0x102B, x + 4, 3, 1, 1);
+    }
+    #else
+    {
+        if (!isCurrentPocket)
+            FillBgTilemapBufferRect_Palette0(2, 0x1017, x + 5, 3, 1, 1);
+        else
+            FillBgTilemapBufferRect_Palette0(2, 0x102B, x + 5, 3, 1, 1);
+    }
+    #endif
     ScheduleBgCopyTilemapToVram(2);
 }
 
@@ -1625,40 +1649,96 @@ static void OpenContextMenu(u8 taskId)
         }
         else
         {
-            switch (gBagPosition.pocket)
+            #if (MORE_POCKETS == TRUE)
             {
-            case ITEMS_POCKET:
-                gBagMenu->contextMenuItemsPtr = gBagMenu->contextMenuItemsBuffer;
-                gBagMenu->contextMenuNumItems = ARRAY_COUNT(sContextMenuItems_ItemsPocket);
-                memcpy(&gBagMenu->contextMenuItemsBuffer, &sContextMenuItems_ItemsPocket, sizeof(sContextMenuItems_ItemsPocket));
-                if (ItemIsMail(gSpecialVar_ItemId) == TRUE)
-                    gBagMenu->contextMenuItemsBuffer[0] = ACTION_CHECK;
-                break;
-            case KEYITEMS_POCKET:
-                gBagMenu->contextMenuItemsPtr = gBagMenu->contextMenuItemsBuffer;
-                gBagMenu->contextMenuNumItems = ARRAY_COUNT(sContextMenuItems_KeyItemsPocket);
-                memcpy(&gBagMenu->contextMenuItemsBuffer, &sContextMenuItems_KeyItemsPocket, sizeof(sContextMenuItems_KeyItemsPocket));
-                if (gSaveBlock1Ptr->registeredItem == gSpecialVar_ItemId)
-                    gBagMenu->contextMenuItemsBuffer[1] = ACTION_DESELECT;
-                if (gSpecialVar_ItemId == ITEM_MACH_BIKE || gSpecialVar_ItemId == ITEM_ACRO_BIKE)
+                switch (gBagPosition.pocket)
                 {
-                    if (TestPlayerAvatarFlags(PLAYER_AVATAR_FLAG_MACH_BIKE | PLAYER_AVATAR_FLAG_ACRO_BIKE))
-                        gBagMenu->contextMenuItemsBuffer[0] = ACTION_WALK;
-                }
-                break;
-            case BALLS_POCKET:
-                gBagMenu->contextMenuItemsPtr = sContextMenuItems_BallsPocket;
-                gBagMenu->contextMenuNumItems = ARRAY_COUNT(sContextMenuItems_BallsPocket);
-                break;
-            case TMHM_POCKET:
-                gBagMenu->contextMenuItemsPtr = sContextMenuItems_TmHmPocket;
-                gBagMenu->contextMenuNumItems = ARRAY_COUNT(sContextMenuItems_TmHmPocket);
-                break;
-            case BERRIES_POCKET:
-                gBagMenu->contextMenuItemsPtr = sContextMenuItems_BerriesPocket;
-                gBagMenu->contextMenuNumItems = ARRAY_COUNT(sContextMenuItems_BerriesPocket);
-                break;
+                case ITEMS_POCKET:
+                    gBagMenu->contextMenuItemsPtr = gBagMenu->contextMenuItemsBuffer;
+                    gBagMenu->contextMenuNumItems = ARRAY_COUNT(sContextMenuItems_ItemsPocket);
+                    memcpy(&gBagMenu->contextMenuItemsBuffer, &sContextMenuItems_ItemsPocket, sizeof(sContextMenuItems_ItemsPocket));
+                    if (ItemIsMail(gSpecialVar_ItemId) == TRUE)
+                        gBagMenu->contextMenuItemsBuffer[0] = ACTION_CHECK;
+                    break;
+                case KEYITEMS_POCKET:
+                    gBagMenu->contextMenuItemsPtr = gBagMenu->contextMenuItemsBuffer;
+                    gBagMenu->contextMenuNumItems = ARRAY_COUNT(sContextMenuItems_KeyItemsPocket);
+                    memcpy(&gBagMenu->contextMenuItemsBuffer, &sContextMenuItems_KeyItemsPocket, sizeof(sContextMenuItems_KeyItemsPocket));
+                    if (gSaveBlock1Ptr->registeredItem == gSpecialVar_ItemId)
+                        gBagMenu->contextMenuItemsBuffer[1] = ACTION_DESELECT;
+                    if (gSpecialVar_ItemId == ITEM_MACH_BIKE || gSpecialVar_ItemId == ITEM_ACRO_BIKE)
+                    {
+                        if (TestPlayerAvatarFlags(PLAYER_AVATAR_FLAG_MACH_BIKE | PLAYER_AVATAR_FLAG_ACRO_BIKE))
+                            gBagMenu->contextMenuItemsBuffer[0] = ACTION_WALK;
+                    }
+                    break;
+                case BALLS_POCKET:
+                    gBagMenu->contextMenuItemsPtr = sContextMenuItems_BallsPocket;
+                    gBagMenu->contextMenuNumItems = ARRAY_COUNT(sContextMenuItems_BallsPocket);
+                    break;
+                case TMHM_POCKET:
+                    gBagMenu->contextMenuItemsPtr = sContextMenuItems_TmHmPocket;
+                    gBagMenu->contextMenuNumItems = ARRAY_COUNT(sContextMenuItems_TmHmPocket);
+                    break;
+                case BERRIES_POCKET:
+                    gBagMenu->contextMenuItemsPtr = sContextMenuItems_BerriesPocket;
+                    gBagMenu->contextMenuNumItems = ARRAY_COUNT(sContextMenuItems_BerriesPocket);
+                    break;
+                case MEDICINE_POCKET:
+                    gBagMenu->contextMenuItemsPtr = gBagMenu->contextMenuItemsBuffer;
+                    gBagMenu->contextMenuNumItems = ARRAY_COUNT(sContextMenuItems_ItemsPocket);
+                    memcpy(&gBagMenu->contextMenuItemsBuffer, &sContextMenuItems_ItemsPocket, sizeof(sContextMenuItems_ItemsPocket));
+                    break;
+                case BATTLEITEMS_POCKET:
+                    gBagMenu->contextMenuItemsPtr = gBagMenu->contextMenuItemsBuffer;
+                    gBagMenu->contextMenuNumItems = ARRAY_COUNT(sContextMenuItems_ItemsPocket);
+                    memcpy(&gBagMenu->contextMenuItemsBuffer, &sContextMenuItems_ItemsPocket, sizeof(sContextMenuItems_ItemsPocket));
+                    break;
+                case POWERUP_POCKET:
+                    gBagMenu->contextMenuItemsPtr = gBagMenu->contextMenuItemsBuffer;
+                    gBagMenu->contextMenuNumItems = ARRAY_COUNT(sContextMenuItems_ItemsPocket);
+                    memcpy(&gBagMenu->contextMenuItemsBuffer, &sContextMenuItems_ItemsPocket, sizeof(sContextMenuItems_ItemsPocket));
+                    break;
+                }                
             }
+            #else
+            {
+                switch (gBagPosition.pocket)
+                {
+                case ITEMS_POCKET:
+                    gBagMenu->contextMenuItemsPtr = gBagMenu->contextMenuItemsBuffer;
+                    gBagMenu->contextMenuNumItems = ARRAY_COUNT(sContextMenuItems_ItemsPocket);
+                    memcpy(&gBagMenu->contextMenuItemsBuffer, &sContextMenuItems_ItemsPocket, sizeof(sContextMenuItems_ItemsPocket));
+                    if (ItemIsMail(gSpecialVar_ItemId) == TRUE)
+                        gBagMenu->contextMenuItemsBuffer[0] = ACTION_CHECK;
+                    break;
+                case KEYITEMS_POCKET:
+                    gBagMenu->contextMenuItemsPtr = gBagMenu->contextMenuItemsBuffer;
+                    gBagMenu->contextMenuNumItems = ARRAY_COUNT(sContextMenuItems_KeyItemsPocket);
+                    memcpy(&gBagMenu->contextMenuItemsBuffer, &sContextMenuItems_KeyItemsPocket, sizeof(sContextMenuItems_KeyItemsPocket));
+                    if (gSaveBlock1Ptr->registeredItem == gSpecialVar_ItemId)
+                        gBagMenu->contextMenuItemsBuffer[1] = ACTION_DESELECT;
+                    if (gSpecialVar_ItemId == ITEM_MACH_BIKE || gSpecialVar_ItemId == ITEM_ACRO_BIKE)
+                    {
+                        if (TestPlayerAvatarFlags(PLAYER_AVATAR_FLAG_MACH_BIKE | PLAYER_AVATAR_FLAG_ACRO_BIKE))
+                            gBagMenu->contextMenuItemsBuffer[0] = ACTION_WALK;
+                    }
+                    break;
+                case BALLS_POCKET:
+                    gBagMenu->contextMenuItemsPtr = sContextMenuItems_BallsPocket;
+                    gBagMenu->contextMenuNumItems = ARRAY_COUNT(sContextMenuItems_BallsPocket);
+                    break;
+                case TMHM_POCKET:
+                    gBagMenu->contextMenuItemsPtr = sContextMenuItems_TmHmPocket;
+                    gBagMenu->contextMenuNumItems = ARRAY_COUNT(sContextMenuItems_TmHmPocket);
+                    break;
+                case BERRIES_POCKET:
+                    gBagMenu->contextMenuItemsPtr = sContextMenuItems_BerriesPocket;
+                    gBagMenu->contextMenuNumItems = ARRAY_COUNT(sContextMenuItems_BerriesPocket);
+                    break;
+                }
+            }
+            #endif
         }
     }
     if (gBagPosition.pocket == TMHM_POCKET)
@@ -2322,7 +2402,15 @@ static void PrepareBagForWallyTutorial(void)
     u32 i;
 
     sTempWallyBag = AllocZeroed(sizeof(*sTempWallyBag));
-    memcpy(sTempWallyBag->bagPocket_Items, gSaveBlock1Ptr->bagPocket_Items, sizeof(gSaveBlock1Ptr->bagPocket_Items));
+    #if(MORE_POCKETS == TRUE)
+    {
+        memcpy(sTempWallyBag->bagPocket_Medicine, gSaveBlock1Ptr->bagPocket_Medicine, sizeof(gSaveBlock1Ptr->bagPocket_Medicine));
+    }
+    #else
+    {
+        memcpy(sTempWallyBag->bagPocket_Items, gSaveBlock1Ptr->bagPocket_Items, sizeof(gSaveBlock1Ptr->bagPocket_Items));
+    }
+    #endif
     memcpy(sTempWallyBag->bagPocket_PokeBalls, gSaveBlock1Ptr->bagPocket_PokeBalls, sizeof(gSaveBlock1Ptr->bagPocket_PokeBalls));
     sTempWallyBag->pocket = gBagPosition.pocket;
     for (i = 0; i < POCKETS_COUNT; i++)
@@ -2330,7 +2418,7 @@ static void PrepareBagForWallyTutorial(void)
         sTempWallyBag->cursorPosition[i] = gBagPosition.cursorPosition[i];
         sTempWallyBag->scrollPosition[i] = gBagPosition.scrollPosition[i];
     }
-    ClearItemSlots(gSaveBlock1Ptr->bagPocket_Items, BAG_ITEMS_COUNT);
+    ClearItemSlots(gSaveBlock1Ptr->bagPocket_Items, BAG_MEDICINE_COUNT);
     ClearItemSlots(gSaveBlock1Ptr->bagPocket_PokeBalls, BAG_POKEBALLS_COUNT);
     ResetBagScrollPositions();
 }
@@ -2338,8 +2426,15 @@ static void PrepareBagForWallyTutorial(void)
 static void RestoreBagAfterWallyTutorial(void)
 {
     u32 i;
-
-    memcpy(gSaveBlock1Ptr->bagPocket_Items, sTempWallyBag->bagPocket_Items, sizeof(sTempWallyBag->bagPocket_Items));
+    #if(MORE_POCKETS == TRUE)
+    {
+        memcpy(sTempWallyBag->bagPocket_Medicine, gSaveBlock1Ptr->bagPocket_Medicine, sizeof(gSaveBlock1Ptr->bagPocket_Medicine));
+    }
+    #else
+    {
+        memcpy(sTempWallyBag->bagPocket_Items, gSaveBlock1Ptr->bagPocket_Items, sizeof(gSaveBlock1Ptr->bagPocket_Items));
+    }
+    #endif
     memcpy(gSaveBlock1Ptr->bagPocket_PokeBalls, sTempWallyBag->bagPocket_PokeBalls, sizeof(sTempWallyBag->bagPocket_PokeBalls));
     gBagPosition.pocket = sTempWallyBag->pocket;
     for (i = 0; i < POCKETS_COUNT; i++)
@@ -2355,7 +2450,7 @@ void DoWallyTutorialBagMenu(void)
     PrepareBagForWallyTutorial();
     AddBagItem(ITEM_POTION, 1);
     AddBagItem(ITEM_POKE_BALL, 1);
-    GoToBagMenu(ITEMMENULOCATION_WALLY, ITEMS_POCKET, CB2_SetUpReshowBattleScreenAfterMenu2);
+    GoToBagMenu(ITEMMENULOCATION_WALLY, MEDICINE_POCKET, CB2_SetUpReshowBattleScreenAfterMenu2);
 }
 
 #define tTimer data[8]
