@@ -28,12 +28,17 @@ struct LoadedSaveData
  /*0x0130*/ struct ItemSlot TMsHMs[BAG_TMHM_COUNT];
  /*0x0230*/ struct ItemSlot berries[BAG_BERRIES_COUNT];
  /*0x02E8*/ struct Mail mail[MAIL_COUNT];
- #if (MORE_POCKETS == TRUE) {
+ #if (MORE_POCKETS == TRUE) 
+ {
     /*0x0230*/ struct ItemSlot medicine[BAG_MEDICINE_COUNT];
     /*0x0230*/ struct ItemSlot battleItems[BAG_BATTLEITEMS_COUNT];
     /*0x0230*/ struct ItemSlot powerUp[BAG_POWERUP_COUNT];
-}
-#endif
+ }
+ #elif (MORE_POCKETS == MEDICINE_ONLY) 
+ {
+    /*0x0230*/ struct ItemSlot medicine[BAG_MEDICINE_COUNT];
+ }
+ #endif
 };
 
 // EWRAM DATA
@@ -299,6 +304,11 @@ void LoadPlayerBag(void)
         for (i = 0; i < BAG_POWERUP_COUNT; i++)
             gLoadedSaveData.powerUp[i] = gSaveBlock1Ptr->bagPocket_PowerUp[i];
     }
+    #elif (MORE_POCKETS == MEDICINE_ONLY) {
+        // load player medicine.
+        for (i = 0; i < BAG_MEDICINE_COUNT; i++)
+            gLoadedSaveData.medicine[i] = gSaveBlock1Ptr->bagPocket_Medicine[i];
+    }
     #endif
     
     gLastEncryptionKey = gSaveBlock2Ptr->encryptionKey;
@@ -345,6 +355,11 @@ void SavePlayerBag(void)
         // save player power up.
         for (i = 0; i < BAG_POWERUP_COUNT; i++)
             gSaveBlock1Ptr->bagPocket_PowerUp[i] = gLoadedSaveData.powerUp[i];    
+    }
+    #elif (MORE_POCKETS == MEDICINE_ONLY) {
+        // save player medicine.
+        for (i = 0; i < BAG_MEDICINE_COUNT; i++)
+            gSaveBlock1Ptr->bagPocket_Medicine[i] = gLoadedSaveData.medicine[i];
     }
     #endif
     

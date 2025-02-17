@@ -75,7 +75,9 @@
 #define AUTO_SCROLL_TEXT             FALSE   // If TRUE, text will automatically scroll to the next line after NUM_FRAMES_AUTO_SCROLL_DELAY. Players can still press A_BUTTON or B_BUTTON to scroll on their own.
 #define NUM_FRAMES_AUTO_SCROLL_DELAY 49
 
-#define MORE_POCKETS               TRUE    // If TRUE, adds MEDICINE, POWER_UP, and BATTLE_ITEMS pockets to the bag.
+#define MEDICINE_ONLY               2
+#define MORE_POCKETS                TRUE    // If TRUE, adds MEDICINE, POWER_UP, and BATTLE_ITEMS pockets to the bag.
+                                            //If MEDICINE_ONLY, only adds the MEDICINE pocket.
 
 
 // Measurement system constants to be used for UNITS

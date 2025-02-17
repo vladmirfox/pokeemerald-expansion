@@ -60,6 +60,10 @@ extern const u8 gText_Berries2[];
     extern const u8 gText_BattleItems[];
     extern const u8 gText_PowerUp[];
 }
+#elif (MORE_POCKETS == MEDICINE_ONLY)
+{
+    extern const u8 gText_Medicine[];
+}
 #endif
 extern const u8 gText_Single2[];
 extern const u8 gText_Double2[];

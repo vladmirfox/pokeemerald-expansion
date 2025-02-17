@@ -947,6 +947,10 @@ const u8 *const gStdStrings[] =
         [STDSTRING_BATTLEITEMS] = gText_BattleItems,
         [STDSTRING_POWERUPITEMS] = gText_PowerUp,
     }
+    #elif (MORE_POCKETS == MEDICINE_ONLY)
+    {
+        [STDSTRING_MEDICINE] = gText_Medicine,
+    }
     #endif
 };
 
