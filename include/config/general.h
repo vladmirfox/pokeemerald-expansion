@@ -76,7 +76,7 @@
 #define NUM_FRAMES_AUTO_SCROLL_DELAY 49
 
 #define MEDICINE_ONLY               2
-#define MORE_POCKETS                TRUE    // If TRUE, adds MEDICINE, POWER_UP, and BATTLE_ITEMS pockets to the bag.
+#define MORE_POCKETS                MEDICINE_ONLY    // If TRUE, adds MEDICINE, POWER_UP, and BATTLE_ITEMS pockets to the bag.
                                             //If MEDICINE_ONLY, only adds the MEDICINE pocket.
 
 
