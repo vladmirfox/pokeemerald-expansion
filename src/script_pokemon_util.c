@@ -377,9 +377,17 @@ static u32 ScriptGiveMonParameterized(u8 side, u8 slot, u16 species, u8 level, u
     {
         if (moves[0] == MOVE_NONE)
             break;
-        if (moves[i] >= MOVES_COUNT || MonKnowsMove(&mon, moves[i]))
+        if (moves[i] >= MOVES_COUNT)
             continue;
-        SetMonMoveSlot(&mon, moves[i], i);
+        u32 moveIndex;
+        if (moves[i] != MOVE_NONE && GetMonData(&mon, i) != MOVE_NONE && (moveIndex = GetMonMoveIndex(&mon, moves[i])) < MAX_MON_MOVES)
+        {
+            ShiftMoveSlot(&mon, i, moveIndex);
+        }
+        else
+        {
+            SetMonMoveSlot(&mon, moves[i], i);
+        }
     }
 
     // ability

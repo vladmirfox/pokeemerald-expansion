@@ -469,7 +469,6 @@ static void Task_ChoosePartyMon(u8 taskId);
 static void Task_ChooseMonForMoveRelearner(u8);
 static void CB2_ChooseMonForMoveRelearner(void);
 static void Task_BattlePyramidChooseMonHeldItems(u8);
-static void ShiftMoveSlot(struct Pokemon *, u8, u8);
 static void BlitBitmapToPartyWindow_LeftColumn(u8, u8, u8, u8, u8, bool8);
 static void BlitBitmapToPartyWindow_RightColumn(u8, u8, u8, u8, u8, bool8);
 static void CursorCb_Summary(u8);
@@ -5258,16 +5257,21 @@ u16 ItemIdToBattleMoveId(u16 item)
     return (ItemId_GetPocket(item) == POCKET_TM_HM) ? gItemsInfo[item].secondaryId : MOVE_NONE;
 }
 
-bool8 MonKnowsMove(struct Pokemon *mon, u16 move)
+u32 GetMonMoveIndex(struct Pokemon *mon, u16 move)
 {
-    u8 i;
+    u32 i;
 
     for (i = 0; i < MAX_MON_MOVES; i++)
     {
         if (GetMonData(mon, MON_DATA_MOVE1 + i) == move)
-            return TRUE;
+            return i;
     }
-    return FALSE;
+    return MAX_MON_MOVES;
+}
+
+bool8 MonKnowsMove(struct Pokemon *mon, u16 move)
+{
+    return GetMonMoveIndex(mon, move) < MAX_MON_MOVES;
 }
 
 bool8 BoxMonKnowsMove(struct BoxPokemon *boxMon, u16 move)
@@ -7717,7 +7721,7 @@ void MoveDeleterForgetMove(void)
         ShiftMoveSlot(&gPlayerParty[gSpecialVar_0x8004], i, i + 1);
 }
 
-static void ShiftMoveSlot(struct Pokemon *mon, u8 slotTo, u8 slotFrom)
+void ShiftMoveSlot(struct Pokemon *mon, u8 slotTo, u8 slotFrom)
 {
     u16 move1 = GetMonData(mon, MON_DATA_MOVE1 + slotTo);
     u16 move0 = GetMonData(mon, MON_DATA_MOVE1 + slotFrom);

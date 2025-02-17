@@ -4009,10 +4009,18 @@ static void DebugAction_Give_Pokemon_ComplexCreateMon(u8 taskId) //https://githu
     //Moves
     for (i = 0; i < MAX_MON_MOVES; i++)
     {
-        if (moves[i] == 0 || moves[i] == 0xFF || moves[i] >= MOVES_COUNT || MonKnowsMove(&mon, moves[i]))
+        if (moves[i] == MOVE_NONE || moves[i] >= MOVES_COUNT)
             continue;
-
-        SetMonMoveSlot(&mon, moves[i], i);
+            
+        u32 moveIndex;
+        if (GetMonData(&mon, i) != MOVE_NONE && (moveIndex = GetMonMoveIndex(&mon, moves[i])) < MAX_MON_MOVES)
+        {
+            ShiftMoveSlot(&mon, moveIndex, i);
+        }
+        else
+        {
+            SetMonMoveSlot(&mon, moves[i], i);
+        }
     }
 
     //Ability
