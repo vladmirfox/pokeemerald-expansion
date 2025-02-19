@@ -556,7 +556,7 @@ Causes the test to fail if a and b compare incorrectly, e.g.
 
 ### `FORCE_MOVE_ANIM`
 `FORCE_MOVE_ANIM(TRUE)`
-Forces the moves in the current test to do their animations in headless mode, useful for debugging animations.
+Forces the moves in the current test to do their animations in headless mode. Useful for debugging animations.
 
 ## Overworld Command Reference
 
