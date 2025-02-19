@@ -69,22 +69,6 @@ To request a feature to be added to the project, open a [feature request](https:
 
 ### How do I submit a pull request?
 
-Once your work is done, evaluate it against the PR checklist.
-
-#### PR Checklist
-- [ ] Does the branch successfully compile?
-- [ ] Does the functionality work in game without any problems?
-- [ ] Does running `make check` on your machine result in no test marked as `FAILING`?
-- [ ] Does your branch have tests for its new functionality? 
-    - If your new functionality _can_ be tested, it is requried to have tests.
-    - If you need help with tests, you can ask in the #expansion-tests channel of the Discord server.
-- [ ] Does the submitted code follow the [styleguide](docs/styleguide)?
-- [ ] Is the branch free from merge conflicts with the target branch?
-
-Pull requests that do not meet the points on this checklist will not be merged.
-
-If any of the above are not true, you can still submit the pull request, but [please mark it as draft](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/changing-the-stage-of-a-pull-request). 
-
 Once your code is pushed to your repo on Github, open a pull request from your branch targeting the branch you've chosen from `pokeemerald-expansion`. Please fill out the pull request description as completely as possible. 
 
 ### What happens after I submit a pull request?
