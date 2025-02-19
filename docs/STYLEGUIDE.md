@@ -421,3 +421,6 @@ All other configs should be off.
 Until [save migration](https://discord.com/channels/419213663107416084/1108733346864963746) is implemented, branches will only merged in if they do not forcefully break existing game saves. 
 
 When `pokemeerald-expansion` gets to a point where new functionality will require that we break saves, we will merge as many [save-breaking features](https://discord.com/channels/419213663107416084/1202774957776441427) together as possible, and increment the major version number of the project.
+
+# Attribution
+* The majority of the styleguide was written by [garakmon](https://github.com/garakmon) as part of their [PR to pokefirered](<https://github.com/pret/pokefirered/pull/63>).
