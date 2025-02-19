@@ -57,6 +57,8 @@ To request a feature to be added to the project, open a [feature request](https:
 
 ## Pull Requests
 
+If you have read all of this and still need help, feel free to start a thread in #pr-discussions of the Discord server or ask questions in #expansion-dev.
+
 ### What should I do before starting a pull request?
 
 - Make sure you have a basic understanding of `git` and have a [local copy](INSTALL.md) of `pokeemerald-expansion`.
@@ -69,33 +71,48 @@ To request a feature to be added to the project, open a [feature request](https:
 
 ### How do I submit a pull request?
 
-Once your code is pushed to your repo on Github, open a pull request from your branch targeting the branch you've chosen from `pokeemerald-expansion`. Please fill out the pull request description as completely as possible. 
+#### 1. Get a working local copy
+If you haven't already, follow [INSTALL.md](INSTALL.md) to get a working local copy of `pokeemerald-expansion`.
+
+#### 2. Set RHH as a remote
+This will designate the main `pokeemerald-expansion` repository as a remote.
+```bash
+git remote add RHH https://github.com/rh-hideout/pokeemerald-expansion # You can replace RHH with anything you want. This tutorial assumes you used RHH.
+```
+
+#### 3. Create a new branch
+This will create a new branch and switch to it.
+```bash
+git checkout -b newFeature # the name newFeature can be anything you want. This tutorial assumes you used newFeature.
+```
+
+#### 4. Copy your target branch to your new branch
+This will change your new branch to match the latest version of your chosen target branch.
+```bash
+git reset --hard RHH/upcoming # If your PR is going to target master, replace upcoming with master.
+```
+
+#### 5. Implement your code
+All of your work should go on this new, clean branch. If you already started work on a different branch, you can [cherry-pick](https://git-scm.com/docs/git-cherry-pick) you old commits onto this new branch, or just copy and paste the changes from the original files.
+
+#### 6. Push your changes
+When you push your first commit, you'll need to push the new branch to the remote repo.
+```bash
+git push --set-upstream origin newFeature
+```
+
+#### 7. Open Pull Request
+Once your work is complete and pushed to the branch on Github, you can open a [pull request from your branch](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/creating-a-pull-request-from-a-fork), targeting the branch you've chosen from `pokeemerald-expansion`. Please fill out the pull request description as completely as possible. 
 
 ### What happens after I submit a pull request?
 
 A maintainer will then assign themselves as a reviewer of your pull request, and may provide feedback in the form of a PR review. 
 
-Contributors are responsible for responding to and updating their branch by addressing the feedback in the review. Contributors are also responsible for making sure the branch passes the [PR Checklist](#PR checklist) at all times.
+Contributors are responsible for responding to and updating their branch by addressing the feedback in the review. Contributors are also responsible for making sure the branch passes the checklist at all times.
 
-Maintainers will measure the submitted pull request against the Merge Checklist.
+Maintainers will measure the submitted pull request against a [merge checklist](docs/team_procedures/merge_checklist.md).
 
-#### Merge Checklist
-
-- [ ] Is the branch's theoretical functionality in scope?
-- [ ] Does the branch successfully compile?
-- [ ] Do all tests on the CI pass?
-- [ ] Does the functionality work in game without any problems?
-    - [ ] If the branch ports behavior from another Pokémon game, does that behavior function as faithfully as possible?
-- [ ] If this branch changes a function that is expected to be modified by users, is there a migration script?
-- [ ] Should new functionality introduced by this branch be gated behind a config?
-    - [ ] Does the branch meet our [config philosophy](docs/styleguide#config-philosophy)?
-- [ ] Does the branch meet our [saves philosophy](docs/styleguide#saves-philosophy)?
-- [ ] Are tests written for everything that can be tested?
-- [ ] Does the submitted code follow the [styleguide](docs/styleguide)?
-- [ ] Is the pull request appropriately labeled?
-- [ ] Is `pokeemerald-expansion` free from a merge freeze?
-
-Once all items on the checklist are true, the branch will be merged in.
+Once all items on the merge checklist are true, the branch will be merged in.
 
 ## Maintainers
 
