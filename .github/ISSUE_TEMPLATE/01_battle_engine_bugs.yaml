@@ -11,12 +11,31 @@ body:
     attributes:
       label: Description
       description: |
-        Describe the issue you are experiencing.
-        Attach images/videos if possible.
+        What behavior are you expecting to happen? What behavior are you observing instead?
       placeholder: |
-        Please enter a description of the issue. Here you can also attach log screenshots, gifs or a video
+        Please be as descriptive as possible.
     validations:
       required: true
+  - type: textarea
+    id: reproduction
+    attributes:
+      label: Reproduction Steps
+      description: |
+        What exact steps can somebody else follow in order to recreate the issue on their own?
+      placeholder: |
+        Provide as much context as possible as to what was done to create the issue. 
+    validations:
+      required: true
+  - type: textarea
+    id: media 
+    attributes:
+      label: Images / Video 
+      description: |
+        Do you have images or videos to show the problem happen?
+      placeholder: |
+        Here you can also attach log screenshots, gifs or a video.
+    validations:
+      required: false
   - type: dropdown
     id: version
     attributes:
