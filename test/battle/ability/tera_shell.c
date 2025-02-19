@@ -100,7 +100,6 @@ DOUBLE_BATTLE_TEST("Tera Shell only makes the first hit against Terapagos from a
 
 SINGLE_BATTLE_TEST("Tera Shell respects immunity")
 {
-    // KNOWN_FAILING;
     GIVEN {
         PLAYER(SPECIES_TERAPAGOS_TERASTAL) { Ability(ABILITY_TERA_SHELL); }
         OPPONENT(SPECIES_WOBBUFFET);
