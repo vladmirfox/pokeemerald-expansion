@@ -63,7 +63,7 @@ AI_SINGLE_BATTLE_TEST("AI avoids Thunder Wave when it can not paralyse target")
     }
 }
 
-SINGLE_BATTLE_TEST("Thunder Wave prints a message when failing against an electric type")
+SINGLE_BATTLE_TEST("Thunder Wave doesn't affect Electric types in Gen6+")
 {
     GIVEN {
         ASSUME(gSpeciesInfo[SPECIES_PIKACHU].types[0] == TYPE_ELECTRIC);
