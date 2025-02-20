@@ -188,7 +188,7 @@ def ImportWildEncounterFile():
             encounterCount[headerIndex] += 1
 
             headersArray = []
-            for time in encounter["encounter_times"]:
+            for time in encounter["encounter_array"]:
                 if TIME_MORNING in time:
                     structTime = TIME_MORNING_LABEL
                 elif TIME_DAY in time:
