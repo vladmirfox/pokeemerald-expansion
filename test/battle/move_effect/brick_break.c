@@ -52,7 +52,7 @@ SINGLE_BATTLE_TEST("Brick Break and Psychic Fangs don't remove Light Screen, Ref
 
     GIVEN {
         PLAYER(SPECIES_WOBBUFFET);
-        OPPONENT(SPECIES_GASTLY);
+        OPPONENT(SPECIES_SABLEYE);
     } WHEN {
         TURN { MOVE(player, MOVE_SNOWSCAPE); }
         TURN { MOVE(opponent, move); MOVE(player, breakingMove); }
