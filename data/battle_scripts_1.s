@@ -5085,6 +5085,7 @@ BattleScript_EffectBrickBreak::
 	accuracycheck BattleScript_PrintMoveMissed, ACC_CURR_MOVE
 	attackstring
 	ppreduce
+	typecalc
 	removelightscreenreflect
 	critcalc
 	damagecalc
