@@ -160,6 +160,20 @@
             {
               "time_night": []
             }
+          ],
+          "encounter_array": [
+            {
+              "time_morning": []
+            },
+            {
+              "time_day": []
+            },
+            {
+              "time_evening": []
+            },
+            {
+              "time_night": []
+            }
           ]
         },
         {
@@ -328,6 +342,20 @@
                   }
                 }
               ]
+            },
+            {
+              "time_evening": []
+            },
+            {
+              "time_night": []
+            }
+          ],
+          "encounter_array": [
+            {
+              "time_morning": []
+            },
+            {
+              "time_day": []
             },
             {
               "time_evening": []
@@ -510,6 +538,20 @@
             {
               "time_night": []
             }
+          ],
+          "encounter_array": [
+            {
+              "time_morning": []
+            },
+            {
+              "time_day": []
+            },
+            {
+              "time_evening": []
+            },
+            {
+              "time_night": []
+            }
           ]
         },
         {
@@ -685,6 +727,20 @@
             {
               "time_night": []
             }
+          ],
+          "encounter_array": [
+            {
+              "time_morning": []
+            },
+            {
+              "time_day": []
+            },
+            {
+              "time_evening": []
+            },
+            {
+              "time_night": []
+            }
           ]
         },
         {
@@ -786,6 +842,20 @@
                   }
                 }
               ]
+            },
+            {
+              "time_evening": []
+            },
+            {
+              "time_night": []
+            }
+          ],
+          "encounter_array": [
+            {
+              "time_morning": []
+            },
+            {
+              "time_day": []
             },
             {
               "time_evening": []
@@ -961,6 +1031,20 @@
                   }
                 }
               ]
+            },
+            {
+              "time_evening": []
+            },
+            {
+              "time_night": []
+            }
+          ],
+          "encounter_array": [
+            {
+              "time_morning": []
+            },
+            {
+              "time_day": []
             },
             {
               "time_evening": []
@@ -1175,6 +1259,20 @@
             {
               "time_night": []
             }
+          ],
+          "encounter_array": [
+            {
+              "time_morning": []
+            },
+            {
+              "time_day": []
+            },
+            {
+              "time_evening": []
+            },
+            {
+              "time_night": []
+            }
           ]
         },
         {
@@ -1261,6 +1359,20 @@
             {
               "time_night": []
             }
+          ],
+          "encounter_array": [
+            {
+              "time_morning": []
+            },
+            {
+              "time_day": []
+            },
+            {
+              "time_evening": []
+            },
+            {
+              "time_night": []
+            }
           ]
         },
         {
@@ -1340,6 +1452,20 @@
                   }
                 }
               ]
+            },
+            {
+              "time_evening": []
+            },
+            {
+              "time_night": []
+            }
+          ],
+          "encounter_array": [
+            {
+              "time_morning": []
+            },
+            {
+              "time_day": []
             },
             {
               "time_evening": []
@@ -1554,6 +1680,20 @@
             {
               "time_night": []
             }
+          ],
+          "encounter_array": [
+            {
+              "time_morning": []
+            },
+            {
+              "time_day": []
+            },
+            {
+              "time_evening": []
+            },
+            {
+              "time_night": []
+            }
           ]
         },
         {
@@ -1633,6 +1773,20 @@
                   }
                 }
               ]
+            },
+            {
+              "time_evening": []
+            },
+            {
+              "time_night": []
+            }
+          ],
+          "encounter_array": [
+            {
+              "time_morning": []
+            },
+            {
+              "time_day": []
             },
             {
               "time_evening": []
@@ -1815,6 +1969,20 @@
             {
               "time_night": []
             }
+          ],
+          "encounter_array": [
+            {
+              "time_morning": []
+            },
+            {
+              "time_day": []
+            },
+            {
+              "time_evening": []
+            },
+            {
+              "time_night": []
+            }
           ]
         },
         {
@@ -1990,6 +2158,20 @@
             {
               "time_night": []
             }
+          ],
+          "encounter_array": [
+            {
+              "time_morning": []
+            },
+            {
+              "time_day": []
+            },
+            {
+              "time_evening": []
+            },
+            {
+              "time_night": []
+            }
           ]
         },
         {
@@ -2098,6 +2280,20 @@
             {
               "time_night": []
             }
+          ],
+          "encounter_array": [
+            {
+              "time_morning": []
+            },
+            {
+              "time_day": []
+            },
+            {
+              "time_evening": []
+            },
+            {
+              "time_night": []
+            }
           ]
         },
         {
@@ -2177,6 +2373,20 @@
                   }
                 }
               ]
+            },
+            {
+              "time_evening": []
+            },
+            {
+              "time_night": []
+            }
+          ],
+          "encounter_array": [
+            {
+              "time_morning": []
+            },
+            {
+              "time_day": []
             },
             {
               "time_evening": []
@@ -2270,6 +2480,20 @@
             {
               "time_night": []
             }
+          ],
+          "encounter_array": [
+            {
+              "time_morning": []
+            },
+            {
+              "time_day": []
+            },
+            {
+              "time_evening": []
+            },
+            {
+              "time_night": []
+            }
           ]
         },
         {
@@ -2349,6 +2573,20 @@
                   }
                 }
               ]
+            },
+            {
+              "time_evening": []
+            },
+            {
+              "time_night": []
+            }
+          ],
+          "encounter_array": [
+            {
+              "time_morning": []
+            },
+            {
+              "time_day": []
             },
             {
               "time_evening": []
@@ -2442,6 +2680,20 @@
             {
               "time_night": []
             }
+          ],
+          "encounter_array": [
+            {
+              "time_morning": []
+            },
+            {
+              "time_day": []
+            },
+            {
+              "time_evening": []
+            },
+            {
+              "time_night": []
+            }
           ]
         },
         {
@@ -2521,6 +2773,20 @@
                   }
                 }
               ]
+            },
+            {
+              "time_evening": []
+            },
+            {
+              "time_night": []
+            }
+          ],
+          "encounter_array": [
+            {
+              "time_morning": []
+            },
+            {
+              "time_day": []
             },
             {
               "time_evening": []
@@ -2614,6 +2880,20 @@
             {
               "time_night": []
             }
+          ],
+          "encounter_array": [
+            {
+              "time_morning": []
+            },
+            {
+              "time_day": []
+            },
+            {
+              "time_evening": []
+            },
+            {
+              "time_night": []
+            }
           ]
         },
         {
@@ -2700,6 +2980,20 @@
             {
               "time_night": []
             }
+          ],
+          "encounter_array": [
+            {
+              "time_morning": []
+            },
+            {
+              "time_day": []
+            },
+            {
+              "time_evening": []
+            },
+            {
+              "time_night": []
+            }
           ]
         },
         {
@@ -2744,6 +3038,20 @@
                   }
                 }
               ]
+            },
+            {
+              "time_evening": []
+            },
+            {
+              "time_night": []
+            }
+          ],
+          "encounter_array": [
+            {
+              "time_morning": []
+            },
+            {
+              "time_day": []
             },
             {
               "time_evening": []
@@ -2852,6 +3160,20 @@
                   }
                 }
               ]
+            },
+            {
+              "time_evening": []
+            },
+            {
+              "time_night": []
+            }
+          ],
+          "encounter_array": [
+            {
+              "time_morning": []
+            },
+            {
+              "time_day": []
             },
             {
               "time_evening": []
@@ -2977,6 +3299,20 @@
             {
               "time_night": []
             }
+          ],
+          "encounter_array": [
+            {
+              "time_morning": []
+            },
+            {
+              "time_day": []
+            },
+            {
+              "time_evening": []
+            },
+            {
+              "time_night": []
+            }
           ]
         },
         {
@@ -3056,6 +3392,20 @@
                   }
                 }
               ]
+            },
+            {
+              "time_evening": []
+            },
+            {
+              "time_night": []
+            }
+          ],
+          "encounter_array": [
+            {
+              "time_morning": []
+            },
+            {
+              "time_day": []
             },
             {
               "time_evening": []
@@ -3238,6 +3588,20 @@
             {
               "time_night": []
             }
+          ],
+          "encounter_array": [
+            {
+              "time_morning": []
+            },
+            {
+              "time_day": []
+            },
+            {
+              "time_evening": []
+            },
+            {
+              "time_night": []
+            }
           ]
         },
         {
@@ -3317,6 +3681,20 @@
                   }
                 }
               ]
+            },
+            {
+              "time_evening": []
+            },
+            {
+              "time_night": []
+            }
+          ],
+          "encounter_array": [
+            {
+              "time_morning": []
+            },
+            {
+              "time_day": []
             },
             {
               "time_evening": []
@@ -3432,6 +3810,20 @@
             {
               "time_night": []
             }
+          ],
+          "encounter_array": [
+            {
+              "time_morning": []
+            },
+            {
+              "time_day": []
+            },
+            {
+              "time_evening": []
+            },
+            {
+              "time_night": []
+            }
           ]
         },
         {
@@ -3533,6 +3925,20 @@
                   }
                 }
               ]
+            },
+            {
+              "time_evening": []
+            },
+            {
+              "time_night": []
+            }
+          ],
+          "encounter_array": [
+            {
+              "time_morning": []
+            },
+            {
+              "time_day": []
             },
             {
               "time_evening": []
@@ -3648,6 +4054,20 @@
             {
               "time_night": []
             }
+          ],
+          "encounter_array": [
+            {
+              "time_morning": []
+            },
+            {
+              "time_day": []
+            },
+            {
+              "time_evening": []
+            },
+            {
+              "time_night": []
+            }
           ]
         },
         {
@@ -3749,6 +4169,20 @@
                   }
                 }
               ]
+            },
+            {
+              "time_evening": []
+            },
+            {
+              "time_night": []
+            }
+          ],
+          "encounter_array": [
+            {
+              "time_morning": []
+            },
+            {
+              "time_day": []
             },
             {
               "time_evening": []
@@ -3931,6 +4365,20 @@
             {
               "time_night": []
             }
+          ],
+          "encounter_array": [
+            {
+              "time_morning": []
+            },
+            {
+              "time_day": []
+            },
+            {
+              "time_evening": []
+            },
+            {
+              "time_night": []
+            }
           ]
         },
         {
@@ -4010,6 +4458,20 @@
                   }
                 }
               ]
+            },
+            {
+              "time_evening": []
+            },
+            {
+              "time_night": []
+            }
+          ],
+          "encounter_array": [
+            {
+              "time_morning": []
+            },
+            {
+              "time_day": []
             },
             {
               "time_evening": []
@@ -4192,6 +4654,20 @@
             {
               "time_night": []
             }
+          ],
+          "encounter_array": [
+            {
+              "time_morning": []
+            },
+            {
+              "time_day": []
+            },
+            {
+              "time_evening": []
+            },
+            {
+              "time_night": []
+            }
           ]
         },
         {
@@ -4360,6 +4836,20 @@
                   }
                 }
               ]
+            },
+            {
+              "time_evening": []
+            },
+            {
+              "time_night": []
+            }
+          ],
+          "encounter_array": [
+            {
+              "time_morning": []
+            },
+            {
+              "time_day": []
             },
             {
               "time_evening": []
@@ -4542,6 +5032,20 @@
             {
               "time_night": []
             }
+          ],
+          "encounter_array": [
+            {
+              "time_morning": []
+            },
+            {
+              "time_day": []
+            },
+            {
+              "time_evening": []
+            },
+            {
+              "time_night": []
+            }
           ]
         },
         {
@@ -4643,6 +5147,20 @@
                   }
                 }
               ]
+            },
+            {
+              "time_evening": []
+            },
+            {
+              "time_night": []
+            }
+          ],
+          "encounter_array": [
+            {
+              "time_morning": []
+            },
+            {
+              "time_day": []
             },
             {
               "time_evening": []
@@ -4825,6 +5343,20 @@
             {
               "time_night": []
             }
+          ],
+          "encounter_array": [
+            {
+              "time_morning": []
+            },
+            {
+              "time_day": []
+            },
+            {
+              "time_evening": []
+            },
+            {
+              "time_night": []
+            }
           ]
         },
         {
@@ -4904,6 +5436,20 @@
                   }
                 }
               ]
+            },
+            {
+              "time_evening": []
+            },
+            {
+              "time_night": []
+            }
+          ],
+          "encounter_array": [
+            {
+              "time_morning": []
+            },
+            {
+              "time_day": []
             },
             {
               "time_evening": []
@@ -4997,6 +5543,20 @@
             {
               "time_night": []
             }
+          ],
+          "encounter_array": [
+            {
+              "time_morning": []
+            },
+            {
+              "time_day": []
+            },
+            {
+              "time_evening": []
+            },
+            {
+              "time_night": []
+            }
           ]
         },
         {
@@ -5076,6 +5636,20 @@
                   }
                 }
               ]
+            },
+            {
+              "time_evening": []
+            },
+            {
+              "time_night": []
+            }
+          ],
+          "encounter_array": [
+            {
+              "time_morning": []
+            },
+            {
+              "time_day": []
             },
             {
               "time_evening": []
@@ -5169,6 +5743,20 @@
             {
               "time_night": []
             }
+          ],
+          "encounter_array": [
+            {
+              "time_morning": []
+            },
+            {
+              "time_day": []
+            },
+            {
+              "time_evening": []
+            },
+            {
+              "time_night": []
+            }
           ]
         },
         {
@@ -5248,6 +5836,20 @@
                   }
                 }
               ]
+            },
+            {
+              "time_evening": []
+            },
+            {
+              "time_night": []
+            }
+          ],
+          "encounter_array": [
+            {
+              "time_morning": []
+            },
+            {
+              "time_day": []
             },
             {
               "time_evening": []
@@ -5341,6 +5943,20 @@
             {
               "time_night": []
             }
+          ],
+          "encounter_array": [
+            {
+              "time_morning": []
+            },
+            {
+              "time_day": []
+            },
+            {
+              "time_evening": []
+            },
+            {
+              "time_night": []
+            }
           ]
         },
         {
@@ -5427,6 +6043,20 @@
             {
               "time_night": []
             }
+          ],
+          "encounter_array": [
+            {
+              "time_morning": []
+            },
+            {
+              "time_day": []
+            },
+            {
+              "time_evening": []
+            },
+            {
+              "time_night": []
+            }
           ]
         },
         {
@@ -5506,6 +6136,20 @@
                   }
                 }
               ]
+            },
+            {
+              "time_evening": []
+            },
+            {
+              "time_night": []
+            }
+          ],
+          "encounter_array": [
+            {
+              "time_morning": []
+            },
+            {
+              "time_day": []
             },
             {
               "time_evening": []
@@ -5621,6 +6265,20 @@
             {
               "time_night": []
             }
+          ],
+          "encounter_array": [
+            {
+              "time_morning": []
+            },
+            {
+              "time_day": []
+            },
+            {
+              "time_evening": []
+            },
+            {
+              "time_night": []
+            }
           ]
         },
         {
@@ -5722,6 +6380,20 @@
                   }
                 }
               ]
+            },
+            {
+              "time_evening": []
+            },
+            {
+              "time_night": []
+            }
+          ],
+          "encounter_array": [
+            {
+              "time_morning": []
+            },
+            {
+              "time_day": []
             },
             {
               "time_evening": []
@@ -5837,6 +6509,20 @@
             {
               "time_night": []
             }
+          ],
+          "encounter_array": [
+            {
+              "time_morning": []
+            },
+            {
+              "time_day": []
+            },
+            {
+              "time_evening": []
+            },
+            {
+              "time_night": []
+            }
           ]
         },
         {
@@ -5945,6 +6631,20 @@
             {
               "time_night": []
             }
+          ],
+          "encounter_array": [
+            {
+              "time_morning": []
+            },
+            {
+              "time_day": []
+            },
+            {
+              "time_evening": []
+            },
+            {
+              "time_night": []
+            }
           ]
         },
         {
@@ -6046,6 +6746,20 @@
                   }
                 }
               ]
+            },
+            {
+              "time_evening": []
+            },
+            {
+              "time_night": []
+            }
+          ],
+          "encounter_array": [
+            {
+              "time_morning": []
+            },
+            {
+              "time_day": []
             },
             {
               "time_evening": []
@@ -6228,6 +6942,20 @@
             {
               "time_night": []
             }
+          ],
+          "encounter_array": [
+            {
+              "time_morning": []
+            },
+            {
+              "time_day": []
+            },
+            {
+              "time_evening": []
+            },
+            {
+              "time_night": []
+            }
           ]
         },
         {
@@ -6329,6 +7057,20 @@
                   }
                 }
               ]
+            },
+            {
+              "time_evening": []
+            },
+            {
+              "time_night": []
+            }
+          ],
+          "encounter_array": [
+            {
+              "time_morning": []
+            },
+            {
+              "time_day": []
             },
             {
               "time_evening": []
@@ -6444,6 +7186,20 @@
             {
               "time_night": []
             }
+          ],
+          "encounter_array": [
+            {
+              "time_morning": []
+            },
+            {
+              "time_day": []
+            },
+            {
+              "time_evening": []
+            },
+            {
+              "time_night": []
+            }
           ]
         },
         {
@@ -6545,6 +7301,20 @@
                   }
                 }
               ]
+            },
+            {
+              "time_evening": []
+            },
+            {
+              "time_night": []
+            }
+          ],
+          "encounter_array": [
+            {
+              "time_morning": []
+            },
+            {
+              "time_day": []
             },
             {
               "time_evening": []
@@ -6660,6 +7430,20 @@
             {
               "time_night": []
             }
+          ],
+          "encounter_array": [
+            {
+              "time_morning": []
+            },
+            {
+              "time_day": []
+            },
+            {
+              "time_evening": []
+            },
+            {
+              "time_night": []
+            }
           ]
         },
         {
@@ -6768,6 +7552,20 @@
             {
               "time_night": []
             }
+          ],
+          "encounter_array": [
+            {
+              "time_morning": []
+            },
+            {
+              "time_day": []
+            },
+            {
+              "time_evening": []
+            },
+            {
+              "time_night": []
+            }
           ]
         },
         {
@@ -6847,6 +7645,20 @@
                   }
                 }
               ]
+            },
+            {
+              "time_evening": []
+            },
+            {
+              "time_night": []
+            }
+          ],
+          "encounter_array": [
+            {
+              "time_morning": []
+            },
+            {
+              "time_day": []
             },
             {
               "time_evening": []
@@ -6940,6 +7752,20 @@
             {
               "time_night": []
             }
+          ],
+          "encounter_array": [
+            {
+              "time_morning": []
+            },
+            {
+              "time_day": []
+            },
+            {
+              "time_evening": []
+            },
+            {
+              "time_night": []
+            }
           ]
         },
         {
@@ -7019,6 +7845,20 @@
                   }
                 }
               ]
+            },
+            {
+              "time_evening": []
+            },
+            {
+              "time_night": []
+            }
+          ],
+          "encounter_array": [
+            {
+              "time_morning": []
+            },
+            {
+              "time_day": []
             },
             {
               "time_evening": []
@@ -7112,6 +7952,20 @@
             {
               "time_night": []
             }
+          ],
+          "encounter_array": [
+            {
+              "time_morning": []
+            },
+            {
+              "time_day": []
+            },
+            {
+              "time_evening": []
+            },
+            {
+              "time_night": []
+            }
           ]
         },
         {
@@ -7191,6 +8045,20 @@
                   }
                 }
               ]
+            },
+            {
+              "time_evening": []
+            },
+            {
+              "time_night": []
+            }
+          ],
+          "encounter_array": [
+            {
+              "time_morning": []
+            },
+            {
+              "time_day": []
             },
             {
               "time_evening": []
@@ -7373,6 +8241,20 @@
             {
               "time_night": []
             }
+          ],
+          "encounter_array": [
+            {
+              "time_morning": []
+            },
+            {
+              "time_day": []
+            },
+            {
+              "time_evening": []
+            },
+            {
+              "time_night": []
+            }
           ]
         },
         {
@@ -7548,6 +8430,20 @@
             {
               "time_night": []
             }
+          ],
+          "encounter_array": [
+            {
+              "time_morning": []
+            },
+            {
+              "time_day": []
+            },
+            {
+              "time_evening": []
+            },
+            {
+              "time_night": []
+            }
           ]
         },
         {
@@ -7627,6 +8523,20 @@
                   }
                 }
               ]
+            },
+            {
+              "time_evening": []
+            },
+            {
+              "time_night": []
+            }
+          ],
+          "encounter_array": [
+            {
+              "time_morning": []
+            },
+            {
+              "time_day": []
             },
             {
               "time_evening": []
@@ -7742,6 +8652,20 @@
             {
               "time_night": []
             }
+          ],
+          "encounter_array": [
+            {
+              "time_morning": []
+            },
+            {
+              "time_day": []
+            },
+            {
+              "time_evening": []
+            },
+            {
+              "time_night": []
+            }
           ]
         },
         {
@@ -7821,6 +8745,20 @@
                   }
                 }
               ]
+            },
+            {
+              "time_evening": []
+            },
+            {
+              "time_night": []
+            }
+          ],
+          "encounter_array": [
+            {
+              "time_morning": []
+            },
+            {
+              "time_day": []
             },
             {
               "time_evening": []
@@ -7914,6 +8852,20 @@
             {
               "time_night": []
             }
+          ],
+          "encounter_array": [
+            {
+              "time_morning": []
+            },
+            {
+              "time_day": []
+            },
+            {
+              "time_evening": []
+            },
+            {
+              "time_night": []
+            }
           ]
         },
         {
@@ -7993,6 +8945,20 @@
                   }
                 }
               ]
+            },
+            {
+              "time_evening": []
+            },
+            {
+              "time_night": []
+            }
+          ],
+          "encounter_array": [
+            {
+              "time_morning": []
+            },
+            {
+              "time_day": []
             },
             {
               "time_evening": []
@@ -8086,6 +9052,20 @@
             {
               "time_night": []
             }
+          ],
+          "encounter_array": [
+            {
+              "time_morning": []
+            },
+            {
+              "time_day": []
+            },
+            {
+              "time_evening": []
+            },
+            {
+              "time_night": []
+            }
           ]
         },
         {
@@ -8172,6 +9152,20 @@
             {
               "time_night": []
             }
+          ],
+          "encounter_array": [
+            {
+              "time_morning": []
+            },
+            {
+              "time_day": []
+            },
+            {
+              "time_evening": []
+            },
+            {
+              "time_night": []
+            }
           ]
         },
         {
@@ -8251,6 +9245,20 @@
                   }
                 }
               ]
+            },
+            {
+              "time_evening": []
+            },
+            {
+              "time_night": []
+            }
+          ],
+          "encounter_array": [
+            {
+              "time_morning": []
+            },
+            {
+              "time_day": []
             },
             {
               "time_evening": []
@@ -8433,6 +9441,20 @@
             {
               "time_night": []
             }
+          ],
+          "encounter_array": [
+            {
+              "time_morning": []
+            },
+            {
+              "time_day": []
+            },
+            {
+              "time_evening": []
+            },
+            {
+              "time_night": []
+            }
           ]
         },
         {
@@ -8544,6 +9566,20 @@
                   }
                 }
               ]
+            },
+            {
+              "time_evening": []
+            },
+            {
+              "time_night": []
+            }
+          ],
+          "encounter_array": [
+            {
+              "time_morning": []
+            },
+            {
+              "time_day": []
             },
             {
               "time_evening": []
@@ -8726,6 +9762,20 @@
             {
               "time_night": []
             }
+          ],
+          "encounter_array": [
+            {
+              "time_morning": []
+            },
+            {
+              "time_day": []
+            },
+            {
+              "time_evening": []
+            },
+            {
+              "time_night": []
+            }
           ]
         },
         {
@@ -8837,6 +9887,20 @@
                   }
                 }
               ]
+            },
+            {
+              "time_evening": []
+            },
+            {
+              "time_night": []
+            }
+          ],
+          "encounter_array": [
+            {
+              "time_morning": []
+            },
+            {
+              "time_day": []
             },
             {
               "time_evening": []
@@ -9019,6 +10083,20 @@
             {
               "time_night": []
             }
+          ],
+          "encounter_array": [
+            {
+              "time_morning": []
+            },
+            {
+              "time_day": []
+            },
+            {
+              "time_evening": []
+            },
+            {
+              "time_night": []
+            }
           ]
         },
         {
@@ -9187,6 +10265,20 @@
                   }
                 }
               ]
+            },
+            {
+              "time_evening": []
+            },
+            {
+              "time_night": []
+            }
+          ],
+          "encounter_array": [
+            {
+              "time_morning": []
+            },
+            {
+              "time_day": []
             },
             {
               "time_evening": []
@@ -9369,6 +10461,20 @@
             {
               "time_night": []
             }
+          ],
+          "encounter_array": [
+            {
+              "time_morning": []
+            },
+            {
+              "time_day": []
+            },
+            {
+              "time_evening": []
+            },
+            {
+              "time_night": []
+            }
           ]
         },
         {
@@ -9544,6 +10650,20 @@
             {
               "time_night": []
             }
+          ],
+          "encounter_array": [
+            {
+              "time_morning": []
+            },
+            {
+              "time_day": []
+            },
+            {
+              "time_evening": []
+            },
+            {
+              "time_night": []
+            }
           ]
         },
         {
@@ -9630,6 +10750,20 @@
             {
               "time_night": []
             }
+          ],
+          "encounter_array": [
+            {
+              "time_morning": []
+            },
+            {
+              "time_day": []
+            },
+            {
+              "time_evening": []
+            },
+            {
+              "time_night": []
+            }
           ]
         },
         {
@@ -9709,6 +10843,20 @@
                   }
                 }
               ]
+            },
+            {
+              "time_evening": []
+            },
+            {
+              "time_night": []
+            }
+          ],
+          "encounter_array": [
+            {
+              "time_morning": []
+            },
+            {
+              "time_day": []
             },
             {
               "time_evening": []
@@ -9891,6 +11039,20 @@
             {
               "time_night": []
             }
+          ],
+          "encounter_array": [
+            {
+              "time_morning": []
+            },
+            {
+              "time_day": []
+            },
+            {
+              "time_evening": []
+            },
+            {
+              "time_night": []
+            }
           ]
         },
         {
@@ -10066,6 +11228,20 @@
             {
               "time_night": []
             }
+          ],
+          "encounter_array": [
+            {
+              "time_morning": []
+            },
+            {
+              "time_day": []
+            },
+            {
+              "time_evening": []
+            },
+            {
+              "time_night": []
+            }
           ]
         },
         {
@@ -10167,6 +11343,20 @@
                   }
                 }
               ]
+            },
+            {
+              "time_evening": []
+            },
+            {
+              "time_night": []
+            }
+          ],
+          "encounter_array": [
+            {
+              "time_morning": []
+            },
+            {
+              "time_day": []
             },
             {
               "time_evening": []
@@ -10282,6 +11472,20 @@
             {
               "time_night": []
             }
+          ],
+          "encounter_array": [
+            {
+              "time_morning": []
+            },
+            {
+              "time_day": []
+            },
+            {
+              "time_evening": []
+            },
+            {
+              "time_night": []
+            }
           ]
         },
         {
@@ -10383,6 +11587,20 @@
                   }
                 }
               ]
+            },
+            {
+              "time_evening": []
+            },
+            {
+              "time_night": []
+            }
+          ],
+          "encounter_array": [
+            {
+              "time_morning": []
+            },
+            {
+              "time_day": []
             },
             {
               "time_evening": []
@@ -10498,6 +11716,20 @@
             {
               "time_night": []
             }
+          ],
+          "encounter_array": [
+            {
+              "time_morning": []
+            },
+            {
+              "time_day": []
+            },
+            {
+              "time_evening": []
+            },
+            {
+              "time_night": []
+            }
           ]
         },
         {
@@ -10599,6 +11831,20 @@
                   }
                 }
               ]
+            },
+            {
+              "time_evening": []
+            },
+            {
+              "time_night": []
+            }
+          ],
+          "encounter_array": [
+            {
+              "time_morning": []
+            },
+            {
+              "time_day": []
             },
             {
               "time_evening": []
@@ -10714,6 +11960,20 @@
             {
               "time_night": []
             }
+          ],
+          "encounter_array": [
+            {
+              "time_morning": []
+            },
+            {
+              "time_day": []
+            },
+            {
+              "time_evening": []
+            },
+            {
+              "time_night": []
+            }
           ]
         },
         {
@@ -10822,6 +12082,20 @@
             {
               "time_night": []
             }
+          ],
+          "encounter_array": [
+            {
+              "time_morning": []
+            },
+            {
+              "time_day": []
+            },
+            {
+              "time_evening": []
+            },
+            {
+              "time_night": []
+            }
           ]
         },
         {
@@ -10866,6 +12140,20 @@
                   }
                 }
               ]
+            },
+            {
+              "time_evening": []
+            },
+            {
+              "time_night": []
+            }
+          ],
+          "encounter_array": [
+            {
+              "time_morning": []
+            },
+            {
+              "time_day": []
             },
             {
               "time_evening": []
@@ -10959,6 +12247,20 @@
             {
               "time_night": []
             }
+          ],
+          "encounter_array": [
+            {
+              "time_morning": []
+            },
+            {
+              "time_day": []
+            },
+            {
+              "time_evening": []
+            },
+            {
+              "time_night": []
+            }
           ]
         },
         {
@@ -11038,6 +12340,20 @@
                   }
                 }
               ]
+            },
+            {
+              "time_evening": []
+            },
+            {
+              "time_night": []
+            }
+          ],
+          "encounter_array": [
+            {
+              "time_morning": []
+            },
+            {
+              "time_day": []
             },
             {
               "time_evening": []
@@ -11153,6 +12469,20 @@
             {
               "time_night": []
             }
+          ],
+          "encounter_array": [
+            {
+              "time_morning": []
+            },
+            {
+              "time_day": []
+            },
+            {
+              "time_evening": []
+            },
+            {
+              "time_night": []
+            }
           ]
         },
         {
@@ -11239,6 +12569,20 @@
             {
               "time_night": []
             }
+          ],
+          "encounter_array": [
+            {
+              "time_morning": []
+            },
+            {
+              "time_day": []
+            },
+            {
+              "time_evening": []
+            },
+            {
+              "time_night": []
+            }
           ]
         },
         {
@@ -11318,6 +12662,20 @@
                   }
                 }
               ]
+            },
+            {
+              "time_evening": []
+            },
+            {
+              "time_night": []
+            }
+          ],
+          "encounter_array": [
+            {
+              "time_morning": []
+            },
+            {
+              "time_day": []
             },
             {
               "time_evening": []
@@ -11500,6 +12858,20 @@
             {
               "time_night": []
             }
+          ],
+          "encounter_array": [
+            {
+              "time_morning": []
+            },
+            {
+              "time_day": []
+            },
+            {
+              "time_evening": []
+            },
+            {
+              "time_night": []
+            }
           ]
         },
         {
@@ -11618,6 +12990,20 @@
             {
               "time_night": []
             }
+          ],
+          "encounter_array": [
+            {
+              "time_morning": []
+            },
+            {
+              "time_day": []
+            },
+            {
+              "time_evening": []
+            },
+            {
+              "time_night": []
+            }
           ]
         },
         {
@@ -11697,6 +13083,20 @@
                   }
                 }
               ]
+            },
+            {
+              "time_evening": []
+            },
+            {
+              "time_night": []
+            }
+          ],
+          "encounter_array": [
+            {
+              "time_morning": []
+            },
+            {
+              "time_day": []
             },
             {
               "time_evening": []
@@ -11790,6 +13190,20 @@
             {
               "time_night": []
             }
+          ],
+          "encounter_array": [
+            {
+              "time_morning": []
+            },
+            {
+              "time_day": []
+            },
+            {
+              "time_evening": []
+            },
+            {
+              "time_night": []
+            }
           ]
         },
         {
@@ -11869,6 +13283,20 @@
                   }
                 }
               ]
+            },
+            {
+              "time_evening": []
+            },
+            {
+              "time_night": []
+            }
+          ],
+          "encounter_array": [
+            {
+              "time_morning": []
+            },
+            {
+              "time_day": []
             },
             {
               "time_evening": []
@@ -11962,6 +13390,20 @@
             {
               "time_night": []
             }
+          ],
+          "encounter_array": [
+            {
+              "time_morning": []
+            },
+            {
+              "time_day": []
+            },
+            {
+              "time_evening": []
+            },
+            {
+              "time_night": []
+            }
           ]
         },
         {
@@ -12041,6 +13483,20 @@
                   }
                 }
               ]
+            },
+            {
+              "time_evening": []
+            },
+            {
+              "time_night": []
+            }
+          ],
+          "encounter_array": [
+            {
+              "time_morning": []
+            },
+            {
+              "time_day": []
             },
             {
               "time_evening": []
@@ -12134,6 +13590,20 @@
             {
               "time_night": []
             }
+          ],
+          "encounter_array": [
+            {
+              "time_morning": []
+            },
+            {
+              "time_day": []
+            },
+            {
+              "time_evening": []
+            },
+            {
+              "time_night": []
+            }
           ]
         },
         {
@@ -12213,6 +13683,20 @@
                   }
                 }
               ]
+            },
+            {
+              "time_evening": []
+            },
+            {
+              "time_night": []
+            }
+          ],
+          "encounter_array": [
+            {
+              "time_morning": []
+            },
+            {
+              "time_day": []
             },
             {
               "time_evening": []
@@ -12306,6 +13790,20 @@
             {
               "time_night": []
             }
+          ],
+          "encounter_array": [
+            {
+              "time_morning": []
+            },
+            {
+              "time_day": []
+            },
+            {
+              "time_evening": []
+            },
+            {
+              "time_night": []
+            }
           ]
         },
         {
@@ -12385,6 +13883,20 @@
                   }
                 }
               ]
+            },
+            {
+              "time_evening": []
+            },
+            {
+              "time_night": []
+            }
+          ],
+          "encounter_array": [
+            {
+              "time_morning": []
+            },
+            {
+              "time_day": []
             },
             {
               "time_evening": []
@@ -12478,6 +13990,20 @@
             {
               "time_night": []
             }
+          ],
+          "encounter_array": [
+            {
+              "time_morning": []
+            },
+            {
+              "time_day": []
+            },
+            {
+              "time_evening": []
+            },
+            {
+              "time_night": []
+            }
           ]
         },
         {
@@ -12557,6 +14083,20 @@
                   }
                 }
               ]
+            },
+            {
+              "time_evening": []
+            },
+            {
+              "time_night": []
+            }
+          ],
+          "encounter_array": [
+            {
+              "time_morning": []
+            },
+            {
+              "time_day": []
             },
             {
               "time_evening": []
@@ -12650,6 +14190,20 @@
             {
               "time_night": []
             }
+          ],
+          "encounter_array": [
+            {
+              "time_morning": []
+            },
+            {
+              "time_day": []
+            },
+            {
+              "time_evening": []
+            },
+            {
+              "time_night": []
+            }
           ]
         },
         {
@@ -12729,6 +14283,20 @@
                   }
                 }
               ]
+            },
+            {
+              "time_evening": []
+            },
+            {
+              "time_night": []
+            }
+          ],
+          "encounter_array": [
+            {
+              "time_morning": []
+            },
+            {
+              "time_day": []
             },
             {
               "time_evening": []
@@ -12822,6 +14390,20 @@
             {
               "time_night": []
             }
+          ],
+          "encounter_array": [
+            {
+              "time_morning": []
+            },
+            {
+              "time_day": []
+            },
+            {
+              "time_evening": []
+            },
+            {
+              "time_night": []
+            }
           ]
         },
         {
@@ -12901,6 +14483,20 @@
                   }
                 }
               ]
+            },
+            {
+              "time_evening": []
+            },
+            {
+              "time_night": []
+            }
+          ],
+          "encounter_array": [
+            {
+              "time_morning": []
+            },
+            {
+              "time_day": []
             },
             {
               "time_evening": []
@@ -12994,6 +14590,20 @@
             {
               "time_night": []
             }
+          ],
+          "encounter_array": [
+            {
+              "time_morning": []
+            },
+            {
+              "time_day": []
+            },
+            {
+              "time_evening": []
+            },
+            {
+              "time_night": []
+            }
           ]
         },
         {
@@ -13073,6 +14683,20 @@
                   }
                 }
               ]
+            },
+            {
+              "time_evening": []
+            },
+            {
+              "time_night": []
+            }
+          ],
+          "encounter_array": [
+            {
+              "time_morning": []
+            },
+            {
+              "time_day": []
             },
             {
               "time_evening": []
@@ -13166,6 +14790,20 @@
             {
               "time_night": []
             }
+          ],
+          "encounter_array": [
+            {
+              "time_morning": []
+            },
+            {
+              "time_day": []
+            },
+            {
+              "time_evening": []
+            },
+            {
+              "time_night": []
+            }
           ]
         },
         {
@@ -13245,6 +14883,20 @@
                   }
                 }
               ]
+            },
+            {
+              "time_evening": []
+            },
+            {
+              "time_night": []
+            }
+          ],
+          "encounter_array": [
+            {
+              "time_morning": []
+            },
+            {
+              "time_day": []
             },
             {
               "time_evening": []
@@ -13338,6 +14990,20 @@
             {
               "time_night": []
             }
+          ],
+          "encounter_array": [
+            {
+              "time_morning": []
+            },
+            {
+              "time_day": []
+            },
+            {
+              "time_evening": []
+            },
+            {
+              "time_night": []
+            }
           ]
         },
         {
@@ -13417,6 +15083,20 @@
                   }
                 }
               ]
+            },
+            {
+              "time_evening": []
+            },
+            {
+              "time_night": []
+            }
+          ],
+          "encounter_array": [
+            {
+              "time_morning": []
+            },
+            {
+              "time_day": []
             },
             {
               "time_evening": []
@@ -13510,6 +15190,20 @@
             {
               "time_night": []
             }
+          ],
+          "encounter_array": [
+            {
+              "time_morning": []
+            },
+            {
+              "time_day": []
+            },
+            {
+              "time_evening": []
+            },
+            {
+              "time_night": []
+            }
           ]
         },
         {
@@ -13589,6 +15283,20 @@
                   }
                 }
               ]
+            },
+            {
+              "time_evening": []
+            },
+            {
+              "time_night": []
+            }
+          ],
+          "encounter_array": [
+            {
+              "time_morning": []
+            },
+            {
+              "time_day": []
             },
             {
               "time_evening": []
@@ -13682,6 +15390,20 @@
             {
               "time_night": []
             }
+          ],
+          "encounter_array": [
+            {
+              "time_morning": []
+            },
+            {
+              "time_day": []
+            },
+            {
+              "time_evening": []
+            },
+            {
+              "time_night": []
+            }
           ]
         },
         {
@@ -13768,10 +15490,25 @@
             {
               "time_night": []
             }
+          ],
+          "encounter_array": [
+            {
+              "time_morning": []
+            },
+            {
+              "time_day": []
+            },
+            {
+              "time_evening": []
+            },
+            {
+              "time_night": []
+            }
           ]
         }
       ],
-      "encounterTableGroups": true
+      "encounterTableGroups": true,
+      "use_encounter_group_array": true
     },
     {
       "label": "gBattlePyramidWildMonHeaders",
@@ -13853,6 +15590,20 @@
                   }
                 }
               ]
+            },
+            {
+              "time_evening": []
+            },
+            {
+              "time_night": []
+            }
+          ],
+          "encounter_array": [
+            {
+              "time_morning": []
+            },
+            {
+              "time_day": []
             },
             {
               "time_evening": []
@@ -13945,6 +15696,20 @@
             {
               "time_night": []
             }
+          ],
+          "encounter_array": [
+            {
+              "time_morning": []
+            },
+            {
+              "time_day": []
+            },
+            {
+              "time_evening": []
+            },
+            {
+              "time_night": []
+            }
           ]
         },
         {
@@ -14023,6 +15788,20 @@
                   }
                 }
               ]
+            },
+            {
+              "time_evening": []
+            },
+            {
+              "time_night": []
+            }
+          ],
+          "encounter_array": [
+            {
+              "time_morning": []
+            },
+            {
+              "time_day": []
             },
             {
               "time_evening": []
@@ -14115,6 +15894,20 @@
             {
               "time_night": []
             }
+          ],
+          "encounter_array": [
+            {
+              "time_morning": []
+            },
+            {
+              "time_day": []
+            },
+            {
+              "time_evening": []
+            },
+            {
+              "time_night": []
+            }
           ]
         },
         {
@@ -14193,6 +15986,20 @@
                   }
                 }
               ]
+            },
+            {
+              "time_evening": []
+            },
+            {
+              "time_night": []
+            }
+          ],
+          "encounter_array": [
+            {
+              "time_morning": []
+            },
+            {
+              "time_day": []
             },
             {
               "time_evening": []
@@ -14285,6 +16092,20 @@
             {
               "time_night": []
             }
+          ],
+          "encounter_array": [
+            {
+              "time_morning": []
+            },
+            {
+              "time_day": []
+            },
+            {
+              "time_evening": []
+            },
+            {
+              "time_night": []
+            }
           ]
         },
         {
@@ -14370,10 +16191,25 @@
             {
               "time_night": []
             }
+          ],
+          "encounter_array": [
+            {
+              "time_morning": []
+            },
+            {
+              "time_day": []
+            },
+            {
+              "time_evening": []
+            },
+            {
+              "time_night": []
+            }
           ]
         }
       ],
-      "encounterTableGroups": true
+      "encounterTableGroups": true,
+      "use_encounter_group_array": true
     },
     {
       "label": "gBattlePikeWildMonHeaders",
@@ -14455,6 +16291,20 @@
                   }
                 }
               ]
+            },
+            {
+              "time_evening": []
+            },
+            {
+              "time_night": []
+            }
+          ],
+          "encounter_array": [
+            {
+              "time_morning": []
+            },
+            {
+              "time_day": []
             },
             {
               "time_evening": []
@@ -14547,6 +16397,20 @@
             {
               "time_night": []
             }
+          ],
+          "encounter_array": [
+            {
+              "time_morning": []
+            },
+            {
+              "time_day": []
+            },
+            {
+              "time_evening": []
+            },
+            {
+              "time_night": []
+            }
           ]
         },
         {
@@ -14625,6 +16489,20 @@
                   }
                 }
               ]
+            },
+            {
+              "time_evening": []
+            },
+            {
+              "time_night": []
+            }
+          ],
+          "encounter_array": [
+            {
+              "time_morning": []
+            },
+            {
+              "time_day": []
             },
             {
               "time_evening": []
@@ -14717,10 +16595,25 @@
             {
               "time_night": []
             }
+          ],
+          "encounter_array": [
+            {
+              "time_morning": []
+            },
+            {
+              "time_day": []
+            },
+            {
+              "time_evening": []
+            },
+            {
+              "time_night": []
+            }
           ]
         }
       ],
-      "encounterTableGroups": true
+      "encounterTableGroups": true,
+      "use_encounter_group_array": true
     }
   ]
 }
