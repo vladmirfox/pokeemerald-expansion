@@ -15508,7 +15508,7 @@
         }
       ],
       "encounterTableGroups": true,
-      "use_encounter_group_array": true
+      "use_encounter_group_arrays": true
     },
     {
       "label": "gBattlePyramidWildMonHeaders",
@@ -16209,7 +16209,7 @@
         }
       ],
       "encounterTableGroups": true,
-      "use_encounter_group_array": true
+      "use_encounter_group_arrays": true
     },
     {
       "label": "gBattlePikeWildMonHeaders",
@@ -16613,7 +16613,7 @@
         }
       ],
       "encounterTableGroups": true,
-      "use_encounter_group_array": true
+      "use_encounter_group_arrays": true
     }
   ]
 }

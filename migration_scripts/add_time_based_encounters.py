@@ -15,11 +15,11 @@ def GetWildEncounterFile():
     for group in wData["wild_encounter_groups"]:
         wEncounters = wData["wild_encounter_groups"][j]["encounters"]
 
-        if "use_encounter_group_array" in wData["wild_encounter_groups"][j]:
+        if "use_encounter_group_arrays" in wData["wild_encounter_groups"][j]:
             print("wild_encounters.json is already converted!")
             return
         else:
-            wData["wild_encounter_groups"][j]["use_encounter_group_array"] = true
+            wData["wild_encounter_groups"][j]["use_encounter_group_arrays"] = true
 
         i = 0
         for map in wEncounters:
