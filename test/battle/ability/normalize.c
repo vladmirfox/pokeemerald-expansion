@@ -184,4 +184,4 @@ TO_DO_BATTLE_TEST("Normalize doesn't affect Weather Ball's type (Gen 5+)");
 TO_DO_BATTLE_TEST("Normalize doesn't affect Natural Gift's type (Gen 5+)");
 TO_DO_BATTLE_TEST("Normalize doesn't affect Judgment/Techno Blast/Multi-Attack's type (Gen 5+)");
 TO_DO_BATTLE_TEST("Normalize doesn't affect Terrain Pulse's type (Gen 7+)"); // Philosophically I think if this move existed earlier, it'd follow the same Gen 5+ trend
-TO_DO_BATTLE_TEST("Normalize doesn't affect damaging Z-Move types(Gen 7+)"); // Philosophically I think if this move existed earlier, it'd follow the same Gen 5+ trend
+TO_DO_BATTLE_TEST("Normalize doesn't affect damaging Z-Move types (Gen 7+)"); // Philosophically I think if this move existed earlier, it'd follow the same Gen 5+ trend
