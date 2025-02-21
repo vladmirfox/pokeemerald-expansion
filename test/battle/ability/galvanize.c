@@ -42,7 +42,7 @@ SINGLE_BATTLE_TEST("Galvanize can not turn certain moves into Electric type move
     }
 }
 
-SINGLE_BATTLE_TEST("Galvanize boosts power of affected moves by 20% (Gen7+) or 30% (Gen6-)", s16 damage)
+SINGLE_BATTLE_TEST("Galvanize boosts power of affected moves by 20% (Gen7+) or 30% (Gen1-6)", s16 damage)
 {
     u32 ability, genConfig;
     PARAMETRIZE { ability = ABILITY_STURDY;     genConfig = GEN_7; }

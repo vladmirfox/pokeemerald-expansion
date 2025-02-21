@@ -45,7 +45,7 @@ SINGLE_BATTLE_TEST("Aerilate can not turn certain moves into Flying type moves")
     }
 }
 
-SINGLE_BATTLE_TEST("Aerilate boosts power of affected moves by 20% (Gen7+) or 30% (Gen6-)", s16 damage)
+SINGLE_BATTLE_TEST("Aerilate boosts power of affected moves by 20% (Gen7+) or 30% (Gen1-6)", s16 damage)
 {
     u32 ability, genConfig;
     PARAMETRIZE { ability = ABILITY_HYPER_CUTTER;   genConfig = GEN_7; }
