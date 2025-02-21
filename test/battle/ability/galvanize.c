@@ -69,10 +69,10 @@ SINGLE_BATTLE_TEST("Galvanize boosts power of affected moves by 20% (Gen7+) or 3
 TO_DO_BATTLE_TEST("Galvanize doesn't affect Tera Starstorm's type");
 TO_DO_BATTLE_TEST("Galvanize doesn't affect Natural Gift's type");
 TO_DO_BATTLE_TEST("Galvanize doesn't affect Max Strike's type");
-TO_DO_BATTLE_TEST("Galvanize does affect Weather Ball's type");
-TO_DO_BATTLE_TEST("Galvanize does affect Hidden Power's type");
-TO_DO_BATTLE_TEST("Galvanize does affect Judgment/Techno Blast/Multi-Attack's type");
-TO_DO_BATTLE_TEST("Galvanize does affect Terrain Pulse's type");
-TO_DO_BATTLE_TEST("Galvanize does affect damaging Z-Move types");
+TO_DO_BATTLE_TEST("Galvanize doesn't affect Weather Ball's type");
+TO_DO_BATTLE_TEST("Galvanize doesn't affect Hidden Power's type");
+TO_DO_BATTLE_TEST("Galvanize doesn't affect Judgment/Techno Blast/Multi-Attack's type");
+TO_DO_BATTLE_TEST("Galvanize doesn't affect Terrain Pulse's type");
+TO_DO_BATTLE_TEST("Galvanize doesn't affect damaging Z-Move types");
 TO_DO_BATTLE_TEST("(DYNAMAX) Galvanize turns Max Strike into Max Lightning when not used by Gigantamax Pikachu/Toxtricity");
 //TO_DO_BATTLE_TEST("(DYNAMAX) Galvanize doesn't turn Max Strike into Max Lightning when used by Gigantamax Pikachu/Toxtricity, instead becoming G-Max Volt Crash/Stun Shock"); // Marked in Bulbapedia as "needs research", so this assumes that it behaves like Pixilate.
