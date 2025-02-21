@@ -203,9 +203,27 @@ SINGLE_BATTLE_TEST("Normalize doesn't affect Weather Ball's type", s16 damage)
     }
 }
 
+SINGLE_BATTLE_TEST("Normalize doesn't affect Natural Gift's type")
+{
+    u16 ability;
+    PARAMETRIZE { ability = ABILITY_CUTE_CHARM; }
+    PARAMETRIZE { ability = ABILITY_NORMALIZE; }
+    GIVEN {
+        ASSUME(GetMoveEffect(MOVE_NATURAL_GIFT) == EFFECT_NATURAL_GIFT);
+        ASSUME(gNaturalGiftTable[ITEM_TO_BERRY(ITEM_ORAN_BERRY)].type == TYPE_POISON);
+        ASSUME(gSpeciesInfo[SPECIES_BELDUM].types[0] == TYPE_STEEL);
+        PLAYER(SPECIES_SKITTY) { Ability(ability); Item(ITEM_ORAN_BERRY); }
+        OPPONENT(SPECIES_BELDUM);
+    } WHEN {
+        TURN { MOVE(player, MOVE_NATURAL_GIFT); }
+    } SCENE {
+        NOT { ANIMATION(ANIM_TYPE_MOVE, MOVE_NATURAL_GIFT, player); }
+        MESSAGE("It doesn't affect the opposing Beldum…");
+    }
+}
+
 TO_DO_BATTLE_TEST("Normalize makes Flying Press do Normal/Flying damage");
 TO_DO_BATTLE_TEST("Normalize doesn't affect Hidden Power's type");
-TO_DO_BATTLE_TEST("Normalize doesn't affect Natural Gift's type");
 TO_DO_BATTLE_TEST("Normalize doesn't affect Judgment/Techno Blast/Multi-Attack's type");
 TO_DO_BATTLE_TEST("Normalize doesn't affect Terrain Pulse's type");
 TO_DO_BATTLE_TEST("Normalize doesn't affect damaging Z-Move types");
