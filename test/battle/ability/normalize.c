@@ -49,7 +49,7 @@ SINGLE_BATTLE_TEST("Normalize affects status moves")
     } SCENE {
         if (ability == ABILITY_CUTE_CHARM)
         {
-            NOT { ANIMATION(ANIM_TYPE_MOVE, MOVE_WATER_GUN, opponent); }
+            NOT { ANIMATION(ANIM_TYPE_MOVE, MOVE_THUNDER_WAVE, opponent); }
             MESSAGE("But it failed!");
         }
         else
