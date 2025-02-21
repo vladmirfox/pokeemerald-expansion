@@ -4134,9 +4134,13 @@ void IncreaseSubstituteMoveScore(u32 battlerAtk, u32 battlerDef, u32 move, s32 *
 
 bool32 IsBattlerItemEnabled(u32 battler)
 {
-    if (gFieldStatuses & STATUS_FIELD_MAGIC_ROOM
-        || (gBattleMons[battler].ability == ABILITY_KLUTZ && !(gStatuses3[battler] & STATUS3_GASTRO_ACID) && !(gStatuses3[battler] & STATUS3_EMBARGO)
-        && !(AI_THINKING_STRUCT->aiFlags[battler] & AI_FLAG_NEGATE_UNAWARE)))
+    if (AI_THINKING_STRUCT->aiFlags[battler] & AI_FLAG_NEGATE_UNAWARE)
+        return TRUE;
+    if (gFieldStatuses & STATUS_FIELD_MAGIC_ROOM)
+        return FALSE;
+    if (gStatuses3[battler] & STATUS3_EMBARGO)
+        return FALSE;
+    if (gBattleMons[battler].ability == ABILITY_KLUTZ && !(gStatuses3[battler] & STATUS3_GASTRO_ACID))
         return FALSE;
     return TRUE;
 }
