@@ -176,3 +176,13 @@ SINGLE_BATTLE_TEST("Aerilate doesn't override Ion Deluge (Gen8+)", s16 damage)
             EXPECT_EQ(results[1].damage,  results[3].damage);
     }
 }
+
+TO_DO_BATTLE_TEST("Aerilate doesn't affect Tera Starstorm's type");
+TO_DO_BATTLE_TEST("Aerilate doesn't affect Natural Gift's type");
+TO_DO_BATTLE_TEST("Aerilate doesn't affect Max Strike's type");
+TO_DO_BATTLE_TEST("Aerilate does affect Weather Ball's type");
+TO_DO_BATTLE_TEST("Aerilate does affect Hidden Power's type");
+TO_DO_BATTLE_TEST("Aerilate does affect Judgment/Techno Blast/Multi-Attack's type");
+TO_DO_BATTLE_TEST("Aerilate does affect Terrain Pulse's type");
+TO_DO_BATTLE_TEST("Aerilate does affect damaging Z-Move types");
+TO_DO_BATTLE_TEST("(DYNAMAX) Aerilate turns Max Strike into Max Airstream"); // All other -ate abilities do this, so interpolating this as no Aerilate mon is available in a Dynamax game
