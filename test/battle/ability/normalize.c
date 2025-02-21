@@ -61,8 +61,57 @@ TO_DO_BATTLE_TEST("Normalize tuns a move into a Normal-type move");
 TO_DO_BATTLE_TEST("Normalize affects status moves"); // Eg. Thunder Wave can affect Ground types
 TO_DO_BATTLE_TEST("Normalize makes Flying Press do Normal/Flying damage");
 TO_DO_BATTLE_TEST("Normalize still makes Freeze-Dry do super effective damage to Water-type Pokémon");
-TO_DO_BATTLE_TEST("Normalize-affected moves become Electric-type under Electrify's effect");
-TO_DO_BATTLE_TEST("Normalize-affected moves become Electric-type under Ion Deluge's effect");
+
+SINGLE_BATTLE_TEST("Normalize-affected moves become Electric-type under Electrify's effect", s16 damage)
+{
+    u32 ability, genConfig;
+    PARAMETRIZE { ability = ABILITY_CUTE_CHARM;     genConfig = GEN_7; }
+    PARAMETRIZE { ability = ABILITY_CUTE_CHARM;     genConfig = GEN_6; }
+    PARAMETRIZE { ability = ABILITY_NORMALIZE;      genConfig = GEN_7; }
+    PARAMETRIZE { ability = ABILITY_NORMALIZE;      genConfig = GEN_6; }
+
+    GIVEN {
+        ASSUME(GetMoveEffect(MOVE_ELECTRIFY) == EFFECT_ELECTRIFY);
+        WITH_CONFIG(GEN_CONFIG_ATE_MULTIPLIER, genConfig);
+        PLAYER(SPECIES_SKITTY) { Ability(ability); Moves(MOVE_WATER_GUN); }
+        OPPONENT(SPECIES_WOBBUFFET);
+    } WHEN {
+        TURN { MOVE(opponent, MOVE_ELECTRIFY); MOVE(player, MOVE_WATER_GUN); }
+    } SCENE {
+        HP_BAR(opponent, captureDamage: &results[i].damage);
+    } FINALLY {
+        if (genConfig >= GEN_7)
+            EXPECT_EQ(results[0].damage, results[2].damage);
+        else
+            EXPECT_EQ(results[1].damage, results[3].damage);
+    }
+}
+
+SINGLE_BATTLE_TEST("Normalize-affected moves become Electric-type under Ion Deluge's effect", s16 damage)
+{
+    u32 ability, genConfig;
+    PARAMETRIZE { ability = ABILITY_CUTE_CHARM;     genConfig = GEN_7; }
+    PARAMETRIZE { ability = ABILITY_CUTE_CHARM;     genConfig = GEN_6; }
+    PARAMETRIZE { ability = ABILITY_NORMALIZE;      genConfig = GEN_7; }
+    PARAMETRIZE { ability = ABILITY_NORMALIZE;      genConfig = GEN_6; }
+
+    GIVEN {
+        ASSUME(GetMoveEffect(MOVE_ION_DELUGE) == EFFECT_ION_DELUGE);
+        WITH_CONFIG(GEN_CONFIG_ATE_MULTIPLIER, genConfig);
+        PLAYER(SPECIES_SKITTY) { Ability(ability); Moves(MOVE_WATER_GUN); }
+        OPPONENT(SPECIES_WOBBUFFET);
+    } WHEN {
+        TURN { MOVE(opponent, MOVE_ION_DELUGE); MOVE(player, MOVE_WATER_GUN); }
+    } SCENE {
+        HP_BAR(opponent, captureDamage: &results[i].damage);
+    } FINALLY {
+        if (genConfig >= GEN_7)
+            EXPECT_EQ(results[0].damage, results[2].damage);
+        else
+            EXPECT_EQ(results[1].damage, results[3].damage);
+    }
+}
+
 TO_DO_BATTLE_TEST("Normalize doesn't affect Hidden Power's type");
 TO_DO_BATTLE_TEST("Normalize doesn't affect Weather Ball's type");
 TO_DO_BATTLE_TEST("Normalize doesn't affect Natural Gift's type");
