@@ -200,9 +200,7 @@ SINGLE_BATTLE_TEST("Refrigerate doesn't affect Natural Gift's type")
 
 
 TO_DO_BATTLE_TEST("Refrigerate doesn't affect Tera Starstorm's type");
-TO_DO_BATTLE_TEST("Refrigerate doesn't affect Natural Gift's type");
 TO_DO_BATTLE_TEST("Refrigerate doesn't affect Max Strike's type");
-TO_DO_BATTLE_TEST("Refrigerate doesn't affect Weather Ball's type");
 TO_DO_BATTLE_TEST("Refrigerate doesn't affect Hidden Power's type");
 TO_DO_BATTLE_TEST("Refrigerate doesn't affect Judgment/Techno Blast/Multi-Attack's type");
 TO_DO_BATTLE_TEST("Refrigerate doesn't affect Terrain Pulse's type");
