@@ -186,6 +186,9 @@ SINGLE_BATTLE_TEST("Normalize doesn't affect Weather Ball's type", s16 damage)
     PARAMETRIZE { move = MOVE_CELEBRATE; ability = ABILITY_NORMALIZE; }
     PARAMETRIZE { move = MOVE_SUNNY_DAY; ability = ABILITY_NORMALIZE; }
     GIVEN {
+        ASSUME(GetMoveEffect(MOVE_WEATHER_BALL) == EFFECT_WEATHER_BALL);
+        ASSUME(GetMoveType(MOVE_WEATHER_BALL) == TYPE_NORMAL);
+        ASSUME(gSpeciesInfo[SPECIES_MEGANIUM].types[0] == TYPE_GRASS);
         PLAYER(SPECIES_SKITTY) { Ability(ability); }
         OPPONENT(SPECIES_MEGANIUM);
     } WHEN {
