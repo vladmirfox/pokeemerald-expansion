@@ -178,10 +178,34 @@ SINGLE_BATTLE_TEST("Normalize-affected moves become Electric-type under Ion Delu
     }
 }
 
+SINGLE_BATTLE_TEST("Normalize doesn't affect Weather Ball's type", s16 damage)
+{
+    u16 move, ability;
+    PARAMETRIZE { move = MOVE_CELEBRATE; ability = ABILITY_CUTE_CHARM; }
+    PARAMETRIZE { move = MOVE_SUNNY_DAY; ability = ABILITY_CUTE_CHARM; }
+    PARAMETRIZE { move = MOVE_CELEBRATE; ability = ABILITY_NORMALIZE; }
+    PARAMETRIZE { move = MOVE_SUNNY_DAY; ability = ABILITY_NORMALIZE; }
+    GIVEN {
+        PLAYER(SPECIES_SKITTY) { Ability(ability); }
+        OPPONENT(SPECIES_MEGANIUM);
+    } WHEN {
+        TURN { MOVE(player, move); }
+        TURN { MOVE(player, MOVE_WEATHER_BALL); }
+    } SCENE {
+        HP_BAR(opponent, captureDamage: &results[i].damage);
+        if (move == MOVE_SUNNY_DAY)
+            MESSAGE("It's super effective!");
+    } FINALLY {
+        EXPECT_MUL_EQ(results[0].damage, Q_4_12(4.0), results[1].damage); // double base power + type effectiveness + sun 50% boost - STAB
+        EXPECT_MUL_EQ(results[2].damage, Q_4_12(4.0), results[3].damage);
+        EXPECT_EQ(results[0].damage, results[2].damage);
+        EXPECT_EQ(results[1].damage, results[3].damage);
+    }
+}
+
 TO_DO_BATTLE_TEST("Normalize makes Flying Press do Normal/Flying damage");
-TO_DO_BATTLE_TEST("Normalize doesn't affect Hidden Power's type (Gen 5+)");
-TO_DO_BATTLE_TEST("Normalize doesn't affect Weather Ball's type (Gen 5+)");
-TO_DO_BATTLE_TEST("Normalize doesn't affect Natural Gift's type (Gen 5+)");
-TO_DO_BATTLE_TEST("Normalize doesn't affect Judgment/Techno Blast/Multi-Attack's type (Gen 5+)");
-TO_DO_BATTLE_TEST("Normalize doesn't affect Terrain Pulse's type (Gen 7+)"); // Philosophically I think if this move existed earlier, it'd follow the same Gen 5+ trend
-TO_DO_BATTLE_TEST("Normalize doesn't affect damaging Z-Move types (Gen 7+)"); // Philosophically I think if this move existed earlier, it'd follow the same Gen 5+ trend
+TO_DO_BATTLE_TEST("Normalize doesn't affect Hidden Power's type");
+TO_DO_BATTLE_TEST("Normalize doesn't affect Natural Gift's type");
+TO_DO_BATTLE_TEST("Normalize doesn't affect Judgment/Techno Blast/Multi-Attack's type");
+TO_DO_BATTLE_TEST("Normalize doesn't affect Terrain Pulse's type");
+TO_DO_BATTLE_TEST("Normalize doesn't affect damaging Z-Move types");
