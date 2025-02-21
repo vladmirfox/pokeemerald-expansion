@@ -45,10 +45,6 @@ SINGLE_BATTLE_TEST("Pixilate boosts power of affected moves by 20% (Gen7+) or 30
     }
 }
 
-TO_DO_BATTLE_TEST("Pixilate can not turn certain moves into Fairy type moves");
-TO_DO_BATTLE_TEST("(DYNAMAX) Pixilate turns Max Strike into Max Starfall when not used by Gigantamax Alcremie");
-TO_DO_BATTLE_TEST("(DYNAMAX) Pixilate doesn't turn Max Strike into Max Starfall when used by Gigantamax Alcremie, instead becoming G-Max Finale");
-
 // Gen 6-7
 SINGLE_BATTLE_TEST("Pixilate overrides Electrify (Gen6-7)", s16 damage)
 {
@@ -155,3 +151,7 @@ SINGLE_BATTLE_TEST("Pixilate doesn't override Ion Deluge (Gen8+)", s16 damage)
             EXPECT_EQ(results[1].damage, results[3].damage);
     }
 }
+
+TO_DO_BATTLE_TEST("Pixilate can not turn certain moves into Fairy type moves");
+TO_DO_BATTLE_TEST("(DYNAMAX) Pixilate turns Max Strike into Max Starfall when not used by Gigantamax Alcremie");
+TO_DO_BATTLE_TEST("(DYNAMAX) Pixilate doesn't turn Max Strike into Max Starfall when used by Gigantamax Alcremie, instead becoming G-Max Finale");

@@ -44,10 +44,6 @@ SINGLE_BATTLE_TEST("Refrigerate boosts power of affected moves by 20% (Gen7+) or
     }
 }
 
-TO_DO_BATTLE_TEST("Refrigerate can not turn certain moves into Ice type moves");
-TO_DO_BATTLE_TEST("(DYNAMAX) Refrigerate turns Max Strike into Max Hailstorm when not used by Gigantamax Lapras");
-//TO_DO_BATTLE_TEST("(DYNAMAX) Refrigerate doesn't turn Max Strike into Max Hailstorm when used by Gigantamax Lapras, instead becoming G-Max Resonance"); // Marked in Bulbapedia as "needs research", so this assumes that it behaves like Pixilate.
-
 // Gen 6-7
 SINGLE_BATTLE_TEST("Refrigerate overrides Electrify (Gen6-7)", s16 damage)
 {
@@ -155,3 +151,7 @@ SINGLE_BATTLE_TEST("Refrigerate doesn't override Ion Deluge (Gen8+)", s16 damage
             EXPECT_EQ(results[1].damage, results[3].damage);
     }
 }
+
+TO_DO_BATTLE_TEST("Refrigerate can not turn certain moves into Ice type moves");
+TO_DO_BATTLE_TEST("(DYNAMAX) Refrigerate turns Max Strike into Max Hailstorm when not used by Gigantamax Lapras");
+//TO_DO_BATTLE_TEST("(DYNAMAX) Refrigerate doesn't turn Max Strike into Max Hailstorm when used by Gigantamax Lapras, instead becoming G-Max Resonance"); // Marked in Bulbapedia as "needs research", so this assumes that it behaves like Pixilate.

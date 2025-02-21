@@ -57,11 +57,6 @@ SINGLE_BATTLE_TEST("Normalize boosts power of affected moves by 20% (Gen7+)", s1
     }
 }
 
-TO_DO_BATTLE_TEST("Normalize tuns a move into a Normal-type move");
-TO_DO_BATTLE_TEST("Normalize affects status moves"); // Eg. Thunder Wave can affect Ground types
-TO_DO_BATTLE_TEST("Normalize makes Flying Press do Normal/Flying damage");
-TO_DO_BATTLE_TEST("Normalize still makes Freeze-Dry do super effective damage to Water-type Pokémon");
-
 SINGLE_BATTLE_TEST("Normalize-affected moves become Electric-type under Electrify's effect", s16 damage)
 {
     u32 ability, genConfig;
@@ -112,6 +107,10 @@ SINGLE_BATTLE_TEST("Normalize-affected moves become Electric-type under Ion Delu
     }
 }
 
+TO_DO_BATTLE_TEST("Normalize tuns a move into a Normal-type move");
+TO_DO_BATTLE_TEST("Normalize affects status moves"); // Eg. Thunder Wave can affect Ground types
+TO_DO_BATTLE_TEST("Normalize makes Flying Press do Normal/Flying damage");
+TO_DO_BATTLE_TEST("Normalize still makes Freeze-Dry do super effective damage to Water-type Pokémon");
 TO_DO_BATTLE_TEST("Normalize doesn't affect Hidden Power's type");
 TO_DO_BATTLE_TEST("Normalize doesn't affect Weather Ball's type");
 TO_DO_BATTLE_TEST("Normalize doesn't affect Natural Gift's type");

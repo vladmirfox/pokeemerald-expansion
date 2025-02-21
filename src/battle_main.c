@@ -6077,9 +6077,8 @@ void SetTypeBeforeUsingMove(u32 move, u32 battler)
         gBattleStruct->dynamicMoveType = moveType | F_DYNAMIC_TYPE_SET;
 
     moveType = GetBattleMoveType(move);
-    if (((gFieldStatuses & STATUS_FIELD_ION_DELUGE && moveType == TYPE_NORMAL)
-        || gStatuses4[battler] & STATUS4_ELECTRIFIED)
-        && (!IsAteAbilityOverridingEffect(battler) && moveType == TYPE_NORMAL))
+    if ((gFieldStatuses & STATUS_FIELD_ION_DELUGE && moveType == TYPE_NORMAL && !IsAteAbilityOverridingEffect(battler))
+        || (gStatuses4[battler] & STATUS4_ELECTRIFIED && !IsAteAbilityOverridingEffect(battler)))
         gBattleStruct->dynamicMoveType = TYPE_ELECTRIC | F_DYNAMIC_TYPE_SET;
 
     // Check if a gem should activate.
