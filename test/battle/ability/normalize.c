@@ -76,7 +76,7 @@ SINGLE_BATTLE_TEST("Normalize still makes Freeze-Dry do super effective damage t
     } SCENE {
         MESSAGE("It's super effective!");
     } FINALLY {
-        EXPECT_MUL_EQ(results[0].damage, Q_4_12(1.8), results[2].damage); // STAB + Ate
+        EXPECT_MUL_EQ(results[0].damage, Q_4_12(1.8), results[1].damage); // STAB + Ate
     }
 }
 
