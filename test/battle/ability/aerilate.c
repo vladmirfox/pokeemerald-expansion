@@ -45,8 +45,29 @@ SINGLE_BATTLE_TEST("Aerilate can not turn certain moves into Flying type moves")
     }
 }
 
-TO_DO_BATTLE_TEST("Aerilate boosts power of affected moves by 20% (Gen7+)");
-TO_DO_BATTLE_TEST("Aerilate boosts power of affected moves by 30% (Gen6)");
+SINGLE_BATTLE_TEST("Aerilate boosts power of affected moves by 20% (Gen7+) or 30% (Gen6-)", s16 damage)
+{
+    u32 ability, genConfig;
+    PARAMETRIZE { ability = ABILITY_HYPER_CUTTER;   genConfig = GEN_7; }
+    PARAMETRIZE { ability = ABILITY_HYPER_CUTTER;   genConfig = GEN_6; }
+    PARAMETRIZE { ability = ABILITY_AERILATE;       genConfig = GEN_7; }
+    PARAMETRIZE { ability = ABILITY_AERILATE;       genConfig = GEN_6; }
+
+    GIVEN {
+        WITH_CONFIG(GEN_CONFIG_ATE_MULTIPLIER, genConfig);
+        PLAYER(SPECIES_PINSIR) { Ability(ability); Moves(MOVE_TACKLE); }
+        OPPONENT(SPECIES_WOBBUFFET);
+    } WHEN {
+        TURN { MOVE(player, MOVE_TACKLE); }
+    } SCENE {
+        HP_BAR(opponent, captureDamage: &results[i].damage);
+    } FINALLY {
+        if (genConfig >= GEN_7)
+            EXPECT_MUL_EQ(results[0].damage, Q_4_12(1.2), results[2].damage); // No STAB
+        else
+            EXPECT_MUL_EQ(results[1].damage, Q_4_12(1.3), results[3].damage); // No STAB
+    }
+}
 
 // Gen 6-7
 TO_DO_BATTLE_TEST("Aerilate overrides Electrify (Gen6-7)");

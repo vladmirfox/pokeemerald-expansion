@@ -20,9 +20,31 @@ SINGLE_BATTLE_TEST("Refrigerate turns a Normal-type move into a Ice-type move")
     }
 }
 
+SINGLE_BATTLE_TEST("Refrigerate boosts power of affected moves by 20% (Gen7+) or 30% (Gen6-)", s16 damage)
+{
+    u32 ability, genConfig;
+    PARAMETRIZE { ability = ABILITY_SNOW_WARNING;   genConfig = GEN_7; }
+    PARAMETRIZE { ability = ABILITY_SNOW_WARNING;   genConfig = GEN_6; }
+    PARAMETRIZE { ability = ABILITY_REFRIGERATE;    genConfig = GEN_7; }
+    PARAMETRIZE { ability = ABILITY_REFRIGERATE;    genConfig = GEN_6; }
+
+    GIVEN {
+        WITH_CONFIG(GEN_CONFIG_ATE_MULTIPLIER, genConfig);
+        PLAYER(SPECIES_AMAURA) { Ability(ability); Moves(MOVE_TACKLE); }
+        OPPONENT(SPECIES_WOBBUFFET);
+    } WHEN {
+        TURN { MOVE(player, MOVE_TACKLE); }
+    } SCENE {
+        HP_BAR(opponent, captureDamage: &results[i].damage);
+    } FINALLY {
+        if (genConfig >= GEN_7)
+            EXPECT_MUL_EQ(results[0].damage, Q_4_12(1.8), results[2].damage); // STAB + ate
+        else
+            EXPECT_MUL_EQ(results[1].damage, Q_4_12(1.95), results[3].damage); // STAB + ate
+    }
+}
+
 TO_DO_BATTLE_TEST("Refrigerate can not turn certain moves into Ice type moves");
-TO_DO_BATTLE_TEST("Refrigerate boosts power of affected moves by 20% (Gen7+)");
-TO_DO_BATTLE_TEST("Refrigerate boosts power of affected moves by 30% (Gen6)");
 TO_DO_BATTLE_TEST("(DYNAMAX) Refrigerate turns Max Strike into Max Hailstorm when not used by Gigantamax Lapras");
 //TO_DO_BATTLE_TEST("(DYNAMAX) Refrigerate doesn't turn Max Strike into Max Hailstorm when used by Gigantamax Lapras, instead becoming G-Max Resonance"); // Marked in Bulbapedia as "needs research", so this assumes that it behaves like Pixilate.
 
