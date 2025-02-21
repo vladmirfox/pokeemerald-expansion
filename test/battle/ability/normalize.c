@@ -6,7 +6,78 @@ ASSUMPTIONS
     ASSUME(GetMoveType(MOVE_TACKLE) == TYPE_NORMAL);
     ASSUME(GetMovePower(MOVE_TACKLE) > 0);
     ASSUME(GetMoveType(MOVE_WATER_GUN) == TYPE_WATER);
-    ASSUME(GetMovePower(MOVE_WATER_GUN));
+    ASSUME(GetMovePower(MOVE_WATER_GUN) > 0);
+}
+
+SINGLE_BATTLE_TEST("Normalize turns a move into a Normal-type move")
+{
+    u16 ability;
+    PARAMETRIZE { ability = ABILITY_CUTE_CHARM; }
+    PARAMETRIZE { ability = ABILITY_NORMALIZE; }
+    GIVEN {
+        ASSUME(gSpeciesInfo[SPECIES_GASTLY].types[0] == TYPE_GHOST);
+        PLAYER(SPECIES_GASTLY);
+        OPPONENT(SPECIES_SKITTY) { Ability(ability); Moves(MOVE_WATER_GUN);}
+    } WHEN {
+        TURN { MOVE(opponent, MOVE_WATER_GUN); }
+    } SCENE {
+        if (ability == ABILITY_CUTE_CHARM)
+        {
+            ANIMATION(ANIM_TYPE_MOVE, MOVE_WATER_GUN, opponent);
+            NOT { MESSAGE("It doesn't affect Gastly…"); }
+        }
+        else
+        {
+            NOT { ANIMATION(ANIM_TYPE_MOVE, MOVE_WATER_GUN, opponent); }
+            MESSAGE("It doesn't affect Gastly…");
+        }
+    }
+}
+
+SINGLE_BATTLE_TEST("Normalize affects status moves")
+{
+    u16 ability;
+    PARAMETRIZE { ability = ABILITY_CUTE_CHARM; }
+    PARAMETRIZE { ability = ABILITY_NORMALIZE; }
+    GIVEN {
+        ASSUME(GetMoveType(MOVE_THUNDER_WAVE) == TYPE_ELECTRIC);
+        ASSUME(gSpeciesInfo[SPECIES_DRILBUR].types[0] == TYPE_GROUND);
+        PLAYER(SPECIES_DRILBUR);
+        OPPONENT(SPECIES_SKITTY) { Ability(ability); Moves(MOVE_THUNDER_WAVE);}
+    } WHEN {
+        TURN { MOVE(opponent, MOVE_THUNDER_WAVE); }
+    } SCENE {
+        if (ability == ABILITY_CUTE_CHARM)
+        {
+            NOT { ANIMATION(ANIM_TYPE_MOVE, MOVE_WATER_GUN, opponent); }
+            MESSAGE("But it failed!");
+        }
+        else
+        {
+            ANIMATION(ANIM_TYPE_MOVE, MOVE_THUNDER_WAVE, opponent);
+            NOT { MESSAGE("But it failed!"); }
+        }
+    }
+}
+
+SINGLE_BATTLE_TEST("Normalize still makes Freeze-Dry do super effective damage to Water-type Pokémon", s16 damage)
+{
+    u16 ability;
+    PARAMETRIZE { ability = ABILITY_CUTE_CHARM; }
+    PARAMETRIZE { ability = ABILITY_NORMALIZE; }
+    GIVEN {
+        ASSUME(GetMoveType(MOVE_FREEZE_DRY) == TYPE_ICE);
+        ASSUME(GetMoveEffect(MOVE_FREEZE_DRY) == EFFECT_SUPER_EFFECTIVE_ON_ARG);
+        ASSUME(gSpeciesInfo[SPECIES_MUDKIP].types[0] == TYPE_WATER);
+        PLAYER(SPECIES_MUDKIP);
+        OPPONENT(SPECIES_SKITTY) { Ability(ability); Moves(MOVE_FREEZE_DRY);}
+    } WHEN {
+        TURN { MOVE(opponent, MOVE_FREEZE_DRY); }
+    } SCENE {
+        MESSAGE("It's super effective!");
+    } FINALLY {
+        EXPECT_MUL_EQ(results[0].damage, Q_4_12(1.8), results[2].damage); // STAB + Ate
+    }
 }
 
 SINGLE_BATTLE_TEST("Normalize boosts power of unaffected moves by 20% (Gen7+)", s16 damage)
@@ -107,10 +178,7 @@ SINGLE_BATTLE_TEST("Normalize-affected moves become Electric-type under Ion Delu
     }
 }
 
-TO_DO_BATTLE_TEST("Normalize tuns a move into a Normal-type move");
-TO_DO_BATTLE_TEST("Normalize affects status moves"); // Eg. Thunder Wave can affect Ground types
 TO_DO_BATTLE_TEST("Normalize makes Flying Press do Normal/Flying damage");
-TO_DO_BATTLE_TEST("Normalize still makes Freeze-Dry do super effective damage to Water-type Pokémon");
 TO_DO_BATTLE_TEST("Normalize doesn't affect Hidden Power's type");
 TO_DO_BATTLE_TEST("Normalize doesn't affect Weather Ball's type");
 TO_DO_BATTLE_TEST("Normalize doesn't affect Natural Gift's type");
