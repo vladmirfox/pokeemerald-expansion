@@ -155,7 +155,6 @@ SINGLE_BATTLE_TEST("Pixilate doesn't override Ion Deluge (Gen8+)", s16 damage)
 SINGLE_BATTLE_TEST("Pixilate doesn't affect Weather Ball's type", s16 damage)
 {
     u16 move, ability;
-    KNOWN_FAILING; // This is failing because the sun damage isn't 6x as high, it's lower (just above 4). Bug doesn't occur with non-Fairy Type neutral mons (ie. Mudkip), only with Fairies.
     PARAMETRIZE { move = MOVE_CELEBRATE; ability = ABILITY_STURDY; }
     PARAMETRIZE { move = MOVE_SUNNY_DAY; ability = ABILITY_STURDY; }
     PARAMETRIZE { move = MOVE_CELEBRATE; ability = ABILITY_PIXILATE; }
@@ -164,7 +163,7 @@ SINGLE_BATTLE_TEST("Pixilate doesn't affect Weather Ball's type", s16 damage)
         ASSUME(GetMoveEffect(MOVE_WEATHER_BALL) == EFFECT_WEATHER_BALL);
         ASSUME(GetMoveType(MOVE_WEATHER_BALL) == TYPE_NORMAL);
         ASSUME(gSpeciesInfo[SPECIES_PINSIR].types[0] == TYPE_BUG);
-        PLAYER(SPECIES_SYLVEON) { Ability(ability); }
+        PLAYER(SPECIES_SYLVEON) { Level(5); Ability(ability); }
         OPPONENT(SPECIES_PINSIR);
     } WHEN {
         TURN { MOVE(player, move); }
