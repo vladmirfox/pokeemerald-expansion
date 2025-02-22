@@ -1426,3 +1426,11 @@ void ScriptBallFollowingMon(struct ScriptContext *ctx)
         ReturnFollowingMonToBall();
     }
 }
+
+void ScriptChangeFollowerBattlePartner(struct ScriptContext *ctx)
+{
+    u16 newBattlePartner = ScriptReadHalfword(ctx);
+
+    if (gSaveBlock2Ptr->follower.inProgress)
+        gSaveBlock2Ptr->follower.battlePartner = newBattlePartner;
+}
