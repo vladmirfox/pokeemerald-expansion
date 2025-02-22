@@ -14093,4 +14093,23 @@ const struct Item gItemsInfo[] =
         .iconPic = gItemIcon_PokeshiDoll,
         .iconPalette = gItemIconPalette_PokeshiDoll,
     },
+
+    [ITEM_CANDY_JAR] =
+    {
+        .name = _("Candy Jar"),
+        .pluralName = _("Candy Jar"),
+        .price = 0,
+        .description = COMPOUND_STRING(
+            "Stores an\n"
+            "unlimited amount\n"
+            "of Rare Candies."),
+        .importance = 1,
+        .pocket = POCKET_KEY_ITEMS,
+        .type = ITEM_USE_PARTY_MENU,
+        .fieldUseFunc = ItemUseOutOfBattle_RareCandy,
+        .effect = gItemEffect_RareCandy,
+        .iconPic = gItemIcon_CandyJar,
+        .iconPalette = gItemIconPalette_CandyJar,
+    },
 };
+

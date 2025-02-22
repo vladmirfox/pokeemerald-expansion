@@ -267,6 +267,8 @@ const u32 gItemIconPalette_ExpCandies[] = INCBIN_U32("graphics/items/icon_palett
 const u32 gItemIcon_DynamaxCandy[] = INCBIN_U32("graphics/items/icons/dynamax_candy.4bpp.lz");
 const u32 gItemIconPalette_DynamaxCandy[] = INCBIN_U32("graphics/items/icon_palettes/dynamax_candy.gbapal.lz");
 
+const u32 gItemIcon_CandyJar[] = INCBIN_U32("graphics/items/icons/candy_jar.4bpp.lz");
+const u32 gItemIconPalette_CandyJar[] = INCBIN_U32("graphics/items/icon_palettes/candy_jar.gbapal.lz");
 // Medicinal Flutes
 
 const u32 gItemIcon_Flute[] = INCBIN_U32("graphics/items/icons/flute.4bpp.lz");

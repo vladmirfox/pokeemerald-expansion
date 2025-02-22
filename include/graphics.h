@@ -531,6 +531,8 @@ extern const u32 gItemIcon_ExpCandyXL[];
 extern const u32 gItemIconPalette_ExpCandies[];
 extern const u32 gItemIcon_DynamaxCandy[];
 extern const u32 gItemIconPalette_DynamaxCandy[];
+extern const u32 gItemIcon_CandyJar[];
+extern const u32 gItemIconPalette_CandyJar[];
 // Medicinal Flutes
 extern const u32 gItemIcon_Flute[];
 extern const u32 gItemIconPalette_BlueFlute[];
