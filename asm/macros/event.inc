@@ -2513,3 +2513,8 @@
 	.4byte \lose_text_b
 	.2byte \partnerId
 	.endm
+
+	.macro facilitytrainerbattle facility:req
+	callnative FacilityTrainerBattle
+	.byte \facility
+	.endm

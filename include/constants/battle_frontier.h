@@ -18,6 +18,8 @@
 #define FACILITY_LINK_CONTEST      7
 #define FACILITY_UNION_ROOM        8
 #define FACILITY_MULTI_OR_EREADER  9  // Direct Corner multi battles, multi battle with Steven, and e-Reader battles
+// below facilites do NOT use VAR_FRONTIER_FACILITY
+#define FACILITY_TRAINER_HILL      10
 
 // Battle Frontier battle modes.
 #define FRONTIER_MODE_SINGLES      0
