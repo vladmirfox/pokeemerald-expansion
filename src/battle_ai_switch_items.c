@@ -136,7 +136,7 @@ static bool32 AreStatsRaised(u32 battler)
             buffedStatsValue += gBattleMons[battler].statStages[i] - DEFAULT_STAT_STAGE;
     }
 
-    return (buffedStatsValue > 3);
+    return (buffedStatsValue > STAY_IN_STATS_RAISED);
 }
 
 void GetAIPartyIndexes(u32 battler, s32 *firstId, s32 *lastId)
@@ -449,12 +449,8 @@ static bool32 FindMonThatAbsorbsOpponentsMove(u32 battler)
             // Only check damage if it's a damaging move
             if (!IsBattleMoveStatus(aiMove))
             {
-                if (AI_DATA->simulatedDmg[battler][opposingBattler][i].expected > gBattleMons[opposingBattler].hp);
-                {
-                    DebugPrintf("Expect damage: %d", AI_DATA->simulatedDmg[battler][opposingBattler][i].expected);
-                    DebugPrintf("Opponent HP: %u", gBattleMons[opposingBattler].hp);
+                if (AI_DATA->simulatedDmg[battler][opposingBattler][i].expected > gBattleMons[opposingBattler].hp)
                     return FALSE;
-                }
             }
         }
     }
