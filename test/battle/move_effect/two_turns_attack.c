@@ -49,7 +49,6 @@ SINGLE_BATTLE_TEST("Razor Wind needs a charging turn")
 
 SINGLE_BATTLE_TEST("Razor Wind doesn't need to charge with Power Herb")
 {
-    KNOWN_FAILING;
     GIVEN {
         PLAYER(SPECIES_WOBBUFFET) { Item(ITEM_POWER_HERB); }
         OPPONENT(SPECIES_WOBBUFFET);
