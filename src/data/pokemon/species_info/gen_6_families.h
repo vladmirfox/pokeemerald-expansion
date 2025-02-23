@@ -41,7 +41,13 @@ const struct SpeciesInfo gSpeciesInfoGen6[] =
         .frontPic = gMonFrontPic_Chespin,
         .frontPicSize = MON_COORDS_SIZE(40, 48),
         .frontPicYOffset = 11,
-        .frontAnimFrames = sAnims_Chespin,
+        .frontAnimFrames = ANIM_FRAMES(
+            ANIMCMD_FRAME(0, 8),
+            ANIMCMD_FRAME(1, 24),
+            ANIMCMD_FRAME(0, 8),
+            ANIMCMD_FRAME(1, 24),
+            ANIMCMD_FRAME(0, 1),
+        ),
         .frontAnimId = ANIM_H_SLIDE_SLOW,
         .backPic = gMonBackPic_Chespin,
         .backPicSize = MON_COORDS_SIZE(56, 64),
@@ -59,6 +65,7 @@ const struct SpeciesInfo gSpeciesInfoGen6[] =
             SIZE_32x32,
             SHADOW_SIZE_M,
             TRACKS_FOOT,
+            sAnimTable_Following,
             gOverworldPalette_Chespin,
             gShinyOverworldPalette_Chespin
         )
@@ -105,7 +112,13 @@ const struct SpeciesInfo gSpeciesInfoGen6[] =
         .frontPic = gMonFrontPic_Quilladin,
         .frontPicSize = MON_COORDS_SIZE(48, 48),
         .frontPicYOffset = 10,
-        .frontAnimFrames = sAnims_Quilladin,
+        .frontAnimFrames = ANIM_FRAMES(
+            ANIMCMD_FRAME(0, 11),
+            ANIMCMD_FRAME(1, 10),
+            ANIMCMD_FRAME(0, 10),
+            ANIMCMD_FRAME(1, 10),
+            ANIMCMD_FRAME(0, 10),
+        ),
         .frontAnimId = ANIM_LUNGE_GROW,
         .backPic = gMonBackPic_Quilladin,
         .backPicSize = MON_COORDS_SIZE(64, 48),
@@ -123,6 +136,7 @@ const struct SpeciesInfo gSpeciesInfoGen6[] =
             SIZE_32x32,
             SHADOW_SIZE_M,
             TRACKS_FOOT,
+            sAnimTable_Following,
             gOverworldPalette_Quilladin,
             gShinyOverworldPalette_Quilladin
         )
@@ -168,7 +182,11 @@ const struct SpeciesInfo gSpeciesInfoGen6[] =
         .frontPic = gMonFrontPic_Chesnaught,
         .frontPicSize = MON_COORDS_SIZE(64, 64),
         .frontPicYOffset = 4,
-        .frontAnimFrames = sAnims_Chesnaught,
+        .frontAnimFrames = ANIM_FRAMES(
+            ANIMCMD_FRAME(1, 50),
+            ANIMCMD_FRAME(1, 40),
+            ANIMCMD_FRAME(0, 10),
+        ),
         .frontAnimId = ANIM_GROW_IN_STAGES,
         .backPic = gMonBackPic_Chesnaught,
         .backPicSize = MON_COORDS_SIZE(64, 56),
@@ -186,6 +204,7 @@ const struct SpeciesInfo gSpeciesInfoGen6[] =
             SIZE_32x32,
             SHADOW_SIZE_M,
             TRACKS_FOOT,
+            sAnimTable_Following,
             gOverworldPalette_Chesnaught,
             gShinyOverworldPalette_Chesnaught
         )
@@ -232,7 +251,15 @@ const struct SpeciesInfo gSpeciesInfoGen6[] =
         .frontPic = gMonFrontPic_Fennekin,
         .frontPicSize = MON_COORDS_SIZE(40, 48),
         .frontPicYOffset = 10,
-        .frontAnimFrames = sAnims_Fennekin,
+        .frontAnimFrames = ANIM_FRAMES(
+            ANIMCMD_FRAME(0, 15),
+            ANIMCMD_FRAME(1, 15),
+            ANIMCMD_FRAME(0, 20),
+            ANIMCMD_FRAME(1, 10),
+            ANIMCMD_FRAME(0, 10),
+            ANIMCMD_FRAME(1, 10),
+            ANIMCMD_FRAME(0, 10),
+        ),
         .frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         .backPic = gMonBackPic_Fennekin,
         .backPicSize = MON_COORDS_SIZE(56, 48),
@@ -250,6 +277,7 @@ const struct SpeciesInfo gSpeciesInfoGen6[] =
             SIZE_32x32,
             SHADOW_SIZE_M,
             TRACKS_FOOT,
+            sAnimTable_Following,
             gOverworldPalette_Fennekin,
             gShinyOverworldPalette_Fennekin
         )
@@ -296,7 +324,11 @@ const struct SpeciesInfo gSpeciesInfoGen6[] =
         .frontPic = gMonFrontPic_Braixen,
         .frontPicSize = MON_COORDS_SIZE(48, 64),
         .frontPicYOffset = 4,
-        .frontAnimFrames = sAnims_Braixen,
+        .frontAnimFrames = ANIM_FRAMES(
+            ANIMCMD_FRAME(0, 12),
+            ANIMCMD_FRAME(1, 45),
+            ANIMCMD_FRAME(0, 15),
+        ),
         .frontAnimId = ANIM_GROW_VIBRATE,
         .backPic = gMonBackPic_Braixen,
         .backPicSize = MON_COORDS_SIZE(64, 56),
@@ -314,6 +346,7 @@ const struct SpeciesInfo gSpeciesInfoGen6[] =
             SIZE_32x32,
             SHADOW_SIZE_M,
             TRACKS_FOOT,
+            sAnimTable_Following,
             gOverworldPalette_Braixen,
             gShinyOverworldPalette_Braixen
         )
@@ -359,7 +392,15 @@ const struct SpeciesInfo gSpeciesInfoGen6[] =
         .frontPic = gMonFrontPic_Delphox,
         .frontPicSize = MON_COORDS_SIZE(64, 64),
         .frontPicYOffset = 0,
-        .frontAnimFrames = sAnims_Delphox,
+        .frontAnimFrames = ANIM_FRAMES(
+            ANIMCMD_FRAME(0, 15),
+            ANIMCMD_FRAME(1, 15),
+            ANIMCMD_FRAME(0, 15),
+            ANIMCMD_FRAME(1, 15),
+            ANIMCMD_FRAME(0, 15),
+            ANIMCMD_FRAME(1, 15),
+            ANIMCMD_FRAME(0, 15),
+        ),
         .frontAnimId = ANIM_GROW_VIBRATE,
         .backPic = gMonBackPic_Delphox,
         .backPicSize = MON_COORDS_SIZE(64, 64),
@@ -377,6 +418,7 @@ const struct SpeciesInfo gSpeciesInfoGen6[] =
             SIZE_32x32,
             SHADOW_SIZE_M,
             TRACKS_FOOT,
+            sAnimTable_Following,
             gOverworldPalette_Delphox,
             gShinyOverworldPalette_Delphox
         )
@@ -423,7 +465,15 @@ const struct SpeciesInfo gSpeciesInfoGen6[] =
         .frontPic = gMonFrontPic_Froakie,
         .frontPicSize = MON_COORDS_SIZE(40, 40),
         .frontPicYOffset = 12,
-        .frontAnimFrames = sAnims_Froakie,
+        .frontAnimFrames = ANIM_FRAMES(
+            ANIMCMD_FRAME(0, 13),
+            ANIMCMD_FRAME(1, 7),
+            ANIMCMD_FRAME(0, 13),
+            ANIMCMD_FRAME(1, 7),
+            ANIMCMD_FRAME(0, 13),
+            ANIMCMD_FRAME(1, 7),
+            ANIMCMD_FRAME(0, 11),
+        ),
         .frontAnimId = ANIM_H_JUMPS,
         .backPic = gMonBackPic_Froakie,
         .backPicSize = MON_COORDS_SIZE(56, 56),
@@ -441,6 +491,7 @@ const struct SpeciesInfo gSpeciesInfoGen6[] =
             SIZE_32x32,
             SHADOW_SIZE_M,
             TRACKS_FOOT,
+            sAnimTable_Following,
             gOverworldPalette_Froakie,
             gShinyOverworldPalette_Froakie
         )
@@ -487,7 +538,10 @@ const struct SpeciesInfo gSpeciesInfoGen6[] =
         .frontPic = gMonFrontPic_Frogadier,
         .frontPicSize = MON_COORDS_SIZE(56, 48),
         .frontPicYOffset = 8,
-        .frontAnimFrames = sAnims_Frogadier,
+        .frontAnimFrames = ANIM_FRAMES(
+            ANIMCMD_FRAME(1, 30),
+            ANIMCMD_FRAME(0, 30),
+        ),
         .frontAnimId = ANIM_V_SQUISH_AND_BOUNCE_SLOW,
         .backPic = gMonBackPic_Frogadier,
         .backPicSize = MON_COORDS_SIZE(64, 56),
@@ -505,6 +559,7 @@ const struct SpeciesInfo gSpeciesInfoGen6[] =
             SIZE_32x32,
             SHADOW_SIZE_M,
             TRACKS_FOOT,
+            sAnimTable_Following,
             gOverworldPalette_Frogadier,
             gShinyOverworldPalette_Frogadier
         )
@@ -565,6 +620,7 @@ const struct SpeciesInfo gSpeciesInfoGen6[] =
             SIZE_32x32,
             SHADOW_SIZE_M,
             TRACKS_FOOT,
+            sAnimTable_Following,
             gOverworldPalette_Greninja,
             gShinyOverworldPalette_Greninja
         )
@@ -607,7 +663,7 @@ const struct SpeciesInfo gSpeciesInfoGen6[] =
         .frontPic = gMonFrontPic_Greninja,
         .frontPicSize = MON_COORDS_SIZE(64, 56),
         .frontPicYOffset = 7,
-        .frontAnimFrames = sAnims_Greninja,
+        .frontAnimFrames =sAnims_Greninja,
         .frontAnimId = ANIM_V_STRETCH,
         .backPic = gMonBackPic_Greninja,
         .backPicSize = MON_COORDS_SIZE(64, 48),
@@ -625,6 +681,7 @@ const struct SpeciesInfo gSpeciesInfoGen6[] =
             SIZE_32x32,
             SHADOW_SIZE_M,
             TRACKS_FOOT,
+            sAnimTable_Following,
             gOverworldPalette_Greninja,
             gShinyOverworldPalette_Greninja
         )
@@ -668,7 +725,13 @@ const struct SpeciesInfo gSpeciesInfoGen6[] =
         .frontPic = gMonFrontPic_GreninjaAsh,
         .frontPicSize = MON_COORDS_SIZE(64, 64),
         .frontPicYOffset = 0,
-        .frontAnimFrames = sAnims_GreninjaAsh,
+        .frontAnimFrames = ANIM_FRAMES(
+            ANIMCMD_FRAME(1, 8),
+            ANIMCMD_FRAME(0, 15),
+            ANIMCMD_FRAME(1, 35),
+            ANIMCMD_FRAME(1, 30),
+            ANIMCMD_FRAME(0, 10),
+        ),
         .frontAnimId = ANIM_V_STRETCH,
         .backPic = gMonBackPic_GreninjaAsh,
         .backPicSize = MON_COORDS_SIZE(64, 48),
@@ -726,7 +789,10 @@ const struct SpeciesInfo gSpeciesInfoGen6[] =
         .frontPic = gMonFrontPic_Bunnelby,
         .frontPicSize = MON_COORDS_SIZE(48, 64),
         .frontPicYOffset = 5,
-        .frontAnimFrames = sAnims_Bunnelby,
+        .frontAnimFrames = ANIM_FRAMES(
+            ANIMCMD_FRAME(1, 25),
+            ANIMCMD_FRAME(0, 5),
+        ),
         .frontAnimId = ANIM_CIRCULAR_STRETCH_TWICE,
         .backPic = gMonBackPic_Bunnelby,
         .backPicSize = MON_COORDS_SIZE(48, 64),
@@ -744,6 +810,7 @@ const struct SpeciesInfo gSpeciesInfoGen6[] =
             SIZE_32x32,
             SHADOW_SIZE_M,
             TRACKS_FOOT,
+            sAnimTable_Following,
             gOverworldPalette_Bunnelby,
             gShinyOverworldPalette_Bunnelby
         )
@@ -790,7 +857,10 @@ const struct SpeciesInfo gSpeciesInfoGen6[] =
         .frontPic = gMonFrontPic_Diggersby,
         .frontPicSize = MON_COORDS_SIZE(64, 64),
         .frontPicYOffset = 4,
-        .frontAnimFrames = sAnims_Diggersby,
+        .frontAnimFrames = ANIM_FRAMES(
+            ANIMCMD_FRAME(1, 35),
+            ANIMCMD_FRAME(0, 10),
+        ),
         .frontAnimId = ANIM_H_JUMPS_V_STRETCH,
         .backPic = gMonBackPic_Diggersby,
         .backPicSize = MON_COORDS_SIZE(64, 64),
@@ -808,6 +878,7 @@ const struct SpeciesInfo gSpeciesInfoGen6[] =
             SIZE_32x32,
             SHADOW_SIZE_M,
             TRACKS_FOOT,
+            sAnimTable_Following,
             gOverworldPalette_Diggersby,
             gShinyOverworldPalette_Diggersby
         )
@@ -854,7 +925,14 @@ const struct SpeciesInfo gSpeciesInfoGen6[] =
         .frontPic = gMonFrontPic_Fletchling,
         .frontPicSize = MON_COORDS_SIZE(40, 40),
         .frontPicYOffset = 13,
-        .frontAnimFrames = sAnims_Fletchling,
+        .frontAnimFrames = ANIM_FRAMES(
+            ANIMCMD_FRAME(1, 7),
+            ANIMCMD_FRAME(0, 3),
+            ANIMCMD_FRAME(1, 7),
+            ANIMCMD_FRAME(0, 3),
+            ANIMCMD_FRAME(1, 10),
+            ANIMCMD_FRAME(0, 5),
+        ),
         .frontAnimId = ANIM_V_JUMPS_SMALL,
         .backPic = gMonBackPic_Fletchling,
         .backPicSize = MON_COORDS_SIZE(64, 40),
@@ -872,6 +950,7 @@ const struct SpeciesInfo gSpeciesInfoGen6[] =
             SIZE_32x32,
             SHADOW_SIZE_M,
             TRACKS_FOOT,
+            sAnimTable_Following,
             gOverworldPalette_Fletchling,
             gShinyOverworldPalette_Fletchling
         )
@@ -918,7 +997,16 @@ const struct SpeciesInfo gSpeciesInfoGen6[] =
         .frontPic = gMonFrontPic_Fletchinder,
         .frontPicSize = MON_COORDS_SIZE(56, 48),
         .frontPicYOffset = 8,
-        .frontAnimFrames = sAnims_Fletchinder,
+        .frontAnimFrames = ANIM_FRAMES(
+            ANIMCMD_FRAME(1, 5),
+            ANIMCMD_FRAME(0, 10),
+            ANIMCMD_FRAME(1, 5),
+            ANIMCMD_FRAME(0, 30),
+            ANIMCMD_FRAME(1, 5),
+            ANIMCMD_FRAME(0, 10),
+            ANIMCMD_FRAME(1, 5),
+            ANIMCMD_FRAME(0, 5),
+        ),
         .frontAnimId = ANIM_V_SLIDE_SLOW,
         .enemyMonElevation = 9,
         .backPic = gMonBackPic_Fletchinder,
@@ -937,6 +1025,7 @@ const struct SpeciesInfo gSpeciesInfoGen6[] =
             SIZE_32x32,
             SHADOW_SIZE_M,
             TRACKS_FOOT,
+            sAnimTable_Following,
             gOverworldPalette_Fletchinder,
             gShinyOverworldPalette_Fletchinder
         )
@@ -982,7 +1071,10 @@ const struct SpeciesInfo gSpeciesInfoGen6[] =
         .frontPic = gMonFrontPic_Talonflame,
         .frontPicSize = MON_COORDS_SIZE(64, 64),
         .frontPicYOffset = 1,
-        .frontAnimFrames = sAnims_Talonflame,
+        .frontAnimFrames = ANIM_FRAMES(
+            ANIMCMD_FRAME(1, 55),
+            ANIMCMD_FRAME(0, 5),
+        ),
         .frontAnimId = ANIM_V_SLIDE_WOBBLE,
         .enemyMonElevation = 7,
         .backPic = gMonBackPic_Talonflame,
@@ -1001,6 +1093,7 @@ const struct SpeciesInfo gSpeciesInfoGen6[] =
             SIZE_32x32,
             SHADOW_SIZE_M,
             TRACKS_FOOT,
+            sAnimTable_Following,
             gOverworldPalette_Talonflame,
             gShinyOverworldPalette_Talonflame
         )
@@ -1061,6 +1154,7 @@ const struct SpeciesInfo gSpeciesInfoGen6[] =
             SIZE_32x32,                                                                     \
             SHADOW_SIZE_M,                                                                  \
             TRACKS_FOOT,                                                                    \
+            sAnimTable_Following,                                                           \
             gOverworldPalette_Scatterbug,                                                   \
             gShinyOverworldPalette_Scatterbug                                               \
         )                                                                                   \
@@ -1091,7 +1185,7 @@ const struct SpeciesInfo gSpeciesInfoGen6[] =
     [SPECIES_SCATTERBUG_OCEAN]       = SCATTERBUG_SPECIES_INFO(OCEAN),
     [SPECIES_SCATTERBUG_JUNGLE]      = SCATTERBUG_SPECIES_INFO(JUNGLE),
     [SPECIES_SCATTERBUG_FANCY]       = SCATTERBUG_SPECIES_INFO(FANCY),
-    [SPECIES_SCATTERBUG_POKEBALL]   = SCATTERBUG_SPECIES_INFO(POKEBALL),
+    [SPECIES_SCATTERBUG_POKEBALL]    = SCATTERBUG_SPECIES_INFO(POKEBALL),
 
 #define SPEWPA_SPECIES_INFO(evolution)                                          \
     {                                                                           \
@@ -1144,6 +1238,7 @@ const struct SpeciesInfo gSpeciesInfoGen6[] =
             SIZE_32x32,                                                         \
             SHADOW_SIZE_M,                                                      \
             TRACKS_FOOT,                                                        \
+            sAnimTable_Following,                                               \
             gOverworldPalette_Spewpa,                                           \
             gShinyOverworldPalette_Spewpa                                       \
         )                                                                       \
@@ -1227,6 +1322,7 @@ const struct SpeciesInfo gSpeciesInfoGen6[] =
             SIZE_32x32,                                                                     \
             SHADOW_SIZE_M,                                                                  \
             TRACKS_FOOT,                                                                    \
+            sAnimTable_Following,                                                           \
             gOverworldPalette_Vivillon ##form,                                              \
             gShinyOverworldPalette_Vivillon ##form                                          \
         )                                                                                   \
@@ -1454,7 +1550,11 @@ const struct SpeciesInfo gSpeciesInfoGen6[] =
         .frontPic = gMonFrontPic_Litleo,
         .frontPicSize = MON_COORDS_SIZE(40, 48),
         .frontPicYOffset = 10,
-        .frontAnimFrames = sAnims_Litleo,
+        .frontAnimFrames = ANIM_FRAMES(
+            ANIMCMD_FRAME(0, 10),
+            ANIMCMD_FRAME(1, 25),
+            ANIMCMD_FRAME(0, 30),
+        ),
         .frontAnimId = ANIM_BACK_AND_LUNGE,
         .backPic = gMonBackPic_Litleo,
         .backPicSize = MON_COORDS_SIZE(56, 48),
@@ -1472,6 +1572,7 @@ const struct SpeciesInfo gSpeciesInfoGen6[] =
             SIZE_32x32,
             SHADOW_SIZE_M,
             TRACKS_FOOT,
+            sAnimTable_Following,
             gOverworldPalette_Litleo,
             gShinyOverworldPalette_Litleo
         )
@@ -1518,7 +1619,10 @@ const struct SpeciesInfo gSpeciesInfoGen6[] =
         .frontPic = gMonFrontPic_Pyroar,
         .frontPicSize = MON_COORDS_SIZE(64, 64),
         .frontPicYOffset = 0,
-        .frontAnimFrames = sAnims_Pyroar,
+        .frontAnimFrames = ANIM_FRAMES(
+            ANIMCMD_FRAME(1, 45),
+            ANIMCMD_FRAME(0, 5),
+        ),
         .frontAnimId = ANIM_V_SHAKE,
         .backPic = gMonBackPic_Pyroar,
         .backPicSize = MON_COORDS_SIZE(64, 64),
@@ -1544,6 +1648,7 @@ const struct SpeciesInfo gSpeciesInfoGen6[] =
             SIZE_32x32,
             SHADOW_SIZE_M,
             TRACKS_FOOT,
+            sAnimTable_Following,
             gOverworldPalette_Pyroar,
             gShinyOverworldPalette_Pyroar
         )
@@ -1551,7 +1656,8 @@ const struct SpeciesInfo gSpeciesInfoGen6[] =
             sPicTable_PyroarF,
             SIZE_32x32,
             SHADOW_SIZE_M,
-            TRACKS_FOOT
+            TRACKS_FOOT,
+            sAnimTable_Following
         )
         .levelUpLearnset = sPyroarLevelUpLearnset,
         .teachableLearnset = sPyroarTeachableLearnset,
@@ -1609,6 +1715,7 @@ const struct SpeciesInfo gSpeciesInfoGen6[] =
             SIZE_32x32,                                                         \
             SHADOW_SIZE_M,                                                      \
             TRACKS_FOOT,                                                        \
+            sAnimTable_Following,                                               \
             gOverworldPalette_Flabebe##Form,                                    \
             gShinyOverworldPalette_Flabebe##Form                                \
         )                                                                       \
@@ -1698,6 +1805,7 @@ const struct SpeciesInfo gSpeciesInfoGen6[] =
             SIZE_32x32,                                                         \
             SHADOW_SIZE_M,                                                      \
             TRACKS_FOOT,                                                        \
+            sAnimTable_Following,                                               \
             gOverworldPalette_Floette ##form,                                   \
             gShinyOverworldPalette_Floette ##form                               \
         )                                                                       \
@@ -1847,6 +1955,7 @@ const struct SpeciesInfo gSpeciesInfoGen6[] =
             SIZE_32x32,                                                         \
             SHADOW_SIZE_M,                                                      \
             TRACKS_FOOT,                                                        \
+            sAnimTable_Following,                                               \
             gOverworldPalette_Florges ##Form,                                   \
             gShinyOverworldPalette_Florges ##Form                               \
         )                                                                       \
@@ -1938,7 +2047,10 @@ const struct SpeciesInfo gSpeciesInfoGen6[] =
         .frontPic = gMonFrontPic_Skiddo,
         .frontPicSize = MON_COORDS_SIZE(48, 56),
         .frontPicYOffset = 7,
-        .frontAnimFrames = sAnims_Skiddo,
+        .frontAnimFrames = ANIM_FRAMES(
+            ANIMCMD_FRAME(1, 15),
+            ANIMCMD_FRAME(0, 15),
+        ),
         .frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         .backPic = gMonBackPic_Skiddo,
         .backPicSize = MON_COORDS_SIZE(56, 48),
@@ -1956,6 +2068,7 @@ const struct SpeciesInfo gSpeciesInfoGen6[] =
             SIZE_32x32,
             SHADOW_SIZE_M,
             TRACKS_FOOT,
+            sAnimTable_Following,
             gOverworldPalette_Skiddo,
             gShinyOverworldPalette_Skiddo
         )
@@ -2002,7 +2115,11 @@ const struct SpeciesInfo gSpeciesInfoGen6[] =
         .frontPic = gMonFrontPic_Gogoat,
         .frontPicSize = MON_COORDS_SIZE(56, 64),
         .frontPicYOffset = 2,
-        .frontAnimFrames = sAnims_Gogoat,
+        .frontAnimFrames = ANIM_FRAMES(
+            ANIMCMD_FRAME(0, 1),
+            ANIMCMD_FRAME(1, 36),
+            ANIMCMD_FRAME(0, 10),
+        ),
         .frontAnimId = ANIM_V_STRETCH,
         .backPic = gMonBackPic_Gogoat,
         .backPicSize = MON_COORDS_SIZE(64, 56),
@@ -2020,6 +2137,7 @@ const struct SpeciesInfo gSpeciesInfoGen6[] =
             SIZE_32x32,
             SHADOW_SIZE_M,
             TRACKS_FOOT,
+            sAnimTable_Following,
             gOverworldPalette_Gogoat,
             gShinyOverworldPalette_Gogoat
         )
@@ -2067,7 +2185,14 @@ const struct SpeciesInfo gSpeciesInfoGen6[] =
         .frontPic = gMonFrontPic_Pancham,
         .frontPicSize = MON_COORDS_SIZE(32, 48),
         .frontPicYOffset = 12,
-        .frontAnimFrames = sAnims_Pancham,
+        .frontAnimFrames = ANIM_FRAMES(
+            ANIMCMD_FRAME(1, 8),
+            ANIMCMD_FRAME(0, 8),
+            ANIMCMD_FRAME(1, 8),
+            ANIMCMD_FRAME(0, 8),
+            ANIMCMD_FRAME(1, 40),
+            ANIMCMD_FRAME(0, 8),
+        ),
         .frontAnimId = ANIM_H_STRETCH,
         .backPic = gMonBackPic_Pancham,
         .backPicSize = MON_COORDS_SIZE(48, 56),
@@ -2085,6 +2210,7 @@ const struct SpeciesInfo gSpeciesInfoGen6[] =
             SIZE_32x32,
             SHADOW_SIZE_M,
             TRACKS_FOOT,
+            sAnimTable_Following,
             gOverworldPalette_Pancham,
             gShinyOverworldPalette_Pancham
         )
@@ -2132,7 +2258,14 @@ const struct SpeciesInfo gSpeciesInfoGen6[] =
         .frontPic = gMonFrontPic_Pangoro,
         .frontPicSize = MON_COORDS_SIZE(64, 64),
         .frontPicYOffset = 0,
-        .frontAnimFrames = sAnims_Pangoro,
+        .frontAnimFrames = ANIM_FRAMES(
+            ANIMCMD_FRAME(1, 8),
+            ANIMCMD_FRAME(0, 8),
+            ANIMCMD_FRAME(1, 8),
+            ANIMCMD_FRAME(0, 15),
+            ANIMCMD_FRAME(1, 20),
+            ANIMCMD_FRAME(0, 10),
+        ),
         .frontAnimId = ANIM_BACK_AND_LUNGE,
         .backPic = gMonBackPic_Pangoro,
         .backPicSize = MON_COORDS_SIZE(64, 56),
@@ -2150,6 +2283,7 @@ const struct SpeciesInfo gSpeciesInfoGen6[] =
             SIZE_32x32,
             SHADOW_SIZE_M,
             TRACKS_FOOT,
+            sAnimTable_Following,
             gOverworldPalette_Pangoro,
             gShinyOverworldPalette_Pangoro
         )
@@ -2211,6 +2345,7 @@ const struct SpeciesInfo gSpeciesInfoGen6[] =
             SIZE_32x32,                                                                                 \
             SHADOW_SIZE_M,                                                                              \
             TRACKS_FOOT,                                                                                \
+            sAnimTable_Following,                                                                       \
             gOverworldPalette_Furfrou##_form,                                                           \
             gShinyOverworldPalette_Furfrou##_form                                                       \
         )                                                                                               \
@@ -2221,16 +2356,16 @@ const struct SpeciesInfo gSpeciesInfoGen6[] =
         .formChangeTable = sFurfrouFormChangeTable,                                                     \
     }
 
-    [SPECIES_FURFROU_NATURAL] =        FURFROU_MISC_INFO(Natural,       FALSE, 48, 3, 56, 0, 0),
-    [SPECIES_FURFROU_HEART_TRIM] =     FURFROU_MISC_INFO(HeartTrim,     FALSE, 56, 2, 56, 1, 0),
-    [SPECIES_FURFROU_STAR_TRIM] =      FURFROU_MISC_INFO(StarTrim,      FALSE, 56, 2, 64, 1, 0),
-    [SPECIES_FURFROU_DIAMOND_TRIM] =   FURFROU_MISC_INFO(DiamondTrim,   FALSE, 48, 2, 56, 1, 0),
-    [SPECIES_FURFROU_DEBUTANTE_TRIM] = FURFROU_MISC_INFO(DebutanteTrim, TRUE,  48, 2, 56, 1, 2),
-    [SPECIES_FURFROU_MATRON_TRIM] =    FURFROU_MISC_INFO(MatronTrim,    FALSE, 48, 2, 56, 1, 2),
-    [SPECIES_FURFROU_DANDY_TRIM] =     FURFROU_MISC_INFO(DandyTrim,     FALSE, 48, 2, 56, 1, 1),
-    [SPECIES_FURFROU_LA_REINE_TRIM] =  FURFROU_MISC_INFO(LaReineTrim,   FALSE, 48, 2, 56, 1, 0),
-    [SPECIES_FURFROU_KABUKI_TRIM] =    FURFROU_MISC_INFO(KabukiTrim,    FALSE, 56, 2, 56, 1, 0),
-    [SPECIES_FURFROU_PHARAOH_TRIM] =   FURFROU_MISC_INFO(PharaohTrim,   FALSE, 48, 2, 56, 1, 0),
+    [SPECIES_FURFROU_NATURAL]   = FURFROU_MISC_INFO(Natural,   FALSE, 48, 3, 56, 0, 0),
+    [SPECIES_FURFROU_HEART]     = FURFROU_MISC_INFO(Heart,     FALSE, 56, 2, 56, 1, 0),
+    [SPECIES_FURFROU_STAR]      = FURFROU_MISC_INFO(Star,      FALSE, 56, 2, 64, 1, 0),
+    [SPECIES_FURFROU_DIAMOND]   = FURFROU_MISC_INFO(Diamond,   FALSE, 48, 2, 56, 1, 0),
+    [SPECIES_FURFROU_DEBUTANTE] = FURFROU_MISC_INFO(Debutante, TRUE,  48, 2, 56, 1, 2),
+    [SPECIES_FURFROU_MATRON]    = FURFROU_MISC_INFO(Matron,    FALSE, 48, 2, 56, 1, 2),
+    [SPECIES_FURFROU_DANDY]     = FURFROU_MISC_INFO(Dandy,     FALSE, 48, 2, 56, 1, 1),
+    [SPECIES_FURFROU_LA_REINE]  = FURFROU_MISC_INFO(LaReine,   FALSE, 48, 2, 56, 1, 0),
+    [SPECIES_FURFROU_KABUKI]    = FURFROU_MISC_INFO(Kabuki,    FALSE, 56, 2, 56, 1, 0),
+    [SPECIES_FURFROU_PHARAOH]   = FURFROU_MISC_INFO(Pharaoh,   FALSE, 48, 2, 56, 1, 0),
 #endif //P_FAMILY_FURFROU
 
 #if P_FAMILY_ESPURR
@@ -2271,7 +2406,15 @@ const struct SpeciesInfo gSpeciesInfoGen6[] =
         .frontPic = gMonFrontPic_Espurr,
         .frontPicSize = MON_COORDS_SIZE(32, 48),
         .frontPicYOffset = 10,
-        .frontAnimFrames = sAnims_Espurr,
+        .frontAnimFrames = ANIM_FRAMES(
+            ANIMCMD_FRAME(0, 15),
+            ANIMCMD_FRAME(1, 15),
+            ANIMCMD_FRAME(0, 15),
+            ANIMCMD_FRAME(1, 15),
+            ANIMCMD_FRAME(0, 15),
+            ANIMCMD_FRAME(1, 15),
+            ANIMCMD_FRAME(0, 50),
+        ),
         .frontAnimId = ANIM_V_STRETCH,
         .backPic = gMonBackPic_Espurr,
         .backPicSize = MON_COORDS_SIZE(56, 56),
@@ -2289,6 +2432,7 @@ const struct SpeciesInfo gSpeciesInfoGen6[] =
             SIZE_32x32,
             SHADOW_SIZE_M,
             TRACKS_FOOT,
+            sAnimTable_Following,
             gOverworldPalette_Espurr,
             gShinyOverworldPalette_Espurr
         )
@@ -2354,6 +2498,7 @@ const struct SpeciesInfo gSpeciesInfoGen6[] =
             SIZE_32x32,
             SHADOW_SIZE_M,
             TRACKS_FOOT,
+            sAnimTable_Following,
             gOverworldPalette_MeowsticM,
             gShinyOverworldPalette_MeowsticM
         )
@@ -2417,6 +2562,7 @@ const struct SpeciesInfo gSpeciesInfoGen6[] =
             SIZE_32x32,
             SHADOW_SIZE_M,
             TRACKS_FOOT,
+            sAnimTable_Following,
             gOverworldPalette_MeowsticF,
             gShinyOverworldPalette_MeowsticF
         )
@@ -2464,7 +2610,11 @@ const struct SpeciesInfo gSpeciesInfoGen6[] =
         .frontPic = gMonFrontPic_Honedge,
         .frontPicSize = MON_COORDS_SIZE(64, 56),
         .frontPicYOffset = 4,
-        .frontAnimFrames = sAnims_Honedge,
+        .frontAnimFrames = ANIM_FRAMES(
+            ANIMCMD_FRAME(1, 50),
+            ANIMCMD_FRAME(1, 40),
+            ANIMCMD_FRAME(0, 10),
+        ),
         .frontAnimId = ANIM_SWING_CONVEX,
         .enemyMonElevation = 4,
         .backPic = gMonBackPic_Honedge,
@@ -2483,6 +2633,7 @@ const struct SpeciesInfo gSpeciesInfoGen6[] =
             SIZE_32x32,
             SHADOW_SIZE_M,
             TRACKS_FOOT,
+            sAnimTable_Following,
             gOverworldPalette_Honedge,
             gShinyOverworldPalette_Honedge
         )
@@ -2529,7 +2680,13 @@ const struct SpeciesInfo gSpeciesInfoGen6[] =
         .frontPic = gMonFrontPic_Doublade,
         .frontPicSize = MON_COORDS_SIZE(64, 64),
         .frontPicYOffset = 5,
-        .frontAnimFrames = sAnims_Doublade,
+        .frontAnimFrames = ANIM_FRAMES(
+            ANIMCMD_FRAME(0, 10),
+            ANIMCMD_FRAME(1, 10),
+            ANIMCMD_FRAME(0, 10),
+            ANIMCMD_FRAME(1, 10),
+            ANIMCMD_FRAME(0, 10),
+        ),
         .frontAnimId = ANIM_GROW_VIBRATE,
         .enemyMonElevation = 5,
         .backPic = gMonBackPic_Doublade,
@@ -2548,6 +2705,7 @@ const struct SpeciesInfo gSpeciesInfoGen6[] =
             SIZE_32x32,
             SHADOW_SIZE_M,
             TRACKS_FOOT,
+            sAnimTable_Following,
             gOverworldPalette_Doublade,
             gShinyOverworldPalette_Doublade
         )
@@ -2596,7 +2754,13 @@ const struct SpeciesInfo gSpeciesInfoGen6[] =
         .frontPic = gMonFrontPic_AegislashShield,
         .frontPicSize = MON_COORDS_SIZE(56, 64),
         .frontPicYOffset = 0,
-        .frontAnimFrames = sAnims_AegislashShield,
+        .frontAnimFrames = ANIM_FRAMES(
+            ANIMCMD_FRAME(0, 18),
+            ANIMCMD_FRAME(1, 18),
+            ANIMCMD_FRAME(0, 18),
+            ANIMCMD_FRAME(1, 18),
+            ANIMCMD_FRAME(0, 10),
+        ),
         .frontAnimId = ANIM_H_VIBRATE,
         .enemyMonElevation = 3,
         .backPic = gMonBackPic_AegislashShield,
@@ -2615,6 +2779,7 @@ const struct SpeciesInfo gSpeciesInfoGen6[] =
             SIZE_32x32,
             SHADOW_SIZE_M,
             TRACKS_FOOT,
+            sAnimTable_Following,
             gOverworldPalette_AegislashShield,
             gShinyOverworldPalette_AegislashShield
         )
@@ -2667,7 +2832,13 @@ const struct SpeciesInfo gSpeciesInfoGen6[] =
         .frontPic = gMonFrontPic_AegislashBlade,
         .frontPicSize = MON_COORDS_SIZE(64, 64),
         .frontPicYOffset = 0,
-        .frontAnimFrames = sAnims_AegislashBlade,
+        .frontAnimFrames = ANIM_FRAMES(
+            ANIMCMD_FRAME(0, 18),
+            ANIMCMD_FRAME(1, 18),
+            ANIMCMD_FRAME(0, 18),
+            ANIMCMD_FRAME(1, 18),
+            ANIMCMD_FRAME(0, 10),
+        ),
         .frontAnimId = ANIM_CIRCLE_C_CLOCKWISE_SLOW,
         .enemyMonElevation = 3,
         .backPic = gMonBackPic_AegislashBlade,
@@ -2726,7 +2897,14 @@ const struct SpeciesInfo gSpeciesInfoGen6[] =
         .frontPic = gMonFrontPic_Spritzee,
         .frontPicSize = MON_COORDS_SIZE(48, 48),
         .frontPicYOffset = 12,
-        .frontAnimFrames = sAnims_Spritzee,
+        .frontAnimFrames = ANIM_FRAMES(
+            ANIMCMD_FRAME(1, 15),
+            ANIMCMD_FRAME(0, 25),
+            ANIMCMD_FRAME(1, 15),
+            ANIMCMD_FRAME(0, 25),
+            ANIMCMD_FRAME(1, 15),
+            ANIMCMD_FRAME(0, 15),
+        ),
         .frontAnimId = ANIM_V_SLIDE_WOBBLE,
         .enemyMonElevation = 14,
         .backPic = gMonBackPic_Spritzee,
@@ -2745,6 +2923,7 @@ const struct SpeciesInfo gSpeciesInfoGen6[] =
             SIZE_32x32,
             SHADOW_SIZE_M,
             TRACKS_FOOT,
+            sAnimTable_Following,
             gOverworldPalette_Spritzee,
             gShinyOverworldPalette_Spritzee
         )
@@ -2792,7 +2971,10 @@ const struct SpeciesInfo gSpeciesInfoGen6[] =
         .frontPic = gMonFrontPic_Aromatisse,
         .frontPicSize = MON_COORDS_SIZE(48, 56),
         .frontPicYOffset = 4,
-        .frontAnimFrames = sAnims_Aromatisse,
+        .frontAnimFrames = ANIM_FRAMES(
+            ANIMCMD_FRAME(1, 30),
+            ANIMCMD_FRAME(0, 30),
+        ),
         .frontAnimId = ANIM_V_SQUISH_AND_BOUNCE_SLOW,
         .backPic = gMonBackPic_Aromatisse,
         .backPicSize = MON_COORDS_SIZE(64, 64),
@@ -2810,6 +2992,7 @@ const struct SpeciesInfo gSpeciesInfoGen6[] =
             SIZE_32x32,
             SHADOW_SIZE_M,
             TRACKS_FOOT,
+            sAnimTable_Following,
             gOverworldPalette_Aromatisse,
             gShinyOverworldPalette_Aromatisse
         )
@@ -2856,7 +3039,15 @@ const struct SpeciesInfo gSpeciesInfoGen6[] =
         .frontPic = gMonFrontPic_Swirlix,
         .frontPicSize = MON_COORDS_SIZE(40, 40),
         .frontPicYOffset = 14,
-        .frontAnimFrames = sAnims_Swirlix,
+        .frontAnimFrames = ANIM_FRAMES(
+            ANIMCMD_FRAME(0, 10),
+            ANIMCMD_FRAME(1, 10),
+            ANIMCMD_FRAME(0, 10),
+            ANIMCMD_FRAME(1, 10),
+            ANIMCMD_FRAME(0, 10),
+            ANIMCMD_FRAME(1, 10),
+            ANIMCMD_FRAME(0, 10),
+        ),
         .frontAnimId = ANIM_H_JUMPS_V_STRETCH,
         .backPic = gMonBackPic_Swirlix,
         .backPicSize = MON_COORDS_SIZE(56, 40),
@@ -2874,6 +3065,7 @@ const struct SpeciesInfo gSpeciesInfoGen6[] =
             SIZE_32x32,
             SHADOW_SIZE_M,
             TRACKS_FOOT,
+            sAnimTable_Following,
             gOverworldPalette_Swirlix,
             gShinyOverworldPalette_Swirlix
         )
@@ -2921,7 +3113,13 @@ const struct SpeciesInfo gSpeciesInfoGen6[] =
         .frontPic = gMonFrontPic_Slurpuff,
         .frontPicSize = MON_COORDS_SIZE(48, 56),
         .frontPicYOffset = 8,
-        .frontAnimFrames = sAnims_Slurpuff,
+        .frontAnimFrames = ANIM_FRAMES(
+            ANIMCMD_FRAME(0, 5),
+            ANIMCMD_FRAME(1, 10),
+            ANIMCMD_FRAME(0, 10),
+            ANIMCMD_FRAME(1, 35),
+            ANIMCMD_FRAME(0, 5),
+        ),
         .frontAnimId = ANIM_V_STRETCH,
         .backPic = gMonBackPic_Slurpuff,
         .backPicSize = MON_COORDS_SIZE(64, 64),
@@ -2939,6 +3137,7 @@ const struct SpeciesInfo gSpeciesInfoGen6[] =
             SIZE_32x32,
             SHADOW_SIZE_M,
             TRACKS_FOOT,
+            sAnimTable_Following,
             gOverworldPalette_Slurpuff,
             gShinyOverworldPalette_Slurpuff
         )
@@ -2985,7 +3184,12 @@ const struct SpeciesInfo gSpeciesInfoGen6[] =
         .frontPic = gMonFrontPic_Inkay,
         .frontPicSize = MON_COORDS_SIZE(48, 48),
         .frontPicYOffset = 14,
-        .frontAnimFrames = sAnims_Inkay,
+        .frontAnimFrames = ANIM_FRAMES(
+            ANIMCMD_FRAME(1, 25),
+            ANIMCMD_FRAME(0, 25),
+            ANIMCMD_FRAME(1, 25),
+            ANIMCMD_FRAME(0, 25),
+        ),
         .frontAnimId = ANIM_V_SLIDE_WOBBLE,
         .enemyMonElevation = 14,
         .backPic = gMonBackPic_Inkay,
@@ -3004,6 +3208,7 @@ const struct SpeciesInfo gSpeciesInfoGen6[] =
             SIZE_32x32,
             SHADOW_SIZE_M,
             TRACKS_FOOT,
+            sAnimTable_Following,
             gOverworldPalette_Inkay,
             gShinyOverworldPalette_Inkay
         )
@@ -3050,7 +3255,12 @@ const struct SpeciesInfo gSpeciesInfoGen6[] =
         .frontPic = gMonFrontPic_Malamar,
         .frontPicSize = MON_COORDS_SIZE(64, 64),
         .frontPicYOffset = 0,
-        .frontAnimFrames = sAnims_Malamar,
+        .frontAnimFrames = ANIM_FRAMES(
+            ANIMCMD_FRAME(1, 10),
+            ANIMCMD_FRAME(0, 10),
+            ANIMCMD_FRAME(1, 10),
+            ANIMCMD_FRAME(0, 20),
+        ),
         .frontAnimId = ANIM_CIRCULAR_STRETCH_TWICE,
         .backPic = gMonBackPic_Malamar,
         .backPicSize = MON_COORDS_SIZE(64, 56),
@@ -3068,6 +3278,7 @@ const struct SpeciesInfo gSpeciesInfoGen6[] =
             SIZE_32x32,
             SHADOW_SIZE_M,
             TRACKS_FOOT,
+            sAnimTable_Following,
             gOverworldPalette_Malamar,
             gShinyOverworldPalette_Malamar
         )
@@ -3114,7 +3325,14 @@ const struct SpeciesInfo gSpeciesInfoGen6[] =
         .frontPic = gMonFrontPic_Binacle,
         .frontPicSize = MON_COORDS_SIZE(48, 56),
         .frontPicYOffset = 9,
-        .frontAnimFrames = sAnims_Binacle,
+        .frontAnimFrames = ANIM_FRAMES(
+            ANIMCMD_FRAME(1, 8),
+            ANIMCMD_FRAME(0, 8),
+            ANIMCMD_FRAME(1, 8),
+            ANIMCMD_FRAME(0, 8),
+            ANIMCMD_FRAME(1, 8),
+            ANIMCMD_FRAME(0, 8),
+        ),
         .frontAnimId = ANIM_H_SLIDE,
         .backPic = gMonBackPic_Binacle,
         .backPicSize = MON_COORDS_SIZE(64, 64),
@@ -3132,6 +3350,7 @@ const struct SpeciesInfo gSpeciesInfoGen6[] =
             SIZE_32x32,
             SHADOW_SIZE_M,
             TRACKS_FOOT,
+            sAnimTable_Following,
             gOverworldPalette_Binacle,
             gShinyOverworldPalette_Binacle
         )
@@ -3179,7 +3398,10 @@ const struct SpeciesInfo gSpeciesInfoGen6[] =
         .frontPic = gMonFrontPic_Barbaracle,
         .frontPicSize = MON_COORDS_SIZE(64, 64),
         .frontPicYOffset = 0,
-        .frontAnimFrames = sAnims_Barbaracle,
+        .frontAnimFrames = ANIM_FRAMES(
+            ANIMCMD_FRAME(1, 20),
+            ANIMCMD_FRAME(0, 15),
+        ),
         .frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         .backPic = gMonBackPic_Barbaracle,
         .backPicSize = MON_COORDS_SIZE(64, 64),
@@ -3197,6 +3419,7 @@ const struct SpeciesInfo gSpeciesInfoGen6[] =
             SIZE_32x32,
             SHADOW_SIZE_M,
             TRACKS_FOOT,
+            sAnimTable_Following,
             gOverworldPalette_Barbaracle,
             gShinyOverworldPalette_Barbaracle
         )
@@ -3243,7 +3466,16 @@ const struct SpeciesInfo gSpeciesInfoGen6[] =
         .frontPic = gMonFrontPic_Skrelp,
         .frontPicSize = MON_COORDS_SIZE(40, 48),
         .frontPicYOffset = 8,
-        .frontAnimFrames = sAnims_Skrelp,
+        .frontAnimFrames = ANIM_FRAMES(
+            ANIMCMD_FRAME(1, 10),
+            ANIMCMD_FRAME(0, 10),
+            ANIMCMD_FRAME(1, 10),
+            ANIMCMD_FRAME(0, 20),
+            ANIMCMD_FRAME(1, 10),
+            ANIMCMD_FRAME(0, 10),
+            ANIMCMD_FRAME(1, 10),
+            ANIMCMD_FRAME(0, 10),
+        ),
         .frontAnimId = ANIM_V_SLIDE_WOBBLE_SMALL,
         .backPic = gMonBackPic_Skrelp,
         .backPicSize = MON_COORDS_SIZE(64, 64),
@@ -3261,6 +3493,7 @@ const struct SpeciesInfo gSpeciesInfoGen6[] =
             SIZE_32x32,
             SHADOW_SIZE_M,
             TRACKS_FOOT,
+            sAnimTable_Following,
             gOverworldPalette_Skrelp,
             gShinyOverworldPalette_Skrelp
         )
@@ -3307,7 +3540,12 @@ const struct SpeciesInfo gSpeciesInfoGen6[] =
         .frontPic = gMonFrontPic_Dragalge,
         .frontPicSize = MON_COORDS_SIZE(64, 64),
         .frontPicYOffset = 0,
-        .frontAnimFrames = sAnims_Dragalge,
+        .frontAnimFrames = ANIM_FRAMES(
+            ANIMCMD_FRAME(1, 20),
+            ANIMCMD_FRAME(0, 10),
+            ANIMCMD_FRAME(1, 15),
+            ANIMCMD_FRAME(0, 1),
+        ),
         .frontAnimId = ANIM_FRONT_FLIP,
         .backPic = gMonBackPic_Dragalge,
         .backPicSize = MON_COORDS_SIZE(64, 64),
@@ -3325,6 +3563,7 @@ const struct SpeciesInfo gSpeciesInfoGen6[] =
             SIZE_32x32,
             SHADOW_SIZE_M,
             TRACKS_FOOT,
+            sAnimTable_Following,
             gOverworldPalette_Dragalge,
             gShinyOverworldPalette_Dragalge
         )
@@ -3372,7 +3611,13 @@ const struct SpeciesInfo gSpeciesInfoGen6[] =
         .frontPic = gMonFrontPic_Clauncher,
         .frontPicSize = MON_COORDS_SIZE(56, 40),
         .frontPicYOffset = 14,
-        .frontAnimFrames = sAnims_Clauncher,
+        .frontAnimFrames = ANIM_FRAMES(
+            ANIMCMD_FRAME(0, 15),
+            ANIMCMD_FRAME(1, 15),
+            ANIMCMD_FRAME(0, 15),
+            ANIMCMD_FRAME(1, 15),
+            ANIMCMD_FRAME(0, 15),
+        ),
         .frontAnimId = ANIM_TIP_MOVE_FORWARD,
         .backPic = gMonBackPic_Clauncher,
         .backPicSize = MON_COORDS_SIZE(64, 48),
@@ -3390,6 +3635,7 @@ const struct SpeciesInfo gSpeciesInfoGen6[] =
             SIZE_32x32,
             SHADOW_SIZE_M,
             TRACKS_FOOT,
+            sAnimTable_Following,
             gOverworldPalette_Clauncher,
             gShinyOverworldPalette_Clauncher
         )
@@ -3437,7 +3683,16 @@ const struct SpeciesInfo gSpeciesInfoGen6[] =
         .frontPic = gMonFrontPic_Clawitzer,
         .frontPicSize = MON_COORDS_SIZE(64, 64),
         .frontPicYOffset = 10,
-        .frontAnimFrames = sAnims_Clawitzer,
+        .frontAnimFrames = ANIM_FRAMES(
+            ANIMCMD_FRAME(1, 6),
+            ANIMCMD_FRAME(0, 6),
+            ANIMCMD_FRAME(1, 6),
+            ANIMCMD_FRAME(0, 6),
+            ANIMCMD_FRAME(1, 6),
+            ANIMCMD_FRAME(0, 6),
+            ANIMCMD_FRAME(1, 6),
+            ANIMCMD_FRAME(0, 6),
+        ),
         .frontAnimId = ANIM_CIRCLE_C_CLOCKWISE_SLOW,
         .backPic = gMonBackPic_Clawitzer,
         .backPicSize = MON_COORDS_SIZE(64, 48),
@@ -3455,6 +3710,7 @@ const struct SpeciesInfo gSpeciesInfoGen6[] =
             SIZE_32x32,
             SHADOW_SIZE_M,
             TRACKS_FOOT,
+            sAnimTable_Following,
             gOverworldPalette_Clawitzer,
             gShinyOverworldPalette_Clawitzer
         )
@@ -3501,7 +3757,11 @@ const struct SpeciesInfo gSpeciesInfoGen6[] =
         .frontPic = gMonFrontPic_Helioptile,
         .frontPicSize = MON_COORDS_SIZE(40, 40),
         .frontPicYOffset = 13,
-        .frontAnimFrames = sAnims_Helioptile,
+        .frontAnimFrames = ANIM_FRAMES(
+            ANIMCMD_FRAME(1, 50),
+            ANIMCMD_FRAME(1, 15),
+            ANIMCMD_FRAME(0, 10),
+        ),
         .frontAnimId = ANIM_GLOW_YELLOW,
         .backPic = gMonBackPic_Helioptile,
         .backPicSize = MON_COORDS_SIZE(64, 48),
@@ -3519,6 +3779,7 @@ const struct SpeciesInfo gSpeciesInfoGen6[] =
             SIZE_32x32,
             SHADOW_SIZE_M,
             TRACKS_FOOT,
+            sAnimTable_Following,
             gOverworldPalette_Helioptile,
             gShinyOverworldPalette_Helioptile
         )
@@ -3566,7 +3827,11 @@ const struct SpeciesInfo gSpeciesInfoGen6[] =
         .frontPic = gMonFrontPic_Heliolisk,
         .frontPicSize = MON_COORDS_SIZE(64, 56),
         .frontPicYOffset = 4,
-        .frontAnimFrames = sAnims_Heliolisk,
+        .frontAnimFrames = ANIM_FRAMES(
+            ANIMCMD_FRAME(1, 50),
+            ANIMCMD_FRAME(1, 30),
+            ANIMCMD_FRAME(0, 30),
+        ),
         .frontAnimId = ANIM_RAPID_H_HOPS,
         .backPic = gMonBackPic_Heliolisk,
         .backPicSize = MON_COORDS_SIZE(56, 64),
@@ -3584,6 +3849,7 @@ const struct SpeciesInfo gSpeciesInfoGen6[] =
             SIZE_32x32,
             SHADOW_SIZE_M,
             TRACKS_FOOT,
+            sAnimTable_Following,
             gOverworldPalette_Heliolisk,
             gShinyOverworldPalette_Heliolisk
         )
@@ -3630,7 +3896,12 @@ const struct SpeciesInfo gSpeciesInfoGen6[] =
         .frontPic = gMonFrontPic_Tyrunt,
         .frontPicSize = MON_COORDS_SIZE(48, 48),
         .frontPicYOffset = 11,
-        .frontAnimFrames = sAnims_Tyrunt,
+        .frontAnimFrames = ANIM_FRAMES(
+            ANIMCMD_FRAME(1, 10),
+            ANIMCMD_FRAME(0, 20),
+            ANIMCMD_FRAME(1, 10),
+            ANIMCMD_FRAME(0, 10),
+        ),
         .frontAnimId = ANIM_V_SHAKE,
         .backPic = gMonBackPic_Tyrunt,
         .backPicSize = MON_COORDS_SIZE(64, 48),
@@ -3648,6 +3919,7 @@ const struct SpeciesInfo gSpeciesInfoGen6[] =
             SIZE_32x32,
             SHADOW_SIZE_M,
             TRACKS_FOOT,
+            sAnimTable_Following,
             gOverworldPalette_Tyrunt,
             gShinyOverworldPalette_Tyrunt
         )
@@ -3694,7 +3966,10 @@ const struct SpeciesInfo gSpeciesInfoGen6[] =
         .frontPic = gMonFrontPic_Tyrantrum,
         .frontPicSize = MON_COORDS_SIZE(64, 64),
         .frontPicYOffset = 0,
-        .frontAnimFrames = sAnims_Tyrantrum,
+        .frontAnimFrames = ANIM_FRAMES(
+            ANIMCMD_FRAME(1, 40),
+            ANIMCMD_FRAME(0, 5),
+        ),
         .frontAnimId = ANIM_V_SHAKE,
         .backPic = gMonBackPic_Tyrantrum,
         .backPicSize = MON_COORDS_SIZE(64, 56),
@@ -3712,6 +3987,7 @@ const struct SpeciesInfo gSpeciesInfoGen6[] =
             SIZE_32x32,
             SHADOW_SIZE_M,
             TRACKS_FOOT,
+            sAnimTable_Following,
             gOverworldPalette_Tyrantrum,
             gShinyOverworldPalette_Tyrantrum
         )
@@ -3758,7 +4034,18 @@ const struct SpeciesInfo gSpeciesInfoGen6[] =
         .frontPic = gMonFrontPic_Amaura,
         .frontPicSize = MON_COORDS_SIZE(32, 56),
         .frontPicYOffset = 5,
-        .frontAnimFrames = sAnims_Amaura,
+        .frontAnimFrames = ANIM_FRAMES(
+            ANIMCMD_FRAME(1, 5),
+            ANIMCMD_FRAME(0, 4),
+            ANIMCMD_FRAME(1, 8),
+            ANIMCMD_FRAME(0, 8),
+            ANIMCMD_FRAME(1, 11),
+            ANIMCMD_FRAME(0, 6),
+            ANIMCMD_FRAME(1, 8),
+            ANIMCMD_FRAME(0, 8),
+            ANIMCMD_FRAME(1, 5),
+            ANIMCMD_FRAME(0, 5),
+        ),
         .frontAnimId = ANIM_CONCAVE_ARC_SMALL_TWICE,
         .backPic = gMonBackPic_Amaura,
         .backPicSize = MON_COORDS_SIZE(40, 64),
@@ -3776,6 +4063,7 @@ const struct SpeciesInfo gSpeciesInfoGen6[] =
             SIZE_32x32,
             SHADOW_SIZE_M,
             TRACKS_FOOT,
+            sAnimTable_Following,
             gOverworldPalette_Amaura,
             gShinyOverworldPalette_Amaura
         )
@@ -3822,7 +4110,10 @@ const struct SpeciesInfo gSpeciesInfoGen6[] =
         .frontPic = gMonFrontPic_Aurorus,
         .frontPicSize = MON_COORDS_SIZE(64, 64),
         .frontPicYOffset = 0,
-        .frontAnimFrames = sAnims_Aurorus,
+        .frontAnimFrames = ANIM_FRAMES(
+            ANIMCMD_FRAME(1, 15),
+            ANIMCMD_FRAME(0, 20),
+        ),
         .frontAnimId = ANIM_GROW_VIBRATE,
         .backPic = gMonBackPic_Aurorus,
         .backPicSize = MON_COORDS_SIZE(64, 64),
@@ -3840,6 +4131,7 @@ const struct SpeciesInfo gSpeciesInfoGen6[] =
             SIZE_32x32,
             SHADOW_SIZE_M,
             TRACKS_FOOT,
+            sAnimTable_Following,
             gOverworldPalette_Aurorus,
             gShinyOverworldPalette_Aurorus
         )
@@ -3891,7 +4183,11 @@ const struct SpeciesInfo gSpeciesInfoGen6[] =
         .frontPic = gMonFrontPic_Hawlucha,
         .frontPicSize = MON_COORDS_SIZE(64, 56),
         .frontPicYOffset = 8,
-        .frontAnimFrames = sAnims_Hawlucha,
+        .frontAnimFrames = ANIM_FRAMES(
+            ANIMCMD_FRAME(0, 28),
+            ANIMCMD_FRAME(1, 32),
+            ANIMCMD_FRAME(0, 15),
+        ),
         .frontAnimId = ANIM_V_SQUISH_AND_BOUNCE_SLOW,
         .backPic = gMonBackPic_Hawlucha,
         .backPicSize = MON_COORDS_SIZE(64, 48),
@@ -3909,6 +4205,7 @@ const struct SpeciesInfo gSpeciesInfoGen6[] =
             SIZE_32x32,
             SHADOW_SIZE_M,
             TRACKS_FOOT,
+            sAnimTable_Following,
             gOverworldPalette_Hawlucha,
             gShinyOverworldPalette_Hawlucha
         )
@@ -3956,7 +4253,11 @@ const struct SpeciesInfo gSpeciesInfoGen6[] =
         .frontPic = gMonFrontPic_Dedenne,
         .frontPicSize = MON_COORDS_SIZE(64, 40),
         .frontPicYOffset = 13,
-        .frontAnimFrames = sAnims_Dedenne,
+        .frontAnimFrames = ANIM_FRAMES(
+            ANIMCMD_FRAME(1, 50),
+            ANIMCMD_FRAME(1, 15),
+            ANIMCMD_FRAME(0, 10),
+        ),
         .frontAnimId = ANIM_GLOW_YELLOW,
         .backPic = gMonBackPic_Dedenne,
         .backPicSize = MON_COORDS_SIZE(64, 48),
@@ -3974,6 +4275,7 @@ const struct SpeciesInfo gSpeciesInfoGen6[] =
             SIZE_32x32,
             SHADOW_SIZE_M,
             TRACKS_FOOT,
+            sAnimTable_Following,
             gOverworldPalette_Dedenne,
             gShinyOverworldPalette_Dedenne
         )
@@ -4022,7 +4324,17 @@ const struct SpeciesInfo gSpeciesInfoGen6[] =
         .frontPic = gMonFrontPic_Carbink,
         .frontPicSize = MON_COORDS_SIZE(48, 48),
         .frontPicYOffset = 10,
-        .frontAnimFrames = sAnims_Carbink,
+        .frontAnimFrames = ANIM_FRAMES(
+            ANIMCMD_FRAME(0, 5),
+            ANIMCMD_FRAME(1, 15),
+            ANIMCMD_FRAME(0, 10),
+            ANIMCMD_FRAME(1, 15),
+            ANIMCMD_FRAME(0, 25),
+            ANIMCMD_FRAME(1, 10),
+            ANIMCMD_FRAME(0, 10),
+            ANIMCMD_FRAME(1, 10),
+            ANIMCMD_FRAME(0, 10),
+        ),
         .frontAnimId = ANIM_ZIGZAG_SLOW,
         .enemyMonElevation = 4,
         .backPic = gMonBackPic_Carbink,
@@ -4041,6 +4353,7 @@ const struct SpeciesInfo gSpeciesInfoGen6[] =
             SIZE_32x32,
             SHADOW_SIZE_M,
             TRACKS_FOOT,
+            sAnimTable_Following,
             gOverworldPalette_Carbink,
             gShinyOverworldPalette_Carbink
         )
@@ -4088,7 +4401,11 @@ const struct SpeciesInfo gSpeciesInfoGen6[] =
         .frontPic = gMonFrontPic_Goomy,
         .frontPicSize = MON_COORDS_SIZE(32, 40),
         .frontPicYOffset = 13,
-        .frontAnimFrames = sAnims_Goomy,
+        .frontAnimFrames = ANIM_FRAMES(
+            ANIMCMD_FRAME(0, 28),
+            ANIMCMD_FRAME(1, 32),
+            ANIMCMD_FRAME(0, 15),
+        ),
         .frontAnimId = ANIM_V_SQUISH_AND_BOUNCE_SLOW,
         .backPic = gMonBackPic_Goomy,
         .backPicSize = MON_COORDS_SIZE(48, 56),
@@ -4106,6 +4423,7 @@ const struct SpeciesInfo gSpeciesInfoGen6[] =
             SIZE_32x32,
             SHADOW_SIZE_M,
             TRACKS_FOOT,
+            sAnimTable_Following,
             gOverworldPalette_Goomy,
             gShinyOverworldPalette_Goomy
         )
@@ -4154,7 +4472,11 @@ const struct SpeciesInfo gSpeciesInfoGen6[] =
         .frontPic = gMonFrontPic_Sliggoo,
         .frontPicSize = MON_COORDS_SIZE(32, 64),
         .frontPicYOffset = 6,
-        .frontAnimFrames = sAnims_Sliggoo,
+        .frontAnimFrames = ANIM_FRAMES(
+            ANIMCMD_FRAME(0, 20),
+            ANIMCMD_FRAME(1, 10),
+            ANIMCMD_FRAME(0, 10),
+        ),
         .frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         .backPic = gMonBackPic_Sliggoo,
         .backPicSize = MON_COORDS_SIZE(48, 64),
@@ -4172,6 +4494,7 @@ const struct SpeciesInfo gSpeciesInfoGen6[] =
             SIZE_32x32,
             SHADOW_SIZE_M,
             TRACKS_FOOT,
+            sAnimTable_Following,
             gOverworldPalette_Sliggoo,
             gShinyOverworldPalette_Sliggoo
         )
@@ -4219,7 +4542,13 @@ const struct SpeciesInfo gSpeciesInfoGen6[] =
         .frontPic = gMonFrontPic_Goodra,
         .frontPicSize = MON_COORDS_SIZE(64, 64),
         .frontPicYOffset = 0,
-        .frontAnimFrames = sAnims_Goodra,
+        .frontAnimFrames = ANIM_FRAMES(
+            ANIMCMD_FRAME(0, 18),
+            ANIMCMD_FRAME(1, 18),
+            ANIMCMD_FRAME(0, 18),
+            ANIMCMD_FRAME(1, 18),
+            ANIMCMD_FRAME(0, 10),
+        ),
         .frontAnimId = ANIM_V_SHAKE,
         .backPic = gMonBackPic_Goodra,
         .backPicSize = MON_COORDS_SIZE(64, 64),
@@ -4237,6 +4566,7 @@ const struct SpeciesInfo gSpeciesInfoGen6[] =
             SIZE_32x32,
             SHADOW_SIZE_M,
             TRACKS_FOOT,
+            sAnimTable_Following,
             gOverworldPalette_Goodra,
             gShinyOverworldPalette_Goodra
         )
@@ -4284,7 +4614,7 @@ const struct SpeciesInfo gSpeciesInfoGen6[] =
         .frontPic = gMonFrontPic_SliggooHisui,
         .frontPicSize = MON_COORDS_SIZE(48, 56),
         .frontPicYOffset = 7,
-        .frontAnimFrames = sAnims_SliggooHisui,
+        .frontAnimFrames = sAnims_SingleFramePlaceHolder,
         //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         .backPic = gMonBackPic_SliggooHisui,
         .backPicSize = MON_COORDS_SIZE(64, 64),
@@ -4302,6 +4632,7 @@ const struct SpeciesInfo gSpeciesInfoGen6[] =
             SIZE_32x32,
             SHADOW_SIZE_M,
             TRACKS_FOOT,
+            sAnimTable_Following,
             gOverworldPalette_SliggooHisui,
             gShinyOverworldPalette_SliggooHisui
         )
@@ -4350,7 +4681,7 @@ const struct SpeciesInfo gSpeciesInfoGen6[] =
         .frontPic = gMonFrontPic_GoodraHisui,
         .frontPicSize = MON_COORDS_SIZE(56, 64),
         .frontPicYOffset = 2,
-        .frontAnimFrames = sAnims_GoodraHisui,
+        .frontAnimFrames = sAnims_SingleFramePlaceHolder,
         //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         .backPic = gMonBackPic_GoodraHisui,
         .backPicSize = MON_COORDS_SIZE(64, 64),
@@ -4368,6 +4699,7 @@ const struct SpeciesInfo gSpeciesInfoGen6[] =
             SIZE_32x32,
             SHADOW_SIZE_M,
             TRACKS_FOOT,
+            sAnimTable_Following,
             gOverworldPalette_GoodraHisui,
             gShinyOverworldPalette_GoodraHisui
         )
@@ -4418,7 +4750,17 @@ const struct SpeciesInfo gSpeciesInfoGen6[] =
         .frontPic = gMonFrontPic_Klefki,
         .frontPicSize = MON_COORDS_SIZE(40, 56),
         .frontPicYOffset = 4,
-        .frontAnimFrames = sAnims_Klefki,
+        .frontAnimFrames = ANIM_FRAMES(
+            ANIMCMD_FRAME(0, 5),
+            ANIMCMD_FRAME(1, 15),
+            ANIMCMD_FRAME(0, 10),
+            ANIMCMD_FRAME(1, 15),
+            ANIMCMD_FRAME(0, 25),
+            ANIMCMD_FRAME(1, 10),
+            ANIMCMD_FRAME(0, 10),
+            ANIMCMD_FRAME(1, 10),
+            ANIMCMD_FRAME(0, 10),
+        ),
         .frontAnimId = ANIM_FOUR_PETAL,
         .enemyMonElevation = 5,
         .backPic = gMonBackPic_Klefki,
@@ -4437,6 +4779,7 @@ const struct SpeciesInfo gSpeciesInfoGen6[] =
             SIZE_32x32,
             SHADOW_SIZE_M,
             TRACKS_FOOT,
+            sAnimTable_Following,
             gOverworldPalette_Klefki,
             gShinyOverworldPalette_Klefki
         )
@@ -4484,7 +4827,11 @@ const struct SpeciesInfo gSpeciesInfoGen6[] =
         .frontPic = gMonFrontPic_Phantump,
         .frontPicSize = MON_COORDS_SIZE(48, 48),
         .frontPicYOffset = 11,
-        .frontAnimFrames = sAnims_Phantump,
+        .frontAnimFrames = ANIM_FRAMES(
+            ANIMCMD_FRAME(0, 20),
+            ANIMCMD_FRAME(1, 10),
+            ANIMCMD_FRAME(0, 10),
+        ),
         .frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         .enemyMonElevation = 5,
         .backPic = gMonBackPic_Phantump,
@@ -4503,6 +4850,7 @@ const struct SpeciesInfo gSpeciesInfoGen6[] =
             SIZE_32x32,
             SHADOW_SIZE_M,
             TRACKS_FOOT,
+            sAnimTable_Following,
             gOverworldPalette_Phantump,
             gShinyOverworldPalette_Phantump
         )
@@ -4550,7 +4898,14 @@ const struct SpeciesInfo gSpeciesInfoGen6[] =
         .frontPic = gMonFrontPic_Trevenant,
         .frontPicSize = MON_COORDS_SIZE(64, 64),
         .frontPicYOffset = 1,
-        .frontAnimFrames = sAnims_Trevenant,
+        .frontAnimFrames = ANIM_FRAMES(
+            ANIMCMD_FRAME(1, 15),
+            ANIMCMD_FRAME(0, 15),
+            ANIMCMD_FRAME(1, 15),
+            ANIMCMD_FRAME(0, 15),
+            ANIMCMD_FRAME(1, 15),
+            ANIMCMD_FRAME(0, 15),
+        ),
         .frontAnimId = ANIM_H_SLIDE_SLOW,
         .backPic = gMonBackPic_Trevenant,
         .backPicSize = MON_COORDS_SIZE(64, 64),
@@ -4568,6 +4923,7 @@ const struct SpeciesInfo gSpeciesInfoGen6[] =
             SIZE_32x32,
             SHADOW_SIZE_M,
             TRACKS_FOOT,
+            sAnimTable_Following,
             gOverworldPalette_Trevenant,
             gShinyOverworldPalette_Trevenant
         )
@@ -4632,6 +4988,7 @@ const struct SpeciesInfo gSpeciesInfoGen6[] =
             SIZE_32x32,
             SHADOW_SIZE_M,
             TRACKS_FOOT,
+            sAnimTable_Following,
             gOverworldPalette_Pumpkaboo,
             gShinyOverworldPalette_Pumpkaboo
         )
@@ -4697,6 +5054,7 @@ const struct SpeciesInfo gSpeciesInfoGen6[] =
             SIZE_32x32,
             SHADOW_SIZE_M,
             TRACKS_FOOT,
+            sAnimTable_Following,
             gOverworldPalette_Pumpkaboo,
             gShinyOverworldPalette_Pumpkaboo
         )
@@ -4762,6 +5120,7 @@ const struct SpeciesInfo gSpeciesInfoGen6[] =
             SIZE_32x32,
             SHADOW_SIZE_M,
             TRACKS_FOOT,
+            sAnimTable_Following,
             gOverworldPalette_Pumpkaboo,
             gShinyOverworldPalette_Pumpkaboo
         )
@@ -4829,6 +5188,7 @@ const struct SpeciesInfo gSpeciesInfoGen6[] =
             SIZE_32x32,
             SHADOW_SIZE_M,
             TRACKS_FOOT,
+            sAnimTable_Following,
             gOverworldPalette_Pumpkaboo,
             gShinyOverworldPalette_Pumpkaboo
         )
@@ -4895,6 +5255,7 @@ const struct SpeciesInfo gSpeciesInfoGen6[] =
             SIZE_32x32,
             SHADOW_SIZE_M,
             TRACKS_FOOT,
+            sAnimTable_Following,
             gOverworldPalette_Gourgeist,
             gShinyOverworldPalette_Gourgeist
         )
@@ -4958,6 +5319,7 @@ const struct SpeciesInfo gSpeciesInfoGen6[] =
             SIZE_32x32,
             SHADOW_SIZE_M,
             TRACKS_FOOT,
+            sAnimTable_Following,
             gOverworldPalette_Gourgeist,
             gShinyOverworldPalette_Gourgeist
         )
@@ -5021,6 +5383,7 @@ const struct SpeciesInfo gSpeciesInfoGen6[] =
             SIZE_32x32,
             SHADOW_SIZE_M,
             TRACKS_FOOT,
+            sAnimTable_Following,
             gOverworldPalette_Gourgeist,
             gShinyOverworldPalette_Gourgeist
         )
@@ -5086,6 +5449,7 @@ const struct SpeciesInfo gSpeciesInfoGen6[] =
             SIZE_32x32,
             SHADOW_SIZE_M,
             TRACKS_FOOT,
+            sAnimTable_Following,
             gOverworldPalette_Gourgeist,
             gShinyOverworldPalette_Gourgeist
         )
@@ -5139,7 +5503,13 @@ const struct SpeciesInfo gSpeciesInfoGen6[] =
         .frontPic = gMonFrontPic_Bergmite,
         .frontPicSize = MON_COORDS_SIZE(40, 40),
         .frontPicYOffset = 14,
-        .frontAnimFrames = sAnims_Bergmite,
+        .frontAnimFrames = ANIM_FRAMES(
+            ANIMCMD_FRAME(0, 11),
+            ANIMCMD_FRAME(1, 10),
+            ANIMCMD_FRAME(0, 10),
+            ANIMCMD_FRAME(1, 10),
+            ANIMCMD_FRAME(0, 10),
+        ),
         .frontAnimId = ANIM_LUNGE_GROW,
         .backPic = gMonBackPic_Bergmite,
         .backPicSize = MON_COORDS_SIZE(56, 48),
@@ -5157,6 +5527,7 @@ const struct SpeciesInfo gSpeciesInfoGen6[] =
             SIZE_32x32,
             SHADOW_SIZE_M,
             TRACKS_FOOT,
+            sAnimTable_Following,
             gOverworldPalette_Bergmite,
             gShinyOverworldPalette_Bergmite
         )
@@ -5204,7 +5575,12 @@ const struct SpeciesInfo gSpeciesInfoGen6[] =
         .frontPic = gMonFrontPic_Avalugg,
         .frontPicSize = MON_COORDS_SIZE(64, 56),
         .frontPicYOffset = 4,
-        .frontAnimFrames = sAnims_Avalugg,
+        .frontAnimFrames = ANIM_FRAMES(
+            ANIMCMD_FRAME(1, 10),
+            ANIMCMD_FRAME(0, 20),
+            ANIMCMD_FRAME(1, 10),
+            ANIMCMD_FRAME(0, 10),
+        ),
         .frontAnimId = ANIM_V_SHAKE,
         .backPic = gMonBackPic_Avalugg,
         .backPicSize = MON_COORDS_SIZE(64, 40),
@@ -5222,6 +5598,7 @@ const struct SpeciesInfo gSpeciesInfoGen6[] =
             SIZE_32x32,
             SHADOW_SIZE_M,
             TRACKS_FOOT,
+            sAnimTable_Following,
             gOverworldPalette_Avalugg,
             gShinyOverworldPalette_Avalugg
         )
@@ -5267,7 +5644,7 @@ const struct SpeciesInfo gSpeciesInfoGen6[] =
         .frontPic = gMonFrontPic_AvaluggHisui,
         .frontPicSize = MON_COORDS_SIZE(64, 48),
         .frontPicYOffset = 6,
-        .frontAnimFrames = sAnims_AvaluggHisui,
+        .frontAnimFrames = sAnims_SingleFramePlaceHolder,
         //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         .backPic = gMonBackPic_AvaluggHisui,
         .backPicSize = MON_COORDS_SIZE(64, 32),
@@ -5285,6 +5662,7 @@ const struct SpeciesInfo gSpeciesInfoGen6[] =
             SIZE_32x32,
             SHADOW_SIZE_M,
             TRACKS_FOOT,
+            sAnimTable_Following,
             gOverworldPalette_AvaluggHisui,
             gShinyOverworldPalette_AvaluggHisui
         )
@@ -5338,7 +5716,16 @@ const struct SpeciesInfo gSpeciesInfoGen6[] =
         .frontPic = gMonFrontPic_Noibat,
         .frontPicSize = MON_COORDS_SIZE(64, 48),
         .frontPicYOffset = 8,
-        .frontAnimFrames = sAnims_Noibat,
+        .frontAnimFrames = ANIM_FRAMES(
+            ANIMCMD_FRAME(1, 12),
+            ANIMCMD_FRAME(0, 12),
+            ANIMCMD_FRAME(1, 12),
+            ANIMCMD_FRAME(0, 30),
+            ANIMCMD_FRAME(1, 12),
+            ANIMCMD_FRAME(0, 12),
+            ANIMCMD_FRAME(1, 12),
+            ANIMCMD_FRAME(0, 15),
+        ),
         .frontAnimId = ANIM_RISING_WOBBLE,
         .enemyMonElevation = 8,
         .backPic = gMonBackPic_Noibat,
@@ -5357,6 +5744,7 @@ const struct SpeciesInfo gSpeciesInfoGen6[] =
             SIZE_32x32,
             SHADOW_SIZE_M,
             TRACKS_FOOT,
+            sAnimTable_Following,
             gOverworldPalette_Noibat,
             gShinyOverworldPalette_Noibat
         )
@@ -5407,7 +5795,10 @@ const struct SpeciesInfo gSpeciesInfoGen6[] =
         .frontPic = gMonFrontPic_Noivern,
         .frontPicSize = MON_COORDS_SIZE(64, 64),
         .frontPicYOffset = 3,
-        .frontAnimFrames = sAnims_Noivern,
+        .frontAnimFrames = ANIM_FRAMES(
+            ANIMCMD_FRAME(1, 32),
+            ANIMCMD_FRAME(0, 20),
+        ),
         .frontAnimId = ANIM_V_STRETCH,
         .backPic = gMonBackPic_Noivern,
         .backPicSize = MON_COORDS_SIZE(64, 64),
@@ -5425,6 +5816,7 @@ const struct SpeciesInfo gSpeciesInfoGen6[] =
             SIZE_32x32,
             SHADOW_SIZE_M,
             TRACKS_FOOT,
+            sAnimTable_Following,
             gOverworldPalette_Noivern,
             gShinyOverworldPalette_Noivern
         )
@@ -5485,6 +5877,7 @@ const struct SpeciesInfo gSpeciesInfoGen6[] =
             SIZE_64x64,
             SHADOW_SIZE_M,
             TRACKS_FOOT,
+            sAnimTable_Following,
             gOverworldPalette_XerneasNeutral,
             gShinyOverworldPalette_XerneasNeutral
         )
@@ -5548,6 +5941,7 @@ const struct SpeciesInfo gSpeciesInfoGen6[] =
             SIZE_64x64,
             SHADOW_SIZE_M,
             TRACKS_FOOT,
+            sAnimTable_Following,
             gOverworldPalette_XerneasNeutral,
             gShinyOverworldPalette_XerneasNeutral
         )
@@ -5599,7 +5993,12 @@ const struct SpeciesInfo gSpeciesInfoGen6[] =
         .frontPic = gMonFrontPic_Yveltal,
         .frontPicSize = MON_COORDS_SIZE(64, 64),
         .frontPicYOffset = 0,
-        .frontAnimFrames = sAnims_Yveltal,
+        .frontAnimFrames = ANIM_FRAMES(
+            ANIMCMD_FRAME(1, 20),
+            ANIMCMD_FRAME(0, 10),
+            ANIMCMD_FRAME(1, 15),
+            ANIMCMD_FRAME(0, 1),
+        ),
         .frontAnimId = ANIM_FRONT_FLIP,
         .enemyMonElevation = 5,
         .backPic = gMonBackPic_Yveltal,
@@ -5618,6 +6017,7 @@ const struct SpeciesInfo gSpeciesInfoGen6[] =
             SIZE_64x64,
             SHADOW_SIZE_M,
             TRACKS_FOOT,
+            sAnimTable_Following,
             gOverworldPalette_Yveltal,
             gShinyOverworldPalette_Yveltal
         )
@@ -5682,6 +6082,7 @@ const struct SpeciesInfo gSpeciesInfoGen6[] =
             SIZE_64x64,
             SHADOW_SIZE_M,
             TRACKS_FOOT,
+            sAnimTable_Following,
             gOverworldPalette_Zygarde50,
             gShinyOverworldPalette_Zygarde50
         )
@@ -5745,6 +6146,7 @@ const struct SpeciesInfo gSpeciesInfoGen6[] =
             SIZE_64x64,
             SHADOW_SIZE_M,
             TRACKS_FOOT,
+            sAnimTable_Following,
             gOverworldPalette_Zygarde50,
             gShinyOverworldPalette_Zygarde50
         )
@@ -5808,6 +6210,7 @@ const struct SpeciesInfo gSpeciesInfoGen6[] =
             SIZE_32x32,
             SHADOW_SIZE_M,
             TRACKS_FOOT,
+            sAnimTable_Following,
             gOverworldPalette_Zygarde10,
             gShinyOverworldPalette_Zygarde10
         )
@@ -5872,6 +6275,7 @@ const struct SpeciesInfo gSpeciesInfoGen6[] =
             SIZE_32x32,
             SHADOW_SIZE_M,
             TRACKS_FOOT,
+            sAnimTable_Following,
             gOverworldPalette_Zygarde10,
             gShinyOverworldPalette_Zygarde10
         )
@@ -5922,7 +6326,11 @@ const struct SpeciesInfo gSpeciesInfoGen6[] =
         .frontPic = gMonFrontPic_ZygardeComplete,
         .frontPicSize = MON_COORDS_SIZE(64, 64),
         .frontPicYOffset = 0,
-        .frontAnimFrames = sAnims_ZygardeComplete,
+        .frontAnimFrames = ANIM_FRAMES(
+            ANIMCMD_FRAME(0, 12),
+            ANIMCMD_FRAME(1, 45),
+            ANIMCMD_FRAME(0, 15),
+        ),
         .frontAnimId = ANIM_GROW_VIBRATE,
         .backPic = gMonBackPic_ZygardeComplete,
         .backPicSize = MON_COORDS_SIZE(64, 64),
@@ -5940,6 +6348,7 @@ const struct SpeciesInfo gSpeciesInfoGen6[] =
             SIZE_32x32,
             SHADOW_SIZE_M,
             TRACKS_FOOT,
+            sAnimTable_Following,
             gOverworldPalette_ZygardeComplete,
             gShinyOverworldPalette_ZygardeComplete
         )
@@ -5992,7 +6401,11 @@ const struct SpeciesInfo gSpeciesInfoGen6[] =
         .frontPic = gMonFrontPic_Diancie,
         .frontPicSize = MON_COORDS_SIZE(40, 64),
         .frontPicYOffset = 1,
-        .frontAnimFrames = sAnims_Diancie,
+        .frontAnimFrames = ANIM_FRAMES(
+            ANIMCMD_FRAME(0, 20),
+            ANIMCMD_FRAME(1, 10),
+            ANIMCMD_FRAME(0, 10),
+        ),
         .frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         .backPic = gMonBackPic_Diancie,
         .backPicSize = MON_COORDS_SIZE(64, 64),
@@ -6010,6 +6423,7 @@ const struct SpeciesInfo gSpeciesInfoGen6[] =
             SIZE_32x32,
             SHADOW_SIZE_M,
             TRACKS_FOOT,
+            sAnimTable_Following,
             gOverworldPalette_Diancie,
             gShinyOverworldPalette_Diancie
         )
@@ -6061,7 +6475,7 @@ const struct SpeciesInfo gSpeciesInfoGen6[] =
         .frontPic = gMonFrontPic_DiancieMega,
         .frontPicSize = MON_COORDS_SIZE(64, 64),
         .frontPicYOffset = 0,
-        .frontAnimFrames = sAnims_DiancieMega,
+        .frontAnimFrames = sAnims_SingleFramePlaceHolder,
         //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         .backPic = gMonBackPic_DiancieMega,
         .backPicSize = MON_COORDS_SIZE(64, 56),
@@ -6074,6 +6488,17 @@ const struct SpeciesInfo gSpeciesInfoGen6[] =
         .pokemonJumpType = PKMN_JUMP_TYPE_NONE,
         SHADOW(0, 12, SHADOW_SIZE_M)
         FOOTPRINT(Diancie)
+    #if OW_BATTLE_ONLY_FORMS
+        OVERWORLD(
+            sPicTable_DiancieMega,
+            SIZE_32x32,
+            SHADOW_SIZE_M,
+            TRACKS_FOOT,
+            sAnimTable_Following,
+            gOverworldPalette_DiancieMega,
+            gShinyOverworldPalette_DiancieMega
+        )
+    #endif //OW_BATTLE_ONLY_FORMS
         .isMythical = TRUE,
         .isMegaEvolution = TRUE,
         .isFrontierBanned = TRUE,
@@ -6124,7 +6549,17 @@ const struct SpeciesInfo gSpeciesInfoGen6[] =
         .frontPic = gMonFrontPic_HoopaConfined,
         .frontPicSize = MON_COORDS_SIZE(48, 48),
         .frontPicYOffset = 11,
-        .frontAnimFrames = sAnims_HoopaConfined,
+        .frontAnimFrames = ANIM_FRAMES(
+            ANIMCMD_FRAME(0, 5),
+            ANIMCMD_FRAME(1, 15),
+            ANIMCMD_FRAME(0, 10),
+            ANIMCMD_FRAME(1, 15),
+            ANIMCMD_FRAME(0, 25),
+            ANIMCMD_FRAME(1, 10),
+            ANIMCMD_FRAME(0, 10),
+            ANIMCMD_FRAME(1, 10),
+            ANIMCMD_FRAME(0, 10),
+        ),
         .frontAnimId = ANIM_ZIGZAG_SLOW,
         .enemyMonElevation = 13,
         .backPic = gMonBackPic_HoopaConfined,
@@ -6143,6 +6578,7 @@ const struct SpeciesInfo gSpeciesInfoGen6[] =
             SIZE_32x32,
             SHADOW_SIZE_M,
             TRACKS_FOOT,
+            sAnimTable_Following,
             gOverworldPalette_HoopaConfined,
             gShinyOverworldPalette_HoopaConfined
         )
@@ -6192,7 +6628,10 @@ const struct SpeciesInfo gSpeciesInfoGen6[] =
         .frontPic = gMonFrontPic_HoopaUnbound,
         .frontPicSize = MON_COORDS_SIZE(64, 64),
         .frontPicYOffset = 0,
-        .frontAnimFrames = sAnims_HoopaUnbound,
+        .frontAnimFrames = ANIM_FRAMES(
+            ANIMCMD_FRAME(1, 20),
+            ANIMCMD_FRAME(0, 10),
+        ),
         .frontAnimId = ANIM_GROW_IN_STAGES,
         .enemyMonElevation = 3,
         .backPic = gMonBackPic_HoopaUnbound,
@@ -6211,6 +6650,7 @@ const struct SpeciesInfo gSpeciesInfoGen6[] =
             SIZE_64x64,
             SHADOW_SIZE_M,
             TRACKS_FOOT,
+            sAnimTable_Following,
             gOverworldPalette_HoopaUnbound,
             gShinyOverworldPalette_HoopaUnbound
         )
@@ -6262,7 +6702,10 @@ const struct SpeciesInfo gSpeciesInfoGen6[] =
         .frontPic = gMonFrontPic_Volcanion,
         .frontPicSize = MON_COORDS_SIZE(64, 64),
         .frontPicYOffset = 0,
-        .frontAnimFrames = sAnims_Volcanion,
+        .frontAnimFrames = ANIM_FRAMES(
+            ANIMCMD_FRAME(1, 45),
+            ANIMCMD_FRAME(0, 10),
+        ),
         .frontAnimId = ANIM_V_SHAKE_TWICE,
         .backPic = gMonBackPic_Volcanion,
         .backPicSize = MON_COORDS_SIZE(64, 64),
@@ -6280,6 +6723,7 @@ const struct SpeciesInfo gSpeciesInfoGen6[] =
             SIZE_32x32,
             SHADOW_SIZE_M,
             TRACKS_FOOT,
+            sAnimTable_Following,
             gOverworldPalette_Volcanion,
             gShinyOverworldPalette_Volcanion
         )
