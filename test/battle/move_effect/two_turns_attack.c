@@ -68,7 +68,6 @@ SINGLE_BATTLE_TEST("Razor Wind doesn't need to charge with Power Herb")
         MESSAGE("Wobbuffet became fully charged due to its Power Herb!");
         if (B_UPDATED_MOVE_DATA < GEN_5)
             MESSAGE("Wobbuffet used Razor Wind!");
-        // For some reason, this breaks with and only with Razor Wind...
         ANIMATION(ANIM_TYPE_MOVE, MOVE_RAZOR_WIND, player);
         HP_BAR(opponent);
     }
