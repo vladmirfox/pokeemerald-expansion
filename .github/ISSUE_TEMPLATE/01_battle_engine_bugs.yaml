@@ -60,14 +60,14 @@ body:
     id: upcomingversion
     attributes:
       label: Upcoming/master Version
-      description: If you're using the upcoming or master branches directly, please use the following command to give us the commit hash that you are on: git log --merges RHH/upcoming -1 --format=%H
+      description: If you're using the `upcoming` or `master` branches directly, please use the following command to give us the commit hash that you are on `git log --merges RHH/upcoming -1 --format=%H`
     validations:
       required: false
   - type: input
     id: contact
     attributes:
       label: Discord contact info
-      description: Provide your Discord tag here so we can contact you in case we need more details. Discussion around **pokeemerald-expansion** happens in our [Discord server](https://discord.gg/6CzjAG6GZk).
+      description: Provide your Discord tag here so we can contact you in case we need more details. Discussion around **`pokeemerald-expansion`** happens in our [Discord server](https://discord.gg/6CzjAG6GZk).
       placeholder: ex. Lunos#4026
     validations:
       required: false
