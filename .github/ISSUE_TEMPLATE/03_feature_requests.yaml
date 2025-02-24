@@ -19,7 +19,7 @@ body:
   - type: textarea
     id: media
     attributes:
-      label: media
+      label: Images / Video 
       description: |
         Have other projects or games solved this problem? Do you have images or video to show this happening?
       placeholder: |
