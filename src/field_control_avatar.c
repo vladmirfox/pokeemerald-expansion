@@ -13,6 +13,7 @@
 #include "field_message_box.h"
 #include "field_player_avatar.h"
 #include "field_poison.h"
+#include "constants/items.h"
 #include "field_screen_effect.h"
 #include "field_specials.h"
 #include "fldeff_misc.h"
@@ -526,7 +527,7 @@ static const u8 *GetInteractedMetatileScript(struct MapPosition *position, u8 me
 
 static const u8 *GetInteractedWaterScript(struct MapPosition *unused1, u8 metatileBehavior, u8 direction)
 {
-    if (FlagGet(FLAG_BADGE05_GET) == TRUE && PartyHasMonWithSurf() == TRUE && IsPlayerFacingSurfableFishableWater() == TRUE)
+    if (FlagGet(FLAG_BADGE05_GET) == TRUE && (PartyHasMonWithSurf() == TRUE || CheckBagHasItem(ITEM_HM03 ,1)) && IsPlayerFacingSurfableFishableWater() == TRUE)
         return EventScript_UseSurf;
 
     if (MetatileBehavior_IsWaterfall(metatileBehavior) == TRUE)
