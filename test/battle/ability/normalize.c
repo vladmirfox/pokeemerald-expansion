@@ -252,8 +252,23 @@ SINGLE_BATTLE_TEST("Normalize doesn't affect Judgment / Techno Blast / Multi-Att
     }
 }
 
+SINGLE_BATTLE_TEST("Normalize doesn't affect Hidden Power's type")
+{
+    GIVEN {
+        ASSUME(GetMoveEffect(MOVE_HIDDEN_POWER) == EFFECT_HIDDEN_POWER);
+        ASSUME(gTypesInfo[TYPE_ELECTRIC].isHiddenPowerType == TRUE);
+        ASSUME(gSpeciesInfo[SPECIES_DIGLETT].types[0] == TYPE_GROUND);
+        PLAYER(SPECIES_SKITTY) { Ability(ABILITY_NORMALIZE); HPIV(31); AttackIV(31); DefenseIV(31); SpAttackIV(30); SpDefenseIV(31); SpeedIV(31); } // HP Electric
+        OPPONENT(SPECIES_DIGLETT);
+    } WHEN {
+        TURN { MOVE(player, MOVE_HIDDEN_POWER); }
+    } SCENE {
+        NOT { ANIMATION(ANIM_TYPE_MOVE, MOVE_HIDDEN_POWER, player); }
+        MESSAGE("It doesn't affect the opposing Diglett…");
+    }
+}
+
 TO_DO_BATTLE_TEST("Aerilate doesn't affect Tera Starstorm's type");
 TO_DO_BATTLE_TEST("Normalize makes Flying Press do Normal/Flying damage");
-TO_DO_BATTLE_TEST("Normalize doesn't affect Hidden Power's type");
 TO_DO_BATTLE_TEST("Normalize doesn't affect Terrain Pulse's type");
 TO_DO_BATTLE_TEST("Normalize doesn't affect damaging Z-Move types");

@@ -145,9 +145,24 @@ SINGLE_BATTLE_TEST("Galvanize doesn't affect Judgment / Techno Blast / Multi-Att
     }
 }
 
+SINGLE_BATTLE_TEST("Galvanize doesn't affect Hidden Power's type")
+{
+    GIVEN {
+        ASSUME(GetMoveEffect(MOVE_HIDDEN_POWER) == EFFECT_HIDDEN_POWER);
+        ASSUME(gTypesInfo[TYPE_ELECTRIC].isHiddenPowerType == TRUE);
+        ASSUME(gSpeciesInfo[SPECIES_DIGLETT].types[0] == TYPE_GROUND);
+        PLAYER(SPECIES_GEODUDE_ALOLA) { Ability(ABILITY_GALVANIZE); HPIV(31); AttackIV(31); DefenseIV(31); SpAttackIV(30); SpDefenseIV(31); SpeedIV(30); } // HP Water
+        OPPONENT(SPECIES_VAPOREON) { Ability(ABILITY_WATER_ABSORB); }
+    } WHEN {
+        TURN { MOVE(player, MOVE_HIDDEN_POWER); }
+    } SCENE {
+        NOT { ANIMATION(ANIM_TYPE_MOVE, MOVE_HIDDEN_POWER, player); }
+        MESSAGE("The opposing Vaporeon's Water Absorb made Hidden Power useless!");
+    }
+}
+
 TO_DO_BATTLE_TEST("Galvanize doesn't affect Tera Starstorm's type");
 TO_DO_BATTLE_TEST("Galvanize doesn't affect Max Strike's type");
-TO_DO_BATTLE_TEST("Galvanize doesn't affect Hidden Power's type");
 TO_DO_BATTLE_TEST("Galvanize doesn't affect Terrain Pulse's type");
 TO_DO_BATTLE_TEST("Galvanize doesn't affect damaging Z-Move types");
 TO_DO_BATTLE_TEST("(DYNAMAX) Galvanize turns Max Strike into Max Lightning when not used by Gigantamax Pikachu/Toxtricity");

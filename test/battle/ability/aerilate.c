@@ -251,9 +251,24 @@ SINGLE_BATTLE_TEST("Aerilate doesn't affect Judgment / Techno Blast / Multi-Atta
     }
 }
 
+SINGLE_BATTLE_TEST("Aerilate doesn't affect Hidden Power's type")
+{
+    GIVEN {
+        ASSUME(GetMoveEffect(MOVE_HIDDEN_POWER) == EFFECT_HIDDEN_POWER);
+        ASSUME(gTypesInfo[TYPE_ELECTRIC].isHiddenPowerType == TRUE);
+        ASSUME(gSpeciesInfo[SPECIES_DIGLETT].types[0] == TYPE_GROUND);
+        PLAYER(SPECIES_PINSIR) { Ability(ABILITY_AERILATE); HPIV(31); AttackIV(31); DefenseIV(31); SpAttackIV(30); SpDefenseIV(31); SpeedIV(31); } // HP Electric
+        OPPONENT(SPECIES_DIGLETT);
+    } WHEN {
+        TURN { MOVE(player, MOVE_HIDDEN_POWER); }
+    } SCENE {
+        NOT { ANIMATION(ANIM_TYPE_MOVE, MOVE_HIDDEN_POWER, player); }
+        MESSAGE("It doesn't affect the opposing Diglett…");
+    }
+}
+
 TO_DO_BATTLE_TEST("Aerilate doesn't affect Tera Starstorm's type");
 TO_DO_BATTLE_TEST("Aerilate doesn't affect Max Strike's type");
-TO_DO_BATTLE_TEST("Aerilate doesn't affect Hidden Power's type");
 TO_DO_BATTLE_TEST("Aerilate doesn't affect Terrain Pulse's type");
 TO_DO_BATTLE_TEST("Aerilate doesn't affect damaging Z-Move types");
 TO_DO_BATTLE_TEST("(DYNAMAX) Aerilate turns Max Strike into Max Airstream"); // All other -ate abilities do this, so interpolating this as no Aerilate mon is available in a Dynamax game
