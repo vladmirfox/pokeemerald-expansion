@@ -42,7 +42,7 @@ This section guides you through submitting a feature request for pokeemerald-exp
 
 ### What should I do before making a feature request?
 
-- Read the [documentation](https://rh-hideout.github.io/pokeemerald-expansion/) find out if the functionality is already covered, maybe by an individual configuration.
+- Read the [documentation](https://rh-hideout.github.io/pokeemerald-expansion/) to find out if the functionality is already covered, maybe by an individual configuration.
 - Perform a [search](https://github.com/rh-hideout/pokeemerald-expansion/issues) to see if the feature has already been requested. If it has, add a comment to the existing issue instead of opening a new one.
 
 ### How do I submit a feature request?
@@ -61,7 +61,7 @@ If you have read all of this and still need help, feel free to start a thread in
 
 ### What should I do before starting a pull request?
 
-- Make sure you have a basic understanding of `git` and have a [local copy](INSTALL.md) of `pokeemerald-expansion`.
+- If you're new to git and GitHub, [Team Aqua's Asset Repo](https://github.com/Pawkkie/Team-Aquas-Asset-Repo/) has a [guide on forking and cloning the repository](https://github.com/Pawkkie/Team-Aquas-Asset-Repo/wiki/The-Basics-of-GitHub). Make sure you have a [local copy](INSTALL.md) of `pokeemerald-expansion`.
 - Make sure your contribution is in [scope](team_procedures/scope.md) - if it is not clear if something is in scope, you can start a discussion thread in the [#pr-discussions](https://discord.com/channels/419213663107416084/1102784418369785948) channel of the [the RHH Discord Server!](https://discord.gg/6CzjAG6GZk).
 - Choose a branch to contribute your PR to:
     - **`master`**: Fixes for bugs that are currently present in the `master` branch.
@@ -135,6 +135,3 @@ This list was last updated 2025 Feb 18.
 
 ## Attribution
 This guide is based on the [contributing.md](https://contributing.md/generator)!
-
-# TODO
-- Get sign off on MIT license
