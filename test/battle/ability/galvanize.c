@@ -113,10 +113,41 @@ SINGLE_BATTLE_TEST("Galvanize doesn't affect Natural Gift's type")
     }
 }
 
+SINGLE_BATTLE_TEST("Galvanize doesn't affect Judgment / Techno Blast / Multi-Attack's type")
+{
+    u16 move, item;
+    PARAMETRIZE { move = MOVE_JUDGMENT; item = ITEM_SPLASH_PLATE; }
+    PARAMETRIZE { move = MOVE_TECHNO_BLAST; item = ITEM_DOUSE_DRIVE; }
+    PARAMETRIZE { move = MOVE_MULTI_ATTACK; item = ITEM_WATER_MEMORY; }
+    GIVEN {
+        ASSUME(GetMoveEffect(MOVE_JUDGMENT) == EFFECT_CHANGE_TYPE_ON_ITEM);
+        ASSUME(GetMoveEffect(MOVE_TECHNO_BLAST) == EFFECT_CHANGE_TYPE_ON_ITEM);
+        ASSUME(GetMoveEffect(MOVE_MULTI_ATTACK) == EFFECT_CHANGE_TYPE_ON_ITEM);
+        ASSUME(gItemsInfo[ITEM_SPLASH_PLATE].holdEffect == HOLD_EFFECT_PLATE);
+        ASSUME(gItemsInfo[ITEM_SPLASH_PLATE].secondaryId == TYPE_WATER);
+        ASSUME(gItemsInfo[ITEM_DOUSE_DRIVE].holdEffect == HOLD_EFFECT_DRIVE);
+        ASSUME(gItemsInfo[ITEM_DOUSE_DRIVE].secondaryId == TYPE_WATER);
+        ASSUME(gItemsInfo[ITEM_WATER_MEMORY].holdEffect == HOLD_EFFECT_MEMORY);
+        ASSUME(gItemsInfo[ITEM_WATER_MEMORY].secondaryId == TYPE_WATER);
+        ASSUME(gSpeciesInfo[SPECIES_VAPOREON].types[0] == TYPE_WATER);
+        PLAYER(SPECIES_GEODUDE_ALOLA) { Ability(ABILITY_GALVANIZE); Item(item); }
+        OPPONENT(SPECIES_VAPOREON) { Ability(ABILITY_WATER_ABSORB); }
+    } WHEN {
+        TURN { MOVE(player, move); }
+    } SCENE {
+        NOT { ANIMATION(ANIM_TYPE_MOVE, move, player); }
+        if (move == MOVE_JUDGMENT)
+            MESSAGE("The opposing Vaporeon's Water Absorb made Judgment useless!");
+        else if (move == MOVE_TECHNO_BLAST)
+            MESSAGE("The opposing Vaporeon's Water Absorb made Techno Blast useless!");
+        else if (move == MOVE_MULTI_ATTACK)
+            MESSAGE("The opposing Vaporeon's Water Absorb made Multi-Attack useless!");
+    }
+}
+
 TO_DO_BATTLE_TEST("Galvanize doesn't affect Tera Starstorm's type");
 TO_DO_BATTLE_TEST("Galvanize doesn't affect Max Strike's type");
 TO_DO_BATTLE_TEST("Galvanize doesn't affect Hidden Power's type");
-TO_DO_BATTLE_TEST("Galvanize doesn't affect Judgment/Techno Blast/Multi-Attack's type");
 TO_DO_BATTLE_TEST("Galvanize doesn't affect Terrain Pulse's type");
 TO_DO_BATTLE_TEST("Galvanize doesn't affect damaging Z-Move types");
 TO_DO_BATTLE_TEST("(DYNAMAX) Galvanize turns Max Strike into Max Lightning when not used by Gigantamax Pikachu/Toxtricity");

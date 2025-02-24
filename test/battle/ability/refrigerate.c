@@ -198,11 +198,36 @@ SINGLE_BATTLE_TEST("Refrigerate doesn't affect Natural Gift's type")
     }
 }
 
+SINGLE_BATTLE_TEST("Refrigerate doesn't affect Judgment / Techno Blast / Multi-Attack's type")
+{
+    u16 move, item;
+    PARAMETRIZE { move = MOVE_JUDGMENT; item = ITEM_ZAP_PLATE; }
+    PARAMETRIZE { move = MOVE_TECHNO_BLAST; item = ITEM_SHOCK_DRIVE; }
+    PARAMETRIZE { move = MOVE_MULTI_ATTACK; item = ITEM_ELECTRIC_MEMORY; }
+    GIVEN {
+        ASSUME(GetMoveEffect(MOVE_JUDGMENT) == EFFECT_CHANGE_TYPE_ON_ITEM);
+        ASSUME(GetMoveEffect(MOVE_TECHNO_BLAST) == EFFECT_CHANGE_TYPE_ON_ITEM);
+        ASSUME(GetMoveEffect(MOVE_MULTI_ATTACK) == EFFECT_CHANGE_TYPE_ON_ITEM);
+        ASSUME(gItemsInfo[ITEM_ZAP_PLATE].holdEffect == HOLD_EFFECT_PLATE);
+        ASSUME(gItemsInfo[ITEM_ZAP_PLATE].secondaryId == TYPE_ELECTRIC);
+        ASSUME(gItemsInfo[ITEM_SHOCK_DRIVE].holdEffect == HOLD_EFFECT_DRIVE);
+        ASSUME(gItemsInfo[ITEM_SHOCK_DRIVE].secondaryId == TYPE_ELECTRIC);
+        ASSUME(gItemsInfo[ITEM_ELECTRIC_MEMORY].holdEffect == HOLD_EFFECT_MEMORY);
+        ASSUME(gItemsInfo[ITEM_ELECTRIC_MEMORY].secondaryId == TYPE_ELECTRIC);
+        ASSUME(gSpeciesInfo[SPECIES_DIGLETT].types[0] == TYPE_GROUND);
+        PLAYER(SPECIES_AMAURA) { Ability(ABILITY_REFRIGERATE); Item(item); }
+        OPPONENT(SPECIES_DIGLETT);
+    } WHEN {
+        TURN { MOVE(player, move); }
+    } SCENE {
+        NOT { ANIMATION(ANIM_TYPE_MOVE, move, player); }
+        MESSAGE("It doesn't affect the opposing Diglett…");
+    }
+}
 
 TO_DO_BATTLE_TEST("Refrigerate doesn't affect Tera Starstorm's type");
 TO_DO_BATTLE_TEST("Refrigerate doesn't affect Max Strike's type");
 TO_DO_BATTLE_TEST("Refrigerate doesn't affect Hidden Power's type");
-TO_DO_BATTLE_TEST("Refrigerate doesn't affect Judgment/Techno Blast/Multi-Attack's type");
 TO_DO_BATTLE_TEST("Refrigerate doesn't affect Terrain Pulse's type");
 TO_DO_BATTLE_TEST("Refrigerate doesn't affect damaging Z-Move types");
 TO_DO_BATTLE_TEST("(DYNAMAX) Refrigerate turns Max Strike into Max Hailstorm when not used by Gigantamax Lapras");
