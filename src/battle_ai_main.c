@@ -252,18 +252,11 @@ void BattleAI_SetupAIData(u8 defaultScoreMoves, u32 battler)
     for (u32 moveIndex = 0; moveIndex < MAX_MON_MOVES; moveIndex++)
     {
         if (moveLimitations & (1u << moveIndex))
-        {
             SET_SCORE(battler, moveIndex, 0);
-            gBattleMons[battler].moves[moveIndex] = AI_MOVE_UNUSABLE;
-        }
         if (defaultScoreMoves & 1)
-        {
             SET_SCORE(battler, moveIndex, AI_SCORE_DEFAULT);
-        }
         else
-        {
             SET_SCORE(battler, moveIndex, 0);
-        }
 
         defaultScoreMoves >>= 1;
     }
@@ -416,6 +409,7 @@ static void CalcBattlerAiMovesData(struct AiLogicData *aiData, u32 battlerAtk, u
     u32 moveIndex, move;
     u32 rollType = GetDmgRollType(battlerAtk);
     u16 *moves = GetMovesArray(battlerAtk);
+    u32 moveLimitations = aiData->moveLimitations[battlerAtk];
 
     for (moveIndex = 0; moveIndex < MAX_MON_MOVES; moveIndex++)
     {
@@ -423,7 +417,7 @@ static void CalcBattlerAiMovesData(struct AiLogicData *aiData, u32 battlerAtk, u
         uq4_12_t effectiveness = Q_4_12(0.0);
         move = moves[moveIndex];
 
-        if (IsMoveUnusable(move))
+        if (IsMoveUnusable(moveIndex, move, moveLimitations))
             continue;
 
         // Also get effectiveness of status moves

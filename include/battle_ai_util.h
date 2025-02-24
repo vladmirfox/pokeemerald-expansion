@@ -22,10 +22,11 @@ enum AIPivot
     SHOULD_PIVOT,
 };
 
-#define AI_MOVE_UNUSABLE 0xFFFF
-static inline bool32 IsMoveUnusable(u32 move)
+static inline bool32 IsMoveUnusable(u32 moveIndex, u32 move, u32 moveLimitations)
 {
-    return move == MOVE_NONE || move == MOVE_UNAVAILABLE || move == AI_MOVE_UNUSABLE;
+    return move == MOVE_NONE
+        || move == MOVE_UNAVAILABLE
+        || moveLimitations & 1u << moveIndex;
 }
 
 bool32 AI_IsFaster(u32 battlerAi, u32 battlerDef, u32 move);

@@ -365,10 +365,11 @@ bool32 MovesWithCategoryUnusable(u32 attacker, u32 target, u32 category)
     s32 i, moveType;
     u32 usable = 0;
     u16 *moves = GetMovesArray(attacker);
+    u32 moveLimitations = AI_DATA->moveLimitations[attacker];
 
     for (i = 0; i < MAX_MON_MOVES; i++)
     {
-        if (IsMoveUnusable(moves[i]))
+        if (IsMoveUnusable(i, moves[i], moveLimitations))
             continue;
 
         if (GetBattleMoveCategory(moves[i]) == category)
@@ -1157,10 +1158,11 @@ bool32 CanTargetFaintAi(u32 battlerDef, u32 battlerAtk)
 {
     s32 i;
     u16 *moves = GetMovesArray(battlerDef);
+    u32 moveLimitations = AI_DATA->moveLimitations[battlerAtk];
 
     for (i = 0; i < MAX_MON_MOVES; i++)
     {
-        if (IsMoveUnusable(moves[i]))
+        if (IsMoveUnusable(i, moves[i], moveLimitations))
             continue;
 
         if (AI_DATA->simulatedDmg[battlerDef][battlerAtk][i].expected >= gBattleMons[battlerAtk].hp
@@ -1197,10 +1199,11 @@ u32 GetBestDmgMoveFromBattler(u32 battlerAtk, u32 battlerDef)
     u32 move = 0;
     u32 bestDmg = 0;
     u16 *moves = GetMovesArray(battlerAtk);
+    u32 moveLimitations = AI_DATA->moveLimitations[battlerAtk];
 
     for (i = 0; i < MAX_MON_MOVES; i++)
     {
-        if (IsMoveUnusable(moves[i]))
+        if (IsMoveUnusable(i, moves[i], moveLimitations))
             continue;
 
         if (bestDmg < AI_DATA->simulatedDmg[battlerAtk][battlerDef][i].expected)
@@ -1217,16 +1220,15 @@ u32 GetBestDmgFromBattler(u32 battler, u32 battlerTarget)
     u32 i;
     u32 bestDmg = 0;
     u16 *moves = GetMovesArray(battler);
+    u32 moveLimitations = AI_DATA->moveLimitations[battler];
 
     for (i = 0; i < MAX_MON_MOVES; i++)
     {
-        if (IsMoveUnusable(moves[i]))
+        if (IsMoveUnusable(i, moves[i], moveLimitations))
             continue;
 
         if (bestDmg < AI_DATA->simulatedDmg[battler][battlerTarget][i].expected)
-        {
             bestDmg = AI_DATA->simulatedDmg[battler][battlerTarget][i].expected;
-        }
     }
 
     return bestDmg;
@@ -1238,10 +1240,11 @@ bool32 CanAIFaintTarget(u32 battlerAtk, u32 battlerDef, u32 numHits)
 {
     s32 i, dmg;
     u16 *moves = gBattleMons[battlerAtk].moves;
+    u32 moveLimitations = AI_DATA->moveLimitations[battlerAtk];
 
     for (i = 0; i < MAX_MON_MOVES; i++)
     {
-        if (IsMoveUnusable(moves[i]))
+        if (IsMoveUnusable(i, moves[i], moveLimitations))
             continue;
 
         dmg = AI_DATA->simulatedDmg[battlerAtk][battlerDef][i].expected;
@@ -1280,13 +1283,14 @@ bool32 CanTargetFaintAiWithMod(u32 battlerDef, u32 battlerAtk, s32 hpMod, s32 dm
     s32 dmg;
     u16 *moves = GetMovesArray(battlerDef);
     u32 hpCheck = gBattleMons[battlerAtk].hp + hpMod;
+    u32 moveLimitations = AI_DATA->moveLimitations[battlerAtk];
 
     if (hpCheck > gBattleMons[battlerAtk].maxHP)
         hpCheck = gBattleMons[battlerAtk].maxHP;
 
     for (i = 0; i < MAX_MON_MOVES; i++)
     {
-        if (IsMoveUnusable(moves[i]))
+        if (IsMoveUnusable(i, moves[i], moveLimitations))
             continue;
 
         dmg = AI_DATA->simulatedDmg[battlerAtk][battlerDef][i].expected;
@@ -2178,10 +2182,11 @@ bool32 HasMoveWithLowAccuracy(u32 battlerAtk, u32 battlerDef, u32 accCheck, bool
 {
     s32 i;
     u16 *moves = GetMovesArray(battlerAtk);
+    u32 moveLimitations = AI_DATA->moveLimitations[battlerAtk];
 
     for (i = 0; i < MAX_MON_MOVES; i++)
     {
-        if (IsMoveUnusable(moves[i]))
+        if (IsMoveUnusable(i, moves[i], moveLimitations))
             continue;
 
         if (ignoreStatus && IsBattleMoveStatus(moves[i]))
@@ -2201,10 +2206,11 @@ bool32 HasSleepMoveWithLowAccuracy(u32 battlerAtk, u32 battlerDef)
 {
     u32 i;
     u16 *moves = GetMovesArray(battlerAtk);
+    u32 moveLimitations = AI_DATA->moveLimitations[battlerAtk];
 
     for (i = 0; i < MAX_MON_MOVES; i++)
     {
-        if (IsMoveUnusable(moves[i]))
+        if (IsMoveUnusable(i, moves[i], moveLimitations))
             continue;
 
         if (GetMoveEffect(moves[i]) == EFFECT_SLEEP && AI_DATA->moveAccuracy[battlerAtk][battlerDef][i] < 85)
