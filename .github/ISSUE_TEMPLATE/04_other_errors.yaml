@@ -25,7 +25,7 @@ body:
       placeholder: |
         Provide as much context as possible as to what was done to create the issue. 
     validations:
-      required: true 
+      required: false 
   - type: textarea
     id: media 
     attributes:
@@ -60,7 +60,7 @@ body:
     id: upcomingversion
     attributes:
       label: Upcoming/master Version
-      description: If you're using the `upcoming` or `master` branches directly, please use the following command to give us the commit hash that you are on `git log --merges RHH/upcoming -1 --format=%H`
+      description: If you're using the `upcoming` or `master` branches directly, please use the following command to give us the commit hash that you are on. `git log --merges RHH/upcoming -1 --format=%H` Replace `upcoming` with `master` if you're using `master`.
     validations:
       required: false
   - type: input
