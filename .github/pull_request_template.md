@@ -1,8 +1,8 @@
 <!--- Provide a descriptive title that describes what was changed in this PR. --->
 
-<!--- CONTRIBUTING.md : https://github.com/rh-hideout/pokeemerald-expansion/blob/master/README.md --->
+<!--- CONTRIBUTING.md : https://github.com/rh-hideout/pokeemerald-expansion/blob/master/CONTRIBUTING.md --->
 
-<!--- Before submitting, ensure the folllowing:--->
+<!--- Before submitting, ensure the following:--->
 
 <!--- Code compiles without errors. --->
 <!--- All functionality works as expected in-game. --->
@@ -19,7 +19,7 @@
 <!--- Add relevant images, GIFs, or videos to help reviewers understand the changes. Remove this section if not applicable. --->
 
 ## Issue(s) that this PR fixes
-<!-- Format: "Fixes #2345, fixes #4523, fixes #2222." Remove this section if not applicable.-->
+<!-- Format: "Fixes #2345, fixes #4523, closes #2222." Remove this section if not applicable.-->
 
 ## People who collaborated with me in this PR
 <!-- Credit anyone who helped with this PR. -->
