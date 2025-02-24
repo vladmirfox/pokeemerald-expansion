@@ -30,7 +30,7 @@ body:
     id: contact
     attributes:
       label: Discord contact info
-      description: Provide your Discord tag here so we can contact you in case we need more details. Discussion around **`pokeemerald-expansion`** happens in our [Discord server](https://discord.gg/6CzjAG6GZk).
+      description: Provide your Discord tag here so we can contact you in case we need more details. Discussion around **pokeemerald-expansion** happens in our [Discord server](https://discord.gg/6CzjAG6GZk).
       placeholder: ex. Lunos#4026
     validations:
       required: false
