@@ -22,13 +22,10 @@
 #define MOVE_LIMITATION_PLACEHOLDER             (1 << 15)
 #define MOVE_LIMITATIONS_ALL                    0xFFFF
 
-enum MoveBlocked
+enum AbilityEffectOptions
 {
-    MOVE_BLOCKED_BY_NO_ABILITY,
-    MOVE_BLOCKED_BY_SOUNDPROOF_OR_BULLETPROOF,
-    MOVE_BLOCKED_BY_DAZZLING,
-    MOVE_BLOCKED_BY_PARTNER_DAZZLING,
-    MOVE_BLOCKED_BY_GOOD_AS_GOLD,
+    ABILITY_CHECK_TRIGGER,
+    ABILITY_RUN_SCRIPT,
 };
 
 enum MoveAbsorbed
@@ -67,7 +64,7 @@ enum {
 #define ABILITYEFFECT_WATER_SPORT                253 // Only used if B_SPORT_TURNS >= GEN_6
 
 // For the first argument of ItemBattleEffects, to deteremine which block of item effects to try
-enum ItemEffect
+enum ItemCaseId
 {
     ITEMEFFECT_NONE,
     ITEMEFFECT_ON_SWITCH_IN,
@@ -80,6 +77,16 @@ enum ItemEffect
     ITEMEFFECT_LIFEORB_SHELLBELL,
     ITEMEFFECT_USE_LAST_ITEM, // move end effects for just the battler, not whole field
     ITEMEFFECT_STATS_CHANGED, // For White Herb and Eject Pack
+};
+
+enum ItemEffect
+{
+    ITEM_NO_EFFECT,
+    ITEM_STATUS_CHANGE,
+    ITEM_EFFECT_OTHER,
+    ITEM_PP_CHANGE,
+    ITEM_HP_CHANGE,
+    ITEM_STATS_CHANGE,
 };
 
 #define IS_WHOLE_SIDE_ALIVE(battler)    ((IsBattlerAlive(battler) && IsBattlerAlive(BATTLE_PARTNER(battler))))
@@ -165,6 +172,7 @@ enum SleepClauseBlock
 
 void HandleAction_ThrowBall(void);
 bool32 IsAffectedByFollowMe(u32 battlerAtk, u32 defSide, u32 move);
+bool32 HandleMoveTargetRedirection(void);
 void HandleAction_UseMove(void);
 void HandleAction_Switch(void);
 void HandleAction_UseItem(void);
@@ -206,9 +214,8 @@ u32 AtkCanceller_MoveSuccessOrder(void);
 void SetAtkCancellerForCalledMove(void);
 bool32 HasNoMonsToSwitch(u32 battler, u8 r1, u8 r2);
 bool32 TryChangeBattleWeather(u32 battler, u32 battleWeatherId, bool32 viaAbility);
-u32 CanAbilityBlockMove(u32 battlerAtk, u32 battlerDef, u32 move, u32 abilityDef);
-u32 CanPartnerAbilityBlockMove(u32 battlerAtk, u32 battlerDef, u32 move, u32 abilityDef);
-u32 CanAbilityAbsorbMove(u32 battlerAtk, u32 battlerDef, u32 abilityDef, u32 move, u32 moveType);
+bool32 CanAbilityBlockMove(u32 battlerAtk, u32 battlerDef, u32 move, u32 abilityDef, enum AbilityEffectOptions option);
+bool32 CanAbilityAbsorbMove(u32 battlerAtk, u32 battlerDef, u32 abilityDef, u32 move, u32 moveType, enum AbilityEffectOptions option);
 u32 AbilityBattleEffects(u32 caseID, u32 battler, u32 ability, u32 special, u32 moveArg);
 bool32 TryPrimalReversion(u32 battler);
 bool32 IsNeutralizingGasOnField(void);
@@ -223,7 +230,7 @@ bool32 IsBattlerProtected(u32 battlerAtk, u32 battlerDef, u32 move);
 bool32 CanBattlerEscape(u32 battler); // no ability check
 void BattleScriptExecute(const u8 *BS_ptr);
 void BattleScriptPushCursorAndCallback(const u8 *BS_ptr);
-u32 ItemBattleEffects(enum ItemEffect, u32 battler, bool32 moveTurn);
+u32 ItemBattleEffects(enum ItemCaseId, u32 battler, bool32 moveTurn);
 void ClearVariousBattlerFlags(u32 battler);
 void HandleAction_RunBattleScript(void);
 u32 SetRandomTarget(u32 battler);
@@ -235,7 +242,6 @@ u32 GetBattlerHoldEffectInternal(u32 battler, bool32 checkNegating, bool32 check
 u32 GetBattlerHoldEffectParam(u32 battler);
 bool32 IsMoveMakingContact(u32 move, u32 battlerAtk);
 bool32 IsBattlerGrounded(u32 battler);
-bool32 IsBattlerAlive(u32 battler);
 u32 GetMoveSlot(u16 *moves, u32 move);
 u32 GetBattlerWeight(u32 battler);
 u32 CalcRolloutBasePower(u32 battlerAtk, u32 basePower, u32 rolloutTimer);
@@ -281,7 +287,7 @@ void TryRestoreHeldItems(void);
 bool32 CanStealItem(u32 battlerStealing, u32 battlerItem, u16 item);
 void TrySaveExchangedItem(u32 battler, u16 stolenItem);
 bool32 IsPartnerMonFromSameTrainer(u32 battler);
-u32 TryHandleSeed(u32 battler, u32 terrainFlag, u32 statId, u32 itemId, enum ItemEffect caseID);
+enum ItemEffect TryHandleSeed(u32 battler, u32 terrainFlag, u32 statId, u32 itemId, enum ItemCaseId caseID);
 bool32 IsBattlerAffectedByHazards(u32 battler, bool32 toxicSpikes);
 void SortBattlersBySpeed(u8 *battlers, bool32 slowToFast);
 bool32 CompareStat(u32 battler, u8 statId, u8 cmpTo, u8 cmpKind);
