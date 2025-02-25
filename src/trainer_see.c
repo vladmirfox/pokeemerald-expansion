@@ -399,8 +399,11 @@ bool8 CheckForTrainersWantingBattle(void)
             break;
     }
 
-    if (InBattlePyramid())
+
+    if (InBattlePyramid() || InTrainerHill())
     {
+        u8 facility = InBattlePyramid() ? FRONTIER_FACILITY_PYRAMID : FACILITY_TRAINER_HILL;
+        
         if (gNoOfApproachingTrainers > 0) 
         {
             ResetTrainerOpponentIds();
@@ -408,36 +411,13 @@ bool8 CheckForTrainersWantingBattle(void)
 
             gSelectedObjectEvent = gApproachingTrainers[0].objectEventId;
             gSpecialVar_LastTalked = gObjectEvents[gApproachingTrainers[0].objectEventId].localId;
-            BattleSetup_ConfigureFacilityTrainerBattle(FRONTIER_FACILITY_PYRAMID, gApproachingTrainers[0].trainerScriptPtr + 2);
+            BattleSetup_ConfigureFacilityTrainerBattle(facility, gApproachingTrainers[0].trainerScriptPtr + 2);
             if (gNoOfApproachingTrainers > 1) 
             {
                 gApproachingTrainerId++;
                 gSelectedObjectEvent = gApproachingTrainers[1].objectEventId;
                 gSpecialVar_LastTalked = gObjectEvents[gApproachingTrainers[1].objectEventId].localId;
-                BattleSetup_ConfigureFacilityTrainerBattle(FRONTIER_FACILITY_PYRAMID, gApproachingTrainers[0].trainerScriptPtr + 2);
-                gApproachingTrainerId = 0;
-            }
-            ScriptContext_SetupScript(EventScript_StartTrainerApproach);
-            LockPlayerFieldControls();
-            return TRUE;
-        }
-    }
-    else if (InTrainerHill())
-    {
-        if (gNoOfApproachingTrainers > 0)
-        {
-            ResetTrainerOpponentIds();
-            InitTrainerBattleVariables();
-
-            gSelectedObjectEvent = gApproachingTrainers[0].objectEventId;
-            gSpecialVar_LastTalked = gObjectEvents[gApproachingTrainers[0].objectEventId].localId;
-            BattleSetup_ConfigureFacilityTrainerBattle(FACILITY_TRAINER_HILL, gApproachingTrainers[0].trainerScriptPtr + 2);
-            if (gNoOfApproachingTrainers > 1)
-            {
-                gApproachingTrainerId++;
-                gSelectedObjectEvent = gApproachingTrainers[1].objectEventId;
-                gSpecialVar_LastTalked = gObjectEvents[gApproachingTrainers[1].objectEventId].localId;
-                BattleSetup_ConfigureFacilityTrainerBattle(FACILITY_TRAINER_HILL, gApproachingTrainers[0].trainerScriptPtr + 2);
+                BattleSetup_ConfigureFacilityTrainerBattle(facility, gApproachingTrainers[0].trainerScriptPtr + 2);
                 gApproachingTrainerId = 0;
             }
             ScriptContext_SetupScript(EventScript_StartTrainerApproach);
