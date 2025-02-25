@@ -1,7 +1,7 @@
 #include "global.h"
 #include "test/battle.h"
 
-SINGLE_BATTLE_TEST("Motor Drive")
+SINGLE_BATTLE_TEST("Motor Drive absorbs status moves")
 {
     GIVEN {
         PLAYER(SPECIES_WOBBUFFET);
