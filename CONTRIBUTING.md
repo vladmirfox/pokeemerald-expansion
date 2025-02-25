@@ -120,7 +120,7 @@ This list was last updated 2025 Feb 18.
 
 | Name | Discord | Currently Active | Areas of Expertise |
 | --- | --- | --- | --- |
-| [Alex](https://github.com/AlexOn1ine) | rainonline | ✅ | Battles
+| [Alex](https://github.com/AlexOn1ine) | rainonline | ✅ | Battle Engine | Battle AI
 | [Egg](https://github.com/DizzyEggg) | egg9255 | ✅ | All
 | [ghoulslash](https://github.com/ghoulslash) | ghoulslash | ✅ | All, Dexnav, Metatile Behaviors
 | [Jasper](https://github.com/Bassoonian) | bassoonian | ✅ | All
