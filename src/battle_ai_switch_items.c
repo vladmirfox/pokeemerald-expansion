@@ -1021,6 +1021,23 @@ static bool32 ShouldSwitchIfAttackingStatsLowered(u32 battler)
     return FALSE;
 }
 
+static bool32 HasGoodSubstituteMove(u32 battler)
+{
+    int i;
+    u32 aiMove, aiMoveEffect, opposingBattler = GetOppositeBattler(battler);
+    for (i = 0; i < MAX_MON_MOVES; i++)
+    {
+        aiMove = gBattleMons[battler].moves[i];
+        aiMoveEffect = GetMoveEffect(aiMove);
+        if (IsSubstituteEffect(aiMoveEffect))
+        {
+            if (IncreaseSubstituteMoveScore(battler, opposingBattler, aiMove) > 0)
+                return TRUE;
+        }
+    }
+    return FALSE;
+}
+
 bool32 ShouldSwitch(u32 battler)
 {
     u32 battlerIn1, battlerIn2;
@@ -1090,13 +1107,15 @@ bool32 ShouldSwitch(u32 battler)
     // These Functions can prompt switch to specific party members that override GetMostSuitableMonToSwitchInto
     if (FindMonThatHitsWonderGuard(battler))
         return TRUE;
-    if (FindMonThatAbsorbsOpponentsMove(battler))
-        return TRUE;
 
     // These Functions can prompt switch to party member returned by GetMostSuitableMonToSwitchInto
     if ((AI_THINKING_STRUCT->aiFlags[GetThinkingBattler(battler)] & AI_FLAG_SMART_SWITCHING) && (CanMonSurviveHazardSwitchin(battler) == FALSE))
         return FALSE;
+    if (HasGoodSubstituteMove(battler))
+        return FALSE;
     if (ShouldSwitchIfTrapperInParty(battler))
+        return TRUE;
+    if (FindMonThatAbsorbsOpponentsMove(battler))
         return TRUE;
     if (ShouldSwitchIfOpponentChargingOrInvulnerable(battler))
         return TRUE;
