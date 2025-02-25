@@ -209,34 +209,6 @@ if (!PlayerIsOutside()) // correct
 if (PlayerIsOutside() == 0) // incorrect
     RemoveSunglasses();
 ```
-End all `switch` cases with `break`, unless omitting `break` is necessary for
-matching the original program flow.
-```c
-void MyFunction(void)
-{
-    switch (color)
-    {
-    ...
-    case RED:
-        ...
-        break; // correct
-    }
-
-    return;
-}
-
-void MyFunction(void)
-{
-    switch (color)
-    {
-    ...
-    case RED:
-        ... // incorrect
-    }
-
-    return;
-}
-```
 
 When writing a `for` or `while` loop with no body, use a semicolon `;` on the
 same line, rather than empty braces.
