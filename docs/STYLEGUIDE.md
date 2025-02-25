@@ -388,7 +388,7 @@ The [`B_VAR_DIFFICULTY`](https://patch-diff.githubusercontent.com/raw/rh-hideout
 
 ### `UNUSED`
 
-If a function or data is introduced but is never called, it is designated as `UNUSED`.
+If a function or data is introduced but is never called, it is designated as `UNUSED`. `UNUSED` functions should not be introduced unless neccesary.
 
 ```c
 static void UNUSED PadString(const u8 *src, u8 *dst)
