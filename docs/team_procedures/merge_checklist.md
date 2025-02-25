@@ -14,7 +14,7 @@ From `make clean`, the branch should locally compile.
 Contributors are asked to make sure tests pass locally, but maintainers should at least wait for the CI to pass before merging.
 
 ## Have you verified that the functionality works in game without any problems?
-There's no good reason _not_ to test something in game. Automated tests ARE an acceptable substitute for in game testing, but actual gameplay is preferred. Do not be afraid to reach out to the contributor or the community to make sure something works in game as it should.
+If functionality cannot be verified with an automated test, proof of an in game test is required. Do not be afraid to reach out to the contributor or the community to make sure something works in game as it should.
 
 ## If the branch ports behavior from another Pokémon game, have you verified that the behavior functions as faithfully as possible? 
 We have always tried to make sure we can mimic the original functionality as closely as possible so as to avoid confusion with users and players. Do not be afraid to ask the contributor / community for proof if you cannot personally verify.
