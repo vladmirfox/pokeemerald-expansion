@@ -80,7 +80,7 @@ git remote add RHH https://github.com/rh-hideout/pokeemerald-expansion # You can
 #### 3. Create a new branch
 This will create a new branch and switch to it.
 ```bash
-git checkout -b newFeature # the name newFeature can be anything you want. This tutorial assumes you used newFeature.
+git switch -c newFeature # the name newFeature can be anything you want. This tutorial assumes you used newFeature.
 ```
 
 #### 4. Copy your target branch to your new branch
