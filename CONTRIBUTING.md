@@ -4,9 +4,6 @@ First off, thanks for helping improve `pokeemerald-expansion`! ❤️
 
 All contributions are encouraged and valued. Please make sure to read the relevant section before making your contribution! It will make it a lot easier for you and the maintainers. We're excited to see your contributions. 🎉
 
-## License
-When contributing to this project, you must agree that the content you contribute is subject to the [MIT license](<https://github.com/rh-hideout/pokeemerald-expansion?tab=MIT-1-ov-file#readme>). This means anybody can do whatever they want with the code, as long as they include the original copyright and license notice in any copy of the software/source.
-
 ## Bug Reports
 
 We use [GitHub](https://github.com/rh-hideout/pokeemerald-expansion/issues?q=sort%3Aupdated-desc+is%3Aissue+is%3Aopen+label%3Abug) issues to track bugs. 
