@@ -123,7 +123,7 @@ This list was last updated 2025 Feb 18.
 | [Jasper](https://github.com/Bassoonian) | bassoonian | ✅ | 
 | [MGriffin](https://github.com/mrgriffin) | mgriffin | ✅ | Tests
 | [psf](https://github.com/pkmnsnfrn) | pkmnsnfrn | ✅ | Rematches, Difficulty, Trainer Slides, Fake RTC
-| [Hedara](https://github.com/hedara90) | .hedara | ✅ | Compression, Sprites
+| [Hedara](https://github.com/hedara90) | hedara | ✅ | Compression, Sprites
 | [Pawkkie](https://github.com/Pawkkie) | pawkkie | ✅ | Battle AI
 | [SBird](https://github.com/SBird1337) | karathan | ✅ | Dynamic Multichoice
 | [AsparagusEduardo](https://github.com/AsparagusEduardo) | asparaguseduardo | Inactive | 
