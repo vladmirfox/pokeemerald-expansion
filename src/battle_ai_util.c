@@ -1776,7 +1776,7 @@ void ProtectChecks(u32 battlerAtk, u32 battlerDef, u32 move, u32 predictedMove, 
 }
 
 // stat stages
-bool32 ShouldLowerStat(u32 battlerAtk, u32 battlerDef, u32 battlerAbility, u32 stat)
+bool32 ShouldLowerStat(u32 battlerAtk, u32 battlerDef, u32 abilityDef, u32 stat)
 {
     // Arguably there should be a decrease in score if the target is a -4 stages
     if (gBattleMons[battlerDef].statStages[stat] == MIN_STAT_STAGE)
@@ -1785,7 +1785,7 @@ bool32 ShouldLowerStat(u32 battlerAtk, u32 battlerDef, u32 battlerAbility, u32 s
     if (AI_DATA->holdEffects[battlerDef] == HOLD_EFFECT_CLEAR_AMULET)
         return FALSE;
 
-    switch (battlerAbility)
+    switch (abilityDef)
     {
     case ABILITY_SPEED_BOOST:
         if (stat == STAT_SPEED)
