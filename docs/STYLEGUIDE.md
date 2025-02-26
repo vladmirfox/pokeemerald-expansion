@@ -25,7 +25,7 @@ Global variables should be prefixed with `g`, and static variables should be
 prefixed with `s`.
 
 ```c
-extern int gMyGlobalVariable;
+extern s32 gMyGlobalVariable;
 
 static u8 sMyStaticVariable = 0;
 ```
