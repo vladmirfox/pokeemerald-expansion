@@ -1086,7 +1086,7 @@ AI_SINGLE_BATTLE_TEST("AI_FLAG_SMART_SWITCHING: AI won't switch in absorbing mon
     }
 }
 
-AI_SINGLE_BATTLE_TEST("AI_FLAG_SMART_SWITCHING: AI will consider choice-locked player when determining which mon to send out")
+AI_SINGLE_BATTLE_TEST("AI_FLAG_SMART_MON_CHOICES: AI will consider choice-locked player when determining which mon to send out")
 {
     u32 item;
     PARAMETRIZE { item = ITEM_NONE; }
