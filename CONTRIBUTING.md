@@ -118,11 +118,11 @@ This list was last updated 2025 Feb 18.
 | Name | Discord | Currently Active | Areas of Expertise |
 | --- | --- | --- | --- |
 | [Alex](https://github.com/AlexOn1ine) | rainonline | ✅ | Battle Engine, Battle AI
-| [Egg](https://github.com/DizzyEggg) | egg9255 | ✅ | 
+| [Egg](https://github.com/DizzyEggg) | egg9255 | ✅ | Battle Engine, Battle AI
 | [ghoulslash](https://github.com/ghoulslash) | ghoulslash | ✅ | Dexnav, Metatile Behaviors
 | [Jasper](https://github.com/Bassoonian) | bassoonian | ✅ | 
-| [MGriffin](https://github.com/mrgriffin) | mgriffin | ✅ | Tests
-| [psf](https://github.com/pkmnsnfrn) | pkmnsnfrn | ✅ | Rematches, Difficulty, Trainer Slides, Fake RTC
+| [MGriffin](https://github.com/mrgriffin) | mgriffin | ✅ | Tests, trainerproc
+| [psf](https://github.com/pkmnsnfrn) | pkmnsnfrn | ✅ | Rematches, Difficulty, Trainer Slides, Fake RTC, Fishing Minigames, Imperial / Metric, OW Item Balls, Sky Battles
 | [Hedara](https://github.com/hedara90) | hedara | ✅ | Compression, Sprites
 | [Pawkkie](https://github.com/Pawkkie) | pawkkie | ✅ | Battle AI
 | [SBird](https://github.com/SBird1337) | karathan | ✅ | Dynamic Multichoice
