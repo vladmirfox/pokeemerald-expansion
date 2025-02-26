@@ -129,19 +129,19 @@ for(...) {
 }
 ```
 
-A `switch` statement's cases should left-align with the `switch`'s block.
+A `switch` statement's cases should indent once after the `switch`'s block.
 
 ```c
 switch (foo)
 {
-case 0: // correct
+case 0: // incorrect
     ...
     break;
 }
 
 switch (foo)
 {
-    case 0: // incorrect
+    case 0: // correct
         ...
         break;
 }
