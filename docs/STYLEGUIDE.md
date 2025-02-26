@@ -266,7 +266,7 @@ void SetCurrentDifficultyLevel(enum DifficultyLevel desiredDifficulty)
     },
 ```
 ## Data Type Sizes
-When a variable number is used, the data type should generally `u32`. There are a few exceptions to this rule, such as:
+When a variable number is used, the data type should generally `u32` (unsigned) or `s32` (signed). There are a few exceptions to this rule, such as:
 * Values stored in the saveblock should use the smallest data type possible.
 * `EWRAM` variables should use the smallest data type possible.
 * Global variables / global struct members use the smallest data type possible.
