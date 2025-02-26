@@ -49,7 +49,7 @@ enum
 
 ### Comments
 
-Ideally, contributions have descriptive variable, function and constant names so as to explain functionality without comments. When a comment is used, the content of the comment dhould explain _WHY_ a specific system or component works the way it does.
+Ideally, contributions have descriptive variable, function and constant names so as to explain functionality without comments. When a comment is used, the content of the comment should explain _WHY_ a specific system or component works the way it does.
 
 When describing a system/component in-depth, use block comment syntax.
 
