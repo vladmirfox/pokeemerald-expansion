@@ -1,6 +1,8 @@
 # Document Purpose
 
 This document is a guide for maintainers to account for all the reccomended steps before merging in a pull request.
+<!-- Here's an optional markdown checklist version that you can post in your reviews. -->
+<!-- https://files.catbox.moe/nqxvnl.md -->
 
 # Checklist
 
