@@ -156,7 +156,7 @@ int MyFunction(int bar)
     if (bar)
         foo++;
 
-    return foo; // incorrect
+    return foo; // correct
 }
 
 int MyFunction(int bar)
