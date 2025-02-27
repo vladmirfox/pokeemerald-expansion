@@ -119,7 +119,7 @@ This list was last updated 2025 Feb 18.
 | --- | --- | --- | --- |
 | [Alex](https://github.com/AlexOn1ine) | rainonline | ✅ | Battle Engine, Battle AI
 | [Egg](https://github.com/DizzyEggg) | egg9255 | ✅ | Battle Engine, Battle AI
-| [ghoulslash](https://github.com/ghoulslash) | ghoulslash | ✅ | Dexnav, Metatile Behaviors
+| [ghoulslash](https://github.com/ghoulslash) | ghoulslash | ✅ | Dexnav, Overworld, Battle Engine
 | [Jasper](https://github.com/Bassoonian) | bassoonian | ✅ | 
 | [MGriffin](https://github.com/mrgriffin) | mgriffin | ✅ | Tests, Trainer Control
 | [psf](https://github.com/pkmnsnfrn) | pkmnsnfrn | ✅ | Rematches, Difficulty, Trainer Slides, Fake RTC, Fishing Minigames, Imperial / Metric, OW Item Balls, Sky Battles
