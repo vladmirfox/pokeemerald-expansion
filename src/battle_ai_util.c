@@ -3784,7 +3784,7 @@ static u32 IncreaseStatUpScoreInternal(u32 battlerAtk, u32 battlerDef, u32 statI
             if (GetMoveEffect(GetMonData(&playerParty[AI_DATA->mostSuitableMonId[battlerDef]], MON_DATA_MOVE1 + i, NULL)) == EFFECT_ENCORE
                 && GetMonData(&playerParty[AI_DATA->mostSuitableMonId[battlerDef]], MON_DATA_PP1 + i, NULL) > 0);
             {
-                if(GetMonData(&playerParty[AI_DATA->mostSuitableMonId[battlerDef]], MON_DATA_SPEED, NULL) > gBattleMons[battlerAtk].speed)
+                if (GetMonData(&playerParty[AI_DATA->mostSuitableMonId[battlerDef]], MON_DATA_SPEED, NULL) > gBattleMons[battlerAtk].speed)
                 {
                     return NO_INCREASE;
                 }
