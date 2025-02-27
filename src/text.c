@@ -387,16 +387,18 @@ void RunTextPrinters(void)
             if (sTextPrinters[i].active)
             {
                 u16 renderCmd = RenderFont(&sTextPrinters[i]);
-                CopyWindowToVram(sTextPrinters[i].printerTemplate.windowId, COPYWIN_GFX);
                 switch (renderCmd)
                 {
                 case RENDER_PRINT:
+                    CopyWindowToVram(sTextPrinters[i].printerTemplate.windowId, COPYWIN_GFX);
                     break;
-                case RENDER_UPDATE:                    
+                case RENDER_UPDATE:                                 
+                    CopyWindowToVram(sTextPrinters[i].printerTemplate.windowId, COPYWIN_GFX);
                     if (sTextPrinters[i].callback != NULL)
                         sTextPrinters[i].callback(&sTextPrinters[i].printerTemplate, renderCmd);
                     break;
                 case RENDER_FINISH:                    
+                    CopyWindowToVram(sTextPrinters[i].printerTemplate.windowId, COPYWIN_FULL);
                     sTextPrinters[i].active = FALSE;
                     break;
                 }
@@ -1054,7 +1056,7 @@ static u16 RenderText(struct TextPrinter *textPrinter)
     u16 currChar;
     s32 width;
     s32 widthHelper;
-    s8 repeats = TEXT_SPEED_MODIFIER;    
+    u8 repeats = TEXT_SPEED_MODIFIER;    
 
     switch (textPrinter->state)
     {
