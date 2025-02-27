@@ -127,7 +127,7 @@ This list was last updated 2025 Feb 18.
 | [Pawkkie](https://github.com/Pawkkie) | pawkkie | ✅ | Battle AI
 | [SBird](https://github.com/SBird1337) | karathan | ✅ | Dynamic Multichoice, Damage Calculation, Animations, Trainer Control, Tests
 | [AsparagusEduardo](https://github.com/AsparagusEduardo) | asparaguseduardo | Inactive | 
-| [Agustin](https://github.com/AgustinGDLV) | agustingdlv | Inactive | Gimmicks
+| [Agustin](https://github.com/AgustinGDLV) | agustingdlv | Inactive | Gimmicks, Battle Engine, Tests, Items
 | [tertu](https://github.com/tertu-m) | tertu | Inactive | Randomizer
 
 ## Attribution
