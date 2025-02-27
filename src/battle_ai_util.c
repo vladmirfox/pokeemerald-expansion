@@ -624,18 +624,6 @@ static inline void CalcDynamicMoveDamage(struct DamageCalculationData *damageCal
     *minimumDamage = minimum;
 }
 
-// static inline s32 AI_CalculateMoveDamageVars(struct DamageCalculationData *damageCalcData, u32 fixedBasePower, uq4_12_t effectivenessMultiplier,
-//                                              u32 weather, u32 holdEffectAtk, u32 holdEffectDef, u32 abilityAtk, u32 abilityDef)
-// {
-//     s32 dmg = CalculateMoveDamageVars(damageCalcData, fixedBasePower,
-//                                       effectivenessMultiplier, weather,
-//                                       holdEffectAtk, holdEffectDef,
-//                                       abilityAtk, abilityDef);
-
-//     return dmg;
-
-// }
-
 struct SimulatedDamage AI_CalcDamage(u32 move, u32 battlerAtk, u32 battlerDef, uq4_12_t *typeEffectiveness, bool32 considerZPower, u32 weather, enum DamageRollType rollType)
 {
     struct SimulatedDamage simDamage;
