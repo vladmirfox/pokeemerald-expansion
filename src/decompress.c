@@ -290,6 +290,9 @@ void DecompressDataWithHeaderVram(const u32 *src, void *dest)
         case MODE_LZ77:
             LZ77UnCompVram(src, dest);
             break;
+        case IS_TILEMAP:
+            SmolDecompressTilemap(&header.smolTilemap, &src[2], dest);
+            break;
         default:
             SmolDecompressData(&header.smol, &src[2], dest);
     }
