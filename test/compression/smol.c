@@ -69,6 +69,53 @@ static bool32 DecompressImgPrintResults(const u32 *img, const u32 *orgImg, const
 
     Free(compBuffer);
 
+    return areEqual;
+}
+
+static bool32 DecompressImgPrintResultsVram(const u32 *img, const u32 *orgImg, const char *imgName, s32 mode, s32 size)
+{
+    u32 imageSize = GetDecompressedDataSize(img);
+    u32 *compBuffer = (u32 *)VRAM;
+#ifndef NDEBUG
+    if (T_COMPRESSION_SHOULD_PRINT)
+        CycleCountStart();
+#endif
+    if (mode == COMPRESSION_FASTLZ)
+        FastLZ77UnCompWram(img, compBuffer);    //  There is no Vram version of this
+    else if (mode == COMPRESSION_LZ)
+        LZ77UnCompVram(img, compBuffer);
+    else
+        DecompressDataWithHeaderVram(img, compBuffer);
+
+#ifndef NDEBUG
+    if (T_COMPRESSION_SHOULD_PRINT)
+    {
+        s32 timeTaken = CycleCountEnd();
+        const char *compModeStr;
+        if (mode == COMPRESSION_SMOL)
+            compModeStr = "Smol";
+        else if (mode == COMPRESSION_FASTSMOL)
+            compModeStr = "fastSmol";
+        else if (mode == COMPRESSION_LZ)
+            compModeStr = "LZ";
+        else if (mode == COMPRESSION_SMOL_TILEMAP)
+            compModeStr = "smolTilemap";
+        else
+            compModeStr = "fastLZ";
+
+        DebugPrintf("Time %s %s: %d         Size: %d", imgName, compModeStr, timeTaken, size);
+    }
+#endif
+
+    bool32 areEqual = TRUE;
+    for (u32 i = 0; i < imageSize/4; i++)
+    {
+        if (orgImg[i] != compBuffer[i])
+        {
+            areEqual = FALSE;
+            break;
+        }
+    }
 
     return areEqual;
 }
@@ -120,8 +167,64 @@ static bool32 DecompressTilemapPrintResults(const u32 *tilemap, const u16 *orgTi
 
     Free(compBuffer);
 
+    return areEqual;
+}
+
+static bool32 DecompressTilemapPrintResultsVram(const u32 *tilemap, const u16 *orgTilemap, const char *tilemapName, s32 mode, s32 size)
+{
+    u32 tilemapSize = GetDecompressedDataSize(tilemap);
+    u16 *compBuffer = (u16 *)VRAM;
+#ifndef NDEBUG
+    if (T_COMPRESSION_SHOULD_PRINT)
+        CycleCountStart();
+#endif
+    if (mode == COMPRESSION_FASTLZ)
+        FastLZ77UnCompWram(tilemap, compBuffer);
+    else if (mode == COMPRESSION_LZ)
+        LZ77UnCompVram(tilemap, compBuffer);
+    else
+        DecompressDataWithHeaderVram(tilemap, compBuffer);
+
+#ifndef NDEBUG
+    if (T_COMPRESSION_SHOULD_PRINT)
+    {
+        s32 timeTaken = CycleCountEnd();
+        const char *compModeStr;
+        if (mode == COMPRESSION_SMOL)
+            compModeStr = "Smol";
+        else if (mode == COMPRESSION_FASTSMOL)
+            compModeStr = "fastSmol";
+        else if (mode == COMPRESSION_LZ)
+            compModeStr = "LZ";
+        else if (mode == COMPRESSION_SMOL_TILEMAP)
+            compModeStr = "smolTilemap";
+        else
+            compModeStr = "fastLZ";
+
+        DebugPrintf("Time %s %s: %d         Size: %d", tilemapName, compModeStr, timeTaken, size);
+    }
+#endif
+
+    bool32 areEqual = TRUE;
+    for (u32 i = 0; i < tilemapSize/2; i++)
+    {
+        if (orgTilemap[i] != compBuffer[i])
+        {
+            areEqual = FALSE;
+            break;
+        }
+    }
 
     return areEqual;
+}
+
+TEST("Compression test: tileset smol VRAM")
+{
+    static const u32 origFile[] = INCBIN_U32("test/compression/tilesetTest.4bpp");
+    static const u32 compFile[] = INCBIN_U32("test/compression/tilesetTest.4bpp.smol");
+
+    bool32 areEqual = DecompressImgPrintResultsVram(compFile, origFile, "Tileset", COMPRESSION_SMOL, sizeof(compFile));
+    EXPECT_EQ(areEqual, TRUE);
 }
 
 TEST("Compression test: tileset smol")
@@ -6151,7 +6254,7 @@ TEST("Compression test: tilemap large smolTM")
     static const u16 origFile[] = INCBIN_U16("test/compression/tilemapLarge.bin");
     static const u32 compFile[] = INCBIN_U32("test/compression/tilemapLarge.bin.smolTM");
 
-    bool32 areEqual = DecompressTilemapPrintResults(compFile, origFile, "Tilemap large", COMPRESSION_SMOL_TILEMAP, sizeof(compFile));
+    bool32 areEqual = DecompressTilemapPrintResults(compFile, origFile, "Tilemap", COMPRESSION_SMOL_TILEMAP, sizeof(compFile));
     EXPECT_EQ(areEqual, TRUE);
 }
 
@@ -6160,7 +6263,7 @@ TEST("Compression test: tilemap large LZ")
     static const u16 origFile[] = INCBIN_U16("test/compression/tilemapLarge.bin");
     static const u32 compFile[] = INCBIN_U32("test/compression/tilemapLarge.bin.lz");
 
-    bool32 areEqual = DecompressTilemapPrintResults(compFile, origFile, "Tilemap large ", COMPRESSION_LZ, sizeof(compFile));
+    bool32 areEqual = DecompressTilemapPrintResults(compFile, origFile, "Tilemap", COMPRESSION_LZ, sizeof(compFile));
     EXPECT_EQ(areEqual, TRUE);
 }
 
@@ -6169,6 +6272,66 @@ TEST("Compression test: tilemap large fastLZ")
     static const u16 origFile[] = INCBIN_U16("test/compression/tilemapLarge.bin");
     static const u32 compFile[] = INCBIN_U32("test/compression/tilemapLarge.bin.lz");
 
-    bool32 areEqual = DecompressTilemapPrintResults(compFile, origFile, "Tilemap large", COMPRESSION_FASTLZ, sizeof(compFile));
+    bool32 areEqual = DecompressTilemapPrintResults(compFile, origFile, "Tilemap", COMPRESSION_FASTLZ, sizeof(compFile));
     EXPECT_EQ(areEqual, TRUE);
 }
+
+TEST("Compression test: tilemap small smolTM VRAM")
+{
+    static const u16 origFile[] = INCBIN_U16("test/compression/tilemap.bin");
+    static const u32 compFile[] = INCBIN_U32("test/compression/tilemap.bin.smolTM");
+
+    bool32 areEqual = DecompressTilemapPrintResultsVram(compFile, origFile, "Tilemap", COMPRESSION_SMOL_TILEMAP, sizeof(compFile));
+    EXPECT_EQ(areEqual, TRUE);
+}
+
+TEST("Compression test: tilemap small LZ VRAM")
+{
+    static const u16 origFile[] = INCBIN_U16("test/compression/tilemap.bin");
+    static const u32 compFile[] = INCBIN_U32("test/compression/tilemap.bin.lz");
+
+    bool32 areEqual = DecompressTilemapPrintResultsVram(compFile, origFile, "Tilemap", COMPRESSION_LZ, sizeof(compFile));
+    EXPECT_EQ(areEqual, TRUE);
+}
+
+//  The fastLZ function for this doesn't exist
+/*
+TEST("Compression test: tilemap small fastLZ VRAM")
+{
+    static const u16 origFile[] = INCBIN_U16("test/compression/tilemap.bin");
+    static const u32 compFile[] = INCBIN_U32("test/compression/tilemap.bin.lz");
+
+    bool32 areEqual = DecompressTilemapPrintResultsVram(compFile, origFile, "Tilemap", COMPRESSION_FASTLZ, sizeof(compFile));
+    EXPECT_EQ(areEqual, TRUE);
+}
+*/
+
+TEST("Compression test: tilemap large smolTM VRAM")
+{
+    static const u16 origFile[] = INCBIN_U16("test/compression/tilemapLarge.bin");
+    static const u32 compFile[] = INCBIN_U32("test/compression/tilemapLarge.bin.smolTM");
+
+    bool32 areEqual = DecompressTilemapPrintResultsVram(compFile, origFile, "Tilemap", COMPRESSION_SMOL_TILEMAP, sizeof(compFile));
+    EXPECT_EQ(areEqual, TRUE);
+}
+
+TEST("Compression test: tilemap large LZ VRAM")
+{
+    static const u16 origFile[] = INCBIN_U16("test/compression/tilemapLarge.bin");
+    static const u32 compFile[] = INCBIN_U32("test/compression/tilemapLarge.bin.lz");
+
+    bool32 areEqual = DecompressTilemapPrintResultsVram(compFile, origFile, "Tilemap", COMPRESSION_LZ, sizeof(compFile));
+    EXPECT_EQ(areEqual, TRUE);
+}
+
+//  The fastLZ function for this doesn't exist
+/*
+TEST("Compression test: tilemap large fastLZ VRAM")
+{
+    static const u16 origFile[] = INCBIN_U16("test/compression/tilemapLarge.bin");
+    static const u32 compFile[] = INCBIN_U32("test/compression/tilemapLarge.bin.lz");
+
+    bool32 areEqual = DecompressTilemapPrintResultsVram(compFile, origFile, "Tilemap", COMPRESSION_FASTLZ, sizeof(compFile));
+    EXPECT_EQ(areEqual, TRUE);
+}
+*/
