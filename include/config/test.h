@@ -1131,11 +1131,11 @@
 
 // Vars
 #undef B_VAR_DIFFICULTY
-#define B_VAR_DIFFICULTY     VAR_UNUSED_0x404E
+#define B_VAR_DIFFICULTY                TESTING_VAR_DIFFICULTY
 
 // Flags
 #undef B_FLAG_SLEEP_CLAUSE
-#define B_FLAG_SLEEP_CLAUSE              FLAG_SPECIAL_FLAG_UNUSED_0x4003
+#define B_FLAG_SLEEP_CLAUSE              TESTING_FLAG_SLEEP_CLAUSE
 
 // Compression DebugPrintf switch
 #define T_COMPRESSION_SHOULD_PRINT TRUE
