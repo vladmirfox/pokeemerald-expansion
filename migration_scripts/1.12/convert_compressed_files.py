@@ -63,3 +63,5 @@ def handle_file(fileInput):
 
 for path in glob.glob("src/**/*.c", recursive=True):
     handle_file(path)
+for path in glob.glob("src/**/*.h", recursive=True):
+    handle_file(path)
