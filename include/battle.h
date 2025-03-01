@@ -933,6 +933,7 @@ static inline bool32 IsBattleMoveRecoil(u32 move)
 //       in include/constants/battle_script_commands.h
 struct BattleScripting
 {
+    s32 painSplitHp;
     s32 bideDmg;
     u8 multihitString[6];
     bool8 expOnCatch;
