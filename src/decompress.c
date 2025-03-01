@@ -2,6 +2,7 @@
 #include "malloc.h"
 #include "data.h"
 #include "decompress.h"
+#include "decompress_error_handler.h"
 #include "pokemon.h"
 #include "pokemon_sprite_visualizer.h"
 #include "text.h"
@@ -293,8 +294,16 @@ void DecompressDataWithHeaderVram(const u32 *src, void *dest)
         case IS_TILEMAP:
             SmolDecompressTilemap(&header.smolTilemap, &src[2], dest);
             break;
-        default:
+        case BASE_ONLY:
+        case ENCODE_SYMS:
+        case ENCODE_DELTA_SYMS:
+        case ENCODE_LO:
+        case ENCODE_BOTH:
+        case ENCODE_BOTH_DELTA_SYMS:
             SmolDecompressData(&header.smol, &src[2], dest);
+            break;
+        default:
+            DecompressionError(src, HEADER_ERROR);
     }
 }
 
@@ -313,8 +322,16 @@ void DecompressDataWithHeaderWram(const u32 *src, void *dest)
         case IS_TILEMAP:
             SmolDecompressTilemap(&header.smolTilemap, &src[2], dest);
             break;
-        default:
+        case BASE_ONLY:
+        case ENCODE_SYMS:
+        case ENCODE_DELTA_SYMS:
+        case ENCODE_LO:
+        case ENCODE_BOTH:
+        case ENCODE_BOTH_DELTA_SYMS:
             SmolDecompressData(&header.smol, &src[2], dest);
+            break;
+        default:
+            DecompressionError(src, HEADER_ERROR);
     }
 }
 

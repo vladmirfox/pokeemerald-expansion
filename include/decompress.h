@@ -60,7 +60,6 @@ enum CompressionMode {
     IS_TILEMAP = 8,
 };
 
-
 void DecompressDataWithHeaderVram(const u32 *src, void *dest);
 void DecompressDataWithHeaderWram(const u32 *src, void *dest);
 
