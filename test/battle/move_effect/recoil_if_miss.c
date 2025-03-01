@@ -99,7 +99,7 @@ SINGLE_BATTLE_TEST("Recoil if miss: Jump Kick's recoil happens after Spiky Shiel
     }
 }
 
-SINGLE_BATTLE_TEST("Recoil If Miss: Jump Kick recoil happens after Spiky Shield damage")
+SINGLE_BATTLE_TEST("Recoil if miss: Jump Kick recoil happens after Spiky Shield damage")
 {
     GIVEN {
         ASSUME(!gMovesInfo[MOVE_JUMP_KICK].ignoresProtect);
@@ -117,7 +117,7 @@ SINGLE_BATTLE_TEST("Recoil If Miss: Jump Kick recoil happens after Spiky Shield 
     }
 }
 
-SINGLE_BATTLE_TEST("Recoil If Miss: Supercell Slam causes recoil if it is absorbed")
+SINGLE_BATTLE_TEST("Recoil if miss: Supercell Slam causes recoil if it is absorbed")
 {
     GIVEN {
         PLAYER(SPECIES_WOBBUFFET);
