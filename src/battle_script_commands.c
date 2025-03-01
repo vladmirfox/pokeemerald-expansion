@@ -1302,7 +1302,6 @@ static void Cmd_attackcanceler(void)
 
     if (gSpecialStatuses[gBattlerTarget].lightningRodRedirected)
     {
-        gBattleStruct->moveResultFlags[gBattlerTarget] |= MOVE_RESULT_ABSORBED;
         gSpecialStatuses[gBattlerTarget].lightningRodRedirected = FALSE;
         gLastUsedAbility = ABILITY_LIGHTNING_ROD;
         BattleScriptPushCursor();
@@ -1311,7 +1310,6 @@ static void Cmd_attackcanceler(void)
     }
     else if (gSpecialStatuses[gBattlerTarget].stormDrainRedirected)
     {
-        gBattleStruct->moveResultFlags[gBattlerTarget] |= MOVE_RESULT_ABSORBED;
         gSpecialStatuses[gBattlerTarget].stormDrainRedirected = FALSE;
         gLastUsedAbility = ABILITY_STORM_DRAIN;
         BattleScriptPushCursor();
