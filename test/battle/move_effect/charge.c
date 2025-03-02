@@ -156,26 +156,3 @@ SINGLE_BATTLE_TEST("Charge will not expire if it flinches twice in a row")
             EXPECT_MUL_EQ(damage[0], Q_4_12(2.0), damage[1]);
     }
 }
-
-SINGLE_BATTLE_TEST("Data Breach ignores target's defense and damage reductions when using normal-type moves 3")
-{
-    s16 damage[3] = {0};
-    GIVEN {
-        PLAYER(SPECIES_WOBBUFFET) { Speed(2); }
-        OPPONENT(SPECIES_WOBBUFFET) {Speed(1); }
-    } WHEN {
-        // player attacks with no defenses up
-        TURN { MOVE(player, MOVE_AQUA_JET); MOVE(opponent, MOVE_ACID_ARMOR); }
-        // player attacks against +2 Def/Sp.Def
-        TURN { MOVE(player, MOVE_AQUA_JET); MOVE(opponent, MOVE_REFLECT); }
-        // player attacks against +2 Def/Sp.Def + Screen
-        TURN { MOVE(player, MOVE_AQUA_JET); }
-    } SCENE {
-        HP_BAR(opponent, captureDamage: &damage[0]);
-        HP_BAR(opponent, captureDamage: &damage[1]);
-        HP_BAR(opponent, captureDamage: &damage[2]);
-    } THEN {
-        EXPECT_GT(damage[0], damage[1]);
-        EXPECT_GT(damage[1], damage[2]);
-    }
-}
