@@ -1,8 +1,15 @@
+@ 'requests_effects' should be set to 1 if the command contains a call
+@ to 'Script_RequestEffects', which allows it to be analyzed with
+@ 'RunScriptImmediatelyUntilEffect'.
 	.ifndef SCRIPT_CMD_TABLE_ENTRY_MACRO
 	.set SCRIPT_CMD_TABLE_ENTRY_MACRO, 1
-	.macro script_cmd_table_entry constant:req value:req
+	.macro script_cmd_table_entry constant:req value:req, requests_effects=0
 	.if ALLOCATE_SCRIPT_CMD_TABLE
+	.if \requests_effects == 0
 	.4byte \value
+	.else
+	.4byte \value + ROM_SIZE
+	.endif
 	.else
 	enum \constant
 	.endif
@@ -15,6 +22,7 @@
 	.align 2
 gScriptCmdTable::
 	.endif
+
 	script_cmd_table_entry SCR_OP_NOP                           ScrCmd_nop                            @ 0x00
 	script_cmd_table_entry SCR_OP_NOP1                          ScrCmd_nop1                           @ 0x01
 	script_cmd_table_entry SCR_OP_END                           ScrCmd_end                            @ 0x02
@@ -244,7 +252,7 @@ gScriptCmdTable::
 	script_cmd_table_entry SCR_OP_BUFFERITEMNAMEPLURAL          ScrCmd_bufferitemnameplural           @ 0xe2
 	script_cmd_table_entry SCR_OP_DYNMULTICHOICE                ScrCmd_dynmultichoice                 @ 0xe3
 	script_cmd_table_entry SCR_OP_DYNMULTIPUSH                  ScrCmd_dynmultipush                   @ 0xe4
-	script_cmd_table_entry SCR_OP_SETSPEAKER					ScrCmd_setspeaker                     @ 0xe5
+	script_cmd_table_entry SCR_OP_SETSPEAKER					          ScrCmd_setspeaker                     @ 0xe5
 
 	.if ALLOCATE_SCRIPT_CMD_TABLE
 gScriptCmdTableEnd::
