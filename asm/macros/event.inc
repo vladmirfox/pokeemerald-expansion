@@ -2518,3 +2518,8 @@
 	callnative FacilityTrainerBattle
 	.byte \facility
 	.endm
+
+	.macro dofacilitytrainerbattle facility:req
+	callnative DoFacilityTrainerBattle
+	.byte \facility
+	.endm
