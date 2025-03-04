@@ -407,7 +407,7 @@ bool8 CheckForTrainersWantingBattle(void)
         if (gNoOfApproachingTrainers > 0) 
         {
             ResetTrainerOpponentIds();
-            InitTrainerBattleVariables();
+            InitTrainerBattleParameter();
 
             gSelectedObjectEvent = gApproachingTrainers[0].objectEventId;
             gSpecialVar_LastTalked = gObjectEvents[gApproachingTrainers[0].objectEventId].localId;

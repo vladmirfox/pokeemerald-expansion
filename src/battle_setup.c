@@ -933,7 +933,7 @@ void ResetTrainerOpponentIds(void)
     TRAINER_BATTLE_PARAM.opponentB = 0;
 }
 
-void InitTrainerBattleVariables(void)
+void InitTrainerBattleParameter(void)
 {
     memset(gTrainerBattleParameter.data, 0, sizeof(TrainerBattleParameter));
     sTrainerBattleEndScript = NULL;
@@ -941,7 +941,7 @@ void InitTrainerBattleVariables(void)
 
 void TrainerBattleLoadArgs(const u8 *data)
 {
-    InitTrainerBattleVariables();
+    InitTrainerBattleParameter();
     memcpy(gTrainerBattleParameter.data, data, sizeof(TrainerBattleParameter));
     sTrainerBattleEndScript = (u8*)data + sizeof(TrainerBattleParameter);
 }
@@ -1872,7 +1872,7 @@ u16 CountBattledRematchTeams(u16 trainerId)
 
 void SetMultiTrainerBattle(struct ScriptContext *ctx)
 {
-    InitTrainerBattleVariables();
+    InitTrainerBattleParameter();
 
     TRAINER_BATTLE_PARAM.opponentA = ScriptReadHalfword(ctx);
     TRAINER_BATTLE_PARAM.defeatTextA = (u8*)ScriptReadWord(ctx);
@@ -1883,7 +1883,7 @@ void SetMultiTrainerBattle(struct ScriptContext *ctx)
 
 void FacilityTrainerBattle(struct ScriptContext *ctx)
 {
-    InitTrainerBattleVariables();
+    InitTrainerBattleParameter();
 
     u8 facility = ScriptReadByte(ctx);
     ctx->scriptPtr = BattleSetup_ConfigureFacilityTrainerBattle(facility, ctx->scriptPtr);
