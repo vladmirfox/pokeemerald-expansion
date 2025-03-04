@@ -30,6 +30,7 @@
 #include "field_weather.h"
 #include "battle_tower.h"
 #include "gym_leader_rematch.h"
+#include "battle_frontier.h"
 #include "battle_pike.h"
 #include "battle_pyramid.h"
 #include "fldeff.h"
