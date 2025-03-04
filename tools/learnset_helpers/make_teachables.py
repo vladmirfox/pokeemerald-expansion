@@ -24,7 +24,6 @@ For a given species, a move is considered teachable to that species if:
 from itertools import chain
 from textwrap import dedent
 
-import cProfile
 import glob
 import json
 import pathlib
@@ -43,15 +42,6 @@ SNAKIFY_PAT = re.compile(r"(?!^)([A-Z]+)")
 LF = "\n" # f-strings suck nad don't permit escapes.
 
 
-def profile(func):
-    def wrapper(*args, **kwargs):
-        profiler = cProfile.Profile()
-        result = profiler.runcall(func, *args, **kwargs)
-        profiler.print_stats(sort='cumulative')
-        return result
-    return wrapper
-
-
 def enabled() -> bool:
     """
     Check if the user has explicitly enabled this opt-in helper.
@@ -62,7 +52,7 @@ def enabled() -> bool:
         return cfg_defined is not None and cfg_defined.group("cfg_val") in ("TRUE", "1")
 
 
-def extract_repo_tutors() -> typing.Generator[str]:
+def extract_repo_tutors() -> typing.Generator[str, None, None]:
     """
     Yield MOVE constants which are *likely* assigned to a move tutor. This isn't
     foolproof, but it's suitable.
@@ -77,7 +67,7 @@ def extract_repo_tutors() -> typing.Generator[str]:
                 yield move.group(1)
 
 
-def extract_repo_tms() -> typing.Generator[str]:
+def extract_repo_tms() -> typing.Generator[str, None, None]:
     """
     Yield MOVE constants assigned to a TM or HM in the user's repo.
     """
@@ -133,7 +123,11 @@ def prepare_output(all_learnables: dict[str, set[str]], repo_teachables: set[str
         repo_species_teachables = filter(lambda m: m in repo_teachables, all_learnables[species_upper])
 
         new += old[cursor:match_b]
-        new += f"{species.group("decl")} = {{{LF}    {joinpat.join(chain(repo_species_teachables, ("MOVE_UNAVAILABLE",)))},{LF}}};{LF}"
+        new += "\n".join([
+            f"{species.group('decl')} = {{",
+            f"    {joinpat.join(chain(repo_species_teachables, ('MOVE_UNAVAILABLE',)))},",
+            "};\n",
+        ])
         cursor = match_e + 1
 
     new += old[cursor:]
