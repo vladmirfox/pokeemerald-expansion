@@ -71,31 +71,30 @@ static void Task_StartBattleAfterTransition(u8 taskId)
     }
 }
 
-void DoFacilityTrainerBattle(struct ScriptContext *ctx)
+static void DoFacilityTrainerBattleInternal(u8 facility)
 {
-    u8 facility = ScriptReadByte(ctx);
     gBattleScripting.specialTrainerBattleType = facility;
-
+    
     switch (facility)
     {
         case FACILITY_BATTLE_TOWER:
             gBattleTypeFlags = BATTLE_TYPE_TRAINER | BATTLE_TYPE_BATTLE_TOWER;
             switch (VarGet(VAR_FRONTIER_BATTLE_MODE))
             {
-            case FRONTIER_MODE_SINGLES:
+                case FRONTIER_MODE_SINGLES:
                 FillFrontierTrainerParty(FRONTIER_PARTY_SIZE);
                 break;
-            case FRONTIER_MODE_DOUBLES:
+                case FRONTIER_MODE_DOUBLES:
                 FillFrontierTrainerParty(FRONTIER_DOUBLES_PARTY_SIZE);
                 gBattleTypeFlags |= BATTLE_TYPE_DOUBLE;
                 break;
-            case FRONTIER_MODE_MULTIS:
+                case FRONTIER_MODE_MULTIS:
                 FillFrontierTrainersParties(FRONTIER_MULTI_PARTY_SIZE);
                 gPartnerTrainerId = gSaveBlock2Ptr->frontier.trainerIds[17];
                 FillPartnerParty(gPartnerTrainerId);
                 gBattleTypeFlags |= BATTLE_TYPE_DOUBLE | BATTLE_TYPE_INGAME_PARTNER | BATTLE_TYPE_MULTI | BATTLE_TYPE_TWO_OPPONENTS;
                 break;
-            case FRONTIER_MODE_LINK_MULTIS:
+                case FRONTIER_MODE_LINK_MULTIS:
                 gBattleTypeFlags |= BATTLE_TYPE_DOUBLE | BATTLE_TYPE_LINK | BATTLE_TYPE_MULTI | BATTLE_TYPE_TOWER_LINK_MULTI;
                 FillFrontierTrainersParties(FRONTIER_MULTI_PARTY_SIZE);
                 break;
@@ -107,9 +106,9 @@ void DoFacilityTrainerBattle(struct ScriptContext *ctx)
         case FACILITY_BATTLE_DOME:
             gBattleTypeFlags = BATTLE_TYPE_TRAINER | BATTLE_TYPE_DOME;
             if (VarGet(VAR_FRONTIER_BATTLE_MODE) == FRONTIER_MODE_DOUBLES)
-                gBattleTypeFlags |= BATTLE_TYPE_DOUBLE;
+            gBattleTypeFlags |= BATTLE_TYPE_DOUBLE;
             if (TRAINER_BATTLE_PARAM.opponentA == TRAINER_FRONTIER_BRAIN)
-                FillFrontierTrainerParty(DOME_BATTLE_PARTY_SIZE);
+            FillFrontierTrainerParty(DOME_BATTLE_PARTY_SIZE);
             CreateTask(Task_StartBattleAfterTransition, 1);
             CreateTask_PlayMapChosenOrBattleBGM(0);
             BattleTransition_StartOnField(GetSpecialBattleTransition(B_TRANSITION_GROUP_B_DOME));
@@ -117,11 +116,11 @@ void DoFacilityTrainerBattle(struct ScriptContext *ctx)
         case FACILITY_BATTLE_PALACE:
             gBattleTypeFlags = BATTLE_TYPE_TRAINER | BATTLE_TYPE_PALACE;
             if (VarGet(VAR_FRONTIER_BATTLE_MODE) == FRONTIER_MODE_DOUBLES)
-                gBattleTypeFlags |= BATTLE_TYPE_DOUBLE;
+            gBattleTypeFlags |= BATTLE_TYPE_DOUBLE;
             if (gSaveBlock2Ptr->frontier.lvlMode != FRONTIER_LVL_TENT)
-                FillFrontierTrainerParty(FRONTIER_PARTY_SIZE);
+            FillFrontierTrainerParty(FRONTIER_PARTY_SIZE);
             else
-                FillTentTrainerParty(FRONTIER_PARTY_SIZE);
+            FillTentTrainerParty(FRONTIER_PARTY_SIZE);
             CreateTask(Task_StartBattleAfterTransition, 1);
             PlayMapChosenOrBattleBGM(0);
             BattleTransition_StartOnField(GetSpecialBattleTransition(B_TRANSITION_GROUP_B_PALACE));
@@ -129,9 +128,9 @@ void DoFacilityTrainerBattle(struct ScriptContext *ctx)
         case FACILITY_BATTLE_ARENA:
             gBattleTypeFlags = BATTLE_TYPE_TRAINER | BATTLE_TYPE_ARENA;
             if (gSaveBlock2Ptr->frontier.lvlMode != FRONTIER_LVL_TENT)
-                FillFrontierTrainerParty(FRONTIER_PARTY_SIZE);
+            FillFrontierTrainerParty(FRONTIER_PARTY_SIZE);
             else
-                FillTentTrainerParty(FRONTIER_PARTY_SIZE);
+            FillTentTrainerParty(FRONTIER_PARTY_SIZE);
             CreateTask(Task_StartBattleAfterTransition, 1);
             PlayMapChosenOrBattleBGM(0);
             BattleTransition_StartOnField(GetSpecialBattleTransition(B_TRANSITION_GROUP_B_ARENA));
@@ -139,7 +138,7 @@ void DoFacilityTrainerBattle(struct ScriptContext *ctx)
         case FACILITY_BATTLE_FACTORY:
             gBattleTypeFlags = BATTLE_TYPE_TRAINER | BATTLE_TYPE_FACTORY;
             if (VarGet(VAR_FRONTIER_BATTLE_MODE) == FRONTIER_MODE_DOUBLES)
-                gBattleTypeFlags |= BATTLE_TYPE_DOUBLE;
+            gBattleTypeFlags |= BATTLE_TYPE_DOUBLE;
             FillFactoryTrainerParty();
             CreateTask(Task_StartBattleAfterTransition, 1);
             PlayMapChosenOrBattleBGM(0);
@@ -170,6 +169,13 @@ void DoFacilityTrainerBattle(struct ScriptContext *ctx)
         default:
             break;
     }
+}
+
+void DoFacilityTrainerBattle(struct ScriptContext *ctx)
+{
+    u8 facility = ScriptReadByte(ctx);
+
+    DoFacilityTrainerBattleInternal(facility);
 }
 
 void FillFrontierTrainerParty(u8 monsCount)
