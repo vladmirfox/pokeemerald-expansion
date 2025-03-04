@@ -9,6 +9,7 @@
 #include "main.h"
 #include "international_string_util.h"
 #include "battle.h"
+#include "battle_partner.h"
 #include "frontier_util.h"
 #include "strings.h"
 #include "recorded_battle.h"

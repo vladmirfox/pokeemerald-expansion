@@ -6,6 +6,7 @@
 #include "battle_setup.h"
 #include "battle_dome.h"
 #include "battle_factory.h"
+#include "battle_partner.h"
 #include "battle_tower.h"
 #include "battle_transition.h"
 #include "event_data.h"
