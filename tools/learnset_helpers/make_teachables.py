@@ -39,7 +39,6 @@ TMHM_MACRO_PAT = re.compile(r"F\((\w+)\)")
 UNIVERSAL_MOVES_PAT = re.compile(r"static const u16 sUniversalMoves\[\]\s*=\s*{((.|\n)*?)\n};")
 TEACHABLE_ARRAY_DECL_PAT = re.compile(r"(?P<decl>static const u16 s(?P<name>\w+)TeachableLearnset\[\]) = {[\s\S]*?};")
 SNAKIFY_PAT = re.compile(r"(?!^)([A-Z]+)")
-LF = "\n" # f-strings suck nad don't permit escapes.
 
 
 def enabled() -> bool:
@@ -187,7 +186,7 @@ def main():
     repo_tutors = list(extract_repo_tutors())
     repo_teachables = set(filter(
         lambda move: move not in set(repo_universals),
-        chain(extract_repo_tms(), extract_repo_tutors())
+        chain(repo_tms, repo_tutors)
     ))
 
     h_align = max(map(lambda move: len(move), chain(repo_universals, repo_teachables))) + 2
