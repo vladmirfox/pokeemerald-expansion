@@ -105,7 +105,7 @@ BattlePyramid_WarpToTop::
 
 @ TRAINER_PHILLIP is used as a placeholder
 BattlePyramid_TrainerBattle::
-	facilitytrainerbattle FRONTIER_FACILITY_PYRAMID
+	facilitytrainerbattle FACILITY_BATTLE_PYRAMID
 	pyramid_showhint
 	waitmessage
 	waitbuttonpress

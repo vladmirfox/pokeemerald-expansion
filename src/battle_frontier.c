@@ -178,6 +178,14 @@ void DoFacilityTrainerBattle(struct ScriptContext *ctx)
     DoFacilityTrainerBattleInternal(facility);
 }
 
+void FacilityTrainerBattle(struct ScriptContext *ctx)
+{
+    InitTrainerBattleParameter();
+
+    u8 facility = ScriptReadByte(ctx);
+    ctx->scriptPtr = BattleSetup_ConfigureFacilityTrainerBattle(facility, ctx->scriptPtr);
+}
+
 void FillFrontierTrainerParty(u8 monsCount)
 {
     ZeroEnemyPartyMons();

@@ -2514,11 +2514,13 @@
 	.2byte \partnerId
 	.endm
 
+	@ facility version of `trainerbattle` macro. Used in Battle Pyramid and Trainer Hill
 	.macro facilitytrainerbattle facility:req
 	callnative FacilityTrainerBattle
 	.byte \facility
 	.endm
 
+	@ immediately starts a battle of the given facility
 	.macro dofacilitytrainerbattle facility:req
 	callnative DoFacilityTrainerBattle
 	.byte \facility

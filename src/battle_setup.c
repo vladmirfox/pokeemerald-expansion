@@ -1053,7 +1053,7 @@ const u8* BattleSetup_ConfigureFacilityTrainerBattle(u8 facility, const u8* scri
 
     switch (facility)
     {
-        case FRONTIER_FACILITY_PYRAMID:
+        case FACILITY_BATTLE_PYRAMID:
             if (gApproachingTrainerId == 0)
             {
                 SetMapVarsToTrainerA();
@@ -1064,7 +1064,7 @@ const u8* BattleSetup_ConfigureFacilityTrainerBattle(u8 facility, const u8* scri
                 TRAINER_BATTLE_PARAM.opponentB = LocalIdToPyramidTrainerId(gSpecialVar_LastTalked);
             }
             return EventScript_TryDoNormalTrainerBattle;
-        case FACILITY_TRAINER_HILL:
+        case FACILITY_BATTLE_TRAINER_HILL:
             if (gApproachingTrainerId == 0)
             {
                 SetMapVarsToTrainerA();
@@ -1881,10 +1881,3 @@ void SetMultiTrainerBattle(struct ScriptContext *ctx)
     gPartnerTrainerId = TRAINER_PARTNER(ScriptReadHalfword(ctx));
 };
 
-void FacilityTrainerBattle(struct ScriptContext *ctx)
-{
-    InitTrainerBattleParameter();
-
-    u8 facility = ScriptReadByte(ctx);
-    ctx->scriptPtr = BattleSetup_ConfigureFacilityTrainerBattle(facility, ctx->scriptPtr);
-}
