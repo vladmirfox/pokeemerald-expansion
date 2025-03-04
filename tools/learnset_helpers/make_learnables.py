@@ -51,7 +51,7 @@ def main():
     assert OUTPUT_FILE.parent.exists(), f"parent of {OUTPUT_FILE=} does not exist"
 
     batch = {
-        species: list(learnables)
+        species: list(sorted(learnables))
         for species, learnables in from_batch(INPUTS_DIR).items()
     }
     with open(OUTPUT_FILE, "w") as fp:

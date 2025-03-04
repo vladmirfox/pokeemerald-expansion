@@ -24,6 +24,7 @@ For a given species, a move is considered teachable to that species if:
 from itertools import chain
 from textwrap import dedent
 
+import cProfile
 import glob
 import json
 import pathlib
@@ -40,6 +41,15 @@ UNIVERSAL_MOVES_PAT = re.compile(r"static const u16 sUniversalMoves\[\]\s*=\s*{(
 TEACHABLE_ARRAY_DECL_PAT = re.compile(r"(?P<decl>static const u16 s(?P<name>\w+)TeachableLearnset\[\]) = {[\s\S]*?};")
 SNAKIFY_PAT = re.compile(r"(?!^)([A-Z]+)")
 LF = "\n" # f-strings suck nad don't permit escapes.
+
+
+def profile(func):
+    def wrapper(*args, **kwargs):
+        profiler = cProfile.Profile()
+        result = profiler.runcall(func, *args, **kwargs)
+        profiler.print_stats(sort='cumulative')
+        return result
+    return wrapper
 
 
 def enabled() -> bool:
@@ -120,7 +130,7 @@ def prepare_output(all_learnables: dict[str, set[str]], repo_teachables: set[str
             cursor = match_e + 1
             continue
 
-        repo_species_teachables = sorted(filter(lambda m: m in repo_teachables, all_learnables[species_upper]))
+        repo_species_teachables = filter(lambda m: m in repo_teachables, all_learnables[species_upper])
 
         new += old[cursor:match_b]
         new += f"{species.group("decl")} = {{{LF}    {joinpat.join(chain(repo_species_teachables, ("MOVE_UNAVAILABLE",)))},{LF}}};{LF}"
