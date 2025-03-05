@@ -160,17 +160,17 @@
                       {
                         "min_level": 2,
                         "max_level": 2,
-                        "species": "SPECIES_WURMPLE"
+                        "species": "SPECIES_ARTICUNO"
                       },
                       {
                         "min_level": 2,
                         "max_level": 2,
-                        "species": "SPECIES_POOCHYENA"
+                        "species": "SPECIES_ZAPDOS"
                       },
                       {
                         "min_level": 2,
                         "max_level": 2,
-                        "species": "SPECIES_WURMPLE"
+                        "species": "SPECIES_MOLTRES"
                       },
                       {
                         "min_level": 3,
@@ -223,10 +223,146 @@
               ]
             },
             {
-              "time_evening": []
+              "time_evening": [
+                {
+                  "land_mons": {
+                    "encounter_rate": 20,
+                    "mons": [
+                      {
+                        "min_level": 2,
+                        "max_level": 2,
+                        "species": "SPECIES_ZUBAT"
+                      },
+                      {
+                        "min_level": 2,
+                        "max_level": 2,
+                        "species": "SPECIES_ENTEI"
+                      },
+                      {
+                        "min_level": 2,
+                        "max_level": 2,
+                        "species": "SPECIES_SUICUNE"
+                      },
+                      {
+                        "min_level": 3,
+                        "max_level": 3,
+                        "species": "SPECIES_RAIKOU"
+                      },
+                      {
+                        "min_level": 3,
+                        "max_level": 3,
+                        "species": "SPECIES_POOCHYENA"
+                      },
+                      {
+                        "min_level": 3,
+                        "max_level": 3,
+                        "species": "SPECIES_POOCHYENA"
+                      },
+                      {
+                        "min_level": 3,
+                        "max_level": 3,
+                        "species": "SPECIES_WURMPLE"
+                      },
+                      {
+                        "min_level": 3,
+                        "max_level": 3,
+                        "species": "SPECIES_POOCHYENA"
+                      },
+                      {
+                        "min_level": 2,
+                        "max_level": 2,
+                        "species": "SPECIES_ZIGZAGOON"
+                      },
+                      {
+                        "min_level": 2,
+                        "max_level": 2,
+                        "species": "SPECIES_ZIGZAGOON"
+                      },
+                      {
+                        "min_level": 3,
+                        "max_level": 3,
+                        "species": "SPECIES_ZIGZAGOON"
+                      },
+                      {
+                        "min_level": 3,
+                        "max_level": 3,
+                        "species": "SPECIES_ZIGZAGOON"
+                      }
+                    ]
+                  }
+                }
+              ]
             },
             {
-              "time_night": []
+              "time_night": [
+                {
+                  "land_mons": {
+                    "encounter_rate": 20,
+                    "mons": [
+                      {
+                        "min_level": 2,
+                        "max_level": 2,
+                        "species": "SPECIES_ZUBAT"
+                      },
+                      {
+                        "min_level": 2,
+                        "max_level": 2,
+                        "species": "SPECIES_ARCEUS"
+                      },
+                      {
+                        "min_level": 2,
+                        "max_level": 2,
+                        "species": "SPECIES_DIALGA"
+                      },
+                      {
+                        "min_level": 3,
+                        "max_level": 3,
+                        "species": "SPECIES_PALKIA"
+                      },
+                      {
+                        "min_level": 3,
+                        "max_level": 3,
+                        "species": "SPECIES_POOCHYENA"
+                      },
+                      {
+                        "min_level": 3,
+                        "max_level": 3,
+                        "species": "SPECIES_POOCHYENA"
+                      },
+                      {
+                        "min_level": 3,
+                        "max_level": 3,
+                        "species": "SPECIES_WURMPLE"
+                      },
+                      {
+                        "min_level": 3,
+                        "max_level": 3,
+                        "species": "SPECIES_POOCHYENA"
+                      },
+                      {
+                        "min_level": 2,
+                        "max_level": 2,
+                        "species": "SPECIES_ZIGZAGOON"
+                      },
+                      {
+                        "min_level": 2,
+                        "max_level": 2,
+                        "species": "SPECIES_ZIGZAGOON"
+                      },
+                      {
+                        "min_level": 3,
+                        "max_level": 3,
+                        "species": "SPECIES_ZIGZAGOON"
+                      },
+                      {
+                        "min_level": 3,
+                        "max_level": 3,
+                        "species": "SPECIES_ZIGZAGOON"
+                      }
+                    ]
+                  }
+                }
+              ]
             }
           ]
         },
