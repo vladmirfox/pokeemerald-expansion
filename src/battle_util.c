@@ -1427,6 +1427,26 @@ u32 TrySetCantSelectMoveBattleScript(u32 battler)
             limitations++;
         }
     }
+
+    else if (holdEffect == HOLD_EFFECT_ASSAULT_COAT && IsBattleMoveStatus(move) && moveEffect != EFFECT_ME_FIRST)
+    {
+        if ((GetActiveGimmick(battler) == GIMMICK_DYNAMAX))
+            gCurrentMove = MOVE_MAX_GUARD;
+        else
+            gCurrentMove = move;
+        gLastUsedItem = gBattleMons[battler].item;
+        if (gBattleTypeFlags & BATTLE_TYPE_PALACE)
+        {
+            gPalaceSelectionBattleScripts[battler] = BattleScript_SelectingNotAllowedMoveAssaultCoatInPalace;
+            gProtectStructs[battler].palaceUnableToUseMove = TRUE;
+        }
+        else
+        {
+            gSelectionBattleScripts[battler] = BattleScript_SelectingNotAllowedMoveAssaultCoat;
+            limitations++;
+        }
+    }
+
     if (DYNAMAX_BYPASS_CHECK && (GetBattlerAbility(battler) == ABILITY_GORILLA_TACTICS) && *choicedMove != MOVE_NONE
               && *choicedMove != MOVE_UNAVAILABLE && *choicedMove != move)
     {
@@ -1516,6 +1536,9 @@ u8 CheckMoveLimitations(u32 battler, u8 unusableMoves, u16 check)
             unusableMoves |= 1u << i;
         // Assault Vest
         else if (check & MOVE_LIMITATION_ASSAULT_VEST && holdEffect == HOLD_EFFECT_ASSAULT_VEST && IsBattleMoveStatus(move) && moveEffect != EFFECT_ME_FIRST)
+            unusableMoves |= 1u << i;
+        // Assault Coat
+        else if (check & MOVE_LIMITATION_ASSAULT_COAT && holdEffect == HOLD_EFFECT_ASSAULT_COAT && IsBattleMoveStatus(move) && moveEffect != EFFECT_ME_FIRST)
             unusableMoves |= 1u << i;
         // Gravity
         else if (check & MOVE_LIMITATION_GRAVITY && IsGravityPreventingMove(move))
@@ -8282,6 +8305,28 @@ u32 ItemBattleEffects(enum ItemCaseId caseID, u32 battler, bool32 moveTurn)
                     RecordItemEffectBattle(battler, HOLD_EFFECT_ROCKY_HELMET);
                 }
                 break;
+            case HOLD_EFFECT_POCKET_SAND:
+                if (IsBattlerTurnDamaged(gBattlerTarget)
+                    && GetBattlerHoldEffect(gBattlerAttacker, TRUE) != HOLD_EFFECT_SAFETY_GOGGLES
+                    && GetBattlerHoldEffect(gBattlerAttacker, TRUE) != HOLD_EFFECT_CLEAR_AMULET
+                    && GetBattlerHoldEffect(gBattlerAttacker, TRUE) != HOLD_EFFECT_PUNCHING_GLOVE
+                    && IsMoveMakingContact(gCurrentMove, gBattlerAttacker)
+                    && IsBattlerAlive(gBattlerAttacker)
+                    && GetBattlerAbility(gBattlerAttacker) != ABILITY_KEEN_EYE
+                    && GetBattlerAbility(gBattlerAttacker) != ABILITY_MINDS_EYE
+                    && GetBattlerAbility(gBattlerAttacker) != ABILITY_CLEAR_BODY)
+                    
+                {
+                    gBattleStruct->moveDamage[gBattlerAttacker] = GetNonDynamaxMaxHP(gBattlerAttacker) / 6;
+                    if (gBattleStruct->moveDamage[gBattlerAttacker] == 0)
+                        gBattleStruct->moveDamage[gBattlerAttacker] = 1;
+                    effect = ITEM_STATS_CHANGE;
+                    BattleScriptPushCursor();
+                    gBattlescriptCurrInstr = BattleScript_PocketSandActivates;
+                    PREPARE_ITEM_BUFFER(gBattleTextBuff1, gLastUsedItem);
+                    RecordItemEffectBattle(battler, HOLD_EFFECT_POCKET_SAND);
+                }
+                break;
             case HOLD_EFFECT_WEAKNESS_POLICY:
                 if (IsBattlerAlive(battler)
                     && IsBattlerTurnDamaged(gBattlerTarget)
@@ -10082,6 +10127,10 @@ static inline u32 CalcDefenseStat(struct DamageCalculationData *damageCalcData, 
         break;
     case HOLD_EFFECT_ASSAULT_VEST:
         if (!usesDefStat)
+            modifier = uq4_12_multiply_half_down(modifier, UQ_4_12(1.5));
+        break;
+    case HOLD_EFFECT_ASSAULT_COAT:
+        if (usesDefStat)
             modifier = uq4_12_multiply_half_down(modifier, UQ_4_12(1.5));
         break;
     case HOLD_EFFECT_SOUL_DEW:

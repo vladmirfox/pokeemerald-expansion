@@ -2049,8 +2049,16 @@ LittlerootTown_EventScript_Porytest::
 # 1028 "data//maps/LittlerootTown/scripts.pory"
 	msgbox LittlerootTown_EventScript_Porytest_Text_0
 # 1029 "data//maps/LittlerootTown/scripts.pory"
-	closemessage
+	givemon SPECIES_CHIKORITA, 5, ITEM_POCKET_SAND
 # 1030 "data//maps/LittlerootTown/scripts.pory"
+	setflag FLAG_SYS_POKEMON_GET
+# 1031 "data//maps/LittlerootTown/scripts.pory"
+	playfanfare MUS_OBTAIN_ITEM
+# 1032 "data//maps/LittlerootTown/scripts.pory"
+	msgbox LittlerootTown_EventScript_Porytest_Text_1
+# 1033 "data//maps/LittlerootTown/scripts.pory"
+	closemessage
+# 1034 "data//maps/LittlerootTown/scripts.pory"
 	releaseall
 	return
 
@@ -2058,3 +2066,7 @@ LittlerootTown_EventScript_Porytest::
 LittlerootTown_EventScript_Porytest_Text_0:
 # 1028 "data//maps/LittlerootTown/scripts.pory"
 	.string "hi$"
+
+LittlerootTown_EventScript_Porytest_Text_1:
+# 1032 "data//maps/LittlerootTown/scripts.pory"
+	.string "Recieved Chikorita$"

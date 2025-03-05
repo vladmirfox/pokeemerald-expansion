@@ -1451,6 +1451,9 @@ const u32 gItemIconPalette_FloatStone[] = INCBIN_U32("graphics/items/icon_palett
 const u32 gItemIcon_RockyHelmet[] = INCBIN_U32("graphics/items/icons/rocky_helmet.4bpp.lz");
 const u32 gItemIconPalette_RockyHelmet[] = INCBIN_U32("graphics/items/icon_palettes/rocky_helmet.gbapal.lz");
 
+const u32 gItemIcon_PocketSand[] = INCBIN_U32("graphics/items/icons/pocket_sand.4bpp.lz");
+const u32 gItemIconPalette_PocketSand[] = INCBIN_U32("graphics/items/icon_palettes/pocket_sand.gbapal.lz");
+
 const u32 gItemIcon_AirBalloon[] = INCBIN_U32("graphics/items/icons/air_balloon.4bpp.lz");
 const u32 gItemIconPalette_AirBalloon[] = INCBIN_U32("graphics/items/icon_palettes/air_balloon.gbapal.lz");
 
@@ -1471,6 +1474,9 @@ const u32 gItemIconPalette_WeaknessPolicy[] = INCBIN_U32("graphics/items/icon_pa
 
 const u32 gItemIcon_AssaultVest[] = INCBIN_U32("graphics/items/icons/assault_vest.4bpp.lz");
 const u32 gItemIconPalette_AssaultVest[] = INCBIN_U32("graphics/items/icon_palettes/assault_vest.gbapal.lz");
+
+const u32 gItemIcon_AssaultCoat[] = INCBIN_U32("graphics/items/icons/assault_coat.4bpp.lz");
+const u32 gItemIconPalette_AssaultCoat[] = INCBIN_U32("graphics/items/icon_palettes/assault_coat.gbapal.lz");
 
 const u32 gItemIcon_SafetyGoggles[] = INCBIN_U32("graphics/items/icons/safety_goggles.4bpp.lz");
 const u32 gItemIconPalette_SafetyGoggles[] = INCBIN_U32("graphics/items/icon_palettes/safety_goggles.gbapal.lz");

@@ -8581,6 +8581,24 @@ BattleScript_RockyHelmetActivatesDmg:
 	call BattleScript_HurtAttacker
 	return
 
+BattleScript_PocketSandActivates::
+    playanimation BS_TARGET, B_ANIM_HELD_ITEM_EFFECT
+	waitanimation
+	printstring STRINGID_POCKETSANDACTIVATES
+    copybyte sBATTLER, gBattlerTarget
+	copybyte gBattlerTarget, gBattlerAttacker
+	jumpifstat BS_TARGET, CMP_NOT_EQUAL, STAT_ACC, MIN_STAT_STAGE, BattleScript_PocketSandActivatesStat
+BattleScript_PocketSandActivatesStat:
+    orword gHitMarker, HITMARKER_IGNORE_SUBSTITUTE | HITMARKER_PASSIVE_DAMAGE
+	savetarget
+	playstatchangeanimation BS_ATTACKER, BIT_ACC, STAT_CHANGE_NEGATIVE
+	setstatchanger STAT_ACC, 1, TRUE
+	statbuffchange STAT_CHANGE_ALLOW_PTR | STAT_CHANGE_NOT_PROTECT_AFFECTED, BattleScript_PocketsandEnd
+BattleScript_PocketsandEnd:
+    return
+
+
+	
 BattleScript_SpikyShieldEffect::
 	jumpifabsent BS_ATTACKER, BattleScript_SpikyShieldRet
 	orword gHitMarker, HITMARKER_IGNORE_SUBSTITUTE | HITMARKER_PASSIVE_DAMAGE
@@ -8970,8 +8988,16 @@ BattleScript_SelectingNotAllowedMoveAssaultVest::
 	printselectionstring STRINGID_ASSAULTVESTDOESNTALLOW
 	endselectionscript
 
+BattleScript_SelectingNotAllowedMoveAssaultCoat::
+	printselectionstring STRINGID_ASSAULTCOATDOESNTALLOW
+	endselectionscript
+
 BattleScript_SelectingNotAllowedMoveAssaultVestInPalace::
 	printstring STRINGID_ASSAULTVESTDOESNTALLOW
+	goto BattleScript_SelectingUnusableMoveInPalace
+
+BattleScript_SelectingNotAllowedMoveAssaultCoatInPalace::
+	printstring STRINGID_ASSAULTCOATDOESNTALLOW
 	goto BattleScript_SelectingUnusableMoveInPalace
 
 BattleScript_SelectingNotAllowedPlaceholder::

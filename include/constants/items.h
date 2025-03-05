@@ -994,10 +994,15 @@
 
 #define ITEM_STRANGE_BALL 828
 
+//NEW ITEMS
+
+#define ITEM_ASSAULT_COAT 829
+#define ITEM_POCKET_SAND 830
+
 // HOPO BERRY
 // LEGEND PLATE
 
-#define ITEMS_COUNT 829
+#define ITEMS_COUNT 831
 #define ITEM_FIELD_ARROW ITEMS_COUNT
 
 // A special item id associated with "Cancel"/"Exit" etc. in a list of items or decorations

@@ -990,7 +990,8 @@ s32 AI_WhichMoveBetter(u32 move1, u32 move2, u32 battlerAtk, u32 battlerDef, s32
     // Check if physical moves hurt.
     if (AI_DATA->holdEffects[battlerAtk] != HOLD_EFFECT_PROTECTIVE_PADS && atkAbility != ABILITY_LONG_REACH
         && (AI_DATA->holdEffects[battlerDef] == HOLD_EFFECT_ROCKY_HELMET
-        || defAbility == ABILITY_IRON_BARBS || defAbility == ABILITY_ROUGH_SKIN))
+        && (AI_DATA->holdEffects[battlerDef] == HOLD_EFFECT_POCKET_SAND
+        || defAbility == ABILITY_IRON_BARBS || defAbility == ABILITY_ROUGH_SKIN)))
     {
         bool32 moveContact1 = MoveMakesContact(move1);
         bool32 moveContact2 = MoveMakesContact(move2);

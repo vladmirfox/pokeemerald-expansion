@@ -8845,6 +8845,24 @@ const struct Item gItemsInfo[] =
         .iconPalette = gItemIconPalette_RockyHelmet,
     },
 
+    [ITEM_POCKET_SAND] =
+    {
+        .name = _("Pocket Sand"),
+        .price = (I_PRICE >= GEN_9) ? 50000 : ((I_PRICE >= GEN_7) ? 4000 : 200),
+        .holdEffect = HOLD_EFFECT_POCKET_SAND,
+        .holdEffectParam = 0,
+        .description = COMPOUND_STRING(
+            "Lowers Acc of the\n"
+            "foe if they touch\n"
+            "the holder."),
+        .pocket = POCKET_ITEMS,
+        .type = ITEM_USE_BAG_MENU,
+        .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
+        .flingPower = 60,
+        .iconPic = gItemIcon_PocketSand,
+        .iconPalette = gItemIconPalette_PocketSand,
+    },
+
     [ITEM_AIR_BALLOON] =
     {
         .name = _("Air Balloon"),
@@ -8970,6 +8988,25 @@ const struct Item gItemsInfo[] =
         .iconPic = gItemIcon_AssaultVest,
         .iconPalette = gItemIconPalette_AssaultVest,
     },
+
+    [ITEM_ASSAULT_COAT] =
+    {
+        .name = _("Assault Coat"),
+        .price = (I_PRICE >= GEN_9) ? 50000 : 1000,
+        .holdEffect = HOLD_EFFECT_ASSAULT_COAT,
+        .holdEffectParam = 50,
+        .description = COMPOUND_STRING(
+            "Raises Phys. Def but\n"
+            "prevents the use\n"
+            "of status moves."),
+        .pocket = POCKET_ITEMS,
+        .type = ITEM_USE_BAG_MENU,
+        .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
+        .flingPower = 80,
+        .iconPic = gItemIcon_AssaultCoat,
+        .iconPalette = gItemIconPalette_AssaultCoat,
+    },
+
 
     [ITEM_SAFETY_GOGGLES] =
     {
