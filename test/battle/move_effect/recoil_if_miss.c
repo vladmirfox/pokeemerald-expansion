@@ -131,3 +131,27 @@ SINGLE_BATTLE_TEST("Recoil if miss: Supercell Slam causes recoil if it is absorb
         HP_BAR(player, damage: maxHP / 2);
     }
 }
+
+SINGLE_BATTLE_TEST("Recoil if miss: Jump Kick has 50% recoil if target is disguised")
+{
+    u32 ability;
+    PARAMETRIZE { ability = ABILITY_EARLY_BIRD; }
+    PARAMETRIZE { ability = ABILITY_SCRAPPY; }
+
+    GIVEN {
+        PLAYER(SPECIES_KANGASKHAN) { Ability(ability); };
+        OPPONENT(SPECIES_MIMIKYU_DISGUISED) { Ability(ABILITY_DISGUISE); }
+    } WHEN {
+        TURN { MOVE(player, MOVE_JUMP_KICK); }
+    } SCENE {
+        s32 maxHP = GetMonData(&PLAYER_PARTY[0], MON_DATA_MAX_HP);
+        MESSAGE("Kangaskhan used Jump Kick!");
+        if (ability == ABILITY_SCRAPPY) {
+            NONE_OF {
+                MESSAGE("Kangaskhan  kept going and crashed!");
+                HP_BAR(player, damage: maxHP / 2);
+            }
+        }
+    }
+}
+
