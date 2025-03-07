@@ -702,10 +702,9 @@ struct SimulatedDamage AI_CalcDamage(u32 move, u32 battlerAtk, u32 battlerDef, u
 
         // Get crit chance
         if (GetGenConfig(GEN_CONFIG_CRIT_CHANCE) == GEN_1)
-            critChanceIndex = CalcCritChanceStageGen1(gBattlerAttacker, gBattlerTarget, gCurrentMove, TRUE, gBattleMons[battlerAtk].ability, gBattleMons[battlerDef].ability, gItemsInfo[gBattleMons[battlerAtk].item].holdEffect);
+            critChanceIndex = CalcCritChanceStageGen1(battlerAtk, battlerDef, move, FALSE, aiData->abilities[battlerAtk], aiData->abilities[battlerDef], aiData->holdEffects[battlerAtk]);
         else
-            critChanceIndex = CalcCritChanceStage(gBattlerAttacker, gBattlerTarget, gCurrentMove, TRUE, gBattleMons[battlerAtk].ability, gBattleMons[battlerDef].ability, gItemsInfo[gBattleMons[battlerAtk].item].holdEffect);
-        
+            critChanceIndex = CalcCritChanceStage(battlerAtk, battlerDef, move, FALSE, aiData->abilities[battlerAtk], aiData->abilities[battlerDef], aiData->holdEffects[battlerAtk]);
         // Use crit damage
         if (critChanceIndex == CRITICAL_HIT_ALWAYS // Guaranteed critical
             || (critChanceIndex > RISKY_AI_CRIT_STAGE_THRESHOLD && (AI_THINKING_STRUCT->aiFlags[battlerAtk] & AI_FLAG_RISKY) && GetGenConfig(GEN_CONFIG_CRIT_CHANCE) != GEN_1) // Not guaranteed but above Risky threshold
