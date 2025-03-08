@@ -44,7 +44,9 @@ u32 AI_GetDamage(u32 battlerAtk, u32 battlerDef, u32 moveIndex, enum DamageCalcC
         return aiData->simulatedDmg[battlerAtk][battlerDef][moveIndex].median; // Default assumes it takes median damage
     }
     else
+    {
         return aiData->simulatedDmg[battlerAtk][battlerDef][moveIndex].median;
+    }
 }
 
 bool32 AI_IsFaster(u32 battlerAi, u32 battlerDef, u32 move)
