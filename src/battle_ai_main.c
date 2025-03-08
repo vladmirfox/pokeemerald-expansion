@@ -2735,6 +2735,8 @@ static s32 AI_TryToFaint(u32 battlerAtk, u32 battlerDef, u32 move, s32 score)
 
     if (CanIndexMoveFaintTarget(battlerAtk, battlerDef, movesetIndex, AI_ATTACKING) && GetMoveEffect(move) != EFFECT_EXPLOSION)
     {
+        if (CanIndexMoveGuaranteeFaintTarget(battlerAtk, battlerDef, movesetIndex))
+            ADJUST_SCORE(BEST_EFFECT);
         if (AI_IsFaster(battlerAtk, battlerDef, move))
             ADJUST_SCORE(FAST_KILL);
         else

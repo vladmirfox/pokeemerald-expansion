@@ -2034,10 +2034,22 @@ bool32 CanIndexMoveFaintTarget(u32 battlerAtk, u32 battlerDef, u32 moveIndex, en
     s32 dmg;
     u16 *moves = gBattleMons[battlerAtk].moves;
 
-    if (IsDoubleBattle && battlerDef == BATTLE_PARTNER(battlerAtk);)
+    if (IsDoubleBattle() && battlerDef == BATTLE_PARTNER(battlerAtk))
         dmg = AI_DATA->simulatedDmg[battlerAtk][battlerDef][moveIndex].maximum; // Attacking partner, be careful
     else
-        dmg = AI_DATA->simulatedDmg[battlerAtk][battlerDef][moveIndex].minimum; // Explictly care about guaranteed KOs universally
+        dmg = AI_GetDamage(battlerAtk, battlerDef, moveIndex, calcContext, AI_DATA);
+
+    if (gBattleMons[battlerDef].hp <= dmg && !CanEndureHit(battlerAtk, battlerDef, moves[moveIndex]))
+        return TRUE;
+    return FALSE;
+}
+
+bool32 CanIndexMoveGuaranteeFaintTarget(u32 battlerAtk, u32 battlerDef, u32 moveIndex)
+{
+    s32 dmg;
+    u16 *moves = gBattleMons[battlerAtk].moves;
+
+    dmg = AI_DATA->simulatedDmg[battlerAtk][battlerDef][moveIndex].minimum; // Explictly care about guaranteed KOs universally
 
     if (gBattleMons[battlerDef].hp <= dmg && !CanEndureHit(battlerAtk, battlerDef, moves[moveIndex]))
         return TRUE;

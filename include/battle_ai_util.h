@@ -66,6 +66,7 @@ bool32 DoesBattlerIgnoreAbilityChecks(u32 battlerAtk, u32 atkAbility, u32 move);
 u32 AI_GetWeather(void);
 bool32 CanAIFaintTarget(u32 battlerAtk, u32 battlerDef, u32 numHits);
 bool32 CanIndexMoveFaintTarget(u32 battlerAtk, u32 battlerDef, u32 index, enum DamageCalcContext calcContext);
+bool32 CanIndexMoveGuaranteeFaintTarget(u32 battlerAtk, u32 battlerDef, u32 index);
 bool32 HasDamagingMove(u32 battlerId);
 bool32 HasDamagingMoveOfType(u32 battlerId, u32 type);
 u32 GetBattlerSecondaryDamage(u32 battlerId);
