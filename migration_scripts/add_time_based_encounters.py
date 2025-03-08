@@ -1,11 +1,20 @@
 import json
 
+# you can change these if you're adding seasons/days of the week, etc
+
+ENCOUNTER_GROUP_SUFFIX = [
+    "Morning",
+    "Day",
+    "Evening",
+    "Night"
+]
+
 
 def GetWildEncounterFile():
     print("hello")
     print("finding wild_encounter.json...")
 
-    wFile = open("../src/data/wild_encounters.json")
+    wFile = open("../src/data/wild_encounters_original.json")
     wData = json.load(wFile)
 
     true = True
@@ -15,27 +24,27 @@ def GetWildEncounterFile():
     for group in wData["wild_encounter_groups"]:
         wEncounters = wData["wild_encounter_groups"][j]["encounters"]
 
-        if "use_encounter_group_arrays" in wData["wild_encounter_groups"][j]:
-            print("wild_encounters.json is already converted!")
-            return
-        else:
-            wData["wild_encounter_groups"][j]["use_encounter_group_arrays"] = true
-
-        i = 0
+        wEncounters_New = list()
         for map in wEncounters:
-            print(map["base_label"])
-            map["encounter_array"] = [
-                dict(time_morning = []),
-                dict(time_day = GetMonTable(wEncounters[i])),
-                dict(time_evening = []),
-                dict(time_night = []),
+            k = 0
+            for suffix in ENCOUNTER_GROUP_SUFFIX:
+                # dont need to copy the whole map here, just the base label and "map" if it exists
+                tempLabel = map["base_label"] + "_" + suffix
+                tempMapLabel = ""
+                if k == 1:
+                    tempDict = map.copy()
+                else:
+                    tempDict = dict()
                 
-            ]
-            i += 1
+                if "map" in map:
+                    tempMapLabel = map["map"]
+                    tempDict["map"] = tempMapLabel
 
-            for monTable in map.copy():
-                if IsMonTable(monTable):
-                    map.pop(monTable)
+                tempDict["base_label"] = tempLabel
+                wEncounters_New.append(tempDict)
+                k += 1
+
+        wData["wild_encounter_groups"][j]["encounters"] = wEncounters_New
         j += 1
 
     wNewData = json.dumps(wData, indent=2)

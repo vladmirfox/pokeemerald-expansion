@@ -61,19 +61,19 @@ TIME_NIGHT_INDEX   = 3
 TOTAL_TIME_STAGES  = TIME_NIGHT_INDEX + 1
 
 #struct building blocks
-baseStruct    = "const struct WildPokemon"
-structLabel   = ""
-structMonType = ""
-structTime    = ""
-structMap     = ""
+baseStruct          = "const struct WildPokemon"
+structLabel         = ""
+structMonType       = ""
+structTime          = ""
+structMap           = ""
 
-structInfo    = "Info"
-structHeader  = "Header"
+structInfo          = "Info"
+structHeader        = "Header"
 structArrayAssign   = "[] ="
 
 baseStructLabel     = ""
 baseStructContent   = []
-infoStructString     = ""
+infoStructString    = ""
 infoStructRate      = 0
 infoStructContent   = []
 headerStructLabel   = ""
@@ -83,8 +83,8 @@ headerStructTable   = {}
 headerIndex = 0
 
 #map header data variables
-hLabel = ""
-hForMaps = True
+hLabel       = ""
+hForMaps     = True
 headersArray = [headerIndex]
 
 #headersArrayItems
@@ -101,10 +101,10 @@ eFishingMons   = []
 
 
 #debug output control
-printEncounterHeaders = True
-printEncounterRateMacros = True
-printEncounterStructsInfoString = True
-printEncounterStructs = True
+printEncounterHeaders           = False
+printEncounterRateMacros        = False
+printEncounterStructsInfoString = False
+printEncounterStructs           = False
 
 
 def ImportWildEncounterFile():
@@ -188,65 +188,70 @@ def ImportWildEncounterFile():
             encounterCount[headerIndex] += 1
 
             headersArray = []
-            for time in encounter["encounter_array"]:
-                if TIME_MORNING in time:
-                    structTime = TIME_MORNING_LABEL
-                elif TIME_DAY in time:
-                    structTime = TIME_DAY_LABEL
-                elif TIME_EVENING in time:
-                    structTime = TIME_EVENING_LABEL
-                elif TIME_NIGHT in time:
-                    structTime = TIME_NIGHT_LABEL
+
+            if TIME_MORNING_LABEL in structLabel:
+                structTime = TIME_MORNING_LABEL
+            elif TIME_DAY_LABEL in structLabel:
+                structTime = TIME_DAY_LABEL
+            elif TIME_EVENING_LABEL in structLabel:
+                structTime = TIME_EVENING_LABEL
+            elif TIME_NIGHT_LABEL in structLabel:
+                structTime = TIME_NIGHT_LABEL
+            else:
+                structTime = ""
+            
+            # print(structTime)
+
+            landMonsInfo      = ""
+            waterMonsInfo     = ""
+            rockSmashMonsInfo = ""
+            fishingMonsInfo   = ""
+            hiddenMonsInfo    = ""
+            for areaTable in encounter:
+                # print(areaTable)
+                if LAND_MONS in areaTable:
+                    structMonType = LAND_MONS_LABEL
+                    landMonsInfo = f"{structLabel}_{structMonType}{structInfo}"
+                elif WATER_MONS in areaTable:
+                    structMonType = WATER_MONS_LABEL
+                    waterMonsInfo = f"{structLabel}_{structMonType}{structInfo}"
+                elif ROCK_SMASH_MONS in areaTable:
+                    structMonType = ROCK_SMASH_MONS_LABEL
+                    rockSmashMonsInfo = f"{structLabel}_{structMonType}{structInfo}"
+                elif FISHING_MONS in areaTable:
+                    structMonType = FISHING_MONS_LABEL
+                    fishingMonsInfo = f"{structLabel}_{structMonType}{structInfo}"
                 else:
-                    structTime = ""
+                    hiddenMonsInfo = ""
+                    structMonType = ""
+                
+                baseStructContent = []
+                for group in encounter[areaTable]:
+                    #print(group)
+                    if "mons" in group:
+                        for mon in encounter[areaTable][group]:
+                            #print(mon)
+                            #print(list(mon.values()))
+                            baseStructContent.append(list(mon.values()))
+                    if "encounter_rate" in group:
+                        #print(encounter[areaTable][group])
+                        infoStructRate = encounter[areaTable][group]
+                
+                baseStructLabel = f"{baseStruct} {structLabel}_{structMonType}{structArrayAssign}"
+                if printEncounterStructs:
+                    print()
+                    print(baseStructLabel)
+                    print("{")
+                    PrintStructContent(baseStructContent)
+                    print("};")
+                if printEncounterStructsInfoString:
+                    infoStructString = f"{baseStruct}{structInfo} {structLabel}_{structMonType}{structInfo} = {{ {infoStructRate}, {structLabel}_{structMonType} }};"
+                    print(infoStructString)
 
-                landMonsInfo      = ""
-                waterMonsInfo     = ""
-                rockSmashMonsInfo = ""
-                fishingMonsInfo   = ""
-                hiddenMonsInfo    = ""
-                for encounterTable in time:
-                    for areaTable in time[encounterTable]:
-                        if LAND_MONS in areaTable:
-                            structMonType = LAND_MONS_LABEL
-                            landMonsInfo = f"{structLabel}_{structMonType}{structInfo}_{structTime}"
-                        elif WATER_MONS in areaTable:
-                            structMonType = WATER_MONS_LABEL
-                            waterMonsInfo = f"{structLabel}_{structMonType}{structInfo}_{structTime}"
-                        elif ROCK_SMASH_MONS in areaTable:
-                            structMonType = ROCK_SMASH_MONS_LABEL
-                            rockSmashMonsInfo = f"{structLabel}_{structMonType}{structInfo}_{structTime}"
-                        elif FISHING_MONS in areaTable:
-                            structMonType = FISHING_MONS_LABEL
-                            fishingMonsInfo = f"{structLabel}_{structMonType}{structInfo}_{structTime}"
-                        else:
-                            hiddenMonsInfo = ""
-                            structMonType = ""
-                        
-                        baseStructContent = []
-                        for monTable in areaTable:
-                            for group in areaTable[monTable]:
-                                if "mons" in group:
-                                    for mon in areaTable[monTable][group]:
-                                        baseStructContent.append(list(mon.values()))
-                                if "encounter_rate" in group:
-                                    infoStructRate = areaTable[monTable][group]
-                        
-                        baseStructLabel = f"{baseStruct} {structLabel}_{structMonType}_{structTime}{structArrayAssign}"
-                        if printEncounterStructs:
-                            print()
-                            print(baseStructLabel)
-                            print("{")
-                            PrintStructContent(baseStructContent)
-                            print("};")
-                        if printEncounterStructsInfoString:
-                            infoStructString = f"{baseStruct}{structInfo} {structLabel}_{structMonType}{structInfo}_{structTime} = {{ {infoStructRate}, {structLabel}_{structMonType}_{structTime} }};"
-                            print(infoStructString)
-
-                    AssembleMonHeaderContent()
+            AssembleMonHeaderContent()
                 
         headerIndex += 1
-    PrintWildMonHeadersContent()
+    #PrintWildMonHeadersContent()
     """
     for group in headerStructTable:
         for label in headerStructTable[group]:
@@ -272,7 +277,8 @@ def AssembleMonHeaderContent():
         headerStructTable[tempHeaderLabel]["groupNum"] = headerIndex
 
     if structLabel not in headerStructTable[tempHeaderLabel]:
-        #print(structLabel)
+        print(structLabel)
+        print(structTime)
         headerStructTable[tempHeaderLabel][structLabel] = {}
         headerStructTable[tempHeaderLabel][structLabel]["headerType"] = GetWildMonHeadersLabel()
         headerStructTable[tempHeaderLabel][structLabel]["mapGroup"] = structMap
@@ -280,10 +286,16 @@ def AssembleMonHeaderContent():
         headerStructTable[tempHeaderLabel][structLabel]["encounterTotalCount"] = encounterTotalCount[headerIndex]
         headerStructTable[tempHeaderLabel][structLabel]["encounter_types"] = []
 
-        i = 0
+        i = TIME_MORNING_INDEX
         while i <= TIME_NIGHT_INDEX:
             headerStructTable[tempHeaderLabel][structLabel]["encounter_types"].append([])
             i += 1
+
+    # print(landMonsInfo)
+    # print(waterMonsInfo)
+    # print(rockSmashMonsInfo)
+    # print(fishingMonsInfo)
+    # print(hiddenMonsInfo)
 
     headerStructTable[tempHeaderLabel][structLabel]["encounter_types"][tempHeaderTimeIndex].append(landMonsInfo)
     headerStructTable[tempHeaderLabel][structLabel]["encounter_types"][tempHeaderTimeIndex].append(waterMonsInfo)
@@ -330,7 +342,9 @@ def PrintWildMonHeadersContent():
     groupCount = 0
     for group in headerStructTable:
         labelCount = 0
+        #print(group)
         for label in headerStructTable[group]:
+            #print(label)
             if label != "groupNum":
                 if labelCount == 0:
                     PrintEncounterHeaders("\n")
@@ -338,6 +352,7 @@ def PrintWildMonHeadersContent():
 
                 PrintEncounterHeaders(tabStr + "{")
                 for stat in headerStructTable[group][label]:
+                    #print(stat)
                     mapData = headerStructTable[group][label][stat]
 
                     if stat == "mapGroup":
@@ -356,6 +371,8 @@ def PrintWildMonHeadersContent():
                             for timeGroup in headerStructTable[group][label][stat][infoIndex]:
                                 if infoIndex == 0:
                                     PrintEncounterHeaders(tabStr + tabStr + tabStr + "{")
+                                print(monInfo[infoIndex])
+                                print(stat)
                                 PrintEncounterHeaders(f"{tabStr}{tabStr}{tabStr}{tabStr}{GetIMonInfoStringFromIndex(infoIndex)} = {monInfo[infoIndex]},")
                                 if infoIndex == MONS_INFO_TOTAL - 1:
                                     PrintEncounterHeaders(tabStr + tabStr + tabStr + "},")
