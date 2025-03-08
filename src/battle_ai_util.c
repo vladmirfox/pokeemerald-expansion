@@ -646,6 +646,21 @@ static inline void CalcDynamicMoveDamage(struct DamageCalculationData *damageCal
     *maximumDamage = maximum;
 }
 
+static inline bool32 ShouldCalcCritDamage(s32 critChanceIndex, u32 battlerAtk)
+{
+    if (critChanceIndex == CRITICAL_HIT_ALWAYS)
+        return TRUE;
+    if (critChanceIndex >= RISKY_AI_CRIT_STAGE_THRESHOLD // Not guaranteed but above Risky threshold
+        && (AI_THINKING_STRUCT->aiFlags[battlerAtk] & AI_FLAG_RISKY)
+        && GetGenConfig(GEN_CONFIG_CRIT_CHANCE) != GEN_1)
+        return TRUE;
+    if (critChanceIndex >= RISKY_AI_CRIT_THRESHOLD_GEN_1 // Not guaranteed but above Risky threshold
+        && (AI_THINKING_STRUCT->aiFlags[battlerAtk] & AI_FLAG_RISKY)
+        && GetGenConfig(GEN_CONFIG_CRIT_CHANCE) == GEN_1)
+        return TRUE;
+    return FALSE;
+}
+
 struct SimulatedDamage AI_CalcDamage(u32 move, u32 battlerAtk, u32 battlerDef, uq4_12_t *typeEffectiveness, bool32 considerZPower, u32 weather)
 {
     struct SimulatedDamage simDamage;
@@ -706,9 +721,7 @@ struct SimulatedDamage AI_CalcDamage(u32 move, u32 battlerAtk, u32 battlerDef, u
         else
             critChanceIndex = CalcCritChanceStage(battlerAtk, battlerDef, move, FALSE, aiData->abilities[battlerAtk], aiData->abilities[battlerDef], aiData->holdEffects[battlerAtk]);
         // Use crit damage
-        if (critChanceIndex == CRITICAL_HIT_ALWAYS // Guaranteed critical
-            || (critChanceIndex > RISKY_AI_CRIT_STAGE_THRESHOLD && (AI_THINKING_STRUCT->aiFlags[battlerAtk] & AI_FLAG_RISKY) && GetGenConfig(GEN_CONFIG_CRIT_CHANCE) != GEN_1) // Not guaranteed but above Risky threshold
-            || (critChanceIndex > RISKY_AI_CRIT_THRESHOLD_GEN_1 && (AI_THINKING_STRUCT->aiFlags[battlerAtk] & AI_FLAG_RISKY) && GetGenConfig(GEN_CONFIG_CRIT_CHANCE) == GEN_1)) // Consider crit damage only if a move has at least +2 crit chance
+        if (ShouldCalcCritDamage(critChanceIndex, battlerAtk))
         {
             damageCalcData.isCrit = TRUE;
             s32 critDmg = CalculateMoveDamageVars(&damageCalcData, fixedBasePower,
