@@ -101,10 +101,10 @@ eFishingMons   = []
 
 
 #debug output control
-printEncounterHeaders           = False
-printEncounterRateMacros        = False
-printEncounterStructsInfoString = False
-printEncounterStructs           = False
+printEncounterHeaders           = True
+printEncounterRateMacros        = True
+printEncounterStructsInfoString = True
+printEncounterStructs           = True
 
 
 def ImportWildEncounterFile():
@@ -225,6 +225,9 @@ def ImportWildEncounterFile():
                     hiddenMonsInfo = ""
                     structMonType = ""
                 
+                if structMonType == "":
+                    continue
+                
                 baseStructContent = []
                 for group in encounter[areaTable]:
                     #print(group)
@@ -251,7 +254,7 @@ def ImportWildEncounterFile():
             AssembleMonHeaderContent()
                 
         headerIndex += 1
-    #PrintWildMonHeadersContent()
+    PrintWildMonHeadersContent()
     """
     for group in headerStructTable:
         for label in headerStructTable[group]:
@@ -265,30 +268,50 @@ def PrintStructContent(contentList):
     return
 
 
+def GetStructLabelWithoutTime(label):
+    labelLength = len(label)
+    timeLength = 0
+    if TIME_MORNING_LABEL in label:
+        timeLength = len(TIME_MORNING_LABEL)
+    elif TIME_DAY_LABEL in label:
+        timeLength = len(TIME_DAY_LABEL)
+    elif TIME_EVENING_LABEL in label:
+        timeLength = len(TIME_EVENING_LABEL)
+    elif TIME_NIGHT_LABEL in label:
+        timeLength = len(TIME_NIGHT_LABEL)
+    
+    return label[:(labelLength - (timeLength + 1))]
+
+
 def AssembleMonHeaderContent():
     global structLabel
 
     SetupMonInfoVars()
     tempHeaderLabel = GetWildMonHeadersLabel()
     tempHeaderTimeIndex = GetTimeIndexFromString(structTime)
+    structLabelNoTime = GetStructLabelWithoutTime(structLabel)
     
     if tempHeaderLabel not in headerStructTable:
+        # print(tempHeaderLabel)
         headerStructTable[tempHeaderLabel] = {}
         headerStructTable[tempHeaderLabel]["groupNum"] = headerIndex
 
-    if structLabel not in headerStructTable[tempHeaderLabel]:
-        print(structLabel)
-        print(structTime)
-        headerStructTable[tempHeaderLabel][structLabel] = {}
-        headerStructTable[tempHeaderLabel][structLabel]["headerType"] = GetWildMonHeadersLabel()
-        headerStructTable[tempHeaderLabel][structLabel]["mapGroup"] = structMap
-        headerStructTable[tempHeaderLabel][structLabel]["mapNum"] = structMap
-        headerStructTable[tempHeaderLabel][structLabel]["encounterTotalCount"] = encounterTotalCount[headerIndex]
-        headerStructTable[tempHeaderLabel][structLabel]["encounter_types"] = []
+    if structLabelNoTime not in headerStructTable[tempHeaderLabel]:
+        # print(structLabelNoTime not in headerStructTable[tempHeaderLabel])
+        # print(structLabel)
+        # print(structLabelNoTime)
+        # print(structTime)
+        # print(headerStructTable[tempHeaderLabel])
+        headerStructTable[tempHeaderLabel][structLabelNoTime] = {}
+        headerStructTable[tempHeaderLabel][structLabelNoTime]["headerType"] = GetWildMonHeadersLabel()
+        headerStructTable[tempHeaderLabel][structLabelNoTime]["mapGroup"] = structMap
+        headerStructTable[tempHeaderLabel][structLabelNoTime]["mapNum"] = structMap
+        headerStructTable[tempHeaderLabel][structLabelNoTime]["encounterTotalCount"] = encounterTotalCount[headerIndex]
+        headerStructTable[tempHeaderLabel][structLabelNoTime]["encounter_types"] = []
 
         i = TIME_MORNING_INDEX
         while i <= TIME_NIGHT_INDEX:
-            headerStructTable[tempHeaderLabel][structLabel]["encounter_types"].append([])
+            headerStructTable[tempHeaderLabel][structLabelNoTime]["encounter_types"].append([])
             i += 1
 
     # print(landMonsInfo)
@@ -297,13 +320,17 @@ def AssembleMonHeaderContent():
     # print(fishingMonsInfo)
     # print(hiddenMonsInfo)
 
-    headerStructTable[tempHeaderLabel][structLabel]["encounter_types"][tempHeaderTimeIndex].append(landMonsInfo)
-    headerStructTable[tempHeaderLabel][structLabel]["encounter_types"][tempHeaderTimeIndex].append(waterMonsInfo)
-    headerStructTable[tempHeaderLabel][structLabel]["encounter_types"][tempHeaderTimeIndex].append(rockSmashMonsInfo)
-    headerStructTable[tempHeaderLabel][structLabel]["encounter_types"][tempHeaderTimeIndex].append(fishingMonsInfo)
-    headerStructTable[tempHeaderLabel][structLabel]["encounter_types"][tempHeaderTimeIndex].append(hiddenMonsInfo)
+    headerStructTable[tempHeaderLabel][structLabelNoTime]["encounter_types"][tempHeaderTimeIndex].append(landMonsInfo)
+    headerStructTable[tempHeaderLabel][structLabelNoTime]["encounter_types"][tempHeaderTimeIndex].append(waterMonsInfo)
+    headerStructTable[tempHeaderLabel][structLabelNoTime]["encounter_types"][tempHeaderTimeIndex].append(rockSmashMonsInfo)
+    headerStructTable[tempHeaderLabel][structLabelNoTime]["encounter_types"][tempHeaderTimeIndex].append(fishingMonsInfo)
+    headerStructTable[tempHeaderLabel][structLabelNoTime]["encounter_types"][tempHeaderTimeIndex].append(hiddenMonsInfo)
 
     #headerStructTable[tempHeaderLabel].update(headerStructContent[structLabel])
+
+    """for group in headerStructTable[tempHeaderLabel]:
+        print(headerStructTable[tempHeaderLabel][group])"""
+
 
 
 def SetupMonInfoVars():
@@ -371,8 +398,8 @@ def PrintWildMonHeadersContent():
                             for timeGroup in headerStructTable[group][label][stat][infoIndex]:
                                 if infoIndex == 0:
                                     PrintEncounterHeaders(tabStr + tabStr + tabStr + "{")
-                                print(monInfo[infoIndex])
-                                print(stat)
+                                # print(monInfo[infoIndex])
+                                # print(stat)
                                 PrintEncounterHeaders(f"{tabStr}{tabStr}{tabStr}{tabStr}{GetIMonInfoStringFromIndex(infoIndex)} = {monInfo[infoIndex]},")
                                 if infoIndex == MONS_INFO_TOTAL - 1:
                                     PrintEncounterHeaders(tabStr + tabStr + tabStr + "},")
