@@ -6,9 +6,23 @@ EverGrandeCity_SidneysRoom_MapScripts::
 	.byte 0
 
 EverGrandeCity_SidneysRoom_OnTransition:
+	random 2
+	copyvar VAR_0x800A, VAR_RESULT
+	switch VAR_RESULT
+	case 0, EverGrandeCity_SidneyAppears
+	case 1, EverGrandeCity_SpenserAppears
 	setflag FLAG_MET_SCOTT_IN_EVERGRANDE
 	setflag FLAG_HIDE_EVER_GRANDE_POKEMON_CENTER_1F_SCOTT
 	end
+
+EverGrandeCity_SidneyAppears:
+    setvar VAR_OBJ_GFX_ID_1, OBJ_EVENT_GFX_SIDNEY
+    return
+
+EverGrandeCity_SpenserAppears:
+    setvar VAR_OBJ_GFX_ID_1, OBJ_EVENT_GFX_SPENSER
+    setflag FLAG_TEMP_5
+    return
 
 EverGrandeCity_SidneysRoom_OnLoad:
 	call_if_set FLAG_DEFEATED_ELITE_4_SIDNEY, EverGrandeCity_SidneysRoom_EventScript_ResetAdvanceToNextRoom
@@ -36,6 +50,7 @@ EverGrandeCity_SidneysRoom_OnFrame:
 	.2byte 0
 
 EverGrandeCity_SidneysRoom_EventScript_WalkInCloseDoor::
+	setvar VAR_FORCEANIM, 1
 	lockall
 	call PokemonLeague_EliteFour_EventScript_WalkInCloseDoor
 	setvar VAR_ELITE_4_STATE, 1
@@ -48,7 +63,13 @@ EverGrandeCity_SidneysRoom_EventScript_Sidney::
 	goto_if_set FLAG_DEFEATED_ELITE_4_SIDNEY, EverGrandeCity_SidneysRoom_EventScript_PostBattleSpeech
 	playbgm MUS_ENCOUNTER_ELITE_FOUR, FALSE
 	msgbox EverGrandeCity_SidneysRoom_Text_IntroSpeech, MSGBOX_DEFAULT
+	goto_if_set FLAG_TEMP_5, EverGrandeCity_SidneysRoom_EventScript_Spenser
 	trainerbattle_no_intro TRAINER_SIDNEY, EverGrandeCity_SidneysRoom_Text_Defeat
+	goto EverGrandeCity_SidneysRoom_EventScript_Defeated
+	end
+
+EverGrandeCity_SidneysRoom_EventScript_Spenser::
+	trainerbattle_no_intro TRAINER_SPENSER, EverGrandeCity_SidneysRoom_Text_Defeat
 	goto EverGrandeCity_SidneysRoom_EventScript_Defeated
 	end
 
@@ -58,15 +79,16 @@ EverGrandeCity_SidneysRoom_EventScript_PostBattleSpeech::
 	end
 
 EverGrandeCity_SidneysRoom_EventScript_Defeated::
+	setvar VAR_FORCEANIM, 0
 	setflag FLAG_DEFEATED_ELITE_4_SIDNEY
 	call PokemonLeague_EliteFour_SetAdvanceToNextRoomMetatiles
 	msgbox EverGrandeCity_SidneysRoom_Text_PostBattleSpeech, MSGBOX_DEFAULT
+	clearflag FLAG_TEMP_5
 	release
 	end
 
 EverGrandeCity_SidneysRoom_Text_IntroSpeech:
-	.string "Welcome, challenger!\n"
-	.string "I'm SIDNEY of the ELITE FOUR.\p"
+	.string "Welcome, challenger!\p"
 	.string "I like that look you're giving me.\n"
 	.string "I guess you'll give me a good match.\l"
 	.string "That's good! Looking real good!\p"

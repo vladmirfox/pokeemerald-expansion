@@ -581,15 +581,9 @@ static void Task_CycleEvolutionMonSprite_TryEnd(u8 taskId)
     {
         EndOnPreEvoMon(taskId);
     }
-    else if (gTasks[taskId].tScaleSpeed == 128)
-    {
-        EndOnPostEvoMon(taskId);
-    }
     else
     {
-        gTasks[taskId].tScaleSpeed += 2;
-        gTasks[taskId].tShowingPostEvo ^= 1;
-        gTasks[taskId].func = Task_CycleEvolutionMonSprite_UpdateSize;
+        EndOnPostEvoMon(taskId);
     }
 }
 

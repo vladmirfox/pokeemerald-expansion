@@ -25,9 +25,23 @@ EverGrandeCity_DrakesRoom_EventScript_WalkInCloseDoor::
 	end
 
 EverGrandeCity_DrakesRoom_OnLoad:
+	random 2
+	copyvar VAR_0x800A, VAR_RESULT
+	switch VAR_RESULT
+	case 0, EverGrandeCity_DrakeAppears
+	case 1, EverGrandeCity_BrandonAppears
 	call_if_set FLAG_DEFEATED_ELITE_4_DRAKE, EverGrandeCity_DrakesRoom_EventScript_ResetAdvanceToNextRoom
 	call_if_eq VAR_ELITE_4_STATE, 4, EverGrandeCity_DrakesRoom_EventScript_CloseDoor
 	end
+
+EverGrandeCity_DrakeAppears:
+    setvar VAR_OBJ_GFX_ID_1, OBJ_EVENT_GFX_DRAKE
+    return
+
+EverGrandeCity_BrandonAppears:
+    setvar VAR_OBJ_GFX_ID_1, OBJ_EVENT_GFX_BRANDON
+    setflag FLAG_TEMP_5
+    return
 
 EverGrandeCity_DrakesRoom_EventScript_ResetAdvanceToNextRoom::
 	call PokemonLeague_EliteFour_EventScript_ResetAdvanceToNextRoom
@@ -38,12 +52,19 @@ EverGrandeCity_DrakesRoom_EventScript_CloseDoor::
 	return
 
 EverGrandeCity_DrakesRoom_EventScript_Drake::
+	setvar VAR_FORCEANIM, 1
 	lock
 	faceplayer
 	goto_if_set FLAG_DEFEATED_ELITE_4_DRAKE, EverGrandeCity_DrakesRoom_EventScript_PostBattleSpeech
 	playbgm MUS_ENCOUNTER_ELITE_FOUR, FALSE
 	msgbox EverGrandeCity_DrakesRoom_Text_IntroSpeech, MSGBOX_DEFAULT
+	goto_if_set FLAG_TEMP_5, EverGrandeCity_DrakesRoom_EventScript_Brandon
 	trainerbattle_no_intro TRAINER_DRAKE, EverGrandeCity_DrakesRoom_Text_Defeat
+	goto EverGrandeCity_DrakesRoom_EventScript_Defeated
+	end
+
+EverGrandeCity_DrakesRoom_EventScript_Brandon::
+	trainerbattle_no_intro TRAINER_BRANDON, EverGrandeCity_DrakesRoom_Text_Defeat
 	goto EverGrandeCity_DrakesRoom_EventScript_Defeated
 	end
 
@@ -54,6 +75,8 @@ EverGrandeCity_DrakesRoom_EventScript_PostBattleSpeech::
 
 EverGrandeCity_DrakesRoom_EventScript_Defeated::
 	setvar VAR_0x8004, FANCOUNTER_DEFEATED_DRAKE
+	setvar VAR_FORCEANIM, 0
+	clearflag FLAG_TEMP_5
 	special Script_TryGainNewFanFromCounter
 	setflag FLAG_DEFEATED_ELITE_4_DRAKE
 	call PokemonLeague_EliteFour_SetAdvanceToNextRoomMetatiles
@@ -62,8 +85,7 @@ EverGrandeCity_DrakesRoom_EventScript_Defeated::
 	end
 
 EverGrandeCity_DrakesRoom_Text_IntroSpeech:
-	.string "I am the last of the POKéMON LEAGUE\n"
-	.string "ELITE FOUR, DRAKE the DRAGON master!\p"
+	.string "I am the last of the POKéMON LEAGUE\p"
 	.string "In their natural state, POKéMON are\n"
 	.string "wild living things. They are free.\p"
 	.string "At times, they hinder us.\n"

@@ -308,6 +308,7 @@ extern const u8 gText_ReturnToVar1[];
 extern const u8 gText_SelectorArrow2[];
 extern const u8 gText_MoveVar1Where[];
 extern const u8 gText_Var1IsSelected[];
+extern const u8 gText_Var1NuzlockePrevents[];
 extern const u8 gText_TossHowManyVar1s[];
 extern const u8 gText_ConfirmTossItems[];
 extern const u8 gText_ThrewAwayVar2Var1s[];
@@ -674,6 +675,8 @@ extern const u8 gText_Roy[];
 extern const u8 gText_Gabby[];
 extern const u8 gText_Anna[];
 
+extern const u8 gText_CleanseTagTurnOn[];
+extern const u8 gText_CleanseTagTurnOff[];
 extern const u8 gText_DadsAdvice[];
 extern const u8 gText_PlayerUsedVar2[];
 extern const u8 gText_RepelEffectsLingered[];

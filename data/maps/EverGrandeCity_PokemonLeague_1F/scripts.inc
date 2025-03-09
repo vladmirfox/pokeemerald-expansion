@@ -10,6 +10,9 @@ EverGrandeCity_PokemonLeague_1F_MapScripts::
 EverGrandeCity_PokemonLeague_1F_OnTransition:
 	setrespawn HEAL_LOCATION_EVER_GRANDE_CITY_POKEMON_LEAGUE
 	setflag FLAG_LANDMARK_POKEMON_LEAGUE
+	setflag FLAG_VISITED_FALLARBOR_TOWN
+	setflag FLAG_VISITED_PACIFIDLOG_TOWN
+	setflag FLAG_VISITED_VERDANTURF_TOWN 
 	call_if_unset FLAG_ENTERED_ELITE_FOUR, EverGrandeCity_PokemonLeague_1F_EventScript_GuardsBlockDoor
 	end
 
@@ -38,13 +41,26 @@ EverGrandeCity_PokemonLeague_1F_EventScript_Clerk::
 
 	.align 2
 EverGrandeCity_PokemonLeague_1F_Pokemart:
-	.2byte ITEM_ULTRA_BALL
-	.2byte ITEM_HYPER_POTION
-	.2byte ITEM_MAX_POTION
-	.2byte ITEM_FULL_RESTORE
-	.2byte ITEM_FULL_HEAL
-	.2byte ITEM_REVIVE
-	.2byte ITEM_MAX_REPEL
+	.2byte ITEM_AGGRONITE
+	.2byte ITEM_ALAKAZITE
+	.2byte ITEM_AMPHAROSITE
+	.2byte ITEM_BLAZIKENITE
+	.2byte ITEM_CAMERUPTITE
+	.2byte ITEM_GALLADITE
+	.2byte ITEM_GARDEVOIRITE
+	.2byte ITEM_GLALITITE
+	.2byte ITEM_HOUNDOOMINITE
+	.2byte ITEM_LOPUNNITE
+	.2byte ITEM_LUCARIONITE
+	.2byte ITEM_MANECTITE
+	.2byte ITEM_MAWILITE
+	.2byte ITEM_METAGROSSITE
+	.2byte ITEM_SABLENITE
+	.2byte ITEM_SALAMENCITE
+	.2byte ITEM_SCEPTILITE
+	.2byte ITEM_SCIZORITE
+	.2byte ITEM_SHARPEDONITE
+	.2byte ITEM_SWAMPERTITE
 	pokemartlistend
 
 @ The door guards only check for FLAG_BADGE06_GET because Winonas badge is the only one that can be skipped

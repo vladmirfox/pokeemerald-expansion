@@ -733,12 +733,7 @@ const u8 gStatStageRatios[MAX_STAT_STAGE + 1][2] =
     {10, 20}, // -2
     {10, 15}, // -1
     {10, 10}, //  0, DEFAULT_STAT_STAGE
-    {15, 10}, // +1
-    {20, 10}, // +2
-    {25, 10}, // +3
-    {30, 10}, // +4
-    {35, 10}, // +5
-    {40, 10}, // +6, MAX_STAT_STAGE
+    {15, 10}, // +1, New MAX_STAT_STAGE
 };
 
 // The classes used by other players in the Union Room.
@@ -3331,7 +3326,7 @@ u8 GiveMonToPlayer(struct Pokemon *mon)
             break;
     }
 
-    if (i >= PARTY_SIZE)
+    if (i >= 1)
         return CopyMonToPC(mon);
 
     CopyMon(&gPlayerParty[i], mon, sizeof(*mon));

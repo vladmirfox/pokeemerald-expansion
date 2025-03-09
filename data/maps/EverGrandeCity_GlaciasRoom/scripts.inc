@@ -24,9 +24,23 @@ EverGrandeCity_GlaciasRoom_EventScript_WalkInCloseDoor::
 	end
 
 EverGrandeCity_GlaciasRoom_OnLoad:
+	random 2
+	copyvar VAR_0x800A, VAR_RESULT
+	switch VAR_RESULT
+	case 0, EverGrandeCity_GlaciaAppears
+	case 1, EverGrandeCity_TuckerAppears
 	call_if_set FLAG_DEFEATED_ELITE_4_GLACIA, EverGrandeCity_GlaciasRoom_EventScript_ResetAdvanceToNextRoom
 	call_if_eq VAR_ELITE_4_STATE, 3, EverGrandeCity_GlaciasRoom_EventScript_CloseDoor
 	end
+
+EverGrandeCity_GlaciaAppears:
+    setvar VAR_OBJ_GFX_ID_1, OBJ_EVENT_GFX_GLACIA
+    return
+
+EverGrandeCity_TuckerAppears:
+    setvar VAR_OBJ_GFX_ID_1, OBJ_EVENT_GFX_TUCKER
+    setflag FLAG_TEMP_5
+    return
 
 EverGrandeCity_GlaciasRoom_EventScript_ResetAdvanceToNextRoom::
 	call PokemonLeague_EliteFour_EventScript_ResetAdvanceToNextRoom
@@ -37,12 +51,19 @@ EverGrandeCity_GlaciasRoom_EventScript_CloseDoor::
 	return
 
 EverGrandeCity_GlaciasRoom_EventScript_Glacia::
+	setvar VAR_FORCEANIM, 1
 	lock
 	faceplayer
 	goto_if_set FLAG_DEFEATED_ELITE_4_GLACIA, EverGrandeCity_GlaciasRoom_EventScript_PostBattleSpeech
 	playbgm MUS_ENCOUNTER_ELITE_FOUR, FALSE
 	msgbox EverGrandeCity_GlaciasRoom_Text_IntroSpeech, MSGBOX_DEFAULT
+	goto_if_set FLAG_TEMP_5, EverGrandeCity_GlaciasRoom_EventScript_Tucker
 	trainerbattle_no_intro TRAINER_GLACIA, EverGrandeCity_GlaciasRoom_Text_Defeat
+	goto EverGrandeCity_GlaciasRoom_EventScript_Defeated
+	end
+
+EverGrandeCity_GlaciasRoom_EventScript_Tucker::
+	trainerbattle_no_intro TRAINER_TUCKER, EverGrandeCity_GlaciasRoom_Text_Defeat
 	goto EverGrandeCity_GlaciasRoom_EventScript_Defeated
 	end
 
@@ -52,17 +73,18 @@ EverGrandeCity_GlaciasRoom_EventScript_PostBattleSpeech::
 	end
 
 EverGrandeCity_GlaciasRoom_EventScript_Defeated::
+	setvar VAR_FORCEANIM, 0
 	setflag FLAG_DEFEATED_ELITE_4_GLACIA
 	call PokemonLeague_EliteFour_SetAdvanceToNextRoomMetatiles
 	msgbox EverGrandeCity_GlaciasRoom_Text_PostBattleSpeech, MSGBOX_DEFAULT
+	clearflag FLAG_TEMP_5
 	release
 	end
 
 EverGrandeCity_GlaciasRoom_Text_IntroSpeech:
-	.string "Welcome, my name is GLACIA\n"
-	.string "of the ELITE FOUR.\p"
+	.string "Welcome, challenger.\p"
 	.string "I've traveled from afar to HOENN\n"
-	.string "so that I may hone my ice skills.\p"
+	.string "so that I may hone my skills.\p"
 	.string "But all I have seen are challenges by\n"
 	.string "weak TRAINERS and their POKéMON.\p"
 	.string "What about you?\p"
@@ -72,9 +94,7 @@ EverGrandeCity_GlaciasRoom_Text_IntroSpeech:
 EverGrandeCity_GlaciasRoom_Text_Defeat:
 	.string "You and your POKéMON…\n"
 	.string "How hot your spirits burn!\p"
-	.string "The all-consuming heat overwhelms.\p"
-	.string "It's no surprise that my icy skills\n"
-	.string "failed to harm you.$"
+	.string "The all-consuming heat overwhelms.$"
 
 EverGrandeCity_GlaciasRoom_Text_PostBattleSpeech:
 	.string "Advance to the next room.\p"

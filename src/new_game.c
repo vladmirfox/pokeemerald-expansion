@@ -130,8 +130,33 @@ static void ClearFrontierRecord(void)
 
 static void WarpToTruck(void)
 {
-    SetWarpDestination(MAP_GROUP(INSIDE_OF_TRUCK), MAP_NUM(INSIDE_OF_TRUCK), WARP_ID_NONE, -1, -1);
+if (gSaveBlock2Ptr->playerGender != MALE)    
+    {
+        VarSet(VAR_LITTLEROOT_HOUSES_STATE_MAY, 1);
+        FlagSet(FLAG_HIDE_LITTLEROOT_TOWN_BRENDANS_HOUSE_MOM);
+        FlagSet(FLAG_HIDE_LITTLEROOT_TOWN_MAYS_HOUSE_RIVAL_MOM);
+        FlagSet(FLAG_HIDE_LITTLEROOT_TOWN_MAYS_HOUSE_RIVAL_SIBLING);
+        FlagSet(FLAG_HIDE_LITTLEROOT_TOWN_MAYS_HOUSE_2F_POKE_BALL);
+        FlagSet(FLAG_HIDE_LITTLEROOT_TOWN_MAYS_HOUSE_TRUCK);
+        FlagSet(FLAG_HIDE_LITTLEROOT_TOWN_BRENDANS_HOUSE_TRUCK);
+        VarSet (VAR_LITTLEROOT_HOUSES_STATE_BRENDAN, 2);
+        VarSet(VAR_0x8004, 14);
+    SetWarpDestination(MAP_GROUP(LITTLEROOT_TOWN_MAYS_HOUSE_2F), MAP_NUM(LITTLEROOT_TOWN_MAYS_HOUSE_2F), -1, 7, 4);
     WarpIntoMap();
+    }
+else
+    {SetWarpDestination(MAP_GROUP(LITTLEROOT_TOWN_BRENDANS_HOUSE_2F), MAP_NUM(LITTLEROOT_TOWN_BRENDANS_HOUSE_2F), -1, 1, 4);
+        VarSet(VAR_LITTLEROOT_HOUSES_STATE_BRENDAN, 1);
+        FlagSet(FLAG_HIDE_LITTLEROOT_TOWN_MAYS_HOUSE_MOM);
+        FlagSet(FLAG_HIDE_LITTLEROOT_TOWN_BRENDANS_HOUSE_RIVAL_MOM);
+        FlagSet(FLAG_HIDE_LITTLEROOT_TOWN_BRENDANS_HOUSE_RIVAL_SIBLING);
+        FlagSet(FLAG_HIDE_LITTLEROOT_TOWN_BRENDANS_HOUSE_2F_POKE_BALL);
+        FlagSet(FLAG_HIDE_LITTLEROOT_TOWN_BRENDANS_HOUSE_TRUCK);
+        FlagSet(FLAG_HIDE_LITTLEROOT_TOWN_MAYS_HOUSE_TRUCK);
+        VarSet (VAR_LITTLEROOT_HOUSES_STATE_BRENDAN, 2);
+        VarSet(VAR_0x8004, 5);
+    WarpIntoMap();
+    }
 }
 
 void Sav2_ClearSetDefault(void)
@@ -208,6 +233,19 @@ void NewGameInitData(void)
     WipeTrainerNameRecords();
     ResetTrainerHillResults();
     ResetContestLinkResults();
+
+        AddBagItem(ITEM_ACRO_BIKE, 1);
+        AddBagItem(ITEM_RARE_CANDY, 1);
+        AddBagItem(ITEM_CLEANSE_TAG, 1);
+        FlagSet(FLAG_RECEIVED_BIKE); // put the flag here for making sure you got the bicycle
+        FlagSet(FLAG_SYS_B_DASH);
+        FlagSet(FLAG_HIDE_LITTLEROOT_TOWN_MOM_OUTSIDE);
+        VarSet(VAR_LITTLEROOT_INTRO_STATE, 5);
+        VarSet(VAR_0x8005, 8);
+        FlagClear(FLAG_HIDE_LITTLEROOT_TOWN_FAT_MAN);
+        FlagClear(FLAG_HIDE_MAP_NAME_POPUP);
+        FlagSet(FLAG_SYS_PC_LANETTE); 
+
     SetCurrentDifficultyLevel(DIFFICULTY_NORMAL);
     ResetItemFlags();
     ResetDexNav();
