@@ -650,7 +650,7 @@ static inline void CalcDynamicMoveDamage(struct DamageCalculationData *damageCal
 
 static inline bool32 ShouldCalcCritDamage(u32 battlerAtk, u32 battlerDef, u32 move, struct AiLogicData *aiData)
 {
-    u32 critChanceIndex = 0;
+    s32 critChanceIndex = 0;
 
     // Get crit chance
     if (GetGenConfig(GEN_CONFIG_CRIT_CHANCE) == GEN_1)
