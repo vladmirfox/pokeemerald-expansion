@@ -4,6 +4,7 @@
 #include "constants/wild_encounter.h"
 
 #define MON_INFO_SECTIONS_TOTAL 5
+#define HEADER_NONE 0xFFFF
 
 struct WildPokemon
 {
@@ -65,5 +66,6 @@ u8 ChooseWildMonIndex_Land(void);
 u8 ChooseWildMonIndex_WaterRock(void);
 u8 ChooseHiddenMonIndex(void);
 bool32 MapHasNoEncounterData(void);
+u8 GetTimeOfDayForEncounters(u32 headerId, u8 area);
 
 #endif // GUARD_WILD_ENCOUNTER_H
