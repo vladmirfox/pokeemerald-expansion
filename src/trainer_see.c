@@ -402,7 +402,7 @@ bool8 CheckForTrainersWantingBattle(void)
 
     if (InBattlePyramid() || InTrainerHillChallenge())
     {
-        u8 facility = InBattlePyramid() ? FRONTIER_FACILITY_PYRAMID : FACILITY_TRAINER_HILL;
+        u8 facility = InBattlePyramid() ? FACILITY_BATTLE_PYRAMID : FACILITY_BATTLE_TRAINER_HILL;
         
         if (gNoOfApproachingTrainers > 0) 
         {
