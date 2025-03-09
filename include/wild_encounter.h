@@ -34,6 +34,14 @@ struct WildPokemonHeader
     const struct WildEncounterTypes encounterTypes[MON_INFO_SECTIONS_TOTAL];
 };
 
+enum WildPokemonArea {
+    WILD_AREA_LAND,
+    WILD_AREA_WATER,
+    WILD_AREA_ROCKS,
+    WILD_AREA_FISHING,
+    WILD_AREA_HIDDEN
+};
+
 extern const struct WildPokemonHeader gWildMonHeaders[];
 extern bool8 gIsFishingEncounter;
 extern bool8 gIsSurfingEncounter;

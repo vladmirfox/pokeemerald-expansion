@@ -5,6 +5,7 @@
 #include "text.h"
 #include "fake_rtc.h"
 #include "sound.h"
+#include "wild_encounter.h"
 #include "constants/songs.h"
 
 // iwram bss
@@ -340,6 +341,14 @@ u8 GetTimeOfDay(void)
     else if (IsBetweenHours(gLocalTime.hours, NIGHT_HOUR_BEGIN, NIGHT_HOUR_END))
         return TIME_NIGHT;
     return TIME_DAY;
+}
+
+u8 GetTimeOfDayForEncounters(u8 headerType, u8 area)
+{
+    if (OW_TIME_OF_DAY_ENCOUNTERS == FALSE)
+        return TIME_DAY;
+    else
+        return GetTimeOfDay();
 }
 
 void RtcInitLocalTimeOffset(s32 hour, s32 minute)
