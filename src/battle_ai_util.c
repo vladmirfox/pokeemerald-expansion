@@ -663,14 +663,12 @@ static inline void CalcDynamicMoveDamage(struct DamageCalculationData *damageCal
     if (abilityAtk == ABILITY_PARENTAL_BOND 
         && !strikeCount
         && effect != EFFECT_TRIPLE_KICK 
-        && effect != EFFECT_MULTI_HIT)
+        && effect != EFFECT_MULTI_HIT
+        && !AI_IsDoubleSpreadMove(damageCalcData->battlerAtk, move))
     {
-        if (!AI_IsDoubleSpreadMove(damageCalcData->battlerAtk, move))
-        {
-            median  += median  / (B_PARENTAL_BOND_DMG >= GEN_7 ? 4 : 2);
-            minimum += minimum / (B_PARENTAL_BOND_DMG >= GEN_7 ? 4 : 2);
-            maximum += maximum / (B_PARENTAL_BOND_DMG >= GEN_7 ? 4 : 2);
-        }
+        median  += median  / (B_PARENTAL_BOND_DMG >= GEN_7 ? 4 : 2);
+        minimum += minimum / (B_PARENTAL_BOND_DMG >= GEN_7 ? 4 : 2);
+        maximum += maximum / (B_PARENTAL_BOND_DMG >= GEN_7 ? 4 : 2);
     }    
 
     if (median == 0)
