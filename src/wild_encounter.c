@@ -450,7 +450,7 @@ u8 GetTimeOfDayForEncounters(u32 headerId, u8 area)
         }
     }
 
-    if (wildMonInfo == NULL) 
+    if (wildMonInfo == NULL && !OW_TIME_OF_DAY_NO_FALLBACK) 
         return TIME_DAY;
     else
         return timeOfDay;
