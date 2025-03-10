@@ -135,7 +135,7 @@ def ImportWildEncounterFile():
     global tabStr
     tabStr = "    "
 
-    wFile = open("wild_encounters.json")
+    wFile = open("src/data/wild_encounters.json")
     wData = json.load(wFile)
 
     encounterTotalCount = []
@@ -145,12 +145,8 @@ def ImportWildEncounterFile():
         encounterTotalCount.append(0)
         encounterCount.append(0)
         groupCount += 1
-        
-    #print(len(encounterTotalCount))
 
     for data in wData["wild_encounter_groups"]:
-        #print(data)
-
         wEncounters = wData["wild_encounter_groups"][headerIndex]["encounters"]
 
         if data == "label":
@@ -199,8 +195,6 @@ def ImportWildEncounterFile():
                 structTime = TIME_NIGHT_LABEL
             else:
                 structTime = ""
-            
-            # print(structTime)
 
             landMonsInfo      = ""
             waterMonsInfo     = ""
@@ -208,7 +202,6 @@ def ImportWildEncounterFile():
             fishingMonsInfo   = ""
             hiddenMonsInfo    = ""
             for areaTable in encounter:
-                # print(areaTable)
                 if LAND_MONS in areaTable:
                     structMonType = LAND_MONS_LABEL
                     landMonsInfo = f"{structLabel}_{structMonType}{structInfo}"
@@ -230,14 +223,10 @@ def ImportWildEncounterFile():
                 
                 baseStructContent = []
                 for group in encounter[areaTable]:
-                    #print(group)
                     if "mons" in group:
                         for mon in encounter[areaTable][group]:
-                            #print(mon)
-                            #print(list(mon.values()))
                             baseStructContent.append(list(mon.values()))
                     if "encounter_rate" in group:
-                        #print(encounter[areaTable][group])
                         infoStructRate = encounter[areaTable][group]
                 
                 baseStructLabel = f"{baseStruct} {structLabel}_{structMonType}{structArrayAssign}"
@@ -255,11 +244,6 @@ def ImportWildEncounterFile():
                 
         headerIndex += 1
     PrintWildMonHeadersContent()
-    """
-    for group in headerStructTable:
-        for label in headerStructTable[group]:
-            print(headerStructTable[group][label])
-    """
 
 
 def PrintStructContent(contentList):
@@ -292,16 +276,10 @@ def AssembleMonHeaderContent():
     structLabelNoTime = GetStructLabelWithoutTime(structLabel)
     
     if tempHeaderLabel not in headerStructTable:
-        # print(tempHeaderLabel)
         headerStructTable[tempHeaderLabel] = {}
         headerStructTable[tempHeaderLabel]["groupNum"] = headerIndex
 
     if structLabelNoTime not in headerStructTable[tempHeaderLabel]:
-        # print(structLabelNoTime not in headerStructTable[tempHeaderLabel])
-        # print(structLabel)
-        # print(structLabelNoTime)
-        # print(structTime)
-        # print(headerStructTable[tempHeaderLabel])
         headerStructTable[tempHeaderLabel][structLabelNoTime] = {}
         headerStructTable[tempHeaderLabel][structLabelNoTime]["headerType"] = GetWildMonHeadersLabel()
         headerStructTable[tempHeaderLabel][structLabelNoTime]["mapGroup"] = structMap
@@ -314,23 +292,11 @@ def AssembleMonHeaderContent():
             headerStructTable[tempHeaderLabel][structLabelNoTime]["encounter_types"].append([])
             i += 1
 
-    # print(landMonsInfo)
-    # print(waterMonsInfo)
-    # print(rockSmashMonsInfo)
-    # print(fishingMonsInfo)
-    # print(hiddenMonsInfo)
-
     headerStructTable[tempHeaderLabel][structLabelNoTime]["encounter_types"][tempHeaderTimeIndex].append(landMonsInfo)
     headerStructTable[tempHeaderLabel][structLabelNoTime]["encounter_types"][tempHeaderTimeIndex].append(waterMonsInfo)
     headerStructTable[tempHeaderLabel][structLabelNoTime]["encounter_types"][tempHeaderTimeIndex].append(rockSmashMonsInfo)
     headerStructTable[tempHeaderLabel][structLabelNoTime]["encounter_types"][tempHeaderTimeIndex].append(fishingMonsInfo)
     headerStructTable[tempHeaderLabel][structLabelNoTime]["encounter_types"][tempHeaderTimeIndex].append(hiddenMonsInfo)
-
-    #headerStructTable[tempHeaderLabel].update(headerStructContent[structLabel])
-
-    """for group in headerStructTable[tempHeaderLabel]:
-        print(headerStructTable[tempHeaderLabel][group])"""
-
 
 
 def SetupMonInfoVars():
@@ -369,9 +335,7 @@ def PrintWildMonHeadersContent():
     groupCount = 0
     for group in headerStructTable:
         labelCount = 0
-        #print(group)
         for label in headerStructTable[group]:
-            #print(label)
             if label != "groupNum":
                 if labelCount == 0:
                     PrintEncounterHeaders("\n")
@@ -379,56 +343,62 @@ def PrintWildMonHeadersContent():
 
                 PrintEncounterHeaders(tabStr + "{")
                 for stat in headerStructTable[group][label]:
-                    #print(stat)
                     mapData = headerStructTable[group][label][stat]
 
                     if stat == "mapGroup":
-                        PrintEncounterHeaders(f"{tabStr}{tabStr}.mapGroup = {GetMapGroupEnum(mapData)},")
+                        PrintEncounterHeaders(f"{TabStr(2)}.mapGroup = {GetMapGroupEnum(mapData)},")
                     elif stat == "mapNum":
-                        PrintEncounterHeaders(f"{tabStr}{tabStr}.mapNum = {GetMapGroupEnum(mapData, labelCount + 1)},")
+                        PrintEncounterHeaders(f"{TabStr(2)}.mapNum = {GetMapGroupEnum(mapData, labelCount + 1)},")
 
                     if type(headerStructTable[group][label][stat]) == list:
-                        PrintEncounterHeaders(f"{tabStr}{tabStr}.encounterTypes =")
-                        PrintEncounterHeaders(tabStr + tabStr + "{")
+                        PrintEncounterHeaders(f"{TabStr(2)}.encounterTypes =")
+                        PrintEncounterHeaders(TabStr(2) + "{")
 
                         infoCount = 0
                         for monInfo in headerStructTable[group][label][stat]:
                             infoIndex = 0
-                            PrintEncounterHeaders(f"{tabStr}{tabStr}{tabStr}[{GetTimeStrFromIndex(infoCount)}] = ")
+                            PrintEncounterHeaders(f"{TabStr(3)}[{GetTimeStrFromIndex(infoCount)}] = ")
+
                             for timeGroup in headerStructTable[group][label][stat][infoIndex]:
                                 if infoIndex == 0:
-                                    PrintEncounterHeaders(tabStr + tabStr + tabStr + "{")
-                                # print(monInfo[infoIndex])
-                                # print(stat)
-                                PrintEncounterHeaders(f"{tabStr}{tabStr}{tabStr}{tabStr}{GetIMonInfoStringFromIndex(infoIndex)} = {monInfo[infoIndex]},")
+                                    PrintEncounterHeaders(TabStr(3) + "{")
+
+                                PrintEncounterHeaders(f"{TabStr(4)}{GetIMonInfoStringFromIndex(infoIndex)} = {monInfo[infoIndex]},")
+
                                 if infoIndex == MONS_INFO_TOTAL - 1:
-                                    PrintEncounterHeaders(tabStr + tabStr + tabStr + "},")
+                                    PrintEncounterHeaders(TabStr(3) + "},")
+
                                 infoIndex += 1
                             infoCount += 1
-                        PrintEncounterHeaders(tabStr + tabStr + "},")
+                        PrintEncounterHeaders(TabStr(2) + "},")
                 PrintEncounterHeaders(tabStr + "},")
                 if labelCount + 1 == headerStructTable[group][label]["encounterTotalCount"]:
                     PrintEncounterHeaders(tabStr + "{")
-                    PrintEncounterHeaders(f"{tabStr}{tabStr}.mapGroup = {GetMapGroupEnum(MAP_UNDEFINED)},")
-                    PrintEncounterHeaders(f"{tabStr}{tabStr}.mapNum = {GetMapGroupEnum(MAP_UNDEFINED, labelCount + 1)},")
+                    PrintEncounterHeaders(f"{TabStr(2)}.mapGroup = {GetMapGroupEnum(MAP_UNDEFINED)},")
+                    PrintEncounterHeaders(f"{TabStr(2)}.mapNum = {GetMapGroupEnum(MAP_UNDEFINED, labelCount + 1)},")
 
                     nullCount = 0
                     while nullCount <= TIME_NIGHT_INDEX:
                         if nullCount == 0:
-                            PrintEncounterHeaders(f"{tabStr}{tabStr}.encounterTypes =")
-                            PrintEncounterHeaders(tabStr + tabStr + "{")
+                            PrintEncounterHeaders(f"{TabStr(2)}.encounterTypes =")
+                            PrintEncounterHeaders(TabStr(2)+ "{")
+
                         nullIndex = 0
-                        PrintEncounterHeaders(f"{tabStr}{tabStr}{tabStr}[{GetTimeStrFromIndex(nullCount)}] = ")
+                        PrintEncounterHeaders(f"{TabStr(3)}[{GetTimeStrFromIndex(nullCount)}] = ")
+
                         while nullIndex <= MONS_INFO_TOTAL - 1:
                             if nullIndex == 0:
-                                PrintEncounterHeaders(tabStr + tabStr + tabStr + "{")
-                            PrintEncounterHeaders(f"{tabStr}{tabStr}{tabStr}{tabStr}{GetIMonInfoStringFromIndex(nullIndex)} = NULL,")
+                                PrintEncounterHeaders(TabStr(3) + "{")
+
+                            PrintEncounterHeaders(f"{TabStr(3)}{GetIMonInfoStringFromIndex(nullIndex)} = NULL,")
+
                             if nullIndex == MONS_INFO_TOTAL - 1:
-                                PrintEncounterHeaders(tabStr + tabStr + tabStr + "},")
+                                PrintEncounterHeaders(TabStr(3) + "},")
+
                             nullIndex += 1
                         nullCount += 1
-                    PrintEncounterHeaders(tabStr + tabStr + "},")
-                    PrintEncounterHeaders(tabStr + "},")
+                    PrintEncounterHeaders(TabStr(2) + "},")
+                    PrintEncounterHeaders(TabStr(1) + "},")
                 labelCount += 1
         groupCount += 1
         PrintEncounterHeaders("};")
@@ -449,67 +419,69 @@ def PrintEncounterHeaders(content):
 
 
 def PrintEncounterRateMacros():
-    if printEncounterRateMacros:
-        rateCount = 0
-        for percent in eLandMons:
-            if rateCount == 0:
-                print(f"{define} {ENCOUNTER_CHANCE}_{LAND_MONS.upper()}_{SLOT}_{rateCount} {percent}")
+    if not printEncounterRateMacros:
+        return
+
+    rateCount = 0
+    for percent in eLandMons:
+        if rateCount == 0:
+            print(f"{define} {ENCOUNTER_CHANCE}_{LAND_MONS.upper()}_{SLOT}_{rateCount} {percent}")
+        else:
+            print(
+                f"{define} {ENCOUNTER_CHANCE}_{LAND_MONS.upper()}_{SLOT}_{rateCount} {ENCOUNTER_CHANCE}_{LAND_MONS.upper()}_{SLOT}_{rateCount - 1} + {percent}"
+            )
+
+        if rateCount + 1 == len(eLandMons):
+            print(
+                f"{define} {ENCOUNTER_CHANCE}_{LAND_MONS.upper()}_{TOTAL} ({ENCOUNTER_CHANCE}_{LAND_MONS.upper()}_{SLOT}_{rateCount})"
+            )
+        rateCount += 1
+
+    rateCount = 0
+    for percent in eWaterMons:
+        if rateCount == 0:
+            print(f"{define} {ENCOUNTER_CHANCE}_{WATER_MONS.upper()}_{SLOT}_{rateCount} {percent}")
+        else:
+            print(
+                f"{define} {ENCOUNTER_CHANCE}_{WATER_MONS.upper()}_{SLOT}_{rateCount} {ENCOUNTER_CHANCE}_{WATER_MONS.upper()}_{SLOT}_{rateCount - 1} + {percent}"
+            )
+
+        if rateCount + 1 == len(eWaterMons):
+            print(
+                f"{define} {ENCOUNTER_CHANCE}_{WATER_MONS.upper()}_{TOTAL} ({ENCOUNTER_CHANCE}_{WATER_MONS.upper()}_{SLOT}_{rateCount})"
+            )
+        rateCount += 1
+
+    rateCount = 0
+    for percent in eRockSmashMons:
+        if rateCount == 0:
+            print(f"{define} {ENCOUNTER_CHANCE}_{ROCK_SMASH_MONS.upper()}_{SLOT}_{rateCount} {percent}")
+        else:
+            print(
+                f"{define} {ENCOUNTER_CHANCE}_{ROCK_SMASH_MONS.upper()}_{SLOT}_{rateCount} {ENCOUNTER_CHANCE}_{ROCK_SMASH_MONS.upper()}_{SLOT}_{rateCount - 1} + {percent}"
+            )
+        
+        if rateCount + 1 == len(eRockSmashMons):
+            print(
+                f"{define} {ENCOUNTER_CHANCE}_{ROCK_SMASH_MONS.upper()}_{TOTAL} ({ENCOUNTER_CHANCE}_{ROCK_SMASH_MONS.upper()}_{SLOT}_{rateCount})"
+            )
+        rateCount += 1
+
+    for rodRate in eFishingMons[-1]:
+        for rodPercentIndex in eFishingMons[-1][rodRate]:
+            if rodPercentIndex == OLD_ROD_FIRST_INDEX or rodPercentIndex == GOOD_ROD_FIRST_INDEX or rodPercentIndex == SUPER_ROD_FIRST_INDEX:
+                print(
+                    f"{define} {ENCOUNTER_CHANCE}_{FISHING_MONS.upper()}_{rodRate.upper()}_{SLOT}_{rodPercentIndex} {eFishingMons[rodPercentIndex]}"
+                )
             else:
                 print(
-                    f"{define} {ENCOUNTER_CHANCE}_{LAND_MONS.upper()}_{SLOT}_{rateCount} {ENCOUNTER_CHANCE}_{LAND_MONS.upper()}_{SLOT}_{rateCount - 1} + {percent}"
-                )
-
-            if rateCount + 1 == len(eLandMons):
-                print(
-                    f"{define} {ENCOUNTER_CHANCE}_{LAND_MONS.upper()}_{TOTAL} ({ENCOUNTER_CHANCE}_{LAND_MONS.upper()}_{SLOT}_{rateCount})"
-                )
-            rateCount += 1
-
-        rateCount = 0
-        for percent in eWaterMons:
-            if rateCount == 0:
-                print(f"{define} {ENCOUNTER_CHANCE}_{WATER_MONS.upper()}_{SLOT}_{rateCount} {percent}")
-            else:
-                print(
-                    f"{define} {ENCOUNTER_CHANCE}_{WATER_MONS.upper()}_{SLOT}_{rateCount} {ENCOUNTER_CHANCE}_{WATER_MONS.upper()}_{SLOT}_{rateCount - 1} + {percent}"
-                )
-
-            if rateCount + 1 == len(eWaterMons):
-                print(
-                    f"{define} {ENCOUNTER_CHANCE}_{WATER_MONS.upper()}_{TOTAL} ({ENCOUNTER_CHANCE}_{WATER_MONS.upper()}_{SLOT}_{rateCount})"
-                )
-            rateCount += 1
-
-        rateCount = 0
-        for percent in eRockSmashMons:
-            if rateCount == 0:
-                print(f"{define} {ENCOUNTER_CHANCE}_{ROCK_SMASH_MONS.upper()}_{SLOT}_{rateCount} {percent}")
-            else:
-                print(
-                    f"{define} {ENCOUNTER_CHANCE}_{ROCK_SMASH_MONS.upper()}_{SLOT}_{rateCount} {ENCOUNTER_CHANCE}_{ROCK_SMASH_MONS.upper()}_{SLOT}_{rateCount - 1} + {percent}"
+                    f"{define} {ENCOUNTER_CHANCE}_{FISHING_MONS.upper()}_{rodRate.upper()}_{SLOT}_{rodPercentIndex} {ENCOUNTER_CHANCE}_{FISHING_MONS.upper()}_{rodRate.upper()}_{SLOT}_{rodPercentIndex - 1} + {eFishingMons[rodPercentIndex]}"
                 )
             
-            if rateCount + 1 == len(eRockSmashMons):
+            if rodPercentIndex == OLD_ROD_LAST_INDEX or rodPercentIndex == GOOD_ROD_LAST_INDEX or rodPercentIndex == SUPER_ROD_LAST_INDEX:
                 print(
-                    f"{define} {ENCOUNTER_CHANCE}_{ROCK_SMASH_MONS.upper()}_{TOTAL} ({ENCOUNTER_CHANCE}_{ROCK_SMASH_MONS.upper()}_{SLOT}_{rateCount})"
+                    f"{define} {ENCOUNTER_CHANCE}_{FISHING_MONS.upper()}_{rodRate.upper()}_{TOTAL} ({ENCOUNTER_CHANCE}_{FISHING_MONS.upper()}_{rodRate.upper()}_{SLOT}_{rodPercentIndex})"
                 )
-            rateCount += 1
-
-        for rodRate in eFishingMons[-1]:
-            for rodPercentIndex in eFishingMons[-1][rodRate]:
-                if rodPercentIndex == OLD_ROD_FIRST_INDEX or rodPercentIndex == GOOD_ROD_FIRST_INDEX or rodPercentIndex == SUPER_ROD_FIRST_INDEX:
-                    print(
-                        f"{define} {ENCOUNTER_CHANCE}_{FISHING_MONS.upper()}_{rodRate.upper()}_{SLOT}_{rodPercentIndex} {eFishingMons[rodPercentIndex]}"
-                    )
-                else:
-                    print(
-                        f"{define} {ENCOUNTER_CHANCE}_{FISHING_MONS.upper()}_{rodRate.upper()}_{SLOT}_{rodPercentIndex} {ENCOUNTER_CHANCE}_{FISHING_MONS.upper()}_{rodRate.upper()}_{SLOT}_{rodPercentIndex - 1} + {eFishingMons[rodPercentIndex]}"
-                    )
-                
-                if rodPercentIndex == OLD_ROD_LAST_INDEX or rodPercentIndex == GOOD_ROD_LAST_INDEX or rodPercentIndex == SUPER_ROD_LAST_INDEX:
-                    print(
-                        f"{define} {ENCOUNTER_CHANCE}_{FISHING_MONS.upper()}_{rodRate.upper()}_{TOTAL} ({ENCOUNTER_CHANCE}_{FISHING_MONS.upper()}_{rodRate.upper()}_{SLOT}_{rodPercentIndex})"
-                    )
 
 
 def GetTimeStrFromIndex(index):
@@ -556,6 +528,10 @@ def GetMapGroupEnum(string, index = 0):
         return "MAP_NUM(" + string[4:len(string)] + ")"
     return index
 
+
+def TabStr(amount):
+    global tabStr
+    return tabStr * amount
 
 ImportWildEncounterFile()
 
