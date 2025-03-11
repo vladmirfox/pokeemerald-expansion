@@ -99,7 +99,7 @@ struct
     /*0xFC4*/ u32 unknownWindowId;
 } static EWRAM_DATA *sPokedexAreaScreen = NULL;
 
-EWRAM_DATA u8 gAreaTimeOfDay = 0;
+EWRAM_DATA u32 gAreaTimeOfDay = 0;
 
 static void FindMapsWithMon(u16);
 static void BuildAreaGlowTilemap(void);

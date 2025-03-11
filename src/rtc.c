@@ -330,11 +330,8 @@ bool8 IsBetweenHours(s32 hours, s32 begin, s32 end)
         return hours >= begin && hours < end;
 }
 
-u8 GetTimeOfDay(void)
+u32 GetTimeOfDay(void)
 {
-    if (OW_TIME_OF_DAY_ENCOUNTERS == FALSE)
-        return TIME_DAY;
-
     RtcCalcLocalTime();
     if (IsBetweenHours(gLocalTime.hours, MORNING_HOUR_BEGIN, MORNING_HOUR_END))
         return TIME_MORNING;
@@ -343,6 +340,13 @@ u8 GetTimeOfDay(void)
     else if (IsBetweenHours(gLocalTime.hours, NIGHT_HOUR_BEGIN, NIGHT_HOUR_END))
         return TIME_NIGHT;
     return TIME_DAY;
+}
+
+u32 GetTimeOfDayForDex(void)
+{
+    if (OW_TIME_OF_DAY_ENCOUNTERS == FALSE)
+        return TIME_DAY;
+    return GetTimeOfDay();
 }
 
 void RtcInitLocalTimeOffset(s32 hour, s32 minute)

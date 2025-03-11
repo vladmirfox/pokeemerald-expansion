@@ -3246,7 +3246,7 @@ static u8 LoadInfoScreen(struct PokedexListItem *item, u8 monSpriteId)
     u8 taskId;
 
     sPokedexListItem = item;
-    gAreaTimeOfDay = GetTimeOfDay();
+    gAreaTimeOfDay = GetTimeOfDayForDex();
     taskId = CreateTask(Task_LoadInfoScreen, 0);
     gTasks[taskId].tScrolling = FALSE;
     gTasks[taskId].tMonSpriteDone = TRUE; // Already has sprite from list view
