@@ -6,7 +6,7 @@ SRCS := agb.cpp error.cpp main.cpp midi.cpp tables.cpp
 
 HEADERS := agb.h error.h main.h midi.h tables.h
 
-# Needs to recompile for NUM_LOW_HEALTH_BEEPS
+# Needs to recompile for B_NUM_LOW_HEALTH_BEEPS in battle.h
 EXPANSION_BATTLE_CONFIG := ../../include/config/battle.h
 
 ifeq ($(OS),Windows_NT)

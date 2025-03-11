@@ -6,7 +6,7 @@ MID_ASM_DIR := $(MID_SUBDIR)
 CRY_BIN_DIR := $(CRY_SUBDIR)
 SOUND_BIN_DIR := sound
 
-# Needs to recompile for NUM_LOW_HEALTH_BEEPS
+# Needs to recompile for B_NUM_LOW_HEALTH_BEEPS in battle.h
 EXPANSION_BATTLE_CONFIG := include/config/battle.h
 
 SPECIAL_OUTDIRS := $(MID_ASM_DIR) $(CRY_BIN_DIR) 
@@ -16,7 +16,7 @@ $(shell mkdir -p $(SPECIAL_OUTDIRS) )
 # Assembly song compilation
 $(SONG_BUILDDIR)/%.o: $(SONG_SUBDIR)/%.s $(EXPANSION_BATTLE_CONFIG)
 	$(AS) $(ASFLAGS) -I sound -o $@ $<
-$(MID_BUILDDIR)/%.o: $(MID_ASM_DIR)/%.s $(EXPANSION_BATTLE_CONFIG)
+$(MID_BUILDDIR)/%.o: $(MID_ASM_DIR)/%.s
 	$(AS) $(ASFLAGS) -I sound -o $@ $<
 
 # Compressed cries
