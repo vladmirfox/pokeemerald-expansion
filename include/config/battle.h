@@ -273,7 +273,9 @@
 #define B_TOXIC_REVERSAL                GEN_LATEST // In Gen5+, bad poison will change to regular poison at the end of battles.
 #define B_TRY_CATCH_TRAINER_BALL        GEN_LATEST // In Gen4+, trying to catch a Trainer's Pokémon does not consume the Poké Ball.
 #define B_SLEEP_CLAUSE                  FALSE      // Enables Sleep Clause all the time in every case, overriding B_FLAG_SLEEP_CLAUSE. Use that for modularity.
-#define B_NUM_LOW_HEALTH_BEEPS          4          // will loop the "low health" beep the specified amount of times. 4 is current gen default. 0 turns it off, -1 loops infinitely.
+
+#define B_NUM_BEEPS_GEN_LOCK              TRUE        // Locks the number of times the "low health" beep loops to 4 or infinite. GEN_LATEST means it loops 4 times, any other GEN_* means it's infinite.
+#define B_NUM_LOW_HEALTH_BEEPS          GEN_LATEST  // This controls the number of times the "low health" beep will loop. Setting this value to 0 will disable the beep, while -1 will loop infinitely.
 
 // Animation Settings
 #define B_NEW_SWORD_PARTICLE            FALSE    // If set to TRUE, it updates Swords Dance's particle.

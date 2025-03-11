@@ -33,6 +33,7 @@
 
 // expansion headers
 #include "../../include/config/battle.h"
+#include "../../include/config/general.h"
 
 enum class MidiEventCategory
 {
@@ -920,6 +921,8 @@ void Compress(std::vector<Event>& events)
 void ReadMidiTracks()
 {
     long trackHeaderStart = 14;
+    int trackLoops = B_NUM_LOW_HEALTH_BEEPS;
+    const bool TRUE = true;
 
     ReadMidiTrackHeader(trackHeaderStart);
     ReadSeqEvents();
@@ -959,8 +962,16 @@ void ReadMidiTracks()
                 if (g_compressionEnabled)
                     Compress(*events);
 
-                if ((strcmp(g_asmLabel.c_str(), "se_low_health") == 0) && B_NUM_LOW_HEALTH_BEEPS >= 0)
-                    PrintAgbTrackLoop(*events);
+                if (B_NUM_BEEPS_GEN_LOCK == true)
+                {
+                    if (trackLoops == GEN_LATEST)
+                        trackLoops = 4;
+                    else
+                        trackLoops = -1;
+                }
+
+                if ((strcmp(g_asmLabel.c_str(), "se_low_health") == 0) && trackLoops >= 0)
+                    PrintAgbTrackLoop(*events, trackLoops);
                 else
                     PrintAgbTrack(*events);
 
