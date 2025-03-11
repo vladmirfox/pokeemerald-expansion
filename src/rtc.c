@@ -431,22 +431,10 @@ void FormatDecimalTimeWithoutSeconds(u8 *txtPtr, s8 hour, s8 minute, bool32 is24
 
 u32 TryIncrementTimeOfDay(u32 timeOfDay)
 {
-    if (timeOfDay == TIME_NIGHT)
-    {
-        // PlaySE(SE_M_REVERSAL);
-        return TIME_MORNING;
-    }
-    // PlaySE(SE_M_REVERSAL);
-    return timeOfDay + 1;
+    return timeOfDay == TIME_NIGHT ? TIME_MORNING : timeOfDay + 1;
 }
 
 u32 TryDecrementTimeOfDay(u32 timeOfDay)
 {
-    if (timeOfDay == TIME_MORNING)
-    {
-        // PlaySE(SE_M_LICK);
-        return TIME_NIGHT;
-    }
-    // PlaySE(SE_M_LICK);
-    return timeOfDay - 1;
+    return timeOfDay == TIME_MORNING ? TIME_NIGHT : timeOfDay - 1;
 }
