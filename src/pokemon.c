@@ -37,7 +37,6 @@
 #include "recorded_battle.h"
 #include "rtc.h"
 #include "sound.h"
-#include "sprite.h"
 #include "string_util.h"
 #include "strings.h"
 #include "task.h"
@@ -707,6 +706,7 @@ const struct NatureInfo gNaturesInfo[NUM_NATURES] =
 #include "data/pokemon/form_species_tables.h"
 #include "data/pokemon/form_change_tables.h"
 #include "data/pokemon/form_change_table_pointers.h"
+#include "data/object_events/object_event_pic_tables_followers.h"
 
 #include "data/pokemon/species_info.h"
 
@@ -2001,6 +2001,19 @@ u16 MonTryLearningNewMoveAtLevel(struct Pokemon *mon, bool32 firstMove, u32 leve
         }
     }
 
+    //  Handler for if Zacian or Zamazenta should learn Iron Head
+    //  since it transforms in the Behemoth Blade/Bash move in
+    //  battle in the Crowned forms.
+    if (learnset[sLearningMoveTableID].move == MOVE_IRON_HEAD && (species == SPECIES_ZAMAZENTA_CROWNED || species == SPECIES_ZACIAN_CROWNED))
+    {
+        for (u32 accessor = MON_DATA_MOVE1; accessor <= MON_DATA_MOVE4; accessor++)
+        {
+            u32 move = GetMonData(mon, accessor);
+            if (move == MOVE_BEHEMOTH_BLADE || move == MOVE_BEHEMOTH_BASH)
+                return MOVE_NONE;
+        }
+    }
+
     if (learnset[sLearningMoveTableID].level == level)
     {
         gMoveToLearn = learnset[sLearningMoveTableID].move;
@@ -2072,8 +2085,9 @@ void DeleteFirstMoveAndGiveMoveToBoxMon(struct BoxPokemon *boxMon, u16 move)
 
 u8 CountAliveMonsInBattle(u8 caseId, u32 battler)
 {
-    s32 i;
-    u8 retVal = 0;
+    u32 i;
+    u32 battlerSide;
+    u32 retVal = 0;
 
     switch (caseId)
     {
@@ -2092,9 +2106,10 @@ u8 CountAliveMonsInBattle(u8 caseId, u32 battler)
         }
         break;
     case BATTLE_ALIVE_SIDE:
+        battlerSide = GetBattlerSide(battler);
         for (i = 0; i < MAX_BATTLERS_COUNT; i++)
         {
-            if (GetBattlerSide(i) == GetBattlerSide(battler) && !(gAbsentBattlerFlags & (1u << i)))
+            if (GetBattlerSide(i) == battlerSide && !(gAbsentBattlerFlags & (1u << i)))
                 retVal++;
         }
         break;
@@ -6076,15 +6091,8 @@ const u8 *GetTrainerPartnerName(void)
 {
     if (gBattleTypeFlags & BATTLE_TYPE_INGAME_PARTNER)
     {
-        if (gPartnerTrainerId == TRAINER_PARTNER(PARTNER_STEVEN))
-        {
-            return GetTrainerNameFromId(PARTNER_STEVEN);
-        }
-        else
-        {
-            GetFrontierTrainerName(gStringVar1, gPartnerTrainerId);
-            return gStringVar1;
-        }
+        GetFrontierTrainerName(gStringVar1, gPartnerTrainerId);
+        return gStringVar1;
     }
     else
     {
