@@ -1,9 +1,9 @@
 #ifndef GUARD_WILD_ENCOUNTER_H
 #define GUARD_WILD_ENCOUNTER_H
 
+#include "rtc.h"
 #include "constants/wild_encounter.h"
 
-#define MON_INFO_SECTIONS_TOTAL 5
 #define HEADER_NONE 0xFFFF
 
 struct WildPokemon
@@ -32,7 +32,7 @@ struct WildPokemonHeader
 {
     u8 mapGroup;
     u8 mapNum;
-    const struct WildEncounterTypes encounterTypes[MON_INFO_SECTIONS_TOTAL];
+    const struct WildEncounterTypes encounterTypes[TIME_NIGHT + 1];
 };
 
 enum WildPokemonArea {
