@@ -967,7 +967,7 @@ void ReadMidiTracks()
 
                 if (B_NUM_BEEPS_GEN_LOCK)
                 {
-                    if (trackLoops == GEN_LATEST)
+                    if (trackLoops >= GEN_6 && trackLoops <= GEN_LATEST)
                         trackLoops = 4;
                     else
                         trackLoops = -1;
