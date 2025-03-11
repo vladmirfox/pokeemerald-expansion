@@ -268,7 +268,7 @@ void BattleAI_SetupAIData(u8 defaultScoreMoves, u32 battler)
     }
 
     gBattlerTarget = SetRandomTarget(battler);
-    gBattleStruct->aiChosenTarget[battler] = gBattlerTarget;
+    gAiBattleStructData->aiChosenTarget[battler] = gBattlerTarget;
 }
 
 u32 BattleAI_ChooseMoveOrAction(u32 battler)
@@ -515,7 +515,7 @@ static u32 ChooseMoveOrAction_Singles(u32 battlerAi)
 
     for (i = 0; i < MAX_MON_MOVES; i++)
     {
-        gBattleStruct->aiFinalScore[battlerAi][gBattlerTarget][i] = AI_THINKING_STRUCT->score[i];
+        gAiBattleStructData->aiFinalScore[battlerAi][gBattlerTarget][i] = AI_THINKING_STRUCT->score[i];
     }
 
     // Check special AI actions.
@@ -642,7 +642,7 @@ static u32 ChooseMoveOrAction_Doubles(u32 battlerAi)
 
             for (j = 0; j < MAX_MON_MOVES; j++)
             {
-                gBattleStruct->aiFinalScore[battlerAi][gBattlerTarget][j] = AI_THINKING_STRUCT->score[j];
+                gAiBattleStructData->aiFinalScore[battlerAi][gBattlerTarget][j] = AI_THINKING_STRUCT->score[j];
             }
         }
     }
@@ -667,7 +667,7 @@ static u32 ChooseMoveOrAction_Doubles(u32 battlerAi)
     }
 
     gBattlerTarget = mostViableTargetsArray[Random() % mostViableTargetsNo];
-    gBattleStruct->aiChosenTarget[battlerAi] = gBattlerTarget;
+    gAiBattleStructData->aiChosenTarget[battlerAi] = gBattlerTarget;
     return actionOrMoveIndex[gBattlerTarget];
 }
 

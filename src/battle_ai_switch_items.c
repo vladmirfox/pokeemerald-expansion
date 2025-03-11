@@ -2191,13 +2191,13 @@ u32 GetMostSuitableMonToSwitchInto(u32 battler, enum SwitchType switchType)
 
 static bool32 AiExpectsToFaintPlayer(u32 battler)
 {
-    u8 target = gBattleStruct->aiChosenTarget[battler];
+    u8 target = gAiBattleStructData->aiChosenTarget[battler];
 
-    if (gBattleStruct->aiMoveOrAction[battler] > 3)
+    if (gAiBattleStructData->aiMoveOrAction[battler] > 3)
         return FALSE; // AI not planning to use move
 
     if (GetBattlerSide(target) != GetBattlerSide(battler)
-      && CanIndexMoveFaintTarget(battler, target, gBattleStruct->aiMoveOrAction[battler], 0)
+      && CanIndexMoveFaintTarget(battler, target, gAiBattleStructData->aiMoveOrAction[battler], 0)
       && AI_IsFaster(battler, target, GetAIChosenMove(battler)))
     {
         // We expect to faint the target and move first -> dont use an item
