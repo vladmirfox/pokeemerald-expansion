@@ -218,8 +218,10 @@ def ImportWildEncounterFile():
                 elif FISHING_MONS in areaTable:
                     structMonType = FISHING_MONS_LABEL
                     fishingMonsInfo = f"{structLabel}_{structMonType}{structInfo}"
+                elif HIDDEN_MONS in areaTable:
+                    structMonType = HIDDEN_MONS_LABEL
+                    hiddenMonsInfo = f"{structLabel}_{structMonType}{structInfo}"
                 else:
-                    hiddenMonsInfo = ""
                     structMonType = ""
                 
                 if structMonType == "":
@@ -402,7 +404,7 @@ def PrintWildMonHeadersContent():
                             nullIndex += 1
                         nullCount += 1
                     PrintEncounterHeaders(TabStr(2) + "},")
-                    PrintEncounterHeaders(TabStr(1) + "},")
+                    PrintEncounterHeaders(tabStr + "},")
                 labelCount += 1
         groupCount += 1
         PrintEncounterHeaders("};")
