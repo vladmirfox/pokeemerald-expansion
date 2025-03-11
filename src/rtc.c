@@ -344,9 +344,7 @@ u32 GetTimeOfDay(void)
 
 u32 GetTimeOfDayForDex(void)
 {
-    if (OW_TIME_OF_DAY_ENCOUNTERS == FALSE)
-        return TIME_DAY;
-    return GetTimeOfDay();
+    return OW_TIME_OF_DAY_ENCOUNTERS ? GetTimeOfDay() : TIME_DAY;
 }
 
 void RtcInitLocalTimeOffset(s32 hour, s32 minute)
