@@ -918,11 +918,14 @@ void Compress(std::vector<Event>& events)
     }
 }
 
+// for expansion's bool macros of TRUE and FALSE
+#define TRUE true
+#define FALSE false
+
 void ReadMidiTracks()
 {
     long trackHeaderStart = 14;
     int trackLoops = B_NUM_LOW_HEALTH_BEEPS;
-    const bool TRUE = true;
 
     ReadMidiTrackHeader(trackHeaderStart);
     ReadSeqEvents();
@@ -962,7 +965,7 @@ void ReadMidiTracks()
                 if (g_compressionEnabled)
                     Compress(*events);
 
-                if (B_NUM_BEEPS_GEN_LOCK == true)
+                if (B_NUM_BEEPS_GEN_LOCK)
                 {
                     if (trackLoops == GEN_LATEST)
                         trackLoops = 4;
