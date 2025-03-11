@@ -151,8 +151,8 @@ endif
 
 # Enable LTO if set
 ifeq ($(LTO),1)
-override CFLAGS += -flto -ffat-lto-objects
-override LDFLAGS += -flto
+CFLAGS += -flto -ffat-lto-objects
+LDFLAGS += -flto
 endif
 
 # Variable filled out in other make files
@@ -451,7 +451,7 @@ libagbsyscall:
 	@$(MAKE) -C libagbsyscall TOOLCHAIN=$(TOOLCHAIN) MODERN=1
 
 # Elf from object files
-LDFLAGS = -Map ../../$(MAP)
+LDFLAGS += -Map ../../$(MAP)
 $(ELF): $(LD_SCRIPT) $(LD_SCRIPT_DEPS) $(OBJS) libagbsyscall
 	@cd $(OBJ_DIR) && $(LD) $(LDFLAGS) -T ../../$< --print-memory-usage -o ../../$@ $(OBJS_REL) $(LIB) | cat
 	@echo "cd $(OBJ_DIR) && $(LD) $(LDFLAGS) -T ../../$< --print-memory-usage -o ../../$@ <objs> <libs> | cat"
