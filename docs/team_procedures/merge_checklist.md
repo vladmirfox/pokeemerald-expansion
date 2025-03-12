@@ -21,6 +21,9 @@ If functionality cannot be verified with an automated test, proof of an in game 
 ## If the branch ports behavior from another Pokémon game, have you verified that the behavior functions as faithfully as possible? 
 We have always tried to make sure we can mimic the original functionality as closely as possible so as to avoid confusion with users and players. Do not be afraid to ask the contributor / community for proof if you cannot personally verify.
 
+## If the branch is a popular feature within the community with an established feature branch, is this using that established branch as a base?
+There are situations where this should and should not happen, and should be discussed with maintainers on a case by case basis.
+
 ## If this branch changes a function that is expected to be modified by users, is there a migration script?
 Not everything needs a migration script - if you're unsure, start a discussion.
 
@@ -47,3 +50,15 @@ Without labels, the CHANGELOG will not be properly formatted. For specifically t
 ## Is `pokeemerald-expansion` free from a merge freeze?
 Our [release schedule](docs/team_procedures/schedule.md) prevents us from merging Big Features and non-bugfixes within certain dates close to a release. Please use `/release` in the RHH Discord to clarify when these are occuring.
 
+# Merging
+
+When a feature has passed all of the items on the checklist, it is ready to be merged. From GitHub's interface, there are three different options for merging:
+
+## Squash and merge
+This should be used for all PRs _except_ when the branch uses a publicly available feature branch from by the community.
+
+## Create a merge commit
+When the branch uses a publicly available feature branch from by the community, use "Create a merge commit" to preserve history for users.
+
+## Rebase and merge
+We do not use this ever.

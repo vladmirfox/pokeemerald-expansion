@@ -92,6 +92,12 @@ git reset --hard RHH/upcoming # If your PR is going to target master, replace up
 #### 5. Implement your code
 All of your work should go on this new, clean branch. If you already started work on a different branch, you can [cherry-pick](https://git-scm.com/docs/git-cherry-pick) you old commits onto this new branch, or just copy and paste the changes from the original files.
 
+##### Popular Features / Feature Branches
+
+If you are implementing functionality from a known community feature branch, it is **strongly** reccomended that you open a discussion thread _before_ starting. There are some situations where maintainers would ask you to use the existing feature branch as a base, and others where maintainers would want a feature to be written from scratch.
+
+This changes on a case by case basis.
+
 #### 6. Push your changes
 When you push your first commit, you'll need to push the new branch to the remote repo.
 ```bash
@@ -107,9 +113,12 @@ A maintainer will then assign themselves as a reviewer of your pull request, and
 
 Contributors are responsible for responding to and updating their branch by addressing the feedback in the review. Contributors are also responsible for making sure the branch passes the checklist at all times.
 
+Once a maintainer has begun reviewing your PR, **please** do not force-push new changes - normal pushes are fine. Do not worry about git history - we squash most incoming changes.
+
 Maintainers will measure the submitted pull request against a [merge checklist](docs/team_procedures/merge_checklist.md).
 
 Once all items on the merge checklist are true, the branch will be merged in.
+
 
 ## Maintainers
 
