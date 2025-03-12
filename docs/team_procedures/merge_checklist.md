@@ -55,7 +55,9 @@ Our [release schedule](docs/team_procedures/schedule.md) prevents us from mergin
 When a feature has passed all of the items on the checklist, it is ready to be merged. From GitHub's interface, there are three different options for merging:
 
 ## Squash and merge
-This should be used for all PRs _except_ when the branch uses a publicly available feature branch from by the community.
+This should be used for all PRs _except_  when merging from either:
+* a publicly available feature branch from by the community OR
+* `upcoming`, `master` or `pret/pokeemerald`.
 
 ## Create a merge commit
 When the branch uses a publicly available feature branch from by the community, use "Create a merge commit" to preserve history for users.
