@@ -141,22 +141,14 @@ extern const struct MoveInfo gMovesInfo[];
 extern const u8 gNotDoneYetDescription[];
 extern const struct BattleMoveEffect gBattleMoveEffects[];
 
-static inline u32 SanitizeMoveId(u32 moveId)
-{
-    if (moveId >= MOVES_COUNT_ALL)
-        return MOVE_NONE;
-    else
-        return moveId;
-}
-
 static inline const u8 *GetMoveName(u32 moveId)
 {
-    return gMovesInfo[SanitizeMoveId(moveId)].name;
+    return gMovesInfo[moveId].name;
 }
 
 static inline const u8 *GetMoveDescription(u32 moveId)
 {
-    moveId = SanitizeMoveId(moveId);
+    moveId = moveId;
     if (gMovesInfo[moveId].effect == EFFECT_PLACEHOLDER)
         return gNotDoneYetDescription;
     return gMovesInfo[moveId].description;
@@ -164,327 +156,327 @@ static inline const u8 *GetMoveDescription(u32 moveId)
 
 static inline u32 GetMoveEffect(u32 moveId)
 {
-    return gMovesInfo[SanitizeMoveId(moveId)].effect;
+    return gMovesInfo[moveId].effect;
 }
 
 static inline u32 GetMoveType(u32 moveId)
 {
-    return gMovesInfo[SanitizeMoveId(moveId)].type;
+    return gMovesInfo[moveId].type;
 }
 
 static inline u32 GetMoveCategory(u32 moveId)
 {
-    return gMovesInfo[SanitizeMoveId(moveId)].category;
+    return gMovesInfo[moveId].category;
 }
 
 static inline u32 GetMovePower(u32 moveId)
 {
-    return gMovesInfo[SanitizeMoveId(moveId)].power;
+    return gMovesInfo[moveId].power;
 }
 
 static inline u32 GetMoveAccuracy(u32 moveId)
 {
-    return gMovesInfo[SanitizeMoveId(moveId)].accuracy;
+    return gMovesInfo[moveId].accuracy;
 }
 
 static inline u32 GetMoveTarget(u32 moveId)
 {
-    return gMovesInfo[SanitizeMoveId(moveId)].target;
+    return gMovesInfo[moveId].target;
 }
 
 static inline u32 GetMovePP(u32 moveId)
 {
-    return gMovesInfo[SanitizeMoveId(moveId)].pp;
+    return gMovesInfo[moveId].pp;
 }
 
 static inline u32 GetMoveZEffect(u32 moveId)
 {
-    return gMovesInfo[SanitizeMoveId(moveId)].zMove.effect;
+    return gMovesInfo[moveId].zMove.effect;
 }
 
 static inline u32 GetMoveZPowerOverride(u32 moveId)
 {
-    return gMovesInfo[SanitizeMoveId(moveId)].zMove.powerOverride;
+    return gMovesInfo[moveId].zMove.powerOverride;
 }
 
 static inline s32 GetMovePriority(u32 moveId)
 {
-    return gMovesInfo[SanitizeMoveId(moveId)].priority;
+    return gMovesInfo[moveId].priority;
 }
 
 static inline u32 GetMoveRecoil(u32 moveId)
 {
-    return gMovesInfo[SanitizeMoveId(moveId)].recoil;
+    return gMovesInfo[moveId].recoil;
 }
 
 static inline u32 GetMoveStrikeCount(u32 moveId)
 {
-    return gMovesInfo[SanitizeMoveId(moveId)].strikeCount;
+    return gMovesInfo[moveId].strikeCount;
 }
 
 static inline u32 GetMoveCriticalHitStage(u32 moveId)
 {
-    return gMovesInfo[SanitizeMoveId(moveId)].criticalHitStage;
+    return gMovesInfo[moveId].criticalHitStage;
 }
 
 static inline bool32 MoveAlwaysCrits(u32 moveId)
 {
-    return gMovesInfo[SanitizeMoveId(moveId)].alwaysCriticalHit;
+    return gMovesInfo[moveId].alwaysCriticalHit;
 }
 
 static inline u32 GetMoveAdditionalEffectCount(u32 moveId)
 {
-    return gMovesInfo[SanitizeMoveId(moveId)].numAdditionalEffects;
+    return gMovesInfo[moveId].numAdditionalEffects;
 }
 
 static inline bool32 MoveMakesContact(u32 moveId)
 {
-    return gMovesInfo[SanitizeMoveId(moveId)].makesContact;
+    return gMovesInfo[moveId].makesContact;
 }
 
 static inline bool32 MoveIgnoresProtect(u32 moveId)
 {
-    return gMovesInfo[SanitizeMoveId(moveId)].ignoresProtect;
+    return gMovesInfo[moveId].ignoresProtect;
 }
 
 static inline bool32 MoveCanBeBouncedBack(u32 moveId)
 {
-    return gMovesInfo[SanitizeMoveId(moveId)].magicCoatAffected;
+    return gMovesInfo[moveId].magicCoatAffected;
 }
 
 static inline bool32 MoveCanBeSnatched(u32 moveId)
 {
-    return gMovesInfo[SanitizeMoveId(moveId)].snatchAffected;
+    return gMovesInfo[moveId].snatchAffected;
 }
 
 static inline bool32 MoveIgnoresKingsRock(u32 moveId)
 {
-    return gMovesInfo[SanitizeMoveId(moveId)].ignoresKingsRock;
+    return gMovesInfo[moveId].ignoresKingsRock;
 }
 
 static inline bool32 IsPunchingMove(u32 moveId)
 {
-    return gMovesInfo[SanitizeMoveId(moveId)].punchingMove;
+    return gMovesInfo[moveId].punchingMove;
 }
 
 static inline bool32 IsBitingMove(u32 moveId)
 {
-    return gMovesInfo[SanitizeMoveId(moveId)].bitingMove;
+    return gMovesInfo[moveId].bitingMove;
 }
 
 static inline bool32 IsPulseMove(u32 moveId)
 {
-    return gMovesInfo[SanitizeMoveId(moveId)].pulseMove;
+    return gMovesInfo[moveId].pulseMove;
 }
 
 static inline bool32 IsSoundMove(u32 moveId)
 {
-    return gMovesInfo[SanitizeMoveId(moveId)].soundMove;
+    return gMovesInfo[moveId].soundMove;
 }
 
 static inline bool32 IsBallisticMove(u32 moveId)
 {
-    return gMovesInfo[SanitizeMoveId(moveId)].ballisticMove;
+    return gMovesInfo[moveId].ballisticMove;
 }
 
 static inline bool32 IsPowderMove(u32 moveId)
 {
-    return gMovesInfo[SanitizeMoveId(moveId)].powderMove;
+    return gMovesInfo[moveId].powderMove;
 }
 
 static inline bool32 IsDanceMove(u32 moveId)
 {
-    return gMovesInfo[SanitizeMoveId(moveId)].danceMove;
+    return gMovesInfo[moveId].danceMove;
 }
 
 static inline bool32 IsWindMove(u32 moveId)
 {
-    return gMovesInfo[SanitizeMoveId(moveId)].windMove;
+    return gMovesInfo[moveId].windMove;
 }
 
 static inline bool32 IsSlicingMove(u32 moveId)
 {
-    return gMovesInfo[SanitizeMoveId(moveId)].slicingMove;
+    return gMovesInfo[moveId].slicingMove;
 }
 
 static inline bool32 IsHealingMove(u32 moveId)
 {
-    return gMovesInfo[SanitizeMoveId(moveId)].healingMove;
+    return gMovesInfo[moveId].healingMove;
 }
 
 static inline bool32 MoveIncreasesPowerToMinimizedTargets(u32 moveId)
 {
-    return gMovesInfo[SanitizeMoveId(moveId)].minimizeDoubleDamage;
+    return gMovesInfo[moveId].minimizeDoubleDamage;
 }
 
 static inline bool32 MoveIgnoresTargetAbility(u32 moveId)
 {
-    return gMovesInfo[SanitizeMoveId(moveId)].ignoresTargetAbility;
+    return gMovesInfo[moveId].ignoresTargetAbility;
 }
 
 static inline bool32 MoveIgnoresDefenseEvasionStages(u32 moveId)
 {
-    return gMovesInfo[SanitizeMoveId(moveId)].ignoresTargetDefenseEvasionStages;
+    return gMovesInfo[moveId].ignoresTargetDefenseEvasionStages;
 }
 
 static inline bool32 MoveDamagesUnderground(u32 moveId)
 {
-    return gMovesInfo[SanitizeMoveId(moveId)].damagesUnderground;
+    return gMovesInfo[moveId].damagesUnderground;
 }
 
 static inline bool32 MoveDamagesUnderWater(u32 moveId)
 {
-    return gMovesInfo[SanitizeMoveId(moveId)].damagesUnderwater;
+    return gMovesInfo[moveId].damagesUnderwater;
 }
 
 static inline bool32 MoveDamagesAirborne(u32 moveId)
 {
-    return gMovesInfo[SanitizeMoveId(moveId)].damagesAirborne;
+    return gMovesInfo[moveId].damagesAirborne;
 }
 
 static inline bool32 MoveDamagesAirborneDoubleDamage(u32 moveId)
 {
-    return gMovesInfo[SanitizeMoveId(moveId)].damagesAirborneDoubleDamage;
+    return gMovesInfo[moveId].damagesAirborneDoubleDamage;
 }
 
 static inline bool32 MoveIgnoresTypeIfFlyingAndUngrounded(u32 moveId)
 {
-    return gMovesInfo[SanitizeMoveId(moveId)].ignoreTypeIfFlyingAndUngrounded;
+    return gMovesInfo[moveId].ignoreTypeIfFlyingAndUngrounded;
 }
 
 static inline bool32 MoveThawsUser(u32 moveId)
 {
-    return gMovesInfo[SanitizeMoveId(moveId)].thawsUser;
+    return gMovesInfo[moveId].thawsUser;
 }
 
 static inline bool32 MoveIgnoresSubstitute(u32 moveId)
 {
-    return gMovesInfo[SanitizeMoveId(moveId)].ignoresSubstitute;
+    return gMovesInfo[moveId].ignoresSubstitute;
 }
 
 static inline bool32 MoveForcesPressure(u32 moveId)
 {
-    return gMovesInfo[SanitizeMoveId(moveId)].forcePressure;
+    return gMovesInfo[moveId].forcePressure;
 }
 
 static inline bool32 MoveCantBeUsedTwice(u32 moveId)
 {
-    return gMovesInfo[SanitizeMoveId(moveId)].cantUseTwice;
+    return gMovesInfo[moveId].cantUseTwice;
 }
 
 static inline bool32 IsMoveGravityBanned(u32 moveId)
 {
-    return gMovesInfo[SanitizeMoveId(moveId)].gravityBanned;
+    return gMovesInfo[moveId].gravityBanned;
 }
 
 static inline bool32 IsMoveMirrorMoveBanned(u32 moveId)
 {
-    return gMovesInfo[SanitizeMoveId(moveId)].mirrorMoveBanned;
+    return gMovesInfo[moveId].mirrorMoveBanned;
 }
 
 static inline bool32 IsMoveMeFirstBanned(u32 moveId)
 {
-    return gMovesInfo[SanitizeMoveId(moveId)].meFirstBanned;
+    return gMovesInfo[moveId].meFirstBanned;
 }
 
 static inline bool32 IsMoveMimicBanned(u32 moveId)
 {
-    return gMovesInfo[SanitizeMoveId(moveId)].mimicBanned;
+    return gMovesInfo[moveId].mimicBanned;
 }
 
 static inline bool32 IsMoveMetronomeBanned(u32 moveId)
 {
-    return gMovesInfo[SanitizeMoveId(moveId)].metronomeBanned;
+    return gMovesInfo[moveId].metronomeBanned;
 }
 
 static inline bool32 IsMoveCopycatBanned(u32 moveId)
 {
-    return gMovesInfo[SanitizeMoveId(moveId)].copycatBanned;
+    return gMovesInfo[moveId].copycatBanned;
 }
 
 static inline bool32 IsMoveAssistBanned(u32 moveId)
 {
-    return gMovesInfo[SanitizeMoveId(moveId)].assistBanned;
+    return gMovesInfo[moveId].assistBanned;
 }
 
 static inline bool32 IsMoveSleepTalkBanned(u32 moveId)
 {
-    return gMovesInfo[SanitizeMoveId(moveId)].sleepTalkBanned;
+    return gMovesInfo[moveId].sleepTalkBanned;
 }
 
 static inline bool32 IsMoveInstructBanned(u32 moveId)
 {
-    return gMovesInfo[SanitizeMoveId(moveId)].instructBanned;
+    return gMovesInfo[moveId].instructBanned;
 }
 
 static inline bool32 IsMoveEncoreBanned(u32 moveId)
 {
-    return gMovesInfo[SanitizeMoveId(moveId)].encoreBanned;
+    return gMovesInfo[moveId].encoreBanned;
 }
 
 static inline bool32 IsMoveParentalBondBanned(u32 moveId)
 {
-    return gMovesInfo[SanitizeMoveId(moveId)].parentalBondBanned;
+    return gMovesInfo[moveId].parentalBondBanned;
 }
 
 static inline bool32 IsMoveSkyBattleBanned(u32 moveId)
 {
-    return gMovesInfo[SanitizeMoveId(moveId)].skyBattleBanned;
+    return gMovesInfo[moveId].skyBattleBanned;
 }
 
 static inline bool32 IsMoveSketchBanned(u32 moveId)
 {
-    return gMovesInfo[SanitizeMoveId(moveId)].sketchBanned;
+    return gMovesInfo[moveId].sketchBanned;
 }
 
 static inline u32 GetMoveTwoTurnAttackStringId(u32 moveId)
 {
-    return gMovesInfo[SanitizeMoveId(moveId)].argument.twoTurnAttack.stringId;
+    return gMovesInfo[moveId].argument.twoTurnAttack.stringId;
 }
 
 static inline u32 GetMoveTwoTurnAttackStatus(u32 moveId)
 {
-    return UNCOMPRESS_BITS(gMovesInfo[SanitizeMoveId(moveId)].argument.twoTurnAttack.status);
+    return UNCOMPRESS_BITS(gMovesInfo[moveId].argument.twoTurnAttack.status);
 }
 
 static inline u32 GetMoveTwoTurnAttackWeather(u32 moveId)
 {
-    return gMovesInfo[SanitizeMoveId(moveId)].argument.twoTurnAttack.status;
+    return gMovesInfo[moveId].argument.twoTurnAttack.status;
 }
 
 static inline u32 GetMoveProtectSide(u32 moveId)
 {
-    return gMovesInfo[SanitizeMoveId(moveId)].argument.protect.side;
+    return gMovesInfo[moveId].argument.protect.side;
 }
 
 static inline u32 GetMoveEffectArg_Status(u32 moveId)
 {
-    return gMovesInfo[SanitizeMoveId(moveId)].argument.status;
+    return gMovesInfo[moveId].argument.status;
 }
 
 static inline u32 GetMoveEffectArg_MoveProperty(u32 moveId)
 {
-    return gMovesInfo[SanitizeMoveId(moveId)].argument.moveProperty;
+    return gMovesInfo[moveId].argument.moveProperty;
 }
 
 static inline u32 GetMoveEffectArg_HoldEffect(u32 moveId)
 {
-    return gMovesInfo[SanitizeMoveId(moveId)].argument.holdEffect;
+    return gMovesInfo[moveId].argument.holdEffect;
 }
 
 static inline u32 GetMoveArgType(u32 moveId)
 {
-    return gMovesInfo[SanitizeMoveId(moveId)].argument.type;
+    return gMovesInfo[moveId].argument.type;
 }
 
 static inline u32 GetMoveFixedDamage(u32 moveId)
 {
-    return gMovesInfo[SanitizeMoveId(moveId)].argument.fixedDamage;
+    return gMovesInfo[moveId].argument.fixedDamage;
 }
 
 static inline u32 GetMoveAbsorbPercentage(u32 moveId)
 {
-    moveId = SanitizeMoveId(moveId);
+    moveId = moveId;
     if (gMovesInfo[moveId].argument.absorbPercentage == 0)
         return 50;
     return gMovesInfo[moveId].argument.absorbPercentage;
@@ -492,32 +484,31 @@ static inline u32 GetMoveAbsorbPercentage(u32 moveId)
 
 static inline const struct AdditionalEffect *GetMoveAdditionalEffectById(u32 moveId, u32 effect)
 {
-    return &gMovesInfo[SanitizeMoveId(moveId)].additionalEffects[effect];
+    return &gMovesInfo[moveId].additionalEffects[effect];
 }
 
 static inline u32 GetMoveContestEffect(u32 moveId)
 {
-    return gMovesInfo[SanitizeMoveId(moveId)].contestEffect;
+    return gMovesInfo[moveId].contestEffect;
 }
 
 static inline u32 GetMoveContestCategory(u32 moveId)
 {
-    return gMovesInfo[SanitizeMoveId(moveId)].contestCategory;
+    return gMovesInfo[moveId].contestCategory;
 }
 
 static inline u32 GetMoveContestComboStarter(u32 moveId)
 {
-    return gMovesInfo[SanitizeMoveId(moveId)].contestComboStarterId;
+    return gMovesInfo[moveId].contestComboStarterId;
 }
 
 static inline u32 GetMoveContestComboMoves(u32 moveId, u32 comboMove)
 {
-    return gMovesInfo[SanitizeMoveId(moveId)].contestComboMoves[comboMove];
+    return gMovesInfo[moveId].contestComboMoves[comboMove];
 }
 
 static inline const u8 *GetMoveAnimationScript(u32 moveId)
 {
-    moveId = SanitizeMoveId(moveId);
     if (gMovesInfo[moveId].battleAnimScript == NULL)
     {
         DebugPrintfLevel(MGBA_LOG_WARN, "No animation for moveId=%u", moveId);
@@ -528,7 +519,6 @@ static inline const u8 *GetMoveAnimationScript(u32 moveId)
 
 static inline const u8 *GetMoveBattleScript(u32 moveId)
 {
-    moveId = SanitizeMoveId(moveId);
     if (gBattleMoveEffects[gMovesInfo[moveId].effect].battleScript == NULL)
     {
         DebugPrintfLevel(MGBA_LOG_WARN, "No effect for moveId=%u", moveId);
