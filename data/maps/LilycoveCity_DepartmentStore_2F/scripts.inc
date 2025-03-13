@@ -35,6 +35,7 @@ LilycoveCity_DepartmentStore_2F_Pokemart1:
 	.2byte ITEM_SHINY_STONE
 	.2byte ITEM_DAWN_STONE
 	.2byte ITEM_DUSK_STONE
+	.2byte ITEM_LINKING_CORD
 	pokemartlistend
 
 LilycoveCity_DepartmentStore_2F_EventScript_ClerkRight::

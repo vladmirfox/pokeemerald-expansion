@@ -83,20 +83,39 @@
   "warp_events": [
     {
       "x": 5,
-      "y": 19,
+      "y": 20,
       "elevation": 0,
       "dest_map": "MAP_RUSTBORO_CITY",
       "dest_warp_id": "0"
     },
     {
       "x": 6,
-      "y": 19,
+      "y": 20,
       "elevation": 0,
       "dest_map": "MAP_RUSTBORO_CITY",
       "dest_warp_id": "0"
     }
   ],
-  "coord_events": [],
+  "coord_events": [
+    {
+      "type": "trigger",
+      "x": 5,
+      "y": 19,
+      "elevation": 0,
+      "var": "VAR_GYM_LOCKED",
+      "var_value": "1",
+      "script": "EventScript_NoBackingOut"
+    },
+    {
+      "type": "trigger",
+      "x": 6,
+      "y": 19,
+      "elevation": 0,
+      "var": "VAR_GYM_LOCKED",
+      "var_value": "1",
+      "script": "EventScript_NoBackingOut"
+    }
+  ],
   "bg_events": [
     {
       "type": "sign",
@@ -104,7 +123,7 @@
       "y": 18,
       "elevation": 0,
       "player_facing_dir": "BG_EVENT_PLAYER_FACING_NORTH",
-      "script": "RustboroCity_Gym_EventScript_LeftGymStatue"
+      "script": "EventScript_Statue"
     },
     {
       "type": "sign",
@@ -112,7 +131,7 @@
       "y": 18,
       "elevation": 0,
       "player_facing_dir": "BG_EVENT_PLAYER_FACING_NORTH",
-      "script": "RustboroCity_Gym_EventScript_RightGymStatue"
+      "script": "EventScript_Statue"
     }
   ]
 }

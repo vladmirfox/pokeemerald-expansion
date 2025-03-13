@@ -10951,7 +10951,8 @@ const struct SpeciesInfo gSpeciesInfoGen5[] =
         )
         .levelUpLearnset = sBisharpLevelUpLearnset,
         .teachableLearnset = sBisharpTeachableLearnset,
-        .evolutions = EVOLUTION({EVO_DEFEAT_THREE_WITH_ITEM, ITEM_LEADERS_CREST, SPECIES_KINGAMBIT}),
+        .evolutions = EVOLUTION({EVO_TRADE_ITEM, ITEM_KINGS_ROCK, SPECIES_KINGAMBIT},
+                                {EVO_ITEM, ITEM_KINGS_ROCK, SPECIES_KINGAMBIT}),
     },
 
 #if P_GEN_9_CROSS_EVOS

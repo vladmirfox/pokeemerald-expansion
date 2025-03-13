@@ -264,8 +264,8 @@
       "x": 38,
       "y": 9,
       "elevation": 0,
-      "dest_map": "MAP_MOSSDEEP_CITY_GYM",
-      "dest_warp_id": "0"
+      "dest_map": "MAP_DYNAMIC",
+      "dest_warp_id": "WARP_ID_DYNAMIC"
     },
     {
       "x": 28,
@@ -414,6 +414,15 @@
       "var": "VAR_MOSSDEEP_CITY_STATE",
       "var_value": "1",
       "script": "MossdeepCity_EventScript_TeamMagmaEnterSpaceCenter"
+    },
+    {
+      "type": "trigger",
+      "x": 38,
+      "y": 10,
+      "elevation": 3,
+      "var": "VAR_GYM_LOCKED",
+      "var_value": "1",
+      "script": "MossdeepCity_EventScript_GymDoor"
     }
   ],
   "bg_events": [

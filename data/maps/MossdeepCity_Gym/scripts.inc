@@ -55,7 +55,49 @@ MossdeepCity_Gym_EventScript_SetSwitch4Metatiles::
 
 MossdeepCity_Gym_EventScript_TateAndLiza::
 	setvar VAR_FORCEANIM, 1
+	call_if_eq VAR_BADGE_COUNT, 0, MossdeepCity_Gym_EventScript_TateAndLiza_Trainer1
+	call_if_eq VAR_BADGE_COUNT, 1, MossdeepCity_Gym_EventScript_TateAndLiza_Trainer2
+	call_if_eq VAR_BADGE_COUNT, 2, MossdeepCity_Gym_EventScript_TateAndLiza_Trainer3
+	call_if_eq VAR_BADGE_COUNT, 3, MossdeepCity_Gym_EventScript_TateAndLiza_Trainer4
+	call_if_eq VAR_BADGE_COUNT, 4, MossdeepCity_Gym_EventScript_TateAndLiza_Trainer5
+	call_if_eq VAR_BADGE_COUNT, 5, MossdeepCity_Gym_EventScript_TateAndLiza_Trainer6
+	call_if_eq VAR_BADGE_COUNT, 6, MossdeepCity_Gym_EventScript_TateAndLiza_Trainer7
+	call_if_eq VAR_BADGE_COUNT, 7, MossdeepCity_Gym_EventScript_TateAndLiza_Trainer8
+
+MossdeepCity_Gym_EventScript_TateAndLiza_Trainer1::
 	trainerbattle_double TRAINER_TATE_AND_LIZA_1, MossdeepCity_Gym_Text_TateAndLizaIntro, MossdeepCity_Gym_Text_TateAndLizaDefeat, MossdeepCity_Gym_Text_TateAndLizaNeedTwoMons, MossdeepCity_Gym_EventScript_TateAndLizaDefeated, NO_MUSIC
+	goto MossdeepCity_Gym_EventScript_PostBattle
+
+MossdeepCity_Gym_EventScript_TateAndLiza_Trainer2::
+	trainerbattle_double TRAINER_TATE_AND_LIZA_2, MossdeepCity_Gym_Text_TateAndLizaIntro, MossdeepCity_Gym_Text_TateAndLizaDefeat, MossdeepCity_Gym_Text_TateAndLizaNeedTwoMons, MossdeepCity_Gym_EventScript_TateAndLizaDefeated, NO_MUSIC
+	goto MossdeepCity_Gym_EventScript_PostBattle
+
+MossdeepCity_Gym_EventScript_TateAndLiza_Trainer3::
+	trainerbattle_double TRAINER_TATE_AND_LIZA_3, MossdeepCity_Gym_Text_TateAndLizaIntro, MossdeepCity_Gym_Text_TateAndLizaDefeat, MossdeepCity_Gym_Text_TateAndLizaNeedTwoMons, MossdeepCity_Gym_EventScript_TateAndLizaDefeated, NO_MUSIC
+	goto MossdeepCity_Gym_EventScript_PostBattle
+
+MossdeepCity_Gym_EventScript_TateAndLiza_Trainer4::
+	trainerbattle_double TRAINER_TATE_AND_LIZA_4, MossdeepCity_Gym_Text_TateAndLizaIntro, MossdeepCity_Gym_Text_TateAndLizaDefeat, MossdeepCity_Gym_Text_TateAndLizaNeedTwoMons, MossdeepCity_Gym_EventScript_TateAndLizaDefeated, NO_MUSIC
+	goto MossdeepCity_Gym_EventScript_PostBattle
+
+MossdeepCity_Gym_EventScript_TateAndLiza_Trainer5::
+	trainerbattle_double TRAINER_TATE_AND_LIZA_5, MossdeepCity_Gym_Text_TateAndLizaIntro, MossdeepCity_Gym_Text_TateAndLizaDefeat, MossdeepCity_Gym_Text_TateAndLizaNeedTwoMons, MossdeepCity_Gym_EventScript_TateAndLizaDefeated, NO_MUSIC
+	goto MossdeepCity_Gym_EventScript_PostBattle
+
+MossdeepCity_Gym_EventScript_TateAndLiza_Trainer6::
+	trainerbattle_double TRAINER_TATE_AND_LIZA_6, MossdeepCity_Gym_Text_TateAndLizaIntro, MossdeepCity_Gym_Text_TateAndLizaDefeat, MossdeepCity_Gym_Text_TateAndLizaNeedTwoMons, MossdeepCity_Gym_EventScript_TateAndLizaDefeated, NO_MUSIC
+	goto MossdeepCity_Gym_EventScript_PostBattle
+
+MossdeepCity_Gym_EventScript_TateAndLiza_Trainer7::
+	trainerbattle_double TRAINER_TATE_AND_LIZA_7, MossdeepCity_Gym_Text_TateAndLizaIntro, MossdeepCity_Gym_Text_TateAndLizaDefeat, MossdeepCity_Gym_Text_TateAndLizaNeedTwoMons, MossdeepCity_Gym_EventScript_TateAndLizaDefeated, NO_MUSIC
+	goto MossdeepCity_Gym_EventScript_PostBattle
+
+MossdeepCity_Gym_EventScript_TateAndLiza_Trainer8::
+	trainerbattle_double TRAINER_TATE_AND_LIZA_8, MossdeepCity_Gym_Text_TateAndLizaIntro, MossdeepCity_Gym_Text_TateAndLizaDefeat, MossdeepCity_Gym_Text_TateAndLizaNeedTwoMons, MossdeepCity_Gym_EventScript_TateAndLizaDefeated, NO_MUSIC
+	goto MossdeepCity_Gym_EventScript_PostBattle
+
+
+MossdeepCity_Gym_EventScript_PostBattle::
 	specialvar VAR_RESULT, ShouldTryRematchBattle
 	goto_if_eq VAR_RESULT, TRUE, MossdeepCity_Gym_EventScript_TateAndLizaRematch
 	goto_if_unset FLAG_RECEIVED_TM_CALM_MIND, MossdeepCity_Gym_EventScript_GiveCalmMind2
@@ -76,23 +118,24 @@ MossdeepCity_Gym_EventScript_TateAndLizaDefeated::
 	setvar VAR_0x8008, 7
 	setvar VAR_FORCEANIM, 0
 	call Common_EventScript_SetGymTrainers
-	clearflag FLAG_HIDE_SLATEPORT_CITY_HARBOR_PATRONS
-	clearflag FLAG_HIDE_MOSSDEEP_CITY_TEAM_MAGMA
-	clearflag FLAG_HIDE_MOSSDEEP_CITY_SPACE_CENTER_1F_TEAM_MAGMA
-	clearflag FLAG_HIDE_MOSSDEEP_CITY_SPACE_CENTER_2F_TEAM_MAGMA
-	clearflag FLAG_HIDE_MOSSDEEP_CITY_SPACE_CENTER_2F_STEVEN
-	setvar VAR_MOSSDEEP_CITY_STATE, 1
-	setflag FLAG_HIDE_MOSSDEEP_CITY_SPACE_CENTER_1F_STEVEN
-	setvar VAR_MOSSDEEP_SPACE_CENTER_STATE, 1
 	call MossdeepCity_Gym_EventScript_GiveCalmMind
 	closemessage
 	delay 30
-	playfanfare MUS_REGISTER_MATCH_CALL
-	msgbox MossdeepCity_Gym_Text_RegisteredTateAndLiza, MSGBOX_DEFAULT
-	waitfanfare
-	closemessage
-	delay 30
-	setflag FLAG_ENABLE_TATE_AND_LIZA_MATCH_CALL
+	//playfanfare MUS_REGISTER_MATCH_CALL
+	//msgbox MossdeepCity_Gym_Text_RegisteredTateAndLiza, MSGBOX_DEFAULT
+	//waitfanfare
+	//closemessage
+	//delay 30
+	//setflag FLAG_ENABLE_TATE_AND_LIZA_MATCH_CALL
+	switch VAR_RETURN_MAP
+        case 0, EventScript_WarpHomeRustboro
+        case 1, EventScript_WarpHomeDewford
+        case 2, EventScript_WarpHomeMauville
+        case 3, EventScript_WarpHomeLavaridge
+        case 4, EventScript_WarpHomePetalburg
+        case 5, EventScript_WarpHomeFortree
+        case 6, EventScript_WarpHomeMossdeep
+        case 7, EventScript_WarpHomeSootopolis
 	release
 	end
 
@@ -579,9 +622,7 @@ MossdeepCity_Gym_Text_ReceivedMindBadge:
 MossdeepCity_Gym_Text_ExplainMindBadgeTakeThis:
 	.string "TATE: The MIND BADGE enhances the\n"
 	.string "SP. ATK and SP. DEF of POKéMON.\p"
-	.string "LIZA: It also lets you use the HM move\n"
-	.string "DIVE outside of battle.\p"
-	.string "TATE: You should also take this, too.$"
+	.string "LIZA: You should also take this, too.$"
 
 MossdeepCity_Gym_Text_ExplainCalmMind:
 	.string "TATE: That TM04 contains…\n"

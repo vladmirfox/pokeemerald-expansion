@@ -162,8 +162,8 @@
       "x": 15,
       "y": 8,
       "elevation": 0,
-      "dest_map": "MAP_PETALBURG_CITY_GYM",
-      "dest_warp_id": "0"
+      "dest_map": "MAP_DYNAMIC",
+      "dest_warp_id": "WARP_ID_DYNAMIC"
     },
     {
       "x": 20,
@@ -259,6 +259,15 @@
       "var": "VAR_SCOTT_PETALBURG_ENCOUNTER",
       "var_value": "0",
       "script": "PetalburgCity_EventScript_Scott3"
+    },
+    {
+      "type": "trigger",
+      "x": 15,
+      "y": 9,
+      "elevation": 3,
+      "var": "VAR_GYM_LOCKED",
+      "var_value": "1",
+      "script": "PetalburgCity_EventScript_GymDoor"
     }
   ],
   "bg_events": [

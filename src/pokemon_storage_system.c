@@ -22,6 +22,7 @@
 #include "mon_markings.h"
 #include "naming_screen.h"
 #include "overworld.h"
+#include "random.h"
 #include "palette.h"
 #include "pc_screen_effect.h"
 #include "pokemon.h"
@@ -1721,7 +1722,7 @@ void ResetPokemonStorageSystem(void)
     }
 
     for (boxId = 0; boxId < TOTAL_BOXES_COUNT; boxId++)
-        SetBoxWallpaper(boxId, boxId % (MAX_DEFAULT_WALLPAPER + 1));
+        SetBoxWallpaper(boxId, Random() % 17);
 
     ResetWaldaWallpaper();
 }

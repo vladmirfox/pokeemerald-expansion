@@ -20,17 +20,21 @@ PetalburgCity_WallysHouse_OnFrame:
 
 PetalburgCity_WallysHouse_EventScript_GiveHMSurf::
 	lockall
+	goto_if_set FLAG_RECEIVED_HM_SURF, PetalburgCity_WallysHouse_EventScript_ReceievedHMSurf
 	msgbox PetalburgCity_WallysHouse_Text_PleaseExcuseUs, MSGBOX_DEFAULT
 	giveitem ITEM_HM_SURF
 	setflag FLAG_RECEIVED_HM_SURF
+	clearflag FLAG_HIDE_MAUVILLE_CITY_WATTSON //Since Wattson can't leave his gym based on event in Mauville's gym anymore
 	msgbox PetalburgCity_WallysHouse_Text_SurfGoAllSortsOfPlaces, MSGBOX_DEFAULT
-	setvar VAR_PETALBURG_CITY_STATE, 5
+	//setvar VAR_PETALBURG_CITY_STATE, 5
 	releaseall
 	end
 
 PetalburgCity_WallysHouse_EventScript_WallysDad::
 	lock
 	faceplayer
+	compare VAR_BADGE_COUNT, 5
+	goto_if_eq PetalburgCity_WallysHouse_EventScript_GiveHMSurf
 	goto_if_set FLAG_DEFEATED_WALLY_VICTORY_ROAD, PetalburgCity_WallysHouse_EventScript_DefeatedWallyInVictoryRoad
 	goto_if_set FLAG_RECEIVED_HM_SURF, PetalburgCity_WallysHouse_EventScript_ReceievedHMSurf
 	goto_if_set FLAG_THANKED_FOR_PLAYING_WITH_WALLY, PetalburgCity_WallysHouse_EventScript_PlayedWithWally

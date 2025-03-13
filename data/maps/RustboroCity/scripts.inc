@@ -18,6 +18,88 @@ RustboroCity_OnTransition:
 	goto_if_eq VAR_RUSTBORO_CITY_STATE, 6, RustboroCity_EventScript_PositionScientistForExit
 	end
 
+RustboroCity_EventScript_GymDoor::
+	goto_if_eq VAR_RUSTBORO_LOCKED, 1, RandGym_EventScript_Locked
+	random 8
+	copyvar VAR_0x800A, VAR_RESULT
+	switch VAR_RESULT
+ 	case 0, RustboroCity_EventScript_RandGymRustboro   // If the result is 0, send the player to Rustboro Gym
+    case 1, RustboroCity_EventScript_RandGymDewford    // If the result is 1, send the player to Dewford Gym
+    case 2, RustboroCity_EventScript_RandGymMauville   // If the result is 2, send the player to Mauville Gym
+    case 3, RustboroCity_EventScript_RandGymLavaridge  // If the result is 3, send the player to Lavaridge Gym
+    case 4, RustboroCity_EventScript_RandGymPetalburg  // If the result is 4, send the player to Fallarbor Gym
+    case 5, RustboroCity_EventScript_RandGymFortree // If the result is 5, send the player to Sootopolis Gym
+    case 6, RustboroCity_EventScript_RandGymMossdeep  // If the result is 6, send the player to Petalburg Gym
+    case 7, RustboroCity_EventScript_RandGymSootopolis  // If the result is 7, send the player to Slateport Gym
+    case 8, RustboroCity_EventScript_RandGymRustboro  // Addvar can cause the result to be greater than 7
+    case 9, RustboroCity_EventScript_RandGymDewford    // Addvar can cause the result to be greater than 7
+    case 10, RustboroCity_EventScript_RandGymMauville   // Addvar can cause the result to be greater than 7
+    case 11, RustboroCity_EventScript_RandGymLavaridge  // Addvar can cause the result to be greater than 7
+    case 12, RustboroCity_EventScript_RandGymPetalburg  // Addvar can cause the result to be greater than 7
+    case 13, RustboroCity_EventScript_RandGymFortree // Addvar can cause the result to be greater than 7
+    case 14, RustboroCity_EventScript_RandGymMossdeep  // Addvar can cause the result to be greater than 7
+    applymovement OBJ_EVENT_ID_PLAYER, Common_Movement_FaceUp
+    waitmovement 0
+    release
+    end
+
+RandGym_EventScript_Locked::
+	lockall
+	msgbox RustboroCity_Text_LockedOut, MSGBOX_DEFAULT
+	closemessage
+	delay 10
+	applymovement OBJ_EVENT_ID_PLAYER, Movement_WalkDown
+	waitmovement 0
+	end
+
+RustboroCity_EventScript_RandGymRustboro::
+	call_if_set FLAG_DEFEATED_RUSTBORO_GYM, RandGym_EventScript_AlreadyBeaten
+	setvar VAR_RETURN_MAP, 0
+	setdynamicwarp MAP_RUSTBORO_CITY_GYM, 5, 19
+	return
+
+RustboroCity_EventScript_RandGymDewford::
+	call_if_set FLAG_DEFEATED_DEWFORD_GYM, RandGym_EventScript_AlreadyBeaten
+	setvar VAR_RETURN_MAP, 0
+	setdynamicwarp MAP_DEWFORD_TOWN_GYM, 5, 27
+	return
+
+RustboroCity_EventScript_RandGymMauville::
+	call_if_set FLAG_DEFEATED_MAUVILLE_GYM, RandGym_EventScript_AlreadyBeaten
+	setvar VAR_RETURN_MAP, 0
+    setdynamicwarp MAP_MAUVILLE_CITY_GYM, 4, 20
+    return
+
+RustboroCity_EventScript_RandGymLavaridge::
+	call_if_set FLAG_DEFEATED_LAVARIDGE_GYM, RandGym_EventScript_AlreadyBeaten
+	setvar VAR_RETURN_MAP, 0
+    setdynamicwarp MAP_LAVARIDGE_TOWN_GYM_1F, 13, 18
+    return
+
+RustboroCity_EventScript_RandGymPetalburg::
+	call_if_set FLAG_DEFEATED_PETALBURG_GYM, RandGym_EventScript_AlreadyBeaten
+	setvar VAR_RETURN_MAP, 0
+    setdynamicwarp MAP_PETALBURG_CITY_GYM, 4, 111
+    return
+
+RustboroCity_EventScript_RandGymFortree::
+	call_if_set FLAG_DEFEATED_FORTREE_GYM, RandGym_EventScript_AlreadyBeaten
+	setvar VAR_RETURN_MAP, 0
+    setdynamicwarp MAP_FORTREE_CITY_GYM, 15, 24
+    return
+
+RustboroCity_EventScript_RandGymMossdeep::
+	call_if_set FLAG_DEFEATED_MOSSDEEP_GYM, RandGym_EventScript_AlreadyBeaten
+	setvar VAR_RETURN_MAP, 0
+    setdynamicwarp MAP_MOSSDEEP_CITY_GYM, 6, 35
+    return
+
+RustboroCity_EventScript_RandGymSootopolis::
+	call_if_set FLAG_DEFEATED_SOOTOPOLIS_GYM, RandGym_EventScript_AlreadyBeaten
+	setvar VAR_RETURN_MAP, 0
+    setdynamicwarp MAP_SOOTOPOLIS_CITY_GYM_1F, 8, 25
+    return
+
 RustboroCity_EventScript_PositionScientistForExit::
 	goto_if_eq VAR_TEMP_0, 11, RustboroCity_EventScript_PositionScientistLeftExit
 	setobjectxyperm LOCALID_SCIENTIST, 12, 15
@@ -33,7 +115,19 @@ RustboroCity_EventScript_HideMapNamePopup::
 
 RustboroCity_OnFrame:
 	map_script_2 VAR_RUSTBORO_CITY_STATE, 6, RustboroCity_EventScript_ScientistAddMatchCall
+	map_script_2 VAR_RUSTBORO_CITY_STATE, 9, RustboroCity_EventScript_WalkDown
 	.2byte 0
+
+RustboroCity_EventScript_WalkDown::
+	lockall
+	setflag FLAG_HIDE_MAP_NAME_POPUP
+	setvar VAR_STEP_DOWN, 0
+	setvar VAR_RUSTBORO_CITY_STATE, 5
+	applymovement OBJ_EVENT_ID_PLAYER, Movement_WalkDown
+	waitmovement 0
+	clearflag FLAG_HIDE_MAP_NAME_POPUP
+	releaseall
+	end
 
 RustboroCity_EventScript_ScientistAddMatchCall::
 	lockall
@@ -114,6 +208,10 @@ RustboroCity_Movement_ScientistWalkInPlaceDown:
 
 RustboroCity_Movement_PlayerWalkDown:
 	walk_down
+	step_end
+
+RustboroCity_Movement_PlayerWalkUp:
+	walk_up
 	step_end
 
 RustboroCity_Movement_ScientistApproachPlayer:
@@ -1020,6 +1118,10 @@ RustboroCity_Movement_RivalApproachPlayer7:
 RustboroCity_EventScript_Boy1::
 	msgbox RustboroCity_Text_YouCanHave2On2Battle, MSGBOX_NPC
 	end
+
+RustboroCity_Text_LockedOut:
+	.string "You've already defeated this gym,\n"
+	.string "challenger. Keep going!$"
 
 RustboroCity_Text_WeShortenItToDevon:
 	.string "The DEVON CORPORATION…\n"

@@ -18,8 +18,49 @@ FortreeCity_Gym_EventScript_InitRotatingGates::
 	end
 
 FortreeCity_Gym_EventScript_Winona::
-	setvar VAR_FORCEANIM, 1
+    setvar VAR_FORCEANIM, 1
+	call_if_eq VAR_BADGE_COUNT, 0, FortreeCity_Gym_EventScript_Winona_Trainer1
+	call_if_eq VAR_BADGE_COUNT, 1, FortreeCity_Gym_EventScript_Winona_Trainer2
+	call_if_eq VAR_BADGE_COUNT, 2, FortreeCity_Gym_EventScript_Winona_Trainer3
+	call_if_eq VAR_BADGE_COUNT, 3, FortreeCity_Gym_EventScript_Winona_Trainer4
+	call_if_eq VAR_BADGE_COUNT, 4, FortreeCity_Gym_EventScript_Winona_Trainer5
+	call_if_eq VAR_BADGE_COUNT, 5, FortreeCity_Gym_EventScript_Winona_Trainer6
+	call_if_eq VAR_BADGE_COUNT, 6, FortreeCity_Gym_EventScript_Winona_Trainer7
+	call_if_eq VAR_BADGE_COUNT, 7, FortreeCity_Gym_EventScript_Winona_Trainer8
+
+FortreeCity_Gym_EventScript_Winona_Trainer1::
 	trainerbattle_single TRAINER_WINONA_1, FortreeCity_Gym_Text_WinonaIntro, FortreeCity_Gym_Text_WinonaDefeat, FortreeCity_Gym_EventScript_WinonaDefeated, NO_MUSIC
+	goto FortreeCity_Gym_EventScript_PostBattle
+
+FortreeCity_Gym_EventScript_Winona_Trainer2::
+	trainerbattle_single TRAINER_WINONA_2, FortreeCity_Gym_Text_WinonaIntro, FortreeCity_Gym_Text_WinonaDefeat, FortreeCity_Gym_EventScript_WinonaDefeated, NO_MUSIC
+	goto FortreeCity_Gym_EventScript_PostBattle
+
+FortreeCity_Gym_EventScript_Winona_Trainer3::
+	trainerbattle_single TRAINER_WINONA_3, FortreeCity_Gym_Text_WinonaIntro, FortreeCity_Gym_Text_WinonaDefeat, FortreeCity_Gym_EventScript_WinonaDefeated, NO_MUSIC
+	goto FortreeCity_Gym_EventScript_PostBattle
+
+FortreeCity_Gym_EventScript_Winona_Trainer4::
+	trainerbattle_single TRAINER_WINONA_4, FortreeCity_Gym_Text_WinonaIntro, FortreeCity_Gym_Text_WinonaDefeat, FortreeCity_Gym_EventScript_WinonaDefeated, NO_MUSIC
+	goto FortreeCity_Gym_EventScript_PostBattle
+
+FortreeCity_Gym_EventScript_Winona_Trainer5::
+	trainerbattle_single TRAINER_WINONA_5, FortreeCity_Gym_Text_WinonaIntro, FortreeCity_Gym_Text_WinonaDefeat, FortreeCity_Gym_EventScript_WinonaDefeated, NO_MUSIC
+	goto FortreeCity_Gym_EventScript_PostBattle
+
+FortreeCity_Gym_EventScript_Winona_Trainer6::
+	trainerbattle_single TRAINER_WINONA_6, FortreeCity_Gym_Text_WinonaIntro, FortreeCity_Gym_Text_WinonaDefeat, FortreeCity_Gym_EventScript_WinonaDefeated, NO_MUSIC
+	goto FortreeCity_Gym_EventScript_PostBattle
+
+FortreeCity_Gym_EventScript_Winona_Trainer7::
+	trainerbattle_single TRAINER_WINONA_7, FortreeCity_Gym_Text_WinonaIntro, FortreeCity_Gym_Text_WinonaDefeat, FortreeCity_Gym_EventScript_WinonaDefeated, NO_MUSIC
+	goto FortreeCity_Gym_EventScript_PostBattle
+
+FortreeCity_Gym_EventScript_Winona_Trainer8::
+	trainerbattle_single TRAINER_WINONA_8, FortreeCity_Gym_Text_WinonaIntro, FortreeCity_Gym_Text_WinonaDefeat, FortreeCity_Gym_EventScript_WinonaDefeated, NO_MUSIC
+	goto FortreeCity_Gym_EventScript_PostBattle
+
+FortreeCity_Gym_EventScript_PostBattle::
 	specialvar VAR_RESULT, ShouldTryRematchBattle
 	goto_if_eq VAR_RESULT, TRUE, FortreeCity_Gym_EventScript_WinonaRematch
 	goto_if_unset FLAG_RECEIVED_TM_AERIAL_ACE, FortreeCity_Gym_EventScript_GiveAerialAce2
@@ -40,14 +81,23 @@ FortreeCity_Gym_EventScript_WinonaDefeated::
 	call FortreeCity_Gym_EventScript_GiveAerialAce
 	closemessage
 	delay 30
-	playfanfare MUS_REGISTER_MATCH_CALL
-	msgbox FortreeCity_Gym_Text_RegisteredWinona, MSGBOX_DEFAULT
-	waitfanfare
-	closemessage
-	delay 30
-	setflag FLAG_ENABLE_WINONA_MATCH_CALL
-	setvar VAR_SCOTT_FORTREE_CALL_STEP_COUNTER, 0
-	setflag FLAG_SCOTT_CALL_FORTREE_GYM
+	//playfanfare MUS_REGISTER_MATCH_CALL
+	//msgbox FortreeCity_Gym_Text_RegisteredWinona, MSGBOX_DEFAULT
+	//waitfanfare
+	//closemessage
+	//delay 30
+	//setflag FLAG_ENABLE_WINONA_MATCH_CALL
+	//setvar VAR_SCOTT_FORTREE_CALL_STEP_COUNTER, 0
+	//setflag FLAG_SCOTT_CALL_FORTREE_GYM
+	switch VAR_RETURN_MAP
+        case 0, EventScript_WarpHomeRustboro
+        case 1, EventScript_WarpHomeDewford
+        case 2, EventScript_WarpHomeMauville
+        case 3, EventScript_WarpHomeLavaridge
+        case 4, EventScript_WarpHomePetalburg
+        case 5, EventScript_WarpHomeFortree
+        case 6, EventScript_WarpHomeMossdeep
+        case 7, EventScript_WarpHomeSootopolis
 	release
 	end
 
@@ -256,11 +306,6 @@ FortreeCity_Gym_Text_ReceivedFeatherBadge:
 	.string "from WINONA.$"
 
 FortreeCity_Gym_Text_ExplainFeatherBadgeTakeThis:
-	.string "With the FEATHER BADGE, all POKéMON up\n"
-	.string "to LV 70, even those received through\l"
-	.string "trades, will obey your every command.\p"
-	.string "You will also be able to use\n"
-	.string "the HM move FLY outside of battle.\p"
 	.string "And this…\n"
 	.string "This is a gift from me.$"
 

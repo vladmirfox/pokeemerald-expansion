@@ -3,7 +3,48 @@ RustboroCity_Gym_MapScripts::
 
 RustboroCity_Gym_EventScript_Roxanne::
 	setvar VAR_FORCEANIM, 1
+	call_if_eq VAR_BADGE_COUNT, 0, RustboroCity_Gym_EventScript_Roxanne_Trainer1
+	call_if_eq VAR_BADGE_COUNT, 1, RustboroCity_Gym_EventScript_Roxanne_Trainer2
+	call_if_eq VAR_BADGE_COUNT, 2, RustboroCity_Gym_EventScript_Roxanne_Trainer3
+	call_if_eq VAR_BADGE_COUNT, 3, RustboroCity_Gym_EventScript_Roxanne_Trainer4
+	call_if_eq VAR_BADGE_COUNT, 4, RustboroCity_Gym_EventScript_Roxanne_Trainer5
+	call_if_eq VAR_BADGE_COUNT, 5, RustboroCity_Gym_EventScript_Roxanne_Trainer6
+	call_if_eq VAR_BADGE_COUNT, 6, RustboroCity_Gym_EventScript_Roxanne_Trainer7
+	call_if_eq VAR_BADGE_COUNT, 7, RustboroCity_Gym_EventScript_Roxanne_Trainer8
+
+RustboroCity_Gym_EventScript_Roxanne_Trainer1::
 	trainerbattle_single TRAINER_ROXANNE_1, RustboroCity_Gym_Text_RoxanneIntro, RustboroCity_Gym_Text_RoxanneDefeat, RustboroCity_Gym_EventScript_RoxanneDefeated, NO_MUSIC
+	goto RustboroCity_Gym_EventScript_PostBattle
+
+RustboroCity_Gym_EventScript_Roxanne_Trainer2::
+	trainerbattle_single TRAINER_ROXANNE_2, RustboroCity_Gym_Text_RoxanneIntro, RustboroCity_Gym_Text_RoxanneDefeat, RustboroCity_Gym_EventScript_RoxanneDefeated, NO_MUSIC
+	goto RustboroCity_Gym_EventScript_PostBattle
+
+RustboroCity_Gym_EventScript_Roxanne_Trainer3::
+	trainerbattle_single TRAINER_ROXANNE_3, RustboroCity_Gym_Text_RoxanneIntro, RustboroCity_Gym_Text_RoxanneDefeat, RustboroCity_Gym_EventScript_RoxanneDefeated, NO_MUSIC
+	goto RustboroCity_Gym_EventScript_PostBattle
+
+RustboroCity_Gym_EventScript_Roxanne_Trainer4::
+	trainerbattle_single TRAINER_ROXANNE_4, RustboroCity_Gym_Text_RoxanneIntro, RustboroCity_Gym_Text_RoxanneDefeat, RustboroCity_Gym_EventScript_RoxanneDefeated, NO_MUSIC
+	goto RustboroCity_Gym_EventScript_PostBattle
+
+RustboroCity_Gym_EventScript_Roxanne_Trainer5::
+	trainerbattle_single TRAINER_ROXANNE_5, RustboroCity_Gym_Text_RoxanneIntro, RustboroCity_Gym_Text_RoxanneDefeat, RustboroCity_Gym_EventScript_RoxanneDefeated, NO_MUSIC
+	goto RustboroCity_Gym_EventScript_PostBattle
+
+RustboroCity_Gym_EventScript_Roxanne_Trainer6::
+	trainerbattle_single TRAINER_ROXANNE_6, RustboroCity_Gym_Text_RoxanneIntro, RustboroCity_Gym_Text_RoxanneDefeat, RustboroCity_Gym_EventScript_RoxanneDefeated, NO_MUSIC
+	goto RustboroCity_Gym_EventScript_PostBattle
+
+RustboroCity_Gym_EventScript_Roxanne_Trainer7::
+	trainerbattle_single TRAINER_ROXANNE_7, RustboroCity_Gym_Text_RoxanneIntro, RustboroCity_Gym_Text_RoxanneDefeat, RustboroCity_Gym_EventScript_RoxanneDefeated, NO_MUSIC
+	goto RustboroCity_Gym_EventScript_PostBattle
+
+RustboroCity_Gym_EventScript_Roxanne_Trainer8::
+	trainerbattle_single TRAINER_ROXANNE_8, RustboroCity_Gym_Text_RoxanneIntro, RustboroCity_Gym_Text_RoxanneDefeat, RustboroCity_Gym_EventScript_RoxanneDefeated, NO_MUSIC
+	goto RustboroCity_Gym_EventScript_PostBattle
+
+RustboroCity_Gym_EventScript_PostBattle::
 	specialvar VAR_RESULT, ShouldTryRematchBattle
 	goto_if_eq VAR_RESULT, TRUE, RustboroCity_Gym_EventScript_RoxanneRematch
 	goto_if_unset FLAG_RECEIVED_TM_ROCK_TOMB, RustboroCity_Gym_EventScript_GiveRockTomb
@@ -18,8 +59,7 @@ RustboroCity_Gym_EventScript_RoxanneDefeated::
 	msgbox RustboroCity_Gym_Text_StoneBadgeInfoTakeThis, MSGBOX_DEFAULT
 	setflag FLAG_DEFEATED_RUSTBORO_GYM
 	setflag FLAG_BADGE01_GET
-	setvar VAR_RUSTBORO_CITY_STATE, 1
-	addvar VAR_PETALBURG_GYM_STATE, 1
+	addvar VAR_BADGE_COUNT, 1
 	setvar VAR_0x8008, 1
 	setvar VAR_FORCEANIM, 0
 	call Common_EventScript_SetGymTrainers
@@ -28,36 +68,19 @@ RustboroCity_Gym_EventScript_RoxanneDefeated::
 	end
 
 RustboroCity_Gym_EventScript_GiveRockTomb::
-	giveitem ITEM_LETTER
-	message RustboroCity_DevonCorp_3F_Text_ReceivedPokenav
-	waitfanfare
-	setflag FLAG_SYS_POKENAV_GET
-	setflag FLAG_RECEIVED_POKENAV
-	setflag FLAG_HIDE_RUSTBORO_CITY_POKEMON_SCHOOL_SCOTT
-	setflag FLAG_HAS_MATCH_CALL
-	setflag FLAG_ADDED_MATCH_CALL_TO_POKENAV
-	setflag FLAG_HIDE_RUSTBORO_CITY_SCIENTIST
-	setvar VAR_RUSTBORO_CITY_STATE, 7
-	setflag FLAG_RETURNED_DEVON_GOODS
-	setflag FLAG_HIDE_RUSTBORO_CITY_DEVON_EMPLOYEE_1
-	setvar VAR_RUSTBORO_CITY_STATE, 5
-	setflag 2050 @ get rid of first roxanne rematch
-	setflag FLAG_RECEIVED_POKENAV
-	clearflag FLAG_DEVON_GOODS_STOLEN
-	setflag FLAG_RECOVERED_DEVON_GOODS
-	setvar VAR_BRINEY_HOUSE_STATE, 1
-	setflag FLAG_HIDE_ROUTE_116_WANDAS_BOYFRIEND
-	clearflag FLAG_HIDE_RUSTURF_TUNNEL_WANDAS_BOYFRIEND
-	clearflag FLAG_HIDE_RUSTURF_TUNNEL_WANDA
-	clearflag FLAG_HIDE_BRINEYS_HOUSE_MR_BRINEY	
-	clearflag FLAG_HIDE_BRINEYS_HOUSE_PEEKO
-	setvar VAR_BRINEY_LOCATION, 1
-	clearflag FLAG_HIDE_RUSTBORO_CITY_RIVAL
-	setvar VAR_DEVON_CORP_3F_STATE, 1
 	giveitem ITEM_TM_ROCK_TOMB
 	goto_if_eq VAR_RESULT, FALSE, Common_EventScript_ShowBagIsFull
 	setflag FLAG_RECEIVED_TM_ROCK_TOMB
 	msgbox RustboroCity_Gym_Text_ExplainRockTomb, MSGBOX_DEFAULT
+	switch VAR_RETURN_MAP
+        case 0, EventScript_WarpHomeRustboro
+        case 1, EventScript_WarpHomeDewford
+        case 2, EventScript_WarpHomeMauville
+        case 3, EventScript_WarpHomeLavaridge
+        case 4, EventScript_WarpHomePetalburg
+        case 5, EventScript_WarpHomeFortree
+        case 6, EventScript_WarpHomeMossdeep
+        case 7, EventScript_WarpHomeSootopolis
 	release
 	end
 
@@ -231,8 +254,6 @@ RustboroCity_Gym_Text_ReceivedStoneBadge:
 RustboroCity_Gym_Text_StoneBadgeInfoTakeThis:
 	.string "The STONE BADGE heightens the ATTACK\n"
 	.string "power of your POKéMON.\p"
-	.string "It also enables them to use the HM move\n"
-	.string "CUT outside of battle.\p"
 	.string "Please take this with you, too.$"
 
 RustboroCity_Gym_Text_ExplainRockTomb:

@@ -662,6 +662,16 @@ extern const u8 EventScript_PokemonGotAway[];
 extern const u8 EventScript_LostSignal[];
 extern const u8 EventScript_TooDark[];
 extern const u8 EventScript_MovedTooFast[];
+extern const u8 EventScript_NoBackingOut[];
+extern const u8 EventScript_WarpHomeRustboro[];
+extern const u8 EventScript_WarpHomeDewford[];
+extern const u8 EventScript_WarpHomeMauville[];
+extern const u8 EventScript_WarpHomeLavaridge[];
+extern const u8 EventScript_WarpHomePetalburg[];
+extern const u8 EventScript_WarpHomeFortree[];
+extern const u8 EventScript_WarpHomeMossdeep[];
+extern const u8 EventScript_WarpHomeSootopolis[];
+extern const u8 EventScript_Statue[];
 
 
 #endif // GUARD_EVENT_SCRIPTS_H

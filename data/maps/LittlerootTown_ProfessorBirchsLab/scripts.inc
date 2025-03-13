@@ -117,8 +117,11 @@ LittlerootTown_ProfessorBirchsLab_EventScript_GiveStarterEvent::
 	message LittlerootTown_ProfessorBirchsLab_Text_LikeYouToHavePokemon
 	waitmessage
 	setvar VAR_SCOTT_PETALBURG_ENCOUNTER, 1
+	setvar VAR_PETALBURG_GYM_STATE, 6
 	setflag FLAG_NUZLOCKE
 	setflag FLAG_RECEIVED_RUNNING_SHOES
+	setvar VAR_BADGE_COUNT, 0
+    setvar VAR_GYM_LOCKED, 1
 	goto LittlerootTown_ProfessorBirchsLab_EventScript_GoSeeRival
 	end
 
@@ -514,6 +517,15 @@ LittlerootTown_ProfessorBirchsLab_EventScript_GivePokedex::
 	call LittlerootTown_ProfessorBirchsLab_EventScript_ReceivePokedex
 	msgbox LittlerootTown_ProfessorBirchsLab_Text_ExplainPokedex, MSGBOX_DEFAULT
 	closemessage
+	giveitem ITEM_LETTER
+	message RustboroCity_DevonCorp_3F_Text_ReceivedPokenav
+	waitfanfare
+	setflag FLAG_SYS_POKENAV_GET
+	setflag FLAG_RECEIVED_POKENAV
+	setflag FLAG_HIDE_RUSTBORO_CITY_POKEMON_SCHOOL_SCOTT
+	setflag FLAG_HAS_MATCH_CALL
+	setflag FLAG_ADDED_MATCH_CALL_TO_POKENAV
+	setflag FLAG_HIDE_RUSTBORO_CITY_SCIENTIST
 	applymovement LOCALID_RIVAL, LittlerootTown_ProfessorBirchsLab_Movement_RivalApproachPlayer
 	waitmovement 0
 	applymovement OBJ_EVENT_ID_PLAYER, Common_Movement_WalkInPlaceFasterRight

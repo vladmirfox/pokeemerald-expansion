@@ -133,14 +133,55 @@ DewfordTown_Gym_EventScript_StopCountingTrainers::
 	return
 
 DewfordTown_Gym_EventScript_Brawly::
-	setvar VAR_FORCEANIM, 1
-	trainerbattle_single TRAINER_BRAWLY_1, DewfordTown_Gym_Text_BrawlyIntro, DewfordTown_Gym_Text_BrawlyDefeat, DewfordTown_Gym_EventScript_BrawlyDefeated, NO_MUSIC
-	specialvar VAR_RESULT, ShouldTryRematchBattle
-	goto_if_eq VAR_RESULT, TRUE, DewfordTown_Gym_EventScript_BrawlyRematch
-	goto_if_unset FLAG_RECEIVED_TM_BULK_UP, DewfordTown_Gym_EventScript_GiveBulkUp2
-	msgbox DewfordTown_Gym_Text_BrawlyPostBattle, MSGBOX_DEFAULT
-	release
-	end
+    setvar VAR_FORCEANIM, 1
+	call_if_eq VAR_BADGE_COUNT, 0, DewfordTown_Gym_EventScript_Brawly_Trainer1
+	call_if_eq VAR_BADGE_COUNT, 1, DewfordTown_Gym_EventScript_Brawly_Trainer2
+	call_if_eq VAR_BADGE_COUNT, 2, DewfordTown_Gym_EventScript_Brawly_Trainer3
+	call_if_eq VAR_BADGE_COUNT, 3, DewfordTown_Gym_EventScript_Brawly_Trainer4
+	call_if_eq VAR_BADGE_COUNT, 4, DewfordTown_Gym_EventScript_Brawly_Trainer5
+	call_if_eq VAR_BADGE_COUNT, 5, DewfordTown_Gym_EventScript_Brawly_Trainer6
+	call_if_eq VAR_BADGE_COUNT, 6, DewfordTown_Gym_EventScript_Brawly_Trainer7
+	call_if_eq VAR_BADGE_COUNT, 7, DewfordTown_Gym_EventScript_Brawly_Trainer8
+
+    DewfordTown_Gym_EventScript_Brawly_Trainer1::
+        trainerbattle_single TRAINER_BRAWLY_1, DewfordTown_Gym_Text_BrawlyIntro, DewfordTown_Gym_Text_BrawlyDefeat, DewfordTown_Gym_EventScript_BrawlyDefeated, NO_MUSIC
+        goto DewfordTown_Gym_EventScript_PostBattle
+
+    DewfordTown_Gym_EventScript_Brawly_Trainer2::
+        trainerbattle_single TRAINER_BRAWLY_2, DewfordTown_Gym_Text_BrawlyIntro, DewfordTown_Gym_Text_BrawlyDefeat, DewfordTown_Gym_EventScript_BrawlyDefeated, NO_MUSIC
+        goto DewfordTown_Gym_EventScript_PostBattle
+
+    DewfordTown_Gym_EventScript_Brawly_Trainer3::
+        trainerbattle_single TRAINER_BRAWLY_3, DewfordTown_Gym_Text_BrawlyIntro, DewfordTown_Gym_Text_BrawlyDefeat, DewfordTown_Gym_EventScript_BrawlyDefeated, NO_MUSIC
+        goto DewfordTown_Gym_EventScript_PostBattle
+
+    DewfordTown_Gym_EventScript_Brawly_Trainer4::
+        trainerbattle_single TRAINER_BRAWLY_4, DewfordTown_Gym_Text_BrawlyIntro, DewfordTown_Gym_Text_BrawlyDefeat, DewfordTown_Gym_EventScript_BrawlyDefeated, NO_MUSIC
+        goto DewfordTown_Gym_EventScript_PostBattle
+
+    DewfordTown_Gym_EventScript_Brawly_Trainer5::
+        trainerbattle_single TRAINER_BRAWLY_5, DewfordTown_Gym_Text_BrawlyIntro, DewfordTown_Gym_Text_BrawlyDefeat, DewfordTown_Gym_EventScript_BrawlyDefeated, NO_MUSIC
+        goto DewfordTown_Gym_EventScript_PostBattle
+
+    DewfordTown_Gym_EventScript_Brawly_Trainer6::
+        trainerbattle_single TRAINER_BRAWLY_6, DewfordTown_Gym_Text_BrawlyIntro, DewfordTown_Gym_Text_BrawlyDefeat, DewfordTown_Gym_EventScript_BrawlyDefeated, NO_MUSIC
+        goto DewfordTown_Gym_EventScript_PostBattle
+
+    DewfordTown_Gym_EventScript_Brawly_Trainer7::
+        trainerbattle_single TRAINER_BRAWLY_7, DewfordTown_Gym_Text_BrawlyIntro, DewfordTown_Gym_Text_BrawlyDefeat, DewfordTown_Gym_EventScript_BrawlyDefeated, NO_MUSIC
+        goto DewfordTown_Gym_EventScript_PostBattle
+
+    DewfordTown_Gym_EventScript_Brawly_Trainer8::
+        trainerbattle_single TRAINER_BRAWLY_8, DewfordTown_Gym_Text_BrawlyIntro, DewfordTown_Gym_Text_BrawlyDefeat, DewfordTown_Gym_EventScript_BrawlyDefeated, NO_MUSIC
+        goto DewfordTown_Gym_EventScript_PostBattle
+
+DewfordTown_Gym_EventScript_PostBattle::
+    specialvar VAR_RESULT, ShouldTryRematchBattle
+    goto_if_eq VAR_RESULT, TRUE, DewfordTown_Gym_EventScript_BrawlyRematch
+    goto_if_unset FLAG_RECEIVED_TM_BULK_UP, DewfordTown_Gym_EventScript_GiveBulkUp2
+    msgbox DewfordTown_Gym_Text_BrawlyPostBattle, MSGBOX_DEFAULT
+    release
+    end
 
 DewfordTown_Gym_EventScript_BrawlyDefeated::
 	call DewfordTown_Gym_EventScript_AnimateFlashFullBrightness
@@ -150,7 +191,7 @@ DewfordTown_Gym_EventScript_BrawlyDefeated::
 	msgbox DewfordTown_Gym_Text_KnuckleBadgeInfoTakeThis, MSGBOX_DEFAULT
 	setflag FLAG_DEFEATED_DEWFORD_GYM
 	setflag FLAG_BADGE02_GET
-	addvar VAR_PETALBURG_GYM_STATE, 1
+	addvar VAR_BADGE_COUNT, 1
 	call_if_eq VAR_PETALBURG_GYM_STATE, 6, Common_EventScript_ReadyPetalburgGymForBattle
 	setvar VAR_0x8008, 2
 	setvar VAR_FORCEANIM, 0
@@ -158,14 +199,23 @@ DewfordTown_Gym_EventScript_BrawlyDefeated::
 	call DewfordTown_Gym_EventScript_GiveBulkUp
 	closemessage
 	delay 30
-	playfanfare MUS_REGISTER_MATCH_CALL
-	msgbox DewfordTown_Gym_Text_RegisteredBrawly, MSGBOX_DEFAULT
-	waitfanfare
-	closemessage
-	delay 30
-	setflag FLAG_ENABLE_BRAWLY_MATCH_CALL
-	setvar VAR_ROXANNE_CALL_STEP_COUNTER, 0
-	setflag FLAG_ENABLE_ROXANNE_FIRST_CALL
+	//playfanfare MUS_REGISTER_MATCH_CALL
+	//msgbox DewfordTown_Gym_Text_RegisteredBrawly, MSGBOX_DEFAULT
+	//waitfanfare
+	//closemessage
+	//delay 30
+	//setflag FLAG_ENABLE_BRAWLY_MATCH_CALL
+	//setvar VAR_ROXANNE_CALL_STEP_COUNTER, 0
+	//setflag FLAG_ENABLE_ROXANNE_FIRST_CALL
+	switch VAR_RETURN_MAP
+        case 0, EventScript_WarpHomeRustboro
+        case 1, EventScript_WarpHomeDewford
+        case 2, EventScript_WarpHomeMauville
+        case 3, EventScript_WarpHomeLavaridge
+        case 4, EventScript_WarpHomePetalburg
+        case 5, EventScript_WarpHomeFortree
+        case 6, EventScript_WarpHomeMossdeep
+        case 7, EventScript_WarpHomeSootopolis
 	release
 	end
 
@@ -402,11 +452,6 @@ DewfordTown_Gym_Text_ReceivedKnuckleBadge:
 	.string "from BRAWLY.$"
 
 DewfordTown_Gym_Text_KnuckleBadgeInfoTakeThis:
-	.string "The KNUCKLE BADGE makes all POKéMON\n"
-	.string "up to Level 30, even those you get in\l"
-	.string "trades, obey without question.\p"
-	.string "And, you'll be able to use the HM move\n"
-	.string "FLASH outside of battle.\p"
 	.string "If you'd like, use this TECHNICAL\n"
 	.string "MACHINE, too.$"
 

@@ -374,7 +374,48 @@ PetalburgCity_Gym_EventScript_GiveEnigmaBerry::
 PetalburgCity_Gym_EventScript_NormanBattle::
 	setvar VAR_FORCEANIM, 1
 	msgbox PetalburgCity_Gym_Text_NormanIntro, MSGBOX_DEFAULT
+	call_if_eq VAR_BADGE_COUNT, 0, PetalburgCity_Gym_EventScript_Norman_Trainer1
+	call_if_eq VAR_BADGE_COUNT, 1, PetalburgCity_Gym_EventScript_Norman_Trainer2
+	call_if_eq VAR_BADGE_COUNT, 2, PetalburgCity_Gym_EventScript_Norman_Trainer3
+	call_if_eq VAR_BADGE_COUNT, 3, PetalburgCity_Gym_EventScript_Norman_Trainer4
+	call_if_eq VAR_BADGE_COUNT, 4, PetalburgCity_Gym_EventScript_Norman_Trainer5
+	call_if_eq VAR_BADGE_COUNT, 5, PetalburgCity_Gym_EventScript_Norman_Trainer6
+	call_if_eq VAR_BADGE_COUNT, 6, PetalburgCity_Gym_EventScript_Norman_Trainer7
+	call_if_eq VAR_BADGE_COUNT, 7, PetalburgCity_Gym_EventScript_Norman_Trainer8
+
+PetalburgCity_Gym_EventScript_Norman_Trainer1::
 	trainerbattle_no_intro TRAINER_NORMAN_1, PetalburgCity_Gym_Text_NormanDefeat
+	goto PetalburgCity_Gym_EventScript_PostBattle
+
+PetalburgCity_Gym_EventScript_Norman_Trainer2::
+	trainerbattle_no_intro TRAINER_NORMAN_2, PetalburgCity_Gym_Text_NormanDefeat
+	goto PetalburgCity_Gym_EventScript_PostBattle
+
+PetalburgCity_Gym_EventScript_Norman_Trainer3::
+	trainerbattle_no_intro TRAINER_NORMAN_3, PetalburgCity_Gym_Text_NormanDefeat
+	goto PetalburgCity_Gym_EventScript_PostBattle
+
+PetalburgCity_Gym_EventScript_Norman_Trainer4::
+	trainerbattle_no_intro TRAINER_NORMAN_4, PetalburgCity_Gym_Text_NormanDefeat
+	goto PetalburgCity_Gym_EventScript_PostBattle
+
+PetalburgCity_Gym_EventScript_Norman_Trainer5::
+	trainerbattle_no_intro TRAINER_NORMAN_5, PetalburgCity_Gym_Text_NormanDefeat
+	goto PetalburgCity_Gym_EventScript_PostBattle
+
+PetalburgCity_Gym_EventScript_Norman_Trainer6::
+	trainerbattle_no_intro TRAINER_NORMAN_6, PetalburgCity_Gym_Text_NormanDefeat
+	goto PetalburgCity_Gym_EventScript_PostBattle
+
+PetalburgCity_Gym_EventScript_Norman_Trainer7:
+	trainerbattle_no_intro TRAINER_NORMAN_7, PetalburgCity_Gym_Text_NormanDefeat
+	goto PetalburgCity_Gym_EventScript_PostBattle
+
+PetalburgCity_Gym_EventScript_Norman_Trainer8::
+	trainerbattle_no_intro TRAINER_NORMAN_8, PetalburgCity_Gym_Text_NormanDefeat
+	goto PetalburgCity_Gym_EventScript_PostBattle
+
+PetalburgCity_Gym_EventScript_PostBattle::
 	message PetalburgCity_Gym_Text_ReceivedBalanceBadge
 	waitmessage
 	call Common_EventScript_PlayGymBadgeFanfare
@@ -384,8 +425,6 @@ PetalburgCity_Gym_EventScript_NormanBattle::
 	setflag FLAG_BADGE05_GET
 	special ResetHealLocationFromDewford
 	call EventScript_HideMrBriney
-	setflag FLAG_HIDE_MAUVILLE_GYM_WATTSON
-	clearflag FLAG_HIDE_MAUVILLE_CITY_WATTSON
 	setvar VAR_0x8008, 5
 	setvar VAR_FORCEANIM, 0
 	call Common_EventScript_SetGymTrainers
@@ -396,14 +435,24 @@ PetalburgCity_Gym_EventScript_NormanBattle::
 	delay 30
 	msgbox PetalburgCity_Gym_Text_DadHappyAndSad, MSGBOX_DEFAULT
 	closemessage
-	delay 40
-	playse SE_DOOR
-	delay 10
-	addobject LOCALID_WALLYS_DAD
-	switch VAR_FACING
-	case DIR_NORTH, PetalburgCity_Gym_EventScript_WallysDadArrivesNorth
-	case DIR_WEST, PetalburgCity_Gym_EventScript_WallysDadArrivesWest
-	case DIR_EAST, PetalburgCity_Gym_EventScript_WallysDadArrivesEast
+	delay 30
+	//playse SE_DOOR
+	//delay 10
+	//addobject LOCALID_WALLYS_DAD
+	//switch VAR_FACING
+	//case DIR_NORTH, PetalburgCity_Gym_EventScript_WallysDadArrivesNorth
+	//case DIR_WEST, PetalburgCity_Gym_EventScript_WallysDadArrivesWest
+	//case DIR_EAST, PetalburgCity_Gym_EventScript_WallysDadArrivesEast
+	switch VAR_RETURN_MAP
+        case 0, EventScript_WarpHomeRustboro
+        case 1, EventScript_WarpHomeDewford
+        case 2, EventScript_WarpHomeMauville
+        case 3, EventScript_WarpHomeLavaridge
+        case 4, EventScript_WarpHomePetalburg
+        case 5, EventScript_WarpHomeFortree
+        case 6, EventScript_WarpHomeMossdeep
+        case 7, EventScript_WarpHomeSootopolis
+	release
 	end
 
 PetalburgCity_Gym_EventScript_GiveFacade::
@@ -1287,8 +1336,6 @@ PetalburgCity_Gym_Text_ReceivedBalanceBadge:
 PetalburgCity_Gym_Text_ExplainBalanceBadgeTakeThis:
 	.string "DAD: With that BADGE, the DEFENSE\n"
 	.string "of all your POKéMON will increase.\p"
-	.string "POKéMON that know the HM move SURF\n"
-	.string "will be able to travel over water.\p"
 	.string "This is my gift to you. {PLAYER}, I'm\n"
 	.string "sure you can use it correctly.$"
 

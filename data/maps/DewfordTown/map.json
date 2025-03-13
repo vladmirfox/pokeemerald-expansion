@@ -110,8 +110,8 @@
       "x": 8,
       "y": 17,
       "elevation": 0,
-      "dest_map": "MAP_DEWFORD_TOWN_GYM",
-      "dest_warp_id": "0"
+      "dest_map": "MAP_DYNAMIC",
+      "dest_warp_id": "WARP_ID_DYNAMIC"
     },
     {
       "x": 17,
@@ -128,7 +128,17 @@
       "dest_warp_id": "0"
     }
   ],
-  "coord_events": [],
+  "coord_events": [
+    {
+      "type": "trigger",
+      "x": 8,
+      "y": 18,
+      "elevation": 3,
+      "var": "VAR_GYM_LOCKED",
+      "var_value": "1",
+      "script": "DewfordTown_EventScript_GymDoor"
+    }
+  ],
   "bg_events": [
     {
       "type": "sign",

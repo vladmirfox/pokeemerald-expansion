@@ -150,8 +150,8 @@
       "x": 5,
       "y": 15,
       "elevation": 0,
-      "dest_map": "MAP_LAVARIDGE_TOWN_GYM_1F",
-      "dest_warp_id": "0"
+      "dest_map": "MAP_DYNAMIC",
+      "dest_warp_id": "WARP_ID_DYNAMIC"
     },
     {
       "x": 15,
@@ -191,6 +191,15 @@
       "var": "TRIGGER_RUN_IMMEDIATELY",
       "var_value": "0",
       "script": "LavaridgeTown_EventScript_HotSpringsTrigger"
+    },
+    {
+      "type": "trigger",
+      "x": 5,
+      "y": 16,
+      "elevation": 3,
+      "var": "VAR_GYM_LOCKED",
+      "var_value": "1",
+      "script": "LavaridgeTown_EventScript_GymDoor"
     }
   ],
   "bg_events": [

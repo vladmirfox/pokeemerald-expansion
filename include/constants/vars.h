@@ -99,7 +99,7 @@
 #define VAR_LOTAD_SIZE_RECORD                            0x404F
 #define VAR_LITTLEROOT_TOWN_STATE                        0x4050
 #define VAR_OLDALE_TOWN_STATE                            0x4051
-#define VAR_DEWFORD_TOWN_STATE                           0x4052 // Unused Var
+#define VAR_DEWFORD_TOWN_STATE                           0x4052
 #define VAR_LAVARIDGE_TOWN_STATE                         0x4053
 #define VAR_CURRENT_SECRET_BASE                          0x4054 // was probably allocated for VAR_FALLARBOR_TOWN_STATE at one point
 #define VAR_VERDANTURF_TOWN_STATE                        0x4055 // Unused Var
@@ -134,18 +134,18 @@
 #define VAR_ROUTE119_STATE                               0x4072
 #define VAR_ROUTE120_STATE                               0x4073 // Unused Var
 #define VAR_ROUTE121_STATE                               0x4074
-#define VAR_ROUTE122_STATE                               0x4075 // Unused Var
-#define VAR_ROUTE123_STATE                               0x4076 // Unused Var
-#define VAR_ROUTE124_STATE                               0x4077 // Unused Var
-#define VAR_ROUTE125_STATE                               0x4078 // Unused Var
-#define VAR_ROUTE126_STATE                               0x4079 // Unused Var
-#define VAR_ROUTE127_STATE                               0x407A // Unused Var
+#define VAR_RUSTBORO_LOCKED                              0x4075 // Track if you've beaten the gym
+#define VAR_DEWFORD_LOCKED                               0x4076 // Track if you've beaten the gym
+#define VAR_MAUVILLE_LOCKED                              0x4077 // Track if you've beaten the gym
+#define VAR_LAVARIDGE_LOCKED                             0x4078 // Track if you've beaten the gym
+#define VAR_PETALBURG_LOCKED                             0x4079 // Track if you've beaten the gym
+#define VAR_FORTREE_LOCKED                               0x407A // Track if you've beaten the gym
 #define VAR_ROUTE128_STATE                               0x407B
-#define VAR_ROUTE129_STATE                               0x407C // Unused Var
-#define VAR_ROUTE130_STATE                               0x407D // Unused Var
-#define VAR_ROUTE131_STATE                               0x407E // Unused Var
-#define VAR_ROUTE132_STATE                               0x407F // Unused Var
-#define VAR_ROUTE133_STATE                               0x4080 // Unused Var
+#define VAR_MOSSDEEP_LOCKED                              0x407C // Track if you've beaten the gym
+#define VAR_SOOTOPOLIS_LOCKED                            0x407D // Track if you've beaten the gym
+#define VAR_GYM_LOCKED		                             0x407E // Lock the player in the gym once entered
+#define VAR_RETURN_MAP                                   0x407F // Track where should the player warp to once they beat the gym leader
+#define VAR_STEP_DOWN                                    0x4080 // Make the player walk one additional tile down only when leaving a gym after a win
 #define VAR_ROUTE134_STATE                               0x4081 // Unused Var
 #define VAR_LITTLEROOT_HOUSES_STATE_MAY                  0x4082
 #define VAR_UNUSED_0x4083                                0x4083 // Unused Var
@@ -201,7 +201,7 @@
 #define VAR_TRICK_HOUSE_ENTER_FROM_CORRIDOR              0x40B5
 #define VAR_TRICK_HOUSE_PUZZLE_7_STATE_2                 0x40B6 // Leftover from RS, never set
 #define VAR_SLATEPORT_FAN_CLUB_STATE                     0x40B7
-#define VAR_UNUSED_0x40B8                                0x40B8 // Unused Var
+#define VAR_BADGE_COUNT	                                 0x40B8 // Count player badges
 #define VAR_MT_PYRE_STATE                                0x40B9
 #define VAR_NEW_MAUVILLE_STATE                           0x40BA
 #define VAR_UNUSED_0x40BB                                0x40BB // Unused Var

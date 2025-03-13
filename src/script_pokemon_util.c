@@ -446,7 +446,7 @@ static u32 ScriptGiveMonParameterized(u8 side, u8 slot, u16 species, u8 level, u
             if (GetMonData(&gPlayerParty[i], MON_DATA_SPECIES, NULL) == SPECIES_NONE)
                 break;
         }
-        if (i >= PARTY_SIZE)
+        if (i >= 1)
         {
             sentToPc = CopyMonToPC(&mon);
         }

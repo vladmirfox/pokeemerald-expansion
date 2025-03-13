@@ -96,14 +96,14 @@
   "warp_events": [
     {
       "x": 13,
-      "y": 18,
+      "y": 19,
       "elevation": 3,
       "dest_map": "MAP_LAVARIDGE_TOWN",
       "dest_warp_id": "1"
     },
     {
       "x": 14,
-      "y": 18,
+      "y": 19,
       "elevation": 3,
       "dest_map": "MAP_LAVARIDGE_TOWN",
       "dest_warp_id": "1"
@@ -277,7 +277,26 @@
       "dest_warp_id": "23"
     }
   ],
-  "coord_events": [],
+  "coord_events": [
+    {
+      "type": "trigger",
+      "x": 13,
+      "y": 18,
+      "elevation": 0,
+      "var": "VAR_GYM_LOCKED",
+      "var_value": "1",
+      "script": "EventScript_NoBackingOut"
+    },
+    {
+      "type": "trigger",
+      "x": 14,
+      "y": 18,
+      "elevation": 0,
+      "var": "VAR_GYM_LOCKED",
+      "var_value": "1",
+      "script": "EventScript_NoBackingOut"
+    }
+  ],
   "bg_events": [
     {
       "type": "sign",
@@ -285,7 +304,7 @@
       "y": 15,
       "elevation": 0,
       "player_facing_dir": "BG_EVENT_PLAYER_FACING_NORTH",
-      "script": "LavaridgeTown_Gym_1F_EventScript_LeftGymStatue"
+      "script": "EventScript_Statue"
     },
     {
       "type": "sign",
@@ -293,7 +312,7 @@
       "y": 15,
       "elevation": 0,
       "player_facing_dir": "BG_EVENT_PLAYER_FACING_NORTH",
-      "script": "LavaridgeTown_Gym_1F_EventScript_RightGymStatue"
+      "script": "EventScript_Statue"
     }
   ]
 }

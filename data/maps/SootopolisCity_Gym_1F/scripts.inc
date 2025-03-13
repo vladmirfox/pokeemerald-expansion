@@ -81,7 +81,48 @@ SootopolisCity_Gym_1F_Movement_FallThroughIce:
 
 SootopolisCity_Gym_1F_EventScript_Juan::
 	setvar VAR_FORCEANIM, 1
+	call_if_eq VAR_BADGE_COUNT, 0, SootopolisCity_Gym_EventScript_Juan_Trainer1
+	call_if_eq VAR_BADGE_COUNT, 1, SootopolisCity_Gym_EventScript_Juan_Trainer2
+	call_if_eq VAR_BADGE_COUNT, 2, SootopolisCity_Gym_EventScript_Juan_Trainer3
+	call_if_eq VAR_BADGE_COUNT, 3, SootopolisCity_Gym_EventScript_Juan_Trainer4
+	call_if_eq VAR_BADGE_COUNT, 4, SootopolisCity_Gym_EventScript_Juan_Trainer5
+	call_if_eq VAR_BADGE_COUNT, 5, SootopolisCity_Gym_EventScript_Juan_Trainer6
+	call_if_eq VAR_BADGE_COUNT, 6, SootopolisCity_Gym_EventScript_Juan_Trainer7
+	call_if_eq VAR_BADGE_COUNT, 7, SootopolisCity_Gym_EventScript_Juan_Trainer8
+
+SootopolisCity_Gym_EventScript_Juan_Trainer1::
 	trainerbattle_double TRAINER_JUAN_1, SootopolisCity_Gym_1F_Text_JuanIntro, SootopolisCity_Gym_1F_Text_JuanDefeat, SootopolisCity_Gym_1F_Text_JuanRematchNeedTwoMons, SootopolisCity_Gym_1F_EventScript_JuanDefeated, NO_MUSIC
+	goto SootopolisCity_Gym_EventScript_PostBattle
+
+SootopolisCity_Gym_EventScript_Juan_Trainer2::
+	trainerbattle_double TRAINER_JUAN_2, SootopolisCity_Gym_1F_Text_JuanIntro, SootopolisCity_Gym_1F_Text_JuanDefeat, SootopolisCity_Gym_1F_Text_JuanRematchNeedTwoMons, SootopolisCity_Gym_1F_EventScript_JuanDefeated, NO_MUSIC
+	goto SootopolisCity_Gym_EventScript_PostBattle
+
+SootopolisCity_Gym_EventScript_Juan_Trainer3::
+	trainerbattle_double TRAINER_JUAN_3, SootopolisCity_Gym_1F_Text_JuanIntro, SootopolisCity_Gym_1F_Text_JuanDefeat, SootopolisCity_Gym_1F_Text_JuanRematchNeedTwoMons, SootopolisCity_Gym_1F_EventScript_JuanDefeated, NO_MUSIC
+	goto SootopolisCity_Gym_EventScript_PostBattle
+
+SootopolisCity_Gym_EventScript_Juan_Trainer4::
+	trainerbattle_double TRAINER_JUAN_4, SootopolisCity_Gym_1F_Text_JuanIntro, SootopolisCity_Gym_1F_Text_JuanDefeat, SootopolisCity_Gym_1F_Text_JuanRematchNeedTwoMons, SootopolisCity_Gym_1F_EventScript_JuanDefeated, NO_MUSIC
+	goto SootopolisCity_Gym_EventScript_PostBattle
+
+SootopolisCity_Gym_EventScript_Juan_Trainer5::
+	trainerbattle_double TRAINER_JUAN_5, SootopolisCity_Gym_1F_Text_JuanIntro, SootopolisCity_Gym_1F_Text_JuanDefeat, SootopolisCity_Gym_1F_Text_JuanRematchNeedTwoMons, SootopolisCity_Gym_1F_EventScript_JuanDefeated, NO_MUSIC
+	goto SootopolisCity_Gym_EventScript_PostBattle
+
+SootopolisCity_Gym_EventScript_Juan_Trainer6::
+	trainerbattle_double TRAINER_JUAN_6, SootopolisCity_Gym_1F_Text_JuanIntro, SootopolisCity_Gym_1F_Text_JuanDefeat, SootopolisCity_Gym_1F_Text_JuanRematchNeedTwoMons, SootopolisCity_Gym_1F_EventScript_JuanDefeated, NO_MUSIC
+	goto SootopolisCity_Gym_EventScript_PostBattle
+
+SootopolisCity_Gym_EventScript_Juan_Trainer7::
+	trainerbattle_double TRAINER_JUAN_7, SootopolisCity_Gym_1F_Text_JuanIntro, SootopolisCity_Gym_1F_Text_JuanDefeat, SootopolisCity_Gym_1F_Text_JuanRematchNeedTwoMons, SootopolisCity_Gym_1F_EventScript_JuanDefeated, NO_MUSIC
+	goto SootopolisCity_Gym_EventScript_PostBattle
+
+SootopolisCity_Gym_EventScript_Juan_Trainer8::
+	trainerbattle_double TRAINER_JUAN_8, SootopolisCity_Gym_1F_Text_JuanIntro, SootopolisCity_Gym_1F_Text_JuanDefeat, SootopolisCity_Gym_1F_Text_JuanRematchNeedTwoMons, SootopolisCity_Gym_1F_EventScript_JuanDefeated, NO_MUSIC
+	goto SootopolisCity_Gym_EventScript_PostBattle
+
+SootopolisCity_Gym_EventScript_PostBattle::
 	specialvar VAR_RESULT, ShouldTryRematchBattle
 	goto_if_eq VAR_RESULT, TRUE, SootopolisCity_Gym_1F_EventScript_JuanRematch
 	goto_if_unset FLAG_RECEIVED_TM_WATER_PULSE, SootopolisCity_Gym_1F_EventScript_GiveWaterPulse2
@@ -97,10 +138,6 @@ SootopolisCity_Gym_1F_EventScript_JuanDefeated::
 	msgbox SootopolisCity_Gym_1F_Text_ExplainRainBadgeTakeThis, MSGBOX_DEFAULT
 	setflag FLAG_DEFEATED_SOOTOPOLIS_GYM
 	setflag FLAG_BADGE08_GET
-	setflag FLAG_HIDE_SOOTOPOLIS_CITY_RESIDENTS
-	setflag FLAG_HIDE_SOOTOPOLIS_CITY_STEVEN
-	setflag FLAG_HIDE_SOOTOPOLIS_CITY_WALLACE
-	setvar VAR_SOOTOPOLIS_CITY_STATE, 6
 	clearflag FLAG_HIDE_SOOTOPOLIS_CITY_MAN_1
 	setvar VAR_0x8008, 8
    	setvar VAR_FORCEANIM, 0
@@ -108,12 +145,21 @@ SootopolisCity_Gym_1F_EventScript_JuanDefeated::
 	call SootopolisCity_Gym_1F_EventScript_GiveWaterPulse
 	closemessage
 	delay 30
-	playfanfare MUS_REGISTER_MATCH_CALL
-	msgbox SootopolisCity_Gym_1F_Text_RegisteredJuan, MSGBOX_DEFAULT
-	waitfanfare
-	closemessage
-	delay 30
-	setflag FLAG_ENABLE_JUAN_MATCH_CALL
+	//playfanfare MUS_REGISTER_MATCH_CALL
+	//msgbox SootopolisCity_Gym_1F_Text_RegisteredJuan, MSGBOX_DEFAULT
+	//waitfanfare
+	//closemessage
+	//delay 30
+	//setflag FLAG_ENABLE_JUAN_MATCH_CALL
+	switch VAR_RETURN_MAP
+        case 0, EventScript_WarpHomeRustboro
+        case 1, EventScript_WarpHomeDewford
+        case 2, EventScript_WarpHomeMauville
+        case 3, EventScript_WarpHomeLavaridge
+        case 4, EventScript_WarpHomePetalburg
+        case 5, EventScript_WarpHomeFortree
+        case 6, EventScript_WarpHomeMossdeep
+        case 7, EventScript_WarpHomeSootopolis
 	release
 	end
 
@@ -231,12 +277,6 @@ SootopolisCity_Gym_1F_Text_ReceivedRainBadge:
 	.string "from JUAN.$"
 
 SootopolisCity_Gym_1F_Text_ExplainRainBadgeTakeThis:
-	.string "Having the RAIN BADGE shall assure you\n"
-	.string "the full obedience of all your POKéMON\l"
-	.string "to your every command.\p"
-	.string "The RAIN BADGE also allows the use\n"
-	.string "of the HM move WATERFALL to scale\l"
-	.string "walls of cascading water.\p"
 	.string "And, so that you never forget the\n"
 	.string "battle we shared, take this…$"
 

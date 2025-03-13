@@ -7,36 +7,52 @@
 
 u32 GetCurrentLevelCap(void)
 {
-    static const u32 sLevelCapFlagMap[][2] =
+    static const u32 sLevelCapFlagMap[] =
     {
-        {FLAG_BADGE01_GET, 15},
-        {FLAG_BADGE02_GET, 19},
-        {FLAG_BADGE03_GET, 24},
-        {FLAG_BADGE04_GET, 29},
-        {FLAG_BADGE05_GET, 31},
-        {FLAG_BADGE06_GET, 33},
-        {FLAG_BADGE07_GET, 42},
-        {FLAG_BADGE08_GET, 46},
-        {FLAG_IS_CHAMPION, 58},
+        15, // After Badge 1
+        19, // After Badge 2
+        24, // After Badge 3
+        29, // After Badge 4
+        32, // After Badge 5
+        35, // After Badge 6
+        42, // After Badge 7
+        46, // After Badge 8
+        48, // After Wally in Victory Road
+        55, // After Elite 4 Drake
+        59, // After Champion
     };
 
+    u32 badgeCount = 0;
     u32 i;
 
-    if (B_LEVEL_CAP_TYPE == LEVEL_CAP_FLAG_LIST)
+    // Count the number of badges the player has obtained
+    for (i = 0; i < NUM_BADGES; i++)
     {
-        for (i = 0; i < ARRAY_COUNT(sLevelCapFlagMap); i++)
+        if (FlagGet(FLAG_BADGE01_GET + i))  // If the player has this badge
         {
-            if (!FlagGet(sLevelCapFlagMap[i][0]))
-                return sLevelCapFlagMap[i][1];
+            badgeCount++;
         }
     }
-    else if (B_LEVEL_CAP_TYPE == LEVEL_CAP_VARIABLE)
+
+    // Use the badge count to determine the level cap
+    if (badgeCount < NUM_BADGES)
     {
-        return VarGet(B_LEVEL_CAP_VARIABLE);
+        return sLevelCapFlagMap[badgeCount];  // Level cap based on the number of badges
     }
 
+    // If all badges are obtained, check other flags (Wally, Elite 4, Champion)
+    if (!FlagGet(FLAG_DEFEATED_WALLY_VICTORY_ROAD))
+        return sLevelCapFlagMap[8];
+    if (!FlagGet(FLAG_DEFEATED_ELITE_4_DRAKE))
+        return sLevelCapFlagMap[9];
+    if (!FlagGet(FLAG_IS_CHAMPION))
+        return sLevelCapFlagMap[10];
+
+    // If everything is complete, return the max level
     return MAX_LEVEL;
 }
+
+
 
 u32 GetSoftLevelCapExpValue(u32 level, u32 expValue)
 {

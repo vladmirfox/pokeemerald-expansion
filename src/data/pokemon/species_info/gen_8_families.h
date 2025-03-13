@@ -2427,9 +2427,9 @@ const struct SpeciesInfo gSpeciesInfoGen8[] =
         .levelUpLearnset = sApplinLevelUpLearnset,
         .teachableLearnset = sApplinTeachableLearnset,
         .eggMoveLearnset = sApplinEggMoveLearnset,
-        .evolutions = EVOLUTION({EVO_ITEM, ITEM_TART_APPLE, SPECIES_FLAPPLE},
-                                {EVO_ITEM, ITEM_SWEET_APPLE, SPECIES_APPLETUN},
-                                {EVO_ITEM, ITEM_SYRUPY_APPLE, SPECIES_DIPPLIN}),
+        .evolutions = EVOLUTION({EVO_LEVEL_ATK_LT_DEF, 30, SPECIES_DIPPLIN},
+                                {EVO_LEVEL_ATK_GT_DEF, 30, SPECIES_FLAPPLE},
+                                {EVO_SPECIFIC_MON_IN_PARTY, SPECIES_ROTOM_HEAT, SPECIES_APPLETUN}),
     },
 
     [SPECIES_FLAPPLE] =
@@ -2735,7 +2735,7 @@ const struct SpeciesInfo gSpeciesInfoGen8[] =
         )
         .levelUpLearnset = sDipplinLevelUpLearnset,
         .teachableLearnset = sDipplinTeachableLearnset,
-        .evolutions = EVOLUTION({EVO_MOVE, MOVE_DRAGON_CHEER, SPECIES_HYDRAPPLE}),
+        .evolutions = EVOLUTION({EVO_LEVEL, 46, SPECIES_HYDRAPPLE}),
     },
 
     [SPECIES_HYDRAPPLE] =

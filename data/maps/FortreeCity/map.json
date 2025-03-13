@@ -136,8 +136,8 @@
       "x": 22,
       "y": 11,
       "elevation": 0,
-      "dest_map": "MAP_FORTREE_CITY_GYM",
-      "dest_warp_id": "0"
+      "dest_map": "MAP_DYNAMIC",
+      "dest_warp_id": "WARP_ID_DYNAMIC"
     },
     {
       "x": 4,
@@ -182,7 +182,17 @@
       "dest_warp_id": "0"
     }
   ],
-  "coord_events": [],
+  "coord_events": [
+    {
+      "type": "trigger",
+      "x": 22,
+      "y": 12,
+      "elevation": 3,
+      "var": "VAR_GYM_LOCKED",
+      "var_value": "1",
+      "script": "FortreeCity_EventScript_GymDoor"
+    }
+  ],
   "bg_events": [
     {
       "type": "sign",

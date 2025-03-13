@@ -426,7 +426,26 @@
       "dest_warp_id": "33"
     }
   ],
-  "coord_events": [],
+  "coord_events": [
+    {
+      "type": "trigger",
+      "x": 4,
+      "y": 111,
+      "elevation": 0,
+      "var": "VAR_GYM_LOCKED",
+      "var_value": "1",
+      "script": "EventScript_NoBackingOut"
+    },
+    {
+      "type": "trigger",
+      "x": 5,
+      "y": 111,
+      "elevation": 0,
+      "var": "VAR_GYM_LOCKED",
+      "var_value": "1",
+      "script": "EventScript_NoBackingOut"
+    }
+  ],
   "bg_events": [
     {
       "type": "sign",
@@ -530,7 +549,7 @@
       "y": 110,
       "elevation": 3,
       "player_facing_dir": "BG_EVENT_PLAYER_FACING_NORTH",
-      "script": "PetalburgCity_Gym_EventScript_LeftGymStatue"
+      "script": "EventScript_Statue"
     },
     {
       "type": "sign",
@@ -538,7 +557,7 @@
       "y": 110,
       "elevation": 3,
       "player_facing_dir": "BG_EVENT_PLAYER_FACING_NORTH",
-      "script": "PetalburgCity_Gym_EventScript_RightGymStatue"
+      "script": "EventScript_Statue"
     }
   ]
 }

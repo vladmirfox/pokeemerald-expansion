@@ -781,7 +781,7 @@ static u8 CheckForObjectEventStaticCollision(struct ObjectEvent *objectEvent, s1
 
 static bool8 CanStartSurfing(s16 x, s16 y, u8 direction)
 {
-    if (CheckBagHasItem(ITEM_HM_SURF, 1) == FALSE)
+    if (CheckBagHasItem(ITEM_HM_SURF, 1) == FALSE) //We don't need a badge check since you need 5 badges to get the item in the first place
     {
         return FALSE;
     }

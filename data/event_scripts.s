@@ -1010,8 +1010,8 @@ gText_UndergoingAdjustments::
 
 @ Unused
 gText_SorryTradeCenterInspections::
-	.string "I'm terribly sorry. The TRADE CENTER\n"
-	.string "is undergoing inspections.$"
+	.string "There's no backing out now!\n"
+	.string "Defeat the leader to continue!$"
 
 @ Unused
 gText_SorryRecordCornerPreparation::
@@ -1097,6 +1097,120 @@ EventScript_VsSeekerChargingDone::
 	waitstate
 	special VsSeekerResetObjectMovementAfterChargeComplete
 	releaseall
+	end
+
+EventScript_NoBackingOut::
+	msgbox gText_SorryTradeCenterInspections, MSGBOX_DEFAULT
+	closemessage
+	applymovement OBJ_EVENT_ID_PLAYER, Movement_WalkUp
+	waitmovement 0
+	delay 10
+	end
+
+EventScript_WarpHomeRustboro::
+	setvar VAR_RUSTBORO_CITY_STATE, 7
+	setflag FLAG_RETURNED_DEVON_GOODS
+	setflag FLAG_HIDE_RUSTBORO_CITY_DEVON_EMPLOYEE_1
+	setvar VAR_RUSTBORO_CITY_STATE, 9
+	setflag 2050 @ get rid of first roxanne rematch
+	setflag FLAG_RECEIVED_POKENAV
+	clearflag FLAG_DEVON_GOODS_STOLEN
+	setflag FLAG_RECOVERED_DEVON_GOODS
+	setvar VAR_BRINEY_HOUSE_STATE, 1
+	setflag FLAG_HIDE_ROUTE_116_WANDAS_BOYFRIEND
+	clearflag FLAG_HIDE_RUSTURF_TUNNEL_WANDAS_BOYFRIEND
+	clearflag FLAG_HIDE_RUSTURF_TUNNEL_WANDA
+	clearflag FLAG_HIDE_BRINEYS_HOUSE_MR_BRINEY	
+	clearflag FLAG_HIDE_BRINEYS_HOUSE_PEEKO
+	setvar VAR_BRINEY_LOCATION, 1
+	clearflag FLAG_HIDE_RUSTBORO_CITY_RIVAL
+	setvar VAR_DEVON_CORP_3F_STATE, 1
+    setvar VAR_RUSTBORO_LOCKED, 1
+	warp MAP_RUSTBORO_CITY, 27, 20
+	release
+	end
+
+EventScript_WarpHomeDewford::
+    setvar VAR_DEWFORD_LOCKED, 1
+    setvar VAR_DEWFORD_TOWN_STATE, 2
+	warp MAP_DEWFORD_TOWN, 8, 17
+	release
+	end
+
+EventScript_WarpHomeMauville::
+	setvar VAR_MAUVILLE_CITY_STATE, 2
+	setflag FLAG_HIDE_ROUTE_112_TEAM_MAGMA
+	setvar VAR_METEOR_FALLS_STATE, 1
+	setflag FLAG_HIDE_METEOR_FALLS_TEAM_AQUA
+	setflag FLAG_MET_PROF_COZMO
+	setflag FLAG_HIDE_MT_CHIMNEY_TEAM_AQUA
+	setflag FLAG_HIDE_MT_CHIMNEY_TEAM_MAGMA
+	setflag FLAG_DEFEATED_EVIL_TEAM_MT_CHIMNEY
+	clearflag FLAG_HIDE_FALLARBOR_HOUSE_PROF_COZMO
+	setflag FLAG_HIDE_METEOR_FALLS_1F_1R_COZMO
+	@ prevent weather institute from being required
+	setvar VAR_WEATHER_INSTITUTE_STATE, 2
+	setflag FLAG_HIDE_ROUTE_119_TEAM_AQUA
+	clearflag FLAG_HIDE_WEATHER_INSTITUTE_1F_WORKERS
+	setflag FLAG_HIDE_WEATHER_INSTITUTE_2F_WORKERS
+    setvar VAR_MAUVILLE_LOCKED, 1
+	warp MAP_MAUVILLE_CITY, 27, 21
+	release
+	end
+
+EventScript_WarpHomeLavaridge::
+    setvar VAR_LAVARIDGE_LOCKED, 1
+	warp MAP_LAVARIDGE_TOWN, 5, 15
+	release
+	end
+
+EventScript_WarpHomePetalburg::
+	setvar VAR_PETALBURG_WOODS_STATE, 1
+	setflag FLAG_HIDE_PETALBURG_WOODS_DEVON_EMPLOYEE
+	setflag FLAG_HIDE_PETALBURG_WOODS_AQUA_GRUNT
+    @ magma chamber fix
+    setvar VAR_JAGGED_PASS_STATE, 2
+    setflag FLAG_HIDE_MAGMA_HIDEOUT_GRUNTS
+    setflag FLAG_HIDE_MAGMA_HIDEOUT_4F_GROUDON
+    setflag FLAG_HIDE_JAGGED_PASS_MAGMA_GUARD
+    @ make old man disappear for sootopolis
+    setflag FLAG_HIDE_CAVE_OF_ORIGIN_B1F_WALLACE @ also hides the expert as a hack
+    setvar VAR_PETALBURG_LOCKED, 1
+	setvar VAR_PETALBURG_CITY_STATE, 7
+	setvar VAR_STEP_DOWN, 1
+	warp MAP_PETALBURG_CITY, 15, 8
+	release
+	end
+
+EventScript_WarpHomeFortree::
+	setvar VAR_FORTREE_CITY_STATE, 2
+    setvar VAR_FORTREE_LOCKED, 1
+	warp MAP_FORTREE_CITY, 22, 11
+	release
+	end
+
+EventScript_WarpHomeMossdeep::
+	clearflag FLAG_HIDE_SLATEPORT_CITY_HARBOR_PATRONS
+	clearflag FLAG_HIDE_MOSSDEEP_CITY_TEAM_MAGMA
+	clearflag FLAG_HIDE_MOSSDEEP_CITY_SPACE_CENTER_1F_TEAM_MAGMA
+	clearflag FLAG_HIDE_MOSSDEEP_CITY_SPACE_CENTER_2F_TEAM_MAGMA
+	clearflag FLAG_HIDE_MOSSDEEP_CITY_SPACE_CENTER_2F_STEVEN
+	setvar VAR_MOSSDEEP_CITY_STATE, 8
+	setflag FLAG_HIDE_MOSSDEEP_CITY_SPACE_CENTER_1F_STEVEN
+	setvar VAR_MOSSDEEP_SPACE_CENTER_STATE, 1
+    setvar VAR_MOSSDEEP_LOCKED, 1
+	warp MAP_MOSSDEEP_CITY, 38, 9
+	release
+	end
+
+EventScript_WarpHomeSootopolis::
+	setvar VAR_SOOTOPOLIS_CITY_STATE, 7
+	setflag FLAG_HIDE_SOOTOPOLIS_CITY_RESIDENTS
+	setflag FLAG_HIDE_SOOTOPOLIS_CITY_STEVEN
+	setflag FLAG_HIDE_SOOTOPOLIS_CITY_WALLACE
+    setvar VAR_SOOTOPOLIS_LOCKED, 1
+	warp MAP_SOOTOPOLIS_CITY, 31, 32
+	release
 	end
 
 	.include "data/scripts/pc_transfer.inc"

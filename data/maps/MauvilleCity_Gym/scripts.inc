@@ -75,7 +75,49 @@ MauvilleCity_Gym_EventScript_DeactivatePuzzle::
 
 MauvilleCity_Gym_EventScript_Wattson::
 	setvar VAR_FORCEANIM, 1
+	call_if_eq VAR_BADGE_COUNT, 0, MauvilleCity_Gym_EventScript_Wattson_Trainer1
+	call_if_eq VAR_BADGE_COUNT, 1, MauvilleCity_Gym_EventScript_Wattson_Trainer2
+	call_if_eq VAR_BADGE_COUNT, 2, MauvilleCity_Gym_EventScript_Wattson_Trainer3
+	call_if_eq VAR_BADGE_COUNT, 3, MauvilleCity_Gym_EventScript_Wattson_Trainer4
+	call_if_eq VAR_BADGE_COUNT, 4, MauvilleCity_Gym_EventScript_Wattson_Trainer5
+	call_if_eq VAR_BADGE_COUNT, 5, MauvilleCity_Gym_EventScript_Wattson_Trainer6
+	call_if_eq VAR_BADGE_COUNT, 6, MauvilleCity_Gym_EventScript_Wattson_Trainer7
+	call_if_eq VAR_BADGE_COUNT, 7, MauvilleCity_Gym_EventScript_Wattson_Trainer8
+
+
+MauvilleCity_Gym_EventScript_Wattson_Trainer1::
 	trainerbattle_single TRAINER_WATTSON_1, MauvilleCity_Gym_Text_WattsonIntro, MauvilleCity_Gym_Text_WattsonDefeat, MauvilleCity_Gym_EventScript_WattsonDefeated, NO_MUSIC
+	goto MauvilleCity_Gym_EventScript_PostBattle
+
+MauvilleCity_Gym_EventScript_Wattson_Trainer2::
+	trainerbattle_single TRAINER_WATTSON_2, MauvilleCity_Gym_Text_WattsonIntro, MauvilleCity_Gym_Text_WattsonDefeat, MauvilleCity_Gym_EventScript_WattsonDefeated, NO_MUSIC
+	goto MauvilleCity_Gym_EventScript_PostBattle
+
+MauvilleCity_Gym_EventScript_Wattson_Trainer3::
+	trainerbattle_single TRAINER_WATTSON_3, MauvilleCity_Gym_Text_WattsonIntro, MauvilleCity_Gym_Text_WattsonDefeat, MauvilleCity_Gym_EventScript_WattsonDefeated, NO_MUSIC
+	goto MauvilleCity_Gym_EventScript_PostBattle
+
+MauvilleCity_Gym_EventScript_Wattson_Trainer4::
+	trainerbattle_single TRAINER_WATTSON_4, MauvilleCity_Gym_Text_WattsonIntro, MauvilleCity_Gym_Text_WattsonDefeat, MauvilleCity_Gym_EventScript_WattsonDefeated, NO_MUSIC
+	goto MauvilleCity_Gym_EventScript_PostBattle
+
+MauvilleCity_Gym_EventScript_Wattson_Trainer5::
+	trainerbattle_single TRAINER_WATTSON_5, MauvilleCity_Gym_Text_WattsonIntro, MauvilleCity_Gym_Text_WattsonDefeat, MauvilleCity_Gym_EventScript_WattsonDefeated, NO_MUSIC
+	goto MauvilleCity_Gym_EventScript_PostBattle
+
+MauvilleCity_Gym_EventScript_Wattson_Trainer6::
+	trainerbattle_single TRAINER_WATTSON_6, MauvilleCity_Gym_Text_WattsonIntro, MauvilleCity_Gym_Text_WattsonDefeat, MauvilleCity_Gym_EventScript_WattsonDefeated, NO_MUSIC
+	goto MauvilleCity_Gym_EventScript_PostBattle
+
+MauvilleCity_Gym_EventScript_Wattson_Trainer7::
+	trainerbattle_single TRAINER_WATTSON_7, MauvilleCity_Gym_Text_WattsonIntro, MauvilleCity_Gym_Text_WattsonDefeat, MauvilleCity_Gym_EventScript_WattsonDefeated, NO_MUSIC
+	goto MauvilleCity_Gym_EventScript_PostBattle
+
+MauvilleCity_Gym_EventScript_Wattson_Trainer8::
+	trainerbattle_single TRAINER_WATTSON_8, MauvilleCity_Gym_Text_WattsonIntro, MauvilleCity_Gym_Text_WattsonDefeat, MauvilleCity_Gym_EventScript_WattsonDefeated, NO_MUSIC
+	goto MauvilleCity_Gym_EventScript_PostBattle
+
+MauvilleCity_Gym_EventScript_PostBattle::
 	specialvar VAR_RESULT, ShouldTryRematchBattle
 	goto_if_eq VAR_RESULT, TRUE, MauvilleCity_Gym_EventScript_WattsonRematch
 	goto_if_unset FLAG_RECEIVED_TM_SHOCK_WAVE, MauvilleCity_Gym_EventScript_GiveShockWave2
@@ -93,8 +135,6 @@ MauvilleCity_Gym_EventScript_WattsonDefeated::
 	clearflag FLAG_HIDE_VERDANTURF_TOWN_SCOTT
 	setflag FLAG_DEFEATED_MAUVILLE_GYM
 	setflag FLAG_BADGE03_GET
-	addvar VAR_PETALBURG_GYM_STATE, 1
-	call_if_eq VAR_PETALBURG_GYM_STATE, 6, Common_EventScript_ReadyPetalburgGymForBattle
 	setvar VAR_0x8008, 3
 	setvar VAR_FORCEANIM, 0
 	call Common_EventScript_SetGymTrainers
@@ -103,13 +143,22 @@ MauvilleCity_Gym_EventScript_WattsonDefeated::
 	playse SE_UNLOCK
 	call MauvilleCity_Gym_EventScript_GiveShockWave
 	closemessage
-	delay 30
-	playfanfare MUS_REGISTER_MATCH_CALL
-	msgbox MauvilleCity_Gym_Text_RegisteredWattson, MSGBOX_DEFAULT
-	waitfanfare
-	closemessage
-	delay 30
-	setflag FLAG_ENABLE_WATTSON_MATCH_CALL
+	//delay 30
+	//playfanfare MUS_REGISTER_MATCH_CALL
+	//msgbox MauvilleCity_Gym_Text_RegisteredWattson, MSGBOX_DEFAULT
+	//waitfanfare
+	//closemessage
+	//delay 30
+	//setflag FLAG_ENABLE_WATTSON_MATCH_CALL
+	switch VAR_RETURN_MAP
+        case 0, EventScript_WarpHomeRustboro
+        case 1, EventScript_WarpHomeDewford
+        case 2, EventScript_WarpHomeMauville
+        case 3, EventScript_WarpHomeLavaridge
+        case 4, EventScript_WarpHomePetalburg
+        case 5, EventScript_WarpHomeFortree
+        case 6, EventScript_WarpHomeMossdeep
+        case 7, EventScript_WarpHomeSootopolis
 	release
 	end
 
@@ -358,10 +407,8 @@ MauvilleCity_Gym_Text_ReceivedDynamoBadge:
 	.string "from WATTSON.$"
 
 MauvilleCity_Gym_Text_ExplainDynamoBadgeTakeThis:
-	.string "With the DYNAMO BADGE, POKéMON can\n"
-	.string "use ROCK SMASH out of battle.\p"
-	.string "And, it will make your POKéMON a little\n"
-	.string "bit faster, too.\p"
+	.string "That badge will make your POKéMON a\n"
+	.string "little bit faster, you know.\p"
 	.string "Hmm…\n"
 	.string "You should take this, too!$"
 
