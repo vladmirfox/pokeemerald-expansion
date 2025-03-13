@@ -288,9 +288,7 @@ enum MoveEndEffects
     MOVEEND_RAPID_SPIN,
     MOVEEND_ITEM_EFFECTS_ATTACKER,
     MOVEEND_MAGICIAN, // Occurs after final multi-hit strike, and after other items/abilities would activate
-
     MOVEEND_SHEER_FORCE, // If move is Sheer Force affected, skip until opportunist
-
     MOVEEND_RED_CARD, // Red Card triggers before Eject Pack
     MOVEEND_EJECT_ITEMS,
     MOVEEND_WHITE_HERB,
