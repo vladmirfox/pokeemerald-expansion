@@ -5,6 +5,8 @@
 #include "battle_setup.h"
 #include "overworld.h"
 #include "random.h"
+#include "battle_frontier.h"
+#include "battle_special.h"
 #include "battle_tower.h"
 #include "field_specials.h"
 #include "battle.h"

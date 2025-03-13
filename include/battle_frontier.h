@@ -1,6 +1,9 @@
 #ifndef GUARD_BATTLE_FRONTIER_H
 #define GUARD_BATTLE_FRONTIER_H
 
+#include "data.h"
+#include "script.h"
+
 struct BattleFrontierTrainer
 {
     u8 facilityClass;
@@ -18,6 +21,8 @@ extern u16 gFrontierTempParty[MAX_FRONTIER_PARTY_SIZE];
 
 extern const struct BattleFrontierTrainer *gFacilityTrainers;
 extern const struct TrainerMon *gFacilityTrainerMons;
+extern const struct BattleFrontierTrainer gBattleFrontierTrainers[];
+extern const struct TrainerMon gBattleFrontierMons[];
 
 void DoFacilityTrainerBattle(struct ScriptContext *ctx);
 void FillFrontierTrainerParty(u8 monsCount);
