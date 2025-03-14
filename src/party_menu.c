@@ -6182,7 +6182,7 @@ bool32 TryItemUseFusionChange(u8 taskId, TaskFunc task)
     }
 }
 
-static u8 RestoreFusionMon(struct Pokemon *mon)
+static void RestoreFusionMon(struct Pokemon *mon)
 {
     s32 i;
 
@@ -6193,11 +6193,14 @@ static u8 RestoreFusionMon(struct Pokemon *mon)
     }
 
     if (i >= PARTY_SIZE)
-        return CopyMonToPC(mon);
-
-    CopyMon(&gPlayerParty[i], mon, sizeof(*mon));
-    gPlayerPartyCount = i + 1;
-    return MON_GIVEN_TO_PARTY;
+    {
+        CopyMonToPC(mon);
+    }
+    else
+    {
+        CopyMon(&gPlayerParty[i], mon, sizeof(*mon));
+        gPlayerPartyCount = i + 1;
+    }
 }
 
 static void Task_TryItemUseFusionChange(u8 taskId)
