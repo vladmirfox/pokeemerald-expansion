@@ -424,11 +424,9 @@ PetalburgCity_Gym_EventScript_PostBattle::
 	setvar VAR_PETALBURG_GYM_STATE, 7
 	setflag FLAG_BADGE05_GET
 	special ResetHealLocationFromDewford
-	call EventScript_HideMrBriney
 	setvar VAR_0x8008, 5
 	setvar VAR_FORCEANIM, 0
 	call Common_EventScript_SetGymTrainers
-	clearflag FLAG_HIDE_DEWFORD_HALL_SLUDGE_BOMB_MAN
 	call PetalburgCity_Gym_EventScript_UnlockAllDoors
 	special DrawWholeMapView
 	call PetalburgCity_Gym_EventScript_GiveFacade

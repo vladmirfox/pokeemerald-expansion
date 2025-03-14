@@ -59,7 +59,6 @@ RustboroCity_Gym_EventScript_RoxanneDefeated::
 	msgbox RustboroCity_Gym_Text_StoneBadgeInfoTakeThis, MSGBOX_DEFAULT
 	setflag FLAG_DEFEATED_RUSTBORO_GYM
 	setflag FLAG_BADGE01_GET
-	addvar VAR_BADGE_COUNT, 1
 	setvar VAR_0x8008, 1
 	setvar VAR_FORCEANIM, 0
 	call Common_EventScript_SetGymTrainers

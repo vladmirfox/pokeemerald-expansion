@@ -1108,6 +1108,7 @@ EventScript_NoBackingOut::
 	end
 
 EventScript_WarpHomeRustboro::
+	addvar VAR_BADGE_COUNT, 1
 	setvar VAR_RUSTBORO_CITY_STATE, 7
 	setflag FLAG_RETURNED_DEVON_GOODS
 	setflag FLAG_HIDE_RUSTBORO_CITY_DEVON_EMPLOYEE_1
@@ -1131,6 +1132,7 @@ EventScript_WarpHomeRustboro::
 	end
 
 EventScript_WarpHomeDewford::
+	addvar VAR_BADGE_COUNT, 1
     setvar VAR_DEWFORD_LOCKED, 1
     setvar VAR_DEWFORD_TOWN_STATE, 2
 	warp MAP_DEWFORD_TOWN, 8, 17
@@ -1138,6 +1140,9 @@ EventScript_WarpHomeDewford::
 	end
 
 EventScript_WarpHomeMauville::
+	addvar VAR_BADGE_COUNT, 1
+	setvar VAR_SLATEPORT_OUTSIDE_MUSEUM_STATE, 3
+	clearflag FLAG_HIDE_VERDANTURF_TOWN_SCOTT
 	setvar VAR_MAUVILLE_CITY_STATE, 2
 	setflag FLAG_HIDE_ROUTE_112_TEAM_MAGMA
 	setvar VAR_METEOR_FALLS_STATE, 1
@@ -1154,27 +1159,25 @@ EventScript_WarpHomeMauville::
 	clearflag FLAG_HIDE_WEATHER_INSTITUTE_1F_WORKERS
 	setflag FLAG_HIDE_WEATHER_INSTITUTE_2F_WORKERS
     setvar VAR_MAUVILLE_LOCKED, 1
-	warp MAP_MAUVILLE_CITY, 27, 21
+	warp MAP_MAUVILLE_CITY, 8, 6
 	release
 	end
 
 EventScript_WarpHomeLavaridge::
+	addvar VAR_BADGE_COUNT, 1
+	setflag FLAG_HIDE_VERDANTURF_TOWN_WANDAS_HOUSE_WALLY
+	setflag FLAG_UNUSED_0x479 //Remove boy blocking Petalburg gym
+	setvar VAR_LAVARIDGE_TOWN_STATE, 1
     setvar VAR_LAVARIDGE_LOCKED, 1
 	warp MAP_LAVARIDGE_TOWN, 5, 15
 	release
 	end
 
 EventScript_WarpHomePetalburg::
-	setvar VAR_PETALBURG_WOODS_STATE, 1
-	setflag FLAG_HIDE_PETALBURG_WOODS_DEVON_EMPLOYEE
-	setflag FLAG_HIDE_PETALBURG_WOODS_AQUA_GRUNT
-    @ magma chamber fix
-    setvar VAR_JAGGED_PASS_STATE, 2
-    setflag FLAG_HIDE_MAGMA_HIDEOUT_GRUNTS
-    setflag FLAG_HIDE_MAGMA_HIDEOUT_4F_GROUDON
-    setflag FLAG_HIDE_JAGGED_PASS_MAGMA_GUARD
-    @ make old man disappear for sootopolis
-    setflag FLAG_HIDE_CAVE_OF_ORIGIN_B1F_WALLACE @ also hides the expert as a hack
+	addvar VAR_BADGE_COUNT, 1
+	clearflag FLAG_HIDE_DEWFORD_HALL_SLUDGE_BOMB_MAN
+	call EventScript_HideMrBriney
+	clearflag FLAG_HIDE_MAUVILLE_CITY_WATTSON //Since Wattson can't leave his gym based on event in Mauville's gym anymore
     setvar VAR_PETALBURG_LOCKED, 1
 	setvar VAR_PETALBURG_CITY_STATE, 7
 	setvar VAR_STEP_DOWN, 1
@@ -1183,6 +1186,7 @@ EventScript_WarpHomePetalburg::
 	end
 
 EventScript_WarpHomeFortree::
+	addvar VAR_BADGE_COUNT, 1
 	setvar VAR_FORTREE_CITY_STATE, 2
     setvar VAR_FORTREE_LOCKED, 1
 	warp MAP_FORTREE_CITY, 22, 11
@@ -1190,6 +1194,10 @@ EventScript_WarpHomeFortree::
 	end
 
 EventScript_WarpHomeMossdeep::
+	addvar VAR_BADGE_COUNT, 1
+	setflag FLAG_HIDE_AQUA_HIDEOUT_GRUNTS
+	clearflag FLAG_HIDE_SLATEPORT_CITY_STERNS_SHIPYARD_MR_BRINEY
+	clearflag FLAG_UNKNOWN_0x393
 	clearflag FLAG_HIDE_SLATEPORT_CITY_HARBOR_PATRONS
 	clearflag FLAG_HIDE_MOSSDEEP_CITY_TEAM_MAGMA
 	clearflag FLAG_HIDE_MOSSDEEP_CITY_SPACE_CENTER_1F_TEAM_MAGMA
@@ -1199,11 +1207,14 @@ EventScript_WarpHomeMossdeep::
 	setflag FLAG_HIDE_MOSSDEEP_CITY_SPACE_CENTER_1F_STEVEN
 	setvar VAR_MOSSDEEP_SPACE_CENTER_STATE, 1
     setvar VAR_MOSSDEEP_LOCKED, 1
+	setflag FLAG_HIDE_MOSSDEEP_CITY_TEAM_MAGMA
 	warp MAP_MOSSDEEP_CITY, 38, 9
 	release
 	end
 
 EventScript_WarpHomeSootopolis::
+	addvar VAR_BADGE_COUNT, 1
+	clearflag FLAG_HIDE_SOOTOPOLIS_CITY_MAN_1
 	setvar VAR_SOOTOPOLIS_CITY_STATE, 7
 	setflag FLAG_HIDE_SOOTOPOLIS_CITY_RESIDENTS
 	setflag FLAG_HIDE_SOOTOPOLIS_CITY_STEVEN

@@ -11,7 +11,7 @@ PetalburgCity_MapScripts::
 
 PetalburgCity_OnTransition:
 	setflag FLAG_VISITED_PETALBURG_CITY
-	call_if_eq VAR_PETALBURG_CITY_STATE, 0, PetalburgCity_EventScript_MoveGymBoyToWestEntrance
+	//call_if_eq VAR_PETALBURG_CITY_STATE, 0, PetalburgCity_EventScript_MoveGymBoyToWestEntrance
 	call_if_eq VAR_PETALBURG_CITY_STATE, 2, PetalburgCity_EventScript_DisableMapNameAndMusic
 	call_if_eq VAR_PETALBURG_CITY_STATE, 4, PetalburgCity_EventScript_DisableMapNameAndMusic
 	call_if_eq VAR_PETALBURG_GYM_STATE, 8, PetalburgCity_EventScript_SetGymDoorsUnlocked
@@ -30,63 +30,60 @@ PetalburgCity_EventScript_GymDoor::
     case 5, PetalburgCity_EventScript_RandGymFortree // If the result is 5, send the player to Sootopolis Gym
     case 6, PetalburgCity_EventScript_RandGymMossdeep  // If the result is 6, send the player to Petalburg Gym
     case 7, PetalburgCity_EventScript_RandGymSootopolis  // If the result is 7, send the player to Slateport Gym
-    case 8, PetalburgCity_EventScript_RandGymRustboro  // Addvar can cause the result to be greater than 7
-    case 9, PetalburgCity_EventScript_RandGymDewford    // Addvar can cause the result to be greater than 7
-    case 10, PetalburgCity_EventScript_RandGymMauville   // Addvar can cause the result to be greater than 7
-    case 11, PetalburgCity_EventScript_RandGymLavaridge  // Addvar can cause the result to be greater than 7
-    case 12, PetalburgCity_EventScript_RandGymPetalburg  // Addvar can cause the result to be greater than 7
-    case 13, PetalburgCity_EventScript_RandGymFortree // Addvar can cause the result to be greater than 7
-    case 14, PetalburgCity_EventScript_RandGymMossdeep  // Addvar can cause the result to be greater than 7
-    applymovement OBJ_EVENT_ID_PLAYER, Common_Movement_FaceUp
-    waitmovement 0
     release
     end
 
 PetalburgCity_EventScript_RandGymRustboro::
-	call_if_set FLAG_DEFEATED_RUSTBORO_GYM, RandGym_EventScript_AlreadyBeaten
+	call_if_set FLAG_DEFEATED_RUSTBORO_GYM, PetalburgCity_EventScript_AlreadyBeaten
 	setvar VAR_RETURN_MAP, 4
 	setdynamicwarp MAP_RUSTBORO_CITY_GYM, 5, 19
-	return
+	end
 
 PetalburgCity_EventScript_RandGymDewford::
+	call_if_set FLAG_DEFEATED_DEWFORD_GYM, PetalburgCity_EventScript_AlreadyBeaten
 	setvar VAR_RETURN_MAP, 4
 	setdynamicwarp MAP_DEWFORD_TOWN_GYM, 5, 27
-	return
+	end
 
 PetalburgCity_EventScript_RandGymMauville::
+	call_if_set FLAG_DEFEATED_MAUVILLE_GYM, PetalburgCity_EventScript_AlreadyBeaten
 	setvar VAR_RETURN_MAP, 4
     setdynamicwarp MAP_MAUVILLE_CITY_GYM, 4, 20
-    return
+    end
 
 PetalburgCity_EventScript_RandGymLavaridge::
+	call_if_set FLAG_DEFEATED_LAVARIDGE_GYM, PetalburgCity_EventScript_AlreadyBeaten
 	setvar VAR_RETURN_MAP, 4
     setdynamicwarp MAP_LAVARIDGE_TOWN_GYM_1F, 13, 18
-    return
+    end
 
 PetalburgCity_EventScript_RandGymPetalburg::
+	call_if_set FLAG_DEFEATED_PETALBURG_GYM, PetalburgCity_EventScript_AlreadyBeaten
 	setvar VAR_RETURN_MAP, 4
     setdynamicwarp MAP_PETALBURG_CITY_GYM, 4, 111
-    return
+    end
 
 PetalburgCity_EventScript_RandGymFortree::
+	call_if_set FLAG_DEFEATED_FORTREE_GYM, PetalburgCity_EventScript_AlreadyBeaten
 	setvar VAR_RETURN_MAP, 4
     setdynamicwarp MAP_FORTREE_CITY_GYM, 15, 24
-    return
+    end
 
 PetalburgCity_EventScript_RandGymMossdeep::
+	call_if_set FLAG_DEFEATED_MOSSDEEP_GYM, PetalburgCity_EventScript_AlreadyBeaten
 	setvar VAR_RETURN_MAP, 4
     setdynamicwarp MAP_MOSSDEEP_CITY_GYM, 6, 35
-    return
+    end
 
 PetalburgCity_EventScript_RandGymSootopolis::
+	call_if_set FLAG_DEFEATED_SOOTOPOLIS_GYM, PetalburgCity_EventScript_AlreadyBeaten
 	setvar VAR_RETURN_MAP, 4
     setdynamicwarp MAP_SOOTOPOLIS_CITY_GYM_1F, 8, 25
-    return
+    end
 
-RandGym_EventScript_AlreadyBeaten::
-   	addvar VAR_RESULT, 1
-   	return
-
+PetalburgCity_EventScript_AlreadyBeaten::
+	goto PetalburgCity_EventScript_GymDoor
+   	end
 
 PetalburgCity_EventScript_MoveGymBoyToWestEntrance::
 	setobjectxyperm LOCALID_GYM_BOY, 5, 11
@@ -774,6 +771,8 @@ PetalburgCity_Movement_PlayerWatchScottExit3:
 
 PetalburgCity_EventScript_GymBoy::
 	msgbox PetalburgCity_Text_AreYouRookieTrainer, MSGBOX_NPC
+	applymovement LOCALID_GYM_BOY, Common_Movement_FaceUp
+    waitmovement 0
 	end
 
 PetalburgCity_Text_WhereIsWally:
@@ -782,12 +781,10 @@ PetalburgCity_Text_WhereIsWally:
 	.string "very soon…$"
 
 PetalburgCity_Text_AreYouRookieTrainer:
-	.string "Hiya! Are you maybe…\n"
-	.string "A rookie TRAINER?\p"
-	.string "Do you know what POKéMON TRAINERS\n"
-	.string "do when they reach a new town?\p"
-	.string "They first check what kind of GYM\n"
-	.string "is in the town.$"
+	.string "Ooh… What a nice door…\p"
+	.string "………\p"
+	.string "…I'm probably going to keep staring\n"
+	.string "at this door for quite some time.$"
 
 PetalburgCity_Text_ThisIsPetalburgGym:
 	.string "See? This is PETALBURG CITY's GYM.$"

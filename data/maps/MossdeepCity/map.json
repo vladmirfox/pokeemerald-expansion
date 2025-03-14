@@ -419,7 +419,7 @@
       "type": "trigger",
       "x": 38,
       "y": 10,
-      "elevation": 3,
+      "elevation": 5,
       "var": "VAR_GYM_LOCKED",
       "var_value": "1",
       "script": "MossdeepCity_EventScript_GymDoor"

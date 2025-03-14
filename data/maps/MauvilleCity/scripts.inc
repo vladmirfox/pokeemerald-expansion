@@ -30,58 +30,60 @@ MauvilleCity_EventScript_GymDoor::
     case 5, MauvilleCity_EventScript_RandGymFortree // If the result is 5, send the player to Sootopolis Gym
     case 6, MauvilleCity_EventScript_RandGymMossdeep  // If the result is 6, send the player to Petalburg Gym
     case 7, MauvilleCity_EventScript_RandGymSootopolis  // If the result is 7, send the player to Slateport Gym
-    case 8, MauvilleCity_EventScript_RandGymRustboro  // Addvar can cause the result to be greater than 7
-    case 9, MauvilleCity_EventScript_RandGymDewford    // Addvar can cause the result to be greater than 7
-    case 10, MauvilleCity_EventScript_RandGymMauville   // Addvar can cause the result to be greater than 7
-    case 11, MauvilleCity_EventScript_RandGymLavaridge  // Addvar can cause the result to be greater than 7
-    case 12, MauvilleCity_EventScript_RandGymPetalburg  // Addvar can cause the result to be greater than 7
-    case 13, MauvilleCity_EventScript_RandGymFortree // Addvar can cause the result to be greater than 7
-    case 14, MauvilleCity_EventScript_RandGymMossdeep  // Addvar can cause the result to be greater than 7
-    applymovement OBJ_EVENT_ID_PLAYER, Common_Movement_FaceUp
-    waitmovement 0
     release
     end
 
 MauvilleCity_EventScript_RandGymRustboro::
-	call_if_set FLAG_DEFEATED_RUSTBORO_GYM, RandGym_EventScript_AlreadyBeaten
+	call_if_set FLAG_DEFEATED_RUSTBORO_GYM, MauvilleCity_EventScript_AlreadyBeaten
 	setvar VAR_RETURN_MAP, 2
 	setdynamicwarp MAP_RUSTBORO_CITY_GYM, 5, 19
-	return
+	end
 
 MauvilleCity_EventScript_RandGymDewford::
+	call_if_set FLAG_DEFEATED_DEWFORD_GYM, MauvilleCity_EventScript_AlreadyBeaten
 	setvar VAR_RETURN_MAP, 2
 	setdynamicwarp MAP_DEWFORD_TOWN_GYM, 5, 27
-	return
+	end
 
 MauvilleCity_EventScript_RandGymMauville::
+	call_if_set FLAG_DEFEATED_MAUVILLE_GYM, MauvilleCity_EventScript_AlreadyBeaten
 	setvar VAR_RETURN_MAP, 2
     setdynamicwarp MAP_MAUVILLE_CITY_GYM, 4, 20
-    return
+    end
 
 MauvilleCity_EventScript_RandGymLavaridge::
+	call_if_set FLAG_DEFEATED_LAVARIDGE_GYM, MauvilleCity_EventScript_AlreadyBeaten
 	setvar VAR_RETURN_MAP, 2
     setdynamicwarp MAP_LAVARIDGE_TOWN_GYM_1F, 13, 18
-    return
+    end
 
 MauvilleCity_EventScript_RandGymPetalburg::
+	call_if_set FLAG_DEFEATED_PETALBURG_GYM, MauvilleCity_EventScript_AlreadyBeaten
 	setvar VAR_RETURN_MAP, 2
     setdynamicwarp MAP_PETALBURG_CITY_GYM, 4, 111
-    return
+    end
 
 MauvilleCity_EventScript_RandGymFortree::
+	call_if_set FLAG_DEFEATED_FORTREE_GYM, MauvilleCity_EventScript_AlreadyBeaten
 	setvar VAR_RETURN_MAP, 2
     setdynamicwarp MAP_FORTREE_CITY_GYM, 15, 24
-    return
+    end
 
 MauvilleCity_EventScript_RandGymMossdeep::
+	call_if_set FLAG_DEFEATED_MOSSDEEP_GYM, MauvilleCity_EventScript_AlreadyBeaten
 	setvar VAR_RETURN_MAP, 2
     setdynamicwarp MAP_MOSSDEEP_CITY_GYM, 6, 35
-    return
+    end
 
 MauvilleCity_EventScript_RandGymSootopolis::
+	call_if_set FLAG_DEFEATED_SOOTOPOLIS_GYM, MauvilleCity_EventScript_AlreadyBeaten
 	setvar VAR_RETURN_MAP, 2
     setdynamicwarp MAP_SOOTOPOLIS_CITY_GYM_1F, 8, 25
-    return
+    end
+
+MauvilleCity_EventScript_AlreadyBeaten::
+	goto MauvilleCity_EventScript_GymDoor
+   	end
 
 MauvilleCity_OnFrame:
 	map_script_2 VAR_MAUVILLE_CITY_STATE, 2, MauvilleCity_EventScript_WalkDown

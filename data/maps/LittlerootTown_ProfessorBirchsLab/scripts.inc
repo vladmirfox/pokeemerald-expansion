@@ -116,12 +116,23 @@ LittlerootTown_ProfessorBirchsLab_EventScript_GiveStarterEvent::
 	bufferleadmonspeciesname STR_VAR_1
 	message LittlerootTown_ProfessorBirchsLab_Text_LikeYouToHavePokemon
 	waitmessage
+	clearflag FLAG_UNUSED_0x479
 	setvar VAR_SCOTT_PETALBURG_ENCOUNTER, 1
 	setvar VAR_PETALBURG_GYM_STATE, 6
 	setflag FLAG_NUZLOCKE
 	setflag FLAG_RECEIVED_RUNNING_SHOES
 	setvar VAR_BADGE_COUNT, 0
     setvar VAR_GYM_LOCKED, 1
+	setvar VAR_PETALBURG_WOODS_STATE, 1  //First set of speedchoice variables to set
+	setflag FLAG_HIDE_PETALBURG_WOODS_DEVON_EMPLOYEE
+	setflag FLAG_HIDE_PETALBURG_WOODS_AQUA_GRUNT
+    @ magma chamber fix
+    setvar VAR_JAGGED_PASS_STATE, 2
+    setflag FLAG_HIDE_MAGMA_HIDEOUT_GRUNTS
+    setflag FLAG_HIDE_MAGMA_HIDEOUT_4F_GROUDON
+    setflag FLAG_HIDE_JAGGED_PASS_MAGMA_GUARD
+    @ make old man disappear for sootopolis
+    setflag FLAG_HIDE_CAVE_OF_ORIGIN_B1F_WALLACE @ also hides the expert as a hack
 	goto LittlerootTown_ProfessorBirchsLab_EventScript_GoSeeRival
 	end
 
