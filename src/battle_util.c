@@ -12296,10 +12296,7 @@ bool32 IsMovePowderBlocked(u32 battlerAtk, u32 battlerDef, u32 move)
         }
 
         if (effect)
-        {
             gBattlescriptCurrInstr = BattleScript_PowderMoveNoEffect;
-            return effect;
-        }
     }
 
     return effect;
