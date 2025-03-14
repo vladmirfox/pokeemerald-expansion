@@ -4784,6 +4784,9 @@ static void Cmd_dofaintanimation(void)
 {
     CMD_ARGS(u8 battler);
 
+    if (gBattleControllerExecFlags != 0)
+        return;
+
     u32 battler = GetBattlerForBattleScript(cmd->battler);
 
     if (GetActiveGimmick(battler) == GIMMICK_DYNAMAX)
@@ -4795,12 +4798,9 @@ static void Cmd_dofaintanimation(void)
         return;
     }
 
-    if (gBattleControllerExecFlags == 0)
-    {
-        BtlController_EmitFaintAnimation(battler, BUFFER_A);
-        MarkBattlerForControllerExec(battler);
-        gBattlescriptCurrInstr = cmd->nextInstr;
-    }
+    BtlController_EmitFaintAnimation(battler, BUFFER_A);
+    MarkBattlerForControllerExec(battler);
+    gBattlescriptCurrInstr = cmd->nextInstr;
 }
 
 static void Cmd_cleareffectsonfaint(void)
