@@ -7190,7 +7190,7 @@ static const struct LevelUpMove sMudkipLevelUpLearnset[] = {
     LEVEL_UP_MOVE( 1, MOVE_GROWL),
     LEVEL_UP_MOVE( 4, MOVE_WATER_GUN),
     LEVEL_UP_MOVE( 9, MOVE_MUD_SLAP),
-    LEVEL_UP_MOVE(12, MOVE_FORESIGHT),
+    //LEVEL_UP_MOVE(12, MOVE_FORESIGHT),
     //LEVEL_UP_MOVE(17, MOVE_BIDE),
     LEVEL_UP_MOVE(20, MOVE_MUD_SPORT),
     LEVEL_UP_MOVE(25, MOVE_ROCK_THROW),
@@ -7648,8 +7648,8 @@ static const struct LevelUpMove sPelipperLevelUpLearnset[] = {
 #if P_FAMILY_RALTS
 static const struct LevelUpMove sRaltsLevelUpLearnset[] = {
     LEVEL_UP_MOVE( 1, MOVE_GROWL),
+    LEVEL_UP_MOVE( 4, MOVE_DOUBLE_TEAM),
     LEVEL_UP_MOVE( 4, MOVE_CONFUSION),
-    LEVEL_UP_MOVE( 6, MOVE_DOUBLE_TEAM),
     LEVEL_UP_MOVE( 9, MOVE_TELEPORT),
     LEVEL_UP_MOVE(11, MOVE_DISARMING_VOICE),
     LEVEL_UP_MOVE(14, MOVE_LUCKY_CHANT),

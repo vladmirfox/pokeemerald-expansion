@@ -1693,7 +1693,7 @@ Double Battle: No
 AI: Check Bad Move / Try To Faint / Force Setup First Turn
 
 Zangoose
-Level: 12
+Level: 10
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 - Swords Dance
 - Slash
@@ -3418,11 +3418,11 @@ Double Battle: No
 AI: Check Bad Move
 
 Voltorb
-Level: 12
+Level: 10
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 
 Magnemite
-Level: 12
+Level: 10
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 
 === TRAINER_FERNANDO_1 ===
@@ -4897,7 +4897,7 @@ Ability: Inner Focus
 - Rock Smash
 - Sand Attack
 
-Makuhita @ Sitrus Berry
+Makuhita @ Oran Berry
 Level: 15
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 Nature: Adamant
@@ -4957,15 +4957,6 @@ Items: Potion / Potion
 Double Battle: No
 AI: Basic Trainer
 
-Slugma
-Level: 12
-IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-Nature: Quiet
-Ability: Flame Body
-- Overheat
-- Smog
-- Yawn
-
 Numel
 Level: 12
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
@@ -4982,7 +4973,7 @@ IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 Nature: Quiet
 Ability: White Smoke
 - Overheat
-- Rapid Spin
+- Smog
 - Withdraw
 - Attract
 
@@ -7417,11 +7408,11 @@ Double Battle: No
 AI: Check Bad Move
 
 Doduo
-Level: 11
+Level: 9
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 
 Wingull
-Level: 11
+Level: 9
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 
 === TRAINER_COLIN ===
@@ -9169,7 +9160,7 @@ Double Battle: No
 AI: Check Bad Move
 
 Numel
-Level: 13
+Level: 10
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 
 === TRAINER_ANNIKA ===
@@ -10770,7 +10761,7 @@ Double Battle: No
 AI: Check Bad Move
 
 Girafarig
-Level: 36
+Level: 12
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 
 === TRAINER_NICHOLAS ===
@@ -10865,7 +10856,7 @@ Double Battle: No
 AI: Check Bad Move
 
 Natu
-Level: 36
+Level: 11
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 
 === TRAINER_BRENDAN_RUSTBORO_TREECKO ===
@@ -14457,7 +14448,7 @@ Level: 26
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 Nature: Adamant
 Ability: Intimidate
-- Retaliate
+- Bite
 - Rock Tomb
 - Howl
 - Fire Fang
@@ -14507,7 +14498,7 @@ Level: 30
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 Nature: Adamant
 Ability: Intimidate
-- Retaliate
+- Take Down
 - Rock Tomb
 - Play Rough
 - Fire Fang
@@ -14619,7 +14610,7 @@ Nature: Adamant
 Ability: Thick Fat
 - Strength
 - Vital Throw
-- Knock Off
+- Brine
 - Bulk Up
 
 === TRAINER_BRAWLY_4 ===
@@ -14958,7 +14949,7 @@ IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 Nature: Quiet
 Ability: White Smoke
 - Overheat
-- Fire Spin
+- Smog
 - Withdraw
 - Attract
 
@@ -14998,7 +14989,7 @@ IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 Nature: Quiet
 Ability: White Smoke
 - Overheat
-- Fire Spin
+- Smog
 - Sunny Day
 - Attract
 
@@ -15145,7 +15136,7 @@ Slakoth @ Oran Berry
 Level: 19
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 Nature: Adamant
-Ability: Truant
+Ability: Vital Spirit
 - Slack Off
 - Yawn
 - Facade
@@ -15195,7 +15186,7 @@ Vigoroth @ Sitrus Berry
 Level: 24
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 Nature: Adamant
-Ability: Truant
+Ability: Vital Spirit
 - Slash
 - Reversal
 - Facade
@@ -15245,7 +15236,7 @@ Vigoroth @ Sitrus Berry
 Level: 29
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 Nature: Adamant
-Ability: Truant
+Ability: Vital Spirit
 - Slash
 - Reversal
 - Facade
@@ -15448,7 +15439,7 @@ Pic: Leader Winona
 Gender: Female
 Music: Female
 Items: Hyper Potion / Hyper Potion
-Double Battle: Yes
+Double Battle: No
 AI: Basic Trainer / Risky
 
 Swablu
@@ -15730,16 +15721,6 @@ Items: Super Potion / Super Potion
 Double Battle: Yes
 AI: Basic Trainer
 
-Barboach
-Level: 21
-IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-Nature: Hardy
-Ability: Oblivious
-- Mud Bomb
-- Water Pulse
-- Mud Slap
-- Rain Dance
-
 Feebas
 Level: 20
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
@@ -15759,6 +15740,16 @@ Ability: Gooey
 - Water Pulse
 - Mud Slap
 
+Gyarados
+Level: 21
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+Nature: Adamant
+Ability: Intimidate
+- Flail
+- Water Pulse
+- Bite
+- Twister
+
 Seadra @ Sitrus Berry
 Level: 24
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
@@ -15766,7 +15757,7 @@ Nature: Modest
 Ability: Sniper
 - Water Pulse
 - Smokescreen
-- Agility
+- Aurora Beam
 - Twister
 
 Wailmer @ Oran Berry
@@ -15816,7 +15807,7 @@ Nature: Modest
 Ability: Sniper
 - Water Pulse
 - Smokescreen
-- Agility
+- Aurora Beam
 - Twister
 
 Wailmer
@@ -15879,6 +15870,16 @@ Ability: Gooey
 - Water Pulse
 - Triple Dive
 
+Seadra
+Level: 31
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+Nature: Modest
+Ability: Sniper
+- Water Pulse
+- Smokescreen
+- Aurora Beam
+- Dragon Breath
+
 Wailmer
 Level: 28
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
@@ -15889,8 +15890,8 @@ Ability: Water Veil
 - Rollout
 - Water Pulse
 
-Gyarados
-Level: 30
+Gyarados @ Sitrus Berry
+Level: 31
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 Nature: Adamant
 Ability: Intimidate
@@ -15909,16 +15910,6 @@ Ability: Oblivious
 - Icy Wind
 - Captivate
 
-Kingdra @ Chesto Berry
-Level: 31
-IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-Nature: Modest
-Ability: Sniper
-- Water Pulse
-- Twister
-- Double Team
-- Rest
-
 === TRAINER_ANGELO ===
 Name: ANGELO
 Class: Bug Maniac
@@ -15929,14 +15920,14 @@ Double Battle: No
 AI: Basic Trainer
 
 Illumise
-Level: 12
+Level: 9
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 - Shock Wave
 - Quick Attack
 - Charm
 
 Volbeat
-Level: 12
+Level: 9
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 - Shock Wave
 - Quick Attack
@@ -16129,7 +16120,7 @@ Ability: Overgrow
 - U Turn
 - Triple Arrows
 
-Toedscruel @ Grip Claw
+Toedscruel @ Big Root
 Level: 48
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 Nature: Modest
@@ -16335,7 +16326,7 @@ Ability: Sturdy
 - Flail
 - Head Smash
 
-Kleavor
+Kleavor @ Scope Lens
 Level: 33
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 Nature: Adamant
@@ -16350,7 +16341,7 @@ Level: 33
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 Nature: Adamant
 Ability: Intimidate
-- Retaliate
+- Take Down
 - Rock Tomb
 - Play Rough
 - Fire Fang
@@ -16395,7 +16386,7 @@ Ability: Sturdy
 - Flail
 - Head Smash
 
-Kleavor
+Kleavor @ Scope Lens
 Level: 41
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 Nature: Adamant
@@ -16410,7 +16401,7 @@ Level: 41
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 Nature: Adamant
 Ability: Intimidate
-- Retaliate
+- Take Down
 - Rock Tomb
 - Play Rough
 - Fire Fang
@@ -16455,7 +16446,7 @@ Ability: Sturdy
 - Flail
 - Head Smash
 
-Kleavor
+Kleavor @ Scope Lens
 Level: 44
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 Nature: Adamant
@@ -16879,7 +16870,7 @@ Ninetales
 Level: 32
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 Nature: Modest
-Ability: Drought
+Ability: Flash Fire
 - Overheat
 - Flamethrower
 - Hex
@@ -16939,7 +16930,7 @@ Ninetales
 Level: 40
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 Nature: Modest
-Ability: Drought
+Ability: Flash Fire
 - Overheat
 - Flamethrower
 - Hex
@@ -17008,7 +16999,7 @@ Ninetales
 Level: 44
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 Nature: Modest
-Ability: Drought
+Ability: Flash Fire
 - Overheat
 - Flamethrower
 - Hex
@@ -17134,7 +17125,7 @@ Ability: Scrappy
 - Boomburst
 - Thunder Fang
 
-Obstagoon @ Flame Orb
+Obstagoon @ Black Glasses
 Level: 40
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 Nature: Adamant
@@ -17194,7 +17185,7 @@ Ability: Scrappy
 - Boomburst
 - Thunder Fang
 
-Obstagoon @ Flame Orb
+Obstagoon @ Black Glasses
 Level: 44
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 Nature: Adamant
@@ -17643,7 +17634,7 @@ Ability: Oblivious
 - Disarming Voice
 - Water Pulse
 - Icy Wind
-- Attract
+- Ice Beam
 
 Kingdra @ Chesto Berry
 Level: 35
@@ -17855,25 +17846,53 @@ Level: 30
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 
 === TRAINER_SAWYER_5 ===
-Name: SAWYER
-Class: Hiker
-Pic: Hiker
-Gender: Male
-Music: Hiker
+Name: ROXANNE
+Class: Leader
+Pic: Leader Roxanne
+Gender: Female
+Music: Female
+Items: Super Potion / Super Potion
 Double Battle: No
 AI: Basic Trainer
 
-Machoke
-Level: 33
+Geodude
+Level: 16
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+Nature: Impish
+Ability: Sturdy
+- Magnitude
+- Defense Curl
+- Rock Throw
+- Rock Tomb
 
-Camerupt
-Level: 33
+Relicanth
+Level: 16
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+Nature: Hardy
+Ability: Sturdy
+- Water Gun
+- Rock Tomb
+- Flail
+- Yawn
 
-Golem
-Level: 33
+Growlithe Hisui @ Rocky Helmet
+Level: 17
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+Nature: Adamant
+Ability: Intimidate
+- Flame Wheel
+- Rock Tomb
+- Howl
+
+Nosepass @ Oran Berry
+Level: 19
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+Nature: Impish
+Ability: Sturdy
+- Block
+- Rock Throw
+- Thunder Wave
+- Rock Tomb
 
 === TRAINER_GABRIELLE_2 ===
 Name: GABRIELLE

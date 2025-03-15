@@ -17,8 +17,8 @@ RustboroCity_Gym_EventScript_Roxanne_Trainer1::
 	goto RustboroCity_Gym_EventScript_PostBattle
 
 RustboroCity_Gym_EventScript_Roxanne_Trainer2::
-	trainerbattle_single TRAINER_ROXANNE_2, RustboroCity_Gym_Text_RoxanneIntro, RustboroCity_Gym_Text_RoxanneDefeat, RustboroCity_Gym_EventScript_RoxanneDefeated, NO_MUSIC
-	goto RustboroCity_Gym_EventScript_PostBattle
+	trainerbattle_single TRAINER_SAWYER_5, RustboroCity_Gym_Text_RoxanneIntro, RustboroCity_Gym_Text_RoxanneDefeat, RustboroCity_Gym_EventScript_RoxanneDefeated, NO_MUSIC
+	goto RustboroCity_Gym_EventScript_PostBattle //Not sure why, but TRAINER_ROXANNE_2 breaks, so Sawyer5 is a duplicate copy of Roxanne2
 
 RustboroCity_Gym_EventScript_Roxanne_Trainer3::
 	trainerbattle_single TRAINER_ROXANNE_3, RustboroCity_Gym_Text_RoxanneIntro, RustboroCity_Gym_Text_RoxanneDefeat, RustboroCity_Gym_EventScript_RoxanneDefeated, NO_MUSIC
@@ -55,7 +55,6 @@ RustboroCity_Gym_EventScript_PostBattle::
 RustboroCity_Gym_EventScript_RoxanneDefeated::
 	message RustboroCity_Gym_Text_ReceivedStoneBadge
 	waitmessage
-	call Common_EventScript_PlayGymBadgeFanfare
 	msgbox RustboroCity_Gym_Text_StoneBadgeInfoTakeThis, MSGBOX_DEFAULT
 	setflag FLAG_DEFEATED_RUSTBORO_GYM
 	setflag FLAG_BADGE01_GET
@@ -106,6 +105,7 @@ RustboroCity_Gym_EventScript_Marc::
 RustboroCity_Gym_EventScript_GymGuide::
 	lock
 	faceplayer
+    special HealPlayerParty
 	goto_if_set FLAG_DEFEATED_RUSTBORO_GYM, RustboroCity_Gym_EventScript_GymGuidePostVictory
 	msgbox RustboroCity_Gym_Text_GymGuideAdvice, MSGBOX_DEFAULT
 	release
@@ -173,7 +173,8 @@ RustboroCity_Gym_Text_GymGuideAdvice:
 	.string "GRASS-type moves.\p"
 	.string "Come see me afterwards, if you beat\n"
 	.string "the GYM LEADER.\p"
-	.string "Well, go for it!$"
+	.string "After this chat, your POKéMON should\n"
+	.string "be refreshed and ready to go!$"
 
 RustboroCity_Gym_Text_GymGuidePostVictory:
 	.string "Whoa! What a breathtaking victory!\n"

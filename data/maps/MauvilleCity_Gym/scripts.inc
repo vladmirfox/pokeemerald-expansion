@@ -129,7 +129,6 @@ MauvilleCity_Gym_EventScript_PostBattle::
 MauvilleCity_Gym_EventScript_WattsonDefeated::
 	message MauvilleCity_Gym_Text_ReceivedDynamoBadge
 	waitmessage
-	call Common_EventScript_PlayGymBadgeFanfare
 	msgbox MauvilleCity_Gym_Text_ExplainDynamoBadgeTakeThis, MSGBOX_DEFAULT
 	setflag FLAG_DEFEATED_MAUVILLE_GYM
 	setflag FLAG_BADGE03_GET
@@ -273,6 +272,7 @@ MauvilleCity_Gym_EventScript_Angelo::
 MauvilleCity_Gym_EventScript_GymGuide::
 	lock
 	faceplayer
+    special HealPlayerParty
 	goto_if_set FLAG_DEFEATED_MAUVILLE_GYM, MauvilleCity_Gym_EventScript_GymGuidePostVictory
 	msgbox MauvilleCity_Gym_Text_GymGuideAdvice, MSGBOX_DEFAULT
 	release
@@ -314,7 +314,8 @@ MauvilleCity_Gym_Text_GymGuideAdvice:
 	.string "POKéMON, he'll zap them! Bzzt!\p"
 	.string "And, he's put in switch-controlled\n"
 	.string "doors all over his GYM! Eccentric!\p"
-	.string "Hey, go for it!$"
+	.string "After this chat, your POKéMON should\n"
+	.string "be refreshed and ready to go!$"
 
 MauvilleCity_Gym_Text_GymGuidePostVictory:
 	.string "Whoa, you're electrifying!\n"

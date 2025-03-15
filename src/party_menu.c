@@ -2848,9 +2848,9 @@ static void SetPartyMonFieldSelectionActions(struct Pokemon *mons, u8 slotId)
     // Add field moves to action list
     for (i = 0; i < MAX_MON_MOVES; i++)
     {
-        for (j = 0; j != FIELD_MOVES_COUNT; j++)
+        for (j = 0; j != 2; j++) //Only append Cut, Flash, and Fly
         {
-            if (GetMonData(&mons[slotId], i + MON_DATA_MOVE1) == MOVE_FLY || MOVE_FLASH)
+            if (GetMonData(&mons[slotId], i + MON_DATA_MOVE1) == sFieldMoves[j])
             {
                 if (sFieldMoves[j] != MOVE_FLY) // If Mon already knows FLY, prevent it from being added to action list
                     AppendToList(sPartyMenuInternal->actions, &sPartyMenuInternal->numActions, j + MENU_FIELD_MOVES);
@@ -3973,10 +3973,10 @@ static void CursorCb_FieldMove(u8 taskId)
     else
     {
         // All field moves before WATERFALL are HMs.
-        if (fieldMove <= FIELD_MOVE_WATERFALL && VarGet(VAR_BADGE_COUNT + fieldMove) != TRUE
-         && !(fieldMove == FIELD_MOVE_FLY)
-
-            )
+    if (fieldMove <= FIELD_MOVE_WATERFALL && 
+        VarGet(FLAG_BADGE01_GET + fieldMove) != TRUE &&
+        fieldMove != FIELD_MOVE_FLY && 
+        fieldMove != FIELD_MOVE_FLASH)
         {
             DisplayPartyMenuMessage(gText_CantUseUntilNewBadge, TRUE);
             gTasks[taskId].func = Task_ReturnToChooseMonAfterText;

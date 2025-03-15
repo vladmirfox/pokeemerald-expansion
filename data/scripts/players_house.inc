@@ -72,7 +72,6 @@ PlayersHouse_2F_EventScript_WallClock::
 	removeobject VAR_0x8008
 msgbox PlayersHouse_2F_Text_ClockIsStopped, MSGBOX_DEFAULT
     setflag FLAG_SYS_POKEMON_GET
-   	givemon SPECIES_XERNEAS, 95, ITEM_NONE
 	givemon SPECIES_EEVEE, 15, ITEM_NONE
 	givemon SPECIES_ABRA, 15, ITEM_NONE
 	givemon SPECIES_APPLIN, 15, ITEM_NONE
@@ -429,7 +428,7 @@ PlayersHouse_1F_EventScript_Mom::
 	faceplayer
 	goto_if_eq VAR_LITTLEROOT_HOUSES_STATE_MAY, 4, PlayersHouse_1F_EventScript_DontPushYourselfTooHard
 	goto_if_eq VAR_LITTLEROOT_HOUSES_STATE_BRENDAN, 4, PlayersHouse_1F_EventScript_DontPushYourselfTooHard
-	goto_if_set FLAG_HAS_MATCH_CALL, PlayersHouse_1F_EventScript_TryRegisterMom
+	//goto_if_set FLAG_HAS_MATCH_CALL, PlayersHouse_1F_EventScript_TryRegisterMom
 	goto_if_set FLAG_RESCUED_BIRCH, PlayersHouse_1F_EventScript_MomHealsParty
 	goto_if_eq VAR_TEMP_1, 1, PlayersHouse_1F_EventScript_SeeYouHoney
 	goto_if_eq VAR_LITTLEROOT_INTRO_STATE, 7, PlayersHouse_1F_EventScript_DidYouMeetProfBirch

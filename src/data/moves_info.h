@@ -19614,7 +19614,7 @@ const struct MoveInfo gMovesInfo[MOVES_COUNT_ALL] =
         .name = COMPOUND_STRING("Last Respects"),
         .description = COMPOUND_STRING(
             "This move deals more damage\n"
-            "for each defeated ally."),
+            "for each fallen ally."),
         .effect = EFFECT_LAST_RESPECTS,
         .power = 30,
         .type = TYPE_GHOST,

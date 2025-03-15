@@ -51,7 +51,7 @@ Route103_EventScript_RivalBrendan::
 	applymovement LOCALID_RIVAL, Common_Movement_Delay48
 	waitmovement 0
 	msgbox Route103_Text_BrendanLetsBattle, MSGBOX_DEFAULT
-	goto Route103_EventScript_StartMayBattleMudkip
+	goto Route103_EventScript_StartBrendanBattleMudkip
 	end
 
 Route103_EventScript_StartMayBattleTreecko::

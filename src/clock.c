@@ -105,3 +105,37 @@ void StartWallClock(void)
     SetMainCallback2(CB2_StartWallClock);
     gMain.savedCallback = ReturnFromStartWallClock;
 }
+
+void AdvanceTimeToNextPeriod(void)
+{
+    u8 time = GetTimeOfDay();
+
+    switch(time) {
+        case TIME_MORNING: // Set it to TIME_DAY.
+            gLocalTime.hours = 15;
+            gLocalTime.minutes = 0;
+            gLocalTime.seconds = 0;
+            break;
+        case TIME_DAY: // Set it to TIME_NIGHT.
+            gLocalTime.hours = 23;
+            gLocalTime.minutes = 0;
+            gLocalTime.seconds = 0;
+            break;            
+        case TIME_NIGHT: // Set it to TIME_MORNING.
+            gLocalTime.days += 1;
+            gLocalTime.hours = 7;
+            gLocalTime.minutes = 0;
+            gLocalTime.seconds = 0;
+            break;
+    }
+    RtcReset();
+    RtcCalcLocalTimeOffset(
+        gLocalTime.days,
+        gLocalTime.hours,
+        gLocalTime.minutes,
+        gLocalTime.seconds);
+    gSaveBlock2Ptr->lastBerryTreeUpdate = gLocalTime;
+    VarSet(VAR_DAYS, gLocalTime.days);
+    DisableResetRTC();
+}
+

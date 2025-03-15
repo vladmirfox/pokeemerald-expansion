@@ -418,7 +418,6 @@ PetalburgCity_Gym_EventScript_Norman_Trainer8::
 PetalburgCity_Gym_EventScript_PostBattle::
 	message PetalburgCity_Gym_Text_ReceivedBalanceBadge
 	waitmessage
-	call Common_EventScript_PlayGymBadgeFanfare
 	msgbox PetalburgCity_Gym_Text_ExplainBalanceBadgeTakeThis, MSGBOX_DEFAULT
 	setflag FLAG_DEFEATED_PETALBURG_GYM
 	setvar VAR_PETALBURG_GYM_STATE, 7
@@ -1158,6 +1157,7 @@ PetalburgCity_Gym_EventScript_UnlockRoomDoors::
 PetalburgCity_Gym_EventScript_GymGuide::
 	lock
 	faceplayer
+    special HealPlayerParty
 	goto_if_set FLAG_DEFEATED_PETALBURG_GYM, PetalburgCity_Gym_EventScript_GymGuidePostVictory
 	msgbox PetalburgCity_Gym_Text_GymGuideAdvice, MSGBOX_DEFAULT
 	release
@@ -1391,7 +1391,9 @@ PetalburgCity_Gym_Text_GymGuideAdvice:
 	.string "The room's name will be on\n"
 	.string "the door, so choose carefully.\p"
 	.string "Once you've chosen the door…\n"
-	.string "Well, hey, go for it!$"
+	.string "Well, hey, go for it!\p"
+	.string "After this chat, your POKéMON should\n"
+	.string "be refreshed and ready to go!$"
 
 PetalburgCity_Gym_Text_GymGuidePostVictory:
 	.string "{PLAYER}! Whoa! You've overcome even\n"
