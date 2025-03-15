@@ -664,76 +664,44 @@ LittlerootTown_ProfessorBirchsLab_EventScript_ScottAboardSSTidalCall::
 	releaseall
 	end
 
-LittlerootTown_ProfessorBirchsLab_Text_BirchAwayOnFieldwork:
-	.string "Hunh? PROF. BIRCH?\p"
-	.string "The PROF's away on fieldwork.\n"
-	.string "Ergo, he isn't here.\p"
-	.string "Oh, let me explain what fieldwork is.\p"
-	.string "It is to study things in the natural\n"
-	.string "environment, like fields and mountains,\l"
-	.string "instead of a laboratory.\p"
-	.string "The PROF isn't one for doing desk work.\n"
-	.string "He's the type of person who would\l"
-	.string "rather go outside and experience\l"
-	.string "things than read about them here.$"
-
-LittlerootTown_ProfessorBirchsLab_Text_BirchIsntOneForDeskWork:
-	.string "The PROF isn't one for doing desk work.\n"
-	.string "He's the type of person who would\l"
-	.string "rather go outside and experience\l"
-	.string "things than read about them here.$"
-
 LittlerootTown_ProfessorBirchsLab_Text_BirchEnjoysRivalsHelpToo:
 	.string "PROF. BIRCH is studying the habitats\n"
 	.string "and distribution of POKéMON.\p"
 	.string "The PROF enjoys {RIVAL}'s help, too.\n"
 	.string "There's a lot of love there.$"
 
-LittlerootTown_ProfessorBirchsLab_Text_LikeYouToHavePokemon:
-	.string "PROF. BIRCH: So, {PLAYER}{KUN}.\p"
-	.string "I've heard so much about you from\n"
-	.string "your father.\p"
-	.string "I've heard that you don't have your\n"
-	.string "own POKéMON yet.\p"
-	.string "But the way you battled earlier,\n"
-	.string "you pulled it off with aplomb!\p"
-	.string "I guess you have your father's blood\n"
-	.string "in your veins after all!\p"
-	.string "Oh, yes. As thanks for rescuing me,\n"
-	.string "I'd like you to have the POKéMON you\l"
-	.string "used earlier.\p"
-	.string "{PLAYER} received the {STR_VAR_1}!$"
-
 LittlerootTown_ProfessorBirchsLab_Text_WhyNotGiveNicknameToMon:
-	.string "PROF. BIRCH: While you're at it, why not\n"
-	.string "give a nickname to that {STR_VAR_1}?$"
+	.string "PROF. BIRCH: Do you want to give a\n"
+	.string "nickname to that {STR_VAR_1}?$"
 
 LittlerootTown_ProfessorBirchsLab_Text_MightBeGoodIdeaToGoSeeRival:
 	.string "PROF. BIRCH: If you work at POKéMON\n"
 	.string "and gain experience, I think you'll make\l"
 	.string "an extremely good TRAINER.\p"
-	.string "My kid, {RIVAL}, is also studying\n"
-	.string "POKéMON while helping me out.\p"
-	.string "{PLAYER}{KUN}, don't you think it might be\n"
-	.string "a good idea to go see {RIVAL}?$"
+	.string "My kid, {RIVAL}, is currently training\n"
+	.string "POKéMON on Route 103, working on a team\p"
+	.string "to beat the first of the 8 GYM LEADERS\n"
+	.string "of the HOENN Region. If you are up for\p"
+	.string "the challenge {PLAYER}{KUN}, you can go\n"
+	.string "battle {RIVAL} right now, what do you\p"
+	.string "say, are you up for it?$"
 
 LittlerootTown_ProfessorBirchsLab_Text_GetRivalToTeachYou:
 	.string "PROF. BIRCH: Great!\n"
 	.string "{RIVAL} should be happy, too.\p"
-	.string "Get {RIVAL} to teach you what it\n"
-	.string "means to be a TRAINER.$"
+	.string "When you are done with the battle\n"
+	.string "come back here I will show you both\p"
+	.string "something I have been working on.$"
 
 LittlerootTown_ProfessorBirchsLab_Text_DontBeThatWay:
-	.string "PROF. BIRCH: Oh, don't be that way.\n"
-	.string "You should go meet my kid.$"
+	.string "PROF. BIRCH: Oh, I thought you had your\n"
+	.string "dads fighting spirit, don't you?$"
 
 LittlerootTown_ProfessorBirchsLab_Text_BirchRivalGoneHome:
 	.string "PROF. BIRCH: {RIVAL}?\n"
-	.string "Gone home, I think.\p"
-	.string "Or maybe that kid's scrabbling around\n"
-	.string "in tall grass again somewhere…\p"
-	.string "If you or your POKéMON get tired,\n"
-	.string "you should get some rest at home.$"
+	.string "On Route 103, I think.\p"
+	.string "Or maybe on their way back already…\n"
+	.string "You should go and battle them.$"
 
 LittlerootTown_ProfessorBirchsLab_Text_HeardYouBeatRivalTakePokedex:
 	.string "PROF. BIRCH: Oh, hi, {PLAYER}{KUN}!\p"
@@ -1001,3 +969,17 @@ LittlerootTown_ProfessorBirchsLab_Text_ScottAboardSSTidalCall:
 	.string "… … … … … …\n"
 	.string "… … … … … Click!$"
 `
+//TODO refactor to LittlerootTown_ProfessorBirchsLab_Text_BirchNotBackFromOldale
+text LittlerootTown_ProfessorBirchsLab_Text_BirchAwayOnFieldwork {
+	format("Are you looking for PROF. BIRCH? He has gone to OLDALE TOWN to pick up the prize POKéMON for the lottery winner. \p … … … … … … … …\l … … … … … … … …\p Oh, you are this weeks winner! Maybe he has gone home before dropping of the POKéMON.")
+}
+
+//TODO refactor to LittlerootTown_ProfessorBirchsLab_Text_BirchIsntOneForDeskWork
+text LittlerootTown_ProfessorBirchsLab_Text_BirchIsntOneForDeskWork {
+	format("The PROF. isn't one for desk work, I think the only time I see him not studying POKéMON in the wild is for these weekly lotteries…")
+}
+
+//TODO refactor to LittlerootTown_ProfessorBirchsLab_Text_LikeYouToHavePokemon
+text LittlerootTown_ProfessorBirchsLab_Text_LikeYouToHavePokemon {
+	format("PROF. BIRCH: Thanks for saving me out there. I panicked and dropped the bag with the prize POKéMON before realizing they were the only ones I had with me, to defend myself.\p … I gotta say though, it's great to see you and your new partner battle together for the first time.\p But now let's make this weeks lottery prize handout official: {PLAYER} received the {STR_VAR_1}!")
+}

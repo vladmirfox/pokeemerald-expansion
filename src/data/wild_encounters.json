@@ -135,7 +135,7 @@
               {
                 "min_level": 5,
                 "max_level": 6,
-                "species": "SPECIES_VENIPEDE"
+                "species": "SPECIES_TAROUNTULA"
               },
               {
                 "min_level": 5,
@@ -11620,12 +11620,12 @@
               {
                 "min_level": 7,
                 "max_level": 9,
-                "species": "SPECIES_RATTATA_ALOLAN"
+                "species": "SPECIES_LECHONK"
               },
               {
                 "min_level": 7,
                 "max_level": 9,
-                "species": "SPECIES_ZIGZAGOON_GALARIAN"
+                "species": "SPECIES_PAWMI"
               }
             ]
           }
