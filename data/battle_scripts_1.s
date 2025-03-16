@@ -7989,7 +7989,7 @@ BattleScript_AttackWeakenedByStrongWinds::
 	waitmessage B_WAIT_TIME_LONG
 	return
 
-BattleScript_MimicryActivates_End3::
+BattleScript_MimicryActivates::
 	pause B_WAIT_TIME_SHORT
 	call BattleScript_AbilityPopUp
 	printstring STRINGID_BATTLERTYPECHANGEDTO
