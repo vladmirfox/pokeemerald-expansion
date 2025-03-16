@@ -965,14 +965,6 @@ void ReadMidiTracks()
                 if (g_compressionEnabled)
                     Compress(*events);
 
-                if (B_NUM_BEEPS_GEN_LOCK)
-                {
-                    if (trackLoops >= GEN_6 && trackLoops <= GEN_LATEST)
-                        trackLoops = 4;
-                    else
-                        trackLoops = -1;
-                }
-
                 if ((strcmp(g_asmLabel.c_str(), "se_low_health") == 0) && trackLoops >= 0)
                     PrintAgbTrackLoop(*events, trackLoops);
                 else
