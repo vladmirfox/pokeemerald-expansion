@@ -918,10 +918,6 @@ void Compress(std::vector<Event>& events)
     }
 }
 
-// for expansion's bool macros of TRUE and FALSE
-#define TRUE true
-#define FALSE false
-
 void ReadMidiTracks()
 {
     long trackHeaderStart = 14;
