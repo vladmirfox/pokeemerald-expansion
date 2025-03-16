@@ -2026,7 +2026,7 @@ static u32 LoadDynamicFollowerPalette(u32 species, bool32 shiny, bool32 female)
         // Check if pal data must be decompressed
         if (IsLZ77Data(spritePalette.data, PLTT_SIZE_4BPP, PLTT_SIZE_4BPP))
         {
-            struct CompressedSpritePalette compSpritePalette;
+            struct SpritePalette compSpritePalette;
 
             compSpritePalette.data = (const void *) spritePalette.data;
             compSpritePalette.tag = spritePalette.tag;

@@ -38,7 +38,7 @@ struct BattleAnimBgData
 struct BattleAnimBackground
 {
     const u32 *image;
-    const u32 *palette;
+    const u16 *palette;
     const u32 *tilemap;
 };
 
@@ -434,7 +434,7 @@ extern const struct OamData gOamData_AffineOff_ObjBlend_16x32;
 extern const struct OamData gOamData_AffineDouble_ObjBlend_32x8;
 
 extern const struct CompressedSpriteSheet gBattleAnimPicTable[];
-extern const struct CompressedSpritePalette gBattleAnimPaletteTable[];
+extern const struct SpritePalette gBattleAnimPaletteTable[];
 
 extern const struct SpriteTemplate gWaterHitSplatSpriteTemplate;
 

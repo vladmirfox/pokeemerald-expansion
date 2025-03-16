@@ -2066,7 +2066,7 @@ static u8 gpu_pal_decompress_alloc_tag_and_upload(struct PlaceDecorationGraphics
 static u8 AddDecorationIconObjectFromIconTable(u16 tilesTag, u16 paletteTag, u8 decor)
 {
     struct SpriteSheet sheet;
-    struct CompressedSpritePalette palette;
+    struct SpritePalette palette;
     struct SpriteTemplate *template;
     u8 spriteId;
 

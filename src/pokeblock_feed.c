@@ -101,7 +101,7 @@ static const u8 sText_Var1HappilyAteVar2[] = _("{STR_VAR_1} happily ate the\n{ST
 static const u8 sText_Var1DisdainfullyAteVar2[] = _("{STR_VAR_1} disdainfully ate the\n{STR_VAR_2}.{PAUSE_UNTIL_PRESS}");
 
 EWRAM_DATA static struct PokeblockFeed *sPokeblockFeed = NULL;
-EWRAM_DATA static struct CompressedSpritePalette sPokeblockSpritePal = {0};
+EWRAM_DATA static struct SpritePalette sPokeblockSpritePal = {0};
 
 // Data for the animation the Pokémon does while readying to jump for the Pokéblock
 // Each nature can have up to 8 anim 'stages' it progresses through, and each stage has its own array of data.

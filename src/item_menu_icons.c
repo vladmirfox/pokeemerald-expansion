@@ -140,7 +140,7 @@ const struct CompressedSpriteSheet gBagFemaleSpriteSheet =
     gBagFemaleTiles, 0x3000, TAG_BAG_GFX
 };
 
-const struct CompressedSpritePalette gBagPaletteTable =
+const struct SpritePalette gBagPaletteTable =
 {
     gBagPalette, TAG_BAG_GFX
 };
@@ -399,7 +399,7 @@ const struct CompressedSpriteSheet gBerryCheckCircleSpriteSheet =
     gBerryCheckCircle_Gfx, 0x800, TAG_BERRY_CHECK_CIRCLE_GFX
 };
 
-const struct CompressedSpritePalette gBerryCheckCirclePaletteTable =
+const struct SpritePalette gBerryCheckCirclePaletteTable =
 {
     gBerryCheck_Pal, TAG_BERRY_CHECK_CIRCLE_GFX
 };
@@ -648,7 +648,7 @@ struct BerryDynamicGfx
 
 static struct BerryDynamicGfx *LoadBerryGfx(u8 berryId)
 {
-    struct CompressedSpritePalette pal;
+    struct SpritePalette pal;
 
     pal.data = sBerryPicTable[berryId].pal;
     pal.tag = TAG_BERRY_PIC_PAL + berryId;
