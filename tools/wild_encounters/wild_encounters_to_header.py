@@ -135,7 +135,7 @@ def ImportWildEncounterFile():
     global tabStr
     tabStr = "    "
 
-    wFile = open("../../src/data/wild_encounters_orginal.json")
+    wFile = open("../../src/data/wild_encounters.json")
     wData = json.load(wFile)
 
     encounterTotalCount = []
@@ -248,7 +248,6 @@ def ImportWildEncounterFile():
                     infoStructString = f"{baseStruct}{structInfo} {structLabel}_{structMonType}{structInfo} = {{ {infoStructRate}, {structLabel}_{structMonType} }};"
                     print(infoStructString)
 
-            # TODO: this section needs rewriting to allow better data organization and not being reliant on the number of encounters
             AssembleMonHeaderContent()
                 
         headerIndex += 1
@@ -307,8 +306,6 @@ def AssembleMonHeaderContent():
     headerStructTable[tempHeaderLabel][structLabelNoTime]["encounter_types"][tempHeaderTimeIndex].append(rockSmashMonsInfo)
     headerStructTable[tempHeaderLabel][structLabelNoTime]["encounter_types"][tempHeaderTimeIndex].append(fishingMonsInfo)
     headerStructTable[tempHeaderLabel][structLabelNoTime]["encounter_types"][tempHeaderTimeIndex].append(hiddenMonsInfo)
-
-    #print(headerStructTable[tempHeaderLabel][structLabelNoTime]["encounter_types"][tempHeaderTimeIndex])
 
 
 def SetupMonInfoVars():
@@ -370,12 +367,14 @@ def PrintWildMonHeadersContent():
                         for monInfo in headerStructTable[group][label][stat]:
                             infoIndex = 0
                             PrintEncounterHeaders(f"{TabStr(3)}[{GetTimeStrFromIndex(infoCount)}] = ")
-
-                            for timeGroup in headerStructTable[group][label][stat][infoIndex]:
+                            while infoIndex <= MONS_INFO_TOTAL - 1:
                                 if infoIndex == 0:
                                     PrintEncounterHeaders(TabStr(3) + "{")
 
-                                PrintEncounterHeaders(f"{TabStr(4)}{GetIMonInfoStringFromIndex(infoIndex)} = {monInfo[infoIndex]},")
+                                if len(monInfo) == 0:
+                                    PrintEncounterHeaders(f"{TabStr(4)}{GetIMonInfoStringFromIndex(infoIndex)} = NULL,")
+                                else:
+                                    PrintEncounterHeaders(f"{TabStr(4)}{GetIMonInfoStringFromIndex(infoIndex)} = {monInfo[infoIndex]},")
 
                                 if infoIndex == MONS_INFO_TOTAL - 1:
                                     PrintEncounterHeaders(TabStr(3) + "},")
