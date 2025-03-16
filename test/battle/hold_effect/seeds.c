@@ -159,7 +159,7 @@ SINGLE_BATTLE_TEST("Seeds get consumed in Terrain even if holder is not affected
     }
 }
 
-SINGLE_BATTLE_TEST("Electric Seed raises the holder's Defense on Electric Terrain before abilities change the terrain")
+SINGLE_BATTLE_TEST("Electric Seed is consumed on Electric Terrain before other abilities change the terrain")
 {
     GIVEN {
         PLAYER(SPECIES_TAPU_BULU) { Ability(ABILITY_GRASSY_SURGE); Item(ITEM_ELECTRIC_SEED); Speed(5); }
