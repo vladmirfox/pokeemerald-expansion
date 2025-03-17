@@ -9523,7 +9523,7 @@ BattleScript_EjectButtonActivates::
 	printstring STRINGID_EJECTBUTTONACTIVATE
 	waitmessage B_WAIT_TIME_LONG
 	removeitem BS_SCRIPTING
-    undodynamax BS_SCRIPTING
+        undodynamax BS_SCRIPTING
 	makeinvisible BS_SCRIPTING
 	openpartyscreen BS_SCRIPTING, BattleScript_EjectButtonEnd
 	copybyte sSAVED_BATTLER, sBATTLER
