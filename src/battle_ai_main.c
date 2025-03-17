@@ -2715,7 +2715,7 @@ static s32 AI_CheckBadMove(u32 battlerAtk, u32 battlerDef, u32 move, s32 score)
         else if (GetBattleMoveCategory(move) == DAMAGE_CATEGORY_STATUS
             && (CountUsablePartyMons(battlerAtk) < 1
             || AI_DATA->mostSuitableMonId[battlerAtk] == PARTY_SIZE
-            || (!AI_CanBattlerEscape(battlerDef, TRUE) && IsBattlerTrapped(battlerAtk, battlerDef))))
+            || (!AI_CanBattlerEscape(battlerAtk, TRUE) && IsBattlerTrapped(battlerDef, battlerAtk))))
             ADJUST_SCORE(-30);
     }
 
