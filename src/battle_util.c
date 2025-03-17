@@ -12311,8 +12311,8 @@ bool32 HasWeatherEffect(void)
 
         u32 ability = GetBattlerAbility(battler);
         if (ability == ABILITY_CLOUD_NINE || ability == ABILITY_AIR_LOCK)
-            return TRUE;
+            return FALSE;
     }
 
-    return FALSE;
+    return TRUE;
 }
