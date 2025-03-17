@@ -1,7 +1,7 @@
 #include "global.h"
 #include "test/battle.h"
 
-DOUBLE_BATTLE_TEST("Speed Down: Cotton Spore is does not fail if it is blocked by one target")
+DOUBLE_BATTLE_TEST("Speed Down: Cotton Spore does not fail if it is blocked by one target")
 {
     u32 abilityOne, abilityTwo;
 
