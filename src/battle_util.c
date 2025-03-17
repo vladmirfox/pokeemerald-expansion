@@ -12304,7 +12304,12 @@ void ClearPursuitValuesIfSet(u32 battler)
 
 bool32 HasWeatherEffect(void)
 {
-    if (IsAbilityOnField(ABILITY_CLOUD_NINE) || IsAbilityOnField(ABILITY_AIR_LOCK))
-        return FALSE;
-    return TRUE;
+    for (u32 battler = 0; battler < gBattlersCount; battler++)
+    {
+        u32 ability = GetBattlerAbility(battler);
+        if (ability == ABILITY_CLOUD_NINE || ability == ABILITY_AIR_LOCK)
+            return TRUE;
+    }
+
+    return FALSE;
 }
