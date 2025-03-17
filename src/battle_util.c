@@ -12306,6 +12306,9 @@ bool32 HasWeatherEffect(void)
 {
     for (u32 battler = 0; battler < gBattlersCount; battler++)
     {
+        if (!IsBattlerAlive(battler))
+            continue;
+
         u32 ability = GetBattlerAbility(battler);
         if (ability == ABILITY_CLOUD_NINE || ability == ABILITY_AIR_LOCK)
             return TRUE;
