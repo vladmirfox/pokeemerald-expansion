@@ -848,26 +848,28 @@ AI_SINGLE_BATTLE_TEST("AI won't use Sucker Punch if it expects a move of the sam
 
 AI_SINGLE_BATTLE_TEST("AI won't use Fire-type move if target is frozen unless it is super effective or it has no other options")
 {
-    u32 aiFlags = 0; u32 status = 0; u32 move = 0;
-    PARAMETRIZE { status = STATUS1_FREEZE;      move = MOVE_SCALD; aiFlags = 0; }
-    PARAMETRIZE { status = STATUS1_FREEZE;      move = MOVE_SCALD; aiFlags = AI_FLAG_CHECK_BAD_MOVE; }
-    PARAMETRIZE { status = STATUS1_FROSTBITE;   move = MOVE_SCALD; aiFlags = 0; }
-    PARAMETRIZE { status = STATUS1_FROSTBITE;   move = MOVE_SCALD; aiFlags = AI_FLAG_CHECK_BAD_MOVE; }
-    PARAMETRIZE { status = STATUS1_FREEZE;      move = MOVE_EMBER; aiFlags = 0; }
-    PARAMETRIZE { status = STATUS1_FREEZE;      move = MOVE_EMBER; aiFlags = AI_FLAG_CHECK_BAD_MOVE; }
-    PARAMETRIZE { status = STATUS1_FROSTBITE;   move = MOVE_EMBER; aiFlags = 0; }
-    PARAMETRIZE { status = STATUS1_FROSTBITE;   move = MOVE_EMBER; aiFlags = AI_FLAG_CHECK_BAD_MOVE; }
-    
+    u32 aiFlags = 0; u32 status = 0; u32 aiMove = 0;
+    PARAMETRIZE { status = STATUS1_FREEZE;      aiMove = MOVE_SCALD;    aiFlags = 0; }
+    PARAMETRIZE { status = STATUS1_FREEZE;      aiMove = MOVE_SCALD;    aiFlags = AI_FLAG_CHECK_BAD_MOVE; }
+    PARAMETRIZE { status = STATUS1_FROSTBITE;   aiMove = MOVE_SCALD;    aiFlags = 0; }
+    PARAMETRIZE { status = STATUS1_FROSTBITE;   aiMove = MOVE_SCALD;    aiFlags = AI_FLAG_CHECK_BAD_MOVE; }
+    PARAMETRIZE { status = STATUS1_FREEZE;      aiMove = MOVE_EMBER;    aiFlags = 0; }
+    PARAMETRIZE { status = STATUS1_FREEZE;      aiMove = MOVE_EMBER;    aiFlags = AI_FLAG_CHECK_BAD_MOVE; }
+    PARAMETRIZE { status = STATUS1_FROSTBITE;   aiMove = MOVE_EMBER;    aiFlags = 0; }
+    PARAMETRIZE { status = STATUS1_FROSTBITE;   aiMove = MOVE_EMBER;    aiFlags = AI_FLAG_CHECK_BAD_MOVE; }
+
     GIVEN {
         ASSUME(GetMoveType(MOVE_EMBER) == TYPE_FIRE);
+        ASSUME(GetMoveCategory(MOVE_TACKLE) == DAMAGE_CATEGORY_PHYSICAL);
+        ASSUME(GetMoveCategory(MOVE_WATER_GUN) == DAMAGE_CATEGORY_SPECIAL);
         ASSUME(gMovesInfo[MOVE_SCALD].thawsUser == TRUE);
         AI_FLAGS(aiFlags | AI_FLAG_CHECK_VIABILITY | AI_FLAG_TRY_TO_FAINT);
         PLAYER(SPECIES_WOBBUFFET) { Moves(MOVE_TACKLE); Status1(status); }
-        OPPONENT(SPECIES_VULPIX) { Moves(MOVE_TACKLE, move); }
+        OPPONENT(SPECIES_VULPIX) { Moves(MOVE_TACKLE, aiMove); }
     } WHEN {
         if (aiFlags == AI_FLAG_CHECK_BAD_MOVE)
             TURN { MOVE(player, MOVE_TACKLE); EXPECT_MOVE(opponent, MOVE_TACKLE); }
         else
-            TURN { MOVE(player, MOVE_TACKLE); EXPECT_MOVE(opponent, move); }
+            TURN { MOVE(player, MOVE_TACKLE); EXPECT_MOVE(opponent, aiMove); }
     }
 }
