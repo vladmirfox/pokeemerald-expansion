@@ -1778,7 +1778,6 @@ void ProtectChecks(u32 battlerAtk, u32 battlerDef, u32 move, u32 predictedMove, 
 // stat stages
 bool32 ShouldLowerStat(u32 battlerAtk, u32 battlerDef, u32 abilityDef, u32 stat)
 {
-    // Arguably there should be a decrease in score if the target is a -4 stages
     if (gBattleMons[battlerDef].statStages[stat] == MIN_STAT_STAGE)
         return FALSE;
 
@@ -1814,7 +1813,7 @@ bool32 ShouldLowerStat(u32 battlerAtk, u32 battlerDef, u32 abilityDef, u32 stat)
         return FALSE;
     }
 
-    // Arguably this shouldn't be here and insated checked in checkViability
+    // This should be a viability check
     if (stat == STAT_SPEED)
     {
         // If AI is faster and doesn't have any mons left, lowering speed doesn't give any
