@@ -11435,8 +11435,6 @@ static bool32 IsUnnerveAbilityOnOpposingSide(u32 battler)
         case ABILITY_AS_ONE_ICE_RIDER:
         case ABILITY_AS_ONE_SHADOW_RIDER:
             return TRUE;
-        default:
-            return FALSE;
         }
     }
 
@@ -12331,8 +12329,6 @@ bool32 HasWeatherEffect(void)
         case ABILITY_CLOUD_NINE:
         case ABILITY_AIR_LOCK:
             return FALSE;
-        default:
-            return TRUE;
         }
     }
 
