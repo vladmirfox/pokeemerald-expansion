@@ -354,5 +354,6 @@ bool32 IsPursuitTargetSet(void);
 void ClearPursuitValuesIfSet(u32 battler);
 void ClearPursuitValues(void);
 bool32 HasWeatherEffect(void);
+void SetDynamicMoveCategory(u32 battlerAtk, u32 battlerDef, u32 move);
 
 #endif // GUARD_BATTLE_UTIL_H

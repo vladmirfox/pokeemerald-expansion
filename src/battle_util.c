@@ -11392,6 +11392,7 @@ u8 GetBattleMoveCategory(u32 moveId)
 
     if (IsBattleMoveStatus(moveId))
         return DAMAGE_CATEGORY_STATUS;
+
     return gTypesInfo[GetBattleMoveType(moveId)].damageCategory;
 }
 
@@ -12307,4 +12308,29 @@ bool32 HasWeatherEffect(void)
     if (IsAbilityOnField(ABILITY_CLOUD_NINE) || IsAbilityOnField(ABILITY_AIR_LOCK))
         return FALSE;
     return TRUE;
+}
+
+void SetDynamicMoveCategory(u32 battlerAtk, u32 battlerDef, u32 move)
+{
+    switch (GetMoveEffect(move))
+    {
+    case EFFECT_PHOTON_GEYSER:
+        gBattleStruct->swapDamageCategory = (GetCategoryBasedOnStats(battlerAtk) == DAMAGE_CATEGORY_PHYSICAL);
+        break;
+    case EFFECT_SHELL_SIDE_ARM:
+        if (gBattleStruct->shellSideArmCategory[battlerAtk][battlerDef] == DAMAGE_CATEGORY_PHYSICAL)
+            gBattleStruct->swapDamageCategory = TRUE;
+        break;
+    case EFFECT_TERA_BLAST:
+        if (GetActiveGimmick(battlerAtk) == GIMMICK_TERA)
+            gBattleStruct->swapDamageCategory = GetCategoryBasedOnStats(battlerAtk) == DAMAGE_CATEGORY_PHYSICAL;
+        break;
+    case EFFECT_TERA_STARSTORM:
+        if (GetActiveGimmick(battlerAtk) == GIMMICK_TERA && GET_BASE_SPECIES_ID(GetMonData(GetPartyBattlerData(battlerAtk), MON_DATA_SPECIES)) == SPECIES_TERAPAGOS)
+            gBattleStruct->swapDamageCategory = GetCategoryBasedOnStats(battlerAtk) == DAMAGE_CATEGORY_PHYSICAL;
+        break;
+    default:
+        gBattleStruct->swapDamageCategory = FALSE;
+        break;
+    }
 }
