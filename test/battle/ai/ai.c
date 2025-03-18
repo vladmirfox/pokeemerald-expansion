@@ -846,7 +846,7 @@ AI_SINGLE_BATTLE_TEST("AI won't use Sucker Punch if it expects a move of the sam
     }
 }
 
-AI_SINGLE_BATTLE_TEST("AI won't use Fire-type move if target is frozen unless it is super effective or it has no other options")
+AI_SINGLE_BATTLE_TEST("AI won't use thawing moves if target is frozen unless it is super effective or it has no other options")
 {
     u32 aiFlags = 0; u32 status = 0; u32 aiMove = 0;
     PARAMETRIZE { status = STATUS1_FREEZE;      aiMove = MOVE_SCALD;    aiFlags = 0; }
