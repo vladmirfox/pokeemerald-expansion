@@ -845,3 +845,23 @@ AI_SINGLE_BATTLE_TEST("AI won't use Sucker Punch if it expects a move of the sam
         TURN { MOVE(player, MOVE_QUICK_ATTACK); EXPECT_MOVE(opponent, MOVE_TACKLE); }
     }
 }
+
+AI_SINGLE_BATTLE_TEST("AI won't use Fire-type move if target is frozen unless it is super effective or it has no other options")
+{
+    u32 aiFlags = 0; u32 status = 0;
+    PARAMETRIZE { status = STATUS1_FREEZE;      aiFlags = 0; }
+    PARAMETRIZE { status = STATUS1_FREEZE;      aiFlags = AI_FLAG_CHECK_BAD_MOVE; }
+    PARAMETRIZE { status = STATUS1_FROSTBITE;   aiFlags = 0; }
+    PARAMETRIZE { status = STATUS1_FROSTBITE;   aiFlags = AI_FLAG_CHECK_BAD_MOVE; }
+    GIVEN {
+        ASSUME(GetMoveType(MOVE_EMBER) == TYPE_FIRE);
+        AI_FLAGS(aiFlags | AI_FLAG_CHECK_VIABILITY | AI_FLAG_TRY_TO_FAINT);
+        PLAYER(SPECIES_WOBBUFFET) { Moves(MOVE_TACKLE); Status1(status); }
+        OPPONENT(SPECIES_VULPIX) { Moves(MOVE_TACKLE, MOVE_EMBER); }
+    } WHEN {
+        if (aiFlags == AI_FLAG_CHECK_BAD_MOVE)
+            TURN { MOVE(player, MOVE_TACKLE); EXPECT_MOVE(opponent, MOVE_TACKLE); }
+        else
+            TURN { MOVE(player, MOVE_TACKLE); EXPECT_MOVE(opponent, MOVE_EMBER); }
+    }
+}
