@@ -11428,7 +11428,7 @@ static bool32 IsUnnerveAbilityOnOpposingSide(u32 battler)
         if (!IsBattlerAlive(battlerDef))
             continue;
 
-        u32 ability = GetBattlerAbility(battler);
+        u32 ability = GetBattlerAbility(battlerDef);
         switch (ability)
         {
         case ABILITY_UNNERVE:
