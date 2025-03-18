@@ -24,6 +24,32 @@
 #include "constants/items.h"
 
 // Functions
+static bool32 AI_IsDoubleSpreadMove(u32 battlerAtk, u32 move)
+{
+    u32 numOfTargets = 0;
+    u32 moveTargetType = GetBattlerMoveTargetType(battlerAtk, move);
+
+    if (!IsSpreadMove(moveTargetType))
+        return FALSE;
+
+    for (u32 battlerDef = 0; battlerDef < MAX_BATTLERS_COUNT; battlerDef++)
+    {
+        if (battlerAtk == battlerDef)
+            continue;
+
+        if (moveTargetType == MOVE_TARGET_BOTH && battlerAtk == BATTLE_PARTNER(battlerDef))
+            continue;
+
+        if (IsBattlerAlive(battlerDef) && !IsSemiInvulnerable(battlerDef, move)) 
+            numOfTargets++; 
+    }
+
+    if (numOfTargets > 1)
+        return TRUE;
+
+    return FALSE;
+}
+
 u32 AI_GetDamage(u32 battlerAtk, u32 battlerDef, u32 moveIndex, enum DamageCalcContext calcContext, struct AiLogicData *aiData)
 {
     if (calcContext == AI_ATTACKING && BattlerHasAi(battlerAtk))
@@ -313,25 +339,35 @@ bool32 AI_BattlerAtMaxHp(u32 battlerId)
     return FALSE;
 }
 
-bool32 IsBattlerTrapped(u32 battler, bool32 checkSwitch)
+
+bool32 AI_CanBattlerEscape(u32 battler)
 {
     u32 holdEffect = AI_DATA->holdEffects[battler];
 
     if (B_GHOSTS_ESCAPE >= GEN_6 && IS_BATTLER_OF_TYPE(battler, TYPE_GHOST))
-        return FALSE;
-    if (checkSwitch && holdEffect == HOLD_EFFECT_SHED_SHELL)
-        return FALSE;
-    else if (!checkSwitch && AI_DATA->abilities[battler] == ABILITY_RUN_AWAY)
-        return FALSE;
-    else if (!checkSwitch && holdEffect == HOLD_EFFECT_CAN_ALWAYS_RUN)
-        return FALSE;
-    else if (gBattleMons[battler].status2 & (STATUS2_ESCAPE_PREVENTION | STATUS2_WRAPPED))
         return TRUE;
-    else if (gStatuses3[battler] & (STATUS3_ROOTED | STATUS3_SKY_DROPPED))
+    if (holdEffect == HOLD_EFFECT_SHED_SHELL)
         return TRUE;
-    else if (gFieldStatuses & STATUS_FIELD_FAIRY_LOCK)
+
+    return FALSE;
+}
+
+bool32 IsBattlerTrapped(u32 battlerAtk, u32 battlerDef)
+{
+    if (gBattleMons[battlerDef].status2 & (STATUS2_ESCAPE_PREVENTION | STATUS2_WRAPPED))
         return TRUE;
-    else if (IsAbilityPreventingEscape(battler))
+    if (gStatuses3[battlerDef] & (STATUS3_ROOTED | STATUS3_SKY_DROPPED))
+        return TRUE;
+    if (gFieldStatuses & STATUS_FIELD_FAIRY_LOCK)
+        return TRUE;
+    if (AI_IsAbilityOnSide(battlerAtk, ABILITY_SHADOW_TAG)
+        && (B_SHADOW_TAG_ESCAPE >= GEN_4 && AI_DATA->abilities[battlerDef] != ABILITY_SHADOW_TAG))
+        return TRUE;
+    if (AI_IsAbilityOnSide(battlerAtk, ABILITY_ARENA_TRAP)
+        && IsBattlerGrounded(battlerAtk))
+        return TRUE;
+    if (AI_IsAbilityOnSide(battlerAtk, ABILITY_MAGNET_PULL)
+        && IS_BATTLER_OF_TYPE(battlerAtk, TYPE_STEEL))
         return TRUE;
 
     return FALSE;
@@ -564,13 +600,13 @@ static inline void CalcDynamicMoveDamage(struct DamageCalculationData *damageCal
     switch (effect)
     {
     case EFFECT_LEVEL_DAMAGE:
-        median = maximum = minimum = gBattleMons[damageCalcData->battlerAtk].level * (abilityAtk == ABILITY_PARENTAL_BOND ? 2 : 1);
+        median = maximum = minimum = gBattleMons[damageCalcData->battlerAtk].level;
         break;
     case EFFECT_PSYWAVE:
-        median = maximum = minimum = gBattleMons[damageCalcData->battlerAtk].level * (abilityAtk == ABILITY_PARENTAL_BOND ? 2 : 1);
+        median = maximum = minimum = gBattleMons[damageCalcData->battlerAtk].level;
         break;
     case EFFECT_FIXED_DAMAGE_ARG:
-        median = maximum = minimum = GetMoveFixedDamage(move) * (abilityAtk == ABILITY_PARENTAL_BOND ? 2 : 1);
+        median = maximum = minimum = GetMoveFixedDamage(move);
         break;
     case EFFECT_MULTI_HIT:
         if (move == MOVE_WATER_SHURIKEN && gBattleMons[damageCalcData->battlerAtk].species == SPECIES_GRENINJA_ASH)
@@ -604,9 +640,7 @@ static inline void CalcDynamicMoveDamage(struct DamageCalculationData *damageCal
         median = maximum = minimum = max(0, gBattleMons[damageCalcData->battlerDef].hp - gBattleMons[damageCalcData->battlerAtk].hp);
         break;
     case EFFECT_SUPER_FANG:
-        median = maximum = minimum = (abilityAtk == ABILITY_PARENTAL_BOND
-            ? max(2, gBattleMons[damageCalcData->battlerDef].hp * 3 / 4)
-            : max(1, gBattleMons[damageCalcData->battlerDef].hp / 2));
+        median = maximum = minimum = max(1, gBattleMons[damageCalcData->battlerDef].hp / 2);
         break;
     case EFFECT_FINAL_GAMBIT:
         median = maximum = minimum = gBattleMons[damageCalcData->battlerAtk].hp;
@@ -635,6 +669,17 @@ static inline void CalcDynamicMoveDamage(struct DamageCalculationData *damageCal
         minimum *= strikeCount;
         maximum *= strikeCount;
     }
+    
+    if (abilityAtk == ABILITY_PARENTAL_BOND 
+        && !strikeCount
+        && effect != EFFECT_TRIPLE_KICK 
+        && effect != EFFECT_MULTI_HIT
+        && !AI_IsDoubleSpreadMove(damageCalcData->battlerAtk, move))
+    {
+        median  += median  / (B_PARENTAL_BOND_DMG >= GEN_7 ? 4 : 2);
+        minimum += minimum / (B_PARENTAL_BOND_DMG >= GEN_7 ? 4 : 2);
+        maximum += maximum / (B_PARENTAL_BOND_DMG >= GEN_7 ? 4 : 2);
+    }    
 
     if (median == 0)
         median = 1;
@@ -3221,7 +3266,10 @@ u32 ShouldTryToFlinch(u32 battlerAtk, u32 battlerDef, u32 atkAbility, u32 defAbi
 
 bool32 ShouldTrap(u32 battlerAtk, u32 battlerDef, u32 move)
 {
-    if (IsBattlerTrapped(battlerDef, TRUE))
+    if (AI_CanBattlerEscape(battlerDef))
+        return FALSE;
+
+    if (IsBattlerTrapped(battlerAtk, battlerDef))
         return FALSE;
 
     if (BattlerWillFaintFromSecondaryDamage(battlerDef, AI_DATA->abilities[battlerDef]))
