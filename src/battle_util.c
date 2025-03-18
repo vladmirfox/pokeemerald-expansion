@@ -12328,8 +12328,8 @@ bool32 HasWeatherEffect(void)
         u32 ability = GetBattlerAbility(battler);
         switch (ability)
         {
-        case ABILITY_CLOUD_NINE
-        case ABILITY_AIR_LOCK
+        case ABILITY_CLOUD_NINE:
+        case ABILITY_AIR_LOCK:
             return FALSE;
         default:
             return TRUE;
