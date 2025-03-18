@@ -11420,10 +11420,26 @@ static bool32 TryRemoveScreens(u32 battler)
 
 static bool32 IsUnnerveAbilityOnOpposingSide(u32 battler)
 {
-    if (IsAbilityOnOpposingSide(battler, ABILITY_UNNERVE)
-      || IsAbilityOnOpposingSide(battler, ABILITY_AS_ONE_ICE_RIDER)
-      || IsAbilityOnOpposingSide(battler, ABILITY_AS_ONE_SHADOW_RIDER))
-        return TRUE;
+    for (u32 battlerDef = 0; battlerDef < gBattlersCount; battlerDef++)
+    {
+        if (battler == battlerDef || IsBattlerAlly(battler, battlerDef))
+            continue;
+
+        if (!IsBattlerAlive(battlerDef))
+            continue;
+
+        u32 ability = GetBattlerAbility(battler);
+        switch (ability)
+        {
+        case ABILITY_UNNERVE:
+        case ABILITY_AS_ONE_ICE_RIDER:
+        case ABILITY_AS_ONE_SHADOW_RIDER:
+            return TRUE;
+        default:
+            return FALSE;
+        }
+    }
+
     return FALSE;
 }
 
@@ -12310,8 +12326,14 @@ bool32 HasWeatherEffect(void)
             continue;
 
         u32 ability = GetBattlerAbility(battler);
-        if (ability == ABILITY_CLOUD_NINE || ability == ABILITY_AIR_LOCK)
+        switch (ability)
+        {
+        case ABILITY_CLOUD_NINE
+        case ABILITY_AIR_LOCK
             return FALSE;
+        default:
+            return TRUE;
+        }
     }
 
     return TRUE;
