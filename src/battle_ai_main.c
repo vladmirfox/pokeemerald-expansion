@@ -861,7 +861,7 @@ static s32 AI_CheckBadMove(u32 battlerAtk, u32 battlerDef, u32 move, s32 score)
         RETURN_SCORE_MINUS(20);
 
     // Don't use anything but super effective Fire-type moves if target is frozen if any other attack available
-    if (GetMoveType(move) == TYPE_FIRE && effectiveness < UQ_4_12(2.0) && (gBattleMons[battlerDef].status1 & (STATUS1_FROSTBITE | STATUS1_FREEZE)))
+    if ((GetMoveType(move) == TYPE_FIRE || MoveThawsUser(move)) && effectiveness < UQ_4_12(2.0) && (gBattleMons[battlerDef].status1 & (STATUS1_FROSTBITE | STATUS1_FREEZE)))
     {
         for (i = 0; i < MAX_MON_MOVES; i++)
         {
