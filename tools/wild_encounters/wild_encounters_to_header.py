@@ -170,10 +170,11 @@ def ImportWildEncounterFile():
 
             PrintGeneratedWarningText()
 
-            print('#include "rtc.h" \n')
+            print('#include "rtc.h"')
+            print("\n")
 
             PrintEncounterRateMacros()
-            print()
+            print("\n")
 
         for encounter in wEncounters:
             if "map" in encounter:
