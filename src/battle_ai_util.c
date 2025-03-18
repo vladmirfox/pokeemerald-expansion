@@ -314,17 +314,13 @@ bool32 AI_BattlerAtMaxHp(u32 battlerId)
 }
 
 
-bool32 AI_CanBattlerEscape(u32 battler, bool32 checkSwitch)
+bool32 AI_CanBattlerEscape(u32 battler)
 {
     u32 holdEffect = AI_DATA->holdEffects[battler];
 
     if (B_GHOSTS_ESCAPE >= GEN_6 && IS_BATTLER_OF_TYPE(battler, TYPE_GHOST))
         return TRUE;
-    if (checkSwitch && holdEffect == HOLD_EFFECT_SHED_SHELL)
-        return TRUE;
-    if (!checkSwitch && AI_DATA->abilities[battler] == ABILITY_RUN_AWAY)
-        return TRUE;
-    if (!checkSwitch && holdEffect == HOLD_EFFECT_CAN_ALWAYS_RUN)
+    if (holdEffect == HOLD_EFFECT_SHED_SHELL)
         return TRUE;
 
     return FALSE;
@@ -338,13 +334,13 @@ bool32 IsBattlerTrapped(u32 battlerAtk, u32 battlerDef)
         return TRUE;
     if (gFieldStatuses & STATUS_FIELD_FAIRY_LOCK)
         return TRUE;
-    if (AI_IsAbilityOnSide(battlerAtk, ABILITY_SHADOW_TAG) 
+    if (AI_IsAbilityOnSide(battlerAtk, ABILITY_SHADOW_TAG)
         && (B_SHADOW_TAG_ESCAPE >= GEN_4 && AI_DATA->abilities[battlerDef] != ABILITY_SHADOW_TAG))
         return TRUE;
-    if (AI_IsAbilityOnSide(battlerAtk, ABILITY_ARENA_TRAP) 
+    if (AI_IsAbilityOnSide(battlerAtk, ABILITY_ARENA_TRAP)
         && IsBattlerGrounded(battlerAtk))
         return TRUE;
-    if (AI_IsAbilityOnSide(battlerAtk, ABILITY_MAGNET_PULL) 
+    if (AI_IsAbilityOnSide(battlerAtk, ABILITY_MAGNET_PULL)
         && IS_BATTLER_OF_TYPE(battlerAtk, TYPE_STEEL))
         return TRUE;
 
@@ -3235,7 +3231,7 @@ u32 ShouldTryToFlinch(u32 battlerAtk, u32 battlerDef, u32 atkAbility, u32 defAbi
 
 bool32 ShouldTrap(u32 battlerAtk, u32 battlerDef, u32 move)
 {
-    if (AI_CanBattlerEscape(battlerDef, TRUE))
+    if (AI_CanBattlerEscape(battlerDef))
         return FALSE;
 
     if (IsBattlerTrapped(battlerAtk, battlerDef))
