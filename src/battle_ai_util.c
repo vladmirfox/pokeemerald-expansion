@@ -1353,11 +1353,10 @@ bool32 CanTargetMoveFaintAi(u32 move, u32 battlerDef, u32 battlerAtk, u32 nHits)
 // Check if target has means to faint ai mon after modding hp/dmg
 bool32 CanTargetFaintAiWithMod(u32 battlerDef, u32 battlerAtk, s32 hpMod, s32 dmgMod)
 {
-    u32 moveIndex, moveIndex2;
+    u32 moveIndex;//, moveIndex2;
     u32 unusable = AI_DATA->moveLimitations[battlerDef];
     s32 dmg;
     u16 *moves = GetMovesArray(battlerDef);
-    u16 *AIKnownMoves = gBattleResources->battleHistory->usedMoves[battlerDef];
     u32 hpCheck = gBattleMons[battlerAtk].hp + hpMod;
 
     if (hpCheck > gBattleMons[battlerAtk].maxHP)
@@ -1365,17 +1364,12 @@ bool32 CanTargetFaintAiWithMod(u32 battlerDef, u32 battlerAtk, s32 hpMod, s32 dm
 
     for (moveIndex = 0; moveIndex < MAX_MON_MOVES; moveIndex++)
     {
-        dmg = 0;
-        for (moveIndex2 = 0; moveIndex2 < MAX_MON_MOVES; moveIndex2++)
-        {
-            if (AIKnownMoves[moveIndex] != MOVE_NONE && AIKnownMoves[moveIndex] == moves[moveIndex2])
-                dmg = AI_GetDamage(battlerDef, battlerAtk, moveIndex2, AI_DEFENDING, AI_DATA);
-        }
+        dmg = AI_GetDamage(battlerDef, battlerAtk, moveIndex, AI_DEFENDING, AI_DATA);
+
         if (dmgMod)
             dmg *= dmgMod;
 
-
-        if (AIKnownMoves[moveIndex] != MOVE_NONE && AIKnownMoves[moveIndex] != MOVE_UNAVAILABLE && !(unusable & (1u << moveIndex)) && dmg >= hpCheck)
+        if (moves[moveIndex] != MOVE_NONE && moves[moveIndex] != MOVE_UNAVAILABLE && !(unusable & (1u << moveIndex)) && dmg >= hpCheck)
         {
             return TRUE;
         }
