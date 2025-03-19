@@ -43,6 +43,8 @@ static void Task_HandleCopyReceivedLinkBuffersData(u8 taskId);
 static void Task_StartSendOutAnim(u8 taskId);
 static void SpriteCB_FreePlayerSpriteLoadMonSprite(struct Sprite *sprite);
 static void SpriteCB_FreeOpponentSprite(struct Sprite *sprite);
+static u32 ReturnAnimIdForBattler(bool32 isPlayerSide, u32 specificBattler);
+static void LaunchKOAnimation(u32 battlerId, u16 animId, bool32 isFront);
 static void AnimateMonAfterKnockout(u32 battler);
 
 void HandleLinkBattleSetup(void)
@@ -3020,7 +3022,23 @@ void BtlController_HandleBattleAnimation(u32 battler, bool32 ignoreSE, bool32 up
     }
 }
 
-void LaunchKOAnimation(u32 battlerId, u16 animId, bool32 isFront)
+static void AnimateMonAfterKnockout(u32 battler)
+{
+    if (B_ANIMATE_MON_AFTER_KO == FALSE || gTestRunnerHeadless)
+        return;
+
+    u32 oppositeBattler = BATTLE_OPPOSITE(battler);
+    u32 partnerBattler = BATTLE_PARTNER(oppositeBattler);
+    bool32 isPlayerSide = (GetBattlerSide(battler) == B_SIDE_PLAYER);
+
+    if (IsBattlerAlive(oppositeBattler))
+        LaunchKOAnimation(oppositeBattler, ReturnAnimIdForBattler(isPlayerSide, oppositeBattler), isPlayerSide);
+
+    if (gBattleTypeFlags & BATTLE_TYPE_DOUBLE && IsBattlerAlive(partnerBattler))
+        LaunchKOAnimation(partnerBattler, ReturnAnimIdForBattler(isPlayerSide, partnerBattler), isPlayerSide);
+}
+
+static void LaunchKOAnimation(u32 battlerId, u16 animId, bool32 isFront)
 {
     u32 species = gBattleMons[battlerId].species;
     u32 spriteId = gBattlerSpriteIds[battlerId];
@@ -3046,20 +3064,6 @@ static u32 ReturnAnimIdForBattler(bool32 isPlayerSide, u32 specificBattler)
         return gSpeciesInfo[gBattleMons[specificBattler].species].frontAnimId;
     else
         return gSpeciesInfo[gBattleMons[specificBattler].species].backAnimId - 1;
+    // I have no idea why this needs to be minus one, but if it isn't, the wrong animation plays.
 }
 
-static void AnimateMonAfterKnockout(u32 battler)
-{
-    if (B_ANIMATE_MON_AFTER_KO == FALSE || gTestRunnerHeadless)
-        return;
-
-    u32 oppositeBattler = BATTLE_OPPOSITE(battler);
-    u32 partnerBattler = BATTLE_PARTNER(oppositeBattler);
-    bool32 isPlayerSide = (GetBattlerSide(battler) == B_SIDE_PLAYER);
-
-    if (IsBattlerAlive(oppositeBattler))
-        LaunchKOAnimation(oppositeBattler, ReturnAnimIdForBattler(isPlayerSide, oppositeBattler), isPlayerSide);
-
-    if (gBattleTypeFlags & BATTLE_TYPE_DOUBLE && IsBattlerAlive(partnerBattler))
-        LaunchKOAnimation(partnerBattler, ReturnAnimIdForBattler(isPlayerSide, partnerBattler), isPlayerSide);
-}
