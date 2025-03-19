@@ -2336,13 +2336,10 @@ static bool32 ShouldUseItem(u32 battler)
 
 static bool32 AI_ShouldHeal(u32 battler, u32 healAmount)
 {
-    struct AiLogicData *aiData = AI_DATA;
     bool32 shouldHeal = FALSE;
-    u8 opponent, moveIndex;
+    u8 opponent;
     u32 maxDamage = 0;
     u32 dmg = 0;
-    u16 *moves;
-    u32 moveLimitations;
 
     if (gBattleMons[battler].hp < gBattleMons[battler].maxHP / 4
      || gBattleMons[battler].hp == 0
@@ -2357,17 +2354,10 @@ static bool32 AI_ShouldHeal(u32 battler, u32 healAmount)
     {
         if (GetBattlerSide(opponent) == B_SIDE_PLAYER)
         {
-            moves = GetMovesArray(opponent);
-            moveLimitations = aiData->moveLimitations[opponent];
-            for (moveIndex = 0; moveIndex < MAX_MON_MOVES; moveIndex++)
-            {
-                if (IsMoveUnusable(moveIndex, moves[moveIndex], moveLimitations))
-                    continue;
-                
-                dmg = aiData->simulatedDmg[opponent][battler][moveIndex].median;
-                if (dmg > maxDamage)
-                    maxDamage = dmg;
-            }
+            dmg = GetBestDmgFromBattler(opponent, battler, AI_DEFENDING);
+
+            if (dmg > maxDamage)
+                maxDamage = dmg;
         }
     }
 
