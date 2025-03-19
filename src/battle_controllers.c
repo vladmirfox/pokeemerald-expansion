@@ -3045,7 +3045,7 @@ static u32 ReturnAnimIdForBattler(bool32 isPlayerSide, u32 specificBattler)
     if (isPlayerSide)
         return gSpeciesInfo[gBattleMons[specificBattler].species].frontAnimId;
     else
-        return gSpeciesInfo[gBattleMons[specificBattler].species].backAnimId;
+        return gSpeciesInfo[gBattleMons[specificBattler].species].backAnimId - 1;
 }
 
 static void AnimateMonAfterKnockout(u32 battler)
