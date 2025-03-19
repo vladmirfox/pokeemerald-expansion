@@ -1353,7 +1353,7 @@ bool32 CanTargetMoveFaintAi(u32 move, u32 battlerDef, u32 battlerAtk, u32 nHits)
 // Check if target has means to faint ai mon after modding hp/dmg
 bool32 CanTargetFaintAiWithMod(u32 battlerDef, u32 battlerAtk, s32 hpMod, s32 dmgMod)
 {
-    u32 moveIndex;//, moveIndex2;
+    u32 moveIndex;
     u32 unusable = AI_DATA->moveLimitations[battlerDef];
     s32 dmg;
     u16 *moves = GetMovesArray(battlerDef);
