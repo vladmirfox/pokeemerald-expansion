@@ -238,8 +238,7 @@ void BattleAI_SetupFlags(void)
 
 void BattleAI_SetupAIData(u8 defaultScoreMoves, u32 battler)
 {
-    s32 i;
-    u8 moveLimitations;
+    u32 moveLimitations;
     u32 flags[MAX_BATTLERS_COUNT];
 
     // Clear AI data but preserve the flags.
@@ -247,24 +246,19 @@ void BattleAI_SetupAIData(u8 defaultScoreMoves, u32 battler)
     memset(AI_THINKING_STRUCT, 0, sizeof(struct AI_ThinkingStruct));
     memcpy(&AI_THINKING_STRUCT->aiFlags[0], &flags[0], sizeof(u32) * MAX_BATTLERS_COUNT);
 
-    // Conditional score reset, unlike Ruby.
-    for (i = 0; i < MAX_MON_MOVES; i++)
-    {
-        if (defaultScoreMoves & 1)
-            SET_SCORE(battler, i, AI_SCORE_DEFAULT);
-        else
-            SET_SCORE(battler, i, 0);
-
-        defaultScoreMoves >>= 1;
-    }
-
     moveLimitations = AI_DATA->moveLimitations[battler];
 
-    // Ignore moves that aren't possible to use.
-    for (i = 0; i < MAX_MON_MOVES; i++)
+    // Conditional score reset, unlike Ruby.
+    for (u32 moveIndex = 0; moveIndex < MAX_MON_MOVES; moveIndex++)
     {
-        if ((1u << i) & moveLimitations)
-            SET_SCORE(battler, i, 0);
+        if (moveLimitations & (1u << moveIndex))
+            SET_SCORE(battler, moveIndex, 0);
+        if (defaultScoreMoves & 1)
+            SET_SCORE(battler, moveIndex, AI_SCORE_DEFAULT);
+        else
+            SET_SCORE(battler, moveIndex, 0);
+
+        defaultScoreMoves >>= 1;
     }
 
     gBattlerTarget = SetRandomTarget(battler);
@@ -414,6 +408,7 @@ static void CalcBattlerAiMovesData(struct AiLogicData *aiData, u32 battlerAtk, u
 {
     u32 moveIndex, move;
     u16 *moves = GetMovesArray(battlerAtk);
+    u32 moveLimitations = aiData->moveLimitations[battlerAtk];
 
     for (moveIndex = 0; moveIndex < MAX_MON_MOVES; moveIndex++)
     {
@@ -421,14 +416,13 @@ static void CalcBattlerAiMovesData(struct AiLogicData *aiData, u32 battlerAtk, u
         uq4_12_t effectiveness = Q_4_12(0.0);
         move = moves[moveIndex];
 
-        if (move != MOVE_NONE
-            && move != MOVE_UNAVAILABLE
-            //&& !IsBattleMoveStatus(move)  /* we want to get effectiveness and accuracy of status moves */
-            && !(aiData->moveLimitations[battlerAtk] & (1u << moveIndex)))
-        {
-            dmg = AI_CalcDamage(move, battlerAtk, battlerDef, &effectiveness, TRUE, weather);
-            aiData->moveAccuracy[battlerAtk][battlerDef][moveIndex] = Ai_SetMoveAccuracy(aiData, battlerAtk, battlerDef, move);
-        }
+        if (IsMoveUnusable(moveIndex, move, moveLimitations))
+            continue;
+
+        // Also get effectiveness of status moves
+        dmg = AI_CalcDamage(move, battlerAtk, battlerDef, &effectiveness, TRUE, weather);
+        aiData->moveAccuracy[battlerAtk][battlerDef][moveIndex] = Ai_SetMoveAccuracy(aiData, battlerAtk, battlerDef, move);
+
         aiData->simulatedDmg[battlerAtk][battlerDef][moveIndex] = dmg;
         aiData->effectiveness[battlerAtk][battlerDef][moveIndex] = effectiveness;
     }
@@ -859,6 +853,21 @@ static s32 AI_CheckBadMove(u32 battlerAtk, u32 battlerDef, u32 move, s32 score)
 
     if (gBattleStruct->battlerState[battlerDef].commandingDondozo)
         RETURN_SCORE_MINUS(20);
+
+    // Don't use anything but super effective thawing moves if target is frozen if any other attack available
+    if (((GetMoveType(move) == TYPE_FIRE && GetMovePower(move) != 0) || CanBurnHitThaw(move)) && effectiveness < UQ_4_12(2.0) && (gBattleMons[battlerDef].status1 & (STATUS1_FROSTBITE | STATUS1_FREEZE)))
+    {
+        u32 aiMove;
+        for (i = 0; i < MAX_MON_MOVES; i++)
+        {
+            aiMove = gBattleMons[battlerAtk].moves[i];
+            if (GetMoveType(aiMove) != TYPE_FIRE && !CanBurnHitThaw(aiMove) && GetMovePower(gBattleMons[battlerAtk].moves[i] != 0))
+            {
+                ADJUST_SCORE(-1);
+                break;
+            }
+        }
+    }
 
     if (effectiveness == UQ_4_12(0.0))
     {
