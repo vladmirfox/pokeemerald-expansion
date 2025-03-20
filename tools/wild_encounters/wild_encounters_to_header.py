@@ -147,7 +147,6 @@ def ImportWildEncounterFile():
         wEncounters = wData["wild_encounter_groups"][headerIndex]["encounters"]
         headerSuffix = structHeader + "s"
 
-
         if data["label"]:
             hLabel = wData["wild_encounter_groups"][headerIndex]["label"]
             if headerSuffix in hLabel:
