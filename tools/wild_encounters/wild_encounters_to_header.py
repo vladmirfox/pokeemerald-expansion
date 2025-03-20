@@ -1,8 +1,6 @@
 import json
 
 
-#todo: test with origin/upcoming
-
 #C string vars
 define                = "#define"
 ENCOUNTER_CHANCE      = "ENCOUNTER_CHANCE"
@@ -12,10 +10,8 @@ NULL                  = "NULL"
 UNDEFINED             = "UNDEFINED"
 MAP_UNDEFINED         = "MAP_UNDEFINED"
 
-#encounter group header types
-WILD_MON              = "gWildMon"
-BATTLE_PIKE_MON       = "gBattlePikeWildMon"
-BATTLE_PYRAMID_MON    = "gBattlePyramidWildMon"
+#encounter group header types, filled out programmatically
+MON_HEADERS = []
 
 #mon encounter group types
 LAND_MONS             = "land_mons"
@@ -108,6 +104,7 @@ printEncounterStructs           = True
 
 
 def ImportWildEncounterFile():
+    global MON_HEADERS
     global landMonsInfo
     global waterMonsInfo 
     global rockSmashMonsInfo 
@@ -148,10 +145,17 @@ def ImportWildEncounterFile():
 
     for data in wData["wild_encounter_groups"]:
         wEncounters = wData["wild_encounter_groups"][headerIndex]["encounters"]
+        headerSuffix = structHeader + "s"
 
-        if data == "label":
+
+        if data["label"]:
             hLabel = wData["wild_encounter_groups"][headerIndex]["label"]
-        if data == "for_maps":
+            if headerSuffix in hLabel:
+                hLabel = hLabel[:len(hLabel) - len(headerSuffix)]
+
+            MON_HEADERS.append(hLabel)
+
+        if data["for_maps"]:
             hForMaps = wData["wild_encounter_groups"][headerIndex]["for_maps"]
     
         # for the encounter rate macros, so we don't worry about hidden mons here
@@ -417,12 +421,7 @@ def PrintWildMonHeadersContent():
 
 
 def GetWildMonHeadersLabel():
-    if headerIndex == 0:
-        return f"{baseStruct}{structHeader} {WILD_MON}{structHeader}s{structArrayAssign}" + "\n{"
-    elif headerIndex == 1:
-        return f"{baseStruct}{structHeader} {BATTLE_PYRAMID_MON}{structHeader}s{structArrayAssign}" + "\n{"
-    elif headerIndex == 2:
-        return f"{baseStruct}{structHeader} {BATTLE_PIKE_MON}{structHeader}s{structArrayAssign}" + "\n{"
+        return f"{baseStruct}{structHeader} {MON_HEADERS[headerIndex]}{structHeader}s{structArrayAssign}" + "\n{"
     
 
 def PrintEncounterHeaders(content):
