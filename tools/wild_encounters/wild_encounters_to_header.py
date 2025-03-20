@@ -612,7 +612,7 @@ const struct WildPokemon gRoute101_LandMons_Day[] =
     { 3, 3, SPECIES_ZIGZAGOON },
 };
 
-const struct WildPokemonInfo gRoute101_LandMonsInfo_Day= { 20, gRoute101_LandMons_Day };
+const struct WildPokemonInfo gRoute101_Day_LandMonsInfo= { 20, gRoute101_Day_LandMons };
 const struct WildPokemonHeader gWildMonHeaders[] =
 {
     {
@@ -621,7 +621,7 @@ const struct WildPokemonHeader gWildMonHeaders[] =
         .encounterTypes = 
             [TIME_DAY] = 
             {
-                .landMonsInfo = &gRoute101_LandMonsInfo_Day,
+                .landMonsInfo = &gRoute101_Day_LandMonsInfo,
                 .waterMonsInfo = NULL,
                 .rockSmashMonsInfo = NULL,
                 .fishingMonsInfo = NULL,
