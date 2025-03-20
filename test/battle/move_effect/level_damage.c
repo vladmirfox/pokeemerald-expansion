@@ -6,7 +6,7 @@ ASSUMPTIONS
     ASSUME(GetMoveEffect(MOVE_SEISMIC_TOSS) == EFFECT_LEVEL_DAMAGE);
 }
 
-SINGLE_BATTLE_TEST("Level Damage: Seismic Toss deals damage based on users level")
+SINGLE_BATTLE_TEST("Level Damage: Seismic Toss deals damage based on user's level")
 {
     s16 dmg;
     GIVEN {
