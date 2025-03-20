@@ -348,5 +348,7 @@ bool32 IsPursuitTargetSet(void);
 void ClearPursuitValuesIfSet(u32 battler);
 void ClearPursuitValues(void);
 bool32 HasWeatherEffect(void);
+bool32 EmergencyExitCanBeTriggered(u32 battler);
+u32 RestoreWhiteHerbStats(u32 battler);
 
 #endif // GUARD_BATTLE_UTIL_H
