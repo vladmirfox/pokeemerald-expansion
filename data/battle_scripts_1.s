@@ -9184,6 +9184,11 @@ BattleScript_AskIfWantsToForfeitMatch::
 	forfeityesnobox BS_ATTACKER
 	endselectionscript
 
+BattleScript_AskIfWantsToForfeitBattle::
+	printselectionstring STRINGID_QUESTIONFORFEITBATTLE
+	forfeityesnobox BS_ATTACKER
+	endselectionscript
+
 BattleScript_PrintPlayerForfeited::
 	printstring STRINGID_FORFEITEDMATCH
 	waitmessage B_WAIT_TIME_LONG

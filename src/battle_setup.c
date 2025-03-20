@@ -1264,21 +1264,18 @@ static void CB2_EndTrainerBattle(void)
         else
             SetMainCallback2(CB2_WhiteOut);
     }
+    else if ((gBattleTypeFlags & BATTLE_TYPE_TRAINER) && (gBattleOutcome == B_OUTCOME_FORFEITED) && B_RUN_TRAINER_BATTLE)
+    {
+            SetMainCallback2(CB2_WhiteOut);
+    }
     else
     {
-        if (gBattleOutcome != B_OUTCOME_RAN && gBattleOutcome != B_OUTCOME_FORFEITED)
+        SetMainCallback2(CB2_ReturnToFieldContinueScriptPlayMapMusic);
+        DowngradeBadPoison();
+        if (!InBattlePyramid() && !InTrainerHillChallenge())
         {
-            SetMainCallback2(CB2_ReturnToFieldContinueScriptPlayMapMusic);
-            DowngradeBadPoison();
-            if (!InBattlePyramid() && !InTrainerHillChallenge())
-            {
-                RegisterTrainerInMatchCall();
-                SetBattledTrainersFlags();
-            }
-        }
-        else
-        {
-            SetMainCallback2(CB2_WhiteOut);
+            RegisterTrainerInMatchCall();
+            SetBattledTrainersFlags();
         }
     }
 }

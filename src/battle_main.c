@@ -4244,6 +4244,7 @@ static void HandleTurnActionSelectionState(void)
                     else if (gBattleTypeFlags & BATTLE_TYPE_DOUBLE
                             && position == B_POSITION_PLAYER_RIGHT
                             && gChosenActionByBattler[GetBattlerAtPosition(B_POSITION_PLAYER_LEFT)] == B_ACTION_RUN
+                            && B_RUN_TRAINER_BATTLE
                             && gChosenActionByBattler[GetBattlerAtPosition(B_POSITION_PLAYER_LEFT)] != B_ACTION_NOTHING_FAINTED)
                     {
                         gChosenActionByBattler[battler] = B_ACTION_USE_MOVE;
@@ -4432,16 +4433,24 @@ static void HandleTurnActionSelectionState(void)
                     gBattleStruct->stateIdAfterSelScript[battler] = STATE_BEFORE_ACTION_CHOSEN;
                     return;
                 }
-                else if ((gBattleTypeFlags & BATTLE_TYPE_TRAINER || gBattleTypeFlags & BATTLE_TYPE_DOUBLE)
-                         && !(gBattleTypeFlags & (BATTLE_TYPE_LINK | BATTLE_TYPE_RECORDED_LINK))
-                         && gBattleResources->bufferB[battler][1] == B_ACTION_RUN)
-                         {
-                             gSelectionBattleScripts[battler] = BattleScript_AskIfWantsToForfeitMatch;
-                             gBattleCommunication[battler] = STATE_SELECTION_SCRIPT_MAY_RUN;
-                             *(gBattleStruct->selectionScriptFinished + battler) = FALSE;
-                             *(gBattleStruct->stateIdAfterSelScript + battler) = STATE_BEFORE_ACTION_CHOSEN;
-                             return;
-                         }
+                else if (gBattleTypeFlags & BATTLE_TYPE_TRAINER
+                        && !(gBattleTypeFlags & (BATTLE_TYPE_LINK | BATTLE_TYPE_RECORDED_LINK))
+                        && gBattleResources->bufferB[battler][1] == B_ACTION_RUN)
+                {
+                    if (B_RUN_TRAINER_BATTLE)
+                    {
+                        gSelectionBattleScripts[battler] = BattleScript_AskIfWantsToForfeitBattle;
+                        gBattleCommunication[battler] = STATE_SELECTION_SCRIPT_MAY_RUN;
+                        *(gBattleStruct->selectionScriptFinished + battler) = FALSE;
+                        *(gBattleStruct->stateIdAfterSelScript + battler) = STATE_BEFORE_ACTION_CHOSEN;
+                        return;
+                    }
+                    else
+                    {
+                        BattleScriptExecute(BattleScript_PrintCantRunFromTrainer);
+                        gBattleCommunication[battler] = STATE_BEFORE_ACTION_CHOSEN;
+                    }
+                }
                 else if ((IsRunningFromBattleImpossible(battler) != BATTLE_RUN_SUCCESS
                          && gBattleResources->bufferB[battler][1] == B_ACTION_RUN)
                          || (FlagGet(B_FLAG_NO_RUNNING) == TRUE && gBattleResources->bufferB[battler][1] == B_ACTION_RUN))
@@ -5509,7 +5518,7 @@ static void HandleEndTurn_RanFromBattle(void)
 {
     gCurrentActionFuncId = 0;
 
-    if (gBattleTypeFlags & BATTLE_TYPE_TRAINER || gBattleTypeFlags & BATTLE_TYPE_DOUBLE)
+    if (gBattleTypeFlags & BATTLE_TYPE_FRONTIER && gBattleTypeFlags & BATTLE_TYPE_TRAINER)
     {
         gBattlescriptCurrInstr = BattleScript_PrintPlayerForfeited;
         gBattleOutcome = B_OUTCOME_FORFEITED;
@@ -5518,6 +5527,11 @@ static void HandleEndTurn_RanFromBattle(void)
     else if (gBattleTypeFlags & BATTLE_TYPE_TRAINER_HILL)
     {
         gBattlescriptCurrInstr = BattleScript_PrintPlayerForfeited;
+        gBattleOutcome = B_OUTCOME_FORFEITED;
+    }
+    else if ((gBattleTypeFlags & BATTLE_TYPE_TRAINER) && B_RUN_TRAINER_BATTLE)
+    {
+        gBattlescriptCurrInstr = BattleScript_LocalBattleLost;
         gBattleOutcome = B_OUTCOME_FORFEITED;
     }
     else
