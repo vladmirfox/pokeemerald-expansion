@@ -23,10 +23,10 @@ enum {
 #define TAG_BERRY_CHECK_CIRCLE_GFX 10000
 #define TAG_BERRY_PIC_PAL 30020
 
-struct CompressedTilesPal
+struct TilesPal
 {
     const u32 *tiles;
-    const u32 *pal;
+    const u16 *pal;
 };
 
 // this file's functions
@@ -322,7 +322,7 @@ static const struct SpriteTemplate sBerryPicRotatingSpriteTemplate =
     .callback = SpriteCallbackDummy,
 };
 
-static const struct CompressedTilesPal sBerryPicTable[] =
+static const struct TilesPal sBerryPicTable[] =
 {
     [ITEM_TO_BERRY(ITEM_CHERI_BERRY)  - 1]          = {gBerryPic_Cheri,  gBerryPalette_Cheri},
     [ITEM_TO_BERRY(ITEM_CHESTO_BERRY) - 1]          = {gBerryPic_Chesto, gBerryPalette_Chesto},

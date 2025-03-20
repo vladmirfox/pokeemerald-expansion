@@ -1,4 +1,4 @@
-const union DecorItem gDecorIconTable[][2] =
+const struct DecorItem gDecorIconTable[] =
 {
     [DECOR_NONE]            = {gItemIcon_QuestionMark, gItemIconPalette_QuestionMark},
     [DECOR_SMALL_DESK]      = {NULL, NULL},

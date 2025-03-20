@@ -400,14 +400,14 @@ struct SpeciesInfo /*0xC4*/
     const union AnimCmd *const *frontAnimFrames;
     const u32 *frontPic;
     const u32 *backPic;
-    const u32 *palette;
-    const u32 *shinyPalette;
+    const u16 *palette;
+    const u16 *shinyPalette;
     const u8 *iconSprite;
 #if P_GENDER_DIFFERENCES
     const u32 *frontPicFemale;
     const u32 *backPicFemale;
-    const u32 *paletteFemale;
-    const u32 *shinyPaletteFemale;
+    const u16 *paletteFemale;
+    const u16 *shinyPaletteFemale;
     const u8 *iconSpriteFemale;
 #endif //P_GENDER_DIFFERENCES
 #if P_FOOTPRINTS

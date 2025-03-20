@@ -8,61 +8,61 @@ extern const u16 gMessageBox_Pal[];
 
 // pokeballs
 extern const u32 gBallGfx_Strange[];
-extern const u32 gBallPal_Strange[];
+extern const u16 gBallPal_Strange[];
 extern const u32 gBallGfx_Poke[];
-extern const u32 gBallPal_Poke[];
+extern const u16 gBallPal_Poke[];
 extern const u32 gBallGfx_Great[];
-extern const u32 gBallPal_Great[];
+extern const u16 gBallPal_Great[];
 extern const u32 gBallGfx_Ultra[];
-extern const u32 gBallPal_Ultra[];
+extern const u16 gBallPal_Ultra[];
 extern const u32 gBallGfx_Master[];
-extern const u32 gBallPal_Master[];
+extern const u16 gBallPal_Master[];
 extern const u32 gBallGfx_Premier[];
-extern const u32 gBallPal_Premier[];
+extern const u16 gBallPal_Premier[];
 extern const u32 gBallGfx_Heal[];
-extern const u32 gBallPal_Heal[];
+extern const u16 gBallPal_Heal[];
 extern const u32 gBallGfx_Net[];
-extern const u32 gBallPal_Net[];
+extern const u16 gBallPal_Net[];
 extern const u32 gBallGfx_Nest[];
-extern const u32 gBallPal_Nest[];
+extern const u16 gBallPal_Nest[];
 extern const u32 gBallGfx_Dive[];
-extern const u32 gBallPal_Dive[];
+extern const u16 gBallPal_Dive[];
 extern const u32 gBallGfx_Dusk[];
-extern const u32 gBallPal_Dusk[];
+extern const u16 gBallPal_Dusk[];
 extern const u32 gBallGfx_Timer[];
-extern const u32 gBallPal_Timer[];
+extern const u16 gBallPal_Timer[];
 extern const u32 gBallGfx_Quick[];
-extern const u32 gBallPal_Quick[];
+extern const u16 gBallPal_Quick[];
 extern const u32 gBallGfx_Repeat[];
-extern const u32 gBallPal_Repeat[];
+extern const u16 gBallPal_Repeat[];
 extern const u32 gBallGfx_Luxury[];
-extern const u32 gBallPal_Luxury[];
+extern const u16 gBallPal_Luxury[];
 extern const u32 gBallGfx_Level[];
-extern const u32 gBallPal_Level[];
+extern const u16 gBallPal_Level[];
 extern const u32 gBallGfx_Lure[];
-extern const u32 gBallPal_Lure[];
+extern const u16 gBallPal_Lure[];
 extern const u32 gBallGfx_Moon[];
-extern const u32 gBallPal_Moon[];
+extern const u16 gBallPal_Moon[];
 extern const u32 gBallGfx_Friend[];
-extern const u32 gBallPal_Friend[];
+extern const u16 gBallPal_Friend[];
 extern const u32 gBallGfx_Love[];
-extern const u32 gBallPal_Love[];
+extern const u16 gBallPal_Love[];
 extern const u32 gBallGfx_Fast[];
-extern const u32 gBallPal_Fast[];
+extern const u16 gBallPal_Fast[];
 extern const u32 gBallGfx_Heavy[];
-extern const u32 gBallPal_Heavy[];
+extern const u16 gBallPal_Heavy[];
 extern const u32 gBallGfx_Dream[];
-extern const u32 gBallPal_Dream[];
+extern const u16 gBallPal_Dream[];
 extern const u32 gBallGfx_Safari[];
-extern const u32 gBallPal_Safari[];
+extern const u16 gBallPal_Safari[];
 extern const u32 gBallGfx_Sport[];
-extern const u32 gBallPal_Sport[];
+extern const u16 gBallPal_Sport[];
 extern const u32 gBallGfx_Park[];
-extern const u32 gBallPal_Park[];
+extern const u16 gBallPal_Park[];
 extern const u32 gBallGfx_Beast[];
-extern const u32 gBallPal_Beast[];
+extern const u16 gBallPal_Beast[];
 extern const u32 gBallGfx_Cherish[];
-extern const u32 gBallPal_Cherish[];
+extern const u16 gBallPal_Cherish[];
 extern const u32 gOpenPokeballGfx[];
 
 // Pokémon gfx
@@ -1759,7 +1759,7 @@ extern const u8 gBagMenuHMIcon_Gfx[];
 // item menu icons graphics
 extern const u32 gBagMaleTiles[];
 extern const u32 gBagFemaleTiles[];
-extern const u32 gBagPalette[];
+extern const u16 gBagPalette[];
 extern const u32 gBerryCheckCircle_Gfx[];
 
 //intro graphics
@@ -1987,7 +1987,7 @@ extern const u32 gMoveTypes_Gfx[];
 extern const u32 gSummaryMoveSelect_Gfx[];
 extern const u16 gSummaryMoveSelect_Pal[];
 extern const u32 gStatusGfx_Icons[];
-extern const u32 gStatusPal_Icons[];
+extern const u16 gStatusPal_Icons[];
 extern const u16 gCategoryIcons_Pal[];
 extern const u32 gCategoryIcons_Gfx[];
 
@@ -2040,7 +2040,7 @@ extern const u16 gBattleInterface_BallStatusBarPal[];
 extern const u16 gBattleInterface_BallDisplayPal[];
 
 extern const u32 gSwapLineGfx[];
-extern const u32 gSwapLinePal[];
+extern const u16 gSwapLinePal[];
 
 extern const u32 gBattlePyramidBag_Gfx[];
 extern const u16 gBattlePyramidBag_Pal[];
@@ -3236,9 +3236,9 @@ extern const u16 gTradeCursor_Pal[];
 // Party menu
 extern const u32 gPartyMenuPokeball_Gfx[];
 extern const u32 gPartyMenuPokeballSmall_Gfx[];
-extern const u32 gStatusPal_Icons[];
+extern const u16 gStatusPal_Icons[];
 extern const u16 gPartyMenuPokeball_Pal[];
-extern const u32 gStatusPal_Icons[];
+extern const u16 gStatusPal_Icons[];
 
 // Roulette
 extern const u32 gRouletteMenu_Gfx[];
@@ -3390,7 +3390,7 @@ extern const u16 gMonMarkingsMenu_Pal[];
 
 extern const u32 gBattleIcons_Gfx1[];
 extern const u32 gBattleIcons_Gfx2[];
-extern const u32 gBattleIcons_Pal1[];
-extern const u32 gBattleIcons_Pal2[];
+extern const u16 gBattleIcons_Pal1[];
+extern const u16 gBattleIcons_Pal2[];
 
 #endif //GUARD_GRAPHICS_H

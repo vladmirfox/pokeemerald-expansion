@@ -330,14 +330,10 @@ bool8 LoadCompressedSpriteSheetUsingHeap(const struct CompressedSpriteSheet *src
 bool8 LoadCompressedSpritePaletteUsingHeap(const struct SpritePalette *src)
 {
     struct SpritePalette dest;
-    void *buffer;
 
-    buffer = AllocZeroed(src->data[0] >> 8);
-    LZ77UnCompWram(src->data, buffer);
-    dest.data = buffer;
+    dest.data = src->data;
     dest.tag = src->tag;
 
     LoadSpritePalette(&dest);
-    Free(buffer);
     return FALSE;
 }

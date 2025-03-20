@@ -95,6 +95,12 @@ struct DecorationPCContext
     u8 isPlayerRoom;
 };
 
+struct DecorItem
+{
+    const u32 *pic;
+    const u16 *pal;
+};
+
 enum Windows
 {
     WINDOW_MAIN_MENU,
@@ -317,12 +323,6 @@ static const struct ListMenuTemplate sDecorationItemsListMenuTemplate =
     .scrollMultiple = LIST_NO_MULTIPLE_SCROLL,
     .fontId = FONT_NARROW,
     .cursorKind = CURSOR_BLACK_ARROW,
-};
-
-union DecorItem
-{
-    u32 *pic;
-    u16 *palette;
 };
 
 #include "data/decoration/icon.h"
@@ -2104,9 +2104,7 @@ static const u32 *GetDecorationIconPic(u16 decor)
     if (decor > NUM_DECORATIONS)
         decor = DECOR_NONE;
 
-    union DecorItem currItem = gDecorIconTable[decor];
-
-    return currItem.pic;
+    return gDecorIconTable[decor].pic;
 }
 
 static const u16 *GetDecorationIconPalette(u16 decor)
@@ -2114,9 +2112,7 @@ static const u16 *GetDecorationIconPalette(u16 decor)
     if (decor > NUM_DECORATIONS)
         decor = DECOR_NONE;
 
-    union DecorItem currItem = gDecorIconTable[decor];
-
-    return currItem.palette;
+    return gDecorIconTable[decor].pal;
 }
 
 static u8 AddDecorationIconObjectFromObjectEvent(u16 tilesTag, u16 paletteTag, u8 decor)
@@ -2168,7 +2164,7 @@ u8 AddDecorationIconObject(u8 decor, s16 x, s16 y, u8 priority, u16 tilesTag, u1
         gSprites[spriteId].x2 = x + 4;
         gSprites[spriteId].y2 = y + 4;
     }
-    else if (gDecorIconTable[decor]->pic == NULL)
+    else if (gDecorIconTable[decor].pic == NULL)
     {
         spriteId = AddDecorationIconObjectFromObjectEvent(tilesTag, paletteTag, decor);
         if (spriteId == MAX_SPRITES)
