@@ -5598,12 +5598,6 @@ BattleScript_PayDayMoneyAndPickUpItems::
 	pickup
 	end2
 
-BattleScript_ForfeitTrainerBattle::
-	getmoneyreward
-	printstring STRINGID_FORFEITBATTLEGAVEMONEY
-	waitmessage B_WAIT_TIME_LONG
-	end2
-
 BattleScript_LocalBattleLost::
 	jumpifbattletype BATTLE_TYPE_INGAME_PARTNER, BattleScript_LocalBattleLostPrintWhiteOut
 	jumpifbattletype BATTLE_TYPE_DOME, BattleScript_CheckDomeDrew
@@ -9190,11 +9184,6 @@ BattleScript_AskIfWantsToForfeitMatch::
 	forfeityesnobox BS_ATTACKER
 	endselectionscript
 
-BattleScript_AskIfWantsToForfeitBattle::
-	printselectionstring STRINGID_QUESTIONFORFEITBATTLE
-	forfeityesnobox BS_ATTACKER
-	endselectionscript
-
 BattleScript_PrintPlayerForfeited::
 	printstring STRINGID_FORFEITEDMATCH
 	waitmessage B_WAIT_TIME_LONG
@@ -10119,3 +10108,15 @@ BattleScript_SleepClausePreventsEnd::
 	printstring STRINGID_BLOCKEDBYSLEEPCLAUSE
 	waitmessage B_WAIT_TIME_LONG
 	end2
+
+BattleScript_QuestionForfeitBattle::
+	printselectionstring STRINGID_QUESTIONFORFEITBATTLE
+	forfeityesnobox BS_ATTACKER
+	endselectionscript
+
+BattleScript_ForfeitBattleGaveMoney::
+	getmoneyreward
+	printstring STRINGID_FORFEITBATTLEGAVEMONEY
+	waitmessage B_WAIT_TIME_LONG
+	end2
+
