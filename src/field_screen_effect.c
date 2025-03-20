@@ -39,6 +39,7 @@
 #include "constants/rgb.h"
 #include "trainer_hill.h"
 #include "fldeff.h"
+#include "battle.h"
 
 static void Task_ExitNonAnimDoor(u8);
 static void Task_ExitNonDoor(u8);
@@ -1342,12 +1343,9 @@ enum {
     FRLG_WHITEOUT_HEAL_SCRIPT,
 };
 
-#include "battle.h"
-#include "constants/battle.h"
-
 static const u8* GenerateRecoveryMessage(u8 taskId)
 {
-    bool32 forfeitTrainer = (gBattleOutcome == B_OUTCOME_FORFEITED && B_RUN_TRAINER_BATTLE);
+    bool32 forfeitTrainer = DidPlayerForfeitNormalTrainerBattle();
     bool32 destinationIsPlayersHouse = (gTasks[taskId].tIsPlayerHouse == TRUE);
 
     if (forfeitTrainer && destinationIsPlayersHouse)

@@ -564,7 +564,7 @@ bool32 TryRunFromBattle(u32 battler)
     {
         effect++;
     }
-    else if ((gBattleTypeFlags & BATTLE_TYPE_TRAINER) && B_RUN_TRAINER_BATTLE)
+    else if (CanPlayerForfeitNormalTrainerBattle())
     {
         effect++;
     }

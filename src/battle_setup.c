@@ -1264,7 +1264,7 @@ static void CB2_EndTrainerBattle(void)
         else
             SetMainCallback2(CB2_WhiteOut);
     }
-    else if ((gBattleTypeFlags & BATTLE_TYPE_TRAINER) && (gBattleOutcome == B_OUTCOME_FORFEITED) && B_RUN_TRAINER_BATTLE)
+    else if (DidPlayerForfeitNormalTrainerBattle())
     {
             SetMainCallback2(CB2_WhiteOut);
     }
