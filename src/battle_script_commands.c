@@ -340,7 +340,6 @@ void ApplyExperienceMultipliers(s32 *expAmount, u8 expGetterMonId, u8 faintedBat
 static void RemoveAllWeather(void);
 static void RemoveAllTerrains(void);
 static bool8 CanAbilityPreventStatLoss(u16 abilityDef);
-static bool8 CanBurnHitThaw(u16 move);
 static u32 GetNextTarget(u32 moveTarget, bool32 excludeCurrent);
 static void TryUpdateEvolutionTracker(u32 evolutionMethod, u32 upAmount, u16 usedMove);
 static void AccuracyCheck(bool32 recalcDragonDarts, const u8 *nextInstr, const u8 *failInstr, u16 move);
@@ -1997,9 +1996,7 @@ static void Cmd_critcalc(void)
 
 static inline void CalculateAndSetMoveDamage(struct DamageCalculationData *damageCalcData, u32 battlerDef)
 {
-    if (GetMoveEffect(gCurrentMove) == EFFECT_SHELL_SIDE_ARM)
-        gBattleStruct->swapDamageCategory = (gBattleStruct->shellSideArmCategory[gBattlerAttacker][battlerDef] != GetMoveCategory(gCurrentMove));
-
+    SetDynamicMoveCategory(gBattlerAttacker, battlerDef, gCurrentMove);
     damageCalcData->battlerDef = battlerDef;
     damageCalcData->isCrit = gSpecialStatuses[battlerDef].criticalHit;
     gBattleStruct->moveDamage[battlerDef] = CalculateMoveDamage(damageCalcData, 0);
@@ -16794,7 +16791,7 @@ static bool8 CanAbilityPreventStatLoss(u16 abilityDef)
     return FALSE;
 }
 
-static bool8 CanBurnHitThaw(u16 move)
+bool32 CanBurnHitThaw(u16 move)
 {
     u8 i;
 
@@ -17710,28 +17707,6 @@ void BS_AllySwitchFailChance(void)
             gDisableStructs[gBattlerAttacker].protectUses++;
         }
     }
-    gBattlescriptCurrInstr = cmd->nextInstr;
-}
-
-void BS_SetDynamicMoveCategory(void)
-{
-    NATIVE_ARGS();
-
-    switch (GetMoveEffect(gCurrentMove))
-    {
-    case EFFECT_TERA_BLAST:
-        if (GetActiveGimmick(gBattlerAttacker) == GIMMICK_TERA)
-            gBattleStruct->swapDamageCategory = (GetCategoryBasedOnStats(gBattlerAttacker) != GetMoveCategory(gCurrentMove));
-        break;
-    case EFFECT_TERA_STARSTORM:
-        if (GetActiveGimmick(gBattlerAttacker) == GIMMICK_TERA && gBattleMons[gBattlerAttacker].species == SPECIES_TERAPAGOS_STELLAR)
-            gBattleStruct->swapDamageCategory = (GetCategoryBasedOnStats(gBattlerAttacker) != GetMoveCategory(gCurrentMove));
-        break;
-    default:
-        gBattleStruct->swapDamageCategory = (GetCategoryBasedOnStats(gBattlerAttacker) != GetMoveCategory(gCurrentMove));
-        break;
-    }
-
     gBattlescriptCurrInstr = cmd->nextInstr;
 }
 
