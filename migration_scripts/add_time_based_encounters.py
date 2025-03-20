@@ -12,7 +12,6 @@ ENCOUNTER_GROUP_SUFFIX = [
 
 ARGS = [
     "--copy",
-    "--update"
 ]
 
 
@@ -26,22 +25,13 @@ def GetWildEncounterFile():
     wBackupFile.write(wBackupData)
 
     global COPY_FULL_ENCOUNTER
-    global UPDATE_ONLY
     COPY_FULL_ENCOUNTER = False
-    UPDATE_ONLY = False
 
     for arg in ARGS:
         if len(sys.argv) > 1:
             if arg in sys.argv[1:3]:
                 if arg == ARGS[0]:
                     COPY_FULL_ENCOUNTER = True
-                elif arg == ARGS[1]:
-                    UPDATE_ONLY = True
-            
-    
-    print(COPY_FULL_ENCOUNTER)
-    print(UPDATE_ONLY)
-    
 
     j = 0
     for group in wData["wild_encounter_groups"]:
@@ -52,7 +42,7 @@ def GetWildEncounterFile():
         for map in wEncounters:
             for suffix in ENCOUNTER_GROUP_SUFFIX:
                 tempSuffix = "_" + suffix
-                if tempSuffix in map["base_label"] or UPDATE_ONLY:
+                if tempSuffix in map["base_label"]:
                     editMap = False
                     break
                 else: 
