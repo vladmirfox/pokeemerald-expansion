@@ -564,6 +564,10 @@ bool32 TryRunFromBattle(u32 battler)
     {
         effect++;
     }
+    else if (gBattleTypeFlags & BATTLE_TYPE_TRAINER)
+    {
+        effect++;
+    }
     else
     {
         u8 runningFromBattler = BATTLE_OPPOSITE(battler);

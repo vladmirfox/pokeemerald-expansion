@@ -1084,9 +1084,9 @@ void ConfigureTwoTrainersBattle(u8 trainerObjEventId, const u8 *trainerScript)
     gSelectedObjectEvent = trainerObjEventId;
     gSpecialVar_LastTalked = gObjectEvents[trainerObjEventId].localId;
 
-    if (gApproachingTrainerId == 0) 
+    if (gApproachingTrainerId == 0)
         TrainerBattleLoadArgs(trainerScript + 1);
-    else 
+    else
         TrainerBattleLoadArgsSecondTrainer(trainerScript + 1);
 
     BattleSetup_ConfigureTrainerBattle(trainerScript + 1);
@@ -1266,12 +1266,19 @@ static void CB2_EndTrainerBattle(void)
     }
     else
     {
-        SetMainCallback2(CB2_ReturnToFieldContinueScriptPlayMapMusic);
-        DowngradeBadPoison();
-        if (!InBattlePyramid() && !InTrainerHillChallenge())
+        if (gBattleOutcome != B_OUTCOME_RAN && gBattleOutcome != B_OUTCOME_FORFEITED)
         {
-            RegisterTrainerInMatchCall();
-            SetBattledTrainersFlags();
+            SetMainCallback2(CB2_ReturnToFieldContinueScriptPlayMapMusic);
+            DowngradeBadPoison();
+            if (!InBattlePyramid() && !InTrainerHillChallenge())
+            {
+                RegisterTrainerInMatchCall();
+                SetBattledTrainersFlags();
+            }
+        }
+        else
+        {
+            SetMainCallback2(CB2_WhiteOut);
         }
     }
 }
