@@ -894,6 +894,7 @@ const u8 *const gBattleStringsTable[BATTLESTRINGS_COUNT] =
     [STRINGID_SENDCAUGHTMONPARTYORBOX]              = COMPOUND_STRING("Add {B_DEF_NAME} to your party?"),
     [STRINGID_PKMNSENTTOPCAFTERCATCH]               = gText_PkmnSentToPCAfterCatch,
     [STRINGID_QUESTIONFORFEITBATTLE]                = COMPOUND_STRING("Would you like to give up on this battle and quit now? Quitting the battle is the same as losing the battle."),
+    [STRINGID_FORFEITBATTLEGAVEMONEY]               = COMPOUND_STRING("You gave ¥{B_BUFF1} to the winner…{PAUSE_UNTIL_PRESS}"),
 };
 
 const u16 gTrainerUsedItemStringIds[] =

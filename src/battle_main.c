@@ -5531,7 +5531,7 @@ static void HandleEndTurn_RanFromBattle(void)
     }
     else if ((gBattleTypeFlags & BATTLE_TYPE_TRAINER) && B_RUN_TRAINER_BATTLE)
     {
-        gBattlescriptCurrInstr = BattleScript_LocalBattleLost;
+        gBattlescriptCurrInstr = BattleScript_ForfeitTrainerBattle;
         gBattleOutcome = B_OUTCOME_FORFEITED;
     }
     else

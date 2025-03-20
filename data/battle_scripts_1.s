@@ -5598,6 +5598,12 @@ BattleScript_PayDayMoneyAndPickUpItems::
 	pickup
 	end2
 
+BattleScript_ForfeitTrainerBattle::
+	getmoneyreward
+	printstring STRINGID_FORFEITBATTLEGAVEMONEY
+	waitmessage B_WAIT_TIME_LONG
+	end2
+
 BattleScript_LocalBattleLost::
 	jumpifbattletype BATTLE_TYPE_INGAME_PARTNER, BattleScript_LocalBattleLostPrintWhiteOut
 	jumpifbattletype BATTLE_TYPE_DOME, BattleScript_CheckDomeDrew
