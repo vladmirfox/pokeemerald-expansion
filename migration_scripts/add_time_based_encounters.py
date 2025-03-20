@@ -108,35 +108,3 @@ def IsMonTable(monTable):
 
 
 GetWildEncounterFile()
-""" !!! EXAMPLE TEXT !!!
-const struct WildPokemon gRoute101_LandMons_Day[] =
-{
-    { 2, 2, SPECIES_WURMPLE },
-    { 2, 2, SPECIES_POOCHYENA },
-    { 2, 2, SPECIES_WURMPLE },
-    { 3, 3, SPECIES_WURMPLE },
-    { 3, 3, SPECIES_POOCHYENA },
-    { 3, 3, SPECIES_POOCHYENA },
-    { 3, 3, SPECIES_WURMPLE },
-    { 3, 3, SPECIES_POOCHYENA },
-    { 2, 2, SPECIES_ZIGZAGOON },
-    { 2, 2, SPECIES_ZIGZAGOON },
-    { 3, 3, SPECIES_ZIGZAGOON },
-    { 3, 3, SPECIES_ZIGZAGOON },
-};
-
-const struct WildPokemonInfo gRoute101_LandMonsInfo_Day= { 20, gRoute101_LandMons_Day};
-const struct WildPokemonHeader gWildMonHeaders[] =
-{
-    {
-        .mapGroup = MAP_GROUP(ROUTE101),
-        .mapNum = MAP_NUM(ROUTE101),
-        .encounterTypes[0] = 
-            .landMonsInfo = &gRoute101_LandMonsInfo_Day,
-            .waterMonsInfo = NULL,
-            .rockSmashMonsInfo = NULL,
-            .fishingMonsInfo = NULL,
-            .hiddenMonsInfo = NULL,
-    },
-}
-"""
