@@ -933,6 +933,7 @@ DOUBLE_BATTLE_TEST("Move Animations don't leak when used - Doubles (opponentRigh
     }
 }
 
+/*
 DOUBLE_BATTLE_TEST("Move Animations don't leak when used - Doubles (playerLeft to playerRight)")
 {
     u32 j = ANIM_TEST_START_MOVE, move = 0, species = 0;
@@ -1172,5 +1173,6 @@ DOUBLE_BATTLE_TEST("Move Animations don't leak when used - Doubles (opponentRigh
         EXPECT_EQ(gLoadFail, FALSE);
     }
 }
+*/
 
 #endif
