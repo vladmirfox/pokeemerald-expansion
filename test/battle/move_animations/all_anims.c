@@ -359,22 +359,20 @@ static void DoublesScene(u32 move, struct BattlePokemon *attacker)
     }
 }
 
-static void PlayerToPlayerDoublesScene(u32 move, struct BattlePokemon *attacker)
+static void SameSideTargeting(u32 move, struct BattlePokemon *attacker)
 {
-    if (gMovesInfo[move].category == DAMAGE_CATEGORY_STATUS)
-    {
-        ANIMATION(ANIM_TYPE_MOVE, move, attacker);
-    }
+    //  Don't know how to make sure this is correct, some moves don't display
 }
 
 SINGLE_BATTLE_TEST("Move Animations don't leak when used - Singles (player to opponent)")
 {
     u32 j = ANIM_TEST_START_MOVE, move = 0, species = 0;
+    u32 tempMove, tempSpecies;
     FORCE_MOVE_ANIM(TRUE);
     for (; j <= ANIM_TEST_END_MOVE; j++)
     {
-        ParametrizeMovesAndSpecies(j, &move, &species);
-        PARAMETRIZE { move = move; species = species; }
+        ParametrizeMovesAndSpecies(j, &tempMove, &tempSpecies);
+        PARAMETRIZE { move = tempMove; species = tempSpecies; }
     }
     GIVEN {
         PLAYER(species) {
@@ -411,11 +409,12 @@ SINGLE_BATTLE_TEST("Move Animations don't leak when used - Singles (player to op
 SINGLE_BATTLE_TEST("Move Animations don't leak when used - Singles (opponent to player)")
 {
     u32 j = ANIM_TEST_START_MOVE, move = 0, species = 0;
+    u32 tempMove, tempSpecies;
     FORCE_MOVE_ANIM(TRUE);
     for (; j <= ANIM_TEST_END_MOVE; j++)
     {
-        ParametrizeMovesAndSpecies(j, &move, &species);
-        PARAMETRIZE { move = move; species = species; }
+        ParametrizeMovesAndSpecies(j, &tempMove, &tempSpecies);
+        PARAMETRIZE { move = tempMove; species = tempSpecies; }
     }
     GIVEN {
         OPPONENT(species) {
@@ -452,6 +451,7 @@ SINGLE_BATTLE_TEST("Move Animations don't leak when used - Singles (opponent to 
 DOUBLE_BATTLE_TEST("Move Animations don't leak when used - Doubles (playerLeft to opponentLeft)")
 {
     u32 j = ANIM_TEST_START_MOVE, move = 0, species = 0;
+    u32 tempMove, tempSpecies;
     FORCE_MOVE_ANIM(TRUE);
     struct BattlePokemon *attacker = playerLeft;
     struct BattlePokemon *target = opponentLeft;
@@ -459,8 +459,8 @@ DOUBLE_BATTLE_TEST("Move Animations don't leak when used - Doubles (playerLeft t
     struct BattlePokemon *ignore2 = opponentRight;
     for (; j <= ANIM_TEST_END_MOVE; j++)
     {
-        ParametrizeMovesAndSpecies(j, &move, &species);
-        PARAMETRIZE { move = move; species = species; }
+        ParametrizeMovesAndSpecies(j, &tempMove, &tempSpecies);
+        PARAMETRIZE { move = tempMove; species = tempSpecies; }
     }
     GIVEN {
         PLAYER(species) {
@@ -516,14 +516,16 @@ DOUBLE_BATTLE_TEST("Move Animations don't leak when used - Doubles (playerLeft t
 DOUBLE_BATTLE_TEST("Move Animations don't leak when used - Doubles (opponentLeft to playerLeft)")
 {
     u32 j = ANIM_TEST_START_MOVE, move = 0, species = 0;
+    u32 tempMove, tempSpecies;
     FORCE_MOVE_ANIM(TRUE);
     struct BattlePokemon *attacker = opponentLeft;
     struct BattlePokemon *target = playerLeft;
     struct BattlePokemon *ignore1 = opponentRight;
     struct BattlePokemon *ignore2 = playerRight;
-    for (; j <= ANIM_TEST_END_MOVE; j++) {
-        ParametrizeMovesAndSpecies(j, &move, &species);
-        PARAMETRIZE { move = move; species = species; }
+    for (; j <= ANIM_TEST_END_MOVE; j++)
+    {
+        ParametrizeMovesAndSpecies(j, &tempMove, &tempSpecies);
+        PARAMETRIZE { move = tempMove; species = tempSpecies; }
     }
     GIVEN {
         OPPONENT(species) {
@@ -574,14 +576,16 @@ DOUBLE_BATTLE_TEST("Move Animations don't leak when used - Doubles (opponentLeft
 DOUBLE_BATTLE_TEST("Move Animations don't leak when used - Doubles (playerLeft to opponentRight)")
 {
     u32 j = ANIM_TEST_START_MOVE, move = 0, species = 0;
+    u32 tempMove, tempSpecies;
     FORCE_MOVE_ANIM(TRUE);
     struct BattlePokemon *attacker = playerLeft;
     struct BattlePokemon *target = opponentRight;
     struct BattlePokemon *ignore1 = playerRight;
     struct BattlePokemon *ignore2 = opponentLeft;
-    for (; j <= ANIM_TEST_END_MOVE; j++) {
-        ParametrizeMovesAndSpecies(j, &move, &species);
-        PARAMETRIZE { move = move; species = species; }
+    for (; j <= ANIM_TEST_END_MOVE; j++)
+    {
+        ParametrizeMovesAndSpecies(j, &tempMove, &tempSpecies);
+        PARAMETRIZE { move = tempMove; species = tempSpecies; }
     }
     GIVEN {
         PLAYER(species) {
@@ -632,14 +636,16 @@ DOUBLE_BATTLE_TEST("Move Animations don't leak when used - Doubles (playerLeft t
 DOUBLE_BATTLE_TEST("Move Animations don't leak when used - Doubles (opponentRight to playerLeft)")
 {
     u32 j = ANIM_TEST_START_MOVE, move = 0, species = 0;
+    u32 tempMove, tempSpecies;
     FORCE_MOVE_ANIM(TRUE);
     struct BattlePokemon *attacker = opponentRight;
     struct BattlePokemon *target = playerLeft;
     struct BattlePokemon *ignore1 = opponentLeft;
     struct BattlePokemon *ignore2 = playerRight;
-    for (; j <= ANIM_TEST_END_MOVE; j++) {
-        ParametrizeMovesAndSpecies(j, &move, &species);
-        PARAMETRIZE { move = move; species = species; }
+    for (; j <= ANIM_TEST_END_MOVE; j++)
+    {
+        ParametrizeMovesAndSpecies(j, &tempMove, &tempSpecies);
+        PARAMETRIZE { move = tempMove; species = tempSpecies; }
     }
     GIVEN {
         OPPONENT(species) {
@@ -690,14 +696,16 @@ DOUBLE_BATTLE_TEST("Move Animations don't leak when used - Doubles (opponentRigh
 DOUBLE_BATTLE_TEST("Move Animations don't leak when used - Doubles (playerRight to opponentLeft)")
 {
     u32 j = ANIM_TEST_START_MOVE, move = 0, species = 0;
+    u32 tempMove, tempSpecies;
     FORCE_MOVE_ANIM(TRUE);
     struct BattlePokemon *attacker = playerRight;
     struct BattlePokemon *target = opponentLeft;
     struct BattlePokemon *ignore1 = playerLeft;
     struct BattlePokemon *ignore2 = opponentRight;
-    for (; j <= ANIM_TEST_END_MOVE; j++) {
-        ParametrizeMovesAndSpecies(j, &move, &species);
-        PARAMETRIZE { move = move; species = species; }
+    for (; j <= ANIM_TEST_END_MOVE; j++)
+    {
+        ParametrizeMovesAndSpecies(j, &tempMove, &tempSpecies);
+        PARAMETRIZE { move = tempMove; species = tempSpecies; }
     }
     GIVEN {
         PLAYER(species) {
@@ -748,14 +756,16 @@ DOUBLE_BATTLE_TEST("Move Animations don't leak when used - Doubles (playerRight 
 DOUBLE_BATTLE_TEST("Move Animations don't leak when used - Doubles (opponentLeft to playerRight)")
 {
     u32 j = ANIM_TEST_START_MOVE, move = 0, species = 0;
+    u32 tempMove, tempSpecies;
     FORCE_MOVE_ANIM(TRUE);
     struct BattlePokemon *attacker = opponentLeft;
     struct BattlePokemon *target = playerRight;
     struct BattlePokemon *ignore1 = playerLeft;
     struct BattlePokemon *ignore2 = opponentRight;
-    for (; j <= ANIM_TEST_END_MOVE; j++) {
-        ParametrizeMovesAndSpecies(j, &move, &species);
-        PARAMETRIZE { move = move; species = species; }
+    for (; j <= ANIM_TEST_END_MOVE; j++)
+    {
+        ParametrizeMovesAndSpecies(j, &tempMove, &tempSpecies);
+        PARAMETRIZE { move = tempMove; species = tempSpecies; }
     }
     GIVEN {
         OPPONENT(species) {
@@ -806,14 +816,16 @@ DOUBLE_BATTLE_TEST("Move Animations don't leak when used - Doubles (opponentLeft
 DOUBLE_BATTLE_TEST("Move Animations don't leak when used - Doubles (playerRight to opponentRight)")
 {
     u32 j = ANIM_TEST_START_MOVE, move = 0, species = 0;
+    u32 tempMove, tempSpecies;
     FORCE_MOVE_ANIM(TRUE);
     struct BattlePokemon *attacker = playerRight;
     struct BattlePokemon *target = opponentRight;
     struct BattlePokemon *ignore1 = playerLeft;
     struct BattlePokemon *ignore2 = opponentLeft;
-    for (; j <= ANIM_TEST_END_MOVE; j++) {
-        ParametrizeMovesAndSpecies(j, &move, &species);
-        PARAMETRIZE { move = move; species = species; }
+    for (; j <= ANIM_TEST_END_MOVE; j++)
+    {
+        ParametrizeMovesAndSpecies(j, &tempMove, &tempSpecies);
+        PARAMETRIZE { move = tempMove; species = tempSpecies; }
     }
     GIVEN {
         PLAYER(species) {
@@ -864,14 +876,16 @@ DOUBLE_BATTLE_TEST("Move Animations don't leak when used - Doubles (playerRight 
 DOUBLE_BATTLE_TEST("Move Animations don't leak when used - Doubles (opponentRight to playerRight)")
 {
     u32 j = ANIM_TEST_START_MOVE, move = 0, species = 0;
+    u32 tempMove, tempSpecies;
     FORCE_MOVE_ANIM(TRUE);
     struct BattlePokemon *attacker = opponentRight;
     struct BattlePokemon *target = playerRight;
     struct BattlePokemon *ignore1 = playerLeft;
     struct BattlePokemon *ignore2 = opponentLeft;
-    for (; j <= ANIM_TEST_END_MOVE; j++) {
-        ParametrizeMovesAndSpecies(j, &move, &species);
-        PARAMETRIZE { move = move; species = species; }
+    for (; j <= ANIM_TEST_END_MOVE; j++)
+    {
+        ParametrizeMovesAndSpecies(j, &tempMove, &tempSpecies);
+        PARAMETRIZE { move = tempMove; species = tempSpecies; }
     }
     GIVEN {
         OPPONENT(species) {
@@ -922,14 +936,16 @@ DOUBLE_BATTLE_TEST("Move Animations don't leak when used - Doubles (opponentRigh
 DOUBLE_BATTLE_TEST("Move Animations don't leak when used - Doubles (playerLeft to playerRight)")
 {
     u32 j = ANIM_TEST_START_MOVE, move = 0, species = 0;
+    u32 tempMove, tempSpecies;
     FORCE_MOVE_ANIM(TRUE);
     struct BattlePokemon *attacker = playerLeft;
     struct BattlePokemon *target = playerRight;
     struct BattlePokemon *ignore1 = opponentRight;
     struct BattlePokemon *ignore2 = opponentLeft;
-    for (; j <= ANIM_TEST_END_MOVE; j++) {
-        ParametrizeMovesAndSpecies(j, &move, &species);
-        PARAMETRIZE { move = move; species = species; }
+    for (; j <= ANIM_TEST_END_MOVE; j++)
+    {
+        ParametrizeMovesAndSpecies(j, &tempMove, &tempSpecies);
+        PARAMETRIZE { move = tempMove; species = tempSpecies; }
     }
     GIVEN {
         OPPONENT(species) {
@@ -968,7 +984,7 @@ DOUBLE_BATTLE_TEST("Move Animations don't leak when used - Doubles (playerLeft t
     } WHEN {
         DoublesWhen(move, attacker, target, ignore1, ignore2);
     } SCENE {
-        PlayerToPlayerDoublesScene(move, attacker);
+        SameSideTargeting(move, attacker);
     } THEN {
         FORCE_MOVE_ANIM(FALSE);
         if (gLoadFail)
@@ -980,14 +996,16 @@ DOUBLE_BATTLE_TEST("Move Animations don't leak when used - Doubles (playerLeft t
 DOUBLE_BATTLE_TEST("Move Animations don't leak when used - Doubles (playerRight to playerLeft)")
 {
     u32 j = ANIM_TEST_START_MOVE, move = 0, species = 0;
+    u32 tempMove, tempSpecies;
     FORCE_MOVE_ANIM(TRUE);
     struct BattlePokemon *attacker = playerRight;
     struct BattlePokemon *target = playerLeft;
     struct BattlePokemon *ignore1 = opponentRight;
     struct BattlePokemon *ignore2 = opponentLeft;
-    for (; j <= ANIM_TEST_END_MOVE; j++) {
-        ParametrizeMovesAndSpecies(j, &move, &species);
-        PARAMETRIZE { move = move; species = species; }
+    for (; j <= ANIM_TEST_END_MOVE; j++)
+    {
+        ParametrizeMovesAndSpecies(j, &tempMove, &tempSpecies);
+        PARAMETRIZE { move = tempMove; species = tempSpecies; }
     }
     GIVEN {
         OPPONENT(species) {
@@ -1026,7 +1044,7 @@ DOUBLE_BATTLE_TEST("Move Animations don't leak when used - Doubles (playerRight 
     } WHEN {
         DoublesWhen(move, attacker, target, ignore1, ignore2);
     } SCENE {
-        PlayerToPlayerDoublesScene(move, attacker);
+        SameSideTargeting(move, attacker);
     } THEN {
         FORCE_MOVE_ANIM(FALSE);
         if (gLoadFail)
@@ -1038,14 +1056,16 @@ DOUBLE_BATTLE_TEST("Move Animations don't leak when used - Doubles (playerRight 
 DOUBLE_BATTLE_TEST("Move Animations don't leak when used - Doubles (opponentleft to opponentRight)")
 {
     u32 j = ANIM_TEST_START_MOVE, move = 0, species = 0;
+    u32 tempMove, tempSpecies;
     FORCE_MOVE_ANIM(TRUE);
     struct BattlePokemon *attacker = opponentLeft;
     struct BattlePokemon *target = opponentRight;
     struct BattlePokemon *ignore1 = playerLeft;
     struct BattlePokemon *ignore2 = playerRight;
-    for (; j <= ANIM_TEST_END_MOVE; j++) {
-        ParametrizeMovesAndSpecies(j, &move, &species);
-        PARAMETRIZE { move = move; species = species; }
+    for (; j <= ANIM_TEST_END_MOVE; j++)
+    {
+        ParametrizeMovesAndSpecies(j, &tempMove, &tempSpecies);
+        PARAMETRIZE { move = tempMove; species = tempSpecies; }
     }
     GIVEN {
         OPPONENT(species) {
@@ -1084,7 +1104,7 @@ DOUBLE_BATTLE_TEST("Move Animations don't leak when used - Doubles (opponentleft
     } WHEN {
         DoublesWhen(move, attacker, target, ignore1, ignore2);
     } SCENE {
-        DoublesScene(move, attacker);
+        SameSideTargeting(move, attacker);
     } THEN {
         FORCE_MOVE_ANIM(FALSE);
         if (gLoadFail)
@@ -1096,14 +1116,16 @@ DOUBLE_BATTLE_TEST("Move Animations don't leak when used - Doubles (opponentleft
 DOUBLE_BATTLE_TEST("Move Animations don't leak when used - Doubles (opponentRight to opponentLeft)")
 {
     u32 j = ANIM_TEST_START_MOVE, move = 0, species = 0;
+    u32 tempMove, tempSpecies;
     FORCE_MOVE_ANIM(TRUE);
     struct BattlePokemon *attacker = opponentRight;
     struct BattlePokemon *target = opponentLeft;
     struct BattlePokemon *ignore1 = playerLeft;
     struct BattlePokemon *ignore2 = playerRight;
-    for (; j <= ANIM_TEST_END_MOVE; j++) {
-        ParametrizeMovesAndSpecies(j, &move, &species);
-        PARAMETRIZE { move = move; species = species; }
+    for (; j <= ANIM_TEST_END_MOVE; j++)
+    {
+        ParametrizeMovesAndSpecies(j, &tempMove, &tempSpecies);
+        PARAMETRIZE { move = tempMove; species = tempSpecies; }
     }
     GIVEN {
         OPPONENT(species) {
@@ -1142,7 +1164,7 @@ DOUBLE_BATTLE_TEST("Move Animations don't leak when used - Doubles (opponentRigh
     } WHEN {
         DoublesWhen(move, attacker, target, ignore1, ignore2);
     } SCENE {
-        DoublesScene(move, attacker);
+        SameSideTargeting(move, attacker);
     } THEN {
         FORCE_MOVE_ANIM(FALSE);
         if (gLoadFail)
