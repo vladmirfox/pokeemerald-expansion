@@ -13,12 +13,9 @@
 *.8bpp
 *.gbapal
 *.lz
-<<<<<<< HEAD
-=======
 *.smol
 *.fastSmol
 *.smolTM
->>>>>>> tilemap-test
 *.rl
 *.latfont
 *.hwjpnfont
