@@ -359,11 +359,19 @@ static void DoublesScene(u32 move, struct BattlePokemon *attacker)
     }
 }
 
+static void PlayerToPlayerDoublesScene(u32 move, struct BattlePokemon *attacker)
+{
+    if (gMovesInfo[move].category == DAMAGE_CATEGORY_STATUS)
+    {
+        ANIMATION(ANIM_TYPE_MOVE, move, attacker);
+    }
+}
+
 SINGLE_BATTLE_TEST("Move Animations don't leak when used - Singles (player to opponent)")
 {
-    u32 j = 1, move = 0, species = 0;
+    u32 j = ANIM_TEST_START_MOVE, move = 0, species = 0;
     FORCE_MOVE_ANIM(TRUE);
-    for (; j < MOVES_COUNT; j++)
+    for (; j <= ANIM_TEST_END_MOVE; j++)
     {
         ParametrizeMovesAndSpecies(j, &move, &species);
         PARAMETRIZE { move = move; species = species; }
@@ -402,9 +410,9 @@ SINGLE_BATTLE_TEST("Move Animations don't leak when used - Singles (player to op
 
 SINGLE_BATTLE_TEST("Move Animations don't leak when used - Singles (opponent to player)")
 {
-    u32 j = 1, move = 0, species = 0;
+    u32 j = ANIM_TEST_START_MOVE, move = 0, species = 0;
     FORCE_MOVE_ANIM(TRUE);
-    for (; j < MOVES_COUNT; j++)
+    for (; j <= ANIM_TEST_END_MOVE; j++)
     {
         ParametrizeMovesAndSpecies(j, &move, &species);
         PARAMETRIZE { move = move; species = species; }
@@ -443,13 +451,13 @@ SINGLE_BATTLE_TEST("Move Animations don't leak when used - Singles (opponent to 
 
 DOUBLE_BATTLE_TEST("Move Animations don't leak when used - Doubles (playerLeft to opponentLeft)")
 {
-    u32 j = 1, move = 0, species = 0;
+    u32 j = ANIM_TEST_START_MOVE, move = 0, species = 0;
     FORCE_MOVE_ANIM(TRUE);
     struct BattlePokemon *attacker = playerLeft;
     struct BattlePokemon *target = opponentLeft;
     struct BattlePokemon *ignore1 = playerRight;
     struct BattlePokemon *ignore2 = opponentRight;
-    for (; j < MOVES_COUNT; j++)
+    for (; j <= ANIM_TEST_END_MOVE; j++)
     {
         ParametrizeMovesAndSpecies(j, &move, &species);
         PARAMETRIZE { move = move; species = species; }
@@ -507,13 +515,13 @@ DOUBLE_BATTLE_TEST("Move Animations don't leak when used - Doubles (playerLeft t
 
 DOUBLE_BATTLE_TEST("Move Animations don't leak when used - Doubles (opponentLeft to playerLeft)")
 {
-    u32 j = 1, move = 0, species = 0;
+    u32 j = ANIM_TEST_START_MOVE, move = 0, species = 0;
     FORCE_MOVE_ANIM(TRUE);
     struct BattlePokemon *attacker = opponentLeft;
     struct BattlePokemon *target = playerLeft;
     struct BattlePokemon *ignore1 = opponentRight;
     struct BattlePokemon *ignore2 = playerRight;
-    for (; j < MOVES_COUNT; j++) {
+    for (; j <= ANIM_TEST_END_MOVE; j++) {
         ParametrizeMovesAndSpecies(j, &move, &species);
         PARAMETRIZE { move = move; species = species; }
     }
@@ -565,13 +573,13 @@ DOUBLE_BATTLE_TEST("Move Animations don't leak when used - Doubles (opponentLeft
 
 DOUBLE_BATTLE_TEST("Move Animations don't leak when used - Doubles (playerLeft to opponentRight)")
 {
-    u32 j = 1, move = 0, species = 0;
+    u32 j = ANIM_TEST_START_MOVE, move = 0, species = 0;
     FORCE_MOVE_ANIM(TRUE);
     struct BattlePokemon *attacker = playerLeft;
     struct BattlePokemon *target = opponentRight;
     struct BattlePokemon *ignore1 = playerRight;
     struct BattlePokemon *ignore2 = opponentLeft;
-    for (; j < MOVES_COUNT; j++) {
+    for (; j <= ANIM_TEST_END_MOVE; j++) {
         ParametrizeMovesAndSpecies(j, &move, &species);
         PARAMETRIZE { move = move; species = species; }
     }
@@ -623,13 +631,13 @@ DOUBLE_BATTLE_TEST("Move Animations don't leak when used - Doubles (playerLeft t
 
 DOUBLE_BATTLE_TEST("Move Animations don't leak when used - Doubles (opponentRight to playerLeft)")
 {
-    u32 j = 1, move = 0, species = 0;
+    u32 j = ANIM_TEST_START_MOVE, move = 0, species = 0;
     FORCE_MOVE_ANIM(TRUE);
     struct BattlePokemon *attacker = opponentRight;
     struct BattlePokemon *target = playerLeft;
     struct BattlePokemon *ignore1 = opponentLeft;
     struct BattlePokemon *ignore2 = playerRight;
-    for (; j < MOVES_COUNT; j++) {
+    for (; j <= ANIM_TEST_END_MOVE; j++) {
         ParametrizeMovesAndSpecies(j, &move, &species);
         PARAMETRIZE { move = move; species = species; }
     }
@@ -681,13 +689,13 @@ DOUBLE_BATTLE_TEST("Move Animations don't leak when used - Doubles (opponentRigh
 
 DOUBLE_BATTLE_TEST("Move Animations don't leak when used - Doubles (playerRight to opponentLeft)")
 {
-    u32 j = 1, move = 0, species = 0;
+    u32 j = ANIM_TEST_START_MOVE, move = 0, species = 0;
     FORCE_MOVE_ANIM(TRUE);
     struct BattlePokemon *attacker = playerRight;
     struct BattlePokemon *target = opponentLeft;
     struct BattlePokemon *ignore1 = playerLeft;
     struct BattlePokemon *ignore2 = opponentRight;
-    for (; j < MOVES_COUNT; j++) {
+    for (; j <= ANIM_TEST_END_MOVE; j++) {
         ParametrizeMovesAndSpecies(j, &move, &species);
         PARAMETRIZE { move = move; species = species; }
     }
@@ -739,13 +747,13 @@ DOUBLE_BATTLE_TEST("Move Animations don't leak when used - Doubles (playerRight 
 
 DOUBLE_BATTLE_TEST("Move Animations don't leak when used - Doubles (opponentLeft to playerRight)")
 {
-    u32 j = 1, move = 0, species = 0;
+    u32 j = ANIM_TEST_START_MOVE, move = 0, species = 0;
     FORCE_MOVE_ANIM(TRUE);
     struct BattlePokemon *attacker = opponentLeft;
     struct BattlePokemon *target = playerRight;
     struct BattlePokemon *ignore1 = playerLeft;
     struct BattlePokemon *ignore2 = opponentRight;
-    for (; j < MOVES_COUNT; j++) {
+    for (; j <= ANIM_TEST_END_MOVE; j++) {
         ParametrizeMovesAndSpecies(j, &move, &species);
         PARAMETRIZE { move = move; species = species; }
     }
@@ -797,13 +805,13 @@ DOUBLE_BATTLE_TEST("Move Animations don't leak when used - Doubles (opponentLeft
 
 DOUBLE_BATTLE_TEST("Move Animations don't leak when used - Doubles (playerRight to opponentRight)")
 {
-    u32 j = 1, move = 0, species = 0;
+    u32 j = ANIM_TEST_START_MOVE, move = 0, species = 0;
     FORCE_MOVE_ANIM(TRUE);
     struct BattlePokemon *attacker = playerRight;
     struct BattlePokemon *target = opponentRight;
     struct BattlePokemon *ignore1 = playerLeft;
     struct BattlePokemon *ignore2 = opponentLeft;
-    for (; j < MOVES_COUNT; j++) {
+    for (; j <= ANIM_TEST_END_MOVE; j++) {
         ParametrizeMovesAndSpecies(j, &move, &species);
         PARAMETRIZE { move = move; species = species; }
     }
@@ -855,13 +863,245 @@ DOUBLE_BATTLE_TEST("Move Animations don't leak when used - Doubles (playerRight 
 
 DOUBLE_BATTLE_TEST("Move Animations don't leak when used - Doubles (opponentRight to playerRight)")
 {
-    u32 j = 1, move = 0, species = 0;
+    u32 j = ANIM_TEST_START_MOVE, move = 0, species = 0;
     FORCE_MOVE_ANIM(TRUE);
     struct BattlePokemon *attacker = opponentRight;
     struct BattlePokemon *target = playerRight;
     struct BattlePokemon *ignore1 = playerLeft;
     struct BattlePokemon *ignore2 = opponentLeft;
-    for (; j < MOVES_COUNT; j++) {
+    for (; j <= ANIM_TEST_END_MOVE; j++) {
+        ParametrizeMovesAndSpecies(j, &move, &species);
+        PARAMETRIZE { move = move; species = species; }
+    }
+    GIVEN {
+        OPPONENT(species) {
+            HP(9997); MaxHP(9999); Item(ITEM_ORAN_BERRY);
+            if (attacker == opponentLeft) {
+                if (species == SPECIES_WOBBUFFET) Gender(MON_FEMALE);
+                if (gMovesInfo[move].effect == EFFECT_LAST_RESORT) Moves(move, MOVE_POUND);
+                if (species == SPECIES_KLINKLANG) Ability(ABILITY_PLUS);
+            }
+        }
+        OPPONENT(species) {
+            HP(9997); MaxHP(9999); Item(ITEM_ORAN_BERRY);
+            if (attacker == opponentRight) {
+                if (species == SPECIES_WOBBUFFET) Gender(MON_FEMALE);
+                if (gMovesInfo[move].effect == EFFECT_LAST_RESORT) Moves(move, MOVE_POUND);
+                if (species == SPECIES_KLINKLANG) Ability(ABILITY_PLUS);
+            }
+        }
+        OPPONENT(SPECIES_WOBBUFFET) {
+            Gender(MON_MALE); MaxHP(9999); Moves(MOVE_POUND, MOVE_CELEBRATE);
+            HP(gMovesInfo[move].effect == EFFECT_REVIVAL_BLESSING ? 0 : 9998);
+        }
+        PLAYER(SPECIES_WOBBUFFET) {
+            Gender(MON_MALE); HP(9998); MaxHP(9999); SpDefense(9999); Defense(9999); Ability(ABILITY_TELEPATHY);
+            if (gMovesInfo[move].effect != EFFECT_BESTOW) {
+                Item(ITEM_ORAN_BERRY);
+            }
+        }
+        PLAYER(SPECIES_WOBBUFFET) {
+            Gender(MON_MALE); HP(9998); MaxHP(9999); SpDefense(9999); Defense(9999); Ability(ABILITY_TELEPATHY);
+            if (gMovesInfo[move].effect != EFFECT_BESTOW) {
+                Item(ITEM_ORAN_BERRY);
+            }
+        }
+        PLAYER(SPECIES_WOBBUFFET) { Gender(MON_FEMALE); HP(9998); MaxHP(9999); SpDefense(9999); Defense(9999); }
+    } WHEN {
+        DoublesWhen(move, attacker, target, ignore1, ignore2);
+    } SCENE {
+        DoublesScene(move, attacker);
+    } THEN {
+        FORCE_MOVE_ANIM(FALSE);
+        if (gLoadFail)
+            DebugPrintf("Move failed: %S (%u)", gMovesInfo[move].name, move);
+        EXPECT_EQ(gLoadFail, FALSE);
+    }
+}
+
+DOUBLE_BATTLE_TEST("Move Animations don't leak when used - Doubles (playerLeft to playerRight)")
+{
+    u32 j = ANIM_TEST_START_MOVE, move = 0, species = 0;
+    FORCE_MOVE_ANIM(TRUE);
+    struct BattlePokemon *attacker = playerLeft;
+    struct BattlePokemon *target = playerRight;
+    struct BattlePokemon *ignore1 = opponentRight;
+    struct BattlePokemon *ignore2 = opponentLeft;
+    for (; j <= ANIM_TEST_END_MOVE; j++) {
+        ParametrizeMovesAndSpecies(j, &move, &species);
+        PARAMETRIZE { move = move; species = species; }
+    }
+    GIVEN {
+        OPPONENT(species) {
+            HP(9997); MaxHP(9999); Item(ITEM_ORAN_BERRY);
+            if (attacker == opponentLeft) {
+                if (species == SPECIES_WOBBUFFET) Gender(MON_FEMALE);
+                if (gMovesInfo[move].effect == EFFECT_LAST_RESORT) Moves(move, MOVE_POUND);
+                if (species == SPECIES_KLINKLANG) Ability(ABILITY_PLUS);
+            }
+        }
+        OPPONENT(species) {
+            HP(9997); MaxHP(9999); Item(ITEM_ORAN_BERRY);
+            if (attacker == opponentRight) {
+                if (species == SPECIES_WOBBUFFET) Gender(MON_FEMALE);
+                if (gMovesInfo[move].effect == EFFECT_LAST_RESORT) Moves(move, MOVE_POUND);
+                if (species == SPECIES_KLINKLANG) Ability(ABILITY_PLUS);
+            }
+        }
+        OPPONENT(SPECIES_WOBBUFFET) {
+            Gender(MON_MALE); MaxHP(9999); Moves(MOVE_POUND, MOVE_CELEBRATE);
+            HP(gMovesInfo[move].effect == EFFECT_REVIVAL_BLESSING ? 0 : 9998);
+        }
+        PLAYER(SPECIES_WOBBUFFET) {
+            Gender(MON_MALE); HP(9998); MaxHP(9999); SpDefense(9999); Defense(9999); Ability(ABILITY_TELEPATHY);
+            if (gMovesInfo[move].effect != EFFECT_BESTOW) {
+                Item(ITEM_ORAN_BERRY);
+            }
+        }
+        PLAYER(SPECIES_WOBBUFFET) {
+            Gender(MON_MALE); HP(9998); MaxHP(9999); SpDefense(9999); Defense(9999); Ability(ABILITY_TELEPATHY);
+            if (gMovesInfo[move].effect != EFFECT_BESTOW) {
+                Item(ITEM_ORAN_BERRY);
+            }
+        }
+        PLAYER(SPECIES_WOBBUFFET) { Gender(MON_FEMALE); HP(9998); MaxHP(9999); SpDefense(9999); Defense(9999); }
+    } WHEN {
+        DoublesWhen(move, attacker, target, ignore1, ignore2);
+    } SCENE {
+        PlayerToPlayerDoublesScene(move, attacker);
+    } THEN {
+        FORCE_MOVE_ANIM(FALSE);
+        if (gLoadFail)
+            DebugPrintf("Move failed: %S (%u)", gMovesInfo[move].name, move);
+        EXPECT_EQ(gLoadFail, FALSE);
+    }
+}
+
+DOUBLE_BATTLE_TEST("Move Animations don't leak when used - Doubles (playerRight to playerLeft)")
+{
+    u32 j = ANIM_TEST_START_MOVE, move = 0, species = 0;
+    FORCE_MOVE_ANIM(TRUE);
+    struct BattlePokemon *attacker = playerRight;
+    struct BattlePokemon *target = playerLeft;
+    struct BattlePokemon *ignore1 = opponentRight;
+    struct BattlePokemon *ignore2 = opponentLeft;
+    for (; j <= ANIM_TEST_END_MOVE; j++) {
+        ParametrizeMovesAndSpecies(j, &move, &species);
+        PARAMETRIZE { move = move; species = species; }
+    }
+    GIVEN {
+        OPPONENT(species) {
+            HP(9997); MaxHP(9999); Item(ITEM_ORAN_BERRY);
+            if (attacker == opponentLeft) {
+                if (species == SPECIES_WOBBUFFET) Gender(MON_FEMALE);
+                if (gMovesInfo[move].effect == EFFECT_LAST_RESORT) Moves(move, MOVE_POUND);
+                if (species == SPECIES_KLINKLANG) Ability(ABILITY_PLUS);
+            }
+        }
+        OPPONENT(species) {
+            HP(9997); MaxHP(9999); Item(ITEM_ORAN_BERRY);
+            if (attacker == opponentRight) {
+                if (species == SPECIES_WOBBUFFET) Gender(MON_FEMALE);
+                if (gMovesInfo[move].effect == EFFECT_LAST_RESORT) Moves(move, MOVE_POUND);
+                if (species == SPECIES_KLINKLANG) Ability(ABILITY_PLUS);
+            }
+        }
+        OPPONENT(SPECIES_WOBBUFFET) {
+            Gender(MON_MALE); MaxHP(9999); Moves(MOVE_POUND, MOVE_CELEBRATE);
+            HP(gMovesInfo[move].effect == EFFECT_REVIVAL_BLESSING ? 0 : 9998);
+        }
+        PLAYER(SPECIES_WOBBUFFET) {
+            Gender(MON_MALE); HP(9998); MaxHP(9999); SpDefense(9999); Defense(9999); Ability(ABILITY_TELEPATHY);
+            if (gMovesInfo[move].effect != EFFECT_BESTOW) {
+                Item(ITEM_ORAN_BERRY);
+            }
+        }
+        PLAYER(SPECIES_WOBBUFFET) {
+            Gender(MON_MALE); HP(9998); MaxHP(9999); SpDefense(9999); Defense(9999); Ability(ABILITY_TELEPATHY);
+            if (gMovesInfo[move].effect != EFFECT_BESTOW) {
+                Item(ITEM_ORAN_BERRY);
+            }
+        }
+        PLAYER(SPECIES_WOBBUFFET) { Gender(MON_FEMALE); HP(9998); MaxHP(9999); SpDefense(9999); Defense(9999); }
+    } WHEN {
+        DoublesWhen(move, attacker, target, ignore1, ignore2);
+    } SCENE {
+        PlayerToPlayerDoublesScene(move, attacker);
+    } THEN {
+        FORCE_MOVE_ANIM(FALSE);
+        if (gLoadFail)
+            DebugPrintf("Move failed: %S (%u)", gMovesInfo[move].name, move);
+        EXPECT_EQ(gLoadFail, FALSE);
+    }
+}
+
+DOUBLE_BATTLE_TEST("Move Animations don't leak when used - Doubles (opponentleft to opponentRight)")
+{
+    u32 j = ANIM_TEST_START_MOVE, move = 0, species = 0;
+    FORCE_MOVE_ANIM(TRUE);
+    struct BattlePokemon *attacker = opponentLeft;
+    struct BattlePokemon *target = opponentRight;
+    struct BattlePokemon *ignore1 = playerLeft;
+    struct BattlePokemon *ignore2 = playerRight;
+    for (; j <= ANIM_TEST_END_MOVE; j++) {
+        ParametrizeMovesAndSpecies(j, &move, &species);
+        PARAMETRIZE { move = move; species = species; }
+    }
+    GIVEN {
+        OPPONENT(species) {
+            HP(9997); MaxHP(9999); Item(ITEM_ORAN_BERRY);
+            if (attacker == opponentLeft) {
+                if (species == SPECIES_WOBBUFFET) Gender(MON_FEMALE);
+                if (gMovesInfo[move].effect == EFFECT_LAST_RESORT) Moves(move, MOVE_POUND);
+                if (species == SPECIES_KLINKLANG) Ability(ABILITY_PLUS);
+            }
+        }
+        OPPONENT(species) {
+            HP(9997); MaxHP(9999); Item(ITEM_ORAN_BERRY);
+            if (attacker == opponentRight) {
+                if (species == SPECIES_WOBBUFFET) Gender(MON_FEMALE);
+                if (gMovesInfo[move].effect == EFFECT_LAST_RESORT) Moves(move, MOVE_POUND);
+                if (species == SPECIES_KLINKLANG) Ability(ABILITY_PLUS);
+            }
+        }
+        OPPONENT(SPECIES_WOBBUFFET) {
+            Gender(MON_MALE); MaxHP(9999); Moves(MOVE_POUND, MOVE_CELEBRATE);
+            HP(gMovesInfo[move].effect == EFFECT_REVIVAL_BLESSING ? 0 : 9998);
+        }
+        PLAYER(SPECIES_WOBBUFFET) {
+            Gender(MON_MALE); HP(9998); MaxHP(9999); SpDefense(9999); Defense(9999); Ability(ABILITY_TELEPATHY);
+            if (gMovesInfo[move].effect != EFFECT_BESTOW) {
+                Item(ITEM_ORAN_BERRY);
+            }
+        }
+        PLAYER(SPECIES_WOBBUFFET) {
+            Gender(MON_MALE); HP(9998); MaxHP(9999); SpDefense(9999); Defense(9999); Ability(ABILITY_TELEPATHY);
+            if (gMovesInfo[move].effect != EFFECT_BESTOW) {
+                Item(ITEM_ORAN_BERRY);
+            }
+        }
+        PLAYER(SPECIES_WOBBUFFET) { Gender(MON_FEMALE); HP(9998); MaxHP(9999); SpDefense(9999); Defense(9999); }
+    } WHEN {
+        DoublesWhen(move, attacker, target, ignore1, ignore2);
+    } SCENE {
+        DoublesScene(move, attacker);
+    } THEN {
+        FORCE_MOVE_ANIM(FALSE);
+        if (gLoadFail)
+            DebugPrintf("Move failed: %S (%u)", gMovesInfo[move].name, move);
+        EXPECT_EQ(gLoadFail, FALSE);
+    }
+}
+
+DOUBLE_BATTLE_TEST("Move Animations don't leak when used - Doubles (opponentRight to opponentLeft)")
+{
+    u32 j = ANIM_TEST_START_MOVE, move = 0, species = 0;
+    FORCE_MOVE_ANIM(TRUE);
+    struct BattlePokemon *attacker = opponentRight;
+    struct BattlePokemon *target = opponentLeft;
+    struct BattlePokemon *ignore1 = playerLeft;
+    struct BattlePokemon *ignore2 = playerRight;
+    for (; j <= ANIM_TEST_END_MOVE; j++) {
         ParametrizeMovesAndSpecies(j, &move, &species);
         PARAMETRIZE { move = move; species = species; }
     }
