@@ -240,6 +240,20 @@ void RemoveWindow(u32 windowId)
     }
 }
 
+void RemoveAllWindowsOnBg(u32 bgId)
+{
+    u32 i;
+
+    if (bgId > NUM_BACKGROUNDS)
+        return;
+
+    for (i = 0; i < WINDOWS_MAX; i++)
+    {
+        if (gWindows[i].window.bg == bgId)
+            RemoveWindow(i);
+    }
+}
+
 void FreeAllWindowBuffers(void)
 {
     int i;
@@ -580,7 +594,7 @@ u32 GetWindowAttribute(u32 windowId, u32 attributeId)
     }
 }
 
-static u32 GetNumActiveWindowsOnBg(u32 bgId)
+u32 GetNumActiveWindowsOnBg(u32 bgId)
 {
     u32 windowsNum = 0;
     s32 i;

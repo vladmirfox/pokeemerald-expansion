@@ -4013,15 +4013,8 @@ static void Task_ReloadAreaScreen(u8 taskId)
     {
     case 0:
     default:
-        if (!gPaletteFade.active)
-        {
-            sPokedexView->currentPage = PAGE_AREA;
-            gPokedexVBlankCB = gMain.vblankCallback;
-            SetVBlankCallback(NULL);
-            ResetOtherVideoRegisters(DISPCNT_BG1_ON);
-            sPokedexView->selectedScreen = AREA_SCREEN;
-            gMain.state = 1;
-        }
+        sPokedexView->currentPage = PAGE_AREA;
+        gMain.state = 1;
         break;
     case 1:
         LoadPokedexBgPalette(sPokedexView->isSearchResults);
@@ -4030,8 +4023,6 @@ static void Task_ReloadAreaScreen(u8 taskId)
         break;
     case 2:
         DisplayPokedexAreaScreen(NationalPokedexNumToSpeciesHGSS(sPokedexListItem->dexNum), &sPokedexView->screenSwitchState, gAreaTimeOfDay, DEX_UPDATE_AREA_SCREEN);
-        SetVBlankCallback(gPokedexVBlankCB);
-        sPokedexView->screenSwitchState = 0;
         gMain.state = 0;
         gTasks[taskId].func = Task_WaitForAreaScreenInput;
         break;
