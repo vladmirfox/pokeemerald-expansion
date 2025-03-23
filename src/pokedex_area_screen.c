@@ -61,6 +61,13 @@
 #define MAX_AREA_MARKERS 32 // Maximum number of circular spot highlights
 
 #define LABEL_WINDOW_BG 1
+#define NUM_LABEL_WINDOWS 2
+
+enum PokedexAreaLabels
+{
+    DEX_AREA_LABEL_TIME_OF_DAY,
+    DEX_AREA_LABEL_AREA_UNKNOWN
+};
 
 struct OverworldArea
 {
@@ -97,8 +104,7 @@ struct
     /*0xF70*/ u8 charBuffer[64];
     /*0xFB0*/ struct Sprite * areaUnknownSprites[3];
     /*0xFBC*/ u8 areaUnknownGraphicsBuffer[0x600];
-    /*0xFC0*/ u32 infoWindowId;
-    /*0xFC4*/ u32 unknownWindowId;
+    /*0xFC0*/ u32 areaScreenLabelIds[NUM_LABEL_WINDOWS];
     /*0xFC8*/ u32 areaState;
 } static EWRAM_DATA *sPokedexAreaScreen = NULL;
 
@@ -123,9 +129,9 @@ static void DestroyAreaScreenSprites(void);
 static void AddTimeOfDayLabels(void);
 static void ShowEncounterInfoLabel(void);
 static void ShowAreaUnknownLabel(void);
-static void ClearEncounterInfoLabel(void);
-static void ClearAreaUnknownLabel(void);
-//static void ClearAreaMap(void);
+static void PrintAreaLabelText(const u8 *text, u32 labelId, int textXPos);
+static void ClearAreaWindowLabel(u32 labelId);
+
 bool32 ShouldShowAreaUnknownLabel(void);
 
 static const u32 sAreaGlow_Pal[] = INCBIN_U32("graphics/pokedex/area_glow.gbapal");
@@ -229,26 +235,29 @@ static const struct SpriteTemplate sAreaUnknownSpriteTemplate =
 };
 
 static const u8 sFontColor_AreaInfo[3] = {TEXT_COLOR_TRANSPARENT, TEXT_COLOR_WHITE, 5};
-static const struct WindowTemplate sTimeOfDayWindowTemplate =
+static const struct WindowTemplate sTimeOfDayWindowLabelTemplates[] =
 {
-    .bg = LABEL_WINDOW_BG,
-    .tilemapLeft = 22,
-    .tilemapTop = 18,
-    .width = 8,
-    .height = 2,
-    .paletteNum = 0,
-    .baseBlock = 0x16C
-};
+    [DEX_AREA_LABEL_TIME_OF_DAY] =
+    {
+        .bg = LABEL_WINDOW_BG,
+        .tilemapLeft = 22,
+        .tilemapTop = 18,
+        .width = 8,
+        .height = 2,
+        .paletteNum = 0,
+        .baseBlock = 0x16C
+    },
 
-static const struct WindowTemplate sAreaUnknownWindowTemplate =
-{
-    .bg = LABEL_WINDOW_BG,
-    .tilemapLeft = 12,
-    .tilemapTop = 18,
-    .width = 10,
-    .height = 2,
-    .paletteNum = 0,
-    .baseBlock = 0x240
+    [DEX_AREA_LABEL_AREA_UNKNOWN] = 
+    {
+        .bg = LABEL_WINDOW_BG,
+        .tilemapLeft = 12,
+        .tilemapTop = 18,
+        .width = 10,
+        .height = 2,
+        .paletteNum = 0,
+        .baseBlock = 0x240
+    }
 };
 
 static void ResetDrawAreaGlowState(void)
@@ -648,14 +657,16 @@ static const u8 *GetTimeOfDayTextWithButton(u32 gAreaTimeOfDay)
 
 static void AddTimeOfDayLabels(void)
 {
+    u32 i;
+
     // clear the background before adding any more windows
     RemoveAllWindowsOnBg(LABEL_WINDOW_BG);
-    
-    sPokedexAreaScreen->infoWindowId = AddWindow(&sTimeOfDayWindowTemplate);
-    sPokedexAreaScreen->unknownWindowId = AddWindow(&sAreaUnknownWindowTemplate);
 
-    FillWindowPixelBuffer(sPokedexAreaScreen->infoWindowId, PIXEL_FILL(0));
-    FillWindowPixelBuffer(sPokedexAreaScreen->unknownWindowId, PIXEL_FILL(0));
+    for (i = 0; i < NUM_LABEL_WINDOWS; i ++)
+    {
+        sPokedexAreaScreen->areaScreenLabelIds[i] = AddWindow(&sTimeOfDayWindowLabelTemplates[i]);
+        FillWindowPixelBuffer(sPokedexAreaScreen->areaScreenLabelIds[i], PIXEL_FILL(0));
+    }
 }
 
 static void ShowEncounterInfoLabel(void)
@@ -663,13 +674,7 @@ static void ShowEncounterInfoLabel(void)
     const u8 *gText_TimeOfDay = GetTimeOfDayTextWithButton(gAreaTimeOfDay);
     int stringXPos = GetStringCenterAlignXOffset(FONT_NORMAL, gText_TimeOfDay, 64);
 
-    ClearEncounterInfoLabel();
-
-    PutWindowTilemap(sPokedexAreaScreen->infoWindowId);
-    FillWindowPixelBuffer(sPokedexAreaScreen->infoWindowId, PIXEL_FILL(7));
-
-    AddTextPrinterParameterized4(sPokedexAreaScreen->infoWindowId, FONT_NORMAL, stringXPos, 0, 0, 0, sFontColor_AreaInfo, TEXT_SKIP_DRAW, gText_TimeOfDay);
-    CopyWindowToVram(sPokedexAreaScreen->infoWindowId, COPYWIN_FULL);
+    PrintAreaLabelText(gText_TimeOfDay, DEX_AREA_LABEL_TIME_OF_DAY, stringXPos);
 }
 
 static void ShowAreaUnknownLabel(void)
@@ -677,27 +682,25 @@ static void ShowAreaUnknownLabel(void)
     static const u8 gText_AreaUnknown[] = _("AREA UNKNOWN");
     int stringXPos = GetStringCenterAlignXOffset(FONT_NORMAL, gText_AreaUnknown, 80);
 
-    ClearAreaUnknownLabel();
-
-    PutWindowTilemap(sPokedexAreaScreen->unknownWindowId);
-    FillWindowPixelBuffer(sPokedexAreaScreen->unknownWindowId, PIXEL_FILL(7));
-
-    AddTextPrinterParameterized4(sPokedexAreaScreen->unknownWindowId, FONT_NORMAL, stringXPos, 0, 0, 0, sFontColor_AreaInfo, TEXT_SKIP_DRAW, gText_AreaUnknown);
-    CopyWindowToVram(sPokedexAreaScreen->unknownWindowId, COPYWIN_FULL);
+    PrintAreaLabelText(gText_AreaUnknown, DEX_AREA_LABEL_AREA_UNKNOWN, stringXPos);
 }
 
-static void ClearEncounterInfoLabel(void)
+static void ClearAreaWindowLabel(u32 labelId)
 {
-    FillWindowPixelBuffer(sPokedexAreaScreen->infoWindowId, PIXEL_FILL(0));
-    ClearWindowTilemap(sPokedexAreaScreen->infoWindowId);
+    FillWindowPixelBuffer(sPokedexAreaScreen->areaScreenLabelIds[labelId], PIXEL_FILL(0));
+    ClearWindowTilemap(sPokedexAreaScreen->areaScreenLabelIds[labelId]);
     ScheduleBgCopyTilemapToVram(0);
 }
 
-static void ClearAreaUnknownLabel(void)
+static void PrintAreaLabelText(const u8 *text, u32 labelId, int textXPos)
 {
-    FillWindowPixelBuffer(sPokedexAreaScreen->unknownWindowId, PIXEL_FILL(0));
-    ClearWindowTilemap(sPokedexAreaScreen->unknownWindowId);
-    ScheduleBgCopyTilemapToVram(0);
+    ClearAreaWindowLabel(labelId);
+
+    PutWindowTilemap(sPokedexAreaScreen->areaScreenLabelIds[labelId]);
+    FillWindowPixelBuffer(sPokedexAreaScreen->areaScreenLabelIds[labelId], PIXEL_FILL(7));
+
+    AddTextPrinterParameterized4(sPokedexAreaScreen->areaScreenLabelIds[labelId], FONT_NORMAL, textXPos, 0, 0, 0, sFontColor_AreaInfo, TEXT_SKIP_DRAW, text);
+    CopyWindowToVram(sPokedexAreaScreen->areaScreenLabelIds[labelId], COPYWIN_FULL);
 }
 
 bool32 ShouldShowAreaUnknownLabel(void)
@@ -811,8 +814,8 @@ static void Task_UpdatePokedexAreaScreen(u8 taskId)
     {
     case 0:
         // sPokedexAreaScreen->areaState = DEX_UPDATE_AREA_SCREEN;
-        ClearAreaUnknownLabel();
-        ClearEncounterInfoLabel();
+        ClearAreaWindowLabel(DEX_AREA_LABEL_TIME_OF_DAY);
+        ClearAreaWindowLabel(DEX_AREA_LABEL_AREA_UNKNOWN);
         ResetSpriteData();
         FreeAllSpritePalettes();
         ResetDrawAreaGlowState();
@@ -924,8 +927,8 @@ static void Task_HandlePokedexAreaScreenInput(u8 taskId)
         DestroyAreaScreenSprites();
         if (OW_TIME_OF_DAY_ENCOUNTERS)
         {
-            ClearAreaUnknownLabel();
-            ClearEncounterInfoLabel();
+            ClearAreaWindowLabel(DEX_AREA_LABEL_TIME_OF_DAY);
+            ClearAreaWindowLabel(DEX_AREA_LABEL_AREA_UNKNOWN);
             RemoveAllWindowsOnBg(LABEL_WINDOW_BG);
         }
             
