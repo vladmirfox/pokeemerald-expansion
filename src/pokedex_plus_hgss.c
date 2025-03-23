@@ -3754,7 +3754,6 @@ static u8 LoadInfoScreen(struct PokedexListItem *item, u8 monSpriteId)
     SetBgTilemapBuffer(0, AllocZeroed(BG_SCREEN_SIZE));
     InitWindows(sInfoScreen_WindowTemplates);
     DeactivateAllTextPrinters();
-    
 
     return taskId;
 }

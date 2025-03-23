@@ -706,7 +706,6 @@ static void PrintAreaLabelText(const u8 *text, u32 labelId, int textXPos)
 bool32 ShouldShowAreaUnknownLabel(void)
 {
     return !sPokedexAreaScreen->numOverworldAreas && !sPokedexAreaScreen->numSpecialAreas;
-    // return FALSE;
 }
 
 #define tState data[0]
@@ -735,7 +734,6 @@ static void Task_ShowPokedexAreaScreen(u8 taskId)
     switch (gTasks[taskId].tState)
     {
     case 0:
-        // sPokedexAreaScreen->areaState = DEX_SHOW_AREA_SCREEN;
         ResetSpriteData();
         FreeAllSpritePalettes();
         HideBg(3);
@@ -813,7 +811,6 @@ static void Task_UpdatePokedexAreaScreen(u8 taskId)
     switch (gTasks[taskId].tState)
     {
     case 0:
-        // sPokedexAreaScreen->areaState = DEX_UPDATE_AREA_SCREEN;
         ClearAreaWindowLabel(DEX_AREA_LABEL_TIME_OF_DAY);
         ClearAreaWindowLabel(DEX_AREA_LABEL_AREA_UNKNOWN);
         ResetSpriteData();
@@ -879,13 +876,11 @@ static void Task_HandlePokedexAreaScreenInput(u8 taskId)
         {
             gTasks[taskId].data[1] = 1;
             PlaySE(SE_DEX_PAGE);
-            // sPokedexAreaScreen->areaState = DEX_SHOW_AREA_SCREEN;
         }
         else if (JOY_NEW(DPAD_LEFT) || (JOY_NEW(L_BUTTON) && gSaveBlock2Ptr->optionsButtonMode == OPTIONS_BUTTON_MODE_LR))
         {
             gTasks[taskId].data[1] = 1;
             PlaySE(SE_DEX_PAGE);
-            // sPokedexAreaScreen->areaState = DEX_SHOW_AREA_SCREEN;
         }
         else if (JOY_NEW(DPAD_RIGHT) || (JOY_NEW(R_BUTTON) && gSaveBlock2Ptr->optionsButtonMode == OPTIONS_BUTTON_MODE_LR))
         {
