@@ -1765,7 +1765,7 @@ static bool8 CapturedAllLandMons(u32 headerId)
         }
     }
 
-        return FALSE;
+    return FALSE;
 }
 
 //Checks if all Pokemon that can be encountered while surfing have been capture
@@ -1775,7 +1775,7 @@ static bool8 CapturedAllWaterMons(u32 headerId)
     u16 species;
     u8 count = 0;
     int time;
-    
+
     for (time = 0; time <= TIME_NIGHT; time++)
     {
         const struct WildPokemonInfo* waterMonsInfo = gWildMonHeaders[headerId].encounterTypes[time].waterMonsInfo;
@@ -1811,7 +1811,7 @@ static bool8 CapturedAllHiddenMons(u32 headerId)
     u16 species;
     u8 count = 0;
     int time;
-    
+
     for (time = 0; time <= TIME_NIGHT; time++)
     {
         const struct WildPokemonInfo* hiddenMonsInfo = gWildMonHeaders[headerId].encounterTypes[time].hiddenMonsInfo;
@@ -2521,7 +2521,7 @@ static void Task_DexNavMain(u8 taskId)
 bool8 TryFindHiddenPokemon(void)
 {
     u16 *stepPtr = GetVarPointer(DN_VAR_STEP_COUNTER);
-    
+
     if (DEXNAV_ENABLED == 0
             || !FlagGet(DN_FLAG_DETECTOR_MODE)
             || FlagGet(DN_FLAG_SEARCHING)
