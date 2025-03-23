@@ -8951,7 +8951,7 @@ static void TryRestoreDamageAfterCheeckPouch(u32 battler)
     if (gBattleStruct->cheekPouchActivated)
     {
         gBattleStruct->moveDamage[battler] = gBattleScripting.savedDmg;
-        gBattleStruct->cheekPouchActivated = TRUE;
+        gBattleStruct->cheekPouchActivated = FALSE;
     }
 }
 
