@@ -6,7 +6,7 @@
 #include "strings.h"
 #include "text.h"
 #include "fake_rtc.h"
-#include "wild_encounter.h"
+// #include "wild_encounter.h"
 
 // iwram bss
 static u16 sErrorStatus;

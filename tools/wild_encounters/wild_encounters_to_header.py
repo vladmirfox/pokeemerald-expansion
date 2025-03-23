@@ -339,7 +339,6 @@ def SetupMonInfoVars():
         hiddenMonsInfo = NULL
     else:
         hiddenMonsInfo = f"&{hiddenMonsInfo}"
-
     
 
 def PrintWildMonHeadersContent():

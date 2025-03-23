@@ -6,6 +6,14 @@
 
 #define HEADER_NONE 0xFFFF
 
+enum WildPokemonArea {
+    WILD_AREA_LAND,
+    WILD_AREA_WATER,
+    WILD_AREA_ROCKS,
+    WILD_AREA_FISHING,
+    WILD_AREA_HIDDEN
+};
+
 struct WildPokemon
 {
     u8 minLevel;
@@ -35,13 +43,6 @@ struct WildPokemonHeader
     const struct WildEncounterTypes encounterTypes[TIME_NIGHT + 1];
 };
 
-enum WildPokemonArea {
-    WILD_AREA_LAND,
-    WILD_AREA_WATER,
-    WILD_AREA_ROCKS,
-    WILD_AREA_FISHING,
-    WILD_AREA_HIDDEN
-};
 
 extern const struct WildPokemonHeader gWildMonHeaders[];
 extern bool8 gIsFishingEncounter;

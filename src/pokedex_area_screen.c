@@ -643,15 +643,15 @@ static const u8 *GetTimeOfDayTextWithButton(u32 gAreaTimeOfDay)
 
     switch (gAreaTimeOfDay)
     {
-        case TIME_MORNING:
-            return gText_Morning;
-        case TIME_EVENING:
-            return gText_Evening;
-        case TIME_NIGHT:
-            return gText_Night;
-        case TIME_DAY:
-        default:
-            return gText_Day;
+    case TIME_MORNING:
+        return gText_Morning;
+    case TIME_EVENING:
+        return gText_Evening;
+    case TIME_NIGHT:
+        return gText_Night;
+    case TIME_DAY:
+    default:
+        return gText_Day;
     }
 }
 

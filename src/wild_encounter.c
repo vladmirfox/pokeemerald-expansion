@@ -433,7 +433,7 @@ u8 GetTimeOfDayForEncounters(u32 headerId, u8 area)
         {
         default:
         case WILD_AREA_LAND:
-                wildMonInfo = gWildMonHeaders[headerId].encounterTypes[timeOfDay].landMonsInfo;
+            wildMonInfo = gWildMonHeaders[headerId].encounterTypes[timeOfDay].landMonsInfo;
             break;
         case WILD_AREA_WATER:
             wildMonInfo = gWildMonHeaders[headerId].encounterTypes[timeOfDay].waterMonsInfo;
