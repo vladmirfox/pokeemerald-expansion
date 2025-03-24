@@ -1343,7 +1343,7 @@ enum {
     FRLG_WHITEOUT_HEAL_SCRIPT,
 };
 
-static const u8* GenerateRecoveryMessage(u8 taskId)
+static const u8 *GenerateRecoveryMessage(u8 taskId)
 {
     bool32 forfeitTrainer = DidPlayerForfeitNormalTrainerBattle();
     bool32 destinationIsPlayersHouse = (gTasks[taskId].tIsPlayerHouse == TRUE);
