@@ -312,7 +312,7 @@ static void ExpansionIntro_LoadGraphics(void)
     LZ77UnCompVram(sBgMap_PoweredBy, (u16*) BG_SCREEN_ADDR(sBgTemplates_RhhCopyrightScreen[EXPANSION_INTRO_BG3].mapBaseIndex));
     LZ77UnCompVram(sBgTiles_RhhCredits, (void*) BG_CHAR_ADDR(sBgTemplates_RhhCopyrightScreen[EXPANSION_INTRO_BG2].charBaseIndex));
     LZ77UnCompVram(sBgMap_RhhCredits, (u16*) BG_SCREEN_ADDR(sBgTemplates_RhhCopyrightScreen[EXPANSION_INTRO_BG2].mapBaseIndex));
-    LoadCompressedPalette(sBgPal_Credits, 0x00, 0x60);
+    LoadPalette(sBgPal_Credits, 0x00, 0x60);
 
     LoadCompressedSpriteSheet(&sSpriteSheet_DizzyEgg);
     LoadCompressedSpriteSheet(&sSpriteSheet_Porygon);

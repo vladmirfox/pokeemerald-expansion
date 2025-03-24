@@ -658,7 +658,7 @@ static bool8 LoadPokeblockMenuGfx(void)
         }
         break;
     case 2:
-        LoadCompressedPalette(gMenuPokeblock_Pal, BG_PLTT_ID(0), 6 * PLTT_SIZE_4BPP);
+        LoadPalette(gMenuPokeblock_Pal, BG_PLTT_ID(0), 6 * PLTT_SIZE_4BPP);
         sPokeblockMenu->gfxState++;
         break;
     case 3:

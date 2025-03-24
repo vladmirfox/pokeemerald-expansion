@@ -2854,7 +2854,7 @@ void BtlController_HandleIntroTrainerBallThrow(u32 battler, u16 tagTrainerPal, c
         StartSpriteAnim(&gSprites[gBattleStruct->trainerSlideSpriteIds[battler]], ShouldDoSlideInAnim() ? 2 : 1);
 
         paletteNum = AllocSpritePalette(tagTrainerPal);
-        LoadCompressedPalette(trainerPal, OBJ_PLTT_ID(paletteNum), PLTT_SIZE_4BPP);
+        LoadPalette(trainerPal, OBJ_PLTT_ID(paletteNum), PLTT_SIZE_4BPP);
         gSprites[gBattleStruct->trainerSlideSpriteIds[battler]].oam.paletteNum = paletteNum;
     }
     else

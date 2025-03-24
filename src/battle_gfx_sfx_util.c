@@ -702,7 +702,7 @@ void DecompressTrainerBackPic(u16 backPicId, u8 battler)
     u8 position = GetBattlerPosition(battler);
     DecompressPicFromTable(&gTrainerBacksprites[backPicId].backPic,
                            gMonSpritesGfxPtr->spritesGfx[position]);
-    LoadCompressedPalette(gTrainerBacksprites[backPicId].palette.data,
+    LoadPalette(gTrainerBacksprites[backPicId].palette.data,
                           OBJ_PLTT_ID(battler), PLTT_SIZE_4BPP);
 }
 
@@ -1034,7 +1034,7 @@ void BattleLoadSubstituteOrMonSpriteGfx(u8 battler, bool8 loadMonSprite)
         }
 
         palOffset = OBJ_PLTT_ID(battler);
-        LoadCompressedPalette(gBattleAnimSpritePal_Substitute, palOffset, PLTT_SIZE_4BPP);
+        LoadPalette(gBattleAnimSpritePal_Substitute, palOffset, PLTT_SIZE_4BPP);
     }
     else
     {
