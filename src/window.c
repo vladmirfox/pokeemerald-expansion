@@ -594,7 +594,7 @@ u32 GetWindowAttribute(u32 windowId, u32 attributeId)
     }
 }
 
-u32 GetNumActiveWindowsOnBg(u32 bgId)
+static u32 GetNumActiveWindowsOnBg(u32 bgId)
 {
     u32 windowsNum = 0;
     s32 i;
