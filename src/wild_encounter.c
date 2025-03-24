@@ -844,7 +844,7 @@ void RockSmashWildEncounter(void)
 
     if (headerId != HEADER_NONE)
     {
-        timeOfDay = GetTimeOfDayForEncounters(headerId, WILD_AREA_LAND);
+        timeOfDay = GetTimeOfDayForEncounters(headerId, WILD_AREA_ROCKS);
 
         const struct WildPokemonInfo *wildPokemonInfo = gWildMonHeaders[headerId].encounterTypes[timeOfDay].rockSmashMonsInfo;
 
