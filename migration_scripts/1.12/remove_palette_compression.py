@@ -37,6 +37,8 @@ def handle_file(fileInput):
                 line = line.replace("LoadCompressedSpritePaletteWithTag", "LoadSpritePaletteWithTag")
             elif "LoadCompressedSpritePalette" in line:
                 line = line.replace("LoadCompressedSpritePalette", "LoadSpritePalette")
+            elif "LoadCompressedPalette" in line:
+                line = line.replace("LoadCompressedPalette", "LoadPalette")
             elif "u32" in line:
                 for currPal in allPals:
                     if currPal in line:
