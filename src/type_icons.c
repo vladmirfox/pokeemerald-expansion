@@ -255,8 +255,8 @@ static void LoadTypeSpritesAndPalettes(void)
 
     LoadCompressedSpriteSheet(&sSpriteSheet_TypeIcons1);
     LoadCompressedSpriteSheet(&sSpriteSheet_TypeIcons2);
-    LoadCompressedSpritePalette(&sTypeIconPal1);
-    LoadCompressedSpritePalette(&sTypeIconPal2);
+    LoadSpritePalette(&sTypeIconPal1);
+    LoadSpritePalette(&sTypeIconPal2);
 }
 
 static void LoadTypeIconsPerBattler(u32 battler, u32 position)

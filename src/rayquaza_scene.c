@@ -1609,8 +1609,8 @@ static void LoadDuoFightSceneGfx(void)
     LoadCompressedSpriteSheet(&sSpriteSheet_DuoFight_Kyogre);
     LoadCompressedSpriteSheet(&sSpriteSheet_DuoFight_KyogrePectoralFin);
     LoadCompressedSpriteSheet(&sSpriteSheet_DuoFight_KyogreDorsalFin);
-    LoadCompressedSpritePalette(&sSpritePal_DuoFight_Groudon);
-    LoadCompressedSpritePalette(&sSpritePal_DuoFight_Kyogre);
+    LoadSpritePalette(&sSpritePal_DuoFight_Groudon);
+    LoadSpritePalette(&sSpritePal_DuoFight_Kyogre);
 }
 
 static void Task_DuoFightAnim(u8 taskId)
@@ -2044,7 +2044,7 @@ static void LoadTakesFlightSceneGfx(void)
     LZDecompressWram(gRaySceneTakesFlight_Rayquaza_Tilemap, sRayScene->tilemapBuffers[2]);
     LoadCompressedPalette(gRaySceneTakesFlight_Rayquaza_Pal, BG_PLTT_ID(0), 2 * PLTT_SIZE_4BPP);
     LoadCompressedSpriteSheet(&sSpriteSheet_TakesFlight_Smoke);
-    LoadCompressedSpritePalette(&sSpritePal_TakesFlight_Smoke);
+    LoadSpritePalette(&sSpritePal_TakesFlight_Smoke);
 }
 
 static void Task_RayTakesFlightAnim(u8 taskId)
@@ -2253,7 +2253,7 @@ static void LoadDescendsSceneGfx(void)
     gPlttBufferFaded[0] = RGB_WHITE;
     LoadCompressedSpriteSheet(&sSpriteSheet_Descends_Rayquaza);
     LoadCompressedSpriteSheet(&sSpriteSheet_Descends_RayquazaTail);
-    LoadCompressedSpritePalette(&sSpritePal_Descends_Rayquaza);
+    LoadSpritePalette(&sSpritePal_Descends_Rayquaza);
 }
 
 // Draw ray of light emerging from the clouds
@@ -2688,10 +2688,10 @@ static void LoadChasesAwaySceneGfx(void)
     LoadCompressedSpriteSheet(&sSpriteSheet_ChasesAway_Rayquaza);
     LoadCompressedSpriteSheet(&sSpriteSheet_ChasesAway_RayquazaTail);
     LoadCompressedSpriteSheet(&sSpriteSheet_ChasesAway_KyogreSplash);
-    LoadCompressedSpritePalette(&sSpritePal_ChasesAway_Groudon);
-    LoadCompressedSpritePalette(&sSpritePal_ChasesAway_Kyogre);
-    LoadCompressedSpritePalette(&sSpritePal_ChasesAway_Rayquaza);
-    LoadCompressedSpritePalette(&sSpritePal_ChasesAway_KyogreSplash);
+    LoadSpritePalette(&sSpritePal_ChasesAway_Groudon);
+    LoadSpritePalette(&sSpritePal_ChasesAway_Kyogre);
+    LoadSpritePalette(&sSpritePal_ChasesAway_Rayquaza);
+    LoadSpritePalette(&sSpritePal_ChasesAway_KyogreSplash);
 }
 
 #define tState    data[0]
