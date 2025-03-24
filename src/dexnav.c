@@ -1736,11 +1736,11 @@ static bool8 CapturedAllLandMons(u32 headerId)
 {
     u16 i, species;
     int count = 0;
-    int time;
+    u32 timeOfDay;
     
-    for (time = 0; time <= TIME_NIGHT; time++)
+    for (timeOfDay = 0; timeOfDay <= TIME_NIGHT; timeOfDay++)
     {
-        const struct WildPokemonInfo* landMonsInfo = gWildMonHeaders[headerId].encounterTypes[time].landMonsInfo;
+        const struct WildPokemonInfo* landMonsInfo = gWildMonHeaders[headerId].encounterTypes[timeOfDay].landMonsInfo;
             
         if (landMonsInfo != NULL)
         {        
@@ -1774,11 +1774,11 @@ static bool8 CapturedAllWaterMons(u32 headerId)
     u32 i;
     u16 species;
     u8 count = 0;
-    int time;
+    u32 timeOfDay;
 
-    for (time = 0; time <= TIME_NIGHT; time++)
+    for (timeOfDay = 0; timeOfDay <= TIME_NIGHT; timeOfDay++)
     {
-        const struct WildPokemonInfo* waterMonsInfo = gWildMonHeaders[headerId].encounterTypes[time].waterMonsInfo;
+        const struct WildPokemonInfo* waterMonsInfo = gWildMonHeaders[headerId].encounterTypes[timeOfDay].waterMonsInfo;
 
         if (waterMonsInfo != NULL)
         {
@@ -1810,11 +1810,11 @@ static bool8 CapturedAllHiddenMons(u32 headerId)
     u32 i;
     u16 species;
     u8 count = 0;
-    int time;
+    u32 timeOfDay;
 
-    for (time = 0; time <= TIME_NIGHT; time++)
+    for (timeOfDay = 0; timeOfDay <= TIME_NIGHT; timeOfDay++)
     {
-        const struct WildPokemonInfo* hiddenMonsInfo = gWildMonHeaders[headerId].encounterTypes[time].hiddenMonsInfo;
+        const struct WildPokemonInfo* hiddenMonsInfo = gWildMonHeaders[headerId].encounterTypes[timeOfDay].hiddenMonsInfo;
         
         if (hiddenMonsInfo != NULL)
         {
