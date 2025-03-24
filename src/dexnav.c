@@ -1739,9 +1739,9 @@ static bool8 CapturedAllLandMons(u32 headerId)
     u32 timeOfDay = GetTimeOfDayForEncounters(headerId, WILD_AREA_LAND);
     
     const struct WildPokemonInfo* landMonsInfo = gWildMonHeaders[headerId].encounterTypes[timeOfDay].landMonsInfo;
-        
+
     if (landMonsInfo != NULL)
-    {        
+    {
         for (i = 0; i < LAND_WILD_COUNT; ++i)
         {
             species = landMonsInfo->wildPokemon[i].species;
@@ -1749,7 +1749,7 @@ static bool8 CapturedAllLandMons(u32 headerId)
             {
                 if (!GetSetPokedexFlag(SpeciesToNationalPokedexNum(species), FLAG_GET_CAUGHT))
                     break;
-                
+
                 count++;
             }
         }
