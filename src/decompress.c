@@ -86,22 +86,6 @@ u32 LoadCompressedSpriteSheetByTemplate(const struct SpriteTemplate *template, s
     return ret;
 }
 
-u32 LoadCompressedSpritePalette(const struct SpritePalette *src)
-{
-    return LoadCompressedSpritePaletteWithTag(src->data, src->tag);
-}
-
-u32 LoadCompressedSpritePaletteWithTag(const u16 *pal, u16 tag)
-{
-    u32 index;
-    struct SpritePalette dest;
-
-    dest.data = pal;
-    dest.tag = tag;
-    index = LoadSpritePalette(&dest);
-    return index;
-}
-
 void DecompressPicFromTable(const struct CompressedSpriteSheet *src, void *buffer)
 {
     LZ77UnCompWram(src->data, buffer);
@@ -324,16 +308,5 @@ bool8 LoadCompressedSpriteSheetUsingHeap(const struct CompressedSpriteSheet *src
 
     LoadSpriteSheet(&dest);
     Free(buffer);
-    return FALSE;
-}
-
-bool8 LoadCompressedSpritePaletteUsingHeap(const struct SpritePalette *src)
-{
-    struct SpritePalette dest;
-
-    dest.data = src->data;
-    dest.tag = src->tag;
-
-    LoadSpritePalette(&dest);
     return FALSE;
 }
