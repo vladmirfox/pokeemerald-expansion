@@ -143,6 +143,9 @@ Debug_EventScript_Script_1::
 	end
 
 Debug_EventScript_Script_2::
+    givemon species=SPECIES_SCIZOR, level=100, item=0, move1=MOVE_CUT
+    setflag FLAG_BADGE01_GET
+    warpsilent MAP_ROUTE116_TUNNELERS_REST_HOUSE,0
 	release
 	end
 

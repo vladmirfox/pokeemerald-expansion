@@ -53,6 +53,6 @@ bool8 FldEff_UseRockSmash(void);
 
 // defog
 bool8 SetUpFieldMove_Defog(void);
-void StartDefogFieldEffect(void);
+bool8 FldEff_Defog(void);
 
 #endif // GUARD_FLDEFF_H

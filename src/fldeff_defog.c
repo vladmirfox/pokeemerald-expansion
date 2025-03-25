@@ -24,10 +24,14 @@
 #include "constants/battle_anim.h"
 
 static void FieldCallback_Defog(void);
+static void FieldMove_Defog(void);
 static void EndDefogTask(u8 taskId);
 
 bool8 SetUpFieldMove_Defog(void)
 {
+    if (gWeather.currWeather != WEATHER_FOG_HORIZONTAL && gWeather.currWeather != WEATHER_FOG_DIAGONAL)
+        return FALSE;
+
     gFieldCallback2 = FieldCallback_PrepareFadeInFromMenu;
     gPostMenuFieldCallback = FieldCallback_Defog;
     return TRUE;
@@ -35,30 +39,29 @@ bool8 SetUpFieldMove_Defog(void)
 
 static void FieldCallback_Defog(void)
 {
-    FieldEffectStart(FLDEFF_DEFOG);
     gFieldEffectArguments[0] = GetCursorSelectionMonId();
+    ScriptContext_SetupScript(EventScript_UseDefog);
 }
 
 bool8 FldEff_Defog(void)
 {
-    u8 taskId;
+    u8 taskId = CreateFieldMoveTask();
 
-    SetWeatherScreenFadeOut();
-    taskId = CreateFieldMoveTask();
-    gTasks[taskId].data[8] = (u32)StartDefogFieldEffect >> 16;
-    gTasks[taskId].data[9] = (u32)StartDefogFieldEffect;
+    gTasks[taskId].data[8] = (uintptr_t)FieldMove_Defog>> 16;
+    gTasks[taskId].data[9] = (uintptr_t)FieldMove_Defog;
     return FALSE;
 }
 
-void StartDefogFieldEffect(void)
+static void FieldMove_Defog(void)
 {
-    SetWeather(WEATHER_NONE);
+    u32 weather = WEATHER_NONE;
     PlaySE12WithPanning(SE_M_SOLAR_BEAM, SOUND_PAN_ATTACKER);
-
+    SetWeatherScreenFadeOut();
+    FieldEffectActiveListRemove(FLDEFF_DEFOG);
+    SetWeather(weather);
     u32 taskId = CreateTask(EndDefogTask, 0);
     gTasks[taskId].data[0] = 0;
-    FieldEffectActiveListRemove(FLDEFF_DEFOG);
-}
+};
 
 static void EndDefogTask(u8 taskId)
 {
@@ -67,9 +70,10 @@ static void EndDefogTask(u8 taskId)
 
     gTasks[taskId].data[0]++;
 
-    if (gTasks[taskId].data[0] != 60)
+    if (gTasks[taskId].data[0] != 120)
         return;
 
+    gWeatherPtr->currWeather = WEATHER_NONE;
     DestroyTask(taskId);
     ScriptContext_Enable();
 }
