@@ -1,27 +1,19 @@
 #include "global.h"
-#include "decompress.h"
 #include "event_data.h"
 #include "event_scripts.h"
 #include "field_effect.h"
-#include "field_player_avatar.h"
-#include "field_screen_effect.h"
 #include "field_weather.h"
 #include "fldeff.h"
-#include "malloc.h"
-#include "mirage_tower.h"
 #include "palette.h"
 #include "party_menu.h"
 #include "script.h"
 #include "sound.h"
-#include "sprite.h"
 #include "task.h"
-#include "wild_encounter.h"
 #include "util.h"
+#include "constants/battle_anim.h"
 #include "constants/field_effects.h"
-#include "constants/rgb.h"
 #include "constants/songs.h"
 #include "constants/weather.h"
-#include "constants/battle_anim.h"
 
 static void FieldCallback_Defog(void);
 static void FieldMove_Defog(void);
@@ -52,6 +44,8 @@ bool8 FldEff_Defog(void)
     return FALSE;
 }
 
+#define tFrameCount data[0]
+
 static void FieldMove_Defog(void)
 {
     u32 weather = WEATHER_NONE;
@@ -60,7 +54,7 @@ static void FieldMove_Defog(void)
     FieldEffectActiveListRemove(FLDEFF_DEFOG);
     SetWeather(weather);
     u32 taskId = CreateTask(EndDefogTask, 0);
-    gTasks[taskId].data[0] = 0;
+    gTasks[taskId].tFrameCount = 0;
 };
 
 static void EndDefogTask(u8 taskId)
@@ -68,9 +62,9 @@ static void EndDefogTask(u8 taskId)
     if (gPaletteFade.active)
         return;
 
-    gTasks[taskId].data[0]++;
+    gTasks[taskId].tFrameCount++;
 
-    if (gTasks[taskId].data[0] != 120)
+    if (gTasks[taskId].tFrameCount != 120)
         return;
 
     gWeatherPtr->currWeather = WEATHER_NONE;
