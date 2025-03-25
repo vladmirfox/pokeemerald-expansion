@@ -218,6 +218,9 @@
 // Ingame partner flag
 #define B_SHOW_PARTNER_TARGET             FALSE // Shows the battler partner will target.
 
+// Move description menu
+#define B_SHOW_MOVE_DESCRIPTION           TRUE       // Shows move information in battler
+
 // Weather settings
 // Search for 'rain', 'sunny day', and 'hail' for move-specific or species-specific weather interactions.
 
