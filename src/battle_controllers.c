@@ -3029,13 +3029,13 @@ static void AnimateMonAfterKnockout(u32 battler)
 
     u32 oppositeBattler = BATTLE_OPPOSITE(battler);
     u32 partnerBattler = BATTLE_PARTNER(oppositeBattler);
-    bool32 isPlayerSide = (GetBattlerSide(battler) == B_SIDE_PLAYER);
+    bool32 wasPlayerSideKnockedOut = (GetBattlerSide(battler) == B_SIDE_PLAYER);
 
     if (IsBattlerAlive(oppositeBattler))
-        LaunchKOAnimation(oppositeBattler, ReturnAnimIdForBattler(isPlayerSide, oppositeBattler), isPlayerSide);
+        LaunchKOAnimation(oppositeBattler, ReturnAnimIdForBattler(wasPlayerSideKnockedOut, oppositeBattler), wasPlayerSideKnockedOut);
 
     if (gBattleTypeFlags & BATTLE_TYPE_DOUBLE && IsBattlerAlive(partnerBattler))
-        LaunchKOAnimation(partnerBattler, ReturnAnimIdForBattler(isPlayerSide, partnerBattler), isPlayerSide);
+        LaunchKOAnimation(partnerBattler, ReturnAnimIdForBattler(wasPlayerSideKnockedOut, partnerBattler), wasPlayerSideKnockedOut);
 }
 
 static void LaunchKOAnimation(u32 battlerId, u16 animId, bool32 isFront)
@@ -3058,9 +3058,9 @@ static void LaunchKOAnimation(u32 battlerId, u16 animId, bool32 isFront)
     PlayCry_Normal(species, CRY_PRIORITY_NORMAL);
 }
 
-static u32 ReturnAnimIdForBattler(bool32 isPlayerSide, u32 specificBattler)
+static u32 ReturnAnimIdForBattler(bool32 wasPlayerSideKnockedOut, u32 specificBattler)
 {
-    if (isPlayerSide)
+    if (wasPlayerSideKnockedOut)
         return gSpeciesInfo[gBattleMons[specificBattler].species].frontAnimId;
     else
         return GetSpeciesBackAnimSet(gBattleMons[specificBattler].species);
