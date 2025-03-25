@@ -64,6 +64,8 @@ def GetWildEncounterFile():
 
                     tempDict["base_label"] = tempLabel
                     wEncounters_New.append(tempDict)
+                    if map["base_label"] in wEncounters_New:
+                        wEncounters_New[map["base_label"]].pop()
                     print(tempLabel + " added")
                     k += 1
             else:
