@@ -375,7 +375,7 @@ u16 GetCurrentMapWildMonHeaderId(void)
     return HEADER_NONE;
 }
 
-u8 GetTimeOfDayForEncounters(u32 headerId, u8 area)
+u32 GetTimeOfDayForEncounters(u32 headerId, u8 area)
 {
     const struct WildPokemonInfo *wildMonInfo;
     u32 timeOfDay = GetTimeOfDay();
