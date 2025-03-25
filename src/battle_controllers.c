@@ -3024,7 +3024,7 @@ void BtlController_HandleBattleAnimation(u32 battler, bool32 ignoreSE, bool32 up
 
 static void AnimateMonAfterKnockout(u32 battler)
 {
-    if (B_ANIMATE_MON_AFTER_KO == FALSE || gTestRunnerHeadless)
+    if (B_ANIMATE_MON_AFTER_KO == FALSE)
         return;
 
     u32 oppositeBattler = BATTLE_OPPOSITE(battler);
