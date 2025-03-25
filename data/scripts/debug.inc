@@ -137,16 +137,9 @@ Debug_EventScript_Text_DefensiveIVs:
 	.string "HP IVs: {STR_VAR_1}, DEF IVs: {STR_VAR_2}, SPDEF IVs: {STR_VAR_3}$"
 
 Debug_EventScript_Script_1::
-    warpsilent MAP_MT_PYRE_SUMMIT,0
-    givemon species=SPECIES_PIDGEOT,level=100,item=0,move1=MOVE_DEFOG
-	release
 	end
 
 Debug_EventScript_Script_2::
-    givemon species=SPECIES_SCIZOR, level=100, item=0, move1=MOVE_CUT
-    setflag FLAG_BADGE01_GET
-    warpsilent MAP_ROUTE116_TUNNELERS_REST_HOUSE,0
-	release
 	end
 
 Debug_EventScript_Script_3::
