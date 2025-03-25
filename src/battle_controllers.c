@@ -3063,7 +3063,6 @@ static u32 ReturnAnimIdForBattler(bool32 isPlayerSide, u32 specificBattler)
     if (isPlayerSide)
         return gSpeciesInfo[gBattleMons[specificBattler].species].frontAnimId;
     else
-        return gSpeciesInfo[gBattleMons[specificBattler].species].backAnimId - 1;
-    // I have no idea why this needs to be minus one, but if it isn't, the wrong animation plays.
+        return GetSpeciesBackAnimSet(gBattleMons[specificBattler].species);
 }
 
