@@ -48,11 +48,10 @@ bool8 FldEff_Defog(void)
 
 static void FieldMove_Defog(void)
 {
-    u32 weather = WEATHER_NONE;
     PlaySE12WithPanning(SE_M_SOLAR_BEAM, SOUND_PAN_ATTACKER);
     SetWeatherScreenFadeOut();
     FieldEffectActiveListRemove(FLDEFF_DEFOG);
-    SetWeather(weather);
+    SetWeather(WEATHER_NONE);
     u32 taskId = CreateTask(EndDefogTask, 0);
     gTasks[taskId].tFrameCount = 0;
 };
@@ -72,3 +71,4 @@ static void EndDefogTask(u8 taskId)
     ScriptContext_Enable();
 }
 
+#undef tFrameCount
