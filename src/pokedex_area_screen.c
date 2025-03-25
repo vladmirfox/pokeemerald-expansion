@@ -137,10 +137,8 @@ bool32 ShouldShowAreaUnknownLabel(void);
 static const u32 sAreaGlow_Pal[] = INCBIN_U32("graphics/pokedex/area_glow.gbapal");
 static const u32 sAreaGlow_Gfx[] = INCBIN_U32("graphics/pokedex/area_glow.4bpp.lz");
 
-#if POKEDEX_PLUS_HGSS
 static const u32 sPokedexPlusHGSS_ScreenSelectBarSubmenu_Tilemap[] = INCBIN_U32("graphics/pokedex/hgss/SelectBar.bin.lz");
 static void LoadHGSSScreenSelectBarSubmenu(void);
-#endif 
 
 static const u16 sSpeciesHiddenFromAreaScreen[] = { SPECIES_WYNAUT };
 
@@ -738,8 +736,6 @@ static void Task_ShowPokedexAreaScreen(u8 taskId)
         FreeAllSpritePalettes();
         HideBg(3);
         HideBg(2);
-        if (POKEDEX_PLUS_HGSS)
-            HideBg(1);
         HideBg(0);
         break;
     case 1:
@@ -789,10 +785,8 @@ static void Task_ShowPokedexAreaScreen(u8 taskId)
                 ShowAreaUnknownLabel();
             DoScheduledBgTilemapCopiesToVram();
         }
-    #if POKEDEX_PLUS_HGSS
+        if (POKEDEX_PLUS_HGSS)
             LoadHGSSScreenSelectBarSubmenu();
-            ShowBg(1);
-    #endif
         ShowBg(2);
         ShowBg(3); // TryShowPokedexAreaMap will have done this already
         SetGpuRegBits(REG_OFFSET_DISPCNT, DISPCNT_OBJ_ON);
@@ -860,8 +854,7 @@ static void Task_UpdatePokedexAreaScreen(u8 taskId)
 
 static void Task_HandlePokedexAreaScreenInput(u8 taskId)
 {
-    if(!DrawAreaGlow())
-        DoAreaGlow();
+    DoAreaGlow();
     switch (gTasks[taskId].tState)
     {
     default:
@@ -908,6 +901,7 @@ static void Task_HandlePokedexAreaScreenInput(u8 taskId)
         }
         else
         {
+            // screen needs to fade if its doing anything except updating the area screen
             sPokedexAreaScreen->areaState = DEX_SHOW_AREA_SCREEN;
             return;
         }
@@ -1040,10 +1034,8 @@ static void CreateAreaUnknownSprites(void)
     }
 }
 
-#if POKEDEX_PLUS_HGSS
 static void LoadHGSSScreenSelectBarSubmenu(void)
 {
     CopyToBgTilemapBuffer(1, sPokedexPlusHGSS_ScreenSelectBarSubmenu_Tilemap, 0, 0);
     CopyBgTilemapBufferToVram(1);
 }
-#endif
