@@ -67,6 +67,6 @@ u8 ChooseWildMonIndex_Land(void);
 u8 ChooseWildMonIndex_WaterRock(void);
 u8 ChooseHiddenMonIndex(void);
 bool32 MapHasNoEncounterData(void);
-u32 GetTimeOfDayForEncounters(u32 headerId, u8 area);
+u32 GetTimeOfDayForEncounters(u32 headerId, u32 area);
 
 #endif // GUARD_WILD_ENCOUNTER_H
