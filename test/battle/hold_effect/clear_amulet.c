@@ -109,19 +109,20 @@ SINGLE_BATTLE_TEST("Clear Amulet protects from Protect's secondary effects")
         ANIMATION(ANIM_TYPE_MOVE, move, opponent);
         NONE_OF {
             ANIMATION(ANIM_TYPE_MOVE, MOVE_TACKLE, player);
-            if (move == MOVE_SPIKY_SHIELD) {
-                HP_BAR(player);
-            } else if (move == MOVE_BANEFUL_BUNKER) {
-                STATUS_ICON(player, STATUS1_BURN);
-            } else if (move == MOVE_BURNING_BULWARK) {
-                STATUS_ICON(player, STATUS1_POISON);
-            } else if (move == MOVE_KINGS_SHIELD) {
+            if (move == MOVE_KINGS_SHIELD) {
                 MESSAGE("Wobbuffet's Attack fell!");
             } else if (move == MOVE_SILK_TRAP) {
                 MESSAGE("Wobbuffet's Speed fell!");
             } else if (move == MOVE_OBSTRUCT) {
                 MESSAGE("Wobbuffet's Defense harshly fell!");
             }
+        }
+        if (move == MOVE_SPIKY_SHIELD) {
+            HP_BAR(player);
+        } else if (move == MOVE_BANEFUL_BUNKER) {
+            STATUS_ICON(player, STATUS1_POISON);
+        } else if (move == MOVE_BURNING_BULWARK) {
+            STATUS_ICON(player, STATUS1_BURN);
         }
     }
 }

@@ -430,9 +430,10 @@ SINGLE_BATTLE_TEST("Clear Body, Full Metal Body, and White Smoke protect from Pr
 
     for (u32 j = 0; j < ARRAY_COUNT(moves); j++)
     {
-        PARAMETRIZE{ move = moves[j]; species = SPECIES_METANG;   ability = ABILITY_CLEAR_BODY; }
-        PARAMETRIZE{ move = moves[j]; species = SPECIES_SOLGALEO; ability = ABILITY_FULL_METAL_BODY; }
-        PARAMETRIZE{ move = moves[j]; species = SPECIES_TORKOAL;  ability = ABILITY_WHITE_SMOKE; }
+        // Illegal species used to test Baneful Bunker and Burning Bulwar
+        PARAMETRIZE{ move = moves[j]; species = SPECIES_WOBBUFFET; ability = ABILITY_CLEAR_BODY; }
+        PARAMETRIZE{ move = moves[j]; species = SPECIES_WOBBUFFET; ability = ABILITY_FULL_METAL_BODY; }
+        PARAMETRIZE{ move = moves[j]; species = SPECIES_WOBBUFFET; ability = ABILITY_WHITE_SMOKE; }
     }
 
     GIVEN {
@@ -444,19 +445,20 @@ SINGLE_BATTLE_TEST("Clear Body, Full Metal Body, and White Smoke protect from Pr
         ANIMATION(ANIM_TYPE_MOVE, move, opponent);
         NONE_OF {
             ANIMATION(ANIM_TYPE_MOVE, MOVE_TACKLE, player);
-            if (move == MOVE_SPIKY_SHIELD) {
-                HP_BAR(player);
-            } else if (move == MOVE_BANEFUL_BUNKER) {
-                STATUS_ICON(player, STATUS1_BURN);
-            } else if (move == MOVE_BURNING_BULWARK) {
-                STATUS_ICON(player, STATUS1_POISON);
-            } else if (move == MOVE_KINGS_SHIELD) {
+            if (move == MOVE_KINGS_SHIELD) {
                 MESSAGE("Wobbuffet's Attack fell!");
             } else if (move == MOVE_SILK_TRAP) {
                 MESSAGE("Wobbuffet's Speed fell!");
             } else if (move == MOVE_OBSTRUCT) {
                 MESSAGE("Wobbuffet's Defense harshly fell!");
             }
+        }
+        if (move == MOVE_SPIKY_SHIELD) {
+            HP_BAR(player);
+        } else if (move == MOVE_BANEFUL_BUNKER) {
+            STATUS_ICON(player, STATUS1_POISON);
+        } else if (move == MOVE_BURNING_BULWARK) {
+            STATUS_ICON(player, STATUS1_BURN);
         }
     }
 }

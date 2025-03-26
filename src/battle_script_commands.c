@@ -6169,20 +6169,34 @@ static u32 GetNextTarget(u32 moveTarget, bool32 excludeCurrent)
     return battler;
 }
 
-static inline bool32 IsBattlerProtectEffectsProtected(u32 battler, u32 move)
+static inline bool32 IsProtectivePadsProtected(u32 battler, u32 move, u32 holdEffect)
 {
     if (!IsMoveMakingContact(move, battler))
         return FALSE;
 
-    u32 holdEffect = GetBattlerHoldEffect(battler, TRUE);
-    if (holdEffect == HOLD_EFFECT_PROTECTIVE_PADS
-     || holdEffect == HOLD_EFFECT_CLEAR_AMULET)
+    if (holdEffect != HOLD_EFFECT_PROTECTIVE_PADS)
+        return FALSE;
+
+    RecordItemEffectBattle(battler, holdEffect);
+    return TRUE;
+}
+
+static inline bool32 IsProtectEffectAffected(u32 battler, u32 move)
+{
+    if (!IsMoveMakingContact(move, battler))
+        return FALSE;
+
+    u32 holdEffect = GetBattlerHoldEffect(gBattlerAttacker, TRUE);
+    if (IsProtectivePadsProtected(battler, move, holdEffect))
+        return TRUE;
+
+    if (holdEffect == HOLD_EFFECT_CLEAR_AMULET)
     {
         RecordItemEffectBattle(battler, holdEffect);
         return TRUE;
     }
 
-    u32 ability = GetBattlerAbility(battler);
+    u32 ability = GetBattlerAbility(gBattlerAttacker);
     if (CanAbilityPreventStatLoss(ability))
     {
         RecordAbilityBattle(battler, ability);
@@ -6229,8 +6243,8 @@ static void Cmd_moveend(void)
             {
                 if (gProtectStructs[gBattlerTarget].spikyShielded
                  && moveEffect != EFFECT_COUNTER
-                 && !IsBattlerProtectEffectsProtected(gBattlerAttacker, gCurrentMove)
-                 && GetBattlerAbility(gBattlerAttacker) != ABILITY_MAGIC_GUARD)
+                 && !IsProtectivePadsProtected(gBattlerAttacker, gCurrentMove, GetBattlerHoldEffect(gBattlerAttacker, TRUE))
+                 && !IsMagicGuardProtected(gBattlerAttacker, GetBattlerAbility(gBattlerAttacker)))
                 {
                     gProtectStructs[gBattlerAttacker].touchedProtectLike = FALSE;
                     gBattleStruct->moveDamage[gBattlerAttacker] = GetNonDynamaxMaxHP(gBattlerAttacker) / 8;
@@ -6242,7 +6256,7 @@ static void Cmd_moveend(void)
                     effect = 1;
                 }
                 else if (gProtectStructs[gBattlerTarget].kingsShielded
-                      && !IsBattlerProtectEffectsProtected(gBattlerAttacker, gCurrentMove))
+                      && !IsProtectEffectAffected(gBattlerAttacker, gCurrentMove))
                 {
                     gProtectStructs[gBattlerAttacker].touchedProtectLike = FALSE;
                     i = gBattlerAttacker;
@@ -6257,7 +6271,7 @@ static void Cmd_moveend(void)
                     effect = 1;
                 }
                 else if (gProtectStructs[gBattlerTarget].banefulBunkered
-                      && !IsBattlerProtectEffectsProtected(gBattlerAttacker, gCurrentMove))
+                      && !IsProtectivePadsProtected(gBattlerAttacker, gCurrentMove, GetBattlerHoldEffect(gBattlerAttacker, TRUE)))
                 {
                     gProtectStructs[gBattlerAttacker].touchedProtectLike = FALSE;
                     gBattleScripting.moveEffect = MOVE_EFFECT_POISON | MOVE_EFFECT_AFFECTS_USER;
@@ -6269,7 +6283,7 @@ static void Cmd_moveend(void)
                 else if (gProtectStructs[gBattlerTarget].obstructed
                       && moveEffect != EFFECT_SUCKER_PUNCH
                       && moveEffect != EFFECT_UPPER_HAND
-                      && !IsBattlerProtectEffectsProtected(gBattlerAttacker, gCurrentMove))
+                      && !IsProtectEffectAffected(gBattlerAttacker, gCurrentMove))
                 {
                     gProtectStructs[gBattlerAttacker].touchedProtectLike = FALSE;
                     i = gBattlerAttacker;
@@ -6281,7 +6295,7 @@ static void Cmd_moveend(void)
                     effect = 1;
                 }
                 else if (gProtectStructs[gBattlerTarget].silkTrapped
-                      && !IsBattlerProtectEffectsProtected(gBattlerAttacker, gCurrentMove))
+                      && !IsProtectEffectAffected(gBattlerAttacker, gCurrentMove))
                 {
                     gProtectStructs[gBattlerAttacker].touchedProtectLike = FALSE;
                     i = gBattlerAttacker;
@@ -6293,7 +6307,7 @@ static void Cmd_moveend(void)
                     effect = 1;
                 }
                 else if (gProtectStructs[gBattlerTarget].burningBulwarked
-                      && !IsBattlerProtectEffectsProtected(gBattlerAttacker, gCurrentMove))
+                      && !IsProtectivePadsProtected(gBattlerAttacker, gCurrentMove, GetBattlerHoldEffect(gBattlerAttacker, TRUE)))
                 {
                     gProtectStructs[gBattlerAttacker].touchedProtectLike = FALSE;
                     gBattleScripting.moveEffect = MOVE_EFFECT_BURN | MOVE_EFFECT_AFFECTS_USER;
