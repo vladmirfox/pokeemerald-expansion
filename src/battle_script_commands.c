@@ -1324,6 +1324,7 @@ static void Cmd_attackcanceler(void)
      && (gCurrentMove != MOVE_CURSE || IS_BATTLER_OF_TYPE(gBattlerAttacker, TYPE_GHOST))
      && (!gBattleMoveEffects[effect].twoTurnEffect || (gBattleMons[gBattlerAttacker].status2 & STATUS2_MULTIPLETURNS))
      && effect != EFFECT_SUCKER_PUNCH
+     && effect != EFFECT_COUNTER
      && effect != EFFECT_UPPER_HAND)
     {
         if (IsMoveMakingContact(gCurrentMove, gBattlerAttacker))
@@ -6236,7 +6237,6 @@ static void Cmd_moveend(void)
             if (gProtectStructs[gBattlerAttacker].touchedProtectLike)
             {
                 if (gProtectStructs[gBattlerTarget].spikyShielded
-                 && moveEffect != EFFECT_COUNTER
                  && !IsProtectivePadsProtected(gBattlerAttacker, gCurrentMove, GetBattlerHoldEffect(gBattlerAttacker, TRUE))
                  && !IsMagicGuardProtected(gBattlerAttacker, GetBattlerAbility(gBattlerAttacker)))
                 {

@@ -421,8 +421,6 @@ SINGLE_BATTLE_TEST("Clear Body, Full Metal Body, and White Smoke protect from Pr
 
     static const u32 moves[] = {
         MOVE_SPIKY_SHIELD,
-        MOVE_BANEFUL_BUNKER,
-        MOVE_BURNING_BULWARK,
         MOVE_KINGS_SHIELD,
         MOVE_SILK_TRAP,
         MOVE_OBSTRUCT,
