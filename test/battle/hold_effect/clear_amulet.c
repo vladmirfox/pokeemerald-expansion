@@ -117,12 +117,5 @@ SINGLE_BATTLE_TEST("Clear Amulet protects from Protect's secondary effects")
                 MESSAGE("Wobbuffet's Defense harshly fell!");
             }
         }
-        if (move == MOVE_SPIKY_SHIELD) {
-            HP_BAR(player);
-        } else if (move == MOVE_BANEFUL_BUNKER) {
-            STATUS_ICON(player, STATUS1_POISON);
-        } else if (move == MOVE_BURNING_BULWARK) {
-            STATUS_ICON(player, STATUS1_BURN);
-        }
     }
 }

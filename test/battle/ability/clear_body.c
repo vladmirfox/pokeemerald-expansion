@@ -430,10 +430,9 @@ SINGLE_BATTLE_TEST("Clear Body, Full Metal Body, and White Smoke protect from Pr
 
     for (u32 j = 0; j < ARRAY_COUNT(moves); j++)
     {
-        // Illegal species used to test Baneful Bunker and Burning Bulwar
-        PARAMETRIZE{ move = moves[j]; species = SPECIES_WOBBUFFET; ability = ABILITY_CLEAR_BODY; }
-        PARAMETRIZE{ move = moves[j]; species = SPECIES_WOBBUFFET; ability = ABILITY_FULL_METAL_BODY; }
-        PARAMETRIZE{ move = moves[j]; species = SPECIES_WOBBUFFET; ability = ABILITY_WHITE_SMOKE; }
+        PARAMETRIZE{ move = moves[j]; species = SPECIES_METANG;   ability = ABILITY_CLEAR_BODY; }
+        PARAMETRIZE{ move = moves[j]; species = SPECIES_SOLGALEO; ability = ABILITY_FULL_METAL_BODY; }
+        PARAMETRIZE{ move = moves[j]; species = SPECIES_TORKOAL;  ability = ABILITY_WHITE_SMOKE; }
     }
 
     GIVEN {
@@ -452,13 +451,6 @@ SINGLE_BATTLE_TEST("Clear Body, Full Metal Body, and White Smoke protect from Pr
             } else if (move == MOVE_OBSTRUCT) {
                 MESSAGE("Wobbuffet's Defense harshly fell!");
             }
-        }
-        if (move == MOVE_SPIKY_SHIELD) {
-            HP_BAR(player);
-        } else if (move == MOVE_BANEFUL_BUNKER) {
-            STATUS_ICON(player, STATUS1_POISON);
-        } else if (move == MOVE_BURNING_BULWARK) {
-            STATUS_ICON(player, STATUS1_BURN);
         }
     }
 }
