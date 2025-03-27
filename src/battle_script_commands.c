@@ -6171,9 +6171,6 @@ static u32 GetNextTarget(u32 moveTarget, bool32 excludeCurrent)
 
 static inline bool32 IsProtectivePadsProtected(u32 battler, u32 move, u32 holdEffect)
 {
-    if (!IsMoveMakingContact(move, battler))
-        return FALSE;
-
     if (holdEffect != HOLD_EFFECT_PROTECTIVE_PADS)
         return FALSE;
 
@@ -6183,9 +6180,6 @@ static inline bool32 IsProtectivePadsProtected(u32 battler, u32 move, u32 holdEf
 
 static inline bool32 IsProtectEffectAffected(u32 battler, u32 move)
 {
-    if (!IsMoveMakingContact(move, battler))
-        return FALSE;
-
     u32 holdEffect = GetBattlerHoldEffect(gBattlerAttacker, TRUE);
     if (IsProtectivePadsProtected(battler, move, holdEffect))
         return TRUE;
