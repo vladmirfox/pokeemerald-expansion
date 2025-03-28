@@ -4218,8 +4218,13 @@ static void ChooseStatBoostAnimation(u32 battler)
 bool32 CanAbilityBlockMove(u32 battlerAtk, u32 battlerDef, u32 move, u32 abilityDef, enum AbilityEffectOptions option)
 {
     const u8 *battleScriptBlocksMove = NULL;
-    s32 atkPriority = (option == ABILITY_CHECK_TRIGGER_AI) ? GetBattleMovePriority(battlerAtk, move) : GetChosenMovePriority(battlerAtk);
     u32 battlerAbility = battlerDef;
+    s32 atkPriority = 0;
+
+    if (option == ABILITY_CHECK_TRIGGER_AI)
+        atkPriority = GetBattleMovePriority(battlerAtk, move);
+    else
+        atkPriority = GetChosenMovePriority(battlerAtk);
 
     switch (abilityDef)
     {
@@ -4279,10 +4284,10 @@ bool32 CanAbilityBlockMove(u32 battlerAtk, u32 battlerDef, u32 move, u32 ability
          && IsBattlerAlive(partnerDef)
          && !IsBattlerAlly(battlerAtk, partnerDef))
         {
-            if (option != ABILITY_CHECK_TRIGGER_AI)
-                abilityDef = GetBattlerAbility(partnerDef);
-            else
+            if (option == ABILITY_CHECK_TRIGGER_AI)
                 abilityDef = AI_DATA->abilities[partnerDef];
+            else
+                abilityDef = GetBattlerAbility(partnerDef);
 
             switch (abilityDef)
             {
@@ -4291,6 +4296,7 @@ bool32 CanAbilityBlockMove(u32 battlerAtk, u32 battlerDef, u32 move, u32 ability
             case ABILITY_ARMOR_TAIL:
                 if (gBattleMons[battlerAtk].status2 & STATUS2_MULTIPLETURNS)
                     gHitMarker |= HITMARKER_NO_PPDEDUCT;
+                battlerAbility = partnerDef;
                 battleScriptBlocksMove = BattleScript_DazzlingProtected;
                 break;
             }
