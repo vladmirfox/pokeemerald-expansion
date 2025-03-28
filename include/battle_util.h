@@ -40,10 +40,6 @@ enum MoveAbsorbed
 enum {
     ABILITYEFFECT_ON_SWITCHIN,
     ABILITYEFFECT_ENDTURN,
-    ABILITYEFFECT_MOVES_BLOCK,
-    ABILITYEFFECT_WOULD_BLOCK,         // Checks immunity without triggering a script
-    ABILITYEFFECT_ABSORBING,
-    ABILITYEFFECT_WOULD_ABSORB,        // Checks immunity without triggering a script
     ABILITYEFFECT_MOVE_END_ATTACKER,
     ABILITYEFFECT_MOVE_END,
     ABILITYEFFECT_IMMUNITY,
