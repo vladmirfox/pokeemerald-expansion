@@ -15,7 +15,7 @@ jobs:
           count: 1
           labels: |
             General
-            (category) ability
+            "category: ability"
             (category) battle-ai
             (category) battle-mechanic
             (category) battle-tests
