@@ -478,10 +478,10 @@ bool32 IsDamageMoveUnusable(u32 battlerAtk, u32 battlerDef, u32 move, u32 moveTy
     if (gBattleStruct->battlerState[battlerDef].commandingDondozo)
         return TRUE;
 
-    if (CanAbilityBlockMove(battlerAtk, battlerDef, move, aiData->abilities[battlerDef], ABILITY_CHECK_TRIGGER))
+    if (CanAbilityBlockMove(battlerAtk, battlerDef, move, aiData->abilities[battlerDef], ABILITY_CHECK_TRIGGER_AI))
         return TRUE;
 
-    if (CanAbilityAbsorbMove(battlerAtk, battlerDef, aiData->abilities[battlerDef], move, moveType, ABILITY_CHECK_TRIGGER))
+    if (CanAbilityAbsorbMove(battlerAtk, battlerDef, aiData->abilities[battlerDef], move, moveType, ABILITY_CHECK_TRIGGER_AI))
         return TRUE;
 
     switch (GetMoveEffect(move))

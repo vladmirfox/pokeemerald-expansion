@@ -4218,7 +4218,7 @@ static void ChooseStatBoostAnimation(u32 battler)
 bool32 CanAbilityBlockMove(u32 battlerAtk, u32 battlerDef, u32 move, u32 abilityDef, enum AbilityEffectOptions option)
 {
     const u8 *battleScriptBlocksMove = NULL;
-    s32 atkPriority = AI_DATA->aiCalcInProgress ? GetBattleMovePriority(battlerAtk, move) : GetChosenMovePriority(battlerAtk);
+    s32 atkPriority = option == ABILITY_CHECK_TRIGGER_AI ? GetBattleMovePriority(battlerAtk, move) : GetChosenMovePriority(battlerAtk);
     u32 moveTarget = GetBattlerMoveTargetType(battlerAtk, move);
     u32 battlerAbility = battlerDef;
 
@@ -4259,24 +4259,45 @@ bool32 CanAbilityBlockMove(u32 battlerAtk, u32 battlerDef, u32 move, u32 ability
         break;
     }
 
-
+    u32 partnerDef = BATTLE_PARTNER(battlerDef);
     // Check def partner ability
-    if (IsDoubleBattle() && IsBattlerAlive(BATTLE_PARTNER(battlerDef)))
+    if (battleScriptBlocksMove == NULL
+     && IsDoubleBattle()
+     && IsBattlerAlive(partnerDef)
+     && !IsBattlerAlly(battlerAtk, partnerDef))
     {
-        switch (GetBattlerAbility(BATTLE_PARTNER(battlerDef)))
+        if (option != ABILITY_CHECK_TRIGGER_AI)
+            abilityDef = GetBattlerAbility(partnerDef);
+        else
+            abilityDef = AI_DATA->abilities[partnerDef];
+
+        switch (abilityDef)
         {
         case ABILITY_DAZZLING:
         case ABILITY_QUEENLY_MAJESTY:
         case ABILITY_ARMOR_TAIL:
-            if (atkPriority > 0 && !IsBattlerAlly(battlerAtk, BATTLE_PARTNER(battlerDef)))
+            if (atkPriority > 0 &&)
             {
                 if (gBattleMons[battlerAtk].status2 & STATUS2_MULTIPLETURNS)
                     gHitMarker |= HITMARKER_NO_PPDEDUCT;
-                battlerAbility = BATTLE_PARTNER(battlerDef);
+                battlerAbility = partnerDef;
                 battleScriptBlocksMove = BattleScript_DazzlingProtected;
             }
             break;
         }
+    }
+
+    // Prankster check
+    if (battleScriptBlocksMove == NULL
+     && atkPriority > 0
+     && BlocksPrankster(move, battlerAtk, battlerDef, TRUE)
+     && !(IsBattleMoveStatus(move) && (battlerAbility == ABILITY_MAGIC_BOUNCE || gProtectStructs[battlerDef].bounceMove)))
+    {
+        if (option == ABILITY_RUN_SCRIPT
+         && !IsSpreadMove(GetBattlerMoveTargetType(gBattlerAttacker, move)))
+            CancelMultiTurnMoves(battlerAtk); // Don't cancel moves that can hit two targets bc one target might not be protected
+
+        battleScriptBlocksMove = BattleScript_DarkTypePreventsPrankster;
     }
 
     if (battleScriptBlocksMove == NULL)
@@ -4284,9 +4305,12 @@ bool32 CanAbilityBlockMove(u32 battlerAtk, u32 battlerDef, u32 move, u32 ability
 
     if (option == ABILITY_RUN_SCRIPT)
     {
+        gLastUsedAbility = abilityDef;
+        RecordAbilityBattle(battlerDef, abilityDef);
         gBattleScripting.battler = gBattlerAbility = battlerAbility;
         gBattlescriptCurrInstr = battleScriptBlocksMove;
     }
+
     return TRUE;
 }
 
@@ -4439,6 +4463,7 @@ bool32 CanAbilityAbsorbMove(u32 battlerAtk, u32 battlerDef, u32 abilityDef, u32 
     if (battleScript != NULL)
     {
         gMultiHitCounter = 0;   // Prevent multi-hit moves from hitting more than once after move has been absorbed.
+        RecordAbilityBattle(battlerDef, battlerAbility);
         gBattlescriptCurrInstr = battleScript;
     }
 
@@ -5578,31 +5603,13 @@ u32 AbilityBattleEffects(u32 caseID, u32 battler, u32 ability, u32 special, u32 
         break;
     case ABILITYEFFECT_WOULD_BLOCK:
         effect = CanAbilityBlockMove(gBattlerAttacker, battler, move, gLastUsedAbility, ABILITY_CHECK_TRIGGER);
-        if (effect && gLastUsedAbility != 0xFFFF)
-            RecordAbilityBattle(battler, gLastUsedAbility);
         return effect;
     case ABILITYEFFECT_MOVES_BLOCK:
         effect = CanAbilityBlockMove(gBattlerAttacker, battler, move, gLastUsedAbility, ABILITY_RUN_SCRIPT);
-
-        // prankster check
-        if (effect == 0
-          && GetChosenMovePriority(gBattlerAttacker) > 0
-         && BlocksPrankster(move, gBattlerAttacker, gBattlerTarget, TRUE)
-         && !(IsBattleMoveStatus(move) && (gLastUsedAbility == ABILITY_MAGIC_BOUNCE || gProtectStructs[gBattlerTarget].bounceMove)))
-        {
-            if (!IsDoubleBattle()
-            || !(GetBattlerMoveTargetType(gBattlerAttacker, move) & (MOVE_TARGET_BOTH | MOVE_TARGET_FOES_AND_ALLY)))
-                CancelMultiTurnMoves(gBattlerAttacker); // Don't cancel moves that can hit two targets bc one target might not be protected
-            gBattleScripting.battler = gBattlerAbility = gBattlerTarget;
-            gBattlescriptCurrInstr = BattleScript_DarkTypePreventsPrankster;
-            effect = 1;
-        }
         break;
     case ABILITYEFFECT_WOULD_ABSORB:
         effect = CanAbilityAbsorbMove(gBattlerAttacker, battler, gLastUsedAbility, move, moveType, ABILITY_CHECK_TRIGGER);
         gBattleStruct->pledgeMove = FALSE;
-        if (effect && gLastUsedAbility != 0xFFFF)
-            RecordAbilityBattle(battler, gLastUsedAbility);
         return effect;
     case ABILITYEFFECT_ABSORBING:
         effect = CanAbilityAbsorbMove(gBattlerAttacker, battler, gLastUsedAbility, move, moveType, ABILITY_RUN_SCRIPT);

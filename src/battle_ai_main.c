@@ -902,10 +902,10 @@ static s32 AI_CheckBadMove(u32 battlerAtk, u32 battlerDef, u32 move, s32 score)
     // check non-user target
     if (!(moveTarget & MOVE_TARGET_USER))
     {
-        if (CanAbilityBlockMove(battlerAtk, battlerDef, move, abilityDef, ABILITY_CHECK_TRIGGER))
+        if (CanAbilityBlockMove(battlerAtk, battlerDef, move, abilityDef, ABILITY_CHECK_TRIGGER_AI))
             RETURN_SCORE_MINUS(20);
 
-        if (CanAbilityAbsorbMove(battlerAtk, battlerDef, abilityDef, move, moveType, ABILITY_CHECK_TRIGGER))
+        if (CanAbilityAbsorbMove(battlerAtk, battlerDef, abilityDef, move, moveType, ABILITY_CHECK_TRIGGER_AI))
             RETURN_SCORE_MINUS(20);
 
         switch (abilityDef)

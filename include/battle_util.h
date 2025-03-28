@@ -25,6 +25,7 @@
 enum AbilityEffectOptions
 {
     ABILITY_CHECK_TRIGGER,
+    ABILITY_CHECK_TRIGGER_AI,
     ABILITY_RUN_SCRIPT,
 };
 
