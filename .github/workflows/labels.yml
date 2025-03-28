@@ -15,3 +15,13 @@ jobs:
           count: 1
           labels: |
             General
+            category: ability
+            category: battle-ai
+            category: battle-mechanic
+            category: battle-tests
+            category: items
+            category: move animation
+            category: move effect
+            category: overworld
+            category: pokemon
+            category: sprite-issue
