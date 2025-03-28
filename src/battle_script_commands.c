@@ -1632,7 +1632,12 @@ static void AccuracyCheck(bool32 recalcDragonDarts, const u8 *nextInstr, const u
             if (gProtectStructs[gBattlerTarget].maxGuarded)
                 gBattlescriptCurrInstr = nextInstr;
             else
-                JumpIfMoveFailed(7, gCurrentMove, GetBattleMoveType(gCurrentMove));
+                CanAbilityAbsorbMove(gBattlerAttacker,
+                                     gBattlerTarget,
+                                     GetBattlerAbility(gBattlerTarget),
+                                     gCurrentMove,
+                                     GetBattleMoveType(gCurrentMove),
+                                     ABILITY_RUN_SCRIPT);
         }
     }
     else if (gSpecialStatuses[gBattlerAttacker].parentalBondState == PARENTAL_BOND_2ND_HIT
