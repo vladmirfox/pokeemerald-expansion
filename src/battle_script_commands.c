@@ -1197,8 +1197,9 @@ static void Cmd_attackcanceler(void)
     u32 abilityDef = GetBattlerAbility(gBattlerTarget);
     if (CanAbilityBlockMove(gBattlerAttacker,
                             gBattlerTarget,
-                            gCurrentMove,
+                            GetBattlerAbility(gBattlerAttacker),
                             abilityDef,
+                            gCurrentMove,
                             ABILITY_RUN_SCRIPT))
         return;
 
@@ -17707,10 +17708,13 @@ void BS_TryUpperHand(void)
 {
     NATIVE_ARGS(const u8 *failInstr);
 
+    u32 abilityDef = GetBattlerAbility(gBattlerTarget);
+
     if (GetBattlerTurnOrderNum(gBattlerAttacker) > GetBattlerTurnOrderNum(gBattlerTarget)
      || gChosenMoveByBattler[gBattlerTarget] == MOVE_NONE
      || IsBattleMoveStatus(gChosenMoveByBattler[gBattlerTarget])
-     || GetChosenMovePriority(gBattlerTarget) < 1 || GetChosenMovePriority(gBattlerTarget) > 3) // Fails if priority is less than 1 or greater than 3, if target already moved, or if using a status
+     || GetChosenMovePriority(gBattlerTarget, abilityDef) < 1
+     || GetChosenMovePriority(gBattlerTarget, abilityDef) > 3) // Fails if priority is less than 1 or greater than 3, if target already moved, or if using a status
         gBattlescriptCurrInstr = cmd->failInstr;
     else
         gBattlescriptCurrInstr = cmd->nextInstr;
