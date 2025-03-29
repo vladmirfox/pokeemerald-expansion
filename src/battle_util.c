@@ -5857,8 +5857,7 @@ u32 AbilityBattleEffects(u32 caseID, u32 battler, u32 ability, u32 special, u32 
              && !IsBattlerAlive(gBattlerTarget)
              && IsBattlerAlive(gBattlerAttacker)
              && GetBattlerHoldEffect(gBattlerAttacker, TRUE) != HOLD_EFFECT_PROTECTIVE_PADS
-             && IsMoveMakingContact(move, gBattlerAttacker)
-             && !IsMagicGuardProtected(gBattlerAttacker, gLastUsedAbility))
+             && IsMoveMakingContact(move, gBattlerAttacker))
             {
                 if ((battler = IsAbilityOnField(ABILITY_DAMP)))
                 {
