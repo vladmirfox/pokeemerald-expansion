@@ -2672,7 +2672,9 @@ static void Cmd_datahpupdate(void)
             MarkBattlerForControllerExec(battler);
         }
 
-        if (gBattlerAttacker != gBattlerTarget && GetMoveCategory(gCurrentMove) != DAMAGE_CATEGORY_STATUS)
+        if (gBattlerAttacker != gBattlerTarget
+         && GetMoveCategory(gCurrentMove) != DAMAGE_CATEGORY_STATUS
+         && IsBattlerTurnDamaged(gBattlerTarget))
             gBattleStruct->timesGotHit[GetBattlerSide(gBattlerTarget)][gBattlerPartyIndexes[gBattlerTarget]]++;
     }
 
