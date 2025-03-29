@@ -2079,7 +2079,7 @@ static void Cmd_adjustdamage(void)
     u32 moveTarget = GetBattlerMoveTargetType(gBattlerAttacker, gCurrentMove);
     u32 moveEffect = GetMoveEffect(gCurrentMove);
     bool32 calcSpreadMoveDamage = IsSpreadMove(moveTarget) && !IsBattleMoveStatus(gCurrentMove);
-    enum EnduredDamage endured[MAX_BATTLERS_COUNT] = {NOT_ENDURED};
+    bool32 enduredHit = FALSE;
 
     for (battlerDef = 0; battlerDef < gBattlersCount; battlerDef++)
     {
@@ -2101,6 +2101,7 @@ static void Cmd_adjustdamage(void)
             gSpecialStatuses[battlerDef].enduredDamage = TRUE;
             continue;
         }
+
         if (GetBattlerAbility(battlerDef) == ABILITY_ICE_FACE && IsBattleMovePhysical(gCurrentMove) && gBattleMons[battlerDef].species == SPECIES_EISCUE)
         {
             // Damage deals typeless 0 HP.
@@ -2111,6 +2112,7 @@ static void Cmd_adjustdamage(void)
             // Form change will be done after attack animation in Cmd_resultmessage.
             continue;
         }
+
         if (gBattleMons[gBattlerTarget].hp > gBattleStruct->moveDamage[battlerDef])
             continue;
 
@@ -2119,60 +2121,58 @@ static void Cmd_adjustdamage(void)
 
         gPotentialItemEffectBattler = battlerDef;
 
-        if (holdEffect == HOLD_EFFECT_FOCUS_BAND && rand < param)
+        if (moveEffect == EFFECT_FALSE_SWIPE)
         {
+            enduredHit = TRUE;
+        }
+        else if (gProtectStructs[battlerDef].endured)
+        {
+            enduredHit = TRUE;
+            gBattleStruct->moveResultFlags[battlerDef] |= MOVE_RESULT_FOE_ENDURED;
+        }
+        else if (holdEffect == HOLD_EFFECT_FOCUS_BAND && rand < param)
+        {
+            enduredHit = TRUE;
             RecordItemEffectBattle(battlerDef, holdEffect);
-            endured[battlerDef] = FOCUS_SASH_OR_BAND_ENDURED;
+            gLastUsedItem = gBattleMons[battlerDef].item;
+            gBattleStruct->moveResultFlags[battlerDef] |= MOVE_RESULT_FOE_HUNG_ON;
         }
         else if (B_STURDY >= GEN_5 && GetBattlerAbility(battlerDef) == ABILITY_STURDY && IsBattlerAtMaxHp(battlerDef))
         {
+            enduredHit = TRUE;
             RecordAbilityBattle(battlerDef, ABILITY_STURDY);
-            endured[battlerDef] = STURDY_ENDURED;
+            gLastUsedAbility = ABILITY_STURDY;
+            gBattleStruct->moveResultFlags[battlerDef] |= MOVE_RESULT_STURDIED;
         }
         else if (holdEffect == HOLD_EFFECT_FOCUS_SASH && IsBattlerAtMaxHp(battlerDef))
         {
+            enduredHit = TRUE;
             RecordItemEffectBattle(battlerDef, holdEffect);
-            endured[battlerDef] = FOCUS_SASH_OR_BAND_ENDURED;
+            gLastUsedItem = gBattleMons[battlerDef].item;
+            gBattleStruct->moveResultFlags[battlerDef] |= MOVE_RESULT_FOE_HUNG_ON;
         }
         else if (B_AFFECTION_MECHANICS == TRUE && GetBattlerSide(battlerDef) == B_SIDE_PLAYER && affectionScore >= AFFECTION_THREE_HEARTS)
         {
             if ((affectionScore == AFFECTION_FIVE_HEARTS && rand < 20)
              || (affectionScore == AFFECTION_FOUR_HEARTS && rand < 15)
              || (affectionScore == AFFECTION_THREE_HEARTS && rand < 10))
-                endured[battlerDef] = AFFECTION_ENDURED;
+            {
+                enduredHit = TRUE;
+                gBattleStruct->moveResultFlags[battlerDef] |= MOVE_RESULT_FOE_ENDURED_AFFECTION;
+            }
         }
-
-        if (moveEffect != EFFECT_FALSE_SWIPE
-         && !gProtectStructs[battlerDef].endured
-         && endured[battlerDef] == NOT_ENDURED)
-            continue;
 
         // Handle reducing the dmg to 1 hp.
-        gBattleStruct->moveDamage[battlerDef] = gBattleMons[battlerDef].hp - 1;
-        gSpecialStatuses[battlerDef].enduredDamage = TRUE;
-
-        if (gProtectStructs[battlerDef].endured)
+        if (enduredHit)
         {
-            gBattleStruct->moveResultFlags[battlerDef] |= MOVE_RESULT_FOE_ENDURED;
-        }
-        else if (endured[battlerDef] == FOCUS_SASH_OR_BAND_ENDURED)
-        {
-            gBattleStruct->moveResultFlags[battlerDef] |= MOVE_RESULT_FOE_HUNG_ON;
-            gLastUsedItem = gBattleMons[battlerDef].item;
-        }
-        else if (endured[battlerDef] == STURDY_ENDURED)
-        {
-            gBattleStruct->moveResultFlags[battlerDef] |= MOVE_RESULT_STURDIED;
-            gLastUsedAbility = ABILITY_STURDY;
-        }
-        else if (endured[battlerDef] == AFFECTION_ENDURED)
-        {
-            gBattleStruct->moveResultFlags[battlerDef] |= MOVE_RESULT_FOE_ENDURED_AFFECTION;
+            gBattleStruct->moveDamage[battlerDef] = gBattleMons[battlerDef].hp - 1;
+            gSpecialStatuses[battlerDef].enduredDamage = TRUE;
         }
     }
 
     if (calcSpreadMoveDamage)
         gBattleStruct->calculatedDamageDone = TRUE;
+
     gBattlescriptCurrInstr = cmd->nextInstr;
 
     if (gSpecialStatuses[gBattlerAttacker].gemBoost
