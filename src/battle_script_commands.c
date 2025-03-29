@@ -12951,6 +12951,10 @@ static void Cmd_setlightscreen(void)
     gBattlescriptCurrInstr = cmd->nextInstr;
 }
 
+#define NOT_ENDURED       0
+#define FOCUS_SASHED      1
+#define FOCUS_BANDED      2
+#define AFFECTION_ENDURED 3
 static void Cmd_tryKO(void)
 {
     CMD_ARGS(const u8 *failInstr);
@@ -12960,7 +12964,7 @@ static void Cmd_tryKO(void)
     u16 targetAbility = GetBattlerAbility(gBattlerTarget);
     u32 rand = Random() % 100;
     u32 affectionScore = GetBattlerAffectionHearts(gBattlerTarget);
-    enum EnduredDamage endured[MAX_BATTLERS_COUNT] = {NOT_ENDURED};
+    u32 endured = NOT_ENDURED;
 
     // Dynamaxed Pokemon cannot be hit by OHKO moves.
     if ((GetActiveGimmick(gBattlerTarget) == GIMMICK_DYNAMAX))
@@ -12975,12 +12979,12 @@ static void Cmd_tryKO(void)
     if (holdEffect == HOLD_EFFECT_FOCUS_BAND
         && (Random() % 100) < GetBattlerHoldEffectParam(gBattlerTarget))
     {
-        endured[gBattlerTarget] = FOCUS_SASH_OR_BAND_ENDURED;
+        endured = FOCUS_BANDED;
         RecordItemEffectBattle(gBattlerTarget, holdEffect);
     }
     else if (holdEffect == HOLD_EFFECT_FOCUS_SASH && IsBattlerAtMaxHp(gBattlerTarget))
     {
-        endured[gBattlerTarget] = FOCUS_SASH_OR_BAND_ENDURED;
+        endured = FOCUS_SASHED;
         RecordItemEffectBattle(gBattlerTarget, holdEffect);
     }
     else if (B_AFFECTION_MECHANICS == TRUE && GetBattlerSide(gBattlerTarget) == B_SIDE_PLAYER && affectionScore >= AFFECTION_THREE_HEARTS)
@@ -12988,7 +12992,7 @@ static void Cmd_tryKO(void)
         if ((affectionScore == AFFECTION_FIVE_HEARTS && rand < 20)
          || (affectionScore == AFFECTION_FOUR_HEARTS && rand < 15)
          || (affectionScore == AFFECTION_THREE_HEARTS && rand < 10))
-            endured[gBattlerTarget] = AFFECTION_ENDURED;
+            endured = AFFECTION_ENDURED;
     }
 
     if (targetAbility == ABILITY_STURDY)
@@ -13024,13 +13028,13 @@ static void Cmd_tryKO(void)
                 gBattleStruct->moveDamage[gBattlerTarget] = gBattleMons[gBattlerTarget].hp - 1;
                 gBattleStruct->moveResultFlags[gBattlerTarget] |= MOVE_RESULT_FOE_ENDURED;
             }
-            else if (endured[gBattlerTarget] == FOCUS_SASH_OR_BAND_ENDURED)
+            else if (endured == FOCUS_BANDED || endured == FOCUS_SASHED)
             {
                 gBattleStruct->moveDamage[gBattlerTarget] = gBattleMons[gBattlerTarget].hp - 1;
                 gBattleStruct->moveResultFlags[gBattlerTarget] |= MOVE_RESULT_FOE_HUNG_ON;
                 gLastUsedItem = gBattleMons[gBattlerTarget].item;
             }
-            else if (endured[gBattlerTarget] == AFFECTION_ENDURED)
+            else if (endured == AFFECTION_ENDURED)
             {
                 gBattleStruct->moveDamage[gBattlerTarget] = gBattleMons[gBattlerTarget].hp - 1;
                 gBattleStruct->moveResultFlags[gBattlerTarget] |= MOVE_RESULT_FOE_ENDURED_AFFECTION;
@@ -13053,6 +13057,10 @@ static void Cmd_tryKO(void)
         }
     }
 }
+#undef NOT_ENDURED
+#undef FOCUS_SASHED
+#undef FOCUS_BANDED
+#undef AFFECTION_ENDURED
 
 // Super Fang
 static void Cmd_damagetohalftargethp(void)
