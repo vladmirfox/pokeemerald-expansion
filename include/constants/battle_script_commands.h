@@ -312,4 +312,13 @@ enum MoveEndEffects
 #define ARG_TRY_REMOVE_TERRAIN_HIT     1
 #define ARG_TRY_REMOVE_TERRAIN_FAIL    2
 
+// Methods with which a pokemon can endure damage (survive on 1 HP)
+enum EnduredDamage
+{
+    NOT_ENDURED,
+    FOCUS_SASH_OR_BAND_ENDURED,
+    STURDY_ENDURED,
+    AFFECTION_ENDURED,
+};
+
 #endif // GUARD_CONSTANTS_BATTLE_SCRIPT_COMMANDS_H
