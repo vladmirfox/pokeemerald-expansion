@@ -133,6 +133,10 @@ SINGLE_BATTLE_TEST("Refrigerate doesn't affect Hidden Power's type")
     }
 }
 
+TO_DO_BATTLE_TEST("Refrigerate doesn't override Electrify (Gen7+)"); // No mon with Refrigerate exists in Gen8+, but probably behaves similar to Pixilate, which does.
+TO_DO_BATTLE_TEST("Refrigerate doesn't override Ion Deluge (Gen7+)"); // Ion Deluge doesn't exist in Gen 8+, but we probably could assume it behaves similar to under Electrify. TODO: Test by hacking SV.
+TO_DO_BATTLE_TEST("Refrigerate overrides Electrify (Gen6)")
+TO_DO_BATTLE_TEST("Refrigerate overrides Ion Deluge (Gen6)")
 TO_DO_BATTLE_TEST("Refrigerate doesn't affect Tera Starstorm's type");
 TO_DO_BATTLE_TEST("Refrigerate doesn't affect Max Strike's type");
 TO_DO_BATTLE_TEST("Refrigerate doesn't affect Terrain Pulse's type");
