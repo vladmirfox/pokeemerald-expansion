@@ -47,18 +47,20 @@ SINGLE_BATTLE_TEST("Aerilate can not turn certain moves into Flying type moves")
 
 SINGLE_BATTLE_TEST("Aerilate boosts power of affected moves by 20% (Gen7+) or 30% (Gen1-6)", s16 damage)
 {
-    u32 ability, genConfig;
-    PARAMETRIZE { ability = ABILITY_HYPER_CUTTER;   genConfig = GEN_7; }
-    PARAMETRIZE { ability = ABILITY_HYPER_CUTTER;   genConfig = GEN_6; }
-    PARAMETRIZE { ability = ABILITY_AERILATE;       genConfig = GEN_7; }
-    PARAMETRIZE { ability = ABILITY_AERILATE;       genConfig = GEN_6; }
+    u32 move, genConfig;
+    PARAMETRIZE { move = MOVE_CELEBRATE;   genConfig = GEN_7; }
+    PARAMETRIZE { move = MOVE_CELEBRATE;   genConfig = GEN_6; }
+    PARAMETRIZE { move = MOVE_SKILL_SWAP;  genConfig = GEN_7; }
+    PARAMETRIZE { move = MOVE_SKILL_SWAP;  genConfig = GEN_6; }
 
     GIVEN {
         WITH_CONFIG(GEN_CONFIG_ATE_MULTIPLIER, genConfig);
-        PLAYER(SPECIES_PINSIR) { Ability(ability); Moves(MOVE_TACKLE); }
-        OPPONENT(SPECIES_WOBBUFFET);
+        ASSUME(GetMoveType(MOVE_TACKLE) == TYPE_NORMAL);
+        ASSUME(GetMoveEffect(MOVE_SKILL_SWAP) == EFFECT_SKILL_SWAP);
+        PLAYER(SPECIES_WOBBUFFET);
+        OPPONENT(SPECIES_SALAMENCE) { Ability(ABILITY_MOXIE); Item(ITEM_SALAMENCITE); }
     } WHEN {
-        TURN { MOVE(player, MOVE_TACKLE); }
+        TURN { MOVE(opponent, move, gimmick: GIMMICK_MEGA); MOVE(player, MOVE_TACKLE); }
     } SCENE {
         HP_BAR(opponent, captureDamage: &results[i].damage);
     } FINALLY {
@@ -71,23 +73,26 @@ SINGLE_BATTLE_TEST("Aerilate boosts power of affected moves by 20% (Gen7+) or 30
 
 SINGLE_BATTLE_TEST("Aerilate doesn't affect Weather Ball's type", s16 damage)
 {
-    u16 move, ability;
-    PARAMETRIZE { move = MOVE_CELEBRATE; ability = ABILITY_HYPER_CUTTER; }
-    PARAMETRIZE { move = MOVE_SUNNY_DAY; ability = ABILITY_HYPER_CUTTER; }
-    PARAMETRIZE { move = MOVE_CELEBRATE; ability = ABILITY_AERILATE; }
-    PARAMETRIZE { move = MOVE_SUNNY_DAY; ability = ABILITY_AERILATE; }
+    u32 move1, move2;
+    PARAMETRIZE { move1 = MOVE_CELEBRATE; move2 = MOVE_CELEBRATE; }
+    PARAMETRIZE { move1 = MOVE_SUNNY_DAY; move2 = MOVE_CELEBRATE; }
+    PARAMETRIZE { move1 = MOVE_CELEBRATE; move2 = MOVE_SKILL_SWAP; }
+    PARAMETRIZE { move1 = MOVE_SUNNY_DAY; move2 = MOVE_SKILL_SWAP; }
     GIVEN {
         ASSUME(GetMoveEffect(MOVE_WEATHER_BALL) == EFFECT_WEATHER_BALL);
         ASSUME(GetMoveType(MOVE_WEATHER_BALL) == TYPE_NORMAL);
+        ASSUME(GetMoveEffect(MOVE_SKILL_SWAP) == EFFECT_SKILL_SWAP);
         ASSUME(gSpeciesInfo[SPECIES_PINSIR].types[0] == TYPE_BUG);
-        PLAYER(SPECIES_PINSIR) { Ability(ability); }
-        OPPONENT(SPECIES_PINSIR);
+        PLAYER(SPECIES_WOBBUFFET);
+        OPPONENT(SPECIES_PINSIR) { Ability(ABILITY_HYPER_CUTTER); Item(ITEM_PINSIRITE); }
     } WHEN {
-        TURN { MOVE(player, move); }
+        TURN { MOVE(opponent, move2, gimmick: GIMMICK_MEGA); MOVE(player, move1); }
         TURN { MOVE(player, MOVE_WEATHER_BALL); }
     } SCENE {
+        ANIMATION(ANIM_TYPE_MOVE, move2, opponent);
+        ANIMATION(ANIM_TYPE_MOVE, move1, player);
         HP_BAR(opponent, captureDamage: &results[i].damage);
-        if (move == MOVE_SUNNY_DAY)
+        if (move1 == MOVE_SUNNY_DAY)
             MESSAGE("It's super effective!");
     } FINALLY {
         EXPECT_MUL_EQ(results[0].damage, Q_4_12(6.0), results[1].damage); // double base power + type effectiveness + sun 50% boost
@@ -99,20 +104,22 @@ SINGLE_BATTLE_TEST("Aerilate doesn't affect Weather Ball's type", s16 damage)
 
 SINGLE_BATTLE_TEST("Aerilate doesn't affect Natural Gift's type")
 {
-    u16 ability;
-    PARAMETRIZE { ability = ABILITY_HYPER_CUTTER; }
-    PARAMETRIZE { ability = ABILITY_AERILATE; }
+    u16 move;
+    PARAMETRIZE { move = MOVE_CELEBRATE; }
+    PARAMETRIZE { move = MOVE_SKILL_SWAP; }
     GIVEN {
         ASSUME(GetMoveEffect(MOVE_NATURAL_GIFT) == EFFECT_NATURAL_GIFT);
-        ASSUME(gNaturalGiftTable[ITEM_TO_BERRY(ITEM_ORAN_BERRY)].type == TYPE_POISON);
-        ASSUME(gSpeciesInfo[SPECIES_BELDUM].types[0] == TYPE_STEEL);
-        PLAYER(SPECIES_PINSIR) { Ability(ability); Item(ITEM_ORAN_BERRY); }
-        OPPONENT(SPECIES_BELDUM);
+        ASSUME(GetMoveEffect(MOVE_SKILL_SWAP) == EFFECT_SKILL_SWAP);
+        ASSUME(gNaturalGiftTable[ITEM_TO_BERRY(ITEM_PERSIM_BERRY)].type == TYPE_GROUND);
+        ASSUME(gSpeciesInfo[SPECIES_SALAMENCE_MEGA].types[0] == TYPE_FLYING || gSpeciesInfo[SPECIES_SALAMENCE_MEGA].types[1] == TYPE_FLYING);
+        PLAYER(SPECIES_WOBBUFFET) { Item(ITEM_PERSIM_BERRY); }
+        OPPONENT(SPECIES_SALAMENCE) { Item(ITEM_SALAMENCITE); }
     } WHEN {
-        TURN { MOVE(player, MOVE_NATURAL_GIFT); }
+        TURN { MOVE(opponent, move, gimmick: GIMMICK_MEGA); MOVE(player, MOVE_NATURAL_GIFT); }
     } SCENE {
+        ANIMATION(ANIM_TYPE_MOVE, move, opponent);
         NOT { ANIMATION(ANIM_TYPE_MOVE, MOVE_NATURAL_GIFT, player); }
-        MESSAGE("It doesn't affect the opposing Beldum…");
+        MESSAGE("It doesn't affect the opposing Salamence…");
     }
 }
 
@@ -126,6 +133,7 @@ SINGLE_BATTLE_TEST("Aerilate doesn't affect Judgment / Techno Blast / Multi-Atta
         ASSUME(GetMoveEffect(MOVE_JUDGMENT) == EFFECT_CHANGE_TYPE_ON_ITEM);
         ASSUME(GetMoveEffect(MOVE_TECHNO_BLAST) == EFFECT_CHANGE_TYPE_ON_ITEM);
         ASSUME(GetMoveEffect(MOVE_MULTI_ATTACK) == EFFECT_CHANGE_TYPE_ON_ITEM);
+        ASSUME(GetMoveEffect(MOVE_SKILL_SWAP) == EFFECT_SKILL_SWAP);
         ASSUME(gItemsInfo[ITEM_ZAP_PLATE].holdEffect == HOLD_EFFECT_PLATE);
         ASSUME(gItemsInfo[ITEM_ZAP_PLATE].secondaryId == TYPE_ELECTRIC);
         ASSUME(gItemsInfo[ITEM_SHOCK_DRIVE].holdEffect == HOLD_EFFECT_DRIVE);
@@ -133,11 +141,14 @@ SINGLE_BATTLE_TEST("Aerilate doesn't affect Judgment / Techno Blast / Multi-Atta
         ASSUME(gItemsInfo[ITEM_ELECTRIC_MEMORY].holdEffect == HOLD_EFFECT_MEMORY);
         ASSUME(gItemsInfo[ITEM_ELECTRIC_MEMORY].secondaryId == TYPE_ELECTRIC);
         ASSUME(gSpeciesInfo[SPECIES_DIGLETT].types[0] == TYPE_GROUND);
-        PLAYER(SPECIES_PINSIR) { Ability(ABILITY_AERILATE); Item(item); }
+        PLAYER(SPECIES_WOBBUFFET) { Item(item); }
+        OPPONENT(SPECIES_SALAMENCE) { Item(ITEM_SALAMENCITE); }
         OPPONENT(SPECIES_DIGLETT);
     } WHEN {
-        TURN { MOVE(player, move); }
+        TURN { MOVE(opponent, MOVE_SKILL_SWAP, gimmick: GIMMICK_MEGA); }
+        TURN { SWITCH(opponent, 1); MOVE(player, move); }
     } SCENE {
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_SKILL_SWAP, opponent);
         NOT { ANIMATION(ANIM_TYPE_MOVE, move, player); }
         MESSAGE("It doesn't affect the opposing Diglett…");
     }
