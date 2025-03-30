@@ -15782,7 +15782,6 @@ static void Cmd_snatchsetbattlers(void)
     gBattlescriptCurrInstr = cmd->nextInstr;
 }
 
-// Brick Break
 static void Cmd_removescreens(void)
 {
     CMD_ARGS();
