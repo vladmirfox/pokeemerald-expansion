@@ -6223,7 +6223,7 @@ static void Cmd_moveend(void)
                         effect = 1;
                     }
                     break;
-                case PROTECT_KINGS_SHIELDED:
+                case PROTECT_KINGS_SHIELD:
                     if (!IsProtectivePadsProtected(gBattlerAttacker, gCurrentMove))
                     {
                         gProtectStructs[gBattlerAttacker].touchedProtectLike = FALSE;
@@ -6239,7 +6239,7 @@ static void Cmd_moveend(void)
                         effect = 1;
                     }
                     break;
-                case PROTECT_BANEFUL_BUNKERED:
+                case PROTECT_BANEFUL_BUNKER:
                     if (!IsProtectivePadsProtected(gBattlerAttacker, gCurrentMove))
                     {
                         gProtectStructs[gBattlerAttacker].touchedProtectLike = FALSE;
@@ -6250,7 +6250,7 @@ static void Cmd_moveend(void)
                         effect = 1;
                     }
                     break;
-                case PROTECT_BURNING_BULWARKED:
+                case PROTECT_BURNING_BULWARK:
                     if (!IsProtectivePadsProtected(gBattlerAttacker, gCurrentMove))
                     {
                         gProtectStructs[gBattlerAttacker].touchedProtectLike = FALSE;
@@ -6261,7 +6261,7 @@ static void Cmd_moveend(void)
                         effect = 1;
                     }
                     break;
-                case PROTECT_OBSTRUCTED:
+                case PROTECT_OBSTRUCT:
                     if (moveEffect != EFFECT_SUCKER_PUNCH // Why???
                         && moveEffect != EFFECT_UPPER_HAND // Why???
                         && !IsProtectivePadsProtected(gBattlerAttacker, gCurrentMove))
@@ -6276,7 +6276,7 @@ static void Cmd_moveend(void)
                         effect = 1;
                     }
                     break;
-                case PROTECT_SILK_TRAPPED:
+                case PROTECT_SILK_TRAP:
                     if (!IsProtectivePadsProtected(gBattlerAttacker, gCurrentMove))
                     {
                         gProtectStructs[gBattlerAttacker].touchedProtectLike = FALSE;
@@ -10652,7 +10652,7 @@ static void Cmd_various(void)
     case VARIOUS_SUCKER_PUNCH_CHECK:
     {
         VARIOUS_ARGS(const u8 *failInstr);
-        if (gProtectStructs[gBattlerTarget].protected == PROTECT_OBSTRUCTED)
+        if (gProtectStructs[gBattlerTarget].protected == PROTECT_OBSTRUCT)
             gBattlescriptCurrInstr = cmd->failInstr;
         else if (GetBattlerTurnOrderNum(gBattlerAttacker) > GetBattlerTurnOrderNum(gBattlerTarget))
             gBattlescriptCurrInstr = cmd->failInstr;
