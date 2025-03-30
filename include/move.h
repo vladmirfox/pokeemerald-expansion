@@ -38,6 +38,22 @@ struct AdditionalEffect
     u8 chance; // 0% = effect certain, primary effect
 };
 
+enum ProtectMethod
+{
+    PROTECT_NONE,
+    PROTECT_NORMAL,
+    PROTECT_SPIKY_SHIELD,
+    PROTECT_KINGS_SHIELDED,
+    PROTECT_BANEFUL_BUNKERED,
+    PROTECT_BURNING_BULWARKED,
+    PROTECT_OBSTRUCTED,
+    PROTECT_SILK_TRAPPED,
+    PROTECT_WIDE_GUARD,
+    PROTECT_QUICK_GUARD,
+    PROTECT_CRAFTY_SHIELD,
+    PROTECT_MAT_BLOCK,
+};
+
 struct MoveInfo
 {
     const u8 *name;
@@ -115,7 +131,7 @@ struct MoveInfo
         } twoTurnAttack;
         struct {
             u16 side;
-            u16 property; // can be used to remove the hardcoded values
+            u16 method; // can be used to remove the hardcoded values
         } protect;
         u32 status;
         u32 moveProperty;
@@ -450,6 +466,11 @@ static inline u32 GetMoveTwoTurnAttackWeather(u32 moveId)
 static inline u32 GetMoveProtectSide(u32 moveId)
 {
     return gMovesInfo[SanitizeMoveId(moveId)].argument.protect.side;
+}
+
+static inline u32 GetMoveProtectMethod(u32 moveId)
+{
+    return gMovesInfo[SanitizeMoveId(moveId)].argument.protect.method;
 }
 
 static inline u32 GetMoveEffectArg_Status(u32 moveId)
