@@ -230,6 +230,8 @@ u32 IsAbilityOnField(u32 ability);
 u32 IsAbilityOnFieldExcept(u32 battler, u32 ability);
 u32 IsAbilityPreventingEscape(u32 battler);
 bool32 IsBattlerProtected(u32 battlerAtk, u32 battlerDef, u32 move);
+bool32 IsSideTypeProtectingProtect(enum ProtectMethod method);
+bool32 IsBattlerSideProtected(u32 battler);
 bool32 CanBattlerEscape(u32 battler); // no ability check
 void BattleScriptExecute(const u8 *BS_ptr);
 void BattleScriptPushCursorAndCallback(const u8 *BS_ptr);
@@ -354,6 +356,5 @@ void ClearPursuitValuesIfSet(u32 battler);
 void ClearPursuitValues(void);
 bool32 HasWeatherEffect(void);
 bool32 IsMovePowderBlocked(u32 battlerAtk, u32 battlerDef, u32 move);
-bool32 IsBattlerProtectedByPartner(u32 battler);
 
 #endif // GUARD_BATTLE_UTIL_H

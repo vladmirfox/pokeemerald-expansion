@@ -1283,7 +1283,7 @@ static void Cmd_attackcanceler(void)
     }
 
     // Z-moves and Max Moves bypass protection, but deal reduced damage (factored in AccumulateOtherModifiers)
-    if ((IsZMove(gCurrentMove) || IsMaxMove(gCurrentMove)) && gProtectStructs[gBattlerTarget].protected == PROTECT_NONE)
+    if ((IsZMove(gCurrentMove) || IsMaxMove(gCurrentMove)) && gProtectStructs[gBattlerTarget].protected != PROTECT_NONE)
     {
         BattleScriptPush(cmd->nextInstr);
         gBattlescriptCurrInstr = BattleScript_CouldntFullyProtect;
@@ -3863,13 +3863,14 @@ void SetMoveEffect(bool32 primary, bool32 certain)
                 }
                 break;
             case MOVE_EFFECT_FEINT:
-                i = FALSE; // Check if protect will be removed
+                i = FALSE; // Remove Protect if any
                 if (gProtectStructs[gBattlerTarget].protected != PROTECT_NONE)
                 {
                     gProtectStructs[gBattlerTarget].protected = PROTECT_NONE;
                     i = TRUE;
                 }
-                if (IsBattlerProtectedByPartner(BATTLE_PARTNER(gBattlerTarget)))
+                    ;
+                if (IsBattlerSideProtected(gBattlerTarget))
                 {
                     gProtectStructs[BATTLE_PARTNER(gBattlerTarget)].protected = PROTECT_NONE;
                     i = TRUE;

@@ -3275,8 +3275,7 @@ const u8* FaintClearSetData(u32 battler)
 
     memset(&gDisableStructs[battler], 0, sizeof(struct DisableStruct));
 
-    // TODO: There needs to be a better solution for this
-    if (gProtectStructs[battler].protected > PROTECT_NONE && gProtectStructs[battler].protected < PROTECT_WIDE_GUARD)
+    if (!IsSideTypeProtectingProtect(gProtectStructs[battler].protected)) // Protect methods that protect the side expire at the end of the turn
         gProtectStructs[battler].protected = PROTECT_NONE;
 
     gProtectStructs[battler].quash = FALSE;
