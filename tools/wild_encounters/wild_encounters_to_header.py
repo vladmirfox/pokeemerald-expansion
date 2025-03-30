@@ -1,8 +1,6 @@
 import json
 
 
-#todo: test with origin/upcoming
-
 #C string vars
 define                = "#define"
 ENCOUNTER_CHANCE      = "ENCOUNTER_CHANCE"
@@ -12,10 +10,8 @@ NULL                  = "NULL"
 UNDEFINED             = "UNDEFINED"
 MAP_UNDEFINED         = "MAP_UNDEFINED"
 
-#encounter group header types
-WILD_MON              = "gWildMon"
-BATTLE_PIKE_MON       = "gBattlePikeWildMon"
-BATTLE_PYRAMID_MON    = "gBattlePyramidWildMon"
+#encounter group header types, filled out programmatically
+MON_HEADERS = []
 
 #mon encounter group types
 LAND_MONS             = "land_mons"
@@ -108,6 +104,7 @@ printEncounterStructs           = True
 
 
 def ImportWildEncounterFile():
+    global MON_HEADERS
     global landMonsInfo
     global waterMonsInfo 
     global rockSmashMonsInfo 
@@ -148,12 +145,19 @@ def ImportWildEncounterFile():
 
     for data in wData["wild_encounter_groups"]:
         wEncounters = wData["wild_encounter_groups"][headerIndex]["encounters"]
+        headerSuffix = structHeader + "s"
 
-        if data == "label":
+        if data["label"]:
             hLabel = wData["wild_encounter_groups"][headerIndex]["label"]
-        if data == "for_maps":
+            if headerSuffix in hLabel:
+                hLabel = hLabel[:len(hLabel) - len(headerSuffix)]
+
+            MON_HEADERS.append(hLabel)
+
+        if data["for_maps"]:
             hForMaps = wData["wild_encounter_groups"][headerIndex]["for_maps"]
     
+        # for the encounter rate macros, so we don't worry about hidden mons here
         if headerIndex == 0:
             wFields = wData["wild_encounter_groups"][headerIndex]["fields"]
             for field in wFields:
@@ -169,10 +173,11 @@ def ImportWildEncounterFile():
 
             PrintGeneratedWarningText()
 
-            print('#include "rtc.h" \n')
+            print('#include "rtc.h"')
+            print("\n")
 
             PrintEncounterRateMacros()
-            print()
+            print("\n")
 
         for encounter in wEncounters:
             if "map" in encounter:
@@ -198,7 +203,8 @@ def ImportWildEncounterFile():
             elif TIME_NIGHT_LABEL in structLabel:
                 structTime = TIME_NIGHT_LABEL
             else:
-                structTime = ""
+                structTime = TIME_DAY_LABEL
+                structLabel = structLabel + "_Day"
 
             landMonsInfo      = ""
             waterMonsInfo     = ""
@@ -261,6 +267,7 @@ def PrintStructContent(contentList):
 def GetStructLabelWithoutTime(label):
     labelLength = len(label)
     timeLength = 0
+
     if TIME_MORNING_LABEL in label:
         timeLength = len(TIME_MORNING_LABEL)
     elif TIME_DAY_LABEL in label:
@@ -332,7 +339,6 @@ def SetupMonInfoVars():
         hiddenMonsInfo = NULL
     else:
         hiddenMonsInfo = f"&{hiddenMonsInfo}"
-
     
 
 def PrintWildMonHeadersContent():
@@ -364,12 +370,14 @@ def PrintWildMonHeadersContent():
                         for monInfo in headerStructTable[group][label][stat]:
                             infoIndex = 0
                             PrintEncounterHeaders(f"{TabStr(3)}[{GetTimeStrFromIndex(infoCount)}] = ")
-
-                            for timeGroup in headerStructTable[group][label][stat][infoIndex]:
+                            while infoIndex <= MONS_INFO_TOTAL - 1:
                                 if infoIndex == 0:
                                     PrintEncounterHeaders(TabStr(3) + "{")
 
-                                PrintEncounterHeaders(f"{TabStr(4)}{GetIMonInfoStringFromIndex(infoIndex)} = {monInfo[infoIndex]},")
+                                if len(monInfo) == 0:
+                                    PrintEncounterHeaders(f"{TabStr(4)}{GetIMonInfoStringFromIndex(infoIndex)} = NULL,")
+                                else:
+                                    PrintEncounterHeaders(f"{TabStr(4)}{GetIMonInfoStringFromIndex(infoIndex)} = {monInfo[infoIndex]},")
 
                                 if infoIndex == MONS_INFO_TOTAL - 1:
                                     PrintEncounterHeaders(TabStr(3) + "},")
@@ -396,7 +404,7 @@ def PrintWildMonHeadersContent():
                             if nullIndex == 0:
                                 PrintEncounterHeaders(TabStr(3) + "{")
 
-                            PrintEncounterHeaders(f"{TabStr(3)}{GetIMonInfoStringFromIndex(nullIndex)} = NULL,")
+                            PrintEncounterHeaders(f"{TabStr(4)}{GetIMonInfoStringFromIndex(nullIndex)} = NULL,")
 
                             if nullIndex == MONS_INFO_TOTAL - 1:
                                 PrintEncounterHeaders(TabStr(3) + "},")
@@ -411,12 +419,7 @@ def PrintWildMonHeadersContent():
 
 
 def GetWildMonHeadersLabel():
-    if headerIndex == 0:
-        return f"{baseStruct}{structHeader} {WILD_MON}{structHeader}s{structArrayAssign}" + "\n{"
-    elif headerIndex == 1:
-        return f"{baseStruct}{structHeader} {BATTLE_PYRAMID_MON}{structHeader}s{structArrayAssign}" + "\n{"
-    elif headerIndex == 2:
-        return f"{baseStruct}{structHeader} {BATTLE_PIKE_MON}{structHeader}s{structArrayAssign}" + "\n{"
+        return f"{baseStruct}{structHeader} {MON_HEADERS[headerIndex]}{structHeader}s{structArrayAssign}" + "\n{"
     
 
 def PrintEncounterHeaders(content):
@@ -539,6 +542,7 @@ def PrintGeneratedWarningText():
     print("//")
     print("// DO NOT MODIFY THIS FILE! It is auto-generated by tools/wild_encounters/wild_encounters_to_header.py")
     print("//")
+    print("\n")
 
     # get copied lhea :^ )
 
@@ -606,7 +610,7 @@ const struct WildPokemon gRoute101_LandMons_Day[] =
     { 3, 3, SPECIES_ZIGZAGOON },
 };
 
-const struct WildPokemonInfo gRoute101_LandMonsInfo_Day= { 20, gRoute101_LandMons_Day };
+const struct WildPokemonInfo gRoute101_Day_LandMonsInfo= { 20, gRoute101_Day_LandMons };
 const struct WildPokemonHeader gWildMonHeaders[] =
 {
     {
@@ -615,7 +619,7 @@ const struct WildPokemonHeader gWildMonHeaders[] =
         .encounterTypes = 
             [TIME_DAY] = 
             {
-                .landMonsInfo = &gRoute101_LandMonsInfo_Day,
+                .landMonsInfo = &gRoute101_Day_LandMonsInfo,
                 .waterMonsInfo = NULL,
                 .rockSmashMonsInfo = NULL,
                 .fishingMonsInfo = NULL,
