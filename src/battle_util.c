@@ -10228,7 +10228,7 @@ static inline uq4_12_t GetZMaxMoveAgainstProtectionModifier(struct DamageCalcula
 {
     if ((IsZMove(damageCalcData->move) || IsMaxMove(damageCalcData->move))
      && gProtectStructs[damageCalcData->battlerDef].protected != PROTECT_NONE
-     && gProtectStructs[gBattlerTarget].protected != PROTECT_MAX_GUARD)
+     && gProtectStructs[damageCalcData->battlerDef].protected != PROTECT_MAX_GUARD)
         return UQ_4_12(0.25);
     return UQ_4_12(1.0);
 }
