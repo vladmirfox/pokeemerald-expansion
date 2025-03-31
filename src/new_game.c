@@ -212,7 +212,7 @@ void NewGameInitData(void)
     ResetItemFlags();
     ResetDexNav();
 #if OW_ENABLE_NPC_FOLLOWERS
-    memset(&gSaveBlock3Ptr->follower, 0, sizeof(gSaveBlock3Ptr->follower));
+    memset(&gSaveBlock3Ptr->NPCfollower, 0, sizeof(gSaveBlock3Ptr->NPCfollower));
 #endif
 }
 

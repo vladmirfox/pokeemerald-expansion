@@ -435,7 +435,7 @@ void CB2_InitBattle(void)
 #endif // T_SHOULD_RUN_MOVE_ANIM
 
 #if OW_ENABLE_NPC_FOLLOWERS
-    if (gSaveBlock3Ptr->follower.battlePartner && OW_NPC_FOLLOWER_PARTY_PREVIEW == FALSE)
+    if (gSaveBlock3Ptr->NPCfollower.battlePartner && OW_NPC_FOLLOWER_PARTY_PREVIEW == FALSE)
     {
         CB2_InitBattleInternal();
         gBattleCommunication[MULTIUSE_STATE] = 0;
