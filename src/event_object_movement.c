@@ -1350,9 +1350,11 @@ u8 GetFirstInactiveObjectEventId(void)
 u8 GetObjectEventIdByLocalIdAndMap(u8 localId, u8 mapNum, u8 mapGroupId)
 {
     if (localId < OBJ_EVENT_ID_FOLLOWER) {
+#if OW_ENABLE_NPC_FOLLOWERS
         if (localId == OBJ_EVENT_ID_FOLLOW_ME)
             return GetFollowerObjectId();
         else
+#endif
             return GetObjectEventIdByLocalIdAndMapInternal(localId, mapNum, mapGroupId);
     }
 
@@ -2207,7 +2209,10 @@ void UpdateFollowingPokemon(void)
      || SpeciesToGraphicsInfo(species, shiny, female) == NULL
      || (gMapHeader.mapType == MAP_TYPE_INDOOR && SpeciesToGraphicsInfo(species, shiny, female)->oam->size > ST_OAM_SIZE_2)
      || FlagGet(FLAG_TEMP_HIDE_FOLLOWER)
-     || gSaveBlock2Ptr->follower.inProgress)
+#if OW_ENABLE_NPC_FOLLOWERS
+     || gSaveBlock3Ptr->follower.inProgress
+#endif
+     )
     {
         RemoveFollowingPokemon();
         return;
@@ -2629,7 +2634,11 @@ void RemoveObjectEventsOutsideView(void)
 
             // Followers should not go OOB, or their sprites may be freed early during a cross-map scripting event,
             // such as Wally's Ralts catch sequence
-            if (objectEvent->active && !objectEvent->isPlayer && objectEvent->localId != OBJ_EVENT_ID_FOLLOWER && i != GetFollowerObjectId())
+            if (objectEvent->active && !objectEvent->isPlayer && objectEvent->localId != OBJ_EVENT_ID_FOLLOWER
+#if OW_ENABLE_NPC_FOLLOWERS
+             && i != GetFollowerObjectId()
+#endif
+             )
                 RemoveObjectEventIfOutsideView(objectEvent);
         }
     }
@@ -6268,7 +6277,11 @@ u32 GetObjectObjectCollidesWith(struct ObjectEvent *objectEvent, s16 x, s16 y, b
     for (i = 0; i < OBJECT_EVENTS_COUNT; i++)
     {
         curObject = &gObjectEvents[i];
-        if (curObject->active && (curObject->movementType != MOVEMENT_TYPE_FOLLOW_PLAYER || objectEvent != &gObjectEvents[gPlayerAvatar.objectEventId]) && curObject != objectEvent && !FollowMe_IsCollisionExempt(curObject, objectEvent))
+        if (curObject->active && (curObject->movementType != MOVEMENT_TYPE_FOLLOW_PLAYER || objectEvent != &gObjectEvents[gPlayerAvatar.objectEventId]) && curObject != objectEvent
+#if OW_ENABLE_NPC_FOLLOWERS
+         && !FollowMe_IsCollisionExempt(curObject, objectEvent)
+#endif
+         )
         {
             // check for collision if curObject is active, not the object in question, and not exempt from collisions
             if ((curObject->currentCoords.x == x && curObject->currentCoords.y == y) || (curObject->previousCoords.x == x && curObject->previousCoords.y == y))
@@ -6460,7 +6473,9 @@ bool8 ObjectEventSetHeldMovement(struct ObjectEvent *objectEvent, u8 movementAct
     objectEvent->heldMovementActive = TRUE;
     objectEvent->heldMovementFinished = FALSE;
     gSprites[objectEvent->spriteId].sActionFuncId = 0;
+#if OW_ENABLE_NPC_FOLLOWERS
     FollowMe(objectEvent, movementActionId, FALSE);
+#endif
 
     // When player is moved via script, set copyable movement
     // for any followers via a lookup table

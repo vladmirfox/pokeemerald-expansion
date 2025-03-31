@@ -211,8 +211,9 @@ void NewGameInitData(void)
     SetCurrentDifficultyLevel(DIFFICULTY_NORMAL);
     ResetItemFlags();
     ResetDexNav();
-
-    memset(&gSaveBlock2Ptr->follower, 0, sizeof(gSaveBlock2Ptr->follower));
+#if OW_ENABLE_NPC_FOLLOWERS
+    memset(&gSaveBlock3Ptr->follower, 0, sizeof(gSaveBlock3Ptr->follower));
+#endif
 }
 
 static void ResetMiniGamesRecords(void)
