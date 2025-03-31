@@ -1384,32 +1384,6 @@ void ScriptUpdateFollowingMon(struct ScriptContext *ctx)
 #endif
 }
 
-void ScriptBallFollowingMon(struct ScriptContext *ctx)
-{
-    u32 species;
-    bool32 shiny;
-    bool32 female;
-
-    if (OW_POKEMON_OBJECT_EVENTS == FALSE
-     || OW_FOLLOWERS_ENABLED == FALSE
-     || FlagGet(B_FLAG_FOLLOWERS_DISABLED)
-     || !GetFollowerInfo(&species, &shiny, &female)
-     || SpeciesToGraphicsInfo(species, shiny, female) == NULL
-     || (gMapHeader.mapType == MAP_TYPE_INDOOR && SpeciesToGraphicsInfo(species, shiny, female)->oam->size > ST_OAM_SIZE_2)
-     || FlagGet(FLAG_TEMP_HIDE_FOLLOWER)
-#if OW_ENABLE_NPC_FOLLOWERS
-     || gSaveBlock3Ptr->NPCfollower.inProgress
-#endif
-     )
-    {
-        return;
-    }
-    else
-    {
-        ReturnFollowingMonToBall();
-    }
-}
-
 void ScriptChangeFollowerBattlePartner(struct ScriptContext *ctx)
 {
 #if OW_ENABLE_NPC_FOLLOWERS
