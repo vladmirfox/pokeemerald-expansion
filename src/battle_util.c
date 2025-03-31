@@ -8770,7 +8770,7 @@ bool32 IsMoveMakingContact(u32 move, u32 battlerAtk)
     }
 }
 
-static inline bool32 IsSideProtectionOfMethod(u32 battler, enum ProtectMethod method)
+static inline bool32 IsSideProtected(u32 battler, enum ProtectMethod method)
 {
     return gProtectStructs[battler].protected == method
         || gProtectStructs[BATTLE_PARTNER(battler)].protected == method;
@@ -8778,24 +8778,33 @@ static inline bool32 IsSideProtectionOfMethod(u32 battler, enum ProtectMethod me
 
 bool32 IsBattlerProtected(u32 battlerAtk, u32 battlerDef, u32 move)
 {
+    if (gProtectStructs[battlerDef].protected == PROTECT_NONE
+     && gProtectStructs[BATTLE_PARTNER(battlerDef)].protected == PROTECT_NONE)
+        return FALSE;
+
+    if (gProtectStructs[battlerDef].protected != PROTECT_MAX_GUARD && !MoveIgnoresProtect(move))
+    {
+        if (IsZMove(move) || IsMaxMove(move))
+            return FALSE; // Z-Moves and Max Moves bypass protection (except Max Guard).
+        if (IsMoveMakingContact(move, battlerAtk) && GetBattlerAbility(battlerAtk) == ABILITY_UNSEEN_FIST)
+            return FALSE;
+    }
+
     bool32 isProtected = FALSE;
 
-    if ((IsZMove(move) || IsMaxMove(move))
-        && (!gProtectStructs[battlerDef].maxGuarded || MoveIgnoresProtect(move)))
-        isProtected = FALSE; // Z-Moves and Max Moves bypass protection (except Max Guard).
-    else if (gProtectStructs[battlerDef].maxGuarded && IsMoveBlockedByMaxGuard(move))
-        isProtected = TRUE;
-    else if (!gProtectStructs[battlerDef].maxGuarded // Max Guard cannot be bypassed by Unseen Fist
-          && IsMoveMakingContact(move, battlerAtk)
-          && GetBattlerAbility(battlerAtk) == ABILITY_UNSEEN_FIST)
-        isProtected = FALSE;
-    else if (IsSideProtectionOfMethod(battlerDef, PROTECT_CRAFTY_SHIELD) && IsBattleMoveStatus(move) && GetMoveEffect(move) != EFFECT_COACHING)
+    if (IsSideProtected(battlerDef, PROTECT_CRAFTY_SHIELD)
+     && IsBattleMoveStatus(move)
+     && GetMoveEffect(move) != EFFECT_COACHING)
         isProtected = TRUE;
     else if (MoveIgnoresProtect(move))
         isProtected = FALSE;
+    else if (IsSideProtected(battlerDef, PROTECT_WIDE_GUARD) && IsSpreadMove(GetBattlerMoveTargetType(battlerAtk, move)))
+        isProtected = TRUE;
     else if (gProtectStructs[battlerDef].protected == PROTECT_NORMAL)
         isProtected = TRUE;
-    else if (IsSideProtectionOfMethod(battlerDef, PROTECT_WIDE_GUARD) && GetBattlerMoveTargetType(battlerAtk, move) & (MOVE_TARGET_BOTH | MOVE_TARGET_FOES_AND_ALLY))
+    else if (gProtectStructs[battlerDef].protected == PROTECT_SPIKY_SHIELD)
+        isProtected = TRUE;
+    else if (gProtectStructs[battlerDef].protected == PROTECT_MAX_GUARD)
         isProtected = TRUE;
     else if (gProtectStructs[battlerDef].protected == PROTECT_BANEFUL_BUNKER)
         isProtected = TRUE;
@@ -8805,15 +8814,11 @@ bool32 IsBattlerProtected(u32 battlerAtk, u32 battlerDef, u32 move)
         isProtected = TRUE;
     else if (gProtectStructs[battlerDef].protected == PROTECT_SILK_TRAP && !IsBattleMoveStatus(move))
         isProtected = TRUE;
-    else if (gProtectStructs[battlerDef].protected == PROTECT_SPIKY_SHIELD)
-        isProtected = TRUE;
     else if (gProtectStructs[battlerDef].protected == PROTECT_KINGS_SHIELD && !IsBattleMoveStatus(move))
         isProtected = TRUE;
-    else if (gProtectStructs[battlerDef].maxGuarded)
+    else if (IsSideProtected(battlerDef, PROTECT_QUICK_GUARD) && GetChosenMovePriority(battlerAtk) > 0)
         isProtected = TRUE;
-    else if (IsSideProtectionOfMethod(battlerDef, PROTECT_QUICK_GUARD) && GetChosenMovePriority(battlerAtk) > 0)
-        isProtected = TRUE;
-    else if (IsSideProtectionOfMethod(battlerDef, PROTECT_MAT_BLOCK) && !IsBattleMoveStatus(move))
+    else if (IsSideProtected(battlerDef, PROTECT_MAT_BLOCK) && !IsBattleMoveStatus(move))
         isProtected = TRUE;
     else
         isProtected = FALSE;
@@ -8824,22 +8829,12 @@ bool32 IsBattlerProtected(u32 battlerAtk, u32 battlerDef, u32 move)
     return isProtected;
 }
 
-bool32 IsBattlerSideProtected(u32 battler)
-{
-    return IsSideTypeProtectingProtect(gProtectStructs[battler].protected)
-        || IsSideTypeProtectingProtect(gProtectStructs[BATTLE_PARTNER(battler)].protected);
-}
-
-bool32 IsSideTypeProtectingProtect(enum ProtectMethod method)
+u32 GetProtectType(enum ProtectMethod method)
 {
     switch (method)
     {
-    case PROTECT_WIDE_GUARD:
-    case PROTECT_QUICK_GUARD:
-    case PROTECT_CRAFTY_SHIELD:
-    case PROTECT_MAT_BLOCK:
-        return TRUE;
     case PROTECT_NONE:
+        return PROTECT_TYPE_NONE;
     case PROTECT_NORMAL:
     case PROTECT_SPIKY_SHIELD:
     case PROTECT_KINGS_SHIELD:
@@ -8847,7 +8842,13 @@ bool32 IsSideTypeProtectingProtect(enum ProtectMethod method)
     case PROTECT_BURNING_BULWARK:
     case PROTECT_OBSTRUCT:
     case PROTECT_SILK_TRAP:
-        return FALSE;
+    case PROTECT_MAX_GUARD:
+        return PROTECT_TYPE_SINGLE;
+    case PROTECT_WIDE_GUARD:
+    case PROTECT_QUICK_GUARD:
+    case PROTECT_CRAFTY_SHIELD:
+    case PROTECT_MAT_BLOCK:
+        return PROTECT_TYPE_SIDE;
     }
 
     return FALSE;
@@ -10225,7 +10226,9 @@ static inline uq4_12_t GetGlaiveRushModifier(u32 battlerDef)
 
 static inline uq4_12_t GetZMaxMoveAgainstProtectionModifier(struct DamageCalculationData *damageCalcData)
 {
-    if ((IsZMove(damageCalcData->move) || IsMaxMove(damageCalcData->move)) && gProtectStructs[damageCalcData->battlerDef].protected != PROTECT_NONE)
+    if ((IsZMove(damageCalcData->move) || IsMaxMove(damageCalcData->move))
+     && gProtectStructs[damageCalcData->battlerDef].protected != PROTECT_NONE
+     && gProtectStructs[gBattlerTarget].protected != PROTECT_MAX_GUARD)
         return UQ_4_12(0.25);
     return UQ_4_12(1.0);
 }

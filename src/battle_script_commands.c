@@ -1283,7 +1283,9 @@ static void Cmd_attackcanceler(void)
     }
 
     // Z-moves and Max Moves bypass protection, but deal reduced damage (factored in AccumulateOtherModifiers)
-    if ((IsZMove(gCurrentMove) || IsMaxMove(gCurrentMove)) && gProtectStructs[gBattlerTarget].protected != PROTECT_NONE)
+    if ((IsZMove(gCurrentMove) || IsMaxMove(gCurrentMove))
+     && gProtectStructs[gBattlerTarget].protected != PROTECT_NONE
+     && gProtectStructs[gBattlerTarget].protected != PROTECT_MAX_GUARD)
     {
         BattleScriptPush(cmd->nextInstr);
         gBattlescriptCurrInstr = BattleScript_CouldntFullyProtect;
@@ -1625,7 +1627,7 @@ static void AccuracyCheck(bool32 recalcDragonDarts, const u8 *nextInstr, const u
             gBattlescriptCurrInstr = nextInstr;
         if (GetActiveGimmick(gBattlerAttacker) == GIMMICK_DYNAMAX)
         {
-            if (gProtectStructs[gBattlerTarget].maxGuarded)
+            if (gProtectStructs[gBattlerTarget].protected == PROTECT_MAX_GUARD)
                 gBattlescriptCurrInstr = nextInstr;
             else
                 AbilityBattleEffects(ABILITYEFFECT_ABSORBING, gBattlerTarget, 0, 0, gCurrentMove);
@@ -3864,13 +3866,13 @@ void SetMoveEffect(bool32 primary, bool32 certain)
                 break;
             case MOVE_EFFECT_FEINT:
                 i = FALSE; // Remove Protect if any
-                if (gProtectStructs[gBattlerTarget].protected != PROTECT_NONE)
+                if (gProtectStructs[gBattlerTarget].protected != PROTECT_NONE
+                 && gProtectStructs[gBattlerTarget].protected != PROTECT_MAX_GUARD)
                 {
                     gProtectStructs[gBattlerTarget].protected = PROTECT_NONE;
                     i = TRUE;
                 }
-                    ;
-                if (IsBattlerSideProtected(gBattlerTarget))
+                if (GetProtectType(gProtectStructs[BATTLE_PARTNER(gBattlerTarget)].protected) == PROTECT_TYPE_SIDE)
                 {
                     gProtectStructs[BATTLE_PARTNER(gBattlerTarget)].protected = PROTECT_NONE;
                     i = TRUE;
@@ -6289,8 +6291,9 @@ static void Cmd_moveend(void)
                         effect = 1;
                     }
                     break;
-                case PROTECT_NORMAL:
                 case PROTECT_NONE:
+                case PROTECT_NORMAL:
+                case PROTECT_MAX_GUARD:
                 case PROTECT_WIDE_GUARD:
                 case PROTECT_QUICK_GUARD:
                 case PROTECT_CRAFTY_SHIELD:
@@ -11712,12 +11715,7 @@ static void Cmd_setprotectlike(void)
             gProtectStructs[gBattlerAttacker].endured = TRUE;
             gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_BRACED_ITSELF;
         }
-        else if (gCurrentMove == MOVE_MAX_GUARD)
-        {
-            gProtectStructs[gBattlerAttacker].maxGuarded = TRUE;
-            gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_PROTECTED_ITSELF;
-        }
-        else if (GetMoveProtectSide(gCurrentMove))
+        else if (GetProtectType(protectMethod) == PROTECT_TYPE_SIDE)
         {
             gProtectStructs[gBattlerAttacker].protected = protectMethod;
             gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_PROTECTED_TEAM;
