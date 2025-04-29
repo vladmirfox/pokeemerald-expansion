@@ -369,10 +369,15 @@ static void (* const sTurnActionsFuncsTable[])(void) =
     [B_ACTION_SWITCH]                 = HandleAction_Switch,
     [B_ACTION_RUN]                    = HandleAction_Run,
     [B_ACTION_SAFARI_WATCH_CAREFULLY] = HandleAction_WatchesCarefully,
+    //[B_ACTION_PT_WATCH_CAREFULLY]     = HandleAction_PTWatchesCarefully,
     [B_ACTION_SAFARI_BALL]            = HandleAction_SafariZoneBallThrow,
+    [B_ACTION_PT_BALL]                = HandleAction_PTBallThrow,
     [B_ACTION_SAFARI_POKEBLOCK]       = HandleAction_ThrowPokeblock,
     [B_ACTION_SAFARI_GO_NEAR]         = HandleAction_GoNear,
     [B_ACTION_SAFARI_RUN]             = HandleAction_SafariZoneRun,
+    //[B_ACTION_PT_POKEBLOCK]           = HandleAction_ThrowPokeblock,
+    //[B_ACTION_PT_GO_NEAR]             = HandleAction_GoNear,
+    //[B_ACTION_PT_RUN]                 = HandleAction_SafariZoneRun,
     [B_ACTION_WALLY_THROW]            = HandleAction_WallyBallThrow,
     [B_ACTION_EXEC_SCRIPT]            = HandleAction_RunBattleScript,
     [B_ACTION_TRY_FINISH]             = HandleAction_TryFinish,
@@ -394,6 +399,7 @@ static void (* const sEndTurnFuncsTable[])(void) =
     [B_OUTCOME_NO_SAFARI_BALLS]   = HandleEndTurn_FinishBattle,
     [B_OUTCOME_FORFEITED]         = HandleEndTurn_FinishBattle,
     [B_OUTCOME_MON_TELEPORTED]    = HandleEndTurn_FinishBattle,
+    [B_OUTCOME_NO_PT_BALLS]       = HandleEndTurn_FinishBattle,
 };
 
 const u8 gStatusConditionString_PoisonJpn[] = _("どく$$$$$");

@@ -993,7 +993,7 @@
 	.ifnb \atkEv; .set givemon_flags, givemon_flags | (1 << 6); .endif
 	.ifnb \defEv; .set givemon_flags, givemon_flags | (1 << 7); .endif
 	.ifnb \speedEv; .set givemon_flags, givemon_flags | (1 << 8); .endif
-	.ifnb \spAtkEv; .set givemon_flags, givemon_flags | (1 << 9); .endif
+	.ifnb \spAtkEv; .set givemon_flags,  | (1 << 9); .endif
 	.ifnb \spDefEv; .set givemon_flags, givemon_flags | (1 << 10); .endif
 	.ifnb \hpIv; .set givemon_flags, givemon_flags | (1 << 11); .endif
 	.ifnb \atkIv; .set givemon_flags, givemon_flags | (1 << 12); .endif

@@ -225,6 +225,8 @@ gSpecials::
 	def_special ResetSSTidalFlag
 	def_special EnterSafariMode
 	def_special ExitSafariMode
+	def_special EnterPTMode
+	def_special ExitPTMode
 	def_special GetPokeblockFeederInFront
 	def_special OpenPokeblockCaseOnFeeder
 	def_special IsMirageIslandPresent

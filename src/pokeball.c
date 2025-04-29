@@ -103,6 +103,7 @@ const struct CompressedSpriteSheet gBallSpriteSheets[POKEBALL_COUNT] =
     [BALL_HEAVY]   = {gBallGfx_Heavy,   384, GFX_TAG_HEAVY_BALL},
     [BALL_DREAM]   = {gBallGfx_Dream,   384, GFX_TAG_DREAM_BALL},
     [BALL_SAFARI]  = {gBallGfx_Safari,  384, GFX_TAG_SAFARI_BALL},
+    [BALL_PT]      = {gBallGfx_Safari,  384, GFX_TAG_SAFARI_BALL},
     [BALL_SPORT]   = {gBallGfx_Sport,   384, GFX_TAG_SPORT_BALL},
     [BALL_PARK]    = {gBallGfx_Park,    384, GFX_TAG_PARK_BALL},
     [BALL_BEAST]   = {gBallGfx_Beast,   384, GFX_TAG_BEAST_BALL},
@@ -135,6 +136,7 @@ const struct CompressedSpritePalette gBallSpritePalettes[POKEBALL_COUNT] =
     [BALL_HEAVY]   = {gBallPal_Heavy,   GFX_TAG_HEAVY_BALL},
     [BALL_DREAM]   = {gBallPal_Dream,   GFX_TAG_DREAM_BALL},
     [BALL_SAFARI]  = {gBallPal_Safari,  GFX_TAG_SAFARI_BALL},
+    [BALL_PT]      = {gBallPal_Safari,  GFX_TAG_SAFARI_BALL},
     [BALL_SPORT]   = {gBallPal_Sport,   GFX_TAG_SPORT_BALL},
     [BALL_PARK]    = {gBallPal_Park,    GFX_TAG_PARK_BALL},
     [BALL_BEAST]   = {gBallPal_Beast,   GFX_TAG_BEAST_BALL},
@@ -487,6 +489,16 @@ const struct SpriteTemplate gBallSpriteTemplates[POKEBALL_COUNT] =
         .callback = SpriteCB_BallThrow,
     },
     [BALL_SAFARI] =
+    {
+        .tileTag = GFX_TAG_SAFARI_BALL,
+        .paletteTag = GFX_TAG_SAFARI_BALL,
+        .oam = &sBallOamData,
+        .anims = sBallAnimSequences,
+        .images = NULL,
+        .affineAnims = sAffineAnim_BallRotate,
+        .callback = SpriteCB_BallThrow,
+    },
+    [BALL_PT] =
     {
         .tileTag = GFX_TAG_SAFARI_BALL,
         .paletteTag = GFX_TAG_SAFARI_BALL,
@@ -1565,6 +1577,7 @@ void LoadBallGfx(u8 ballId)
     case BALL_POKE ... BALL_MASTER:
     case BALL_NET ... BALL_NEST:
     case BALL_REPEAT:
+    case BALL_PT:
     case BALL_SAFARI:
         var = GetSpriteTileStartByTag(gBallSpriteSheets[ballId].tag);
         LZDecompressVram(gOpenPokeballGfx, (void *)(OBJ_VRAM0 + 0x100 + var * 32));

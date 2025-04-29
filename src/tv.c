@@ -2127,6 +2127,9 @@ void TryPutBreakingNewsOnAir(void)
         case B_OUTCOME_NO_SAFARI_BALLS:
             show->breakingNews.outcome = 2;
             break;
+        case B_OUTCOME_NO_PT_BALLS:
+            show->breakingNews.outcome = 2;
+            break;
         case B_OUTCOME_MON_FLED:
         case B_OUTCOME_MON_TELEPORTED:
             show->breakingNews.outcome = 3;

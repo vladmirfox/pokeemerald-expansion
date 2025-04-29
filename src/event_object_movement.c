@@ -517,6 +517,7 @@ static const struct SpritePalette sObjectEventSpritePalettes[] = {
     {gObjectEventPal_UltraBall,             OBJ_EVENT_PAL_TAG_BALL_ULTRA},
     {gObjectEventPal_GreatBall,             OBJ_EVENT_PAL_TAG_BALL_GREAT},
     {gObjectEventPal_SafariBall,            OBJ_EVENT_PAL_TAG_BALL_SAFARI},
+    {gObjectEventPal_PTBall,                OBJ_EVENT_PAL_TAG_BALL_SAFARI},
     {gObjectEventPal_NetBall,               OBJ_EVENT_PAL_TAG_BALL_NET},
     {gObjectEventPal_DiveBall,              OBJ_EVENT_PAL_TAG_BALL_DIVE},
     {gObjectEventPal_NestBall,              OBJ_EVENT_PAL_TAG_BALL_NEST},

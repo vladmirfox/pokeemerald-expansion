@@ -89,6 +89,11 @@ u8 *CopyItemName(u16 itemId, u8 *dst)
     return StringCopy(dst, ItemId_GetName(itemId));
 }
 
+void CopyPocketName(u16 itemId, u8 *dst)
+{
+    StringCopy(dst, gPocketNamesStringsTable[ItemId_GetPocket(itemId) - 1]);
+}
+
 const u8 sText_s[] =_("s");
 
 u8 *CopyItemNameHandlePlural(u16 itemId, u8 *dst, u32 quantity)

@@ -1154,3 +1154,72 @@ EventScript_VsSeekerChargingDone::
 	.include "data/text/save.inc"
 	.include "data/text/birch_speech.inc"
 	.include "data/scripts/dexnav.inc"
+
+	.include "data/maps/TestCell/scripts.inc"
+
+	.include "data/maps/TestCell2/scripts.inc"
+
+	.include "data/maps/TestCell3/scripts.inc"
+
+	.include "data/maps/Route1/scripts.inc"
+
+	.include "data/maps/Wyrmshire/scripts.inc"
+
+	.include "data/maps/Greensfield/scripts.inc"
+
+	.include "data/maps/HanakaVillage/scripts.inc"
+
+	.include "data/maps/MarinaPort/scripts.inc"
+
+	.include "data/maps/IronforgeCity/scripts.inc"
+
+	.include "data/maps/FortValorite/scripts.inc"
+
+	.include "data/maps/Mysteria/scripts.inc"
+
+	.include "data/maps/FortunaCity/scripts.inc"
+
+	.include "data/maps/DesertGateway/scripts.inc"
+
+	.include "data/maps/GreatDesert/scripts.inc"
+
+	.include "data/maps/AERuins/scripts.inc"
+
+	.include "data/maps/DesertOasis/scripts.inc"
+
+	.include "data/maps/CynderhailSect/scripts.inc"
+
+	.include "data/maps/NexiumCaverns/scripts.inc"
+
+	.include "data/maps/WyrmspireKeep/scripts.inc"
+
+	.include "data/maps/DragonsGate/scripts.inc"
+
+	.include "data/maps/ShinryuPath/scripts.inc"
+
+	.include "data/maps/ShinryuPagoda/scripts.inc"
+
+	.include "data/maps/Route2/scripts.inc"
+
+
+	.include "data/maps/TestCellPokecenter/scripts.inc"
+
+	.include "data/maps/TestCellInterior/scripts.inc"
+
+	.include "data/maps/TestCell_PT_A1/scripts.inc"
+
+	.include "data/maps/TestCell_PT_A2/scripts.inc"
+
+	.include "data/maps/TestCell_PT_A3/scripts.inc"
+
+	.include "data/maps/TestCell_PT_A4/scripts.inc"
+
+	.include "data/maps/TestCell4/scripts.inc"
+
+	.include "data/maps/TestCellPTE/scripts.inc"
+
+	.include "data/maps/RemnantOfConflict/scripts.inc"
+
+	.include "data/maps/ValoriteWoods/scripts.inc"
+
+	.include "data/maps/HydroelectricDam/scripts.inc"

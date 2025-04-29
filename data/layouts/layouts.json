@@ -2417,7 +2417,7 @@
       "width": 58,
       "height": 26,
       "primary_tileset": "gTileset_General",
-      "secondary_tileset": "0",
+      "secondary_tileset": "gTileset_Petalburg",
       "border_filepath": "data/layouts/UnusedOutdoorArea/border.bin",
       "blockdata_filepath": "data/layouts/UnusedOutdoorArea/map.bin"
     },
@@ -4410,6 +4410,346 @@
       "secondary_tileset": "gTileset_MysteryEventsHouse",
       "border_filepath": "data/layouts/SootopolisCity_MysteryEventsHouse_1F_StairsUnblocked/border.bin",
       "blockdata_filepath": "data/layouts/SootopolisCity_MysteryEventsHouse_1F_StairsUnblocked/map.bin"
+    },
+    {
+      "id": "LAYOUT_TEST_CELL",
+      "name": "TestCell_Layout",
+      "width": 20,
+      "height": 20,
+      "primary_tileset": "gTileset_General",
+      "secondary_tileset": "gTileset_Petalburg",
+      "border_filepath": "data/layouts/TestCell/border.bin",
+      "blockdata_filepath": "data/layouts/TestCell/map.bin"
+    },
+    {
+      "id": "LAYOUT_TEST_CELL2",
+      "name": "TestCell2_Layout",
+      "width": 20,
+      "height": 20,
+      "primary_tileset": "gTileset_General",
+      "secondary_tileset": "gTileset_Rustboro",
+      "border_filepath": "data/layouts/TestCell2/border.bin",
+      "blockdata_filepath": "data/layouts/TestCell2/map.bin"
+    },
+    {
+      "id": "LAYOUT_TEST_CELL3",
+      "name": "TestCell3_Layout",
+      "width": 20,
+      "height": 20,
+      "primary_tileset": "gTileset_General",
+      "secondary_tileset": "gTileset_Rustboro",
+      "border_filepath": "data/layouts/TestCell3/border.bin",
+      "blockdata_filepath": "data/layouts/TestCell3/map.bin"
+    },
+    {
+      "id": "LAYOUT_ROUTE1",
+      "name": "Route1_Layout",
+      "width": 20,
+      "height": 20,
+      "primary_tileset": "gTileset_General",
+      "secondary_tileset": "gTileset_Petalburg",
+      "border_filepath": "data/layouts/Route1/border.bin",
+      "blockdata_filepath": "data/layouts/Route1/map.bin"
+    },
+    {
+      "id": "LAYOUT_WYRMSHIRE",
+      "name": "Wyrmshire_Layout",
+      "width": 20,
+      "height": 20,
+      "primary_tileset": "gTileset_General",
+      "secondary_tileset": "gTileset_Petalburg",
+      "border_filepath": "data/layouts/Wyrmshire/border.bin",
+      "blockdata_filepath": "data/layouts/Wyrmshire/map.bin"
+    },
+    {
+      "id": "LAYOUT_GREENSFIELD",
+      "name": "Greensfield_Layout",
+      "width": 20,
+      "height": 20,
+      "primary_tileset": "gTileset_General",
+      "secondary_tileset": "gTileset_Petalburg",
+      "border_filepath": "data/layouts/Greensfield/border.bin",
+      "blockdata_filepath": "data/layouts/Greensfield/map.bin"
+    },
+    {
+      "id": "LAYOUT_HANAKA_VILLAGE",
+      "name": "HanakaVillage_Layout",
+      "width": 20,
+      "height": 20,
+      "primary_tileset": "gTileset_General",
+      "secondary_tileset": "gTileset_Petalburg",
+      "border_filepath": "data/layouts/HanakaVillage/border.bin",
+      "blockdata_filepath": "data/layouts/HanakaVillage/map.bin"
+    },
+    {
+      "id": "LAYOUT_MARINA_PORT",
+      "name": "MarinaPort_Layout",
+      "width": 20,
+      "height": 20,
+      "primary_tileset": "gTileset_General",
+      "secondary_tileset": "gTileset_Petalburg",
+      "border_filepath": "data/layouts/MarinaPort/border.bin",
+      "blockdata_filepath": "data/layouts/MarinaPort/map.bin"
+    },
+    {
+      "id": "LAYOUT_IRONFORGE_CITY",
+      "name": "IronforgeCity_Layout",
+      "width": 20,
+      "height": 20,
+      "primary_tileset": "gTileset_General",
+      "secondary_tileset": "gTileset_Petalburg",
+      "border_filepath": "data/layouts/IronforgeCity/border.bin",
+      "blockdata_filepath": "data/layouts/IronforgeCity/map.bin"
+    },
+    {
+      "id": "LAYOUT_FORT_VALORITE",
+      "name": "FortValorite_Layout",
+      "width": 20,
+      "height": 20,
+      "primary_tileset": "gTileset_General",
+      "secondary_tileset": "gTileset_Petalburg",
+      "border_filepath": "data/layouts/FortValorite/border.bin",
+      "blockdata_filepath": "data/layouts/FortValorite/map.bin"
+    },
+    {
+      "id": "LAYOUT_MYSTERIA",
+      "name": "Mysteria_Layout",
+      "width": 20,
+      "height": 20,
+      "primary_tileset": "gTileset_General",
+      "secondary_tileset": "gTileset_Petalburg",
+      "border_filepath": "data/layouts/Mysteria/border.bin",
+      "blockdata_filepath": "data/layouts/Mysteria/map.bin"
+    },
+    {
+      "id": "LAYOUT_FORTUNA_CITY",
+      "name": "FortunaCity_Layout",
+      "width": 20,
+      "height": 20,
+      "primary_tileset": "gTileset_General",
+      "secondary_tileset": "gTileset_Petalburg",
+      "border_filepath": "data/layouts/FortunaCity/border.bin",
+      "blockdata_filepath": "data/layouts/FortunaCity/map.bin"
+    },
+    {
+      "id": "LAYOUT_DESERT_GATEWAY",
+      "name": "DesertGateway_Layout",
+      "width": 20,
+      "height": 20,
+      "primary_tileset": "gTileset_General",
+      "secondary_tileset": "gTileset_Petalburg",
+      "border_filepath": "data/layouts/DesertGateway/border.bin",
+      "blockdata_filepath": "data/layouts/DesertGateway/map.bin"
+    },
+    {
+      "id": "LAYOUT_GREAT_DESERT",
+      "name": "GreatDesert_Layout",
+      "width": 20,
+      "height": 20,
+      "primary_tileset": "gTileset_General",
+      "secondary_tileset": "gTileset_Petalburg",
+      "border_filepath": "data/layouts/GreatDesert/border.bin",
+      "blockdata_filepath": "data/layouts/GreatDesert/map.bin"
+    },
+    {
+      "id": "LAYOUT_AERUINS",
+      "name": "AERuins_Layout",
+      "width": 20,
+      "height": 20,
+      "primary_tileset": "gTileset_General",
+      "secondary_tileset": "gTileset_Petalburg",
+      "border_filepath": "data/layouts/AERuins/border.bin",
+      "blockdata_filepath": "data/layouts/AERuins/map.bin"
+    },
+    {
+      "id": "LAYOUT_DESERT_OASIS",
+      "name": "DesertOasis_Layout",
+      "width": 20,
+      "height": 20,
+      "primary_tileset": "gTileset_General",
+      "secondary_tileset": "gTileset_Petalburg",
+      "border_filepath": "data/layouts/DesertOasis/border.bin",
+      "blockdata_filepath": "data/layouts/DesertOasis/map.bin"
+    },
+    {
+      "id": "LAYOUT_CYNDERHAIL_SECT",
+      "name": "CynderhailSect_Layout",
+      "width": 20,
+      "height": 20,
+      "primary_tileset": "gTileset_General",
+      "secondary_tileset": "gTileset_Petalburg",
+      "border_filepath": "data/layouts/CynderhailSect/border.bin",
+      "blockdata_filepath": "data/layouts/CynderhailSect/map.bin"
+    },
+    {
+      "id": "LAYOUT_NEXIUM_CAVERNS",
+      "name": "NexiumCaverns_Layout",
+      "width": 20,
+      "height": 20,
+      "primary_tileset": "gTileset_General",
+      "secondary_tileset": "gTileset_Petalburg",
+      "border_filepath": "data/layouts/NexiumCaverns/border.bin",
+      "blockdata_filepath": "data/layouts/NexiumCaverns/map.bin"
+    },
+    {
+      "id": "LAYOUT_WYRMSPIRE_KEEP",
+      "name": "WyrmspireKeep_Layout",
+      "width": 20,
+      "height": 20,
+      "primary_tileset": "gTileset_General",
+      "secondary_tileset": "gTileset_Petalburg",
+      "border_filepath": "data/layouts/WyrmspireKeep/border.bin",
+      "blockdata_filepath": "data/layouts/WyrmspireKeep/map.bin"
+    },
+    {
+      "id": "LAYOUT_DRAGONS_GATE",
+      "name": "DragonsGate_Layout",
+      "width": 20,
+      "height": 20,
+      "primary_tileset": "gTileset_General",
+      "secondary_tileset": "gTileset_Petalburg",
+      "border_filepath": "data/layouts/DragonsGate/border.bin",
+      "blockdata_filepath": "data/layouts/DragonsGate/map.bin"
+    },
+    {
+      "id": "LAYOUT_SHINRYU_PATH",
+      "name": "ShinryuPath_Layout",
+      "width": 20,
+      "height": 20,
+      "primary_tileset": "gTileset_General",
+      "secondary_tileset": "gTileset_Cave",
+      "border_filepath": "data/layouts/ShinryuPath/border.bin",
+      "blockdata_filepath": "data/layouts/ShinryuPath/map.bin"
+    },
+    {
+      "id": "LAYOUT_SHINRYU_PAGODA",
+      "name": "ShinryuPagoda_Layout",
+      "width": 30,
+      "height": 30,
+      "primary_tileset": "gTileset_General",
+      "secondary_tileset": "gTileset_EverGrande",
+      "border_filepath": "data/layouts/ShinryuPagoda/border.bin",
+      "blockdata_filepath": "data/layouts/ShinryuPagoda/map.bin"
+    },
+    {
+      "id": "LAYOUT_ROUTE2",
+      "name": "Route2_Layout",
+      "width": 20,
+      "height": 20,
+      "primary_tileset": "gTileset_General",
+      "secondary_tileset": "gTileset_Petalburg",
+      "border_filepath": "data/layouts/Route2/border.bin",
+      "blockdata_filepath": "data/layouts/Route2/map.bin"
+    },
+    {
+      "id": "LAYOUT_TEST_CELL_POKECENTER",
+      "name": "TestCellPokecenter_Layout",
+      "width": 14,
+      "height": 9,
+      "primary_tileset": "gTileset_Building",
+      "secondary_tileset": "gTileset_PokemonCenter",
+      "border_filepath": "data/layouts/TestCellPokecenter/border.bin",
+      "blockdata_filepath": "data/layouts/TestCellPokecenter/map.bin"
+    },
+    {
+      "id": "LAYOUT_TEST_CELL_INTERIOR",
+      "name": "TestCellInterior_Layout",
+      "width": 15,
+      "height": 10,
+      "primary_tileset": "gTileset_Building",
+      "secondary_tileset": "gTileset_GenericBuilding",
+      "border_filepath": "data/layouts/TestCellInterior/border.bin",
+      "blockdata_filepath": "data/layouts/TestCellInterior/map.bin"
+    },
+    {
+      "id": "LAYOUT_TEST_CELL_PT_A1",
+      "name": "TestCell_PT_A1_Layout",
+      "width": 20,
+      "height": 20,
+      "primary_tileset": "gTileset_General",
+      "secondary_tileset": "gTileset_Mauville",
+      "border_filepath": "data/layouts/TestCell_PT_A1/border.bin",
+      "blockdata_filepath": "data/layouts/TestCell_PT_A1/map.bin"
+    },
+    {
+      "id": "LAYOUT_TEST_CELL_PT_A2",
+      "name": "TestCell_PT_A2_Layout",
+      "width": 20,
+      "height": 20,
+      "primary_tileset": "gTileset_General",
+      "secondary_tileset": "gTileset_Mauville",
+      "border_filepath": "data/layouts/TestCell_PT_A2/border.bin",
+      "blockdata_filepath": "data/layouts/TestCell_PT_A2/map.bin"
+    },
+    {
+      "id": "LAYOUT_TEST_CELL_PT_A3",
+      "name": "TestCell_PT_A3_Layout",
+      "width": 20,
+      "height": 20,
+      "primary_tileset": "gTileset_General",
+      "secondary_tileset": "gTileset_Cave",
+      "border_filepath": "data/layouts/TestCell_PT_A3/border.bin",
+      "blockdata_filepath": "data/layouts/TestCell_PT_A3/map.bin"
+    },
+    {
+      "id": "LAYOUT_TEST_CELL_PT_A4",
+      "name": "TestCell_PT_A4_Layout",
+      "width": 20,
+      "height": 20,
+      "primary_tileset": "gTileset_General",
+      "secondary_tileset": "gTileset_Cave",
+      "border_filepath": "data/layouts/TestCell_PT_A4/border.bin",
+      "blockdata_filepath": "data/layouts/TestCell_PT_A4/map.bin"
+    },
+    {
+      "id": "LAYOUT_TEST_CELL4",
+      "name": "TestCell4_Layout",
+      "width": 20,
+      "height": 20,
+      "primary_tileset": "gTileset_General",
+      "secondary_tileset": "gTileset_Petalburg",
+      "border_filepath": "data/layouts/TestCell4/border.bin",
+      "blockdata_filepath": "data/layouts/TestCell4/map.bin"
+    },
+    {
+      "id": "LAYOUT_TEST_CELL_PTE",
+      "name": "TestCellPTE_Layout",
+      "width": 15,
+      "height": 15,
+      "primary_tileset": "gTileset_Building",
+      "secondary_tileset": "gTileset_GenericBuilding",
+      "border_filepath": "data/layouts/TestCellPTE/border.bin",
+      "blockdata_filepath": "data/layouts/TestCellPTE/map.bin"
+    },
+    {
+      "id": "LAYOUT_REMNANT_OF_CONFLICT",
+      "name": "RemnantOfConflict_Layout",
+      "width": 20,
+      "height": 20,
+      "primary_tileset": "gTileset_General",
+      "secondary_tileset": "gTileset_Petalburg",
+      "border_filepath": "data/layouts/RemnantOfConflict/border.bin",
+      "blockdata_filepath": "data/layouts/RemnantOfConflict/map.bin"
+    },
+    {
+      "id": "LAYOUT_VALORITE_WOODS",
+      "name": "ValoriteWoods_Layout",
+      "width": 20,
+      "height": 20,
+      "primary_tileset": "gTileset_General",
+      "secondary_tileset": "gTileset_Petalburg",
+      "border_filepath": "data/layouts/ValoriteWoods/border.bin",
+      "blockdata_filepath": "data/layouts/ValoriteWoods/map.bin"
+    },
+    {
+      "id": "LAYOUT_HYDROELECTRIC_DAM",
+      "name": "HydroelectricDam_Layout",
+      "width": 20,
+      "height": 20,
+      "primary_tileset": "gTileset_General",
+      "secondary_tileset": "gTileset_Petalburg",
+      "border_filepath": "data/layouts/HydroelectricDam/border.bin",
+      "blockdata_filepath": "data/layouts/HydroelectricDam/map.bin"
     }
   ]
 }

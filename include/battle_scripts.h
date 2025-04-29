@@ -1,3 +1,5 @@
+//#include "global.h"
+
 #ifndef GUARD_BATTLE_SCRIPTS_H
 #define GUARD_BATTLE_SCRIPTS_H
 
@@ -250,9 +252,11 @@ extern const u8 BattleScript_PrintPlayerForfeitedLinkBattle[];
 extern const u8 BattleScript_BallThrow[];
 extern const u8 BattleScript_BallThrowByWally[];
 extern const u8 BattleScript_SafariBallThrow[];
+extern const u8 BattleScript_PTBallThrow[];
 extern const u8 BattleScript_SuccessBallThrow[];
 extern const u8 BattleScript_WallyBallThrow[];
 extern const u8 BattleScript_ShakeBallThrow[];
+//extern const u8 BattleScript_PTShakeBallThrow[];
 extern const u8 BattleScript_TrainerBallBlock[];
 extern const u8 BattleScript_RunByUsingItem[];
 extern const u8 BattleScript_ActionWatchesCarefully[];

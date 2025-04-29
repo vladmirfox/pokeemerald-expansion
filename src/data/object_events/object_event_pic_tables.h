@@ -1139,6 +1139,9 @@ static const struct SpriteFrameImage sPicTable_Ball_GREAT[] = {
 static const struct SpriteFrameImage sPicTable_Ball_SAFARI[] = {
     POKEBALL_PIC_FRAMES(Safari),
 };
+static const struct SpriteFrameImage sPicTable_Ball_PT[] = {
+    POKEBALL_PIC_FRAMES(Safari),
+};
 static const struct SpriteFrameImage sPicTable_Ball_NET[] = {
     POKEBALL_PIC_FRAMES(Net),
 };

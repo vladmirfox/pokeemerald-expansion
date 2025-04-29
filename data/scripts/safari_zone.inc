@@ -1,15 +1,33 @@
 SafariZone_EventScript_OutOfBallsMidBattle::
 	setvar VAR_SAFARI_ZONE_STATE, 1
+	setvar VAR_PROVING_TRIAL_STATE, 4
+	setflag FLAG_PT_STARTER
 	special ExitSafariMode
-	setwarp MAP_ROUTE121_SAFARI_ZONE_ENTRANCE, 2, 5
+	warpdoor MAP_TEST_CELL_INTERIOR, 7, 1
+	waitstate
+	end
+
+PT_EventScript_OutOfBallsMidBattle::
+	setvar VAR_PROVING_TRIAL_STATE, 1
+	special ExitPTMode
+	setwarp MAP_TEST_CELL_INTERIOR, 7, 1
 	end
 
 SafariZone_EventScript_Exit::
 	setvar VAR_SAFARI_ZONE_STATE, 1
+	setvar VAR_PROVING_TRIAL_STATE, 4
+	setflag FLAG_PT_STARTER
 	special ExitSafariMode
-	warp MAP_ROUTE121_SAFARI_ZONE_ENTRANCE, 2, 5
+	warpdoor MAP_TEST_CELL_INTERIOR, 7, 1
 	waitstate
 	end
+
+PT_EventScript_Exit::
+	setvar VAR_PROVING_TRIAL_STATE, 1
+	special ExitPTMode
+	warp MAP_TEST_CELL_INTERIOR, 7, 1
+	waitstate
+	end	
 
 SafariZone_EventScript_RetirePrompt::
 	lockall
@@ -18,8 +36,18 @@ SafariZone_EventScript_RetirePrompt::
 	releaseall
 	end
 
+PT_EventScript_RetirePrompt::
+	lockall
+	msgbox PT_Text_WouldYouLikeToExit, MSGBOX_YESNO
+	goto_if_eq VAR_RESULT, YES, PT_EventScript_Retire
+	releaseall
+	end
+
 SafariZone_EventScript_Retire::
 	goto SafariZone_EventScript_Exit
+
+PT_EventScript_Retire::
+	goto PT_EventScript_Exit
 
 SafariZone_EventScript_TimesUp::
 	lockall
@@ -30,6 +58,15 @@ SafariZone_EventScript_TimesUp::
 	releaseall
 	goto SafariZone_EventScript_Exit
 
+PT_EventScript_TimesUp::
+	lockall
+	playse SE_DING_DONG
+	message PT_Text_TimesUp
+	waitmessage
+	waitbuttonpress
+	releaseall
+	goto PT_EventScript_Exit	
+
 SafariZone_EventScript_OutOfBalls::
 	lockall
 	playse SE_DING_DONG
@@ -38,6 +75,15 @@ SafariZone_EventScript_OutOfBalls::
 	waitbuttonpress
 	releaseall
 	goto SafariZone_EventScript_Exit
+
+PT_EventScript_OutOfBalls::
+	lockall
+	playse SE_DING_DONG
+	message PT_Text_OutOfBalls
+	waitmessage
+	waitbuttonpress
+	releaseall
+	goto PT_EventScript_Exit
 
 EventScript_PokeBlockFeeder::
 	lockall
@@ -81,6 +127,18 @@ SafariZone_Text_TimesUp:
 	.string "Your SAFARI Game is over.$"
 
 SafariZone_Text_OutOfBalls:
+	.string "You've run out of SAFARI BALLS.\n"
+	.string "Your SAFARI Game is over.$"
+
+PT_Text_WouldYouLikeToExit:
+	.string "Would you like to exit the SAFARI\n"
+	.string "ZONE right now?$"
+
+PT_Text_TimesUp:
+	.string "Ding-dong! Time's up!\n"
+	.string "Your SAFARI Game is over.$"
+
+PT_Text_OutOfBalls:
 	.string "You've run out of SAFARI BALLS.\n"
 	.string "Your SAFARI Game is over.$"
 

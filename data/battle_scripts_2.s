@@ -176,6 +176,11 @@ BattleScript_SafariBallThrow::
 	updatestatusicon BS_ATTACKER
 	handleballthrow
 
+BattleScript_PTBallThrow::
+	printstring STRINGID_PLAYERUSEDITEM
+	updatestatusicon BS_ATTACKER
+	handleballthrow
+
 BattleScript_SuccessBallThrow::
 	setbyte sMON_CAUGHT, TRUE
 	incrementgamestat GAME_STAT_POKEMON_CAPTURES
@@ -222,6 +227,17 @@ BattleScript_ShakeBallThrow::
 BattleScript_ShakeBallThrowEnd::
 	finishaction
 
+//BattleScript_PTShakeBallThrow::
+//	printfromtable gBallEscapeStringIds
+//	waitmessage B_WAIT_TIME_LONG
+//	jumpifword CMP_NO_COMMON_BITS, gBattleTypeFlags, BATTLE_TYPE_PT, BattleScript_PTShakeBallThrowEnd
+//	jumpifbyte CMP_NOT_EQUAL, gNumPTBalls, 0, BattleScript_PTShakeBallThrowEnd
+//	printstring STRINGID_OUTOFPTBALLS
+//	waitmessage B_WAIT_TIME_LONG
+//	setbyte gBattleOutcome, B_OUTCOME_NO_PT_BALLS
+//BattleScript_PTShakeBallThrowEnd::
+//	finishaction
+
 BattleScript_TrainerBallBlock::
 	waitmessage B_WAIT_TIME_LONG
 	printstring STRINGID_TRAINERBLOCKEDBALL
@@ -236,6 +252,11 @@ BattleScript_RunByUsingItem::
 	finishturn
 
 BattleScript_ActionWatchesCarefully:
+	printstring STRINGID_PKMNWATCHINGCAREFULLY
+	waitmessage B_WAIT_TIME_LONG
+	end2
+
+BattleScript_ActionPTWatchesCarefully:
 	printstring STRINGID_PKMNWATCHINGCAREFULLY
 	waitmessage B_WAIT_TIME_LONG
 	end2
@@ -263,6 +284,31 @@ BattleScript_ActionWallyThrow:
 	printstring STRINGID_YOUTHROWABALLNOWRIGHT
 	waitmessage B_WAIT_TIME_LONG
 	end2
+
+BattleScript_ActionPTGetNear:
+	printfromtable gSafariGetNearStringIds
+	waitmessage B_WAIT_TIME_LONG
+	end2
+
+BattleScript_ActionPTThrowPokeblock:
+	printstring STRINGID_THREWPOKEBLOCKATPKMN
+	waitmessage B_WAIT_TIME_LONG
+	playanimation BS_ATTACKER, B_ANIM_POKEBLOCK_THROW, NULL
+	printfromtable gSafariPokeblockResultStringIds
+	waitmessage B_WAIT_TIME_LONG
+	end2
+
+BattleScript_ActionPTWallyThrow:
+	printstring STRINGID_RETURNMON
+	waitmessage B_WAIT_TIME_LONG
+	returnatktoball
+	waitstate
+	trainerslidein BS_PLAYER1
+	waitstate
+	printstring STRINGID_YOUTHROWABALLNOWRIGHT
+	waitmessage B_WAIT_TIME_LONG
+	end2
+
 
 BattleScript_TrainerASlideMsgRet::
 	handletrainerslidemsg BS_SCRIPTING, 0

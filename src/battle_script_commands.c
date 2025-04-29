@@ -5322,7 +5322,36 @@ static void Cmd_getexp(void)
             gBattleScripting.getexpState = 6; // we're done
         }
         break;
-    case 6: // increment instruction
+
+        case 6: // check if wild Pokémon has a hold item after fainting
+            if (gBattleStruct->wildVictorySong && gBattleMons[gBattlerFainted].item != ITEM_NONE)
+            {
+                PrepareStringBattle(STRINGID_PKMNDROPPEDITEM, gBattleStruct->expGetterBattlerId);
+                gBattleScripting.getexpState = 7; // add item to bag
+            }
+                else
+            {
+                gBattleScripting.getexpState = 8; // no hold item, end battle
+            }
+            break;
+        case 7: // add dropped item to bag if space available
+            if (CheckBagHasSpace(gBattleMons[gBattlerFainted].item, 1) == TRUE)
+            {
+                AddBagItem(gBattleMons[gBattlerFainted].item, 1);
+                PREPARE_ITEM_BUFFER(gBattleTextBuff1, gBattleMons[gBattlerFainted].item);
+                PREPARE_POCKET_BUFFER(gBattleTextBuff2, gBattleMons[gBattlerFainted].item);
+                PrepareStringBattle(STRINGID_ADDEDTOBAG, gBattleStruct->expGetterBattlerId);
+                gBattleScripting.getexpState = 8;
+            }
+            else
+            {                    
+                PrepareStringBattle(STRINGID_BAGISFULL, gBattleStruct->expGetterBattlerId);
+                gBattleScripting.getexpState = 8;
+            }
+            break;
+        case 8: // increment instruction
+
+    //case 6: // increment instruction
         if (gBattleControllerExecFlags == 0)
         {
             // not sure why gf clears the item and ability here
@@ -15902,6 +15931,10 @@ static void Cmd_handleballthrow(void)
                 if (B_SAFARI_BALL_MODIFIER <= GEN_7)
                     ballMultiplier = 150;
                 break;
+            case BALL_PT:
+                if (B_SAFARI_BALL_MODIFIER <= GEN_7)
+                    ballMultiplier = 150;
+                break;
             case BALL_NET:
                 if (IS_BATTLER_ANY_TYPE(gBattlerTarget, TYPE_WATER, TYPE_BUG))
                     ballMultiplier = B_NET_BALL_MODIFIER >= GEN_7 ? 350 : 300;
@@ -16106,7 +16139,7 @@ static void Cmd_handleballthrow(void)
                 maxShakes = BALL_3_SHAKES_SUCCESS;
             }
 
-            if (ballId == BALL_MASTER)
+            if ((ballId == BALL_MASTER)||(ballId = BALL_SAFARI))
             {
                 shakes = maxShakes;
             }

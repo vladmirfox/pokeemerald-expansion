@@ -21,6 +21,7 @@
 #include "move.h"
 #include "random.h" // for rng_value_t
 #include "trainer_slide.h"
+#include "gba/types.h"
 
 // Helper for accessing command arguments and advancing gBattlescriptCurrInstr.
 //
@@ -66,6 +67,11 @@
 #define B_ACTION_NOTHING_FAINTED        13 // when choosing an action
 #define B_ACTION_DEBUG                  20
 #define B_ACTION_THROW_BALL             21 // R to throw last used ball
+//#define B_ACTION_PT_WATCH_CAREFULLY     22
+#define B_ACTION_PT_BALL                22
+//#define B_ACTION_PT_POKEBLOCK           24
+//#define B_ACTION_PT_GO_NEAR             25
+//#define B_ACTION_PT_RUN                 26
 #define B_ACTION_NONE                   0xFF
 
 #define BATTLE_BUFFER_LINK_SIZE 0x1000

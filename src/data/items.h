@@ -1,3 +1,4 @@
+
 #if I_USE_EVO_HELD_ITEMS_FROM_BAG == TRUE
     #define EVO_HELD_ITEM_TYPE ITEM_USE_PARTY_MENU
     #define EVO_HELD_ITEM_FIELD_FUNC ItemUseOutOfBattle_EvolutionStone
@@ -535,6 +536,22 @@ const struct Item gItemsInfo[] =
             "A special Ball that\n"
             "is used only in the\n"
             "Safari Zone."),
+        .pocket = POCKET_POKE_BALLS,
+        .type = ITEM_USE_BAG_MENU,
+        .battleUsage = EFFECT_ITEM_THROW_BALL,
+        .secondaryId = BALL_SAFARI,
+        .iconPic = gItemIcon_SafariBall,
+        .iconPalette = gItemIconPalette_SafariBall,
+    },
+
+    [ITEM_PT_BALL] =
+    {
+        .name = _("PT Ball"),
+        .price = 0,
+        .description = COMPOUND_STRING(
+            "A special Ball that\n"
+            "is used only in the\n"
+            "Proving Trial."),
         .pocket = POCKET_POKE_BALLS,
         .type = ITEM_USE_BAG_MENU,
         .battleUsage = EFFECT_ITEM_THROW_BALL,

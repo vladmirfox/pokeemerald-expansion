@@ -26,6 +26,8 @@
 #include "expansion_intro.h"
 #include "constants/rgb.h"
 #include "constants/battle_anim.h"
+#include "main_menu.h"
+#include "event_data.h"
 
 /*
     The intro is grouped into the following scenes
@@ -1123,7 +1125,8 @@ static u8 SetUpCopyrightScreen(void)
         if (UpdatePaletteFade())
             break;
 #if EXPANSION_INTRO == TRUE
-        SetMainCallback2(CB2_ExpansionIntro);
+        //SetMainCallback2(CB2_ExpansionIntro);
+        SetMainCallback2(CB2_InitTitleScreen);
         CreateTask(Task_HandleExpansionIntro, 0);
 #else
         CreateTask(Task_Scene1_Load, 0);
